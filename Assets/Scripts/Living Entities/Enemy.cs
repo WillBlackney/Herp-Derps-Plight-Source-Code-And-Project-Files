@@ -115,10 +115,5 @@ public class Enemy : LivingEntity
     }
     #endregion
 
-    // New logic 
-    public virtual EnemyAction DetermineNextAction()
-    {
-        return null;
-    }
 
 }

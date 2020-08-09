@@ -46,6 +46,7 @@ public class CardController : MonoBehaviour
         card.cardSprite = data.cardSprite;
         card.cardType = data.cardType;
         card.targettingType = data.targettingType;
+        card.talentSchool = data.talentSchool;
         card.owner = owner;
         card.cardEffects.AddRange(data.cardEffects);
 
@@ -73,6 +74,7 @@ public class CardController : MonoBehaviour
         cardVM.SetDescriptionText(card.cardDescription);
         cardVM.SetEnergyText(card.cardCurrentEnergyCost.ToString());
         cardVM.SetGraphicImage(card.cardSprite);
+        cardVM.SetTalentSchoolImage(SpriteLibrary.Instance.GetTalentSchoolSpriteFromEnumData(card.talentSchool));
         cardVM.SetCardTypeImage(card.cardType);
 
         return cardVM;
@@ -92,10 +94,14 @@ public class CardController : MonoBehaviour
 
     // Card draw Logic
     #region
-    public void DrawACardFromDrawPile(Defender defender, int index = 0)
+    public Action DrawACardFromDrawPile(Defender defender, int index = 0)
     {
-        Debug.Log("CardController.DrawACardFromDrawPile() called...");
-
+        Action action = new Action(true);
+        StartCoroutine(DrawACardFromDrawPileCoroutine(defender, action, index));
+        return action;
+    }
+    private IEnumerator DrawACardFromDrawPileCoroutine(Defender defender, Action action, int index)
+    {
         // Shuffle discard pile back into draw pile if draw pile is empty
         if (IsDrawPileEmpty(defender))
         {
@@ -112,9 +118,12 @@ public class CardController : MonoBehaviour
 
             // Create and queue card drawn visual event
             new DrawACardCommand(cardDrawn, defender, true, true).AddToQueue();
+            yield return null;
         }
-        
-    }   
+
+        // Resolve
+        action.actionResolved = true;
+    }
     public void DrawCardsOnActivationStart(Defender defender)
     {
         Debug.Log("CardController.DrawCardsOnActivationStart() called...");
@@ -343,8 +352,12 @@ public class CardController : MonoBehaviour
         // Trigger all effects on card
         foreach (CardEffect effect in card.cardEffects)
         {
-            Action effectEvent = TriggerEffectFromCard(card, effect, target);
-            yield return new WaitUntil(() => effectEvent.ActionResolved());
+            if(owner != null && owner.inDeathProcess == false)
+            {
+                Action effectEvent = TriggerEffectFromCard(card, effect, target);
+                yield return new WaitUntil(() => effectEvent.ActionResolved());
+            }
+            
         }
 
         // On end events
@@ -367,6 +380,7 @@ public class CardController : MonoBehaviour
         Defender owner = card.owner;
         bool hasMovedOffStartingNode = false;
 
+        // Gain Block
         if (cardEffect.cardEffectType == CardEffectType.GainBlock)
         {
             if(!target)
@@ -377,7 +391,8 @@ public class CardController : MonoBehaviour
             target.ModifyCurrentBlock(CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner));
         }
 
-        else if(cardEffect.cardEffectType == CardEffectType.DealDamage)
+        // Deal Damage
+        else if (cardEffect.cardEffectType == CardEffectType.DealDamage)
         {
             // Attack animation stuff
             if(card.cardType == CardType.MeleeAttack && target != null)
@@ -404,6 +419,49 @@ public class CardController : MonoBehaviour
                 yield return new WaitUntil(() => moveBackEvent.ActionResolved() == true);
             }
 
+        }
+
+        // Lose Health
+        else if (cardEffect.cardEffectType == CardEffectType.LoseHealth)
+        {
+            // VFX
+            VisualEffectManager.Instance.CreateBloodSplatterEffect(owner.transform.position);
+
+            // Reduce Health
+            Action selfDamageAction = CombatLogic.Instance.HandleDamage(cardEffect.healthLost, owner, owner, "None", null, true);
+            yield return new WaitUntil(() => selfDamageAction.ActionResolved() == true);
+            //yield return new WaitForSeconds(0.5f);
+        }
+
+        // Gain Energy
+        else if (cardEffect.cardEffectType == CardEffectType.GainEnergy)
+        {
+            // Gain Energy
+            owner.ModifyCurrentEnergy(cardEffect.energyGained);
+            VisualEffectManager.Instance.CreateGainEnergyBuffEffect(owner.transform.position);
+        }
+
+        // Draw Cards
+        else if (cardEffect.cardEffectType == CardEffectType.DrawCards)
+        {
+            // Determine target
+            if (!target)
+            {
+                target = owner;
+            }
+
+            // Draw cards
+            for(int draws = 0; draws < cardEffect.cardsDrawn; draws++)
+            {
+                Action drawAction = DrawACardFromDrawPile(target.defender);
+                yield return new WaitUntil(() => drawAction.ActionResolved() == true);
+            }           
+        }
+
+        // Apply Burning
+        else if (cardEffect.cardEffectType == CardEffectType.ApplyBurning)
+        {
+            target.myPassiveManager.ModifyBurning(cardEffect.burningApplied);
         }
 
         // Resolve event

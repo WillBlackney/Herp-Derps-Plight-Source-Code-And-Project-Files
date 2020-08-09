@@ -19,7 +19,7 @@ public class StatusManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void InitializeSetup(LivingEntity entity)
     {
         myLivingEntity = entity;
-        SetPanelViewState(false);
+        SetPanelViewState(true);
     }
 
     // Add, Update, and Remove Status Icon Logic
@@ -204,7 +204,7 @@ public class StatusManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (myLivingEntity.mouseIsOverCharacter == false)
         {
             //DisableAllMyIcons();
-            SetPanelViewState(false);
+            //SetPanelViewState(false);
             InfoPanelHover.Instance.DisableView();
         }        
     }   

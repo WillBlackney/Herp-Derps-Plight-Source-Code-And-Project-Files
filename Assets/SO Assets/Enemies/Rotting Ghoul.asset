@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 272d402ffa0a347429dfe06011e3d167, type: 3}
+  m_Name: Rotting Ghoul
+  m_EditorClassIdentifier: 
+  enemyName: Rotting Ghoul
+  description: 
+  maxHealth: 44
+  strength: 0
+  wisdom: 0
+  dexterity: 0
+  initiative: 3
+  startingHealth: 44
+  startingBlock: 0
+  physicalResistance: 0
+  fireResistance: 0
+  frostResistance: 0
+  shadowResistance: 0
+  poisonResistance: 0
+  airResistance: 0
+  allPassives: []
+  allEnemyActions:
+  - actionName: Bite
+    actionType: 0
+    forceIntentImage: 0
+    intentImage: 0
+    actionValue: 11
+    actionLoops: 1
+    damageType: 1
+    statusApplied:
+      statusData: {fileID: 0}
+      statusStacks: 0
+    secondEffect: 0
+    secondActionType: 0
+    secondActionValue: 0
+    secondActionLoops: 0
+    secondStatusApplied:
+      statusData: {fileID: 0}
+      statusStacks: 0
+    canBeConsecutive: 0
+    prioritiseWhenRequirementsMet: 1
+    actionRequirements:
+    - requirementType: 9
+      requirementTypeValue: 0
+  - actionName: Bite
+    actionType: 0
+    forceIntentImage: 0
+    intentImage: 0
+    actionValue: 11
+    actionLoops: 1
+    damageType: 1
+    statusApplied:
+      statusData: {fileID: 0}
+      statusStacks: 0
+    secondEffect: 0
+    secondActionType: 0
+    secondActionValue: 0
+    secondActionLoops: 0
+    secondStatusApplied:
+      statusData: {fileID: 0}
+      statusStacks: 0
+    canBeConsecutive: 0
+    prioritiseWhenRequirementsMet: 0
+    actionRequirements: []
+  - actionName: Thrash
+    actionType: 0
+    forceIntentImage: 1
+    intentImage: 13
+    actionValue: 7
+    actionLoops: 1
+    damageType: 1
+    statusApplied:
+      statusData: {fileID: 11400000, guid: 25994f1b0e8d2464993c423210ce4bd0, type: 2}
+      statusStacks: 3
+    secondEffect: 1
+    secondActionType: 7
+    secondActionValue: 5
+    secondActionLoops: 1
+    secondStatusApplied:
+      statusData: {fileID: 0}
+      statusStacks: 0
+    canBeConsecutive: 0
+    prioritiseWhenRequirementsMet: 0
+    actionRequirements: []
+  - actionName: Howl
+    actionType: 2
+    forceIntentImage: 1
+    intentImage: 12
+    actionValue: 3
+    actionLoops: 1
+    damageType: 0
+    statusApplied:
+      statusData: {fileID: 11400000, guid: 25994f1b0e8d2464993c423210ce4bd0, type: 2}
+      statusStacks: 3
+    secondEffect: 1
+    secondActionType: 7
+    secondActionValue: 6
+    secondActionLoops: 1
+    secondStatusApplied:
+      statusData: {fileID: 0}
+      statusStacks: 0
+    canBeConsecutive: 0
+    prioritiseWhenRequirementsMet: 0
+    actionRequirements: []
+  allBodyParts:
+  - Undead_Head_5
+  - Undead_Face_6
+  - Peasant_Cloth_Right_Arm_Wear
+  - Volatile_Zombie_Right_Hand
+  - Peasant_Cloth_Left_Arm_Wear
+  - Volatile_Zombie_Left_Hand
+  - Volatile_Zombie_Right_Leg
+  - Volatile_Zombie_Left_Leg
+  - Peasant_Cloth_Chest_Wear

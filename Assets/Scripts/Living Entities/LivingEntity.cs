@@ -1022,8 +1022,6 @@ public class LivingEntity : MonoBehaviour
         
         if (!inDeathProcess)
         {
-            myStatusManager.SetPanelViewState(true);
-
             if (myActivationWindow != null)
             {
                 myActivationWindow.myGlowOutline.SetActive(true);
@@ -1039,10 +1037,6 @@ public class LivingEntity : MonoBehaviour
     {
         mouseIsOverCharacter = false;
         SetColor(normalColour);
-        if(mouseIsOverStatusIconPanel == false && inDeathProcess == false)
-        {
-            myStatusManager.SetPanelViewState(false);
-        }
         if (!inDeathProcess)
         {
             if(myActivationWindow != null)

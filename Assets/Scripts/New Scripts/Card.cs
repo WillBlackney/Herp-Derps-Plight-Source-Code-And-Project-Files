@@ -13,5 +13,6 @@ public class Card
     public int cardCurrentEnergyCost;
     public CardType cardType;
     public TargettingType targettingType;
+    public TalentSchool talentSchool;
     public List<CardEffect> cardEffects = new List<CardEffect>();
 }

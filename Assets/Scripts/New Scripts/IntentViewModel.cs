@@ -11,6 +11,11 @@ public class IntentViewModel : MonoBehaviour
     public Image attackTargetImage;
     public Image defendImage;
     public Image mysteryImage;
+    public Image debuffImage;
+    public Image buffImage;
+    public Image attackAndBuffImage;
+    public Image attackAndDefendImage;
+    public Image defendAndBuff;
 
     public void FadeInView()
     {

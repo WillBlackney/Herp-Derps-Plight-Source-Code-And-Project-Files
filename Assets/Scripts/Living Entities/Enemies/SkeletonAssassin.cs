@@ -4,24 +4,7 @@ using UnityEngine;
 
 
 public class SkeletonAssassin : Enemy
-{
-    public override EnemyAction DetermineNextAction()
-    {
-        int randomNum = Random.Range(0, 2);
-        EnemyAction actionReturned = null;
-
-        if(randomNum == 0)
-        {
-            actionReturned = myKnownActions[0];
-        }
-        else if(randomNum == 1)
-        {
-            actionReturned = myKnownActions[1];
-        }
-
-        Debug.Log("SkeletonAssassin.DetermineNextAction() returning: " + actionReturned.actionName);
-        return actionReturned;
-    }
+{ 
 
 
 

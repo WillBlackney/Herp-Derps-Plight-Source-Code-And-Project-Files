@@ -45,6 +45,7 @@ public static class CharacterModelController
         }
     }
     #endregion
+
     // View Logic
     #region
 

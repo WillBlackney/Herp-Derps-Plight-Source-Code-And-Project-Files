@@ -18,10 +18,22 @@ public class CardEffect
     [ShowIf("cardEffectType", CardEffectType.DealDamage)]
     public AbilityDataSO.DamageType damageType;
 
+    [ShowIf("cardEffectType", CardEffectType.LoseHealth)]
+    public int healthLost;
+
+    [ShowIf("cardEffectType", CardEffectType.GainEnergy)]
+    public int energyGained;
+
+    [ShowIf("cardEffectType", CardEffectType.DrawCards)]
+    public int cardsDrawn;
+
+    [ShowIf("cardEffectType", CardEffectType.ApplyBurning)]
+    public int burningApplied;
+
 }
 
 [Serializable]
 public enum CardEffectType
 {
-    None, GainBlock, DealDamage
+    None, GainBlock, DealDamage, LoseHealth, GainEnergy, DrawCards, ApplyBurning
 }

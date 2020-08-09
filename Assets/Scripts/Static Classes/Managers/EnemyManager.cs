@@ -15,6 +15,7 @@ public class EnemyManager : MonoBehaviour
     {
         Instance = this;
     }
+
     // Logic
     #region
     public void SelectEnemy(Enemy enemy)

@@ -15,4 +15,4 @@ MonoBehaviour:
   waveName: Testing Wave
   enemyGroups:
   - enemyList:
-    - {fileID: 11400000, guid: c86f67d3401e6b643b376cca403238eb, type: 2}
+    - {fileID: 11400000, guid: 7871384ba6a211145bc2fc090e232b51, type: 2}

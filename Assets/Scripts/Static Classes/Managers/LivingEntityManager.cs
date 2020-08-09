@@ -456,7 +456,7 @@ public class LivingEntityManager : MonoBehaviour
                 VisualEffectManager.Instance.CreateStatusEffect(entity.transform.position, "Poisoned");
                 yield return new WaitForSeconds(0.5f);
                 int poisonDamageFinalValue = CombatLogic.Instance.GetDamageValueAfterResistances(entity.myPassiveManager.poisonedStacks, "Poison", entity);
-                Action poisonDamage = CombatLogic.Instance.HandleDamage(poisonDamageFinalValue, null, entity, "Poison", null);
+                Action poisonDamage = CombatLogic.Instance.HandleDamage(poisonDamageFinalValue, null, entity, "Poison", null, true);
                 yield return new WaitUntil(() => poisonDamage.ActionResolved() == true);
                 yield return new WaitForSeconds(1f);
             }
@@ -469,7 +469,7 @@ public class LivingEntityManager : MonoBehaviour
                 VisualEffectManager.Instance.CreateStatusEffect(entity.transform.position, "Burning");
                 yield return new WaitForSeconds(0.5f);
                 int fireDamageFinalValue = CombatLogic.Instance.GetDamageValueAfterResistances(entity.myPassiveManager.burningStacks, "Fire", entity);
-                Action burningDamage = CombatLogic.Instance.HandleDamage(fireDamageFinalValue, null, entity, "Fire", null);
+                Action burningDamage = CombatLogic.Instance.HandleDamage(fireDamageFinalValue, null, entity, "Fire", null, true);
                 yield return new WaitUntil(() => burningDamage.ActionResolved() == true);
                 yield return new WaitForSeconds(1f);
             }

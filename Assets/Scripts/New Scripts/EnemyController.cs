@@ -55,7 +55,7 @@ public class EnemyController : MonoBehaviour
         // Set up passive trais
         foreach(StatusPairing sp in data.allPassives)
         {
-            ApplyStatusPairingToEnemy(enemy, sp);
+            StatusController.Instance.ApplyStatusPairingToLivingEntity(enemy, sp);
         }
     }
     public void ApplyStatusPairingToEnemy(Enemy enemy, StatusPairing status)
@@ -300,12 +300,34 @@ public class EnemyController : MonoBehaviour
         enemy.myIntentViewModel.attackTargetImage.gameObject.SetActive(false);
         enemy.myIntentViewModel.defendImage.gameObject.SetActive(false);
         enemy.myIntentViewModel.mysteryImage.gameObject.SetActive(false);
+        enemy.myIntentViewModel.debuffImage.gameObject.SetActive(false);
+        enemy.myIntentViewModel.buffImage.gameObject.SetActive(false);
+        enemy.myIntentViewModel.attackAndBuffImage.gameObject.SetActive(false);
+        enemy.myIntentViewModel.attackAndDefendImage.gameObject.SetActive(false);
+        enemy.myIntentViewModel.defendAndBuff.gameObject.SetActive(false);
 
         // Start fade in effect
         enemy.myIntentViewModel.FadeInView();
 
+        // check for override image choice
+        if (enemy.myNextAction.forceIntentImage)
+        {
+            if(enemy.myNextAction.intentImage == ActionType.AttackTargetAndDefendSelf)
+            {
+                enemy.myIntentViewModel.attackAndDefendImage.gameObject.SetActive(true);
+            }
+            else if(enemy.myNextAction.intentImage == ActionType.AttackTargetAndBuffSelf)
+            {
+                enemy.myIntentViewModel.attackAndBuffImage.gameObject.SetActive(true);
+            }
+            else if (enemy.myNextAction.intentImage == ActionType.DefendAndBuffSelf)
+            {
+                enemy.myIntentViewModel.defendAndBuff.gameObject.SetActive(true);
+            }
+        }
+
         // Determine and set intent image
-        if (enemy.myNextAction.actionType == ActionType.AttackTarget)
+        else if (enemy.myNextAction.actionType == ActionType.AttackTarget)
         {
             // Calculate damage to display
             string damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(enemy, null, null, enemy.myNextAction);
@@ -323,6 +345,17 @@ public class EnemyController : MonoBehaviour
         else if (enemy.myNextAction.actionType == ActionType.PassTurn)
         {
             enemy.myIntentViewModel.mysteryImage.gameObject.SetActive(true);
+        }
+        else if (enemy.myNextAction.actionType == ActionType.DebuffTarget ||
+                 enemy.myNextAction.actionType == ActionType.DebuffAll)
+        {
+            enemy.myIntentViewModel.debuffImage.gameObject.SetActive(true);
+        }
+        else if (enemy.myNextAction.actionType == ActionType.BuffTarget ||
+                 enemy.myNextAction.actionType == ActionType.BuffSelf ||
+                   enemy.myNextAction.actionType == ActionType.BuffAll)
+        {
+            enemy.myIntentViewModel.buffImage.gameObject.SetActive(true);
         }
     }
     #endregion
@@ -398,6 +431,14 @@ public class EnemyController : MonoBehaviour
             // Check ActivatedXTimesOrMore
             if (ar.requirementType == ActionRequirementType.ActivatedXTimesOrMore &&
                enemy.myPreviousActionLog.Count < ar.requirementTypeValue)
+            {
+                Debug.Log(enemyAction.actionName + " failed 'ActivatedXTimesOrMore' requirement");
+                checkResults.Add(false);
+            }
+
+            // Check ActivatedXTimesOrMore
+            if (ar.requirementType == ActionRequirementType.ActivatedXTimesOrLess &&
+               enemy.myPreviousActionLog.Count > ar.requirementTypeValue)
             {
                 Debug.Log(enemyAction.actionName + " failed 'ActivatedXTimesOrMore' requirement");
                 checkResults.Add(false);
@@ -537,6 +578,7 @@ public class EnemyController : MonoBehaviour
         EnemyAction nextAction = enemy.myNextAction;
         bool hasMovedOffStartingNode = false;
 
+        // First action efffect
         if (nextAction.actionType == ActionType.AttackTarget)
         {
             hasMovedOffStartingNode = true;
@@ -556,12 +598,10 @@ public class EnemyController : MonoBehaviour
             Action abilityAction = CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, enemy.currentActionTarget, damageType);
             yield return new WaitUntil(() => abilityAction.ActionResolved() == true);
         }
-
         else if (nextAction.actionType == ActionType.DefendSelf)
         {
             enemy.ModifyCurrentBlock(CombatLogic.Instance.CalculateBlockGainedByEffect(nextAction.actionValue, enemy));
         }
-
         else if(nextAction.actionType == ActionType.DefendTarget)
         {
             // Was the target killed after the intent was decided?
@@ -571,6 +611,30 @@ public class EnemyController : MonoBehaviour
                 enemy.currentActionTarget = DetermineTargetOfNextEnemyAction(enemy, nextAction);
             }
             enemy.currentActionTarget.ModifyCurrentBlock(CombatLogic.Instance.CalculateBlockGainedByEffect(nextAction.actionValue, enemy.currentActionTarget));
+        }
+        else if (nextAction.actionType == ActionType.BuffSelf ||
+                 nextAction.actionType == ActionType.BuffTarget)
+        {
+            // Set self as target if 'BuffSelf' type
+            if(nextAction.actionType == ActionType.BuffSelf)
+            {
+                enemy.currentActionTarget = enemy;
+            }
+
+            StatusController.Instance.ApplyStatusPairingToLivingEntity(enemy.currentActionTarget, nextAction.statusApplied);
+        }
+
+        // Second action effect
+        if (nextAction.secondEffect)
+        {
+            if (nextAction.secondActionType == ActionType.DefendSelf)
+            {
+                enemy.ModifyCurrentBlock(CombatLogic.Instance.CalculateBlockGainedByEffect(nextAction.secondActionValue, enemy));
+            }
+            else if (nextAction.secondActionType == ActionType.BuffSelf)
+            {
+                StatusController.Instance.ApplyStatusPairingToLivingEntity(enemy, nextAction.secondStatusApplied);
+            }
         }
 
         // POST ACTION STUFF

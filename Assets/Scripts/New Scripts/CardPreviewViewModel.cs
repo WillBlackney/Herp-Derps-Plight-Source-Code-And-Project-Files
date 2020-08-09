@@ -13,6 +13,8 @@ public class CardPreviewViewModel : MonoBehaviour
 
     [Header("Image References")]
     public Image graphicImage;
+    public Image talentSchoolImage;
+    public GameObject talentSchoolParent;
     public Canvas canvas;
 
     [Header("Card Type Parent References")]
