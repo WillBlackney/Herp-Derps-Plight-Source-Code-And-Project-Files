@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1891790420058077118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1891790420058077112}
+  - component: {fileID: 1891790420058077113}
+  m_Layer: 0
+  m_Name: Prefab Holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1891790420058077112
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891790420058077118}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 247, y: 138.9993, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1891790420058077113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1891790420058077118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 691d83da7006ff142b3228d98a30fed8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AbilityButtonPrefab: {fileID: 8258036272287567181, guid: 9796603b0e52fc148a8c9937c1764689,
+    type: 3}
+  abilityPageAbility: {fileID: 5924968231884054, guid: cd23ca1f37787b143a7fe60bf6f1f7fd,
+    type: 3}
+  consumable: {fileID: 2437688713306225583, guid: 5c344c2b4d256344d998ad50ffed944d,
+    type: 3}
+  AttributeTab: {fileID: 2286113637822334976, guid: bac6851d194ff944391d659cb38da36e,
+    type: 3}
+  enemyPanelAbilityTab: {fileID: 2955640079877087292, guid: 73ad31a5c130a0747914da631d634b69,
+    type: 3}
+  activationWindowPrefab: {fileID: 605423732021461905, guid: 2f9127d17cf024049a9950d935ee2136,
+    type: 3}
+  statePrefab: {fileID: 6328745393006524892, guid: fe53cdb9c533b734f96e2751dd6d8871,
+    type: 3}
+  afflicationOnPanelPrefab: {fileID: 4688364720277094522, guid: 37c1d30d0d1fa014cb8aa35d56aaf490,
+    type: 3}
+  defenderPrefab: {fileID: 3890745071379925586, guid: 581f01440c9cc9b4da3c11b91878088a,
+    type: 3}
+  enemyPrefab: {fileID: 1009995944954404, guid: f7b2ed8a4f1f6274fba67f9654ad75c5,
+    type: 3}
+  GoldRewardButton: {fileID: 1219674534713617894, guid: 976e1a167169aab439941989b2f25a2c,
+    type: 3}
+  ConsumableRewardButton: {fileID: 2259750420976027442, guid: e98697df7639df540a6a4e9dae1035da,
+    type: 3}
+  ItemRewardButton: {fileID: 8757620878221013843, guid: b85aec8319f4a0948bdc4e9c758abcfa,
+    type: 3}
+  stateRewardButton: {fileID: 7226369991877361790, guid: 3a034ea8e68b52142ba9291ce5a0615e,
+    type: 3}
+  ArtifactGO: {fileID: 6814500050501459451, guid: 6936986fd8e3a2c438a0a25680d55000,
+    type: 3}
+  ItemCard: {fileID: 6102940201404517147, guid: aeb27dee0749bce458ec2ce0df595b1f,
+    type: 3}
+  StateCard: {fileID: 1152788829285936789, guid: 3207eeaf84e02e640b132b05a9ed31e1,
+    type: 3}
+  InventoryItem: {fileID: 1905020281608936624, guid: e8a6da6a8621d62448e6be451c8866b1,
+    type: 3}
+  AbilityTomeInventoryCard: {fileID: 8061442596405185159, guid: e8437e0028923a543915d69adab0f6cf,
+    type: 3}
+  TreasureChest: {fileID: 5594969955182072137, guid: 389a07be3a0d66243995413ce7e7d265,
+    type: 3}
+  ZombiePrefab: {fileID: 331731056945787492, guid: 47f5564b9ebf0b245aebf669a401e825,
+    type: 3}
+  skeletonSoldierPrefab: {fileID: 3812268710815300470, guid: 76ba64a66608b004386ae3b92b1dad4f,
+    type: 3}
+  toxicZombiePrefab: {fileID: 8541393054587295098, guid: 0ea531f58ff949047a07013532840754,
+    type: 3}

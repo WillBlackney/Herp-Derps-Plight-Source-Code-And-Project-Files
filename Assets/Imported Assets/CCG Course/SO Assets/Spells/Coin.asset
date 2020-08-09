@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41e206fc57f453a42b932de9e94caabf, type: 3}
+  m_Name: Coin
+  m_EditorClassIdentifier: 
+  characterAsset: {fileID: 0}
+  Description: 
+  CardImage: {fileID: 21300000, guid: 5134138d1a3450e4ba3d7bf5d83dbd8f, type: 3}
+  ManaCost: 0
+  MaxHealth: 0
+  Attack: 0
+  AttacksForOneTurn: 1
+  Charge: 0
+  CreatureScriptName: 
+  specialCreatureAmount: 0
+  SpellScriptName: GiveManaBonus
+  specialSpellAmount: 1
+  Targets: 0

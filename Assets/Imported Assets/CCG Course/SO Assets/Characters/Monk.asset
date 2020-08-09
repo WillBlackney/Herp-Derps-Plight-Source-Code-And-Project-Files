@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 917561878a8602640ab159ede231f37f, type: 3}
+  m_Name: Monk
+  m_EditorClassIdentifier: 
+  Class: 1
+  ClassName: Monk
+  MaxHealth: 30
+  HeroPowerName: HeroPowerDrawCardTakeDamage
+  AvatarImage: {fileID: 21300000, guid: 82c207beaa485f44488b77daa1d8b4fa, type: 3}
+  HeroPowerIconImage: {fileID: 21300000, guid: 1b17c6327b70beb46910303376eea71b, type: 3}
+  AvatarBGImage: {fileID: 0}
+  HeroPowerBGImage: {fileID: 0}
+  AvatarBGTint:
+    serializedVersion: 2
+    rgba: 4283110675
+  HeroPowerBGTint:
+    serializedVersion: 2
+    rgba: 4284093967
+  ClassCardTint:
+    serializedVersion: 2
+    rgba: 4291598435
+  ClassRibbonsTint:
+    serializedVersion: 2
+    rgba: 4286293944
