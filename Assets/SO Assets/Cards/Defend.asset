@@ -18,8 +18,13 @@ MonoBehaviour:
   cardEnergyCost: 10
   cardType: 1
   targettingType: 0
+  talentSchool: 0
   cardEffects:
   - cardEffectType: 1
     blockGainValue: 6
     baseDamageValue: 0
     damageType: 0
+    healthLost: 0
+    energyGained: 0
+    cardsDrawn: 0
+    burningApplied: 0
