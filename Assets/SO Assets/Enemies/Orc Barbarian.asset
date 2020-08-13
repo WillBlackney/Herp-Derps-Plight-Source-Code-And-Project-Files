@@ -31,28 +31,46 @@ MonoBehaviour:
   allEnemyActions:
   - actionName: Incantation
     actionType: 2
+    forceIntentImage: 0
+    intentImage: 0
     actionValue: 0
     actionLoops: 1
+    damageType: 0
+    statusApplied:
+      statusData: {fileID: 11400000, guid: 59fe5c0928ebf2e4c97f54cd7237af1f, type: 2}
+      statusStacks: 3
+    secondEffect: 0
+    secondActionType: 0
+    secondActionValue: 0
+    secondActionLoops: 0
+    secondStatusApplied:
+      statusData: {fileID: 0}
+      statusStacks: 0
     canBeConsecutive: 0
     prioritiseWhenRequirementsMet: 1
     actionRequirements:
     - requirementType: 9
       requirementTypeValue: 0
-    damageType: 0
-    statusApplied:
-      statusData: {fileID: 11400000, guid: 59fe5c0928ebf2e4c97f54cd7237af1f, type: 2}
-      statusStacks: 3
   - actionName: Strike
     actionType: 0
+    forceIntentImage: 0
+    intentImage: 0
     actionValue: 6
     actionLoops: 1
-    canBeConsecutive: 1
-    prioritiseWhenRequirementsMet: 0
-    actionRequirements: []
     damageType: 1
     statusApplied:
       statusData: {fileID: 0}
       statusStacks: 0
+    secondEffect: 0
+    secondActionType: 0
+    secondActionValue: 0
+    secondActionLoops: 0
+    secondStatusApplied:
+      statusData: {fileID: 0}
+      statusStacks: 0
+    canBeConsecutive: 1
+    prioritiseWhenRequirementsMet: 0
+    actionRequirements: []
   allBodyParts:
   - Orc_Head_1
   - Orc_Face_1

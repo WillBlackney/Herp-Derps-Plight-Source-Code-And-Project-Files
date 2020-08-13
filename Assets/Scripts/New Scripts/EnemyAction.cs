@@ -3,54 +3,72 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Sirenix.OdinInspector;
+using Sirenix.Utilities.Editor;
+using Sirenix.OdinInspector.Editor;
 
 [Serializable]
 public class EnemyAction
 {
-    [Header("General Action Data")]
-    [LabelWidth(100)]
+    [BoxGroup("General Action Data", centerLabel: true)]
+    [LabelWidth(150)]
     public string actionName;
-    [LabelWidth(100)]
+
+    [BoxGroup("General Action Data")]
+    [LabelWidth(150)]
     public ActionType actionType;
-    [LabelWidth(100)]
-    public bool forceIntentImage;
-    [LabelWidth(100)]
-    [ShowIf("ForceIntentImage")]
-    public ActionType intentImage;
-    [LabelWidth(100)]
+
+    [BoxGroup("General Action Data")]
+    [LabelWidth(150)]
+    public IntentImage intentImage;
+
+    [BoxGroup("General Action Data")]
+    [LabelWidth(150)]
     public int actionValue;
-    [LabelWidth(100)]
-    public int actionLoops;   
+
+    [BoxGroup("General Action Data")]
+    [LabelWidth(150)]
+    public int actionLoops;
+
+    [BoxGroup("General Action Data")]
     [ShowIf("ShowDamageType")]
-    [LabelWidth(100)]
+    [LabelWidth(150)]
     public AbilityDataSO.DamageType damageType;
+
+    [BoxGroup("General Action Data")]
     [ShowIf("ShowStatusData")]
-    [LabelWidth(100)]
+    [LabelWidth(150)]
     public StatusPairing statusApplied;
 
-
-    [LabelWidth(100)]
+    [BoxGroup("General Action Data")]
+    [LabelWidth(150)]
     public bool secondEffect;
+
+    [BoxGroup("General Action Data")]
     [Header("Second Effect Data")]
     [ShowIf("ShowSecondEffect")]
     [LabelWidth(200)]
     public ActionType secondActionType;
+    [BoxGroup("General Action Data")]
     [ShowIf("ShowSecondEffect")]
     [LabelWidth(200)]
     public int secondActionValue;
+    [BoxGroup("General Action Data")]
     [ShowIf("ShowSecondEffect")]
     [LabelWidth(200)]
     public int secondActionLoops;
 
+    [BoxGroup("General Action Data")]
     [ShowIf("ShowSecondStatusData")]
     [LabelWidth(100)]
     public StatusPairing secondStatusApplied;
 
-    [Header("Routine Data")]
+    [BoxGroup("Routine Data", centerLabel: true)]
     [LabelWidth(200)]
     public bool canBeConsecutive;
+    [BoxGroup("Routine Data")]
     [LabelWidth(200)]
     public bool prioritiseWhenRequirementsMet;
+    [BoxGroup("Routine Data")]
     [LabelWidth(100)] 
     public List<ActionRequirement> actionRequirements;
 
@@ -112,20 +130,19 @@ public class EnemyAction
             return false;
         }
     }
-    public bool ForceIntentImage()
-    {
-        if (forceIntentImage)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
     #endregion
 
 }
+public class AddBoxToDrawer<T>: OdinValueDrawer<T> 
+{
+    protected override void DrawPropertyLayout(GUIContent label)
+    {
+        SirenixEditorGUI.BeginBox();
+        CallNextDrawer(label);
+        SirenixEditorGUI.EndBox();
+    }
+}
+
 public enum ActionType
 {
     AttackTarget,
@@ -163,4 +180,19 @@ public class ActionRequirement
 {
     public ActionRequirementType requirementType;
     public int requirementTypeValue;
+}
+
+public enum IntentImage
+{
+    Attack,
+    AttackBuff,
+    AttackDebuff,
+    AttackDefend,
+    Buff,
+    DefendBuff,
+    Defend,
+    GreenDebuff,
+    PurpleDebuff,
+    Unknown,
+
 }

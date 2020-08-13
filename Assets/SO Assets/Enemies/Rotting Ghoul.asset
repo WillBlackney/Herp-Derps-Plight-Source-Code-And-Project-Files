@@ -31,7 +31,6 @@ MonoBehaviour:
   allEnemyActions:
   - actionName: Bite
     actionType: 0
-    forceIntentImage: 0
     intentImage: 0
     actionValue: 11
     actionLoops: 1
@@ -53,7 +52,6 @@ MonoBehaviour:
       requirementTypeValue: 0
   - actionName: Bite
     actionType: 0
-    forceIntentImage: 0
     intentImage: 0
     actionValue: 11
     actionLoops: 1
@@ -73,8 +71,7 @@ MonoBehaviour:
     actionRequirements: []
   - actionName: Thrash
     actionType: 0
-    forceIntentImage: 1
-    intentImage: 13
+    intentImage: 3
     actionValue: 7
     actionLoops: 1
     damageType: 1
@@ -93,8 +90,7 @@ MonoBehaviour:
     actionRequirements: []
   - actionName: Howl
     actionType: 2
-    forceIntentImage: 1
-    intentImage: 12
+    intentImage: 5
     actionValue: 3
     actionLoops: 1
     damageType: 0

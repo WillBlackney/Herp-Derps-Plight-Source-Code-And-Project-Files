@@ -132,7 +132,7 @@ public class StoryEventController : MonoBehaviour
         }
         else if (choiceConsequence.consequenceType == ChoiceConsequence.ConsequenceType.TriggerCombatEvent)
         {
-            stringReturned = "Triggers combat event: " + choiceConsequence.combatEvent.waveName;
+            stringReturned = "Triggers combat event: " + choiceConsequence.combatEvent.encounterName;
         }
         else if (choiceConsequence.consequenceType == ChoiceConsequence.ConsequenceType.GainSpecificAffliction)
         {
@@ -949,7 +949,7 @@ public class StoryEventController : MonoBehaviour
     public void SetAwaitingCombatEventState(EnemyWaveSO combatAwaited)
     {
         Debug.Log("StoryEventController.SetAwaitingCombatEventState() called, on continute button clicked, combat event "
-            + combatAwaited.waveName + " will be triggered");
+            + combatAwaited.encounterName + " will be triggered");
 
         combatEventAwaitingStart = combatAwaited;
         eventFiredOnContinueButtonClicked = ContinueButtonEvent.TriggerCombatEvent;

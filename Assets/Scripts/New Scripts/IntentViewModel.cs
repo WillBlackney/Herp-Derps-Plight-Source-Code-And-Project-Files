@@ -7,19 +7,11 @@ public class IntentViewModel : MonoBehaviour
 {
     [Header("General Component References")]
     [SerializeField] private GameObject visualParent;
+    [SerializeField] private Image intentImageHolder;
     [SerializeField] private Animator animator;
     [SerializeField] private CanvasGroup myCg;
     public TextMeshProUGUI valueText;
 
-    [Header("Intent Image References")]
-    public Image attackTargetImage;
-    public Image defendImage;
-    public Image mysteryImage;
-    public Image debuffImage;
-    public Image buffImage;
-    public Image attackAndBuffImage;
-    public Image attackAndDefendImage;
-    public Image defendAndBuff;
 
     public void FadeInView()
     {
@@ -41,5 +33,9 @@ public class IntentViewModel : MonoBehaviour
     private void PlayFloatAnimation()
     {
         animator.SetTrigger("Float");
+    }
+    public void SetIntentSprite(Sprite sprite)
+    {
+        intentImageHolder.sprite = sprite;
     }
 }

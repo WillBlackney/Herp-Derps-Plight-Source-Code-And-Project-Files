@@ -10,7 +10,7 @@ using Sirenix.OdinInspector;
 public class EnemyDataSO : ScriptableObject
 {
     // General Info
-    [BoxGroup("General Info")]
+    [BoxGroup("General Info", centerLabel: true)]
     [LabelWidth(100)]
     public string enemyName;
     [BoxGroup("General Info")]
@@ -19,7 +19,7 @@ public class EnemyDataSO : ScriptableObject
     public string description;
 
     // Core Stats
-    [BoxGroup("Core Stats")]
+    [BoxGroup("Core Stats", centerLabel: true)]
     [LabelWidth(100)]
     public int maxHealth;
     [BoxGroup("Core Stats")]
@@ -37,7 +37,7 @@ public class EnemyDataSO : ScriptableObject
 
 
     // Misc Stats
-    [BoxGroup("Misc Stats")]
+    [BoxGroup("Misc Stats", centerLabel: true)]
     [LabelWidth(100)]
     public int startingHealth;
     [BoxGroup("Misc Stats")]
@@ -45,7 +45,7 @@ public class EnemyDataSO : ScriptableObject
     public int startingBlock;
 
     // Resistances
-    [BoxGroup("Resistances")]
+    [BoxGroup("Resistances", centerLabel: true)]
     [LabelWidth(100)]
     [Range(-100, 100)]
     [GUIColor(0.8f, 0.4f, 0.4f)]
@@ -77,17 +77,17 @@ public class EnemyDataSO : ScriptableObject
     public int airResistance;
 
     // Passive Traits
-    [BoxGroup("Passive Traits")]
+    [BoxGroup("Passive Traits", centerLabel: true)]
     [LabelWidth(100)]
     public List<StatusPairing> allPassives;
 
     // Actions and routines
-    [BoxGroup("Actions + Combat AI")]
+    [BoxGroup("Actions + Combat AI", centerLabel: true)]
     [LabelWidth(100)]
     public List<EnemyAction> allEnemyActions;
 
-    // Character Model Data
-    [BoxGroup("Character Model Data")]
+    // Character Model Data 
+    [BoxGroup("Character Model Data", centerLabel: true)]
     [LabelWidth(100)]
     public List<string> allBodyParts;
 }

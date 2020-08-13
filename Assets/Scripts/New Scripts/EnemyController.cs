@@ -297,66 +297,25 @@ public class EnemyController : MonoBehaviour
 
         // Disable all views
         enemy.myIntentViewModel.valueText.gameObject.SetActive(false);
-        enemy.myIntentViewModel.attackTargetImage.gameObject.SetActive(false);
-        enemy.myIntentViewModel.defendImage.gameObject.SetActive(false);
-        enemy.myIntentViewModel.mysteryImage.gameObject.SetActive(false);
-        enemy.myIntentViewModel.debuffImage.gameObject.SetActive(false);
-        enemy.myIntentViewModel.buffImage.gameObject.SetActive(false);
-        enemy.myIntentViewModel.attackAndBuffImage.gameObject.SetActive(false);
-        enemy.myIntentViewModel.attackAndDefendImage.gameObject.SetActive(false);
-        enemy.myIntentViewModel.defendAndBuff.gameObject.SetActive(false);
 
         // Start fade in effect
         enemy.myIntentViewModel.FadeInView();
 
-        // check for override image choice
-        if (enemy.myNextAction.forceIntentImage)
-        {
-            if(enemy.myNextAction.intentImage == ActionType.AttackTargetAndDefendSelf)
-            {
-                enemy.myIntentViewModel.attackAndDefendImage.gameObject.SetActive(true);
-            }
-            else if(enemy.myNextAction.intentImage == ActionType.AttackTargetAndBuffSelf)
-            {
-                enemy.myIntentViewModel.attackAndBuffImage.gameObject.SetActive(true);
-            }
-            else if (enemy.myNextAction.intentImage == ActionType.DefendAndBuffSelf)
-            {
-                enemy.myIntentViewModel.defendAndBuff.gameObject.SetActive(true);
-            }
-        }
+        // Set intent image
+        enemy.myIntentViewModel.SetIntentSprite
+            (SpriteLibrary.Instance.GetIntentSpriteFromIntentEnumData(enemy.myNextAction.intentImage));
 
-        // Determine and set intent image
-        else if (enemy.myNextAction.actionType == ActionType.AttackTarget)
+        // if attacking, calculate + enable + set damage value text
+        if(enemy.myNextAction.actionType == ActionType.AttackTarget)
         {
             // Calculate damage to display
             string damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(enemy, null, null, enemy.myNextAction);
             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, enemy.currentActionTarget, damageType, false, enemy.myNextAction.actionValue, null, null, enemy.myNextAction);
 
-            enemy.myIntentViewModel.attackTargetImage.gameObject.SetActive(true);
             enemy.myIntentViewModel.valueText.gameObject.SetActive(true);
             enemy.myIntentViewModel.valueText.text = finalDamageValue.ToString();
-        }
-        else if (enemy.myNextAction.actionType == ActionType.DefendSelf ||
-                 enemy.myNextAction.actionType == ActionType.DefendTarget)
-        {
-            enemy.myIntentViewModel.defendImage.gameObject.SetActive(true);
-        }
-        else if (enemy.myNextAction.actionType == ActionType.PassTurn)
-        {
-            enemy.myIntentViewModel.mysteryImage.gameObject.SetActive(true);
-        }
-        else if (enemy.myNextAction.actionType == ActionType.DebuffTarget ||
-                 enemy.myNextAction.actionType == ActionType.DebuffAll)
-        {
-            enemy.myIntentViewModel.debuffImage.gameObject.SetActive(true);
-        }
-        else if (enemy.myNextAction.actionType == ActionType.BuffTarget ||
-                 enemy.myNextAction.actionType == ActionType.BuffSelf ||
-                   enemy.myNextAction.actionType == ActionType.BuffAll)
-        {
-            enemy.myIntentViewModel.buffImage.gameObject.SetActive(true);
-        }
+        }            
+        
     }
     #endregion
 

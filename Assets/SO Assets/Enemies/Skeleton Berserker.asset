@@ -33,9 +33,21 @@ MonoBehaviour:
   allEnemyActions:
   - actionName: Strike
     actionType: 0
+    forceIntentImage: 0
+    intentImage: 0
     actionValue: 4
     actionLoops: 1
     damageType: 1
+    statusApplied:
+      statusData: {fileID: 0}
+      statusStacks: 0
+    secondEffect: 0
+    secondActionType: 0
+    secondActionValue: 0
+    secondActionLoops: 0
+    secondStatusApplied:
+      statusData: {fileID: 0}
+      statusStacks: 0
     canBeConsecutive: 1
     prioritiseWhenRequirementsMet: 0
     actionRequirements: []

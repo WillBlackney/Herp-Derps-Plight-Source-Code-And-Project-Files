@@ -116,8 +116,8 @@ public class EnemySpawner : MonoBehaviour
         foreach (EnemyGroup enemyGroup in enemyWaveSO.enemyGroups)
         {
             // Random choose enemy data
-            int randomIndex = Random.Range(0, enemyGroup.enemyList.Count);
-            EnemyDataSO data = enemyGroup.enemyList[randomIndex];
+            int randomIndex = Random.Range(0, enemyGroup.possibleEnemies.Count);
+            EnemyDataSO data = enemyGroup.possibleEnemies[randomIndex];
 
             // Create GO and set data
             Enemy newEnemy =  Instantiate(PrefabHolder.Instance.enemyPrefab).GetComponent<Enemy>();
@@ -157,7 +157,7 @@ public class EnemySpawner : MonoBehaviour
 
         foreach(EnemyWaveSO wave in allWaves)
         {
-            if(wave.waveName == name)
+            if(wave.encounterName == name)
             {
                 waveReturned = wave;
                 break;
