@@ -34,11 +34,15 @@ public class TheGameManager : OdinMenuEditorWindow
     }
     private void StateChange()
     {
+        // Listens to changes to the variable 'managerState'
+        // via the event listener attribute 'OnPropertyChanged'.
+        // clicking on an enum toggle button triggers this function, which
+        // signals that the menu tree for that page needs to be rebuilt
         treeRebuild = true;
     }
     protected override void Initialize()
     {
-        // Set SO paths
+        // Set SO directory folder paths
         drawEnemies.SetPath(enemyPath);
         drawCards.SetPath(cardPath);
 
@@ -47,6 +51,8 @@ public class TheGameManager : OdinMenuEditorWindow
     }
     protected override void OnGUI()
     {
+        // Did we toggle to a new page? 
+        // Should we rebuild the menu tree?
         if(treeRebuild && Event.current.type == EventType.Layout)
         {
             ForceMenuTreeRebuild();
@@ -61,7 +67,6 @@ public class TheGameManager : OdinMenuEditorWindow
             case ManagerState.enemies:
             case ManagerState.items:
             case ManagerState.cards:
-          //  case ManagerState.color:
                 DrawEditor(enumIndex);
                 break;
             default:
@@ -73,6 +78,10 @@ public class TheGameManager : OdinMenuEditorWindow
     }
     protected override void DrawEditors()
     {
+        // Which target should the window draw?
+        // in cases where SO's need to be drawn, do SetSelected();
+        // this takes the selected value from the menu tree, then
+        // then draws it in the main window for editing
 
         switch (managerState)
         {
@@ -90,12 +99,21 @@ public class TheGameManager : OdinMenuEditorWindow
 
         }
 
+        // Which editor window should be drawn?
+        // just cast the enum value as int to be used as the index
         DrawEditor((int)managerState);
     }
     protected override IEnumerable<object> GetTargets()
     {
         List<object> targets = new List<object>();
-        
+
+        // Targets must be added and drawn in the order
+        // that the enum values are in!!
+        // allows us to take advantage of the 
+        // numerical value behind the enum values
+
+        // Only draw for layouts that need to display scriptable objects
+        // Otherwise, just add a null for managers
         targets.Add(drawTestSceneManager);
         targets.Add(drawEnemies);
         targets.Add(null);
@@ -114,7 +132,6 @@ public class TheGameManager : OdinMenuEditorWindow
             case ManagerState.enemies:
             case ManagerState.items:
             case ManagerState.cards:
-           // case ManagerState.color:
                 base.DrawMenu();
                 break;
             default:
@@ -149,6 +166,7 @@ public class TheGameManager : OdinMenuEditorWindow
 
 public class DrawSelected<T> where T: ScriptableObject
 {
+    // The SO selected in the menu tree
     [InlineEditor(InlineEditorObjectFieldModes.CompletelyHidden)]
     public T selected;
 
@@ -158,6 +176,7 @@ public class DrawSelected<T> where T: ScriptableObject
     [HorizontalGroup("CreateNew/Horizontal")]
     public string nameForNew;
 
+    // Directory path for saving the new SO
     private string path;
 
     [HorizontalGroup("CreateNew/Horizontal")]
@@ -219,6 +238,8 @@ public class DrawSelected<T> where T: ScriptableObject
         }
     }
 
+    // Used for setting up the directory path
+    // that an SO is saved to.
     public void SetPath(string _path)
     {
         path = _path;
@@ -290,19 +311,24 @@ public class ColorFoldoutGroupAttributeDrawer: OdinGroupDrawer<ColorFoldoutGroup
 
 public class DrawSceneObject<T> where T : MonoBehaviour
 {
+    // InlineEditor force window to draw the full class
+    // Holds the reference the specific manager game object
     [Title("Universe Creator")]
-    [ShowIf("@myObject != null")]
-    [InlineEditor(InlineEditorObjectFieldModes.CompletelyHidden)]
+    [ShowIf("@myObject != null")]    
+    [InlineEditor(InlineEditorObjectFieldModes.CompletelyHidden)]    
     public T myObject;
 
     public void FindMyObject()
     {
+        // Finds the manager game object in the scene
         if(myObject == null)
         {
             myObject = Object.FindObjectOfType<T>();
         }
     }
 
+    // Button group forces manager specific buttons to be grouped together
+    // at the top of the editor window
     [ShowIf("@myObject != null")]
     [GUIColor(0.7f, 1f, 0.7f)]
     [ButtonGroup("Top Button", -1000)]
@@ -326,6 +352,9 @@ public class DrawSceneObject<T> where T : MonoBehaviour
 
 public class DrawTestSceneManager: DrawSceneObject<CombatTestSceneController>
 {
+    // This class specifically draws a editor window
+    // for the manager class 'CombatTestSceneController'
+
     [ShowIf("@myObject != null")]
     [GUIColor(0.7f, 1f, 0.7f)]
     [ButtonGroup("Top Button")]
