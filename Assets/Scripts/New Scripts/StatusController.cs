@@ -21,28 +21,53 @@ public class StatusController : MonoBehaviour
     #endregion
 
 
-    public void ApplyStatusPairingToLivingEntity(LivingEntity entity, StatusPairing status)
+    public void ApplyStatusToLivingEntity(LivingEntity entity, StatusIconDataSO status, int stacks)
     {
+        Debug.Log("StatusController.ApplyStatusToLivingEntity() called, applying " + status.statusName + "(" +
+            stacks.ToString() + ") to " + entity.myName);
+
+        if(entity == null || entity.inDeathProcess)
+        {
+            Debug.Log("StatusController.ApplyStatusToLivingEntity() detected entity is null or dying, cancelling status application process...");
+            return;
+        }
+
         // Setup Passives
-        if (status.statusData.statusName == "Tenacious")
+        if (status.statusName == "Tenacious")
         {
-            entity.myPassiveManager.ModifyTenacious(status.statusStacks);
+            entity.myPassiveManager.ModifyTenacious(stacks);
         }
-        else if (status.statusData.statusName == "Enrage")
+        else if (status.statusName == "Enrage")
         {
-            entity.myPassiveManager.ModifyEnrage(status.statusStacks);
+            entity.myPassiveManager.ModifyEnrage(stacks);
         }
-        else if (status.statusData.statusName == "Masochist")
+        else if (status.statusName == "Masochist")
         {
-            entity.myPassiveManager.ModifyMasochist(status.statusStacks);
+            entity.myPassiveManager.ModifyMasochist(stacks);
         }
-        else if (status.statusData.statusName == "Growing")
+        else if (status.statusName == "Growing")
         {
-            entity.myPassiveManager.ModifyGrowing(status.statusStacks);
+            entity.myPassiveManager.ModifyGrowing(stacks);
         }
-        else if (status.statusData.statusName == "Bonus Strength")
+        else if (status.statusName == "Bonus Strength")
         {
-            entity.myPassiveManager.ModifyBonusStrength(status.statusStacks);
+            entity.myPassiveManager.ModifyBonusStrength(stacks);
+        }
+        else if (status.statusName == "Cautious")
+        {
+            entity.myPassiveManager.ModifyCautious(stacks);
+        }
+        else if (status.statusName == "Weakened")
+        {
+            entity.myPassiveManager.ModifyWeakened(stacks);
+        }
+        else if (status.statusName == "Poisoned")
+        {
+            entity.myPassiveManager.ModifyPoisoned(stacks);
+        }
+        else if (status.statusName == "Unstable")
+        {
+            entity.myPassiveManager.ModifyUnstable(stacks);
         }
     }
 }

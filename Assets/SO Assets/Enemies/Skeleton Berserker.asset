@@ -33,7 +33,6 @@ MonoBehaviour:
   allEnemyActions:
   - actionName: Strike
     actionType: 0
-    forceIntentImage: 0
     intentImage: 0
     actionValue: 4
     actionLoops: 1
@@ -41,7 +40,7 @@ MonoBehaviour:
     statusApplied:
       statusData: {fileID: 0}
       statusStacks: 0
-    secondEffect: 0
+    secondEffect: 1
     secondActionType: 0
     secondActionValue: 0
     secondActionLoops: 0

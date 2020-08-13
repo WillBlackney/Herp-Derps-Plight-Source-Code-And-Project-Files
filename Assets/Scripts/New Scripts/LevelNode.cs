@@ -32,7 +32,6 @@ public class LevelNode : MonoBehaviour
     public void DisableAllExtraViews()
     {
         SetMouseOverViewState(false);
-       // SetActivatedViewState(false);
         SetLineViewState(false);
     }
     public void ConnectTargetPathToTargetNode(LevelNode targetNode)

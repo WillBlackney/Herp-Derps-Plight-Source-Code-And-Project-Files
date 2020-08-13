@@ -55,222 +55,8 @@ public class EnemyController : MonoBehaviour
         // Set up passive trais
         foreach(StatusPairing sp in data.allPassives)
         {
-            StatusController.Instance.ApplyStatusPairingToLivingEntity(enemy, sp);
+            StatusController.Instance.ApplyStatusToLivingEntity(enemy, sp.statusData, sp.statusStacks);
         }
-    }
-    public void ApplyStatusPairingToEnemy(Enemy enemy, StatusPairing status)
-    {
-        // Setup Passives
-        if (status.statusData.statusName == "Tenacious")
-        {
-            enemy.myPassiveManager.ModifyTenacious(status.statusStacks);
-        }
-        else if (status.statusData.statusName == "Enrage")
-        {
-            enemy.myPassiveManager.ModifyEnrage(status.statusStacks);
-        }
-        else if (status.statusData.statusName == "Masochist")
-        {
-            enemy.myPassiveManager.ModifyMasochist(status.statusStacks);
-        }
-
-
-        /*
-        if (myCharacterData.masochistStacks > 0)
-        {
-            myPassiveManager.ModifyMasochist(myCharacterData.masochistStacks);
-        }
-        if (myCharacterData.lastStandStacks > 0)
-        {
-            myPassiveManager.ModifyLastStand(myCharacterData.lastStandStacks);
-        }
-        if (myCharacterData.unstoppableStacks > 0)
-        {
-            myPassiveManager.ModifyUnstoppable(1);
-        }
-        if (myCharacterData.slipperyStacks > 0)
-        {
-            myPassiveManager.ModifySlippery(myCharacterData.slipperyStacks);
-        }
-        if (myCharacterData.riposteStacks > 0)
-        {
-            myPassiveManager.ModifyRiposte(myCharacterData.riposteStacks);
-        }
-        if (myCharacterData.virtuosoStacks > 0)
-        {
-            myPassiveManager.ModifyVirtuoso(myCharacterData.virtuosoStacks);
-        }
-        if (myCharacterData.perfectReflexesStacks > 0)
-        {
-            myPassiveManager.ModifyPerfectReflexes(myCharacterData.perfectReflexesStacks);
-        }
-        if (myCharacterData.opportunistStacks > 0)
-        {
-            myPassiveManager.ModifyOpportunist(myCharacterData.opportunistStacks);
-        }
-        if (myCharacterData.patientStalkerStacks > 0)
-        {
-            myPassiveManager.ModifyPatientStalker(myCharacterData.patientStalkerStacks);
-        }
-        if (myCharacterData.stealthStacks > 0)
-        {
-            myPassiveManager.ModifyStealth(myCharacterData.stealthStacks);
-        }
-        if (myCharacterData.cautiousStacks > 0)
-        {
-            myPassiveManager.ModifyCautious(myCharacterData.cautiousStacks);
-        }
-        if (myCharacterData.guardianAuraStacks > 0)
-        {
-            myPassiveManager.ModifyGuardianAura(myCharacterData.guardianAuraStacks);
-        }
-        if (myCharacterData.unwaveringStacks > 0)
-        {
-            myPassiveManager.ModifyUnwavering(myCharacterData.unwaveringStacks);
-        }
-        if (myCharacterData.fieryAuraStacks > 0)
-        {
-            myPassiveManager.ModifyFieryAura(myCharacterData.fieryAuraStacks);
-        }
-        if (myCharacterData.immolationStacks > 0)
-        {
-            myPassiveManager.ModifyImmolation(myCharacterData.immolationStacks);
-        }
-        if (myCharacterData.demonStacks > 0)
-        {
-            myPassiveManager.ModifyDemon(myCharacterData.demonStacks);
-        }
-        if (myCharacterData.shatterStacks > 0)
-        {
-            myPassiveManager.ModifyShatter(myCharacterData.shatterStacks);
-        }
-        if (myCharacterData.frozenHeartStacks > 0)
-        {
-            myPassiveManager.ModifyFrozenHeart(myCharacterData.frozenHeartStacks);
-        }
-        if (myCharacterData.predatorStacks > 0)
-        {
-            myPassiveManager.ModifyPredator(myCharacterData.predatorStacks);
-        }
-        if (myCharacterData.hawkEyeStacks > 0)
-        {
-            myPassiveManager.ModifyHawkEye(myCharacterData.hawkEyeStacks);
-        }
-        if (myCharacterData.thornsStacks > 0)
-        {
-            myPassiveManager.ModifyThorns(myCharacterData.thornsStacks);
-        }
-        if (myCharacterData.trueSightStacks > 0)
-        {
-            myPassiveManager.ModifyTrueSight(1);
-        }
-        if (myCharacterData.fluxStacks > 0)
-        {
-            myPassiveManager.ModifyFlux(myCharacterData.fluxStacks);
-        }
-        if (myCharacterData.quickDrawStacks > 0)
-        {
-            myPassiveManager.ModifyQuickDraw(myCharacterData.quickDrawStacks);
-        }
-        if (myCharacterData.phasingStacks > 0)
-        {
-            myPassiveManager.ModifyPhasing(myCharacterData.phasingStacks);
-        }
-        if (myCharacterData.etherealBeingStacks > 0)
-        {
-            myPassiveManager.ModifyEtherealBeing(myCharacterData.etherealBeingStacks);
-        }
-        if (myCharacterData.encouragingAuraStacks > 0)
-        {
-            myPassiveManager.ModifyEncouragingAura(myCharacterData.encouragingAuraStacks);
-        }
-        if (myCharacterData.radianceStacks > 0)
-        {
-            myPassiveManager.ModifyRadiance(myCharacterData.radianceStacks);
-        }
-        if (myCharacterData.sacredAuraStacks > 0)
-        {
-            myPassiveManager.ModifySacredAura(myCharacterData.sacredAuraStacks);
-        }
-        if (myCharacterData.shadowAuraStacks > 0)
-        {
-            myPassiveManager.ModifyShadowAura(myCharacterData.shadowAuraStacks);
-        }
-        if (myCharacterData.shadowFormStacks > 0)
-        {
-            myPassiveManager.ModifyShadowForm(myCharacterData.shadowFormStacks);
-        }
-        if (myCharacterData.poisonousStacks > 0)
-        {
-            myPassiveManager.ModifyPoisonous(myCharacterData.poisonousStacks);
-        }
-        if (myCharacterData.venomousStacks > 0)
-        {
-            myPassiveManager.ModifyVenomous(myCharacterData.venomousStacks);
-        }
-        if (myCharacterData.toxicityStacks > 0)
-        {
-            myPassiveManager.ModifyToxicity(myCharacterData.toxicityStacks);
-        }
-        if (myCharacterData.toxicAuraStacks > 0)
-        {
-            myPassiveManager.ModifyToxicAura(myCharacterData.toxicAuraStacks);
-        }
-        if (myCharacterData.stormAuraStacks > 0)
-        {
-            myPassiveManager.ModifyStormAura(myCharacterData.stormAuraStacks);
-        }
-        if (myCharacterData.stormLordStacks > 0)
-        {
-            myPassiveManager.ModifyStormLord(myCharacterData.stormLordStacks);
-        }
-        if (myCharacterData.fadingStacks > 0)
-        {
-            myPassiveManager.ModifyFading(myCharacterData.fadingStacks);
-        }
-        if (myCharacterData.lifeStealStacks > 0)
-        {
-            myPassiveManager.ModifyLifeSteal(myCharacterData.lifeStealStacks);
-        }
-        if (myCharacterData.growingStacks > 0)
-        {
-            myPassiveManager.ModifyGrowing(myCharacterData.growingStacks);
-        }
-        if (myCharacterData.fastLearnerStacks > 0)
-        {
-            myPassiveManager.ModifyFastLearner(myCharacterData.fastLearnerStacks);
-        }
-        if (myCharacterData.pierceStacks > 0)
-        {
-            myPassiveManager.ModifyPierce(myCharacterData.pierceStacks);
-        }
-
-        // Racial traits
-        if (myCharacterData.forestWisdomStacks > 0)
-        {
-            myPassiveManager.ModifyForestWisdom(myCharacterData.forestWisdomStacks);
-        }
-        if (myCharacterData.satyrTrickeryStacks > 0)
-        {
-            myPassiveManager.ModifySatyrTrickery(myCharacterData.satyrTrickeryStacks);
-        }
-        if (myCharacterData.humanAmbitionStacks > 0)
-        {
-            myPassiveManager.ModifyHumanAmbition(myCharacterData.humanAmbitionStacks);
-        }
-        if (myCharacterData.orcishGritStacks > 0)
-        {
-            myPassiveManager.ModifyOrcishGrit(myCharacterData.orcishGritStacks);
-        }
-        if (myCharacterData.gnollishBloodLustStacks > 0)
-        {
-            myPassiveManager.ModifyGnollishBloodLust(myCharacterData.gnollishBloodLustStacks);
-        }
-        if (myCharacterData.freeFromFleshStacks > 0)
-        {
-            myPassiveManager.ModifyFreeFromFlesh(myCharacterData.freeFromFleshStacks);
-        }
-        */
     }
     #endregion
 
@@ -492,7 +278,7 @@ public class EnemyController : MonoBehaviour
         Debug.Log("EnemyController.DetermineTargetOfNextEnemyAction() called...");
 
         LivingEntity targetReturned = null;
-        if(action.actionType == ActionType.AttackTarget)
+        if(action.actionType == ActionType.AttackTarget || action.actionType == ActionType.DebuffTarget)
         {
             targetReturned = DefenderManager.Instance.allDefenders[Random.Range(0, DefenderManager.Instance.allDefenders.Count)];
         }
@@ -534,8 +320,23 @@ public class EnemyController : MonoBehaviour
     {
         Debug.Log("EnemyController.ExecuteEnemyNextActionCoroutine() called...");
 
+        // Setup
         EnemyAction nextAction = enemy.myNextAction;
         bool hasMovedOffStartingNode = false;
+
+        // Reaquire target (if the target was killed since setting the intent
+        // TO DO IN FUTURE: this target reaquisition process should occur when an entity dies,
+        // not right before an enemy performs its action
+        // Was the target killed after the intent was decided?
+        if (enemy.currentActionTarget == null)
+        {
+            // it was, find a new target
+            enemy.currentActionTarget = DetermineTargetOfNextEnemyAction(enemy, nextAction);
+        }
+
+        // Ability name notification
+        Action notification = VisualEffectManager.Instance.CreateStatusEffect(enemy.transform.position, enemy.myNextAction.actionName);
+        yield return new WaitForSeconds(0.5f);
 
         // First action efffect
         if (nextAction.actionType == ActionType.AttackTarget)
@@ -563,12 +364,6 @@ public class EnemyController : MonoBehaviour
         }
         else if(nextAction.actionType == ActionType.DefendTarget)
         {
-            // Was the target killed after the intent was decided?
-            if(enemy.currentActionTarget == null)
-            {
-                // it was, find a new target
-                enemy.currentActionTarget = DetermineTargetOfNextEnemyAction(enemy, nextAction);
-            }
             enemy.currentActionTarget.ModifyCurrentBlock(CombatLogic.Instance.CalculateBlockGainedByEffect(nextAction.actionValue, enemy.currentActionTarget));
         }
         else if (nextAction.actionType == ActionType.BuffSelf ||
@@ -580,8 +375,14 @@ public class EnemyController : MonoBehaviour
                 enemy.currentActionTarget = enemy;
             }
 
-            StatusController.Instance.ApplyStatusPairingToLivingEntity(enemy.currentActionTarget, nextAction.statusApplied);
+            StatusController.Instance.ApplyStatusToLivingEntity(enemy.currentActionTarget, nextAction.statusApplied.statusData, nextAction.statusApplied.statusStacks);
         }
+        else if (nextAction.actionType == ActionType.DebuffTarget)
+        {
+            StatusController.Instance.ApplyStatusToLivingEntity(enemy.currentActionTarget, nextAction.statusApplied.statusData, nextAction.statusApplied.statusStacks);
+        }
+
+
 
         // Second action effect
         if (nextAction.secondEffect)
@@ -592,7 +393,7 @@ public class EnemyController : MonoBehaviour
             }
             else if (nextAction.secondActionType == ActionType.BuffSelf)
             {
-                StatusController.Instance.ApplyStatusPairingToLivingEntity(enemy, nextAction.secondStatusApplied);
+                StatusController.Instance.ApplyStatusToLivingEntity(enemy, nextAction.secondStatusApplied.statusData, nextAction.secondStatusApplied.statusStacks);
             }
         }
 

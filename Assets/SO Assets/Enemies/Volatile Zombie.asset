@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 272d402ffa0a347429dfe06011e3d167, type: 3}
-  m_Name: Rotting Ghoul
+  m_Name: Volatile Zombie
   m_EditorClassIdentifier: 
-  enemyName: Rotting Ghoul
+  enemyName: Volatile Zombie
   description: 
-  maxHealth: 44
+  maxHealth: 28
   strength: 0
   wisdom: 0
   dexterity: 0
   initiative: 3
-  startingHealth: 44
+  startingHealth: 1
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0
@@ -27,33 +27,14 @@ MonoBehaviour:
   shadowResistance: 0
   poisonResistance: 0
   airResistance: 0
-  allPassives: []
+  allPassives:
+  - statusData: {fileID: 11400000, guid: 2a4f3fde90d0189478b9cca8112cb0ee, type: 2}
+    statusStacks: 3
   allEnemyActions:
-  - actionName: Bite
+  - actionName: Strike
     actionType: 0
     intentImage: 0
-    actionValue: 11
-    actionLoops: 1
-    damageType: 1
-    statusApplied:
-      statusData: {fileID: 0}
-      statusStacks: 0
-    secondEffect: 0
-    secondActionType: 0
-    secondActionValue: 0
-    secondActionLoops: 0
-    secondStatusApplied:
-      statusData: {fileID: 0}
-      statusStacks: 0
-    canBeConsecutive: 0
-    prioritiseWhenRequirementsMet: 1
-    actionRequirements:
-    - requirementType: 9
-      requirementTypeValue: 0
-  - actionName: Bite
-    actionType: 0
-    intentImage: 0
-    actionValue: 11
+    actionValue: 6
     actionLoops: 1
     damageType: 1
     statusApplied:
@@ -69,38 +50,19 @@ MonoBehaviour:
     canBeConsecutive: 0
     prioritiseWhenRequirementsMet: 0
     actionRequirements: []
-  - actionName: Thrash
-    actionType: 0
-    intentImage: 3
-    actionValue: 7
-    actionLoops: 1
-    damageType: 1
-    statusApplied:
-      statusData: {fileID: 11400000, guid: 25994f1b0e8d2464993c423210ce4bd0, type: 2}
-      statusStacks: 3
-    secondEffect: 1
-    secondActionType: 7
-    secondActionValue: 5
-    secondActionLoops: 1
-    secondStatusApplied:
-      statusData: {fileID: 0}
-      statusStacks: 0
-    canBeConsecutive: 0
-    prioritiseWhenRequirementsMet: 0
-    actionRequirements: []
-  - actionName: Howl
+  - actionName: War Cry
     actionType: 2
-    intentImage: 5
+    intentImage: 4
     actionValue: 3
     actionLoops: 1
     damageType: 0
     statusApplied:
       statusData: {fileID: 11400000, guid: 25994f1b0e8d2464993c423210ce4bd0, type: 2}
       statusStacks: 3
-    secondEffect: 1
-    secondActionType: 7
-    secondActionValue: 6
-    secondActionLoops: 1
+    secondEffect: 0
+    secondActionType: 0
+    secondActionValue: 0
+    secondActionLoops: 0
     secondStatusApplied:
       statusData: {fileID: 0}
       statusStacks: 0
@@ -108,8 +70,8 @@ MonoBehaviour:
     prioritiseWhenRequirementsMet: 0
     actionRequirements: []
   allBodyParts:
-  - Undead_Head_7
-  - Undead_Face_6
+  - Undead_Head_5
+  - Undead_Face_7
   - Peasant_Cloth_Right_Arm_Wear
   - Volatile_Zombie_Right_Hand
   - Peasant_Cloth_Left_Arm_Wear

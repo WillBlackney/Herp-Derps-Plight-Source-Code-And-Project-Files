@@ -930,16 +930,19 @@ public class CombatLogic : MonoBehaviour
             // Notification
             VisualEffectManager.Instance.CreateStatusEffect(entity.transform.position, "Unstable");
 
-            // Calculate which characters are hit by the aoe
-            List<LivingEntity> targetsInRange = GetAllLivingEntitiesWithinAoeEffect(entity, entity.tile, 1, true, true);
+            List<LivingEntity> targetsInRange = new List<LivingEntity>();
+            foreach(LivingEntity entityy in LivingEntityManager.Instance.allLivingEntities)
+            {
+                if(!IsTargetFriendly(entity, entityy) && entityy.inDeathProcess == false)
+                {
+                    targetsInRange.Add(entityy);
+                }
+            }
 
             // Poison all targets hit
             foreach (LivingEntity targetInBlast in targetsInRange)
             {
-                if (targetInBlast.inDeathProcess == false)
-                {
-                    targetInBlast.myPassiveManager.ModifyPoisoned(entity.myPassiveManager.unstableStacks);
-                }
+                StatusController.Instance.ApplyStatusToLivingEntity(targetInBlast, StatusIconLibrary.Instance.GetStatusIconByName("Poisoned"), entity.myPassiveManager.unstableStacks);
             }
 
             yield return new WaitForSeconds(1);

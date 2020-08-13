@@ -373,8 +373,16 @@ public class CardController : MonoBehaviour
         StartCoroutine(TriggerEffectFromCardCoroutine(card, cardEffect, action, target));
         return action;
     }
-    private IEnumerator TriggerEffectFromCardCoroutine(Card card, CardEffect cardEffect, Action action, LivingEntity target = null)
+    private IEnumerator TriggerEffectFromCardCoroutine(Card card, CardEffect cardEffect, Action action, LivingEntity target)
     {
+        // Stop and return if target of effect is dying
+        if(target != null && target.inDeathProcess)
+        {
+            Debug.Log("CardController.TriggerEffectFromCardCoroutine() cancelling: target is dying");
+            action.actionResolved = true;
+            yield break;
+        }
+
         Debug.Log("CardController.PlayCardFromHand() called, effect: '" + cardEffect.cardEffectType.ToString() + 
         "' from card: '" + card.cardName);
         Defender owner = card.owner;
@@ -461,7 +469,7 @@ public class CardController : MonoBehaviour
         // Apply Burning
         else if (cardEffect.cardEffectType == CardEffectType.ApplyBurning)
         {
-            target.myPassiveManager.ModifyBurning(cardEffect.burningApplied);
+            StatusController.Instance.ApplyStatusToLivingEntity(target, StatusIconLibrary.Instance.GetStatusIconByName("Burning"), cardEffect.burningApplied);
         }
 
         // Resolve event
