@@ -194,5 +194,6 @@ public enum IntentImage
     GreenDebuff,
     PurpleDebuff,
     Unknown,
+    Flee,
 
 }

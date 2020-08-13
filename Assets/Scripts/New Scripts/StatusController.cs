@@ -61,6 +61,10 @@ public class StatusController : MonoBehaviour
         {
             entity.myPassiveManager.ModifyWeakened(stacks);
         }
+        else if (status.statusName == "Vulnerable")
+        {
+            entity.myPassiveManager.ModifyVulnerable(stacks);
+        }
         else if (status.statusName == "Poisoned")
         {
             entity.myPassiveManager.ModifyPoisoned(stacks);
@@ -68,6 +72,14 @@ public class StatusController : MonoBehaviour
         else if (status.statusName == "Unstable")
         {
             entity.myPassiveManager.ModifyUnstable(stacks);
+        }
+        else if (status.statusName == "Disarmed")
+        {
+            entity.myPassiveManager.ModifyDisarmed(stacks);
+        }
+        else if (status.statusName == "Blind")
+        {
+            entity.myPassiveManager.ModifyBlind(stacks);
         }
     }
 }

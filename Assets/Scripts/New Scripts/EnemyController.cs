@@ -395,6 +395,10 @@ public class EnemyController : MonoBehaviour
             {
                 StatusController.Instance.ApplyStatusToLivingEntity(enemy, nextAction.secondStatusApplied.statusData, nextAction.secondStatusApplied.statusStacks);
             }
+            else if (nextAction.secondActionType == ActionType.DebuffTarget)
+            {
+                StatusController.Instance.ApplyStatusToLivingEntity(enemy.currentActionTarget, nextAction.secondStatusApplied.statusData, nextAction.secondStatusApplied.statusStacks);
+            }
         }
 
         // POST ACTION STUFF

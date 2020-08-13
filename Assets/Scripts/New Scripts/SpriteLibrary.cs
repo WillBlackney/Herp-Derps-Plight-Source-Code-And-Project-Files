@@ -116,6 +116,10 @@ public class SpriteLibrary : MonoBehaviour
     [ColorFoldoutGroup("Intent Images")]
     [PreviewField(75)]
     public Sprite unknown;
+
+    [ColorFoldoutGroup("Intent Images")]
+    [PreviewField(75)]
+    public Sprite flee;
     #endregion
     // Logic 
     #region
@@ -213,6 +217,10 @@ public class SpriteLibrary : MonoBehaviour
         else if (data == IntentImage.Unknown)
         {
             spriteReturned = unknown;
+        }
+        else if (data == IntentImage.Flee)
+        {
+            spriteReturned = flee;
         }
 
         return spriteReturned;

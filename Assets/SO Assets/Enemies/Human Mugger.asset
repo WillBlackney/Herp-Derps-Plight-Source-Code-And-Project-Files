@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 272d402ffa0a347429dfe06011e3d167, type: 3}
+  m_Name: Human Mugger
+  m_EditorClassIdentifier: 
+  enemyName: Human Mugger
+  description: 
+  maxHealth: 48
+  strength: 0
+  wisdom: 0
+  dexterity: 0
+  initiative: 3
+  startingHealth: 48
+  startingBlock: 0
+  physicalResistance: 0
+  fireResistance: 0
+  frostResistance: 0
+  shadowResistance: 0
+  poisonResistance: 0
+  airResistance: 0
+  allPassives: []
+  allEnemyActions:
+  - actionName: Strike
+    actionType: 0
+    intentImage: 0
+    actionValue: 10
+    actionLoops: 1
+    damageType: 1
+    statusApplied:
+      statusData: {fileID: 0}
+      statusStacks: 0
+    secondEffect: 0
+    secondActionType: 0
+    secondActionValue: 0
+    secondActionLoops: 0
+    secondStatusApplied:
+      statusData: {fileID: 0}
+      statusStacks: 0
+    canBeConsecutive: 1
+    prioritiseWhenRequirementsMet: 0
+    actionRequirements: []
+  allBodyParts: []
