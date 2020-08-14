@@ -34,19 +34,48 @@ MonoBehaviour:
   - actionName: Strike
     actionType: 0
     intentImage: 0
-    actionValue: 4
-    actionLoops: 1
-    damageType: 1
-    statusApplied:
-      statusData: {fileID: 0}
+    actionLoops: 3
+    actionEffects:
+    - actionType: 0
+      baseDamage: 8
+      damageType: 1
+      attackLoops: 3
+      statusApplied: {fileID: 0}
       statusStacks: 0
-    secondEffect: 1
-    secondActionType: 0
-    secondActionValue: 0
-    secondActionLoops: 0
-    secondStatusApplied:
-      statusData: {fileID: 0}
-      statusStacks: 0
+      blockGained: 0
+      cardAdded: {fileID: 0}
+      copiesAdded: 0
+      collection: 0
+    - actionType: 5
+      baseDamage: 0
+      damageType: 0
+      attackLoops: 0
+      statusApplied: {fileID: 11400000, guid: aa22de6de15a02c41b68c3de8023de67, type: 2}
+      statusStacks: 3
+      blockGained: 0
+      cardAdded: {fileID: 0}
+      copiesAdded: 0
+      collection: 0
+    - actionType: 5
+      baseDamage: 0
+      damageType: 0
+      attackLoops: 0
+      statusApplied: {fileID: 11400000, guid: c581a48a8af96034f9df9bf0e66126b1, type: 2}
+      statusStacks: 3
+      blockGained: 0
+      cardAdded: {fileID: 0}
+      copiesAdded: 0
+      collection: 0
+    - actionType: 3
+      baseDamage: 0
+      damageType: 0
+      attackLoops: 0
+      statusApplied: {fileID: 11400000, guid: 28e5b8be23558bc4d9ac21773f3b969e, type: 2}
+      statusStacks: 5
+      blockGained: 0
+      cardAdded: {fileID: 0}
+      copiesAdded: 0
+      collection: 0
     canBeConsecutive: 1
     prioritiseWhenRequirementsMet: 0
     actionRequirements: []

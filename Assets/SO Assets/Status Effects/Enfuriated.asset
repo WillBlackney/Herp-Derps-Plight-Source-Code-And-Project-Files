@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bd1bf0b56234af4c808b8522b29dcbf, type: 3}
-  m_Name: testing wave
+  m_Script: {fileID: 11500000, guid: 8f7afef01961cde4db4c64828cf94ac9, type: 3}
+  m_Name: Enfuriated
   m_EditorClassIdentifier: 
-  encounterName: Testing Wave
-  combatDifficulty: 0
-  enemyGroups:
-  - possibleEnemies:
-    - {fileID: 11400000, guid: 5fb6a590f4aa30942941bf6a13c1bc52, type: 2}
+  statusName: Enfuriated
+  statusSprite: {fileID: 21300000, guid: 7fff36da3ad49f24f85cfbc255262fa5, type: 3}
+  statusDescription: 
+  showStackCount: 1
+  statusRace: 0

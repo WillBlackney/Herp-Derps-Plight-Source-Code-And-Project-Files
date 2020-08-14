@@ -23,44 +23,12 @@ public class EnemyAction
 
     [BoxGroup("General Action Data")]
     [LabelWidth(150)]
-    public int actionValue;
+    public int actionLoops = 1;
 
     [BoxGroup("General Action Data")]
     [LabelWidth(150)]
-    public int actionLoops;
+    public List<EnemyActionEffect> actionEffects;
 
-    [BoxGroup("General Action Data")]
-    [ShowIf("ShowDamageType")]
-    [LabelWidth(150)]
-    public AbilityDataSO.DamageType damageType;
-
-    [BoxGroup("General Action Data")]
-    [ShowIf("ShowStatusData")]
-    [LabelWidth(150)]
-    public StatusPairing statusApplied;
-
-    [BoxGroup("General Action Data")]
-    [LabelWidth(150)]
-    public bool secondEffect;
-
-    [BoxGroup("General Action Data")]
-    [Header("Second Effect Data")]
-    [ShowIf("ShowSecondEffect")]
-    [LabelWidth(200)]
-    public ActionType secondActionType;
-    [BoxGroup("General Action Data")]
-    [ShowIf("ShowSecondEffect")]
-    [LabelWidth(200)]
-    public int secondActionValue;
-    [BoxGroup("General Action Data")]
-    [ShowIf("ShowSecondEffect")]
-    [LabelWidth(200)]
-    public int secondActionLoops;
-
-    [BoxGroup("General Action Data")]
-    [ShowIf("ShowSecondStatusData")]
-    [LabelWidth(100)]
-    public StatusPairing secondStatusApplied;
 
     [BoxGroup("Routine Data", centerLabel: true)]
     [LabelWidth(200)]
@@ -72,77 +40,7 @@ public class EnemyAction
     [LabelWidth(100)] 
     public List<ActionRequirement> actionRequirements;
 
-    
-
-    // Odin Inspector Logic
-    #region
-    public bool ShowDamageType()
-    {
-        if (actionType == ActionType.AttackTarget ||
-            actionType == ActionType.AttackAll)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    public bool ShowStatusData()
-    {
-        if (actionType == ActionType.BuffAll ||
-            actionType == ActionType.BuffSelf ||
-            actionType == ActionType.BuffTarget ||
-            actionType == ActionType.DebuffAll ||
-            actionType == ActionType.DebuffTarget)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    public bool ShowSecondStatusData()
-    {
-        if (secondEffect && 
-            (secondActionType == ActionType.BuffAll ||
-            secondActionType == ActionType.BuffSelf ||
-            secondActionType == ActionType.BuffTarget ||
-            secondActionType == ActionType.DebuffAll ||
-            secondActionType == ActionType.DebuffTarget))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    public bool ShowSecondEffect()
-    {
-        if (secondEffect)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    #endregion
-
 }
-public class AddBoxToDrawer<T>: OdinValueDrawer<T> 
-{
-    protected override void DrawPropertyLayout(GUIContent label)
-    {
-        SirenixEditorGUI.BeginBox();
-        CallNextDrawer(label);
-        SirenixEditorGUI.EndBox();
-    }
-}
-
 public enum ActionType
 {
     AttackTarget,
@@ -160,6 +58,7 @@ public enum ActionType
     DefendAndBuffSelf,
     AttackTargetAndDefendSelf,
     AttackTargetAndBuffSelf,
+    AddCard,
 }
 public enum ActionRequirementType
 {
@@ -174,14 +73,6 @@ public enum ActionRequirementType
     ActivatedXTimesOrMore,
     ActivatedXTimesOrLess,
 }
-
-[Serializable]
-public class ActionRequirement
-{
-    public ActionRequirementType requirementType;
-    public int requirementTypeValue;
-}
-
 public enum IntentImage
 {
     Attack,
@@ -196,4 +87,145 @@ public enum IntentImage
     Unknown,
     Flee,
 
+}
+public enum CardCollection
+{
+    Hand,
+    DrawPile,
+    DiscardPile,
+    PermanentDeck,
+}
+
+[Serializable]
+public class ActionRequirement
+{
+    public ActionRequirementType requirementType;
+    public int requirementTypeValue;
+}
+[Serializable]
+public class EnemyActionEffect
+{
+    [VerticalGroup("General Properties")]
+    [LabelWidth(150)]
+    public ActionType actionType;
+
+
+    // damage target
+    [VerticalGroup("Damage Properties")]
+    [ShowIf("ShowDamage")]
+    [LabelWidth(150)]
+    public int baseDamage;
+
+    [VerticalGroup("Damage Properties")]
+    [ShowIf("ShowDamage")]
+    [LabelWidth(150)]
+    public AbilityDataSO.DamageType damageType;
+
+    [VerticalGroup("Damage Properties")]
+    [ShowIf("ShowDamage")]
+    [LabelWidth(150)]
+    public int attackLoops = 1;
+
+
+
+    // Status properties
+    [VerticalGroup("Status Properties")]
+    [ShowIf("ShowStatus")]
+    [LabelWidth(150)]
+    public StatusIconDataSO statusApplied;
+
+    [VerticalGroup("Status Properties")]
+    [ShowIf("ShowStatus")]
+    [LabelWidth(150)]
+    public int statusStacks;
+
+
+    // Block properties
+    [VerticalGroup("Block Properties")]
+    [ShowIf("ShowBlock")]
+    [LabelWidth(150)]
+    public int blockGained;
+
+
+    // Add card properties
+    [VerticalGroup("Card Properties")]
+    [ShowIf("ShowCard")]
+    [LabelWidth(150)]
+    public CardDataSO cardAdded;
+
+    [VerticalGroup("Card Properties")]
+    [ShowIf("ShowCard")]
+    [LabelWidth(150)]
+    public int copiesAdded;
+
+    [VerticalGroup("Card Properties")]
+    [ShowIf("ShowCard")]
+    [LabelWidth(150)]
+    public CardCollection collection;
+
+
+
+    // Inspector bools
+    public bool ShowDamage()
+    {
+        if(actionType == ActionType.AttackAll ||
+            actionType == ActionType.AttackTarget)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public bool ShowStatus()
+    {
+        if (actionType == ActionType.BuffAll ||
+            actionType == ActionType.BuffSelf ||
+            actionType == ActionType.BuffTarget ||
+            actionType == ActionType.DebuffAll ||
+            actionType == ActionType.DebuffTarget)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowBlock()
+    {
+        if (actionType == ActionType.DefendAll ||
+            actionType == ActionType.DefendSelf ||
+            actionType == ActionType.DefendTarget)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowCard()
+    {
+        if (actionType == ActionType.AddCard)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+}
+public class AddBoxToDrawer<T> : OdinValueDrawer<T>
+{
+    protected override void DrawPropertyLayout(GUIContent label)
+    {
+        SirenixEditorGUI.BeginBox();
+        CallNextDrawer(label);
+        SirenixEditorGUI.EndBox();
+    }
 }

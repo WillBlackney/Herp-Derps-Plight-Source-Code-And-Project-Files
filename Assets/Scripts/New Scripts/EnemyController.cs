@@ -94,12 +94,23 @@ public class EnemyController : MonoBehaviour
         // if attacking, calculate + enable + set damage value text
         if(enemy.myNextAction.actionType == ActionType.AttackTarget)
         {
+            // Use the first EnemyActionEffect in the list to base damage calcs off of.
+            EnemyActionEffect effect = enemy.myNextAction.actionEffects[0];
             // Calculate damage to display
-            string damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(enemy, null, null, enemy.myNextAction);
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, enemy.currentActionTarget, damageType, false, enemy.myNextAction.actionValue, null, null, enemy.myNextAction);
+            string damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(enemy, null, null, effect);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, enemy.currentActionTarget, damageType, false, effect.baseDamage, null, null, effect);
 
             enemy.myIntentViewModel.valueText.gameObject.SetActive(true);
-            enemy.myIntentViewModel.valueText.text = finalDamageValue.ToString();
+
+            if(effect.attackLoops > 1)
+            {
+                enemy.myIntentViewModel.valueText.text = finalDamageValue.ToString() + " x " + effect.attackLoops.ToString();
+            }
+            else
+            {
+                enemy.myIntentViewModel.valueText.text = finalDamageValue.ToString();
+            }
+          
         }            
         
     }
@@ -338,68 +349,23 @@ public class EnemyController : MonoBehaviour
         Action notification = VisualEffectManager.Instance.CreateStatusEffect(enemy.transform.position, enemy.myNextAction.actionName);
         yield return new WaitForSeconds(0.5f);
 
-        // First action efffect
-        if (nextAction.actionType == ActionType.AttackTarget)
+        // Trigger and resolve all effects of the action        
+        for(int i = 0; i < nextAction.actionLoops; i++)
         {
-            hasMovedOffStartingNode = true;
-
-            // Move towards target
-            Action moveAction = MovementLogic.Instance.MoveAttackerToTargetNodeAttackPosition(enemy, enemy.currentActionTarget);
-            yield return new WaitUntil(() => moveAction.ActionResolved());
-
-            // Play melee attack anim
-            enemy.TriggerMeleeAttackAnimation();
-
-            // Calculate damage
-            string damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(enemy, null, null, nextAction);
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, enemy.currentActionTarget, damageType, false, nextAction.actionValue, null, null, nextAction);
-
-            // Start deal damage event
-            Action abilityAction = CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, enemy.currentActionTarget, damageType);
-            yield return new WaitUntil(() => abilityAction.ActionResolved() == true);
-        }
-        else if (nextAction.actionType == ActionType.DefendSelf)
-        {
-            enemy.ModifyCurrentBlock(CombatLogic.Instance.CalculateBlockGainedByEffect(nextAction.actionValue, enemy));
-        }
-        else if(nextAction.actionType == ActionType.DefendTarget)
-        {
-            enemy.currentActionTarget.ModifyCurrentBlock(CombatLogic.Instance.CalculateBlockGainedByEffect(nextAction.actionValue, enemy.currentActionTarget));
-        }
-        else if (nextAction.actionType == ActionType.BuffSelf ||
-                 nextAction.actionType == ActionType.BuffTarget)
-        {
-            // Set self as target if 'BuffSelf' type
-            if(nextAction.actionType == ActionType.BuffSelf)
+            if(enemy != null && enemy.inDeathProcess == false)
             {
-                enemy.currentActionTarget = enemy;
-            }
+                foreach (EnemyActionEffect effect in nextAction.actionEffects)
+                {
+                    if (nextAction.actionType == ActionType.AttackTarget)
+                    {
+                        hasMovedOffStartingNode = true;
+                    }
 
-            StatusController.Instance.ApplyStatusToLivingEntity(enemy.currentActionTarget, nextAction.statusApplied.statusData, nextAction.statusApplied.statusStacks);
-        }
-        else if (nextAction.actionType == ActionType.DebuffTarget)
-        {
-            StatusController.Instance.ApplyStatusToLivingEntity(enemy.currentActionTarget, nextAction.statusApplied.statusData, nextAction.statusApplied.statusStacks);
-        }
-
-
-
-        // Second action effect
-        if (nextAction.secondEffect)
-        {
-            if (nextAction.secondActionType == ActionType.DefendSelf)
-            {
-                enemy.ModifyCurrentBlock(CombatLogic.Instance.CalculateBlockGainedByEffect(nextAction.secondActionValue, enemy));
-            }
-            else if (nextAction.secondActionType == ActionType.BuffSelf)
-            {
-                StatusController.Instance.ApplyStatusToLivingEntity(enemy, nextAction.secondStatusApplied.statusData, nextAction.secondStatusApplied.statusStacks);
-            }
-            else if (nextAction.secondActionType == ActionType.DebuffTarget)
-            {
-                StatusController.Instance.ApplyStatusToLivingEntity(enemy.currentActionTarget, nextAction.secondStatusApplied.statusData, nextAction.secondStatusApplied.statusStacks);
-            }
-        }
+                    Action effectEvent = TriggerEnemyActionEffect(enemy, effect);
+                    yield return new WaitUntil(() => effectEvent.ActionResolved());
+                }
+            }            
+        }        
 
         // POST ACTION STUFF
 
@@ -412,6 +378,73 @@ public class EnemyController : MonoBehaviour
             Action moveBackEvent = MovementLogic.Instance.MoveEntityToNodeCentre(enemy, enemy.levelNode);
             yield return new WaitUntil(() => moveBackEvent.ActionResolved() == true);
         }
+
+        // Resolve
+        action.actionResolved = true;
+    }
+    public Action TriggerEnemyActionEffect(Enemy enemy,EnemyActionEffect effect)
+    {
+        Action action = new Action(true);
+        StartCoroutine(TriggerEnemyActionEffectCoroutine(enemy, effect, action));
+        return action; 
+    }
+    private IEnumerator TriggerEnemyActionEffectCoroutine(Enemy enemy, EnemyActionEffect effect, Action action)
+    {
+        // Execute effect based on effect type
+        if (effect.actionType == ActionType.AttackTarget)
+        {
+            for(int i = 0; i < effect.attackLoops; i++)
+            {
+                if(enemy.currentActionTarget != null && enemy.currentActionTarget.inDeathProcess == false &&
+                    enemy != null && enemy.inDeathProcess == false)
+                {
+                    // Move towards target
+                    Action moveAction = MovementLogic.Instance.MoveAttackerToTargetNodeAttackPosition(enemy, enemy.currentActionTarget);
+                    yield return new WaitUntil(() => moveAction.ActionResolved());
+
+                    // Play melee attack anim
+                    enemy.TriggerMeleeAttackAnimation();
+
+                    // Calculate damage
+                    string damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(enemy, null, null, effect);
+                    int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, enemy.currentActionTarget, damageType, false, effect.baseDamage, null, null, effect);
+
+                    // Start deal damage event
+                    Action abilityAction = CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, enemy.currentActionTarget, damageType);
+                    yield return new WaitUntil(() => abilityAction.ActionResolved() == true);
+                }
+                   
+            }            
+        }
+        else if (effect.actionType == ActionType.DefendSelf)
+        {
+            enemy.ModifyCurrentBlock(CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy));
+        }
+        else if (effect.actionType == ActionType.DefendTarget)
+        {
+            enemy.currentActionTarget.ModifyCurrentBlock(CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy.currentActionTarget));
+        }
+        else if (effect.actionType == ActionType.BuffSelf ||
+                 effect.actionType == ActionType.BuffTarget)
+        {
+            // Set self as target if 'BuffSelf' type
+            if (effect.actionType == ActionType.BuffSelf)
+            {
+                enemy.currentActionTarget = enemy;
+            }
+
+            StatusController.Instance.ApplyStatusToLivingEntity(enemy.currentActionTarget, effect.statusApplied, effect.statusStacks);
+        }
+        else if (effect.actionType == ActionType.DebuffTarget)
+        {
+            StatusController.Instance.ApplyStatusToLivingEntity(enemy.currentActionTarget, effect.statusApplied, effect.statusStacks);
+        }
+
+        // TO DO: This pause occurs even if the target or enemy is dead, how 
+        // to remove this pause when this occurs?
+
+        // Brief pause at end of each effect
+        yield return new WaitForSeconds(0.5f);
 
         // Resolve
         action.actionResolved = true;
