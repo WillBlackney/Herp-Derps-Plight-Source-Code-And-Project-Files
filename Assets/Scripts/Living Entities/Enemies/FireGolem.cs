@@ -50,7 +50,7 @@ public class FireGolem : Enemy
             EntityLogic.IsTargetInRange(this, EntityLogic.GetBestMeltTarget(this), melt.abilityRange) &&
             EntityLogic.IsAbilityUseable(this, melt, EntityLogic.GetBestMeltTarget(this)))
         {
-            Action action = AbilityLogic.Instance.PerformMelt(this, EntityLogic.GetBestMeltTarget(this));
+            OldCoroutineData action = AbilityLogic.Instance.PerformMelt(this, EntityLogic.GetBestMeltTarget(this));
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -62,7 +62,7 @@ public class FireGolem : Enemy
             myCurrentTarget.currentBlock > 0 &&
             EntityLogic.IsAbilityUseable(this, melt, myCurrentTarget))
         {
-            Action action = AbilityLogic.Instance.PerformMelt(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformMelt(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -77,7 +77,7 @@ public class FireGolem : Enemy
             EntityLogic.GetAllEnemiesWithinRange(EntityLogic.GetBestCombustionTarget(this), 1).Count > 1
             )
         {
-            Action action = AbilityLogic.Instance.PerformCombustion(this, EntityLogic.GetBestMeltTarget(this));
+            OldCoroutineData action = AbilityLogic.Instance.PerformCombustion(this, EntityLogic.GetBestMeltTarget(this));
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -91,7 +91,7 @@ public class FireGolem : Enemy
             EntityLogic.GetAllEnemiesWithinRange(myCurrentTarget, 1).Count > 1
             )
         {
-            Action action = AbilityLogic.Instance.PerformCombustion(this, EntityLogic.GetBestMeltTarget(this));
+            OldCoroutineData action = AbilityLogic.Instance.PerformCombustion(this, EntityLogic.GetBestMeltTarget(this));
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -102,7 +102,7 @@ public class FireGolem : Enemy
         else if (EntityLogic.IsTargetInRange(this, myCurrentTarget, fireBall.abilityRange) &&
             EntityLogic.IsAbilityUseable(this, fireBall, myCurrentTarget))
         {
-            Action action = AbilityLogic.Instance.PerformFireBall(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformFireBall(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -119,7 +119,7 @@ public class FireGolem : Enemy
             )
         {
             Tile destination = EntityLogic.GetBestValidMoveLocationBetweenMeAndTarget(this, myCurrentTarget, currentMeleeRange, EntityLogic.GetTotalMobility(this));
-            Action movementAction = AbilityLogic.Instance.PerformMove(this, destination);
+            OldCoroutineData movementAction = AbilityLogic.Instance.PerformMove(this, destination);
             yield return new WaitUntil(() => movementAction.ActionResolved() == true);
 
             // small delay here in order to seperate the two actions a bit.

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class CardController : MonoBehaviour
 {
@@ -94,13 +95,13 @@ public class CardController : MonoBehaviour
 
     // Card draw Logic
     #region
-    public Action DrawACardFromDrawPile(Defender defender, int index = 0)
+    public OldCoroutineData DrawACardFromDrawPile(Defender defender, int index = 0)
     {
-        Action action = new Action(true);
+        OldCoroutineData action = new OldCoroutineData(true);
         StartCoroutine(DrawACardFromDrawPileCoroutine(defender, action, index));
         return action;
     }
-    private IEnumerator DrawACardFromDrawPileCoroutine(Defender defender, Action action, int index)
+    private IEnumerator DrawACardFromDrawPileCoroutine(Defender defender, OldCoroutineData action, int index)
     {
         // Shuffle discard pile back into draw pile if draw pile is empty
         if (IsDrawPileEmpty(defender))
@@ -122,7 +123,7 @@ public class CardController : MonoBehaviour
         }
 
         // Resolve
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
     public void DrawCardsOnActivationStart(Defender defender)
     {
@@ -259,13 +260,13 @@ public class CardController : MonoBehaviour
 
     // Hand Visual Logic
     #region
-    public Action MoveCardVmFromDeckToHand(CardViewModel cardVM, Defender defender)
+    public OldCoroutineData MoveCardVmFromDeckToHand(CardViewModel cardVM, Defender defender)
     {
-        Action action = new Action(true);
+        OldCoroutineData action = new OldCoroutineData(true);
         StartCoroutine(MoveCardVmFromDeckToHandCoroutine(cardVM, defender, action));
         return action;
     }
-    private IEnumerator MoveCardVmFromDeckToHandCoroutine(CardViewModel cardVM, Defender defender, Action action)
+    private IEnumerator MoveCardVmFromDeckToHandCoroutine(CardViewModel cardVM, Defender defender, OldCoroutineData action)
     {
         bool tweenFinished = false;
         // Update slot positions
@@ -292,7 +293,7 @@ public class CardController : MonoBehaviour
         yield return new WaitUntil(() => tweenFinished == true);
 
         // Resolve event
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
     public void AddCardVmToDefenderHandVisual(GameObject card, Defender defender)
     {
@@ -344,13 +345,13 @@ public class CardController : MonoBehaviour
     {
         // called at the very end of card play
     }
-    public Action PlayCardFromHand(Card card, LivingEntity target = null)
+    public OldCoroutineData PlayCardFromHand(Card card, LivingEntity target = null)
     {
-        Action action = new Action(true);
+        OldCoroutineData action = new OldCoroutineData(true);
         StartCoroutine(PlayCardFromHandCoroutine(card, action, target));
         return action;
     }
-    private IEnumerator PlayCardFromHandCoroutine(Card card, Action action, LivingEntity target = null)
+    private IEnumerator PlayCardFromHandCoroutine(Card card, OldCoroutineData action, LivingEntity target = null)
     {
         Debug.Log("CardController.PlayCardFromHand() called, playing: " + card.cardName);
 
@@ -368,7 +369,7 @@ public class CardController : MonoBehaviour
         {
             if(owner != null && owner.inDeathProcess == false)
             {
-                Action effectEvent = TriggerEffectFromCard(card, effect, target);
+                OldCoroutineData effectEvent = TriggerEffectFromCard(card, effect, target);
                 yield return new WaitUntil(() => effectEvent.ActionResolved());
             }
             
@@ -378,22 +379,22 @@ public class CardController : MonoBehaviour
         OnCardPlayedFinish(card);
 
         // Resolve
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
        
     }
-    public Action TriggerEffectFromCard(Card card, CardEffect cardEffect, LivingEntity target = null)
+    public OldCoroutineData TriggerEffectFromCard(Card card, CardEffect cardEffect, LivingEntity target = null)
     {
-        Action action = new Action(true);
+        OldCoroutineData action = new OldCoroutineData(true);
         StartCoroutine(TriggerEffectFromCardCoroutine(card, cardEffect, action, target));
         return action;
     }
-    private IEnumerator TriggerEffectFromCardCoroutine(Card card, CardEffect cardEffect, Action action, LivingEntity target)
+    private IEnumerator TriggerEffectFromCardCoroutine(Card card, CardEffect cardEffect, OldCoroutineData action, LivingEntity target)
     {
         // Stop and return if target of effect is dying
         if(target != null && target.inDeathProcess)
         {
             Debug.Log("CardController.TriggerEffectFromCardCoroutine() cancelling: target is dying");
-            action.actionResolved = true;
+            action.coroutineCompleted = true;
             yield break;
         }
 
@@ -420,10 +421,24 @@ public class CardController : MonoBehaviour
             if(card.cardType == CardType.MeleeAttack && target != null)
             {
                 hasMovedOffStartingNode = true;
-                Action moveAction = MovementLogic.Instance.MoveAttackerToTargetNodeAttackPosition(owner, target);
-                yield return new WaitUntil(() => moveAction.ActionResolved());
 
-                owner.TriggerMeleeAttackAnimation();
+                CoroutineData cData = new CoroutineData();
+                VisualEventManager.Instance.CreateVisualEvent(() => MovementLogic.Instance.MoveAttackerToTargetNodeAttackPosition2(owner, target, cData), cData, QueuePosition.Back, 0, 0);
+
+
+                // Movement visual event
+                // CoroutineData cData = new CoroutineData();
+                // Action newFunc = () => MovementLogic.Instance.MoveAttackerToTargetNodeAttackPosition2(owner, target, cData);
+                // VisualEventManager.Instance.CreateVisualEvent(newFunc, cData, QueuePosition.Back, 0, 0);
+
+                // Animation visual event
+                VisualEventManager.Instance.CreateVisualEvent(() => owner.TriggerMeleeAttackAnimation(), QueuePosition.Back, 0, 0);
+              
+
+                // ORIGINAL CODE!
+                //CoroutineData moveAction = MovementLogic.Instance.MoveAttackerToTargetNodeAttackPosition(owner, target);
+                //yield return new WaitUntil(() => moveAction.ActionResolved());
+                //owner.TriggerMeleeAttackAnimation();
             }
 
             // Calculate damage
@@ -431,13 +446,13 @@ public class CardController : MonoBehaviour
             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, target, damageType, false, cardEffect.baseDamageValue, card, cardEffect);
 
             // Start deal damage event
-            Action abilityAction = CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, damageType);
+            OldCoroutineData abilityAction = CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, damageType);
             yield return new WaitUntil(() => abilityAction.ActionResolved() == true);
 
             // Move back to starting node pos, if we moved off 
             if(hasMovedOffStartingNode && owner.inDeathProcess == false)
             {
-                Action moveBackEvent = MovementLogic.Instance.MoveEntityToNodeCentre(owner, owner.levelNode);
+                OldCoroutineData moveBackEvent = MovementLogic.Instance.MoveEntityToNodeCentre(owner, owner.levelNode);
                 yield return new WaitUntil(() => moveBackEvent.ActionResolved() == true);
             }
 
@@ -450,7 +465,7 @@ public class CardController : MonoBehaviour
             VisualEffectManager.Instance.CreateBloodSplatterEffect(owner.transform.position);
 
             // Reduce Health
-            Action selfDamageAction = CombatLogic.Instance.HandleDamage(cardEffect.healthLost, owner, owner, "None", null, true);
+            OldCoroutineData selfDamageAction = CombatLogic.Instance.HandleDamage(cardEffect.healthLost, owner, owner, "None", null, true);
             yield return new WaitUntil(() => selfDamageAction.ActionResolved() == true);
             //yield return new WaitForSeconds(0.5f);
         }
@@ -475,7 +490,7 @@ public class CardController : MonoBehaviour
             // Draw cards
             for(int draws = 0; draws < cardEffect.cardsDrawn; draws++)
             {
-                Action drawAction = DrawACardFromDrawPile(target.defender);
+                OldCoroutineData drawAction = DrawACardFromDrawPile(target.defender);
                 yield return new WaitUntil(() => drawAction.ActionResolved() == true);
             }           
         }
@@ -487,7 +502,7 @@ public class CardController : MonoBehaviour
         }
 
         // Resolve event
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
     #endregion
 

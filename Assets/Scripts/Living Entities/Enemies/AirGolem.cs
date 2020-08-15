@@ -50,7 +50,7 @@ public class AirGolem : Enemy
             EntityLogic.IsTargetInRange(this, myCurrentTarget, currentMeleeRange) &&
             EntityLogic.IsAbilityUseable(this, thunderStrike, myCurrentTarget))
         {
-            Action action = AbilityLogic.Instance.PerformThunderStrike(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformThunderStrike(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -62,7 +62,7 @@ public class AirGolem : Enemy
             EntityLogic.IsAbilityUseable(this, chainLightning, myCurrentTarget) &&
             EntityLogic.GetAllEnemiesWithinRange(myCurrentTarget, 1).Count > 0)
         {
-            Action action = AbilityLogic.Instance.PerformChainLightning(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformChainLightning(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -73,7 +73,7 @@ public class AirGolem : Enemy
         else if (EntityLogic.IsTargetInRange(this, myCurrentTarget, lightningBolt.abilityRange) &&
             EntityLogic.IsAbilityUseable(this, lightningBolt, myCurrentTarget))
         {
-            Action action = AbilityLogic.Instance.PerformLightningBolt(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformLightningBolt(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -84,7 +84,7 @@ public class AirGolem : Enemy
         else if (EntityLogic.IsTargetInRange(this, myCurrentTarget, currentMeleeRange) &&
             EntityLogic.IsAbilityUseable(this, strike, myCurrentTarget))
         {
-            Action action = AbilityLogic.Instance.PerformStrike(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformStrike(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             // brief delay between actions
@@ -102,7 +102,7 @@ public class AirGolem : Enemy
             )
         {
             Tile destination = EntityLogic.GetBestValidMoveLocationBetweenMeAndTarget(this, myCurrentTarget, currentMeleeRange, EntityLogic.GetTotalMobility(this));
-            Action movementAction = AbilityLogic.Instance.PerformMove(this, destination);
+            OldCoroutineData movementAction = AbilityLogic.Instance.PerformMove(this, destination);
             yield return new WaitUntil(() => movementAction.ActionResolved() == true);
 
             // small delay here in order to seperate the two actions a bit.

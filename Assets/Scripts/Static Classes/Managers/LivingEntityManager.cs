@@ -27,30 +27,30 @@ public class LivingEntityManager : MonoBehaviour
 
     // Activation related logic
     #region
-    public Action EndEntityActivation(LivingEntity entity)
+    public OldCoroutineData EndEntityActivation(LivingEntity entity)
     {
         Debug.Log("LivingEntityManager.EndEntityActivation() called for " + entity.myName);
-        Action action = new Action(true);
+        OldCoroutineData action = new OldCoroutineData(true);
         StartCoroutine(EndEntityActivationCoroutine(entity, action));
         return action;
     }
-    private IEnumerator EndEntityActivationCoroutine(LivingEntity entity, Action action)
+    private IEnumerator EndEntityActivationCoroutine(LivingEntity entity, OldCoroutineData action)
     {
         Debug.Log("LivingEntityManager.EndEntityActivationCoroutine() called for " + entity.myName);
-        Action endActivation = StartEntityOnActivationEndEvents(entity);
+        OldCoroutineData endActivation = StartEntityOnActivationEndEvents(entity);
         yield return new WaitUntil(() => endActivation.ActionResolved() == true);
         Debug.Log("LivingEntityManager.EndEntityActivationCoroutine() returning from end of activation effects process, now attempting to activate next entity");
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
         ActivationManager.Instance.ActivateNextEntity();
     }
-    private Action StartEntityOnActivationEndEvents(LivingEntity entity)
+    private OldCoroutineData StartEntityOnActivationEndEvents(LivingEntity entity)
     {
         Debug.Log("LivingEntityManager.StartEntityOnActivationEndEvents() called for " + entity.myName);
-        Action action = new Action(true);
+        OldCoroutineData action = new OldCoroutineData(true);
         StartCoroutine(StartEntityOnActivationEndEventsCoroutine(entity, action));
         return action;
     }
-    private IEnumerator StartEntityOnActivationEndEventsCoroutine(LivingEntity entity, Action action)
+    private IEnumerator StartEntityOnActivationEndEventsCoroutine(LivingEntity entity, OldCoroutineData action)
     {
         Debug.Log("LivingEntityManager.StartEntityOnActivationEndEventsCoroutine() called for " + entity.myName);
 
@@ -255,7 +255,7 @@ public class LivingEntityManager : MonoBehaviour
                 foreach(LivingEntity entityyy in targetsHit)
                 {
                     int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(entity, entityyy, null, "Fire", false, entity.myPassiveManager.fieryAuraStacks);
-                    Action damageAction = CombatLogic.Instance.HandleDamage(finalDamageValue, entity, entityyy, "Fire");
+                    OldCoroutineData damageAction = CombatLogic.Instance.HandleDamage(finalDamageValue, entity, entityyy, "Fire");
                     yield return new WaitUntil(() => damageAction.ActionResolved() == true);
                 }
 
@@ -317,11 +317,11 @@ public class LivingEntityManager : MonoBehaviour
                             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(entity, entityy, null, "Air", false, entity.myPassiveManager.stormAuraStacks);
 
                             // Shoot lightning ball
-                            Action lightningShotAction = VisualEffectManager.Instance.ShootToonLightningBall(entity.transform.position, entityy.transform.position);
+                            OldCoroutineData lightningShotAction = VisualEffectManager.Instance.ShootToonLightningBall(entity.transform.position, entityy.transform.position);
                             yield return new WaitUntil(() => lightningShotAction.ActionResolved() == true);
 
                             // Handle damage
-                            Action abilityAction = CombatLogic.Instance.HandleDamage(finalDamageValue, entity, entityy, "Air");
+                            OldCoroutineData abilityAction = CombatLogic.Instance.HandleDamage(finalDamageValue, entity, entityy, "Air");
                             yield return new WaitUntil(() => abilityAction.ActionResolved() == true);
                         }
                     }
@@ -456,7 +456,7 @@ public class LivingEntityManager : MonoBehaviour
                 VisualEffectManager.Instance.CreateStatusEffect(entity.transform.position, "Poisoned");
                 yield return new WaitForSeconds(0.5f);
                 int poisonDamageFinalValue = CombatLogic.Instance.GetDamageValueAfterResistances(entity.myPassiveManager.poisonedStacks, "Poison", entity);
-                Action poisonDamage = CombatLogic.Instance.HandleDamage(poisonDamageFinalValue, null, entity, "Poison", null, true);
+                OldCoroutineData poisonDamage = CombatLogic.Instance.HandleDamage(poisonDamageFinalValue, null, entity, "Poison", null, true);
                 yield return new WaitUntil(() => poisonDamage.ActionResolved() == true);
                 yield return new WaitForSeconds(1f);
             }
@@ -469,7 +469,7 @@ public class LivingEntityManager : MonoBehaviour
                 VisualEffectManager.Instance.CreateStatusEffect(entity.transform.position, "Burning");
                 yield return new WaitForSeconds(0.5f);
                 int fireDamageFinalValue = CombatLogic.Instance.GetDamageValueAfterResistances(entity.myPassiveManager.burningStacks, "Fire", entity);
-                Action burningDamage = CombatLogic.Instance.HandleDamage(fireDamageFinalValue, null, entity, "Fire", null, true);
+                OldCoroutineData burningDamage = CombatLogic.Instance.HandleDamage(fireDamageFinalValue, null, entity, "Fire", null, true);
                 yield return new WaitUntil(() => burningDamage.ActionResolved() == true);
                 yield return new WaitForSeconds(1f);
             }
@@ -481,7 +481,7 @@ public class LivingEntityManager : MonoBehaviour
 
                 VisualEffectManager.Instance.CreateStatusEffect(entity.transform.position, "Fading");
                 yield return new WaitForSeconds(0.5f);
-                Action fadingDamage = CombatLogic.Instance.HandleDamage(entity.myPassiveManager.fadingStacks, entity, entity, "None", null, true);
+                OldCoroutineData fadingDamage = CombatLogic.Instance.HandleDamage(entity.myPassiveManager.fadingStacks, entity, entity, "None", null, true);
                 yield return new WaitUntil(() => fadingDamage.ActionResolved() == true);
                 yield return new WaitForSeconds(1f);
             }
@@ -687,7 +687,7 @@ public class LivingEntityManager : MonoBehaviour
         // Resolve
         Debug.Log("LivingEntityManager.StartEntityOnActivationEndEventsCoroutine() finished and resolving...");
         yield return new WaitForSeconds(0.5f);
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
 
     }
     #endregion

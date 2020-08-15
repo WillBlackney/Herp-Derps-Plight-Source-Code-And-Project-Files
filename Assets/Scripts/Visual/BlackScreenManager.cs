@@ -63,13 +63,13 @@ public class BlackScreenManager : MonoBehaviour
 
     // Fade In / Out Logic
     #region
-    public Action FadeIn(int sortingLayer, int speed = 2, float alphaTarget = 0, bool setActiveOnComplete = true)
+    public OldCoroutineData FadeIn(int sortingLayer, int speed = 2, float alphaTarget = 0, bool setActiveOnComplete = true)
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(FadeInCoroutine(sortingLayer, speed, alphaTarget, setActiveOnComplete, action));
         return action;
     }
-    public IEnumerator FadeInCoroutine(int sortingLayer, int speed, float alphaTarget, bool setActiveOnComplete, Action action)
+    public IEnumerator FadeInCoroutine(int sortingLayer, int speed, float alphaTarget, bool setActiveOnComplete, OldCoroutineData action)
     {
         fadingIn = false;
         fadingOut = false;
@@ -93,16 +93,16 @@ public class BlackScreenManager : MonoBehaviour
         }
 
         Debug.Log("FadeInCoroutine() finished...");        
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
 
     }
-    public Action FadeOut(int sortingLayer, int speed = 2, float alphaTarget = 1, bool setActiveOnComplete = false)
+    public OldCoroutineData FadeOut(int sortingLayer, int speed = 2, float alphaTarget = 1, bool setActiveOnComplete = false)
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(FadeOutCoroutine(sortingLayer, speed, alphaTarget, setActiveOnComplete, action));
         return action;
     }
-    public IEnumerator FadeOutCoroutine(int sortingLayer, int speed, float alphaTarget, bool setActiveOnComplete, Action action)
+    public IEnumerator FadeOutCoroutine(int sortingLayer, int speed, float alphaTarget, bool setActiveOnComplete, OldCoroutineData action)
     {
         fadingIn = false;
         fadingOut = false;
@@ -130,7 +130,7 @@ public class BlackScreenManager : MonoBehaviour
         }
         */
         //SetActive(setActiveOnComplete);
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
     #endregion
 }

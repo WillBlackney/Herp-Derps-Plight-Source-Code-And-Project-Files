@@ -56,7 +56,7 @@ public class SkeletonNecromancer : Enemy
             EntityLogic.IsAbilityUseable(this, move)
             )
         {
-            Action movementAction = AbilityLogic.Instance.PerformMove(this, EntityLogic.GetValidGrassTileWithinRange(this, EntityLogic.GetTotalMobility(this)));
+            OldCoroutineData movementAction = AbilityLogic.Instance.PerformMove(this, EntityLogic.GetValidGrassTileWithinRange(this, EntityLogic.GetTotalMobility(this)));
             yield return new WaitUntil(() => movementAction.ActionResolved() == true);
             yield return new WaitForSeconds(1f);
             goto ActionStart;
@@ -65,7 +65,7 @@ public class SkeletonNecromancer : Enemy
         // Toxic Rain
         else if (EntityLogic.IsAbilityUseable(this, toxicRain))
         {
-            Action action = AbilityLogic.Instance.PerformToxicRain(this);
+            OldCoroutineData action = AbilityLogic.Instance.PerformToxicRain(this);
             yield return new WaitUntil(() => action.ActionResolved() == true);
             yield return new WaitForSeconds(0.5f);
             goto ActionStart;
@@ -90,7 +90,7 @@ public class SkeletonNecromancer : Enemy
         {
             SetTargetDefender(EntityLogic.GetBestChemicalReactionTarget(this));
 
-            Action action = AbilityLogic.Instance.PerformChemicalReaction(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformChemicalReaction(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
             yield return new WaitForSeconds(1f);
             goto ActionStart;
@@ -105,7 +105,7 @@ public class SkeletonNecromancer : Enemy
         {
             SetTargetDefender(EntityLogic.GetBestDrainTarget(this));
 
-            Action action = AbilityLogic.Instance.PerformChemicalReaction(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformChemicalReaction(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
             yield return new WaitForSeconds(1f);
             goto ActionStart;
@@ -116,7 +116,7 @@ public class SkeletonNecromancer : Enemy
         else if (EntityLogic.IsAbilityUseable(this, strike, myCurrentTarget) &&
             EntityLogic.IsTargetInRange(this, myCurrentTarget, currentMeleeRange))
         {
-            Action action = AbilityLogic.Instance.PerformStrike(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformStrike(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -132,7 +132,7 @@ public class SkeletonNecromancer : Enemy
             )
         {
             Tile destination = EntityLogic.GetBestValidMoveLocationBetweenMeAndTarget(this, myCurrentTarget, currentMeleeRange, EntityLogic.GetTotalMobility(this));
-            Action movementAction = AbilityLogic.Instance.PerformMove(this, destination);
+            OldCoroutineData movementAction = AbilityLogic.Instance.PerformMove(this, destination);
             yield return new WaitUntil(() => movementAction.ActionResolved() == true);
 
             // small delay here in order to seperate the two actions a bit.

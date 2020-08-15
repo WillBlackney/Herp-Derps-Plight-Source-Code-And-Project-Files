@@ -51,13 +51,13 @@ public class MovementLogic : MonoBehaviour
     #region
 
     // Movement 
-    public Action MoveEntity(LivingEntity characterMoved, Tile destination, float speed = 3, bool freeStrikeImmune = false)
+    public OldCoroutineData MoveEntity(LivingEntity characterMoved, Tile destination, float speed = 3, bool freeStrikeImmune = false)
     {
-        Action action = new Action(true);
+        OldCoroutineData action = new OldCoroutineData(true);
         StartCoroutine(MoveEntityCoroutine(characterMoved, destination, action, speed, freeStrikeImmune));
         return action;
     }
-    public IEnumerator MoveEntityCoroutine(LivingEntity characterMoved, Tile destination, Action action, float speed = 3, bool freeStrikeImmune = false)
+    public IEnumerator MoveEntityCoroutine(LivingEntity characterMoved, Tile destination, OldCoroutineData action, float speed = 3, bool freeStrikeImmune = false)
     {
         // Set properties
         float originalSpeed = characterMoved.movementAnimSpeed;
@@ -83,7 +83,7 @@ public class MovementLogic : MonoBehaviour
             {
                 Debug.Log("Checking for free strikes...");
                 Tile nextTile = LevelManager.Instance.GetTileFromPointReference(characterMoved.path.Peek().GridPosition);                
-                Action freeStrikeCheck = ResolveFreeStrikes(characterMoved, characterMoved.tile, nextTile);
+                OldCoroutineData freeStrikeCheck = ResolveFreeStrikes(characterMoved, characterMoved.tile, nextTile);
                 yield return new WaitUntil(() => freeStrikeCheck.ActionResolved() == true);
                 freeStrikesOnThisTileResolved = true;
             }
@@ -93,7 +93,7 @@ public class MovementLogic : MonoBehaviour
             {
                 Debug.Log("Checking for overwatch attacks...");
                 Tile nextTile = LevelManager.Instance.GetTileFromPointReference(characterMoved.path.Peek().GridPosition);
-                Action overwatchCheck = ResolveOverwatchAttacks(characterMoved, characterMoved.tile);
+                OldCoroutineData overwatchCheck = ResolveOverwatchAttacks(characterMoved, characterMoved.tile);
                 yield return new WaitUntil(() => overwatchCheck.ActionResolved() == true);
                 overwatchOnThisTileResolved = true;
             }
@@ -142,7 +142,7 @@ public class MovementLogic : MonoBehaviour
                     freeStrikesOnThisTileResolved = false;
                     overwatchOnThisTileResolved = false;
                     hasCompletedMovement = true;
-                    action.actionResolved = true;
+                    action.coroutineCompleted = true;
                 }
             }
 
@@ -157,13 +157,13 @@ public class MovementLogic : MonoBehaviour
     }
 
     // Teleportation
-    public Action TeleportEntity(LivingEntity target, Tile destination, bool switchingPosWithAnotherEntity = false)
+    public OldCoroutineData TeleportEntity(LivingEntity target, Tile destination, bool switchingPosWithAnotherEntity = false)
     {
-        Action action = new Action(true);
+        OldCoroutineData action = new OldCoroutineData(true);
         StartCoroutine(TeleportEntityCoroutine(target, destination,action, switchingPosWithAnotherEntity));
         return action;
     }
-    public IEnumerator TeleportEntityCoroutine(LivingEntity target, Tile destination, Action action, bool switchingPosWithAnotherEntity = false)
+    public IEnumerator TeleportEntityCoroutine(LivingEntity target, Tile destination, OldCoroutineData action, bool switchingPosWithAnotherEntity = false)
     {
         if (!switchingPosWithAnotherEntity)
         {
@@ -193,20 +193,20 @@ public class MovementLogic : MonoBehaviour
         // Set new tile location, resolve event
         LevelManager.Instance.SetTileAsOccupied(destination);
         OnNewTileSet(target);
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
         yield return null;
     }
 
     // Knock Back
-    public Action KnockBackEntity(LivingEntity attacker, LivingEntity target, int pushBackDistance)
+    public OldCoroutineData KnockBackEntity(LivingEntity attacker, LivingEntity target, int pushBackDistance)
     {
-        Action action = new Action(true);
+        OldCoroutineData action = new OldCoroutineData(true);
 
         // Check for knock back immunity
         if (target.myPassiveManager.unleashed)
         {
             VisualEffectManager.Instance.CreateStatusEffect(target.transform.position, "Knock Back Immune!");
-            action.actionResolved = true;
+            action.coroutineCompleted = true;
             return action;
         }
 
@@ -659,7 +659,7 @@ public class MovementLogic : MonoBehaviour
 
 
     }
-    public IEnumerator KnockBackEntityCoroutine(LivingEntity entityMoved, Vector3 destination, Action action)
+    public IEnumerator KnockBackEntityCoroutine(LivingEntity entityMoved, Vector3 destination, OldCoroutineData action)
     {
         Debug.Log("KnockBackMove() called by CombatLogic.cs....");
         bool movementCompleted = false;
@@ -676,25 +676,25 @@ public class MovementLogic : MonoBehaviour
         }
 
         OnNewTileSet(entityMoved);
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
     #endregion
 
     // New Location Set Logic
     #region
-    public Action OnLocationMovedTo(LivingEntity character, Tile newLocation, Tile previousLocation)
+    public OldCoroutineData OnLocationMovedTo(LivingEntity character, Tile newLocation, Tile previousLocation)
     {
         Debug.Log("OnLocationMovedToCalled() called....");
-        Action action = new Action(true);
+        OldCoroutineData action = new OldCoroutineData(true);
         StartCoroutine(OnLocationMovedToCoroutine(character, newLocation, previousLocation,action));
         return action;
     }
-    public IEnumerator OnLocationMovedToCoroutine(LivingEntity character, Tile newLocation, Tile previousLocation, Action action)
+    public IEnumerator OnLocationMovedToCoroutine(LivingEntity character, Tile newLocation, Tile previousLocation, OldCoroutineData action)
     {
         Debug.Log("OnLocationMovedToCalledCoroutine() called....");        
 
         OnNewTileSet(character);       
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
         yield return null;
         
     }
@@ -702,14 +702,14 @@ public class MovementLogic : MonoBehaviour
     {
         // TO DO: in future, if we have any tiles that apply effects the instant a character moves on it, the logic would go here
     }
-    public Action ResolveFreeStrikes(LivingEntity characterMoved, Tile previousLocation, Tile newLocation)
+    public OldCoroutineData ResolveFreeStrikes(LivingEntity characterMoved, Tile previousLocation, Tile newLocation)
     {
-        Action action = new Action(true);
+        OldCoroutineData action = new OldCoroutineData(true);
         
         // If charcter is free strike immune, dont bother resolving free strike coroutine
         if (characterMoved.myPassiveManager.slippery)
         {
-            action.actionResolved = true;
+            action.coroutineCompleted = true;
         }
         else
         {
@@ -718,7 +718,7 @@ public class MovementLogic : MonoBehaviour
         
         return action;
     }
-    private IEnumerator ResolveFreeStrikesCoroutine(LivingEntity characterMoved, Action action, Tile previousLocation, Tile newLocation)
+    private IEnumerator ResolveFreeStrikesCoroutine(LivingEntity characterMoved, OldCoroutineData action, Tile previousLocation, Tile newLocation)
     {
         Debug.Log("MovementLogic.ResolveFreeStrikesCoroutine() called....");
         List<LivingEntity> unfriendlyEntities = new List<LivingEntity>();
@@ -740,7 +740,7 @@ public class MovementLogic : MonoBehaviour
                 Debug.Log("ResolveFreeStrikesCoroutine() detected that " + characterMoved.name + " triggered a free strike from " + entity.name);
                 movementPaused = true;
                 characterMoved.PlayIdleAnimation();
-                Action freeStrikeAction = AbilityLogic.Instance.PerformFreeStrike(entity, characterMoved);
+                OldCoroutineData freeStrikeAction = AbilityLogic.Instance.PerformFreeStrike(entity, characterMoved);
                 yield return new WaitUntil(() => freeStrikeAction.ActionResolved() == true);
 
                 // Resume movement
@@ -749,16 +749,16 @@ public class MovementLogic : MonoBehaviour
             }
         }
 
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
 
-    public Action ResolveOverwatchAttacks(LivingEntity characterMoved, Tile previousLocation)
+    public OldCoroutineData ResolveOverwatchAttacks(LivingEntity characterMoved, Tile previousLocation)
     {        
-        Action action = new Action(true);
+        OldCoroutineData action = new OldCoroutineData(true);
         StartCoroutine(ResolveOverwatchAttacksCoroutine(characterMoved, action, previousLocation));
         return action;
     }
-    private IEnumerator ResolveOverwatchAttacksCoroutine(LivingEntity characterMoved, Action action, Tile previousLocation)
+    private IEnumerator ResolveOverwatchAttacksCoroutine(LivingEntity characterMoved, OldCoroutineData action, Tile previousLocation)
     {
         Debug.Log("MovementLogic.ResolveOverwatchAttacks() called....");
         List<LivingEntity> unfriendlyEntities = new List<LivingEntity>();
@@ -784,7 +784,7 @@ public class MovementLogic : MonoBehaviour
                 Debug.Log("ResolveOverwatchCoroutine() detected that " + characterMoved.name + " triggered an overwatch shot from " + entity.name);
                 movementPaused = true;
                 characterMoved.PlayIdleAnimation();
-                Action overwatchShotAction = AbilityLogic.Instance.PerformOverwatchShot(entity, characterMoved);
+                OldCoroutineData overwatchShotAction = AbilityLogic.Instance.PerformOverwatchShot(entity, characterMoved);
                 yield return new WaitUntil(() => overwatchShotAction.ActionResolved() == true);
 
                 // Resume movement
@@ -793,20 +793,26 @@ public class MovementLogic : MonoBehaviour
             }
         }
 
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
     #endregion
 
     // New Movement Logic 
     #region
-    public Action MoveAttackerToTargetNodeAttackPosition(LivingEntity attacker, LivingEntity target)
+    public OldCoroutineData MoveAttackerToTargetNodeAttackPosition(LivingEntity attacker, LivingEntity target )
     {
         Debug.Log("LivingEntityManager.MoveAttackerToTargetNodeAttackPosition() called...");
-        Action action = new Action(true);
+        OldCoroutineData action = new OldCoroutineData(true);
         StartCoroutine(MoveAttackerToTargetNodeAttackPositionCoroutine(attacker, target, action));
         return action;
     }
-    private IEnumerator MoveAttackerToTargetNodeAttackPositionCoroutine(LivingEntity attacker, LivingEntity target, Action action)
+    public void MoveAttackerToTargetNodeAttackPosition2(LivingEntity attacker, LivingEntity target, CoroutineData data)
+    {
+        Debug.Log("LivingEntityManager.MoveAttackerToTargetNodeAttackPosition() called...");
+        StartCoroutine(MoveAttackerToTargetNodeAttackPositionCoroutine(attacker, target, data));
+    }
+
+    public IEnumerator MoveAttackerToTargetNodeAttackPositionCoroutine(LivingEntity attacker, LivingEntity target, OldCoroutineData action)
     {
         // Set up
         bool reachedDestination = false;
@@ -831,17 +837,45 @@ public class MovementLogic : MonoBehaviour
             yield return null;
         }
 
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
 
     }
-    public Action MoveEntityToNodeCentre(LivingEntity entity, LevelNode node)
+    private IEnumerator MoveAttackerToTargetNodeAttackPositionCoroutine(LivingEntity attacker, LivingEntity target, CoroutineData action)
+    {
+        // Set up
+        bool reachedDestination = false;
+        Vector3 destination = new Vector3(target.levelNode.nose.position.x, target.levelNode.nose.position.y, 0);
+        float moveSpeed = 15;
+
+        // Face direction of destination
+        PositionLogic.Instance.TurnFacingTowardsLocation(attacker, target.transform.position);
+
+        // Play movement animation
+        attacker.PlayMoveAnimation();
+
+        while (reachedDestination == false)
+        {
+            attacker.transform.position = Vector2.MoveTowards(attacker.transform.position, destination, moveSpeed * Time.deltaTime);
+
+            if (attacker.transform.position == destination)
+            {
+                Debug.Log("LivingEntityManager.MoveAttackerToTargetNodeAttackPositionCoroutine() detected destination was reached...");
+                reachedDestination = true;
+            }
+            yield return null;
+        }
+
+        action.MarkAsCompleted();
+
+    }
+    public OldCoroutineData MoveEntityToNodeCentre(LivingEntity entity, LevelNode node)
     {
         Debug.Log("LivingEntityManager.MoveEntityToNodeCentre() called...");
-        Action action = new Action(true);
+        OldCoroutineData action = new OldCoroutineData(true);
         StartCoroutine(MoveEntityToNodeCentreCoroutine(entity, node, action));
         return action;
     }
-    private IEnumerator MoveEntityToNodeCentreCoroutine(LivingEntity entity, LevelNode node, Action action)
+    private IEnumerator MoveEntityToNodeCentreCoroutine(LivingEntity entity, LevelNode node, OldCoroutineData action)
     {
         // Set up
         bool reachedDestination = false;
@@ -885,7 +919,7 @@ public class MovementLogic : MonoBehaviour
         entity.PlayIdleAnimation();
 
         // Resolve event
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
 
     }
     #endregion

@@ -67,13 +67,13 @@ public class CardRewardScreenManager : MonoBehaviour
 
     // Create card Overlays
     #region
-    public Action CreateAbilityCardRewardEffect(AbilityDataSO abilityData)
+    public OldCoroutineData CreateAbilityCardRewardEffect(AbilityDataSO abilityData)
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(CreateAbilityCardRewardEffectCoroutine(abilityData, action));
         return action;
     }
-    private IEnumerator CreateAbilityCardRewardEffectCoroutine(AbilityDataSO abilityData, Action action)
+    private IEnumerator CreateAbilityCardRewardEffectCoroutine(AbilityDataSO abilityData, OldCoroutineData action)
     {
         // Create Card object
         GameObject newAbilityCardGO = Instantiate(abilityCardEffectPrefab, cardParent);
@@ -94,7 +94,7 @@ public class CardRewardScreenManager : MonoBehaviour
         // dont proceed unless a slot is available
         if (mySlot == null)
         {
-            action.actionResolved = true;
+            action.coroutineCompleted = true;
             yield break;
         }
 
@@ -102,8 +102,8 @@ public class CardRewardScreenManager : MonoBehaviour
         newAbilityCard.masterLocationParent.position = mySlot.parentTransform.position;
 
         // Start scaling card back to normal size
-        Action scaleEffect = ScaleUpCard(newAbilityCard.abilityCardScaleParent, 1);
-        yield return new WaitUntil(() => scaleEffect.actionResolved == true);
+        OldCoroutineData scaleEffect = ScaleUpCard(newAbilityCard.abilityCardScaleParent, 1);
+        yield return new WaitUntil(() => scaleEffect.coroutineCompleted == true);
 
         // Brief pause, so player can read the card
         yield return new WaitForSeconds(1);
@@ -121,8 +121,8 @@ public class CardRewardScreenManager : MonoBehaviour
         newAbilityCard.sparkleParticleEffectParent.SetActive(true);
 
         // Move character panel button position
-        Action moveEffect = MoveCardToDestination(newAbilityCard.masterLocationParent, charRosterButtonEndPosition.position);
-        yield return new WaitUntil(() => moveEffect.actionResolved == true);
+        OldCoroutineData moveEffect = MoveCardToDestination(newAbilityCard.masterLocationParent, charRosterButtonEndPosition.position);
+        yield return new WaitUntil(() => moveEffect.coroutineCompleted == true);
 
         // Create mini explosion on char roster button
         GameObject newPE = Instantiate(lootExplosionEffectPrefab, cardParent);
@@ -132,15 +132,15 @@ public class CardRewardScreenManager : MonoBehaviour
         Destroy(newAbilityCardGO);
 
         // Resolve
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
-    public Action CreateItemCardRewardEffect(ItemDataSO itemData)
+    public OldCoroutineData CreateItemCardRewardEffect(ItemDataSO itemData)
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(CreateItemCardRewardEffectCoroutine(itemData, action));
         return action;
     }
-    private IEnumerator CreateItemCardRewardEffectCoroutine(ItemDataSO itemData, Action action)
+    private IEnumerator CreateItemCardRewardEffectCoroutine(ItemDataSO itemData, OldCoroutineData action)
     {
         // Create Card object
         GameObject newItemCardGO = Instantiate(itemCardEffectPrefab, cardParent);
@@ -161,7 +161,7 @@ public class CardRewardScreenManager : MonoBehaviour
         // dont proceed unless a slot is available
         if(mySlot == null)
         {
-            action.actionResolved = true;
+            action.coroutineCompleted = true;
             yield break;
         }
 
@@ -169,8 +169,8 @@ public class CardRewardScreenManager : MonoBehaviour
         newItemCard.masterLocationParent.position = mySlot.parentTransform.position;       
 
         // Start scaling card back to normal size
-        Action scaleEffect = ScaleUpCard(newItemCard.itemCardScaleParent, 1);
-        yield return new WaitUntil(() => scaleEffect.actionResolved == true);
+        OldCoroutineData scaleEffect = ScaleUpCard(newItemCard.itemCardScaleParent, 1);
+        yield return new WaitUntil(() => scaleEffect.coroutineCompleted == true);
 
         // Brief pause, so player can read the card
         yield return new WaitForSeconds(1);
@@ -188,8 +188,8 @@ public class CardRewardScreenManager : MonoBehaviour
         newItemCard.sparkleParticleEffectParent.SetActive(true);
 
         // Move character panel button position
-        Action moveEffect = MoveCardToDestination(newItemCard.masterLocationParent, charRosterButtonEndPosition.position);
-        yield return new WaitUntil(() => moveEffect.actionResolved == true);
+        OldCoroutineData moveEffect = MoveCardToDestination(newItemCard.masterLocationParent, charRosterButtonEndPosition.position);
+        yield return new WaitUntil(() => moveEffect.coroutineCompleted == true);
 
         // Create mini explosion on char roster button
         GameObject newPE = Instantiate(lootExplosionEffectPrefab, cardParent);
@@ -199,16 +199,16 @@ public class CardRewardScreenManager : MonoBehaviour
         Destroy(newItemCardGO);
 
         // Resolve
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
-    public Action CreateStateCardRewardEffect(StateDataSO stateData)
+    public OldCoroutineData CreateStateCardRewardEffect(StateDataSO stateData)
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(CreateStateCardRewardEffectCoroutine(stateData, action));
         return action;
 
     }
-    private IEnumerator CreateStateCardRewardEffectCoroutine(StateDataSO stateData, Action action)
+    private IEnumerator CreateStateCardRewardEffectCoroutine(StateDataSO stateData, OldCoroutineData action)
     {
         // Create Card object
         GameObject newStateCardGO = Instantiate(stateCardEffectPrefab, cardParent);
@@ -229,7 +229,7 @@ public class CardRewardScreenManager : MonoBehaviour
         // dont proceed unless a slot is available
         if (mySlot == null)
         {
-            action.actionResolved = true;
+            action.coroutineCompleted = true;
             yield break;
         }
 
@@ -237,8 +237,8 @@ public class CardRewardScreenManager : MonoBehaviour
         newStateCard.masterLocationParent.position = mySlot.parentTransform.position;
 
         // Start scaling card back to normal size
-        Action scaleEffect = ScaleUpCard(newStateCard.stateCardScaleParent, 1);
-        yield return new WaitUntil(() => scaleEffect.actionResolved == true);
+        OldCoroutineData scaleEffect = ScaleUpCard(newStateCard.stateCardScaleParent, 1);
+        yield return new WaitUntil(() => scaleEffect.coroutineCompleted == true);
 
         // Brief pause, so player can read the card
         yield return new WaitForSeconds(1);
@@ -256,8 +256,8 @@ public class CardRewardScreenManager : MonoBehaviour
         newStateCard.sparkleParticleEffectParent.SetActive(true);
 
         // Move character panel button position
-        Action moveEffect = MoveCardToDestination(newStateCard.masterLocationParent, statePanelEndPosition.position);
-        yield return new WaitUntil(() => moveEffect.actionResolved == true);
+        OldCoroutineData moveEffect = MoveCardToDestination(newStateCard.masterLocationParent, statePanelEndPosition.position);
+        yield return new WaitUntil(() => moveEffect.coroutineCompleted == true);
 
         // Create mini explosion on char roster button
         GameObject newPE = Instantiate(lootExplosionEffectPrefab, cardParent);
@@ -267,18 +267,18 @@ public class CardRewardScreenManager : MonoBehaviour
         Destroy(newStateCardGO);
 
         // Resolve
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
 
         yield return null;
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
-    public Action CreateAfflictionCardRemovedEffect(StateDataSO stateData)
+    public OldCoroutineData CreateAfflictionCardRemovedEffect(StateDataSO stateData)
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(CreateAfflictionCardRemovedEffect(stateData, action));
         return action;
     }
-    private IEnumerator CreateAfflictionCardRemovedEffect(StateDataSO stateData, Action action)
+    private IEnumerator CreateAfflictionCardRemovedEffect(StateDataSO stateData, OldCoroutineData action)
     {
         // Create Card object
         GameObject newStateCardGO = Instantiate(stateCardEffectPrefab, cardParent);
@@ -299,7 +299,7 @@ public class CardRewardScreenManager : MonoBehaviour
         // dont proceed unless a slot is available
         if (mySlot == null)
         {
-            action.actionResolved = true;
+            action.coroutineCompleted = true;
             yield break;
         }
 
@@ -307,8 +307,8 @@ public class CardRewardScreenManager : MonoBehaviour
         newStateCard.masterLocationParent.position = mySlot.parentTransform.position;
 
         // Start scaling card back to normal size
-        Action scaleEffect = ScaleUpCard(newStateCard.stateCardScaleParent, 1);
-        yield return new WaitUntil(() => scaleEffect.actionResolved == true);
+        OldCoroutineData scaleEffect = ScaleUpCard(newStateCard.stateCardScaleParent, 1);
+        yield return new WaitUntil(() => scaleEffect.coroutineCompleted == true);
 
         // Brief pause, so player can read the card
         yield return new WaitForSeconds(0.5f);
@@ -326,7 +326,7 @@ public class CardRewardScreenManager : MonoBehaviour
         Destroy(newStateCard, 2);
 
         // Resolve
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
 
     public void CreateTalentUnlockedExplosion(Talent talent)
@@ -344,14 +344,14 @@ public class CardRewardScreenManager : MonoBehaviour
     {
         cardParent.localScale = newScale;
     }
-    public Action ScaleUpCard(RectTransform transformScaled, float targetScale)
+    public OldCoroutineData ScaleUpCard(RectTransform transformScaled, float targetScale)
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(ScaleUpCardRectCoroutine(transformScaled, targetScale, action));
         return action;
 
     }
-    private IEnumerator ScaleUpCardRectCoroutine(Transform transformScaled, float targetScale, Action action)
+    private IEnumerator ScaleUpCardRectCoroutine(Transform transformScaled, float targetScale, OldCoroutineData action)
     {
         // Just check x local scale, no need to check y or z
         while(transformScaled != null &&  transformScaled.localScale.x != targetScale)
@@ -374,16 +374,16 @@ public class CardRewardScreenManager : MonoBehaviour
         }
 
         // Resolve
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
-    public Action ScaleDownCard(RectTransform transformScaled, float targetScale)
+    public OldCoroutineData ScaleDownCard(RectTransform transformScaled, float targetScale)
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(ScaleDownCardRectCoroutine(transformScaled, targetScale, action));
         return action;
 
     }
-    private IEnumerator ScaleDownCardRectCoroutine(Transform transformScaled, float targetScale, Action action)
+    private IEnumerator ScaleDownCardRectCoroutine(Transform transformScaled, float targetScale, OldCoroutineData action)
     {
         // Just check x local scale, no need to check y or z
         while (transformScaled != null && transformScaled.localScale.x != targetScale)
@@ -406,16 +406,16 @@ public class CardRewardScreenManager : MonoBehaviour
         }
 
         // Resolve
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
-    public Action RotateCardZAxis(RectTransform transformScaled, float targetRotation)
+    public OldCoroutineData RotateCardZAxis(RectTransform transformScaled, float targetRotation)
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(RotateCardZAxisCoroutine(transformScaled, targetRotation, action));
         return action;
 
     }
-    private IEnumerator RotateCardZAxisCoroutine(Transform transformScaled, float targetRotation, Action action)
+    private IEnumerator RotateCardZAxisCoroutine(Transform transformScaled, float targetRotation, OldCoroutineData action)
     {
         float runningTime = 0;
         bool rotationFinished = false;
@@ -464,19 +464,19 @@ public class CardRewardScreenManager : MonoBehaviour
         Debug.Log("Rotation finished");
 
         // Resolve
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
     #endregion
 
     // View Logic
     #region
-    public Action FadeOutStateCard(StateCardRewardOverlay stateCard)
+    public OldCoroutineData FadeOutStateCard(StateCardRewardOverlay stateCard)
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(FadeOutStateCardCoroutine(stateCard, action));
         return action;
     }
-    private IEnumerator FadeOutStateCardCoroutine(StateCardRewardOverlay stateCard, Action action)
+    private IEnumerator FadeOutStateCardCoroutine(StateCardRewardOverlay stateCard, OldCoroutineData action)
     {
         // Start fade out
         while (stateCard.canvasGroup.alpha > 0)
@@ -486,19 +486,19 @@ public class CardRewardScreenManager : MonoBehaviour
         }
 
         // Resolve
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
     #endregion
 
     // Movement Logic
     #region
-    public Action MoveCardToDestination(RectTransform cardParent, Vector3 destination)
+    public OldCoroutineData MoveCardToDestination(RectTransform cardParent, Vector3 destination)
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(MoveCardToDestinationCoroutine(cardParent, destination, action));
         return action;
     }
-    private IEnumerator MoveCardToDestinationCoroutine(RectTransform cardParent, Vector3 destination, Action action)
+    private IEnumerator MoveCardToDestinationCoroutine(RectTransform cardParent, Vector3 destination, OldCoroutineData action)
     {
         // Compare x and y axis, dont check z
         while (cardParent.position.x != destination.x ||
@@ -510,7 +510,7 @@ public class CardRewardScreenManager : MonoBehaviour
         }
 
         // Resolve
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
     #endregion
 

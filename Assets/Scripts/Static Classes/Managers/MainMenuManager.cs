@@ -72,7 +72,7 @@ public class MainMenuManager : MonoBehaviour
     {
         DisableAllMenuButtons();
 
-        Action fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 4, 1, true);
+        OldCoroutineData fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 4, 1, true);
         yield return new WaitUntil(() => fadeOut.ActionResolved() == true);
 
         goToTeamBuilderScreenEventTriggered = false;
@@ -80,7 +80,7 @@ public class MainMenuManager : MonoBehaviour
         arrowParent.SetActive(true);
         PlayIdleAnimOnAllMenuCharacters();
 
-        Action fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 4, 0, false);
+        OldCoroutineData fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 4, 0, false);
         yield return new WaitUntil(() => fadeIn.ActionResolved() == true);
     }
 
@@ -98,13 +98,13 @@ public class MainMenuManager : MonoBehaviour
     {
         DisableAllMenuButtons();
 
-        Action fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 4, 1, true);
+        OldCoroutineData fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 4, 1, true);
         yield return new WaitUntil(() => fadeOut.ActionResolved() == true);
 
         goToTeamBuilderScreenEventTriggered = false;
         CharacterMakerController.Instance.OnCharacterMakerMainMenuButtonClicked();
 
-        Action fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 4, 0, false);
+        OldCoroutineData fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 4, 0, false);
         yield return new WaitUntil(() => fadeIn.ActionResolved() == true);
     }
     public void OnQuitGameButtonClicked()
@@ -129,7 +129,7 @@ public class MainMenuManager : MonoBehaviour
     }
     public IEnumerator OnBackToMainMenuButtonCickedCoroutine()
     {
-        Action fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 4, 1, true);
+        OldCoroutineData fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 4, 1, true);
         yield return new WaitUntil(() => fadeOut.ActionResolved() == true);
 
         CharacterMakerController.Instance.SetMainWindowViewState(false);
@@ -138,7 +138,7 @@ public class MainMenuManager : MonoBehaviour
         returnToMainMenuEventTriggered = false;
         EnableAllMenuButtons();        
 
-        Action fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 4, 0, false);
+        OldCoroutineData fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 4, 0, false);
         yield return new WaitUntil(() => fadeIn.ActionResolved() == true);
     }
     public void OnStartGameButtonClicked()
@@ -158,7 +158,7 @@ public class MainMenuManager : MonoBehaviour
         arrowParent.SetActive(false);
 
         // Start screen fade transistion
-        Action fadeAction = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 4, 1, true);
+        OldCoroutineData fadeAction = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 4, 1, true);
         yield return new WaitUntil(() => fadeAction.ActionResolved() == true);
 
         // Set Properties
@@ -196,7 +196,7 @@ public class MainMenuManager : MonoBehaviour
         SceneController.Instance.loadScreenVisualParent.SetActive(true);
 
         // Fade Screen back in
-        Action fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 4, 0, false);
+        OldCoroutineData fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 4, 0, false);
         yield return new WaitUntil(() => fadeIn.ActionResolved() == true);
 
         // Ready, load the game scene
@@ -254,7 +254,7 @@ public class MainMenuManager : MonoBehaviour
         allElementsParent.transform.position = northPos.transform.position;
 
         // Start fade in
-        Action fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 1, 0, false);      
+        OldCoroutineData fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 1, 0, false);      
         yield return new WaitUntil(() => fadeIn.ActionResolved() == true);
         yield return new WaitForSeconds(1);
 

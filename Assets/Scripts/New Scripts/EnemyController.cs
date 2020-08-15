@@ -330,15 +330,15 @@ public class EnemyController : MonoBehaviour
 
         return targetReturned;
     } 
-    public Action ExecuteEnemyNextAction(Enemy enemy)
+    public OldCoroutineData ExecuteEnemyNextAction(Enemy enemy)
     {
         Debug.Log("EnemyController.ExecuteEnemyNextAction() called...");
 
-        Action action = new Action(true);
+        OldCoroutineData action = new OldCoroutineData(true);
         StartCoroutine(ExecuteEnemyNextActionCoroutine(enemy, action));
         return action;
     }
-    private IEnumerator ExecuteEnemyNextActionCoroutine(Enemy enemy, Action action)
+    private IEnumerator ExecuteEnemyNextActionCoroutine(Enemy enemy, OldCoroutineData action)
     {
         Debug.Log("EnemyController.ExecuteEnemyNextActionCoroutine() called...");
 
@@ -357,7 +357,7 @@ public class EnemyController : MonoBehaviour
         }
 
         // Ability name notification
-        Action notification = VisualEffectManager.Instance.CreateStatusEffect(enemy.transform.position, enemy.myNextAction.actionName);
+        OldCoroutineData notification = VisualEffectManager.Instance.CreateStatusEffect(enemy.transform.position, enemy.myNextAction.actionName);
         yield return new WaitForSeconds(0.5f);
 
         // Trigger and resolve all effects of the action        
@@ -372,7 +372,7 @@ public class EnemyController : MonoBehaviour
                         hasMovedOffStartingNode = true;
                     }
 
-                    Action effectEvent = TriggerEnemyActionEffect(enemy, effect);
+                    OldCoroutineData effectEvent = TriggerEnemyActionEffect(enemy, effect);
                     yield return new WaitUntil(() => effectEvent.ActionResolved());
                 }
             }            
@@ -386,20 +386,20 @@ public class EnemyController : MonoBehaviour
         // Move back to starting node pos, if we moved off 
         if (hasMovedOffStartingNode && enemy.inDeathProcess == false)
         {
-            Action moveBackEvent = MovementLogic.Instance.MoveEntityToNodeCentre(enemy, enemy.levelNode);
+            OldCoroutineData moveBackEvent = MovementLogic.Instance.MoveEntityToNodeCentre(enemy, enemy.levelNode);
             yield return new WaitUntil(() => moveBackEvent.ActionResolved() == true);
         }
 
         // Resolve
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
-    public Action TriggerEnemyActionEffect(Enemy enemy,EnemyActionEffect effect)
+    public OldCoroutineData TriggerEnemyActionEffect(Enemy enemy,EnemyActionEffect effect)
     {
-        Action action = new Action(true);
+        OldCoroutineData action = new OldCoroutineData(true);
         StartCoroutine(TriggerEnemyActionEffectCoroutine(enemy, effect, action));
         return action; 
     }
-    private IEnumerator TriggerEnemyActionEffectCoroutine(Enemy enemy, EnemyActionEffect effect, Action action)
+    private IEnumerator TriggerEnemyActionEffectCoroutine(Enemy enemy, EnemyActionEffect effect, OldCoroutineData action)
     {
         // Execute effect based on effect type
         if (effect.actionType == ActionType.AttackTarget)
@@ -410,7 +410,7 @@ public class EnemyController : MonoBehaviour
                     enemy != null && enemy.inDeathProcess == false)
                 {
                     // Move towards target
-                    Action moveAction = MovementLogic.Instance.MoveAttackerToTargetNodeAttackPosition(enemy, enemy.currentActionTarget);
+                    OldCoroutineData moveAction = MovementLogic.Instance.MoveAttackerToTargetNodeAttackPosition(enemy, enemy.currentActionTarget);
                     yield return new WaitUntil(() => moveAction.ActionResolved());
 
                     // Play melee attack anim
@@ -421,7 +421,7 @@ public class EnemyController : MonoBehaviour
                     int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, enemy.currentActionTarget, damageType, false, effect.baseDamage, null, null, effect);
 
                     // Start deal damage event
-                    Action abilityAction = CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, enemy.currentActionTarget, damageType);
+                    OldCoroutineData abilityAction = CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, enemy.currentActionTarget, damageType);
                     yield return new WaitUntil(() => abilityAction.ActionResolved() == true);
                 }
                    
@@ -478,7 +478,7 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         // Resolve
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
     public void StartEnemyActivation(Enemy enemy)
     {
@@ -486,7 +486,7 @@ public class EnemyController : MonoBehaviour
     }
     private IEnumerator StartEnemyActivationCoroutine(Enemy enemy)
     {
-        Action actionEvent = ExecuteEnemyNextAction(enemy);
+        OldCoroutineData actionEvent = ExecuteEnemyNextAction(enemy);
         yield return new WaitUntil(() => actionEvent.ActionResolved() == true);
         LivingEntityManager.Instance.EndEntityActivation(enemy);
     }

@@ -47,7 +47,7 @@ public class SkeletonKing : Enemy
                 else if (EntityLogic.IsAbilityUseable(this, summonSkeleton) &&
                 EntityLogic.GetBestSummonEnemyLocation(this, myCurrentTarget, summonSkeleton.abilityRange) != null)
         {            
-            Action action = AbilityLogic.Instance.PerformSummonSkeleton(this, EntityLogic.GetBestSummonEnemyLocation(this, myCurrentTarget, summonSkeleton.abilityRange));
+            OldCoroutineData action = AbilityLogic.Instance.PerformSummonSkeleton(this, EntityLogic.GetBestSummonEnemyLocation(this, myCurrentTarget, summonSkeleton.abilityRange));
             yield return new WaitUntil(() => action.ActionResolved() == true);
             yield return new WaitForSeconds(0.5f);
             goto ActionStart;
@@ -56,7 +56,7 @@ public class SkeletonKing : Enemy
         // Empower Binding
         else if (EntityLogic.IsAbilityUseable(this, empowerBinding))
         {
-            Action action = AbilityLogic.Instance.PerformEmpowerBinding(this);
+            OldCoroutineData action = AbilityLogic.Instance.PerformEmpowerBinding(this);
             yield return new WaitUntil(() => action.ActionResolved() == true);
             yield return new WaitForSeconds(0.5f);
             goto ActionStart;
@@ -66,7 +66,7 @@ public class SkeletonKing : Enemy
         else if (EntityLogic.IsAbilityUseable(this, strike, myCurrentTarget) &&
             EntityLogic.IsTargetInRange(this, myCurrentTarget, currentMeleeRange))
         {
-            Action action = AbilityLogic.Instance.PerformStrike(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformStrike(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -81,7 +81,7 @@ public class SkeletonKing : Enemy
             )
         {
             Tile destination = EntityLogic.GetBestValidMoveLocationBetweenMeAndTarget(this, myCurrentTarget, currentMeleeRange, EntityLogic.GetTotalMobility(this));
-            Action movementAction = AbilityLogic.Instance.PerformMove(this, destination);
+            OldCoroutineData movementAction = AbilityLogic.Instance.PerformMove(this, destination);
             yield return new WaitUntil(() => movementAction.ActionResolved() == true);
 
             // small delay here in order to seperate the two actions a bit.

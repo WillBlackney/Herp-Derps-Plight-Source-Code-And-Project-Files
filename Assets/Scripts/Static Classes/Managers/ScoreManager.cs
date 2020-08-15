@@ -61,13 +61,13 @@ public class ScoreManager : MonoBehaviour
 
     // Calculate Score
     #region
-    public Action CalculateFinalScore()
+    public OldCoroutineData CalculateFinalScore()
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(CalculateFinalScoreCoroutine(action));
         return action;
     }
-    public IEnumerator CalculateFinalScoreCoroutine(Action action)
+    public IEnumerator CalculateFinalScoreCoroutine(OldCoroutineData action)
     {
         // encounters completed
         if (encountersCompleted > 0)
@@ -164,7 +164,7 @@ public class ScoreManager : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
         }        
 
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
     public void CreateScoreElement(string name, int amount, int finalScoreValue, string description)
     {

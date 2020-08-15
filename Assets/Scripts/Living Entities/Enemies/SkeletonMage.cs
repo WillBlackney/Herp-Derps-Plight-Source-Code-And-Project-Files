@@ -51,7 +51,7 @@ public class SkeletonMage : Enemy
             EntityLogic.IsAbilityUseable(this, icyFocus, myCurrentTarget)
             )
         {
-            Action action = AbilityLogic.Instance.PerformIcyFocus(this, this);
+            OldCoroutineData action = AbilityLogic.Instance.PerformIcyFocus(this, this);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -64,7 +64,7 @@ public class SkeletonMage : Enemy
             myCurrentTarget.myPassiveManager.immobilized == false
             )
         { 
-            Action action = AbilityLogic.Instance.PerformFrostBolt(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformFrostBolt(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -78,7 +78,7 @@ public class SkeletonMage : Enemy
         {
             SetTargetDefender(EntityLogic.GetBestTarget(this, false, false, true));
 
-            Action action = AbilityLogic.Instance.PerformFireBall(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformFireBall(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -92,7 +92,7 @@ public class SkeletonMage : Enemy
         {
             SetTargetDefender(EntityLogic.GetBestTarget(this, false, true));
 
-            Action action = AbilityLogic.Instance.PerformFireBall(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformFireBall(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -103,7 +103,7 @@ public class SkeletonMage : Enemy
         else if (EntityLogic.IsTargetInRange(this, myCurrentTarget, fireBall.abilityRange) &&
             EntityLogic.IsAbilityUseable(this, fireBall, myCurrentTarget))
         {
-            Action action = AbilityLogic.Instance.PerformFireBall(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformFireBall(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -114,7 +114,7 @@ public class SkeletonMage : Enemy
         else if (EntityLogic.IsTargetInRange(this, myCurrentTarget, currentMeleeRange) &&
             EntityLogic.IsAbilityUseable(this, strike, myCurrentTarget))
         {
-            Action action = AbilityLogic.Instance.PerformStrike(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformStrike(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             // brief delay between actions
@@ -132,7 +132,7 @@ public class SkeletonMage : Enemy
             )
         {
             Tile destination = EntityLogic.GetBestValidMoveLocationBetweenMeAndTarget(this, myCurrentTarget, currentMeleeRange, EntityLogic.GetTotalMobility(this));
-            Action movementAction = AbilityLogic.Instance.PerformMove(this, destination);
+            OldCoroutineData movementAction = AbilityLogic.Instance.PerformMove(this, destination);
             yield return new WaitUntil(() => movementAction.ActionResolved() == true);
 
             // small delay here in order to seperate the two actions a bit.

@@ -27,19 +27,19 @@ public class EventManager : MonoBehaviour
 
     // Start New Combat Encounter Events
     #region
-    public Action StartNewBasicEncounterEvent(EnemyWaveSO enemyWave = null)
+    public OldCoroutineData StartNewBasicEncounterEvent(EnemyWaveSO enemyWave = null)
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(StartNewBasicEncounterEventCoroutine(action, enemyWave));
         return action;
     }
-    private IEnumerator StartNewBasicEncounterEventCoroutine(Action action, EnemyWaveSO enemyWave = null)
+    private IEnumerator StartNewBasicEncounterEventCoroutine(OldCoroutineData action, EnemyWaveSO enemyWave = null)
     {   
         // Disable player's ability to click on encounter buttons and start new encounters
         WorldManager.Instance.canSelectNewEncounter = false;
 
         // fade out view, wait until completed
-        Action fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 6, 1, true);
+        OldCoroutineData fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 6, 1, true);
         yield return new WaitUntil(() => fadeOut.ActionResolved() == true);
 
         // Destroy the previous level and tiles + reset values/properties, turn off unneeded views
@@ -70,36 +70,36 @@ public class EventManager : MonoBehaviour
         currentEncounterType = WorldEncounter.EncounterType.BasicEnemy;
 
         // Fade scene back in, wait until completed
-        Action fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 6, 0, false);
+        OldCoroutineData fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 6, 0, false);
         yield return new WaitUntil(() => fadeIn.ActionResolved() == true);
 
         // Apply Relevant State Effects
-        Action stateApplications = StateManager.Instance.ApplyAllStateEffectsToLivingEntities();
+        OldCoroutineData stateApplications = StateManager.Instance.ApplyAllStateEffectsToLivingEntities();
         yield return new WaitUntil(() => stateApplications.ActionResolved() == true);
 
         // Check for expired states and remove them
-        Action stateExpirations = StateManager.Instance.CheckForStateExpirationsOnCombatStart();
+        OldCoroutineData stateExpirations = StateManager.Instance.CheckForStateExpirationsOnCombatStart();
         yield return new WaitUntil(() => stateExpirations.ActionResolved() == true);
 
         // Start activations / combat start events
         ActivationManager.Instance.OnNewCombatEventStarted();
 
         // declare this event complete
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
-    public Action StartNewEliteEncounterEvent()
+    public OldCoroutineData StartNewEliteEncounterEvent()
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(StartNewEliteEncounterEventCoroutine(action));
         return action;
     }
-    private IEnumerator StartNewEliteEncounterEventCoroutine(Action action)
+    private IEnumerator StartNewEliteEncounterEventCoroutine(OldCoroutineData action)
     {
         // Disable player's ability to click on encounter buttons and start new encounters
         WorldManager.Instance.canSelectNewEncounter = false;
 
         // fade out view, wait until completed
-        Action fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 6, 1, true);
+        OldCoroutineData fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 6, 1, true);
         yield return new WaitUntil(() => fadeOut.ActionResolved() == true);
 
         // Destroy the previous level and tiles + reset values/properties
@@ -128,36 +128,36 @@ public class EventManager : MonoBehaviour
         UIManager.Instance.DisableUnneededCanvasesOnCombatStart();
 
         // Fade scene back in, wait until completed
-        Action fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 6, 0, false);
+        OldCoroutineData fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 6, 0, false);
         yield return new WaitUntil(() => fadeIn.ActionResolved() == true);
 
         // Apply Relevant State Effects
-        Action stateApplications = StateManager.Instance.ApplyAllStateEffectsToLivingEntities();
+        OldCoroutineData stateApplications = StateManager.Instance.ApplyAllStateEffectsToLivingEntities();
         yield return new WaitUntil(() => stateApplications.ActionResolved() == true);
 
         // Check for expired states and remove them
-        Action stateExpirations = StateManager.Instance.CheckForStateExpirationsOnCombatStart();
+        OldCoroutineData stateExpirations = StateManager.Instance.CheckForStateExpirationsOnCombatStart();
         yield return new WaitUntil(() => stateExpirations.ActionResolved() == true);
 
         // Start activations / combat start events
         ActivationManager.Instance.OnNewCombatEventStarted();
 
         // declare this event complete
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
-    public Action StartNewBossEncounterEvent(EnemyWaveSO enemyWave = null)
+    public OldCoroutineData StartNewBossEncounterEvent(EnemyWaveSO enemyWave = null)
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(StartNewBossEncounterEventCoroutine(action, enemyWave));
         return action;
     }
-    private IEnumerator StartNewBossEncounterEventCoroutine(Action action, EnemyWaveSO enemyWave = null)
+    private IEnumerator StartNewBossEncounterEventCoroutine(OldCoroutineData action, EnemyWaveSO enemyWave = null)
     {
         // Disable player's ability to click on encounter buttons and start new encounters
         WorldManager.Instance.canSelectNewEncounter = false;
 
         // fade out view, wait until completed
-        Action fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 6, 1, true);
+        OldCoroutineData fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 6, 1, true);
         yield return new WaitUntil(() => fadeOut.ActionResolved() == true);
 
         // Destroy the previous level and tiles + reset values/properties, turn off unneeded views
@@ -187,22 +187,22 @@ public class EventManager : MonoBehaviour
         currentEncounterType = WorldEncounter.EncounterType.Boss;
 
         // Fade scene back in, wait until completed
-        Action fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 6, 0, false);
+        OldCoroutineData fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 6, 0, false);
         yield return new WaitUntil(() => fadeIn.ActionResolved() == true);
 
         // Apply Relevant State Effects
-        Action stateApplications = StateManager.Instance.ApplyAllStateEffectsToLivingEntities();
+        OldCoroutineData stateApplications = StateManager.Instance.ApplyAllStateEffectsToLivingEntities();
         yield return new WaitUntil(() => stateApplications.ActionResolved() == true);
 
         // Check for expired states and remove them
-        Action stateExpirations = StateManager.Instance.CheckForStateExpirationsOnCombatStart();
+        OldCoroutineData stateExpirations = StateManager.Instance.CheckForStateExpirationsOnCombatStart();
         yield return new WaitUntil(() => stateExpirations.ActionResolved() == true);
 
         // Start activations / combat start events
         ActivationManager.Instance.OnNewCombatEventStarted();
 
         // declare this event complete
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
     #endregion
 
@@ -215,7 +215,7 @@ public class EventManager : MonoBehaviour
     private IEnumerator StartNewCampSiteEncounterEventCoroutine()
     {
         // fade out view, wait until completed
-        Action fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 6, 1, true);
+        OldCoroutineData fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 6, 1, true);
         yield return new WaitUntil(() => fadeOut.ActionResolved() == true);
         // turn off hexagon highlights
         WorldManager.Instance.IdleAllEncounters();
@@ -228,7 +228,7 @@ public class EventManager : MonoBehaviour
         UIManager.Instance.DisableWorldMapView();
         CampSiteManager.Instance.ResetEventProperties();
         // Fade scene back in, wait until completed
-        Action fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 6, 0, false);
+        OldCoroutineData fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 6, 0, false);
         yield return new WaitUntil(() => fadeIn.ActionResolved() == true);
 
         // Check relaxed state
@@ -248,19 +248,19 @@ public class EventManager : MonoBehaviour
         }
 
     }
-    public Action StartShopEncounterEvent()
+    public OldCoroutineData StartShopEncounterEvent()
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(StartShopEncounterEventCoroutine(action));
         return action;
     }
-    private IEnumerator StartShopEncounterEventCoroutine(Action action)
+    private IEnumerator StartShopEncounterEventCoroutine(OldCoroutineData action)
     {
         // Disable player's ability to click on encounter buttons and start new encounters
         WorldManager.Instance.canSelectNewEncounter = true;
 
         // fade out view, wait until completed
-        Action fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 6, 1, true);
+        OldCoroutineData fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 6, 1, true);
         yield return new WaitUntil(() => fadeOut.ActionResolved() == true);
 
         // turn off hexagon highlights
@@ -279,7 +279,7 @@ public class EventManager : MonoBehaviour
         UIManager.Instance.DisableWorldMapView();
 
         // Fade scene back in, wait until completed
-        Action fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 6, 0, false);
+        OldCoroutineData fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 6, 0, false);
         yield return new WaitUntil(() => fadeIn.ActionResolved() == true);
 
         // Check Local Heroes State
@@ -292,21 +292,21 @@ public class EventManager : MonoBehaviour
         }
 
         // Resolve
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
-    public Action StartNewTreasureRoomEncounterEvent()
+    public OldCoroutineData StartNewTreasureRoomEncounterEvent()
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(StartNewTreasureRoomEncounterEventCoroutine(action));
         return action;
     }
-    private IEnumerator StartNewTreasureRoomEncounterEventCoroutine(Action action)
+    private IEnumerator StartNewTreasureRoomEncounterEventCoroutine(OldCoroutineData action)
     {
         // Disable player's ability to click on encounter buttons and start new encounters
         WorldManager.Instance.canSelectNewEncounter = true;
 
         // fade out view, wait until completed
-        Action fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 6, 1, true);
+        OldCoroutineData fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 6, 1, true);
         yield return new WaitUntil(() => fadeOut.ActionResolved() == true);
 
         // Destroy the previous level and tiles + reset values/properties
@@ -324,25 +324,25 @@ public class EventManager : MonoBehaviour
         UIManager.Instance.DisableWorldMapView();
 
         // Fade scene back in, wait until completed
-        Action fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 6, 0, false);
+        OldCoroutineData fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 6, 0, false);
         yield return new WaitUntil(() => fadeIn.ActionResolved() == true);
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
 
     }
-    public Action StartNewStoryEvent()
+    public OldCoroutineData StartNewStoryEvent()
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(StartNewStoryEventCoroutine(action));
         return action;
 
     }
-    private IEnumerator StartNewStoryEventCoroutine(Action action)
+    private IEnumerator StartNewStoryEventCoroutine(OldCoroutineData action)
     {
         // Disable player's ability to click on encounter buttons and start new encounters
         WorldManager.Instance.canSelectNewEncounter = false;
 
         // fade out view, wait until completed
-        Action fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 6, 1, true);
+        OldCoroutineData fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 6, 1, true);
         yield return new WaitUntil(() => fadeOut.ActionResolved() == true);        
 
         // Destroy the previous level and tiles + reset values/properties
@@ -357,19 +357,19 @@ public class EventManager : MonoBehaviour
         StoryEventManager.Instance.LoadNewStoryEvent();
 
         // Fade scene back in, wait until completed
-        Action fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 6, 0, false);
+        OldCoroutineData fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 6, 0, false);
         yield return new WaitUntil(() => fadeIn.ActionResolved() == true);
 
         // declare this event complete
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
-    public Action StartNewMysteryEncounterEvent()
+    public OldCoroutineData StartNewMysteryEncounterEvent()
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(StartNewMysteryEncounterEventCoroutine(action));
         return action;
     }
-    private IEnumerator StartNewMysteryEncounterEventCoroutine(Action action)
+    private IEnumerator StartNewMysteryEncounterEventCoroutine(OldCoroutineData action)
     {
         Debug.Log("EventManager.StartNewMysteryEncounterEventCoroutine() called...");
 
@@ -436,7 +436,7 @@ public class EventManager : MonoBehaviour
 
         // Resolve  
         yield return null;
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
 
 
     }
@@ -466,7 +466,7 @@ public class EventManager : MonoBehaviour
         DefenderManager.Instance.ClearSelectedDefender();
         // Hide ability info panel
         // Show xp rewards + level ups
-        Action lootEvent = StartPreLootScreenVisualEvent(25);
+        OldCoroutineData lootEvent = StartPreLootScreenVisualEvent(25);
         yield return new WaitUntil(() => lootEvent.ActionResolved() == true);
         // Give characters xp
         CharacterRoster.Instance.RewardAllCharactersXP(25);
@@ -476,13 +476,13 @@ public class EventManager : MonoBehaviour
         // Start loot creation/display process
         StartNewLootRewardEvent(WorldEncounter.EncounterType.BasicEnemy);
     }
-    public Action StartNewEndEliteEncounterEvent()
+    public OldCoroutineData StartNewEndEliteEncounterEvent()
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(StartNewEndEliteEncounterEventCoroutine(action));
         return action;
     }
-    private IEnumerator StartNewEndEliteEncounterEventCoroutine(Action action)
+    private IEnumerator StartNewEndEliteEncounterEventCoroutine(OldCoroutineData action)
     {
         Debug.Log("StartNewEndEliteEncounterEvent() coroutine started...");
         // make char roster canvas turn on when enabled
@@ -498,7 +498,7 @@ public class EventManager : MonoBehaviour
         // Unselect defender to hide ability bar UI, prevent null behaviors
         DefenderManager.Instance.ClearSelectedDefender();
         // Show xp rewards + level ups
-        Action lootEvent = StartPreLootScreenVisualEvent(50);
+        OldCoroutineData lootEvent = StartPreLootScreenVisualEvent(50);
         yield return new WaitUntil(() => lootEvent.ActionResolved() == true);
         // Give characters xp
         CharacterRoster.Instance.RewardAllCharactersXP(50);
@@ -507,7 +507,7 @@ public class EventManager : MonoBehaviour
         // Start loot creation/display process
         StartNewLootRewardEvent(WorldEncounter.EncounterType.EliteEnemy);
         // Resolve
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
 
     }
     public void StartNewEndBossEncounterEvent()
@@ -529,7 +529,7 @@ public class EventManager : MonoBehaviour
         // Unselect defender to hide ability bar UI, prevent null behaviors
         DefenderManager.Instance.ClearSelectedDefender();
         // Show xp rewards + level ups
-        Action lootEvent = StartPreLootScreenVisualEvent(50);
+        OldCoroutineData lootEvent = StartPreLootScreenVisualEvent(50);
         yield return new WaitUntil(() => lootEvent.ActionResolved() == true);
         // Give characters xp
         CharacterRoster.Instance.RewardAllCharactersXP(50);
@@ -562,10 +562,10 @@ public class EventManager : MonoBehaviour
         UIManager.Instance.GameOverScreenTitleText.text = "Defeat!";
 
         // Fade In 'Game Over' screen
-        Action fadeAction = UIManager.Instance.FadeInGameOverScreen();
+        OldCoroutineData fadeAction = UIManager.Instance.FadeInGameOverScreen();
         yield return new WaitUntil(() => fadeAction.ActionResolved() == true);
 
-        Action scoreReveal = ScoreManager.Instance.CalculateFinalScore();
+        OldCoroutineData scoreReveal = ScoreManager.Instance.CalculateFinalScore();
         yield return new WaitUntil(() => scoreReveal.ActionResolved() == true);
 
         // TO DO: score board visual event and calculations occur as a coroutine here
@@ -592,10 +592,10 @@ public class EventManager : MonoBehaviour
         UIManager.Instance.GameOverScreenTitleText.text = "Victory!";
 
         // Fade In 'Game Over' screen
-        Action fadeAction = UIManager.Instance.FadeInGameOverScreen();
+        OldCoroutineData fadeAction = UIManager.Instance.FadeInGameOverScreen();
         yield return new WaitUntil(() => fadeAction.ActionResolved() == true);
 
-        Action scoreReveal = ScoreManager.Instance.CalculateFinalScore();
+        OldCoroutineData scoreReveal = ScoreManager.Instance.CalculateFinalScore();
         yield return new WaitUntil(() => scoreReveal.ActionResolved() == true);
 
     }
@@ -604,13 +604,13 @@ public class EventManager : MonoBehaviour
 
     // Loot Event Logic
     #region
-    public Action StartPreLootScreenVisualEvent(int xpReward)
+    public OldCoroutineData StartPreLootScreenVisualEvent(int xpReward)
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(StartPreLootScreenVisualEventCoroutine(xpReward, action));
         return action;
     }
-    private IEnumerator StartPreLootScreenVisualEventCoroutine(int xpReward, Action action)
+    private IEnumerator StartPreLootScreenVisualEventCoroutine(int xpReward, OldCoroutineData action)
     {
         Debug.Log("StartPreLootScreenVisualEvent() coroutine started...");
         preLootScreenEventFinished = false;
@@ -649,7 +649,7 @@ public class EventManager : MonoBehaviour
         }
         yield return new WaitForSeconds(1f);
 
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
     public bool preLootScreenEventFinished;
     public bool PreLootScreenEventFinished()
@@ -810,13 +810,13 @@ public class EventManager : MonoBehaviour
 
     // Start + End of Act Transitions and Logic
     #region
-    public Action StartActTwoLoadSequence()
+    public OldCoroutineData StartActTwoLoadSequence()
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(StartActTwoLoadSequenceCoroutine(action));
         return action;
     }
-    private IEnumerator StartActTwoLoadSequenceCoroutine(Action action)
+    private IEnumerator StartActTwoLoadSequenceCoroutine(OldCoroutineData action)
     {
         Debug.Log("EventManager.StartActTwoLoadSequenceCoroutine() called...");
 
@@ -827,7 +827,7 @@ public class EventManager : MonoBehaviour
         WorldManager.Instance.canSelectNewEncounter = false;
 
         // fade out view, wait until completed
-        Action fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 3, 1, true);
+        OldCoroutineData fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 3, 1, true);
         yield return new WaitUntil(() => fadeOut.ActionResolved() == true);
 
         // Reset reward screen
@@ -856,10 +856,10 @@ public class EventManager : MonoBehaviour
         actTransitionInProcess = false;
 
         // Fade scene back in, wait until completed
-        Action fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 3, 0, false);
+        OldCoroutineData fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 3, 0, false);
         yield return new WaitUntil(() => fadeIn.ActionResolved() == true);
 
-        action.actionResolved = true;      
+        action.coroutineCompleted = true;      
     }
 
     #endregion

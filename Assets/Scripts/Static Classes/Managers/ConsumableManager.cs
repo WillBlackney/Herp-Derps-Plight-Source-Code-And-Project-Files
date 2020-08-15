@@ -409,15 +409,15 @@ public class ConsumableManager : MonoBehaviour
 
     // Perform Specific Consumable Actions
     #region
-    public Action PerformDynamite(Tile location)
+    public OldCoroutineData PerformDynamite(Tile location)
     {
         Debug.Log("ConsumableManager.PerformDynamite() called...");
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(PerformDynamiteCoroutine(location, action));
         return action;
 
     }
-    private IEnumerator PerformDynamiteCoroutine(Tile location, Action action)
+    private IEnumerator PerformDynamiteCoroutine(Tile location, OldCoroutineData action)
     {
         // Calculate which characters are hit by the aoe
         List<Tile> tilesInBlastRadius = LevelManager.Instance.GetTilesWithinRange(1, location, false);
@@ -437,23 +437,23 @@ public class ConsumableManager : MonoBehaviour
         {
             int finalDamageValue = CombatLogic.Instance.GetDamageValueAfterResistances(10, "Physical", entity);
 
-            Action damageAction = CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, "Physical");
+            OldCoroutineData damageAction = CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, "Physical");
             yield return new WaitUntil(() => damageAction.ActionResolved() == true);
         }
 
         // Resolve and Finish
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
 
     }
-    public Action PerformFireBomb(Tile location)
+    public OldCoroutineData PerformFireBomb(Tile location)
     {
         Debug.Log("ConsumableManager.PerformDynamite() called...");
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(PerformFireBombCoroutine(location, action));
         return action;
 
     }
-    private IEnumerator PerformFireBombCoroutine(Tile location, Action action)
+    private IEnumerator PerformFireBombCoroutine(Tile location, OldCoroutineData action)
     {
         // Calculate which characters are hit by the aoe
         List<Tile> tilesInBlastRadius = LevelManager.Instance.GetTilesWithinRange(1, location, false);
@@ -473,7 +473,7 @@ public class ConsumableManager : MonoBehaviour
         {
             int finalDamageValue = CombatLogic.Instance.GetDamageValueAfterResistances(8, "Fire", entity);
 
-            Action damageAction = CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, "Fire");
+            OldCoroutineData damageAction = CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, "Fire");
             yield return new WaitUntil(() => damageAction.ActionResolved() == true);
 
             if(entity.inDeathProcess == false)
@@ -483,18 +483,18 @@ public class ConsumableManager : MonoBehaviour
         }
 
         // Resolve and Finish
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
 
     }
-    public Action PerformBottledFrost(Tile location)
+    public OldCoroutineData PerformBottledFrost(Tile location)
     {
         Debug.Log("ConsumableManager.PerformBottledFrost() called...");
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(PerformBottledFrostCoroutine(location, action));
         return action;
 
     }
-    private IEnumerator PerformBottledFrostCoroutine(Tile location, Action action)
+    private IEnumerator PerformBottledFrostCoroutine(Tile location, OldCoroutineData action)
     {
         // Calculate which characters are hit by the aoe
         List<Tile> tilesInBlastRadius = LevelManager.Instance.GetTilesWithinRange(1, location, false);
@@ -518,18 +518,18 @@ public class ConsumableManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         // Resolve and Finish
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
 
     }
-    public Action PerformPoisonGrenade(Tile location)
+    public OldCoroutineData PerformPoisonGrenade(Tile location)
     {
         Debug.Log("ConsumableManager.PerformPoisonGrenade() called...");
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(PerformPoisonGrenadeCoroutine(location, action));
         return action;
 
     }
-    private IEnumerator PerformPoisonGrenadeCoroutine(Tile location, Action action)
+    private IEnumerator PerformPoisonGrenadeCoroutine(Tile location, OldCoroutineData action)
     {
         // Calculate which characters are hit by the aoe
         List<Tile> tilesInBlastRadius = LevelManager.Instance.GetTilesWithinRange(1, location, false);
@@ -553,45 +553,45 @@ public class ConsumableManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         // Resolve and Finish
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
 
     }
-    public Action PerformHandCannon(LivingEntity target)
+    public OldCoroutineData PerformHandCannon(LivingEntity target)
     {
         Debug.Log("ConsumableManager.PerformHandCannon() called...");
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(PerformHandCannonCoroutine(target, action));
         return action;
 
     }
-    private IEnumerator PerformHandCannonCoroutine(LivingEntity target, Action action)
+    private IEnumerator PerformHandCannonCoroutine(LivingEntity target, OldCoroutineData action)
     {
         // Setup
         int finalDamageValue = CombatLogic.Instance.GetDamageValueAfterResistances(15, "Physical", target);
 
         // Damage Event
-        Action damageAction = CombatLogic.Instance.HandleDamage(finalDamageValue, null, target, "Physical");
+        OldCoroutineData damageAction = CombatLogic.Instance.HandleDamage(finalDamageValue, null, target, "Physical");
         yield return new WaitUntil(() => damageAction.ActionResolved() == true);
 
         // Resolve and Finish
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
 
     }
-    public Action PerformLovePotion(LivingEntity target)
+    public OldCoroutineData PerformLovePotion(LivingEntity target)
     {
         Debug.Log("ConsumableManager.PerformLovePotion() called...");
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(PerformLovePotionCoroutine(target, action));
         return action;
 
     }
-    private IEnumerator PerformLovePotionCoroutine(LivingEntity target, Action action)
+    private IEnumerator PerformLovePotionCoroutine(LivingEntity target, OldCoroutineData action)
     {
         // Apply Stunned
         target.myPassiveManager.ModifyStunned(1);
         yield return new WaitForSeconds(0.5f);
         // Resolve and Finish
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
 
     }
     public void StartBlinkPotionLocationSettingProcess(LivingEntity target)
@@ -603,21 +603,21 @@ public class ConsumableManager : MonoBehaviour
         awaitingBlinkPotionCharacterTarget = false;
         awaitingBlinkPotionDestinationTarget = true;
     }
-    public Action PerformBlinkPotion(Tile location)
+    public OldCoroutineData PerformBlinkPotion(Tile location)
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(PerformBlinkPotionCoroutine(location, action));
         return action;
     }
-    public IEnumerator PerformBlinkPotionCoroutine(Tile location, Action action)
+    public IEnumerator PerformBlinkPotionCoroutine(Tile location, OldCoroutineData action)
     {
         RemoveConsumable(GetActiveConsumableByName("Blink Potion"));        
 
-        Action teleportAction = MovementLogic.Instance.TeleportEntity(blinkPotionTarget, location);
+        OldCoroutineData teleportAction = MovementLogic.Instance.TeleportEntity(blinkPotionTarget, location);
         ClearAllConsumableOrders();
         yield return new WaitUntil(() => teleportAction.ActionResolved() == true);
 
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
     #endregion
 }

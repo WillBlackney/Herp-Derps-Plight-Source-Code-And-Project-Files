@@ -88,7 +88,7 @@ public class SceneController : MonoBehaviour
                 Debug.Log("Menu Scene load duration: " + (Time.time - startTime).ToString() + " seconds");
 
                 // Start screen fade transistion
-                Action fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 2, 1, true);
+                OldCoroutineData fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 2, 1, true);
                 yield return new WaitUntil(() => fadeOut.ActionResolved() == true);
 
                 // Disable tips
@@ -149,19 +149,19 @@ public class SceneController : MonoBehaviour
         Debug.Log("Game Scene load duration: " + (Time.time - startTime).ToString() + " seconds");
 
         // fade out loading bar
-        Action hideLoadingBar = FadeOutLoadingBar();
-        yield return new WaitUntil(() => hideLoadingBar.actionResolved == true);
+        OldCoroutineData hideLoadingBar = FadeOutLoadingBar();
+        yield return new WaitUntil(() => hideLoadingBar.coroutineCompleted == true);
 
         // fade in continue button
-        Action showContinueButton = FadeInContinueButton();
-        yield return new WaitUntil(() => showContinueButton.actionResolved == true);
+        OldCoroutineData showContinueButton = FadeInContinueButton();
+        yield return new WaitUntil(() => showContinueButton.coroutineCompleted == true);
 
         // wait until player presses the 'continue button' before revealing the game scene
         yield return new WaitUntil(() => playerPressedContinue == true);
         playerPressedContinue = false;
 
         // Start screen fade transistion
-        Action fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 2, 1, true);
+        OldCoroutineData fadeOut = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 2, 1, true);
         yield return new WaitUntil(() => fadeOut.ActionResolved() == true);
 
         // Disable tips
@@ -172,7 +172,7 @@ public class SceneController : MonoBehaviour
         loadScreenVisualParent.SetActive(false);
 
         // Fade in game scene
-        Action fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 2, 0, false);
+        OldCoroutineData fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 2, 0, false);
         yield return new WaitUntil(() => fadeIn.ActionResolved() == true);
         currentLoadFinished = true;
 
@@ -193,7 +193,7 @@ public class SceneController : MonoBehaviour
         MainMenuManager.Instance.allElementsParent.transform.position = MainMenuManager.Instance.northPos.transform.position;
 
         // Start fade in
-        Action fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 2, 0, false);
+        OldCoroutineData fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 2, 0, false);
         yield return new WaitUntil(() => fadeIn.ActionResolved() == true);
         yield return new WaitForSeconds(1);
 
@@ -221,14 +221,14 @@ public class SceneController : MonoBehaviour
     {
         playerPressedContinue = true;
     }
-    public Action FadeInContinueButton()
+    public OldCoroutineData FadeInContinueButton()
     {
         Debug.Log("SceneController.FadeInContinueButton() called...");
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(FadeInContinueButtonCoroutine(action));
         return action;
     }
-    public IEnumerator FadeInContinueButtonCoroutine(Action action)
+    public IEnumerator FadeInContinueButtonCoroutine(OldCoroutineData action)
     {
         continueButton.SetActive(true);
 
@@ -241,16 +241,16 @@ public class SceneController : MonoBehaviour
         // canvas group prevents button component from working
         // therefore, the component needs to be destroyed
         Destroy(continueButtonCG);
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
-    public Action FadeOutLoadingBar()
+    public OldCoroutineData FadeOutLoadingBar()
     {
         Debug.Log("SceneController.FadeOutLoadingBar() called...");
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(FadeOutLoadingBarCoroutine(action));
         return action;
     }
-    public IEnumerator FadeOutLoadingBarCoroutine(Action action)
+    public IEnumerator FadeOutLoadingBarCoroutine(OldCoroutineData action)
     {
         while (loadingBarCG.alpha > 0)
         {
@@ -258,6 +258,6 @@ public class SceneController : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
 }

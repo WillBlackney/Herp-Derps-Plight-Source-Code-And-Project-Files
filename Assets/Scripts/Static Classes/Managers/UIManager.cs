@@ -120,14 +120,14 @@ public class UIManager : MonoBehaviour
 
     // Character Roster Movement
     #region
-    public Action MoveCharacterRosterOnScreen()
+    public OldCoroutineData MoveCharacterRosterOnScreen()
     {
         Debug.Log("UIManager.MoveCharacterRosterToCentrePosition() called...");
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(MoveCharacterRosterOnScreenCoroutine(action));
         return action;
     }
-    private IEnumerator MoveCharacterRosterOnScreenCoroutine(Action action)
+    private IEnumerator MoveCharacterRosterOnScreenCoroutine(OldCoroutineData action)
     {
         // reset z axis
         characterRosterTransformParent.anchoredPosition = new Vector3(characterRosterTransformParent.anchoredPosition.x, characterRosterTransformParent.anchoredPosition.y, 0f);
@@ -154,17 +154,17 @@ public class UIManager : MonoBehaviour
         }
 
         crMovingOnScreen = false;
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
-    public Action MoveCharacterRosterOffScreen()
+    public OldCoroutineData MoveCharacterRosterOffScreen()
     {
         Debug.Log("UIManager.MoveCharacterRosterToCentrePosition() called...");
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(MoveCharacterRosterOffScreenCoroutine(action));
         return action;
 
     }
-    private IEnumerator MoveCharacterRosterOffScreenCoroutine(Action action)
+    private IEnumerator MoveCharacterRosterOffScreenCoroutine(OldCoroutineData action)
     {
         // reset z axis
         characterRosterTransformParent.anchoredPosition = new Vector3(characterRosterTransformParent.anchoredPosition.x, characterRosterTransformParent.anchoredPosition.y, 0f);
@@ -191,22 +191,22 @@ public class UIManager : MonoBehaviour
         }     
         
         crMovingOffScreen = false;
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
 
     #endregion
 
     // Inventory Movement
     #region
-    public Action MoveInventoryOnScreen()
+    public OldCoroutineData MoveInventoryOnScreen()
     {
         Debug.Log("UIManager.MoveInventoryOnScreen() called...");
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(MoveInventoryOnScreenCoroutine(action));
         return action;
 
     }
-    private IEnumerator MoveInventoryOnScreenCoroutine(Action action)
+    private IEnumerator MoveInventoryOnScreenCoroutine(OldCoroutineData action)
     {
         // reset z axis
         inventoryTransformParent.anchoredPosition = new Vector3(inventoryTransformParent.anchoredPosition.x, characterRosterTransformParent.anchoredPosition.y, 0f);
@@ -232,17 +232,17 @@ public class UIManager : MonoBehaviour
         }
 
         inventoryMovingOnScreen = false;
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
-    public Action MoveInventoryOffScreen()
+    public OldCoroutineData MoveInventoryOffScreen()
     {
         Debug.Log("UIManager.MoveInventoryOffScreen() called...");
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(MoveInventoryOffScreenCoroutine(action));
         return action;
 
     }
-    private IEnumerator MoveInventoryOffScreenCoroutine(Action action)
+    private IEnumerator MoveInventoryOffScreenCoroutine(OldCoroutineData action)
     {
         // reset z axis
         inventoryTransformParent.anchoredPosition = new Vector3(inventoryTransformParent.anchoredPosition.x, characterRosterTransformParent.anchoredPosition.y, 0f);
@@ -269,22 +269,22 @@ public class UIManager : MonoBehaviour
         }
         
         inventoryMovingOffScreen = false;
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
 
     #endregion
 
     // World Map Movement
     #region
-    public Action MoveWorldMapOnScreen()
+    public OldCoroutineData MoveWorldMapOnScreen()
     {
         Debug.Log("UIManager.MoveWorldMapOnScreen() called...");
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(MoveWorldMapOnScreenCoroutine(action));
         return action;
 
     }
-    private IEnumerator MoveWorldMapOnScreenCoroutine(Action action)
+    private IEnumerator MoveWorldMapOnScreenCoroutine(OldCoroutineData action)
     {
         worldMapMovingOffScreen = false;
         worldMapMovingOnScreen = true;
@@ -305,17 +305,17 @@ public class UIManager : MonoBehaviour
         }
 
         worldMapMovingOnScreen = false;
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
-    public Action MoveWorldMapOffScreen()
+    public OldCoroutineData MoveWorldMapOffScreen()
     {
         Debug.Log("UIManager.MoveInventoryOffScreen() called...");
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(MoveWorldMapOffScreenCoroutine(action));
         return action;
 
     }
-    private IEnumerator MoveWorldMapOffScreenCoroutine(Action action)
+    private IEnumerator MoveWorldMapOffScreenCoroutine(OldCoroutineData action)
     {
         worldMapMovingOnScreen = false;
         worldMapMovingOffScreen = true;
@@ -336,7 +336,7 @@ public class UIManager : MonoBehaviour
         }
         
         worldMapMovingOffScreen = false;
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
     public void MoveWorldMapToOffScreenPositionInstantly()
     {
@@ -435,13 +435,13 @@ public class UIManager : MonoBehaviour
     {
         EndTurnButtonText.text = newText;
     }    
-    public Action FadeInGameOverScreen()
+    public OldCoroutineData FadeInGameOverScreen()
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(FadeInGameOverScreenCoroutine(action));
         return action;
     }
-    public IEnumerator FadeInGameOverScreenCoroutine(Action action)
+    public IEnumerator FadeInGameOverScreenCoroutine(OldCoroutineData action)
     {
         GameOverScreenCanvasParent.SetActive(true);
         GameOverScreenParent.SetActive(true);
@@ -454,7 +454,7 @@ public class UIManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
     public void OnGameOverScreenMainMenuButtonClicked()
     {
@@ -463,14 +463,14 @@ public class UIManager : MonoBehaviour
     public IEnumerator OnGameOverScreenMainMenuButtonClickedCoroutine()
     {        
         // Start screen fade transistion
-        Action fadeAction = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 2, 1, true);
+        OldCoroutineData fadeAction = BlackScreenManager.Instance.FadeOut(BlackScreenManager.Instance.aboveEverything, 2, 1, true);
         yield return new WaitUntil(() => fadeAction.ActionResolved() == true);
 
         // Enable loading screen
         SceneController.Instance.loadScreenVisualParent.SetActive(true);
 
         // Fade Screen back in
-        Action fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 4, 0, false);
+        OldCoroutineData fadeIn = BlackScreenManager.Instance.FadeIn(BlackScreenManager.Instance.aboveEverything, 4, 0, false);
         yield return new WaitUntil(() => fadeIn.ActionResolved() == true);
 
         // Ready, load the game scene

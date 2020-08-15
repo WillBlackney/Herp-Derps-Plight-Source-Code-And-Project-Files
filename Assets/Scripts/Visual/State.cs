@@ -92,14 +92,14 @@ public class State : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         infoPanelParent.SetActive(onOrOff);
     }  
-    public Action PlayExpireVfxAndDestroy(bool createScreenCardOverlayEffect = false)
+    public OldCoroutineData PlayExpireVfxAndDestroy(bool createScreenCardOverlayEffect = false)
     {
         Debug.Log("PlayExpireVfxAndDestroy().called");
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(PlayExpireVfxAndDestroyCoroutine(action, createScreenCardOverlayEffect));
         return action;
     }
-    private IEnumerator PlayExpireVfxAndDestroyCoroutine(Action action, bool createScreenCardOverlayEffect)
+    private IEnumerator PlayExpireVfxAndDestroyCoroutine(OldCoroutineData action, bool createScreenCardOverlayEffect)
     {
         Debug.Log("State '" + Name + "' expiration condition met, destroying... ");
         if (createScreenCardOverlayEffect)
@@ -109,7 +109,7 @@ public class State : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         yield return new WaitForSeconds(0.5f);
         StateManager.Instance.RemoveState(this);
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
         Destroy(gameObject);
     }
     public IEnumerator FadeInInfoPanel()

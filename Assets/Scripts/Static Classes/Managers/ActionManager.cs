@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ActionManager : MonoBehaviour
 {
-    public List<Action> actionQueue;
+    public List<OldCoroutineData> actionQueue;
 
     // Singleton Set up
     #region
@@ -14,7 +14,7 @@ public class ActionManager : MonoBehaviour
         if(Instance == null)
         {
             Instance = this;
-            actionQueue = new List<Action>();
+            actionQueue = new List<OldCoroutineData>();
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -26,12 +26,12 @@ public class ActionManager : MonoBehaviour
 
     // Modify Queue + Check queue status
     #region
-    public void AddActionToQueue(Action action)
+    public void AddActionToQueue(OldCoroutineData action)
     {
         actionQueue.Add(action);
         Debug.Log("Adding action to queue. Current queue count = " + actionQueue.Count.ToString());
     }
-    public void RemoveActionFromQueue(Action action)
+    public void RemoveActionFromQueue(OldCoroutineData action)
     {
         if (actionQueue.Contains(action))
         {
@@ -44,9 +44,9 @@ public class ActionManager : MonoBehaviour
         Debug.Log("ActionManager.UnresolvedCombatActions() called, checking for unresolved combat actions...");
         bool boolReturned = false;
 
-        foreach(Action action in actionQueue)
+        foreach(OldCoroutineData action in actionQueue)
         {
-            if(action.actionResolved == false && action.combatAction)
+            if(action.coroutineCompleted == false && action.combatAction)
             {
                 boolReturned = true;
                 break;
@@ -66,9 +66,9 @@ public class ActionManager : MonoBehaviour
     {
         Debug.Log("ActionManager.ForceResolveAllQueueActions() called...");
 
-        foreach(Action action in actionQueue)
+        foreach(OldCoroutineData action in actionQueue)
         {
-            action.actionResolved = true;
+            action.coroutineCompleted = true;
         }
     }
     #endregion

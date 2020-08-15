@@ -53,7 +53,7 @@ public class SkeletonArcher : Enemy
             
             SetTargetDefender(EntityLogic.GetBestTarget(this, true));
             
-            Action action = AbilityLogic.Instance.PerformImpalingBolt(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformImpalingBolt(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
             yield return new WaitForSeconds(1f);
             goto ActionStart;
@@ -66,7 +66,7 @@ public class SkeletonArcher : Enemy
         {
             Debug.Log("Skeleton Archer using snipe against most vulnerable target: " + myCurrentTarget.myName);
 
-            Action action = AbilityLogic.Instance.PerformSnipe(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformSnipe(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             // brief delay between actions
@@ -80,7 +80,7 @@ public class SkeletonArcher : Enemy
         {
             Debug.Log("Skeleton Archer using shoot against most vulnerable target: " + myCurrentTarget.myName);
 
-            Action action = AbilityLogic.Instance.PerformShoot(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformShoot(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             // brief delay between actions
@@ -96,7 +96,7 @@ public class SkeletonArcher : Enemy
             SetTargetDefender(EntityLogic.GetBestTarget(this, false, true));
             Debug.Log("Skeleton Archer using shoot against most lowest HP target: " + myCurrentTarget.myName);
 
-            Action action = AbilityLogic.Instance.PerformShoot(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformShoot(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             // brief delay between actions
@@ -111,7 +111,7 @@ public class SkeletonArcher : Enemy
             SetTargetDefender(EntityLogic.GetBestTarget(this, true));
             Debug.Log("Skeleton Archer using shoot against closest target: " + myCurrentTarget.myName);
 
-            Action action = AbilityLogic.Instance.PerformShoot(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformShoot(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             // brief delay between actions
@@ -134,7 +134,7 @@ public class SkeletonArcher : Enemy
 
             Tile destination = EntityLogic.GetBestValidMoveLocationBetweenMeAndTarget(this, myCurrentTarget, currentMeleeRange, EntityLogic.GetTotalMobility(this));
             
-            Action movementAction = AbilityLogic.Instance.PerformMove(this, destination);
+            OldCoroutineData movementAction = AbilityLogic.Instance.PerformMove(this, destination);
             yield return new WaitUntil(() => movementAction.ActionResolved() == true);
 
             // small delay here in order to seperate the two actions a bit.

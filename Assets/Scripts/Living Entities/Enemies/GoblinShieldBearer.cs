@@ -48,7 +48,7 @@ public class GoblinShieldBearer : Enemy
         else if (EntityLogic.IsAbilityUseable(this, provoke, myCurrentTarget) &&
             EntityLogic.IsTargetInRange(this, myCurrentTarget, currentMeleeRange))
         {
-            Action action = AbilityLogic.Instance.PerformProvoke(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformProvoke(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -59,7 +59,7 @@ public class GoblinShieldBearer : Enemy
         else if (EntityLogic.IsAbilityUseable(this, strike, myCurrentTarget) &&
             EntityLogic.IsTargetInRange(this, myCurrentTarget, currentMeleeRange))
         {
-            Action action = AbilityLogic.Instance.PerformStrike(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformStrike(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -70,7 +70,7 @@ public class GoblinShieldBearer : Enemy
         else if (EntityLogic.IsAbilityUseable(this, strike) &&
             EntityLogic.GetAllEnemiesWithinRange(this, currentMeleeRange).Count > 0)
         {
-            Action action = AbilityLogic.Instance.PerformTestudo(this);
+            OldCoroutineData action = AbilityLogic.Instance.PerformTestudo(this);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -85,7 +85,7 @@ public class GoblinShieldBearer : Enemy
             )
         {
             Tile destination = EntityLogic.GetBestValidMoveLocationBetweenMeAndTarget(this, myCurrentTarget, currentMeleeRange, EntityLogic.GetTotalMobility(this));
-            Action movementAction = AbilityLogic.Instance.PerformMove(this, destination);
+            OldCoroutineData movementAction = AbilityLogic.Instance.PerformMove(this, destination);
             yield return new WaitUntil(() => movementAction.ActionResolved() == true);
 
             // small delay here in order to seperate the two actions a bit.

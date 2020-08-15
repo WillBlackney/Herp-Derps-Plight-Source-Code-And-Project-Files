@@ -137,13 +137,13 @@ public class StateManager : MonoBehaviour
 
     // Apply States to characters logic
     #region
-    public Action ApplyStateEffectOnPickup(StateDataSO data)
+    public OldCoroutineData ApplyStateEffectOnPickup(StateDataSO data)
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(ApplyStateEffectOnPickupCoroutine(data, action));
         return action;
     }
-    private IEnumerator ApplyStateEffectOnPickupCoroutine(StateDataSO data, Action action)
+    private IEnumerator ApplyStateEffectOnPickupCoroutine(StateDataSO data, OldCoroutineData action)
     {
         if(data.stateName == "Vengeful")
         {
@@ -302,38 +302,38 @@ public class StateManager : MonoBehaviour
             InventoryController.Instance.AddItemToInventory(ItemLibrary.Instance.GetRandomEpicItem(), true);
         }
 
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
         yield return null;
     }
-    public Action ApplyAllStateEffectsToLivingEntities()
+    public OldCoroutineData ApplyAllStateEffectsToLivingEntities()
     {
         Debug.Log("StateManager.ApplyAllStateEffectsToCharacters() called...");
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(ApplyAllStateEffectsToLivingEntitiesCoroutine(action));
         return action;
 
     }
-    private IEnumerator ApplyAllStateEffectsToLivingEntitiesCoroutine(Action action)
+    private IEnumerator ApplyAllStateEffectsToLivingEntitiesCoroutine(OldCoroutineData action)
     {        
         foreach(State state in activeStates)
         {
-            Action stateApplication = ApplyStateEffect(state);
+            OldCoroutineData stateApplication = ApplyStateEffect(state);
             yield return new WaitUntil(() => stateApplication.ActionResolved());
 
             // brief pause between each state buff effect
             yield return new WaitForSeconds(1);
         }
 
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
-    public Action ApplyStateEffect(State stateApplied)
+    public OldCoroutineData ApplyStateEffect(State stateApplied)
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(ApplyStateEffectCoroutine(stateApplied, action));
         return action;
 
     }
-    private IEnumerator ApplyStateEffectCoroutine(State stateApplied, Action action)
+    private IEnumerator ApplyStateEffectCoroutine(State stateApplied, OldCoroutineData action)
     {
         Debug.Log("StateManager.ApplyStateEffectCoroutine() called, applying state: " + stateApplied.Name);
               
@@ -407,17 +407,17 @@ public class StateManager : MonoBehaviour
             stateApplied.ModifyCountdown(-1);
         }
         
-        action.actionResolved = true;        
+        action.coroutineCompleted = true;        
     }
-    public Action CheckForStateExpirationsOnCombatStart()
+    public OldCoroutineData CheckForStateExpirationsOnCombatStart()
     {
         Debug.Log("CheckForStateExpirationsOnCombatStart() called");
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(CheckForStateExpirationsOnCombatStartCoroutine(action));
         return action;
 
     }
-    private IEnumerator CheckForStateExpirationsOnCombatStartCoroutine(Action action)
+    private IEnumerator CheckForStateExpirationsOnCombatStartCoroutine(OldCoroutineData action)
     {
         Debug.Log("CheckForStateExpirationsOnCombatStartCoroutine() called");
         
@@ -434,7 +434,7 @@ public class StateManager : MonoBehaviour
             }
         }
 
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
         yield return null;        
 
     }

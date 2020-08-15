@@ -49,7 +49,7 @@ public class FrostGolem : Enemy
         else if (EntityLogic.GetAllEnemiesWithinRange(this, 1).Count > 0 &&
             EntityLogic.IsAbilityUseable(this, frostNova))
         {
-            Action action = AbilityLogic.Instance.PerformFrostNova(this);
+            OldCoroutineData action = AbilityLogic.Instance.PerformFrostNova(this);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             // brief delay between actions
@@ -62,7 +62,7 @@ public class FrostGolem : Enemy
             EntityLogic.IsTargetInRange(this, myCurrentTarget, thaw.abilityRange) &&
             EntityLogic.IsAbilityUseable(this, thaw, myCurrentTarget))
         {
-            Action action = AbilityLogic.Instance.PerformChillingBlow(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformChillingBlow(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -74,7 +74,7 @@ public class FrostGolem : Enemy
             EntityLogic.IsTargetInRange(this, myCurrentTarget, currentMeleeRange) &&
             EntityLogic.IsAbilityUseable(this, chillingBlow, myCurrentTarget))
         {
-            Action action = AbilityLogic.Instance.PerformChillingBlow(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformChillingBlow(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -85,7 +85,7 @@ public class FrostGolem : Enemy
         else if (EntityLogic.IsTargetInRange(this, myCurrentTarget, currentMeleeRange) &&
             EntityLogic.IsAbilityUseable(this, strike, myCurrentTarget))
         {
-            Action action = AbilityLogic.Instance.PerformStrike(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformStrike(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             // brief delay between actions
@@ -102,7 +102,7 @@ public class FrostGolem : Enemy
             )
         {
             Tile destination = EntityLogic.GetBestValidMoveLocationBetweenMeAndTarget(this, myCurrentTarget, currentMeleeRange, EntityLogic.GetTotalMobility(this));
-            Action movementAction = AbilityLogic.Instance.PerformMove(this, destination);
+            OldCoroutineData movementAction = AbilityLogic.Instance.PerformMove(this, destination);
             yield return new WaitUntil(() => movementAction.ActionResolved() == true);
 
             // small delay here in order to seperate the two actions a bit.

@@ -50,7 +50,7 @@ public class SkeletonWarrior : Enemy
         else if (EntityLogic.IsAbilityUseable(this, fortify, EntityLogic.GetBestFortifyTarget(this)) &&
             EntityLogic.GetBestFortifyTarget(this) != null)
         {
-            Action action = AbilityLogic.Instance.PerformFortify(this, EntityLogic.GetBestFortifyTarget(this));
+            OldCoroutineData action = AbilityLogic.Instance.PerformFortify(this, EntityLogic.GetBestFortifyTarget(this));
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -61,7 +61,7 @@ public class SkeletonWarrior : Enemy
         else if(EntityLogic.IsTargetInRange(this, GetBestInspireTarget(),inspire.abilityRange) &&
             EntityLogic.IsAbilityUseable(this, inspire, GetBestInspireTarget()))
         {
-            Action action = AbilityLogic.Instance.PerformInspire(this, GetBestInspireTarget());
+            OldCoroutineData action = AbilityLogic.Instance.PerformInspire(this, GetBestInspireTarget());
             yield return new WaitUntil(() => action.ActionResolved() == true);
             yield return new WaitForSeconds(1f);
             goto ActionStart;
@@ -71,7 +71,7 @@ public class SkeletonWarrior : Enemy
         else if (GetBestInspireTargetInRange(inspire.abilityRange) != null &&
             EntityLogic.IsAbilityUseable(this, inspire, GetBestInspireTargetInRange(inspire.abilityRange)))
         {
-            Action action = AbilityLogic.Instance.PerformInspire(this, GetBestInspireTargetInRange(inspire.abilityRange));
+            OldCoroutineData action = AbilityLogic.Instance.PerformInspire(this, GetBestInspireTargetInRange(inspire.abilityRange));
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -82,7 +82,7 @@ public class SkeletonWarrior : Enemy
         else if (EntityLogic.IsAbilityUseable(this, provoke, myCurrentTarget) &&
             EntityLogic.IsTargetInRange(this, myCurrentTarget, currentMeleeRange))
         {
-            Action action = AbilityLogic.Instance.PerformProvoke(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformProvoke(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -93,7 +93,7 @@ public class SkeletonWarrior : Enemy
         else if (EntityLogic.IsTargetInRange(this, myCurrentTarget, currentMeleeRange) &&
             EntityLogic.IsAbilityUseable(this, strike, myCurrentTarget))
         {
-            Action action = AbilityLogic.Instance.PerformStrike(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformStrike(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -108,7 +108,7 @@ public class SkeletonWarrior : Enemy
             )
         {
             Tile destination = EntityLogic.GetBestValidMoveLocationBetweenMeAndTarget(this, myCurrentTarget, currentMeleeRange, EntityLogic.GetTotalMobility(this));
-            Action movementAction = AbilityLogic.Instance.PerformMove(this, destination);
+            OldCoroutineData movementAction = AbilityLogic.Instance.PerformMove(this, destination);
             yield return new WaitUntil(() => movementAction.ActionResolved() == true);
 
             // small delay here in order to seperate the two actions a bit.

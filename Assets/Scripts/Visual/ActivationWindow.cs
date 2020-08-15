@@ -72,13 +72,13 @@ public class ActivationWindow : MonoBehaviour, IPointerEnterHandler, IPointerExi
         
         
     }
-    public Action FadeOutWindow()
+    public OldCoroutineData FadeOutWindow()
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(FadeOutWindowCoroutine(action));
         return action;
     }
-    public IEnumerator FadeOutWindowCoroutine(Action action)
+    public IEnumerator FadeOutWindowCoroutine(OldCoroutineData action)
     {
         while (myCanvasGroup.alpha > 0)
         {
@@ -96,7 +96,7 @@ public class ActivationWindow : MonoBehaviour, IPointerEnterHandler, IPointerExi
             yield return new WaitForEndOfFrame();
         }
 
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
         Destroy(gameObject);
     }
 

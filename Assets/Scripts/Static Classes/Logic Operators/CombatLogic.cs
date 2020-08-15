@@ -877,14 +877,14 @@ public class CombatLogic : MonoBehaviour
     #endregion
 
     // Handle damage + death + attack related events
-    public Action HandleDeath(LivingEntity entity)
+    public OldCoroutineData HandleDeath(LivingEntity entity)
     {
-        Action action = new Action(true);
+        OldCoroutineData action = new OldCoroutineData(true);
         StartCoroutine(HandleDeathCoroutine(entity, action));
         return action;
 
     }
-    public IEnumerator HandleDeathCoroutine(LivingEntity entity, Action action)
+    public IEnumerator HandleDeathCoroutine(LivingEntity entity, OldCoroutineData action)
     {
         Debug.Log("CombatLogic.HandleDeathCoroutine() started for " + entity.myName);
         entity.inDeathProcess = true;
@@ -896,7 +896,7 @@ public class CombatLogic : MonoBehaviour
         ActivationManager.Instance.activationOrder.Remove(entity);
 
         entity.PlayDeathAnimation();
-        Action destroyWindowAction = entity.myActivationWindow.FadeOutWindow();
+        OldCoroutineData destroyWindowAction = entity.myActivationWindow.FadeOutWindow();
         yield return new WaitUntil(() => destroyWindowAction.ActionResolved() == true);
         yield return new WaitUntil(() => entity.MyDeathAnimationFinished() == true);        
 
@@ -916,7 +916,7 @@ public class CombatLogic : MonoBehaviour
                 if (targetInBlast.inDeathProcess == false)
                 {
                     int finalDamageValue = GetFinalDamageValueAfterAllCalculations(entity, targetInBlast, null, "Physical", false, entity.myPassiveManager.volatileStacks);
-                    Action volatileExplosion = HandleDamage(finalDamageValue, null, targetInBlast, "Physical");
+                    OldCoroutineData volatileExplosion = HandleDamage(finalDamageValue, null, targetInBlast, "Physical");
                     yield return new WaitUntil(() => volatileExplosion.ActionResolved() == true);
                 }
             }
@@ -1001,17 +1001,17 @@ public class CombatLogic : MonoBehaviour
         Destroy(entity.gameObject);
 
         // Resolve
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
         
     }
-    public Action HandleDamage(int damageAmount, LivingEntity attacker, LivingEntity victim, string damageType, Ability abilityUsed = null, bool ignoreBlock = false)
+    public OldCoroutineData HandleDamage(int damageAmount, LivingEntity attacker, LivingEntity victim, string damageType, Ability abilityUsed = null, bool ignoreBlock = false)
     {
         Debug.Log("CombatLogic.NewHandleDamage() called...");
-        Action action = new Action(true);
+        OldCoroutineData action = new OldCoroutineData(true);
         StartCoroutine(HandleDamageCoroutine(damageAmount, attacker, victim, damageType, action, abilityUsed, ignoreBlock));
         return action;
     }
-    private IEnumerator HandleDamageCoroutine(int damageAmount, LivingEntity attacker, LivingEntity victim, string damageType, Action action, Ability abilityUsed = null, bool ignoreBlock = false)
+    private IEnumerator HandleDamageCoroutine(int damageAmount, LivingEntity attacker, LivingEntity victim, string damageType, OldCoroutineData action, Ability abilityUsed = null, bool ignoreBlock = false)
     {
         // Debug setup
         string abilityNameString = "None";
@@ -1035,7 +1035,7 @@ public class CombatLogic : MonoBehaviour
         if (victim.inDeathProcess)
         {
             Debug.Log("CombatLogic.NewHandleDamageCoroutine() detected that " + victim.myName + " is already in death process, exiting damage event...");
-            action.actionResolved = true;
+            action.coroutineCompleted = true;
             yield break;
         }
 
@@ -1235,7 +1235,7 @@ public class CombatLogic : MonoBehaviour
                 VisualEffectManager.Instance.CreateStatusEffect(victim.transform.position, "Thorns");
                 Debug.Log(victim.name + " has thorns and was struck by a melee attack, returning damage...");
                 int finalThornsDamageValue = GetFinalDamageValueAfterAllCalculations(victim, attacker, null, "Physical", false, victim.myPassiveManager.thornsStacks);
-                Action thornsDamage = HandleDamage(finalThornsDamageValue, victim, attacker, "Physical");
+                OldCoroutineData thornsDamage = HandleDamage(finalThornsDamageValue, victim, attacker, "Physical");
                 yield return new WaitUntil(() => thornsDamage.ActionResolved() == true);
             }
         }
@@ -1249,7 +1249,7 @@ public class CombatLogic : MonoBehaviour
         {
             Debug.Log(victim.name + "'Phasing' triggered, teleporting....");
             VisualEffectManager.Instance.CreateStatusEffect(victim.transform.position, "Phasing");
-            Action phasingAction = victim.StartPhasingMove();
+            OldCoroutineData phasingAction = victim.StartPhasingMove();
             yield return new WaitUntil(() => phasingAction.ActionResolved() == true);
         }
 
@@ -1334,24 +1334,24 @@ public class CombatLogic : MonoBehaviour
                 }
 
                 // the victim was killed, start death process
-                Action deathAction = HandleDeath(victim);
+                OldCoroutineData deathAction = HandleDeath(victim);
                 yield return new WaitUntil(() => deathAction.ActionResolved() == true);
-                action.actionResolved = true;
+                action.coroutineCompleted = true;
             }
             
         }       
 
         yield return new WaitForSeconds(0.5f);
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
-    public Action HandleParry(LivingEntity attacker, LivingEntity target)
+    public OldCoroutineData HandleParry(LivingEntity attacker, LivingEntity target)
     {
         Debug.Log("CombatLogic.HandleParry() called...");
-        Action action = new Action(true);
+        OldCoroutineData action = new OldCoroutineData(true);
         StartCoroutine(HandleParryCoroutine(attacker, target, action));
         return action;
     }
-    private IEnumerator HandleParryCoroutine(LivingEntity attacker, LivingEntity target, Action action)
+    private IEnumerator HandleParryCoroutine(LivingEntity attacker, LivingEntity target, OldCoroutineData action)
     {
         target.timesMeleeAttackedThisTurnCycle++;
 
@@ -1362,7 +1362,7 @@ public class CombatLogic : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
 
             // Perform riposte attack
-            Action parryAttackAction = AbilityLogic.Instance.PerformRiposteAttack(target, attacker);
+            OldCoroutineData parryAttackAction = AbilityLogic.Instance.PerformRiposteAttack(target, attacker);
             yield return new WaitUntil(() => parryAttackAction.ActionResolved() == true);
         }
         else
@@ -1373,22 +1373,22 @@ public class CombatLogic : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
-    public Action HandleDodge(LivingEntity attacker, LivingEntity target)
+    public OldCoroutineData HandleDodge(LivingEntity attacker, LivingEntity target)
     {
         Debug.Log("CombatLogic.HandleDodge() called...");
-        Action action = new Action(true);
+        OldCoroutineData action = new OldCoroutineData(true);
         StartCoroutine(HandleDodgeCoroutine(attacker, target, action));
         return action;
     }
-    private IEnumerator HandleDodgeCoroutine(LivingEntity attacker, LivingEntity target, Action action)
+    private IEnumerator HandleDodgeCoroutine(LivingEntity attacker, LivingEntity target, OldCoroutineData action)
     {
         VisualEffectManager.Instance.CreateStatusEffect(target.transform.position, "Dodge!");        
 
         yield return new WaitForSeconds(0.5f);
 
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
 
     // Aoe calculators

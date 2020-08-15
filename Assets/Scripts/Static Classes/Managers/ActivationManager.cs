@@ -49,19 +49,19 @@ public class ActivationManager : MonoBehaviour
 
     // Events
     #region
-    public Action OnNewCombatEventStarted()
+    public OldCoroutineData OnNewCombatEventStarted()
     {
         Debug.Log("ActivationManager.OnNewCombatEventStarted() called...");
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(OnNewCombatEventStartedCoroutine(action));
         return action;
     }
-    private IEnumerator OnNewCombatEventStartedCoroutine(Action action)
+    private IEnumerator OnNewCombatEventStartedCoroutine(OldCoroutineData action)
     {
         TurnChangeNotifier.Instance.currentTurnCount = 0;
         SetActivationWindowViewState(true);
         StartNewTurnSequence();
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
         yield return null;
     }
     public void CreateSlotAndWindowHolders()
@@ -70,28 +70,28 @@ public class ActivationManager : MonoBehaviour
         activationWindowContentParent = Instantiate(windowHolderPrefab, activationPanelParent.transform);
         updateWindowPositions = true;
     }
-    public Action StartNewTurnSequence()
+    public OldCoroutineData StartNewTurnSequence()
     {
         Debug.Log("ActivationManager.StartNewTurnSequenceCalled()....");
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(StartNewTurnSequenceCoroutine(action));
         return action;
     }
-    private IEnumerator StartNewTurnSequenceCoroutine(Action action)
+    private IEnumerator StartNewTurnSequenceCoroutine(OldCoroutineData action)
     {
         TurnChangeNotifier.Instance.currentTurnCount++;
 
         // Resolve each entity's OnNewTurnCycleStarted events
         foreach(LivingEntity entity in LivingEntityManager.Instance.allLivingEntities)
         {
-            Action endTurnCycleEvent = entity.OnNewTurnCycleStarted();
+            OldCoroutineData endTurnCycleEvent = entity.OnNewTurnCycleStarted();
             yield return new WaitUntil(() => endTurnCycleEvent.ActionResolved());
         }
 
-        Action rolls = CalculateActivationOrder();
+        OldCoroutineData rolls = CalculateActivationOrder();
         yield return new WaitUntil(() => rolls.ActionResolved() == true);
 
-        Action turnNotification = TurnChangeNotifier.Instance.DisplayTurnChangeNotification();
+        OldCoroutineData turnNotification = TurnChangeNotifier.Instance.DisplayTurnChangeNotification();
         yield return new WaitUntil(() => turnNotification.ActionResolved());
 
         if(TurnChangeNotifier.Instance.currentTurnCount == 1)
@@ -101,7 +101,7 @@ public class ActivationManager : MonoBehaviour
         }        
 
         ActivateEntity(activationOrder[0]);
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
     public void ClearAllWindowsFromActivationPanel()
     {
@@ -134,13 +134,13 @@ public class ActivationManager : MonoBehaviour
     {
         return EntityLogic.GetTotalInitiative(entity) + Random.Range(1, 4);
     }
-    public Action CalculateActivationOrder()
+    public OldCoroutineData CalculateActivationOrder()
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(CalculateActivationOrderCoroutine(action));
         return action;
     }
-    public IEnumerator CalculateActivationOrderCoroutine(Action action)
+    public IEnumerator CalculateActivationOrderCoroutine(OldCoroutineData action)
     {
         // Disable arrow to prevtn blocking numbers
         panelArrow.SetActive(false);
@@ -180,7 +180,7 @@ public class ActivationManager : MonoBehaviour
         }
 
         panelArrow.SetActive(true);
-        action.actionResolved = true;        
+        action.coroutineCompleted = true;        
     }  
    
     #endregion 
@@ -202,7 +202,7 @@ public class ActivationManager : MonoBehaviour
         Debug.Log("OnEndTurnButtonClickedCoroutine() started...");
 
         UIManager.Instance.DisableEndTurnButtonInteractions();
-        Action endTurnEvent = LivingEntityManager.Instance.EndEntityActivation(entityActivated);
+        OldCoroutineData endTurnEvent = LivingEntityManager.Instance.EndEntityActivation(entityActivated);
         yield return new WaitUntil(() => endTurnEvent.ActionResolved() == true); 
 
     }
@@ -226,14 +226,14 @@ public class ActivationManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
     }
-    public Action MoveArrowTowardsTargetPanelPos(ActivationWindow window, float moveDelay = 0f, float arrowMoveSpeed = 400)
+    public OldCoroutineData MoveArrowTowardsTargetPanelPos(ActivationWindow window, float moveDelay = 0f, float arrowMoveSpeed = 400)
     {
         Debug.Log("ActivationManager.MoveArrowTowardsTargetPanelPos() called....");
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(MoveArrowTowardsTargetPanelPosCoroutine(window, action, moveDelay, arrowMoveSpeed));
         return action;
     }
-    public IEnumerator MoveArrowTowardsTargetPanelPosCoroutine(ActivationWindow window, Action action, float moveDelay = 0, float arrowMoveSpeed = 400)
+    public IEnumerator MoveArrowTowardsTargetPanelPosCoroutine(ActivationWindow window, OldCoroutineData action, float moveDelay = 0, float arrowMoveSpeed = 400)
     {        
         yield return new WaitForSeconds(moveDelay);
         Vector3 destination = new Vector2(window.transform.position.x, panelArrow.transform.position.y);
@@ -243,7 +243,7 @@ public class ActivationManager : MonoBehaviour
             panelArrow.transform.position = Vector2.MoveTowards(panelArrow.transform.position, destination, arrowMoveSpeed * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
     public void MoveArrowTowardsEntityActivatedWindow()
     {
@@ -281,13 +281,13 @@ public class ActivationManager : MonoBehaviour
 
     // Entity / Activation related
     #region
-    public Action ActivateEntity(LivingEntity entity)
+    public OldCoroutineData ActivateEntity(LivingEntity entity)
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(ActivateEntityCoroutine(entity, action));
         return action;
     }
-    public IEnumerator ActivateEntityCoroutine(LivingEntity entity, Action action)
+    public IEnumerator ActivateEntityCoroutine(LivingEntity entity, OldCoroutineData action)
     {
         Debug.Log("Activating entity: " + entity.name);
         entityActivated = entity;        
@@ -307,7 +307,7 @@ public class ActivationManager : MonoBehaviour
             UIManager.Instance.DisableEndTurnButtonInteractions();
         }
 
-        Action activationStartAction = entity.OnActivationStart();
+        OldCoroutineData activationStartAction = entity.OnActivationStart();
         yield return new WaitUntil(() => activationStartAction.ActionResolved() == true);
 
         entity.hasActivatedThisTurn = true;
@@ -319,7 +319,7 @@ public class ActivationManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
 
-        action.actionResolved = true;        
+        action.coroutineCompleted = true;        
     }  
     public void ActivateNextEntity()
     {

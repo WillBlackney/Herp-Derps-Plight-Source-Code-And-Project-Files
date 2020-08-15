@@ -47,7 +47,7 @@ public class GoblinStabby : Enemy
             EntityLogic.IsTargetInRange(this, myCurrentTarget, currentMeleeRange) &&
             myCurrentTarget.myPassiveManager.weakened == false)
         {
-            Action action = AbilityLogic.Instance.PerformTendonSlash(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformTendonSlash(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -58,7 +58,7 @@ public class GoblinStabby : Enemy
         else if (EntityLogic.IsAbilityUseable(this, twinStrike, myCurrentTarget) &&
             EntityLogic.IsTargetInRange(this, myCurrentTarget, currentMeleeRange))
         {
-            Action action = AbilityLogic.Instance.PerformTwinStrike(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformTwinStrike(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -73,7 +73,7 @@ public class GoblinStabby : Enemy
             )
         {
             Tile destination = EntityLogic.GetBestValidMoveLocationBetweenMeAndTarget(this, myCurrentTarget, currentMeleeRange, EntityLogic.GetTotalMobility(this));
-            Action movementAction = AbilityLogic.Instance.PerformMove(this, destination);
+            OldCoroutineData movementAction = AbilityLogic.Instance.PerformMove(this, destination);
             yield return new WaitUntil(() => movementAction.ActionResolved() == true);
 
             // small delay here in order to seperate the two actions a bit.

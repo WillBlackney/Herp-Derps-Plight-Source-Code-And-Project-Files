@@ -56,7 +56,7 @@ public class DemonHellGuard : Enemy
         else if (EntityLogic.IsAbilityUseable(this, fortify, EntityLogic.GetBestFortifyTarget(this)) &&
             EntityLogic.GetBestFortifyTarget(this) != null)
         {
-            Action action = AbilityLogic.Instance.PerformFortify(this, EntityLogic.GetBestFortifyTarget(this));
+            OldCoroutineData action = AbilityLogic.Instance.PerformFortify(this, EntityLogic.GetBestFortifyTarget(this));
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -66,7 +66,7 @@ public class DemonHellGuard : Enemy
         // Testudo
         else if (EntityLogic.IsAbilityUseable(this, testudo))
         {
-            Action action = AbilityLogic.Instance.PerformTestudo(this);
+            OldCoroutineData action = AbilityLogic.Instance.PerformTestudo(this);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -78,7 +78,7 @@ public class DemonHellGuard : Enemy
             EntityLogic.IsTargetInRange(this, myCurrentTarget, currentMeleeRange) &&
             currentBlock >= 10)
         {
-            Action action = AbilityLogic.Instance.PerformShieldSlam(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformShieldSlam(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -89,7 +89,7 @@ public class DemonHellGuard : Enemy
         else if (EntityLogic.IsAbilityUseable(this, provoke, myCurrentTarget) &&
             EntityLogic.IsTargetInRange(this, myCurrentTarget, currentMeleeRange))
         {
-            Action action = AbilityLogic.Instance.PerformProvoke(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformProvoke(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -100,7 +100,7 @@ public class DemonHellGuard : Enemy
         else if (EntityLogic.IsTargetInRange(this, myCurrentTarget, currentMeleeRange) &&
             EntityLogic.IsAbilityUseable(this, strike, myCurrentTarget))
         {
-            Action action = AbilityLogic.Instance.PerformStrike(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformStrike(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             // brief delay between actions
@@ -117,7 +117,7 @@ public class DemonHellGuard : Enemy
             )
         {
             Tile destination = EntityLogic.GetBestValidMoveLocationBetweenMeAndTarget(this, myCurrentTarget, currentMeleeRange, EntityLogic.GetTotalMobility(this));
-            Action movementAction = AbilityLogic.Instance.PerformMove(this, destination);
+            OldCoroutineData movementAction = AbilityLogic.Instance.PerformMove(this, destination);
             yield return new WaitUntil(() => movementAction.ActionResolved() == true);
 
             // small delay here in order to seperate the two actions a bit.

@@ -1,13 +1,13 @@
 ﻿
-public class Action 
+public class OldCoroutineData 
 {
     // This class is used by IEnumerator/Coroutines to send 'yield wait until' instructions back up the stack
     public bool combatAction;
 
-    public bool actionResolved;
+    public bool coroutineCompleted;
     public bool ActionResolved()
     {
-        if(actionResolved == true)
+        if(coroutineCompleted == true)
         {
             ActionManager.Instance.RemoveActionFromQueue(this);
             return true;
@@ -18,7 +18,7 @@ public class Action
         }
     }
 
-    public Action(bool _combatAction = false)
+    public OldCoroutineData(bool _combatAction = false)
     {
         combatAction = _combatAction;
         if (combatAction)

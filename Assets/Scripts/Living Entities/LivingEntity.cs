@@ -750,13 +750,13 @@ public class LivingEntity : MonoBehaviour
     // Turn + activation related
     #region
 
-    public Action OnActivationStart()
+    public OldCoroutineData OnActivationStart()
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(OnActivationStartCoroutine(action));
         return action;
     }
-    protected IEnumerator OnActivationStartCoroutine(Action action)
+    protected IEnumerator OnActivationStartCoroutine(OldCoroutineData action)
     {
         Debug.Log("LivingEntity.OnActivationStartCoroutine() called...");
 
@@ -813,15 +813,15 @@ public class LivingEntity : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
         
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }   
-    public Action OnNewTurnCycleStarted()
+    public OldCoroutineData OnNewTurnCycleStarted()
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(OnNewTurnCycleStartedCoroutine(action));
         return action;
     }
-    private IEnumerator OnNewTurnCycleStartedCoroutine(Action action)
+    private IEnumerator OnNewTurnCycleStartedCoroutine(OldCoroutineData action)
     {
         Debug.Log("OnNewTurnCycleStartedCoroutine() called for " + myName);
 
@@ -880,7 +880,7 @@ public class LivingEntity : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
 
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }     
     public virtual void GainEnergyOnActivationStart()
     {        
@@ -951,13 +951,13 @@ public class LivingEntity : MonoBehaviour
 
     // Misc
     #region
-    public Action StartPhasingMove()
+    public OldCoroutineData StartPhasingMove()
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(StartPhasingMoveCoroutine(action));
         return action;
     }
-    public IEnumerator StartPhasingMoveCoroutine(Action action)
+    public IEnumerator StartPhasingMoveCoroutine(OldCoroutineData action)
     {
         Debug.Log("StartPhasingMoveCoroutine() could not find a valid adjacent tile to teleport to...");
         if (ActivationManager.Instance.entityActivated != this)
@@ -967,7 +967,7 @@ public class LivingEntity : MonoBehaviour
 
             if (destinationTile != null)
             {
-                Action teleportAction = MovementLogic.Instance.TeleportEntity(this, destinationTile);
+                OldCoroutineData teleportAction = MovementLogic.Instance.TeleportEntity(this, destinationTile);
                 yield return new WaitUntil(() => teleportAction.ActionResolved() == true);                
             }
             else
@@ -977,7 +977,7 @@ public class LivingEntity : MonoBehaviour
 
         }
 
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
 
     }
     #endregion

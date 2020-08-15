@@ -138,16 +138,16 @@ public class StatusManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
         
     }
-    public Action FadeIn()
+    public OldCoroutineData FadeIn()
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         if (gameObject.activeSelf)
         {
             StartCoroutine(FadeInCoroutine(action));
         }        
         return action;
     }
-    public IEnumerator FadeInCoroutine(Action action)
+    public IEnumerator FadeInCoroutine(OldCoroutineData action)
     {
         fadingOut = false;
         fadingIn = true;        
@@ -161,18 +161,18 @@ public class StatusManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             }
             yield return new WaitForEndOfFrame();
         }
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
-    public Action FadeOut()
+    public OldCoroutineData FadeOut()
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         if(myCG.gameObject.activeSelf == true)
         {
             StartCoroutine(FadeOutCoroutine(action));
         }        
         return action;
     }
-    public IEnumerator FadeOutCoroutine(Action action)
+    public IEnumerator FadeOutCoroutine(OldCoroutineData action)
     {
         fadingIn = false;
         fadingOut = true;
@@ -187,7 +187,7 @@ public class StatusManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             }
             yield return new WaitForEndOfFrame();
         }
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }    
     #endregion
 

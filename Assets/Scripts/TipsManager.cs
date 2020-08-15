@@ -54,25 +54,25 @@ public class TipsManager : MonoBehaviour
             tipText.text = nextTip;
 
             // fade in text
-            Action fadeIn = FadeInTipsText();
+            OldCoroutineData fadeIn = FadeInTipsText();
             yield return new WaitUntil(() => fadeIn.ActionResolved() == true);
 
             // yield so player actually has enough time to read the tip
             yield return new WaitForSeconds(5);
 
             // fade out text
-            Action fadeOut = FadeOutTipsText();
+            OldCoroutineData fadeOut = FadeOutTipsText();
             yield return new WaitUntil(() => fadeOut.ActionResolved() == true);
         }
     }
 
-    public Action FadeOutTipsText()
+    public OldCoroutineData FadeOutTipsText()
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(FadeOutTipsTextCoroutine(action));
         return action;
     }
-    private IEnumerator FadeOutTipsTextCoroutine(Action action)
+    private IEnumerator FadeOutTipsTextCoroutine(OldCoroutineData action)
     {
         fadingIn = false;
         fadingOut = true;
@@ -83,15 +83,15 @@ public class TipsManager : MonoBehaviour
         }
 
         fadingOut = false;
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
-    public Action FadeInTipsText()
+    public OldCoroutineData FadeInTipsText()
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(FadeInTipsTextCoroutine(action));
         return action;
     }
-    private IEnumerator FadeInTipsTextCoroutine(Action action)
+    private IEnumerator FadeInTipsTextCoroutine(OldCoroutineData action)
     {
         fadingOut = false;
         fadingIn = true;
@@ -103,7 +103,7 @@ public class TipsManager : MonoBehaviour
         }
 
         fadingIn = false;
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
 
     public void PopulateTipsList()

@@ -49,7 +49,7 @@ public class PoisonGolem : Enemy
         else if (EntityLogic.GetAllEnemiesWithinRange(this, 1).Count > 0 &&
             EntityLogic.IsAbilityUseable(this, noxiousFumes, myCurrentTarget))
         {
-            Action action = AbilityLogic.Instance.PerformNoxiousFumes(this);
+            OldCoroutineData action = AbilityLogic.Instance.PerformNoxiousFumes(this);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             // brief delay between actions
@@ -61,7 +61,7 @@ public class PoisonGolem : Enemy
         else if (EntityLogic.IsTargetInRange(this, myCurrentTarget, currentMeleeRange) &&
             EntityLogic.IsAbilityUseable(this, toxicSlash, myCurrentTarget))
         {
-            Action action = AbilityLogic.Instance.PerformToxicSlash(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformToxicSlash(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -76,7 +76,7 @@ public class PoisonGolem : Enemy
         {
             SetTargetDefender(EntityLogic.GetBestChemicalReactionTarget(this));
 
-            Action action = AbilityLogic.Instance.PerformChemicalReaction(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformChemicalReaction(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
             yield return new WaitForSeconds(1f);
             goto ActionStart;
@@ -87,7 +87,7 @@ public class PoisonGolem : Enemy
         else if (EntityLogic.IsTargetInRange(this, myCurrentTarget, currentMeleeRange) &&
             EntityLogic.IsAbilityUseable(this, strike, myCurrentTarget))
         {
-            Action action = AbilityLogic.Instance.PerformStrike(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformStrike(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             // brief delay between actions
@@ -104,7 +104,7 @@ public class PoisonGolem : Enemy
             )
         {
             Tile destination = EntityLogic.GetBestValidMoveLocationBetweenMeAndTarget(this, myCurrentTarget, currentMeleeRange, EntityLogic.GetTotalMobility(this));
-            Action movementAction = AbilityLogic.Instance.PerformMove(this, destination);
+            OldCoroutineData movementAction = AbilityLogic.Instance.PerformMove(this, destination);
             yield return new WaitUntil(() => movementAction.ActionResolved() == true);
 
             // small delay here in order to seperate the two actions a bit.

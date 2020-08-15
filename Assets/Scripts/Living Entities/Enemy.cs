@@ -56,7 +56,7 @@ public class Enemy : LivingEntity
     }
     public virtual IEnumerator StartMyActivationCoroutine()
     {
-        Action actionEvent = EnemyController.Instance.ExecuteEnemyNextAction(this);
+        OldCoroutineData actionEvent = EnemyController.Instance.ExecuteEnemyNextAction(this);
         yield return new WaitUntil(() => actionEvent.ActionResolved() == true);
         LivingEntityManager.Instance.EndEntityActivation(this);
     }    

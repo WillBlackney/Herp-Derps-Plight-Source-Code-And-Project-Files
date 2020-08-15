@@ -50,7 +50,7 @@ public class Mork : Enemy
             EntityLogic.IsAbilityUseable(this, smash, myCurrentTarget)
             )
         {
-            Action action = AbilityLogic.Instance.PerformSmash(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformSmash(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
             // brief delay between actions
             yield return new WaitForSeconds(1f);
@@ -61,7 +61,7 @@ public class Mork : Enemy
         else if (EntityLogic.GetAllEnemiesWithinRange(this, currentMeleeRange).Count > 1 &&
             EntityLogic.IsAbilityUseable(this, whirlwind))
         {
-            Action action = AbilityLogic.Instance.PerformWhirlwind(this);
+            OldCoroutineData action = AbilityLogic.Instance.PerformWhirlwind(this);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             // brief delay between actions
@@ -73,7 +73,7 @@ public class Mork : Enemy
         else if (EntityLogic.IsTargetInRange(this, myCurrentTarget, currentMeleeRange) &&
             EntityLogic.IsAbilityUseable(this, strike, myCurrentTarget))
         {
-            Action action = AbilityLogic.Instance.PerformStrike(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformStrike(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             // brief delay between actions
@@ -90,7 +90,7 @@ public class Mork : Enemy
             )
         {
             Tile destination = EntityLogic.GetBestValidMoveLocationBetweenMeAndTarget(this, myCurrentTarget, currentMeleeRange, EntityLogic.GetTotalMobility(this));
-            Action movementAction = AbilityLogic.Instance.PerformMove(this, destination);
+            OldCoroutineData movementAction = AbilityLogic.Instance.PerformMove(this, destination);
             yield return new WaitUntil(() => movementAction.ActionResolved() == true);
 
             // small delay here in order to seperate the two actions a bit.

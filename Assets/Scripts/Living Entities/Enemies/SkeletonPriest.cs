@@ -50,7 +50,7 @@ public class SkeletonPriest : Enemy
             GetBestHealingLightTarget().currentHealth < GetBestHealingLightTarget().currentMaxHealth &&
             EntityLogic.IsAbilityUseable(this, healingLight, GetBestHealingLightTarget()))
         {
-            Action action = AbilityLogic.Instance.PerformHealingLight(this, GetBestHealingLightTarget());
+            OldCoroutineData action = AbilityLogic.Instance.PerformHealingLight(this, GetBestHealingLightTarget());
             yield return new WaitUntil(() => action.ActionResolved() == true);
             yield return new WaitForSeconds(1f);
             goto ActionStart;
@@ -60,7 +60,7 @@ public class SkeletonPriest : Enemy
         else if (EntityLogic.IsTargetInRange(this, EntityLogic.GetBestInvigorateTarget(this), invigorate.abilityRange) &&
             EntityLogic.IsAbilityUseable(this, invigorate, EntityLogic.GetBestInvigorateTarget(this)))
         {
-            Action action = AbilityLogic.Instance.PerformInvigorate(this, EntityLogic.GetBestInvigorateTarget(this));
+            OldCoroutineData action = AbilityLogic.Instance.PerformInvigorate(this, EntityLogic.GetBestInvigorateTarget(this));
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -71,7 +71,7 @@ public class SkeletonPriest : Enemy
         else if (EntityLogic.IsTargetInRange(this, myCurrentTarget, chaosBolt.abilityRange) &&
             EntityLogic.IsAbilityUseable(this, chaosBolt, myCurrentTarget))
         {
-            Action action = AbilityLogic.Instance.PerformChaosBolt(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformChaosBolt(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -82,7 +82,7 @@ public class SkeletonPriest : Enemy
         else if (EntityLogic.IsTargetInRange(this, myCurrentTarget, currentMeleeRange) &&
             EntityLogic.IsAbilityUseable(this, strike, myCurrentTarget))
         {
-            Action action = AbilityLogic.Instance.PerformStrike(this, myCurrentTarget);
+            OldCoroutineData action = AbilityLogic.Instance.PerformStrike(this, myCurrentTarget);
             yield return new WaitUntil(() => action.ActionResolved() == true);
 
             yield return new WaitForSeconds(1f);
@@ -98,7 +98,7 @@ public class SkeletonPriest : Enemy
             )
         {
             Tile destination = EntityLogic.GetBestValidMoveLocationBetweenMeAndTarget(this, myCurrentTarget, currentMeleeRange, EntityLogic.GetTotalMobility(this));
-            Action movementAction = AbilityLogic.Instance.PerformMove(this, destination);
+            OldCoroutineData movementAction = AbilityLogic.Instance.PerformMove(this, destination);
             yield return new WaitUntil(() => movementAction.ActionResolved() == true);
 
             // small delay here in order to seperate the two actions a bit.

@@ -81,7 +81,7 @@ public class Vampire : Enemy
             //SetTargetDefender(GetDefenderWithLowestCurrentHP());
             VisualEffectManager.Instance.CreateStatusEffect(transform.position, "Twin Strike");
             yield return new WaitForSeconds(0.5f);
-            Action twinStrikeAction = AbilityLogic.Instance.PerformTwinStrike(this, myCurrentTarget);
+            OldCoroutineData twinStrikeAction = AbilityLogic.Instance.PerformTwinStrike(this, myCurrentTarget);
             yield return new WaitUntil(() => twinStrikeAction.ActionResolved() == true);
             yield return new WaitForSeconds(1f);
             goto ActionStart;
@@ -94,7 +94,7 @@ public class Vampire : Enemy
             //SetTargetDefender(GetDefenderWithLowestCurrentHP());
             VisualEffectManager.Instance.CreateStatusEffect(transform.position, "Strike");
             yield return new WaitForSeconds(0.5f);
-            Action strikeAction = AbilityLogic.Instance.PerformStrike(this, myCurrentTarget);
+            OldCoroutineData strikeAction = AbilityLogic.Instance.PerformStrike(this, myCurrentTarget);
             yield return new WaitUntil(() => strikeAction.ActionResolved() == true);
             yield return new WaitForSeconds(1f);
             goto ActionStart;
@@ -113,7 +113,7 @@ public class Vampire : Enemy
             yield return new WaitForSeconds(0.5f);
 
             Tile destination = EntityLogic.GetBestValidMoveLocationBetweenMeAndTarget(this, myCurrentTarget, currentMeleeRange, dash.abilityPrimaryValue);
-            Action dashAction = AbilityLogic.Instance.PerformDash(this, destination);
+            OldCoroutineData dashAction = AbilityLogic.Instance.PerformDash(this, destination);
             yield return new WaitUntil(() => dashAction.ActionResolved() == true);
 
             // small delay here in order to seperate the two actions a bit.
@@ -133,7 +133,7 @@ public class Vampire : Enemy
             yield return new WaitForSeconds(0.5f);
 
             Tile destination = EntityLogic.GetBestValidMoveLocationBetweenMeAndTarget(this, myCurrentTarget, currentMeleeRange, EntityLogic.GetTotalMobility(this));
-            Action movementAction = AbilityLogic.Instance.PerformMove(this, destination);
+            OldCoroutineData movementAction = AbilityLogic.Instance.PerformMove(this, destination);
             yield return new WaitUntil(() => movementAction.ActionResolved() == true);
 
             // small delay here in order to seperate the two actions a bit.

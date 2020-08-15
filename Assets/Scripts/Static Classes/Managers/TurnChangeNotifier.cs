@@ -25,13 +25,13 @@ public class TurnChangeNotifier : MonoBehaviour
         Instance = this;
     }
 
-    public Action DisplayTurnChangeNotification()
+    public OldCoroutineData DisplayTurnChangeNotification()
     {
-        Action action = new Action();
+        OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(DisplayTurnChangeNotificationCoroutine(action));
         return action;
     }
-    public IEnumerator DisplayTurnChangeNotificationCoroutine(Action action)
+    public IEnumerator DisplayTurnChangeNotificationCoroutine(OldCoroutineData action)
     {
         bool reachedMiddlePos = false;
         bool reachedEndPos = false;
@@ -82,7 +82,7 @@ public class TurnChangeNotifier : MonoBehaviour
 
         visualParentCG.alpha = 0;
         visualParentCG.gameObject.SetActive(false);
-        action.actionResolved = true;
+        action.coroutineCompleted = true;
     }
 
 }

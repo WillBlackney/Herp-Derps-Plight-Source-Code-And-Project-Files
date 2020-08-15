@@ -17,7 +17,7 @@ public class SkeletonAssassin : Enemy
 
     public override IEnumerator StartMyActivationCoroutine()
     {
-        Action actionEvent = EnemyController.Instance.ExecuteEnemyNextAction(this);
+        OldCoroutineData actionEvent = EnemyController.Instance.ExecuteEnemyNextAction(this);
         yield return new WaitUntil(() => actionEvent.ActionResolved() == true);
         LivingEntityManager.Instance.EndEntityActivation(this);
     }
