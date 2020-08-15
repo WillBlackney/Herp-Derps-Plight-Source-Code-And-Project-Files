@@ -72,6 +72,7 @@ public enum ActionRequirementType
     HaventUsedActionInXTurns,
     ActivatedXTimesOrMore,
     ActivatedXTimesOrLess,
+    HasPassiveTrait,
 }
 public enum IntentImage
 {
@@ -100,7 +101,36 @@ public enum CardCollection
 public class ActionRequirement
 {
     public ActionRequirementType requirementType;
+    [ShowIf("ShowReqValue")]
     public int requirementTypeValue;
+
+    [ShowIf("ShowStatusRequired")]
+    public StatusIconDataSO statusRequired;
+    [ShowIf("ShowStatusRequired")]
+    public int statusStacksRequired;
+
+    public bool ShowStatusRequired()
+    {
+        if(requirementType == ActionRequirementType.HasPassiveTrait)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowReqValue()
+    {
+        if (requirementType != ActionRequirementType.HasPassiveTrait)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
 [Serializable]
 public class EnemyActionEffect

@@ -313,6 +313,9 @@ public class PassiveManager : MonoBehaviour
     public bool growing;
     public int growingStacks;
 
+    public bool infuriated;
+    public int infuriatedStacks;
+
     public bool fastLearner;
     public int fastLearnerStacks;
 
@@ -676,6 +679,7 @@ public class PassiveManager : MonoBehaviour
     {
         Debug.Log(myLivingEntity.name + ".PassiveManager.ModifySleep() called, stacks = " + stacks.ToString());
         StatusIconDataSO iconData = StatusIconLibrary.Instance.GetStatusIconByName("Sleep");
+        bool resetIntent = false;
 
         if (unstoppable && stacks > 0)
         {
@@ -711,10 +715,21 @@ public class PassiveManager : MonoBehaviour
             {
                 sleep = false;
                 VisualEffectManager.Instance.CreateStatusEffect(myLivingEntity.transform.position, "Sleep Removed!");
+
+                // enemies recalculate their intent when awoken
+                if (myLivingEntity.enemy)
+                {
+                    resetIntent = true;
+                }
             }
         }
-
+        
         myLivingEntity.myStatusManager.StartAddStatusProcess(iconData, stacks);
+
+        if (resetIntent)
+        {
+            EnemyController.Instance.StartAutoSetEnemyIntentProcess(myLivingEntity.enemy);
+        }
     }
     public void ModifyVulnerable(int stacks)
     {
@@ -2351,6 +2366,15 @@ public class PassiveManager : MonoBehaviour
         StatusIconDataSO iconData = StatusIconLibrary.Instance.GetStatusIconByName("Growing");
         growing = true;
         growingStacks += stacks;
+        myLivingEntity.myStatusManager.StartAddStatusProcess(iconData, stacks);
+    }
+    public void ModifyInfuriated(int stacks)
+    {
+        Debug.Log(myLivingEntity.name + ".PassiveManager.ModifyInfuriated() called, stacks = " + stacks.ToString());
+
+        StatusIconDataSO iconData = StatusIconLibrary.Instance.GetStatusIconByName("Infuriated");
+        infuriated = true;
+        infuriatedStacks += stacks;
         myLivingEntity.myStatusManager.StartAddStatusProcess(iconData, stacks);
     }
     public void ModifyFastLearner(int stacks)

@@ -20,7 +20,6 @@ public class StatusController : MonoBehaviour
     }
     #endregion
 
-
     public void ApplyStatusToLivingEntity(LivingEntity entity, StatusIconDataSO status, int stacks)
     {
         Debug.Log("StatusController.ApplyStatusToLivingEntity() called, applying " + status.statusName + "(" +
@@ -53,6 +52,10 @@ public class StatusController : MonoBehaviour
         {
             entity.myPassiveManager.ModifyBonusStrength(stacks);
         }
+        else if (status.statusName == "Bonus Dexterity")
+        {
+            entity.myPassiveManager.ModifyBonusDexterity(stacks);
+        }
         else if (status.statusName == "Cautious")
         {
             entity.myPassiveManager.ModifyCautious(stacks);
@@ -81,5 +84,31 @@ public class StatusController : MonoBehaviour
         {
             entity.myPassiveManager.ModifyBlind(stacks);
         }
+        else if (status.statusName == "Infuriated")
+        {
+            entity.myPassiveManager.ModifyInfuriated(stacks);
+        }
+        else if (status.statusName == "Sleep")
+        {
+            entity.myPassiveManager.ModifySleep(stacks);
+        }
+    }
+    public bool IsEntityEffectedByStatus(LivingEntity entity, StatusIconDataSO status, int stacks)
+    {
+        bool hasStatus = false;
+
+        foreach(StatusIcon icon in entity.myStatusManager.myStatusIcons)
+        {
+            // look for matching names
+            if(icon.statusName == status.statusName &&
+                icon.statusStacks >= stacks)
+            {
+                // match found, return true
+                hasStatus = true;
+                break;
+            }
+        }
+
+        return hasStatus;
     }
 }

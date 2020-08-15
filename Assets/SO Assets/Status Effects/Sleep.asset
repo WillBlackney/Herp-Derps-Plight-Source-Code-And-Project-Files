@@ -15,4 +15,5 @@ MonoBehaviour:
   statusName: Sleep
   statusSprite: {fileID: 21300000, guid: ea62d57ab4d83b54294ffb6514f64184, type: 3}
   statusDescription: 
-  showStackCount: 0
+  showStackCount: 1
+  statusRace: 0

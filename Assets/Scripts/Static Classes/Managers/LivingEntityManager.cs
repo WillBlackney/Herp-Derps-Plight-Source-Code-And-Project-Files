@@ -127,7 +127,7 @@ public class LivingEntityManager : MonoBehaviour
             if (entity.myPassiveManager.sleep)
             {
                 Debug.Log("OnActivationEndCoroutine() clearing Sleep...");
-                entity.myPassiveManager.ModifySleep(-entity.myPassiveManager.sleepStacks);
+                entity.myPassiveManager.ModifySleep(-1);
                 yield return new WaitForSeconds(1f);
             }
 

@@ -132,6 +132,8 @@ public class EnemyController : MonoBehaviour
 
         foreach(ActionRequirement ar in enemyAction.actionRequirements)
         {
+            Debug.Log("Checking requirement of type: " + ar.requirementType.ToString());
+
             // Check is turn requirement
             if(ar.requirementType == ActionRequirementType.IsTurn &&
                 enemy.nextActivationCount != ar.requirementTypeValue)
@@ -180,7 +182,7 @@ public class EnemyController : MonoBehaviour
             if(ar.requirementType == ActionRequirementType.IsMoreThanTurn &&
                ar.requirementTypeValue < TurnChangeNotifier.Instance.currentTurnCount)
             {
-                Debug.Log(enemyAction.actionName + " passed 'IsMoreThanTurn' requirement");
+                Debug.Log(enemyAction.actionName + " failed 'IsMoreThanTurn' requirement");
                 checkResults.Add(false);
             }
 
@@ -197,6 +199,14 @@ public class EnemyController : MonoBehaviour
                enemy.myPreviousActionLog.Count > ar.requirementTypeValue)
             {
                 Debug.Log(enemyAction.actionName + " failed 'ActivatedXTimesOrMore' requirement");
+                checkResults.Add(false);
+            }
+
+            // Check HasPassive
+            if (ar.requirementType == ActionRequirementType.HasPassiveTrait &&
+                StatusController.Instance.IsEntityEffectedByStatus(enemy, ar.statusRequired, ar.statusStacksRequired) == false)
+            {
+                Debug.Log(enemyAction.actionName + " failed 'HasPassive' requirement");
                 checkResults.Add(false);
             }
         }
@@ -244,6 +254,7 @@ public class EnemyController : MonoBehaviour
             {
                 if (DoesEnemyActionMeetItsRequirements(enemyAction, enemy) == false)
                 {
+                    Debug.Log(enemyAction.actionName + " failed its RequirementType checks");
                     checkResults.Add(false);
                 }
             }
@@ -438,6 +449,26 @@ public class EnemyController : MonoBehaviour
         else if (effect.actionType == ActionType.DebuffTarget)
         {
             StatusController.Instance.ApplyStatusToLivingEntity(enemy.currentActionTarget, effect.statusApplied, effect.statusStacks);
+        }
+        else if (effect.actionType == ActionType.DebuffAll)
+        {
+            foreach(Defender defender in DefenderManager.Instance.allDefenders)
+            {
+                StatusController.Instance.ApplyStatusToLivingEntity(defender, effect.statusApplied, effect.statusStacks);
+            }
+          
+        }
+        else if (effect.actionType == ActionType.AddCard)
+        {
+            for(int i = 0; i < effect.copiesAdded; i++)
+            {
+                if (effect.collection == CardCollection.DiscardPile)
+                {
+                    Card card = CardController.Instance.BuildCardFromCardData(effect.cardAdded, enemy.currentActionTarget.defender);
+                    CardController.Instance.AddCardToDiscardPile(enemy.currentActionTarget.defender, card);
+                }
+            }
+            
         }
 
         // TO DO: This pause occurs even if the target or enemy is dead, how 

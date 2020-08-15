@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 272d402ffa0a347429dfe06011e3d167, type: 3}
+  m_Name: Lagaluvin
+  m_EditorClassIdentifier: 
+  enemyName: Lagaluvin
+  description: 
+  maxHealth: 111
+  strength: 0
+  wisdom: 0
+  dexterity: 0
+  initiative: 3
+  startingHealth: 111
+  startingBlock: 0
+  physicalResistance: 0
+  fireResistance: 0
+  frostResistance: 0
+  shadowResistance: 0
+  poisonResistance: 0
+  airResistance: 0
+  allPassives:
+  - statusData: {fileID: 11400000, guid: 28fa6f3c02305c1459267f510be465ac, type: 2}
+    statusStacks: 3
+  allEnemyActions:
+  - actionName: Strike
+    actionType: 0
+    intentImage: 0
+    actionLoops: 1
+    actionEffects:
+    - actionType: 0
+      baseDamage: 18
+      damageType: 1
+      attackLoops: 1
+      statusApplied: {fileID: 0}
+      statusStacks: 0
+      blockGained: 0
+      cardAdded: {fileID: 0}
+      copiesAdded: 0
+      collection: 0
+    canBeConsecutive: 1
+    prioritiseWhenRequirementsMet: 0
+    actionRequirements: []
+  - actionName: Sleep
+    actionType: 10
+    intentImage: 9
+    actionLoops: 1
+    actionEffects:
+    - actionType: 11
+      baseDamage: 0
+      damageType: 0
+      attackLoops: 1
+      statusApplied: {fileID: 0}
+      statusStacks: 0
+      blockGained: 0
+      cardAdded: {fileID: 0}
+      copiesAdded: 0
+      collection: 0
+    canBeConsecutive: 1
+    prioritiseWhenRequirementsMet: 1
+    actionRequirements:
+    - requirementType: 10
+      requirementTypeValue: 0
+      statusRequired: {fileID: 11400000, guid: 28fa6f3c02305c1459267f510be465ac, type: 2}
+      statusStacksRequired: 1
+  - actionName: Siphon Soul
+    actionType: 6
+    intentImage: 8
+    actionLoops: 1
+    actionEffects:
+    - actionType: 6
+      baseDamage: 0
+      damageType: 0
+      attackLoops: 1
+      statusApplied: {fileID: 11400000, guid: 25994f1b0e8d2464993c423210ce4bd0, type: 2}
+      statusStacks: -1
+      blockGained: 0
+      cardAdded: {fileID: 0}
+      copiesAdded: 0
+      collection: 0
+    - actionType: 6
+      baseDamage: 0
+      damageType: 0
+      attackLoops: 1
+      statusApplied: {fileID: 11400000, guid: 05d1cfd64e67a6c419c56ab30ce3f97a, type: 2}
+      statusStacks: -1
+      blockGained: 0
+      cardAdded: {fileID: 0}
+      copiesAdded: 0
+      collection: 0
+    canBeConsecutive: 0
+    prioritiseWhenRequirementsMet: 1
+    actionRequirements:
+    - requirementType: 7
+      requirementTypeValue: 2
+      statusRequired: {fileID: 0}
+      statusStacksRequired: 0
+    - requirementType: 8
+      requirementTypeValue: 3
+      statusRequired: {fileID: 0}
+      statusStacksRequired: 0
+  allBodyParts: []

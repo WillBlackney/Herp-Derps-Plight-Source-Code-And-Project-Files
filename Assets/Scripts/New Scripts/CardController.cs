@@ -321,6 +321,20 @@ public class CardController : MonoBehaviour
         // Remove from hand
         owner.hand.Remove(card);
 
+        // check for specific on card play effects 
+        // Infuriated 
+        if(card.cardType == CardType.Skill)
+        {
+            foreach (Enemy enemy in EnemyManager.Instance.allEnemies)
+            {
+                if (enemy.myPassiveManager.infuriated)
+                {
+                    StatusController.Instance.ApplyStatusToLivingEntity(enemy, StatusIconLibrary.Instance.GetStatusIconByName("Bonus Strength"), enemy.myPassiveManager.infuriatedStacks);
+                }
+            }
+        }
+       
+
         // TO DO: Add to discard pile, or exhaust pile?
 
         // Add to discard pile
