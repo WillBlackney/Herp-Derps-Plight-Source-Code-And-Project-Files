@@ -43,7 +43,6 @@ public class DefenderManager : MonoBehaviour
             UIManager.Instance.SetEndTurnButtonSprite(UIManager.Instance.EndTurnButtonEnabledSprite);
             UIManager.Instance.EnableEndTurnButtonInteractions();
         }
-        CameraManager.Instance.SetCameraLookAtTarget(selectedDefender.gameObject);
         Debug.Log("Selected defender: " + selectedDefender.gameObject.name);
     }
     public void ClearSelectedDefender()
@@ -53,8 +52,6 @@ public class DefenderManager : MonoBehaviour
             selectedDefender.UnselectDefender();
             selectedDefender = null;
         }
-        CameraManager.Instance.ClearCameraLookAtTarget();
-        LevelManager.Instance.UnhighlightAllTiles();
     }
     #endregion
 
@@ -83,61 +80,6 @@ public class DefenderManager : MonoBehaviour
     }
     #endregion
 
-    // Card Game Logic
-    public void DrawCardFromDrawPile(Defender defender)
-    {
-        /*
-        if (defender.deck.cards.Count > 0)
-        {
-            if (defender.hand.CardsInHand.Count < 10
-               // PArea.handVisual.slots.Children.Length
-                )
-            {
-                // 1) logic: add card to hand
-                CardLogic newCard = new CardLogic(defender.deck.cards[0]);
-                //newCard.owner = this;
-                newCard.myDefenderOwner = defender;
-                defender.hand.CardsInHand.Insert(0, newCard);
-                // Debug.Log(hand.CardsInHand.Count);
-                // 2) logic: remove the card from the deck
-                defender.deck.cards.RemoveAt(0);
-                // 2) create a command
-                new DrawACardCommand(defender.hand.CardsInHand[0], defender, true, fromDeck: true).AddToQueue();
-            }
-        }
-        else
-        {
-            // there are no cards in the deck, take fatigue damage.
-        }
-        */
-    }
-    public void DrawCardsOnActivationStart(Defender defender)
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            DrawCardFromDrawPile(defender);
-        }
-    }
-    public void PlayCardFromHand(Defender defender, OneCardManager card)
-    {
-        // need to get the card logic reference
-
-        //ManaLeft -= playedCard.CurrentManaCost;
-        // cause effect instantly:
-        /*
-        if (playedCard.effect != null)
-            playedCard.effect.ActivateEffect(playedCard.ca.specialSpellAmount, target);
-        else
-        {
-            Debug.LogWarning("No effect found on card " + playedCard.ca.name);
-        }
-        // no matter what happens, move this card to PlayACardSpot
-        new PlayASpellCardCommand(this, playedCard).AddToQueue();
-        // remove this card from hand
-        hand.CardsInHand.Remove(playedCard);
-        // check if this is a creature or a spell
-        */
-    }
 
 
 

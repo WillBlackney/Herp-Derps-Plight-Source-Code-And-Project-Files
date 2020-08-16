@@ -6,7 +6,6 @@ public class PassiveManager : MonoBehaviour
 {
     // Properties + Component References
     #region
-
     [Header("UI + Compenent References")]
     public LivingEntity myLivingEntity;
 
