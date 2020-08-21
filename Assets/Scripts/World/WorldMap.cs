@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorldMap : Singleton<WorldMap>
+public class WorldMap 
 {
     /*
     [Header("Properties")]

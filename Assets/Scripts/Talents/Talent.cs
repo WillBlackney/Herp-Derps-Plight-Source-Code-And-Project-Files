@@ -26,7 +26,7 @@ public class Talent : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
     public int passiveStacks;
 
     [Header("Properties")]
-    public CharacterData myCharacterData;
+    public OldCharacterData myCharacterData;
     public AbilityDataSO myAbilityData;
     public bool purchased;
 

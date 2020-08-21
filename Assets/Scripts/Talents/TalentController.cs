@@ -15,7 +15,7 @@ public class TalentController : MonoBehaviour
 
     // Conditional checks + bools
     #region
-    public bool IsTalentPurchaseable(CharacterData character, Talent talent)
+    public bool IsTalentPurchaseable(OldCharacterData character, Talent talent)
     {
         Debug.Log("TalentController.IsTalentPurchaseable() called, checking talent: " + talent.talentName);
 
@@ -43,7 +43,7 @@ public class TalentController : MonoBehaviour
             return true;
         }
     }
-    public bool DoesCharacterMeetTalentTierRequirment(CharacterData character, Talent talent)
+    public bool DoesCharacterMeetTalentTierRequirment(OldCharacterData character, Talent talent)
     {
         Debug.Log("TalentController.DoesCharacterMeetTalentTierRequirment() called...");
 
@@ -132,7 +132,7 @@ public class TalentController : MonoBehaviour
 
     // Mouse + Input Events
     #region
-    public void OnTalentButtonClicked(CharacterData character, Talent talent)
+    public void OnTalentButtonClicked(OldCharacterData character, Talent talent)
     {
         Debug.Log("TalentController.OnTalentButtonClicked() called...");
 
@@ -147,7 +147,7 @@ public class TalentController : MonoBehaviour
 
     // Talent Purchase Related
     #region
-    public void PurchaseTalent(CharacterData character, Talent talent, bool requiresPayemnt = true)
+    public void PurchaseTalent(OldCharacterData character, Talent talent, bool requiresPayemnt = true)
     {
         Debug.Log("TalentController.PurchaseTalent() called...");
 
@@ -173,7 +173,7 @@ public class TalentController : MonoBehaviour
         RefreshAllTalentButtonViewStates(character, true, talent.talentPool);
         
     }
-    public void ApplyTalentPassiveEffectToCharacter(CharacterData character, Talent talent)
+    public void ApplyTalentPassiveEffectToCharacter(OldCharacterData character, Talent talent)
     {
         Debug.Log("TalentController.ApplyTalentPassiveEffectToCharacter() called...");
 
@@ -353,7 +353,7 @@ public class TalentController : MonoBehaviour
         }
        
     }    
-    public void ApplyPassiveEffectToCharacter(CharacterData character, StatusIconDataSO passive, int passiveStacks)
+    public void ApplyPassiveEffectToCharacter(OldCharacterData character, StatusIconDataSO passive, int passiveStacks)
     {
         // TO DO: this method should not belong in TalentController, find a better place for it
 
@@ -558,7 +558,7 @@ public class TalentController : MonoBehaviour
             character.ModifyFreeFromFlesh(passiveStacks);
         }
     }
-    public void ApplyTalentAbilityToCharacter(CharacterData character, Talent talent)
+    public void ApplyTalentAbilityToCharacter(OldCharacterData character, Talent talent)
     {
         Debug.Log("TalentController.ApplyTalentAbilityToCharacter() called...");
 
@@ -577,7 +577,7 @@ public class TalentController : MonoBehaviour
 
     // Build Talent Info Panels + Get Data
     #region
-    public Talent GetTalentByName(CharacterData character, string talentName)
+    public Talent GetTalentByName(OldCharacterData character, string talentName)
     {
         Debug.Log("TalentController.GetTalentByName() called, searching for " + talentName);
         Talent talentReturned = null;
@@ -637,7 +637,7 @@ public class TalentController : MonoBehaviour
 
     // View Logic
     #region
-    public void RefreshAllTalentButtonViewStates(CharacterData character, bool refreshSpecificPageOnly = false, Talent.TalentPool specificPage = Talent.TalentPool.Guardian)
+    public void RefreshAllTalentButtonViewStates(OldCharacterData character, bool refreshSpecificPageOnly = false, Talent.TalentPool specificPage = Talent.TalentPool.Guardian)
     {
         // only refresh a single talent page (helps with performance)
         if (refreshSpecificPageOnly)

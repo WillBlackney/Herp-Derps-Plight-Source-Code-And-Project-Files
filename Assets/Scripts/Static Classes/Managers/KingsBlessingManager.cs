@@ -220,7 +220,7 @@ public class KingsBlessingManager : MonoBehaviour
 
         else if (choiceName == "All Characters Gain 20 Max Health")
         {
-            foreach(CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach(OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 character.ModifyMaxHealth(20);
                 character.ModifyCurrentHealth(20);

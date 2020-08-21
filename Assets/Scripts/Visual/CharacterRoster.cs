@@ -10,10 +10,10 @@ public class CharacterRoster : MonoBehaviour
     public GameObject CharacterRosterCloseButton;
 
     [Header("Character Model References")]
-    public CharacterData characterOne;
-    public CharacterData characterTwo;
-    public CharacterData characterThree;
-    public CharacterData characterFour;
+    public OldCharacterData characterOne;
+    public OldCharacterData characterTwo;
+    public OldCharacterData characterThree;
+    public OldCharacterData characterFour;
 
     [Header("Character Button Model References")]
     public UniversalCharacterModel characterOneButtonModel;
@@ -22,8 +22,8 @@ public class CharacterRoster : MonoBehaviour
     public UniversalCharacterModel characterFourButtonModel;
 
     [Header("Properties")]
-    public CharacterData selectedCharacterData;
-    public List<CharacterData> allCharacterDataObjects;
+    public OldCharacterData selectedCharacterData;
+    public List<OldCharacterData> allCharacterDataObjects;
 
     // Initialization + Setup
     #region
@@ -38,7 +38,7 @@ public class CharacterRoster : MonoBehaviour
     }
     public void InitializeSetup()
     {
-        allCharacterDataObjects = new List<CharacterData>();
+        allCharacterDataObjects = new List<OldCharacterData>();
 
         bool characterOneSetupComplete = false;
         bool characterTwoSetupComplete = false;
@@ -119,7 +119,7 @@ public class CharacterRoster : MonoBehaviour
     }
     public void InstantiateDefenders()
     {
-        foreach(CharacterData character in allCharacterDataObjects)
+        foreach(OldCharacterData character in allCharacterDataObjects)
         {
             // Prevent spawning dead characters
             if (CanCharacterSpawn(character))
@@ -139,7 +139,7 @@ public class CharacterRoster : MonoBehaviour
         characterThree.DisableMainWindowView();
         characterFour.DisableMainWindowView();
     }
-    public void OnCharacterDataButtonClicked(CharacterData characterSelected)
+    public void OnCharacterDataButtonClicked(OldCharacterData characterSelected)
     {
         DisablesAllCharacterDataViews();
         characterSelected.EnableMainWindowView();
@@ -168,16 +168,16 @@ public class CharacterRoster : MonoBehaviour
     #region
     public void RewardAllCharactersXP(int xpRewarded)
     {
-        foreach(CharacterData cd in allCharacterDataObjects)
+        foreach(OldCharacterData cd in allCharacterDataObjects)
         {
             RewardCharacterXP(cd, xpRewarded);
         }
     }
-    public void RewardCharacterXP(CharacterData character, int xpRewarded)
+    public void RewardCharacterXP(OldCharacterData character, int xpRewarded)
     {
         character.ModifyCurrentXP(xpRewarded);
     }
-    public bool CanCharacterSpawn(CharacterData character)
+    public bool CanCharacterSpawn(OldCharacterData character)
     {
         if(character.currentHealth > 0)
         {

@@ -30,12 +30,12 @@ public class CampSiteCharacter : MonoBehaviour
     public Color highlightColor;
 
     [Header("Properties")]
-    public CharacterData myCharacterData;
+    public OldCharacterData myCharacterData;
 
 
     // Set up + initialization
     #region
-    public void InitializeSetup(CharacterData data)
+    public void InitializeSetup(OldCharacterData data)
     {
         data.myCampSiteCharacter = this;
         myCharacterData = data;

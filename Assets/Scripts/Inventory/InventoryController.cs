@@ -44,7 +44,7 @@ public class InventoryController : MonoBehaviour
 
     // Conditional Checks
     #region
-    public bool IsTomeDropActionValid(AbilityDataSO data, CharacterData character)
+    public bool IsTomeDropActionValid(AbilityDataSO data, OldCharacterData character)
     {
         Debug.Log("InventoryController.IsTomeDropActionValid() called, checking validity of placing " +
             data.abilityName + " tome on " + character.myName + "'s drop slot...");
@@ -446,7 +446,7 @@ public class InventoryController : MonoBehaviour
 
         return slotReturned;
     }
-    public void UpdateCharacterAbilitiesFromWeapons(CharacterData character)
+    public void UpdateCharacterAbilitiesFromWeapons(OldCharacterData character)
     {
         Debug.Log("InventoryController.UpdateCharacterAbilitiesFromWeapons() called...");
         List<AbilityDataSO> abilitiesToLearn = new List<AbilityDataSO>();

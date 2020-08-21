@@ -137,7 +137,7 @@ public class ItemManager : MonoBehaviour
         }
 
     }
-    public void ApplyAllItemEffectsToCharacterData(CharacterData character, ItemDataSO item, bool removing = false)
+    public void ApplyAllItemEffectsToCharacterData(OldCharacterData character, ItemDataSO item, bool removing = false)
     {
         Debug.Log("ItemManager.ApplyAllItemEffectsToCharacterData() called for " + item.Name);
         // Check item effect one
@@ -158,7 +158,7 @@ public class ItemManager : MonoBehaviour
             ApplyItemEffectToCharacterData(character, item.itemEffectThree, item.itemEffectThreeValue, removing);
         }
     }
-    private void ApplyItemEffectToCharacterData(CharacterData character, ItemDataSO.ItemEffect itemEffect, int itemEffectStacks, bool removing)
+    private void ApplyItemEffectToCharacterData(OldCharacterData character, ItemDataSO.ItemEffect itemEffect, int itemEffectStacks, bool removing)
     {
         Debug.Log("ItemManager.ApplyItemEffectToCharacterData() called for " + itemEffect.ToString());
 

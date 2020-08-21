@@ -8,7 +8,7 @@ public class StoryWindowCharacterSlot : MonoBehaviour, IPointerClickHandler, IPo
     // Properties + Component References
     #region
     [Header("Properties")]
-    public CharacterData myCharacterData;
+    public OldCharacterData myCharacterData;
 
     [Header("Component References")]
     public TextMeshProUGUI currentHealthText;
@@ -22,7 +22,7 @@ public class StoryWindowCharacterSlot : MonoBehaviour, IPointerClickHandler, IPo
 
     // Initialization + Setup
     #region
-    public void InitializeSetup(CharacterData data)
+    public void InitializeSetup(OldCharacterData data)
     {
         data.myStoryWindowCharacter = this;
         myCharacterData = data;

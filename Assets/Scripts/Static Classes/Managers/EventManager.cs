@@ -235,7 +235,7 @@ public class EventManager : MonoBehaviour
         if (StateManager.Instance.DoesPlayerAlreadyHaveState("Relaxed"))
         {
             // Reward xp
-            foreach (CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach (OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 character.ModifyCurrentXP(30);
             }
@@ -285,7 +285,7 @@ public class EventManager : MonoBehaviour
         // Check Local Heroes State
         if(StateManager.Instance.DoesPlayerAlreadyHaveState("Local Heroes"))
         {
-            foreach(CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach(OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 character.ModifyCurrentHealth(30);
             }
@@ -626,7 +626,7 @@ public class EventManager : MonoBehaviour
         // short yield for seconds to smoothen the transistion
         yield return new WaitForSeconds(1f);
 
-        foreach (CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+        foreach (OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
         {
             Debug.Log("StartPreLootScreenVisualEvent() creating visual status xp gained effect...");
             // Dead characters get no XP
@@ -638,7 +638,7 @@ public class EventManager : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        foreach (CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+        foreach (OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
         {
             if (character.myDefenderGO != null && character.currentXP + xpReward >= character.currentMaxXP)
             {
@@ -838,7 +838,7 @@ public class EventManager : MonoBehaviour
         WorldManager.Instance.OnActTwoStarted();
 
         // Heal all characters to full hp
-        foreach(CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+        foreach(OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
         {
             character.ModifyCurrentHealth(character.maxHealth);
         }

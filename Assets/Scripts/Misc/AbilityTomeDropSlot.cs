@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class AbilityTomeDropSlot : MonoBehaviour, IDropHandler
 {
-    public CharacterData myCharacter;
+    public OldCharacterData myCharacter;
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log("AbilityTomeDropSlot.OnDrop() called...");

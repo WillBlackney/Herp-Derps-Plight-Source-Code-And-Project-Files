@@ -875,6 +875,11 @@ public class MovementLogic : MonoBehaviour
         StartCoroutine(MoveEntityToNodeCentreCoroutine(entity, node, action));
         return action;
     }
+    public void MoveEntityToNodeCentre2(LivingEntity entity, LevelNode node, CoroutineData data)
+    {
+        Debug.Log("LivingEntityManager.MoveEntityToNodeCentre2() called...");
+        StartCoroutine(MoveEntityToNodeCentreCoroutine2(entity, node, data));
+    }
     private IEnumerator MoveEntityToNodeCentreCoroutine(LivingEntity entity, LevelNode node, OldCoroutineData action)
     {
         // Set up
@@ -920,6 +925,53 @@ public class MovementLogic : MonoBehaviour
 
         // Resolve event
         action.coroutineCompleted = true;
+
+    }
+    private IEnumerator MoveEntityToNodeCentreCoroutine2(LivingEntity entity, LevelNode node, CoroutineData action)
+    {
+        // Set up
+        bool reachedDestination = false;
+        Vector3 destination = new Vector3(node.transform.position.x, node.transform.position.y, 0);
+        float moveSpeed = 15;
+
+        // Face direction of destination node
+        PositionLogic.Instance.TurnFacingTowardsLocation(entity, node.transform.position);
+
+        // Play movement animation
+        entity.PlayMoveAnimation();
+
+        // Move
+        while (reachedDestination == false)
+        {
+            entity.transform.position = Vector2.MoveTowards(entity.transform.position, destination, moveSpeed * Time.deltaTime);
+
+            if (entity.transform.position == destination)
+            {
+                Debug.Log("LivingEntityManager.MoveEntityToNodeCentreCoroutine() detected destination was reached...");
+                reachedDestination = true;
+            }
+            yield return null;
+        }
+
+        // Reset facing, depending on living entity type
+
+        if (entity.defender)
+        {
+            PositionLogic.Instance.SetDirection(entity, "Right");
+            //PositionLogic.Instance.TurnFacingTowardsLocation(entity, new Vector3(1000,0,0));
+        }
+        else if (entity.enemy)
+        {
+            PositionLogic.Instance.SetDirection(entity, "Left");
+            //PositionLogic.Instance.TurnFacingTowardsLocation(entity, new Vector3(-1000, 0, 0));
+        }
+
+
+        // Idle anim
+        entity.PlayIdleAnimation();
+
+        // Resolve event
+        action.MarkAsCompleted();
 
     }
     #endregion

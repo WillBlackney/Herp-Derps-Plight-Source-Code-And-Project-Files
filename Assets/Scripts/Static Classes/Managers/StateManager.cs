@@ -68,14 +68,14 @@ public class StateManager : MonoBehaviour
         // Afflictions
         if (state.stateName == "Curse Of The Blood God")
         {
-            foreach (CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach (OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 character.ModifyFading(-2);
             }
         }
         else if (state.stateName == "Exhausted")
         {
-            foreach (CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach (OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 character.ModifyStamina(5);
                 character.ModifyMobility(1);
@@ -83,7 +83,7 @@ public class StateManager : MonoBehaviour
         }
         else if (state.stateName == "Shame")
         {
-            foreach (CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach (OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 character.ModifyStrength(1);
                 character.ModifyWisdom(1);
@@ -147,28 +147,28 @@ public class StateManager : MonoBehaviour
     {
         if(data.stateName == "Vengeful")
         {
-            foreach(CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach(OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 character.ModifyStrength(2);
             }
         }
         else if (data.stateName == "Educated")
         {
-            foreach (CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach (OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 character.ModifyWisdom(2);
             }
         }
         else if (data.stateName == "Tough")
         {
-            foreach (CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach (OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 character.ModifyDexterity(2);
             }
         }
         else if (data.stateName == "Well Rounded")
         {
-            foreach (CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach (OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 character.ModifyStrength(1);
                 character.ModifyWisdom(1);
@@ -177,7 +177,7 @@ public class StateManager : MonoBehaviour
         }
         else if (data.stateName == "Heroism")
         {
-            foreach (CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach (OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 character.ModifyStrength(1);
                 character.ModifyWisdom(1);
@@ -186,14 +186,14 @@ public class StateManager : MonoBehaviour
         }
         else if (data.stateName == "Polished Armour")
         {
-            foreach (CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach (OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 character.ModifyUnwavering(1);
             }
         }
         else if (data.stateName == "Pumped Up")
         {
-            foreach (CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach (OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 character.ModifyStamina(5);
                 character.ModifyMaxEnergy(5);
@@ -201,7 +201,7 @@ public class StateManager : MonoBehaviour
         }
         else if (data.stateName == "Vampirism")
         {
-            foreach (CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach (OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 character.ModifyLifeSteal(1);
             }
@@ -225,14 +225,14 @@ public class StateManager : MonoBehaviour
         // Afflictions
         else if (data.stateName == "Curse Of The Blood God")
         {
-            foreach (CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach (OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 character.ModifyFading(2);
             }
         }
         else if (data.stateName == "Exhausted")
         {
-            foreach (CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach (OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 character.ModifyStamina(-5);
                 character.ModifyMobility(-1);
@@ -240,7 +240,7 @@ public class StateManager : MonoBehaviour
         }
         else if (data.stateName == "Shame")
         {
-            foreach (CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach (OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 character.ModifyStrength(-1);
                 character.ModifyWisdom(-1);
@@ -251,7 +251,7 @@ public class StateManager : MonoBehaviour
         // boss states
         else if (data.stateName == "Combat Mastery")
         {
-            foreach (CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach (OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 character.ModifyStamina(10);
                 character.ModifyMaxEnergy(10);
@@ -259,7 +259,7 @@ public class StateManager : MonoBehaviour
         }
         else if (data.stateName == "Trauma Savant")
         {
-            foreach (CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach (OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 character.ModifyStamina(10);
                 character.ModifyMaxEnergy(10);
@@ -267,7 +267,7 @@ public class StateManager : MonoBehaviour
         }
         else if (data.stateName == "Oath Of Honour")
         {
-            foreach (CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach (OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 character.ModifyStamina(10);
                 character.ModifyMaxEnergy(10);
@@ -275,7 +275,7 @@ public class StateManager : MonoBehaviour
         }
         else if (data.stateName == "Awesomeness")
         {
-            foreach (CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach (OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 character.ModifyStamina(5);
                 character.ModifyMaxEnergy(5);
@@ -283,14 +283,14 @@ public class StateManager : MonoBehaviour
         }
         else if (data.stateName == "Orcish Tendencies")
         {
-            foreach (CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach (OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 character.ModifyStrength(5);
             }
         }
         else if (data.stateName == "Thick Skinned")
         {
-            foreach (CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach (OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 character.ModifyMaxHealth(50);
             }

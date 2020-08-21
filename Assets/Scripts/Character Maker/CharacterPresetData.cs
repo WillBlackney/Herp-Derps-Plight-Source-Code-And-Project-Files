@@ -8,7 +8,7 @@ public class CharacterPresetData
     // General Data
     public string characterName;
     public string characterDescription;
-    public List<CharacterData.Background> backgrounds;
+    public List<OldCharacterData.Background> backgrounds;
 
     // Model Properties
     public List<ModelElementData> activeModelElements;
@@ -38,7 +38,7 @@ public class CharacterPresetData
         knownPassives = new List<StatusPairing>();
         knownRacialPassives = new List<StatusPairing>();
         knownTalents = new List<TalentPairing>();
-        backgrounds = new List<CharacterData.Background>();
+        backgrounds = new List<OldCharacterData.Background>();
     }
 }
 

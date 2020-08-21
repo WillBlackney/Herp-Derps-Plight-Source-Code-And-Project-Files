@@ -38,7 +38,7 @@ public class TreasureRoomManager : MonoBehaviour
         }
     }
 
-    public void SetUpTreasureRoomCharacter(TreasureRoomCharacter tChar, CharacterData cData)
+    public void SetUpTreasureRoomCharacter(TreasureRoomCharacter tChar, OldCharacterData cData)
     {
         tChar.InitializeSetup(cData);
     }

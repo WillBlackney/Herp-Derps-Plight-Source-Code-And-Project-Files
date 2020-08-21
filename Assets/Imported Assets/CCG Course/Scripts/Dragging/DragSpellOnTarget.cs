@@ -46,7 +46,7 @@ public class DragSpellOnTarget : DraggingActions {
 
     public override void OnDraggingInUpdate()
     {
-        Debug.Log("DragSpellOnTarget.OnDraggingInUpdate() called...");
+       // Debug.Log("DragSpellOnTarget.OnDraggingInUpdate() called...");
         // This code only draws the arrow
         //transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 notNormalized = transform.position - transform.parent.position;

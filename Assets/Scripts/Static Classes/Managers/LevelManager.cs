@@ -163,6 +163,15 @@ public class LevelManager : MonoBehaviour
         //entity.transform.position = Camera.main.ScreenToWorldPoint(node.transform.position);
         entity.transform.position = node.transform.position;
     }
+    public void PlaceEntityAtNode(CharacterEntityModel entity, LevelNode node)
+    {
+        Debug.Log("LevelManager.PlaceEntityAtNode() called...");
+
+        //node.myEntity = entity;
+        node.occupied = true;
+        //entity.levelNode = node;
+        entity.characterEntityView.transform.position = node.transform.position;
+    }
     public void DisconnectEntityFromNode(LivingEntity entity)
     {
         entity.levelNode.DisableAllExtraViews();

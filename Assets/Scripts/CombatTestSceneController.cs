@@ -5,9 +5,10 @@ using UnityEngine;
 public class CombatTestSceneController : MonoBehaviour
 {
     public static CombatTestSceneController Instance;
-    public CharacterData sampleCharacterDataOne;
+    public OldCharacterData sampleCharacterDataOne;
     public List<CardDataSO> sampleDeck;
     public EnemyWaveSO testingEnemyWave;
+    public CharacterData characterDataSample;
 
     private void Awake()
     {
@@ -31,6 +32,7 @@ public class CombatTestSceneController : MonoBehaviour
         for(int i =0; i < 3; i++)
         {
             // Instantiate Defender GO from prefab, get defender script ref
+            /*
             GameObject defenderGO = Instantiate(PrefabHolder.Instance.defenderPrefab, transform.position, Quaternion.identity);
             Defender defender = defenderGO.GetComponent<Defender>();            
 
@@ -39,6 +41,11 @@ public class CombatTestSceneController : MonoBehaviour
 
             LevelNode startPos = LevelManager.Instance.GetNextAvailableDefenderNode();
             defender.InitializeSetup(startPos);
+            */
+
+
+            // NEW IMPLEMENTATION
+            CharacterEntityController.Instance.CreatePlayerCharacter(characterDataSample, LevelManager.Instance.GetNextAvailableDefenderNode());
         }
         
     }

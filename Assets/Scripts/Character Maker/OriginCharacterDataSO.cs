@@ -8,7 +8,7 @@ public class OriginCharacterDataSO : ScriptableObject
     [Header("Origin Properties")]
     public string characterName;
     [TextArea(10,10)] public string characterDescription;
-    public List<CharacterData.Background> characterBackgrounds;
+    public List<OldCharacterData.Background> characterBackgrounds;
     public UniversalCharacterModel.ModelRace characterRace;
 
     [Header("Combat Properties")]

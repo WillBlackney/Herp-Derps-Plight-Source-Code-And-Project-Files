@@ -12,7 +12,7 @@ public class Defender : LivingEntity
     #region
     [Header("Defender Card Data")]
     public List<CardDataSO> deckData;
-    public List<Card> deck = new List<Card>();
+    public List<Card> drawPile = new List<Card>();
     public List<Card> hand = new List<Card>();
     public List<Card> discardPile = new List<Card>();
 
@@ -37,7 +37,7 @@ public class Defender : LivingEntity
 
     [Header("Defender Properties")]
     public float uiFadeSpeed;
-    [HideInInspector] public CharacterData myCharacterData;
+    [HideInInspector] public OldCharacterData myCharacterData;
     [HideInInspector] public bool fadingIn;
     [HideInInspector] public bool fadingOut;
 

@@ -12,7 +12,7 @@ public class AbilityPageAbility : MonoBehaviour, IPointerClickHandler, IPointerE
     public bool onAbilityBar;
     public AbilityDataSO myData;
     public AbilitySlot myCurrentSlot;
-    public CharacterData myCharacter;
+    public OldCharacterData myCharacter;
     public AbilityInfoSheet abilityInfoSheet;
 
     // Setup

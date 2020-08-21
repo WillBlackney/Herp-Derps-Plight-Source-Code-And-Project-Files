@@ -380,7 +380,7 @@ public class ShopScreenManager : MonoBehaviour
 
     // Characters 
     #region
-    public void SetUpVillageCharacter(VillageCharacter characterSlot, CharacterData characterData)
+    public void SetUpVillageCharacter(VillageCharacter characterSlot, OldCharacterData characterData)
     {
         characterSlot.InitializeSetup(characterData);
     }

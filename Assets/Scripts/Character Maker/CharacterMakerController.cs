@@ -50,8 +50,8 @@ public class CharacterMakerController : MonoBehaviour
     private List<StatusPairing> allPassiveTabs = new List<StatusPairing>();
     private WeaponPresetDataSO currentWeaponPreset;
     private ClassPresetDataSO currentClassPreset;
-    private CharacterData.Background currentBackgroundOne;
-    private CharacterData.Background currentBackgroundTwo;
+    private OldCharacterData.Background currentBackgroundOne;
+    private OldCharacterData.Background currentBackgroundTwo;
     private List<TalentPairing> allTalentPairings = new List<TalentPairing>();
 
 
@@ -596,8 +596,8 @@ public class CharacterMakerController : MonoBehaviour
     }
     private void SetCharacterBackgroundDefaultState()
     {
-        SetCharacterBackgroundOne(CharacterData.Background.Unknown);
-        SetCharacterBackgroundTwo(CharacterData.Background.Unknown);
+        SetCharacterBackgroundOne(OldCharacterData.Background.Unknown);
+        SetCharacterBackgroundTwo(OldCharacterData.Background.Unknown);
     }
     #endregion
 
@@ -1064,7 +1064,7 @@ public class CharacterMakerController : MonoBehaviour
         characterNameText.text = "";
         OnStoryTextValueChanged();
     }
-    private void SetCharacterBackgroundOne(CharacterData.Background background)
+    private void SetCharacterBackgroundOne(OldCharacterData.Background background)
     {
         // cache BG ref
         currentBackgroundOne = background;
@@ -1072,7 +1072,7 @@ public class CharacterMakerController : MonoBehaviour
         // set text
         currentBackgroundOneText.text = background.ToString();
     }   
-    private void SetCharacterBackgroundTwo(CharacterData.Background background)
+    private void SetCharacterBackgroundTwo(OldCharacterData.Background background)
     {
         // cache BG ref
         currentBackgroundTwo = background;
@@ -1540,14 +1540,14 @@ public class CharacterMakerController : MonoBehaviour
 
         return CharacterPresetLibrary.Instance.allWeaponPresets[previousIndex];
     }
-    private CharacterData.Background GetNextBackground(CharacterData.Background currentBackground)
+    private OldCharacterData.Background GetNextBackground(OldCharacterData.Background currentBackground)
     {
         Debug.Log("CharacterMakerController.GetNextBackground() called...");
 
-        CharacterData.Background bgReturned = CharacterData.Background.None;
+        OldCharacterData.Background bgReturned = OldCharacterData.Background.None;
 
         int currentEnumIndex = (int)currentBackground;
-        int enumCount = Enum.GetNames(typeof(CharacterData.Background)).Length;
+        int enumCount = Enum.GetNames(typeof(OldCharacterData.Background)).Length;
         Debug.Log("CharacterMakerController.GetNextBackground() found " + enumCount.ToString() + " elements in the background enum");
         int nextIndex = 0;
 
@@ -1560,18 +1560,18 @@ public class CharacterMakerController : MonoBehaviour
             nextIndex = currentEnumIndex + 1;
         }
 
-        bgReturned = (CharacterData.Background)nextIndex;
+        bgReturned = (OldCharacterData.Background)nextIndex;
 
         return bgReturned;
     }
-    private CharacterData.Background GetPreviousBackground(CharacterData.Background currentBackground)
+    private OldCharacterData.Background GetPreviousBackground(OldCharacterData.Background currentBackground)
     {
         Debug.Log("CharacterMakerController.GetPreviousBackground() called...");
 
-        CharacterData.Background bgReturned = CharacterData.Background.None;
+        OldCharacterData.Background bgReturned = OldCharacterData.Background.None;
 
         int currentEnumIndex = (int)currentBackground;
-        int enumCount = Enum.GetNames(typeof(CharacterData.Background)).Length;
+        int enumCount = Enum.GetNames(typeof(OldCharacterData.Background)).Length;
         Debug.Log("CharacterMakerController.GetPreviousBackground() found " + enumCount.ToString() + " elements in the background enum");
         int previousIndex = 0;
 
@@ -1584,7 +1584,7 @@ public class CharacterMakerController : MonoBehaviour
             previousIndex = currentEnumIndex - 1;
         }
 
-        bgReturned = (CharacterData.Background)previousIndex;
+        bgReturned = (OldCharacterData.Background)previousIndex;
 
         return bgReturned;
     }

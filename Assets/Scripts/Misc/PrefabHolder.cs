@@ -26,6 +26,7 @@ public class PrefabHolder : MonoBehaviour
     public GameObject afflicationOnPanelPrefab;
 
     [Header("Living Entity Prefabs")]
+    public GameObject characterEntityModel;
     public GameObject defenderPrefab;
     public GameObject enemyPrefab;
 

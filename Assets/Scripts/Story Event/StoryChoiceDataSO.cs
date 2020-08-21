@@ -46,7 +46,7 @@ public class ChoiceRequirment
     public UniversalCharacterModel.ModelRace raceRequirement;
 
     [ShowIf("requirementType", RequirementType.HasBackground)]
-    public CharacterData.Background backgroundRequirement;
+    public OldCharacterData.Background backgroundRequirement;
 
     [ShowIf("requirementType", RequirementType.HasTalent)]
     public AbilityDataSO.AbilitySchool talentTypeRequirement;
@@ -126,7 +126,7 @@ public class SuccessChanceModifier
     public UniversalCharacterModel.ModelRace raceRequirement;
 
     [ShowIf("chanceTypeModifier", ChanceModifierType.HasBackground)]
-    public CharacterData.Background backgroundRequirement;
+    public OldCharacterData.Background backgroundRequirement;
 
     [ShowIf("chanceTypeModifier", ChanceModifierType.HasState)]
     public StateDataSO stateRequirement;

@@ -58,7 +58,7 @@ public class CharacterPresetLibrary : MonoBehaviour
 
         // Print backgrounds
         Debug.Log("Backgrounds: ");
-        foreach (CharacterData.Background bg in data.backgrounds)
+        foreach (OldCharacterData.Background bg in data.backgrounds)
         {
             Debug.Log(bg.ToString());
         }

@@ -748,7 +748,7 @@ public class MainMenuManager : MonoBehaviour
 
         int nextFreeTextIndex = 0;
 
-        foreach (CharacterData.Background bg in data.backgrounds)
+        foreach (OldCharacterData.Background bg in data.backgrounds)
         {
             textViews[nextFreeTextIndex].gameObject.SetActive(true);
             textViews[nextFreeTextIndex].text = bg.ToString();

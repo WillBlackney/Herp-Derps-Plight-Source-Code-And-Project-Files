@@ -9,7 +9,7 @@ public class CharacterItemSlot : MonoBehaviour, IDropHandler
 
     [Header("Properties")]
     public SlotType mySlotType;
-    public CharacterData myCharacterData;
+    public OldCharacterData myCharacterData;
     public InventoryItemCard myItem;
     public bool occupied;
     public void OnDrop(PointerEventData eventData)

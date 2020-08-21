@@ -27,6 +27,9 @@ public class VisualEventManager : MonoBehaviour
     [SerializeField] private float endDelayExtra;
 
     #endregion
+
+    // Misc Logic
+    #region
     private void Update()
     {
         if (eventQueue.Count > 0 &&
@@ -35,7 +38,10 @@ public class VisualEventManager : MonoBehaviour
             PlayEventFromQueue(eventQueue[0]);
         }
     }
+    #endregion
 
+    // Trigger Visual Events
+    #region
     private void PlayEventFromQueue(VisualEvent ve)
     {
         Debug.Log("VisualEventManager.PlayEventFromQueue() called, running function: " + ve.eventFunction.Method.Name);
@@ -67,12 +73,15 @@ public class VisualEventManager : MonoBehaviour
         RemoveEventFromQueue(ve);
 
     }
+    #endregion
+
+    // Modify Queue
+    #region
     private void RemoveEventFromQueue(VisualEvent ve)
     {
         Debug.Log("VisualEventManager.RemoveEventFromQueue() called...");
         eventQueue.Remove(ve);
     }
-
     private void AddEventToFrontOfQueue(VisualEvent ve)
     {
         Debug.Log("VisualEventManager.AddEventToFrontOfQueue() called...");
@@ -83,9 +92,19 @@ public class VisualEventManager : MonoBehaviour
         Debug.Log("VisualEventManager.AddEventToBackOfQueue() called...");
         eventQueue.Add(ve);
     }
+    #endregion
 
+    // Create Events
+    #region
     public void CreateVisualEvent(Action eventFunction, CoroutineData cData, QueuePosition position, float startDelay = 0f, float endDelay = 0.5f)
     {
+        // NOTE: This method requires on argument of 'CoroutineData'.
+        // this function is only for visual events that have their sequence
+        // triggered over time by way of coroutine.
+        // if a visual event has no coroutine and resolves instantly when played from the queue,
+        // it should be called using the overload function below this function
+
+
         Debug.Log("VisualEventManager.CreateVisualEvent() called...");
 
         VisualEvent vEvent = new VisualEvent(eventFunction, cData, startDelay, endDelay);
@@ -114,6 +133,7 @@ public class VisualEventManager : MonoBehaviour
             AddEventToFrontOfQueue(vEvent);
         }
     }
+    #endregion
 
 }
 public enum QueuePosition

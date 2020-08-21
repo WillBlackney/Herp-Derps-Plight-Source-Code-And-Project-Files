@@ -63,7 +63,7 @@ public class CampSiteManager : MonoBehaviour
         readPointCost = 1;
         digPointCost = 1;
     }
-    public void SetupCampSiteCharacter(CampSiteCharacter characterSlot, CharacterData characterData)
+    public void SetupCampSiteCharacter(CampSiteCharacter characterSlot, OldCharacterData characterData)
     {
         characterSlot.InitializeSetup(characterData);
     }
@@ -168,7 +168,7 @@ public class CampSiteManager : MonoBehaviour
         if (HasEnoughCampSitePoints(prayPointCost))
         {
             bool atLeastOneCharacterIsDead = false;
-            foreach (CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach (OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 if (character.currentHealth == 0)
                 {

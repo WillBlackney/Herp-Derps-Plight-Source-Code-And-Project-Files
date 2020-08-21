@@ -32,7 +32,7 @@ public class CardController : MonoBehaviour
         }
 
         // Shuffle the characters draw pile
-        ShuffleCards(defender.deck);
+        ShuffleCards(defender.drawPile);
     }
     public Card BuildCardFromCardData(CardDataSO data, Defender owner)
     {
@@ -111,7 +111,7 @@ public class CardController : MonoBehaviour
         if (IsCardDrawValid(defender))
         {
             // Get card and remove from deck
-            Card cardDrawn = defender.deck[index];
+            Card cardDrawn = defender.drawPile[index];
             RemoveCardFromDrawPile(defender, cardDrawn);
 
             // Add card to hand
@@ -254,7 +254,7 @@ public class CardController : MonoBehaviour
     }
     public bool IsDrawPileEmpty(Defender defender)
     {
-        return defender.deck.Count == 0;
+        return defender.drawPile.Count == 0;
     }
     #endregion
 
@@ -371,8 +371,7 @@ public class CardController : MonoBehaviour
             {
                 OldCoroutineData effectEvent = TriggerEffectFromCard(card, effect, target);
                 yield return new WaitUntil(() => effectEvent.ActionResolved());
-            }
-            
+            }            
         }
 
         // On end events
@@ -422,23 +421,13 @@ public class CardController : MonoBehaviour
             {
                 hasMovedOffStartingNode = true;
 
+                // Move towards target visual event
                 CoroutineData cData = new CoroutineData();
                 VisualEventManager.Instance.CreateVisualEvent(() => MovementLogic.Instance.MoveAttackerToTargetNodeAttackPosition2(owner, target, cData), cData, QueuePosition.Back, 0, 0);
-
-
-                // Movement visual event
-                // CoroutineData cData = new CoroutineData();
-                // Action newFunc = () => MovementLogic.Instance.MoveAttackerToTargetNodeAttackPosition2(owner, target, cData);
-                // VisualEventManager.Instance.CreateVisualEvent(newFunc, cData, QueuePosition.Back, 0, 0);
-
+               
                 // Animation visual event
-                VisualEventManager.Instance.CreateVisualEvent(() => owner.TriggerMeleeAttackAnimation(), QueuePosition.Back, 0, 0);
+                VisualEventManager.Instance.CreateVisualEvent(() => owner.TriggerMeleeAttackAnimation(), QueuePosition.Back, 0);
               
-
-                // ORIGINAL CODE!
-                //CoroutineData moveAction = MovementLogic.Instance.MoveAttackerToTargetNodeAttackPosition(owner, target);
-                //yield return new WaitUntil(() => moveAction.ActionResolved());
-                //owner.TriggerMeleeAttackAnimation();
             }
 
             // Calculate damage
@@ -452,8 +441,8 @@ public class CardController : MonoBehaviour
             // Move back to starting node pos, if we moved off 
             if(hasMovedOffStartingNode && owner.inDeathProcess == false)
             {
-                OldCoroutineData moveBackEvent = MovementLogic.Instance.MoveEntityToNodeCentre(owner, owner.levelNode);
-                yield return new WaitUntil(() => moveBackEvent.ActionResolved() == true);
+                CoroutineData cData = new CoroutineData();
+                VisualEventManager.Instance.CreateVisualEvent(() => MovementLogic.Instance.MoveEntityToNodeCentre2(owner, owner.levelNode, cData), cData, QueuePosition.Back, 0, 0);
             }
 
         }
@@ -538,16 +527,16 @@ public class CardController : MonoBehaviour
         }
 
         // Re-shuffle the draw pile
-        ShuffleCards(defender.deck);
+        ShuffleCards(defender.drawPile);
 
     }
     public void AddCardToDrawPile(Defender defender, Card card)
     {
-        defender.deck.Add(card);
+        defender.drawPile.Add(card);
     }
     public void RemoveCardFromDrawPile(Defender defender, Card card)
     {
-        defender.deck.Remove(card);
+        defender.drawPile.Remove(card);
     }
     public void AddCardToDiscardPile(Defender defender, Card card)
     {

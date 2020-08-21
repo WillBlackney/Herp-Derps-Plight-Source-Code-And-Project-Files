@@ -50,7 +50,7 @@ public class StoryEventManager : MonoBehaviour
     {
         viableStoryEvents.AddRange(allStoryEvents);
     }
-    public void SetupStoryWindowCharacter(StoryWindowCharacterSlot characterSlot, CharacterData characterData)
+    public void SetupStoryWindowCharacter(StoryWindowCharacterSlot characterSlot, OldCharacterData characterData)
     {
         characterSlot.InitializeSetup(characterData);
     }
@@ -231,7 +231,7 @@ public class StoryEventManager : MonoBehaviour
         // Join The Cult
         if (buttonPressed == 1)
         {
-            foreach(CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach(OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 character.ModifyMaxHealth(-character.maxHealth / 2);
             }
@@ -244,7 +244,7 @@ public class StoryEventManager : MonoBehaviour
         else if (buttonPressed == 2)
         {
             PlayerDataManager.Instance.ModifyGold(15);
-            foreach (CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach (OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 float healthLost = character.maxHealth * 0.3f;
                 character.ModifyCurrentHealth((int)-healthLost);

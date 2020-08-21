@@ -443,7 +443,7 @@ public class StoryEventController : MonoBehaviour
 
                 if (CharacterRoster.Instance)
                 {
-                    foreach (CharacterData cd in CharacterRoster.Instance.allCharacterDataObjects)
+                    foreach (OldCharacterData cd in CharacterRoster.Instance.allCharacterDataObjects)
                     {
                         if (cd.backgrounds.Contains(cr.backgroundRequirement))
                         {
@@ -472,7 +472,7 @@ public class StoryEventController : MonoBehaviour
             {
                 bool passedRacialCheck = false;
 
-                foreach (CharacterData cd in CharacterRoster.Instance.allCharacterDataObjects)
+                foreach (OldCharacterData cd in CharacterRoster.Instance.allCharacterDataObjects)
                 {
                     if (cd.myRace == cr.raceRequirement)
                     {
@@ -500,7 +500,7 @@ public class StoryEventController : MonoBehaviour
                 bool passTalentCheck = false;
 
                 // check the talent type + tier requirement value against each character in player's party
-                foreach (CharacterData cd in CharacterRoster.Instance.allCharacterDataObjects)
+                foreach (OldCharacterData cd in CharacterRoster.Instance.allCharacterDataObjects)
                 {
                     if(cr.talentTypeRequirement == AbilityDataSO.AbilitySchool.Assassination &&
                         cd.assassinationPoints >= cr.talentTierRequirement)
@@ -641,7 +641,7 @@ public class StoryEventController : MonoBehaviour
         // Check background modifier
         if (element.chanceTypeModifier == SuccessChanceModifier.ChanceModifierType.HasBackground)
         {
-            foreach (CharacterData cd in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach (OldCharacterData cd in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 if (cd.backgrounds.Contains(element.backgroundRequirement))
                 {
@@ -654,7 +654,7 @@ public class StoryEventController : MonoBehaviour
         // Check racial modifier
         else if (element.chanceTypeModifier == SuccessChanceModifier.ChanceModifierType.HasRace)
         {
-            foreach (CharacterData cd in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach (OldCharacterData cd in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 if (cd.myRace == element.raceRequirement)
                 {
@@ -814,7 +814,7 @@ public class StoryEventController : MonoBehaviour
         }
         else if (consequence.consequenceType == ChoiceConsequence.ConsequenceType.AllCharactersGainXP)
         {
-            foreach (CharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
+            foreach (OldCharacterData character in CharacterRoster.Instance.allCharacterDataObjects)
             {
                 character.ModifyCurrentXP(consequence.xpGainAmount);
             }
@@ -880,11 +880,11 @@ public class StoryEventController : MonoBehaviour
         {
             for(int i = 0; i < consequence.partyMembersKilled; i++)
             {
-                List<CharacterData> charactersWithAtleast1HP = new List<CharacterData>();
-                CharacterData characterKilled = null;
+                List<OldCharacterData> charactersWithAtleast1HP = new List<OldCharacterData>();
+                OldCharacterData characterKilled = null;
 
                 // Get all viable characters to kill
-                foreach(CharacterData cd in CharacterRoster.Instance.allCharacterDataObjects)
+                foreach(OldCharacterData cd in CharacterRoster.Instance.allCharacterDataObjects)
                 {
                     if(cd.currentHealth > 0)
                     {

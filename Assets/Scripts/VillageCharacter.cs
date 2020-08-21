@@ -21,11 +21,11 @@ public class VillageCharacter : MonoBehaviour
     public EntityRenderer myEntityRenderer;
 
     [Header("Properties")]
-    public CharacterData myCharacterData;
+    public OldCharacterData myCharacterData;
 
     // Set up + initialization
     #region
-    public void InitializeSetup(CharacterData data)
+    public void InitializeSetup(OldCharacterData data)
     {
         data.myVillageCharacter = this;
         myCharacterData = data;
