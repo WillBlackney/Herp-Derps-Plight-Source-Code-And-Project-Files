@@ -225,8 +225,9 @@ public class CardController : MonoBehaviour
 
         bool boolReturned = false;
 
-        if(HasEnoughEnergyToPlayCard(card, owner) &&
-           ActivationManager.Instance.IsEntityActivated(owner))
+        if(HasEnoughEnergyToPlayCard(card, owner))// &&
+           //ActivationManager.Instance.IsEntityActivated(owner))
+
            // TO DO: here we check for specifics on card type 
            // (e.g. M attack cards not playable when disarmed)
         {

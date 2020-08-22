@@ -85,4 +85,62 @@ public class TurnChangeNotifier : MonoBehaviour
         action.coroutineCompleted = true;
     }
 
+    public void DisplayTurnChangeNotification(CoroutineData cData)
+    {
+        StartCoroutine(DisplayTurnChangeNotificationCoroutine(cData));
+    }
+    private IEnumerator DisplayTurnChangeNotificationCoroutine(CoroutineData cData)
+    {
+        bool reachedMiddlePos = false;
+        bool reachedEndPos = false;
+
+        RectTransform parent = visualParentCG.gameObject.GetComponent<RectTransform>();
+
+        visualParentCG.gameObject.SetActive(true);
+        parent.anchoredPosition = startPos.anchoredPosition;
+        visualParentCG.alpha = 0;
+
+        whoseTurnText.text = "Turn " + currentTurnCount;
+
+        while (reachedMiddlePos == false)
+        {
+            visualParentCG.alpha += alphaChangeSpeed;
+            parent.anchoredPosition = Vector2.MoveTowards(parent.anchoredPosition, middlePos.anchoredPosition, animSpeed * Time.deltaTime);
+            if (parent.anchoredPosition.x == middlePos.anchoredPosition.x)
+            {
+                Debug.Log("reached Middle pos");
+                reachedMiddlePos = true;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+
+        visualParentCG.alpha = 1;
+
+        // brief pause while text in centred on screen
+        yield return new WaitForSeconds(0.8f);
+
+        while (reachedEndPos == false)
+        {
+            visualParentCG.alpha -= alphaChangeSpeed;
+            parent.anchoredPosition = Vector2.MoveTowards(parent.anchoredPosition, endPos.anchoredPosition, animSpeed * Time.deltaTime);
+
+            // snap to end position if already alpha'd out
+            if (visualParentCG.alpha == 0)
+            {
+                parent.anchoredPosition = endPos.anchoredPosition;
+            }
+
+            if (parent.anchoredPosition.x == endPos.anchoredPosition.x)
+            {
+                Debug.Log("reached end pos");
+                reachedEndPos = true;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+
+        visualParentCG.alpha = 0;
+        visualParentCG.gameObject.SetActive(false);
+
+        cData.MarkAsCompleted();
+    }
 }

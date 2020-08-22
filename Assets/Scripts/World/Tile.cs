@@ -85,29 +85,7 @@ public class Tile : MonoBehaviour
     public void OnTileMouseEnter()
     {
         // Move tile hover over this
-        TileHover.Instance.UpdatePosition(this);
-
-        // Activate path renderers
-        if (DefenderManager.Instance.selectedDefender != null)
-        {
-            Defender selectedDefender = DefenderManager.Instance.selectedDefender;
-
-            if (selectedDefender.awaitingMoveOrder ||
-                selectedDefender.awaitingChargeLocationOrder ||
-                selectedDefender.awaitingDashOrder ||
-                selectedDefender.awaitingGetDownOrder)
-            {
-                if (PathRenderer.Instance.active)
-                {
-                    PathRenderer.Instance.DrawPath();
-                }
-                
-            }
-            else if(selectedDefender.awaitingAnOrder)
-            {
-                TargetingPathRenderer.Instance.DrawPath();
-            }
-        }       
+        TileHover.Instance.UpdatePosition(this);  
 
 
     }
@@ -131,79 +109,7 @@ public class Tile : MonoBehaviour
         {
             ConsumableManager.Instance.PerformBlinkPotion(this);
         }
-
-        // Check abilities second
-        else if (selectedDefender != null && selectedDefender.awaitingMoveOrder == true)
-        {
-            Debug.Log("Starting Movement Process...");
-            selectedDefender.StartMoveAbilityProcess(this);
-        }
-
-        else if (selectedDefender != null && selectedDefender.awaitingChargeLocationOrder == true)
-        {
-            selectedDefender.StartChargeProcess(this);
-        }
-
-        else if (selectedDefender != null && selectedDefender.awaitingMeteorOrder == true)
-        {
-            selectedDefender.StartMeteorProcess(this);
-        }
-        else if (selectedDefender != null && selectedDefender.awaitingBlizzardOrder == true)
-        {
-            selectedDefender.StartBlizzardProcess(this);
-        }
-        else if (selectedDefender != null && selectedDefender.awaitingToxicEruptionOrder == true)
-        {
-            selectedDefender.StartToxicEruptionProcess(this);
-        }
-        else if (selectedDefender != null && selectedDefender.awaitingBlindingLightOrder == true)
-        {
-            selectedDefender.StartBlindingLightProcess(this);
-        }
-        else if (selectedDefender != null && selectedDefender.awaitingConcealingCloudsOrder == true)
-        {
-            selectedDefender.StartConcealingCloudsProcess(this);
-        }
-        else if (selectedDefender != null && selectedDefender.awaitingDragonBreathOrder == true)
-        {
-            selectedDefender.StartDragonBreathProcess(this);
-        }
-        else if (selectedDefender != null && selectedDefender.awaitingRainOfChaosOrder == true)
-        {
-            selectedDefender.StartRainOfChaosProcess(this);
-        }
-        else if (selectedDefender != null && selectedDefender.awaitingThunderStormOrder == true)
-        {
-            selectedDefender.StartThunderStormProcess(this);
-        }
-        else if (selectedDefender != null && selectedDefender.awaitingTelekinesisLocationOrder == true)
-        {
-            selectedDefender.StartTelekinesisProcess(selectedDefender.myCurrentTarget, this);
-        }
-        else if (selectedDefender != null && selectedDefender.awaitingBlinkOrder == true)
-        {
-            selectedDefender.StartBlinkProcess(this);
-        }
-        else if (selectedDefender != null && selectedDefender.awaitingDisengageOrder == true)
-        {
-            selectedDefender.StartDisengageProcess(this);
-        }
-        else if (selectedDefender != null && selectedDefender.awaitingTreeLeapOrder == true)
-        {
-            selectedDefender.StartTreeLeapProcess(this);
-        }
-        else if (selectedDefender != null && selectedDefender.awaitingPhoenixDiveOrder == true)
-        {
-            selectedDefender.StartPhoenixDiveProcess(this);
-        }
-        else if (selectedDefender != null && selectedDefender.awaitingDashOrder == true)
-        {
-            selectedDefender.StartDashProcess(this);
-        }
-        else if (selectedDefender != null && selectedDefender.awaitingGetDownOrder == true)
-        {
-            selectedDefender.StartGetDownProcess(this);
-        }
+       
 
     }
     #endregion

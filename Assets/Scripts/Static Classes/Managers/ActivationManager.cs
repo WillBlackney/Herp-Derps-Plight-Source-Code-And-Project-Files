@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class ActivationManager : MonoBehaviour
+public class ActivationManager : Singleton<ActivationManager>
 {
+    // Properties + Component References
+    #region
     [Header("Component References")]
     public GameObject activationSlotContentParent;
     public GameObject activationWindowContentParent;
@@ -17,101 +19,89 @@ public class ActivationManager : MonoBehaviour
     public GameObject windowHolderPrefab;
 
     [Header("Properties")]
-    public List<LivingEntity> activationOrder;
+    public List<CharacterEntityModel> activationOrder = new List<CharacterEntityModel>();
     public List<GameObject> panelSlots;
-    public LivingEntity entityActivated;
+    public CharacterEntityModel entityActivated;
     public bool panelIsMousedOver;
     public bool updateWindowPositions;
-
+    #endregion
 
     // Setup + Initializaton
-    #region   
-    
-    public void CreateActivationWindow(LivingEntity entity)
+    #region 
+    public void CreateActivationWindow(CharacterEntityModel entity)
     {
+        // Create slot
         GameObject newSlot = Instantiate(panelSlotPrefab, activationSlotContentParent.transform);
         panelSlots.Add(newSlot);
 
+        // Create window
         GameObject newWindow = Instantiate(PrefabHolder.Instance.activationWindowPrefab, activationWindowContentParent.transform);
-        newWindow.transform.position = windowStartPos.transform.position;      
-        
+        newWindow.transform.position = windowStartPos.transform.position;
+
+        // Set up window + connect components
         ActivationWindow newWindowScript = newWindow.GetComponent<ActivationWindow>();
-        newWindowScript.InitializeSetup(entity);        
+        newWindowScript.InitializeSetup(entity);
+
+        // add character to activation order list
         activationOrder.Add(entity);
-        newWindowScript.myUCM.SetBaseAnim();
+        
+        // play window idle anim on ucm
+        //newWindowScript.myUCM.SetBaseAnim();
     }
-    public static ActivationManager Instance;
-    private void Awake()
+    public void CreateSlotAndWindowHolders()
     {
-        Instance = this;
+        activationSlotContentParent = Instantiate(slotHolderPrefab, activationPanelParent.transform);
+        activationWindowContentParent = Instantiate(windowHolderPrefab, activationPanelParent.transform);
+        updateWindowPositions = true;
     }
     #endregion
 
     // Events
     #region
-    public OldCoroutineData OnNewCombatEventStarted()
-    {
-        Debug.Log("ActivationManager.OnNewCombatEventStarted() called...");
-        OldCoroutineData action = new OldCoroutineData();
-        StartCoroutine(OnNewCombatEventStartedCoroutine(action));
-        return action;
-    }
-    private IEnumerator OnNewCombatEventStartedCoroutine(OldCoroutineData action)
+    public void OnNewCombatEventStarted()
     {
         TurnChangeNotifier.Instance.currentTurnCount = 0;
         SetActivationWindowViewState(true);
         StartNewTurnSequence();
-        action.coroutineCompleted = true;
-        yield return null;
     }
-    public void CreateSlotAndWindowHolders()
-    {        
-        activationSlotContentParent = Instantiate(slotHolderPrefab, activationPanelParent.transform);
-        activationWindowContentParent = Instantiate(windowHolderPrefab, activationPanelParent.transform);
-        updateWindowPositions = true;
-    }
-    public OldCoroutineData StartNewTurnSequence()
+    public void StartNewTurnSequence()
     {
-        Debug.Log("ActivationManager.StartNewTurnSequenceCalled()....");
-        OldCoroutineData action = new OldCoroutineData();
-        StartCoroutine(StartNewTurnSequenceCoroutine(action));
-        return action;
-    }
-    private IEnumerator StartNewTurnSequenceCoroutine(OldCoroutineData action)
-    {
+        // Increment turn count
         TurnChangeNotifier.Instance.currentTurnCount++;
 
-        // Resolve each entity's OnNewTurnCycleStarted events
-        foreach(LivingEntity entity in LivingEntityManager.Instance.allLivingEntities)
+        // Resolve each entity's OnNewTurnCycleStarted events       
+        foreach(CharacterEntityModel entity in CharacterEntityController.Instance.allCharacters)
         {
-            OldCoroutineData endTurnCycleEvent = entity.OnNewTurnCycleStarted();
-            yield return new WaitUntil(() => endTurnCycleEvent.ActionResolved());
-        }
+            CharacterEntityController.Instance.CharacterOnNewTurnCycleStarted(entity);
+        }       
 
-        OldCoroutineData rolls = CalculateActivationOrder();
-        yield return new WaitUntil(() => rolls.ActionResolved() == true);
+        // Characters roll for initiative
+        GenerateInitiativeRolls();
 
-        OldCoroutineData turnNotification = TurnChangeNotifier.Instance.DisplayTurnChangeNotification();
-        yield return new WaitUntil(() => turnNotification.ActionResolved());
+        // Play roll animation sequence
+        CoroutineData rollsCoroutine = new CoroutineData();
+        VisualEventManager.Instance.CreateVisualEvent(() => PlayActivationRollSequence(rollsCoroutine), rollsCoroutine, QueuePosition.Back, 0, 0);
 
+        // Play turn change notification
+        CoroutineData turnNotificationCoroutine = new CoroutineData();
+        VisualEventManager.Instance.CreateVisualEvent(() => TurnChangeNotifier.Instance.DisplayTurnChangeNotification(turnNotificationCoroutine), turnNotificationCoroutine, QueuePosition.Back, 0, 0);
+
+        // Set all enemy intent images if turn 1
         if(TurnChangeNotifier.Instance.currentTurnCount == 1)
         {
-            EnemyController.Instance.SetAllEnemyIntents();
-            yield return new WaitForSeconds(1);
+            VisualEventManager.Instance.CreateVisualEvent(()=> EnemyController.Instance.SetAllEnemyIntents(), QueuePosition.Back, 0, 1f);
         }        
 
         ActivateEntity(activationOrder[0]);
-        action.coroutineCompleted = true;
     }
     public void ClearAllWindowsFromActivationPanel()
     {
         updateWindowPositions = false;
-        foreach(LivingEntity entity in activationOrder)
+        foreach(CharacterEntityModel entity in activationOrder)
         {
-            if(entity.myActivationWindow != null)
+            if(entity.characterEntityView.myActivationWindow != null)
             {
-
-                entity.myActivationWindow.DestroyWindowOnCombatEnd();
+                entity.characterEntityView.myActivationWindow.DestroyWindowOnCombatEnd();
             }
             
         }
@@ -130,58 +120,18 @@ public class ActivationManager : MonoBehaviour
     {
         MoveArrowTowardsEntityActivatedWindow();
     }
-    public int CalculateInitiativeRoll(LivingEntity entity)
+    private int CalculateInitiativeRoll(CharacterEntityModel entity)
     {
         return EntityLogic.GetTotalInitiative(entity) + Random.Range(1, 4);
     }
-    public OldCoroutineData CalculateActivationOrder()
+    public void GenerateInitiativeRolls()
     {
-        OldCoroutineData action = new OldCoroutineData();
-        StartCoroutine(CalculateActivationOrderCoroutine(action));
-        return action;
-    }
-    public IEnumerator CalculateActivationOrderCoroutine(OldCoroutineData action)
-    {
-        // Disable arrow to prevtn blocking numbers
-        panelArrow.SetActive(false);
-
-        foreach (LivingEntity entity in activationOrder)
+        foreach (CharacterEntityModel entity in activationOrder)
         {
-            // generate the characters initiative roll
             entity.currentInitiativeRoll = CalculateInitiativeRoll(entity);
-            // start animating their roll number text
-            StartCoroutine(PlayRandomNumberAnim(entity.myActivationWindow));            
         }
-
-        yield return new WaitForSeconds(1);
-
-        foreach (LivingEntity entity in activationOrder)
-        {
-            // stop the number anim
-            entity.myActivationWindow.animateNumberText = false;
-            // set the number text as their initiative roll
-            entity.myActivationWindow.rollText.text = entity.currentInitiativeRoll.ToString();
-            yield return new WaitForSeconds(0.3f);
-        }
-
-        // Re arrange the activation order list based on the entity rolls
-        List<LivingEntity> sortedList = activationOrder.OrderBy(entity => entity.currentInitiativeRoll).ToList();
-        sortedList.Reverse();
-        activationOrder = sortedList;
-
-        // Move activation windows to their new positions
-        //ArrangeActivationWindowPositions();
-        yield return new WaitForSeconds(1f);
-
-        // Disable roll number text components
-        foreach(LivingEntity entity in activationOrder)
-        {
-            entity.myActivationWindow.rollText.enabled = false;
-        }
-
-        panelArrow.SetActive(true);
-        action.coroutineCompleted = true;        
-    }  
+    }
+   
    
     #endregion 
 
@@ -202,30 +152,10 @@ public class ActivationManager : MonoBehaviour
         Debug.Log("OnEndTurnButtonClickedCoroutine() started...");
 
         UIManager.Instance.DisableEndTurnButtonInteractions();
-        OldCoroutineData endTurnEvent = LivingEntityManager.Instance.EndEntityActivation(entityActivated);
-        yield return new WaitUntil(() => endTurnEvent.ActionResolved() == true); 
-
-    }
-    public IEnumerator PlayRandomNumberAnim(ActivationWindow window)
-    {
-        Debug.Log("PlayRandomNumberAnim() called....");
-        int numberDisplayed = 0;
-        window.animateNumberText = true;
-        window.rollText.enabled = true;
-
-        while (window.animateNumberText == true)
-        {
-            //Debug.Log("Animating roll number text....");
-            numberDisplayed++;
-            if (numberDisplayed > 9)
-            {
-                numberDisplayed = 0;
-            }
-            window.rollText.text = numberDisplayed.ToString();
-            
-            yield return new WaitForEndOfFrame();
-        }
-    }
+        //OldCoroutineData endTurnEvent = LivingEntityManager.Instance.EndEntityActivation(entityActivated);
+        // yield return new WaitUntil(() => endTurnEvent.ActionResolved() == true); 
+        yield return null;
+    }  
     public OldCoroutineData MoveArrowTowardsTargetPanelPos(ActivationWindow window, float moveDelay = 0f, float arrowMoveSpeed = 400)
     {
         Debug.Log("ActivationManager.MoveArrowTowardsTargetPanelPos() called....");
@@ -280,46 +210,45 @@ public class ActivationManager : MonoBehaviour
     #endregion
 
     // Entity / Activation related
-    #region
-    public OldCoroutineData ActivateEntity(LivingEntity entity)
+    #region   
+    public void ActivateEntity(CharacterEntityModel entity)
     {
-        OldCoroutineData action = new OldCoroutineData();
-        StartCoroutine(ActivateEntityCoroutine(entity, action));
-        return action;
-    }
-    public IEnumerator ActivateEntityCoroutine(LivingEntity entity, OldCoroutineData action)
-    {
-        Debug.Log("Activating entity: " + entity.name);
+        Debug.Log("Activating entity: " + entity.myName);
         entityActivated = entity;        
-        CameraManager.Instance.SetCameraLookAtTarget(entity.gameObject);
 
-        if (entity.defender)
+        // Player controlled characters
+        if (entity.allegiance == Allegiance.Player &&
+            entity.controller == Controller.Player)
         {
             UIManager.Instance.SetEndTurnButtonText("End Activation");
             UIManager.Instance.EnableEndTurnButtonView();
             UIManager.Instance.EnableEndTurnButtonInteractions();
-            entity.defender.SelectDefender();
+           // entity.defender.SelectDefender();
         }
-        else if (entity.enemy)
+
+        // Enemy controlled characters
+        else if (entity.allegiance == Allegiance.Enemy &&
+                 entity.controller == Controller.AI)
         {
             UIManager.Instance.EnableEndTurnButtonView();
             UIManager.Instance.SetEndTurnButtonText("Enemy Activation...");
             UIManager.Instance.DisableEndTurnButtonInteractions();
         }
 
-        OldCoroutineData activationStartAction = entity.OnActivationStart();
-        yield return new WaitUntil(() => activationStartAction.ActionResolved() == true);
+        CharacterEntityController.Instance.CharacterOnActivationStart(entity);
+       // OldCoroutineData activationStartAction = entity.OnActivationStart();
+        //yield return new WaitUntil(() => activationStartAction.ActionResolved() == true);
 
-        entity.hasActivatedThisTurn = true;
 
+        /*
         if (entity.enemy)
         {
-            yield return new WaitForSeconds(1f);
+            //yield return new WaitForSeconds(1f);
             entity.enemy.StartMyActivation();
-            yield return new WaitForSeconds(0.5f);
+           // yield return new WaitForSeconds(0.5f);
         }
-
-        action.coroutineCompleted = true;        
+        */
+      
     }  
     public void ActivateNextEntity()
     {
@@ -333,7 +262,7 @@ public class ActivationManager : MonoBehaviour
             return;
         }
 
-        LivingEntity nextEntityToActivate = null;
+        CharacterEntityModel nextEntityToActivate = null;
         if (AllEntitiesHaveActivatedThisTurn())
         {
             StartNewTurnSequence();
@@ -342,9 +271,9 @@ public class ActivationManager : MonoBehaviour
         {
             for (int index = 0; index < activationOrder.Count; index++)
             {
-                if (activationOrder[index].inDeathProcess == false &&
-                   (activationOrder[index].hasActivatedThisTurn == false ||
-                    (activationOrder[index].hasActivatedThisTurn == true && activationOrder[index].myPassiveManager.timeWarp)))
+                if (true)//(activationOrder[index].inDeathProcess == false &&
+                  // (activationOrder[index].hasActivatedThisTurn == false ||
+                   // (activationOrder[index].hasActivatedThisTurn == true && activationOrder[index].myPassiveManager.timeWarp)))
                 {
                     nextEntityToActivate = activationOrder[index];
                     break;
@@ -363,7 +292,7 @@ public class ActivationManager : MonoBehaviour
         }
         
     }
-    public bool IsEntityActivated(LivingEntity entity)
+    public bool IsEntityActivated(CharacterEntityModel entity)
     {
         if(entityActivated == entity)
         {
@@ -377,15 +306,82 @@ public class ActivationManager : MonoBehaviour
     public bool AllEntitiesHaveActivatedThisTurn()
     {
         bool boolReturned = true;
-        foreach (LivingEntity entity in activationOrder)
+        foreach (CharacterEntityModel entity in activationOrder)
         {
-            if (entity.hasActivatedThisTurn == false ||
-                (entity.myPassiveManager.timeWarp == true && entity.myPassiveManager.timeWarp))
+            if (entity.hasActivatedThisTurn == false)
             {
                 boolReturned = false;
             }
         }
         return boolReturned;
+    }
+    #endregion
+
+    // Visual Events
+    #region
+    public void PlayActivationRollSequence(CoroutineData cData)
+    {
+        StartCoroutine(PlayActivationRollSequenceCoroutine(cData));
+    }
+    private IEnumerator PlayActivationRollSequenceCoroutine(CoroutineData cData)
+    {
+        // Disable arrow to prevtn blocking numbers
+        panelArrow.SetActive(false);
+
+        foreach (CharacterEntityModel entity in activationOrder)
+        {
+            // start animating their roll number text
+            StartCoroutine(PlayRandomNumberAnim(entity.characterEntityView.myActivationWindow));
+        }
+
+        yield return new WaitForSeconds(1);
+
+        foreach (CharacterEntityModel entity in activationOrder)
+        {
+            // stop the number anim
+            entity.characterEntityView.myActivationWindow.animateNumberText = false;
+            // set the number text as their initiative roll
+            entity.characterEntityView.myActivationWindow.rollText.text = entity.currentInitiativeRoll.ToString();
+            yield return new WaitForSeconds(0.3f);
+        }
+
+        // Re arrange the activation order list based on the entity rolls
+        List<CharacterEntityModel> sortedList = activationOrder.OrderBy(entity => entity.currentInitiativeRoll).ToList();
+        sortedList.Reverse();
+        activationOrder = sortedList;
+
+        // Move activation windows to their new positions
+        //ArrangeActivationWindowPositions();
+        yield return new WaitForSeconds(1f);
+
+        // Disable roll number text components
+        foreach (CharacterEntityModel entity in activationOrder)
+        {
+            entity.characterEntityView.myActivationWindow.rollText.enabled = false;
+        }
+
+        panelArrow.SetActive(true);
+        cData.MarkAsCompleted();
+    }
+    private IEnumerator PlayRandomNumberAnim(ActivationWindow window)
+    {
+        Debug.Log("PlayRandomNumberAnim() called....");
+        int numberDisplayed = 0;
+        window.animateNumberText = true;
+        window.rollText.enabled = true;
+
+        while (window.animateNumberText == true)
+        {
+            //Debug.Log("Animating roll number text....");
+            numberDisplayed++;
+            if (numberDisplayed > 9)
+            {
+                numberDisplayed = 0;
+            }
+            window.rollText.text = numberDisplayed.ToString();
+
+            yield return new WaitForEndOfFrame();
+        }
     }
     #endregion
 

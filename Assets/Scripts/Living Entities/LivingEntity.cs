@@ -194,7 +194,7 @@ public class LivingEntity : MonoBehaviour
         SetBaseProperties();
 
         // Create Activation Window
-        ActivationManager.Instance.CreateActivationWindow(this);
+        //ActivationManager.Instance.CreateActivationWindow(this);
 
         // Update GUI views
         UpdateHealthGUIElements();
@@ -246,7 +246,7 @@ public class LivingEntity : MonoBehaviour
         SetBaseProperties();
 
         // Create Activation Window
-        ActivationManager.Instance.CreateActivationWindow(this);
+        //ActivationManager.Instance.CreateActivationWindow(this);
 
         // Update GUI views
         UpdateHealthGUIElements();
@@ -468,11 +468,6 @@ public class LivingEntity : MonoBehaviour
         if (currentEnergy < 0)
         {
             currentEnergy = 0;
-        }
-
-        if (defender)
-        {
-            defender.UpdateEnergyGUI();
         }
     }
     public virtual void ModifyCurrentHealth(int healthGainedOrLost)
@@ -898,7 +893,7 @@ public class LivingEntity : MonoBehaviour
 
         if (defender)
         {
-            defender.UpdateEnergyGUI();
+           // defender.UpdateEnergyGUI();
         }
     }
     public virtual void RemoveExcessEnergyOnActivationEnd()
@@ -917,7 +912,7 @@ public class LivingEntity : MonoBehaviour
 
         if (defender)
         {
-            defender.UpdateEnergyGUI();
+            //defender.UpdateEnergyGUI();
         }
     }
     public void ReduceCooldownsOnActivationStart()
@@ -949,39 +944,6 @@ public class LivingEntity : MonoBehaviour
     }
     #endregion
 
-    // Misc
-    #region
-    public OldCoroutineData StartPhasingMove()
-    {
-        OldCoroutineData action = new OldCoroutineData();
-        StartCoroutine(StartPhasingMoveCoroutine(action));
-        return action;
-    }
-    public IEnumerator StartPhasingMoveCoroutine(OldCoroutineData action)
-    {
-        Debug.Log("StartPhasingMoveCoroutine() could not find a valid adjacent tile to teleport to...");
-        if (ActivationManager.Instance.entityActivated != this)
-        {           
-            List<Tile> availableTiles = LevelManager.Instance.GetTilesWithinRange(2, tile);
-            Tile destinationTile = LevelManager.Instance.GetRandomValidMoveableTile(availableTiles);
-
-            if (destinationTile != null)
-            {
-                OldCoroutineData teleportAction = MovementLogic.Instance.TeleportEntity(this, destinationTile);
-                yield return new WaitUntil(() => teleportAction.ActionResolved() == true);                
-            }
-            else
-            {
-                Debug.Log("StartQuickReflexesMoveCoroutine() could not find a valid adjacent tile to teleport to...");
-            }
-
-        }
-
-        action.coroutineCompleted = true;
-
-    }
-    #endregion
-
     // Text component modifiers
     #region
     public void UpdateBlockAmountText(int newBlockValue)
@@ -1007,7 +969,7 @@ public class LivingEntity : MonoBehaviour
             defender.healthBarPositionCurrentlyUpdating = false;
             defender.myCurrentHealthTextStatBar.text = currentHealth.ToString();
             defender.myCurrentMaxHealthTextStatBar.text = currentMaxHealth.ToString();
-            StartCoroutine(defender.UpdateHealthBarPanelPosition(finalValue));
+           // StartCoroutine(defender.UpdateHealthBarPanelPosition(finalValue));
         }
 
     }

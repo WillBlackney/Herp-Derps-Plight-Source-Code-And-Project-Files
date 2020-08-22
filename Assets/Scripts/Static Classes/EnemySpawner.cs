@@ -119,6 +119,9 @@ public class EnemySpawner : MonoBehaviour
             int randomIndex = Random.Range(0, enemyGroup.possibleEnemies.Count);
             EnemyDataSO data = enemyGroup.possibleEnemies[randomIndex];
 
+            CharacterEntityController.Instance.CreateEnemyCharacter(data, LevelManager.Instance.GetNextAvailableEnemyNode());
+
+            /*
             // Create GO and set data
             Enemy newEnemy =  Instantiate(PrefabHolder.Instance.enemyPrefab).GetComponent<Enemy>();
             newEnemy.enemyData = data;
@@ -128,6 +131,7 @@ public class EnemySpawner : MonoBehaviour
 
             // Run the enemy's constructor
             newEnemy.InitializeSetup(startPos);
+            */
 
         }
 

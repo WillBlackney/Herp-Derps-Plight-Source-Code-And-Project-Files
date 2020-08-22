@@ -96,7 +96,7 @@ public class VisualEventManager : MonoBehaviour
 
     // Create Events
     #region
-    public void CreateVisualEvent(Action eventFunction, CoroutineData cData, QueuePosition position, float startDelay = 0f, float endDelay = 0.5f)
+    public void CreateVisualEvent(Action eventFunction, CoroutineData cData, QueuePosition position, float startDelay = 0f, float endDelay = 0f)
     {
         // NOTE: This method requires on argument of 'CoroutineData'.
         // this function is only for visual events that have their sequence
@@ -118,7 +118,7 @@ public class VisualEventManager : MonoBehaviour
             AddEventToFrontOfQueue(vEvent);
         }
     }
-    public void CreateVisualEvent(Action eventFunction, QueuePosition position, float startDelay = 0f, float endDelay = 0.5f)
+    public void CreateVisualEvent(Action eventFunction, QueuePosition position, float startDelay = 0f, float endDelay = 0f)
     {
         Debug.Log("VisualEventManager.CreateVisualEvent() called...");
 

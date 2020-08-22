@@ -17,13 +17,7 @@ public class AbilityLogic : MonoBehaviour
     #region
     public void OnAbilityUsedStart(Ability ability, LivingEntity entity)
     {
-        Debug.Log("OnAbilityUsedStart() called for " + entity.gameObject.name + " using " + ability.abilityName);
-
-        // Disable tile hover + tile highlights
-        if (entity.defender)
-        {
-            entity.defender.awaitingAnOrder = false;
-        }
+        Debug.Log("OnAbilityUsedStart() called for " + entity.gameObject.name + " using " + ability.abilityName);        
 
         TileHover.Instance.SetVisibility(false);
         LevelManager.Instance.UnhighlightAllTiles();

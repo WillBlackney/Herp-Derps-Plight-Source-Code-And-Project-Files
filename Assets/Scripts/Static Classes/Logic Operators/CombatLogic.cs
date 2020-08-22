@@ -893,7 +893,8 @@ public class CombatLogic : MonoBehaviour
         LevelManager.Instance.DisconnectEntityFromNode(entity);
         LivingEntityManager.Instance.allLivingEntities.Remove(entity);
         entity.DisableWorldSpaceCanvas();
-        ActivationManager.Instance.activationOrder.Remove(entity);
+        // need to uncomment this in future
+        //ActivationManager.Instance.activationOrder.Remove(entity);
 
         entity.PlayDeathAnimation();
         OldCoroutineData destroyWindowAction = entity.myActivationWindow.FadeOutWindow();
@@ -1238,19 +1239,6 @@ public class CombatLogic : MonoBehaviour
                 OldCoroutineData thornsDamage = HandleDamage(finalThornsDamageValue, victim, attacker, "Physical");
                 yield return new WaitUntil(() => thornsDamage.ActionResolved() == true);
             }
-        }
-
-        // Phasing
-        if (victim.currentHealth > 0 &&
-            victim.timesMeleeAttackedThisTurnCycle == 0 &&
-            victim.myPassiveManager.phasing &&
-            abilityUsed != null &&
-            abilityUsed.abilityType == AbilityDataSO.AbilityType.MeleeAttack)
-        {
-            Debug.Log(victim.name + "'Phasing' triggered, teleporting....");
-            VisualEffectManager.Instance.CreateStatusEffect(victim.transform.position, "Phasing");
-            OldCoroutineData phasingAction = victim.StartPhasingMove();
-            yield return new WaitUntil(() => phasingAction.ActionResolved() == true);
         }
 
         // Increment times attack counter

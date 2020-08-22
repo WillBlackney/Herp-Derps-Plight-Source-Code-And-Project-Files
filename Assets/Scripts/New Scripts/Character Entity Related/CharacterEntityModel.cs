@@ -12,9 +12,10 @@ public class CharacterEntityModel
     public int initiative;
     public int draw;
 
-    [Header("Health Properties")]
+    [Header("Health + Block Properties")]
     public int health;
     public int maxHealth;
+    public int block;
 
     [Header("Location Properties ")]
     public LevelNode levelNode;
@@ -22,12 +23,20 @@ public class CharacterEntityModel
     [Header("Misc Properties")]
     public CharacterEntityView characterEntityView;
     public Allegiance allegiance;
+    public Controller controller;
     public string myName;
 
-
+    [Header("Misc Combat Properties")]
+    public int currentInitiativeRoll;
+    public bool hasActivatedThisTurn;
 }
 public enum Allegiance
 {
     Player,
     Enemy,
+}
+public enum Controller
+{
+    Player,
+    AI
 }

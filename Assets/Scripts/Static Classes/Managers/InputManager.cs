@@ -124,6 +124,7 @@ public class InputManager : MonoBehaviour
 
     public void HandleMouseRightClicked()
     {
+        /*
         ConsumableManager.Instance.ClearAllConsumableOrders();
 
         if (DefenderManager.Instance.selectedDefender != null &&
@@ -136,5 +137,6 @@ public class InputManager : MonoBehaviour
         {
             DefenderManager.Instance.selectedDefender.ClearAllOrders();
         }
+        */
     }
 }

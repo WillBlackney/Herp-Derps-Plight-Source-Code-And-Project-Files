@@ -6,7 +6,7 @@ public class LevelNode : MonoBehaviour
 {
     public int nodePriority;
     public AllowedEntity allowedEntity;
-    public LivingEntity myEntity;
+    public CharacterEntityModel myEntity;
     public bool occupied;
     public GameObject mouseOverParent;
     public GameObject activatedParent;

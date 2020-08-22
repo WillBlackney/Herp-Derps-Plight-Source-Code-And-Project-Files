@@ -2,18 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CombatTestSceneController : MonoBehaviour
+public class CombatTestSceneController : Singleton<CombatTestSceneController>
 {
-    public static CombatTestSceneController Instance;
-    public OldCharacterData sampleCharacterDataOne;
     public List<CardDataSO> sampleDeck;
     public EnemyWaveSO testingEnemyWave;
     public CharacterData characterDataSample;
-
-    private void Awake()
-    {
-        Instance = this;
-    }
+    public UniversalCharacterModel sampleUCM;    
 
     private void Start()
     {
@@ -31,19 +25,6 @@ public class CombatTestSceneController : MonoBehaviour
     {
         for(int i =0; i < 3; i++)
         {
-            // Instantiate Defender GO from prefab, get defender script ref
-            /*
-            GameObject defenderGO = Instantiate(PrefabHolder.Instance.defenderPrefab, transform.position, Quaternion.identity);
-            Defender defender = defenderGO.GetComponent<Defender>();            
-
-            defender.deckData.AddRange(sampleDeck);
-            defender.myCharacterData = sampleCharacterDataOne;
-
-            LevelNode startPos = LevelManager.Instance.GetNextAvailableDefenderNode();
-            defender.InitializeSetup(startPos);
-            */
-
-
             // NEW IMPLEMENTATION
             CharacterEntityController.Instance.CreatePlayerCharacter(characterDataSample, LevelManager.Instance.GetNextAvailableDefenderNode());
         }

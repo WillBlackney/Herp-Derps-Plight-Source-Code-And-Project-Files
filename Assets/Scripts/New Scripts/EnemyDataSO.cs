@@ -24,7 +24,7 @@ public class EnemyDataSO : ScriptableObject
     public int maxHealth;
     [BoxGroup("Core Stats")]
     [LabelWidth(100)]
-    public int strength;
+    public int power;
     [BoxGroup("Core Stats")]
     [LabelWidth(100)]
     public int wisdom;

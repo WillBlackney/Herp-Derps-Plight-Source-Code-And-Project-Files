@@ -106,7 +106,7 @@ public class ConsumableManager : MonoBehaviour
         {
             Debug.Log("Can't use consumable: ActivationManager.entityActivated is null...");
         }
-        else if (!ActivationManager.Instance.entityActivated.defender)
+        else if (ActivationManager.Instance.entityActivated.controller != Controller.Player)
         {
             Debug.Log("Can't use consumable: the character currently activated is not a defender...");
         }
@@ -160,7 +160,6 @@ public class ConsumableManager : MonoBehaviour
         Debug.Log("ConsumableManager.OnConsumableClicked() called for " + consumable.myData.consumableName);
 
         // Cancel any awaiting ability order with current defender
-        ActivationManager.Instance.entityActivated.defender.ClearAllOrders();
         LevelManager.Instance.UnhighlightAllTiles();
         TileHover.Instance.SetVisibility(true);
 

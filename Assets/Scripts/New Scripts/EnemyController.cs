@@ -36,7 +36,7 @@ public class EnemyController : MonoBehaviour
         enemy.currentHealth += data.startingHealth;
 
         // Set up core stats
-        enemy.ModifyCurrentStrength(data.strength);
+        enemy.ModifyCurrentStrength(data.power);
         enemy.ModifyCurrentWisdom(data.wisdom);
         enemy.ModifyCurrentDexterity(data.dexterity);
         enemy.ModifyCurrentInitiative(data.initiative);

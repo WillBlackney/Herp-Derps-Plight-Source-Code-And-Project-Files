@@ -22,6 +22,7 @@ public class DefenderManager : MonoBehaviour
     #region
     public void SetSelectedDefender(Defender defender)
     {
+        /*
         // if we have already have a defender selected when we click on another defender, unselect that defender, then select the new defender
         if(selectedDefender != defender && selectedDefender != null)
         {
@@ -44,6 +45,7 @@ public class DefenderManager : MonoBehaviour
             UIManager.Instance.EnableEndTurnButtonInteractions();
         }
         Debug.Log("Selected defender: " + selectedDefender.gameObject.name);
+        */
     }
     public void ClearSelectedDefender()
     {

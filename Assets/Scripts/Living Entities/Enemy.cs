@@ -80,13 +80,6 @@ public class Enemy : LivingEntity
     }
     public void OnMouseOver()
     {
-        if(Input.GetMouseButtonDown(1) && 
-            (DefenderManager.Instance.selectedDefender == null ||
-            (DefenderManager.Instance.selectedDefender != null &&
-            DefenderManager.Instance.selectedDefender.IsAwaitingOrder() == false)))
-        {
-            myInfoPanel.EnablePanelView();
-        }
     }
     public override void OnMouseEnter()
     {

@@ -772,10 +772,10 @@ public static class EntityLogic
         Debug.Log("Final wisdom value calculated: " + wisdomReturned.ToString());
         return wisdomReturned;
     }
-    public static int GetTotalInitiative(LivingEntity entity)
+    public static int GetTotalInitiative(CharacterEntityModel entity)
     {
-        Debug.Log("EntityLogic.GetTotalInitiative() called for " + entity.name + "...");
-
+        Debug.Log("EntityLogic.GetTotalInitiative() called for " + entity.myName + "...");
+        /*
         // Get base Initiative
         int initiativeReturned = entity.currentInitiative;
         Debug.Log(entity.name + " base initiative: " + initiativeReturned.ToString());
@@ -810,6 +810,8 @@ public static class EntityLogic
         // return final value
         Debug.Log("Final initiative value calculated: " + initiativeReturned.ToString());
         return initiativeReturned;
+        */
+        return entity.initiative;
     }
     public static int GetTotalMobility(LivingEntity entity)
     {
@@ -909,6 +911,59 @@ public static class EntityLogic
         // return final value
         Debug.Log("Final stamina value calculated: " + staminaReturned.ToString());
         return staminaReturned;
+    }
+    public static int GetTotalStamina(CharacterEntityModel entity)
+    {
+        Debug.Log("EntityLogic.GetTotalStamina() called for " + entity.myName + "...");
+
+        // Get base Stamina
+        int staminaReturned = entity.stamina;
+        return staminaReturned;
+
+        /*
+        Debug.Log(entity.name + " base stamina: " + staminaReturned.ToString());
+
+        // Add bonus Stamina
+        if (entity.myPassiveManager.bonusStamina)
+        {
+            staminaReturned += entity.myPassiveManager.bonusStaminaStacks;
+            Debug.Log("Value after bonus stamina added: " + staminaReturned.ToString());
+        }
+
+        // Add temporary bonus Stamina
+        if (entity.myPassiveManager.temporaryBonusStamina)
+        {
+            staminaReturned += entity.myPassiveManager.temporaryBonusStaminaStacks;
+            Debug.Log("Value after temporary bonus stamina added: " + staminaReturned.ToString());
+        }
+
+
+        // Check for Patient Stalker
+        if (entity.myPassiveManager.patientStalker &&
+          (entity.myPassiveManager.camoflage || entity.myPassiveManager.stealth)
+          )
+        {
+            staminaReturned += 20;
+            Debug.Log("Value after 'Patient Stalker' bonus added: " + staminaReturned.ToString());
+        }
+
+        // Minus 10 if 'Shocked'
+        if (entity.myPassiveManager.shocked)
+        {
+            staminaReturned -= 10;
+            Debug.Log("Value after 'Shocked' reduction: " + staminaReturned.ToString());
+        }
+
+        // prevent reducing below 0
+        if (staminaReturned < 0)
+        {
+            staminaReturned = 0;
+        }
+
+        // return final value
+        Debug.Log("Final stamina value calculated: " + staminaReturned.ToString());        
+        return staminaReturned;
+        */
     }
 
     // Secondary Stats

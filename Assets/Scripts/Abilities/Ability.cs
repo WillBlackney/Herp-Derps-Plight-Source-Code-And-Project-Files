@@ -79,10 +79,7 @@ public class Ability : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     #region
     public void OnButtonClick()
     {
-        if (myLivingEntity.defender)
-        {
-            myLivingEntity.defender.OnAbilityButtonClicked(abilityName);
-        }
+        
     }
     public void OnPointerEnter(PointerEventData eventData)
     {

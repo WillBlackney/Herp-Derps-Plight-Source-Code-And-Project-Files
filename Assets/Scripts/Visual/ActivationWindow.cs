@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 
 public class ActivationWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    // Properties + Component References
+    #region
     [Header("Component References")]
     public TextMeshProUGUI rollText;
     public Slider myHealthBar;
@@ -16,9 +18,14 @@ public class ActivationWindow : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     [Header("Properties")]
     public LivingEntity myLivingEntity;
+    public CharacterEntityModel myCharacter;
     public bool animateNumberText;
     public bool dontFollowSlot;
     public bool update;
+    #endregion
+
+    // Setup + Initialization
+    #region
     public void InitializeSetup(LivingEntity entity)
     {
         myLivingEntity = entity;
@@ -42,6 +49,31 @@ public class ActivationWindow : MonoBehaviour, IPointerEnterHandler, IPointerExi
         
         myUCM.SetBaseAnim();
     }
+    public void InitializeSetup(CharacterEntityModel entity)
+    {
+        Debug.Log("Setting up activation window UCM Model for " + entity.myName);
+
+        myCharacter = entity;
+        entity.characterEntityView.myActivationWindow = this;
+        gameObject.SetActive(false);
+        gameObject.SetActive(true);        
+
+        // Set up model   
+        /*
+        if (entity.defender)
+        {
+            CharacterModelController.BuildModelFromModelClone(myUCM, entity.defender.myCharacterData.myCharacterModel);
+        }
+        else if (entity.enemy)
+        {
+            //CharacterModelController.BuildModelFromPresetString(myUCM, entity.myName);
+            CharacterModelController.BuildModelFromModelClone(myUCM, entity.myModel);
+        }
+        */
+
+        //myUCM.SetBaseAnim();
+    }
+    #endregion
 
     private void Update()
     {
@@ -53,7 +85,7 @@ public class ActivationWindow : MonoBehaviour, IPointerEnterHandler, IPointerExi
             for (int i = 0; i < ActivationManager.Instance.activationOrder.Count; i++)
             {
                 // Check if GameObject is in the List
-                if (ActivationManager.Instance.activationOrder[i] == myLivingEntity)
+                if (ActivationManager.Instance.activationOrder[i] == myCharacter)
                 {
                     // It is. Return the current index
                     myCurrentActivationOrderIndex = i;
@@ -86,9 +118,9 @@ public class ActivationWindow : MonoBehaviour, IPointerEnterHandler, IPointerExi
             if (myCanvasGroup.alpha == 0)
             {
                 GameObject slotDestroyed = ActivationManager.Instance.panelSlots[ActivationManager.Instance.panelSlots.Count - 1];
-                if (ActivationManager.Instance.activationOrder.Contains(myLivingEntity))
+                if (ActivationManager.Instance.activationOrder.Contains(myCharacter))
                 {
-                    ActivationManager.Instance.activationOrder.Remove(myLivingEntity);
+                    ActivationManager.Instance.activationOrder.Remove(myCharacter);
                 }                
                 ActivationManager.Instance.panelSlots.Remove(slotDestroyed);                
                 Destroy(slotDestroyed);
