@@ -26,9 +26,14 @@ public class CharacterEntityModel
     public Controller controller;
     public string myName;
 
+    [Header("Card Properties")]
+    [HideInInspector] public List<Card> drawPile = new List<Card>();
+    [HideInInspector] public List<Card> discardPile = new List<Card>();
+    [HideInInspector] public List<Card> hand = new List<Card>();
+
     [Header("Misc Combat Properties")]
-    public int currentInitiativeRoll;
-    public bool hasActivatedThisTurn;
+    [HideInInspector] public int currentInitiativeRoll;
+    [HideInInspector] public bool hasActivatedThisTurn;
 }
 public enum Allegiance
 {

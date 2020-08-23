@@ -55,7 +55,7 @@ public class Defender : LivingEntity
         DefenderManager.Instance.allDefenders.Add(this);
 
         // Build Deck
-        CardController.Instance.BuildDefenderDeckFromDeckData(this, deckData);
+        //CardController.Instance.BuildDefenderDeckFromDeckData(this, deckData);
 
         // Set name
         myName = myCharacterData.myName;
@@ -78,7 +78,7 @@ public class Defender : LivingEntity
         DefenderManager.Instance.allDefenders.Add(this);
 
         // Build Deck
-        CardController.Instance.BuildDefenderDeckFromDeckData(this, deckData);
+        //CardController.Instance.BuildDefenderDeckFromDeckData(this, deckData);
 
         // Set name
         myName = myCharacterData.myName;

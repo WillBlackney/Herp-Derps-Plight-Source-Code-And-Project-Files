@@ -31,7 +31,7 @@ public class CardViewModel : MonoBehaviour
     public GameObject powerParent;
     #endregion
 
-    public Defender owner()
+    public CharacterEntityModel owner()
     {
         return card.owner;
     }

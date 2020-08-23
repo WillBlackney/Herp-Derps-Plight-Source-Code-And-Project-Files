@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class CharacterEntityView : MonoBehaviour
 {
+    [Header("Properties")]
+    [HideInInspector] public CharacterEntityModel character;
+
     [Header("World Space Canvas References")]   
     public Canvas worldSpaceCanvas;
     public Transform worldSpaceCanvasParent;

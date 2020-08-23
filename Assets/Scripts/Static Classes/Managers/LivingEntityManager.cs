@@ -61,7 +61,7 @@ public class LivingEntityManager : MonoBehaviour
         {
             // Lose unused energy, discard hand
             entity.RemoveExcessEnergyOnActivationEnd();
-            CardController.Instance.DiscardHandOnActivationEnd(entity.defender);
+            //CardController.Instance.DiscardHandOnActivationEnd(entity.defender);
         }
 
         // Wrap events in a while statement to allow a stoppage if the character dies during their end activation events

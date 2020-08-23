@@ -807,6 +807,19 @@ public class CombatLogic : MonoBehaviour
         int valueReturned = baseBlockGain;
         Debug.Log("Base block gain value: " + valueReturned);
 
+        //valueReturned += EntityLogic.GetTotalDexterity(caster);
+        Debug.Log("Block gain value after dexterity added: " + valueReturned);
+
+        Debug.Log("Final block gain value calculated: " + valueReturned);
+        return valueReturned;
+    }
+    public int CalculateBlockGainedByEffect(int baseBlockGain, CharacterEntityModel caster)
+    {
+        Debug.Log("CombatLogic.CalculateBlockGainedByEffect() callled for " + caster.myName);
+
+        int valueReturned = baseBlockGain;
+        Debug.Log("Base block gain value: " + valueReturned);
+
         valueReturned += EntityLogic.GetTotalDexterity(caster);
         Debug.Log("Block gain value after dexterity added: " + valueReturned);
 

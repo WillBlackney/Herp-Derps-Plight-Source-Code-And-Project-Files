@@ -30,6 +30,10 @@ public class PrefabHolder : MonoBehaviour
     public GameObject defenderPrefab;
     public GameObject enemyPrefab;
 
+    [Header("Cards Prefabs")]
+    public GameObject noTargetCard;
+    public GameObject targetCard;
+
     [Header("Loot Related")]
     public GameObject GoldRewardButton;
     public GameObject ConsumableRewardButton;

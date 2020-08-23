@@ -236,7 +236,7 @@ public class Player : MonoBehaviour, ICharacter
             Debug.LogWarning("No effect found on card " + playedCard.ca.name);
         }
         // no matter what happens, move this card to PlayACardSpot
-        new PlayASpellCardCommand(this, playedCard).AddToQueue();
+        //new PlayASpellCardCommand(this, playedCard).AddToQueue();
         // remove this card from hand
         hand.CardsInHand.Remove(playedCard);
         // check if this is a creature or a spell

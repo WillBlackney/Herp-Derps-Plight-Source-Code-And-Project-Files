@@ -386,8 +386,8 @@ public class EnemyController : MonoBehaviour
         // Move back to starting node pos, if we moved off 
         if (hasMovedOffStartingNode && enemy.inDeathProcess == false)
         {
-            OldCoroutineData moveBackEvent = MovementLogic.Instance.MoveEntityToNodeCentre(enemy, enemy.levelNode);
-            yield return new WaitUntil(() => moveBackEvent.ActionResolved() == true);
+            //OldCoroutineData moveBackEvent = MovementLogic.Instance.MoveEntityToNodeCentre(enemy, enemy.levelNode);
+            //yield return new WaitUntil(() => moveBackEvent.ActionResolved() == true);
         }
 
         // Resolve
@@ -410,8 +410,8 @@ public class EnemyController : MonoBehaviour
                     enemy != null && enemy.inDeathProcess == false)
                 {
                     // Move towards target
-                    OldCoroutineData moveAction = MovementLogic.Instance.MoveAttackerToTargetNodeAttackPosition(enemy, enemy.currentActionTarget);
-                    yield return new WaitUntil(() => moveAction.ActionResolved());
+                   // OldCoroutineData moveAction = MovementLogic.Instance.MoveAttackerToTargetNodeAttackPosition(enemy, enemy.currentActionTarget);
+                    //yield return new WaitUntil(() => moveAction.ActionResolved());
 
                     // Play melee attack anim
                     enemy.TriggerMeleeAttackAnimation();
@@ -464,8 +464,8 @@ public class EnemyController : MonoBehaviour
             {
                 if (effect.collection == CardCollection.DiscardPile)
                 {
-                    Card card = CardController.Instance.BuildCardFromCardData(effect.cardAdded, enemy.currentActionTarget.defender);
-                    CardController.Instance.AddCardToDiscardPile(enemy.currentActionTarget.defender, card);
+                    //Card card = CardController.Instance.BuildCardFromCardData(effect.cardAdded, enemy.currentActionTarget.defender);
+                    //CardController.Instance.AddCardToDiscardPile(enemy.currentActionTarget.defender, card);
                 }
             }
             

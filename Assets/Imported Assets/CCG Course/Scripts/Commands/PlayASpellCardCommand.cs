@@ -3,28 +3,18 @@ using System.Collections;
 
 public class PlayASpellCardCommand: Command
 {
-    private CardLogic card;
-    private Player p;
-    //private ICharacter target;
-    private Defender d;
+    private CharacterEntityModel character;
     private Card c;
 
-    public PlayASpellCardCommand(Player p, CardLogic card)
+    public PlayASpellCardCommand(CharacterEntityModel _character, Card card)
     {
-        this.card = card;
-        this.p = p;
+        this.c = card;
+        this.character = _character;
     }
 
     public override void StartCommandExecution()
     {
-        //p.PArea.handVisual.PlayASpellFromHand(card.UniqueCardID);
-
-        d.handVisual.PlayASpellFromHand(c.cardVM);
+        character.characterEntityView.handVisual.PlayASpellFromHand(c.cardVM);
     }
 
-    public PlayASpellCardCommand(Defender d, Card c)
-    {
-        this.c = c;
-        this.d = d;
-    }
 }

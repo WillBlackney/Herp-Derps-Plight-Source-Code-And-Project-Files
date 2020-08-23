@@ -4,28 +4,22 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 
-public class CardController : MonoBehaviour
+public class CardController : Singleton<CardController>
 {
+    // Properties + Component References
+    #region
     [Header("Component References")]
     public Transform discardPilePosition;
     public Transform drawPilePosition;
-
-    // Singleton Pattern
-    #region
-    public static CardController Instance;
-    private void Awake()
-    {
-        Instance = this;
-    }
     #endregion
 
     // Build Cards, Decks, View Models and Data
     #region
-    public void BuildDefenderDeckFromDeckData(Defender defender, List<CardDataSO> deckData)
+    public void BuildDefenderDeckFromDeckData(CharacterEntityModel defender, List<CardDataSO> deckData)
     {
         Debug.Log("CardController.BuildDefenderDeckFromDeckData() called...");
 
-        // Convert each cardDataSo into a card object
+        // Convert each cardDataSO into a card object
         foreach (CardDataSO cardData in deckData)
         {
             AddCardToDrawPile(defender, BuildCardFromCardData(cardData, defender));
@@ -34,7 +28,7 @@ public class CardController : MonoBehaviour
         // Shuffle the characters draw pile
         ShuffleCards(defender.drawPile);
     }
-    public Card BuildCardFromCardData(CardDataSO data, Defender owner)
+    public Card BuildCardFromCardData(CardDataSO data, CharacterEntityModel owner)
     {
         Debug.Log("CardController.BuildCardFromCardData() called...");
 
@@ -57,14 +51,18 @@ public class CardController : MonoBehaviour
     {
         Debug.Log("CardController.BuildCardViewModelFromCard() called...");
 
+        //Instantiate(PrefabHolder.Instance.noTargetCard, position, Quaternion.identity);
+        //Instantiate(PrefabHolder.Instance.noTargetCard, position, Quaternion.identity);
+        //Instantiate(PrefabHolder.Instance.noTargetCard, position, Quaternion.identity);
+
         CardViewModel cardVM = null;
         if(card.targettingType == TargettingType.NoTarget)
         {
-            cardVM = Instantiate(GlobalSettings.Instance.CardViewModelPrefab, position, Quaternion.identity).GetComponent<CardViewModel>();
+            cardVM = Instantiate(PrefabHolder.Instance.noTargetCard, position, Quaternion.identity).GetComponent<CardViewModel>();
         }
         else
         {
-            cardVM = Instantiate(GlobalSettings.Instance.TargettedCardViewModelPrefab, position, Quaternion.identity).GetComponent<CardViewModel>();
+            cardVM = Instantiate(PrefabHolder.Instance.targetCard, position, Quaternion.identity).GetComponent<CardViewModel>();
         }       
 
         // Cache references
@@ -95,14 +93,10 @@ public class CardController : MonoBehaviour
 
     // Card draw Logic
     #region
-    public OldCoroutineData DrawACardFromDrawPile(Defender defender, int index = 0)
+    public void DrawACardFromDrawPile(CharacterEntityModel defender, int drawPileIndex = 0)
     {
-        OldCoroutineData action = new OldCoroutineData(true);
-        StartCoroutine(DrawACardFromDrawPileCoroutine(defender, action, index));
-        return action;
-    }
-    private IEnumerator DrawACardFromDrawPileCoroutine(Defender defender, OldCoroutineData action, int index)
-    {
+        Debug.Log("CardController.DrawACardFromDrawPile() called...");
+
         // Shuffle discard pile back into draw pile if draw pile is empty
         if (IsDrawPileEmpty(defender))
         {
@@ -111,25 +105,23 @@ public class CardController : MonoBehaviour
         if (IsCardDrawValid(defender))
         {
             // Get card and remove from deck
-            Card cardDrawn = defender.drawPile[index];
+            Card cardDrawn = defender.drawPile[drawPileIndex];
             RemoveCardFromDrawPile(defender, cardDrawn);
 
             // Add card to hand
             defender.hand.Add(cardDrawn);
 
             // Create and queue card drawn visual event
-            new DrawACardCommand(cardDrawn, defender, true, true).AddToQueue();
-            yield return null;
-        }
+            VisualEventManager.Instance.CreateVisualEvent(() => DrawCardFromDeckVisualEvent(cardDrawn, defender), QueuePosition.Back, 0, 1);
 
-        // Resolve
-        action.coroutineCompleted = true;
+           // new DrawACardCommand(cardDrawn, defender, true, true).AddToQueue();
+        }
     }
-    public void DrawCardsOnActivationStart(Defender defender)
+    public void DrawCardsOnActivationStart(CharacterEntityModel defender)
     {
         Debug.Log("CardController.DrawCardsOnActivationStart() called...");
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < EntityLogic.GetTotalDraw(defender); i++)
         {
             DrawACardFromDrawPile(defender);
         }
@@ -138,7 +130,7 @@ public class CardController : MonoBehaviour
 
     // Card Discard + Removal Logic
     #region
-    public void DiscardHandOnActivationEnd(Defender defender)
+    public void DiscardHandOnActivationEnd(CharacterEntityModel defender)
     {
         Debug.Log("CardController.DiscardHandOnActivationEnd() called, hand size = " + defender.hand.Count.ToString());
 
@@ -150,7 +142,7 @@ public class CardController : MonoBehaviour
             DiscardCardFromHand(defender, card);
         }
     }
-    public void DiscardCardFromHand(Defender defender, Card card)
+    public void DiscardCardFromHand(CharacterEntityModel defender, Card card)
     {
         Debug.Log("CardController.DiscardCardFromHand() called...");
 
@@ -167,10 +159,10 @@ public class CardController : MonoBehaviour
         if (cvm)
         {
             // remove from hand visual
-            defender.handVisual.RemoveCard(cvm.gameObject);
+            defender.characterEntityView.handVisual.RemoveCard(cvm.gameObject);
 
             // Play visual event of card moving to discard pile
-            Sequence s = MoveCardVmFromHandToDiscardPile(cvm, defender.handVisual.DiscardPileTransform);
+            Sequence s = MoveCardVmFromHandToDiscardPile(cvm, defender.characterEntityView.handVisual.DiscardPileTransform);
 
             // Once they anim is finished, destroy the CVM 
             s.OnComplete(() => DestroyCardViewModel(cvm));
@@ -203,7 +195,7 @@ public class CardController : MonoBehaviour
 
     // Conditional Checks
     #region
-    public bool IsCardDrawValid(Defender defender)
+    public bool IsCardDrawValid(CharacterEntityModel defender)
     {
         if(IsDrawPileEmpty(defender))
         {
@@ -218,7 +210,7 @@ public class CardController : MonoBehaviour
             return true;
         }
     }
-    public bool IsCardPlayable(Card card, Defender owner)
+    public bool IsCardPlayable(Card card, CharacterEntityModel owner)
     {
         Debug.Log("CardController.IsCardPlayable() called, checking if '" +
             card.cardName + "' is playable by '" + owner.myName +"'");
@@ -247,13 +239,13 @@ public class CardController : MonoBehaviour
 
         return boolReturned;
     }
-    public bool HasEnoughEnergyToPlayCard(Card card, Defender owner)
+    public bool HasEnoughEnergyToPlayCard(Card card, CharacterEntityModel owner)
     {
         Debug.Log("CardController.HasEnoughEnergyToPlayCard(), checking '" +
             card.cardName +"' owned by '" + owner.myName +"'");
-        return card.cardCurrentEnergyCost <= owner.currentEnergy;
+        return card.cardCurrentEnergyCost <= owner.energy;
     }
-    public bool IsDrawPileEmpty(Defender defender)
+    public bool IsDrawPileEmpty(CharacterEntityModel defender)
     {
         return defender.drawPile.Count == 0;
     }
@@ -261,11 +253,10 @@ public class CardController : MonoBehaviour
 
     // Hand Visual Logic
     #region
-    public OldCoroutineData MoveCardVmFromDeckToHand(CardViewModel cardVM, Defender defender)
+    public void MoveCardVmFromDeckToHand(CardViewModel cardVM, Defender defender)
     {
         OldCoroutineData action = new OldCoroutineData(true);
         StartCoroutine(MoveCardVmFromDeckToHandCoroutine(cardVM, defender, action));
-        return action;
     }
     private IEnumerator MoveCardVmFromDeckToHandCoroutine(CardViewModel cardVM, Defender defender, OldCoroutineData action)
     {
@@ -288,7 +279,7 @@ public class CardController : MonoBehaviour
 
         // Resolve on anim event finished events
         s.OnComplete(() => tweenFinished = true);
-        s.OnComplete(() => defender.handVisual.ChangeLastCardStatusToInHand(cardVM.gameObject, w));
+        s.OnComplete(() => defender.handVisual.ChangeLastCardStatusToInHand(w));
 
         // Yield until anim sequence is finished
         yield return new WaitUntil(() => tweenFinished == true);
@@ -315,10 +306,10 @@ public class CardController : MonoBehaviour
     public void OnCardPlayedStart(Card card)
     {
         // Setup
-        Defender owner = card.owner;
+        CharacterEntityModel owner = card.owner;
 
         // Pay Energy Cost
-        owner.ModifyCurrentEnergy(-card.cardCurrentEnergyCost);
+        CharacterEntityController.Instance.ModifyEnergy(owner, -card.cardCurrentEnergyCost);
 
         // Remove from hand
         owner.hand.Remove(card);
@@ -346,18 +337,18 @@ public class CardController : MonoBehaviour
     {
         // called at the very end of card play
     }
-    public OldCoroutineData PlayCardFromHand(Card card, LivingEntity target = null)
+    public OldCoroutineData PlayCardFromHand(Card card, CharacterEntityModel target = null)
     {
         OldCoroutineData action = new OldCoroutineData(true);
         StartCoroutine(PlayCardFromHandCoroutine(card, action, target));
         return action;
     }
-    private IEnumerator PlayCardFromHandCoroutine(Card card, OldCoroutineData action, LivingEntity target = null)
+    private IEnumerator PlayCardFromHandCoroutine(Card card, OldCoroutineData action, CharacterEntityModel target = null)
     {
         Debug.Log("CardController.PlayCardFromHand() called, playing: " + card.cardName);
 
         // Setup
-        Defender owner = card.owner;
+        CharacterEntityModel owner = card.owner;
 
         // Pay energy cost, remove from hand, etc
         OnCardPlayedStart(card);
@@ -368,11 +359,15 @@ public class CardController : MonoBehaviour
         // Trigger all effects on card
         foreach (CardEffect effect in card.cardEffects)
         {
+            OldCoroutineData effectEvent = TriggerEffectFromCard(card, effect, target);
+            yield return new WaitUntil(() => effectEvent.ActionResolved());
+            /*
             if(owner != null && owner.inDeathProcess == false)
             {
                 OldCoroutineData effectEvent = TriggerEffectFromCard(card, effect, target);
                 yield return new WaitUntil(() => effectEvent.ActionResolved());
-            }            
+            }    
+            */
         }
 
         // On end events
@@ -382,36 +377,38 @@ public class CardController : MonoBehaviour
         action.coroutineCompleted = true;
        
     }
-    public OldCoroutineData TriggerEffectFromCard(Card card, CardEffect cardEffect, LivingEntity target = null)
+    public OldCoroutineData TriggerEffectFromCard(Card card, CardEffect cardEffect, CharacterEntityModel target = null)
     {
         OldCoroutineData action = new OldCoroutineData(true);
         StartCoroutine(TriggerEffectFromCardCoroutine(card, cardEffect, action, target));
         return action;
     }
-    private IEnumerator TriggerEffectFromCardCoroutine(Card card, CardEffect cardEffect, OldCoroutineData action, LivingEntity target)
+    private IEnumerator TriggerEffectFromCardCoroutine(Card card, CardEffect cardEffect, OldCoroutineData action, CharacterEntityModel target)
     {
         // Stop and return if target of effect is dying
+        /*
         if(target != null && target.inDeathProcess)
         {
             Debug.Log("CardController.TriggerEffectFromCardCoroutine() cancelling: target is dying");
             action.coroutineCompleted = true;
             yield break;
         }
+        */
 
         Debug.Log("CardController.PlayCardFromHand() called, effect: '" + cardEffect.cardEffectType.ToString() + 
         "' from card: '" + card.cardName);
-        Defender owner = card.owner;
+        CharacterEntityModel owner = card.owner;
         bool hasMovedOffStartingNode = false;
 
         // Gain Block
         if (cardEffect.cardEffectType == CardEffectType.GainBlock)
         {
-            if(!target)
+            if(target == null)
             {
                 target = owner;
             }
 
-            target.ModifyCurrentBlock(CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner));
+            CharacterEntityController.Instance.ModifyBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner));
         }
 
         // Deal Damage
@@ -427,20 +424,20 @@ public class CardController : MonoBehaviour
                 VisualEventManager.Instance.CreateVisualEvent(() => MovementLogic.Instance.MoveAttackerToTargetNodeAttackPosition2(owner, target, cData), cData, QueuePosition.Back, 0, 0);
                
                 // Animation visual event
-                VisualEventManager.Instance.CreateVisualEvent(() => owner.TriggerMeleeAttackAnimation(), QueuePosition.Back, 0);
+                VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.TriggerMeleeAttackAnimation(owner.characterEntityView), QueuePosition.Back, 0);
               
             }
 
             // Calculate damage
-            string damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(owner, cardEffect, card);
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, target, damageType, false, cardEffect.baseDamageValue, card, cardEffect);
+           // string damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(owner, cardEffect, card);
+            //int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, target, damageType, false, cardEffect.baseDamageValue, card, cardEffect);
 
             // Start deal damage event
-            OldCoroutineData abilityAction = CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, damageType);
-            yield return new WaitUntil(() => abilityAction.ActionResolved() == true);
+            //OldCoroutineData abilityAction = CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, damageType);
+            //yield return new WaitUntil(() => abilityAction.ActionResolved() == true);
 
             // Move back to starting node pos, if we moved off 
-            if(hasMovedOffStartingNode && owner.inDeathProcess == false)
+            if(hasMovedOffStartingNode) //&& owner.inDeathProcess == false)
             {
                 CoroutineData cData = new CoroutineData();
                 VisualEventManager.Instance.CreateVisualEvent(() => MovementLogic.Instance.MoveEntityToNodeCentre2(owner, owner.levelNode, cData), cData, QueuePosition.Back, 0, 0);
@@ -452,11 +449,11 @@ public class CardController : MonoBehaviour
         else if (cardEffect.cardEffectType == CardEffectType.LoseHealth)
         {
             // VFX
-            VisualEffectManager.Instance.CreateBloodSplatterEffect(owner.transform.position);
+            VisualEffectManager.Instance.CreateBloodSplatterEffect(owner.characterEntityView.transform.position);
 
             // Reduce Health
-            OldCoroutineData selfDamageAction = CombatLogic.Instance.HandleDamage(cardEffect.healthLost, owner, owner, "None", null, true);
-            yield return new WaitUntil(() => selfDamageAction.ActionResolved() == true);
+            //OldCoroutineData selfDamageAction = CombatLogic.Instance.HandleDamage(cardEffect.healthLost, owner, owner, "None", null, true);
+           // yield return new WaitUntil(() => selfDamageAction.ActionResolved() == true);
             //yield return new WaitForSeconds(0.5f);
         }
 
@@ -464,15 +461,16 @@ public class CardController : MonoBehaviour
         else if (cardEffect.cardEffectType == CardEffectType.GainEnergy)
         {
             // Gain Energy
-            owner.ModifyCurrentEnergy(cardEffect.energyGained);
-            VisualEffectManager.Instance.CreateGainEnergyBuffEffect(owner.transform.position);
+            CharacterEntityController.Instance.ModifyEnergy(owner, cardEffect.energyGained);
+            //owner.ModifyCurrentEnergy(cardEffect.energyGained);
+            VisualEffectManager.Instance.CreateGainEnergyBuffEffect(owner.characterEntityView.transform.position);
         }
 
         // Draw Cards
         else if (cardEffect.cardEffectType == CardEffectType.DrawCards)
         {
             // Determine target
-            if (!target)
+            if (target == null)
             {
                 target = owner;
             }
@@ -480,18 +478,19 @@ public class CardController : MonoBehaviour
             // Draw cards
             for(int draws = 0; draws < cardEffect.cardsDrawn; draws++)
             {
-                OldCoroutineData drawAction = DrawACardFromDrawPile(target.defender);
-                yield return new WaitUntil(() => drawAction.ActionResolved() == true);
+               // OldCoroutineData drawAction = DrawACardFromDrawPile(target.defender);
+               // yield return new WaitUntil(() => drawAction.ActionResolved() == true);
             }           
         }
 
         // Apply Burning
         else if (cardEffect.cardEffectType == CardEffectType.ApplyBurning)
         {
-            StatusController.Instance.ApplyStatusToLivingEntity(target, StatusIconLibrary.Instance.GetStatusIconByName("Burning"), cardEffect.burningApplied);
+            //StatusController.Instance.ApplyStatusToLivingEntity(target, StatusIconLibrary.Instance.GetStatusIconByName("Burning"), cardEffect.burningApplied);
         }
 
         // Resolve event
+        yield return null;
         action.coroutineCompleted = true;
     }
     #endregion
@@ -512,7 +511,7 @@ public class CardController : MonoBehaviour
             cards[n] = value;
         }
     }
-    public void MoveAllCardsFromDiscardPileToDrawPile(Defender defender)
+    public void MoveAllCardsFromDiscardPileToDrawPile(CharacterEntityModel defender)
     {
         Debug.Log("CardController.MoveAllCardsFromDiscardPileToDrawPile() called for character: " + defender.myName);
 
@@ -531,21 +530,50 @@ public class CardController : MonoBehaviour
         ShuffleCards(defender.drawPile);
 
     }
-    public void AddCardToDrawPile(Defender defender, Card card)
+    public void AddCardToDrawPile(CharacterEntityModel defender, Card card)
     {
         defender.drawPile.Add(card);
     }
-    public void RemoveCardFromDrawPile(Defender defender, Card card)
+    public void RemoveCardFromDrawPile(CharacterEntityModel defender, Card card)
     {
         defender.drawPile.Remove(card);
     }
-    public void AddCardToDiscardPile(Defender defender, Card card)
+    public void AddCardToDiscardPile(CharacterEntityModel defender, Card card)
     {
         defender.discardPile.Add(card);
     }
-    public void RemoveCardFromDiscardPile(Defender defender, Card card)
+    public void RemoveCardFromDiscardPile(CharacterEntityModel defender, Card card)
     {
         defender.discardPile.Remove(card);
+    }
+    #endregion
+
+    // Visual Events
+    #region
+    private void DrawCardFromDeckVisualEvent(Card card, CharacterEntityModel character)
+    {
+        Debug.Log("CardController.DrawCardFromDeckVisualEvent() called...");
+        CharacterEntityView characterView = character.characterEntityView;
+
+        GameObject cardVM;        
+        cardVM = BuildCardViewModelFromCard(card, characterView.handVisual.DeckTransform.position).gameObject;
+
+        // pass this card to HandVisual class
+        characterView.handVisual.AddCard(cardVM);
+
+        // Bring card to front while it travels from draw spot to hand
+        WhereIsTheCardOrCreature w = cardVM.GetComponent<WhereIsTheCardOrCreature>();
+        w.BringToFront();
+        w.Slot = 0;
+        w.VisualState = VisualStates.Transition;
+
+        // move card to the hand;
+        Sequence s = DOTween.Sequence();
+
+        // displace the card so that we can select it in the scene easier.
+        s.Append(cardVM.transform.DOLocalMove(characterView.handVisual.slots.Children[0].transform.localPosition, GlobalSettings.Instance.CardTransitionTimeFast));
+
+        s.OnComplete(() => w.SetHandSortingOrder());
     }
     #endregion
 

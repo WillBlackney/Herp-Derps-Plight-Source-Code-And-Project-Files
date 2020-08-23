@@ -80,7 +80,7 @@ public class DragSpellOnTarget : DraggingActions {
 
         // Set up
         LivingEntity targetLE = null;
-        Defender owner = cardVM.owner();
+        CharacterEntityModel owner = cardVM.owner();
         Card card = cardVM.card;
 
         // Raycast from cam to mouse
@@ -111,8 +111,8 @@ public class DragSpellOnTarget : DraggingActions {
                 targetValid = true;
             }
             else if(card.targettingType == TargettingType.Ally &&
-                    targetLE.defender && 
-                    targetLE != card.owner)
+                    targetLE.defender)
+                   // &&                    targetLE != card.owner)
             {
                 targetValid = true;
             }
@@ -136,7 +136,7 @@ public class DragSpellOnTarget : DraggingActions {
         }
         else
         {
-            CardController.Instance.PlayCardFromHand(card, targetLE);
+            //CardController.Instance.PlayCardFromHand(card, targetLE);
         }
 
         // return target and arrow to original position

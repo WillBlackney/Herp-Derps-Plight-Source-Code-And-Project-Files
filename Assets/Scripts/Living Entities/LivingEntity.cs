@@ -179,12 +179,12 @@ public class LivingEntity : MonoBehaviour
         // Face towards the enemy
         if (defender)
         {
-            PositionLogic.Instance.SetDirection(this, "Right");
+            //PositionLogic.Instance.SetDirection(this, "Right");
         }
 
         else if (enemy)
         {
-            PositionLogic.Instance.SetDirection(this, "Left");
+           // PositionLogic.Instance.SetDirection(this, "Left");
         }
         
         // Enable status icons view
@@ -231,12 +231,12 @@ public class LivingEntity : MonoBehaviour
         // Face towards the enemy
         if (defender)
         {
-            PositionLogic.Instance.SetDirection(this, "Right");
+           // PositionLogic.Instance.SetDirection(this, "Right");
         }
 
         else if (enemy)
         {
-            PositionLogic.Instance.SetDirection(this, "Left");
+            //PositionLogic.Instance.SetDirection(this, "Left");
         }
 
         // Enable status icons view
@@ -769,7 +769,7 @@ public class LivingEntity : MonoBehaviour
         // Draw cards on turn start
         if (defender)
         {
-            CardController.Instance.DrawCardsOnActivationStart(defender);
+            //CardController.Instance.DrawCardsOnActivationStart(defender);
         }
 
         // check if taunted, and if taunter died 

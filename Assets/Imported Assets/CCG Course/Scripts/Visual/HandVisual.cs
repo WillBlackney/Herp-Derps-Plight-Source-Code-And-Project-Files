@@ -97,6 +97,7 @@ public class HandVisual : MonoBehaviour
     // CARD DRAW METHODS
     public void GivePlayerACard(Card c, bool fast = false, bool fromDeck = true)
     {
+        Debug.Log("HandVisual.GivePlayerACard() called...");
         GameObject card;
         card = CardController.Instance.BuildCardViewModelFromCard(c, DeckTransform.position).gameObject;
 
@@ -131,16 +132,16 @@ public class HandVisual : MonoBehaviour
                 s.Insert(0f, card.transform.DORotate(Vector3.zero, GlobalSettings.Instance.CardTransitionTimeFast));
         }
 
-        s.OnComplete(() => ChangeLastCardStatusToInHand(card, w));
+        s.OnComplete(() => ChangeLastCardStatusToInHand(w));
     }
     
     // this method will be called when the card arrived to hand 
-    public void ChangeLastCardStatusToInHand(GameObject card, WhereIsTheCardOrCreature w)
+    public void ChangeLastCardStatusToInHand( WhereIsTheCardOrCreature w)
     {
         // set correct sorting order
         w.SetHandSortingOrder();
         // end command execution for DrawACArdCommand
-        Command.CommandExecutionComplete();
+        //Command.CommandExecutionComplete();
     }
 
     // Play cards from hand

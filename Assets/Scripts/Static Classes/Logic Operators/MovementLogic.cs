@@ -799,20 +799,13 @@ public class MovementLogic : MonoBehaviour
 
     // New Movement Logic 
     #region
-    public OldCoroutineData MoveAttackerToTargetNodeAttackPosition(LivingEntity attacker, LivingEntity target )
-    {
-        Debug.Log("LivingEntityManager.MoveAttackerToTargetNodeAttackPosition() called...");
-        OldCoroutineData action = new OldCoroutineData(true);
-        StartCoroutine(MoveAttackerToTargetNodeAttackPositionCoroutine(attacker, target, action));
-        return action;
-    }
-    public void MoveAttackerToTargetNodeAttackPosition2(LivingEntity attacker, LivingEntity target, CoroutineData data)
+    public void MoveAttackerToTargetNodeAttackPosition2(CharacterEntityModel attacker, CharacterEntityModel target, CoroutineData data)
     {
         Debug.Log("LivingEntityManager.MoveAttackerToTargetNodeAttackPosition() called...");
         StartCoroutine(MoveAttackerToTargetNodeAttackPositionCoroutine(attacker, target, data));
     }
 
-    public IEnumerator MoveAttackerToTargetNodeAttackPositionCoroutine(LivingEntity attacker, LivingEntity target, OldCoroutineData action)
+    private IEnumerator MoveAttackerToTargetNodeAttackPositionCoroutine(CharacterEntityModel attacker, CharacterEntityModel target, CoroutineData action)
     {
         // Set up
         bool reachedDestination = false;
@@ -820,44 +813,16 @@ public class MovementLogic : MonoBehaviour
         float moveSpeed = 15;
 
         // Face direction of destination
-        PositionLogic.Instance.TurnFacingTowardsLocation(attacker, target.transform.position);
+        PositionLogic.Instance.TurnFacingTowardsLocation(attacker.characterEntityView, target.characterEntityView.transform.position);
 
         // Play movement animation
-        attacker.PlayMoveAnimation();
+        CharacterEntityController.Instance.PlayMoveAnimation(attacker.characterEntityView);
 
         while (reachedDestination == false)
         {
-            attacker.transform.position = Vector2.MoveTowards(attacker.transform.position, destination, moveSpeed * Time.deltaTime);
+            attacker.characterEntityView.transform.position = Vector2.MoveTowards(attacker.characterEntityView.transform.position, destination, moveSpeed * Time.deltaTime);
 
-            if (attacker.transform.position == destination)
-            {
-                Debug.Log("LivingEntityManager.MoveAttackerToTargetNodeAttackPositionCoroutine() detected destination was reached...");
-                reachedDestination = true;
-            }
-            yield return null;
-        }
-
-        action.coroutineCompleted = true;
-
-    }
-    private IEnumerator MoveAttackerToTargetNodeAttackPositionCoroutine(LivingEntity attacker, LivingEntity target, CoroutineData action)
-    {
-        // Set up
-        bool reachedDestination = false;
-        Vector3 destination = new Vector3(target.levelNode.nose.position.x, target.levelNode.nose.position.y, 0);
-        float moveSpeed = 15;
-
-        // Face direction of destination
-        PositionLogic.Instance.TurnFacingTowardsLocation(attacker, target.transform.position);
-
-        // Play movement animation
-        attacker.PlayMoveAnimation();
-
-        while (reachedDestination == false)
-        {
-            attacker.transform.position = Vector2.MoveTowards(attacker.transform.position, destination, moveSpeed * Time.deltaTime);
-
-            if (attacker.transform.position == destination)
+            if (attacker.characterEntityView.transform.position == destination)
             {
                 Debug.Log("LivingEntityManager.MoveAttackerToTargetNodeAttackPositionCoroutine() detected destination was reached...");
                 reachedDestination = true;
@@ -868,19 +833,12 @@ public class MovementLogic : MonoBehaviour
         action.MarkAsCompleted();
 
     }
-    public OldCoroutineData MoveEntityToNodeCentre(LivingEntity entity, LevelNode node)
-    {
-        Debug.Log("LivingEntityManager.MoveEntityToNodeCentre() called...");
-        OldCoroutineData action = new OldCoroutineData(true);
-        StartCoroutine(MoveEntityToNodeCentreCoroutine(entity, node, action));
-        return action;
-    }
-    public void MoveEntityToNodeCentre2(LivingEntity entity, LevelNode node, CoroutineData data)
+    public void MoveEntityToNodeCentre2(CharacterEntityModel entity, LevelNode node, CoroutineData data)
     {
         Debug.Log("LivingEntityManager.MoveEntityToNodeCentre2() called...");
         StartCoroutine(MoveEntityToNodeCentreCoroutine2(entity, node, data));
     }
-    private IEnumerator MoveEntityToNodeCentreCoroutine(LivingEntity entity, LevelNode node, OldCoroutineData action)
+    private IEnumerator MoveEntityToNodeCentreCoroutine2(CharacterEntityModel entity, LevelNode node, CoroutineData action)
     {
         // Set up
         bool reachedDestination = false;
@@ -888,17 +846,17 @@ public class MovementLogic : MonoBehaviour
         float moveSpeed = 15;
 
         // Face direction of destination node
-        PositionLogic.Instance.TurnFacingTowardsLocation(entity, node.transform.position);
+        PositionLogic.Instance.TurnFacingTowardsLocation(entity.characterEntityView, node.transform.position);
 
         // Play movement animation
-        entity.PlayMoveAnimation();
+        CharacterEntityController.Instance.PlayMoveAnimation(entity.characterEntityView);
 
         // Move
         while (reachedDestination == false)
         {
-            entity.transform.position = Vector2.MoveTowards(entity.transform.position, destination, moveSpeed * Time.deltaTime);
+            entity.characterEntityView.transform.position = Vector2.MoveTowards(entity.characterEntityView.transform.position, destination, moveSpeed * Time.deltaTime);
 
-            if (entity.transform.position == destination)
+            if (entity.characterEntityView.transform.position == destination)
             {
                 Debug.Log("LivingEntityManager.MoveEntityToNodeCentreCoroutine() detected destination was reached...");
                 reachedDestination = true;
@@ -907,68 +865,18 @@ public class MovementLogic : MonoBehaviour
         }
 
         // Reset facing, depending on living entity type
-        
-        if (entity.defender)
+        if (entity.allegiance == Allegiance.Player)
         {
-            PositionLogic.Instance.SetDirection(entity, "Right");
-            //PositionLogic.Instance.TurnFacingTowardsLocation(entity, new Vector3(1000,0,0));
+            PositionLogic.Instance.SetDirection(entity.characterEntityView, "Right");
         }
-        else if (entity.enemy)
+        else if (entity.allegiance == Allegiance.Enemy)
         {
-            PositionLogic.Instance.SetDirection(entity, "Left");
-            //PositionLogic.Instance.TurnFacingTowardsLocation(entity, new Vector3(-1000, 0, 0));
-        }
-        
-
-        // Idle anim
-        entity.PlayIdleAnimation();
-
-        // Resolve event
-        action.coroutineCompleted = true;
-
-    }
-    private IEnumerator MoveEntityToNodeCentreCoroutine2(LivingEntity entity, LevelNode node, CoroutineData action)
-    {
-        // Set up
-        bool reachedDestination = false;
-        Vector3 destination = new Vector3(node.transform.position.x, node.transform.position.y, 0);
-        float moveSpeed = 15;
-
-        // Face direction of destination node
-        PositionLogic.Instance.TurnFacingTowardsLocation(entity, node.transform.position);
-
-        // Play movement animation
-        entity.PlayMoveAnimation();
-
-        // Move
-        while (reachedDestination == false)
-        {
-            entity.transform.position = Vector2.MoveTowards(entity.transform.position, destination, moveSpeed * Time.deltaTime);
-
-            if (entity.transform.position == destination)
-            {
-                Debug.Log("LivingEntityManager.MoveEntityToNodeCentreCoroutine() detected destination was reached...");
-                reachedDestination = true;
-            }
-            yield return null;
-        }
-
-        // Reset facing, depending on living entity type
-
-        if (entity.defender)
-        {
-            PositionLogic.Instance.SetDirection(entity, "Right");
-            //PositionLogic.Instance.TurnFacingTowardsLocation(entity, new Vector3(1000,0,0));
-        }
-        else if (entity.enemy)
-        {
-            PositionLogic.Instance.SetDirection(entity, "Left");
-            //PositionLogic.Instance.TurnFacingTowardsLocation(entity, new Vector3(-1000, 0, 0));
+            PositionLogic.Instance.SetDirection(entity.characterEntityView, "Left");
         }
 
 
         // Idle anim
-        entity.PlayIdleAnimation();
+        CharacterEntityController.Instance.PlayIdleAnimation(entity.characterEntityView);
 
         // Resolve event
         action.MarkAsCompleted();

@@ -675,13 +675,14 @@ public static class EntityLogic
     // Get Stats And Attribute Total Values
     #region
     // Core stats
-    public static int GetTotalDexterity(LivingEntity entity)
+    public static int GetTotalDexterity(CharacterEntityModel entity)
     {
-        Debug.Log("EntityLogic.GetTotalDexterity() called for " + entity.name + "...");
+        Debug.Log("EntityLogic.GetTotalDexterity() called for " + entity.myName + "...");
         // Get base dexterity
-        int dexterityReturned = entity.currentDexterity;
-        Debug.Log(entity.name + " base dexterity: " + dexterityReturned.ToString());
+        int dexterityReturned = entity.dexterity;
+        Debug.Log(entity.myName + " base dexterity: " + dexterityReturned.ToString());
 
+        /*
         // Add from bonus dexterity passive
         if (entity.myPassiveManager.bonusDexterity)
         {
@@ -705,6 +706,7 @@ public static class EntityLogic
 
         // return final value
         Debug.Log("Final dexterity value calculated: " + dexterityReturned.ToString());
+        */
         return dexterityReturned;
     }
     public static int GetTotalStrength(LivingEntity entity)

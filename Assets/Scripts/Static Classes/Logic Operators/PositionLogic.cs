@@ -15,32 +15,30 @@ public class PositionLogic : MonoBehaviour
 
     // Calculate Direction + Visual
     #region
-    public void FlipCharacterSprite(LivingEntity character, bool faceRight)
+    public void FlipCharacterSprite(CharacterEntityView character, bool faceRight)
     {
         Debug.Log("PositionLogic.FlipCharacterSprite() called...");
-        float scale = Mathf.Abs(character.myModelParent.transform.localScale.x);
+        float scale = Mathf.Abs(character.ucmParent.transform.localScale.x);
 
         if (faceRight == true)
         {
-            if (character.myModelParent != null)
+            if (character.ucmParent != null)
             {
-                character.myModelParent.transform.localScale = new Vector2(scale, Mathf.Abs(scale));
+                character.ucmParent.transform.localScale = new Vector2(scale, Mathf.Abs(scale));
             }
         }
 
         else
         {
-            if (character.myModelParent != null)
+            if (character.ucmParent != null)
             {
-                character.myModelParent.transform.localScale = new Vector2(-scale, Mathf.Abs(scale));
+                character.ucmParent.transform.localScale = new Vector2(-scale, Mathf.Abs(scale));
             }
         }
 
     }
-    public void SetDirection(LivingEntity character, string leftOrRight)
+    public void SetDirection(CharacterEntityView character, string leftOrRight)
     {
-        Debug.Log("PositionLogic.SetDirection() called, facing " + character.myName + " " + leftOrRight);
-
         if (leftOrRight == "Left")
         {
             FlipCharacterSprite(character, false);
@@ -66,17 +64,17 @@ public class PositionLogic : MonoBehaviour
         // if the target is to the right, flip and face right
         else if (LevelManager.Instance.IsDestinationTileToTheRight(character.tile, tileToFace))
         {
-            SetDirection(character,"Right");            
+            //SetDirection(character,"Right");            
         }
 
         // if the target is to the left, flip and face left
         else if (LevelManager.Instance.IsDestinationTileToTheRight(character.tile, tileToFace) == false)
         {
-            SetDirection(character,"Left");            
+           // SetDirection(character,"Left");            
         }
 
     }
-    public void TurnFacingTowardsLocation(LivingEntity entity, Vector3 location)
+    public void TurnFacingTowardsLocation(CharacterEntityView entity, Vector3 location)
     {
         if(entity.transform.position.x < location.x)
         {

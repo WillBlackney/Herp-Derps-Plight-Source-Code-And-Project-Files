@@ -26,7 +26,7 @@ public class CombatTestSceneController : Singleton<CombatTestSceneController>
         for(int i =0; i < 3; i++)
         {
             // NEW IMPLEMENTATION
-            CharacterEntityController.Instance.CreatePlayerCharacter(characterDataSample, LevelManager.Instance.GetNextAvailableDefenderNode());
+            CharacterEntityController.Instance.CreatePlayerCharacter(characterDataSample, LevelManager.Instance.GetNextAvailableDefenderNode(), sampleDeck);
         }
         
     }

@@ -31,7 +31,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
 
     }
-    public CharacterEntityModel CreatePlayerCharacter(CharacterData data, LevelNode position)
+    public CharacterEntityModel CreatePlayerCharacter(CharacterData data, LevelNode position, List<CardDataSO> deckData)
     {
         // Create GO + View
         CharacterEntityView vm = CreateCharacterEntityView().GetComponent<CharacterEntityView>();
@@ -54,6 +54,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
         // Copy data from character data into new model
         SetupCharacterFromCharacterData(model, data);
+
+        // Build deck
+        CardController.Instance.BuildDefenderDeckFromDeckData(model, deckData);
 
         // Add to persistency
         allCharacters.Add(model);
@@ -388,14 +391,6 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     }
     public void CharacterOnActivationStart(CharacterEntityModel character)
     {
-        // Debug.Log("LivingEntity.CharacterOnActivationStart() called...");
-
-        //moveActionsTakenThisActivation = 0;
-        //meleeAbilityActionsTakenThisActivation = 0;
-        //skillAbilityActionsTakenThisActivation = 0;
-        //rangedAttackAbilityActionsTakenThisActivation = 0;
-
-        // GainEnergyOnActivationStart();
         ModifyEnergy(character, EntityLogic.GetTotalStamina(character));
         ModifyBlockOnActivationStart(character);
 
@@ -410,7 +405,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             VisualEventManager.Instance.CreateVisualEvent(()=> FadeInCharacterUICanvas(character.characterEntityView, cData), cData, QueuePosition.Back);
 
             // Draw cards on turn start
-            //CardController.Instance.DrawCardsOnActivationStart(character);
+            CardController.Instance.DrawCardsOnActivationStart(character);
         }
 
         character.hasActivatedThisTurn = true;
@@ -488,6 +483,38 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             view.entityRenderer.Color = new Color(newColor.r, newColor.g, newColor.b, view.entityRenderer.Color.a);
         }
 
+    }
+    #endregion
+
+    // Trigger Animations
+    #region
+    public void TriggerMeleeAttackAnimation(CharacterEntityView view)
+    {
+        view.ucmAnimator.SetTrigger("Melee Attack");
+    }
+    public void PlayIdleAnimation(CharacterEntityView view)
+    {
+        view.ucmAnimator.SetTrigger("Idle");
+    }
+    public void PlayRangedAttackAnimation(CharacterEntityView view)
+    {
+        view.ucmAnimator.SetTrigger("Shoot Bow");
+    }
+    public void PlaySkillAnimation(CharacterEntityView view)
+    {
+        view.ucmAnimator.SetTrigger("Skill One");
+    }    
+    public void PlayMoveAnimation(CharacterEntityView view)
+    {
+        view.ucmAnimator.SetTrigger("Move");
+    }
+    public void PlayHurtAnimation(CharacterEntityView view)
+    {
+        view.ucmAnimator.SetTrigger("Hurt");
+    }
+    public void PlayDeathAnimation(CharacterEntityView view)
+    {
+        view.ucmAnimator.SetTrigger("Die");
     }
     #endregion
 }

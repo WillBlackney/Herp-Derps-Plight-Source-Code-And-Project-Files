@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Card
 {
-    public Defender owner;
+    public CharacterEntityModel owner;
     public CardViewModel cardVM;
     public string cardName;
     public Sprite cardSprite;

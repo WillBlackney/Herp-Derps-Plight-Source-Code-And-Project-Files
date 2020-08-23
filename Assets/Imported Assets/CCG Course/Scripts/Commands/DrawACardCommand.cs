@@ -4,6 +4,7 @@ using System.Collections;
 public class DrawACardCommand : Command {
 
     private Player p;
+    private CharacterEntityModel character;
     private Defender d;
     private CardLogic cl;
     private Card c;
@@ -32,11 +33,19 @@ public class DrawACardCommand : Command {
         this.fast = fast;
         this.fromDeck = fromDeck;
     }
+    public DrawACardCommand(Card c, CharacterEntityModel character, bool fast, bool fromDeck)
+    {
+        Debug.Log("DrawACardCommand() constructor called...");
+        this.c = c;
+        this.character = character;
+        this.fast = fast;
+        this.fromDeck = fromDeck;
+    }
 
 
     public override void StartCommandExecution()
     {
-        d.handVisual.GivePlayerACard(c, fast, fromDeck);
+        character.characterEntityView.handVisual.GivePlayerACard(c, fast, fromDeck);
     }
  
 
