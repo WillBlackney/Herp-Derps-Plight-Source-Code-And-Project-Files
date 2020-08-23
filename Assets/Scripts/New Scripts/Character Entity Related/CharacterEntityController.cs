@@ -21,6 +21,14 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     }
     private void SetCharacterViewStartingState(CharacterEntityModel character)
     {
+        CharacterEntityView view = character.characterEntityView;
+
+        // Disable block icon
+        view.blockIcon.SetActive(false);
+
+        // Disable main UI canvas + card UI stuff
+        view.uiCanvasParent.SetActive(false);
+
 
     }
     public CharacterEntityModel CreatePlayerCharacter(CharacterData data, LevelNode position)
@@ -106,235 +114,6 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Build activation window
         ActivationManager.Instance.CreateActivationWindow(character);
 
-        /*
-    baseMaxHealth = myCharacterData.maxHealth;
-    baseStartingHealth = myCharacterData.currentHealth;
-    baseStrength = myCharacterData.strength;
-    baseWisdom = myCharacterData.wisdom;
-    baseDexterity = myCharacterData.dexterity;
-    baseMobility = myCharacterData.mobility;
-    baseStamina = myCharacterData.stamina;
-    baseInitiative = myCharacterData.initiative;
-
-    // Setup Resistances
-    /*
-    basePhysicalResistance = myCharacterData.physicalResistance;
-    baseFireResistance = myCharacterData.fireResistance;
-    baseFrostResistance = myCharacterData.frostResistance;
-    basePoisonResistance = myCharacterData.poisonResistance;
-    baseShadowResistance = myCharacterData.shadowResistance;
-    baseAirResistance = myCharacterData.airResistance;
-    */
-
-        // Setup Passives
-        /*
-        if (myCharacterData.tenaciousStacks > 0)
-        {
-            myPassiveManager.ModifyTenacious(myCharacterData.tenaciousStacks);
-        }
-        if (myCharacterData.enrageStacks > 0)
-        {
-            myPassiveManager.ModifyEnrage(myCharacterData.enrageStacks);
-        }
-        if (myCharacterData.masochistStacks > 0)
-        {
-            myPassiveManager.ModifyMasochist(myCharacterData.masochistStacks);
-        }
-        if (myCharacterData.lastStandStacks > 0)
-        {
-            myPassiveManager.ModifyLastStand(myCharacterData.lastStandStacks);
-        }
-        if (myCharacterData.unstoppableStacks > 0)
-        {
-            myPassiveManager.ModifyUnstoppable(1);
-        }
-        if (myCharacterData.slipperyStacks > 0)
-        {
-            myPassiveManager.ModifySlippery(myCharacterData.slipperyStacks);
-        }
-        if (myCharacterData.riposteStacks > 0)
-        {
-            myPassiveManager.ModifyRiposte(myCharacterData.riposteStacks);
-        }
-        if (myCharacterData.virtuosoStacks > 0)
-        {
-            myPassiveManager.ModifyVirtuoso(myCharacterData.virtuosoStacks);
-        }
-        if (myCharacterData.perfectReflexesStacks > 0)
-        {
-            myPassiveManager.ModifyPerfectReflexes(myCharacterData.perfectReflexesStacks);
-        }
-        if (myCharacterData.opportunistStacks > 0)
-        {
-            myPassiveManager.ModifyOpportunist(myCharacterData.opportunistStacks);
-        }
-        if (myCharacterData.patientStalkerStacks > 0)
-        {
-            myPassiveManager.ModifyPatientStalker(myCharacterData.patientStalkerStacks);
-        }
-        if (myCharacterData.stealthStacks > 0)
-        {
-            myPassiveManager.ModifyStealth(myCharacterData.stealthStacks);
-        }
-        if (myCharacterData.cautiousStacks > 0)
-        {
-            myPassiveManager.ModifyCautious(myCharacterData.cautiousStacks);
-        }
-        if (myCharacterData.guardianAuraStacks > 0)
-        {
-            myPassiveManager.ModifyGuardianAura(myCharacterData.guardianAuraStacks);
-        }
-        if (myCharacterData.unwaveringStacks > 0)
-        {
-            myPassiveManager.ModifyUnwavering(myCharacterData.unwaveringStacks);
-        }
-        if (myCharacterData.fieryAuraStacks > 0)
-        {
-            myPassiveManager.ModifyFieryAura(myCharacterData.fieryAuraStacks);
-        }
-        if (myCharacterData.immolationStacks > 0)
-        {
-            myPassiveManager.ModifyImmolation(myCharacterData.immolationStacks);
-        }
-        if (myCharacterData.demonStacks > 0)
-        {
-            myPassiveManager.ModifyDemon(myCharacterData.demonStacks);
-        }
-        if (myCharacterData.shatterStacks > 0)
-        {
-            myPassiveManager.ModifyShatter(myCharacterData.shatterStacks);
-        }
-        if (myCharacterData.frozenHeartStacks > 0)
-        {
-            myPassiveManager.ModifyFrozenHeart(myCharacterData.frozenHeartStacks);
-        }
-        if (myCharacterData.predatorStacks > 0)
-        {
-            myPassiveManager.ModifyPredator(myCharacterData.predatorStacks);
-        }
-        if (myCharacterData.hawkEyeStacks > 0)
-        {
-            myPassiveManager.ModifyHawkEye(myCharacterData.hawkEyeStacks);
-        }
-        if (myCharacterData.thornsStacks > 0)
-        {
-            myPassiveManager.ModifyThorns(myCharacterData.thornsStacks);
-        }
-        if (myCharacterData.trueSightStacks > 0)
-        {
-            myPassiveManager.ModifyTrueSight(1);
-        }
-        if (myCharacterData.fluxStacks > 0)
-        {
-            myPassiveManager.ModifyFlux(myCharacterData.fluxStacks);
-        }
-        if (myCharacterData.quickDrawStacks > 0)
-        {
-            myPassiveManager.ModifyQuickDraw(myCharacterData.quickDrawStacks);
-        }
-        if (myCharacterData.phasingStacks > 0)
-        {
-            myPassiveManager.ModifyPhasing(myCharacterData.phasingStacks);
-        }
-        if (myCharacterData.etherealBeingStacks > 0)
-        {
-            myPassiveManager.ModifyEtherealBeing(myCharacterData.etherealBeingStacks);
-        }
-        if (myCharacterData.encouragingAuraStacks > 0)
-        {
-            myPassiveManager.ModifyEncouragingAura(myCharacterData.encouragingAuraStacks);
-        }
-        if (myCharacterData.radianceStacks > 0)
-        {
-            myPassiveManager.ModifyRadiance(myCharacterData.radianceStacks);
-        }
-        if (myCharacterData.sacredAuraStacks > 0)
-        {
-            myPassiveManager.ModifySacredAura(myCharacterData.sacredAuraStacks);
-        }
-        if (myCharacterData.shadowAuraStacks > 0)
-        {
-            myPassiveManager.ModifyShadowAura(myCharacterData.shadowAuraStacks);
-        }
-        if (myCharacterData.shadowFormStacks > 0)
-        {
-            myPassiveManager.ModifyShadowForm(myCharacterData.shadowFormStacks);
-        }
-        if (myCharacterData.poisonousStacks > 0)
-        {
-            myPassiveManager.ModifyPoisonous(myCharacterData.poisonousStacks);
-        }
-        if (myCharacterData.venomousStacks > 0)
-        {
-            myPassiveManager.ModifyVenomous(myCharacterData.venomousStacks);
-        }
-        if (myCharacterData.toxicityStacks > 0)
-        {
-            myPassiveManager.ModifyToxicity(myCharacterData.toxicityStacks);
-        }
-        if (myCharacterData.toxicAuraStacks > 0)
-        {
-            myPassiveManager.ModifyToxicAura(myCharacterData.toxicAuraStacks);
-        }
-        if (myCharacterData.stormAuraStacks > 0)
-        {
-            myPassiveManager.ModifyStormAura(myCharacterData.stormAuraStacks);
-        }
-        if (myCharacterData.stormLordStacks > 0)
-        {
-            myPassiveManager.ModifyStormLord(myCharacterData.stormLordStacks);
-        }
-        if (myCharacterData.fadingStacks > 0)
-        {
-            myPassiveManager.ModifyFading(myCharacterData.fadingStacks);
-        }
-        if (myCharacterData.lifeStealStacks > 0)
-        {
-            myPassiveManager.ModifyLifeSteal(myCharacterData.lifeStealStacks);
-        }
-        if (myCharacterData.growingStacks > 0)
-        {
-            myPassiveManager.ModifyGrowing(myCharacterData.growingStacks);
-        }
-        if (myCharacterData.fastLearnerStacks > 0)
-        {
-            myPassiveManager.ModifyFastLearner(myCharacterData.fastLearnerStacks);
-        }
-        if (myCharacterData.pierceStacks > 0)
-        {
-            myPassiveManager.ModifyPierce(myCharacterData.pierceStacks);
-        }
-
-        // Racial traits
-        if (myCharacterData.forestWisdomStacks > 0)
-        {
-            myPassiveManager.ModifyForestWisdom(myCharacterData.forestWisdomStacks);
-        }
-        if (myCharacterData.satyrTrickeryStacks > 0)
-        {
-            myPassiveManager.ModifySatyrTrickery(myCharacterData.satyrTrickeryStacks);
-        }
-        if (myCharacterData.humanAmbitionStacks > 0)
-        {
-            myPassiveManager.ModifyHumanAmbition(myCharacterData.humanAmbitionStacks);
-        }
-        if (myCharacterData.orcishGritStacks > 0)
-        {
-            myPassiveManager.ModifyOrcishGrit(myCharacterData.orcishGritStacks);
-        }
-        if (myCharacterData.gnollishBloodLustStacks > 0)
-        {
-            myPassiveManager.ModifyGnollishBloodLust(myCharacterData.gnollishBloodLustStacks);
-        }
-        if (myCharacterData.freeFromFleshStacks > 0)
-        {
-            myPassiveManager.ModifyFreeFromFlesh(myCharacterData.freeFromFleshStacks);
-        }
-
-
-        // Set Weapons from character data
-        ItemManager.Instance.SetUpDefenderWeaponsFromCharacterData(this);
-        */
     }
     private void SetupCharacterFromEnemyData(CharacterEntityModel character, EnemyDataSO data)
     {
@@ -620,9 +399,14 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // enable activated view state
         character.levelNode.SetActivatedViewState(true);
 
-        // Draw cards on turn start
+        // is the character player controller?
         if (character.controller == Controller.Player)
         {
+            // Activate main UI canvas view
+            CoroutineData cData = new CoroutineData();
+            VisualEventManager.Instance.CreateVisualEvent(()=> FadeInCharacterUICanvas(character.characterEntityView, cData), cData, QueuePosition.Back);
+
+            // Draw cards on turn start
             //CardController.Instance.DrawCardsOnActivationStart(character);
         }
 
@@ -666,6 +450,41 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         */
 
         //action.coroutineCompleted = true;
+    }
+    #endregion
+
+    // Visual Events
+    #region
+    public void FadeInCharacterUICanvas(CharacterEntityView view, CoroutineData cData)
+    {
+        StartCoroutine(FadeInCharacterUICanvasCoroutine(view, cData));
+    }
+    private IEnumerator FadeInCharacterUICanvasCoroutine(CharacterEntityView view, CoroutineData cData)
+    {
+        view.uiCanvasParent.SetActive(true);
+        view.uiCanvasCg.alpha = 0;
+        float uiFadeSpeed = 20f;
+
+        while (view.uiCanvasCg.alpha < 1)
+        {
+            view.uiCanvasCg.alpha += 0.1f * uiFadeSpeed * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        cData.MarkAsCompleted();
+    }
+    #endregion
+
+    // Color + Highlighting 
+    #region
+    public void SetCharacterColor(CharacterEntityView view, Color newColor)
+    {
+        Debug.Log("Setting Entity Color....");
+        if (view.entityRenderer != null)
+        {
+            view.entityRenderer.Color = new Color(newColor.r, newColor.g, newColor.b, view.entityRenderer.Color.a);
+        }
+
     }
     #endregion
 }

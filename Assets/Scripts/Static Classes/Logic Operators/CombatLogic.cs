@@ -897,8 +897,14 @@ public class CombatLogic : MonoBehaviour
         //ActivationManager.Instance.activationOrder.Remove(entity);
 
         entity.PlayDeathAnimation();
-        OldCoroutineData destroyWindowAction = entity.myActivationWindow.FadeOutWindow();
-        yield return new WaitUntil(() => destroyWindowAction.ActionResolved() == true);
+
+        // Fade and destroy activation window event
+        // TO DO: DONT FEED A NULL TO THIS METHOD 
+        //(change in future when we update handle death to accept 
+        //CharacterEntityModel instead of LivingEntity as argument
+        CoroutineData destroyWindow = new CoroutineData();
+        VisualEventManager.Instance.CreateVisualEvent(() => ActivationManager.Instance.FadeOutAndDestroyActivationWindow(null, destroyWindow), destroyWindow, QueuePosition.Back, 0, 0);
+
         yield return new WaitUntil(() => entity.MyDeathAnimationFinished() == true);        
 
 

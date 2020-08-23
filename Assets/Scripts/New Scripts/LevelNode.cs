@@ -23,6 +23,7 @@ public class LevelNode : MonoBehaviour
     }
     public void SetActivatedViewState(bool onOrOff)
     {
+        Debug.Log("LevelNode.SetActivatedViewState() called, setting: " + onOrOff.ToString());
         activatedParent.SetActive(onOrOff);
     }
     public void SetLineViewState(bool onOrOff)

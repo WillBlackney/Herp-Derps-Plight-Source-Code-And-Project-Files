@@ -362,8 +362,7 @@ public class Defender : LivingEntity
         Defender selectedDefender = DefenderManager.Instance.selectedDefender;
 
         // this statment prevents the user from clicking through UI elements and selecting a defender
-        if (!EventSystem.current.IsPointerOverGameObject() == false &&
-             ActivationManager.Instance.panelIsMousedOver == false)
+        if (!EventSystem.current.IsPointerOverGameObject() == false)
         {
             Debug.Log("Clicked on the UI, returning...");
             return;

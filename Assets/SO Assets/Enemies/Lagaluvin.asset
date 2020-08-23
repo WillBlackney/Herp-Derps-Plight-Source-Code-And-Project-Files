@@ -15,10 +15,10 @@ MonoBehaviour:
   enemyName: Lagaluvin
   description: 
   maxHealth: 111
-  strength: 0
+  power: 0
   wisdom: 0
   dexterity: 0
-  initiative: 3
+  initiative: 0
   startingHealth: 111
   startingBlock: 0
   physicalResistance: 0

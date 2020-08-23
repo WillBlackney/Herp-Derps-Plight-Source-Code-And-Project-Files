@@ -1810,7 +1810,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3156248928925906537
 Transform:
   m_ObjectHideFlags: 0
@@ -2930,7 +2930,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldSpaceCanvas: {fileID: 1994018304339934421}
   worldSpaceCanvasParent: {fileID: 3747660327270180171}
-  uiCanvasParent: {fileID: 5690053799563401393}
+  uiCanvasParent: {fileID: 6507881317068032847}
   uiCanvasCg: {fileID: 9145427397421723833}
   blockIcon: {fileID: 6256065571655202587}
   blockText: {fileID: 7023219569602160540}
@@ -3063,109 +3063,6 @@ MonoBehaviour:
   myCharacterData: {fileID: 0}
   fadingIn: 0
   fadingOut: 0
-  awaitingAnOrder: 0
-  awaitingMoveOrder: 0
-  awaitingStrikeOrder: 0
-  awaitingChargeTargetOrder: 0
-  awaitingChargeLocationOrder: 0
-  awaitingInspireOrder: 0
-  awaitingGuardOrder: 0
-  awaitingShootOrder: 0
-  awaitingMeteorOrder: 0
-  awaitingTelekinesisTargetOrder: 0
-  awaitingTelekinesisLocationOrder: 0
-  awaitingFrostBoltOrder: 0
-  awaitingFireBallOrder: 0
-  awaitingRapidFireOrder: 0
-  awaitingImpalingBoltOrder: 0
-  awaitingForestMedicineOrder: 0
-  awaitingInvigorateOrder: 0
-  awaitingHolyFireOrder: 0
-  awaitingVoidBombOrder: 0
-  awaitingNightmareOrder: 0
-  awaitingTwinStrikeOrder: 0
-  awaitingDashOrder: 0
-  awaitingSliceAndDiceOrder: 0
-  awaitingPoisonDartOrder: 0
-  awaitingChemicalReactionOrder: 0
-  awaitingGetDownOrder: 0
-  awaitingDisengageOrder: 0
-  awaitingSmashOrder: 0
-  awaitingLightningShieldOrder: 0
-  awaitingChainLightningOrder: 0
-  awaitingPrimalBlastOrder: 0
-  awaitingPrimalRageOrder: 0
-  awaitingPhaseShiftOrder: 0
-  awaitingSanctityOrder: 0
-  awaitingBlessOrder: 0
-  awaitingSiphonLifeOrder: 0
-  awaitingChaosBoltOrder: 0
-  awaitingShadowBlastOrder: 0
-  awaitingMeltOrder: 0
-  awaitingKickToTheBallsOrder: 0
-  awaitingRamOrder: 0
-  awaitingDevastatingBlowOrder: 0
-  awaitingBladeFlurryOrder: 0
-  awaitingEvasionOrder: 0
-  awaitingShieldSlamOrder: 0
-  awaitingTendonSlashOrder: 0
-  awaitingShieldShatterOrder: 0
-  awaitingSwordAndBoardOrder: 0
-  awaitingPhoenixDiveOrder: 0
-  awaitingChillingBlowOrder: 0
-  awaitingIcyFocusOrder: 0
-  awaitingCombustionOrder: 0
-  awaitingDragonBreathOrder: 0
-  awaitingBlizzardOrder: 0
-  awaitingFrostArmourOrder: 0
-  awaitingThawOrder: 0
-  awaitingSnipeOrder: 0
-  awaitingHasteOrder: 0
-  awaitingSteadyHandsOrder: 0
-  awaitingTreeLeapOrder: 0
-  awaitingDimensionalBlastOrder: 0
-  awaitingMirageOrder: 0
-  awaitingBurstOfKnowledgeOrder: 0
-  awaitingBlinkOrder: 0
-  awaitingTimeWarpOrder: 0
-  awaitingDimensionalHexOrder: 0
-  awaitingBlindingLightOrder: 0
-  awaitingTranscendenceOrder: 0
-  awaitingJudgementOrder: 0
-  awaitingShroudOrder: 0
-  awaitingRainOfChaosOrder: 0
-  awaitingBlightOrder: 0
-  awaitingToxicSlashOrder: 0
-  awaitingToxicEruptionOrder: 0
-  awaitingDrainOrder: 0
-  awaitingLightningBoltOrder: 0
-  awaitingThunderStrikeOrder: 0
-  awaitingSpiritVisionOrder: 0
-  awaitingThunderStormOrder: 0
-  awaitingConcealingCloudsOrder: 0
-  awaitingHeadShotOrder: 0
-  awaitingHexOrder: 0
-  awaitingShankOrder: 0
-  awaitingCheapShotOrder: 0
-  awaitingAmbushOrder: 0
-  awaitingShadowStepOrder: 0
-  awaitingProvokeOrder: 0
-  awaitingDecapitateOrder: 0
-  awaitingDisarmOrder: 0
-  awaitingGoBerserkOrder: 0
-  awaitingFortifyOrder: 0
-  awaitingStoneFormOrder: 0
-  awaitingBackStabOrder: 0
-  awaitingChloroformBombOrder: 0
-  awaitingPinningShotOrder: 0
-  awaitingMarkTargetOrder: 0
-  awaitingSnowStasisOrder: 0
-  awaitingOverloadOrder: 0
-  awaitingBlazeOrder: 0
-  awaitingCreepingFrostOrder: 0
-  awaitingShadowWreathOrder: 0
-  awaitingDarkGiftOrder: 0
-  awaitingSuperConductorOrder: 0
   energyBarPositionCurrentlyUpdating: 0
   healthBarPositionCurrentlyUpdating: 0
 --- !u!65 &6154693504274587097
@@ -4167,7 +4064,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6086313924695487628}
   m_Layer: 5
-  m_Name: Elements Parent
+  m_Name: Visual Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4949,92 +4846,92 @@ PrefabInstance:
     - target: {fileID: 269625620876422246, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 269625620876422246, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 269625620876422246, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 269625620876422246, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 269625620876422246, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 269625620876422246, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5076638509383961650, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5076638509383961650, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5076638509383961650, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.54
       objectReference: {fileID: 0}
     - target: {fileID: 5076638509383961650, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5076638509383961650, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5076638509383961650, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5474767889595898829, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5474767889595898829, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5474767889595898829, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 5474767889595898829, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 5474767889595898829, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5474767889595898829, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5993353080589036345, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
@@ -5104,12 +5001,12 @@ PrefabInstance:
     - target: {fileID: 5993353080589036345, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 0.86
       objectReference: {fileID: 0}
     - target: {fileID: 5993353080589036345, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5993353080589036345, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
@@ -5144,32 +5041,32 @@ PrefabInstance:
     - target: {fileID: 7026061846826498158, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7026061846826498158, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7026061846826498158, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.76000005
       objectReference: {fileID: 0}
     - target: {fileID: 7026061846826498158, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7026061846826498158, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7026061846826498158, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7540427593620609802, guid: 75ff4ade461c6c14fbecb9c257b3174a,
         type: 3}

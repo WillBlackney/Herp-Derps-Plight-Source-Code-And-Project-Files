@@ -48,6 +48,5 @@ public class CharacterEntityView : MonoBehaviour
     //[Header("Core Component References")]
     //public StatusManager myStatusManager;
     //public PassiveManager myPassiveManager;
-    //[HideInInspector] public ActivationWindow myActivationWindow;
 
 }

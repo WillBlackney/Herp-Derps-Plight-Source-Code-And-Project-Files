@@ -761,7 +761,6 @@ public class LivingEntity : MonoBehaviour
         rangedAttackAbilityActionsTakenThisActivation = 0;
 
         GainEnergyOnActivationStart();
-        //ReduceCooldownsOnActivationStart();
         ModifyBlockOnActivationStart();
 
         // enable activated view state
