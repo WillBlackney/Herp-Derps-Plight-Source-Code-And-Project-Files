@@ -965,6 +965,10 @@ public static class EntityLogic
         return staminaReturned;
         */
     }
+    public static int GetTotalDraw(CharacterEntityModel entity)
+    {
+        return entity.draw;
+    }
 
     // Secondary Stats
     public static int GetTotalRangeOfRangedAttack(LivingEntity entity, Ability ability)

@@ -96,6 +96,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Establish connection from defender script to character data
         //myCharacterData.myDefenderGO = this;
 
+        // Set general info
+        character.myName = data.myName;
+
         // Setup Core Stats
         ModifyStamina(character, data.stamina);
         ModifyInitiative(character, data.initiative);
@@ -397,7 +400,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         ModifyBlockOnActivationStart(character);
 
         // enable activated view state
-        character.levelNode.SetActivatedViewState(true);
+        VisualEventManager.Instance.CreateVisualEvent(() => character.levelNode.SetActivatedViewState(true), QueuePosition.Back);
 
         // is the character player controller?
         if (character.controller == Controller.Player)

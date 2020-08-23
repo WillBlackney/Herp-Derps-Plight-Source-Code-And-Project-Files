@@ -74,7 +74,7 @@ public class ActivationManager : Singleton<ActivationManager>
         // Move windows to start positions if combat has only just started
         if(TurnChangeNotifier.Instance.currentTurnCount == 0)
         {
-            VisualEventManager.Instance.CreateVisualEvent(() => UpdateWindowPositions(), QueuePosition.Back, 0, 0);
+            VisualEventManager.Instance.CreateVisualEvent(() => MoveAllWindowsToStartPositions(), QueuePosition.Back, 0f, 0);
         }      
 
         // Increment turn count
@@ -165,7 +165,7 @@ public class ActivationManager : Singleton<ActivationManager>
         }
         
     }
-    public IEnumerator OnEndTurnButtonClickedCoroutine()
+    private IEnumerator OnEndTurnButtonClickedCoroutine()
     {
         Debug.Log("OnEndTurnButtonClickedCoroutine() started...");
 
@@ -431,10 +431,22 @@ public class ActivationManager : Singleton<ActivationManager>
         {
             StartCoroutine(MoveWindowTowardsSlotPositionCoroutine(character.characterEntityView.myActivationWindow));
         }
-
-        //yield return new WaitForSeconds(1f);
-
-        //cData.MarkAsCompleted();
+    }
+    private void MoveAllWindowsToStartPositions()
+    {
+        for(int i = 0; i < activationOrder.Count; i++)
+        {
+            StartCoroutine(MoveWindowToStartingSlotCoroutine(activationOrder[i].characterEntityView.myActivationWindow, panelSlots[i]));
+        }
+    }
+    private IEnumerator MoveWindowToStartingSlotCoroutine(ActivationWindow window, GameObject startSlotPos)
+    {        
+        while (window.transform.position.x != startSlotPos.transform.position.x)
+        {
+            window.transform.position = Vector2.MoveTowards(window.transform.position, startSlotPos.transform.position, 10 * Time.deltaTime);
+            yield return null;
+        }
+        
     }
     private void DestroyActivationWindow(ActivationWindow window)
     {
@@ -484,7 +496,7 @@ public class ActivationManager : Singleton<ActivationManager>
                 // Move!
                 while (panelArrow.transform.position.x != destination.x)
                 {
-                    panelArrow.transform.position = Vector2.MoveTowards(panelArrow.transform.position, destination, 400 * Time.deltaTime);
+                    panelArrow.transform.position = Vector2.MoveTowards(panelArrow.transform.position, destination, 10 * Time.deltaTime);
                     yield return null;
                 }
             }
@@ -495,32 +507,4 @@ public class ActivationManager : Singleton<ActivationManager>
     }
     #endregion
 
-
-
-
-
-
-
-    // Old + Deprecated functions
-    #region
-    public OldCoroutineData MoveArrowTowardsTargetPanelPos(ActivationWindow window, float moveDelay = 0f, float arrowMoveSpeed = 400)
-    {
-        Debug.Log("ActivationManager.MoveArrowTowardsTargetPanelPos() called....");
-        OldCoroutineData action = new OldCoroutineData();
-        StartCoroutine(MoveArrowTowardsTargetPanelPosCoroutine(window, action, moveDelay, arrowMoveSpeed));
-        return action;
-    }
-    public IEnumerator MoveArrowTowardsTargetPanelPosCoroutine(ActivationWindow window, OldCoroutineData action, float moveDelay = 0, float arrowMoveSpeed = 400)
-    {
-        yield return new WaitForSeconds(moveDelay);
-        Vector3 destination = new Vector2(window.transform.position.x, panelArrow.transform.position.y);
-
-        while (panelArrow.transform.position != destination)
-        {
-            panelArrow.transform.position = Vector2.MoveTowards(panelArrow.transform.position, destination, arrowMoveSpeed * Time.deltaTime);
-            yield return new WaitForEndOfFrame();
-        }
-        action.coroutineCompleted = true;
-    }
-    #endregion
 }

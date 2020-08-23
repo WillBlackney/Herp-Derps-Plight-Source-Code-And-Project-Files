@@ -17,3 +17,5 @@ MonoBehaviour:
   enemyGroups:
   - possibleEnemies:
     - {fileID: 11400000, guid: 9670d2bd00c115042a1846520d8596ee, type: 2}
+  - possibleEnemies:
+    - {fileID: 11400000, guid: 9670d2bd00c115042a1846520d8596ee, type: 2}

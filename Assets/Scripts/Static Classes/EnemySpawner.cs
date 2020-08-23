@@ -121,18 +121,6 @@ public class EnemySpawner : MonoBehaviour
 
             CharacterEntityController.Instance.CreateEnemyCharacter(data, LevelManager.Instance.GetNextAvailableEnemyNode());
 
-            /*
-            // Create GO and set data
-            Enemy newEnemy =  Instantiate(PrefabHolder.Instance.enemyPrefab).GetComponent<Enemy>();
-            newEnemy.enemyData = data;
-
-            // Choose a random tile from the list of spawnable locations
-            LevelNode startPos = LevelManager.Instance.GetNextAvailableEnemyNode();
-
-            // Run the enemy's constructor
-            newEnemy.InitializeSetup(startPos);
-            */
-
         }
 
     }
