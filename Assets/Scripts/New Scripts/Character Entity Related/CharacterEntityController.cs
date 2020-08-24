@@ -26,10 +26,11 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Disable block icon
         view.blockIcon.SetActive(false);
 
+        // Get camera references
+        view.uiCanvas.worldCamera = CameraManager.Instance.unityCamera.mainCamera;
+
         // Disable main UI canvas + card UI stuff
         view.uiCanvasParent.SetActive(false);
-
-
     }
     public CharacterEntityModel CreatePlayerCharacter(CharacterData data, LevelNode position, List<CardDataSO> deckData)
     {
@@ -448,6 +449,27 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         */
 
         //action.coroutineCompleted = true;
+    }
+    public void CharacterOnActivationEnd(CharacterEntityModel entity)
+    {
+        Debug.Log("LivingEntityManager.StartEntityOnActivationEndEventsCoroutine() called for " + entity.myName);
+
+        // Discard hand
+        if (entity.controller == Controller.Player)
+        {
+            // Lose unused energy, discard hand
+            ModifyEnergy(entity, -entity.energy);
+
+            // Discard Hand
+            CardController.Instance.DiscardHandOnActivationEnd(entity);
+        }
+
+        // Disable activated views
+        entity.levelNode.SetActivatedViewState(false);
+
+        // activate the next character
+        ActivationManager.Instance.ActivateNextEntity();
+
     }
     #endregion
 

@@ -141,7 +141,7 @@ public class HandVisual : MonoBehaviour
         // set correct sorting order
         w.SetHandSortingOrder();
         // end command execution for DrawACArdCommand
-        //Command.CommandExecutionComplete();
+        Command.CommandExecutionComplete();
     }
 
     // Play cards from hand

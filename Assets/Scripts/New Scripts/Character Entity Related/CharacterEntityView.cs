@@ -15,6 +15,7 @@ public class CharacterEntityView : MonoBehaviour
     public Transform worldSpaceCanvasParent;
 
     [Header("GUI Canvas References")]
+    public Canvas uiCanvas;
     public GameObject uiCanvasParent;
     public CanvasGroup uiCanvasCg;
 

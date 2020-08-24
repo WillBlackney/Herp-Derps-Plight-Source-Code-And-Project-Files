@@ -2930,6 +2930,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldSpaceCanvas: {fileID: 1994018304339934421}
   worldSpaceCanvasParent: {fileID: 3747660327270180171}
+  uiCanvas: {fileID: 5690053799563401397}
   uiCanvasParent: {fileID: 6507881317068032847}
   uiCanvasCg: {fileID: 9145427397421723833}
   blockIcon: {fileID: 6256065571655202587}

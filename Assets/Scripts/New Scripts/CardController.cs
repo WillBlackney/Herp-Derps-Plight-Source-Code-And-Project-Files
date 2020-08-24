@@ -112,9 +112,7 @@ public class CardController : Singleton<CardController>
             defender.hand.Add(cardDrawn);
 
             // Create and queue card drawn visual event
-            VisualEventManager.Instance.CreateVisualEvent(() => DrawCardFromDeckVisualEvent(cardDrawn, defender), QueuePosition.Back, 0, 1);
-
-           // new DrawACardCommand(cardDrawn, defender, true, true).AddToQueue();
+            VisualEventManager.Instance.CreateVisualEvent(() => DrawCardFromDeckVisualEvent(cardDrawn, defender), QueuePosition.Back, 0, 0.2f);
         }
     }
     public void DrawCardsOnActivationStart(CharacterEntityModel defender)
@@ -158,28 +156,11 @@ public class CardController : Singleton<CardController>
         // does the card have a cardVM linked to it?
         if (cvm)
         {
-            // remove from hand visual
-            defender.characterEntityView.handVisual.RemoveCard(cvm.gameObject);
-
-            // Play visual event of card moving to discard pile
-            Sequence s = MoveCardVmFromHandToDiscardPile(cvm, defender.characterEntityView.handVisual.DiscardPileTransform);
-
-            // Once they anim is finished, destroy the CVM 
-            s.OnComplete(() => DestroyCardViewModel(cvm));
+            VisualEventManager.Instance.CreateVisualEvent(() => DiscardCardFromHandVisualEvent(cvm, defender), 0, 0.1f);
         }                         
 
     }
-    public Sequence MoveCardVmFromHandToDiscardPile(CardViewModel cvm, Transform discardPileLocation)
-    {
-        Debug.Log("CardController.MoveCardVmFromHandToDiscardPile() called...");
-
-        // move card to the hand;
-        Sequence s = DOTween.Sequence();
-        // displace the card so that we can select it in the scene easier.
-        s.Append(cvm.transform.DOMove(discardPileLocation.position, 0.5f));
-
-        return s;
-    }
+   
     public void DestroyCardViewModel(CardViewModel cvm)
     {
         Debug.Log("CardController.DestroyCardViewModel() called...");
@@ -575,6 +556,30 @@ public class CardController : Singleton<CardController>
 
         s.OnComplete(() => w.SetHandSortingOrder());
     }
+    private void DiscardCardFromHandVisualEvent(CardViewModel cvm, CharacterEntityModel character)
+    {
+        // remove from hand visual
+        character.characterEntityView.handVisual.RemoveCard(cvm.gameObject);
+
+        // move card to the discard pile
+        Sequence s = MoveCardVmFromHandToDiscardPile(cvm, character.characterEntityView.handVisual.DiscardPileTransform);
+        //s.Append(cvm.transform.DOMove(character.characterEntityView.handVisual.DiscardPileTransform, 0.5f));
+
+        // Once the anim is finished, destroy the CVM 
+        s.OnComplete(() => DestroyCardViewModel(cvm));
+    }
+    private Sequence MoveCardVmFromHandToDiscardPile(CardViewModel cvm, Transform discardPileLocation)
+    {
+        Debug.Log("CardController.MoveCardVmFromHandToDiscardPile() called...");
+
+        // move card to the hand;
+        Sequence s = DOTween.Sequence();
+        // displace the card so that we can select it in the scene easier.
+        s.Append(cvm.transform.DOMove(discardPileLocation.position, 0.5f));
+
+        return s;
+    }
+
     #endregion
 
 }

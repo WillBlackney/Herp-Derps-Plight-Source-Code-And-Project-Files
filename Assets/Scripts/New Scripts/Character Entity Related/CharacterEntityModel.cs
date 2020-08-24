@@ -24,6 +24,7 @@ public class CharacterEntityModel
     public CharacterEntityView characterEntityView;
     public Allegiance allegiance;
     public Controller controller;
+    public LivingState livingState;
     public string myName;
 
     [Header("Card Properties")]
@@ -44,4 +45,9 @@ public enum Controller
 {
     Player,
     AI
+}
+public enum LivingState
+{
+    Alive,
+    Dead,
 }

@@ -9,16 +9,26 @@ public class VisualEvent
     public Action eventFunction;
 
     public bool isPlaying;
+    public EventDetail eventDetail;
+
     public float startDelay;
     public float endDelay;
 
-    public VisualEvent(Action _eventFunction, CoroutineData _cData, float _startDelay, float _endDelay)
+    public VisualEvent(Action _eventFunction, CoroutineData _cData, float _startDelay, float _endDelay, EventDetail _eventDetail)
     {
         eventFunction = _eventFunction;
         cData = _cData;
         startDelay = _startDelay;
         endDelay = _endDelay;
+        eventDetail = _eventDetail;
     }
 
 
+}
+public enum EventDetail
+{
+    None,
+    CardDraw,
+    GameOverVictory,
+    GameOverDefeat,
 }

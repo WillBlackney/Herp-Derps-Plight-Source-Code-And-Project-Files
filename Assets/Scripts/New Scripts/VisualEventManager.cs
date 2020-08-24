@@ -96,7 +96,7 @@ public class VisualEventManager : MonoBehaviour
 
     // Create Events
     #region
-    public void CreateVisualEvent(Action eventFunction, CoroutineData cData, QueuePosition position, float startDelay = 0f, float endDelay = 0f)
+    public void CreateVisualEvent(Action eventFunction, CoroutineData cData, QueuePosition position, float startDelay = 0f, float endDelay = 0f, EventDetail eventDetail = EventDetail.None)
     {
         // NOTE: This method requires on argument of 'CoroutineData'.
         // this function is only for visual events that have their sequence
@@ -107,7 +107,7 @@ public class VisualEventManager : MonoBehaviour
 
         Debug.Log("VisualEventManager.CreateVisualEvent() called...");
 
-        VisualEvent vEvent = new VisualEvent(eventFunction, cData, startDelay, endDelay);
+        VisualEvent vEvent = new VisualEvent(eventFunction, cData, startDelay, endDelay, eventDetail);
 
         if(position == QueuePosition.Back)
         {
@@ -118,11 +118,11 @@ public class VisualEventManager : MonoBehaviour
             AddEventToFrontOfQueue(vEvent);
         }
     }
-    public void CreateVisualEvent(Action eventFunction, QueuePosition position, float startDelay = 0f, float endDelay = 0f)
+    public void CreateVisualEvent(Action eventFunction, QueuePosition position, float startDelay = 0f, float endDelay = 0f, EventDetail eventDetail = EventDetail.None)
     {
         Debug.Log("VisualEventManager.CreateVisualEvent() called...");
 
-        VisualEvent vEvent = new VisualEvent(eventFunction, null, startDelay, endDelay);
+        VisualEvent vEvent = new VisualEvent(eventFunction, null, startDelay, endDelay, eventDetail);
 
         if (position == QueuePosition.Back)
         {
@@ -135,6 +135,49 @@ public class VisualEventManager : MonoBehaviour
     }
     #endregion
 
+    // Bools and Queue Checks
+    public bool PendingCardDrawEvent()
+    {
+        bool boolReturned = false;
+        foreach(VisualEvent ve in eventQueue)
+        {
+            if (ve.eventDetail == EventDetail.CardDraw)
+            {
+                boolReturned = true;
+                break;
+            }
+        }
+
+        return boolReturned;
+    }
+    public bool PendingDefeatEvent()
+    {
+        bool boolReturned = false;
+        foreach (VisualEvent ve in eventQueue)
+        {
+            if (ve.eventDetail == EventDetail.GameOverDefeat)
+            {
+                boolReturned = true;
+                break;
+            }
+        }
+
+        return boolReturned;
+    }
+    public bool PendingVictoryEvent()
+    {
+        bool boolReturned = false;
+        foreach (VisualEvent ve in eventQueue)
+        {
+            if (ve.eventDetail == EventDetail.GameOverVictory)
+            {
+                boolReturned = true;
+                break;
+            }
+        }
+
+        return boolReturned;
+    }
 }
 public enum QueuePosition
 {

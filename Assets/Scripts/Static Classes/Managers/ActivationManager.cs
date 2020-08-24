@@ -157,22 +157,21 @@ public class ActivationManager : Singleton<ActivationManager>
     #region
     public void OnEndTurnButtonClicked()
     {
+        Debug.Log("ActivationManager.OnEndTurnButtonClicked() called...");
+
         // only start end turn sequence if all on turn visual events have completed
-        if (!ActionManager.Instance.UnresolvedCombatActions() &&
-            !Command.CardDrawPending())
+        if (!VisualEventManager.Instance.PendingCardDrawEvent())
         {
-            StartCoroutine(OnEndTurnButtonClickedCoroutine());
+            StartEndTurnProcess();
         }
         
     }
-    private IEnumerator OnEndTurnButtonClickedCoroutine()
+    private void StartEndTurnProcess()
     {
-        Debug.Log("OnEndTurnButtonClickedCoroutine() started...");
+        Debug.Log("ActivationManager.StartEndTurnProcess() called...");
 
         UIManager.Instance.DisableEndTurnButtonInteractions();
-        //OldCoroutineData endTurnEvent = LivingEntityManager.Instance.EndEntityActivation(entityActivated);
-        // yield return new WaitUntil(() => endTurnEvent.ActionResolved() == true); 
-        yield return null;
+        CharacterEntityController.Instance.CharacterOnActivationEnd(entityActivated);
     }      
     public void SetActivationWindowViewState(bool onOrOff)
     {
@@ -211,11 +210,7 @@ public class ActivationManager : Singleton<ActivationManager>
         // Move arrow visual event
         CoroutineData moveArrow = new CoroutineData();
         VisualEventManager.Instance.CreateVisualEvent(() => MoveArrowTowardsEntityActivatedWindow(moveArrow), moveArrow, QueuePosition.Back);
-
-       // OldCoroutineData activationStartAction = entity.OnActivationStart();
-        //yield return new WaitUntil(() => activationStartAction.ActionResolved() == true);
-
-
+        
         /*
         if (entity.enemy)
         {
@@ -228,12 +223,11 @@ public class ActivationManager : Singleton<ActivationManager>
     }  
     public void ActivateNextEntity()
     {
-        // TO DO: uncomment and update code
-        /*
         Debug.Log("ActivationManager.ActivateNextEntity() called...");
 
         // dont activate next entity if either all defenders or all enemies are dead
-        if (EventManager.Instance.currentCombatEndEventTriggered)
+        if (VisualEventManager.Instance.PendingDefeatEvent() ||
+            VisualEventManager.Instance.PendingVictoryEvent())
         {
             Debug.Log("ActivationManager.ActivateNextEntity() detected that an end combat event has been triggered, " +
                 "cancelling next entity activation...");
@@ -241,35 +235,38 @@ public class ActivationManager : Singleton<ActivationManager>
         }
 
         CharacterEntityModel nextEntityToActivate = null;
+
+        // Start a new turn if all characters have activated
         if (AllEntitiesHaveActivatedThisTurn())
         {
             StartNewTurnSequence();
         }
         else
         {
+            // check each entity to see if they should activate, start search from front of activation order list
             for (int index = 0; index < activationOrder.Count; index++)
             {
-                if (true)//(activationOrder[index].inDeathProcess == false &&
-                  // (activationOrder[index].hasActivatedThisTurn == false ||
-                   // (activationOrder[index].hasActivatedThisTurn == true && activationOrder[index].myPassiveManager.timeWarp)))
+                // check if the character is alive, and not yet activated this turn cycle
+                if (activationOrder[index].livingState == LivingState.Alive &&
+                    activationOrder[index].hasActivatedThisTurn == false )
                 {
                     nextEntityToActivate = activationOrder[index];
                     break;
                 }
             }
 
-
+            // Did we find a valid entity?
             if (nextEntityToActivate == null)
             {
+                // we didnt, start a new turn sequence
                 StartNewTurnSequence();
             }
             else
             {
+                // we did, activate that entity
                 ActivateEntity(nextEntityToActivate);
             }
-        }
-        */
-        
+        }      
     }
     public bool IsEntityActivated(CharacterEntityModel entity)
     {
