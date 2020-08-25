@@ -8,7 +8,7 @@ public class DragCreatureAttack : DraggingActions {
     // LineRenderer that is attached to a child game object to draw the arrow
     private LineRenderer lr;
     // reference to WhereIsTheCardOrCreature to track this object`s state in the game
-    private WhereIsTheCardOrCreature whereIsThisCreature;
+    private CardLocationTracker whereIsThisCreature;
     // the pointy end of the arrow, should be called "Triangle" in the Hierarchy
     private Transform triangle;
     // SpriteRenderer of triangle. We need this to disable the pointy end if the target is too close.
@@ -28,7 +28,7 @@ public class DragCreatureAttack : DraggingActions {
         triangleSR = triangle.GetComponent<SpriteRenderer>();
 
         manager = GetComponentInParent<OneCreatureManager>();
-        whereIsThisCreature = GetComponentInParent<WhereIsTheCardOrCreature>();
+        whereIsThisCreature = GetComponentInParent<CardLocationTracker>();
     }
 
     public override bool CanDrag

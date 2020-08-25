@@ -53,4 +53,15 @@ public class CharacterEntityView : MonoBehaviour
     //public StatusManager myStatusManager;
     //public PassiveManager myPassiveManager;
 
+    // Mouse + Input Logic
+    private void OnMouseEnter()
+    {
+        Debug.Log("CharacterEntityView.OnMouseEnter called...");
+        CharacterEntityController.Instance.OnCharacterMouseOver(this);
+    }
+    private void OnMouseExit()
+    {
+        Debug.Log("CharacterEntityView.OnMouseExit called...");
+        CharacterEntityController.Instance.OnCharacterMouseExit(this);
+    }
 }

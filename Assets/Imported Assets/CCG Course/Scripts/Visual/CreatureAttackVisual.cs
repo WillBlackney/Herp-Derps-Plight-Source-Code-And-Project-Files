@@ -5,12 +5,12 @@ using DG.Tweening;
 public class CreatureAttackVisual : MonoBehaviour 
 {
     private OneCreatureManager manager;
-    private WhereIsTheCardOrCreature w;
+    private CardLocationTracker w;
 
     void Awake()
     {
         manager = GetComponent<OneCreatureManager>();    
-        w = GetComponent<WhereIsTheCardOrCreature>();
+        w = GetComponent<CardLocationTracker>();
     }
 
     public void AttackTarget(int targetUniqueID, int damageTakenByTarget, int damageTakenByAttacker, int attackerHealthAfter, int targetHealthAfter)

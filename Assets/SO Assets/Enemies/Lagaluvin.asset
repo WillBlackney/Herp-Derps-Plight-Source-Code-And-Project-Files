@@ -107,4 +107,16 @@ MonoBehaviour:
       requirementTypeValue: 3
       statusRequired: {fileID: 0}
       statusStacksRequired: 0
-  allBodyParts: []
+  allBodyParts:
+  - Undead_Head_1
+  - Undead_Face_1
+  - Undead_Chest
+  - Undead_Right_Arm
+  - Undead_Right_Hand
+  - Undead_Left_Arm
+  - Undead_Left_Hand
+  - Undead_Right_Leg
+  - Undead_Left_Leg
+  - Arcanist_Head_Wear
+  - Left_Hand_Simple_Staff
+  - Arcanist_Chest_Wear

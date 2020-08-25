@@ -971,6 +971,41 @@ public static class EntityLogic
     {
         return entity.draw;
     }
+    public static int GetTotalPower(CharacterEntityModel entity)
+    {
+        Debug.Log("EntityLogic.GetTotalStrength() called for " + entity.myName + "...");
+        return entity.power;
+        // Get base strength
+        /*
+        int strengthReturned = entity.currentStrength;
+        Debug.Log(entity.name + " base strength: " + strengthReturned.ToString());
+
+        // Add bonus strength
+        if (entity.myPassiveManager.bonusStrength)
+        {
+            strengthReturned += entity.myPassiveManager.bonusStrengthStacks;
+            Debug.Log("Value after bonus strength added: " + strengthReturned.ToString());
+        }
+
+        // Add temporary bonus strength
+        if (entity.myPassiveManager.temporaryBonusStrength)
+        {
+            strengthReturned += entity.myPassiveManager.temporaryBonusStrengthStacks;
+            Debug.Log("Value after temporary bonus strength added: " + strengthReturned.ToString());
+        }
+
+        // Add bonus from purity passive
+        if (entity.myPassiveManager.purity)
+        {
+            strengthReturned += 2;
+            Debug.Log("Value after purity bonus added: " + strengthReturned.ToString());
+        }
+
+        // return final value
+        Debug.Log("Final strength value calculated: " + strengthReturned.ToString());
+        return strengthReturned;
+        */
+    }
 
     // Secondary Stats
     public static int GetTotalRangeOfRangedAttack(LivingEntity entity, Ability ability)

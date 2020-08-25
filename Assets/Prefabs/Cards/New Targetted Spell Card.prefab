@@ -183,7 +183,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1697044437
+  m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ea1f31405f8ee2d478b35bfd89a3e009, type: 3}
@@ -270,7 +270,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1697044437
+  m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0efb29dac46fdbb40928fc28911d481e, type: 3}
@@ -326,6 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5d17371b79f32a4db9e686b536e8bd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  da: {fileID: 114000013371488156}
 --- !u!114 &114000013371488156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,7 +339,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8af2f7a8cc39c445a011ea02894fa89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardVM: {fileID: 7179389246990061675}
+  locationTracker: {fileID: 114000010313624196}
   Targets: 4
+  sr: {fileID: 212000012547724256}
+  lr: {fileID: 120000010456547104}
+  triangleSR: {fileID: 212000011675347170}
 --- !u!1 &1000013240200376
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,6 +548,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPreviewCard: {fileID: 1662899366349802555}
+  locationTracker: {fileID: 114000010313624196}
+  draggingActions: {fileID: 114000013371488156}
+  draggable: {fileID: 114000014048397232}
+  hoverPreview: {fileID: 114000010761936366}
   nameText: {fileID: 4231101038697527499}
   descriptionText: {fileID: 2602966212272754944}
   energyText: {fileID: 8444517020503340801}

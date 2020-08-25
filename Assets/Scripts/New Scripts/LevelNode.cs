@@ -19,6 +19,8 @@ public class LevelNode : MonoBehaviour
 
     public void SetMouseOverViewState(bool onOrOff)
     {
+        Debug.Log("LevelNode.SetMouseOverViewState() called");
+
         mouseOverParent.SetActive(onOrOff);
     }
     public void SetActivatedViewState(bool onOrOff)

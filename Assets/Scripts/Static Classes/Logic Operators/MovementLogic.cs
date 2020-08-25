@@ -799,12 +799,11 @@ public class MovementLogic : MonoBehaviour
 
     // New Movement Logic 
     #region
-    public void MoveAttackerToTargetNodeAttackPosition2(CharacterEntityModel attacker, CharacterEntityModel target, CoroutineData data)
+    public void MoveAttackerToTargetNodeAttackPosition(CharacterEntityModel attacker, CharacterEntityModel target, CoroutineData data)
     {
         Debug.Log("LivingEntityManager.MoveAttackerToTargetNodeAttackPosition() called...");
         StartCoroutine(MoveAttackerToTargetNodeAttackPositionCoroutine(attacker, target, data));
     }
-
     private IEnumerator MoveAttackerToTargetNodeAttackPositionCoroutine(CharacterEntityModel attacker, CharacterEntityModel target, CoroutineData action)
     {
         // Set up
@@ -833,12 +832,12 @@ public class MovementLogic : MonoBehaviour
         action.MarkAsCompleted();
 
     }
-    public void MoveEntityToNodeCentre2(CharacterEntityModel entity, LevelNode node, CoroutineData data)
+    public void MoveEntityToNodeCentre(CharacterEntityModel entity, LevelNode node, CoroutineData data)
     {
         Debug.Log("LivingEntityManager.MoveEntityToNodeCentre2() called...");
-        StartCoroutine(MoveEntityToNodeCentreCoroutine2(entity, node, data));
+        StartCoroutine(MoveEntityToNodeCentreCoroutine(entity, node, data));
     }
-    private IEnumerator MoveEntityToNodeCentreCoroutine2(CharacterEntityModel entity, LevelNode node, CoroutineData action)
+    private IEnumerator MoveEntityToNodeCentreCoroutine(CharacterEntityModel entity, LevelNode node, CoroutineData action)
     {
         // Set up
         bool reachedDestination = false;

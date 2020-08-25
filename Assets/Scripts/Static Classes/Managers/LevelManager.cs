@@ -152,19 +152,6 @@ public class LevelManager : MonoBehaviour
 
         return nodeReturned;
     }
-    public void PlaceEntityAtNode(LivingEntity entity, LevelNode node)
-    {
-        /*
-        Debug.Log("LevelManager.PlaceEntityAtNode() called...");
-
-        if(node)
-        node.myEntity = entity;
-        node.occupied = true;
-        entity.levelNode = node;
-        //entity.transform.position = Camera.main.ScreenToWorldPoint(node.transform.position);
-        entity.transform.position = node.transform.position;
-        */
-    }
     public void PlaceEntityAtNode(CharacterEntityModel entity, LevelNode node)
     {
         Debug.Log("LevelManager.PlaceEntityAtNode() called...");

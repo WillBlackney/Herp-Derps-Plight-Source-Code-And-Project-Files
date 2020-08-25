@@ -223,7 +223,7 @@ public class LivingEntity : MonoBehaviour
         // Auto Get+Set world space canvas event camera to help performance
         AutoSetWorldCanvasEventCamera();
 
-        LevelManager.Instance.PlaceEntityAtNode(this, location);
+        //LevelManager.Instance.PlaceEntityAtNode(this, location);
 
         // Add this to the list of all active enemy and defender characters
         LivingEntityManager.Instance.allLivingEntities.Add(this);

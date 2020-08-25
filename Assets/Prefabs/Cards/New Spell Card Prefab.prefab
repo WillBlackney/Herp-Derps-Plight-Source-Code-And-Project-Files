@@ -82,6 +82,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myPreviewCard: {fileID: 4521745044687231614}
+  locationTracker: {fileID: 114000012785297352}
+  draggingActions: {fileID: 114000010013527286}
+  draggable: {fileID: 114000012503704844}
+  hoverPreview: {fileID: 114000010004094300}
   nameText: {fileID: 66863788189821489}
   descriptionText: {fileID: 2181422559027954682}
   energyText: {fileID: 5722558650106078715}
@@ -121,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5d17371b79f32a4db9e686b536e8bd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  da: {fileID: 114000010013527286}
 --- !u!114 &114000010013527286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,6 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6971b3da8833d2b4c874030f7eaf3493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardVM: {fileID: 7999234403534708839}
+  locationTracker: {fileID: 114000012785297352}
 --- !u!114 &114000012785297352
 MonoBehaviour:
   m_ObjectHideFlags: 0

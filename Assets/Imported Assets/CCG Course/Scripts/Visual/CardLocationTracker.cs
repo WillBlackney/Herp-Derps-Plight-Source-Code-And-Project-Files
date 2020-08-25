@@ -13,7 +13,7 @@ public enum VisualStates
     Dragging
 }
 
-public class WhereIsTheCardOrCreature : MonoBehaviour {
+public class CardLocationTracker : MonoBehaviour {
 
     // reference to a HoverPreview Component
     private HoverPreview hover;

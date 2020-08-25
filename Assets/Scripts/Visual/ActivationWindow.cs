@@ -26,37 +26,13 @@ public class ActivationWindow : MonoBehaviour, IPointerEnterHandler, IPointerExi
     #region
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("ActivationWindow.OnPointerEnter() called...");
-        myGlowOutline.SetActive(true);
-
-        if(myCharacter != null)
-        {
-            // Set character highlight color
-            CharacterEntityController.Instance.SetCharacterColor(myCharacter.characterEntityView, CharacterEntityController.Instance.highlightColour);
-
-            // Set character's level node mouse over state
-            if (myCharacter.levelNode != null)
-            {
-                myCharacter.levelNode.SetMouseOverViewState(true);
-            }
-        }
+        Debug.Log("ActivationWindow.OnMouseEnter called...");
+        CharacterEntityController.Instance.OnCharacterMouseOver(myCharacter.characterEntityView);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("ActivationWindow.OnMouseEnter called...");
-        myGlowOutline.SetActive(false);
-
-        if (myCharacter != null)
-        {
-            // Set character highlight color
-            CharacterEntityController.Instance.SetCharacterColor(myCharacter.characterEntityView, CharacterEntityController.Instance.normalColour);
-
-            // Set character's level node mouse over state
-            if (myCharacter.levelNode != null)
-            {
-                myCharacter.levelNode.SetMouseOverViewState(false);
-            }
-        }
+        Debug.Log("ActivationWindow.OnMouseExit called...");
+        CharacterEntityController.Instance.OnCharacterMouseExit(myCharacter.characterEntityView);
     }
     #endregion
 

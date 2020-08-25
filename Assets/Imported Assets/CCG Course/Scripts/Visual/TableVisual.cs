@@ -92,7 +92,7 @@ public class TableVisual : MonoBehaviour
         CreaturesOnTable.Insert(index, creature);
 
         // let this creature know about its position
-        WhereIsTheCardOrCreature w = creature.GetComponent<WhereIsTheCardOrCreature>();
+        CardLocationTracker w = creature.GetComponent<CardLocationTracker>();
         w.Slot = index;
         if (owner == AreaPosition.Low)
             w.VisualState = VisualStates.LowTable;

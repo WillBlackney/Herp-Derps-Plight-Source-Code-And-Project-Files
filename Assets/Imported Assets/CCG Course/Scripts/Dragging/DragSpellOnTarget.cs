@@ -4,14 +4,16 @@ using DG.Tweening;
 
 public class DragSpellOnTarget : DraggingActions {
 
+    [Header("Properties")]
     public TargetingOptions Targets = TargetingOptions.AllCharacters;
-    private SpriteRenderer sr;
-    private LineRenderer lr;
-    private WhereIsTheCardOrCreature whereIsThisCard;
     private VisualStates tempVisualState;
-    private Transform triangle;
-    private SpriteRenderer triangleSR;
+
+    [Header("Component References")]
+    [SerializeField] private SpriteRenderer sr;
+    [SerializeField] private LineRenderer lr;
     
+    
+    [SerializeField] private SpriteRenderer triangleSR;    
 
     public override bool CanDrag
     {
@@ -22,33 +24,17 @@ public class DragSpellOnTarget : DraggingActions {
         }
     }
 
-    void Awake()
-    {
-        sr = GetComponent<SpriteRenderer>();
-        lr = GetComponentInChildren<LineRenderer>();
-        lr.sortingLayerName = "AboveEverything";
-        triangle = transform.Find("Triangle");
-        triangleSR = triangle.GetComponent<SpriteRenderer>();
-
-        whereIsThisCard = GetComponentInParent<WhereIsTheCardOrCreature>();
-        cardVM = GetComponentInParent<CardViewModel>();
-
-    }
-
     public override void OnStartDrag()
     {
         Debug.Log("DragSpellOnTarget.OnStartDrag() called...");
-        tempVisualState = whereIsThisCard.VisualState;
-        whereIsThisCard.VisualState = VisualStates.Dragging;
+        tempVisualState = locationTracker.VisualState;
+        locationTracker.VisualState = VisualStates.Dragging;
         sr.enabled = true;
         lr.enabled = true;
     }
 
     public override void OnDraggingInUpdate()
     {
-       // Debug.Log("DragSpellOnTarget.OnDraggingInUpdate() called...");
-        // This code only draws the arrow
-        //transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 notNormalized = transform.position - transform.parent.position;
         Vector3 direction = notNormalized.normalized;
         float distanceToTarget = (direction*2.3f).magnitude;
@@ -79,7 +65,7 @@ public class DragSpellOnTarget : DraggingActions {
         Debug.Log("DragSpellOnTarget.OnEndDrag() called...");
 
         // Set up
-        LivingEntity targetLE = null;
+        CharacterEntityModel target = null;
         CharacterEntityModel owner = cardVM.owner();
         Card card = cardVM.card;
 
@@ -88,14 +74,14 @@ public class DragSpellOnTarget : DraggingActions {
         RaycastHit[] hits;
         hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition), 1000.0f);
 
-        // Get Living Entity from raycast hits
+        // Get Character views from raycast hits
         foreach (RaycastHit h in hits)
         {
             Debug.Log("Ray cast hit object called: " + h.transform.gameObject.name);
-            if (h.transform.gameObject.GetComponent<LivingEntity>())
+            if (h.transform.gameObject.GetComponent<CharacterEntityView>())
             {              
-                targetLE = h.transform.gameObject.GetComponent<LivingEntity>();
-                Debug.Log("Hit a living entity called: " + targetLE.myName);
+                target = h.transform.gameObject.GetComponent<CharacterEntityView>().character;
+                Debug.Log("Hit a living entity called: " + target.myName);
             }
         }
 
@@ -103,7 +89,7 @@ public class DragSpellOnTarget : DraggingActions {
         
         // Check for target validity
         bool targetValid = false;
-        if (targetLE != null)
+        if (target != null)
         {     
 
             if(card.targettingType == TargettingType.AllCharacters)
@@ -111,32 +97,34 @@ public class DragSpellOnTarget : DraggingActions {
                 targetValid = true;
             }
             else if(card.targettingType == TargettingType.Ally &&
-                    targetLE.defender)
-                   // &&                    targetLE != card.owner)
+                    target.allegiance == Allegiance.Player &&
+                    target != owner)
             {
                 targetValid = true;
             }
             else if(card.targettingType == TargettingType.AllyOrSelf &&
-                    targetLE.defender)
+                    target.allegiance == Allegiance.Player)
             {
                 targetValid = true;
             }
             else if(card.targettingType == TargettingType.Enemy &&
-                    targetLE.enemy)
+                    target.allegiance == Allegiance.Enemy)
             {
                 targetValid = true;
             }
         }
 
+        // Did we hit a valid target?
         if (!targetValid)
         {
             // not a valid target, return
-            whereIsThisCard.VisualState = tempVisualState;
-            whereIsThisCard.SetHandSortingOrder();
+            locationTracker.VisualState = tempVisualState;
+            locationTracker.SetHandSortingOrder();
         }
         else
         {
-            //CardController.Instance.PlayCardFromHand(card, targetLE);
+            // Valid target, play the card against the target
+            CardController.Instance.PlayCardFromHand(card, target);
         }
 
         // return target and arrow to original position

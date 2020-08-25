@@ -5,7 +5,7 @@ using DG.Tweening;
 public class DragCreatureOnTable : DraggingActions {
 
     private int savedHandSlot;
-    private WhereIsTheCardOrCreature whereIsCard;
+    private CardLocationTracker whereIsCard;
     private IDHolder idScript;
     private VisualStates tempState;
     //private OneCardManager manager;
@@ -25,7 +25,7 @@ public class DragCreatureOnTable : DraggingActions {
 
     void Awake()
     {
-        whereIsCard = GetComponent<WhereIsTheCardOrCreature>();
+        whereIsCard = GetComponent<CardLocationTracker>();
         //manager = GetComponent<OneCardManager>();
     }
 

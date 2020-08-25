@@ -51,10 +51,6 @@ public class CardController : Singleton<CardController>
     {
         Debug.Log("CardController.BuildCardViewModelFromCard() called...");
 
-        //Instantiate(PrefabHolder.Instance.noTargetCard, position, Quaternion.identity);
-        //Instantiate(PrefabHolder.Instance.noTargetCard, position, Quaternion.identity);
-        //Instantiate(PrefabHolder.Instance.noTargetCard, position, Quaternion.identity);
-
         CardViewModel cardVM = null;
         if(card.targettingType == TargettingType.NoTarget)
         {
@@ -85,8 +81,15 @@ public class CardController : Singleton<CardController>
     }
     public void DisconnectCardAndCardViewModel(Card card, CardViewModel cardVM)
     {
-        card.cardVM = null;
-        cardVM.card = null;
+        if(card != null)
+        {
+            card.cardVM = null;
+        }
+        if(cardVM != null)
+        {
+            cardVM.card = null;
+        }       
+        
     }
 
     #endregion
@@ -159,14 +162,10 @@ public class CardController : Singleton<CardController>
             VisualEventManager.Instance.CreateVisualEvent(() => DiscardCardFromHandVisualEvent(cvm, defender), 0, 0.1f);
         }                         
 
-    }
-   
+    }   
     public void DestroyCardViewModel(CardViewModel cvm)
     {
         Debug.Log("CardController.DestroyCardViewModel() called...");
-
-        // Clear references
-        DisconnectCardAndCardViewModel(cvm.card, cvm);
 
         // Destoy script + GO
         Destroy(cvm.gameObject);
@@ -246,7 +245,7 @@ public class CardController : Singleton<CardController>
         AddCardVmToDefenderHandVisual(cardVM.gameObject, defender);
 
         // Bring card to front while it travels from draw spot to hand
-        WhereIsTheCardOrCreature w = cardVM.GetComponent<WhereIsTheCardOrCreature>();
+        CardLocationTracker w = cardVM.GetComponent<CardLocationTracker>();
         w.BringToFront();
         w.Slot = 0;
         w.VisualState = VisualStates.Transition;
@@ -318,66 +317,45 @@ public class CardController : Singleton<CardController>
     {
         // called at the very end of card play
     }
-    public OldCoroutineData PlayCardFromHand(Card card, CharacterEntityModel target = null)
-    {
-        OldCoroutineData action = new OldCoroutineData(true);
-        StartCoroutine(PlayCardFromHandCoroutine(card, action, target));
-        return action;
-    }
-    private IEnumerator PlayCardFromHandCoroutine(Card card, OldCoroutineData action, CharacterEntityModel target = null)
+    public void PlayCardFromHand(Card card, CharacterEntityModel target = null)
     {
         Debug.Log("CardController.PlayCardFromHand() called, playing: " + card.cardName);
 
         // Setup
         CharacterEntityModel owner = card.owner;
+        CardViewModel cardVM = card.cardVM;
 
         // Pay energy cost, remove from hand, etc
         OnCardPlayedStart(card);
 
+        // Remove references between card and its view
+        DisconnectCardAndCardViewModel(card, cardVM);
+
         // Create visual event and enqueue
-        new PlayASpellCardCommand(owner, card).AddToQueue();
+        VisualEventManager.Instance.CreateVisualEvent(()=> PlayACardFromHandVisualEvent(cardVM, owner.characterEntityView));
 
         // Trigger all effects on card
         foreach (CardEffect effect in card.cardEffects)
         {
-            OldCoroutineData effectEvent = TriggerEffectFromCard(card, effect, target);
-            yield return new WaitUntil(() => effectEvent.ActionResolved());
-            /*
-            if(owner != null && owner.inDeathProcess == false)
-            {
-                OldCoroutineData effectEvent = TriggerEffectFromCard(card, effect, target);
-                yield return new WaitUntil(() => effectEvent.ActionResolved());
-            }    
-            */
+            TriggerEffectFromCard(card, effect, target);
         }
 
         // On end events
         OnCardPlayedFinish(card);
-
-        // Resolve
-        action.coroutineCompleted = true;
        
     }
-    public OldCoroutineData TriggerEffectFromCard(Card card, CardEffect cardEffect, CharacterEntityModel target = null)
+    private void TriggerEffectFromCard(Card card, CardEffect cardEffect, CharacterEntityModel target)
     {
-        OldCoroutineData action = new OldCoroutineData(true);
-        StartCoroutine(TriggerEffectFromCardCoroutine(card, cardEffect, action, target));
-        return action;
-    }
-    private IEnumerator TriggerEffectFromCardCoroutine(Card card, CardEffect cardEffect, OldCoroutineData action, CharacterEntityModel target)
-    {
-        // Stop and return if target of effect is dying
-        /*
-        if(target != null && target.inDeathProcess)
+        // Stop and return if target of effect is dying        
+        if(target != null && target.livingState == LivingState.Dead)
         {
             Debug.Log("CardController.TriggerEffectFromCardCoroutine() cancelling: target is dying");
-            action.coroutineCompleted = true;
-            yield break;
-        }
-        */
+            return;
+        }        
 
         Debug.Log("CardController.PlayCardFromHand() called, effect: '" + cardEffect.cardEffectType.ToString() + 
         "' from card: '" + card.cardName);
+
         CharacterEntityModel owner = card.owner;
         bool hasMovedOffStartingNode = false;
 
@@ -402,26 +380,25 @@ public class CardController : Singleton<CardController>
 
                 // Move towards target visual event
                 CoroutineData cData = new CoroutineData();
-                VisualEventManager.Instance.CreateVisualEvent(() => MovementLogic.Instance.MoveAttackerToTargetNodeAttackPosition2(owner, target, cData), cData, QueuePosition.Back, 0, 0);
+                VisualEventManager.Instance.CreateVisualEvent(() => MovementLogic.Instance.MoveAttackerToTargetNodeAttackPosition(owner, target, cData), cData);
                
                 // Animation visual event
-                VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.TriggerMeleeAttackAnimation(owner.characterEntityView), QueuePosition.Back, 0);
+                VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.TriggerMeleeAttackAnimation(owner.characterEntityView));
               
             }
 
             // Calculate damage
-           // string damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(owner, cardEffect, card);
-            //int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, target, damageType, false, cardEffect.baseDamageValue, card, cardEffect);
+            string damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(owner, cardEffect, card);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, target, damageType, false, cardEffect.baseDamageValue, card, cardEffect);
 
-            // Start deal damage event
-            //OldCoroutineData abilityAction = CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, damageType);
-            //yield return new WaitUntil(() => abilityAction.ActionResolved() == true);
+            // Start damage sequence
+            CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, damageType);
 
             // Move back to starting node pos, if we moved off 
-            if(hasMovedOffStartingNode) //&& owner.inDeathProcess == false)
+            if (hasMovedOffStartingNode && owner.livingState == LivingState.Alive) 
             {
                 CoroutineData cData = new CoroutineData();
-                VisualEventManager.Instance.CreateVisualEvent(() => MovementLogic.Instance.MoveEntityToNodeCentre2(owner, owner.levelNode, cData), cData, QueuePosition.Back, 0, 0);
+                VisualEventManager.Instance.CreateVisualEvent(() => MovementLogic.Instance.MoveEntityToNodeCentre(owner, owner.levelNode, cData), cData, QueuePosition.Back, 0, 0);
             }
 
         }
@@ -432,10 +409,8 @@ public class CardController : Singleton<CardController>
             // VFX
             VisualEffectManager.Instance.CreateBloodSplatterEffect(owner.characterEntityView.transform.position);
 
-            // Reduce Health
-            //OldCoroutineData selfDamageAction = CombatLogic.Instance.HandleDamage(cardEffect.healthLost, owner, owner, "None", null, true);
-           // yield return new WaitUntil(() => selfDamageAction.ActionResolved() == true);
-            //yield return new WaitForSeconds(0.5f);
+            // Start self damage sequence
+            CombatLogic.Instance.HandleDamage(cardEffect.healthLost, owner, owner, "None");
         }
 
         // Gain Energy
@@ -443,8 +418,7 @@ public class CardController : Singleton<CardController>
         {
             // Gain Energy
             CharacterEntityController.Instance.ModifyEnergy(owner, cardEffect.energyGained);
-            //owner.ModifyCurrentEnergy(cardEffect.energyGained);
-            VisualEffectManager.Instance.CreateGainEnergyBuffEffect(owner.characterEntityView.transform.position);
+            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateGainEnergyBuffEffect2(owner.characterEntityView.transform.position));
         }
 
         // Draw Cards
@@ -459,8 +433,7 @@ public class CardController : Singleton<CardController>
             // Draw cards
             for(int draws = 0; draws < cardEffect.cardsDrawn; draws++)
             {
-               // OldCoroutineData drawAction = DrawACardFromDrawPile(target.defender);
-               // yield return new WaitUntil(() => drawAction.ActionResolved() == true);
+                DrawACardFromDrawPile(target);
             }           
         }
 
@@ -469,10 +442,6 @@ public class CardController : Singleton<CardController>
         {
             //StatusController.Instance.ApplyStatusToLivingEntity(target, StatusIconLibrary.Instance.GetStatusIconByName("Burning"), cardEffect.burningApplied);
         }
-
-        // Resolve event
-        yield return null;
-        action.coroutineCompleted = true;
     }
     #endregion
 
@@ -543,7 +512,7 @@ public class CardController : Singleton<CardController>
         characterView.handVisual.AddCard(cardVM);
 
         // Bring card to front while it travels from draw spot to hand
-        WhereIsTheCardOrCreature w = cardVM.GetComponent<WhereIsTheCardOrCreature>();
+        CardLocationTracker w = cardVM.GetComponent<CardLocationTracker>();
         w.BringToFront();
         w.Slot = 0;
         w.VisualState = VisualStates.Transition;
@@ -578,6 +547,22 @@ public class CardController : Singleton<CardController>
         s.Append(cvm.transform.DOMove(discardPileLocation.position, 0.5f));
 
         return s;
+    }
+    private void PlayACardFromHandVisualEvent(CardViewModel cvm, CharacterEntityView view)
+    {
+        Debug.Log("CardController.PlayACardFromHandVisualEvent() called...");
+
+        cvm.locationTracker.VisualState = VisualStates.Transition;
+        view.handVisual.RemoveCard(cvm.gameObject);
+
+        cvm.transform.SetParent(null);
+
+        Sequence seqOne = DOTween.Sequence();
+        seqOne.Append(cvm.transform.DOMove(view.handVisual.DiscardPileTransform.position, 0.5f));
+        seqOne.OnComplete(() =>
+        {
+            DestroyCardViewModel(cvm);
+        });
     }
 
     #endregion

@@ -205,11 +205,14 @@ public class ActivationManager : Singleton<ActivationManager>
             UIManager.Instance.DisableEndTurnButtonInteractions();
         }
 
-        CharacterEntityController.Instance.CharacterOnActivationStart(entity);
-
         // Move arrow visual event
         CoroutineData moveArrow = new CoroutineData();
         VisualEventManager.Instance.CreateVisualEvent(() => MoveArrowTowardsEntityActivatedWindow(moveArrow), moveArrow, QueuePosition.Back);
+
+        // Start character activation
+        CharacterEntityController.Instance.CharacterOnActivationStart(entity);
+
+       
         
         /*
         if (entity.enemy)

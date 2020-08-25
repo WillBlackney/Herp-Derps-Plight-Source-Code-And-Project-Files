@@ -42,12 +42,10 @@ public class PositionLogic : MonoBehaviour
         if (leftOrRight == "Left")
         {
             FlipCharacterSprite(character, false);
-            //character.facingRight = false;
         }
         else if (leftOrRight == "Right")
         {
             FlipCharacterSprite(character, true);
-            //character.facingRight = true;
         }
     }
     public void CalculateWhichDirectionToFace(LivingEntity character, Tile tileToFace)

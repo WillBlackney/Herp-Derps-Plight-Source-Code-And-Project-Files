@@ -118,7 +118,7 @@ public class HoverPreview: MonoBehaviour
         if (!PreviewsAllowed)
             return false;
 
-        HoverPreview[] allHoverBlowups = GameObject.FindObjectsOfType<HoverPreview>();
+        HoverPreview[] allHoverBlowups = FindObjectsOfType<HoverPreview>();
 
         foreach (HoverPreview hb in allHoverBlowups)
         {

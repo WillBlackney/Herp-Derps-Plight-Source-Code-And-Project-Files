@@ -3,7 +3,8 @@ using System.Collections;
 
 public abstract class DraggingActions : MonoBehaviour
 {
-    protected CardViewModel cardVM;
+    [SerializeField] protected CardViewModel cardVM;
+    [SerializeField] protected CardLocationTracker locationTracker;
     public abstract void OnStartDrag();
 
     public abstract void OnEndDrag();
@@ -14,9 +15,7 @@ public abstract class DraggingActions : MonoBehaviour
     {
         get
         {
-            return CardController.Instance.IsCardPlayable(cardVM.card, cardVM.card.owner) &&
-                  !ActionManager.Instance.UnresolvedCombatActions() &&
-                  !Command.CardDrawPending();
+            return CardController.Instance.IsCardPlayable(cardVM.card, cardVM.card.owner);
         }
 
     }

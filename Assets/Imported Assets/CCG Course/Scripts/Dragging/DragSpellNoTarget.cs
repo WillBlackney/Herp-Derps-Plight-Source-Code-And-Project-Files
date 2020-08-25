@@ -5,7 +5,6 @@ using DG.Tweening;
 public class DragSpellNoTarget: DraggingActions{
 
     private int savedHandSlot;
-    private WhereIsTheCardOrCreature whereIsCard;
 
     public override bool CanDrag
     {
@@ -16,20 +15,14 @@ public class DragSpellNoTarget: DraggingActions{
         }
     }
 
-    void Awake()
-    {
-        whereIsCard = GetComponent<WhereIsTheCardOrCreature>();
-        cardVM = GetComponent<CardViewModel>();
-    }
-
     public override void OnStartDrag()
     {
         Debug.Log("DragSpellNoTarget.OnStartDrag() called...");
 
-        savedHandSlot = whereIsCard.Slot;
+        savedHandSlot = locationTracker.Slot;
 
-        whereIsCard.VisualState = VisualStates.Dragging;
-        whereIsCard.BringToFront();
+        locationTracker.VisualState = VisualStates.Dragging;
+        locationTracker.BringToFront();
 
     }
 

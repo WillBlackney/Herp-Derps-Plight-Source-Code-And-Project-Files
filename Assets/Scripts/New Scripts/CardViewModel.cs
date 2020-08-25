@@ -14,6 +14,12 @@ public class CardViewModel : MonoBehaviour
     [Header("General Components")]
     public CardPreviewViewModel myPreviewCard;
 
+    [Header("Core GUI Components")]
+    public CardLocationTracker locationTracker;
+    public DraggingActions draggingActions;
+    public Draggable draggable;
+    public HoverPreview hoverPreview;
+
     [Header("Text References")]
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI descriptionText;

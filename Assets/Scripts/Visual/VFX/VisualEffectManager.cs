@@ -1060,6 +1060,13 @@ public class VisualEffectManager : MonoBehaviour
         yield return null;
 
     }
+    public void CreateGainEnergyBuffEffect2(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(toonGainEnergyPrefab, location, toonGainEnergyPrefab.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+
+    }
 
     // Camoflage Buff
     public OldCoroutineData CreateCamoflageBuffEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
@@ -1082,6 +1089,13 @@ public class VisualEffectManager : MonoBehaviour
     // Melee Impacts
     #region
     // Small Melee Impact
+    public void CreateSmallMeleeImpact2(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(smallMeleeImpact, location, smallMeleeImpact.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+    }
+
     public OldCoroutineData CreateSmallMeleeImpact(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
     {
         OldCoroutineData action = new OldCoroutineData();

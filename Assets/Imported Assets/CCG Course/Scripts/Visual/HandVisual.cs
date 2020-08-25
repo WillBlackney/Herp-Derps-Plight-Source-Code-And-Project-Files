@@ -87,7 +87,7 @@ public class HandVisual : MonoBehaviour
             g.transform.DOLocalMoveX(slots.Children[CardsInHand.IndexOf(g)].transform.localPosition.x, 0.3f);
 
             // apply correct sorting order and HandSlot value for later 
-            WhereIsTheCardOrCreature w = g.GetComponent<WhereIsTheCardOrCreature>();
+            CardLocationTracker w = g.GetComponent<CardLocationTracker>();
             w.Slot = CardsInHand.IndexOf(g);
             w.SetHandSortingOrder();
         }
@@ -105,7 +105,7 @@ public class HandVisual : MonoBehaviour
         AddCard(card);
 
         // Bring card to front while it travels from draw spot to hand
-        WhereIsTheCardOrCreature w = card.GetComponent<WhereIsTheCardOrCreature>();
+        CardLocationTracker w = card.GetComponent<CardLocationTracker>();
         w.BringToFront();
         w.Slot = 0;
         w.VisualState = VisualStates.Transition;
@@ -136,7 +136,7 @@ public class HandVisual : MonoBehaviour
     }
     
     // this method will be called when the card arrived to hand 
-    public void ChangeLastCardStatusToInHand( WhereIsTheCardOrCreature w)
+    public void ChangeLastCardStatusToInHand( CardLocationTracker w)
     {
         // set correct sorting order
         w.SetHandSortingOrder();
@@ -156,7 +156,7 @@ public class HandVisual : MonoBehaviour
         Debug.Log("HandVisual.PlayASpellFromHand() called...");
 
         Command.CommandExecutionComplete();
-        cardVM.GetComponent<WhereIsTheCardOrCreature>().VisualState = VisualStates.Transition;
+        cardVM.GetComponent<CardLocationTracker>().VisualState = VisualStates.Transition;
         RemoveCard(cardVM.gameObject);
 
         cardVM.transform.SetParent(null);
@@ -165,7 +165,7 @@ public class HandVisual : MonoBehaviour
         seqOne.Append(cardVM.transform.DOMove(DiscardPileTransform.position, 0.5f));
         seqOne.OnComplete(() =>
         {
-            CardController.Instance.DestroyCardViewModel(cardVM);
+            //CardController.Instance.DestroyCardViewModel(cardVM);
         });
         /*
         Sequence seqOne = DOTween.Sequence();
@@ -188,7 +188,7 @@ public class HandVisual : MonoBehaviour
         CardViewModel cardVM = cardVMGO.GetComponent<CardViewModel>();
 
         Command.CommandExecutionComplete();
-        cardVM.GetComponent<WhereIsTheCardOrCreature>().VisualState = VisualStates.Transition;
+        cardVM.GetComponent<CardLocationTracker>().VisualState = VisualStates.Transition;
         RemoveCard(cardVM.gameObject);
 
         cardVM.transform.SetParent(null);
@@ -204,7 +204,7 @@ public class HandVisual : MonoBehaviour
             seqTwo.Append(cardVM.transform.DOMove(DiscardPileTransform.position, 0.5f));
             seqTwo.OnComplete(() =>
             {
-                CardController.Instance.DestroyCardViewModel(cardVM);
+               // CardController.Instance.DestroyCardViewModel(cardVM);
             });
 
         });

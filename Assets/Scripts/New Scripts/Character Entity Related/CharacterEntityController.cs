@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CharacterEntityController: Singleton<CharacterEntityController>
 {
+    // Properties + Component References
+    #region
     [Header("Character Entity Lists")]
     [HideInInspector] public List<CharacterEntityModel> allCharacters = new List<CharacterEntityModel>();
     [HideInInspector] public List<CharacterEntityModel> allDefenders = new List<CharacterEntityModel>();
@@ -12,6 +14,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     [Header("UCM Colours ")]
     public Color normalColour;
     public Color highlightColour;
+    #endregion
 
     // Create Characters Logic + Setup
     #region    
@@ -37,11 +40,15 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Create GO + View
         CharacterEntityView vm = CreateCharacterEntityView().GetComponent<CharacterEntityView>();
 
+        // Face enemies
+        PositionLogic.Instance.SetDirection(vm, "Right");
+
         // Create data object
         CharacterEntityModel model = new CharacterEntityModel();
 
         // Connect model to view
         model.characterEntityView = vm;
+        vm.character = model;
 
         // Set up positioning in world
         LevelManager.Instance.PlaceEntityAtNode(model, position);
@@ -70,11 +77,15 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Create GO + View
         CharacterEntityView vm = CreateCharacterEntityView().GetComponent<CharacterEntityView>();
 
+        // Face player characters
+        PositionLogic.Instance.SetDirection(vm, "Left");
+
         // Create data object
         CharacterEntityModel model = new CharacterEntityModel();
 
         // Connect model to view
         model.characterEntityView = vm;
+        vm.character = model;
 
         // Set up positioning in world
         LevelManager.Instance.PlaceEntityAtNode(model, position);
@@ -409,6 +420,13 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             CardController.Instance.DrawCardsOnActivationStart(character);
         }
 
+        // is the character an enemy?
+        if (character.controller == Controller.AI &&
+            character.allegiance == Allegiance.Enemy)
+        {
+
+        }
+
         character.hasActivatedThisTurn = true;
 
         /*
@@ -467,6 +485,10 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Disable activated views
         entity.levelNode.SetActivatedViewState(false);
 
+        // Fade out view
+        CoroutineData fadeOutEvent = new CoroutineData();
+        VisualEventManager.Instance.CreateVisualEvent(() => FadeOutCharacterUICanvas(entity.characterEntityView, fadeOutEvent), fadeOutEvent);
+
         // activate the next character
         ActivationManager.Instance.ActivateNextEntity();
 
@@ -491,6 +513,25 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             yield return new WaitForEndOfFrame();
         }
 
+        cData.MarkAsCompleted();
+    }
+    public void FadeOutCharacterUICanvas(CharacterEntityView view, CoroutineData cData)
+    {
+        StartCoroutine(FadeOutCharacterUICanvasCoroutine(view, cData));
+    }
+    private IEnumerator FadeOutCharacterUICanvasCoroutine(CharacterEntityView view, CoroutineData cData)
+    {
+        view.uiCanvasParent.SetActive(true);
+        view.uiCanvasCg.alpha = 1;
+        float uiFadeSpeed = 20f;
+
+        while (view.uiCanvasCg.alpha > 0)
+        {
+            view.uiCanvasCg.alpha -= 0.1f * uiFadeSpeed * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        view.uiCanvasParent.SetActive(false);
         cData.MarkAsCompleted();
     }
     #endregion
@@ -537,6 +578,52 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     public void PlayDeathAnimation(CharacterEntityView view)
     {
         view.ucmAnimator.SetTrigger("Die");
+    }
+    #endregion
+
+    // Mouse + Input Logic
+    #region
+    public void OnCharacterMouseOver(CharacterEntityView view)
+    {
+        Debug.Log("CharacterEntityController.OnCharacterMouseOver() called...");
+
+        // Enable activation window glow
+        view.myActivationWindow.myGlowOutline.SetActive(true);
+        view.character.levelNode.SetMouseOverViewState(true);
+
+        // Do character vm stuff
+        if (view.character != null)
+        {
+            // Set character highlight color
+            SetCharacterColor(view, highlightColour);
+
+            // Set character's level node mouse over state
+            if (view.character.levelNode != null)
+            {
+                view.character.levelNode.SetMouseOverViewState(true);
+            }
+        }
+
+    }
+    public void OnCharacterMouseExit(CharacterEntityView view)
+    {
+        Debug.Log("CharacterEntityController.OnCharacterMouseExit() called...");
+
+        // Enable activation window glow
+        view.myActivationWindow.myGlowOutline.SetActive(false);
+
+        // Do character vm stuff
+        if (view.character != null)
+        {
+            // Set character highlight color
+            SetCharacterColor(view, normalColour);
+
+            // Set character's level node mouse over state
+            if (view.character.levelNode != null)
+            {
+                view.character.levelNode.SetMouseOverViewState(false);
+            }
+        }
     }
     #endregion
 }

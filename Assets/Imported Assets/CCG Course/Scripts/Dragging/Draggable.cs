@@ -22,19 +22,13 @@ public class Draggable : MonoBehaviour {
     private float zDisplacement;
 
     // reference to DraggingActions script. Dragging Actions should be attached to the same GameObject.
-    private DraggingActions da;
+    [SerializeField] private DraggingActions da;
 
     // STATIC property that returns the instance of Draggable that is currently being dragged
     private static Draggable _draggingThis;
     public static Draggable DraggingThis
     {
         get{ return _draggingThis;}
-    }
-
-    // MONOBEHAVIOUR METHODS
-    void Awake()
-    {
-        da = GetComponent<DraggingActions>();
     }
 
     void OnMouseDown()
@@ -49,7 +43,8 @@ public class Draggable : MonoBehaviour {
             HoverPreview.PreviewsAllowed = false;
             _draggingThis = this;
             da.OnStartDrag();
-            zDisplacement = -Camera.main.transform.position.z + transform.position.z;
+            zDisplacement = -CameraManager.Instance.unityCamera.mainCamera.transform.position.z + transform.position.z;
+            //-Camera.main.transform.position.z + transform.position.z;
             pointerDisplacement = -transform.position + MouseInWorldCoords();
         }
     }
@@ -83,9 +78,8 @@ public class Draggable : MonoBehaviour {
     private Vector3 MouseInWorldCoords()
     {
         var screenMousePos = Input.mousePosition;
-        //Debug.Log(screenMousePos);
         screenMousePos.z = zDisplacement;
-        return Camera.main.ScreenToWorldPoint(screenMousePos);
+        return CameraManager.Instance.unityCamera.mainCamera.ScreenToWorldPoint(screenMousePos);
     }
         
 }
