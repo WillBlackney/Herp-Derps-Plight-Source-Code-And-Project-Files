@@ -16,10 +16,10 @@ public enum VisualStates
 public class CardLocationTracker : MonoBehaviour {
 
     // reference to a HoverPreview Component
-    private HoverPreview hover;
+    [SerializeField] private HoverPreview hoverPreview;
 
     // reference to a canvas on this object to set sorting order
-    private Canvas canvas;
+    [SerializeField] private Canvas canvas;
 
     // a value for canvas sorting order when we want to show this object above everything
     private int TopSortingOrder = 500;
@@ -51,32 +51,23 @@ public class CardLocationTracker : MonoBehaviour {
             switch (state)
             {
                 case VisualStates.LowHand:
-                    hover.ThisPreviewEnabled = true;
+                    hoverPreview.ThisPreviewEnabled = true;
                     break;
                 case VisualStates.LowTable:
                 case VisualStates.TopTable:
-                    hover.ThisPreviewEnabled = true; 
+                    hoverPreview.ThisPreviewEnabled = true; 
                     break;
                 case VisualStates.Transition:
-                    hover.ThisPreviewEnabled = false;
+                    hoverPreview.ThisPreviewEnabled = false;
                     break;
                 case VisualStates.Dragging:
-                    hover.ThisPreviewEnabled = false;
+                    hoverPreview.ThisPreviewEnabled = false;
                     break;
                 case VisualStates.TopHand:
-                    hover.ThisPreviewEnabled = false;
+                    hoverPreview.ThisPreviewEnabled = false;
                     break;
             }
         }
-    }
-
-    void Awake()
-    {
-        hover = GetComponent<HoverPreview>();
-        // for characters hover is attached to a child game object
-        if (hover == null)
-            hover = GetComponentInChildren<HoverPreview>();
-        canvas = GetComponentInChildren<Canvas>();
     }
 
     public void BringToFront()

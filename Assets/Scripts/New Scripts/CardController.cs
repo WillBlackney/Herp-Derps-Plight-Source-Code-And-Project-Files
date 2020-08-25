@@ -114,9 +114,12 @@ public class CardController : Singleton<CardController>
             // Add card to hand
             defender.hand.Add(cardDrawn);
 
+            Debug.Log("ABOUT TO START VISUAL EVENT!");
             // Create and queue card drawn visual event
             VisualEventManager.Instance.CreateVisualEvent(() => DrawCardFromDeckVisualEvent(cardDrawn, defender), QueuePosition.Back, 0, 0.2f);
         }
+
+
     }
     public void DrawCardsOnActivationStart(CharacterEntityModel defender)
     {
@@ -181,7 +184,7 @@ public class CardController : Singleton<CardController>
         {
             return false;
         }
-        else if(defender.hand.Count >= 10)
+        else if(IsHandFull(defender))
         {
             return false;
         }
@@ -225,9 +228,13 @@ public class CardController : Singleton<CardController>
             card.cardName +"' owned by '" + owner.myName +"'");
         return card.cardCurrentEnergyCost <= owner.energy;
     }
-    public bool IsDrawPileEmpty(CharacterEntityModel defender)
+    public bool IsDrawPileEmpty(CharacterEntityModel character)
     {
-        return defender.drawPile.Count == 0;
+        return character.drawPile.Count == 0;
+    }
+    public bool IsHandFull(CharacterEntityModel character)
+    {
+        return character.hand.Count >= 10;
     }
     #endregion
 

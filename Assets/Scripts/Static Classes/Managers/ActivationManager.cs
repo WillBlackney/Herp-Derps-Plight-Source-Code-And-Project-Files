@@ -71,6 +71,9 @@ public class ActivationManager : Singleton<ActivationManager>
     }
     public void StartNewTurnSequence()
     {
+        // Disable arrow
+        VisualEventManager.Instance.CreateVisualEvent(() => SetPanelArrowViewState(false));
+
         // Move windows to start positions if combat has only just started
         if(TurnChangeNotifier.Instance.currentTurnCount == 0)
         {
@@ -104,7 +107,7 @@ public class ActivationManager : Singleton<ActivationManager>
         // Set all enemy intent images if turn 1
         if(TurnChangeNotifier.Instance.currentTurnCount == 1)
         {
-            VisualEventManager.Instance.CreateVisualEvent(()=> EnemyController.Instance.SetAllEnemyIntents(), QueuePosition.Back, 0, 1f);
+            //VisualEventManager.Instance.CreateVisualEvent(()=> EnemyController.Instance.SetAllEnemyIntents(), QueuePosition.Back, 0, 1f);
         }        
 
         ActivateEntity(activationOrder[0]);
@@ -207,7 +210,7 @@ public class ActivationManager : Singleton<ActivationManager>
 
         // Move arrow visual event
         CoroutineData moveArrow = new CoroutineData();
-        VisualEventManager.Instance.CreateVisualEvent(() => MoveArrowTowardsEntityActivatedWindow(moveArrow), moveArrow, QueuePosition.Back);
+        VisualEventManager.Instance.CreateVisualEvent(() => MoveArrowTowardsEntityActivatedWindow(moveArrow), QueuePosition.Back);
 
         // Start character activation
         CharacterEntityController.Instance.CharacterOnActivationStart(entity);
@@ -335,7 +338,6 @@ public class ActivationManager : Singleton<ActivationManager>
             entity.characterEntityView.myActivationWindow.rollText.enabled = false;
         }
 
-        SetPanelArrowViewState(true);
         cData.MarkAsCompleted();
     }
     private IEnumerator PlayRandomNumberAnim(ActivationWindow window)
@@ -462,6 +464,7 @@ public class ActivationManager : Singleton<ActivationManager>
     }
     private IEnumerator MoveArrowTowardsEntityActivatedWindowCoroutine(CoroutineData cData)
     {
+        Debug.Log("ActivationManager.MoveArrowTowardsEntityActivatedWindowCoroutine() called...");
         // Setup 
         int currentActivationIndex = 0;
         Vector3 destination = new Vector3(0, 0);
@@ -504,7 +507,7 @@ public class ActivationManager : Singleton<ActivationManager>
         }
 
         cData.MarkAsCompleted();
-    }
+    }   
     #endregion
 
 }

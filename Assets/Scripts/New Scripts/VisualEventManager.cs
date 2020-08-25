@@ -79,7 +79,7 @@ public class VisualEventManager : MonoBehaviour
     #region
     private void RemoveEventFromQueue(VisualEvent ve)
     {
-        Debug.Log("VisualEventManager.RemoveEventFromQueue() called...");
+        Debug.Log("VisualEventManager.RemoveEventFromQueue() called, current queue count = " + (eventQueue.Count - 1).ToString());
         eventQueue.Remove(ve);
     }
     private void AddEventToFrontOfQueue(VisualEvent ve)
@@ -105,7 +105,7 @@ public class VisualEventManager : MonoBehaviour
         // it should be called using the overload function below this function
 
 
-        Debug.Log("VisualEventManager.CreateVisualEvent() called...");
+        Debug.Log("VisualEventManager.CreateVisualEvent() called, current queue count = " + (eventQueue.Count + 1).ToString());
 
         VisualEvent vEvent = new VisualEvent(eventFunction, cData, startDelay, endDelay, eventDetail);
 
@@ -120,7 +120,7 @@ public class VisualEventManager : MonoBehaviour
     }
     public void CreateVisualEvent(Action eventFunction, QueuePosition position = QueuePosition.Back, float startDelay = 0f, float endDelay = 0f, EventDetail eventDetail = EventDetail.None)
     {
-        Debug.Log("VisualEventManager.CreateVisualEvent() called...");
+        Debug.Log("VisualEventManager.CreateVisualEvent() called, current queue count = " + (eventQueue.Count + 1).ToString());
 
         VisualEvent vEvent = new VisualEvent(eventFunction, null, startDelay, endDelay, eventDetail);
 

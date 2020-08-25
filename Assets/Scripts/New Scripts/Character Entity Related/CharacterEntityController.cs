@@ -252,6 +252,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     #region
     public void ModifyEnergy(CharacterEntityModel character, int energyGainedOrLost)
     {
+        Debug.Log("CharacterEntityController.ModifyEnergy() called for " + character.myName);
         character.energy += energyGainedOrLost;
 
         if (character.energy < 0)
@@ -263,6 +264,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     }
     public void ModifyStamina(CharacterEntityModel character, int staminaGainedOrLost)
     {
+        Debug.Log("CharacterEntityController.ModifyStamina() called for " + character.myName);
         character.energy += staminaGainedOrLost;
 
         if (character.energy < 0)
@@ -274,10 +276,12 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     }
     private void UpdateEnergyGUI(CharacterEntityModel character, int newValue)
     {
+        Debug.Log("CharacterEntityController.UpdateEnergyGUI() called for " + character.myName);
         character.characterEntityView.energyText.text = newValue.ToString();
     }
     private void UpdateStaminaGUI(CharacterEntityModel character, int newValue)
     {
+        Debug.Log("CharacterEntityController.UpdateStaminaGUI() called for " + character.myName);
         character.characterEntityView.staminaText.text = newValue.ToString();
     }
     #endregion
@@ -343,7 +347,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     #region    
     public void CharacterOnNewTurnCycleStarted(CharacterEntityModel character)
     {
-        Debug.Log("CharacterOnNewTurnCycleStartedCoroutine() called for " + character.myName);
+        Debug.Log("CharacterEntityController.CharacterOnNewTurnCycleStartedCoroutine() called for " + character.myName);
 
         character.hasActivatedThisTurn = false;
 
@@ -403,6 +407,8 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     }
     public void CharacterOnActivationStart(CharacterEntityModel character)
     {
+        Debug.Log("CharacterEntityController.CharacterOnActivationStart() called for " + character.myName);
+
         ModifyEnergy(character, EntityLogic.GetTotalStamina(character));
         ModifyBlockOnActivationStart(character);
 
@@ -470,7 +476,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     }
     public void CharacterOnActivationEnd(CharacterEntityModel entity)
     {
-        Debug.Log("LivingEntityManager.StartEntityOnActivationEndEventsCoroutine() called for " + entity.myName);
+        Debug.Log("CharacterEntityController.CharacterOnActivationEnd() called for " + entity.myName);
 
         // Discard hand
         if (entity.controller == Controller.Player)
@@ -503,6 +509,8 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     }
     private IEnumerator FadeInCharacterUICanvasCoroutine(CharacterEntityView view, CoroutineData cData)
     {
+        Debug.Log("CharacterEntityController.FadeInCharacterUICanvasCoroutine() called...");
+
         view.uiCanvasParent.SetActive(true);
         view.uiCanvasCg.alpha = 0;
         float uiFadeSpeed = 20f;
