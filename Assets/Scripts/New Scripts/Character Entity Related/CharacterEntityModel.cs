@@ -35,6 +35,11 @@ public class CharacterEntityModel
     [Header("Misc Combat Properties")]
     [HideInInspector] public int currentInitiativeRoll;
     [HideInInspector] public bool hasActivatedThisTurn;
+
+    [Header("Enemy Specific Properties")]
+    [HideInInspector] public CharacterEntityModel currentActionTarget;
+    [HideInInspector] public EnemyAction myNextAction;
+    [HideInInspector] public List<EnemyAction> myPreviousActionLog = new List<EnemyAction>();
 }
 public enum Allegiance
 {

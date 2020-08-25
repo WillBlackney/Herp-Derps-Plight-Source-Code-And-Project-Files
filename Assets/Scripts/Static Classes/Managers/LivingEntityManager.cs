@@ -672,7 +672,7 @@ public class LivingEntityManager : MonoBehaviour
             if (entity.enemy)
             {
                 yield return new WaitForSeconds(1f);
-                EnemyController.Instance.StartAutoSetEnemyIntentProcess(entity.enemy);
+               // EnemyController.Instance.StartAutoSetEnemyIntentProcess(entity.enemy);
             }
 
             // Disable activated views

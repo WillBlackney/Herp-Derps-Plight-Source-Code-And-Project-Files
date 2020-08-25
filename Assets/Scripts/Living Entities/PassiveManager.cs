@@ -727,7 +727,7 @@ public class PassiveManager : MonoBehaviour
 
         if (resetIntent)
         {
-            EnemyController.Instance.StartAutoSetEnemyIntentProcess(myLivingEntity.enemy);
+            //EnemyController.Instance.StartAutoSetEnemyIntentProcess(myLivingEntity.enemy);
         }
     }
     public void ModifyVulnerable(int stacks)
@@ -1100,7 +1100,7 @@ public class PassiveManager : MonoBehaviour
         // Update intent GUI
         if (myLivingEntity.enemy)
         {
-            EnemyController.Instance.UpdateEnemyIntentGUI(myLivingEntity.enemy);
+            //EnemyController.Instance.UpdateEnemyIntentGUI(myLivingEntity.enemy);
         }
         myLivingEntity.myStatusManager.StartAddStatusProcess(iconData, stacks);
     }

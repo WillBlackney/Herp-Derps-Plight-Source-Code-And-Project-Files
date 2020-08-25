@@ -566,6 +566,7 @@ public class CombatLogic : MonoBehaviour
         return damageValueReturned;
 
     }
+    
     public int GetFinalDamageValueAfterAllCalculations(LivingEntity attacker, LivingEntity target, Ability abilityUsed, string damageType, bool critical, int baseDamage, ItemDataSO weaponUsed = null)
     {
         Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() called...");
@@ -596,6 +597,8 @@ public class CombatLogic : MonoBehaviour
         return finalDamageValueReturned;
 
     }
+    
+    /*
     public int GetFinalDamageValueAfterAllCalculations(LivingEntity attacker, LivingEntity target, string damageType, bool critical, int baseDamage = 0, Card card = null, CardEffect cardEffect = null, EnemyActionEffect enemyAction = null)
     {
         Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() called...");
@@ -635,6 +638,7 @@ public class CombatLogic : MonoBehaviour
         return finalDamageValueReturned;
 
     }
+    */
     public int GetFinalDamageValueAfterAllCalculations(CharacterEntityModel attacker, CharacterEntityModel target, string damageType, bool critical, int baseDamage = 0, Card card = null, CardEffect cardEffect = null, EnemyActionEffect enemyAction = null)
     {
         Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() called...");

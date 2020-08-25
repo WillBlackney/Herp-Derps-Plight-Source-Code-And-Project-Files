@@ -107,7 +107,7 @@ public class ActivationManager : Singleton<ActivationManager>
         // Set all enemy intent images if turn 1
         if(TurnChangeNotifier.Instance.currentTurnCount == 1)
         {
-            //VisualEventManager.Instance.CreateVisualEvent(()=> EnemyController.Instance.SetAllEnemyIntents(), QueuePosition.Back, 0, 1f);
+            VisualEventManager.Instance.CreateVisualEvent(()=> EnemyController.Instance.SetAllEnemyIntents(), QueuePosition.Back, 0, 1f);
         }        
 
         ActivateEntity(activationOrder[0]);

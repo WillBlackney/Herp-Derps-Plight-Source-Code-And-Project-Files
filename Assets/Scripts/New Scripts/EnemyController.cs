@@ -65,30 +65,30 @@ public class EnemyController : MonoBehaviour
     public void SetAllEnemyIntents()
     {
         Debug.Log("EnemyController.SetAllEnemyIntents() called...");
-        foreach(Enemy enemy in EnemyManager.Instance.allEnemies)
+        foreach(CharacterEntityModel enemy in CharacterEntityController.Instance.allEnemies)
         {
             StartAutoSetEnemyIntentProcess(enemy);
         }
     }
-    public void StartAutoSetEnemyIntentProcess(Enemy enemy)
+    public void StartAutoSetEnemyIntentProcess(CharacterEntityModel enemy)
     {
         Debug.Log("EnemyController.StartSetEnemyIntentProcess() called...");
-        enemy.myNextAction = DetermineNextEnemyAction(enemy);
-        enemy.currentActionTarget = DetermineTargetOfNextEnemyAction(enemy, enemy.myNextAction);
+        //enemy.myNextAction = DetermineNextEnemyAction(enemy);
+        //enemy.currentActionTarget = DetermineTargetOfNextEnemyAction(enemy, enemy.myNextAction);
         UpdateEnemyIntentGUI(enemy);
     }
-    public void UpdateEnemyIntentGUI(Enemy enemy)
+    public void UpdateEnemyIntentGUI(CharacterEntityModel enemy)
     {
         Debug.Log("EnemyController.UpdateEnemyIntentGUI() called...");
 
         // Disable all views
-        enemy.myIntentViewModel.valueText.gameObject.SetActive(false);
+        enemy.characterEntityView.myIntentViewModel.valueText.gameObject.SetActive(false);
 
         // Start fade in effect
-        enemy.myIntentViewModel.FadeInView();
+        enemy.characterEntityView.myIntentViewModel.FadeInView();
 
         // Set intent image
-        enemy.myIntentViewModel.SetIntentSprite
+        enemy.characterEntityView.myIntentViewModel.SetIntentSprite
             (SpriteLibrary.Instance.GetIntentSpriteFromIntentEnumData(enemy.myNextAction.intentImage));
 
         // if attacking, calculate + enable + set damage value text
@@ -100,15 +100,16 @@ public class EnemyController : MonoBehaviour
             string damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(enemy, null, null, effect);
             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, enemy.currentActionTarget, damageType, false, effect.baseDamage, null, null, effect);
 
-            enemy.myIntentViewModel.valueText.gameObject.SetActive(true);
+
+            enemy.characterEntityView.myIntentViewModel.valueText.gameObject.SetActive(true);
 
             if(effect.attackLoops > 1)
             {
-                enemy.myIntentViewModel.valueText.text = finalDamageValue.ToString() + " x " + effect.attackLoops.ToString();
+                enemy.characterEntityView.myIntentViewModel.valueText.text = finalDamageValue.ToString() + " x " + effect.attackLoops.ToString();
             }
             else
             {
-                enemy.myIntentViewModel.valueText.text = finalDamageValue.ToString();
+                enemy.characterEntityView.myIntentViewModel.valueText.text = finalDamageValue.ToString();
             }
           
         }            
@@ -417,12 +418,12 @@ public class EnemyController : MonoBehaviour
                     enemy.TriggerMeleeAttackAnimation();
 
                     // Calculate damage
-                    string damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(enemy, null, null, effect);
-                    int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, enemy.currentActionTarget, damageType, false, effect.baseDamage, null, null, effect);
+                    //string damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(enemy, null, null, effect);
+                    //int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, enemy.currentActionTarget, damageType, false, effect.baseDamage, null, null, effect);
 
                     // Start deal damage event
-                    OldCoroutineData abilityAction = CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, enemy.currentActionTarget, damageType);
-                    yield return new WaitUntil(() => abilityAction.ActionResolved() == true);
+                    //OldCoroutineData abilityAction = CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, enemy.currentActionTarget, damageType);
+                    //yield return new WaitUntil(() => abilityAction.ActionResolved() == true);
                 }
                    
             }            

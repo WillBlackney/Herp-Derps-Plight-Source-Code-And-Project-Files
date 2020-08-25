@@ -9,7 +9,6 @@ public class Enemy : LivingEntity
 {
     [Header("Enemy Components")]
     [HideInInspector] public EnemyDataSO enemyData;
-    [HideInInspector] public List<EnemyAction> myKnownActions;
     public EnemyInfoPanel myInfoPanel;
     [HideInInspector] public GameObject freeStrikeIndicator;
     [HideInInspector] public LivingEntity currentActionTarget;
