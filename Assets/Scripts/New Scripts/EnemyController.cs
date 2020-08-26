@@ -73,57 +73,72 @@ public class EnemyController : MonoBehaviour
     public void StartAutoSetEnemyIntentProcess(CharacterEntityModel enemy)
     {
         Debug.Log("EnemyController.StartSetEnemyIntentProcess() called...");
-        //enemy.myNextAction = DetermineNextEnemyAction(enemy);
-        //enemy.currentActionTarget = DetermineTargetOfNextEnemyAction(enemy, enemy.myNextAction);
+        SetEnemyNextAction(enemy, DetermineNextEnemyAction(enemy));
+        SetEnemyTarget(enemy, DetermineTargetOfNextEnemyAction(enemy, enemy.myNextAction));
         UpdateEnemyIntentGUI(enemy);
     }
-    public void UpdateEnemyIntentGUI(CharacterEntityModel enemy)
+    private void UpdateEnemyIntentGUI(CharacterEntityModel enemy)
     {
         Debug.Log("EnemyController.UpdateEnemyIntentGUI() called...");
 
-        // Disable all views
-        enemy.characterEntityView.myIntentViewModel.valueText.gameObject.SetActive(false);
-
-        // Start fade in effect
-        enemy.characterEntityView.myIntentViewModel.FadeInView();
-
-        // Set intent image
-        enemy.characterEntityView.myIntentViewModel.SetIntentSprite
-            (SpriteLibrary.Instance.GetIntentSpriteFromIntentEnumData(enemy.myNextAction.intentImage));
+        // Setup for visual event
+        Sprite intentSprite = SpriteLibrary.Instance.GetIntentSpriteFromIntentEnumData(enemy.myNextAction.intentImage);
+        string attackDamageString = "";
 
         // if attacking, calculate + enable + set damage value text
         if(enemy.myNextAction.actionType == ActionType.AttackTarget)
         {
             // Use the first EnemyActionEffect in the list to base damage calcs off of.
             EnemyActionEffect effect = enemy.myNextAction.actionEffects[0];
+
             // Calculate damage to display
             string damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(enemy, null, null, effect);
             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, enemy.currentActionTarget, damageType, false, effect.baseDamage, null, null, effect);
 
-
-            enemy.characterEntityView.myIntentViewModel.valueText.gameObject.SetActive(true);
-
             if(effect.attackLoops > 1)
             {
-                enemy.characterEntityView.myIntentViewModel.valueText.text = finalDamageValue.ToString() + " x " + effect.attackLoops.ToString();
+                attackDamageString = finalDamageValue.ToString() + " x " + effect.attackLoops.ToString(); 
             }
             else
             {
-                enemy.characterEntityView.myIntentViewModel.valueText.text = finalDamageValue.ToString();
-            }
-          
-        }            
+                attackDamageString = finalDamageValue.ToString();
+            }          
+        }
+
+        // Create Visual event
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateEnemyIntentGUIVisualEvent(enemy.characterEntityView.myIntentViewModel, intentSprite, attackDamageString));
         
     }
+    public void SetEnemyNextAction(CharacterEntityModel enemy, EnemyAction action)
+    {
+        Debug.Log("EnemyController.SetEnemyNextAction() called, setting action '" + action.actionName + 
+            "' as next action for enemy '" + enemy.myName + "'.");
+
+        enemy.myNextAction = action;
+    }
+    public void SetEnemyTarget(CharacterEntityModel enemy, CharacterEntityModel target)
+    {
+        string targetName = "NO TARGET";
+        if (target != null)
+        {
+            targetName = target.myName;
+        }
+
+        Debug.Log("EnemyController.SetEnemyTarget() called, setting '" + targetName +
+            "' as target for '" + enemy.myName + "'.");
+
+        enemy.currentActionTarget = target;
+    }
+
     #endregion
 
     // Determine and Execute Actions
     #region
-    public void AddActionToEnemyPastActionsLog(Enemy enemy, EnemyAction action)
+    public void AddActionToEnemyPastActionsLog(CharacterEntityModel enemy, EnemyAction action)
     {
         enemy.myPreviousActionLog.Add(action);
     }
-    public bool DoesEnemyActionMeetItsRequirements(EnemyAction enemyAction, Enemy enemy)
+    public bool DoesEnemyActionMeetItsRequirements(EnemyAction enemyAction, CharacterEntityModel enemy)
     {
         Debug.Log("EnemyController.DoesEnemyActionMeetItsRequirements() called, checking action '" + enemyAction.actionName +
             "' by enemy " + enemy.myName);
@@ -203,6 +218,8 @@ public class EnemyController : MonoBehaviour
                 checkResults.Add(false);
             }
 
+            /*
+             *  TO DO: unncomment and update when we fix passive system
             // Check HasPassive
             if (ar.requirementType == ActionRequirementType.HasPassiveTrait &&
                 StatusController.Instance.IsEntityEffectedByStatus(enemy, ar.statusRequired, ar.statusStacksRequired) == false)
@@ -210,6 +227,7 @@ public class EnemyController : MonoBehaviour
                 Debug.Log(enemyAction.actionName + " failed 'HasPassive' requirement");
                 checkResults.Add(false);
             }
+            */
         }
 
         if (checkResults.Contains(false))
@@ -223,7 +241,7 @@ public class EnemyController : MonoBehaviour
 
         return boolReturned;
     }
-    public EnemyAction DetermineNextEnemyAction(Enemy enemy)
+    public EnemyAction DetermineNextEnemyAction(CharacterEntityModel enemy)
     {
         Debug.Log("EnemyController.DetermineNextEnemyAction() called for enemy: " + enemy.myName);
 
@@ -296,22 +314,23 @@ public class EnemyController : MonoBehaviour
         Debug.Log("EnemyController.DetermineNextEnemyAction() returning " + actionReturned.actionName);
         return actionReturned;
     }
-    public LivingEntity DetermineTargetOfNextEnemyAction(Enemy enemy, EnemyAction action)
+    public CharacterEntityModel DetermineTargetOfNextEnemyAction(CharacterEntityModel enemy, EnemyAction action)
     {
-        Debug.Log("EnemyController.DetermineTargetOfNextEnemyAction() called...");
+        Debug.Log("EnemyController.DetermineTargetOfNextEnemyAction() called for enemy: " + enemy.myName);
 
-        LivingEntity targetReturned = null;
+        CharacterEntityModel targetReturned = null;
+
         if(action.actionType == ActionType.AttackTarget || action.actionType == ActionType.DebuffTarget)
         {
-            targetReturned = DefenderManager.Instance.allDefenders[Random.Range(0, DefenderManager.Instance.allDefenders.Count)];
+            targetReturned = CharacterEntityController.Instance.allDefenders[Random.Range(0, CharacterEntityController.Instance.allDefenders.Count)];
         }
         else if (action.actionType == ActionType.DefendTarget)
         {
             // Get a valid target
-            List<Enemy> validTargets = new List<Enemy>();
+            List<CharacterEntityModel> validTargets = new List<CharacterEntityModel>();
 
             // add all enemies
-            validTargets.AddRange(EnemyManager.Instance.allEnemies);
+            validTargets.AddRange(CharacterEntityController.Instance.allEnemies);
 
             // remove self from consideration
             validTargets.Remove(enemy);
@@ -330,16 +349,8 @@ public class EnemyController : MonoBehaviour
         }
 
         return targetReturned;
-    } 
-    public OldCoroutineData ExecuteEnemyNextAction(Enemy enemy)
-    {
-        Debug.Log("EnemyController.ExecuteEnemyNextAction() called...");
-
-        OldCoroutineData action = new OldCoroutineData(true);
-        StartCoroutine(ExecuteEnemyNextActionCoroutine(enemy, action));
-        return action;
-    }
-    private IEnumerator ExecuteEnemyNextActionCoroutine(Enemy enemy, OldCoroutineData action)
+    }     
+    private void ExecuteEnemyNextAction(CharacterEntityModel enemy)
     {
         Debug.Log("EnemyController.ExecuteEnemyNextActionCoroutine() called...");
 
@@ -358,23 +369,25 @@ public class EnemyController : MonoBehaviour
         }
 
         // Ability name notification
-        OldCoroutineData notification = VisualEffectManager.Instance.CreateStatusEffect(enemy.transform.position, enemy.myNextAction.actionName);
-        yield return new WaitForSeconds(0.5f);
+        // TO DO: Uncomment and update when we have updated VFX manager script
+        //OldCoroutineData notification = VisualEffectManager.Instance.CreateStatusEffect(enemy.transform.position, enemy.myNextAction.actionName);
+        //yield return new WaitForSeconds(0.5f);
 
         // Trigger and resolve all effects of the action        
         for(int i = 0; i < nextAction.actionLoops; i++)
         {
-            if(enemy != null && enemy.inDeathProcess == false)
+            if(enemy != null && enemy.livingState == LivingState.Alive)
             {
                 foreach (EnemyActionEffect effect in nextAction.actionEffects)
                 {
+                    // if this action moves enemy off its level node,
+                    // remember this for later and move back to start pos
                     if (nextAction.actionType == ActionType.AttackTarget)
                     {
                         hasMovedOffStartingNode = true;
                     }
 
-                    OldCoroutineData effectEvent = TriggerEnemyActionEffect(enemy, effect);
-                    yield return new WaitUntil(() => effectEvent.ActionResolved());
+                    TriggerEnemyActionEffect(enemy, effect);
                 }
             }            
         }        
@@ -385,77 +398,74 @@ public class EnemyController : MonoBehaviour
         AddActionToEnemyPastActionsLog(enemy, nextAction);
 
         // Move back to starting node pos, if we moved off 
-        if (hasMovedOffStartingNode && enemy.inDeathProcess == false)
+        if (hasMovedOffStartingNode && enemy.livingState == LivingState.Alive)
         {
-            //OldCoroutineData moveBackEvent = MovementLogic.Instance.MoveEntityToNodeCentre(enemy, enemy.levelNode);
-            //yield return new WaitUntil(() => moveBackEvent.ActionResolved() == true);
+            CoroutineData cData = new CoroutineData();
+            VisualEventManager.Instance.CreateVisualEvent(() => MovementLogic.Instance.MoveEntityToNodeCentre(enemy, enemy.levelNode, cData), cData, QueuePosition.Back, 0.3f, 0);
+        }
+    }
+    private void TriggerEnemyActionEffect(CharacterEntityModel enemy, EnemyActionEffect effect)
+    {
+        // Cache refs for visual events
+        CharacterEntityModel target = enemy.currentActionTarget;
+
+        // If no target, set self as target
+        if(target == null)
+        {
+            target = enemy;
         }
 
-        // Resolve
-        action.coroutineCompleted = true;
-    }
-    public OldCoroutineData TriggerEnemyActionEffect(Enemy enemy,EnemyActionEffect effect)
-    {
-        OldCoroutineData action = new OldCoroutineData(true);
-        StartCoroutine(TriggerEnemyActionEffectCoroutine(enemy, effect, action));
-        return action; 
-    }
-    private IEnumerator TriggerEnemyActionEffectCoroutine(Enemy enemy, EnemyActionEffect effect, OldCoroutineData action)
-    {
         // Execute effect based on effect type
         if (effect.actionType == ActionType.AttackTarget)
         {
             for(int i = 0; i < effect.attackLoops; i++)
             {
-                if(enemy.currentActionTarget != null && enemy.currentActionTarget.inDeathProcess == false &&
-                    enemy != null && enemy.inDeathProcess == false)
+                if(target != null &&
+                   target.livingState == LivingState.Alive)
                 {
-                    // Move towards target
-                   // OldCoroutineData moveAction = MovementLogic.Instance.MoveAttackerToTargetNodeAttackPosition(enemy, enemy.currentActionTarget);
-                    //yield return new WaitUntil(() => moveAction.ActionResolved());
+                    // Move towards target visual event
+                    CoroutineData cData = new CoroutineData();
+                    VisualEventManager.Instance.CreateVisualEvent(() => MovementLogic.Instance.MoveAttackerToTargetNodeAttackPosition(enemy, target, cData), cData);
 
                     // Play melee attack anim
-                    enemy.TriggerMeleeAttackAnimation();
+                    VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.TriggerMeleeAttackAnimation(enemy.characterEntityView));
 
                     // Calculate damage
-                    //string damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(enemy, null, null, effect);
-                    //int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, enemy.currentActionTarget, damageType, false, effect.baseDamage, null, null, effect);
+                    string damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(enemy, null, null, effect);
+                    int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, target, damageType, false, effect.baseDamage, null, null, effect);
 
-                    // Start deal damage event
-                    //OldCoroutineData abilityAction = CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, enemy.currentActionTarget, damageType);
-                    //yield return new WaitUntil(() => abilityAction.ActionResolved() == true);
-                }
-                   
+                    // Start damage sequence
+                    CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, target, damageType);
+                }                   
             }            
         }
-        else if (effect.actionType == ActionType.DefendSelf)
+
+        
+        else if (effect.actionType == ActionType.DefendSelf || effect.actionType == ActionType.DefendTarget)
         {
-            enemy.ModifyCurrentBlock(CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy));
+            CharacterEntityController.Instance.ModifyBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy, target));
         }
-        else if (effect.actionType == ActionType.DefendTarget)
-        {
-            enemy.currentActionTarget.ModifyCurrentBlock(CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy.currentActionTarget));
-        }
+
         else if (effect.actionType == ActionType.BuffSelf ||
                  effect.actionType == ActionType.BuffTarget)
         {
             // Set self as target if 'BuffSelf' type
             if (effect.actionType == ActionType.BuffSelf)
             {
-                enemy.currentActionTarget = enemy;
+                target = enemy;
             }
 
-            StatusController.Instance.ApplyStatusToLivingEntity(enemy.currentActionTarget, effect.statusApplied, effect.statusStacks);
+            //StatusController.Instance.ApplyStatusToLivingEntity(target, effect.statusApplied, effect.statusStacks);
         }
         else if (effect.actionType == ActionType.DebuffTarget)
         {
-            StatusController.Instance.ApplyStatusToLivingEntity(enemy.currentActionTarget, effect.statusApplied, effect.statusStacks);
+            //StatusController.Instance.ApplyStatusToLivingEntity(target, effect.statusApplied, effect.statusStacks);
         }
         else if (effect.actionType == ActionType.DebuffAll)
         {
             foreach(Defender defender in DefenderManager.Instance.allDefenders)
             {
-                StatusController.Instance.ApplyStatusToLivingEntity(defender, effect.statusApplied, effect.statusStacks);
+                //StatusController.Instance.ApplyStatusToLivingEntity(defender, effect.statusApplied, effect.statusStacks);
             }
           
         }
@@ -471,25 +481,18 @@ public class EnemyController : MonoBehaviour
             }
             
         }
+        
 
         // TO DO: This pause occurs even if the target or enemy is dead, how 
         // to remove this pause when this occurs?
 
         // Brief pause at end of each effect
-        yield return new WaitForSeconds(0.5f);
-
-        // Resolve
-        action.coroutineCompleted = true;
+        //yield return new WaitForSeconds(0.5f);
     }
-    public void StartEnemyActivation(Enemy enemy)
+    public void StartEnemyActivation(CharacterEntityModel enemy)
     {
-        StartCoroutine(StartEnemyActivationCoroutine(enemy));
-    }
-    private IEnumerator StartEnemyActivationCoroutine(Enemy enemy)
-    {
-        OldCoroutineData actionEvent = ExecuteEnemyNextAction(enemy);
-        yield return new WaitUntil(() => actionEvent.ActionResolved() == true);
-        LivingEntityManager.Instance.EndEntityActivation(enemy);
+        ExecuteEnemyNextAction(enemy);
+        CharacterEntityController.Instance.CharacterOnActivationEnd(enemy);
     }
     #endregion
 
@@ -497,19 +500,6 @@ public class EnemyController : MonoBehaviour
     #region
     public void OnEnemyMouseEnter(Enemy enemy)
     {
-        Debug.Log("EnemyController.OnEnemyMouseOver() called for enemy: " + enemy.myName);
-
-        DefenderController.Instance.DisableAllDefenderTargetIndicators();
-
-        if(enemy.currentActionTarget != null && enemy.currentActionTarget is Defender)
-        {
-            DefenderController.Instance.EnableDefenderTargetIndicator(enemy.currentActionTarget);
-            if(enemy.levelNode != null && enemy.inDeathProcess == false)
-            {
-                enemy.levelNode.ConnectTargetPathToTargetNode(enemy.currentActionTarget.levelNode);
-            }
-            
-        }
     }
     public void OnEnemyMouseExit(Enemy enemy)
     {
@@ -525,5 +515,26 @@ public class EnemyController : MonoBehaviour
     }
     #endregion
 
+    // Visual Events
+    #region
+    public void UpdateEnemyIntentGUIVisualEvent(IntentViewModel intentView, Sprite intentSprite, string attackDamageString)
+    {
+        // Disable text view
+        intentView.valueText.gameObject.SetActive(false);
 
+        // Start fade in effect        
+        intentView.FadeInView();
+
+        // Set intent image
+        intentView.SetIntentSprite(intentSprite);
+
+        if (attackDamageString != "")
+        {
+            // Enable attack damage value text, if we have value to show
+            intentView.valueText.gameObject.SetActive(true);
+            intentView.valueText.text = attackDamageString;
+        }
+
+    }
+    #endregion
 }

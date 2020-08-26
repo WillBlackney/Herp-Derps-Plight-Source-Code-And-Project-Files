@@ -2,39 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DefenderController : MonoBehaviour
+public class DefenderController : Singleton<DefenderController>
 {
-    // Singleton Pattern
-    #region
-    public static DefenderController Instance;
-    private void Awake()
+    public void EnableDefenderTargetIndicator(CharacterEntityView view)
     {
-        if (!Instance)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Debug.Log("DefenderController.EnableDefenderTargetIndicator() called...");
+        view.myTargetIndicator.EnableView();
     }
-    #endregion
-
-    public void EnableDefenderTargetIndicator(LivingEntity defender)
+    public void DisableDefenderTargetIndicator(CharacterEntityView view)
     {
-        Debug.Log("DefenderController.ActivateDefenderTargetIndicator() called...");
-        defender.defender.myTargetIndicator.EnableView();
-    }
-    public void DisableDefenderTargetIndicator(LivingEntity defender)
-    {
-        Debug.Log("DefenderController.ActivateDefenderTargetIndicator() called...");
-        defender.defender.myTargetIndicator.DisableView();
+        Debug.Log("DefenderController.DisableDefenderTargetIndicator() called...");
+        view.myTargetIndicator.DisableView();
     }
     public void DisableAllDefenderTargetIndicators()
     {
-        foreach(Defender defender in DefenderManager.Instance.allDefenders)
+        foreach(CharacterEntityModel defender in CharacterEntityController.Instance.allDefenders)
         {
-            DisableDefenderTargetIndicator(defender);
+            DisableDefenderTargetIndicator(defender.characterEntityView);
         }
 
         // Disable targeting path lines from all nodes

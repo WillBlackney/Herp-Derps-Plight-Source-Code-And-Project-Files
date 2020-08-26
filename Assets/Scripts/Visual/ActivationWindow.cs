@@ -27,7 +27,7 @@ public class ActivationWindow : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public void OnPointerEnter(PointerEventData eventData)
     {
         Debug.Log("ActivationWindow.OnMouseEnter called...");
-        CharacterEntityController.Instance.OnCharacterMouseOver(myCharacter.characterEntityView);
+        CharacterEntityController.Instance.OnCharacterMouseEnter(myCharacter.characterEntityView);
     }
     public void OnPointerExit(PointerEventData eventData)
     {

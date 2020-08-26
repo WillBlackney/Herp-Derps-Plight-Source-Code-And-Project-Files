@@ -242,13 +242,14 @@ GameObject:
   - component: {fileID: 5148551054472327240}
   - component: {fileID: 5148551054472327247}
   - component: {fileID: 5148551054472327241}
+  - component: {fileID: 3376004851330668162}
   m_Layer: 5
   m_Name: End Turn Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5148551054472327240
 RectTransform:
   m_ObjectHideFlags: 0
@@ -332,3 +333,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!225 &3376004851330668162
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5148551054472327243}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

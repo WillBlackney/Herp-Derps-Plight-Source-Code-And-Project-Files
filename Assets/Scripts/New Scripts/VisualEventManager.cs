@@ -44,29 +44,38 @@ public class VisualEventManager : MonoBehaviour
     #region
     private void PlayEventFromQueue(VisualEvent ve)
     {
-        Debug.Log("VisualEventManager.PlayEventFromQueue() called, running function: " + ve.eventFunction.Method.Name);
+        if(ve.eventFunction != null)
+        {
+            Debug.Log("VisualEventManager.PlayEventFromQueue() called, running function: " + ve.eventFunction.Method.Name);
+        }       
         ve.isPlaying = true;
         StartCoroutine(PlayEventFromQueueCoroutine(ve));
     }
     private IEnumerator PlayEventFromQueueCoroutine(VisualEvent ve)
     {
-        Debug.Log("VisualEventManager.PlayEventFromQueueCoroutine() called, running function: " + ve.eventFunction.Method.Name);
+        if (ve.eventFunction != null)
+        {
+            Debug.Log("VisualEventManager.PlayEventFromQueueCoroutine() called, running function: " + ve.eventFunction.Method.Name);
+        }            
 
         // Start Delay
-        Debug.Log("Awaiting start delay time out. Wait time: " + (ve.startDelay + startDelayExtra).ToString());     
+        //Debug.Log("Awaiting start delay time out. Wait time: " + (ve.startDelay + startDelayExtra).ToString());     
         yield return new WaitForSeconds(ve.startDelay + startDelayExtra);
 
-        // Start coroutine, wait until finished
-        Debug.Log("Event invocation started....");
-        ve.eventFunction.Invoke();
-        if(ve.cData != null)
+        // Start function 
+        if(ve.eventFunction != null)
+        {
+            ve.eventFunction.Invoke();
+        }
+
+        // Wait until finished
+        if (ve.cData != null)
         {
             yield return new WaitUntil(() => ve.cData.CoroutineCompleted() == true);
-        }       
-        Debug.Log("Event invocation finished....");
+        } 
 
         // End delay
-        Debug.Log("Awaiting end delay time out. Wait time: " + (ve.endDelay + endDelayExtra).ToString());
+        //Debug.Log("Awaiting end delay time out. Wait time: " + (ve.endDelay + endDelayExtra).ToString());
         yield return new WaitForSeconds(ve.endDelay + endDelayExtra);
 
         // Remove from queue
@@ -135,9 +144,25 @@ public class VisualEventManager : MonoBehaviour
     }
     #endregion
 
+    // Custom Events
+    public void InsertTimeDelayInQueue(float delayDuration, QueuePosition position = QueuePosition.Back)
+    {
+        VisualEvent vEvent = new VisualEvent(null, null, 0, delayDuration, EventDetail.None);
+
+        if (position == QueuePosition.Back)
+        {
+            AddEventToBackOfQueue(vEvent);
+        }
+        else if (position == QueuePosition.Front)
+        {
+            AddEventToFrontOfQueue(vEvent);
+        }
+    }
+
     // Bools and Queue Checks
     public bool PendingCardDrawEvent()
     {
+        Debug.Log("VisualEventManager.PendingCardDrawEvent() called...");
         bool boolReturned = false;
         foreach(VisualEvent ve in eventQueue)
         {
@@ -148,10 +173,12 @@ public class VisualEventManager : MonoBehaviour
             }
         }
 
+        Debug.Log("VisualEventManager.PendingCardDrawEvent() returning: " + boolReturned.ToString());
         return boolReturned;
     }
     public bool PendingDefeatEvent()
     {
+        Debug.Log("VisualEventManager.PendingDefeatEvent() called...");
         bool boolReturned = false;
         foreach (VisualEvent ve in eventQueue)
         {
@@ -162,10 +189,12 @@ public class VisualEventManager : MonoBehaviour
             }
         }
 
+        Debug.Log("VisualEventManager.PendingDefeatEvent() returning: " + boolReturned.ToString());
         return boolReturned;
     }
     public bool PendingVictoryEvent()
     {
+        Debug.Log("VisualEventManager.PendingVictoryEvent() called...");
         bool boolReturned = false;
         foreach (VisualEvent ve in eventQueue)
         {
@@ -176,6 +205,7 @@ public class VisualEventManager : MonoBehaviour
             }
         }
 
+        Debug.Log("VisualEventManager.PendingVictoryEvent() returning: " + boolReturned.ToString());
         return boolReturned;
     }
 }

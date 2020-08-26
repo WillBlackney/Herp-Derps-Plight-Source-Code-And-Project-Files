@@ -116,7 +116,7 @@ public class CardController : Singleton<CardController>
 
             Debug.Log("ABOUT TO START VISUAL EVENT!");
             // Create and queue card drawn visual event
-            VisualEventManager.Instance.CreateVisualEvent(() => DrawCardFromDeckVisualEvent(cardDrawn, defender), QueuePosition.Back, 0, 0.2f);
+            VisualEventManager.Instance.CreateVisualEvent(() => DrawCardFromDeckVisualEvent(cardDrawn, defender), QueuePosition.Back, 0, 0.2f, EventDetail.CardDraw);
         }
 
 
@@ -374,7 +374,7 @@ public class CardController : Singleton<CardController>
                 target = owner;
             }
 
-            CharacterEntityController.Instance.ModifyBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner));
+            CharacterEntityController.Instance.ModifyBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, target));
         }
 
         // Deal Damage
@@ -405,7 +405,7 @@ public class CardController : Singleton<CardController>
             if (hasMovedOffStartingNode && owner.livingState == LivingState.Alive) 
             {
                 CoroutineData cData = new CoroutineData();
-                VisualEventManager.Instance.CreateVisualEvent(() => MovementLogic.Instance.MoveEntityToNodeCentre(owner, owner.levelNode, cData), cData, QueuePosition.Back, 0, 0);
+                VisualEventManager.Instance.CreateVisualEvent(() => MovementLogic.Instance.MoveEntityToNodeCentre(owner, owner.levelNode, cData), cData, QueuePosition.Back, 0.3f, 0);
             }
 
         }

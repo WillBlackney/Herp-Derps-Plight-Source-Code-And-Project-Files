@@ -1114,9 +1114,9 @@ public class CombatLogic : MonoBehaviour
         Debug.Log("Final block gain value calculated: " + valueReturned);
         return valueReturned;
     }
-    public int CalculateBlockGainedByEffect(int baseBlockGain, CharacterEntityModel caster)
+    public int CalculateBlockGainedByEffect(int baseBlockGain, CharacterEntityModel caster, CharacterEntityModel target)
     {
-        Debug.Log("CombatLogic.CalculateBlockGainedByEffect() callled for " + caster.myName);
+        Debug.Log("CombatLogic.CalculateBlockGainedByEffect() callled for " + caster.myName + " against target: " + target.myName);
 
         int valueReturned = baseBlockGain;
         Debug.Log("Base block gain value: " + valueReturned);

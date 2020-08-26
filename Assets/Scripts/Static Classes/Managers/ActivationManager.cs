@@ -2,26 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using DG.Tweening;
 
 public class ActivationManager : Singleton<ActivationManager>
 {
     // Properties + Component References
     #region
     [Header("Component References")]
-    public GameObject activationSlotContentParent;
-    public GameObject activationWindowContentParent;
-    public GameObject windowStartPos;
-    public GameObject activationPanelParent;
-    public Canvas activationPanelParentCanvas;
-    public GameObject panelArrow;
-    public GameObject panelSlotPrefab;
-    public GameObject slotHolderPrefab;
-    public GameObject windowHolderPrefab;
+    [SerializeField] private GameObject windowStartPos;
+    [SerializeField] private GameObject activationPanelParent;
+    [SerializeField] private GameObject panelArrow;
+    private GameObject activationSlotContentParent;
+    private GameObject activationWindowContentParent;    
+
+    [Header("Prefab References")]
+    [SerializeField] private GameObject panelSlotPrefab;
+    [SerializeField] private GameObject slotHolderPrefab;
+    [SerializeField] private GameObject windowHolderPrefab;
 
     [Header("Properties")]
     public List<CharacterEntityModel> activationOrder = new List<CharacterEntityModel>();
-    public List<GameObject> panelSlots;
-    public CharacterEntityModel entityActivated;
+    private List<GameObject> panelSlots = new List<GameObject>();
+    [HideInInspector] public CharacterEntityModel entityActivated;
     #endregion
 
     // Setup + Initializaton
@@ -74,8 +76,11 @@ public class ActivationManager : Singleton<ActivationManager>
         // Disable arrow
         VisualEventManager.Instance.CreateVisualEvent(() => SetPanelArrowViewState(false));
 
+        // Disable End turn button
+        VisualEventManager.Instance.CreateVisualEvent(() => UIManager.Instance.DisableEndTurnButtonView());
+
         // Move windows to start positions if combat has only just started
-        if(TurnChangeNotifier.Instance.currentTurnCount == 0)
+        if (TurnChangeNotifier.Instance.currentTurnCount == 0)
         {
             VisualEventManager.Instance.CreateVisualEvent(() => MoveAllWindowsToStartPositions(), QueuePosition.Back, 0f, 0);
         }      
@@ -107,8 +112,22 @@ public class ActivationManager : Singleton<ActivationManager>
         // Set all enemy intent images if turn 1
         if(TurnChangeNotifier.Instance.currentTurnCount == 1)
         {
-            VisualEventManager.Instance.CreateVisualEvent(()=> EnemyController.Instance.SetAllEnemyIntents(), QueuePosition.Back, 0, 1f);
-        }        
+            EnemyController.Instance.SetAllEnemyIntents(); 
+        }
+
+        // Need to preset activation button view state to enemy or player
+        // otherwise it gets a bit glitchy when it turns on
+        if(activationOrder[0].controller == Controller.Player)
+        {
+            VisualEventManager.Instance.CreateVisualEvent(() => UIManager.Instance.SetPlayerTurnButtonState());
+        }
+        else
+        {
+            VisualEventManager.Instance.CreateVisualEvent(() => UIManager.Instance.SetEnemyTurnButtonState());
+        }
+
+        // Enable button visual event
+        VisualEventManager.Instance.CreateVisualEvent(() => UIManager.Instance.EnableEndTurnButtonView());
 
         ActivateEntity(activationOrder[0]);
     }
@@ -162,18 +181,20 @@ public class ActivationManager : Singleton<ActivationManager>
     {
         Debug.Log("ActivationManager.OnEndTurnButtonClicked() called...");
 
-        // only start end turn sequence if all on turn visual events have completed
-        if (!VisualEventManager.Instance.PendingCardDrawEvent())
+        // wait until all card draw visual events have completed
+        if (VisualEventManager.Instance.PendingCardDrawEvent() == false)
         {
-            StartEndTurnProcess();
-        }
-        
+            StartEndActivationProcess();
+        }        
     }
-    private void StartEndTurnProcess()
+    private void StartEndActivationProcess()
     {
-        Debug.Log("ActivationManager.StartEndTurnProcess() called...");
+        Debug.Log("ActivationManager.StartEndActivationProcess() called...");
 
+        // Disable end turn button so player cant spam click and break something
         UIManager.Instance.DisableEndTurnButtonInteractions();
+
+        // Trigger character on activation end sequence and events
         CharacterEntityController.Instance.CharacterOnActivationEnd(entityActivated);
     }      
     public void SetActivationWindowViewState(bool onOrOff)
@@ -188,44 +209,28 @@ public class ActivationManager : Singleton<ActivationManager>
     public void ActivateEntity(CharacterEntityModel entity)
     {
         Debug.Log("Activating entity: " + entity.myName);
-        entityActivated = entity;        
+        entityActivated = entity;
 
         // Player controlled characters
         if (entity.allegiance == Allegiance.Player &&
             entity.controller == Controller.Player)
         {
-            UIManager.Instance.SetEndTurnButtonText("End Activation");
-            UIManager.Instance.EnableEndTurnButtonView();
-            UIManager.Instance.EnableEndTurnButtonInteractions();
+            UIManager.Instance.SetPlayerTurnButtonState();
         }
 
         // Enemy controlled characters
         else if (entity.allegiance == Allegiance.Enemy &&
                  entity.controller == Controller.AI)
         {
-            UIManager.Instance.EnableEndTurnButtonView();
-            UIManager.Instance.SetEndTurnButtonText("Enemy Activation...");
-            UIManager.Instance.DisableEndTurnButtonInteractions();
+            UIManager.Instance.SetEnemyTurnButtonState();
         }
 
-        // Move arrow visual event
-        CoroutineData moveArrow = new CoroutineData();
-        VisualEventManager.Instance.CreateVisualEvent(() => MoveArrowTowardsEntityActivatedWindow(moveArrow), QueuePosition.Back);
+        // Move arrow to point at activated enemy
+        VisualEventManager.Instance.CreateVisualEvent(() => MoveArrowTowardsEntityActivatedWindow(), QueuePosition.Back);
 
         // Start character activation
         CharacterEntityController.Instance.CharacterOnActivationStart(entity);
 
-       
-        
-        /*
-        if (entity.enemy)
-        {
-            //yield return new WaitForSeconds(1f);
-            entity.enemy.StartMyActivation();
-           // yield return new WaitForSeconds(0.5f);
-        }
-        */
-      
     }  
     public void ActivateNextEntity()
     {
@@ -493,21 +498,73 @@ public class ActivationManager : Singleton<ActivationManager>
             // should the arrow move?
             if (destinationFound)
             {
+               
+
                 // Activate arrow view
                 SetPanelArrowViewState(true);
+                yield return null;
+
+                // move card to the hand;
+                Sequence s = DOTween.Sequence();
+                // displace the card so that we can select it in the scene easier.
+                s.Append(panelArrow.transform.DOMove(destination, 0.5f));
 
                 // Move!
+                /*
                 while (panelArrow.transform.position.x != destination.x)
                 {
                     panelArrow.transform.position = Vector2.MoveTowards(panelArrow.transform.position, destination, 10 * Time.deltaTime);
-                    yield return null;
+                    //yield return null;
                 }
+                */
             }
 
         }
 
         cData.MarkAsCompleted();
-    }   
+    }
+
+    private void MoveArrowTowardsEntityActivatedWindow()
+    {
+        Debug.Log("ActivationManager.MoveArrowTowardsEntityActivatedWindowCoroutine() called...");
+        // Setup 
+        int currentActivationIndex = 0;
+        Vector3 destination = new Vector3(0, 0);
+        bool destinationFound = false;
+
+        if (activationOrder.Count > 0)
+        {
+            for (int i = 0; i < activationOrder.Count; i++)
+            {
+                // Check if GameObject is in the List
+                if (activationOrder[i] == entityActivated)
+                {
+                    // It is. Return the current index
+                    currentActivationIndex = i;
+                    break;
+                }
+            }
+
+            // Calculate destination
+            if (panelSlots[currentActivationIndex] != null && panelSlots.Count > 0)
+            {
+                destination = new Vector2(panelSlots[currentActivationIndex].transform.position.x, panelArrow.transform.position.y);
+                destinationFound = true;
+            }
+
+            // should the arrow move?
+            if (destinationFound)
+            {
+                // Activate arrow view
+                SetPanelArrowViewState(true);
+
+                // move the arrow
+                Sequence s = DOTween.Sequence();
+                s.Append(panelArrow.transform.DOMove(destination, 0.2f));
+            }
+
+        }
+    }
     #endregion
 
 }

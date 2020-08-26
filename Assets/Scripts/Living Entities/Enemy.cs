@@ -46,7 +46,7 @@ public class Enemy : LivingEntity
     {
         if (!inDeathProcess)
         {
-            EnemyController.Instance.StartEnemyActivation(this);
+            //EnemyController.Instance.StartEnemyActivation(this);
         }
         else
         {
@@ -55,9 +55,10 @@ public class Enemy : LivingEntity
     }
     public virtual IEnumerator StartMyActivationCoroutine()
     {
-        OldCoroutineData actionEvent = EnemyController.Instance.ExecuteEnemyNextAction(this);
-        yield return new WaitUntil(() => actionEvent.ActionResolved() == true);
-        LivingEntityManager.Instance.EndEntityActivation(this);
+        // OldCoroutineData actionEvent = EnemyController.Instance.ExecuteEnemyNextAction(this);
+        ///yield return new WaitUntil(() => actionEvent.ActionResolved() == true);
+        //LivingEntityManager.Instance.EndEntityActivation(this);
+        yield return null;
     }    
     #endregion
 

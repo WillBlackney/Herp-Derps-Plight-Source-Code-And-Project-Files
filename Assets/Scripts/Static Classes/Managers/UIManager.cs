@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
     public GameObject charRosterParticleParent;
 
     [Header("End Turn Button Component References")]
+    public CanvasGroup EndTurnButtonCG;
     public Button EndTurnButton;
     public Image EndTurnButtonBGImage;
     public TextMeshProUGUI EndTurnButtonText;
@@ -412,20 +413,42 @@ public class UIManager : MonoBehaviour
     public void DisableEndTurnButtonInteractions()
     {
         EndTurnButton.interactable = false;
-        SetEndTurnButtonSprite(EndTurnButtonDisabledSprite);
     }
     public void EnableEndTurnButtonInteractions()
     {        
         EndTurnButton.interactable = true;
-        SetEndTurnButtonSprite(EndTurnButtonEnabledSprite);
     }
     public void DisableEndTurnButtonView()
     {
         EndTurnButton.gameObject.SetActive(false);
+        StartCoroutine(FadeOutEndTurnButton());
+    }
+    private IEnumerator FadeOutEndTurnButton()
+    {
+        EndTurnButtonCG.alpha = 1;
+        float uiFadeSpeed = 10f;
+
+        while (EndTurnButtonCG.alpha > 0)
+        {
+            EndTurnButtonCG.alpha -= 0.1f * uiFadeSpeed * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
     }
     public void EnableEndTurnButtonView()
     {
         EndTurnButton.gameObject.SetActive(true);
+        StartCoroutine(FadeInEndTurnButton());
+    }
+    private IEnumerator FadeInEndTurnButton()
+    {
+        EndTurnButtonCG.alpha = 0;
+        float uiFadeSpeed = 10f;
+
+        while (EndTurnButtonCG.alpha < 1)
+        {
+            EndTurnButtonCG.alpha += 0.1f * uiFadeSpeed * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
     }
     public void SetEndTurnButtonSprite(Sprite newSprite)
     {
@@ -435,6 +458,7 @@ public class UIManager : MonoBehaviour
     {
         EndTurnButtonText.text = newText;
     }    
+   
     public OldCoroutineData FadeInGameOverScreen()
     {
         OldCoroutineData action = new OldCoroutineData();
@@ -483,6 +507,22 @@ public class UIManager : MonoBehaviour
         DisableCharacterRosterView();
         DisableInventoryView();
         DisableWorldMapView();
+    }
+    #endregion
+
+    // New Logic
+    #region
+    public void SetPlayerTurnButtonState()
+    {
+        EnableEndTurnButtonInteractions();
+        VisualEventManager.Instance.CreateVisualEvent(() => SetEndTurnButtonText("End Activation"));
+        VisualEventManager.Instance.CreateVisualEvent(() => SetEndTurnButtonSprite(EndTurnButtonEnabledSprite));
+    }
+    public void SetEnemyTurnButtonState()
+    {
+        DisableEndTurnButtonInteractions();
+        VisualEventManager.Instance.CreateVisualEvent(() => SetEndTurnButtonText("Enemy Activation..."));
+        VisualEventManager.Instance.CreateVisualEvent(() => SetEndTurnButtonSprite(EndTurnButtonDisabledSprite));
     }
     #endregion
 }

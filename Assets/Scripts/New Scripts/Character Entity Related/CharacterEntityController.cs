@@ -50,6 +50,10 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         model.characterEntityView = vm;
         vm.character = model;
 
+        // Connect model to data
+        model.characterData = data;
+        //data.myCharacterEntityModel = model;
+
         // Set up positioning in world
         LevelManager.Instance.PlaceEntityAtNode(model, position);
 
@@ -86,6 +90,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Connect model to view
         model.characterEntityView = vm;
         vm.character = model;
+
+        // Connect model to data
+        model.enemyData = data;
 
         // Set up positioning in world
         LevelManager.Instance.PlaceEntityAtNode(model, position);
@@ -265,14 +272,14 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     public void ModifyStamina(CharacterEntityModel character, int staminaGainedOrLost)
     {
         Debug.Log("CharacterEntityController.ModifyStamina() called for " + character.myName);
-        character.energy += staminaGainedOrLost;
+        character.stamina += staminaGainedOrLost;
 
-        if (character.energy < 0)
+        if (character.stamina < 0)
         {
-            character.energy = 0;
+            character.stamina = 0;
         }
 
-        VisualEventManager.Instance.CreateVisualEvent(() => UpdateStaminaGUI(character, character.energy), QueuePosition.Back, 0, 0);
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateStaminaGUI(character, character.stamina), QueuePosition.Back, 0, 0);
     }
     private void UpdateEnergyGUI(CharacterEntityModel character, int newValue)
     {
@@ -409,6 +416,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     {
         Debug.Log("CharacterEntityController.CharacterOnActivationStart() called for " + character.myName);
 
+        character.hasActivatedThisTurn = true;
         ModifyEnergy(character, EntityLogic.GetTotalStamina(character));
         ModifyBlockOnActivationStart(character);
 
@@ -430,10 +438,12 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         if (character.controller == Controller.AI &&
             character.allegiance == Allegiance.Enemy)
         {
+            // Brief pause at the start of enemy action, so player can anticipate visual events
+            VisualEventManager.Instance.InsertTimeDelayInQueue(1f);
 
-        }
-
-        character.hasActivatedThisTurn = true;
+            // Star enemy activation process
+            EnemyController.Instance.StartEnemyActivation(character);
+        }       
 
         /*
         // check if taunted, and if taunter died 
@@ -476,9 +486,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     }
     public void CharacterOnActivationEnd(CharacterEntityModel entity)
     {
-        Debug.Log("CharacterEntityController.CharacterOnActivationEnd() called for " + entity.myName);
+        Debug.Log("CharacterEntityController.CharacterOnActivationEnd() called for " + entity.myName);        
 
-        // Discard hand
+        // Do player character exclusive logic
         if (entity.controller == Controller.Player)
         {
             // Lose unused energy, discard hand
@@ -486,18 +496,27 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
             // Discard Hand
             CardController.Instance.DiscardHandOnActivationEnd(entity);
+
+            // Fade out view
+            CoroutineData fadeOutEvent = new CoroutineData();
+            VisualEventManager.Instance.CreateVisualEvent(() => FadeOutCharacterUICanvas(entity.characterEntityView, fadeOutEvent), fadeOutEvent);
         }
 
-        // Disable activated views
-        entity.levelNode.SetActivatedViewState(false);
+        // Do enemy character exclusive logic
+        if (entity.controller == Controller.AI)
+        {
+            // Brief pause at the end of enemy action, so player can process whats happened
+            VisualEventManager.Instance.InsertTimeDelayInQueue(1f);
 
-        // Fade out view
-        CoroutineData fadeOutEvent = new CoroutineData();
-        VisualEventManager.Instance.CreateVisualEvent(() => FadeOutCharacterUICanvas(entity.characterEntityView, fadeOutEvent), fadeOutEvent);
+            // Set next action + intent
+            EnemyController.Instance.StartAutoSetEnemyIntentProcess(entity);
+        }
+
+        // Disable level node activation ring view
+        VisualEventManager.Instance.CreateVisualEvent(() => entity.levelNode.SetActivatedViewState(false));
 
         // activate the next character
         ActivationManager.Instance.ActivateNextEntity();
-
     }
     #endregion
 
@@ -591,7 +610,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
     // Mouse + Input Logic
     #region
-    public void OnCharacterMouseOver(CharacterEntityView view)
+    public void OnCharacterMouseEnter(CharacterEntityView view)
     {
         Debug.Log("CharacterEntityController.OnCharacterMouseOver() called...");
 
@@ -609,6 +628,24 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             if (view.character.levelNode != null)
             {
                 view.character.levelNode.SetMouseOverViewState(true);
+            }
+        }
+
+        // AI + Enemy exclusive logic
+        if(view.character.controller == Controller.AI)
+        {
+            CharacterEntityModel enemy = view.character;
+
+            DefenderController.Instance.DisableAllDefenderTargetIndicators();
+
+            if (enemy.currentActionTarget != null && enemy.currentActionTarget.allegiance == Allegiance.Player)
+            {
+                DefenderController.Instance.EnableDefenderTargetIndicator(enemy.currentActionTarget.characterEntityView);
+                if (enemy.levelNode != null && enemy.livingState == LivingState.Alive)
+                {
+                    enemy.levelNode.ConnectTargetPathToTargetNode(enemy.currentActionTarget.levelNode);
+                }
+
             }
         }
 
@@ -632,6 +669,21 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
                 view.character.levelNode.SetMouseOverViewState(false);
             }
         }
+
+
+        // AI + Enemy exclusive logic
+        if (view.character.controller == Controller.AI)
+        {
+            CharacterEntityModel enemy = view.character;
+            DefenderController.Instance.DisableAllDefenderTargetIndicators();
+
+            if (enemy.livingState == LivingState.Alive && enemy.levelNode != null)
+            {
+                enemy.levelNode.SetLineViewState(false);
+            }
+        }
+
     }
+
     #endregion
 }

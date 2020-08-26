@@ -57,7 +57,7 @@ public class CharacterEntityView : MonoBehaviour
     private void OnMouseEnter()
     {
         Debug.Log("CharacterEntityView.OnMouseEnter called...");
-        CharacterEntityController.Instance.OnCharacterMouseOver(this);
+        CharacterEntityController.Instance.OnCharacterMouseEnter(this);
     }
     private void OnMouseExit()
     {

@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class CharacterEntityModel 
 {
+    [Header("General Properties")]
+    public string myName;
+    public Allegiance allegiance;
+    public Controller controller;
+    public LivingState livingState;
+
     [Header("Core Stats Properties")]
     public int power;
     public int dexterity;
@@ -17,15 +23,13 @@ public class CharacterEntityModel
     public int maxHealth;
     public int block;
 
-    [Header("Location Properties ")]
+    [Header("View Components Properties ")]
     public LevelNode levelNode;
-
-    [Header("Misc Properties")]
     public CharacterEntityView characterEntityView;
-    public Allegiance allegiance;
-    public Controller controller;
-    public LivingState livingState;
-    public string myName;
+
+    [Header("Data References")]
+    [HideInInspector] public EnemyDataSO enemyData;
+    [HideInInspector] public CharacterData characterData;
 
     [Header("Card Properties")]
     [HideInInspector] public List<Card> drawPile = new List<Card>();
@@ -35,11 +39,13 @@ public class CharacterEntityModel
     [Header("Misc Combat Properties")]
     [HideInInspector] public int currentInitiativeRoll;
     [HideInInspector] public bool hasActivatedThisTurn;
+    [HideInInspector] public int nextActivationCount = 1;
 
     [Header("Enemy Specific Properties")]
     [HideInInspector] public CharacterEntityModel currentActionTarget;
     [HideInInspector] public EnemyAction myNextAction;
     [HideInInspector] public List<EnemyAction> myPreviousActionLog = new List<EnemyAction>();
+    
 }
 public enum Allegiance
 {
