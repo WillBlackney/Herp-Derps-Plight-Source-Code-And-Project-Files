@@ -514,12 +514,14 @@ public class UIManager : MonoBehaviour
     #region
     public void SetPlayerTurnButtonState()
     {
+        Debug.Log("UIManager.SetPlayerTurnButtonState() called...");
         EnableEndTurnButtonInteractions();
         VisualEventManager.Instance.CreateVisualEvent(() => SetEndTurnButtonText("End Activation"));
         VisualEventManager.Instance.CreateVisualEvent(() => SetEndTurnButtonSprite(EndTurnButtonEnabledSprite));
     }
     public void SetEnemyTurnButtonState()
     {
+        Debug.Log("UIManager.SetEnemyTurnButtonState() called...");
         DisableEndTurnButtonInteractions();
         VisualEventManager.Instance.CreateVisualEvent(() => SetEndTurnButtonText("Enemy Activation..."));
         VisualEventManager.Instance.CreateVisualEvent(() => SetEndTurnButtonSprite(EndTurnButtonDisabledSprite));

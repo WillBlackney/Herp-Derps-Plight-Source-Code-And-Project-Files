@@ -212,17 +212,16 @@ public class ActivationManager : Singleton<ActivationManager>
         entityActivated = entity;
 
         // Player controlled characters
-        if (entity.allegiance == Allegiance.Player &&
-            entity.controller == Controller.Player)
+        if (entity.controller == Controller.Player)
         {
-            UIManager.Instance.SetPlayerTurnButtonState();
+            VisualEventManager.Instance.CreateVisualEvent(() => UIManager.Instance.SetPlayerTurnButtonState());
         }
 
         // Enemy controlled characters
         else if (entity.allegiance == Allegiance.Enemy &&
                  entity.controller == Controller.AI)
         {
-            UIManager.Instance.SetEnemyTurnButtonState();
+            VisualEventManager.Instance.CreateVisualEvent(() => UIManager.Instance.SetEnemyTurnButtonState());
         }
 
         // Move arrow to point at activated enemy
@@ -266,6 +265,10 @@ public class ActivationManager : Singleton<ActivationManager>
                 }
             }
 
+            ActivateEntity(nextEntityToActivate);
+
+
+            /*
             // Did we find a valid entity?
             if (nextEntityToActivate == null)
             {
@@ -277,27 +280,19 @@ public class ActivationManager : Singleton<ActivationManager>
                 // we did, activate that entity
                 ActivateEntity(nextEntityToActivate);
             }
+            */
         }      
-    }
-    public bool IsEntityActivated(CharacterEntityModel entity)
-    {
-        if(entityActivated == entity)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
     public bool AllEntitiesHaveActivatedThisTurn()
     {
+        Debug.Log("ActivationManager.AllEntitiesHaveActivatedThisTurn() called...");
         bool boolReturned = true;
         foreach (CharacterEntityModel entity in activationOrder)
         {
             if (entity.hasActivatedThisTurn == false)
             {
                 boolReturned = false;
+                break;
             }
         }
         return boolReturned;

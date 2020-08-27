@@ -301,9 +301,16 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
         int finalBlockGainValue = blockGainedOrLost;
 
-        character.block += blockGainedOrLost;
+        // prevent block going negative
+        if(finalBlockGainValue < 0)
+        {
+            finalBlockGainValue = 0;
+        }
 
-        if (blockGainedOrLost > 0)
+        // Apply block gain
+        character.block += finalBlockGainValue;
+
+        if (finalBlockGainValue > 0)
         {
             //StartCoroutine(VisualEffectManager.Instance.CreateGainBlockEffect(transform.position, blockGainedOrLost));
         }
