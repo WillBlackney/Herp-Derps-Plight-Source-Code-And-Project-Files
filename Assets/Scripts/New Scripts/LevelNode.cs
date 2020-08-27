@@ -19,7 +19,7 @@ public class LevelNode : MonoBehaviour
 
     public void SetMouseOverViewState(bool onOrOff)
     {
-        Debug.Log("LevelNode.SetMouseOverViewState() called");
+        Debug.Log("LevelNode.SetMouseOverViewState() called, setting view state: " + onOrOff.ToString());
 
         mouseOverParent.SetActive(onOrOff);
     }
@@ -34,7 +34,7 @@ public class LevelNode : MonoBehaviour
     }
     public void DisableAllExtraViews()
     {
-        SetMouseOverViewState(false);
+       // SetMouseOverViewState(false);
         SetLineViewState(false);
     }
     public void ConnectTargetPathToTargetNode(LevelNode targetNode)

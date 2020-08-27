@@ -161,6 +161,13 @@ public class LevelManager : MonoBehaviour
         entity.levelNode = node;
         entity.characterEntityView.transform.position = node.transform.position;
     }
+    public void DisconnectEntityFromNode(CharacterEntityModel entity)
+    {
+        entity.levelNode.DisableAllExtraViews();
+        entity.levelNode.occupied = false;
+        entity.levelNode.myEntity = null;
+        entity.levelNode = null;
+    }
     public void DisconnectEntityFromNode(LivingEntity entity)
     {
         entity.levelNode.DisableAllExtraViews();

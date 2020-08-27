@@ -186,14 +186,7 @@ public class UniversalCharacterModel : MonoBehaviour
 
 
     // Animation Logic
-    #region    
-    public void SetDeathAnimAsFinished()
-    {
-        if(myLivingEntity != null)
-        {
-            myLivingEntity.SetDeathAnimAsFinished();
-        }
-    }
+    #region 
     public void SetRangedAttackAnimAsFinished()
     {
         if (myLivingEntity != null)

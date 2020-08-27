@@ -171,9 +171,7 @@ public class ActivationManager : Singleton<ActivationManager>
         sortedList.Reverse();
         activationOrder = sortedList;
     }
-   
-   
-    #endregion 
+    #endregion
 
     // Player Input + UI interactions
     #region
@@ -225,7 +223,7 @@ public class ActivationManager : Singleton<ActivationManager>
         }
 
         // Move arrow to point at activated enemy
-        VisualEventManager.Instance.CreateVisualEvent(() => MoveArrowTowardsEntityActivatedWindow(), QueuePosition.Back);
+        VisualEventManager.Instance.CreateVisualEvent(() => MoveActivationArrowTowardsEntityWindow(entity), QueuePosition.Back);
 
         // Start character activation
         CharacterEntityController.Instance.CharacterOnActivationStart(entity);
@@ -235,6 +233,9 @@ public class ActivationManager : Singleton<ActivationManager>
     {
         Debug.Log("ActivationManager.ActivateNextEntity() called...");
 
+        // Setup
+        CharacterEntityModel nextEntityToActivate = null;
+
         // dont activate next entity if either all defenders or all enemies are dead
         if (VisualEventManager.Instance.PendingDefeatEvent() ||
             VisualEventManager.Instance.PendingVictoryEvent())
@@ -242,9 +243,7 @@ public class ActivationManager : Singleton<ActivationManager>
             Debug.Log("ActivationManager.ActivateNextEntity() detected that an end combat event has been triggered, " +
                 "cancelling next entity activation...");
             return;
-        }
-
-        CharacterEntityModel nextEntityToActivate = null;
+        }       
 
         // Start a new turn if all characters have activated
         if (AllEntitiesHaveActivatedThisTurn())
@@ -266,21 +265,6 @@ public class ActivationManager : Singleton<ActivationManager>
             }
 
             ActivateEntity(nextEntityToActivate);
-
-
-            /*
-            // Did we find a valid entity?
-            if (nextEntityToActivate == null)
-            {
-                // we didnt, start a new turn sequence
-                StartNewTurnSequence();
-            }
-            else
-            {
-                // we did, activate that entity
-                ActivateEntity(nextEntityToActivate);
-            }
-            */
         }      
     }
     public bool AllEntitiesHaveActivatedThisTurn()
@@ -301,7 +285,7 @@ public class ActivationManager : Singleton<ActivationManager>
 
     // Visual Events
     #region
-    public void PlayActivationRollSequence(CoroutineData cData)
+    private void PlayActivationRollSequence(CoroutineData cData)
     {
         StartCoroutine(PlayActivationRollSequenceCoroutine(cData));
     }
@@ -383,6 +367,17 @@ public class ActivationManager : Singleton<ActivationManager>
         }
 
         DestroyActivationWindow(window);
+
+        // Adjust window positions
+       // UpdateWindowPositions();
+
+        // Update arrow position
+        if(entityActivated != null &&
+            entityActivated.livingState == LivingState.Alive)
+        {
+            //VisualEventManager.Instance.CreateVisualEvent(()=> MoveActivationArrowTowardsEntityWindow(entityActivated));
+        }        
+
         cData.MarkAsCompleted();
     }
     private IEnumerator MoveWindowTowardsSlotPositionCoroutine(ActivationWindow window)
@@ -427,7 +422,7 @@ public class ActivationManager : Singleton<ActivationManager>
             }
         }
     }    
-    private void UpdateWindowPositions()
+    public void UpdateWindowPositions()
     {
         foreach(CharacterEntityModel character in activationOrder)
         {
@@ -438,10 +433,10 @@ public class ActivationManager : Singleton<ActivationManager>
     {
         for(int i = 0; i < activationOrder.Count; i++)
         {
-            StartCoroutine(MoveWindowToStartingSlotCoroutine(activationOrder[i].characterEntityView.myActivationWindow, panelSlots[i]));
+            StartCoroutine(MoveAlWindowsToStartPositionsCoroutine(activationOrder[i].characterEntityView.myActivationWindow, panelSlots[i]));
         }
     }
-    private IEnumerator MoveWindowToStartingSlotCoroutine(ActivationWindow window, GameObject startSlotPos)
+    private IEnumerator MoveAlWindowsToStartPositionsCoroutine(ActivationWindow window, GameObject startSlotPos)
     {        
         while (window.transform.position.x != startSlotPos.transform.position.x)
         {
@@ -457,109 +452,23 @@ public class ActivationManager : Singleton<ActivationManager>
     private void SetPanelArrowViewState(bool onOrOff)
     {
         panelArrow.SetActive(onOrOff);
-    }
-    public void MoveArrowTowardsEntityActivatedWindow(CoroutineData cData)
+    }   
+    public void MoveActivationArrowTowardsEntityWindow(CharacterEntityModel character)
     {
-        StartCoroutine(MoveArrowTowardsEntityActivatedWindowCoroutine(cData));
-    }
-    private IEnumerator MoveArrowTowardsEntityActivatedWindowCoroutine(CoroutineData cData)
-    {
-        Debug.Log("ActivationManager.MoveArrowTowardsEntityActivatedWindowCoroutine() called...");
-        // Setup 
-        int currentActivationIndex = 0;
-        Vector3 destination = new Vector3(0, 0);
-        bool destinationFound = false;
+        Debug.Log("ActivationManager.MoveActivationArrowTowardsPosition() called...");
 
-        if (activationOrder.Count > 0)
+        if(character != null)
         {
-            for (int i = 0; i < activationOrder.Count; i++)
-            {
-                // Check if GameObject is in the List
-                if (activationOrder[i] == entityActivated)
-                {
-                    // It is. Return the current index
-                    currentActivationIndex = i;
-                    break;
-                }
-            }
+            // Activate arrow view
+            SetPanelArrowViewState(true);
 
-            // Calculate destination
-            if (panelSlots[currentActivationIndex] != null && panelSlots.Count > 0)
-            {
-                destination = new Vector2(panelSlots[currentActivationIndex].transform.position.x, panelArrow.transform.position.y);
-                destinationFound = true;
-            }
-
-            // should the arrow move?
-            if (destinationFound)
-            {
-               
-
-                // Activate arrow view
-                SetPanelArrowViewState(true);
-                yield return null;
-
-                // move card to the hand;
-                Sequence s = DOTween.Sequence();
-                // displace the card so that we can select it in the scene easier.
-                s.Append(panelArrow.transform.DOMove(destination, 0.5f));
-
-                // Move!
-                /*
-                while (panelArrow.transform.position.x != destination.x)
-                {
-                    panelArrow.transform.position = Vector2.MoveTowards(panelArrow.transform.position, destination, 10 * Time.deltaTime);
-                    //yield return null;
-                }
-                */
-            }
-
+            // move the arrow
+            Sequence s = DOTween.Sequence();
+            s.Append(panelArrow.transform.DOMoveX(character.characterEntityView.myActivationWindow.transform.position.x, 0.2f));
         }
-
-        cData.MarkAsCompleted();
+       
     }
-
-    private void MoveArrowTowardsEntityActivatedWindow()
-    {
-        Debug.Log("ActivationManager.MoveArrowTowardsEntityActivatedWindowCoroutine() called...");
-        // Setup 
-        int currentActivationIndex = 0;
-        Vector3 destination = new Vector3(0, 0);
-        bool destinationFound = false;
-
-        if (activationOrder.Count > 0)
-        {
-            for (int i = 0; i < activationOrder.Count; i++)
-            {
-                // Check if GameObject is in the List
-                if (activationOrder[i] == entityActivated)
-                {
-                    // It is. Return the current index
-                    currentActivationIndex = i;
-                    break;
-                }
-            }
-
-            // Calculate destination
-            if (panelSlots[currentActivationIndex] != null && panelSlots.Count > 0)
-            {
-                destination = new Vector2(panelSlots[currentActivationIndex].transform.position.x, panelArrow.transform.position.y);
-                destinationFound = true;
-            }
-
-            // should the arrow move?
-            if (destinationFound)
-            {
-                // Activate arrow view
-                SetPanelArrowViewState(true);
-
-                // move the arrow
-                Sequence s = DOTween.Sequence();
-                s.Append(panelArrow.transform.DOMove(destination, 0.2f));
-            }
-
-        }
-    }
+  
     #endregion
 
 }

@@ -6079,7 +6079,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f198b03aafa7d4645b369971cd5cf6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingOrderBonus: 6
+  sortingOrderBonus: 7
   bodyPartType: 19
   itemsWithMyView:
   - {fileID: 11400000, guid: b94c89841beb6d74c80f5035024adf10, type: 2}
@@ -18243,7 +18243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f198b03aafa7d4645b369971cd5cf6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingOrderBonus: 6
+  sortingOrderBonus: 7
   bodyPartType: 19
   itemsWithMyView:
   - {fileID: 11400000, guid: a7130740956325c4eabd124ece5352af, type: 2}
@@ -19972,7 +19972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f198b03aafa7d4645b369971cd5cf6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingOrderBonus: 6
+  sortingOrderBonus: 7
   bodyPartType: 19
   itemsWithMyView:
   - {fileID: 11400000, guid: f3a19f516f8aff0478448fcb23613360, type: 2}
@@ -26091,7 +26091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f198b03aafa7d4645b369971cd5cf6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingOrderBonus: 6
+  sortingOrderBonus: 7
   bodyPartType: 19
   itemsWithMyView:
   - {fileID: 11400000, guid: 4949b46bccaf73b459057d8e530d655a, type: 2}
@@ -29089,7 +29089,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f198b03aafa7d4645b369971cd5cf6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingOrderBonus: 6
+  sortingOrderBonus: 7
   bodyPartType: 19
   itemsWithMyView:
   - {fileID: 11400000, guid: 61b56cfa6bce1a648a483a1c8a5d8e82, type: 2}
@@ -30570,7 +30570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f198b03aafa7d4645b369971cd5cf6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingOrderBonus: 6
+  sortingOrderBonus: 7
   bodyPartType: 19
   itemsWithMyView:
   - {fileID: 11400000, guid: fb81b3fde89669b4e8b4dcabd8081f84, type: 2}
@@ -31385,7 +31385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f198b03aafa7d4645b369971cd5cf6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingOrderBonus: 6
+  sortingOrderBonus: 7
   bodyPartType: 19
   itemsWithMyView:
   - {fileID: 11400000, guid: 0b1f41053fe144e4fb378cad54327a91, type: 2}
@@ -31484,7 +31484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f198b03aafa7d4645b369971cd5cf6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingOrderBonus: 6
+  sortingOrderBonus: 7
   bodyPartType: 19
   itemsWithMyView:
   - {fileID: 11400000, guid: a9321ad4d22fd57429dcd3b419fffb38, type: 2}
@@ -34673,7 +34673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f198b03aafa7d4645b369971cd5cf6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingOrderBonus: 6
+  sortingOrderBonus: 7
   bodyPartType: 19
   itemsWithMyView: []
   connectedElements: []
@@ -36218,7 +36218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f198b03aafa7d4645b369971cd5cf6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingOrderBonus: 6
+  sortingOrderBonus: 7
   bodyPartType: 19
   itemsWithMyView: []
   connectedElements: []
@@ -38154,7 +38154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f198b03aafa7d4645b369971cd5cf6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingOrderBonus: 6
+  sortingOrderBonus: 7
   bodyPartType: 19
   itemsWithMyView:
   - {fileID: 11400000, guid: 26d53275e021adb45800753a290e2a6f, type: 2}
@@ -50308,7 +50308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f198b03aafa7d4645b369971cd5cf6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingOrderBonus: 6
+  sortingOrderBonus: 7
   bodyPartType: 19
   itemsWithMyView:
   - {fileID: 11400000, guid: 4bbbdc631ccc8c04ebef2d9c4c9836ab, type: 2}
@@ -51961,7 +51961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f198b03aafa7d4645b369971cd5cf6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingOrderBonus: 6
+  sortingOrderBonus: 7
   bodyPartType: 19
   itemsWithMyView:
   - {fileID: 11400000, guid: 7871a9330b5d4584089ac0e44044b98f, type: 2}
@@ -54536,7 +54536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f198b03aafa7d4645b369971cd5cf6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingOrderBonus: 6
+  sortingOrderBonus: 7
   bodyPartType: 19
   itemsWithMyView:
   - {fileID: 11400000, guid: 8a2ac3b39929247449f676e4da2182a5, type: 2}
@@ -121090,14 +121090,7 @@ AnimationClip:
     script: {fileID: 0}
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 1
-    functionName: SetDeathAnimAsFinished
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []
 --- !u!74 &74937163569311310
 AnimationClip:
   m_ObjectHideFlags: 0

@@ -136,17 +136,5 @@ namespace Spriter2UnityDX {
 
 		}
 
-        public void SetDeathAnimationAsFinished()
-        {
-            myEntity.SetDeathAnimAsFinished();
-        }
-        public void SetRangedAttackAnimAsFinished()
-        {
-            myEntity.SetRangedAttackAnimAsFinished();
-        }
-        public void RefreshRangedAttackBool()
-        {
-            myEntity.RefreshRangedAttackBool();
-        }
     }
 }

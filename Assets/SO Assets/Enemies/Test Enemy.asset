@@ -18,8 +18,8 @@ MonoBehaviour:
   power: 0
   wisdom: 0
   dexterity: 0
-  initiative: 6
-  startingHealth: 30
+  initiative: 1
+  startingHealth: 1
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0
@@ -44,9 +44,13 @@ MonoBehaviour:
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0
-    canBeConsecutive: 0
-    prioritiseWhenRequirementsMet: 0
-    actionRequirements: []
+    canBeConsecutive: 1
+    prioritiseWhenRequirementsMet: 1
+    actionRequirements:
+    - requirementType: 9
+      requirementTypeValue: 5
+      statusRequired: {fileID: 0}
+      statusStacksRequired: 0
   - actionName: Defend
     actionType: 7
     intentImage: 6
@@ -62,7 +66,7 @@ MonoBehaviour:
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0
-    canBeConsecutive: 1
+    canBeConsecutive: 0
     prioritiseWhenRequirementsMet: 0
     actionRequirements: []
   allBodyParts:

@@ -171,6 +171,22 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     }
     #endregion
 
+    // Destroy models and views logic
+    #region
+    public void DisconnectModelFromView(CharacterEntityModel character)
+    {
+        Debug.Log("CharacterEntityController.DisconnectModelFromView() called for: " + character.myName);
+
+        character.characterEntityView.character = null;
+        character.characterEntityView = null;
+    }
+    public void DestroyCharacterView(CharacterEntityView view)
+    {
+        Debug.Log("CharacterEntityController.DestroyCharacterView() called...");
+        Destroy(view.gameObject);
+    }
+    #endregion
+
     // Modify Health
     #region
     public void ModifyHealth(CharacterEntityModel character, int healthGainedOrLost)
@@ -178,33 +194,39 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         Debug.Log("CharacterEntityController.ModifyHealth() called for " + character.myName);
 
         int originalHealth = character.health;
-        character.health += healthGainedOrLost;
+        int finalHealthValue = character.health;
+
+        finalHealthValue += healthGainedOrLost;
 
         // prevent health increasing over maximum
-        if (character.health > character.maxHealth)
+        if (finalHealthValue > character.maxHealth)
         {
-            character.health = character.maxHealth;
+            finalHealthValue = character.maxHealth;
         }
 
         // prevent health going less then 0
-        if (character.health < 0)
+        if (finalHealthValue < 0)
         {
-            character.health = 0;
+            finalHealthValue = 0;
         }
 
-        if (character.health > originalHealth)
+        if (finalHealthValue > originalHealth)
         {
            // StartCoroutine(VisualEffectManager.Instance.CreateHealEffect(character.characterEntityView.transform.position, healthGainedOrLost));
         }
 
-        VisualEventManager.Instance.CreateVisualEvent(()=> UpdateHealthGUIElements(character, character.health, character.maxHealth),QueuePosition.Back, 0, 0);
+        // Set health after calculation
+        character.health = finalHealthValue;
+
+        VisualEventManager.Instance.CreateVisualEvent(()=> UpdateHealthGUIElements(character, finalHealthValue, character.maxHealth),QueuePosition.Back, 0, 0);
     }
     public void ModifyMaxHealth(CharacterEntityModel character, int maxHealthGainedOrLost)
     {
         Debug.Log("CharacterEntityController.ModifyMaxHealth() called for " + character.myName);
 
+        int currentHealth = character.health;
         character.maxHealth += maxHealthGainedOrLost;
-        VisualEventManager.Instance.CreateVisualEvent(() => UpdateHealthGUIElements(character, character.health, character.maxHealth), QueuePosition.Back, 0, 0);
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateHealthGUIElements(character, currentHealth, character.maxHealth), QueuePosition.Back, 0, 0);
     }
     private void UpdateHealthGUIElements(CharacterEntityModel character, int health, int maxHealth)
     {
@@ -297,7 +319,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     #region
     public void ModifyBlock(CharacterEntityModel character, int blockGainedOrLost)
     {
-        Debug.Log("LivingEntity.ModifyCurrentBlock() called for " + character.myName);
+        Debug.Log("CharacterEntityController.ModifyBlock() called for " + character.myName);
 
         int finalBlockGainValue = blockGainedOrLost;
 
@@ -315,11 +337,11 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             //StartCoroutine(VisualEffectManager.Instance.CreateGainBlockEffect(transform.position, blockGainedOrLost));
         }
 
-        VisualEventManager.Instance.CreateVisualEvent(() => UpdateBlockGUI(character, character.block), QueuePosition.Back, 0, 0);
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateBlockGUI(character, finalBlockGainValue), QueuePosition.Back, 0, 0);
     }
     public void ModifyBlockOnActivationStart(CharacterEntityModel character)
     {
-        Debug.Log("LivingEntity.ModifyBlockOnActivationStart() called for " + character.myName);
+        Debug.Log("CharacterEntityController.ModifyBlockOnActivationStart() called for " + character.myName);
 
         // Remove all block
         ModifyBlock(character, -character.block);
@@ -568,6 +590,30 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         view.uiCanvasParent.SetActive(false);
         cData.MarkAsCompleted();
     }
+    public void FadeOutCharacterWorldCanvas(CharacterEntityView view, CoroutineData cData)
+    {
+        StartCoroutine(FadeOutCharacterWorldCanvasCoroutine(view, cData));
+    }
+    private IEnumerator FadeOutCharacterWorldCanvasCoroutine(CharacterEntityView view, CoroutineData cData)
+    {
+        view.worldSpaceCanvasParent.gameObject.SetActive(true);
+        view.worldSpaceCG.alpha = 1;
+        float uiFadeSpeed = 20f;
+
+        while (view.worldSpaceCG.alpha > 0)
+        {
+            view.worldSpaceCG.alpha -= 0.1f * uiFadeSpeed * Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+
+        view.worldSpaceCanvasParent.gameObject.SetActive(false);
+        if(cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+        
+    }
+
     #endregion
 
     // Color + Highlighting 
@@ -575,11 +621,39 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     public void SetCharacterColor(CharacterEntityView view, Color newColor)
     {
         Debug.Log("Setting Entity Color....");
+        // Prevent this function from interrupting death anim fade out
+        if (view.character.livingState == LivingState.Dead)
+        {
+            return;
+        }
+        
         if (view.entityRenderer != null)
         {
             view.entityRenderer.Color = new Color(newColor.r, newColor.g, newColor.b, view.entityRenderer.Color.a);
         }
 
+    }
+    public void FadeOutCharacterModel(CharacterEntityView view, CoroutineData cData)
+    {
+        Debug.Log("CharacterEntityController.FadeOutCharacterModel() called...");
+        StartCoroutine(FadeOutCharacterModelCoroutine(view, cData));
+    }
+    private IEnumerator FadeOutCharacterModelCoroutine(CharacterEntityView view, CoroutineData cData)
+    {
+        float currentAlpha = view.entityRenderer.Color.a;
+        float fadeSpeed = 5f;
+
+        while (currentAlpha > 0)
+        {
+            view.entityRenderer.Color = new Color(view.entityRenderer.Color.r, view.entityRenderer.Color.g, view.entityRenderer.Color.b, currentAlpha - (fadeSpeed * Time.deltaTime));
+            currentAlpha = view.entityRenderer.Color.a;
+            yield return null;
+        }
+
+        if(cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
     }
     #endregion
 
@@ -621,25 +695,22 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     {
         Debug.Log("CharacterEntityController.OnCharacterMouseOver() called...");
 
+        // Cancel this if character is dead
+        if(view.character == null ||
+            view.character.livingState == LivingState.Dead)
+        {
+            return;
+        }
+
         // Enable activation window glow
         view.myActivationWindow.myGlowOutline.SetActive(true);
         view.character.levelNode.SetMouseOverViewState(true);
 
-        // Do character vm stuff
-        if (view.character != null)
-        {
-            // Set character highlight color
-            SetCharacterColor(view, highlightColour);
-
-            // Set character's level node mouse over state
-            if (view.character.levelNode != null)
-            {
-                view.character.levelNode.SetMouseOverViewState(true);
-            }
-        }
+        // Set character highlight color
+        SetCharacterColor(view, highlightColour);
 
         // AI + Enemy exclusive logic
-        if(view.character.controller == Controller.AI)
+        if (view.character.controller == Controller.AI)
         {
             CharacterEntityModel enemy = view.character;
 
@@ -661,6 +732,11 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     {
         Debug.Log("CharacterEntityController.OnCharacterMouseExit() called...");
 
+        // Cancel this if character is dead
+        if (view.character.livingState == LivingState.Dead)
+        {
+            return;
+        }
         // Enable activation window glow
         view.myActivationWindow.myGlowOutline.SetActive(false);
 

@@ -58,25 +58,29 @@ public class VisualEventManager : MonoBehaviour
             Debug.Log("VisualEventManager.PlayEventFromQueueCoroutine() called, running function: " + ve.eventFunction.Method.Name);
         }            
 
-        // Start Delay
-        //Debug.Log("Awaiting start delay time out. Wait time: " + (ve.startDelay + startDelayExtra).ToString());     
-        yield return new WaitForSeconds(ve.startDelay + startDelayExtra);
+        // Start Delay    
+        if(ve.startDelay > 0)
+        {
+            yield return new WaitForSeconds(ve.startDelay + startDelayExtra);
+        }       
 
-        // Start function 
+        // Execute function 
         if(ve.eventFunction != null)
         {
             ve.eventFunction.Invoke();
         }
 
-        // Wait until finished
+        // Wait until execution finished finished
         if (ve.cData != null)
         {
             yield return new WaitUntil(() => ve.cData.CoroutineCompleted() == true);
         } 
 
         // End delay
-        //Debug.Log("Awaiting end delay time out. Wait time: " + (ve.endDelay + endDelayExtra).ToString());
-        yield return new WaitForSeconds(ve.endDelay + endDelayExtra);
+        if(ve.endDelay > 0)
+        {
+            yield return new WaitForSeconds(ve.endDelay + endDelayExtra);
+        }       
 
         // Remove from queue
         RemoveEventFromQueue(ve);
