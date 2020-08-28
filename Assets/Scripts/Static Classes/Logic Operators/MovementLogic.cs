@@ -799,12 +799,12 @@ public class MovementLogic : MonoBehaviour
 
     // New Movement Logic 
     #region
-    public void MoveAttackerToTargetNodeAttackPosition(CharacterEntityModel attacker, CharacterEntityModel target, CoroutineData data)
+    public void MoveAttackerToTargetNodeAttackPosition(CharacterEntityModel attacker, CharacterEntityModel target, CoroutineData cData)
     {
         Debug.Log("LivingEntityManager.MoveAttackerToTargetNodeAttackPosition() called...");
-        StartCoroutine(MoveAttackerToTargetNodeAttackPositionCoroutine(attacker, target, data));
+        StartCoroutine(MoveAttackerToTargetNodeAttackPositionCoroutine(attacker, target, cData));
     }
-    private IEnumerator MoveAttackerToTargetNodeAttackPositionCoroutine(CharacterEntityModel attacker, CharacterEntityModel target, CoroutineData action)
+    private IEnumerator MoveAttackerToTargetNodeAttackPositionCoroutine(CharacterEntityModel attacker, CharacterEntityModel target, CoroutineData cData)
     {
         // Set up
         bool reachedDestination = false;
@@ -829,7 +829,11 @@ public class MovementLogic : MonoBehaviour
             yield return null;
         }
 
-        action.MarkAsCompleted();
+        // Resolve
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
 
     }
     public void MoveEntityToNodeCentre(CharacterEntityModel entity, LevelNode node, CoroutineData data)
@@ -837,7 +841,7 @@ public class MovementLogic : MonoBehaviour
         Debug.Log("LivingEntityManager.MoveEntityToNodeCentre2() called...");
         StartCoroutine(MoveEntityToNodeCentreCoroutine(entity, node, data));
     }
-    private IEnumerator MoveEntityToNodeCentreCoroutine(CharacterEntityModel entity, LevelNode node, CoroutineData action)
+    private IEnumerator MoveEntityToNodeCentreCoroutine(CharacterEntityModel entity, LevelNode node, CoroutineData cData)
     {
         // Set up
         bool reachedDestination = false;
@@ -878,7 +882,10 @@ public class MovementLogic : MonoBehaviour
         CharacterEntityController.Instance.PlayIdleAnimation(entity.characterEntityView);
 
         // Resolve event
-        action.MarkAsCompleted();
+        if(cData != null)
+        {
+            cData.MarkAsCompleted();
+        }    
 
     }
     #endregion

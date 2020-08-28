@@ -141,6 +141,11 @@ public class TurnChangeNotifier : MonoBehaviour
         visualParentCG.alpha = 0;
         visualParentCG.gameObject.SetActive(false);
 
-        cData.MarkAsCompleted();
+        // Resolve
+        if(cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+       
     }
 }

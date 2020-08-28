@@ -20,10 +20,25 @@ public class ActivationManager : Singleton<ActivationManager>
     [SerializeField] private GameObject slotHolderPrefab;
     [SerializeField] private GameObject windowHolderPrefab;
 
-    [Header("Properties")]
+    [Header("Variables")]
     public List<CharacterEntityModel> activationOrder = new List<CharacterEntityModel>();
     private List<GameObject> panelSlots = new List<GameObject>();
-    [HideInInspector] public CharacterEntityModel entityActivated;
+    private CharacterEntityModel entityActivated;
+    #endregion
+
+    // Properties Accessors
+    #region
+    public CharacterEntityModel EntityActivated
+    {
+        get
+        {
+            return entityActivated;
+        }
+        private set
+        {
+            entityActivated = value;
+        }
+    }
     #endregion
 
     // Setup + Initializaton
@@ -68,7 +83,7 @@ public class ActivationManager : Singleton<ActivationManager>
     public void OnNewCombatEventStarted()
     {
         TurnChangeNotifier.Instance.currentTurnCount = 0;
-        SetActivationWindowViewState(true);
+        SetActivationWindowsParentViewState(true);
         StartNewTurnSequence();
     }
     public void StartNewTurnSequence()
@@ -91,7 +106,7 @@ public class ActivationManager : Singleton<ActivationManager>
         TurnChangeNotifier.Instance.currentTurnCount++;
 
         // Resolve each entity's OnNewTurnCycleStarted events       
-        foreach(CharacterEntityModel entity in CharacterEntityController.Instance.allCharacters)
+        foreach(CharacterEntityModel entity in CharacterEntityController.Instance.AllCharacters)
         {
             CharacterEntityController.Instance.CharacterOnNewTurnCycleStarted(entity);
         }       
@@ -182,24 +197,18 @@ public class ActivationManager : Singleton<ActivationManager>
         Debug.Log("ActivationManager.OnEndTurnButtonClicked() called...");
 
         // wait until all card draw visual events have completed
-        if (VisualEventManager.Instance.PendingCardDrawEvent() == false)
+        // prevent function if game over sequence triggered
+        if (VisualEventManager.Instance.PendingCardDrawEvent() == false &&
+            VisualEventManager.Instance.PendingDefeatEvent() == false &&
+            VisualEventManager.Instance.PendingVictoryEvent() == false)
         {
-            StartEndActivationProcess();
+            // Trigger character on activation end sequence and events
+            CharacterEntityController.Instance.CharacterOnActivationEnd(EntityActivated);
         }        
-    }
-    private void StartEndActivationProcess()
+    }    
+    public void SetActivationWindowsParentViewState(bool onOrOff)
     {
-        Debug.Log("ActivationManager.StartEndActivationProcess() called...");
-
-        // Disable end turn button so player cant spam click and break something
-        UIManager.Instance.DisableEndTurnButtonInteractions();
-
-        // Trigger character on activation end sequence and events
-        CharacterEntityController.Instance.CharacterOnActivationEnd(entityActivated);
-    }      
-    public void SetActivationWindowViewState(bool onOrOff)
-    {
-        Debug.Log("ActivationManager.SetActivationWindowViewState() called...");
+        Debug.Log("ActivationManager.SetActivationWindowsParentViewState() called...");
         activationPanelParent.SetActive(onOrOff);
     }
     #endregion
@@ -209,7 +218,7 @@ public class ActivationManager : Singleton<ActivationManager>
     public void ActivateEntity(CharacterEntityModel entity)
     {
         Debug.Log("Activating entity: " + entity.myName);
-        entityActivated = entity;
+        EntityActivated = entity;
 
         // Player controlled characters
         if (entity.controller == Controller.Player)
@@ -287,6 +296,9 @@ public class ActivationManager : Singleton<ActivationManager>
 
     // Visual Events
     #region
+
+    // Number roll sequence visual events
+    #region
     private void PlayActivationRollSequence(CoroutineData cData)
     {
         StartCoroutine(PlayActivationRollSequenceCoroutine(cData));
@@ -324,7 +336,12 @@ public class ActivationManager : Singleton<ActivationManager>
             entity.characterEntityView.myActivationWindow.rollText.enabled = false;
         }
 
-        cData.MarkAsCompleted();
+        // Resolve
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+       
     }
     private IEnumerator PlayRandomNumberAnim(ActivationWindow window)
     {
@@ -346,6 +363,10 @@ public class ActivationManager : Singleton<ActivationManager>
             yield return new WaitForEndOfFrame();
         }
     }
+    #endregion
+
+    // Destroy activation window visual events
+    #region
     public void FadeOutAndDestroyActivationWindow(ActivationWindow window, CoroutineData cData)
     {
         StartCoroutine(FadeOutAndDestroyActivationWindowCoroutine(window, cData));
@@ -381,6 +402,33 @@ public class ActivationManager : Singleton<ActivationManager>
         }
        
     }
+    private void DestroyActivationWindow(ActivationWindow window)
+    {
+        Destroy(window.gameObject);
+    }
+    public void OnCharacterKilledVisualEvent(ActivationWindow window, CoroutineData cData)
+    {
+        StartCoroutine(OnCharacterKilledVisualEventCoroutine(window, cData));
+    }
+    private IEnumerator OnCharacterKilledVisualEventCoroutine(ActivationWindow window, CoroutineData cData)
+    {
+        FadeOutAndDestroyActivationWindow(window, null);
+        yield return new WaitForSeconds(0.5f);
+
+        UpdateWindowPositions();
+        MoveActivationArrowTowardsEntityWindow(EntityActivated);
+
+        // Resolve
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+
+    }
+    #endregion
+
+    // Update window position visual events
+    #region
     private void UpdateWindowPositions()
     {
         foreach (CharacterEntityModel character in activationOrder)
@@ -416,10 +464,10 @@ public class ActivationManager : Singleton<ActivationManager>
             s.Append(characters[i].characterEntityView.myActivationWindow.transform.DOMoveX(panelSlots[i].transform.position.x, 0.3f));
         }
     }
-    private void DestroyActivationWindow(ActivationWindow window)
-    {
-        Destroy(window.gameObject);
-    }
+    #endregion
+
+    // Arrow pointer visual events
+    #region
     private void SetPanelArrowViewState(bool onOrOff)
     {
         panelArrow.SetActive(onOrOff);
@@ -441,35 +489,8 @@ public class ActivationManager : Singleton<ActivationManager>
         }
 
     }
-    public void OnCharacterKilledVisualEvent(ActivationWindow window, CoroutineData cData)
-    {
-        StartCoroutine(OnCharacterKilledVisualEventCoroutine(window, cData));
-    }
-    private IEnumerator OnCharacterKilledVisualEventCoroutine(ActivationWindow window, CoroutineData cData)
-    {
-        // Destroy activation window
-        /*
-        CoroutineData destroyWindow = new CoroutineData();
-        VisualEventManager.Instance.CreateVisualEvent(() => FadeOutAndDestroyActivationWindow(window, destroyWindow), destroyWindow, QueuePosition.Back, 0, 0.5f);
-
-        // Reorganise activation windows
-        VisualEventManager.Instance.CreateVisualEvent(() => UpdateWindowPositions());
-        VisualEventManager.Instance.CreateVisualEvent(() => MoveActivationArrowTowardsEntityWindow(entityActivated));
-        */
-        FadeOutAndDestroyActivationWindow(window, null);
-        yield return new WaitForSeconds(0.5f);
-
-        UpdateWindowPositions();
-        MoveActivationArrowTowardsEntityWindow(entityActivated);
-
-        // Resolve
-        if (cData != null)
-        {
-            cData.MarkAsCompleted();
-        }
-
-    }
-
+    #endregion
+    
     #endregion
 
 }

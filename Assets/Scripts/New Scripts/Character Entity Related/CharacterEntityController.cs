@@ -6,15 +6,52 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 {
     // Properties + Component References
     #region
-    [Header("Character Entity Lists")]
-    [HideInInspector] public List<CharacterEntityModel> allCharacters = new List<CharacterEntityModel>();
-    [HideInInspector] public List<CharacterEntityModel> allDefenders = new List<CharacterEntityModel>();
-    [HideInInspector] public List<CharacterEntityModel> allEnemies = new List<CharacterEntityModel>();
+    [Header("Character Entity List Variables")]
+    private List<CharacterEntityModel> allCharacters = new List<CharacterEntityModel>();
+    private List<CharacterEntityModel> allDefenders = new List<CharacterEntityModel>();
+    private List<CharacterEntityModel> allEnemies = new List<CharacterEntityModel>();
 
-    [Header("UCM Colours ")]
+    [Header("UCM Colours")]
     public Color normalColour;
     public Color highlightColour;
     #endregion
+
+    // Property Accessors
+    #region
+    public List<CharacterEntityModel> AllCharacters
+    {
+        get
+        {
+            return allCharacters;
+        }
+        private set
+        {
+            allCharacters = value;
+        }
+    }
+    public List<CharacterEntityModel> AllDefenders
+    {
+        get
+        {
+            return allDefenders;
+        }
+        private set
+        {
+            allDefenders = value;
+        }
+    }
+    public List<CharacterEntityModel> AllEnemies
+    {
+        get
+        {
+            return allEnemies;
+        }
+        private set
+        {
+            allEnemies = value;
+        }
+    }
+    #endregion 
 
     // Create Characters Logic + Setup
     #region    
@@ -71,8 +108,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         CardController.Instance.BuildDefenderDeckFromDeckData(model, deckData);
 
         // Add to persistency
-        allCharacters.Add(model);
-        allDefenders.Add(model);
+        AddDefenderToPersistency(model);
 
         return model;
     }
@@ -108,8 +144,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         SetupCharacterFromEnemyData(model, data);
 
         // Add to persistency
-        allCharacters.Add(model);
-        allEnemies.Add(model);
+        AddEnemyToPersistency(model);
 
         return model;
     }
@@ -168,6 +203,34 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             StatusController.Instance.ApplyStatusToLivingEntity(enemy, sp.statusData, sp.statusStacks);
         }
         */
+    }
+    #endregion
+
+    // Modify Entity Lists
+    #region
+    public void AddDefenderToPersistency(CharacterEntityModel character)
+    {
+        Debug.Log("CharacterEntityController.AddDefenderPersistency() called, adding: " + character.myName);
+        AllCharacters.Add(character);
+        AllDefenders.Add(character);
+    }
+    public void RemoveDefenderFromPersistency(CharacterEntityModel character)
+    {
+        Debug.Log("CharacterEntityController.RemoveDefenderFromPersistency() called, removing: " + character.myName);
+        AllCharacters.Remove(character);
+        AllDefenders.Remove(character);
+    }
+    public void AddEnemyToPersistency(CharacterEntityModel character)
+    {
+        Debug.Log("CharacterEntityController.AddEnemyToPersistency() called, adding: " + character.myName);
+        AllCharacters.Add(character);
+        AllEnemies.Add(character);
+    }
+    public void RemoveEnemyFromPersistency(CharacterEntityModel character)
+    {
+        Debug.Log("CharacterEntityController.RemoveEnemyFromPersistency() called, removing: " + character.myName);
+        AllCharacters.Remove(character);
+        AllEnemies.Remove(character);
     }
     #endregion
 
@@ -515,7 +578,10 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     }
     public void CharacterOnActivationEnd(CharacterEntityModel entity)
     {
-        Debug.Log("CharacterEntityController.CharacterOnActivationEnd() called for " + entity.myName);        
+        Debug.Log("CharacterEntityController.CharacterOnActivationEnd() called for " + entity.myName);
+
+        // Disable end turn button clickability
+        UIManager.Instance.DisableEndTurnButtonInteractions();
 
         // Do player character exclusive logic
         if (entity.controller == Controller.Player)
@@ -549,6 +615,33 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     }
     #endregion
 
+    // Defender Targetting View Logic
+    #region
+    public void EnableDefenderTargetIndicator(CharacterEntityView view)
+    {
+        Debug.Log("DefenderController.EnableDefenderTargetIndicator() called...");
+        view.myTargetIndicator.EnableView();
+    }
+    public void DisableDefenderTargetIndicator(CharacterEntityView view)
+    {
+        Debug.Log("DefenderController.DisableDefenderTargetIndicator() called...");
+        view.myTargetIndicator.DisableView();
+    }
+    public void DisableAllDefenderTargetIndicators()
+    {
+        foreach (CharacterEntityModel defender in AllDefenders)
+        {
+            DisableDefenderTargetIndicator(defender.characterEntityView);
+        }
+
+        // Disable targeting path lines from all nodes
+        foreach (LevelNode node in LevelManager.Instance.allLevelNodes)
+        {
+            node.DisableAllExtraViews();
+        }
+    }
+    #endregion
+
     // Visual Events
     #region
     public void FadeInCharacterUICanvas(CharacterEntityView view, CoroutineData cData)
@@ -569,7 +662,12 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             yield return new WaitForEndOfFrame();
         }
 
-        cData.MarkAsCompleted();
+        // Resolve
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+        
     }
     public void FadeOutCharacterUICanvas(CharacterEntityView view, CoroutineData cData)
     {
@@ -588,7 +686,13 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         }
 
         view.uiCanvasParent.SetActive(false);
-        cData.MarkAsCompleted();
+
+        // Resolve
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+        
     }
     public void FadeOutCharacterWorldCanvas(CharacterEntityView view, CoroutineData cData)
     {
@@ -607,7 +711,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         }
 
         view.worldSpaceCanvasParent.gameObject.SetActive(false);
-        if(cData != null)
+
+        // Resolve
+        if (cData != null)
         {
             cData.MarkAsCompleted();
         }
@@ -650,7 +756,8 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             yield return null;
         }
 
-        if(cData != null)
+        // Resolve
+        if (cData != null)
         {
             cData.MarkAsCompleted();
         }
@@ -700,7 +807,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             view.character.livingState == LivingState.Dead)
         {
             // Prevents GUI bugs when mousing over an enemy that is dying
-            DefenderController.Instance.DisableAllDefenderTargetIndicators();
+            DisableAllDefenderTargetIndicators();
             view.character.levelNode.SetMouseOverViewState(false);
             return;
         }
@@ -717,11 +824,11 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         {
             CharacterEntityModel enemy = view.character;
 
-            DefenderController.Instance.DisableAllDefenderTargetIndicators();
+            DisableAllDefenderTargetIndicators();
 
             if (enemy.currentActionTarget != null && enemy.currentActionTarget.allegiance == Allegiance.Player)
             {
-                DefenderController.Instance.EnableDefenderTargetIndicator(enemy.currentActionTarget.characterEntityView);
+                EnableDefenderTargetIndicator(enemy.currentActionTarget.characterEntityView);
                 if (enemy.levelNode != null && enemy.livingState == LivingState.Alive)
                 {
                     enemy.levelNode.ConnectTargetPathToTargetNode(enemy.currentActionTarget.levelNode);
@@ -739,7 +846,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         if (view.character.livingState == LivingState.Dead)
         {
             // Prevents GUI bugs when mousing over an enemy that is dying
-            DefenderController.Instance.DisableAllDefenderTargetIndicators();
+            DisableAllDefenderTargetIndicators();
             view.character.levelNode.SetMouseOverViewState(false);
             return;
         }
@@ -764,7 +871,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         if (view.character.controller == Controller.AI)
         {
             CharacterEntityModel enemy = view.character;
-            DefenderController.Instance.DisableAllDefenderTargetIndicators();
+            DisableAllDefenderTargetIndicators();
 
             if (enemy.livingState == LivingState.Alive && enemy.levelNode != null)
             {

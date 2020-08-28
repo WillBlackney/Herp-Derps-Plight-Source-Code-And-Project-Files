@@ -65,7 +65,7 @@ public class EnemyController : MonoBehaviour
     public void SetAllEnemyIntents()
     {
         Debug.Log("EnemyController.SetAllEnemyIntents() called...");
-        foreach(CharacterEntityModel enemy in CharacterEntityController.Instance.allEnemies)
+        foreach(CharacterEntityModel enemy in CharacterEntityController.Instance.AllEnemies)
         {
             StartAutoSetEnemyIntentProcess(enemy);
         }
@@ -322,7 +322,7 @@ public class EnemyController : MonoBehaviour
 
         if(action.actionType == ActionType.AttackTarget || action.actionType == ActionType.DebuffTarget)
         {
-            targetReturned = CharacterEntityController.Instance.allDefenders[Random.Range(0, CharacterEntityController.Instance.allDefenders.Count)];
+            targetReturned = CharacterEntityController.Instance.AllDefenders[Random.Range(0, CharacterEntityController.Instance.AllDefenders.Count)];
         }
         else if (action.actionType == ActionType.DefendTarget)
         {
@@ -330,7 +330,7 @@ public class EnemyController : MonoBehaviour
             List<CharacterEntityModel> validTargets = new List<CharacterEntityModel>();
 
             // add all enemies
-            validTargets.AddRange(CharacterEntityController.Instance.allEnemies);
+            validTargets.AddRange(CharacterEntityController.Instance.AllEnemies);
 
             // remove self from consideration
             validTargets.Remove(enemy);
@@ -505,7 +505,7 @@ public class EnemyController : MonoBehaviour
     {
         Debug.Log("EnemyController.OnEnemyMouseOver() called for enemy: " + enemy.myName);
 
-        DefenderController.Instance.DisableAllDefenderTargetIndicators();
+        CharacterEntityController.Instance.DisableAllDefenderTargetIndicators();
 
         if (enemy.inDeathProcess == false && enemy.levelNode != null)
         {

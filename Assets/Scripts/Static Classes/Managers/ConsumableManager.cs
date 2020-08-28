@@ -102,11 +102,11 @@ public class ConsumableManager : MonoBehaviour
         Debug.Log("ConsumableManager.IsValidTimeToUseConsumable() called...");
 
         bool boolReturned = false;
-        if(ActivationManager.Instance.entityActivated == null)
+        if(ActivationManager.Instance.EntityActivated == null)
         {
             Debug.Log("Can't use consumable: ActivationManager.entityActivated is null...");
         }
-        else if (ActivationManager.Instance.entityActivated.controller != Controller.Player)
+        else if (ActivationManager.Instance.EntityActivated.controller != Controller.Player)
         {
             Debug.Log("Can't use consumable: the character currently activated is not a defender...");
         }

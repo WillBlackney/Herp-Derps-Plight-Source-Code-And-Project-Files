@@ -1338,20 +1338,19 @@ public class CombatLogic : MonoBehaviour
         entity.livingState = LivingState.Dead;
 
         // Remove from persitency
-        CharacterEntityController.Instance.allCharacters.Remove(entity);
         if(entity.allegiance == Allegiance.Enemy)
         {
-            CharacterEntityController.Instance.allEnemies.Remove(entity);
+            CharacterEntityController.Instance.RemoveEnemyFromPersistency(entity);
         }
         else if (entity.allegiance == Allegiance.Player)
         {
-            CharacterEntityController.Instance.allDefenders.Remove(entity);
+            CharacterEntityController.Instance.RemoveDefenderFromPersistency(entity);
         }
 
         // Disable character's level node anims and targetting path
         VisualEventManager.Instance.CreateVisualEvent(() =>
         {
-            DefenderController.Instance.DisableAllDefenderTargetIndicators();
+            CharacterEntityController.Instance.DisableAllDefenderTargetIndicators();
             view.character.levelNode.SetMouseOverViewState(false);
         });        
 

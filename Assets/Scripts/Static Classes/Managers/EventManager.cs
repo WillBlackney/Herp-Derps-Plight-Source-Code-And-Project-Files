@@ -621,7 +621,7 @@ public class EventManager : MonoBehaviour
         }
 
         // disable activation panel view
-        ActivationManager.Instance.SetActivationWindowViewState(false);
+        ActivationManager.Instance.SetActivationWindowsParentViewState(false);
 
         // short yield for seconds to smoothen the transistion
         yield return new WaitForSeconds(1f);
