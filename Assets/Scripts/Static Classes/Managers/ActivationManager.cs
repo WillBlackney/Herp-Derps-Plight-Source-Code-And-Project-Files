@@ -82,7 +82,9 @@ public class ActivationManager : Singleton<ActivationManager>
         // Move windows to start positions if combat has only just started
         if (TurnChangeNotifier.Instance.currentTurnCount == 0)
         {
-            VisualEventManager.Instance.CreateVisualEvent(() => MoveAllWindowsToStartPositions(), QueuePosition.Back, 0f, 0);
+            List<CharacterEntityModel> characters = new List<CharacterEntityModel>();
+            characters.AddRange(activationOrder);
+            VisualEventManager.Instance.CreateVisualEvent(() => MoveAllWindowsToStartPositions(characters), QueuePosition.Back, 0f, 0.5f);
         }      
 
         // Increment turn count
@@ -355,95 +357,64 @@ public class ActivationManager : Singleton<ActivationManager>
             window.myCanvasGroup.alpha -= 0.05f;
             if (window.myCanvasGroup.alpha == 0)
             {
+                // Make sure the slot is found and destroyed if it exists still
                 GameObject slotDestroyed = panelSlots[panelSlots.Count - 1];
                 if (activationOrder.Contains(window.myCharacter))
                 {
                     activationOrder.Remove(window.myCharacter);
                 }
+
+                // Remove slot from list and destroy
                 panelSlots.Remove(slotDestroyed);
                 Destroy(slotDestroyed);
             }
             yield return new WaitForEndOfFrame();
         }
 
+        // Destroy window GO
         DestroyActivationWindow(window);
 
-        // Adjust window positions
-       // UpdateWindowPositions();
-
-        // Update arrow position
-        if(entityActivated != null &&
-            entityActivated.livingState == LivingState.Alive)
+        // Resolve
+        if (cData != null)
         {
-            //VisualEventManager.Instance.CreateVisualEvent(()=> MoveActivationArrowTowardsEntityWindow(entityActivated));
-        }        
-
-        cData.MarkAsCompleted();
-    }
-    private IEnumerator MoveWindowTowardsSlotPositionCoroutine(ActivationWindow window)
-    {
-        // Setup
-        int myCurrentActivationOrderIndex = 0;
-        bool shouldMove = false;
-        Vector3 destination = new Vector3(0, 0, 0);
-
-        if (activationOrder.Count > 0)
-        {
-            for (int i = 0; i < activationOrder.Count; i++)
-            {
-                // Find the window's character's index in the activation order list
-                if (activationOrder[i] == window.myCharacter)
-                {
-                    myCurrentActivationOrderIndex = i;
-                    break;
-                }
-            }
-
-            // Does the corresponding window slot exist?
-            if (panelSlots != null &&
-                panelSlots.Count - 1 >= myCurrentActivationOrderIndex &&
-                panelSlots[myCurrentActivationOrderIndex] != null &&
-                window.transform.position != panelSlots[myCurrentActivationOrderIndex].transform.position)
-            {
-                // it does, signal movement and set destination for window
-                shouldMove = true;
-                destination = panelSlots[myCurrentActivationOrderIndex].transform.position;
-            }
-
-            // are all movement requirements met?
-            if (shouldMove)
-            {
-                // they are, move the window
-                while(window.transform.position.x != destination.x)
-                {
-                    window.transform.position = Vector2.MoveTowards(window.transform.position, destination, 10 * Time.deltaTime);
-                    yield return null;
-                }
-            }
+            cData.MarkAsCompleted();
         }
-    }    
-    public void UpdateWindowPositions()
+       
+    }
+    private void UpdateWindowPositions()
     {
-        foreach(CharacterEntityModel character in activationOrder)
+        foreach (CharacterEntityModel character in activationOrder)
         {
-            StartCoroutine(MoveWindowTowardsSlotPositionCoroutine(character.characterEntityView.myActivationWindow));
+            MoveWindowTowardsSlotPositionCoroutine(character);
         }
     }
-    private void MoveAllWindowsToStartPositions()
+    private void MoveWindowTowardsSlotPositionCoroutine(CharacterEntityModel character)
     {
-        for(int i = 0; i < activationOrder.Count; i++)
+        Debug.Log("ActivationWindow.MoveWindowTowardsSlotPositionCoroutine() called for character: " + character.myName);
+
+        // Get panel slot
+        GameObject panelSlot = panelSlots[activationOrder.IndexOf(character)];
+
+        // cache window
+        ActivationWindow window = character.characterEntityView.myActivationWindow;
+
+        // do we have everything needed to move?
+        if (panelSlot && window)
         {
-            StartCoroutine(MoveAlWindowsToStartPositionsCoroutine(activationOrder[i].characterEntityView.myActivationWindow, panelSlots[i]));
+            // move the window
+            Sequence s = DOTween.Sequence();
+            s.Append(window.transform.DOMoveX(panelSlot.transform.position.x, 0.3f));
         }
+
     }
-    private IEnumerator MoveAlWindowsToStartPositionsCoroutine(ActivationWindow window, GameObject startSlotPos)
-    {        
-        while (window.transform.position.x != startSlotPos.transform.position.x)
+    private void MoveAllWindowsToStartPositions(List<CharacterEntityModel> characters)
+    {
+        for(int i = 0; i < characters.Count; i++)
         {
-            window.transform.position = Vector2.MoveTowards(window.transform.position, startSlotPos.transform.position, 10 * Time.deltaTime);
-            yield return null;
+            // move the window
+            Sequence s = DOTween.Sequence();
+            s.Append(characters[i].characterEntityView.myActivationWindow.transform.DOMoveX(panelSlots[i].transform.position.x, 0.3f));
         }
-        
     }
     private void DestroyActivationWindow(ActivationWindow window)
     {
@@ -457,18 +428,48 @@ public class ActivationManager : Singleton<ActivationManager>
     {
         Debug.Log("ActivationManager.MoveActivationArrowTowardsPosition() called...");
 
-        if(character != null)
+        GameObject panelSlot = panelSlots[activationOrder.IndexOf(character)];
+
+        if (panelSlot)
         {
             // Activate arrow view
             SetPanelArrowViewState(true);
 
             // move the arrow
             Sequence s = DOTween.Sequence();
-            s.Append(panelArrow.transform.DOMoveX(character.characterEntityView.myActivationWindow.transform.position.x, 0.2f));
+            s.Append(panelArrow.transform.DOMoveX(panelSlot.transform.position.x, 0.2f));
         }
-       
+
     }
-  
+    public void OnCharacterKilledVisualEvent(ActivationWindow window, CoroutineData cData)
+    {
+        StartCoroutine(OnCharacterKilledVisualEventCoroutine(window, cData));
+    }
+    private IEnumerator OnCharacterKilledVisualEventCoroutine(ActivationWindow window, CoroutineData cData)
+    {
+        // Destroy activation window
+        /*
+        CoroutineData destroyWindow = new CoroutineData();
+        VisualEventManager.Instance.CreateVisualEvent(() => FadeOutAndDestroyActivationWindow(window, destroyWindow), destroyWindow, QueuePosition.Back, 0, 0.5f);
+
+        // Reorganise activation windows
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateWindowPositions());
+        VisualEventManager.Instance.CreateVisualEvent(() => MoveActivationArrowTowardsEntityWindow(entityActivated));
+        */
+        FadeOutAndDestroyActivationWindow(window, null);
+        yield return new WaitForSeconds(0.5f);
+
+        UpdateWindowPositions();
+        MoveActivationArrowTowardsEntityWindow(entityActivated);
+
+        // Resolve
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+
+    }
+
     #endregion
 
 }

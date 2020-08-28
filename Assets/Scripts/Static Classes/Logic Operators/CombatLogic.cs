@@ -1348,6 +1348,13 @@ public class CombatLogic : MonoBehaviour
             CharacterEntityController.Instance.allDefenders.Remove(entity);
         }
 
+        // Disable character's level node anims and targetting path
+        VisualEventManager.Instance.CreateVisualEvent(() =>
+        {
+            DefenderController.Instance.DisableAllDefenderTargetIndicators();
+            view.character.levelNode.SetMouseOverViewState(false);
+        });        
+
         // Fade out world space GUI
         VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.FadeOutCharacterWorldCanvas(view, null));
 
@@ -1358,19 +1365,8 @@ public class CombatLogic : MonoBehaviour
         CoroutineData fadeOutCharacter = new CoroutineData();
         VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.FadeOutCharacterModel(view, fadeOutCharacter));
 
-
-        // TO DO:
-        // THESE 3 VISUAL EVENTS SHOULD BE ENCAPUSLATED WITHIN A 1 V EVENT FUNCTION!!
-        // that way, we dont need to yield while this stuff resolves, and the code is cleaner
-        // create something in activation manager like OnCharacterKilled(character)
-
-        // Destroy activation window
-        CoroutineData destroyWindow = new CoroutineData();
-        VisualEventManager.Instance.CreateVisualEvent(() => ActivationManager.Instance.FadeOutAndDestroyActivationWindow(window, destroyWindow), destroyWindow, QueuePosition.Back, 0, 0.5f);
-
-        // Reorganise activation windows
-        VisualEventManager.Instance.CreateVisualEvent(() => ActivationManager.Instance.UpdateWindowPositions(),QueuePosition.Back, 0, 1f);
-        VisualEventManager.Instance.CreateVisualEvent(() => ActivationManager.Instance.MoveActivationArrowTowardsEntityWindow(ActivationManager.Instance.entityActivated));
+        // Destroy characters activation window and update other window positions
+        VisualEventManager.Instance.CreateVisualEvent(() => ActivationManager.Instance.OnCharacterKilledVisualEvent(window, null), QueuePosition.Back, 0, 1f);
 
         // Destroy view and break references
         VisualEventManager.Instance.CreateVisualEvent(() =>
@@ -1382,6 +1378,8 @@ public class CombatLogic : MonoBehaviour
             // Destroy view gameobject
             CharacterEntityController.Instance.DestroyCharacterView(view);
         });
+
+        // do we destroy the characters model script as well as the view/gameobject?
 
 
 

@@ -18,7 +18,7 @@ MonoBehaviour:
   power: 0
   wisdom: 0
   dexterity: 0
-  initiative: 1
+  initiative: 11
   startingHealth: 1
   startingBlock: 0
   physicalResistance: 0

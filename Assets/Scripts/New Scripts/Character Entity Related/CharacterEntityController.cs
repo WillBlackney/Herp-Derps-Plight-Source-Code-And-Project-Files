@@ -699,6 +699,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         if(view.character == null ||
             view.character.livingState == LivingState.Dead)
         {
+            // Prevents GUI bugs when mousing over an enemy that is dying
+            DefenderController.Instance.DisableAllDefenderTargetIndicators();
+            view.character.levelNode.SetMouseOverViewState(false);
             return;
         }
 
@@ -735,6 +738,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Cancel this if character is dead
         if (view.character.livingState == LivingState.Dead)
         {
+            // Prevents GUI bugs when mousing over an enemy that is dying
+            DefenderController.Instance.DisableAllDefenderTargetIndicators();
+            view.character.levelNode.SetMouseOverViewState(false);
             return;
         }
         // Enable activation window glow
