@@ -35,6 +35,7 @@ public class PathRenderer : MonoBehaviour
 
     // Set Path
     #region
+        /*
     public void DrawPath()
     {
         Tile endPoint = LevelManager.Instance.mousedOverTile;
@@ -108,6 +109,7 @@ public class PathRenderer : MonoBehaviour
         }
         
     }
+    */
     public void ClearCurrentPath()
     {
         currentPath.Clear();

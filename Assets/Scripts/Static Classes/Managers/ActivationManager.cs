@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using DG.Tweening;
+using TMPro;
 
 public class ActivationManager : Singleton<ActivationManager>
 {
@@ -13,17 +14,28 @@ public class ActivationManager : Singleton<ActivationManager>
     [SerializeField] private GameObject activationPanelParent;
     [SerializeField] private GameObject panelArrow;
     private GameObject activationSlotContentParent;
-    private GameObject activationWindowContentParent;    
-
+    private GameObject activationWindowContentParent; 
+    
     [Header("Prefab References")]
     [SerializeField] private GameObject panelSlotPrefab;
     [SerializeField] private GameObject slotHolderPrefab;
     [SerializeField] private GameObject windowHolderPrefab;
 
+    [Header("Turn Change Component References")]
+    [SerializeField] private TextMeshProUGUI whoseTurnText;
+    [SerializeField] private CanvasGroup visualParentCG;
+    [SerializeField] private RectTransform startPos;
+    [SerializeField] private RectTransform endPos;
+    [SerializeField] private RectTransform middlePos;
+
+    [Header("Turn Change Properties")]
+    [SerializeField] private float alphaChangeSpeed;
+
     [Header("Variables")]
-    public List<CharacterEntityModel> activationOrder = new List<CharacterEntityModel>();
+    private List<CharacterEntityModel> activationOrder = new List<CharacterEntityModel>();
     private List<GameObject> panelSlots = new List<GameObject>();
     private CharacterEntityModel entityActivated;
+    private int currentTurn;
     #endregion
 
     // Properties Accessors
@@ -38,6 +50,11 @@ public class ActivationManager : Singleton<ActivationManager>
         {
             entityActivated = value;
         }
+    }
+    public int CurrentTurn
+    {
+        get { return currentTurn; }
+        private set { currentTurn = value; }
     }
     #endregion
 
@@ -82,7 +99,7 @@ public class ActivationManager : Singleton<ActivationManager>
     #region
     public void OnNewCombatEventStarted()
     {
-        TurnChangeNotifier.Instance.currentTurnCount = 0;
+        CurrentTurn = 0;
         SetActivationWindowsParentViewState(true);
         StartNewTurnSequence();
     }
@@ -95,15 +112,15 @@ public class ActivationManager : Singleton<ActivationManager>
         VisualEventManager.Instance.CreateVisualEvent(() => UIManager.Instance.DisableEndTurnButtonView());
 
         // Move windows to start positions if combat has only just started
-        if (TurnChangeNotifier.Instance.currentTurnCount == 0)
+        if (CurrentTurn == 0)
         {
             List<CharacterEntityModel> characters = new List<CharacterEntityModel>();
             characters.AddRange(activationOrder);
             VisualEventManager.Instance.CreateVisualEvent(() => MoveAllWindowsToStartPositions(characters), QueuePosition.Back, 0f, 0.5f);
-        }      
+        }
 
         // Increment turn count
-        TurnChangeNotifier.Instance.currentTurnCount++;
+        CurrentTurn++;
 
         // Resolve each entity's OnNewTurnCycleStarted events       
         foreach(CharacterEntityModel entity in CharacterEntityController.Instance.AllCharacters)
@@ -124,10 +141,10 @@ public class ActivationManager : Singleton<ActivationManager>
 
         // Play turn change notification
         CoroutineData turnNotificationCoroutine = new CoroutineData();
-        VisualEventManager.Instance.CreateVisualEvent(() => TurnChangeNotifier.Instance.DisplayTurnChangeNotification(turnNotificationCoroutine), turnNotificationCoroutine, QueuePosition.Back, 0, 0);
+        VisualEventManager.Instance.CreateVisualEvent(() => DisplayTurnChangeNotification(turnNotificationCoroutine), turnNotificationCoroutine, QueuePosition.Back, 0, 0);
 
         // Set all enemy intent images if turn 1
-        if(TurnChangeNotifier.Instance.currentTurnCount == 1)
+        if(CurrentTurn == 1)
         {
             EnemyController.Instance.SetAllEnemyIntents(); 
         }
@@ -367,7 +384,7 @@ public class ActivationManager : Singleton<ActivationManager>
 
     // Destroy activation window visual events
     #region
-    public void FadeOutAndDestroyActivationWindow(ActivationWindow window, CoroutineData cData)
+    private void FadeOutAndDestroyActivationWindow(ActivationWindow window, CoroutineData cData)
     {
         StartCoroutine(FadeOutAndDestroyActivationWindowCoroutine(window, cData));
     }
@@ -471,8 +488,8 @@ public class ActivationManager : Singleton<ActivationManager>
     private void SetPanelArrowViewState(bool onOrOff)
     {
         panelArrow.SetActive(onOrOff);
-    }   
-    public void MoveActivationArrowTowardsEntityWindow(CharacterEntityModel character)
+    }
+    private void MoveActivationArrowTowardsEntityWindow(CharacterEntityModel character)
     {
         Debug.Log("ActivationManager.MoveActivationArrowTowardsPosition() called...");
 
@@ -490,7 +507,72 @@ public class ActivationManager : Singleton<ActivationManager>
 
     }
     #endregion
-    
+
+    // Turn Change Notification visual events
+    #region
+    private void DisplayTurnChangeNotification(CoroutineData cData)
+    {
+        StartCoroutine(DisplayTurnChangeNotificationCoroutine(cData));
+    }
+    private IEnumerator DisplayTurnChangeNotificationCoroutine(CoroutineData cData)
+    {
+        // Get move transform
+        RectTransform parent = visualParentCG.gameObject.GetComponent<RectTransform>();
+
+        // Set starting view state values
+        visualParentCG.gameObject.SetActive(true);
+        parent.position = startPos.position;
+        visualParentCG.alpha = 0;
+        whoseTurnText.text = "Turn " + CurrentTurn.ToString();
+
+        // Start fade in
+        StartCoroutine(FadeInTurnChangeNotification());
+
+        // Move to centre
+        Sequence moveToCentre = DOTween.Sequence();
+        moveToCentre.Append(parent.DOMoveX(middlePos.position.x, 0.5f));
+
+        // Pause at centre screen
+        yield return new WaitForSeconds(2);
+
+        // Start fade out
+        StartCoroutine(FadeOutTurnChangeNotification());
+
+        // Move off screen
+        Sequence moveOffScreen = DOTween.Sequence();
+        moveOffScreen.Append(parent.DOMoveX(endPos.position.x, 0.5f));
+
+        yield return new WaitForSeconds(1);
+
+        // Hide main view
+        visualParentCG.alpha = 0;
+        visualParentCG.gameObject.SetActive(false);
+
+        // Resolve
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+
+    }
+    private IEnumerator FadeInTurnChangeNotification()
+    {
+        while(visualParentCG.alpha < 1)
+        {
+            visualParentCG.alpha += alphaChangeSpeed * Time.deltaTime;
+            yield return null;
+        }
+    }
+    private IEnumerator FadeOutTurnChangeNotification()
+    {
+        while (visualParentCG.alpha > 0)
+        {
+            visualParentCG.alpha -= alphaChangeSpeed * Time.deltaTime;
+            yield return null;
+        }
+    }
+    #endregion
+
     #endregion
 
 }

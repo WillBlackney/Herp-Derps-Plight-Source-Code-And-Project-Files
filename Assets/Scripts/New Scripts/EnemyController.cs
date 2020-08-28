@@ -196,7 +196,7 @@ public class EnemyController : MonoBehaviour
            
             // Check is more than turn
             if(ar.requirementType == ActionRequirementType.IsMoreThanTurn &&
-               ar.requirementTypeValue < TurnChangeNotifier.Instance.currentTurnCount)
+               ar.requirementTypeValue < ActivationManager.Instance.CurrentTurn)
             {
                 Debug.Log(enemyAction.actionName + " failed 'IsMoreThanTurn' requirement");
                 checkResults.Add(false);

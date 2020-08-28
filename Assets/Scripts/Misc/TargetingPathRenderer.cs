@@ -34,6 +34,7 @@ public class TargetingPathRenderer : MonoBehaviour
 
     // Pathing Logic
     #region
+        /*
     public void DrawPath()
     {
         lineRenderer.positionCount = 2;
@@ -47,6 +48,7 @@ public class TargetingPathRenderer : MonoBehaviour
         }
        
     }
+    */
     #endregion
 
     // View Logic

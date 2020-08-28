@@ -8,20 +8,8 @@ public class LevelManager : MonoBehaviour
 {
     // Properties + Components
     #region
-    [Header("Prefab References")]
-    [SerializeField] private GameObject[] tilePrefabs;    
-    [SerializeField] private List <TextAsset> mapTextFiles;
-
     [Header("Component References")]
-    [SerializeField] private Transform tileParent;
     public List<LevelNode> allLevelNodes;
-
-    [Header("Properties")]   
-    private Point mapSize;
-    public GameObject currentLevelBG;
-    public Tile mousedOverTile;
-    public Dictionary<Point, Tile> Tiles { get; set; }
-    public List<Tile> HighlightedTiles = new List<Tile>();
     #endregion
 
     // Singleton Setup
@@ -44,6 +32,7 @@ public class LevelManager : MonoBehaviour
     #region
     public void CreateLevel()
     {
+        /*
         // Clear previous level tiles and declare new list
         Tiles = new Dictionary<Point, Tile>();
 
@@ -69,50 +58,24 @@ public class LevelManager : MonoBehaviour
 
         // Turn on level background
         ToggleLevelBackgroundView(true);
-    }    
-    public void CreateTestLevel()
-    {
-        // Clear previous level tiles and declare new list
-        Tiles = new Dictionary<Point, Tile>();
-
-        // Read level data from text file
-        string[] mapData = ReadMapTextAssetData();
-
-        // Set properties for level construction
-        mapSize = new Point(mapData[0].ToCharArray().Length, mapData.Length);
-        int mapX = mapData[0].ToCharArray().Length;
-        int mapY = mapData.Length;
-        Vector3 worldStart = new Vector3(0, 0, 0);
-
-        // Create all tiles
-        for (int y = 0; y < mapY; y++) // the y positions
-        {
-            char[] newTiles = mapData[y].ToCharArray();
-
-            for (int x = 0; x < mapX; x++) // the x positions
-            {
-                PlaceTile(newTiles[x].ToString(), x, y, worldStart);
-            }
-        }
-
-        // Turn on level background
-        //ToggleLevelBackgroundView(true);
-    }
+        */
+    }   
     private void PlaceTile(string tileType, int x, int y, Vector3 worldStart)
     {
         int tileIndex = int.Parse(tileType);
 
-        Tile newTile = Instantiate(tilePrefabs[tileIndex]).GetComponent<Tile>();
+        //Tile newTile = Instantiate(tilePrefabs[tileIndex]).GetComponent<Tile>();
 
-        newTile.Setup(new Point(x, y), new Vector3(worldStart.x + (1 * x), worldStart.y - (1 * y), 0), tileParent);
+        //newTile.Setup(new Point(x, y), new Vector3(worldStart.x + (1 * x), worldStart.y - (1 * y), 0), tileParent);
 
     }
     private string[] ReadMapTextAssetData()
     {
-        TextAsset bindData = mapTextFiles[UnityEngine.Random.Range(0, mapTextFiles.Count)];
-        Debug.Log("LevelManager.ReadMapTextAssetData() loading map: " + bindData.name);
-        string data = bindData.text.Replace(Environment.NewLine, string.Empty);
-        return data.Split('-');
+        //TextAsset bindData = mapTextFiles[UnityEngine.Random.Range(0, mapTextFiles.Count)];
+        // Debug.Log("LevelManager.ReadMapTextAssetData() loading map: " + bindData.name);
+        // string data = bindData.text.Replace(Environment.NewLine, string.Empty);
+        //return data.Split('-');
+        return null;
     }
     #endregion
 
@@ -179,10 +142,6 @@ public class LevelManager : MonoBehaviour
 
     // Visibility + View Logic
     #region
-    public void ToggleLevelBackgroundView(bool onOrOff)
-    {
-        currentLevelBG.SetActive(onOrOff);
-    }
     public void HighlightTiles(List<Tile> tilesToHighlight)
     {
         Debug.Log("Highlighting tiles");
@@ -193,17 +152,19 @@ public class LevelManager : MonoBehaviour
     }
     public void HighlightTile(Tile tile)
     {
-        HighlightedTiles.Add(tile);
+        //HighlightedTiles.Add(tile);
         tile.myAnimator.SetBool("Highlight", true);
     }        
     public void UnhighlightAllTiles()
     {
+        /*
         foreach (Tile tile in HighlightedTiles)
         {
             tile.myAnimator.SetBool("Highlight", false);
         }
 
         HighlightedTiles.Clear();
+        */
     }
     #endregion
 
@@ -211,7 +172,8 @@ public class LevelManager : MonoBehaviour
     #region
     public bool InBounds(Point position)
     {
-        return position.X >= 0 && position.Y >= 0 && position.X < mapSize.X && position.Y < mapSize.Y;
+        //return position.X >= 0 && position.Y >= 0 && position.X < mapSize.X && position.Y < mapSize.Y;
+        return true;
     }
     public bool IsTileWithinMovementRange(Tile targetTile, Tile tileFrom, int mobility)
     {
@@ -272,10 +234,12 @@ public class LevelManager : MonoBehaviour
     {
         List<Tile> listReturned = new List<Tile>();
 
+        /*
         for(int index = 0; index < Tiles.Count; index++)
         {
             listReturned.Add(Tiles.ElementAt(index).Value);
         }
+        */
 
         Debug.Log("GetAllTilesFromCurrentLevelDictionary() found " + listReturned.Count.ToString() +
             " tiles");
@@ -572,7 +536,7 @@ public class LevelManager : MonoBehaviour
     public Tile GetTileFromPointReference(Point point)
     {
         Tile tileReturned = null;
-
+        /*
         for(int index = 0; index < Tiles.Count; index++)
         {
             if(Tiles.ElementAt(index).Value.GridPosition == point)
@@ -581,6 +545,8 @@ public class LevelManager : MonoBehaviour
                 break;
             }
         }
+        return tileReturned;
+        */
         return tileReturned;
     }   
     public void SetTileAsOccupied(Tile tile)
@@ -727,6 +693,7 @@ public class LevelManager : MonoBehaviour
 
         List<Tile> tilesToDestroy = new List<Tile>();
 
+        /*
         if (Tiles != null && Tiles.Count > 0)
         {
             tilesToDestroy.AddRange(GetAllTilesFromCurrentLevelDictionary());
@@ -738,6 +705,7 @@ public class LevelManager : MonoBehaviour
             Destroy(tile.gameObject);
             Destroy(tile);
         }       
+        */
 
     }   
     #endregion

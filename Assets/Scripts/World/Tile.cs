@@ -43,7 +43,7 @@ public class Tile : MonoBehaviour
         GridPosition = gridPos;
         transform.position = worldPos;
         transform.SetParent(parent);
-        LevelManager.Instance.Tiles.Add(gridPos, this);
+        //LevelManager.Instance.Tiles.Add(gridPos, this);
     }
     #endregion
 
@@ -79,7 +79,7 @@ public class Tile : MonoBehaviour
     #region    
     private void OnMouseEnter()
     {
-        LevelManager.Instance.mousedOverTile = this;
+        //LevelManager.Instance.mousedOverTile = this;
         OnTileMouseEnter();
     }
     public void OnTileMouseEnter()

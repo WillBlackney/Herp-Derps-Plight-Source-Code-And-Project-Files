@@ -855,7 +855,7 @@ public class LivingEntity : MonoBehaviour
         }
 
         // gain camo from satyr trickery
-        if(TurnChangeNotifier.Instance.currentTurnCount == 1 && myPassiveManager.satyrTrickery)
+        if(ActivationManager.Instance.CurrentTurn == 1 && myPassiveManager.satyrTrickery)
         {
             VisualEffectManager.Instance.
                 CreateStatusEffect(transform.position, "Satyr Trickery!");
@@ -866,7 +866,7 @@ public class LivingEntity : MonoBehaviour
         }
 
         // gain max Energy from human ambition
-        if (TurnChangeNotifier.Instance.currentTurnCount == 1 && myPassiveManager.humanAmbition)
+        if (ActivationManager.Instance.CurrentTurn == 1 && myPassiveManager.humanAmbition)
         {
             VisualEffectManager.Instance.CreateStatusEffect(transform.position, "Human Ambition");
             VisualEffectManager.Instance.CreateGainEnergyBuffEffect(transform.position);
