@@ -116,7 +116,7 @@ public class AbilityTomeInventoryCard : MonoBehaviour, IBeginDragHandler, IDragH
     {
         var screenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y);
         screenPoint.z = 10.0f;
-        transform.position = CameraManager.Instance.unityCamera.mainCamera.ScreenToWorldPoint(screenPoint);
+        //transform.position = CameraManager.Instance.cameraMovement.mainCamera.ScreenToWorldPoint(screenPoint);
     }
     public void OnEndDrag(PointerEventData eventData)
     {

@@ -43,7 +43,7 @@ public class Draggable : MonoBehaviour {
             HoverPreview.PreviewsAllowed = false;
             _draggingThis = this;
             da.OnStartDrag();
-            zDisplacement = -CameraManager.Instance.unityCamera.mainCamera.transform.position.z + transform.position.z;
+            zDisplacement = -CameraManager.Instance.MainCamera.transform.position.z + transform.position.z;
             //-Camera.main.transform.position.z + transform.position.z;
             pointerDisplacement = -transform.position + MouseInWorldCoords();
         }
@@ -79,7 +79,7 @@ public class Draggable : MonoBehaviour {
     {
         var screenMousePos = Input.mousePosition;
         screenMousePos.z = zDisplacement;
-        return CameraManager.Instance.unityCamera.mainCamera.ScreenToWorldPoint(screenMousePos);
+        return CameraManager.Instance.MainCamera.ScreenToWorldPoint(screenMousePos);
     }
         
 }

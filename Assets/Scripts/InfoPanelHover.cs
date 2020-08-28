@@ -45,7 +45,7 @@ public class InfoPanelHover : MonoBehaviour
         // set position
         if (currentIconUnderMouse != null)
         {
-            statusPanelParent.transform.position = RectTransformUtility.WorldToScreenPoint(CameraManager.Instance.unityCamera.mainCamera, currentIconUnderMouse.gameObject.transform.position);
+            statusPanelParent.transform.position = RectTransformUtility.WorldToScreenPoint(CameraManager.Instance.MainCamera, currentIconUnderMouse.gameObject.transform.position);
         }
     }
     #endregion

@@ -35,7 +35,6 @@ public class Enemy : LivingEntity
     public override void SetBaseProperties()
     {
         DifficultyManager.Instance.ApplyActTwoModifiersToLivingEntity(this);
-        EnemyController.Instance.BuildEnemyFromEnemyData(this, enemyData);
         base.SetBaseProperties();
     }
     #endregion
@@ -85,13 +84,11 @@ public class Enemy : LivingEntity
     {
         Debug.Log("Enemy.OnMouseEnter() called...");
         base.OnMouseEnter();
-        EnemyController.Instance.OnEnemyMouseEnter(this);
     }
     public override void OnMouseExit()
     {
         Debug.Log("Enemy.OnMouseExit() called...");
         base.OnMouseExit();
-        EnemyController.Instance.OnEnemyMouseExit(this);
     }
 
     // View + UI Logic

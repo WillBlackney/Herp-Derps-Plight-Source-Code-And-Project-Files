@@ -95,7 +95,7 @@ public class ActivationManager : Singleton<ActivationManager>
     }
     #endregion
 
-    // Events
+    // Turn Events
     #region
     public void OnNewCombatEventStarted()
     {
@@ -146,10 +146,10 @@ public class ActivationManager : Singleton<ActivationManager>
         // Set all enemy intent images if turn 1
         if(CurrentTurn == 1)
         {
-            EnemyController.Instance.SetAllEnemyIntents(); 
+            CharacterEntityController.Instance.SetAllEnemyIntents(); 
         }
 
-        // Need to preset activation button view state to enemy or player
+        // Need to set activation button view state to enemy or player
         // otherwise it gets a bit glitchy when it turns on
         if(activationOrder[0].controller == Controller.Player)
         {

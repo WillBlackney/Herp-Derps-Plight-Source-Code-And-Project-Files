@@ -8,9 +8,8 @@ public class CardController : Singleton<CardController>
 {
     // Properties + Component References
     #region
-    [Header("Component References")]
-    public Transform discardPilePosition;
-    public Transform drawPilePosition;
+    [Header("Card Properties")]
+    [SerializeField] private float cardTransistionSpeed;
     #endregion
 
     // Build Cards, Decks, View Models and Data
@@ -235,56 +234,6 @@ public class CardController : Singleton<CardController>
     public bool IsHandFull(CharacterEntityModel character)
     {
         return character.hand.Count >= 10;
-    }
-    #endregion
-
-    // Hand Visual Logic
-    #region
-    public void MoveCardVmFromDeckToHand(CardViewModel cardVM, Defender defender)
-    {
-        OldCoroutineData action = new OldCoroutineData(true);
-        StartCoroutine(MoveCardVmFromDeckToHandCoroutine(cardVM, defender, action));
-    }
-    private IEnumerator MoveCardVmFromDeckToHandCoroutine(CardViewModel cardVM, Defender defender, OldCoroutineData action)
-    {
-        bool tweenFinished = false;
-        // Update slot positions
-        AddCardVmToDefenderHandVisual(cardVM.gameObject, defender);
-
-        // Bring card to front while it travels from draw spot to hand
-        CardLocationTracker w = cardVM.GetComponent<CardLocationTracker>();
-        w.BringToFront();
-        w.Slot = 0;
-        w.VisualState = VisualStates.Transition;
-
-        // Declare new dotween sequence
-        Sequence s = DOTween.Sequence();
-        
-        // Displace the card so that we can select it in the scene easier.
-        s.Append(cardVM.transform.DOLocalMove(defender.handVisual.slots.Children[0].transform.localPosition, GlobalSettings.Instance.CardTransitionTimeFast));
-        s.Insert(0f, cardVM.transform.DORotate(Vector3.zero, GlobalSettings.Instance.CardTransitionTimeFast));
-
-        // Resolve on anim event finished events
-        s.OnComplete(() => tweenFinished = true);
-        s.OnComplete(() => defender.handVisual.ChangeLastCardStatusToInHand(w));
-
-        // Yield until anim sequence is finished
-        yield return new WaitUntil(() => tweenFinished == true);
-
-        // Resolve event
-        action.coroutineCompleted = true;
-    }
-    public void AddCardVmToDefenderHandVisual(GameObject card, Defender defender)
-    {
-        // we always insert a new card as 0th element in CardsInHand List 
-        defender.handVisual.CardsInHand.Insert(0, card);
-
-        // parent this card to our Slots GameObject
-        card.transform.SetParent(defender.handVisual.slots.transform);
-
-        // re-calculate the position of the hand
-        defender.handVisual.PlaceCardsOnNewSlots();
-        defender.handVisual.UpdatePlacementOfSlots();
     }
     #endregion
 
@@ -528,7 +477,7 @@ public class CardController : Singleton<CardController>
         Sequence s = DOTween.Sequence();
 
         // displace the card so that we can select it in the scene easier.
-        s.Append(cardVM.transform.DOLocalMove(characterView.handVisual.slots.Children[0].transform.localPosition, GlobalSettings.Instance.CardTransitionTimeFast));
+        s.Append(cardVM.transform.DOLocalMove(characterView.handVisual.slots.Children[0].transform.localPosition, cardTransistionSpeed));
 
         s.OnComplete(() => w.SetHandSortingOrder());
     }

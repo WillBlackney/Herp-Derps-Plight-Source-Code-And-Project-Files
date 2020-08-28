@@ -61,7 +61,7 @@ public class Defender : LivingEntity
         myName = myCharacterData.myName;
 
         // Auto Get+Set World camera for UI canvas (helps with performance)
-        myUIParent.GetComponent<Canvas>().worldCamera = CameraManager.Instance.unityCamera.mainCamera;
+        //myUIParent.GetComponent<Canvas>().worldCamera = CameraManager.Instance.cameraMovement.mainCamera;
 
         // Hide UI
         myUIParent.SetActive(false);
@@ -84,7 +84,7 @@ public class Defender : LivingEntity
         myName = myCharacterData.myName;
 
         // Auto Get+Set World camera for UI canvas (helps with performance)
-        myUIParent.GetComponent<Canvas>().worldCamera = CameraManager.Instance.unityCamera.mainCamera;
+        //myUIParent.GetComponent<Canvas>().worldCamera = CameraManager.Instance.cameraMovement.mainCamera;
 
         // Hide UI
         myUIParent.SetActive(false);

@@ -690,7 +690,7 @@ public class LivingEntity : MonoBehaviour
         if (myWorldSpaceCanvas)
         {
             Debug.Log("LivingEntity.AutoSetWorldCanvasEventCamera() found a canvas component, setting event camera to main unity camera...");
-            myWorldSpaceCanvas.worldCamera = CameraManager.Instance.unityCamera.mainCamera;
+            //myWorldSpaceCanvas.worldCamera = CameraManager.Instance.cameraMovement.mainCamera;
         }
         else
         {

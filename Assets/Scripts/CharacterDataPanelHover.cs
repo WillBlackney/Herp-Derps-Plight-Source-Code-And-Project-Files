@@ -46,7 +46,7 @@ public class CharacterDataPanelHover : MonoBehaviour
     #region
     public void MoveToElementPosition(GameObject element)
     {
-        panelParent.transform.position = RectTransformUtility.WorldToScreenPoint(CameraManager.Instance.unityCamera.mainCamera, element.transform.position);
+        panelParent.transform.position = RectTransformUtility.WorldToScreenPoint(CameraManager.Instance.MainCamera, element.transform.position);
     }
     public void FollowMouse()
     {
