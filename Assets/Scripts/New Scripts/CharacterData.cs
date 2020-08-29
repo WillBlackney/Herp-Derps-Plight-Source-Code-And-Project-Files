@@ -19,4 +19,6 @@ public class CharacterData
     public int draw;
     public int dexterity;
     public int power;
+
+
 }

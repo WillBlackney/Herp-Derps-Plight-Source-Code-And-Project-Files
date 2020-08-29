@@ -88,7 +88,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         model.characterEntityView = vm;
         vm.character = model;
 
-        // Connect model to data
+        // Connect model to character data
         model.characterData = data;
         //data.myCharacterEntityModel = model;
 

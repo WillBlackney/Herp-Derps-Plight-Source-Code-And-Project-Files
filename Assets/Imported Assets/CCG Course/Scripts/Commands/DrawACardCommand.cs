@@ -45,7 +45,7 @@ public class DrawACardCommand : Command {
 
     public override void StartCommandExecution()
     {
-        character.characterEntityView.handVisual.GivePlayerACard(c, fast, fromDeck);
+        //character.characterEntityView.handVisual.GivePlayerACard(c, fast, fromDeck);
     }
  
 

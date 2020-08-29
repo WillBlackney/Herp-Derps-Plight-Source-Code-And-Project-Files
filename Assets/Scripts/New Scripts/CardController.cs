@@ -27,7 +27,7 @@ public class CardController : Singleton<CardController>
         // Shuffle the characters draw pile
         ShuffleCards(defender.drawPile);
     }
-    public Card BuildCardFromCardData(CardDataSO data, CharacterEntityModel owner)
+    private Card BuildCardFromCardData(CardDataSO data, CharacterEntityModel owner)
     {
         Debug.Log("CardController.BuildCardFromCardData() called...");
 
@@ -72,13 +72,13 @@ public class CardController : Singleton<CardController>
         cardVM.SetCardTypeImage(card.cardType);
 
         return cardVM;
-    }    
-    public void ConnectCardWithCardViewModel(Card card, CardViewModel cardVM)
+    }
+    private void ConnectCardWithCardViewModel(Card card, CardViewModel cardVM)
     {
         card.cardVM = cardVM;
         cardVM.card = card;
     }
-    public void DisconnectCardAndCardViewModel(Card card, CardViewModel cardVM)
+    private void DisconnectCardAndCardViewModel(Card card, CardViewModel cardVM)
     {
         if(card != null)
         {
@@ -90,12 +90,11 @@ public class CardController : Singleton<CardController>
         }       
         
     }
-
     #endregion
 
     // Card draw Logic
     #region
-    public void DrawACardFromDrawPile(CharacterEntityModel defender, int drawPileIndex = 0)
+    private void DrawACardFromDrawPile(CharacterEntityModel defender, int drawPileIndex = 0)
     {
         Debug.Log("CardController.DrawACardFromDrawPile() called...");
 
@@ -111,9 +110,8 @@ public class CardController : Singleton<CardController>
             RemoveCardFromDrawPile(defender, cardDrawn);
 
             // Add card to hand
-            defender.hand.Add(cardDrawn);
+            AddCardToHand(defender, cardDrawn);
 
-            Debug.Log("ABOUT TO START VISUAL EVENT!");
             // Create and queue card drawn visual event
             VisualEventManager.Instance.CreateVisualEvent(() => DrawCardFromDeckVisualEvent(cardDrawn, defender), QueuePosition.Back, 0, 0.2f, EventDetail.CardDraw);
         }
@@ -145,7 +143,7 @@ public class CardController : Singleton<CardController>
             DiscardCardFromHand(defender, card);
         }
     }
-    public void DiscardCardFromHand(CharacterEntityModel defender, Card card)
+    private void DiscardCardFromHand(CharacterEntityModel defender, Card card)
     {
         Debug.Log("CardController.DiscardCardFromHand() called...");
 
@@ -153,7 +151,7 @@ public class CardController : Singleton<CardController>
         CardViewModel cvm = card.cardVM;
 
         // remove from hand
-        defender.hand.Remove(card);
+        RemoveCardFromHand(defender, card);
 
         // place on top of discard pile
         AddCardToDiscardPile(defender, card);
@@ -164,20 +162,19 @@ public class CardController : Singleton<CardController>
             VisualEventManager.Instance.CreateVisualEvent(() => DiscardCardFromHandVisualEvent(cvm, defender), 0, 0.1f);
         }                         
 
-    }   
-    public void DestroyCardViewModel(CardViewModel cvm)
+    }
+    private void DestroyCardViewModel(CardViewModel cvm)
     {
         Debug.Log("CardController.DestroyCardViewModel() called...");
 
         // Destoy script + GO
         Destroy(cvm.gameObject);
     }
-
     #endregion
 
     // Conditional Checks
     #region
-    public bool IsCardDrawValid(CharacterEntityModel defender)
+    private bool IsCardDrawValid(CharacterEntityModel defender)
     {
         if(IsDrawPileEmpty(defender))
         {
@@ -221,17 +218,17 @@ public class CardController : Singleton<CardController>
 
         return boolReturned;
     }
-    public bool HasEnoughEnergyToPlayCard(Card card, CharacterEntityModel owner)
+    private bool HasEnoughEnergyToPlayCard(Card card, CharacterEntityModel owner)
     {
         Debug.Log("CardController.HasEnoughEnergyToPlayCard(), checking '" +
             card.cardName +"' owned by '" + owner.myName +"'");
         return card.cardCurrentEnergyCost <= owner.energy;
     }
-    public bool IsDrawPileEmpty(CharacterEntityModel character)
+    private bool IsDrawPileEmpty(CharacterEntityModel character)
     {
         return character.drawPile.Count == 0;
     }
-    public bool IsHandFull(CharacterEntityModel character)
+    private bool IsHandFull(CharacterEntityModel character)
     {
         return character.hand.Count >= 10;
     }
@@ -239,7 +236,7 @@ public class CardController : Singleton<CardController>
 
     // Playing Cards Logic
     #region
-    public void OnCardPlayedStart(Card card)
+    private void OnCardPlayedStart(Card card)
     {
         // Setup
         CharacterEntityModel owner = card.owner;
@@ -248,12 +245,13 @@ public class CardController : Singleton<CardController>
         CharacterEntityController.Instance.ModifyEnergy(owner, -card.cardCurrentEnergyCost);
 
         // Remove from hand
-        owner.hand.Remove(card);
+        RemoveCardFromHand(owner, card);
 
         // check for specific on card play effects 
         // Infuriated 
-        if(card.cardType == CardType.Skill)
+        if (card.cardType == CardType.Skill)
         {
+            /*
             foreach (Enemy enemy in EnemyManager.Instance.allEnemies)
             {
                 if (enemy.myPassiveManager.infuriated)
@@ -261,6 +259,7 @@ public class CardController : Singleton<CardController>
                     StatusController.Instance.ApplyStatusToLivingEntity(enemy, StatusIconLibrary.Instance.GetStatusIconByName("Bonus Strength"), enemy.myPassiveManager.infuriatedStacks);
                 }
             }
+            */
         }
        
 
@@ -269,7 +268,7 @@ public class CardController : Singleton<CardController>
         // Add to discard pile
         AddCardToDiscardPile(owner, card);
     }
-    public void OnCardPlayedFinish(Card card)
+    private void OnCardPlayedFinish(Card card)
     {
         // called at the very end of card play
     }
@@ -403,7 +402,7 @@ public class CardController : Singleton<CardController>
 
     // Deck + Discard Pile Functions
     #region
-    public void ShuffleCards(List<Card> cards)
+    private void ShuffleCards(List<Card> cards)
     {
         System.Random rng = new System.Random();
 
@@ -417,7 +416,7 @@ public class CardController : Singleton<CardController>
             cards[n] = value;
         }
     }
-    public void MoveAllCardsFromDiscardPileToDrawPile(CharacterEntityModel defender)
+    private void MoveAllCardsFromDiscardPileToDrawPile(CharacterEntityModel defender)
     {
         Debug.Log("CardController.MoveAllCardsFromDiscardPileToDrawPile() called for character: " + defender.myName);
 
@@ -436,21 +435,29 @@ public class CardController : Singleton<CardController>
         ShuffleCards(defender.drawPile);
 
     }
-    public void AddCardToDrawPile(CharacterEntityModel defender, Card card)
+    private void AddCardToDrawPile(CharacterEntityModel defender, Card card)
     {
         defender.drawPile.Add(card);
     }
-    public void RemoveCardFromDrawPile(CharacterEntityModel defender, Card card)
+    private void RemoveCardFromDrawPile(CharacterEntityModel defender, Card card)
     {
         defender.drawPile.Remove(card);
     }
-    public void AddCardToDiscardPile(CharacterEntityModel defender, Card card)
+    private void AddCardToDiscardPile(CharacterEntityModel defender, Card card)
     {
         defender.discardPile.Add(card);
     }
-    public void RemoveCardFromDiscardPile(CharacterEntityModel defender, Card card)
+    private void RemoveCardFromDiscardPile(CharacterEntityModel defender, Card card)
     {
         defender.discardPile.Remove(card);
+    }
+    private void AddCardToHand(CharacterEntityModel defender, Card card)
+    {
+        defender.hand.Add(card);
+    }
+    private void RemoveCardFromHand(CharacterEntityModel defender, Card card)
+    {
+        defender.hand.Remove(card);
     }
     #endregion
 
@@ -468,10 +475,10 @@ public class CardController : Singleton<CardController>
         characterView.handVisual.AddCard(cardVM);
 
         // Bring card to front while it travels from draw spot to hand
-        CardLocationTracker w = cardVM.GetComponent<CardLocationTracker>();
-        w.BringToFront();
-        w.Slot = 0;
-        w.VisualState = VisualStates.Transition;
+        CardLocationTracker clt = cardVM.GetComponent<CardLocationTracker>();
+        clt.BringToFront();
+        clt.Slot = 0;
+        clt.VisualState = VisualStates.Transition;
 
         // move card to the hand;
         Sequence s = DOTween.Sequence();
@@ -479,7 +486,7 @@ public class CardController : Singleton<CardController>
         // displace the card so that we can select it in the scene easier.
         s.Append(cardVM.transform.DOLocalMove(characterView.handVisual.slots.Children[0].transform.localPosition, cardTransistionSpeed));
 
-        s.OnComplete(() => w.SetHandSortingOrder());
+        s.OnComplete(() => clt.SetHandSortingOrder());
     }
     private void DiscardCardFromHandVisualEvent(CardViewModel cvm, CharacterEntityModel character)
     {

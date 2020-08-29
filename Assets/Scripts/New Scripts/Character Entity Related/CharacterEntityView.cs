@@ -49,10 +49,8 @@ public class CharacterEntityView : MonoBehaviour
     [Header("Card Components")]
     public HandVisual handVisual;
 
-    // TO DO: CONNECT THIS SHIIET!
-    //[Header("Core Component References")]
-    //public StatusManager myStatusManager;
-    //public PassiveManager myPassiveManager;
+    [Header("Core Component References")]
+    public PassivePanelView passivePanelView;
 
     // Mouse + Input Logic
     private void OnMouseEnter()

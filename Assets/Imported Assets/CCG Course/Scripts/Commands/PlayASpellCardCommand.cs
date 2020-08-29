@@ -14,7 +14,7 @@ public class PlayASpellCardCommand: Command
 
     public override void StartCommandExecution()
     {
-        character.characterEntityView.handVisual.PlayASpellFromHand(c.cardVM);
+        //character.characterEntityView.handVisual.PlayASpellFromHand(c.cardVM);
     }
 
 }

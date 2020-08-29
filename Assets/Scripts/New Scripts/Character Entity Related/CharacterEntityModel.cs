@@ -23,6 +23,9 @@ public class CharacterEntityModel
     public int maxHealth;
     public int block;
 
+    [Header("Model Component References")]
+    [HideInInspector] public PassiveManagerModel passiveManager;
+
     [Header("View Components Properties ")]
     public LevelNode levelNode;
     public CharacterEntityView characterEntityView;

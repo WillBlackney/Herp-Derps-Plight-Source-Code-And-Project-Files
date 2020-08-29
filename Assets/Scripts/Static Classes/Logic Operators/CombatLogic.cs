@@ -1257,7 +1257,7 @@ public class CombatLogic : MonoBehaviour
             // Poison all targets hit
             foreach (LivingEntity targetInBlast in targetsInRange)
             {
-                StatusController.Instance.ApplyStatusToLivingEntity(targetInBlast, StatusIconLibrary.Instance.GetStatusIconByName("Poisoned"), entity.myPassiveManager.unstableStacks);
+               // PassiveController.Instance.ApplyStatusToLivingEntity(targetInBlast, StatusIconLibrary.Instance.GetStatusIconByName("Poisoned"), entity.myPassiveManager.unstableStacks);
             }
 
             yield return new WaitForSeconds(1);

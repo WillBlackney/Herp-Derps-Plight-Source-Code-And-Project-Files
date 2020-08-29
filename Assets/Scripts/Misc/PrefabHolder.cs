@@ -16,6 +16,7 @@ public class PrefabHolder : MonoBehaviour
     // Prefabs References
     #region
     [Header("Buttons + UI")]
+    public GameObject PassiveIconViewPrefab;
     public GameObject AbilityButtonPrefab;
     public GameObject abilityPageAbility;
     public GameObject consumable;
