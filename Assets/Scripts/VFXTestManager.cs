@@ -248,7 +248,7 @@ public class VFXTestManager : MonoBehaviour
         // Melee
         else if (currentEffect == "Small Melee Impact")
         {
-            VisualEffectManager.Instance.CreateSmallMeleeImpact(caster.transform.position);
+            VisualEffectManager.Instance.OldCreateSmallMeleeImpact(caster.transform.position);
         }
         else if (currentEffect == "Big Melee Impact")
         {

@@ -175,6 +175,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Build activation window
         ActivationManager.Instance.CreateActivationWindow(character);
 
+        // Set up passive traits
+        PassiveController.Instance.BuildCharacterEntityPassivesFromCharacterData(character, data);        
+
     }
     private void SetupCharacterFromEnemyData(CharacterEntityModel character, EnemyDataSO data)
     {
@@ -196,6 +199,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
         // Build activation window
         ActivationManager.Instance.CreateActivationWindow(character);
+
+        // Set up passive traits
+        PassiveController.Instance.BuildCharacterEntityPassivesFromEnemyData(character, data);
 
         // Set up passive trais
         /*
@@ -660,7 +666,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         SetEnemyTarget(enemy, DetermineTargetOfNextEnemyAction(enemy, enemy.myNextAction));
         UpdateEnemyIntentGUI(enemy);
     }
-    private void UpdateEnemyIntentGUI(CharacterEntityModel enemy)
+    public void UpdateEnemyIntentGUI(CharacterEntityModel enemy)
     {
         Debug.Log("CharacterEntityController.UpdateEnemyIntentGUI() called...");
 

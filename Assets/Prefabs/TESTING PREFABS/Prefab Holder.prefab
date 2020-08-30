@@ -43,6 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 691d83da7006ff142b3228d98a30fed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PassiveIconViewPrefab: {fileID: 6840615612475838204, guid: 58676c2949548ec4698471fa9c1360b8,
+    type: 3}
   AbilityButtonPrefab: {fileID: 8258036272287567181, guid: 9796603b0e52fc148a8c9937c1764689,
     type: 3}
   abilityPageAbility: {fileID: 5924968231884054, guid: cd23ca1f37787b143a7fe60bf6f1f7fd,

@@ -29,7 +29,6 @@ namespace DamEffect
                 shieldImage.gameObject.SetActive(true);
             }
 
-            VisualEffectManager.Instance.vfxQueue.Add(this);
             if (heal == false)
             {
                 amountText.text = "-" + damageAmount.ToString();
@@ -44,21 +43,12 @@ namespace DamEffect
             ChooseRandomDirection();
 
         }
-        public void InitializeSetup(string statusName, Color textColor)
-        {
-            VisualEffectManager.Instance.vfxQueue.Add(this);
-            amountText.text = statusName;
-            amountText.color = textColor;
-        }
         #endregion
 
         // Logic
         #region
         public void DestroyThis()
         {
-            VisualEffectManager.Instance.queueCount--;
-            VisualEffectManager.Instance.vfxQueue.Remove(this);
-
             Destroy(gameObject);
         }
 

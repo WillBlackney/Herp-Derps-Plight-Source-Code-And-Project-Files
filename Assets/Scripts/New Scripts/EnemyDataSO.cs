@@ -77,9 +77,9 @@ public class EnemyDataSO : ScriptableObject
     public int airResistance;
 
     // Passive Traits
-    [BoxGroup("Passive Traits", centerLabel: true)]
+    [BoxGroup("Passive Data", centerLabel: true)]
     [LabelWidth(100)]
-    public List<StatusPairing> allPassives;
+    public PassiveManagerModel passiveManager;
 
     // Actions and routines
     [BoxGroup("Actions + Combat AI", centerLabel: true)]

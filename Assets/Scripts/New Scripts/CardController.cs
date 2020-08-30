@@ -347,7 +347,7 @@ public class CardController : Singleton<CardController>
             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, target, damageType, false, cardEffect.baseDamageValue, card, cardEffect);
 
             // Start damage sequence
-            CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, damageType);
+            CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, damageType, card);
 
             // Move back to starting node pos, if we moved off 
             if (hasMovedOffStartingNode && owner.livingState == LivingState.Alive) 
@@ -365,7 +365,7 @@ public class CardController : Singleton<CardController>
             VisualEffectManager.Instance.CreateBloodSplatterEffect(owner.characterEntityView.transform.position);
 
             // Start self damage sequence
-            CombatLogic.Instance.HandleDamage(cardEffect.healthLost, owner, owner, "None");
+            CombatLogic.Instance.HandleDamage(cardEffect.healthLost, owner, owner, "None", card);
         }
 
         // Gain Energy

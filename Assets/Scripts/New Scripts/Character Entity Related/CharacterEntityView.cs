@@ -50,7 +50,8 @@ public class CharacterEntityView : MonoBehaviour
     public HandVisual handVisual;
 
     [Header("Core Component References")]
-    public PassivePanelView passivePanelView;
+    public GameObject passiveIconsVisualParent;
+    [HideInInspector] public List<PassiveIconView> passiveIcons;
 
     // Mouse + Input Logic
     private void OnMouseEnter()

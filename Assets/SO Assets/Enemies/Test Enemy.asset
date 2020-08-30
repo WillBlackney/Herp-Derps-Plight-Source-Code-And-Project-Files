@@ -27,7 +27,78 @@ MonoBehaviour:
   shadowResistance: 0
   poisonResistance: 0
   airResistance: 0
-  allPassives: []
+  passiveManager:
+    myCharacterData:
+      myName: 
+      passiveManager:
+        myCharacterData:
+          myName: 
+          passiveManager:
+            myCharacterData:
+              myName: 
+              passiveManager:
+                myCharacterData:
+                  myName: 
+                  health: 0
+                  maxHealth: 0
+                  stamina: 0
+                  initiative: 0
+                  draw: 0
+                  dexterity: 0
+                  power: 0
+                bonusStrengthStacks: 0
+                bonusDexterityStacks: 0
+                bonusStaminaStacks: 0
+                bonusInitiativeStacks: 0
+                temporaryBonusStrengthStacks: 0
+                temporaryBonusDexterityStacks: 0
+                temporaryBonusStaminaStacks: 0
+                temporaryBonusInitiativeStacks: 0
+              health: 0
+              maxHealth: 0
+              stamina: 0
+              initiative: 0
+              draw: 0
+              dexterity: 0
+              power: 0
+            bonusStrengthStacks: 0
+            bonusDexterityStacks: 0
+            bonusStaminaStacks: 0
+            bonusInitiativeStacks: 0
+            temporaryBonusStrengthStacks: 0
+            temporaryBonusDexterityStacks: 0
+            temporaryBonusStaminaStacks: 0
+            temporaryBonusInitiativeStacks: 0
+          health: 0
+          maxHealth: 0
+          stamina: 0
+          initiative: 0
+          draw: 0
+          dexterity: 0
+          power: 0
+        bonusStrengthStacks: 0
+        bonusDexterityStacks: 0
+        bonusStaminaStacks: 0
+        bonusInitiativeStacks: 0
+        temporaryBonusStrengthStacks: 0
+        temporaryBonusDexterityStacks: 0
+        temporaryBonusStaminaStacks: 0
+        temporaryBonusInitiativeStacks: 0
+      health: 0
+      maxHealth: 0
+      stamina: 0
+      initiative: 0
+      draw: 0
+      dexterity: 0
+      power: 0
+    bonusStrengthStacks: 2
+    bonusDexterityStacks: 0
+    bonusStaminaStacks: 0
+    bonusInitiativeStacks: 0
+    temporaryBonusStrengthStacks: 0
+    temporaryBonusDexterityStacks: 0
+    temporaryBonusStaminaStacks: 0
+    temporaryBonusInitiativeStacks: 0
   allEnemyActions:
   - actionName: Strike
     actionType: 0

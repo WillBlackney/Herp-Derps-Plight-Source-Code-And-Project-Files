@@ -1321,7 +1321,7 @@ public class CombatLogic : MonoBehaviour
     }
     private void HandleDeath(CharacterEntityModel entity)
     {
-        Debug.Log("CombatLogic.HandleDeathCoroutine() started for " + entity.myName);
+        Debug.Log("CombatLogic.HandleDeath() started for " + entity.myName);
 
         // Cache relevant references for visual events
         CharacterEntityView view = entity.characterEntityView;
@@ -1528,7 +1528,7 @@ public class CombatLogic : MonoBehaviour
         if (abilityUsed != null &&
         abilityUsed.abilityType != AbilityDataSO.AbilityType.None)
         {
-            VisualEffectManager.Instance.CreateSmallMeleeImpact(victim.transform.position);
+            VisualEffectManager.Instance.OldCreateSmallMeleeImpact(victim.transform.position);
         }
 
         // Check for no block
@@ -1601,12 +1601,12 @@ public class CombatLogic : MonoBehaviour
             if (totalLifeLost == 0 && blockAfter < startingBlock)
             {
                 // Create Lose Armor Effect
-                StartCoroutine(VisualEffectManager.Instance.CreateLoseBlockEffect(victim.transform.position, adjustedDamageValue));
+                //StartCoroutine(VisualEffectManager.Instance.CreateLoseBlockEffect(victim.transform.position, adjustedDamageValue));
             }
             else if (totalLifeLost > 0)
             {
                 // Create Lose hp / damage effect
-                StartCoroutine(VisualEffectManager.Instance.CreateDamageEffect(victim.transform.position, totalLifeLost));
+                //StartCoroutine(VisualEffectManager.Instance.CreateDamageEffect(victim.transform.position, totalLifeLost));
 
                 // Play hurt animation
                 if (victim.currentHealth > 0 && totalLifeLost > 0)
@@ -1803,19 +1803,23 @@ public class CombatLogic : MonoBehaviour
         // Debug setup
         string cardNameString = "None";
         string attackerName = "No Attacker";
+        string victimName = "No Victim";
 
         if (attacker != null)
         {
             attackerName = attacker.myName;
         }
-
+        if (victim != null)
+        {
+            attackerName = attacker.myName;
+        }
         if (card != null)
         {
             cardNameString = card.cardName;
         }
 
         Debug.Log("CombatLogic.HandleDamage() started: damageAmount (" + damageAmount.ToString() + "), attacker (" + attackerName +
-            "), damageType (" + damageType + "), card (" + cardNameString + "), ignoreBlock (" + ignoreBlock.ToString()
+            "), victim (" + victimName +"), damageType (" + damageType + "), card (" + cardNameString + "), ignoreBlock (" + ignoreBlock.ToString()
             );
 
         // Cancel this if character is already in death process
@@ -1850,7 +1854,8 @@ public class CombatLogic : MonoBehaviour
         if (card != null &&
             card.cardType == CardType.MeleeAttack)
         {
-            VisualEventManager.Instance.CreateVisualEvent(()=> VisualEffectManager.Instance.CreateSmallMeleeImpact2(victim.characterEntityView.transform.position));
+            Debug.Log("MELEE ATTACK VFX START");
+            VisualEventManager.Instance.CreateVisualEvent(()=> VisualEffectManager.Instance.CreateSmallMeleeImpact(victim.characterEntityView.transform.position));
         }
         
 
@@ -1930,12 +1935,12 @@ public class CombatLogic : MonoBehaviour
             if (totalLifeLost == 0 && blockAfter < startingBlock)
             {
                 // Create Lose Armor Effect
-                //StartCoroutine(VisualEffectManager.Instance.CreateLoseBlockEffect(victim.transform.position, adjustedDamageValue));
+                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateLoseBlockEffect(victim.characterEntityView.transform.position, adjustedDamageValue));
             }
             else if (totalLifeLost > 0)
             {
                 // Create Lose hp / damage effect
-                //StartCoroutine(VisualEffectManager.Instance.CreateDamageEffect(victim.transform.position, totalLifeLost));
+                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateDamageEffect(victim.characterEntityView.transform.position, totalLifeLost));
 
                 // Play hurt animation
                 if (victim.health > 0 && totalLifeLost > 0)

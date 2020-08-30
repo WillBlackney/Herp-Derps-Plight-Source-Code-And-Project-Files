@@ -22,6 +22,7 @@ namespace Engine
         private DrawSelected<EnemyDataSO> drawEnemies = new DrawSelected<EnemyDataSO>();
         private DrawSelected<CardDataSO> drawCards = new DrawSelected<CardDataSO>();
         private DrawSelected<EnemyWaveSO> drawEncounters = new DrawSelected<EnemyWaveSO>();
+        private DrawSelected<PassiveIconDataSO> drawPassives = new DrawSelected<PassiveIconDataSO>();
 
         // Create field for each type of manager object in project to be drawn
         private DrawTestSceneManager drawTestSceneManager = new DrawTestSceneManager();
@@ -31,6 +32,7 @@ namespace Engine
         private string enemyPath = "Assets/SO Assets/Enemies";
         private string cardPath = "Assets/SO Assets/Cards";
         private string encountersPath = "Assets/SO Assets/Enemy Encounters";
+        private string passivesPath = "Assets/SO Assets/Passive Icons";
 
         [MenuItem("Tools/The Game Manager")]
         public static void OpenWindow()
@@ -51,6 +53,7 @@ namespace Engine
             drawEnemies.SetPath(enemyPath);
             drawCards.SetPath(cardPath);
             drawEncounters.SetPath(encountersPath);
+            drawPassives.SetPath(passivesPath);
 
             // Find manager objects
             drawTestSceneManager.FindMyObject();
@@ -72,9 +75,10 @@ namespace Engine
             switch (managerState)
             {
                 case ManagerState.enemies:
-                case ManagerState.combatEncounters:
                 case ManagerState.items:
                 case ManagerState.cards:
+                case ManagerState.passives:
+                case ManagerState.combatEncounters:
                     DrawEditor(enumIndex);
                     break;
                 default:
@@ -108,9 +112,15 @@ namespace Engine
                     drawCards.SetSelected(MenuTree.Selection.SelectedValue);
                     break;
 
+                case ManagerState.passives:
+                    drawEncounters.SetSelected(MenuTree.Selection.SelectedValue);
+                    break;
+
                 case ManagerState.combatEncounters:
                     drawEncounters.SetSelected(MenuTree.Selection.SelectedValue);
                     break;
+
+                
 
                 case ManagerState.spriteLibrary:
                     DrawEditor(enumIndex);
@@ -137,7 +147,8 @@ namespace Engine
             targets.Add(drawEnemies);
             targets.Add(null);
             targets.Add(drawCards);
-            targets.Add(drawEncounters);
+            targets.Add(drawPassives);
+            targets.Add(drawEncounters);            
             targets.Add(drawSpriteLibrary);
             targets.Add(base.GetTarget());            
 
@@ -152,7 +163,8 @@ namespace Engine
                 case ManagerState.enemies:
                 case ManagerState.items:
                 case ManagerState.cards:
-                case ManagerState.combatEncounters:
+                case ManagerState.passives:
+                case ManagerState.combatEncounters:                
                     base.DrawMenu();
                     break;
                 default:
@@ -171,9 +183,13 @@ namespace Engine
                 case ManagerState.enemies:
                     tree.AddAllAssetsAtPath("Enemy Data", enemyPath, typeof(EnemyDataSO));
                     break;
+                case ManagerState.passives:
+                    tree.AddAllAssetsAtPath("Passive Icon Data", passivesPath, typeof(PassiveIconDataSO));
+                    break;
                 case ManagerState.combatEncounters:
                     tree.AddAllAssetsAtPath("Combat Encounters", encountersPath, typeof(EnemyWaveSO));
                     break;
+                
             }
             return tree;
         }
@@ -183,6 +199,7 @@ namespace Engine
             enemies,
             items,
             cards,
+            passives,
             combatEncounters,
             spriteLibrary,
         }

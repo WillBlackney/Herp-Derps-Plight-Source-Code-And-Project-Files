@@ -9,6 +9,9 @@ public class CharacterData
     [Header("Story Properties")]
     public string myName;
 
+    [Header("Passive Properties")]
+    public PassiveManagerModel passiveManager;
+
     [Header("Health Properties")]
     public int health;
     public int maxHealth;

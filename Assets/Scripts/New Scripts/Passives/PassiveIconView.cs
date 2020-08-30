@@ -1,18 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class PassiveIconView : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    // Properties + Component References
+    #region
+    [Header("Properties")]
+    [HideInInspector] public PassiveIconDataSO myIconData;
+    [HideInInspector] public string statusName;
+    [HideInInspector] public int statusStacks;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [Header("Component References")]
+    public TextMeshProUGUI statusStacksText;
+    public Image passiveImage;
+    #endregion   
+
 }

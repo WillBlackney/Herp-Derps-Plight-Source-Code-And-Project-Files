@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class VisualEffectManager : MonoBehaviour
+public class VisualEffectManager : Singleton<VisualEffectManager>
 {
     [Header("VFX Prefab References")]
     public GameObject DamageEffectPrefab;
@@ -85,24 +85,13 @@ public class VisualEffectManager : MonoBehaviour
     public Color red;
     public Color green;
     public Color yellow;
-
-    // Initialization + Singleton Pattern
-    #region
-    public static VisualEffectManager Instance;
-    private void Awake()
-    {
-        Instance = this;
-    }   
-    #endregion
-
+    
     // Create VFX
     #region
-    public IEnumerator CreateDamageEffect(Vector3 location, int damageAmount, bool heal = false, bool healthLost = true)
+    public void CreateDamageEffect(Vector3 location, int damageAmount, bool heal = false, bool healthLost = true)
     {
         GameObject damageEffect = Instantiate(DamageEffectPrefab, location, Quaternion.identity);
         damageEffect.GetComponent<DamEffect.DamageEffect>().InitializeSetup(damageAmount, heal, healthLost);
-        yield return null;       
-
     }
     public OldCoroutineData CreateStatusEffect(Vector3 location, string statusEffectName, string color = "White")
     {
@@ -119,22 +108,18 @@ public class VisualEffectManager : MonoBehaviour
         }
         else if (color == "Blue")
         {
-            // to do: find a good colour for buffing
             thisColor = Color.white;
         }
         else if (color == "Red")
         {
-            //thisColor = red;
             thisColor = Color.white;
         }
         else if (color == "Green")
         {
-            //thisColor = green;
             thisColor = Color.white;
         }
         else if (color == "Yellow")
         {
-            //thisColor = green;
             thisColor = Color.yellow;
         }
 
@@ -153,12 +138,11 @@ public class VisualEffectManager : MonoBehaviour
         newImpactVFX.GetComponent<GainArmorEffect>().InitializeSetup(location, blockGained);
         yield return null;
     }
-    public IEnumerator CreateLoseBlockEffect(Vector3 location, int blockLost)
+    public void CreateLoseBlockEffect(Vector3 location, int blockLost)
     {
         GameObject newImpactVFX = Instantiate(LoseBlockEffectPrefab, location, Quaternion.identity);
         newImpactVFX.GetComponent<GainArmorEffect>().InitializeSetup(location, blockLost);
-        StartCoroutine(CreateDamageEffect(location, blockLost, false, false));
-        yield return null;
+        CreateDamageEffect(location, blockLost, false, false);
     }
     public IEnumerator CreateBuffEffect(Vector3 location)
     {
@@ -1089,14 +1073,15 @@ public class VisualEffectManager : MonoBehaviour
     // Melee Impacts
     #region
     // Small Melee Impact
-    public void CreateSmallMeleeImpact2(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
+    public void CreateSmallMeleeImpact(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
     {
+        Debug.Log("VisualEffectManager.CreateSmallMeleeImpact() called...");
         GameObject hn = Instantiate(smallMeleeImpact, location, smallMeleeImpact.transform.rotation);
         ToonEffect teScript = hn.GetComponent<ToonEffect>();
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
     }
 
-    public OldCoroutineData CreateSmallMeleeImpact(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
+    public OldCoroutineData OldCreateSmallMeleeImpact(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
     {
         OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(CreateSmallMeleeImpactCoroutine(location, action, sortingOrderBonus, scaleModifier));
