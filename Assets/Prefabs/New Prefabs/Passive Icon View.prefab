@@ -84,9 +84,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3242127942317854620}
   - component: {fileID: 3914231239202291209}
-  - component: {fileID: 8670145336146784714}
   - component: {fileID: 7529515455699795526}
-  - component: {fileID: 6057302169772535147}
+  - component: {fileID: 6064109720802947676}
   m_Layer: 5
   m_Name: Stacks Text
   m_TagString: Untagged
@@ -121,21 +120,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5556505097588352655}
   m_CullTransparentMesh: 0
---- !u!114 &8670145336146784714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5556505097588352655}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 1, y: -1}
-  m_UseGraphicAlpha: 1
 --- !u!114 &7529515455699795526
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,7 +232,7 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!223 &6057302169772535147
+--- !u!223 &6064109720802947676
 Canvas:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -263,11 +247,11 @@ Canvas:
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 1
-  m_OverridePixelPerfect: 0
+  m_OverridePixelPerfect: 1
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 23
+  m_SortingOrder: 4
   m_TargetDisplay: 0
 --- !u!1 &6840615612475838204
 GameObject:
@@ -355,7 +339,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 22
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!114 &2535889571458701801
 MonoBehaviour:

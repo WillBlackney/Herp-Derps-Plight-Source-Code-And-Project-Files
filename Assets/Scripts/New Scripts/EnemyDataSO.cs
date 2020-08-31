@@ -27,9 +27,6 @@ public class EnemyDataSO : ScriptableObject
     public int power;
     [BoxGroup("Core Stats")]
     [LabelWidth(100)]
-    public int wisdom;
-    [BoxGroup("Core Stats")]
-    [LabelWidth(100)]
     public int dexterity;
     [BoxGroup("Core Stats")]
     [LabelWidth(100)]

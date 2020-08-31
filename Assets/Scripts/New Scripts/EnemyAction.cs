@@ -105,7 +105,7 @@ public class ActionRequirement
     public int requirementTypeValue;
 
     [ShowIf("ShowStatusRequired")]
-    public StatusIconDataSO statusRequired;
+    public PassiveIconDataSO passiveRequired;
     [ShowIf("ShowStatusRequired")]
     public int statusStacksRequired;
 
@@ -162,12 +162,12 @@ public class EnemyActionEffect
     [VerticalGroup("Status Properties")]
     [ShowIf("ShowStatus")]
     [LabelWidth(150)]
-    public StatusIconDataSO statusApplied;
+    public PassiveIconDataSO passiveApplied;
 
     [VerticalGroup("Status Properties")]
     [ShowIf("ShowStatus")]
     [LabelWidth(150)]
-    public int statusStacks;
+    public int passiveStacks;
 
 
     // Block properties

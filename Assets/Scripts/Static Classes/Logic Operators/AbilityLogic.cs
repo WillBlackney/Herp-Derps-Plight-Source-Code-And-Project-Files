@@ -4291,7 +4291,7 @@ public class AbilityLogic : MonoBehaviour
 
         // Gain Energy
         caster.ModifyCurrentEnergy(bloodOffering.abilityPrimaryValue);
-        VisualEffectManager.Instance.CreateGainEnergyBuffEffect(caster.transform.position);
+        VisualEffectManager.Instance.OldCreateGainEnergyBuffEffect2(caster.transform.position);
         yield return new WaitForSeconds(0.5f);               
 
         // remove camoflage, etc
@@ -5319,7 +5319,7 @@ public class AbilityLogic : MonoBehaviour
 
         // Give bonus energy
         target.ModifyCurrentEnergy(invigorate.abilityPrimaryValue);
-        VisualEffectManager.Instance.CreateGainEnergyBuffEffect(target.transform.position);
+        VisualEffectManager.Instance.OldCreateGainEnergyBuffEffect2(target.transform.position);
         VisualEffectManager.Instance.CreateHolyBuffEffect(target.transform.position);
         yield return new WaitForSeconds(0.5f);
 
@@ -6055,7 +6055,7 @@ public class AbilityLogic : MonoBehaviour
             if (tilesInSurgeRange.Contains(entity.tile) &&
                 CombatLogic.Instance.IsTargetFriendly(caster, entity))
             {
-                VisualEffectManager.Instance.CreateGainEnergyBuffEffect(entity.transform.position);
+                VisualEffectManager.Instance.OldCreateGainEnergyBuffEffect2(entity.transform.position);
                 entity.ModifyCurrentEnergy(spiritSurge.abilityPrimaryValue);
             }
         }
@@ -6480,7 +6480,7 @@ public class AbilityLogic : MonoBehaviour
 
         // Gain Energy
         caster.ModifyCurrentEnergy(moonInfusion.abilityPrimaryValue);
-        VisualEffectManager.Instance.CreateGainEnergyBuffEffect(caster.transform.position);
+        VisualEffectManager.Instance.OldCreateGainEnergyBuffEffect2(caster.transform.position);
         yield return new WaitForSeconds(0.5f);
 
         // remove camoflage, etc
@@ -6569,7 +6569,7 @@ public class AbilityLogic : MonoBehaviour
             if (tilesInSurgeRange.Contains(entity.tile) &&
                 CombatLogic.Instance.IsTargetFriendly(caster, entity))
             {
-                VisualEffectManager.Instance.CreateGainEnergyBuffEffect(entity.transform.position);
+                VisualEffectManager.Instance.OldCreateGainEnergyBuffEffect2(entity.transform.position);
                 entity.ModifyCurrentEnergy(encourage.abilityPrimaryValue);
             }
         }

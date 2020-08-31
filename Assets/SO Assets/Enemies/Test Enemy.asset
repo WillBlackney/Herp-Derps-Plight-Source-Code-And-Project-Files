@@ -16,10 +16,9 @@ MonoBehaviour:
   description: 
   maxHealth: 30
   power: 0
-  wisdom: 0
   dexterity: 0
-  initiative: 1
-  startingHealth: 1
+  initiative: 3
+  startingHealth: 30
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0
@@ -46,14 +45,16 @@ MonoBehaviour:
                   draw: 0
                   dexterity: 0
                   power: 0
-                bonusStrengthStacks: 0
+                bonusPowerStacks: 0
                 bonusDexterityStacks: 0
                 bonusStaminaStacks: 0
                 bonusInitiativeStacks: 0
-                temporaryBonusStrengthStacks: 0
+                bonusDrawStacks: 0
+                temporaryBonusPowerStacks: 0
                 temporaryBonusDexterityStacks: 0
                 temporaryBonusStaminaStacks: 0
                 temporaryBonusInitiativeStacks: 0
+                temporaryBonusDrawStacks: 0
               health: 0
               maxHealth: 0
               stamina: 0
@@ -61,14 +62,16 @@ MonoBehaviour:
               draw: 0
               dexterity: 0
               power: 0
-            bonusStrengthStacks: 0
+            bonusPowerStacks: 0
             bonusDexterityStacks: 0
             bonusStaminaStacks: 0
             bonusInitiativeStacks: 0
-            temporaryBonusStrengthStacks: 0
+            bonusDrawStacks: 0
+            temporaryBonusPowerStacks: 0
             temporaryBonusDexterityStacks: 0
             temporaryBonusStaminaStacks: 0
             temporaryBonusInitiativeStacks: 0
+            temporaryBonusDrawStacks: 0
           health: 0
           maxHealth: 0
           stamina: 0
@@ -76,14 +79,16 @@ MonoBehaviour:
           draw: 0
           dexterity: 0
           power: 0
-        bonusStrengthStacks: 0
+        bonusPowerStacks: 0
         bonusDexterityStacks: 0
         bonusStaminaStacks: 0
         bonusInitiativeStacks: 0
-        temporaryBonusStrengthStacks: 0
+        bonusDrawStacks: 0
+        temporaryBonusPowerStacks: 0
         temporaryBonusDexterityStacks: 0
         temporaryBonusStaminaStacks: 0
         temporaryBonusInitiativeStacks: 0
+        temporaryBonusDrawStacks: 0
       health: 0
       maxHealth: 0
       stamina: 0
@@ -91,49 +96,29 @@ MonoBehaviour:
       draw: 0
       dexterity: 0
       power: 0
-    bonusStrengthStacks: 2
+    bonusPowerStacks: 0
     bonusDexterityStacks: 0
     bonusStaminaStacks: 0
     bonusInitiativeStacks: 0
-    temporaryBonusStrengthStacks: 0
+    bonusDrawStacks: 0
+    temporaryBonusPowerStacks: 0
     temporaryBonusDexterityStacks: 0
     temporaryBonusStaminaStacks: 0
     temporaryBonusInitiativeStacks: 0
+    temporaryBonusDrawStacks: 0
   allEnemyActions:
-  - actionName: Strike
-    actionType: 0
-    intentImage: 0
+  - actionName: Strength Buff
+    actionType: 2
+    intentImage: 4
     actionLoops: 1
     actionEffects:
-    - actionType: 0
-      baseDamage: 7
-      damageType: 1
-      attackLoops: 1
-      statusApplied: {fileID: 0}
-      statusStacks: 0
-      blockGained: 0
-      cardAdded: {fileID: 0}
-      copiesAdded: 0
-      collection: 0
-    canBeConsecutive: 1
-    prioritiseWhenRequirementsMet: 1
-    actionRequirements:
-    - requirementType: 9
-      requirementTypeValue: 5
-      statusRequired: {fileID: 0}
-      statusStacksRequired: 0
-  - actionName: Defend
-    actionType: 7
-    intentImage: 6
-    actionLoops: 1
-    actionEffects:
-    - actionType: 7
+    - actionType: 2
       baseDamage: 0
       damageType: 0
       attackLoops: 1
-      statusApplied: {fileID: 0}
-      statusStacks: 0
-      blockGained: 6
+      passiveApplied: {fileID: 0}
+      passiveStacks: 0
+      blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0

@@ -371,17 +371,17 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             character.stamina = 0;
         }
 
-        VisualEventManager.Instance.CreateVisualEvent(() => UpdateStaminaGUI(character, character.stamina), QueuePosition.Back, 0, 0);
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateStaminaGUI(character), QueuePosition.Back, 0, 0);
     }
     private void UpdateEnergyGUI(CharacterEntityModel character, int newValue)
     {
         Debug.Log("CharacterEntityController.UpdateEnergyGUI() called for " + character.myName);
         character.characterEntityView.energyText.text = newValue.ToString();
     }
-    private void UpdateStaminaGUI(CharacterEntityModel character, int newValue)
+    private void UpdateStaminaGUI(CharacterEntityModel character)
     {
         Debug.Log("CharacterEntityController.UpdateStaminaGUI() called for " + character.myName);
-        character.characterEntityView.staminaText.text = newValue.ToString();
+        character.characterEntityView.staminaText.text = EntityLogic.GetTotalStamina(character).ToString();
     }
     #endregion
 
@@ -392,6 +392,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         Debug.Log("CharacterEntityController.ModifyBlock() called for " + character.myName);
 
         int finalBlockGainValue = blockGainedOrLost;
+        int characterFinalBlockValue = 0;
 
         // prevent block going negative
         if(finalBlockGainValue < 0)
@@ -404,10 +405,12 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
         if (finalBlockGainValue > 0)
         {
-            //StartCoroutine(VisualEffectManager.Instance.CreateGainBlockEffect(transform.position, blockGainedOrLost));
+            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateGainBlockEffect(character.characterEntityView.transform.position, finalBlockGainValue), QueuePosition.Back, 0, 0);
         }
 
-        VisualEventManager.Instance.CreateVisualEvent(() => UpdateBlockGUI(character, finalBlockGainValue), QueuePosition.Back, 0, 0);
+        // Update GUI
+        characterFinalBlockValue = character.block;
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateBlockGUI(character, characterFinalBlockValue), QueuePosition.Back, 0, 0);
     }
     public void ModifyBlockOnActivationStart(CharacterEntityModel character)
     {
@@ -1249,7 +1252,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         if (hasMovedOffStartingNode && enemy.livingState == LivingState.Alive)
         {
             CoroutineData cData = new CoroutineData();
-            VisualEventManager.Instance.CreateVisualEvent(() => MovementLogic.Instance.MoveEntityToNodeCentre(enemy, enemy.levelNode, cData), cData, QueuePosition.Back, 0.3f, 0);
+            VisualEventManager.Instance.CreateVisualEvent(() => MoveEntityToNodeCentre(enemy, enemy.levelNode, cData), cData, QueuePosition.Back, 0.3f, 0);
         }
     }
     private void TriggerEnemyActionEffect(CharacterEntityModel enemy, EnemyActionEffect effect)
@@ -1275,10 +1278,10 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
                 {
                     // Move towards target visual event
                     CoroutineData cData = new CoroutineData();
-                    VisualEventManager.Instance.CreateVisualEvent(() => MovementLogic.Instance.MoveAttackerToTargetNodeAttackPosition(enemy, target, cData), cData);
+                    VisualEventManager.Instance.CreateVisualEvent(() => MoveAttackerToTargetNodeAttackPosition(enemy, target, cData), cData);
 
                     // Play melee attack anim
-                    VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.TriggerMeleeAttackAnimation(enemy.characterEntityView));
+                    VisualEventManager.Instance.CreateVisualEvent(() => TriggerMeleeAttackAnimation(enemy.characterEntityView));
 
                     // Calculate damage
                     string damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(enemy, null, null, effect);
@@ -1293,7 +1296,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
         else if (effect.actionType == ActionType.DefendSelf || effect.actionType == ActionType.DefendTarget)
         {
-            CharacterEntityController.Instance.ModifyBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy, target));
+            ModifyBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy, target));
         }
 
         else if (effect.actionType == ActionType.BuffSelf ||
@@ -1344,6 +1347,98 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         Debug.Log("CharacterEntityController.StartEnemyActivation() called ");   
         ExecuteEnemyNextAction(enemy);
         CharacterOnActivationEnd(enemy);
+    }
+    #endregion
+
+    // Move Character Visual Events
+    #region
+    public void MoveAttackerToTargetNodeAttackPosition(CharacterEntityModel attacker, CharacterEntityModel target, CoroutineData cData)
+    {
+        Debug.Log("CharacterEntityController.MoveAttackerToTargetNodeAttackPosition() called...");
+        StartCoroutine(MoveAttackerToTargetNodeAttackPositionCoroutine(attacker, target, cData));
+    }
+    private IEnumerator MoveAttackerToTargetNodeAttackPositionCoroutine(CharacterEntityModel attacker, CharacterEntityModel target, CoroutineData cData)
+    {
+        // Set up
+        bool reachedDestination = false;
+        Vector3 destination = new Vector3(target.levelNode.nose.position.x, target.levelNode.nose.position.y, 0);
+        float moveSpeed = 10;
+
+        // Face direction of destination
+        PositionLogic.Instance.TurnFacingTowardsLocation(attacker.characterEntityView, target.characterEntityView.transform.position);
+
+        // Play movement animation
+        PlayMoveAnimation(attacker.characterEntityView);
+
+        while (reachedDestination == false)
+        {
+            attacker.characterEntityView.ucmMovementParent.transform.position = Vector2.MoveTowards(attacker.characterEntityView.ucmMovementParent.transform.position, destination, moveSpeed * Time.deltaTime);
+
+            if (attacker.characterEntityView.ucmMovementParent.transform.position == destination)
+            {
+                Debug.Log("CharacterEntityController.MoveAttackerToTargetNodeAttackPositionCoroutine() detected destination was reached...");
+                reachedDestination = true;
+            }
+            yield return null;
+        }
+
+        // Resolve
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+
+    }
+    public void MoveEntityToNodeCentre(CharacterEntityModel entity, LevelNode node, CoroutineData data)
+    {
+        Debug.Log("CharacterEntityController.MoveEntityToNodeCentre() called...");
+        StartCoroutine(MoveEntityToNodeCentreCoroutine(entity, node, data));
+    }
+    private IEnumerator MoveEntityToNodeCentreCoroutine(CharacterEntityModel entity, LevelNode node, CoroutineData cData)
+    {
+        // Set up
+        bool reachedDestination = false;
+        Vector3 destination = new Vector3(node.transform.position.x, node.transform.position.y, 0);
+        float moveSpeed = 10;
+
+        // Face direction of destination node
+        PositionLogic.Instance.TurnFacingTowardsLocation(entity.characterEntityView, node.transform.position);
+
+        // Play movement animation
+        PlayMoveAnimation(entity.characterEntityView);
+
+        // Move
+        while (reachedDestination == false)
+        {
+            entity.characterEntityView.ucmMovementParent.transform.position = Vector2.MoveTowards(entity.characterEntityView.ucmMovementParent.transform.position, destination, moveSpeed * Time.deltaTime);
+
+            if (entity.characterEntityView.ucmMovementParent.transform.position == destination)
+            {
+                Debug.Log("CharacterEntityController.MoveEntityToNodeCentreCoroutine() detected destination was reached...");
+                reachedDestination = true;
+            }
+            yield return null;
+        }
+
+        // Reset facing, depending on living entity type
+        if (entity.allegiance == Allegiance.Player)
+        {
+            PositionLogic.Instance.SetDirection(entity.characterEntityView, "Right");
+        }
+        else if (entity.allegiance == Allegiance.Enemy)
+        {
+            PositionLogic.Instance.SetDirection(entity.characterEntityView, "Left");
+        }
+
+        // Idle anim
+        PlayIdleAnimation(entity.characterEntityView);
+
+        // Resolve event
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+
     }
     #endregion
 

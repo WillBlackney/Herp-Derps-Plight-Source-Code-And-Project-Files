@@ -14,7 +14,7 @@ public class PassiveManagerModel
     // Core stat bonuses
     [BoxGroup("Core Stat Bonus Passives", centerLabel: true)]
     [LabelWidth(200)]
-    public int bonusStrengthStacks;
+    public int bonusPowerStacks;
     [BoxGroup("Core Stat Bonus Passives")]
     [LabelWidth(200)]
     public int bonusDexterityStacks;
@@ -34,7 +34,7 @@ public class PassiveManagerModel
     // Temp Core stat bonuses
     [BoxGroup("Temp Core Stat Bonus Passives", centerLabel: true)]
     [LabelWidth(200)]
-    public int temporaryBonusStrengthStacks;
+    public int temporaryBonusPowerStacks;
     [BoxGroup("Temp Core Stat Bonus Passives")]
     [LabelWidth(200)]
     public int temporaryBonusDexterityStacks;

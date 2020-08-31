@@ -13,6 +13,7 @@ public class MovementLogic : MonoBehaviour
 
     // Path Generation + AStar Logic
     public bool movementPaused;
+
     #region
     public Stack<Node> GeneratePath(Point start, Point end)
     {
@@ -794,99 +795,6 @@ public class MovementLogic : MonoBehaviour
         }
 
         action.coroutineCompleted = true;
-    }
-    #endregion
-
-    // New Movement Logic 
-    #region
-    public void MoveAttackerToTargetNodeAttackPosition(CharacterEntityModel attacker, CharacterEntityModel target, CoroutineData cData)
-    {
-        Debug.Log("LivingEntityManager.MoveAttackerToTargetNodeAttackPosition() called...");
-        StartCoroutine(MoveAttackerToTargetNodeAttackPositionCoroutine(attacker, target, cData));
-    }
-    private IEnumerator MoveAttackerToTargetNodeAttackPositionCoroutine(CharacterEntityModel attacker, CharacterEntityModel target, CoroutineData cData)
-    {
-        // Set up
-        bool reachedDestination = false;
-        Vector3 destination = new Vector3(target.levelNode.nose.position.x, target.levelNode.nose.position.y, 0);
-        float moveSpeed = 15;
-
-        // Face direction of destination
-        PositionLogic.Instance.TurnFacingTowardsLocation(attacker.characterEntityView, target.characterEntityView.transform.position);
-
-        // Play movement animation
-        CharacterEntityController.Instance.PlayMoveAnimation(attacker.characterEntityView);
-
-        while (reachedDestination == false)
-        {
-            attacker.characterEntityView.transform.position = Vector2.MoveTowards(attacker.characterEntityView.transform.position, destination, moveSpeed * Time.deltaTime);
-
-            if (attacker.characterEntityView.transform.position == destination)
-            {
-                Debug.Log("LivingEntityManager.MoveAttackerToTargetNodeAttackPositionCoroutine() detected destination was reached...");
-                reachedDestination = true;
-            }
-            yield return null;
-        }
-
-        // Resolve
-        if (cData != null)
-        {
-            cData.MarkAsCompleted();
-        }
-
-    }
-    public void MoveEntityToNodeCentre(CharacterEntityModel entity, LevelNode node, CoroutineData data)
-    {
-        Debug.Log("LivingEntityManager.MoveEntityToNodeCentre2() called...");
-        StartCoroutine(MoveEntityToNodeCentreCoroutine(entity, node, data));
-    }
-    private IEnumerator MoveEntityToNodeCentreCoroutine(CharacterEntityModel entity, LevelNode node, CoroutineData cData)
-    {
-        // Set up
-        bool reachedDestination = false;
-        Vector3 destination = new Vector3(node.transform.position.x, node.transform.position.y, 0);
-        float moveSpeed = 15;
-
-        // Face direction of destination node
-        PositionLogic.Instance.TurnFacingTowardsLocation(entity.characterEntityView, node.transform.position);
-
-        // Play movement animation
-        CharacterEntityController.Instance.PlayMoveAnimation(entity.characterEntityView);
-
-        // Move
-        while (reachedDestination == false)
-        {
-            entity.characterEntityView.transform.position = Vector2.MoveTowards(entity.characterEntityView.transform.position, destination, moveSpeed * Time.deltaTime);
-
-            if (entity.characterEntityView.transform.position == destination)
-            {
-                Debug.Log("LivingEntityManager.MoveEntityToNodeCentreCoroutine() detected destination was reached...");
-                reachedDestination = true;
-            }
-            yield return null;
-        }
-
-        // Reset facing, depending on living entity type
-        if (entity.allegiance == Allegiance.Player)
-        {
-            PositionLogic.Instance.SetDirection(entity.characterEntityView, "Right");
-        }
-        else if (entity.allegiance == Allegiance.Enemy)
-        {
-            PositionLogic.Instance.SetDirection(entity.characterEntityView, "Left");
-        }
-
-
-        // Idle anim
-        CharacterEntityController.Instance.PlayIdleAnimation(entity.characterEntityView);
-
-        // Resolve event
-        if(cData != null)
-        {
-            cData.MarkAsCompleted();
-        }    
-
     }
     #endregion
 

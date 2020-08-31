@@ -544,7 +544,7 @@ public class LivingEntity : MonoBehaviour
 
             if (blockGainedOrLost > 0)
             {
-                StartCoroutine(VisualEffectManager.Instance.CreateGainBlockEffect(transform.position, blockGainedOrLost));
+                //StartCoroutine(VisualEffectManager.Instance.CreateGainBlockEffect(transform.position, blockGainedOrLost));
             }
         }
 
@@ -869,7 +869,7 @@ public class LivingEntity : MonoBehaviour
         if (ActivationManager.Instance.CurrentTurn == 1 && myPassiveManager.humanAmbition)
         {
             VisualEffectManager.Instance.CreateStatusEffect(transform.position, "Human Ambition");
-            VisualEffectManager.Instance.CreateGainEnergyBuffEffect(transform.position);
+            VisualEffectManager.Instance.OldCreateGainEnergyBuffEffect2(transform.position);
             ModifyCurrentEnergy(currentMaxEnergy);
             yield return new WaitForSeconds(0.5f);
         }

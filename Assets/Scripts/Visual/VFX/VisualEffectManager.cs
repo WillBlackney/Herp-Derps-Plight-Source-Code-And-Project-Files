@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class VisualEffectManager : Singleton<VisualEffectManager>
 {
+    [Header("Properties")]
+    public int campsiteVfxSortingLayer;
+
     [Header("VFX Prefab References")]
     public GameObject DamageEffectPrefab;
     public GameObject StatusEffectPrefab;
@@ -73,77 +76,11 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
 
     [Header("TOON Misc Prefab References")]
     public GameObject hardLandingEffect;
-    public GameObject bloodSplatterEffect;
-
-
-    [Header("Properties")]
-    public List<DamEffect.DamageEffect> vfxQueue = new List<DamEffect.DamageEffect>();
-    public int campsiteVfxSortingLayer;
-    public float timeBetweenEffectsInSeconds;
-    public int queueCount;
-    public Color blue;
-    public Color red;
-    public Color green;
-    public Color yellow;
+    public GameObject bloodSplatterEffect; 
     
     // Create VFX
     #region
-    public void CreateDamageEffect(Vector3 location, int damageAmount, bool heal = false, bool healthLost = true)
-    {
-        GameObject damageEffect = Instantiate(DamageEffectPrefab, location, Quaternion.identity);
-        damageEffect.GetComponent<DamEffect.DamageEffect>().InitializeSetup(damageAmount, heal, healthLost);
-    }
-    public OldCoroutineData CreateStatusEffect(Vector3 location, string statusEffectName, string color = "White")
-    {
-        OldCoroutineData action = new OldCoroutineData();
-        StartCoroutine(CreateStatusEffectCoroutine(location, statusEffectName, action, color));
-        return action;
-    }
-    public IEnumerator CreateStatusEffectCoroutine(Vector3 location, string statusEffectName, OldCoroutineData action, string color = "White")
-    {
-        Color thisColor = Color.white;
-        if(color == "White")
-        {
-            thisColor = Color.white;
-        }
-        else if (color == "Blue")
-        {
-            thisColor = Color.white;
-        }
-        else if (color == "Red")
-        {
-            thisColor = Color.white;
-        }
-        else if (color == "Green")
-        {
-            thisColor = Color.white;
-        }
-        else if (color == "Yellow")
-        {
-            thisColor = Color.yellow;
-        }
-
-        queueCount++;
-        GameObject damageEffect = Instantiate(StatusEffectPrefab, location, Quaternion.identity);
-        damageEffect.GetComponent<StatusEffect>().InitializeSetup(statusEffectName, thisColor);
-
-        action.coroutineCompleted = true;
-        yield return null;
-        
-        
-    }  
-    public IEnumerator CreateGainBlockEffect(Vector3 location, int blockGained)
-    {
-        GameObject newImpactVFX = Instantiate(GainBlockEffectPrefab, location, Quaternion.identity);
-        newImpactVFX.GetComponent<GainArmorEffect>().InitializeSetup(location, blockGained);
-        yield return null;
-    }
-    public void CreateLoseBlockEffect(Vector3 location, int blockLost)
-    {
-        GameObject newImpactVFX = Instantiate(LoseBlockEffectPrefab, location, Quaternion.identity);
-        newImpactVFX.GetComponent<GainArmorEffect>().InitializeSetup(location, blockLost);
-        CreateDamageEffect(location, blockLost, false, false);
-    }
+   
     public IEnumerator CreateBuffEffect(Vector3 location)
     {
         GameObject newImpactVFX = Instantiate(BuffEffectPrefab, location, Quaternion.identity);
@@ -409,7 +346,6 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
     #endregion
 
     // Toon Vfx Projectiles
-
     #region
     // Fire Ball
     public OldCoroutineData ShootToonFireball(Vector3 startPos, Vector3 endPos, float speed = 12.5f, int sortingOrderBonus = 15, float scaleModifier = 0.7f)
@@ -1029,7 +965,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
     }
 
     // Gain Energy Buff
-    public OldCoroutineData CreateGainEnergyBuffEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
+    public OldCoroutineData OldCreateGainEnergyBuffEffect2(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
     {
         OldCoroutineData action = new OldCoroutineData();
         StartCoroutine(CreateGainEnergyBuffEffectCoroutine(location, action, sortingOrderBonus, scaleModifier));
@@ -1044,13 +980,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
         yield return null;
 
     }
-    public void CreateGainEnergyBuffEffect2(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
-    {
-        GameObject hn = Instantiate(toonGainEnergyPrefab, location, toonGainEnergyPrefab.transform.rotation);
-        ToonEffect teScript = hn.GetComponent<ToonEffect>();
-        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
-
-    }
+   
 
     // Camoflage Buff
     public OldCoroutineData CreateCamoflageBuffEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
@@ -1138,25 +1068,61 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
         yield return null;
 
     }
+    #endregion
+
+
+
+
+
+    // REFACTORED VFX
+    #region
 
     // Blood Splatter
-    public OldCoroutineData CreateBloodSplatterEffect(Vector3 location, int sortingOrderBonus = 0, float scaleModifier = 1f)
-    {
-        OldCoroutineData action = new OldCoroutineData();
-        StartCoroutine(CreateBloodSplatterEffecttCoroutine(location, action, sortingOrderBonus, scaleModifier));
-        return action;
-    }
-    private IEnumerator CreateBloodSplatterEffecttCoroutine(Vector3 location, OldCoroutineData action, int sortingOrderBonus, float scaleModifier)
+    public void CreateBloodSplatterEffect(Vector3 location, int sortingOrderBonus = 0, float scaleModifier = 1f)
     {
         GameObject hn = Instantiate(bloodSplatterEffect, location, bloodSplatterEffect.transform.rotation);
         ToonEffect teScript = hn.GetComponent<ToonEffect>();
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
-        action.coroutineCompleted = true;
-        yield return null;
-
     }
 
+    // Gain Block
+    public void CreateGainBlockEffect(Vector3 location, int blockGained)
+    {
+        GameObject newImpactVFX = Instantiate(GainBlockEffectPrefab, location, Quaternion.identity);
+        newImpactVFX.GetComponent<GainArmorEffect>().InitializeSetup(location, blockGained);
+    }
 
+    // Lose Block Effect
+    public void CreateLoseBlockEffect(Vector3 location, int blockLost)
+    {
+        GameObject newImpactVFX = Instantiate(LoseBlockEffectPrefab, location, Quaternion.identity);
+        newImpactVFX.GetComponent<GainArmorEffect>().InitializeSetup(location, blockLost);
+        CreateDamageEffect(location, blockLost, false, false);
+    }
+
+    // Damage Text Value Effect
+    public void CreateDamageEffect(Vector3 location, int damageAmount, bool heal = false, bool healthLost = true)
+    {
+        GameObject damageEffect = Instantiate(DamageEffectPrefab, location, Quaternion.identity);
+        damageEffect.GetComponent<DamEffect.DamageEffect>().InitializeSetup(damageAmount, heal, healthLost);
+    }
+
+    // Status Text Effect
+    public void CreateStatusEffect(Vector3 location, string statusEffectName)
+    {
+        Color thisColor = Color.white;
+        GameObject damageEffect = Instantiate(StatusEffectPrefab, location, Quaternion.identity);
+        damageEffect.GetComponent<StatusEffect>().InitializeSetup(statusEffectName, thisColor);
+    }
+
+    // Gain Energy Effect
+    public void CreateGainEnergyBuffEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(toonGainEnergyPrefab, location, toonGainEnergyPrefab.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+
+    }
 
     #endregion
 }

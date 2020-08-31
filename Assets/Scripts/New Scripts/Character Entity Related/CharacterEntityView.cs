@@ -34,7 +34,8 @@ public class CharacterEntityView : MonoBehaviour
     public TextMeshProUGUI staminaText;
 
     [Header("UCM References")]
-    public GameObject ucmParent;
+    public GameObject ucmVisualParent;
+    public GameObject ucmMovementParent;
     public UniversalCharacterModel ucm;    
     public Animator ucmAnimator;
     public EntityRenderer entityRenderer;

@@ -238,7 +238,7 @@ public class VFXTestManager : MonoBehaviour
         }
         else if (currentEffect == "Gain Energy Buff")
         {
-            VisualEffectManager.Instance.CreateGainEnergyBuffEffect(caster.transform.position);
+            VisualEffectManager.Instance.OldCreateGainEnergyBuffEffect2(caster.transform.position);
         }
         else if (currentEffect == "Gain Camoflage Buff")
         {

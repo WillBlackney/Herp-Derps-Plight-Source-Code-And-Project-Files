@@ -38,10 +38,53 @@ public class PassiveController : Singleton<PassiveController>
     {
         Debug.Log("PassiveController.BuildPassiveManagerFromOtherPassiveManager() called...");
 
-        if(original.bonusStrengthStacks != 0)
+        // Core stat bonuses
+        #region
+        if (original.bonusPowerStacks != 0)
         {
-            ModifyBonusStrength(clone, original.bonusStrengthStacks, false);
+            ModifyBonusPower(clone, original.bonusPowerStacks, false);
         }
+        if (original.bonusDexterityStacks != 0)
+        {
+            ModifyBonusDexterity(clone, original.bonusDexterityStacks, false);
+        }
+        if (original.bonusDrawStacks != 0)
+        {
+            ModifyBonusDraw(clone, original.bonusDrawStacks, false);
+        }
+        if (original.bonusStaminaStacks != 0)
+        {
+            ModifyBonusStamina(clone, original.bonusStaminaStacks, false);
+        }
+        if (original.bonusInitiativeStacks != 0)
+        {
+            ModifyBonusInitiative(clone, original.bonusInitiativeStacks, false);
+        }
+        #endregion
+
+        // Temp Core stat bonuses
+        #region
+        if (original.temporaryBonusPowerStacks != 0)
+        {
+            ModifyTemporaryPower(clone, original.temporaryBonusPowerStacks, false);
+        }
+        if (original.temporaryBonusDexterityStacks != 0)
+        {
+            ModifyTemporaryDexterity(clone, original.temporaryBonusDexterityStacks, false);
+        }
+        if (original.temporaryBonusDrawStacks != 0)
+        {
+            ModifyTemporaryDraw(clone, original.temporaryBonusDrawStacks, false);
+        }
+        if (original.temporaryBonusStaminaStacks != 0)
+        {
+            ModifyTemporaryStamina(clone, original.temporaryBonusStaminaStacks, false);
+        }
+        if (original.temporaryBonusInitiativeStacks != 0)
+        {
+            ModifyTemporaryInitiative(clone, original.temporaryBonusInitiativeStacks, false);
+        }
+        #endregion
 
     }
     public void BuildCharacterEntityPassivesFromCharacterData(CharacterEntityModel character, CharacterData data)
@@ -173,17 +216,17 @@ public class PassiveController : Singleton<PassiveController>
     #region
 
     // Bonus Core Stats
-    private void ModifyBonusStrength(PassiveManagerModel pManager, int stacks, bool showVFX = true)
+    private void ModifyBonusPower(PassiveManagerModel pManager, int stacks, bool showVFX = true)
     {
         Debug.Log("PassiveController.ModifyBonusStrength() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Strength");
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Power");
         CharacterEntityModel character = pManager.myCharacter;
         CharacterData data = pManager.myCharacterData;
 
         // Increment stacks
-        pManager.bonusStrengthStacks += stacks;
+        pManager.bonusPowerStacks += stacks;
 
         if(character != null)
         {
@@ -283,7 +326,7 @@ public class PassiveController : Singleton<PassiveController>
         CharacterData data = pManager.myCharacterData;
 
         // Increment stacks
-        pManager.bonusDexterityStacks += stacks;
+        pManager.bonusInitiativeStacks += stacks;
 
         if (character != null)
         {
@@ -328,7 +371,7 @@ public class PassiveController : Singleton<PassiveController>
         CharacterData data = pManager.myCharacterData;
 
         // Increment stacks
-        pManager.bonusDexterityStacks += stacks;
+        pManager.bonusStaminaStacks += stacks;
 
         if (character != null)
         {
@@ -410,17 +453,17 @@ public class PassiveController : Singleton<PassiveController>
     }
 
     // Temporary Bonus Core Stats
-    private void ModifyTemporaryStrength(PassiveManagerModel pManager, int stacks, bool showVFX = true)
+    private void ModifyTemporaryPower(PassiveManagerModel pManager, int stacks, bool showVFX = true)
     {
         Debug.Log("PassiveController.ModifyTemporaryStrength() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Temporary Strength");
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Temporary Power");
         CharacterEntityModel character = pManager.myCharacter;
         CharacterData data = pManager.myCharacterData;
 
         // Increment stacks
-        pManager.temporaryBonusStrengthStacks += stacks;
+        pManager.temporaryBonusPowerStacks += stacks;
 
         if (character != null)
         {

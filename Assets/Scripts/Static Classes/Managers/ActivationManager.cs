@@ -189,7 +189,7 @@ public class ActivationManager : Singleton<ActivationManager>
     #region
     private int CalculateInitiativeRoll(CharacterEntityModel entity)
     {
-        return EntityLogic.GetTotalInitiative(entity) + Random.Range(1, 4);
+        return EntityLogic.GetTotalInitiative(entity) + RandomGenerator.NumberBetween(1, 3);
     }
     private void GenerateInitiativeRolls()
     {

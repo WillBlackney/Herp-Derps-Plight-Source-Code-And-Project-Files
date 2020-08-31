@@ -172,7 +172,7 @@ public class LivingEntityManager : MonoBehaviour
                         CombatLogic.Instance.IsTargetFriendly(entity, entitty))
                     {
                         Debug.Log("Character " + entitty.name + " is within range of Encouraging presence, granting bonus Energy...");
-                        VisualEffectManager.Instance.CreateGainEnergyBuffEffect(entitty.transform.position);
+                        VisualEffectManager.Instance.OldCreateGainEnergyBuffEffect2(entitty.transform.position);
                         entitty.ModifyCurrentEnergy(entity.myPassiveManager.encouragingAuraStacks);
                     }
                 }

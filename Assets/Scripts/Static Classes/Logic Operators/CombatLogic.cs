@@ -861,7 +861,8 @@ public class CombatLogic : MonoBehaviour
     public string CalculateFinalDamageTypeOfAttack(CharacterEntityModel entity, CardEffect cardEffect = null, Card card = null, EnemyActionEffect enemyAction = null)
     {
         Debug.Log("CombatLogic.CalculateFinalDamageTypeOfAttack() called...");
-        // preferences
+
+
         string damageTypeReturned = "None";
 
         // First, draw damage type from ability
@@ -1116,7 +1117,7 @@ public class CombatLogic : MonoBehaviour
     }
     public int CalculateBlockGainedByEffect(int baseBlockGain, CharacterEntityModel caster, CharacterEntityModel target)
     {
-        Debug.Log("CombatLogic.CalculateBlockGainedByEffect() callled for " + caster.myName + " against target: " + target.myName);
+        Debug.Log("CombatLogic.CalculateBlockGainedByEffect() called for " + caster.myName + " against target: " + target.myName);
 
         int valueReturned = baseBlockGain;
         Debug.Log("Base block gain value: " + valueReturned);

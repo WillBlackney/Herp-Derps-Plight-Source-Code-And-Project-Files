@@ -5,6 +5,114 @@ using System.Linq;
 
 public static class EntityLogic
 {
+    // NEW CALCULATORS!
+    #region
+    public static int GetTotalStamina(CharacterEntityModel entity)
+    {
+        Debug.Log("EntityLogic.GetTotalStamina() called for " + entity.myName + "...");
+
+        // Base Stamina
+        int staminaReturned = entity.stamina;
+        Debug.Log(entity.myName + " base stamina: " + staminaReturned.ToString());
+
+        // Bonus Stamina
+        staminaReturned += entity.passiveManager.bonusStaminaStacks;
+        Debug.Log("Value after bonus stamina added: " + staminaReturned.ToString());
+
+        // Temporary Bonus Stamina
+        staminaReturned += entity.passiveManager.temporaryBonusStaminaStacks;
+        Debug.Log("Value after temporary bonus stamina added: " + staminaReturned.ToString());
+
+        // Return final value
+        Debug.Log("Final stamina value calculated: " + staminaReturned.ToString());
+        return staminaReturned;
+    }
+    public static int GetTotalDraw(CharacterEntityModel entity)
+    {
+        Debug.Log("EntityLogic.GetTotalDraw() called for " + entity.myName + "...");
+
+        // Base Draw
+        int drawReturned = entity.draw;
+        Debug.Log(entity.myName + " base draw: " + drawReturned.ToString());
+
+        // Bonus Draw
+        drawReturned += entity.passiveManager.bonusDrawStacks;
+        Debug.Log("Value after bonus draw added: " + drawReturned.ToString());
+
+        // Temporary Bonus Draw
+        drawReturned += entity.passiveManager.temporaryBonusDrawStacks;
+        Debug.Log("Value after temporary bonus draw added: " + drawReturned.ToString());
+
+        // Return final value
+        Debug.Log("Final draw value calculated: " + drawReturned.ToString());
+        return drawReturned;
+    }
+    public static int GetTotalPower(CharacterEntityModel entity)
+    {
+        Debug.Log("EntityLogic.GetTotalStrength() called for " + entity.myName + "...");
+
+        // Base Power
+        int strengthReturned = entity.power;
+        Debug.Log(entity.myName + " base strength: " + strengthReturned.ToString());
+
+        // Bonus Power
+        strengthReturned += entity.passiveManager.bonusPowerStacks;
+        Debug.Log("Value after bonus strength added: " + strengthReturned.ToString());
+
+        // Temporary Bonus Power
+        strengthReturned += entity.passiveManager.temporaryBonusPowerStacks;
+        Debug.Log("Value after temporary bonus strength added: " + strengthReturned.ToString());
+
+        // Return final value
+        Debug.Log("Final strength value calculated: " + strengthReturned.ToString());
+        return strengthReturned;
+    }
+    public static int GetTotalInitiative(CharacterEntityModel entity)
+    {
+        Debug.Log("EntityLogic.GetTotalInitiative() called for " + entity.myName + "...");
+
+        // Base Stamina
+        int initiativeReturned = entity.initiative;
+        Debug.Log(entity.myName + " base initiative: " + initiativeReturned.ToString());
+
+        // Bonus Stamina
+        initiativeReturned += entity.passiveManager.bonusInitiativeStacks;
+        Debug.Log("Value after bonus initiative added: " + initiativeReturned.ToString());
+
+        // Temporary Bonus Stamina
+        initiativeReturned += entity.passiveManager.temporaryBonusInitiativeStacks;
+        Debug.Log("Value after temporary bonus initiative added: " + initiativeReturned.ToString());
+
+        // Return final value
+        Debug.Log("Final initiative value calculated: " + initiativeReturned.ToString());
+        return initiativeReturned;
+    }
+    public static int GetTotalDexterity(CharacterEntityModel entity)
+    {
+        Debug.Log("EntityLogic.GetTotalDexterity() called for " + entity.myName + "...");
+
+        // Base Dexterity
+        int dexterityReturned = entity.dexterity;
+        Debug.Log(entity.myName + " base dexterity: " + dexterityReturned.ToString());
+
+        // Bonus Dexterity
+        dexterityReturned += entity.passiveManager.bonusDexterityStacks;
+        Debug.Log("Value after bonus dexterity added: " + dexterityReturned.ToString());
+
+        // Temporary Bonus Dexterity
+        dexterityReturned += entity.passiveManager.temporaryBonusDexterityStacks;
+        Debug.Log("Value after temporary bonus dexterity added: " + dexterityReturned.ToString());
+
+        // Return final value
+        Debug.Log("Final dexterity value calculated: " + dexterityReturned.ToString());
+        return dexterityReturned;
+    }
+    #endregion
+
+
+
+
+
     // Get Living Entity Methods
     #region
     public static LivingEntity GetClosestEnemy(LivingEntity entity)
@@ -672,43 +780,9 @@ public static class EntityLogic
 
     #endregion
 
-    // Get Stats And Attribute Total Values
-    #region
     // Core stats
-    public static int GetTotalDexterity(CharacterEntityModel entity)
-    {
-        Debug.Log("EntityLogic.GetTotalDexterity() called for " + entity.myName + "...");
-        // Get base dexterity
-        int dexterityReturned = entity.dexterity;
-        Debug.Log(entity.myName + " base dexterity: " + dexterityReturned.ToString());
-
-        /*
-        // Add from bonus dexterity passive
-        if (entity.myPassiveManager.bonusDexterity)
-        {
-            dexterityReturned += entity.myPassiveManager.bonusDexterityStacks;
-            Debug.Log("Value after bonus dexterity added: " + dexterityReturned.ToString());
-        }
-
-        // Add from temporary bonus dexterity passive
-        if (entity.myPassiveManager.temporaryBonusDexterity)
-        {
-            dexterityReturned += entity.myPassiveManager.temporaryBonusDexterityStacks;
-            Debug.Log("Value after temporary bonus dexterity added: " + dexterityReturned.ToString());
-        }
-
-        // Add bonus from purity passive
-        if (entity.myPassiveManager.purity)
-        {
-            dexterityReturned += 2;
-            Debug.Log("Value after purity bonus added: " + dexterityReturned.ToString());
-        }
-
-        // return final value
-        Debug.Log("Final dexterity value calculated: " + dexterityReturned.ToString());
-        */
-        return dexterityReturned;
-    }
+    #region
+   
     public static int GetTotalStrength(LivingEntity entity)
     {
         Debug.Log("EntityLogic.GetTotalStrength() called for " + entity.name + "...");
@@ -774,47 +848,7 @@ public static class EntityLogic
         Debug.Log("Final wisdom value calculated: " + wisdomReturned.ToString());
         return wisdomReturned;
     }
-    public static int GetTotalInitiative(CharacterEntityModel entity)
-    {
-        Debug.Log("EntityLogic.GetTotalInitiative() called for " + entity.myName + "...");
-        /*
-        // Get base Initiative
-        int initiativeReturned = entity.currentInitiative;
-        Debug.Log(entity.name + " base initiative: " + initiativeReturned.ToString());
-
-        // Add bonus Initiative
-        if (entity.myPassiveManager.bonusInitiative)
-        {
-            initiativeReturned += entity.myPassiveManager.bonusInitiativeStacks;
-            Debug.Log("Value after bonus initiative added: " + initiativeReturned.ToString());
-        }        
-
-        // Add temporary bonus Initiative
-        if (entity.myPassiveManager.temporaryBonusInitiative)
-        {
-            initiativeReturned += entity.myPassiveManager.temporaryBonusInitiativeStacks;
-            Debug.Log("Value after temporary bonus initiative added: " + initiativeReturned.ToString());
-        }        
-
-        // Reduce by 1 if 'Chilled'
-        if (entity.myPassiveManager.chilled)
-        {
-            initiativeReturned -= 1;
-            Debug.Log("Value after bonus 'Chilled' reduction: " + initiativeReturned.ToString());
-        }
-
-        // Prevent going below zero
-        if (initiativeReturned < 0)
-        {
-            initiativeReturned = 0;
-        }
-
-        // return final value
-        Debug.Log("Final initiative value calculated: " + initiativeReturned.ToString());
-        return initiativeReturned;
-        */
-        return entity.initiative;
-    }
+   
     public static int GetTotalMobility(LivingEntity entity)
     {
         Debug.Log("EntityLogic.GetTotalMobility() called for " + entity.myName + "...");
@@ -914,100 +948,11 @@ public static class EntityLogic
         Debug.Log("Final stamina value calculated: " + staminaReturned.ToString());
         return staminaReturned;
     }
-    public static int GetTotalStamina(CharacterEntityModel entity)
-    {
-        Debug.Log("EntityLogic.GetTotalStamina() called for " + entity.myName + "...");
-
-        // Get base Stamina
-        int staminaReturned = entity.stamina;
-        return staminaReturned;
-
-        /*
-        Debug.Log(entity.name + " base stamina: " + staminaReturned.ToString());
-
-        // Add bonus Stamina
-        if (entity.myPassiveManager.bonusStamina)
-        {
-            staminaReturned += entity.myPassiveManager.bonusStaminaStacks;
-            Debug.Log("Value after bonus stamina added: " + staminaReturned.ToString());
-        }
-
-        // Add temporary bonus Stamina
-        if (entity.myPassiveManager.temporaryBonusStamina)
-        {
-            staminaReturned += entity.myPassiveManager.temporaryBonusStaminaStacks;
-            Debug.Log("Value after temporary bonus stamina added: " + staminaReturned.ToString());
-        }
-
-
-        // Check for Patient Stalker
-        if (entity.myPassiveManager.patientStalker &&
-          (entity.myPassiveManager.camoflage || entity.myPassiveManager.stealth)
-          )
-        {
-            staminaReturned += 20;
-            Debug.Log("Value after 'Patient Stalker' bonus added: " + staminaReturned.ToString());
-        }
-
-        // Minus 10 if 'Shocked'
-        if (entity.myPassiveManager.shocked)
-        {
-            staminaReturned -= 10;
-            Debug.Log("Value after 'Shocked' reduction: " + staminaReturned.ToString());
-        }
-
-        // prevent reducing below 0
-        if (staminaReturned < 0)
-        {
-            staminaReturned = 0;
-        }
-
-        // return final value
-        Debug.Log("Final stamina value calculated: " + staminaReturned.ToString());        
-        return staminaReturned;
-        */
-    }
-    public static int GetTotalDraw(CharacterEntityModel entity)
-    {
-        return entity.draw;
-    }
-    public static int GetTotalPower(CharacterEntityModel entity)
-    {
-        Debug.Log("EntityLogic.GetTotalStrength() called for " + entity.myName + "...");
-        return entity.power;
-        // Get base strength
-        /*
-        int strengthReturned = entity.currentStrength;
-        Debug.Log(entity.name + " base strength: " + strengthReturned.ToString());
-
-        // Add bonus strength
-        if (entity.myPassiveManager.bonusStrength)
-        {
-            strengthReturned += entity.myPassiveManager.bonusStrengthStacks;
-            Debug.Log("Value after bonus strength added: " + strengthReturned.ToString());
-        }
-
-        // Add temporary bonus strength
-        if (entity.myPassiveManager.temporaryBonusStrength)
-        {
-            strengthReturned += entity.myPassiveManager.temporaryBonusStrengthStacks;
-            Debug.Log("Value after temporary bonus strength added: " + strengthReturned.ToString());
-        }
-
-        // Add bonus from purity passive
-        if (entity.myPassiveManager.purity)
-        {
-            strengthReturned += 2;
-            Debug.Log("Value after purity bonus added: " + strengthReturned.ToString());
-        }
-
-        // return final value
-        Debug.Log("Final strength value calculated: " + strengthReturned.ToString());
-        return strengthReturned;
-        */
-    }
+    
+    #endregion
 
     // Secondary Stats
+    #region
     public static int GetTotalRangeOfRangedAttack(LivingEntity entity, Ability ability)
     {
         Debug.Log("EntityLogic.GetTotalRangeOfRangedAttack() called for " + entity.name + "...");
@@ -1215,8 +1160,10 @@ public static class EntityLogic
         // return final value
         return auraSizeReturned;
     }
+    #endregion
 
     // Resistances
+    #region
     public static int GetTotalResistance(LivingEntity entity, string resistanceType)
     {
         Debug.Log("EntityLogic.GetTotalResistance() called for " + entity.name + " checking " + resistanceType + " resistance...");
@@ -1371,6 +1318,7 @@ public static class EntityLogic
     #endregion
 
     // Uniqie Enemy AI Ability + Targetting Logic
+    #region
     public static LivingEntity GetBestInvigorateTarget(LivingEntity caster)
     {
         LivingEntity bestTarget = null;
@@ -1579,5 +1527,11 @@ public static class EntityLogic
 
         return bestTarget;
     }
+    #endregion
+
+
+
+
+    
 }
 

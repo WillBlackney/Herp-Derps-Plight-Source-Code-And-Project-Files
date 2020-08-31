@@ -335,7 +335,7 @@ public class CardController : Singleton<CardController>
 
                 // Move towards target visual event
                 CoroutineData cData = new CoroutineData();
-                VisualEventManager.Instance.CreateVisualEvent(() => MovementLogic.Instance.MoveAttackerToTargetNodeAttackPosition(owner, target, cData), cData);
+                VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.MoveAttackerToTargetNodeAttackPosition(owner, target, cData), cData);
                
                 // Animation visual event
                 VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.TriggerMeleeAttackAnimation(owner.characterEntityView));
@@ -353,7 +353,7 @@ public class CardController : Singleton<CardController>
             if (hasMovedOffStartingNode && owner.livingState == LivingState.Alive) 
             {
                 CoroutineData cData = new CoroutineData();
-                VisualEventManager.Instance.CreateVisualEvent(() => MovementLogic.Instance.MoveEntityToNodeCentre(owner, owner.levelNode, cData), cData, QueuePosition.Back, 0.3f, 0);
+                VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.MoveEntityToNodeCentre(owner, owner.levelNode, cData), cData, QueuePosition.Back, 0.3f, 0);
             }
 
         }
@@ -365,7 +365,7 @@ public class CardController : Singleton<CardController>
             VisualEffectManager.Instance.CreateBloodSplatterEffect(owner.characterEntityView.transform.position);
 
             // Start self damage sequence
-            CombatLogic.Instance.HandleDamage(cardEffect.healthLost, owner, owner, "None", card);
+            CombatLogic.Instance.HandleDamage(cardEffect.healthLost, owner, owner, "None", card, true);
         }
 
         // Gain Energy
@@ -373,7 +373,7 @@ public class CardController : Singleton<CardController>
         {
             // Gain Energy
             CharacterEntityController.Instance.ModifyEnergy(owner, cardEffect.energyGained);
-            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateGainEnergyBuffEffect2(owner.characterEntityView.transform.position));
+            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.OldCreateGainEnergyBuffEffect2(owner.characterEntityView.transform.position));
         }
 
         // Draw Cards
