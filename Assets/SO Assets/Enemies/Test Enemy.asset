@@ -62,6 +62,7 @@ MonoBehaviour:
               draw: 0
               dexterity: 0
               power: 0
+              deck: []
             bonusPowerStacks: 0
             bonusDexterityStacks: 0
             bonusStaminaStacks: 0
@@ -79,6 +80,7 @@ MonoBehaviour:
           draw: 0
           dexterity: 0
           power: 0
+          deck: []
         bonusPowerStacks: 0
         bonusDexterityStacks: 0
         bonusStaminaStacks: 0
@@ -96,6 +98,7 @@ MonoBehaviour:
       draw: 0
       dexterity: 0
       power: 0
+      deck: []
     bonusPowerStacks: 0
     bonusDexterityStacks: 0
     bonusStaminaStacks: 0
@@ -107,14 +110,14 @@ MonoBehaviour:
     temporaryBonusInitiativeStacks: 0
     temporaryBonusDrawStacks: 0
   allEnemyActions:
-  - actionName: Strength Buff
-    actionType: 2
-    intentImage: 4
+  - actionName: Strike
+    actionType: 0
+    intentImage: 0
     actionLoops: 1
     actionEffects:
-    - actionType: 2
-      baseDamage: 0
-      damageType: 0
+    - actionType: 0
+      baseDamage: 7
+      damageType: 1
       attackLoops: 1
       passiveApplied: {fileID: 0}
       passiveStacks: 0
@@ -122,7 +125,7 @@ MonoBehaviour:
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0
-    canBeConsecutive: 0
+    canBeConsecutive: 1
     prioritiseWhenRequirementsMet: 0
     actionRequirements: []
   allBodyParts:

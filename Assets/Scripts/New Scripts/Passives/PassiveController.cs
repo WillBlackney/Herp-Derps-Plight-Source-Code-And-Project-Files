@@ -223,7 +223,6 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Power");
         CharacterEntityModel character = pManager.myCharacter;
-        CharacterData data = pManager.myCharacterData;
 
         // Increment stacks
         pManager.bonusPowerStacks += stacks;
@@ -278,7 +277,7 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Dexterity");
         CharacterEntityModel character = pManager.myCharacter;
-        CharacterData data = pManager.myCharacterData;
+        //CharacterData data = pManager.myCharacterData;
 
         // Increment stacks
         pManager.bonusDexterityStacks += stacks;
@@ -323,7 +322,7 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Initiative");
         CharacterEntityModel character = pManager.myCharacter;
-        CharacterData data = pManager.myCharacterData;
+        //CharacterData data = pManager.myCharacterData;
 
         // Increment stacks
         pManager.bonusInitiativeStacks += stacks;
@@ -368,7 +367,7 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Stamina");
         CharacterEntityModel character = pManager.myCharacter;
-        CharacterData data = pManager.myCharacterData;
+        //CharacterData data = pManager.myCharacterData;
 
         // Increment stacks
         pManager.bonusStaminaStacks += stacks;
@@ -413,7 +412,7 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Draw");
         CharacterEntityModel character = pManager.myCharacter;
-        CharacterData data = pManager.myCharacterData;
+        //CharacterData data = pManager.myCharacterData;
 
         // Increment stacks
         pManager.bonusDrawStacks += stacks;
@@ -460,7 +459,7 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Temporary Power");
         CharacterEntityModel character = pManager.myCharacter;
-        CharacterData data = pManager.myCharacterData;
+        //CharacterData data = pManager.myCharacterData;
 
         // Increment stacks
         pManager.temporaryBonusPowerStacks += stacks;
@@ -515,7 +514,7 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Temporary Dexterity");
         CharacterEntityModel character = pManager.myCharacter;
-        CharacterData data = pManager.myCharacterData;
+        //CharacterData data = pManager.myCharacterData;
 
         // Increment stacks
         pManager.temporaryBonusDexterityStacks += stacks;
@@ -560,7 +559,7 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Temporary Initiative");
         CharacterEntityModel character = pManager.myCharacter;
-        CharacterData data = pManager.myCharacterData;
+        //CharacterData data = pManager.myCharacterData;
 
         // Increment stacks
         pManager.temporaryBonusInitiativeStacks += stacks;
@@ -605,7 +604,7 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Temporary Stamina");
         CharacterEntityModel character = pManager.myCharacter;
-        CharacterData data = pManager.myCharacterData;
+        //CharacterData data = pManager.myCharacterData;
 
         // Increment stacks
         pManager.temporaryBonusStaminaStacks += stacks;
@@ -650,7 +649,7 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Temporary Draw");
         CharacterEntityModel character = pManager.myCharacter;
-        CharacterData data = pManager.myCharacterData;
+        //CharacterData data = pManager.myCharacterData;
 
         // Increment stacks
         pManager.temporaryBonusDrawStacks += stacks;

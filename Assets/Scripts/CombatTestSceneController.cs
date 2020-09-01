@@ -10,12 +10,13 @@ public class CombatTestSceneController : Singleton<CombatTestSceneController>
 
     private void Start()
     {
+        Debug.Log("CombatTestSceneController.Start() called...");
         RunCombatSceneStartup();
     }
 
     private void RunCombatSceneStartup()
     {
-        ActivationManager.Instance.CreateSlotAndWindowHolders();
+        //ActivationManager.Instance.CreateSlotAndWindowHolders();
         CreateTestingPlayerCharacters();
         EnemySpawner.Instance.SpawnEnemyWave("Basic", testingEnemyWave);
         ActivationManager.Instance.OnNewCombatEventStarted();

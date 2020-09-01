@@ -1167,7 +1167,14 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Randomly decide which next action to take
         if (foundForcedAction == false)
         {
-            actionReturned = viableNextMoves[Random.Range(0, viableNextMoves.Count)];
+            if(viableNextMoves.Count == 1)
+            {
+                actionReturned = viableNextMoves[0];
+            }
+            else
+            {
+                actionReturned = viableNextMoves[Random.Range(0, viableNextMoves.Count)];
+            }           
         }
 
         Debug.Log("EnemyController.DetermineNextEnemyAction() returning " + actionReturned.actionName);

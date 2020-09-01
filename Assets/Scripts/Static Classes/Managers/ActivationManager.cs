@@ -13,8 +13,8 @@ public class ActivationManager : Singleton<ActivationManager>
     [SerializeField] private GameObject windowStartPos;
     [SerializeField] private GameObject activationPanelParent;
     [SerializeField] private GameObject panelArrow;
-    private GameObject activationSlotContentParent;
-    private GameObject activationWindowContentParent; 
+    [SerializeField] private GameObject activationSlotContentParent;
+    [SerializeField] private GameObject activationWindowContentParent; 
 
     [Header("Turn Change Component References")]
     [SerializeField] private TextMeshProUGUI whoseTurnText;
@@ -82,12 +82,8 @@ public class ActivationManager : Singleton<ActivationManager>
         
         // play window idle anim on ucm
         newWindowScript.myUCM.SetBaseAnim();
-    }    
-    public void CreateSlotAndWindowHolders()
-    {
-        activationSlotContentParent = Instantiate(PrefabHolder.Instance.slotHolderPrefab, activationPanelParent.transform);
-        activationWindowContentParent = Instantiate(PrefabHolder.Instance.windowHolderPrefab, activationPanelParent.transform);
-    }
+        
+    } 
     #endregion
 
     // Turn Events

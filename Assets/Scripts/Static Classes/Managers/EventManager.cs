@@ -55,7 +55,7 @@ public class EventManager : MonoBehaviour
         //CameraManager.Instance.ResetCameraOnCombatStart();
 
         // Set up activation window holders
-        ActivationManager.Instance.CreateSlotAndWindowHolders();
+        //ActivationManager.Instance.CreateSlotAndWindowHolders();
 
         // Create defender GO's        
         CharacterRoster.Instance.InstantiateDefenders();
@@ -115,7 +115,7 @@ public class EventManager : MonoBehaviour
        // CameraManager.Instance.ResetCameraOnCombatStart();
 
         // Set up activation window holders
-        ActivationManager.Instance.CreateSlotAndWindowHolders();
+        //ActivationManager.Instance.CreateSlotAndWindowHolders();
 
         // Create defender GO's        
         CharacterRoster.Instance.InstantiateDefenders();
@@ -173,7 +173,7 @@ public class EventManager : MonoBehaviour
         //CameraManager.Instance.ResetCameraOnCombatStart();
 
         // Set up activation window holders
-        ActivationManager.Instance.CreateSlotAndWindowHolders();
+        //ActivationManager.Instance.CreateSlotAndWindowHolders();
 
         // Create defender GO's        
         CharacterRoster.Instance.InstantiateDefenders();

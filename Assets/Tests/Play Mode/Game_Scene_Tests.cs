@@ -7,8 +7,9 @@ using UnityEngine.TestTools;
 
 namespace Tests
 {
-    public class Character_Entity_Controller_Tests
+    public class Game_Scene_Tests
     {
+
         // Singletons
         CharacterEntityController characterEntityController;
         CardController cardController;
@@ -23,49 +24,15 @@ namespace Tests
         // Mock data
         CharacterData characterData;
 
+        // Scenes
+        GameObject gameScene;
+
         [SetUp]
         public void Setup()
         {
+            // Create Game Scene
+            gameScene = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Scenes/Game Scene.prefab"));
 
-            // Create Prefab Holder
-            prefabHolder = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/TESTING PREFABS/Prefab Holder.prefab").GetComponent<PrefabHolder>());
-            prefabHolder.RunAwake();
-
-            // Create Character Entity Controller
-            characterEntityController = new GameObject().AddComponent<CharacterEntityController>();
-            characterEntityController.RunAwake();
-
-            // Create Card Controller
-            cardController = new GameObject().AddComponent<CardController>();
-            cardController.RunAwake();
-
-            // Create Level Manager
-            levelManager = new GameObject().AddComponent<LevelManager>();
-            levelManager.RunAwake();
-
-            // Create Camera Manager
-            cameraManager = new GameObject().AddComponent<CameraManager>();
-            cameraManager.RunAwake();
-
-            // Create Activation Manager
-            activationManager = new GameObject().AddComponent<ActivationManager>();
-            activationManager.RunAwake();
-            //activationManager.CreateSlotAndWindowHolders();
-
-            // Create Passive Controller
-            passiveController = new GameObject().AddComponent<PassiveController>();
-            passiveController.RunAwake();
-
-            // Create Position Logic
-            positionLogic = new GameObject().AddComponent<PositionLogic>();
-            positionLogic.RunAwake();
-
-            // Create Visual Event Manager
-            visualEventManager = new GameObject().AddComponent<VisualEventManager>();
-            visualEventManager.RunAwake();
-            visualEventManager.PauseQueue();
-
-            
             // Create mock character data
             characterData = new CharacterData
             {
@@ -78,9 +45,8 @@ namespace Tests
                 dexterity = 0,
                 power = 0,
             };
-            
         }
-        
+
         [Test]
         public void Create_Player_Character_Function_Creates_Entity_View()
         {
@@ -95,12 +61,19 @@ namespace Tests
         }
 
         [Test]
+        public void Game_Scene_Exists()
+        {
+            // Assert
+            Assert.IsNotNull(gameScene);
+        }
+
+        [Test]
         public void Character_Entity_Controller_Exists()
         {
             // Assert
             Assert.IsNotNull(CharacterEntityController.Instance);
-        }       
-        
+        }
+
         [Test]
         public void Card_Controller_Exists()
         {
@@ -121,6 +94,6 @@ namespace Tests
             // Assert
             Assert.IsNotNull(PrefabHolder.Instance);
         }
-        
+
     }
 }
