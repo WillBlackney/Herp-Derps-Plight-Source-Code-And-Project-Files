@@ -23,16 +23,17 @@ namespace Tests
 
         // Mock data
         CharacterData characterData;
+        List<CardDataSO> deckData;
 
         // Scenes
         GameObject gameScene;
 
-        [SetUp]
+        [OneTimeSetUp]
         public void Setup()
         {
             // Create Game Scene
             gameScene = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Scenes/Game Scene.prefab"));
-
+            
             // Create mock character data
             characterData = new CharacterData
             {
@@ -45,6 +46,11 @@ namespace Tests
                 dexterity = 0,
                 power = 0,
             };
+
+            // Create mock deck data
+            deckData = new List<CardDataSO>();
+            characterData.deck = deckData;
+            deckData.Add(AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/SO Assets/Cards/Strike.asset"));
         }
 
         [Test]
@@ -93,6 +99,29 @@ namespace Tests
         {
             // Assert
             Assert.IsNotNull(PrefabHolder.Instance);
+        }
+        [Test]
+        public void Card_Asset_Does_Load()
+        {
+            int expected = 1;
+
+            // Assert
+            Assert.AreEqual(expected, deckData.Count);
+        }
+        [Test]
+        public void Card_Asset_Strike_Does_Load()
+        {
+            string expected = "Strike";
+
+            // Assert
+            Assert.AreEqual(expected, deckData[0].cardName);
+        }
+
+        [Test]
+        public void Character_Data_Deck_Exists()
+        {
+            // Assert
+            Assert.IsNotNull(characterData.deck);
         }
 
     }

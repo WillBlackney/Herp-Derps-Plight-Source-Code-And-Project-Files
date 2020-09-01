@@ -41,7 +41,10 @@ public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
     // function instead.
     public void RunAwake()
     {
-        Awake();
+        if (!Instance)
+        {
+            Awake();
+        }
     }
     #endregion
 

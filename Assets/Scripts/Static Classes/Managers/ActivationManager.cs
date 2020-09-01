@@ -170,8 +170,8 @@ public class ActivationManager : Singleton<ActivationManager>
 
         activationOrder.Clear();
         panelSlots.Clear();
-        Destroy(activationSlotContentParent);
-        Destroy(activationWindowContentParent);        
+        //Destroy(activationSlotContentParent);
+       // Destroy(activationWindowContentParent);        
         
     }
     #endregion

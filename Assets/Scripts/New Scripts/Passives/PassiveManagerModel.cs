@@ -4,7 +4,6 @@ using UnityEngine;
 using System;
 using Sirenix.OdinInspector;
 
-[Serializable]
 public class PassiveManagerModel
 {
     [Header("Core Properties")]

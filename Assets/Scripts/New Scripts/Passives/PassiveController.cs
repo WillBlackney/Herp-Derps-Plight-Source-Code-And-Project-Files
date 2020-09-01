@@ -38,6 +38,12 @@ public class PassiveController : Singleton<PassiveController>
     {
         Debug.Log("PassiveController.BuildPassiveManagerFromOtherPassiveManager() called...");
 
+        if(clone == null || original == null)
+        {
+            Debug.Log("PassiveController.BuildPassiveManagerFromOtherPassiveManager() recieved null arguments, returning...");
+            return;
+        }
+
         // Core stat bonuses
         #region
         if (original.bonusPowerStacks != 0)
