@@ -23,5 +23,8 @@ public class CharacterData
     public int dexterity;
     public int power;
 
+    [Header("Deck Properties")]
+    public List<CardDataSO> deck;
+
 
 }

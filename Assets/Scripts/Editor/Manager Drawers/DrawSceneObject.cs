@@ -2,7 +2,7 @@
 using UnityEditor;
 using Sirenix.OdinInspector;
 
-namespace Engine
+namespace CustomOdinGUI
 {
     public class DrawSceneObject<T> where T : MonoBehaviour
     {

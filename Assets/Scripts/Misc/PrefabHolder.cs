@@ -2,17 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PrefabHolder : MonoBehaviour
+public class PrefabHolder : Singleton<PrefabHolder>
 {
-    // Singleton Pattern
-    #region
-    public static PrefabHolder Instance;
-    private void Awake()
-    {
-        Instance = this;
-    }
-    #endregion
-
     // Prefabs References
     #region
     [Header("Buttons + UI")]
@@ -47,10 +38,10 @@ public class PrefabHolder : MonoBehaviour
     public GameObject AbilityTomeInventoryCard;
     public GameObject TreasureChest;
 
-    [Header("Enemy Related")]
-    public GameObject ZombiePrefab;
-    public GameObject skeletonSoldierPrefab;
-    public GameObject toxicZombiePrefab;
+    [Header("Activation Window Related")]
+    public GameObject panelSlotPrefab;
+    public GameObject slotHolderPrefab;
+    public GameObject windowHolderPrefab;
     #endregion
 
 

@@ -63,6 +63,18 @@ public static class CharacterModelController
     {
         Debug.Log("CharacterModelController.BuildModelFromModelClone() called...");
 
+        if(modelClonedFrom == null)
+        {
+            Debug.Log("CharacterModelController.BuildModelFromModelClone() was given a null UCM to clone from, returning...");
+            return;
+        }
+
+        if (modelToBuild == null)
+        {
+            Debug.Log("CharacterModelController.BuildModelFromModelClone() was given a null UCM to build into, returning...");
+            return;
+        }
+
         DisableAllActiveModelElementViews(modelToBuild);
         ClearAllActiveModelElementsReferences(modelToBuild);
 

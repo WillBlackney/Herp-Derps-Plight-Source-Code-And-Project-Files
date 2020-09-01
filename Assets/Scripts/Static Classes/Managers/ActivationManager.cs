@@ -15,11 +15,6 @@ public class ActivationManager : Singleton<ActivationManager>
     [SerializeField] private GameObject panelArrow;
     private GameObject activationSlotContentParent;
     private GameObject activationWindowContentParent; 
-    
-    [Header("Prefab References")]
-    [SerializeField] private GameObject panelSlotPrefab;
-    [SerializeField] private GameObject slotHolderPrefab;
-    [SerializeField] private GameObject windowHolderPrefab;
 
     [Header("Turn Change Component References")]
     [SerializeField] private TextMeshProUGUI whoseTurnText;
@@ -63,7 +58,7 @@ public class ActivationManager : Singleton<ActivationManager>
     public void CreateActivationWindow(CharacterEntityModel entity)
     {
         // Create slot
-        GameObject newSlot = Instantiate(panelSlotPrefab, activationSlotContentParent.transform);
+        GameObject newSlot = Instantiate(PrefabHolder.Instance.panelSlotPrefab, activationSlotContentParent.transform);
         panelSlots.Add(newSlot);
 
         // Create window
@@ -90,8 +85,8 @@ public class ActivationManager : Singleton<ActivationManager>
     }    
     public void CreateSlotAndWindowHolders()
     {
-        activationSlotContentParent = Instantiate(slotHolderPrefab, activationPanelParent.transform);
-        activationWindowContentParent = Instantiate(windowHolderPrefab, activationPanelParent.transform);
+        activationSlotContentParent = Instantiate(PrefabHolder.Instance.slotHolderPrefab, activationPanelParent.transform);
+        activationWindowContentParent = Instantiate(PrefabHolder.Instance.windowHolderPrefab, activationPanelParent.transform);
     }
     #endregion
 

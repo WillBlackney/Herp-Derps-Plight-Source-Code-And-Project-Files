@@ -5,7 +5,7 @@ using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities.Editor;
 using System.Collections.Generic;
 
-namespace Engine
+namespace CustomOdinGUI
 {
     public class TheGameManager : OdinMenuEditorWindow
     {

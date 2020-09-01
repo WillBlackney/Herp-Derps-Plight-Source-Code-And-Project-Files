@@ -2,7 +2,7 @@
 using UnityEditor;
 using Sirenix.OdinInspector;
 
-namespace Engine
+namespace CustomOdinGUI
 {
     public class DrawSelected<T> where T : ScriptableObject
     {

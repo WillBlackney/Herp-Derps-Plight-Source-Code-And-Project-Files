@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+
 public class CharacterEntityController: Singleton<CharacterEntityController>
 {
     // Properties + Component References
@@ -73,7 +74,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Disable main UI canvas + card UI stuff
         view.uiCanvasParent.SetActive(false);
     }
-    public CharacterEntityModel CreatePlayerCharacter(CharacterData data, LevelNode position, List<CardDataSO> deckData)
+    public CharacterEntityModel CreatePlayerCharacter(CharacterData data, LevelNode position)
     {
         // Create GO + View
         CharacterEntityView vm = CreateCharacterEntityView().GetComponent<CharacterEntityView>();
@@ -90,7 +91,6 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
         // Connect model to character data
         model.characterData = data;
-        //data.myCharacterEntityModel = model;
 
         // Set up positioning in world
         LevelManager.Instance.PlaceEntityAtNode(model, position);
@@ -106,7 +106,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         SetupCharacterFromCharacterData(model, data);
 
         // Build deck
-        CardController.Instance.BuildDefenderDeckFromDeckData(model, deckData);
+        CardController.Instance.BuildDefenderDeckFromDeckData(model, data.deck);
 
         // Add to persistency
         AddDefenderToPersistency(model);
@@ -170,7 +170,8 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
         // Build UCM
         // TO DO IN FUTURE: Build from actual character data, not sample test scene data
-        CharacterModelController.BuildModelFromModelClone(character.characterEntityView.ucm, CombatTestSceneController.Instance.sampleUCM);
+        // UNCOMMENT THIS AFTER TESTING
+        //CharacterModelController.BuildModelFromModelClone(character.characterEntityView.ucm, CombatTestSceneController.Instance.sampleUCM);
 
         // Build activation window
         ActivationManager.Instance.CreateActivationWindow(character);

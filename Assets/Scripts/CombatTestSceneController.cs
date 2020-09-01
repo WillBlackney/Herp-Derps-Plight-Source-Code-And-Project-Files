@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CombatTestSceneController : Singleton<CombatTestSceneController>
 {
-    public List<CardDataSO> sampleDeck;
     public EnemyWaveSO testingEnemyWave;
     public CharacterData characterDataSample;
     public UniversalCharacterModel sampleUCM;    
@@ -26,7 +25,7 @@ public class CombatTestSceneController : Singleton<CombatTestSceneController>
         for(int i =0; i < 3; i++)
         {
             // NEW IMPLEMENTATION
-            CharacterEntityController.Instance.CreatePlayerCharacter(characterDataSample, LevelManager.Instance.GetNextAvailableDefenderNode(), sampleDeck);
+            CharacterEntityController.Instance.CreatePlayerCharacter(characterDataSample, LevelManager.Instance.GetNextAvailableDefenderNode());
         }
         
     }

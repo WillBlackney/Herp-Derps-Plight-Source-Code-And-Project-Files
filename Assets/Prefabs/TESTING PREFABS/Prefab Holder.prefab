@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 691d83da7006ff142b3228d98a30fed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
   PassiveIconViewPrefab: {fileID: 6840615612475838204, guid: 58676c2949548ec4698471fa9c1360b8,
     type: 3}
   AbilityButtonPrefab: {fileID: 8258036272287567181, guid: 9796603b0e52fc148a8c9937c1764689,
@@ -90,9 +91,9 @@ MonoBehaviour:
     type: 3}
   TreasureChest: {fileID: 5594969955182072137, guid: 389a07be3a0d66243995413ce7e7d265,
     type: 3}
-  ZombiePrefab: {fileID: 331731056945787492, guid: 47f5564b9ebf0b245aebf669a401e825,
+  panelSlotPrefab: {fileID: 3216329357765812186, guid: aaed68e73a275e44cbbb3688ae0a3997,
     type: 3}
-  skeletonSoldierPrefab: {fileID: 3812268710815300470, guid: 76ba64a66608b004386ae3b92b1dad4f,
+  slotHolderPrefab: {fileID: 310230194561123230, guid: 27dac72c26088554387ec916aca34469,
     type: 3}
-  toxicZombiePrefab: {fileID: 8541393054587295098, guid: 0ea531f58ff949047a07013532840754,
+  windowHolderPrefab: {fileID: 1109477202567006131, guid: 4b589616e8bc14c4c924cb6c0ecd8bbf,
     type: 3}

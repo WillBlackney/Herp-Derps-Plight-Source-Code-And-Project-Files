@@ -4,29 +4,13 @@ using System;
 using UnityEngine;
 using System.Linq;
 
-public class LevelManager : MonoBehaviour
+public class LevelManager : Singleton<LevelManager>
 {
     // Properties + Components
     #region
     [Header("Component References")]
     public List<LevelNode> allLevelNodes;
-    #endregion
-
-    // Singleton Setup
-    #region
-    public static LevelManager Instance;
-    private void Awake()
-    {
-        if (!Instance)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-    #endregion
+    #endregion  
 
     // Initialzation + Level Creation
     #region
@@ -119,10 +103,13 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log("LevelManager.PlaceEntityAtNode() called...");
 
-        node.myEntity = entity;
-        node.occupied = true;
-        entity.levelNode = node;
-        entity.characterEntityView.transform.position = node.transform.position;
+        if(node != null)
+        {
+            node.myEntity = entity;
+            node.occupied = true;
+            entity.levelNode = node;
+            entity.characterEntityView.transform.position = node.transform.position;
+        }      
     }
     public void DisconnectEntityFromNode(CharacterEntityModel entity)
     {

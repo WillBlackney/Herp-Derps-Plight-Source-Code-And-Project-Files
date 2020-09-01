@@ -6890,10 +6890,10 @@ public class AbilityLogic : MonoBehaviour
         {
             Tile spawnLocation = LevelManager.Instance.GetClosestValidTile(finalList, target.tile);
 
-            GameObject newSkeletonGO = Instantiate(PrefabHolder.Instance.ZombiePrefab);
-            Enemy newSkeleton = newSkeletonGO.GetComponent<Enemy>();
+            //GameObject newSkeletonGO = Instantiate(PrefabHolder.Instance.ZombiePrefab);
+            //Enemy newSkeleton = newSkeletonGO.GetComponent<Enemy>();
 
-            newSkeleton.InitializeSetup(spawnLocation.GridPosition, spawnLocation);
+           // newSkeleton.InitializeSetup(spawnLocation.GridPosition, spawnLocation);
         }
 
         OnAbilityUsedFinish(summonUndead, caster);
@@ -6923,9 +6923,9 @@ public class AbilityLogic : MonoBehaviour
         OnAbilityUsedStart(summonUndead, caster);
 
         // summon skeleton
-        GameObject newSkeletonGO = Instantiate(PrefabHolder.Instance.skeletonSoldierPrefab);
-        Enemy newSkeleton = newSkeletonGO.GetComponent<Enemy>();
-        newSkeleton.InitializeSetup(spawnLocation.GridPosition, spawnLocation);
+        //GameObject newSkeletonGO = Instantiate(PrefabHolder.Instance.skeletonSoldierPrefab);
+        //Enemy newSkeleton = newSkeletonGO.GetComponent<Enemy>();
+        //newSkeleton.InitializeSetup(spawnLocation.GridPosition, spawnLocation);
         
         // Resolve
         OnAbilityUsedFinish(summonUndead, caster);
@@ -6987,11 +6987,11 @@ public class AbilityLogic : MonoBehaviour
 
             if (spawnLocation != null)
             {
-                GameObject newSkeletonGO = Instantiate(PrefabHolder.Instance.toxicZombiePrefab);
+               // GameObject newSkeletonGO = Instantiate(PrefabHolder.Instance.toxicZombiePrefab);
 
-                Enemy newSkeleton = newSkeletonGO.GetComponent<Enemy>();
+               // Enemy newSkeleton = newSkeletonGO.GetComponent<Enemy>();
 
-                newSkeleton.InitializeSetup(spawnLocation.GridPosition, spawnLocation);
+               // newSkeleton.InitializeSetup(spawnLocation.GridPosition, spawnLocation);
             }
 
         }

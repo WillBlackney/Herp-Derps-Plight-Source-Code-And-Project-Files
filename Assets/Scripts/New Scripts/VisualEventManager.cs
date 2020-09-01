@@ -2,30 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-public class VisualEventManager : MonoBehaviour
+public class VisualEventManager : Singleton<VisualEventManager>
 {
-    // Singleton Pattern
-    #region
-    public static VisualEventManager Instance;
-    private void Awake()
-    {
-        if (!Instance)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-    #endregion
-
     // Properties
     #region
     private List<VisualEvent> eventQueue = new List<VisualEvent>();
     [SerializeField] private float startDelayExtra;
     [SerializeField] private float endDelayExtra;
-
+    private bool paused;
     #endregion
 
     // Misc Logic
@@ -33,7 +17,8 @@ public class VisualEventManager : MonoBehaviour
     private void Update()
     {
         if (eventQueue.Count > 0 &&
-            !eventQueue[0].isPlaying)
+            !eventQueue[0].isPlaying && 
+            paused == false)
         {
             PlayEventFromQueue(eventQueue[0]);
         }
@@ -149,6 +134,7 @@ public class VisualEventManager : MonoBehaviour
     #endregion
 
     // Custom Events
+    #region
     public void InsertTimeDelayInQueue(float delayDuration, QueuePosition position = QueuePosition.Back)
     {
         VisualEvent vEvent = new VisualEvent(null, null, 0, delayDuration, EventDetail.None);
@@ -162,8 +148,10 @@ public class VisualEventManager : MonoBehaviour
             AddEventToFrontOfQueue(vEvent);
         }
     }
+    #endregion
 
     // Bools and Queue Checks
+    #region
     public bool PendingCardDrawEvent()
     {
         Debug.Log("VisualEventManager.PendingCardDrawEvent() called...");
@@ -212,6 +200,19 @@ public class VisualEventManager : MonoBehaviour
         Debug.Log("VisualEventManager.PendingVictoryEvent() returning: " + boolReturned.ToString());
         return boolReturned;
     }
+    #endregion
+
+    // Disable + Enable Queue 
+    #region
+    public void EnableQueue()
+    {
+        paused = false;
+    }
+    public void PauseQueue()
+    {
+        paused = true;
+    }
+    #endregion
 }
 public enum QueuePosition
 {

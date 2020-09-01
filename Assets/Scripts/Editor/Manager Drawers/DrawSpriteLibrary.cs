@@ -1,6 +1,6 @@
 ﻿using Sirenix.OdinInspector;
 
-namespace Engine
+namespace CustomOdinGUI
 {
     public class DrawSpriteLibrary : DrawSceneObject<SpriteLibrary>
     {

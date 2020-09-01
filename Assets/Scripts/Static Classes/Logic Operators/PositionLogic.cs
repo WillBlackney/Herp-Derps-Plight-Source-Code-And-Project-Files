@@ -2,17 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PositionLogic : MonoBehaviour
+public class PositionLogic : Singleton<PositionLogic>
 {
-    // Singleton Pattern
-    #region
-    public static PositionLogic Instance;
-    private void Awake()
-    {
-        Instance = this;
-    }
-    #endregion
-
     // Calculate Direction + Visual
     #region
     public void FlipCharacterSprite(CharacterEntityView character, bool faceRight)
