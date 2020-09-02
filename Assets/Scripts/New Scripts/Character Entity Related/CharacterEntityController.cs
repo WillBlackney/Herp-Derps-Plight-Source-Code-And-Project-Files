@@ -151,9 +151,6 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     }
     private void SetupCharacterFromCharacterData(CharacterEntityModel character, CharacterData data)
     {
-        // Establish connection from defender script to character data
-        //myCharacterData.myDefenderGO = this;
-
         // Set general info
         character.myName = data.myName;
 
@@ -167,17 +164,17 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Set up health
         ModifyMaxHealth(character, data.maxHealth);
         ModifyHealth(character, data.health);
-
+        
+        // TO DO IN FUTURE: We need a better way to track character data's body 
+        // parts: strings references are not scaleable
         // Build UCM
-        // TO DO IN FUTURE: Build from actual character data, not sample test scene data
-        // UNCOMMENT THIS AFTER TESTING
-        //CharacterModelController.BuildModelFromModelClone(character.characterEntityView.ucm, CombatTestSceneController.Instance.sampleUCM);
+        CharacterModelController.BuildModelFromStringReferences(character.characterEntityView.ucm, data.modelParts);
 
         // Build activation window
         ActivationManager.Instance.CreateActivationWindow(character);
 
         // Set up passive traits
-        PassiveController.Instance.BuildCharacterEntityPassivesFromCharacterData(character, data);        
+        PassiveController.Instance.BuildPlayerCharacterEntityPassivesFromCharacterData(character, data);
 
     }
     private void SetupCharacterFromEnemyData(CharacterEntityModel character, EnemyDataSO data)
@@ -202,15 +199,8 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         ActivationManager.Instance.CreateActivationWindow(character);
 
         // Set up passive traits
-        PassiveController.Instance.BuildCharacterEntityPassivesFromEnemyData(character, data);
+        PassiveController.Instance.BuildEnemyCharacterEntityPassivesFromEnemyData(character, data);
 
-        // Set up passive trais
-        /*
-        foreach (StatusPairing sp in data.allPassives)
-        {
-            StatusController.Instance.ApplyStatusToLivingEntity(enemy, sp.statusData, sp.statusStacks);
-        }
-        */
     }
     #endregion
 

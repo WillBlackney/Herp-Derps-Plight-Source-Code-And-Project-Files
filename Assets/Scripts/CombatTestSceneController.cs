@@ -5,8 +5,7 @@ using UnityEngine;
 public class CombatTestSceneController : Singleton<CombatTestSceneController>
 {
     public EnemyWaveSO testingEnemyWave;
-    public CharacterData characterDataSample;
-    public UniversalCharacterModel sampleUCM;    
+    public CharacterData characterDataSample;  
 
     private void Start()
     {
@@ -16,19 +15,18 @@ public class CombatTestSceneController : Singleton<CombatTestSceneController>
 
     private void RunCombatSceneStartup()
     {
-        //ActivationManager.Instance.CreateSlotAndWindowHolders();
+        CharacterDataController.Instance.BuildAllCharactersFromMockCharacterData(characterDataSample);
         CreateTestingPlayerCharacters();
         EnemySpawner.Instance.SpawnEnemyWave("Basic", testingEnemyWave);
         ActivationManager.Instance.OnNewCombatEventStarted();
     }
     private void CreateTestingPlayerCharacters()
     {
-        for(int i =0; i < 3; i++)
+        foreach (CharacterData data in CharacterDataController.Instance.allPlayerCharacters)
         {
-            // NEW IMPLEMENTATION
-            CharacterEntityController.Instance.CreatePlayerCharacter(characterDataSample, LevelManager.Instance.GetNextAvailableDefenderNode());
+            CharacterEntityController.Instance.CreatePlayerCharacter(data, LevelManager.Instance.GetNextAvailableDefenderNode());
         }
-        
+
     }
     
 }

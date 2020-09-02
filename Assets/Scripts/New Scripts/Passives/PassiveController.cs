@@ -34,84 +34,103 @@ public class PassiveController : Singleton<PassiveController>
 
     // Setup Logic
     #region
-    private void BuildPassiveManagerFromOtherPassiveManager(PassiveManagerModel clone, PassiveManagerModel original)
+    private void BuildPassiveManagerFromOtherPassiveManager(PassiveManagerModel originalData, PassiveManagerModel newClone)
     {
         Debug.Log("PassiveController.BuildPassiveManagerFromOtherPassiveManager() called...");
 
-        if(clone == null || original == null)
+        /*
+        if(originalData == null || newClone == null)
         {
-            Debug.Log("PassiveController.BuildPassiveManagerFromOtherPassiveManager() recieved null arguments, returning...");
             return;
         }
+        */
 
         // Core stat bonuses
         #region
-        if (original.bonusPowerStacks != 0)
+        if (originalData.bonusDexterityStacks != 0)
         {
-            ModifyBonusPower(clone, original.bonusPowerStacks, false);
+            ModifyBonusPower(newClone, originalData.bonusPowerStacks, false);
         }
-        if (original.bonusDexterityStacks != 0)
+        if (originalData.bonusDexterityStacks != 0)
         {
-            ModifyBonusDexterity(clone, original.bonusDexterityStacks, false);
+            ModifyBonusDexterity(newClone, originalData.bonusDexterityStacks, false);
         }
-        if (original.bonusDrawStacks != 0)
+        if (originalData.bonusDrawStacks != 0)
         {
-            ModifyBonusDraw(clone, original.bonusDrawStacks, false);
+            ModifyBonusDraw(newClone, originalData.bonusDrawStacks, false);
         }
-        if (original.bonusStaminaStacks != 0)
+        if (originalData.bonusStaminaStacks != 0)
         {
-            ModifyBonusStamina(clone, original.bonusStaminaStacks, false);
+            ModifyBonusStamina(newClone, originalData.bonusStaminaStacks, false);
         }
-        if (original.bonusInitiativeStacks != 0)
+        if (originalData.bonusInitiativeStacks != 0)
         {
-            ModifyBonusInitiative(clone, original.bonusInitiativeStacks, false);
+            ModifyBonusInitiative(newClone, originalData.bonusInitiativeStacks, false);
         }
         #endregion
 
         // Temp Core stat bonuses
         #region
-        if (original.temporaryBonusPowerStacks != 0)
+        if (originalData.temporaryBonusPowerStacks != 0)
         {
-            ModifyTemporaryPower(clone, original.temporaryBonusPowerStacks, false);
+            ModifyTemporaryPower(newClone, originalData.temporaryBonusPowerStacks, false);
         }
-        if (original.temporaryBonusDexterityStacks != 0)
+        if (originalData.temporaryBonusDexterityStacks != 0)
         {
-            ModifyTemporaryDexterity(clone, original.temporaryBonusDexterityStacks, false);
+            ModifyTemporaryDexterity(newClone, originalData.temporaryBonusDexterityStacks, false);
         }
-        if (original.temporaryBonusDrawStacks != 0)
+        if (originalData.temporaryBonusDrawStacks != 0)
         {
-            ModifyTemporaryDraw(clone, original.temporaryBonusDrawStacks, false);
+            ModifyTemporaryDraw(newClone, originalData.temporaryBonusDrawStacks, false);
         }
-        if (original.temporaryBonusStaminaStacks != 0)
+        if (originalData.temporaryBonusStaminaStacks != 0)
         {
-            ModifyTemporaryStamina(clone, original.temporaryBonusStaminaStacks, false);
+            ModifyTemporaryStamina(newClone, originalData.temporaryBonusStaminaStacks, false);
         }
-        if (original.temporaryBonusInitiativeStacks != 0)
+        if (originalData.temporaryBonusInitiativeStacks != 0)
         {
-            ModifyTemporaryInitiative(clone, original.temporaryBonusInitiativeStacks, false);
+            ModifyTemporaryInitiative(newClone, originalData.temporaryBonusInitiativeStacks, false);
         }
         #endregion
 
-    }
-    public void BuildCharacterEntityPassivesFromCharacterData(CharacterEntityModel character, CharacterData data)
+    }   
+    public void BuildPassiveManagerFromSerializedPassiveManager(PassiveManagerModel pManager, SerializedPassiveManagerModel original)
     {
-        Debug.Log("PassiveController.BuildCharacterEntityPassivesFromCharacterData() called...");
+        pManager.bonusPowerStacks = original.bonusPowerStacks;
+        pManager.bonusDexterityStacks = original.bonusDexterityStacks;
+        pManager.bonusStaminaStacks = original.bonusStaminaStacks;
+        pManager.bonusDrawStacks = original.bonusDrawStacks;
+        pManager.bonusInitiativeStacks = original.bonusInitiativeStacks;
+
+        pManager.temporaryBonusPowerStacks = original.temporaryBonusPowerStacks;
+        pManager.temporaryBonusDexterityStacks = original.temporaryBonusDexterityStacks;
+        pManager.temporaryBonusStaminaStacks = original.temporaryBonusStaminaStacks;
+        pManager.temporaryBonusDrawStacks = original.temporaryBonusDrawStacks;
+        pManager.temporaryBonusInitiativeStacks = original.temporaryBonusInitiativeStacks;
+    }    
+    public void BuildPlayerCharacterEntityPassivesFromCharacterData(CharacterEntityModel character, CharacterData data)
+    {
+        Debug.Log("PassiveController.BuildPlayerCharacterEntityPassivesFromCharacterData() called...");
         character.passiveManager = new PassiveManagerModel();
-        character.passiveManager.myCharacterData = data;
         character.passiveManager.myCharacter = character;
 
-        BuildPassiveManagerFromOtherPassiveManager(character.passiveManager, data.passiveManager);
-
+        BuildPassiveManagerFromOtherPassiveManager(data.passiveManager, character.passiveManager);
     }
-    public void BuildCharacterEntityPassivesFromEnemyData(CharacterEntityModel character, EnemyDataSO data)
+    public void BuildEnemyCharacterEntityPassivesFromEnemyData(CharacterEntityModel character, EnemyDataSO data)
     {
-        Debug.Log("PassiveController.BuildCharacterEntityPassivesFromCharacterData() called...");
+        Debug.Log("PassiveController.BuildEnemyCharacterEntityPassivesFromEnemyData() called...");
+
+        // Create an empty pManager that we deserialize the data into first
+        PassiveManagerModel deserializedManager = new PassiveManagerModel();
+        BuildPassiveManagerFromSerializedPassiveManager(deserializedManager, data.serializedPassiveManager);
+
         character.passiveManager = new PassiveManagerModel();
         character.passiveManager.myCharacter = character;
 
-        BuildPassiveManagerFromOtherPassiveManager(character.passiveManager, data.passiveManager);
-
+        // Copy data from desrialized pManager into the characters actual pManager
+        BuildPassiveManagerFromOtherPassiveManager(deserializedManager, character.passiveManager);
     }
+
     #endregion
 
     // Update Passive Icons and Panel View

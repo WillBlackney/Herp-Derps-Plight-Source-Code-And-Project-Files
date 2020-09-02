@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Test Enemy
   m_EditorClassIdentifier: 
   enemyName: Test Enemy
-  description: 
   maxHealth: 30
   power: 0
   dexterity: 0
@@ -26,89 +25,17 @@ MonoBehaviour:
   shadowResistance: 0
   poisonResistance: 0
   airResistance: 0
-  passiveManager:
-    myCharacterData:
-      myName: 
-      passiveManager:
-        myCharacterData:
-          myName: 
-          passiveManager:
-            myCharacterData:
-              myName: 
-              passiveManager:
-                myCharacterData:
-                  myName: 
-                  health: 0
-                  maxHealth: 0
-                  stamina: 0
-                  initiative: 0
-                  draw: 0
-                  dexterity: 0
-                  power: 0
-                bonusPowerStacks: 0
-                bonusDexterityStacks: 0
-                bonusStaminaStacks: 0
-                bonusInitiativeStacks: 0
-                bonusDrawStacks: 0
-                temporaryBonusPowerStacks: 0
-                temporaryBonusDexterityStacks: 0
-                temporaryBonusStaminaStacks: 0
-                temporaryBonusInitiativeStacks: 0
-                temporaryBonusDrawStacks: 0
-              health: 0
-              maxHealth: 0
-              stamina: 0
-              initiative: 0
-              draw: 0
-              dexterity: 0
-              power: 0
-              deck: []
-            bonusPowerStacks: 0
-            bonusDexterityStacks: 0
-            bonusStaminaStacks: 0
-            bonusInitiativeStacks: 0
-            bonusDrawStacks: 0
-            temporaryBonusPowerStacks: 0
-            temporaryBonusDexterityStacks: 0
-            temporaryBonusStaminaStacks: 0
-            temporaryBonusInitiativeStacks: 0
-            temporaryBonusDrawStacks: 0
-          health: 0
-          maxHealth: 0
-          stamina: 0
-          initiative: 0
-          draw: 0
-          dexterity: 0
-          power: 0
-          deck: []
-        bonusPowerStacks: 0
-        bonusDexterityStacks: 0
-        bonusStaminaStacks: 0
-        bonusInitiativeStacks: 0
-        bonusDrawStacks: 0
-        temporaryBonusPowerStacks: 0
-        temporaryBonusDexterityStacks: 0
-        temporaryBonusStaminaStacks: 0
-        temporaryBonusInitiativeStacks: 0
-        temporaryBonusDrawStacks: 0
-      health: 0
-      maxHealth: 0
-      stamina: 0
-      initiative: 0
-      draw: 0
-      dexterity: 0
-      power: 0
-      deck: []
-    bonusPowerStacks: 0
-    bonusDexterityStacks: 0
-    bonusStaminaStacks: 0
-    bonusInitiativeStacks: 0
-    bonusDrawStacks: 0
-    temporaryBonusPowerStacks: 0
-    temporaryBonusDexterityStacks: 0
-    temporaryBonusStaminaStacks: 0
-    temporaryBonusInitiativeStacks: 0
-    temporaryBonusDrawStacks: 0
+  serializedPassiveManager:
+    bonusPowerStacks: 2
+    bonusDexterityStacks: 2
+    bonusStaminaStacks: 2
+    bonusInitiativeStacks: 2
+    bonusDrawStacks: 2
+    temporaryBonusPowerStacks: 2
+    temporaryBonusDexterityStacks: 2
+    temporaryBonusStaminaStacks: 2
+    temporaryBonusInitiativeStacks: 2
+    temporaryBonusDrawStacks: 2
   allEnemyActions:
   - actionName: Strike
     actionType: 0

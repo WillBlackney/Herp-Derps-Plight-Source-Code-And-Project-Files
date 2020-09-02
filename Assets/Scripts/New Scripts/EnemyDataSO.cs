@@ -13,10 +13,6 @@ public class EnemyDataSO : ScriptableObject
     [BoxGroup("General Info", centerLabel: true)]
     [LabelWidth(100)]
     public string enemyName;
-    [BoxGroup("General Info")]
-    [LabelWidth(100)]
-    [TextArea]
-    public string description;
 
     // Core Stats
     [BoxGroup("Core Stats", centerLabel: true)]
@@ -76,7 +72,7 @@ public class EnemyDataSO : ScriptableObject
     // Passive Traits
     [BoxGroup("Passive Data", centerLabel: true)]
     [LabelWidth(100)]
-    public PassiveManagerModel passiveManager;
+    public SerializedPassiveManagerModel serializedPassiveManager;
 
     // Actions and routines
     [BoxGroup("Actions + Combat AI", centerLabel: true)]

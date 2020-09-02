@@ -44,23 +44,6 @@ public class LevelManager : Singleton<LevelManager>
         ToggleLevelBackgroundView(true);
         */
     }   
-    private void PlaceTile(string tileType, int x, int y, Vector3 worldStart)
-    {
-        int tileIndex = int.Parse(tileType);
-
-        //Tile newTile = Instantiate(tilePrefabs[tileIndex]).GetComponent<Tile>();
-
-        //newTile.Setup(new Point(x, y), new Vector3(worldStart.x + (1 * x), worldStart.y - (1 * y), 0), tileParent);
-
-    }
-    private string[] ReadMapTextAssetData()
-    {
-        //TextAsset bindData = mapTextFiles[UnityEngine.Random.Range(0, mapTextFiles.Count)];
-        // Debug.Log("LevelManager.ReadMapTextAssetData() loading map: " + bindData.name);
-        // string data = bindData.text.Replace(Environment.NewLine, string.Empty);
-        //return data.Split('-');
-        return null;
-    }
     #endregion
 
     // Level Node Logic   
@@ -103,13 +86,10 @@ public class LevelManager : Singleton<LevelManager>
     {
         Debug.Log("LevelManager.PlaceEntityAtNode() called...");
 
-        if(node != null)
-        {
-            node.myEntity = entity;
-            node.occupied = true;
-            entity.levelNode = node;
-            entity.characterEntityView.transform.position = node.transform.position;
-        }      
+        node.myEntity = entity;
+        node.occupied = true;
+        entity.levelNode = node;
+        entity.characterEntityView.transform.position = node.transform.position;
     }
     public void DisconnectEntityFromNode(CharacterEntityModel entity)
     {
