@@ -4,22 +4,30 @@ using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;
+using UnityEngine.SceneManagement;
 
 namespace Tests
 {
     public class Character_Entity_Controller_Tests
     {
+        // Scene ref
+        private const string SCENE_NAME = "NewCombatSceneTest";
+
         // Mock data
         CharacterData characterData;
         List<CardDataSO> deckData;
         LevelNode node;
 
-        [OneTimeSetUp]
-        public void Setup()
+        [UnitySetUp]
+        public IEnumerator Setup()
         {
             // Create Game Scene
-            //gameScene = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Scenes/Game Scene.prefab"));
-            GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Scenes/Game Scene.prefab"));
+            //GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Scenes/Game Scene.prefab"));
+
+            // Load Scene, wait until completed
+            AsyncOperation loading = SceneManager.LoadSceneAsync(SCENE_NAME);
+            yield return new WaitUntil(() => loading.isDone);
+            GameObject.FindObjectOfType<CombatTestSceneController>().runMockScene = false;
 
             // Create mock character data
             characterData = new CharacterData

@@ -5222,6 +5222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
+  runMockScene: 1
   testingEnemyWave: {fileID: 11400000, guid: a925a91cb3c75e64cadf1f518e9a621e, type: 2}
   characterDataSample:
     myName: Test
