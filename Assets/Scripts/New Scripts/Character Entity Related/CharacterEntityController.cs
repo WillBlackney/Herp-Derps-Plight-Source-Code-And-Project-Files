@@ -971,13 +971,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
     }
 
-    #endregion
-
-
-
-
-
-   
+    #endregion   
 
     #endregion
 
@@ -1066,17 +1060,15 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
                 Debug.Log(enemyAction.actionName + " failed 'ActivatedXTimesOrMore' requirement");
                 checkResults.Add(false);
             }
-
-            /*
-             *  TO DO: unncomment and update when we fix passive system
+            
             // Check HasPassive
             if (ar.requirementType == ActionRequirementType.HasPassiveTrait &&
-                StatusController.Instance.IsEntityEffectedByStatus(enemy, ar.statusRequired, ar.statusStacksRequired) == false)
+                PassiveController.Instance.IsEntityAffectedByPassive(enemy.passiveManager, ar.passiveRequired.passiveName) == false)
             {
                 Debug.Log(enemyAction.actionName + " failed 'HasPassive' requirement");
                 checkResults.Add(false);
             }
-            */
+            
         }
 
         if (checkResults.Contains(false))
@@ -1097,6 +1089,26 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         List<EnemyAction> viableNextMoves = new List<EnemyAction>();
         EnemyAction actionReturned = null;
         bool foundForcedAction = false;
+
+        // if enemy only knows 1 action, just set that
+        if(enemy.enemyData.allEnemyActions.Count == 1)
+        {
+            actionReturned = enemy.enemyData.allEnemyActions[0];
+            Debug.Log("EnemyController.DetermineNextEnemyAction() returning " + actionReturned.actionName);
+            return actionReturned;
+        }
+
+        // Check if an action is forced on activation one
+        foreach(EnemyAction ea in enemy.enemyData.allEnemyActions)
+        {
+            if (ea.doThisOnFirstActivation &&
+                enemy.myPreviousActionLog.Count == 0)
+            {
+                actionReturned = ea;
+                Debug.Log("EnemyController.DetermineNextEnemyAction() returning " + actionReturned.actionName);
+                return actionReturned;
+            }
+        }
 
         // Determine which actions are viable
         foreach (EnemyAction enemyAction in enemy.enemyData.allEnemyActions)
@@ -1155,7 +1167,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         }
 
         // Randomly decide which next action to take
-        if (foundForcedAction == false)
+        if (actionReturned == null && foundForcedAction == false)
         {
             if(viableNextMoves.Count == 1)
             {
@@ -1267,6 +1279,8 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         }
 
         // Execute effect based on effect type
+
+        // Attack Target
         if (effect.actionType == ActionType.AttackTarget)
         {
             for (int i = 0; i < effect.attackLoops; i++)
@@ -1291,12 +1305,23 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             }
         }
 
-
+        // Defend self + Defend target
         else if (effect.actionType == ActionType.DefendSelf || effect.actionType == ActionType.DefendTarget)
         {
             ModifyBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy, target));
         }
 
+        // Defend All
+        else if (effect.actionType == ActionType.DefendAll)
+        {
+            foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(enemy))
+            {
+                ModifyBlock(ally, CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy, ally));
+            }
+
+        }
+
+        // Buff Self + Buff Target
         else if (effect.actionType == ActionType.BuffSelf ||
                  effect.actionType == ActionType.BuffTarget)
         {
@@ -1306,26 +1331,44 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
                 target = enemy;
             }
 
-            //StatusController.Instance.ApplyStatusToLivingEntity(target, effect.statusApplied, effect.statusStacks);
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(target.passiveManager, effect.passiveApplied.passiveName, effect.passiveStacks);
         }
-        else if (effect.actionType == ActionType.DebuffTarget)
+
+        // Buff All
+        else if (effect.actionType == ActionType.BuffAll)
         {
-            //StatusController.Instance.ApplyStatusToLivingEntity(target, effect.statusApplied, effect.statusStacks);
-        }
-        else if (effect.actionType == ActionType.DebuffAll)
-        {
-            foreach (Defender defender in DefenderManager.Instance.allDefenders)
+            foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(enemy))
             {
-                //StatusController.Instance.ApplyStatusToLivingEntity(defender, effect.statusApplied, effect.statusStacks);
+                PassiveController.Instance.ApplyPassiveToCharacterEntity(ally.passiveManager, effect.passiveApplied.passiveName, effect.passiveStacks);
             }
 
         }
+
+        // Debuff Target
+        else if (effect.actionType == ActionType.DebuffTarget)
+        {
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(target.passiveManager, effect.passiveApplied.passiveName, effect.passiveStacks);
+        }
+
+        // Debuff All
+        else if (effect.actionType == ActionType.DebuffAll)
+        {
+            foreach (CharacterEntityModel enemyy in GetAllEnemiesOfCharacter(enemy))
+            {
+                PassiveController.Instance.ApplyPassiveToCharacterEntity(enemyy.passiveManager, effect.passiveApplied.passiveName, effect.passiveStacks);
+            }
+
+        }
+
+        // Add Card
         else if (effect.actionType == ActionType.AddCard)
         {
             for (int i = 0; i < effect.copiesAdded; i++)
             {
                 if (effect.collection == CardCollection.DiscardPile)
                 {
+                    // TO DO: Make a new method in CardController for this and future similar effects, like CreateCardAndAddToDiscardPile
+
                     //Card card = CardController.Instance.BuildCardFromCardData(effect.cardAdded, enemy.currentActionTarget.defender);
                     //CardController.Instance.AddCardToDiscardPile(enemy.currentActionTarget.defender, card);
                 }
@@ -1437,6 +1480,56 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             cData.MarkAsCompleted();
         }
 
+    }
+    #endregion
+
+    // Determine a Character's Allies and Enemies Logic
+    #region
+    public bool IsTargetFriendly(CharacterEntityModel character, CharacterEntityModel target)
+    {
+        Debug.Log("CharacterEntityController.IsTargetFriendly() called, comparing " +
+            character.myName + " to " + target.myName);
+
+        return character.allegiance == target.allegiance;
+    }
+    public List<CharacterEntityModel> GetAllEnemiesOfCharacter(CharacterEntityModel character)
+    {
+        Debug.Log("CharacterEntityController.GetAllEnemiesOfCharacter() called...");
+
+        List<CharacterEntityModel> listReturned = new List<CharacterEntityModel>();
+
+        foreach(CharacterEntityModel entity in AllCharacters)
+        {
+            if(!IsTargetFriendly(character, entity))
+            {
+                listReturned.Add(entity);
+            }
+        }
+
+
+        return listReturned;
+    }
+    public List<CharacterEntityModel> GetAllAlliesOfCharacter(CharacterEntityModel character, bool includeSelfInSearch = true)
+    {
+        Debug.Log("CharacterEntityController.GetAllEnemiesOfCharacter() called...");
+
+        List<CharacterEntityModel> listReturned = new List<CharacterEntityModel>();
+
+        foreach (CharacterEntityModel entity in AllCharacters)
+        {
+            if (IsTargetFriendly(character, entity))
+            {
+                listReturned.Add(entity);
+            }
+        }
+
+        if(includeSelfInSearch == false &&
+            listReturned.Contains(character))
+        {
+            listReturned.Remove(character);
+        }
+
+        return listReturned;
     }
     #endregion
 

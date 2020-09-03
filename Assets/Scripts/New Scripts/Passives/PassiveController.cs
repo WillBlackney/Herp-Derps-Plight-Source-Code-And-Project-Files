@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PassiveController : Singleton<PassiveController>
 {
+    // Properties + Component References
+    #region
     [Header("Passive Library Properties")]
     public List<PassiveIconDataSO> allIcons;
+    #endregion
 
     // Library Logic
     #region
@@ -38,16 +41,9 @@ public class PassiveController : Singleton<PassiveController>
     {
         Debug.Log("PassiveController.BuildPassiveManagerFromOtherPassiveManager() called...");
 
-        /*
-        if(originalData == null || newClone == null)
-        {
-            return;
-        }
-        */
-
         // Core stat bonuses
         #region
-        if (originalData.bonusDexterityStacks != 0)
+        if (originalData.bonusPowerStacks != 0)
         {
             ModifyBonusPower(newClone, originalData.bonusPowerStacks, false);
         }
@@ -236,7 +232,124 @@ public class PassiveController : Singleton<PassiveController>
 
     }
     #endregion
-    
+
+    // Conditional Checks
+    #region
+    public bool IsEntityAffectedByPassive(PassiveManagerModel passiveManager, string passiveName, int stacksRequired = 1)
+    {
+        Debug.Log("PassiveController.IsEntityAffectedByPassive() called, checking for if entity has " + passiveName
+            + " with at least " + stacksRequired.ToString() + " stacks");
+
+        bool boolReturned = false;
+
+        // Core stat bonuses
+        #region
+        if (passiveName == "Power" && passiveManager.bonusPowerStacks >= stacksRequired)
+        {
+            boolReturned = true;
+        }
+        if (passiveName == "Dexterity" && passiveManager.bonusDexterityStacks >= stacksRequired)
+        {
+            boolReturned = true;
+        }
+        if (passiveName == "Draw" && passiveManager.bonusDrawStacks >= stacksRequired)
+        {
+            boolReturned = true;
+        }
+        if (passiveName == "Initiative" && passiveManager.bonusInitiativeStacks >= stacksRequired)
+        {
+            boolReturned = true;
+        }
+        if (passiveName == "Stamina" && passiveManager.bonusStaminaStacks >= stacksRequired)
+        {
+            boolReturned = true;
+        }
+        #endregion
+
+        // Temp Core stat bonuses
+        #region
+        if (passiveName == "Temporary Power" && passiveManager.temporaryBonusPowerStacks >= stacksRequired)
+        {
+            boolReturned = true;
+        }
+        if (passiveName == "Temporary Dexterity" && passiveManager.temporaryBonusDexterityStacks >= stacksRequired)
+        {
+            boolReturned = true;
+        }
+        if (passiveName == "Temporary Draw" && passiveManager.temporaryBonusDrawStacks >= stacksRequired)
+        {
+            boolReturned = true;
+        }
+        if (passiveName == "Temporary Initiative" && passiveManager.temporaryBonusInitiativeStacks >= stacksRequired)
+        {
+            boolReturned = true;
+        }
+        if (passiveName == "Temporary Stamina" && passiveManager.temporaryBonusStaminaStacks >= stacksRequired)
+        {
+            boolReturned = true;
+        }
+        #endregion
+
+        return boolReturned;
+    }
+    #endregion
+
+    // Apply Passive To Character Entities
+    #region
+    public void ApplyPassiveToCharacterEntity(PassiveManagerModel newClone, string originalData, int stacks, bool showVFX = true)
+    {
+        Debug.Log("PassiveController.ApplyPassiveToCharacterEntity() called...");
+
+        // Core stat bonuses
+        #region
+        if (originalData == "Power")
+        {
+            ModifyBonusPower(newClone, stacks, showVFX);
+        }
+        if (originalData == "Dexterity")
+        {
+            ModifyBonusDexterity(newClone, stacks, showVFX);
+        }
+        if (originalData == "Draw")
+        {
+            ModifyBonusDraw(newClone, stacks, showVFX);
+        }
+        if (originalData == "Initiative")
+        {
+            ModifyBonusInitiative(newClone, stacks, showVFX);
+        }
+        if (originalData == "Stamina")
+        {
+            ModifyBonusStamina(newClone, stacks, showVFX);
+        }
+        #endregion
+
+        // Temp Core stat bonuses
+        #region
+        if (originalData == "Temporary Power")
+        {
+            ModifyTemporaryPower(newClone, stacks, showVFX);
+        }
+        if (originalData == "Temporary Dexterity")
+        {
+            ModifyTemporaryDexterity(newClone, stacks, showVFX);
+        }
+        if (originalData == "Temporary Draw")
+        {
+            ModifyTemporaryDraw(newClone, stacks, showVFX);
+        }
+        if (originalData == "Temporary Initiative")
+        {
+            ModifyTemporaryInitiative(newClone, stacks, showVFX);
+        }
+        if (originalData == "Temporary Stamina")
+        {
+            ModifyTemporaryStamina(newClone, stacks, showVFX);
+        }
+        #endregion
+    }
+    #endregion
+
     // Modify Specific Passives
     #region
 

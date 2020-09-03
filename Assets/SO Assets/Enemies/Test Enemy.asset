@@ -26,35 +26,36 @@ MonoBehaviour:
   poisonResistance: 0
   airResistance: 0
   serializedPassiveManager:
-    bonusPowerStacks: 2
+    bonusPowerStacks: 0
     bonusDexterityStacks: 2
-    bonusStaminaStacks: 2
-    bonusInitiativeStacks: 2
-    bonusDrawStacks: 2
-    temporaryBonusPowerStacks: 2
+    bonusStaminaStacks: 0
+    bonusInitiativeStacks: 3
+    bonusDrawStacks: 0
+    temporaryBonusPowerStacks: 0
     temporaryBonusDexterityStacks: 2
-    temporaryBonusStaminaStacks: 2
-    temporaryBonusInitiativeStacks: 2
-    temporaryBonusDrawStacks: 2
+    temporaryBonusStaminaStacks: 0
+    temporaryBonusInitiativeStacks: 0
+    temporaryBonusDrawStacks: 0
   allEnemyActions:
-  - actionName: Strike
-    actionType: 0
-    intentImage: 0
+  - actionName: Howl
+    actionType: 9
+    intentImage: 8
     actionLoops: 1
+    doThisOnFirstActivation: 1
+    canBeConsecutive: 0
+    prioritiseWhenRequirementsMet: 0
+    actionRequirements: []
     actionEffects:
-    - actionType: 0
-      baseDamage: 7
-      damageType: 1
+    - actionType: 9
+      baseDamage: 0
+      damageType: 0
       attackLoops: 1
-      passiveApplied: {fileID: 0}
-      passiveStacks: 0
-      blockGained: 0
+      passiveApplied: {fileID: 11400000, guid: 6d216e783d4ba3a49a8dd267aa727fd3, type: 2}
+      passiveStacks: 2
+      blockGained: 5
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0
-    canBeConsecutive: 1
-    prioritiseWhenRequirementsMet: 0
-    actionRequirements: []
   allBodyParts:
   - Satyr_Head_1
   - Satyr_Face_1

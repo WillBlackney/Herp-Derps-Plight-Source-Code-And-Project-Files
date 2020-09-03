@@ -26,19 +26,27 @@ public class EnemyAction
     public int actionLoops = 1;
 
     [BoxGroup("General Action Data")]
+    [LabelWidth(200)]
+    public bool doThisOnFirstActivation;
+
+    [BoxGroup("General Action Data")]
+    [LabelWidth(200)]
+    public bool canBeConsecutive;
+
+    [BoxGroup("General Action Data")]
+    [LabelWidth(200)]
+    public bool prioritiseWhenRequirementsMet;
+
+    [BoxGroup("General Action Data")]
+    [LabelWidth(100)]
+    public List<ActionRequirement> actionRequirements;
+
+    [BoxGroup("General Action Data")]
     [LabelWidth(150)]
     public List<EnemyActionEffect> actionEffects;
 
 
-    [BoxGroup("Routine Data", centerLabel: true)]
-    [LabelWidth(200)]
-    public bool canBeConsecutive;
-    [BoxGroup("Routine Data")]
-    [LabelWidth(200)]
-    public bool prioritiseWhenRequirementsMet;
-    [BoxGroup("Routine Data")]
-    [LabelWidth(100)] 
-    public List<ActionRequirement> actionRequirements;
+  
 
 }
 public enum ActionType

@@ -14,9 +14,6 @@ namespace Tests
         List<CardDataSO> deckData;
         LevelNode node;
 
-        // Scenes
-       // GameObject gameScene;
-
         [OneTimeSetUp]
         public void Setup()
         {
