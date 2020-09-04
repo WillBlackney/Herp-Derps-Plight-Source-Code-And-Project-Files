@@ -403,6 +403,16 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         characterFinalBlockValue = character.block;
         VisualEventManager.Instance.CreateVisualEvent(() => UpdateBlockGUI(character, characterFinalBlockValue), QueuePosition.Back, 0, 0);
     }
+    public void SetBlock(CharacterEntityModel character, int newBlockValue)
+    {
+        Debug.Log("CharacterEntityController.SetBlock() called for " + character.myName);
+
+        // Apply block gain
+        character.block = newBlockValue;
+
+        // Update GUI
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateBlockGUI(character, newBlockValue), QueuePosition.Back, 0, 0);
+    }
     public void ModifyBlockOnActivationStart(CharacterEntityModel character)
     {
         Debug.Log("CharacterEntityController.ModifyBlockOnActivationStart() called for " + character.myName);

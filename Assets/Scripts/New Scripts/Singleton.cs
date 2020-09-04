@@ -39,6 +39,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
     // It unwise to make the normal Awake() function public, so
     // the awake function is wrapped in the public RunAwake()
     // function instead.
+    /*
     public void RunAwake()
     {
         if (!Instance)
@@ -46,6 +47,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
             Awake();
         }
     }
+    */
     #endregion
 
 

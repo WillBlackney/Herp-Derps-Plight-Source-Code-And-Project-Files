@@ -30,7 +30,7 @@ public class CardPreviewViewModel : MonoBehaviour
     private void SetUpPreviewCanvas()
     {
         canvas.overrideSorting = true;
-        canvas.sortingOrder = 20;
+        canvas.sortingOrder = 1000;
     }
     public void SetCardTypeImage(CardType cardType)
     {

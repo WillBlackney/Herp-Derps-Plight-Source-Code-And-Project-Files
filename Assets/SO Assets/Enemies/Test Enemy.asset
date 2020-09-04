@@ -38,17 +38,17 @@ MonoBehaviour:
     temporaryBonusDrawStacks: 0
   allEnemyActions:
   - actionName: Howl
-    actionType: 9
-    intentImage: 8
+    actionType: 0
+    intentImage: 0
     actionLoops: 1
     doThisOnFirstActivation: 1
     canBeConsecutive: 0
     prioritiseWhenRequirementsMet: 0
     actionRequirements: []
     actionEffects:
-    - actionType: 9
-      baseDamage: 0
-      damageType: 0
+    - actionType: 0
+      baseDamage: 5
+      damageType: 1
       attackLoops: 1
       passiveApplied: {fileID: 11400000, guid: 6d216e783d4ba3a49a8dd267aa727fd3, type: 2}
       passiveStacks: 2

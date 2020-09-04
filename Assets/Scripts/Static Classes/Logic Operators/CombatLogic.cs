@@ -1812,7 +1812,7 @@ public class CombatLogic : MonoBehaviour
         }
         if (victim != null)
         {
-            attackerName = attacker.myName;
+            victimName = victim.myName;
         }
         if (card != null)
         {
@@ -1925,10 +1925,11 @@ public class CombatLogic : MonoBehaviour
         totalLifeLost = victim.health - healthAfter;
 
         //victim.ModifyCurrentHealth(-totalLifeLost);
-        CharacterEntityController.Instance.ModifyHealth(victim, -totalLifeLost);        
+        CharacterEntityController.Instance.ModifyHealth(victim, -totalLifeLost);
 
         //victim.SetCurrentBlock(blockAfter);
-        CharacterEntityController.Instance.ModifyBlock(victim, blockAfter - startingBlock);
+        //CharacterEntityController.Instance.ModifyBlock(victim, blockAfter - startingBlock);
+        CharacterEntityController.Instance.SetBlock(victim, blockAfter);
 
         // Play VFX depending on whether the victim lost health, block, or was damaged by poison
         if (adjustedDamageValue > 0)
