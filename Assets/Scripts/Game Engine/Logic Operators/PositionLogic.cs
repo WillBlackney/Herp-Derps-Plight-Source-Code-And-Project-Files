@@ -15,7 +15,7 @@ public class PositionLogic : Singleton<PositionLogic>
         {
             if (character.ucmVisualParent != null)
             {
-                character.ucmVisualParent.transform.localScale = new Vector2(scale, Mathf.Abs(scale));
+                character.ucmVisualParent.transform.localScale = new Vector3(scale, Mathf.Abs(scale));
             }
         }
 
@@ -23,7 +23,7 @@ public class PositionLogic : Singleton<PositionLogic>
         {
             if (character.ucmVisualParent != null)
             {
-                character.ucmVisualParent.transform.localScale = new Vector2(-scale, Mathf.Abs(scale));
+                character.ucmVisualParent.transform.localScale = new Vector3(-scale, Mathf.Abs(scale));
             }
         }
 

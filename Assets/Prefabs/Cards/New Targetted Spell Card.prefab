@@ -341,7 +341,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardVM: {fileID: 7179389246990061675}
   locationTracker: {fileID: 114000010313624196}
-  Targets: 4
   sr: {fileID: 212000012547724256}
   lr: {fileID: 120000010456547104}
   triangleSR: {fileID: 212000011675347170}
@@ -571,7 +570,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000013289343952}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 367f6e58f02386c43ab347e3e77fa660, type: 3}
+  m_Script: {fileID: 11500000, guid: 94246c2dacefd7d45a338da25a89a451, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hoverPreview: {fileID: 114000010761936366}

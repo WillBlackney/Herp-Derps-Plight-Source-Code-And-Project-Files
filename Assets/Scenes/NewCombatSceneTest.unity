@@ -878,24 +878,6 @@ RectTransform:
   m_AnchoredPosition: {x: -400, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!224 &163262762 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 2374563341998060019, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-    type: 3}
-  m_PrefabInstance: {fileID: 7064477373381582246}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &163262763 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7038060462053945645, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-    type: 3}
-  m_PrefabInstance: {fileID: 7064477373381582246}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c4292767ad0d2b448b12e116e60464f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &182950881
 GameObject:
   m_ObjectHideFlags: 0
@@ -1150,49 +1132,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 221178666}
   m_CullTransparentMesh: 0
---- !u!1 &248687737
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 248687738}
-  - component: {fileID: 248687739}
-  m_Layer: 0
-  m_Name: Action Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &248687738
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 248687737}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1900245523}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &248687739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 248687737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5973f88ec3af5948a6d1190a1b0fc44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &261815049
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1474,50 +1413,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &320106379
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 320106380}
-  - component: {fileID: 320106381}
-  m_Layer: 0
-  m_Name: Movement Logic
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &320106380
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 320106379}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1101320955}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &320106381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 320106379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f19920b92e49a9c41aff71da782002b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementPaused: 0
 --- !u!1 &330527994
 GameObject:
   m_ObjectHideFlags: 0
@@ -1585,7 +1480,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1578110374}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &362006295
 MonoBehaviour:
@@ -2009,7 +1904,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1900245523}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &511150911
 MonoBehaviour:
@@ -2262,6 +2157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c72ab7d3845f51140802bb51ec0b3500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
   runTestWaveOnly: 0
   testingWave: {fileID: 0}
   basicEnemyWavesActOneHalfOne: []
@@ -2272,7 +2168,6 @@ MonoBehaviour:
   viableBasicEnemyActOneHalfOneWaves: []
   viableBasicEnemyActOneHalfTwoWaves: []
   viableEliteEnemyWaves: []
-  spawnLocations: []
 --- !u!224 &579157543 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5362775448527839862, guid: fec7e7e8fb55ba0408432683132d1e04,
@@ -2523,8 +2418,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbff6f725bde124f960130db0c44be0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotImageParent: {fileID: 1873925926}
-  occupied: 0
 --- !u!1 &604574434
 GameObject:
   m_ObjectHideFlags: 0
@@ -2907,8 +2800,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbff6f725bde124f960130db0c44be0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotImageParent: {fileID: 557062746}
-  occupied: 0
 --- !u!1001 &639682970
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3150,7 +3041,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 730601869}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1239803664}
@@ -3265,6 +3156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100765a2657bd7f4fad8df11a72f7d5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
 --- !u!1 &738284678
 GameObject:
   m_ObjectHideFlags: 0
@@ -4024,7 +3916,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1900245523}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &843155315
 MonoBehaviour:
@@ -4038,6 +3930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5312a52d6a3e0f4d87aef8cfeb7c7ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
   GameOverScreenParent: {fileID: 0}
   GameOverScreenCanvasParent: {fileID: 0}
   GameOverScreenTitleText: {fileID: 0}
@@ -4616,7 +4509,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1900245523}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1047764147
 MonoBehaviour:
@@ -4886,50 +4779,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81ed1f9820cf36a4d8746ad7e2932117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1076260567
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1076260568}
-  - component: {fileID: 1076260569}
-  m_Layer: 0
-  m_Name: Passive Info Sheet Controller
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1076260568
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1076260567}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1578110374}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1076260569
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1076260567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 029a8bc1b5a85964b9cf7543b977bdf5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseFadeInSpeed: 10
 --- !u!1 &1080712267
 GameObject:
   m_ObjectHideFlags: 0
@@ -5069,7 +4918,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 733331645}
-  - {fileID: 320106380}
   m_Father: {fileID: 937172827}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5317,7 +5165,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239803663}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 100}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.009269999, y: 0.009269999, z: 0.009269999}
   m_Children:
   - {fileID: 980743807}
@@ -5479,8 +5327,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afbff6f725bde124f960130db0c44be0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotImageParent: {fileID: 2077753275}
-  occupied: 0
 --- !u!1 &1291112704
 GameObject:
   m_ObjectHideFlags: 0
@@ -5762,66 +5608,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41c9a5a4b87c0dc468e6b984df45f19c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allItems:
-  - {fileID: 11400000, guid: e06a43ce06359de49b8ab83811816ae9, type: 2}
-  - {fileID: 11400000, guid: 26d53275e021adb45800753a290e2a6f, type: 2}
-  - {fileID: 11400000, guid: 3fbea5f54b8be454693b9a0069099fbd, type: 2}
-  - {fileID: 11400000, guid: c121c30aa5cf9aa4684d111924655f64, type: 2}
-  - {fileID: 11400000, guid: 165b0b2ad2c017444886d06884a3457c, type: 2}
-  - {fileID: 11400000, guid: b94c89841beb6d74c80f5035024adf10, type: 2}
-  - {fileID: 11400000, guid: ddb8014d73445064aa9c9a0b98e138af, type: 2}
-  - {fileID: 11400000, guid: 999d3278dfbeaa44091f0f2e11beb273, type: 2}
-  - {fileID: 11400000, guid: 51d70963b43205f40afb5784d3c0ecd6, type: 2}
-  - {fileID: 11400000, guid: 3002ff2fa1165d8499a1d620bb2cec5c, type: 2}
-  - {fileID: 11400000, guid: 250924fae8aef8b48b602cf22e25ef54, type: 2}
-  - {fileID: 11400000, guid: 274beec3ad9880d47ac85fc5172226ad, type: 2}
-  - {fileID: 11400000, guid: 422b1f5570b0b984ba748d81cc28ac25, type: 2}
-  - {fileID: 11400000, guid: f779bdddeb8954a4e92b7d36cd7e1656, type: 2}
-  - {fileID: 11400000, guid: cba9ea99720551e4287d0d1ce7a53ad8, type: 2}
-  - {fileID: 11400000, guid: a8980f14405484041addf812505ed864, type: 2}
-  - {fileID: 11400000, guid: 23c5bd333bdf3f24b9e62b2498bf379c, type: 2}
-  - {fileID: 11400000, guid: 2a8c5d613d56ed9478ab3d348e31305b, type: 2}
-  - {fileID: 11400000, guid: f3a19f516f8aff0478448fcb23613360, type: 2}
-  - {fileID: 11400000, guid: dabe85cff22e3584f852826e6bfa7fba, type: 2}
-  - {fileID: 11400000, guid: 8a2ac3b39929247449f676e4da2182a5, type: 2}
-  - {fileID: 11400000, guid: f3d612426b32ecc44b51ffa9ea947144, type: 2}
-  - {fileID: 11400000, guid: fdce79e02459a884e897349c33d237dd, type: 2}
-  - {fileID: 11400000, guid: 7b5756f50b0f165488bd9d3ddfe721ef, type: 2}
-  - {fileID: 11400000, guid: 9aec7f245ce802242860fb536132d10c, type: 2}
-  - {fileID: 11400000, guid: 48b05591d602e33478111341578e78a4, type: 2}
-  - {fileID: 11400000, guid: a7130740956325c4eabd124ece5352af, type: 2}
-  - {fileID: 11400000, guid: 72f15555e62e92e4594386979b905976, type: 2}
-  - {fileID: 11400000, guid: fca0a776a2fe402409480478c6866419, type: 2}
-  - {fileID: 11400000, guid: 8050dcb4bd4904940b89a797276bbe1e, type: 2}
-  - {fileID: 11400000, guid: e5fd2e7169748644b87cd496f3a26ceb, type: 2}
-  - {fileID: 11400000, guid: e0f2ae003e40d9343ba0c5d214c9cfda, type: 2}
-  - {fileID: 11400000, guid: fc27fc5ce502c334880b4b1ad365f3f5, type: 2}
-  - {fileID: 11400000, guid: 35f2fbd3b5c21ed49bdd6c4116a4800b, type: 2}
-  - {fileID: 11400000, guid: 8214d9fefaf822b478d6029a92112fcd, type: 2}
-  - {fileID: 11400000, guid: 7871a9330b5d4584089ac0e44044b98f, type: 2}
-  - {fileID: 11400000, guid: a9321ad4d22fd57429dcd3b419fffb38, type: 2}
-  - {fileID: 11400000, guid: a9b63f091a506604ab90d93fe27e416d, type: 2}
-  - {fileID: 11400000, guid: a67d63d54dfd1c84581c5d392f5ccac0, type: 2}
-  - {fileID: 11400000, guid: 4949b46bccaf73b459057d8e530d655a, type: 2}
-  - {fileID: 11400000, guid: 75fb4bdeb7457994888328207ae3ef60, type: 2}
-  - {fileID: 11400000, guid: 1c34e815a0665d84ab50f4e0fc5a126b, type: 2}
-  - {fileID: 11400000, guid: 8e853370ec823c343be7be97c181c41b, type: 2}
-  - {fileID: 11400000, guid: ba09fc32222d88649be75a770c293862, type: 2}
-  - {fileID: 11400000, guid: 61b56cfa6bce1a648a483a1c8a5d8e82, type: 2}
-  - {fileID: 11400000, guid: 4bbbdc631ccc8c04ebef2d9c4c9836ab, type: 2}
-  - {fileID: 11400000, guid: 3ec8f51bf49af3c45ba883ff8b711b7a, type: 2}
-  - {fileID: 11400000, guid: 24a7d73a2db0ff44bb29ac1f4fc06ebd, type: 2}
-  - {fileID: 11400000, guid: 0b1f41053fe144e4fb378cad54327a91, type: 2}
-  - {fileID: 11400000, guid: d224d2e6da23e5f41b95d8651c8cf681, type: 2}
-  - {fileID: 11400000, guid: b63a473a1b49e7c4b9e33489722c5537, type: 2}
-  - {fileID: 11400000, guid: fc70953d6f2c5cc47a51379bc00bc4b3, type: 2}
-  - {fileID: 11400000, guid: fb81b3fde89669b4e8b4dcabd8081f84, type: 2}
-  - {fileID: 11400000, guid: fbda55ff5630810419d88983efd4dfd5, type: 2}
-  - {fileID: 11400000, guid: 7bbfb36b17ff3e8479326d008f730cae, type: 2}
-  - {fileID: 11400000, guid: 5f0cc2541d77ade4b95009b0982217a2, type: 2}
-  - {fileID: 11400000, guid: d3289ccabc728784a922fcf7f91a67a1, type: 2}
-  - {fileID: 11400000, guid: a69235a5c8889bc438b91679de7f40c7, type: 2}
-  - {fileID: 11400000, guid: b70c322c41c50664aa2fe848a30ac0eb, type: 2}
 --- !u!1 &1338277533
 GameObject:
   m_ObjectHideFlags: 0
@@ -6482,50 +6268,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1481352050}
   m_CullTransparentMesh: 0
---- !u!1 &1517012606
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1517012607}
-  - component: {fileID: 1517012608}
-  m_Layer: 0
-  m_Name: Ability Info Sheet Controller
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1517012607
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1517012606}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1578110374}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1517012608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1517012606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6609a26ccb2248479e6afaf60eea4cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseFadeInSpeed: 10
 --- !u!1 &1518141181
 GameObject:
   m_ObjectHideFlags: 0
@@ -7107,8 +6849,6 @@ Transform:
   - {fileID: 555152579}
   - {fileID: 196763682}
   - {fileID: 1291112705}
-  - {fileID: 1517012607}
-  - {fileID: 1076260568}
   - {fileID: 362006294}
   m_Father: {fileID: 937172827}
   m_RootOrder: 2
@@ -7934,133 +7674,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ddadc1799e77fd488972473dd70deb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AllAbilities:
-  - {fileID: 11400000, guid: b06985c01e7118e40b4735438b75c185, type: 2}
-  - {fileID: 11400000, guid: ac69b8bb6d522884ba3bd89ef04843de, type: 2}
-  - {fileID: 11400000, guid: 7e3aab2fe9f36864693aae37ca2889b7, type: 2}
-  - {fileID: 11400000, guid: cb06ab018ad61e544a2025cdf712cd59, type: 2}
-  - {fileID: 11400000, guid: 2a24b53b8aaf00945b7d9fb1d13eadfd, type: 2}
-  - {fileID: 11400000, guid: 4fdea6904cde29846861dbc9ecde3f4f, type: 2}
-  - {fileID: 11400000, guid: c5798ac0a7bb7624d913b10a1195b697, type: 2}
-  - {fileID: 11400000, guid: 6f0e14b64dabcba4da397d41b70a23e7, type: 2}
-  - {fileID: 11400000, guid: be6c10dfff4a7ec44af8639b702c7559, type: 2}
-  - {fileID: 11400000, guid: 6f10bd4e0b8359647a587b642ce0735d, type: 2}
-  - {fileID: 11400000, guid: ec8ae0ed2e75c734a99d9af25b6cd414, type: 2}
-  - {fileID: 11400000, guid: fa35654877d105248b31af298a760a15, type: 2}
-  - {fileID: 11400000, guid: b715c2c29a67dae4abaaf41d29600b1f, type: 2}
-  - {fileID: 11400000, guid: 5bc7b9fb3ee48294f99f394d4c5be5f7, type: 2}
-  - {fileID: 11400000, guid: 70f99ef3a83e0294db087ac98d213480, type: 2}
-  - {fileID: 11400000, guid: da3cd984f2293df4c8c53db2ac6e35c2, type: 2}
-  - {fileID: 11400000, guid: c0397a0f0e8e65645bd1ed7d08ff2bbb, type: 2}
-  - {fileID: 11400000, guid: 04af34d30c283c04f8825cfd4ddf8350, type: 2}
-  - {fileID: 11400000, guid: c384ffc61656afb4daa70a21c7193bcd, type: 2}
-  - {fileID: 11400000, guid: 92b4be79c382be240bd99d9e2a15b1ac, type: 2}
-  - {fileID: 11400000, guid: 05d2decc914504247a122c4c100b0430, type: 2}
-  - {fileID: 11400000, guid: 0896d149d1fe9ea4f8e3c375423fc251, type: 2}
-  - {fileID: 11400000, guid: 27f817bff7d7b6c4487a267dac2cfce2, type: 2}
-  - {fileID: 11400000, guid: 918209a7a950e2c4395448c9025fce6b, type: 2}
-  - {fileID: 11400000, guid: 0f7f522983f268d428bec54817cda3bc, type: 2}
-  - {fileID: 11400000, guid: 2209cb6e392de1e47978fb20430f36e8, type: 2}
-  - {fileID: 11400000, guid: 4ce29ecd3a864b34bb7491d25bb9b6dc, type: 2}
-  - {fileID: 11400000, guid: 50601001b2e49924c92c076dd45c067d, type: 2}
-  - {fileID: 11400000, guid: f7e55e8ce9d869545951fc632d0a5b19, type: 2}
-  - {fileID: 11400000, guid: eb5c7c82fd8c09e409cadc97f2f71196, type: 2}
-  - {fileID: 11400000, guid: f81139a407f80b0489ba412fe3f8ee5e, type: 2}
-  - {fileID: 11400000, guid: 1107ba36f67c2b14e9189c53aec2eee5, type: 2}
-  - {fileID: 11400000, guid: a80f695b433645c47a01bfa2eb21944e, type: 2}
-  - {fileID: 11400000, guid: e46e11fb252fac547ac01d0625762a7b, type: 2}
-  - {fileID: 11400000, guid: 4b4b58c73794c554a8806f295ac9602d, type: 2}
-  - {fileID: 11400000, guid: 86be76341d090be4ab1d7e25b926fa32, type: 2}
-  - {fileID: 11400000, guid: 22aa7b4a4e2a7f24ab5dd11017323406, type: 2}
-  - {fileID: 11400000, guid: 9d64bda5526e17b4fb983ca6eac00e58, type: 2}
-  - {fileID: 11400000, guid: 363e6eed6f30a6e46a006452c2e6e419, type: 2}
-  - {fileID: 11400000, guid: 854f5091455cc1e4abb18d27a8b39409, type: 2}
-  - {fileID: 11400000, guid: ca801c5c0dc252c4cad71bad04c34719, type: 2}
-  - {fileID: 11400000, guid: a38bcb25fe1a53449800b85ed11c5aaf, type: 2}
-  - {fileID: 11400000, guid: 4653922087fa8a947864e65a5f24192f, type: 2}
-  - {fileID: 11400000, guid: 37caa485c10fad54d8783fd7d005dcd2, type: 2}
-  - {fileID: 11400000, guid: 67bf4e76da0a3544ba77335cc42a4871, type: 2}
-  - {fileID: 11400000, guid: 6b3c2b82d830bb046bf17274694c7d52, type: 2}
-  - {fileID: 11400000, guid: 28b55be2849f3b946b143a19804b50f5, type: 2}
-  - {fileID: 11400000, guid: dce273f8763fad540aff65ba03de19d4, type: 2}
-  - {fileID: 11400000, guid: 08cf75b948655934cb5a0f6e28be2018, type: 2}
-  - {fileID: 11400000, guid: 4776b70615d8a9f4fb665ca002d7f070, type: 2}
-  - {fileID: 11400000, guid: e747bcf9ad1094943a54ab31fa6298a4, type: 2}
-  - {fileID: 11400000, guid: 9c9722691f051dd43ab9635664a37d70, type: 2}
-  - {fileID: 11400000, guid: fc5035d782f259b4e87b4cbda070a27f, type: 2}
-  - {fileID: 11400000, guid: 27bd8c43108d9b14c9989e718315b977, type: 2}
-  - {fileID: 11400000, guid: a488653156eaf7845988f0d5f22c65b3, type: 2}
-  - {fileID: 11400000, guid: 82ddcd64ddf3ca140999726a9c18ff2b, type: 2}
-  - {fileID: 11400000, guid: a2d40e17ceb95c34cb6091de850a5ecd, type: 2}
-  - {fileID: 11400000, guid: b68a7958397713545bfbd3b30b40e506, type: 2}
-  - {fileID: 11400000, guid: 24027bd60313d354a9b52f237fe2d607, type: 2}
-  - {fileID: 11400000, guid: f4cf2553025a2f047a281909997eff45, type: 2}
-  - {fileID: 11400000, guid: 6ec98f36f9ab6484ebc9830b3be7e9ba, type: 2}
-  - {fileID: 11400000, guid: 6f4240cfc00467744beddaf6481cca72, type: 2}
-  - {fileID: 11400000, guid: dff82b79796188a42beb0390a2555b48, type: 2}
-  - {fileID: 11400000, guid: e3e3455aba12b8a4db849babffae0e09, type: 2}
-  - {fileID: 11400000, guid: 8d11a9e83fdb1f84a9a5cf5980533cda, type: 2}
-  - {fileID: 11400000, guid: 016cc719669de214296db3518257f1fa, type: 2}
-  - {fileID: 11400000, guid: a4b751fa40872e84a9324c5d430aec47, type: 2}
-  - {fileID: 11400000, guid: 68f65faa6cfba4c4d8a7347c5c8ff603, type: 2}
-  - {fileID: 11400000, guid: d3a0c3b42566dfc468de9f95c7e8fb63, type: 2}
-  - {fileID: 11400000, guid: c44051ea1c7d7fc4ca2155da8dd0c79a, type: 2}
-  - {fileID: 11400000, guid: fe60ccc61517d7045bb6a164d77e2a80, type: 2}
-  - {fileID: 11400000, guid: 52f88b138589682409ba5baca9a71fc8, type: 2}
-  - {fileID: 11400000, guid: 22412d7772435e04ba7c7f95d2b4ba2f, type: 2}
-  - {fileID: 11400000, guid: c46ee1acccca6b049bcdb06ecbf46477, type: 2}
-  - {fileID: 11400000, guid: 586d555ebab2ba040b8607f8fa1d66ba, type: 2}
-  - {fileID: 11400000, guid: d52180f781bcf9949a669b228d22bb87, type: 2}
-  - {fileID: 11400000, guid: a9cb516b9f4debe4689a282f532a1e50, type: 2}
-  - {fileID: 11400000, guid: a9bc30fddae802a4a91114ffc646dd3a, type: 2}
-  - {fileID: 11400000, guid: b0599a3a03899ec49a51c7fc9e761af0, type: 2}
-  - {fileID: 11400000, guid: 950c30f7958cbf94c9455d331cf0615b, type: 2}
-  - {fileID: 11400000, guid: 49d1952bfdfc6e445b4f060b7bbff4aa, type: 2}
-  - {fileID: 11400000, guid: 71e8111d11be9d8449ba61ce0a146753, type: 2}
-  - {fileID: 11400000, guid: 6265fddad74121d46891b4cb0fd280ae, type: 2}
-  - {fileID: 11400000, guid: 1da5f9d3e56fad84ca4373c7123087e0, type: 2}
-  - {fileID: 11400000, guid: 026123f81fa5c0646bf652032d490fc5, type: 2}
-  - {fileID: 11400000, guid: bf14e8d91df0e9542b39d37bd367ca64, type: 2}
-  - {fileID: 11400000, guid: c906105935d3e0441bd88185e6dd4cd1, type: 2}
-  - {fileID: 11400000, guid: 77f4516d7dafe0e4592dc4d2fd80ae4b, type: 2}
-  - {fileID: 11400000, guid: 7818cf6e0589f134c8d08a97296a6fb2, type: 2}
-  - {fileID: 11400000, guid: 7f239a51dfadd9b498e3a31a74d0e91c, type: 2}
-  - {fileID: 11400000, guid: 8a8dfca74347186419a67c406a013174, type: 2}
-  - {fileID: 11400000, guid: 11b1363192c5918459161ae861c40bae, type: 2}
-  - {fileID: 11400000, guid: 85e7ab9374946834fa8536877dfcfedf, type: 2}
-  - {fileID: 11400000, guid: b0ab23ab1ca214845aa74279ebd1eeec, type: 2}
-  - {fileID: 11400000, guid: ee94c93d350fd9346b72a5825ce44443, type: 2}
-  - {fileID: 11400000, guid: 1a9374da23afec64796611ae5f02eee0, type: 2}
-  - {fileID: 11400000, guid: ada079c0bd257eb4eae256086c44cff8, type: 2}
-  - {fileID: 11400000, guid: 7ad431966e7f9d3429904eae737c837f, type: 2}
-  - {fileID: 11400000, guid: b9b72eb0e17dcb040b345d0e60afd207, type: 2}
-  - {fileID: 11400000, guid: 5d09d5ee31eb31147926ec6bbcb93cba, type: 2}
-  - {fileID: 11400000, guid: 42f1b8faec5c37346b58d05155377134, type: 2}
-  - {fileID: 11400000, guid: a090e3e9453ed4a4cb7b1811c3ffa478, type: 2}
-  - {fileID: 11400000, guid: bdcacb6c184802f46ba80c64f8eedfdc, type: 2}
-  - {fileID: 11400000, guid: ac08a8d0aeb881f4882ad964b08b3f6e, type: 2}
-  - {fileID: 11400000, guid: 5a1b4eaf3447b0f42864dd74e75c0644, type: 2}
-  - {fileID: 11400000, guid: 299c2939d6c456a49afccb56d3e3ea37, type: 2}
-  - {fileID: 11400000, guid: 3f3f087906ab8ef448488d1790c5e3fb, type: 2}
-  - {fileID: 11400000, guid: f17c7eaabe36035439f00f06ad8b6560, type: 2}
-  - {fileID: 11400000, guid: 00b671a1a15f7e54fb16e4c2eb2bf345, type: 2}
-  - {fileID: 11400000, guid: 40eacf621c68af6468861db52d89a6f0, type: 2}
-  - {fileID: 11400000, guid: 6f3b858bdffc6414eb41522634a4b030, type: 2}
-  - {fileID: 11400000, guid: 3997537f5dddf734cbacbeecf715ddf7, type: 2}
-  - {fileID: 11400000, guid: 59dbe5402b5a1734fa277a8548efa26f, type: 2}
-  - {fileID: 11400000, guid: 709ab5b59fa367348868e5710afd0120, type: 2}
-  - {fileID: 11400000, guid: d1f1c58f6fcf4194085e5a5233a8523a, type: 2}
-  - {fileID: 11400000, guid: a68a6c3b4866e234e82a3770e9ed17bd, type: 2}
-  - {fileID: 11400000, guid: b0ef108b3a4cae449aaf99e8149049a2, type: 2}
-  - {fileID: 11400000, guid: 3642729d526ee774e9f92caa1c66c881, type: 2}
-  - {fileID: 11400000, guid: f27b60959693c564eb15c5c9b9f4daa1, type: 2}
-  - {fileID: 11400000, guid: 853c24bb8335bfd4783319f326a393a1, type: 2}
-  - {fileID: 11400000, guid: 5e19fa078efcd0047a58d656c62283bb, type: 2}
-  - {fileID: 11400000, guid: 1a9493afd312dfc4ca81735be634b006, type: 2}
-  - {fileID: 11400000, guid: 9d95f978c509beb4faa3c83e25ab30dd, type: 2}
-  - {fileID: 11400000, guid: 951a36c68c5b3a549946bc50c548be45, type: 2}
-  - {fileID: 11400000, guid: 9d9f79652d9bd5047ae5460f0a04b149, type: 2}
-  - {fileID: 11400000, guid: f5ed85b331cfd4a49bf05dae4b12931a, type: 2}
 --- !u!224 &1789416151 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 772585995054526201, guid: a93c7bdae2e79e549b82e57b6abca21c,
@@ -8669,7 +8282,6 @@ Transform:
   - {fileID: 3022341167357195500}
   - {fileID: 750106665}
   - {fileID: 1308960259}
-  - {fileID: 248687738}
   - {fileID: 843155314}
   - {fileID: 1047764146}
   - {fileID: 511150910}
@@ -10052,7 +9664,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &24369759231212101
 Transform:
@@ -10199,7 +9810,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &43187597216147335
 Transform:
@@ -10483,7 +10093,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e9dda14b6f34517a0d598d3320a902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myEntity: {fileID: 0}
   sortingOrder: 4
   visibleOutsideMask: 1
   applySpriterZOrder: 0
@@ -10551,8 +10160,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: f3a19f516f8aff0478448fcb23613360, type: 2}
   connectedElements: []
 --- !u!4 &149882948960873211
 Transform:
@@ -10747,7 +10354,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &178604999064069584
 Transform:
@@ -10813,7 +10419,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &187422525214798531
 SpriteRenderer:
@@ -11246,7 +10851,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &226295589395907049
 SpriteRenderer:
@@ -11362,7 +10966,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &232298931898192487
 GameObject:
@@ -11464,7 +11067,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &247927157828031463
 MonoBehaviour:
@@ -11480,7 +11082,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &257606451585277497
 Transform:
@@ -11900,8 +11501,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 4949b46bccaf73b459057d8e530d655a, type: 2}
   connectedElements: []
 --- !u!114 &323006183588448539
 MonoBehaviour:
@@ -11917,8 +11516,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView:
-  - {fileID: 11400000, guid: d224d2e6da23e5f41b95d8651c8cf681, type: 2}
   connectedElements:
   - {fileID: 7537503933882888098}
 --- !u!114 &337862062724065994
@@ -11935,7 +11532,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 17
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &338969746408806356
 MonoBehaviour:
@@ -11951,7 +11547,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &343112430887337325
 MonoBehaviour:
@@ -11967,7 +11562,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &350777195518483933
 MonoBehaviour:
@@ -11983,7 +11577,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &352427781075736049
 MonoBehaviour:
@@ -11999,7 +11592,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 5576480712829511159}
   - {fileID: 2176311784198086223}
@@ -12066,7 +11658,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 3796414447282461101}
   - {fileID: 5391950622397779183}
@@ -12233,7 +11824,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!331 &385625781024778108
 SpriteMask:
@@ -12326,7 +11916,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &400960377992084961
 GameObject:
@@ -12359,7 +11948,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &409192548728821653
 Transform:
@@ -12403,7 +11991,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &413548567382047136
 GameObject:
@@ -12469,7 +12056,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &448049238661319915
 GameObject:
@@ -12515,7 +12101,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &453558417236828808
 Transform:
@@ -12545,7 +12130,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 17
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &464699067443388939
 SpriteRenderer:
@@ -12647,7 +12231,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &475875146393295841
 Transform:
@@ -12827,7 +12410,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 4497047905697577406}
 --- !u!212 &518893832839545418
@@ -12991,8 +12573,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 5f0cc2541d77ade4b95009b0982217a2, type: 2}
   connectedElements:
   - {fileID: 8321473940373054592}
   - {fileID: 2971544743977010538}
@@ -13010,7 +12590,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &560817558813490639
 GameObject:
@@ -13130,7 +12709,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 3036968795018691850}
   - {fileID: 183252349260543053}
@@ -13198,8 +12776,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView:
-  - {fileID: 11400000, guid: ddb8014d73445064aa9c9a0b98e138af, type: 2}
   connectedElements:
   - {fileID: 8358900937602300602}
   - {fileID: 7855052246179020958}
@@ -13219,7 +12795,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &587502372274660961
 Transform:
@@ -13316,7 +12891,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!331 &604918880045444334
 SpriteMask:
@@ -13381,7 +12955,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 4804330042070477281}
 --- !u!114 &610434786750837991
@@ -13398,7 +12971,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &615951608169087644
 SpriteRenderer:
@@ -13482,7 +13054,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &621114640401369401
 GameObject:
@@ -13630,8 +13201,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView:
-  - {fileID: 11400000, guid: b70c322c41c50664aa2fe848a30ac0eb, type: 2}
   connectedElements:
   - {fileID: 8010766799930122464}
   - {fileID: 7850859662523249375}
@@ -13713,7 +13282,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!331 &665056254481738971
 SpriteMask:
@@ -13888,8 +13456,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 5f0cc2541d77ade4b95009b0982217a2, type: 2}
   connectedElements:
   - {fileID: 7191377749633561615}
   - {fileID: 6317221762978645392}
@@ -14024,8 +13590,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 2a8c5d613d56ed9478ab3d348e31305b, type: 2}
   connectedElements: []
 --- !u!212 &686312815225284096
 SpriteRenderer:
@@ -14091,7 +13655,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &697093403102681419
 Transform:
@@ -14171,7 +13734,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &710550399355035110
 Transform:
@@ -14269,7 +13831,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 7219114252940478253}
   - {fileID: 5170557547213792105}
@@ -14421,7 +13982,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 664451326339776307}
 --- !u!212 &739402504522433058
@@ -14524,7 +14084,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &754629753488401612
 GameObject:
@@ -14639,8 +14198,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView:
-  - {fileID: 11400000, guid: fdce79e02459a884e897349c33d237dd, type: 2}
   connectedElements: []
 --- !u!1 &769916351187462084
 GameObject:
@@ -14847,7 +14404,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &795923497320456684
 Transform:
@@ -14877,7 +14433,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &799925180059159788
 GameObject:
@@ -14939,7 +14494,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &817142897610602890
 MonoBehaviour:
@@ -14955,7 +14509,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 5743357569512198798}
 --- !u!4 &843123270349190116
@@ -15036,7 +14589,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &852916135917693140
 Transform:
@@ -15129,7 +14681,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &861878454347133049
 GameObject:
@@ -15382,7 +14933,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &892567311552732097
 GameObject:
@@ -15516,7 +15066,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 8572981534396497872}
   - {fileID: 8273692265956237907}
@@ -15597,7 +15146,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &908578193301744622
 SpriteRenderer:
@@ -16141,7 +15689,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &966666232555203741
 Transform:
@@ -16601,7 +16148,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &1034947497696017631
 SpriteRenderer:
@@ -16769,7 +16315,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &1094130675430908567
 SpriteRenderer:
@@ -16887,8 +16432,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 0b1f41053fe144e4fb378cad54327a91, type: 2}
   connectedElements: []
 --- !u!114 &1124433304151376086
 MonoBehaviour:
@@ -16904,7 +16447,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &1125254149092134437
 SpriteRenderer:
@@ -16970,7 +16512,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &1131541988462598606
 SpriteRenderer:
@@ -17036,7 +16577,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 0
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &1132373989742607947
 SpriteRenderer:
@@ -17366,7 +16906,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView: []
   connectedElements: []
 --- !u!331 &1151374454662280286
 SpriteMask:
@@ -17822,8 +17361,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: e5fd2e7169748644b87cd496f3a26ceb, type: 2}
   connectedElements: []
 --- !u!212 &1235790299583051670
 SpriteRenderer:
@@ -18153,8 +17690,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: a9321ad4d22fd57429dcd3b419fffb38, type: 2}
   connectedElements: []
 --- !u!4 &1295760640655053376
 Transform:
@@ -18220,7 +17755,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1307338631399710571
 GameObject:
@@ -18304,7 +17838,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 7889315054485642665}
 --- !u!212 &1323681403495263121
@@ -18416,7 +17949,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 1435310835144127014}
 --- !u!1 &1334701511483962580
@@ -18451,7 +17983,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &1348217064793627385
 SpriteRenderer:
@@ -18517,7 +18048,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1353169143370366005
 GameObject:
@@ -18877,7 +18407,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &1417355376424840325
 Transform:
@@ -18907,7 +18436,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 6838433465278983110}
 --- !u!4 &1420800698341397603
@@ -18938,7 +18466,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 350777195518483933}
 --- !u!1 &1428885619739179245
@@ -19095,7 +18622,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &1439530665537908951
 SpriteRenderer:
@@ -19365,7 +18891,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &1459923139893210863
 SpriteRenderer:
@@ -19431,7 +18956,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1469101132577025257
 GameObject:
@@ -19465,7 +18989,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &1484635820838415759
 MonoBehaviour:
@@ -19481,7 +19004,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &1484954194587824587
 Transform:
@@ -19534,7 +19056,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1489894419454342538
 GameObject:
@@ -19720,7 +19241,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 6541008204824144392}
 --- !u!1 &1521472513321321054
@@ -19849,7 +19369,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1559313085518234804
 GameObject:
@@ -19897,7 +19416,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 887935432633152972}
 --- !u!1 &1570041549303929643
@@ -20274,8 +19792,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 7b5756f50b0f165488bd9d3ddfe721ef, type: 2}
   connectedElements:
   - {fileID: 598468205296257994}
   - {fileID: 5668205468071032859}
@@ -20375,7 +19891,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements: []
 --- !u!331 &1671989692529549781
 SpriteMask:
@@ -20504,7 +20019,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 8
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1684040803242010565
 GameObject:
@@ -20738,7 +20252,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 2321197794070927982}
 --- !u!212 &1704950959813659498
@@ -20833,8 +20346,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: c121c30aa5cf9aa4684d111924655f64, type: 2}
   connectedElements: []
 --- !u!114 &1727842294456330997
 MonoBehaviour:
@@ -20850,7 +20361,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &1734905465060708826
 SpriteRenderer:
@@ -20930,7 +20440,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &1738659106611231256
 SpriteRenderer:
@@ -20996,7 +20505,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 8355462957208323901}
 --- !u!212 &1740501266343736404
@@ -21063,7 +20571,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &1767320967588991187
 Transform:
@@ -21093,7 +20600,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 2517702443339812967}
   - {fileID: 4986833293591049032}
@@ -21111,7 +20617,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &1782539679109254556
 Transform:
@@ -21330,7 +20835,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1811381413162719619
 GameObject:
@@ -21492,7 +20996,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &1841624377937475818
 SpriteRenderer:
@@ -21558,7 +21061,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &1847905292029111023
 Transform:
@@ -21737,7 +21239,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &1882560073518992402
 Transform:
@@ -21868,7 +21369,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1894151656554219377
 GameObject:
@@ -21902,7 +21402,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &1895596324317552352
 Transform:
@@ -21999,7 +21498,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1914888349062427464
 GameObject:
@@ -22528,7 +22026,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 1683922848399634288}
 --- !u!1 &1987538895319758924
@@ -22563,8 +22060,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: a9321ad4d22fd57429dcd3b419fffb38, type: 2}
   connectedElements: []
 --- !u!1 &2006738831717443071
 GameObject:
@@ -22676,7 +22171,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 6848846715279269125}
   - {fileID: 1302804344305424945}
@@ -22908,7 +22402,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2101903780754814581
 GameObject:
@@ -22972,8 +22465,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 23c5bd333bdf3f24b9e62b2498bf379c, type: 2}
   connectedElements: []
 --- !u!114 &2120339220602907106
 MonoBehaviour:
@@ -22989,7 +22480,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 2101715625666869982}
   - {fileID: 7389743923500474568}
@@ -23102,7 +22592,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 5934396688411354480}
 --- !u!212 &2142579522509367939
@@ -23301,7 +22790,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 794309003242957420}
 --- !u!212 &2162112475565177865
@@ -23418,7 +22906,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2169249159265343961
 GameObject:
@@ -23519,7 +23006,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &2178002655116315430
 Transform:
@@ -23630,8 +23116,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 35f2fbd3b5c21ed49bdd6c4116a4800b, type: 2}
   connectedElements:
   - {fileID: 2373282312794384349}
 --- !u!212 &2185144507344081055
@@ -23814,7 +23298,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 1124433304151376086}
 --- !u!1 &2207473669848628195
@@ -23863,8 +23346,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 274beec3ad9880d47ac85fc5172226ad, type: 2}
   connectedElements: []
 --- !u!4 &2231121833422106926
 Transform:
@@ -24093,8 +23574,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: f3a19f516f8aff0478448fcb23613360, type: 2}
   connectedElements: []
 --- !u!114 &2249299955614186982
 MonoBehaviour:
@@ -24110,8 +23589,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 8214d9fefaf822b478d6029a92112fcd, type: 2}
   connectedElements:
   - {fileID: 5290341116496425202}
 --- !u!4 &2253706829275811987
@@ -24206,7 +23683,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &2289341302077394825
 SpriteRenderer:
@@ -24290,7 +23766,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &2306345785240421272
 Transform:
@@ -24370,7 +23845,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &2319082290594994539
 SpriteRenderer:
@@ -24436,7 +23910,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &2321197794070927982
 MonoBehaviour:
@@ -24452,7 +23925,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2323365238707015417
 GameObject:
@@ -24518,7 +23990,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 17
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &2335173656191249284
 Transform:
@@ -24612,7 +24083,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 15
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 337862062724065994}
 --- !u!212 &2357956803840398817
@@ -24679,7 +24149,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &2363901295145352783
 MonoBehaviour:
@@ -24695,7 +24164,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &2365426446381082983
 Transform:
@@ -24743,7 +24211,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &2392124417012561007
 SpriteRenderer:
@@ -24961,7 +24428,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &2434283012397450428
 Transform:
@@ -25090,8 +24556,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 61b56cfa6bce1a648a483a1c8a5d8e82, type: 2}
   connectedElements: []
 --- !u!4 &2445515441519448559
 Transform:
@@ -25157,7 +24621,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 1484635820838415759}
 --- !u!4 &2460099435311300254
@@ -25579,7 +25042,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2519971478657221154
 GameObject:
@@ -25762,7 +25224,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 1469155364623504077}
 --- !u!114 &2558416576916629821
@@ -25779,8 +25240,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 4bbbdc631ccc8c04ebef2d9c4c9836ab, type: 2}
   connectedElements: []
 --- !u!114 &2558443063784320089
 MonoBehaviour:
@@ -25796,7 +25255,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &2558680898572898217
 SpriteRenderer:
@@ -25911,7 +25369,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2566052585231276445
 GameObject:
@@ -25977,8 +25434,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 7871a9330b5d4584089ac0e44044b98f, type: 2}
   connectedElements: []
 --- !u!114 &2585213438099200214
 MonoBehaviour:
@@ -25994,7 +25449,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2587556229671058383
 GameObject:
@@ -26222,7 +25676,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &2628374359086067859
 Transform:
@@ -26301,7 +25754,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 4875470750903708520}
 --- !u!331 &2646356775151538486
@@ -26762,7 +26214,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 5883629392102755249}
 --- !u!4 &2718391067550361549
@@ -26958,7 +26409,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 6427753826757874325}
 --- !u!212 &2732047938455657022
@@ -27187,7 +26637,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &2766580855559619847
 SpriteRenderer:
@@ -27401,7 +26850,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 4687325826025978970}
 --- !u!212 &2807283509495760553
@@ -27500,8 +26948,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView:
-  - {fileID: 11400000, guid: a9b63f091a506604ab90d93fe27e416d, type: 2}
   connectedElements:
   - {fileID: 5878263606044230018}
 --- !u!1 &2828500484285744204
@@ -27684,7 +27130,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &2853568665448403507
 SpriteRenderer:
@@ -27780,8 +27225,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: a8980f14405484041addf812505ed864, type: 2}
   connectedElements: []
 --- !u!114 &2886817219093187959
 MonoBehaviour:
@@ -27797,7 +27240,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &2890622620826999619
 Transform:
@@ -27841,7 +27283,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!331 &2920437768186415028
 SpriteMask:
@@ -28138,7 +27579,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &2945997833395581610
 SpriteRenderer:
@@ -28204,7 +27644,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2959136842382306913
 GameObject:
@@ -28255,7 +27694,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 14
   bodyPartType: 19
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &2971544743977010538
 MonoBehaviour:
@@ -28271,7 +27709,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &2976967107151470658
 Transform:
@@ -28315,7 +27752,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &2985130945315238785
 SpriteRenderer:
@@ -28513,7 +27949,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 8798144874453828368}
   - {fileID: 8088503466649718525}
@@ -28927,7 +28362,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &3040652134742601646
 MonoBehaviour:
@@ -28943,7 +28377,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &3047016691879809160
 MonoBehaviour:
@@ -28959,8 +28392,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 3fbea5f54b8be454693b9a0069099fbd, type: 2}
   connectedElements: []
 --- !u!1 &3050035433278093635
 GameObject:
@@ -29190,7 +28621,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3079514104842694089
 GameObject:
@@ -30065,7 +29495,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3159198100669049491
 GameObject:
@@ -30098,7 +29527,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3160746651622600898
 GameObject:
@@ -30199,7 +29627,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &3176395677584591415
 Transform:
@@ -30283,7 +29710,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &3187043263415995230
 MonoBehaviour:
@@ -30299,7 +29725,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &3192454084962801726
 SpriteRenderer:
@@ -30479,7 +29904,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &3198924140515210670
 MonoBehaviour:
@@ -30495,7 +29919,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 905113475216317972}
   - {fileID: 620920605543967489}
@@ -30671,7 +30094,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 7820043969843418604}
 --- !u!1 &3238599330632455482
@@ -30872,7 +30294,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 8
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &3278291080216411680
 MonoBehaviour:
@@ -30888,7 +30309,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 8847006184899870315}
 --- !u!212 &3291296392195685070
@@ -31099,7 +30519,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 1031426457127954601}
 --- !u!114 &3319379914032669685
@@ -31116,7 +30535,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 8112670298195996072}
 --- !u!4 &3322970246991795334
@@ -31244,7 +30662,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &3352878844177092907
 MonoBehaviour:
@@ -31260,8 +30677,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 14
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: b63a473a1b49e7c4b9e33489722c5537, type: 2}
   connectedElements: []
 --- !u!4 &3360190812396566104
 Transform:
@@ -31367,7 +30782,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3390980599882942128
 GameObject:
@@ -31401,7 +30815,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3410556903107435309
 GameObject:
@@ -31776,7 +31189,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 8660556801842728660}
 --- !u!4 &3489150220709212494
@@ -31807,7 +31219,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3491527413247849713
 GameObject:
@@ -31855,7 +31266,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3499307027262265952
 GameObject:
@@ -31937,7 +31347,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3521657124865443977
 GameObject:
@@ -32237,7 +31646,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3559750798519676795
 GameObject:
@@ -33659,7 +33067,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &3783826297590944351
 Transform:
@@ -33689,7 +33096,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &3797049514472815165
 Transform:
@@ -33978,7 +33384,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 0
   bodyPartType: 0
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3842715640175071884
 GameObject:
@@ -34107,8 +33512,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView:
-  - {fileID: 11400000, guid: f779bdddeb8954a4e92b7d36cd7e1656, type: 2}
   connectedElements:
   - {fileID: 4287802916379706861}
   - {fileID: 1548659354052861445}
@@ -34523,7 +33926,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &3930540611216515290
 Transform:
@@ -34635,7 +34037,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &3939602775424105199
 SpriteRenderer:
@@ -35253,8 +34654,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: fb81b3fde89669b4e8b4dcabd8081f84, type: 2}
   connectedElements: []
 --- !u!1 &4025897728201742239
 GameObject:
@@ -35338,8 +34737,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 9aec7f245ce802242860fb536132d10c, type: 2}
   connectedElements: []
 --- !u!4 &4035678943065246741
 Transform:
@@ -35531,7 +34928,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 4690731324842237159}
 --- !u!212 &4049132456347316731
@@ -35797,7 +35193,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 15
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 8826837451644716057}
 --- !u!4 &4096545110391623521
@@ -35845,7 +35240,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4112725463985842913
 GameObject:
@@ -35942,7 +35336,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 1485773221907933943}
   - {fileID: 8686566306865816147}
@@ -35960,7 +35353,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 13
   bodyPartType: 0
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &4148989533148410841
 MonoBehaviour:
@@ -35976,7 +35368,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 0
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4151709433573554851
 GameObject:
@@ -36370,7 +35761,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 2320322186285908087}
   - {fileID: 6651744516320118004}
@@ -36388,7 +35778,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &4217348141792858081
 SpriteRenderer:
@@ -36655,7 +36044,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &4252932243401160528
 Transform:
@@ -36799,7 +36187,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &4267414968892111669
 MonoBehaviour:
@@ -36815,8 +36202,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView:
-  - {fileID: 11400000, guid: d3289ccabc728784a922fcf7f91a67a1, type: 2}
   connectedElements:
   - {fileID: 4143813368581298363}
 --- !u!4 &4267601975415889677
@@ -36847,7 +36232,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4271375550944789048
 GameObject:
@@ -37062,7 +36446,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &4288517615505296378
 Transform:
@@ -37226,7 +36609,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &4313569851397178178
 Transform:
@@ -37321,7 +36703,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &4337362255262591702
 Transform:
@@ -37630,7 +37011,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 3929808670963087128}
 --- !u!331 &4355351232908766145
@@ -37728,7 +37108,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!331 &4371260698068487729
 SpriteMask:
@@ -37793,7 +37172,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!331 &4380837691213853106
 SpriteMask:
@@ -37956,7 +37334,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 3277934258374540241}
 --- !u!212 &4389160206615384582
@@ -38381,7 +37758,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &4463769453599090203
 Transform:
@@ -38702,7 +38078,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &4497143899631451473
 Transform:
@@ -38761,7 +38136,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 4604019166838242089}
   - {fileID: 5148278448363971431}
@@ -39125,7 +38499,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 6400120954847458475}
 --- !u!1 &4561672540627854987
@@ -39195,7 +38568,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4578227568252593803
 GameObject:
@@ -39229,7 +38601,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &4587588376519023126
 MonoBehaviour:
@@ -39245,7 +38616,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 15
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 7703455860425791777}
 --- !u!1 &4589051456735193838
@@ -39413,7 +38783,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &4607041835716166295
 Transform:
@@ -39594,7 +38963,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4639755421044920761
 GameObject:
@@ -39696,7 +39064,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &4676403050517089597
 MonoBehaviour:
@@ -39712,7 +39079,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &4677467422920850070
 SpriteRenderer:
@@ -39822,7 +39188,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &4688126827471654520
 Transform:
@@ -39870,7 +39235,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &4698633812559347040
 SpriteRenderer:
@@ -39936,7 +39300,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 6413105606448280542}
 --- !u!1 &4710015263945018718
@@ -40024,7 +39387,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 14
   bodyPartType: 19
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &4717202435104319003
 MonoBehaviour:
@@ -40040,7 +39402,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &4726277522727400349
 SpriteRenderer:
@@ -40169,8 +39530,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: a7130740956325c4eabd124ece5352af, type: 2}
   connectedElements: []
 --- !u!331 &4758193370500975062
 SpriteMask:
@@ -40299,8 +39658,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: b94c89841beb6d74c80f5035024adf10, type: 2}
   connectedElements: []
 --- !u!4 &4776709684232303854
 Transform:
@@ -40541,7 +39898,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 8
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &4805255028827116401
 Transform:
@@ -40589,7 +39945,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4810429550566333160
 GameObject:
@@ -41067,7 +40422,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &4879983209178523497
 SpriteRenderer:
@@ -41278,7 +40632,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4912527922863740760
 GameObject:
@@ -41522,7 +40875,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &4951091747883186652
 SpriteRenderer:
@@ -41764,8 +41116,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 51d70963b43205f40afb5784d3c0ecd6, type: 2}
   connectedElements:
   - {fileID: 7431976084002096971}
 --- !u!1 &4979443842575111722
@@ -41836,7 +41186,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &4988499943512734473
 SpriteRenderer:
@@ -41990,7 +41339,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 7550465717807359010}
 --- !u!1 &5020895947074904500
@@ -42025,8 +41373,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView:
-  - {fileID: 0}
   connectedElements:
   - {fileID: 8107643341801551930}
 --- !u!212 &5023868503798607213
@@ -42143,8 +41489,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: ba09fc32222d88649be75a770c293862, type: 2}
   connectedElements: []
 --- !u!4 &5045433631527193351
 Transform:
@@ -42220,7 +41564,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &5053440929841010491
 MonoBehaviour:
@@ -42236,7 +41579,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5055192268395436781
 GameObject:
@@ -42519,7 +41861,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 0
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5110540912261306437
 GameObject:
@@ -42729,7 +42070,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5148551053545183632
 GameObject:
@@ -43341,7 +42681,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &5170639917831188043
 MonoBehaviour:
@@ -43357,7 +42696,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 6766037858385970224}
   - {fileID: 704261163137209235}
@@ -43478,7 +42816,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &5217077967414699040
 SpriteRenderer:
@@ -43558,8 +42895,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 75fb4bdeb7457994888328207ae3ef60, type: 2}
   connectedElements: []
 --- !u!212 &5221071584619685960
 SpriteRenderer:
@@ -43639,7 +42974,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 15
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 7157804818322279263}
 --- !u!4 &5238360312622376958
@@ -44010,7 +43344,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &5292149069379584608
 MonoBehaviour:
@@ -44026,7 +43359,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5299660080046989446
 GameObject:
@@ -44163,7 +43495,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &5333761329857023485
 MonoBehaviour:
@@ -44179,7 +43510,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 7205811450066583679}
 --- !u!1 &5345417857169550207
@@ -44332,7 +43662,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5366812258155525909
 GameObject:
@@ -44416,7 +43745,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5392008933315143431
 GameObject:
@@ -44500,8 +43828,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView:
-  - {fileID: 11400000, guid: fc27fc5ce502c334880b4b1ad365f3f5, type: 2}
   connectedElements:
   - {fileID: 5936215736187026241}
   - {fileID: 8992837516351379740}
@@ -44521,8 +43847,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 422b1f5570b0b984ba748d81cc28ac25, type: 2}
   connectedElements: []
 --- !u!4 &5401654421775018316
 Transform:
@@ -44619,7 +43943,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5414410560269676727
 GameObject:
@@ -45102,7 +44425,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5495316894082848968
 GameObject:
@@ -45566,7 +44888,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &5580189919467602412
 SpriteRenderer:
@@ -45700,8 +45021,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 61b56cfa6bce1a648a483a1c8a5d8e82, type: 2}
   connectedElements: []
 --- !u!114 &5602143736821498402
 MonoBehaviour:
@@ -45717,7 +45036,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5613712799831486288
 GameObject:
@@ -45915,7 +45233,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &5653605642793412251
 Transform:
@@ -45945,7 +45262,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 5860785338982130373}
 --- !u!114 &5668205468071032859
@@ -45962,7 +45278,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &5675509243873577401
 SpriteRenderer:
@@ -46095,7 +45410,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5695420983821327866
 GameObject:
@@ -46412,7 +45726,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &5751512386335294117
 SpriteRenderer:
@@ -46534,8 +45847,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 8e853370ec823c343be7be97c181c41b, type: 2}
   connectedElements: []
 --- !u!212 &5765506256062066276
 SpriteRenderer:
@@ -46864,7 +46175,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &5796738944031121112
 SpriteRenderer:
@@ -47366,7 +46676,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5863801854323232990
 GameObject:
@@ -47479,7 +46788,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &5883629392102755249
 MonoBehaviour:
@@ -47495,7 +46803,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 8
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &5888125489519182611
 Transform:
@@ -47525,7 +46832,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 2363901295145352783}
 --- !u!4 &5902168303859303937
@@ -47746,7 +47052,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 8
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &5936215736187026241
 MonoBehaviour:
@@ -47762,7 +47067,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 15
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 460379435473023157}
 --- !u!114 &5938894126433718466
@@ -47779,8 +47083,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 250924fae8aef8b48b602cf22e25ef54, type: 2}
   connectedElements:
   - {fileID: 752485566206044445}
 --- !u!4 &5951073574879256500
@@ -47911,7 +47213,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 8
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &5961170542786194482
 Transform:
@@ -48069,7 +47370,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 1893313694003542795}
 --- !u!212 &5989761370490190136
@@ -48282,7 +47582,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &6041471676170853328
 SpriteRenderer:
@@ -48348,8 +47647,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 14
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: fc70953d6f2c5cc47a51379bc00bc4b3, type: 2}
   connectedElements: []
 --- !u!1 &6049225601076971740
 GameObject:
@@ -48461,8 +47758,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 14
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 3ec8f51bf49af3c45ba883ff8b711b7a, type: 2}
   connectedElements: []
 --- !u!1 &6101500268146053378
 GameObject:
@@ -48545,7 +47840,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!331 &6116630382623345299
 SpriteMask:
@@ -48710,8 +48004,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: fb81b3fde89669b4e8b4dcabd8081f84, type: 2}
   connectedElements: []
 --- !u!114 &6143099928532688191
 MonoBehaviour:
@@ -48727,8 +48019,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 3002ff2fa1165d8499a1d620bb2cec5c, type: 2}
   connectedElements: []
 --- !u!4 &6146581843511425695
 Transform:
@@ -48758,7 +48048,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 8223203713573700132}
 --- !u!4 &6153790998002700665
@@ -48888,8 +48177,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 8050dcb4bd4904940b89a797276bbe1e, type: 2}
   connectedElements: []
 --- !u!4 &6168028694183342007
 Transform:
@@ -49102,7 +48389,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &6213278568909108571
 Transform:
@@ -49339,7 +48625,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!331 &6263150298173535382
 SpriteMask:
@@ -49453,7 +48738,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &6272834580325719710
 SpriteRenderer:
@@ -49714,7 +48998,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 6680849382356296721}
 --- !u!114 &6317221762978645392
@@ -49731,7 +49014,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &6317706810862786061
 Transform:
@@ -49775,8 +49057,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 24a7d73a2db0ff44bb29ac1f4fc06ebd, type: 2}
   connectedElements: []
 --- !u!4 &6334765788843260181
 Transform:
@@ -49838,7 +49118,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 5652697765092625436}
 --- !u!114 &6352966710870345258
@@ -49855,7 +49134,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 2558443063784320089}
   - {fileID: 810962703674021578}
@@ -49990,8 +49268,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 165b0b2ad2c017444886d06884a3457c, type: 2}
   connectedElements: []
 --- !u!114 &6375560260371996178
 MonoBehaviour:
@@ -50007,7 +49283,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &6377686488246421931
 Transform:
@@ -50163,7 +49438,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6396265607237856148
 GameObject:
@@ -50197,7 +49471,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &6402547370374363499
 MonoBehaviour:
@@ -50213,7 +49486,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6404658882626042024
 GameObject:
@@ -50261,7 +49533,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &6413105606448280542
 MonoBehaviour:
@@ -50277,7 +49548,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &6417966313059606431
 MonoBehaviour:
@@ -50293,7 +49563,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 6460582891689806366}
 --- !u!114 &6421542914831190295
@@ -50310,7 +49579,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 343112430887337325}
   - {fileID: 3075629747845365326}
@@ -50356,7 +49624,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &6430725903520862074
 SpriteRenderer:
@@ -50422,7 +49689,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 9204238807239783334}
   - {fileID: 7750214685160553185}
@@ -50440,7 +49706,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 4462408815957205654}
 --- !u!1 &6438636614169053492
@@ -50524,7 +49789,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &6464357114024972699
 Transform:
@@ -50910,8 +50174,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 4bbbdc631ccc8c04ebef2d9c4c9836ab, type: 2}
   connectedElements: []
 --- !u!331 &6539071735347484416
 SpriteMask:
@@ -51026,7 +50288,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6554530441852659232
 GameObject:
@@ -51156,7 +50417,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6602070340137736747
 GameObject:
@@ -51371,8 +50631,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: b94c89841beb6d74c80f5035024adf10, type: 2}
   connectedElements: []
 --- !u!331 &6624786941210617075
 SpriteMask:
@@ -51582,7 +50840,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 2359141089852424033}
 --- !u!1 &6650044522835823503
@@ -51631,7 +50888,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6651783671543964678
 GameObject:
@@ -51761,7 +51017,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 5960368072645840559}
 --- !u!114 &6674867277834303930
@@ -51778,8 +51033,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 26d53275e021adb45800753a290e2a6f, type: 2}
   connectedElements: []
 --- !u!4 &6676030690380868718
 Transform:
@@ -51809,7 +51062,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &6694669018761340761
 SpriteRenderer:
@@ -51994,7 +51246,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 3938127750388333664}
   - {fileID: 6958152959119167213}
@@ -52026,8 +51277,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 7bbfb36b17ff3e8479326d008f730cae, type: 2}
   connectedElements:
   - {fileID: 8742994095272222915}
   - {fileID: 8833128047479342309}
@@ -52252,7 +51501,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &6771585090343296765
 SpriteRenderer:
@@ -52445,8 +51693,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 4949b46bccaf73b459057d8e530d655a, type: 2}
   connectedElements: []
 --- !u!331 &6813183469505242026
 SpriteMask:
@@ -52557,7 +51803,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &6836499579012768889
 MonoBehaviour:
@@ -52573,7 +51818,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 3389760612752820541}
 --- !u!114 &6838433465278983110
@@ -52590,7 +51834,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 8
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6841785532775117050
 GameObject:
@@ -52652,7 +51895,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6849537199935750887
 GameObject:
@@ -52767,7 +52009,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &6881358059293155516
 Transform:
@@ -52797,7 +52038,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 13
   bodyPartType: 0
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &6891184223313666944
 SpriteRenderer:
@@ -52863,7 +52103,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &6902234209082682190
 MonoBehaviour:
@@ -52879,7 +52118,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &6910367562658958177
 MonoBehaviour:
@@ -52895,7 +52133,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &6912389897580370190
 SpriteRenderer:
@@ -53184,7 +52421,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &6965241288201388037
 MonoBehaviour:
@@ -53200,7 +52436,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 1081102669100238819}
 --- !u!331 &6965390628682968887
@@ -53443,7 +52678,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &7012020420143701388
 Transform:
@@ -53512,7 +52746,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 9202315179133305998}
 --- !u!4 &7025347425386900645
@@ -53705,7 +52938,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &7049516626591585556
 Transform:
@@ -53735,7 +52967,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 4717202435104319003}
   - {fileID: 2915048187329129866}
@@ -53767,152 +52998,6 @@ Transform:
   m_Father: {fileID: 778591178453939752}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7064477371718893842
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7064477371718893843}
-  - component: {fileID: 7064477371718893852}
-  m_Layer: 0
-  m_Name: Instruction Hover
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7064477371718893843
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064477371718893842}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 7064477372987467430}
-  m_Father: {fileID: 7064477372005289766}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7064477371718893852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064477371718893842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 752db8077d339644fa25b7f6bfeb11a6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  visualParent: {fileID: 7064477373014104371}
-  instructionText: {fileID: 7064477372569730097}
-  followMouse: 0
---- !u!114 &7064477371739437064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064477371739437069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
---- !u!223 &7064477371739437065
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064477371739437069}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: 6000
-  m_TargetDisplay: 0
---- !u!1 &7064477371739437069
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7064477371739437070}
-  - component: {fileID: 7064477371739437065}
-  - component: {fileID: 7064477371739437064}
-  - component: {fileID: 7064477371739437071}
-  m_Layer: 0
-  m_Name: Status Info Panel Parent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &7064477371739437070
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064477371739437069}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
-  m_Children:
-  - {fileID: 7064477373404169067}
-  m_Father: {fileID: 7064477373062896690}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
---- !u!114 &7064477371739437071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064477371739437069}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 55
 --- !u!1 &7064477372005289765
 GameObject:
   m_ObjectHideFlags: 0
@@ -53939,989 +53024,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 7064477371718893843}
-  - {fileID: 7064477372035511780}
+  m_Children: []
   m_Father: {fileID: 1080712268}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7064477372035511579
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7064477372035511780}
-  - component: {fileID: 7064477372035511781}
-  m_Layer: 0
-  m_Name: Status Info Panel Hover
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7064477372035511780
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064477372035511579}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 7064477373062896690}
-  m_Father: {fileID: 7064477372005289766}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7064477372035511781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064477372035511579}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e0d7f51e053e744c964bbf6d3e5aab8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentIconUnderMouse: {fileID: 0}
-  passiveInfoSheet: {fileID: 163262763}
-  statusPanelParent: {fileID: 7064477373404169066}
---- !u!114 &7064477372177495680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064477372177495686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.39215687}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: aa5c33bd4840dd04c8180b718591a7aa, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &7064477372177495681
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064477372177495686}
-  m_CullTransparentMesh: 0
---- !u!1 &7064477372177495686
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7064477372177495687}
-  - component: {fileID: 7064477372177495681}
-  - component: {fileID: 7064477372177495680}
-  m_Layer: 5
-  m_Name: Arrow Shadow
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &7064477372177495687
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064477372177495686}
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.4, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7064477373404169067}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.046, y: 0.278}
-  m_SizeDelta: {x: 0.3, y: 0.3}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!224 &7064477372569730096
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064477372569730103}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7064477373014104380}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 127.6, y: -8.3}
-  m_SizeDelta: {x: 241.33, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7064477372569730097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064477372569730103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: Choose a target
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 87e99a81f1cbf00428f7e0adbc0d7cf5, type: 2}
-  m_sharedMaterial: {fileID: 937035506399193613, guid: 87e99a81f1cbf00428f7e0adbc0d7cf5,
-    type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_outlineColor:
-    serializedVersion: 2
-    rgba: 4278190080
-  m_fontSize: 10
-  m_fontSizeBase: 10
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_textAlignment: 513
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
-  m_linkedTextComponent: {fileID: 0}
-  m_isLinkedTextComponent: 0
-  m_isTextTruncated: 0
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_ignoreRectMaskCulling: 0
-  m_ignoreCulling: 1
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_VertexBufferAutoSizeReduction: 1
-  m_firstVisibleCharacter: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_textInfo:
-    textComponent: {fileID: 7064477372569730097}
-    characterCount: 15
-    spriteCount: 0
-    spaceCount: 2
-    wordCount: 3
-    linkCount: 0
-    lineCount: 1
-    pageCount: 1
-    materialCount: 1
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 0
-  m_subTextObjects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &7064477372569730098
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064477372569730103}
-  m_CullTransparentMesh: 0
---- !u!1 &7064477372569730103
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7064477372569730096}
-  - component: {fileID: 7064477372569730098}
-  - component: {fileID: 7064477372569730097}
-  m_Layer: 0
-  m_Name: Instruction Text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &7064477372987467424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064477372987467429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 1
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
---- !u!223 &7064477372987467425
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064477372987467429}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: 6000
-  m_TargetDisplay: 0
---- !u!1 &7064477372987467429
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7064477372987467430}
-  - component: {fileID: 7064477372987467425}
-  - component: {fileID: 7064477372987467424}
-  m_Layer: 0
-  m_Name: Canvas
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &7064477372987467430
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064477372987467429}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
-  m_Children:
-  - {fileID: 7064477373014104380}
-  m_Father: {fileID: 7064477371718893843}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
---- !u!1 &7064477373014104371
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7064477373014104380}
-  m_Layer: 0
-  m_Name: Visual Parent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &7064477373014104380
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064477373014104371}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 7064477372569730096}
-  m_Father: {fileID: 7064477372987467430}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &7064477373062896689
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7064477373062896690}
-  m_Layer: 0
-  m_Name: Visual Parent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7064477373062896690
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064477373062896689}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 7064477371739437070}
-  m_Father: {fileID: 7064477372035511780}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &7064477373381582246
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 7064477373404169067}
-    m_Modifications:
-    - target: {fileID: 2374563340724459600, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563340724459600, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563340724459600, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 49.555
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563340724459600, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 84.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563340724459600, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -84.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563340724459615, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563340724459615, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563340724459615, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563340724459615, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563340724459615, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563340749790351, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563340749790351, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563340749790351, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 55
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563340749790351, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341062713808, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341062713808, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341062713808, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 55
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341062713808, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -59
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341062713808, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 39.333332
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341300521952, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341300521952, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341300521952, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 52.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341300521952, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 84.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341300521952, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -84.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341413339720, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341861006294, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341861006294, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341861006294, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 55
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341861006294, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -19.666666
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341861006294, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 39.333332
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341863663076, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341863663076, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341863663076, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341863663076, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341882290657, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341882290657, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341882290657, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 55
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341882290657, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -98.33333
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341882290657, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 39.333332
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060019, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060019, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060019, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060019, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060019, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060019, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060019, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060019, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060019, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060019, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060019, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060019, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.0045166016
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060019, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.304
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060019, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060019, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060019, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060019, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060019, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060019, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060019, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060019, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060019, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.015
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060019, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.015
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060019, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060020, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_Name
-      value: Passive Info Sheet
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563341998060020, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563342089118104, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 56.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563342089118104, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 170.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563342089118105, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563342245925153, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563342245925153, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563342245925153, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 55
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563342245925153, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -71.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563342245925153, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 84.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563342264913235, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563342264913235, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563342264913235, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -118.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563342264913235, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 118.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 2374563342389414890, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 118.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 2848961024601079275, guid: 5eb244ffd8608304da6f6f3d38480ec9,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 5999
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5eb244ffd8608304da6f6f3d38480ec9, type: 3}
---- !u!1 &7064477373404169066
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7064477373404169067}
-  - component: {fileID: 7064477373404169077}
-  - component: {fileID: 7064477373404169076}
-  m_Layer: 5
-  m_Name: Canvas Parent
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &7064477373404169067
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064477373404169066}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 56.17788, y: 56.17788, z: 56.17788}
-  m_Children:
-  - {fileID: 163262762}
-  - {fileID: 7064477372177495687}
-  - {fileID: 7064477373506733712}
-  m_Father: {fileID: 7064477371739437070}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 244, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!223 &7064477373404169076
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064477373404169066}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 1
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: 6000
-  m_TargetDisplay: 0
---- !u!225 &7064477373404169077
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064477373404169066}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
-  m_IgnoreParentGroups: 0
---- !u!224 &7064477373506733712
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064477373506733719}
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.4, z: 1}
-  m_Children: []
-  m_Father: {fileID: 7064477373404169067}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0.3070001}
-  m_SizeDelta: {x: 0.3, y: 0.3}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7064477373506733713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064477373506733719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: aa5c33bd4840dd04c8180b718591a7aa, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &7064477373506733714
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7064477373506733719}
-  m_CullTransparentMesh: 0
---- !u!1 &7064477373506733719
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7064477373506733712}
-  - component: {fileID: 7064477373506733714}
-  - component: {fileID: 7064477373506733713}
-  m_Layer: 5
-  m_Name: Arrow
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
 --- !u!4 &7067888989720083799
 Transform:
   m_ObjectHideFlags: 0
@@ -55214,7 +53320,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &7110206348529084019
 Transform:
@@ -55352,7 +53457,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7154782709625260148
 GameObject:
@@ -55386,7 +53490,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &7157519852431487192
 Transform:
@@ -55416,7 +53519,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 17
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &7159720961304608888
 SpriteRenderer:
@@ -55609,7 +53711,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &7176232265917437742
 SpriteRenderer:
@@ -55785,7 +53886,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &7193123061066682000
 SpriteRenderer:
@@ -55869,7 +53969,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &7202139299376005057
 MonoBehaviour:
@@ -55885,7 +53984,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &7203763970890703228
 Transform:
@@ -55915,7 +54013,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &7209952323429239418
 Transform:
@@ -56009,7 +54106,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &7221200411600434063
 SpriteRenderer:
@@ -56093,8 +54189,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 26d53275e021adb45800753a290e2a6f, type: 2}
   connectedElements: []
 --- !u!114 &7251708968066138572
 MonoBehaviour:
@@ -56110,8 +54204,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 8a2ac3b39929247449f676e4da2182a5, type: 2}
   connectedElements: []
 --- !u!4 &7261569381689513367
 Transform:
@@ -56221,7 +54313,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7269907152345846152
 GameObject:
@@ -56943,7 +55034,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7394555569034625225
 GameObject:
@@ -57045,8 +55135,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 5f0cc2541d77ade4b95009b0982217a2, type: 2}
   connectedElements:
   - {fileID: 8433578023617007366}
   - {fileID: 3490205009332364807}
@@ -57142,7 +55230,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7435002649548949904
 GameObject:
@@ -57367,8 +55454,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: dabe85cff22e3584f852826e6bfa7fba, type: 2}
   connectedElements: []
 --- !u!114 &7472616681542523149
 MonoBehaviour:
@@ -57384,7 +55469,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &7478016132935105096
 Transform:
@@ -57628,7 +55712,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 247927157828031463}
 --- !u!212 &7500765122564525298
@@ -57745,7 +55828,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &7515824870333666878
 MonoBehaviour:
@@ -57761,7 +55843,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 6597506745068708009}
   - {fileID: 7268962729263729080}
@@ -57859,7 +55940,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &7521159670635843559
 Transform:
@@ -57894,7 +55974,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!331 &7524931699662302518
 SpriteMask:
@@ -57959,7 +56038,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &7526903345533507078
 MonoBehaviour:
@@ -57975,8 +56053,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 8a2ac3b39929247449f676e4da2182a5, type: 2}
   connectedElements: []
 --- !u!114 &7532053947625756652
 MonoBehaviour:
@@ -57992,7 +56068,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 2433936582460216486}
 --- !u!212 &7533381805796548450
@@ -58077,7 +56152,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &7537997986289841857
 Transform:
@@ -58138,7 +56212,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &7562048090469473281
 SpriteRenderer:
@@ -58482,7 +56555,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &7596348447520776005
 SpriteRenderer:
@@ -58548,7 +56620,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7611193526246627370
 GameObject:
@@ -59058,7 +57129,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 7804962558151097612}
 --- !u!114 &7703455860425791777
@@ -59075,7 +57145,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 17
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &7706258630633625606
 MonoBehaviour:
@@ -59091,7 +57160,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 4334649376378810928}
   - {fileID: 5361218838089214064}
@@ -59231,7 +57299,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &7758608504974983457
 SpriteRenderer:
@@ -59350,7 +57417,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 6835725582929366764}
 --- !u!1 &7770864931616894823
@@ -59466,7 +57532,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7798023690408750475
 GameObject:
@@ -59499,7 +57564,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 8
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &7809631132462380770
 MonoBehaviour:
@@ -59515,8 +57579,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 0b1f41053fe144e4fb378cad54327a91, type: 2}
   connectedElements: []
 --- !u!1 &7817609698185563423
 GameObject:
@@ -59549,7 +57611,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &7826239657180174565
 MonoBehaviour:
@@ -59565,7 +57626,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &7826857914280496729
 Transform:
@@ -59721,7 +57781,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &7846763095212418457
 MonoBehaviour:
@@ -59737,8 +57796,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 14
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: cba9ea99720551e4287d0d1ce7a53ad8, type: 2}
   connectedElements: []
 --- !u!212 &7850249587025830893
 SpriteRenderer:
@@ -59804,7 +57861,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &7851114737096704167
 Transform:
@@ -59834,8 +57890,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 48b05591d602e33478111341578e78a4, type: 2}
   connectedElements: []
 --- !u!4 &7853546683506146569
 Transform:
@@ -59865,7 +57919,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &7856223587785998833
 Transform:
@@ -59913,7 +57966,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &7861170625722600432
 MonoBehaviour:
@@ -59929,7 +57981,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 3040652134742601646}
 --- !u!212 &7864180854337194913
@@ -60010,7 +58061,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &7891504191680024847
 Transform:
@@ -60089,7 +58139,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!331 &7901930398345227302
 SpriteMask:
@@ -60386,7 +58435,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &7952471875693794868
 SpriteRenderer:
@@ -60548,7 +58596,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &7974657594032007357
 MonoBehaviour:
@@ -60564,7 +58611,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &7975297633453370600
 Transform:
@@ -60945,7 +58991,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8012499000755364522
 GameObject:
@@ -60979,7 +59024,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 4808361054103042314}
 --- !u!114 &8016441544731300961
@@ -60996,7 +59040,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 3519457592832440309}
 --- !u!212 &8017882840181514067
@@ -61190,7 +59233,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &8038026605193626542
 MonoBehaviour:
@@ -61206,7 +59248,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &8040800129461978502
 MonoBehaviour:
@@ -61222,8 +59263,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: f3d612426b32ecc44b51ffa9ea947144, type: 2}
   connectedElements: []
 --- !u!4 &8044086027162544465
 Transform:
@@ -61367,7 +59406,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 4576655545305072480}
   - {fileID: 6037774780642459449}
@@ -61623,7 +59661,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &8090227849712795030
 MonoBehaviour:
@@ -61639,8 +59676,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 7871a9330b5d4584089ac0e44044b98f, type: 2}
   connectedElements: []
 --- !u!114 &8093223913726642086
 MonoBehaviour:
@@ -61656,7 +59691,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &8095263390667820771
 Transform:
@@ -61756,7 +59790,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &8112670298195996072
 MonoBehaviour:
@@ -61772,7 +59805,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &8116067116904081997
 Transform:
@@ -61802,7 +59834,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &8124506732589322019
 SpriteRenderer:
@@ -62021,7 +60052,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &8145546164705882918
 Transform:
@@ -62119,7 +60149,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8180364602243593039
 GameObject:
@@ -62336,7 +60365,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &8204756796419879145
 MonoBehaviour:
@@ -62352,7 +60380,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &8217663434093482429
 Transform:
@@ -62382,7 +60409,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &8227096859023123085
 MonoBehaviour:
@@ -62398,8 +60424,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 1c34e815a0665d84ab50f4e0fc5a126b, type: 2}
   connectedElements: []
 --- !u!1 &8227929483589361774
 GameObject:
@@ -62438,7 +60462,6 @@ GameObject:
   - component: {fileID: 8228104370899868585}
   - component: {fileID: 8228104370899868502}
   - component: {fileID: 8228104370899868500}
-  - component: {fileID: 8228104370899868503}
   m_Layer: 0
   m_Name: Game Scene Camera
   m_TagString: MainCamera
@@ -62489,37 +60512,6 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &8228104370899868503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8228104370899868501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea82e85f359418644b92e56d3d2b293f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementStyle: 1
-  cameraMoveSpeed: 5
-  cameraZoomSpeed: 1.5
-  currentOrthoSize: 0
-  offset: {x: 0, y: 0, z: 0}
-  enforceCameraBounds: 1
-  mainCamera: {fileID: 8228104370899868502}
-  northCollider: {fileID: 0}
-  southCollider: {fileID: 0}
-  eastCollider: {fileID: 0}
-  westCollider: {fileID: 0}
-  movingSouth: 0
-  movingNorth: 0
-  movingEast: 0
-  movingWest: 0
-  smoothSpeed: 0.05
-  dampSpeed: 0.55
-  dampVelocity: {x: 0, y: 0, z: 0}
-  maxCloseness: 0.05
 --- !u!4 &8228104370899868585
 Transform:
   m_ObjectHideFlags: 0
@@ -62528,7 +60520,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8228104370899868501}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 182950883}
@@ -62548,7 +60540,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 4377899193477760041}
 --- !u!212 &8235325491931114466
@@ -62842,7 +60833,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &8288621067112913323
 Transform:
@@ -64194,7 +62184,6 @@ MonoBehaviour:
   gnollChest: {fileID: 7974657594032007357}
   myAnimator: {fileID: 0}
   scalingParent: {fileID: 4168412357920785}
-  myLivingEntity: {fileID: 0}
   myModelRace: 0
   initializedScaling: 0
   normalSizeScale: 0
@@ -64263,7 +62252,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!331 &8322142421149886062
 SpriteMask:
@@ -64657,7 +62645,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!331 &8356631471858759849
 SpriteMask:
@@ -64722,7 +62709,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 15
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 2333769002551170613}
 --- !u!212 &8361839657934854171
@@ -64873,7 +62859,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 7608818393130821939}
   - {fileID: 9153866941872459284}
@@ -65246,7 +63231,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &8434211235122756910
 SpriteRenderer:
@@ -65426,7 +63410,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &8445871224417760830
 Transform:
@@ -65456,8 +63439,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 999d3278dfbeaa44091f0f2e11beb273, type: 2}
   connectedElements:
   - {fileID: 6886477184932621818}
 --- !u!1 &8448916940646760984
@@ -65859,7 +63840,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &8516340667025767381
 Transform:
@@ -65939,7 +63919,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 3497414114718314186}
   - {fileID: 8144296012903936300}
@@ -66097,7 +64076,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8568838822093716268
 GameObject:
@@ -66131,7 +64109,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &8577887270867275969
 Transform:
@@ -66161,7 +64138,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 9036716280647620167}
 --- !u!331 &8595742890125580919
@@ -66255,8 +64231,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView:
-  - {fileID: 11400000, guid: a67d63d54dfd1c84581c5d392f5ccac0, type: 2}
   connectedElements: []
 --- !u!114 &8610582486453444232
 MonoBehaviour:
@@ -66272,7 +64246,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8610818265146277398
 GameObject:
@@ -66521,7 +64494,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 2622163236201095287}
 --- !u!1 &8656875645816361178
@@ -66556,7 +64528,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &8662668723514378543
 Transform:
@@ -66769,7 +64740,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &8693326982115486907
 SpriteRenderer:
@@ -67045,7 +65015,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &8747204884120233283
 MonoBehaviour:
@@ -67061,8 +65030,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView:
-  - {fileID: 11400000, guid: e06a43ce06359de49b8ab83811816ae9, type: 2}
   connectedElements: []
 --- !u!1 &8755626541225141386
 GameObject:
@@ -67094,8 +65061,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView:
-  - {fileID: 11400000, guid: e0f2ae003e40d9343ba0c5d214c9cfda, type: 2}
   connectedElements:
   - {fileID: 226214283927981361}
 --- !u!1 &8765491573317292661
@@ -67179,7 +65144,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 14
   bodyPartType: 19
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8780494683723729841
 GameObject:
@@ -67226,7 +65190,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &8785116598435567650
 Transform:
@@ -67311,7 +65274,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &8800632936014108331
 SpriteRenderer:
@@ -67657,7 +65619,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 17
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &8833128047479342309
 MonoBehaviour:
@@ -67673,7 +65634,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!331 &8834903022931124559
 SpriteMask:
@@ -67955,7 +65915,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &8852291670605637851
 Transform:
@@ -67999,7 +65958,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &8856307245727387137
 Transform:
@@ -68057,7 +66015,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8879118179220540011
 GameObject:
@@ -68191,7 +66148,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 1727842294456330997}
 --- !u!212 &8888938151273657056
@@ -68358,7 +66314,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8917610779096814189
 GameObject:
@@ -68456,7 +66411,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &8944251119409654760
 SpriteRenderer:
@@ -68674,7 +66628,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &8964197082487321627
 Transform:
@@ -68829,7 +66782,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &8987462809558103947
 SpriteRenderer:
@@ -68895,7 +66847,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8988242990557424489
 GameObject:
@@ -68947,7 +66898,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &8999706878989277416
 Transform:
@@ -69009,7 +66959,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!4 &9009140981785219563
 Transform:
@@ -69076,7 +67025,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &9019621267675982363
 GameObject:
@@ -69321,7 +67269,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &9037727032864692283
 MonoBehaviour:
@@ -69337,7 +67284,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!331 &9038285660415746357
 SpriteMask:
@@ -69430,7 +67376,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &9052386262975904372
 GameObject:
@@ -69595,8 +67540,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 24a7d73a2db0ff44bb29ac1f4fc06ebd, type: 2}
   connectedElements: []
 --- !u!114 &9073599939424747367
 MonoBehaviour:
@@ -69612,8 +67555,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView:
-  - {fileID: 11400000, guid: fca0a776a2fe402409480478c6866419, type: 2}
   connectedElements: []
 --- !u!1 &9079593586547155158
 GameObject:
@@ -69647,8 +67588,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 72f15555e62e92e4594386979b905976, type: 2}
   connectedElements: []
 --- !u!212 &9092506591051850267
 SpriteRenderer:
@@ -69714,7 +67653,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 0
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &9093676671281467251
 SpriteRenderer:
@@ -69884,7 +67822,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &9154093602942834375
 GameObject:
@@ -70000,7 +67937,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &9168412586842160649
 SpriteRenderer:
@@ -70116,7 +68052,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!212 &9199576338235364426
 SpriteRenderer:
@@ -70182,8 +68117,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: a7130740956325c4eabd124ece5352af, type: 2}
   connectedElements: []
 --- !u!114 &9201195017845531715
 MonoBehaviour:
@@ -70199,7 +68132,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &9202315179133305998
 MonoBehaviour:
@@ -70215,7 +68147,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!114 &9204238807239783334
 MonoBehaviour:
@@ -70231,7 +68162,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!331 &9208710950817062888
 SpriteMask:
