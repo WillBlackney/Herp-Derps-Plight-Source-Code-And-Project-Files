@@ -101,7 +101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e9dda14b6f34517a0d598d3320a902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myEntity: {fileID: 0}
   sortingOrder: 4
   visibleOutsideMask: 1
   applySpriterZOrder: 0
@@ -1157,7 +1156,6 @@ MonoBehaviour:
   gnollChest: {fileID: 7974657594025362328}
   myAnimator: {fileID: 95795493154006126}
   scalingParent: {fileID: 4168412347097908}
-  myLivingEntity: {fileID: 0}
   myModelRace: 0
   initializedScaling: 0
   normalSizeScale: 0
@@ -1555,7 +1553,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 0
   bodyPartType: 0
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8115868273890438
 GameObject:
@@ -1733,7 +1730,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &13794205536458490
 GameObject:
@@ -1831,7 +1827,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 1485773221905744338}
   - {fileID: 8686566306863630710}
@@ -1931,7 +1926,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &34357863973388574
 GameObject:
@@ -2029,7 +2023,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &41685751307333582
 GameObject:
@@ -2127,7 +2120,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &51459692389853738
 GameObject:
@@ -2259,7 +2251,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &114341920237340153
 GameObject:
@@ -2468,7 +2459,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &175897846617787814
 GameObject:
@@ -2566,7 +2556,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 3389760612746191384}
 --- !u!1 &180597290678102853
@@ -2665,7 +2654,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &182836807313468760
 GameObject:
@@ -2763,8 +2751,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView:
-  - {fileID: 11400000, guid: a9b63f091a506604ab90d93fe27e416d, type: 2}
   connectedElements:
   - {fileID: 5878263606050122407}
 --- !u!1 &199584691225348470
@@ -2943,7 +2929,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &214357942670125785
 GameObject:
@@ -3041,7 +3026,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &217005943510914543
 GameObject:
@@ -3139,7 +3123,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &225237780659916945
 GameObject:
@@ -3237,7 +3220,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &232298931899889986
 GameObject:
@@ -3335,7 +3317,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &235745323230538861
 GameObject:
@@ -3438,7 +3419,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &271492546181975819
 GameObject:
@@ -3536,7 +3516,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &289875468991172413
 GameObject:
@@ -3717,7 +3696,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &299659043414161890
 GameObject:
@@ -3815,7 +3793,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 7889315054475343500}
 --- !u!1 &302828356283060062
@@ -3914,8 +3891,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: a9321ad4d22fd57429dcd3b419fffb38, type: 2}
   connectedElements: []
 --- !u!1 &306452576493907447
 GameObject:
@@ -4093,7 +4068,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &352491324201717708
 GameObject:
@@ -4271,7 +4245,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 15
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 7157804818315812986}
 --- !u!1 &365611674221069600
@@ -4450,7 +4423,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &400960378002970308
 GameObject:
@@ -4628,8 +4600,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: a7130740956325c4eabd124ece5352af, type: 2}
   connectedElements: []
 --- !u!1 &421370140848370727
 GameObject:
@@ -4727,7 +4697,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &448049238667700174
 GameObject:
@@ -4861,7 +4830,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &469648665625495713
 GameObject:
@@ -4959,7 +4927,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &479158683349613772
 GameObject:
@@ -5057,7 +5024,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &515581431168176855
 GameObject:
@@ -5155,7 +5121,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 8223203713584277761}
 --- !u!1 &516556772031700285
@@ -5254,7 +5219,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &517847041762170677
 GameObject:
@@ -5352,8 +5316,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView:
-  - {fileID: 11400000, guid: e0f2ae003e40d9343ba0c5d214c9cfda, type: 2}
   connectedElements:
   - {fileID: 226214283921548820}
 --- !u!1 &521729943125788210
@@ -5498,7 +5460,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &531254994761487003
 GameObject:
@@ -5676,7 +5637,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 2558443063769548668}
   - {fileID: 810962703671786991}
@@ -5776,7 +5736,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 3519457592821865680}
 --- !u!1 &562242141875960679
@@ -5880,7 +5839,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &562295290623219213
 GameObject:
@@ -5983,7 +5941,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &572620425911678658
 GameObject:
@@ -6081,8 +6038,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: b94c89841beb6d74c80f5035024adf10, type: 2}
   connectedElements: []
 --- !u!1 &580018401532493192
 GameObject:
@@ -6180,7 +6135,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &595141433016314168
 GameObject:
@@ -6358,7 +6312,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 4808361054096888367}
 --- !u!1 &621114640386875932
@@ -6457,7 +6410,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 350777195528533752}
 --- !u!1 &654078999563166711
@@ -6556,7 +6508,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &663034345016067584
 GameObject:
@@ -6654,7 +6605,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &670025832472388470
 GameObject:
@@ -6752,7 +6702,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 14
   bodyPartType: 19
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &685861473386308047
 GameObject:
@@ -6850,7 +6799,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &701283337295019908
 GameObject:
@@ -6948,7 +6896,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &702395266028536293
 GameObject:
@@ -7046,7 +6993,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &718936627605002438
 GameObject:
@@ -7144,7 +7090,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &743810952394442092
 GameObject:
@@ -7242,7 +7187,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &746220630324487806
 GameObject:
@@ -7340,7 +7284,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 17
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &754629753486118889
 GameObject:
@@ -7438,7 +7381,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &758472045604879389
 GameObject:
@@ -7536,7 +7478,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &769916351193926881
 GameObject:
@@ -7634,7 +7575,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &772129636672854180
 GameObject:
@@ -7732,7 +7672,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 3938127750403446597}
   - {fileID: 6958152959130035656}
@@ -7992,7 +7931,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &789707127520337086
 GameObject:
@@ -8095,7 +8033,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &799925180065900489
 GameObject:
@@ -8193,8 +8130,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView:
-  - {fileID: 0}
   connectedElements:
   - {fileID: 8107643341795136287}
 --- !u!1 &856177256621854371
@@ -8293,7 +8228,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &861878454332332892
 GameObject:
@@ -8391,7 +8325,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 0
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &861964767282057755
 GameObject:
@@ -8489,7 +8422,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &864908152188644952
 GameObject:
@@ -8667,7 +8599,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &876359401006603685
 GameObject:
@@ -8765,8 +8696,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 5f0cc2541d77ade4b95009b0982217a2, type: 2}
   connectedElements:
   - {fileID: 8321473940371132325}
   - {fileID: 2971544743962160719}
@@ -8866,7 +8795,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 6597506745083792268}
   - {fileID: 7268962729270403741}
@@ -8966,7 +8894,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &926937776491914888
 GameObject:
@@ -9144,7 +9071,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 6427753826755377584}
 --- !u!1 &941506623738791351
@@ -9323,7 +9249,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &948803653842122422
 GameObject:
@@ -9426,7 +9351,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &954334273565600144
 GameObject:
@@ -9609,7 +9533,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &983284213724808220
 GameObject:
@@ -9707,7 +9630,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &986433410205698846
 GameObject:
@@ -9805,7 +9727,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &990883501352408301
 GameObject:
@@ -9903,7 +9824,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 6541008204826116397}
 --- !u!1 &1004081212586197722
@@ -10002,7 +9922,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 1484635820823545514}
 --- !u!1 &1006642579867427962
@@ -10101,7 +10020,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1018187315651619333
 GameObject:
@@ -10199,7 +10117,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1054212012848114529
 GameObject:
@@ -10297,7 +10214,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1094984858289373526
 GameObject:
@@ -10395,7 +10311,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1110006165328776316
 GameObject:
@@ -10573,7 +10488,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1145926044001620108
 GameObject:
@@ -10671,7 +10585,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 7608818393145377302}
   - {fileID: 9153866941874119985}
@@ -10967,7 +10880,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1214094877308817429
 GameObject:
@@ -11065,7 +10977,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1241128677820850965
 GameObject:
@@ -11163,7 +11074,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 15
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 7703455860423553540}
 --- !u!1 &1249597076683688338
@@ -11486,7 +11396,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1280397783400108521
 GameObject:
@@ -11584,7 +11493,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1298417945967150140
 GameObject:
@@ -11762,7 +11670,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1334701511494295537
 GameObject:
@@ -11860,7 +11767,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1353169143368177424
 GameObject:
@@ -12038,7 +11944,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1373039563714862028
 GameObject:
@@ -12136,7 +12041,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1376614726570720244
 GameObject:
@@ -12394,7 +12298,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1397928080683240606
 GameObject:
@@ -12492,7 +12395,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 1081102669102492870}
 --- !u!1 &1407290107423125453
@@ -12591,7 +12493,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 5743357569501870507}
 --- !u!1 &1428885619749245896
@@ -12696,7 +12597,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1440042301697128795
 GameObject:
@@ -12794,7 +12694,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 0
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1448507833486525546
 GameObject:
@@ -12892,7 +12791,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1469101132579489740
 GameObject:
@@ -12990,7 +12888,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1489894419456810671
 GameObject:
@@ -13088,7 +12985,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1495013483748480886
 GameObject:
@@ -13186,7 +13082,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1500035609017681737
 GameObject:
@@ -13284,7 +13179,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 8
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1500260043485969318
 GameObject:
@@ -13382,7 +13276,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1515870722449171360
 GameObject:
@@ -13480,7 +13373,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1519189669500664002
 GameObject:
@@ -13772,7 +13664,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1570041549293334542
 GameObject:
@@ -13950,7 +13841,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1629080771081874600
 GameObject:
@@ -14048,8 +13938,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView:
-  - {fileID: 11400000, guid: fc27fc5ce502c334880b4b1ad365f3f5, type: 2}
   connectedElements:
   - {fileID: 5936215736185000036}
   - {fileID: 8992837516336362041}
@@ -14151,8 +14039,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: f3a19f516f8aff0478448fcb23613360, type: 2}
   connectedElements: []
 --- !u!1 &1633974133262668209
 GameObject:
@@ -14330,7 +14216,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1658023077652815479
 GameObject:
@@ -14588,8 +14473,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 9aec7f245ce802242860fb536132d10c, type: 2}
   connectedElements: []
 --- !u!1 &1684040803240250592
 GameObject:
@@ -14687,7 +14570,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1685579281481531183
 GameObject:
@@ -14785,7 +14667,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1694272406044118714
 GameObject:
@@ -14883,7 +14764,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1792534547747997970
 GameObject:
@@ -14981,8 +14861,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: fb81b3fde89669b4e8b4dcabd8081f84, type: 2}
   connectedElements: []
 --- !u!1 &1811095143579714373
 GameObject:
@@ -15080,7 +14958,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1811381413168673446
 GameObject:
@@ -15178,8 +15055,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: f3d612426b32ecc44b51ffa9ea947144, type: 2}
   connectedElements: []
 --- !u!1 &1872985886793598588
 GameObject:
@@ -15313,7 +15188,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1894151656548281428
 GameObject:
@@ -15411,7 +15285,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 4576655545315747909}
   - {fileID: 6037774780657538076}
@@ -15511,7 +15384,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1914888349064140909
 GameObject:
@@ -15614,7 +15486,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1922965733537495380
 GameObject:
@@ -15712,7 +15583,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &1944511709064375002
 GameObject:
@@ -15890,8 +15760,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 14
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: b63a473a1b49e7c4b9e33489722c5537, type: 2}
   connectedElements: []
 --- !u!1 &1987538895308886889
 GameObject:
@@ -15989,7 +15857,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2006738831715782362
 GameObject:
@@ -16087,7 +15954,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2057304891132206820
 GameObject:
@@ -16185,7 +16051,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2088674883688459830
 GameObject:
@@ -16283,7 +16148,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2097193199329718921
 GameObject:
@@ -16381,7 +16245,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2098645299010625593
 GameObject:
@@ -16479,7 +16342,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 14
   bodyPartType: 19
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2101903780740472144
 GameObject:
@@ -16577,7 +16439,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2129416098540175502
 GameObject:
@@ -16755,7 +16616,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2169249159271789308
 GameObject:
@@ -16933,8 +16793,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 51d70963b43205f40afb5784d3c0ecd6, type: 2}
   connectedElements:
   - {fileID: 7431976084012412014}
 --- !u!1 &2179683207103108531
@@ -17033,7 +16891,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2188145302812598781
 GameObject:
@@ -17131,7 +16988,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2190450046948643080
 GameObject:
@@ -17229,7 +17085,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2193170368854496023
 GameObject:
@@ -17358,7 +17213,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 1469155364633623016}
 --- !u!1 &2241427971129443720
@@ -17457,7 +17311,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 8798144874463914037}
   - {fileID: 8088503466660128216}
@@ -17557,7 +17410,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 1893313694005219374}
 --- !u!1 &2255393099519020868
@@ -17656,7 +17508,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2271424988803307572
 GameObject:
@@ -17754,7 +17605,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2295217631488364981
 GameObject:
@@ -17852,7 +17702,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2314082587980073860
 GameObject:
@@ -17950,7 +17799,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2323365238704547292
 GameObject:
@@ -18048,7 +17896,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2323549940994677563
 GameObject:
@@ -18146,7 +17993,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 247927157826123970}
 --- !u!1 &2367413528005699205
@@ -18245,8 +18091,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: a7130740956325c4eabd124ece5352af, type: 2}
   connectedElements: []
 --- !u!1 &2400529813429839539
 GameObject:
@@ -18344,7 +18188,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2404165670728901623
 GameObject:
@@ -18442,7 +18285,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 0
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2415200366310033919
 GameObject:
@@ -18540,7 +18382,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2416287465328794425
 GameObject:
@@ -18643,7 +18484,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2423060780315432860
 GameObject:
@@ -18825,8 +18665,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView:
-  - {fileID: 11400000, guid: fdce79e02459a884e897349c33d237dd, type: 2}
   connectedElements: []
 --- !u!1 &2435881165231855338
 GameObject:
@@ -18924,7 +18762,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2449895574310941585
 GameObject:
@@ -19022,7 +18859,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2453560853366483538
 GameObject:
@@ -19120,7 +18956,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2467892031985208669
 GameObject:
@@ -19298,8 +19133,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 61b56cfa6bce1a648a483a1c8a5d8e82, type: 2}
   connectedElements: []
 --- !u!1 &2478136809892061586
 GameObject:
@@ -19397,7 +19230,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2482529480379313484
 GameObject:
@@ -19495,7 +19327,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 3040652134731957387}
 --- !u!1 &2483024134883068630
@@ -19679,7 +19510,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2566052585224549048
 GameObject:
@@ -19777,7 +19607,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2580921966649288492
 GameObject:
@@ -19875,7 +19704,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 4690731324856743874}
 --- !u!1 &2587556229656252650
@@ -19974,8 +19802,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: f3a19f516f8aff0478448fcb23613360, type: 2}
   connectedElements: []
 --- !u!1 &2596958159373487803
 GameObject:
@@ -20114,7 +19940,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2617475957368726206
 GameObject:
@@ -20212,7 +20037,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2720183091614328307
 GameObject:
@@ -20354,7 +20178,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2757434826989584440
 GameObject:
@@ -20452,7 +20275,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2767240273266048240
 GameObject:
@@ -20550,8 +20372,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 4bbbdc631ccc8c04ebef2d9c4c9836ab, type: 2}
   connectedElements: []
 --- !u!1 &2769500325374200882
 GameObject:
@@ -20809,7 +20629,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &2807353823782137071
 GameObject:
@@ -20907,8 +20726,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 24a7d73a2db0ff44bb29ac1f4fc06ebd, type: 2}
   connectedElements: []
 --- !u!1 &2828500484274892649
 GameObject:
@@ -21086,8 +20903,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView:
-  - {fileID: 11400000, guid: f779bdddeb8954a4e92b7d36cd7e1656, type: 2}
   connectedElements:
   - {fileID: 4287802916373573320}
   - {fileID: 1548659354055406880}
@@ -21515,8 +21330,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 8a2ac3b39929247449f676e4da2182a5, type: 2}
   connectedElements: []
 --- !u!1 &2990061070696423903
 GameObject:
@@ -21614,7 +21427,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3008044560282952148
 GameObject:
@@ -21712,7 +21524,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 8
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3014420557574637545
 GameObject:
@@ -21810,7 +21621,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3050035433263321702
 GameObject:
@@ -21908,8 +21718,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 72f15555e62e92e4594386979b905976, type: 2}
   connectedElements: []
 --- !u!1 &3050728768232737166
 GameObject:
@@ -22007,7 +21815,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3079514104827922156
 GameObject:
@@ -22105,8 +21912,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 7b5756f50b0f165488bd9d3ddfe721ef, type: 2}
   connectedElements:
   - {fileID: 598468205310796015}
   - {fileID: 5668205468077134654}
@@ -22206,7 +22011,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3115634510231713839
 GameObject:
@@ -22384,8 +22188,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 7871a9330b5d4584089ac0e44044b98f, type: 2}
   connectedElements: []
 --- !u!1 &3151465416356633179
 GameObject:
@@ -22483,7 +22285,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3155595201298413528
 GameObject:
@@ -22581,7 +22382,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3157567225611107433
 GameObject:
@@ -22679,7 +22479,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3159198100670726582
 GameObject:
@@ -22857,7 +22656,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3164650304803204406
 GameObject:
@@ -23035,7 +22833,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3200181326503958913
 GameObject:
@@ -23213,7 +23010,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3213281044998435691
 GameObject:
@@ -23391,7 +23187,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3253107038502540634
 GameObject:
@@ -23569,7 +23364,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3261566885960632100
 GameObject:
@@ -23667,7 +23461,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3390980599889358229
 GameObject:
@@ -23765,7 +23558,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3410556903093137416
 GameObject:
@@ -23863,7 +23655,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 8
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3418661029907331740
 GameObject:
@@ -23961,7 +23752,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3443754583252652282
 GameObject:
@@ -24059,7 +23849,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 17
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3444344605666679428
 GameObject:
@@ -24157,7 +23946,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3458617639866147542
 GameObject:
@@ -24264,7 +24052,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3491527413258248148
 GameObject:
@@ -24362,7 +24149,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3499307027247149381
 GameObject:
@@ -24464,7 +24250,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3503893302158835045
 GameObject:
@@ -24594,7 +24379,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 3796414447284155016}
   - {fileID: 5391950622399506378}
@@ -24694,7 +24478,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 5576480712844103378}
   - {fileID: 2176311784195585386}
@@ -24794,7 +24577,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 1124433304148847603}
 --- !u!1 &3532027769625888261
@@ -24896,7 +24678,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3534890637324004411
 GameObject:
@@ -24997,7 +24778,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3537205166782378690
 GameObject:
@@ -25160,8 +24940,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: c121c30aa5cf9aa4684d111924655f64, type: 2}
   connectedElements: []
 --- !u!1 &3559750798513226846
 GameObject:
@@ -25339,7 +25117,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 7804962558140945961}
 --- !u!1 &3596304508358434930
@@ -25438,7 +25215,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 13
   bodyPartType: 0
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3596943847659743255
 GameObject:
@@ -25536,8 +25312,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 5f0cc2541d77ade4b95009b0982217a2, type: 2}
   connectedElements:
   - {fileID: 8433578023627613219}
   - {fileID: 3490205009330408738}
@@ -25717,7 +25491,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 1727842294441296336}
 --- !u!1 &3646628602996363882
@@ -25816,7 +25589,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 1435310835159144707}
 --- !u!1 &3647685619691221446
@@ -25995,7 +25767,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 17
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3678849822489190834
 GameObject:
@@ -26093,8 +25864,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 4949b46bccaf73b459057d8e530d655a, type: 2}
   connectedElements: []
 --- !u!1 &3683930030922941397
 GameObject:
@@ -26272,7 +26041,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3698826003988661178
 GameObject:
@@ -26370,8 +26138,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 23c5bd333bdf3f24b9e62b2498bf379c, type: 2}
   connectedElements: []
 --- !u!1 &3703852256311583047
 GameObject:
@@ -26469,8 +26235,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 7bbfb36b17ff3e8479326d008f730cae, type: 2}
   connectedElements:
   - {fileID: 8742994095287241702}
   - {fileID: 8833128047477338048}
@@ -26570,7 +26334,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3708422220054426614
 GameObject:
@@ -26969,7 +26732,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3842715640177621417
 GameObject:
@@ -27067,7 +26829,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3861360689229458761
 GameObject:
@@ -27165,8 +26926,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 26d53275e021adb45800753a290e2a6f, type: 2}
   connectedElements: []
 --- !u!1 &3890353384458739256
 GameObject:
@@ -27344,7 +27103,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 2321197794085466443}
 --- !u!1 &3975195227588422052
@@ -27443,7 +27201,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 9204238807241758851}
   - {fileID: 7750214685175337412}
@@ -27543,7 +27300,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &3980824455666315259
 GameObject:
@@ -27644,7 +27400,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4021259949430250449
 GameObject:
@@ -27742,7 +27497,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 8
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4025897728199539898
 GameObject:
@@ -27840,7 +27594,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4036999418347720674
 GameObject:
@@ -28098,7 +27851,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4076088894489686675
 GameObject:
@@ -28196,7 +27948,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 6680849382366695220}
 --- !u!1 &4099528507219652754
@@ -28455,7 +28206,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 4687325826015565695}
 --- !u!1 &4138289897454445459
@@ -28554,7 +28304,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 6835725582926931401}
 --- !u!1 &4151709433563238790
@@ -28653,7 +28402,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 8572981534389785845}
   - {fileID: 8273692265966274934}
@@ -28993,7 +28741,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4205370540241168266
 GameObject:
@@ -29091,8 +28838,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 61b56cfa6bce1a648a483a1c8a5d8e82, type: 2}
   connectedElements: []
 --- !u!1 &4206463930371677015
 GameObject:
@@ -29190,7 +28935,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4217862167346562292
 GameObject:
@@ -29288,7 +29032,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4242804901732173761
 GameObject:
@@ -29466,7 +29209,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4274392156811163957
 GameObject:
@@ -29564,8 +29306,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 8050dcb4bd4904940b89a797276bbe1e, type: 2}
   connectedElements: []
 --- !u!1 &4303481177620948897
 GameObject:
@@ -29743,7 +29483,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4323852676418028267
 GameObject:
@@ -29921,7 +29660,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4362284217611468982
 GameObject:
@@ -30019,7 +29757,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4427383421058146832
 GameObject:
@@ -30117,7 +29854,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4438842221953767770
 GameObject:
@@ -30295,7 +30031,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4499412477652004838
 GameObject:
@@ -30393,7 +30128,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 15
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 460379435479423888}
 --- !u!1 &4524918469121101631
@@ -30572,8 +30306,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: fb81b3fde89669b4e8b4dcabd8081f84, type: 2}
   connectedElements: []
 --- !u!1 &4574516232543945998
 GameObject:
@@ -30671,7 +30403,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4576440682892290761
 GameObject:
@@ -30849,7 +30580,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 343112430901630536}
   - {fileID: 3075629747830822251}
@@ -31029,7 +30759,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4599200924134367792
 GameObject:
@@ -31127,7 +30856,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 3497414114729133551}
   - {fileID: 8144296012893264393}
@@ -31387,8 +31115,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 0b1f41053fe144e4fb378cad54327a91, type: 2}
   connectedElements: []
 --- !u!1 &4650508279842982602
 GameObject:
@@ -31486,8 +31212,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: a9321ad4d22fd57429dcd3b419fffb38, type: 2}
   connectedElements: []
 --- !u!1 &4664959815242040051
 GameObject:
@@ -31585,7 +31309,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4667642259714708218
 GameObject:
@@ -31683,7 +31406,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 4604019166840442892}
   - {fileID: 5148278448362244162}
@@ -31829,7 +31551,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 8847006184893650254}
 --- !u!1 &4710015263959590523
@@ -32008,7 +31729,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4713469562704976433
 GameObject:
@@ -32106,7 +31826,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 6848846715285714464}
   - {fileID: 1302804344316358932}
@@ -32206,8 +31925,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView:
-  - {fileID: 11400000, guid: d224d2e6da23e5f41b95d8651c8cf681, type: 2}
   connectedElements:
   - {fileID: 7537503933893444743}
 --- !u!1 &4782703199395397241
@@ -32422,7 +32139,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 887935432630869737}
 --- !u!1 &4797648644451587789
@@ -32521,7 +32237,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4807622651789095115
 GameObject:
@@ -32619,7 +32334,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4810429550564127181
 GameObject:
@@ -32717,7 +32431,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4818841482402999054
 GameObject:
@@ -32815,7 +32528,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 15
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 2333769002536910096}
 --- !u!1 &4834722614584744322
@@ -32914,7 +32626,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4862307127763993790
 GameObject:
@@ -33136,7 +32847,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4890359325606079601
 GameObject:
@@ -33356,7 +33066,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4898610723676752715
 GameObject:
@@ -33457,7 +33166,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4912527922866027645
 GameObject:
@@ -33795,7 +33503,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4948180964842253508
 GameObject:
@@ -34004,7 +33711,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &4979443842569010447
 GameObject:
@@ -34102,7 +33808,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 4804330042077201092}
 --- !u!1 &4983111043314931138
@@ -34201,8 +33906,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: b94c89841beb6d74c80f5035024adf10, type: 2}
   connectedElements: []
 --- !u!1 &4985166552705215805
 GameObject:
@@ -34300,7 +34003,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5015859080036343588
 GameObject:
@@ -34478,7 +34180,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5050764707447661764
 GameObject:
@@ -34576,7 +34277,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 2433936582466109315}
 --- !u!1 &5055192268410204616
@@ -34675,7 +34375,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5070423356986286407
 GameObject:
@@ -34853,7 +34552,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5110540912263000928
 GameObject:
@@ -34951,7 +34649,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5116659667108097797
 GameObject:
@@ -35049,7 +34746,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5118825208460122948
 GameObject:
@@ -35227,7 +34923,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 4717202435119435070}
   - {fileID: 2915048187314095791}
@@ -35487,7 +35182,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5195437697859322937
 GameObject:
@@ -35585,7 +35279,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5243356963129740183
 GameObject:
@@ -35763,7 +35456,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5263507627964864507
 GameObject:
@@ -35942,8 +35634,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 999d3278dfbeaa44091f0f2e11beb273, type: 2}
   connectedElements:
   - {fileID: 6886477184926172895}
 --- !u!1 &5299660080044706723
@@ -36042,7 +35732,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5299969207090096068
 GameObject:
@@ -36220,7 +35909,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5302830480966543098
 GameObject:
@@ -36318,7 +36006,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5315134661356454941
 GameObject:
@@ -36416,7 +36103,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5317178794208073565
 GameObject:
@@ -36514,7 +36200,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5345417857166999642
 GameObject:
@@ -36612,7 +36297,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5347945584108638892
 GameObject:
@@ -36710,8 +36394,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 5f0cc2541d77ade4b95009b0982217a2, type: 2}
   connectedElements:
   - {fileID: 7191377749631082282}
   - {fileID: 6317221762972217013}
@@ -36891,7 +36573,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5392008933300603938
 GameObject:
@@ -36989,8 +36670,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 8214d9fefaf822b478d6029a92112fcd, type: 2}
   connectedElements:
   - {fileID: 5290341116498893783}
 --- !u!1 &5401993156531364694
@@ -37089,8 +36768,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 14
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: cba9ea99720551e4287d0d1ce7a53ad8, type: 2}
   connectedElements: []
 --- !u!1 &5414410560254614418
 GameObject:
@@ -37188,7 +36865,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5435940574750487965
 GameObject:
@@ -37286,7 +36962,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5453112324130678620
 GameObject:
@@ -37384,8 +37059,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: e5fd2e7169748644b87cd496f3a26ceb, type: 2}
   connectedElements: []
 --- !u!1 &5464712033703619885
 GameObject:
@@ -37483,8 +37156,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 3002ff2fa1165d8499a1d620bb2cec5c, type: 2}
   connectedElements: []
 --- !u!1 &5469204779571202857
 GameObject:
@@ -37582,7 +37253,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5495316894097617901
 GameObject:
@@ -37680,7 +37350,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 2101715625656455675}
   - {fileID: 7389743923507104749}
@@ -37780,7 +37449,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 4377899193471135500}
 --- !u!1 &5503736077453538519
@@ -37879,7 +37547,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 7820043969845608137}
 --- !u!1 &5505775154430309065
@@ -38058,7 +37725,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5560746649336975963
 GameObject:
@@ -38156,8 +37822,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 26d53275e021adb45800753a290e2a6f, type: 2}
   connectedElements: []
 --- !u!1 &5581440258383342211
 GameObject:
@@ -38255,7 +37919,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5584487423949728906
 GameObject:
@@ -38353,7 +38016,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 3929808670978202685}
 --- !u!1 &5598773470544342695
@@ -38452,7 +38114,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 1683922848413959253}
 --- !u!1 &5613712799845975157
@@ -38551,7 +38212,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5618219589152368542
 GameObject:
@@ -38652,7 +38312,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5622984578768565992
 GameObject:
@@ -38750,7 +38409,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5689770376121715516
 GameObject:
@@ -38848,7 +38506,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 8
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5690170710796112213
 GameObject:
@@ -38946,7 +38603,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5695420983806998239
 GameObject:
@@ -39204,7 +38860,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5732829215736337688
 GameObject:
@@ -39302,7 +38957,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 13
   bodyPartType: 0
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5739138044455234612
 GameObject:
@@ -39400,7 +39054,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5785048575376224310
 GameObject:
@@ -39498,7 +39151,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5790176497426364999
 GameObject:
@@ -39596,7 +39248,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5792662394013115986
 GameObject:
@@ -39699,7 +39350,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5825427582653884829
 GameObject:
@@ -39877,8 +39527,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 1c34e815a0665d84ab50f4e0fc5a126b, type: 2}
   connectedElements: []
 --- !u!1 &5863801854333320187
 GameObject:
@@ -40171,8 +39819,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: a8980f14405484041addf812505ed864, type: 2}
   connectedElements: []
 --- !u!1 &5915440406320145970
 GameObject:
@@ -40359,8 +40005,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView:
-  - {fileID: 11400000, guid: a67d63d54dfd1c84581c5d392f5ccac0, type: 2}
   connectedElements: []
 --- !u!1 &5971081087126711948
 GameObject:
@@ -40458,7 +40102,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 8
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &5973195465347022991
 GameObject:
@@ -40556,7 +40199,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 8355462957214247960}
 --- !u!1 &5991539157509042143
@@ -40655,7 +40297,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 9202315179135332267}
 --- !u!1 &6049225601078961145
@@ -40914,7 +40555,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6073019693114743388
 GameObject:
@@ -41044,7 +40684,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6178098996160351620
 GameObject:
@@ -41142,7 +40781,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6183320730230899304
 GameObject:
@@ -41240,8 +40878,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView:
-  - {fileID: 11400000, guid: ddb8014d73445064aa9c9a0b98e138af, type: 2}
   connectedElements:
   - {fileID: 8358900937603944863}
   - {fileID: 7855052246172855227}
@@ -41423,8 +41059,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: ba09fc32222d88649be75a770c293862, type: 2}
   connectedElements: []
 --- !u!1 &6214136032241353679
 GameObject:
@@ -41522,8 +41156,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 35f2fbd3b5c21ed49bdd6c4116a4800b, type: 2}
   connectedElements:
   - {fileID: 2373282312784006392}
 --- !u!1 &6218408663982976639
@@ -41622,7 +41254,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6226301646493759281
 GameObject:
@@ -41800,7 +41431,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6232766774848545227
 GameObject:
@@ -41898,7 +41528,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 4334649376364009749}
   - {fileID: 5361218838091678549}
@@ -41998,7 +41627,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 6400120954857561998}
 --- !u!1 &6271516410701689011
@@ -42177,7 +41805,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6282064317156288955
 GameObject:
@@ -42275,7 +41902,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6284771153750683498
 GameObject:
@@ -42373,8 +41999,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 165b0b2ad2c017444886d06884a3457c, type: 2}
   connectedElements: []
 --- !u!1 &6340541556524996982
 GameObject:
@@ -42472,7 +42096,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6357556535638455484
 GameObject:
@@ -42570,7 +42193,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 17
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6383051061057932175
 GameObject:
@@ -42668,7 +42290,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6396265607239762097
 GameObject:
@@ -42766,7 +42387,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6404658882628506509
 GameObject:
@@ -42864,7 +42484,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 17
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6438636614174908945
 GameObject:
@@ -42962,7 +42581,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6444269694835288455
 GameObject:
@@ -43140,7 +42758,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6491200261278534026
 GameObject:
@@ -43238,8 +42855,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 48b05591d602e33478111341578e78a4, type: 2}
   connectedElements: []
 --- !u!1 &6512213414032728759
 GameObject:
@@ -43417,7 +43032,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6554530441867185413
 GameObject:
@@ -43564,7 +43178,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6590615662573566503
 GameObject:
@@ -43742,8 +43355,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 24a7d73a2db0ff44bb29ac1f4fc06ebd, type: 2}
   connectedElements: []
 --- !u!1 &6609072651757601656
 GameObject:
@@ -43841,7 +43452,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 7205811450060712794}
 --- !u!1 &6631110777139798888
@@ -44024,8 +43634,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 422b1f5570b0b984ba748d81cc28ac25, type: 2}
   connectedElements: []
 --- !u!1 &6644265253604477746
 GameObject:
@@ -44125,8 +43733,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView:
-  - {fileID: 11400000, guid: d3289ccabc728784a922fcf7f91a67a1, type: 2}
   connectedElements:
   - {fileID: 4143813368570672030}
 --- !u!1 &6650044522846724266
@@ -44225,7 +43831,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6651783671558295331
 GameObject:
@@ -44323,7 +43928,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 4462408815951055283}
 --- !u!1 &6657488422082726327
@@ -44422,7 +44026,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6699922811559104029
 GameObject:
@@ -44520,7 +44123,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 5860785338971982304}
 --- !u!1 &6717548290105695283
@@ -44619,8 +44221,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 8e853370ec823c343be7be97c181c41b, type: 2}
   connectedElements: []
 --- !u!1 &6744930200259100646
 GameObject:
@@ -44878,8 +44478,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 250924fae8aef8b48b602cf22e25ef54, type: 2}
   connectedElements:
   - {fileID: 752485566212670008}
 --- !u!1 &6781289887038887040
@@ -45058,7 +44656,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6819863538945461738
 GameObject:
@@ -45156,8 +44753,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 14
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 3ec8f51bf49af3c45ba883ff8b711b7a, type: 2}
   connectedElements: []
 --- !u!1 &6841785532776799199
 GameObject:
@@ -45255,7 +44850,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 664451326354265110}
 --- !u!1 &6849537199920671170
@@ -45354,7 +44948,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &6852973576441528301
 GameObject:
@@ -45612,7 +45205,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 15
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 8826837451646644028}
 --- !u!1 &6966353198327564664
@@ -45711,7 +45303,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7005009328882936139
 GameObject:
@@ -45809,7 +45400,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7016826760404727382
 GameObject:
@@ -46147,7 +45737,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 8660556801827874289}
 --- !u!1 &7140143396962772703
@@ -46246,7 +45835,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 8
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7154782709631738705
 GameObject:
@@ -46344,7 +45932,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7185921628041068651
 GameObject:
@@ -46445,7 +46032,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7194094293751898508
 GameObject:
@@ -46543,7 +46129,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 3
   bodyPartType: 9
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7246018054953309168
 GameObject:
@@ -46641,7 +46226,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 794309003253776713}
 --- !u!1 &7269907152339450541
@@ -46740,7 +46324,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7279949787448043342
 GameObject:
@@ -46843,7 +46426,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7286816375664419979
 GameObject:
@@ -46941,7 +46523,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 2517702443341577026}
   - {fileID: 4986833293588764781}
@@ -47121,7 +46702,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 7550465717800980231}
 --- !u!1 &7331374497230250105
@@ -47300,7 +46880,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 6766037858371645205}
   - {fileID: 704261163122391222}
@@ -47400,7 +46979,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 8112670298185352845}
 --- !u!1 &7389328475658318426
@@ -47499,7 +47077,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7394555569045302252
 GameObject:
@@ -47597,7 +47174,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 2622163236190686034}
 --- !u!1 &7409034655737839763
@@ -47696,7 +47272,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7435002649550971573
 GameObject:
@@ -47794,7 +47369,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7462735538502083607
 GameObject:
@@ -47892,7 +47466,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7481276992340563099
 GameObject:
@@ -47990,7 +47563,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7492393511754381041
 GameObject:
@@ -48241,7 +47813,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 2363901295156237674}
 --- !u!1 &7547706714133988530
@@ -48420,7 +47991,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 905113475210474801}
   - {fileID: 620920605554622500}
@@ -48520,7 +48090,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 3036968795033824815}
   - {fileID: 183252349245513576}
@@ -48620,7 +48189,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 4875470750905712717}
 --- !u!1 &7653435029719313693
@@ -48879,7 +48447,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7674073311519253317
 GameObject:
@@ -48977,7 +48544,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7681211483875274926
 GameObject:
@@ -49112,7 +48678,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7684521344258939534
 GameObject:
@@ -49210,7 +48775,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7690450651971981717
 GameObject:
@@ -49388,7 +48952,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 13
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7711992970505747247
 GameObject:
@@ -49530,7 +49093,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 1031426457142543244}
 --- !u!1 &7761195461772906592
@@ -49633,7 +49195,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7768384255845634000
 GameObject:
@@ -49891,8 +49452,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 4949b46bccaf73b459057d8e530d655a, type: 2}
   connectedElements: []
 --- !u!1 &7798023690393880238
 GameObject:
@@ -50310,8 +49869,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 4bbbdc631ccc8c04ebef2d9c4c9836ab, type: 2}
   connectedElements: []
 --- !u!1 &7903887473808687226
 GameObject:
@@ -50409,7 +49966,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7920573200698815137
 GameObject:
@@ -50636,7 +50192,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &7936286000361126642
 GameObject:
@@ -50734,8 +50289,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 75fb4bdeb7457994888328207ae3ef60, type: 2}
   connectedElements: []
 --- !u!1 &7966626917230446977
 GameObject:
@@ -50836,8 +50389,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView:
-  - {fileID: 11400000, guid: fca0a776a2fe402409480478c6866419, type: 2}
   connectedElements: []
 --- !u!1 &7982140900385103952
 GameObject:
@@ -50935,7 +50486,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 4497047905712099995}
 --- !u!1 &7985391670026962248
@@ -51098,7 +50648,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 15
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 337862062717354479}
 --- !u!1 &7992601108741681935
@@ -51197,7 +50746,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8003763918922828823
 GameObject:
@@ -51295,7 +50843,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8012499000766024079
 GameObject:
@@ -51393,7 +50940,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8019620726835654180
 GameObject:
@@ -51491,7 +51037,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8026515604540600738
 GameObject:
@@ -51669,7 +51214,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 8
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8052761586906060389
 GameObject:
@@ -51767,7 +51311,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8057456851548306709
 GameObject:
@@ -51865,7 +51408,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8130313412126857146
 GameObject:
@@ -51963,8 +51505,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 7871a9330b5d4584089ac0e44044b98f, type: 2}
   connectedElements: []
 --- !u!1 &8131510114092879097
 GameObject:
@@ -52062,7 +51602,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8138006020161187133
 GameObject:
@@ -52160,7 +51699,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 9036716280632802658}
 --- !u!1 &8173760912770754487
@@ -52259,7 +51797,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8173969991564724752
 GameObject:
@@ -52357,7 +51894,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8174352713329876987
 GameObject:
@@ -52455,7 +51991,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8180364602229282922
 GameObject:
@@ -52553,7 +52088,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8180511258944519665
 GameObject:
@@ -52651,7 +52185,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8190994464240929481
 GameObject:
@@ -52749,7 +52282,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 5883629392108970132}
 --- !u!1 &8227929483595238219
@@ -52848,8 +52380,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: dabe85cff22e3584f852826e6bfa7fba, type: 2}
   connectedElements: []
 --- !u!1 &8269201557212632790
 GameObject:
@@ -52947,7 +52477,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8273084180783497094
 GameObject:
@@ -53205,8 +52734,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 14
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: fc70953d6f2c5cc47a51379bc00bc4b3, type: 2}
   connectedElements: []
 --- !u!1 &8293734638659966799
 GameObject:
@@ -53304,7 +52831,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8310006410152568437
 GameObject:
@@ -53402,7 +52928,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8322596843877986419
 GameObject:
@@ -53500,7 +53025,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8323042240287852681
 GameObject:
@@ -53598,7 +53122,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 7
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 2359141089845744708}
 --- !u!1 &8333965667715983805
@@ -53937,7 +53460,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8417690659573426995
 GameObject:
@@ -54040,7 +53562,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8430133354569807817
 GameObject:
@@ -54538,8 +54059,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 8a2ac3b39929247449f676e4da2182a5, type: 2}
   connectedElements: []
 --- !u!1 &8482964938060576951
 GameObject:
@@ -54717,7 +54236,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 6460582891700478267}
 --- !u!1 &8525070222710513569
@@ -54816,7 +54334,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 12
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 6413105606450518267}
 --- !u!1 &8537718557868157327
@@ -54924,7 +54441,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8547693505930731674
 GameObject:
@@ -55068,7 +54584,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8568838822096146441
 GameObject:
@@ -55166,7 +54681,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8610818265148282163
 GameObject:
@@ -55344,7 +54858,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 5960368072639669642}
 --- !u!1 &8628202183662397721
@@ -55443,7 +54956,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8651250347247338106
 GameObject:
@@ -55541,8 +55053,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 0b1f41053fe144e4fb378cad54327a91, type: 2}
   connectedElements: []
 --- !u!1 &8651457342398728977
 GameObject:
@@ -55640,7 +55150,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8656875645814160383
 GameObject:
@@ -55738,7 +55247,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 2320322186300189522}
   - {fileID: 6651744516305792977}
@@ -55838,7 +55346,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8755626541218664367
 GameObject:
@@ -55974,7 +55481,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8780494683721293972
 GameObject:
@@ -56152,7 +55658,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 14
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8835222867936987234
 GameObject:
@@ -56250,7 +55755,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 7219114252942765064}
   - {fileID: 5170557547215734860}
@@ -56350,7 +55854,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8839664226529304146
 GameObject:
@@ -56448,7 +55951,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 10
   bodyPartType: 1
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8879118179230654798
 GameObject:
@@ -56546,7 +56048,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 4
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 5652697765077804857}
 --- !u!1 &8907652028700722823
@@ -56645,7 +56146,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8912642931165699850
 GameObject:
@@ -56743,7 +56243,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8917610779103230280
 GameObject:
@@ -56841,8 +56340,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 2a8c5d613d56ed9478ab3d348e31305b, type: 2}
   connectedElements: []
 --- !u!1 &8950341261988059839
 GameObject:
@@ -57100,7 +56597,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8966184667131493357
 GameObject:
@@ -57204,7 +56700,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8974385067498656910
 GameObject:
@@ -57335,7 +56830,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &8989295978082097869
 GameObject:
@@ -57433,7 +56927,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 6838433465293996259}
 --- !u!1 &9004143592223008879
@@ -57533,8 +57026,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView:
-  - {fileID: 11400000, guid: e06a43ce06359de49b8ab83811816ae9, type: 2}
   connectedElements: []
 --- !u!1 &9013544993351898592
 GameObject:
@@ -57632,8 +57123,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 6
   bodyPartType: 11
-  itemsWithMyView:
-  - {fileID: 11400000, guid: b70c322c41c50664aa2fe848a30ac0eb, type: 2}
   connectedElements:
   - {fileID: 8010766799936490437}
   - {fileID: 7850859662533646842}
@@ -57733,8 +57222,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 274beec3ad9880d47ac85fc5172226ad, type: 2}
   connectedElements: []
 --- !u!1 &9029054264868336859
 GameObject:
@@ -57832,7 +57319,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 14
   bodyPartType: 19
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &9034892349997822262
 GameObject:
@@ -58010,7 +57496,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &9079593586561387507
 GameObject:
@@ -58108,7 +57593,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 3
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &9094212477937816132
 GameObject:
@@ -58215,8 +57699,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 12
   bodyPartType: 10
-  itemsWithMyView:
-  - {fileID: 11400000, guid: 3fbea5f54b8be454693b9a0069099fbd, type: 2}
   connectedElements: []
 --- !u!1 &9097339115629758166
 GameObject:
@@ -58394,7 +57876,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 5
   bodyPartType: 16
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &9113653222436487700
 GameObject:
@@ -58732,7 +58213,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 0
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &9160568559902107371
 GameObject:
@@ -58830,7 +58310,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 3277934258376249588}
 --- !u!1 &9181187929320040246
@@ -58929,7 +58408,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 1
   bodyPartType: 5
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &9188705819931320410
 GameObject:
@@ -59027,7 +58505,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 11
   bodyPartType: 2
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &9215672891685216905
 GameObject:
@@ -59125,7 +58602,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 4
   bodyPartType: 17
-  itemsWithMyView: []
   connectedElements: []
 --- !u!1 &9215945630697818502
 GameObject:
@@ -59223,7 +58699,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 8
   bodyPartType: 6
-  itemsWithMyView: []
   connectedElements:
   - {fileID: 5934396688426176085}
 --- !u!74 &74023006022270660
