@@ -15,15 +15,14 @@ namespace Tests
 
         // Mock data
         CharacterData characterData;
+        EnemyDataSO enemyData;
         List<CardDataSO> deckData;
-        LevelNode node;
+        LevelNode defenderNode;
+        LevelNode enemyNode;
 
         [UnitySetUp]
         public IEnumerator Setup()
         {
-            // Create Game Scene
-            //GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Scenes/Game Scene.prefab"));
-
             // Load Scene, wait until completed
             AsyncOperation loading = SceneManager.LoadSceneAsync(SCENE_NAME);
             yield return new WaitUntil(() => loading.isDone);
@@ -54,8 +53,13 @@ namespace Tests
             characterData.passiveManager = new PassiveManagerModel();
 
             // Create mock level node
-            node = LevelManager.Instance.GetNextAvailableDefenderNode();
+            defenderNode = LevelManager.Instance.GetNextAvailableDefenderNode();
+            enemyNode = LevelManager.Instance.GetNextAvailableEnemyNode();
+
+            // Create mock enemy data
+            enemyData = AssetDatabase.LoadAssetAtPath<EnemyDataSO>("Assets/SO Assets/Enemies/Test Enemy.asset");
         }
+
 
         [Test]
         public void Create_Player_Character_Function_Creates_Entity_View()
@@ -64,7 +68,7 @@ namespace Tests
             CharacterEntityModel model;
 
             // Act
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
 
             // Assert
             Assert.IsNotNull(model.characterEntityView);
@@ -79,7 +83,7 @@ namespace Tests
             // Act
             expected = "Human_Chest";
             characterData.modelParts.Add(expected);
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
 
             // Assert
             Assert.AreEqual(expected, model.characterEntityView.ucm.activeChest.name);
@@ -92,7 +96,7 @@ namespace Tests
             bool expected = false;
 
             // Act
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             if (CharacterEntityController.Instance.AllCharacters.Contains(model) &&
                 CharacterEntityController.Instance.AllDefenders.Contains(model))
             {
@@ -109,12 +113,158 @@ namespace Tests
             CharacterEntityModel model;
 
             // Act
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
 
             // Assert
             Assert.AreEqual(model.characterEntityView.uiCanvas.worldCamera, CameraManager.Instance.MainCamera);
         }
+        [Test]
+        public void Create_Enemy_Character_Function_Creates_Entity_View()
+        {
+            // Arange
+            CharacterEntityModel model;
 
+            // Act
+            model = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, enemyNode);
+
+            // Assert
+            Assert.IsNotNull(model.characterEntityView);
+        }
+        [Test]
+        public void Create_Enemy_Character_Function_Builds_UCM()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string expected;
+
+            // Act
+            expected = "Human_Chest";
+            enemyData.allBodyParts.Add(expected);
+            model = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, enemyNode);
+
+            // Assert
+            Assert.AreEqual(expected, model.characterEntityView.ucm.activeChest.name);
+        }
+        [Test]
+        public void Create_Enemy_Character_Function_Adds_Character_To_Persistency()
+        {
+            // Arange
+            CharacterEntityModel model;
+            bool expected = false;
+
+            // Act
+            model = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, enemyNode);
+            if (CharacterEntityController.Instance.AllCharacters.Contains(model) &&
+                CharacterEntityController.Instance.AllEnemies.Contains(model))
+            {
+                expected = true;
+            }
+
+            // Assert
+            Assert.IsTrue(expected);
+        }
+        [Test]
+        public void Modify_Health_Cant_Set_Health_Above_Maximum()
+        {
+            // Arange
+            CharacterEntityModel model;
+            int expectedHealth = characterData.health;
+
+            // Act
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            CharacterEntityController.Instance.ModifyHealth(model, 100);
+
+            // Assert
+            Assert.AreEqual(expectedHealth, model.health);
+        }
+        [Test]
+        public void Modify_Health_Cant_Set_Health_Below_Zero()
+        {
+            // Arange
+            CharacterEntityModel model;
+            int expectedHealth = 0;
+
+            // Act
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            CharacterEntityController.Instance.ModifyHealth(model, -100);
+
+            // Assert
+            Assert.AreEqual(expectedHealth, model.health);
+        }
+        [Test]
+        public void Modify_Max_Health_Adjusts_Current_Health_Below_Maximum_If_Maximum_Is_Exceeded()
+        {
+            // Arange
+            CharacterEntityModel model;
+            int expectedHealth = 25;
+
+            // Act
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            CharacterEntityController.Instance.ModifyMaxHealth(model, -5);
+
+            // Assert
+            Assert.AreEqual(expectedHealth, model.health);
+        }
+        [Test]
+        public void Modify_Initiative_Cant_Set_Initiative_Below_Zero()
+        {
+            // Arange
+            CharacterEntityModel model;
+            int expectedInitiative = 0;
+
+            // Act
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            CharacterEntityController.Instance.ModifyInitiative(model, 50);
+            CharacterEntityController.Instance.ModifyInitiative(model, -100);
+
+            // Assert
+            Assert.AreEqual(expectedInitiative, model.dexterity);
+        }
+        [Test]
+        public void Modify_Draw_Cant_Set_Draw_Below_Zero()
+        {
+            // Arange
+            CharacterEntityModel model;
+            int expectedDraw = 0;
+
+            // Act
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            CharacterEntityController.Instance.ModifyDraw(model, 50);
+            CharacterEntityController.Instance.ModifyDraw(model, -100);
+
+            // Assert
+            Assert.AreEqual(expectedDraw, model.draw);
+        }
+        [Test]
+        public void Modify_Energy_Cant_Set_Energy_Below_Zero()
+        {
+            // Arange
+            CharacterEntityModel model;
+            int expectedEnergy = 0;
+
+            // Act
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            CharacterEntityController.Instance.ModifyEnergy(model, 50);
+            CharacterEntityController.Instance.ModifyEnergy(model, -1000);
+
+            // Assert
+            Assert.AreEqual(expectedEnergy, model.energy);
+        }
+        [Test]
+        public void Modify_Stamina_Cant_Set_Stamina_Below_Zero()
+        {
+            // Arange
+            CharacterEntityModel model;
+            int expectedStamina = 0;
+
+            // Act
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            CharacterEntityController.Instance.ModifyStamina(model, 50);
+            CharacterEntityController.Instance.ModifyStamina(model, -1000);
+
+            // Assert
+            Assert.AreEqual(expectedStamina, model.stamina);
+        }
 
 
 

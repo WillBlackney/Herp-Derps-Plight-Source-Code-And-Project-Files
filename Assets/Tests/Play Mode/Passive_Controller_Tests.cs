@@ -4,22 +4,39 @@ using NUnit.Framework;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;
+using UnityEngine.SceneManagement;
 
 namespace Tests
 {
     public class Passive_Controller_Tests
     {
+        // Scene ref
+        private const string SCENE_NAME = "NewCombatSceneTest";
+
         // Mock data
         CharacterData characterData;
         List<CardDataSO> deckData;
         LevelNode node;
 
-        [OneTimeSetUp]
-        public void Setup()
+        // Pasive name refs;
+        private const string POWER_NAME = "Power";
+        private const string TEMPORARY_POWER_NAME = "Temporary Power";
+        private const string DRAW_NAME = "Draw";
+        private const string TEMPORARY_DRAW_NAME = "Temporary Draw";
+        private const string INITIATIVE_NAME = "Initiative";
+        private const string TEMPORARY_INITIATIVE_NAME = "Temporary Initiative";
+        private const string DEXTERITY_NAME = "Dexterity";
+        private const string TEMPORARY_DEXTERITY_NAME = "Temporary Dexterity";
+        private const string STAMINA_NAME = "Stamina";
+        private const string TEMPORARY_STAMINA_NAME = "Temporary Stamina";
+
+        [UnitySetUp]
+        public IEnumerator Setup()
         {
-            // Create Game Scene
-            //gameScene = GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Scenes/Game Scene.prefab"));
-            GameObject.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Scenes/Game Scene.prefab"));
+            // Load Scene, wait until completed
+            AsyncOperation loading = SceneManager.LoadSceneAsync(SCENE_NAME);
+            yield return new WaitUntil(() => loading.isDone);
+            GameObject.FindObjectOfType<CombatTestSceneController>().runMockScene = false;
 
             // Create mock character data
             characterData = new CharacterData
@@ -48,6 +65,204 @@ namespace Tests
             // Create mock level node
             node = LevelManager.Instance.GetNextAvailableDefenderNode();
         }
-       
+
+        [Test]
+        public void Build_Player_Character_Entity_Passives_From_Character_Data_Applies_A_Passive_Correctly()
+        {
+            // Arange
+            CharacterEntityModel model;
+            int stacks = 2;
+            bool expected = false;
+
+            // Act
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, POWER_NAME, stacks);
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, STAMINA_NAME, stacks);
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, DRAW_NAME, stacks);
+
+            if (model.passiveManager.bonusDrawStacks == 2 &&
+                model.passiveManager.bonusStaminaStacks == 2 &&
+                model.passiveManager.bonusPowerStacks == 2)
+            {
+                expected = true;
+            }
+
+            // Assert
+            Assert.IsTrue(expected);
+        }
+        [Test]
+        public void Modify_Bonus_Power_Effects_Total_Power()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(POWER_NAME).passiveName;
+            int expectedTotal;
+            int stacks = 2;
+
+            // Act
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            expectedTotal = stacks + EntityLogic.GetTotalPower(model);
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, passiveName, stacks);
+
+            // Assert
+            Assert.AreEqual(expectedTotal, EntityLogic.GetTotalPower(model));
+        }
+        [Test]
+        public void Modify_Temporary_Bonus_Power_Effects_Total_Power()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(TEMPORARY_POWER_NAME).passiveName;
+            int expectedTotal;
+            int stacks = 2;
+
+            // Act
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            expectedTotal = stacks + EntityLogic.GetTotalPower(model);
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, passiveName, stacks);
+
+            // Assert
+            Assert.AreEqual(expectedTotal, EntityLogic.GetTotalPower(model));
+        }
+        [Test]
+        public void Modify_Bonus_Dexterity_Effects_Total_Dexterity()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(DEXTERITY_NAME).passiveName;
+            int expectedTotal;
+            int stacks = 2;
+
+            // Act
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            expectedTotal = stacks + EntityLogic.GetTotalDexterity(model);
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, passiveName, stacks);
+
+            // Assert
+            Assert.AreEqual(expectedTotal, EntityLogic.GetTotalDexterity(model));
+        }
+        [Test]
+        public void Modify_Temporary_Bonus_Dexterity_Effects_Total_Dexterity()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(TEMPORARY_DEXTERITY_NAME).passiveName;
+            int expectedTotal;
+            int stacks = 2;
+
+            // Act
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            expectedTotal = stacks + EntityLogic.GetTotalDexterity(model);
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, passiveName, stacks);
+
+            // Assert
+            Assert.AreEqual(expectedTotal, EntityLogic.GetTotalDexterity(model));
+        }
+        [Test]
+        public void Modify_Bonus_Initiative_Effects_Total_Initiative()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(INITIATIVE_NAME).passiveName;
+            int expectedTotal;
+            int stacks = 2;
+
+            // Act
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            expectedTotal = stacks + EntityLogic.GetTotalInitiative(model);
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, passiveName, stacks);
+
+            // Assert
+            Assert.AreEqual(expectedTotal, EntityLogic.GetTotalInitiative(model));
+        }
+        [Test]
+        public void Modify_Temporary_Bonus_Initiative_Effects_Total_Initiative()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(TEMPORARY_INITIATIVE_NAME).passiveName;
+            int expectedTotal;
+            int stacks = 2;
+
+            // Act
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            expectedTotal = stacks + EntityLogic.GetTotalInitiative(model);
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, passiveName, stacks);
+
+            // Assert
+            Assert.AreEqual(expectedTotal, EntityLogic.GetTotalInitiative(model));
+        }
+        [Test]
+        public void Modify_Bonus_Draw_Effects_Total_Draw()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(DRAW_NAME).passiveName;
+            int expectedTotal;
+            int stacks = 2;
+
+            // Act
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            expectedTotal = stacks + EntityLogic.GetTotalDraw(model);
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, passiveName, stacks);
+
+            // Assert
+            Assert.AreEqual(expectedTotal, EntityLogic.GetTotalDraw(model));
+        }
+        [Test]
+        public void Modify_Temporary_Draw_Effects_Total_Draw()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(TEMPORARY_DRAW_NAME).passiveName;
+            int expectedTotal;
+            int stacks = 2;
+
+            // Act
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            expectedTotal = stacks + EntityLogic.GetTotalDraw(model);
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, passiveName, stacks);
+
+            // Assert
+            Assert.AreEqual(expectedTotal, EntityLogic.GetTotalDraw(model));
+        }
+        [Test]
+        public void Modify_Bonus_Stamina_Effects_Total_Stamina()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(STAMINA_NAME).passiveName;
+            int expectedTotal;
+            int stacks = 2;
+
+            // Act
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            expectedTotal = stacks + EntityLogic.GetTotalStamina(model);
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, passiveName, stacks);
+
+            // Assert
+            Assert.AreEqual(expectedTotal, EntityLogic.GetTotalStamina(model));
+        }
+        [Test]
+        public void Modify_Temporary_Stamina_Effects_Total_Stamina()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(TEMPORARY_STAMINA_NAME).passiveName;
+            int expectedTotal;
+            int stacks = 2;
+
+            // Act
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            expectedTotal = stacks + EntityLogic.GetTotalStamina(model);
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, passiveName, stacks);
+
+            // Assert
+            Assert.AreEqual(expectedTotal, EntityLogic.GetTotalStamina(model));
+        }
+
+
     }
+
+   
 }
