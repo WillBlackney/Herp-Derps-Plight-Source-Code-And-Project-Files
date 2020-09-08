@@ -74,6 +74,15 @@ namespace Tests
             Assert.IsNotNull(model.characterEntityView);
         }
         [Test]
+        public void Create_Player_Character_Function_Occupies_Node()
+        {
+            // Act
+            CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+
+            // Assert
+            Assert.IsTrue(defenderNode.occupied);
+        }
+        [Test]
         public void Create_Player_Character_Function_Builds_UCM()
         {
             // Arange
@@ -129,6 +138,15 @@ namespace Tests
 
             // Assert
             Assert.IsNotNull(model.characterEntityView);
+        }
+        [Test]
+        public void Create_Enemy_Character_Function_Occupies_Node()
+        {
+            // Act
+            CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, enemyNode);
+
+            // Assert
+            Assert.IsTrue(enemyNode.occupied);
         }
         [Test]
         public void Create_Enemy_Character_Function_Builds_UCM()

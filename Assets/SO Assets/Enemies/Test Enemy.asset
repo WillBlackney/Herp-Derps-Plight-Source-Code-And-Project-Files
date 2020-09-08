@@ -16,8 +16,8 @@ MonoBehaviour:
   maxHealth: 30
   power: 0
   dexterity: 0
-  initiative: 3
-  startingHealth: 30
+  initiative: 8
+  startingHealth: 1
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0
@@ -27,12 +27,12 @@ MonoBehaviour:
   airResistance: 0
   serializedPassiveManager:
     bonusPowerStacks: 0
-    bonusDexterityStacks: 2
+    bonusDexterityStacks: 0
     bonusStaminaStacks: 0
-    bonusInitiativeStacks: 3
+    bonusInitiativeStacks: 0
     bonusDrawStacks: 0
     temporaryBonusPowerStacks: 0
-    temporaryBonusDexterityStacks: 2
+    temporaryBonusDexterityStacks: 0
     temporaryBonusStaminaStacks: 0
     temporaryBonusInitiativeStacks: 0
     temporaryBonusDrawStacks: 0

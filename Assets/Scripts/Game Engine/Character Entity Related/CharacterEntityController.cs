@@ -595,10 +595,17 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     }
     public void CharacterOnActivationEnd(CharacterEntityModel entity)
     {
-        Debug.Log("CharacterEntityController.CharacterOnActivationEnd() called for " + entity.myName);
+        Debug.Log("CharacterEntityController.CharacterOnActivationEnd() called for " + entity.myName);       
 
         // Disable end turn button clickability
         UIManager.Instance.DisableEndTurnButtonInteractions();
+
+        // Stop if combat has ended
+        if (CombatLogic.Instance.CurrentCombatState != CombatGameState.CombatActive)
+        {
+            Debug.Log("CharacterEntityController.CharacterOnActivationEnd() detected combat state is not active, cancelling early... ");
+            return;
+        }
 
         // Do player character exclusive logic
         if (entity.controller == Controller.Player)
@@ -637,7 +644,10 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     private void EnableDefenderTargetIndicator(CharacterEntityView view)
     {
         Debug.Log("CharacterEntityController.EnableDefenderTargetIndicator() called...");
-        view.myTargetIndicator.EnableView();
+        if(view != null)
+        {
+            view.myTargetIndicator.EnableView();
+        }      
     }
     private void DisableDefenderTargetIndicator(CharacterEntityView view)
     {
@@ -672,9 +682,28 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     private void StartAutoSetEnemyIntentProcess(CharacterEntityModel enemy)
     {
         Debug.Log("CharacterEntityController.StartSetEnemyIntentProcess() called...");
-        SetEnemyNextAction(enemy, DetermineNextEnemyAction(enemy));
-        SetEnemyTarget(enemy, DetermineTargetOfNextEnemyAction(enemy, enemy.myNextAction));
-        UpdateEnemyIntentGUI(enemy);
+        if(CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive)
+        {
+            SetEnemyNextAction(enemy, DetermineNextEnemyAction(enemy));
+            SetEnemyTarget(enemy, DetermineTargetOfNextEnemyAction(enemy, enemy.myNextAction));
+            UpdateEnemyIntentGUI(enemy);
+        }
+      
+    }
+    public void AutoAquireNewTargetOfCurrentAction(CharacterEntityModel enemy)
+    {
+        Debug.Log("CharacterEntityController.AutoAquireNewTargetOfCurrentAction() called...");
+
+        // Method is used to find a new target for any enemies action.
+        // this should only be called when the previous target for the action
+        // is killed, and the enemy needs to find a new target
+        if (enemy.currentActionTarget == null ||
+            enemy.currentActionTarget.livingState == LivingState.Dead)            
+        {
+            Debug.Log("CharacterEntityController.AutoAquireNewTargetOfCurrentAction() detected character needs a new target, searching...");
+            SetEnemyTarget(enemy, DetermineTargetOfNextEnemyAction(enemy, enemy.myNextAction));
+            UpdateEnemyIntentGUI(enemy);
+        }
     }
     public void UpdateEnemyIntentGUI(CharacterEntityModel enemy)
     {
@@ -708,14 +737,14 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         VisualEventManager.Instance.CreateVisualEvent(() => UpdateEnemyIntentGUIVisualEvent(enemy.characterEntityView.myIntentViewModel, intentSprite, attackDamageString));
 
     }
-    public void SetEnemyNextAction(CharacterEntityModel enemy, EnemyAction action)
+    private void SetEnemyNextAction(CharacterEntityModel enemy, EnemyAction action)
     {
         Debug.Log("CharacterEntityController.SetEnemyNextAction() called, setting action '" + action.actionName +
             "' as next action for enemy '" + enemy.myName + "'.");
 
         enemy.myNextAction = action;
     }
-    public void SetEnemyTarget(CharacterEntityModel enemy, CharacterEntityModel target)
+    private void SetEnemyTarget(CharacterEntityModel enemy, CharacterEntityModel target)
     {
         string targetName = "NO TARGET";
         if (target != null)
@@ -1206,7 +1235,15 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
         if (action.actionType == ActionType.AttackTarget || action.actionType == ActionType.DebuffTarget)
         {
-            targetReturned = CharacterEntityController.Instance.AllDefenders[Random.Range(0, CharacterEntityController.Instance.AllDefenders.Count)];
+            if(AllDefenders.Count > 1)
+            {
+                targetReturned = AllDefenders[Random.Range(0, AllDefenders.Count)];
+            }
+            else if(AllDefenders.Count == 1)
+            {
+                targetReturned = AllDefenders[0];
+            }
+            
         }
         else if (action.actionType == ActionType.DefendTarget)
         {
@@ -1214,7 +1251,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             List<CharacterEntityModel> validTargets = new List<CharacterEntityModel>();
 
             // add all enemies
-            validTargets.AddRange(CharacterEntityController.Instance.AllEnemies);
+            validTargets.AddRange(AllEnemies);
 
             // remove self from consideration
             validTargets.Remove(enemy);
@@ -1246,11 +1283,11 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // TO DO IN FUTURE: this target reaquisition process should occur when an entity dies,
         // not right before an enemy performs its action
         // Was the target killed after the intent was decided?
-        if (enemy.currentActionTarget == null)
+        /*if (enemy.currentActionTarget == null)
         {
             // it was, find a new target
             enemy.currentActionTarget = DetermineTargetOfNextEnemyAction(enemy, nextAction);
-        }
+        }*/
         // Trigger and resolve all effects of the action        
         for (int i = 0; i < nextAction.actionLoops; i++)
         {

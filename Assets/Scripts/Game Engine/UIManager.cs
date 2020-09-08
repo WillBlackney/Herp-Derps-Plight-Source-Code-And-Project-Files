@@ -10,12 +10,6 @@ public class UIManager : Singleton<UIManager>
 {
     // Properties + Component References
     #region
-    [Header("UI Component References")]    
-    public GameObject GameOverScreenParent;
-    public GameObject GameOverScreenCanvasParent;
-    public TextMeshProUGUI GameOverScreenTitleText;
-    public GameObject charRosterParticleParent;
-
     [Header("End Turn Button Component References")]
     public CanvasGroup EndTurnButtonCG;
     public Button EndTurnButton;
@@ -24,32 +18,10 @@ public class UIManager : Singleton<UIManager>
     public Sprite EndTurnButtonDisabledSprite;
     public Sprite EndTurnButtonEnabledSprite;
 
-    [Header("Character Roster Movement References")]
-    public Canvas charRosterCanvasComponent;
-    public RectTransform characterRosterCentrePosition;
-    public RectTransform characterRosterOffScreenPosition;
-    public RectTransform characterRosterTransformParent;
-    public bool crMovingOnScreen;
-    public bool crMovingOffScreen;
-    public float characterRosterMoveSpeed;
+    [Header("Testing Game Over Component References")]
+    public GameObject victoryPopup;
+    public GameObject defeatPopup;
 
-    [Header("Inventory Movement References")]
-    public Canvas inventoryCanvasComponent;
-    public RectTransform inventoryCentrePosition;
-    public RectTransform inventoryOffScreenPosition;
-    public RectTransform inventoryTransformParent;
-    public bool inventoryMovingOnScreen;
-    public bool inventoryMovingOffScreen;
-    public float inventoryMoveSpeed;
-
-    [Header("World Map Movement References")]
-    public Canvas worldMapCanvasComponent;
-    public RectTransform worldMapCentrePosition;
-    public RectTransform worldMapOffScreenPosition;
-    public RectTransform worldMapTransformParent;
-    public bool worldMapMovingOnScreen;
-    public bool worldMapMovingOffScreen;
-    public float worldMapMoveSpeed;
     #endregion
 
     // Visibility + View Logic

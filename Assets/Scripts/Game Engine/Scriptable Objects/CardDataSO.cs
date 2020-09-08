@@ -33,30 +33,12 @@ public class CardDataSO : ScriptableObject
     [VerticalGroup("Core Data/Stats")]
     [LabelWidth(100)]
     public TalentSchool talentSchool;
+    [VerticalGroup("Core Data/Stats")]
+    [LabelWidth(100)]
+    public Rarity rarity;
 
     public List<CardEffect> cardEffects;
 }
 
-public enum CardType
-{
-    None,
-    Skill,
-    MeleeAttack,
-    RangedAttack,
-    Power
-};
 
-public enum TargettingType
-{
-    NoTarget,
-    Ally,
-    AllyOrSelf,
-    Enemy,
-    AllCharacters
-};
 
-public enum TalentSchool
-{
-    None, Neutral, Brawler, Duelist, Assassination, Guardian, Pyromania, Cyromancy, Ranger, Manipulation,
-    Divinity, Shadowcraft, Corruption, Naturalism,
-}

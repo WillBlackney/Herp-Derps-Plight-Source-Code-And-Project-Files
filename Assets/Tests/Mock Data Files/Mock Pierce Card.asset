@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
+  m_Name: Mock Pierce Card
+  m_EditorClassIdentifier: 
+  cardName: 
+  cardDescription: 
+  cardSprite: {fileID: 0}
+  cardEnergyCost: 0
+  cardType: 0
+  targettingType: 0
+  talentSchool: 0
+  rarity: 0
+  cardEffects: []

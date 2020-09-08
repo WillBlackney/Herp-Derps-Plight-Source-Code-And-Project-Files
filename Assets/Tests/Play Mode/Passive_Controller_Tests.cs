@@ -71,7 +71,7 @@ namespace Tests
         {
             // Arange
             CharacterEntityModel model;
-            int stacks = 2;
+            int stacks = 1;
             bool expected = false;
 
             // Act
@@ -92,17 +92,17 @@ namespace Tests
             PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, TEMPORARY_INITIATIVE_NAME, stacks);
             PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, TEMPORARY_DEXTERITY_NAME, stacks);
 
-            if (model.passiveManager.bonusDrawStacks == 2 &&
-                model.passiveManager.bonusStaminaStacks == 2 &&
-                model.passiveManager.bonusPowerStacks == 2 &&
-                model.passiveManager.bonusDexterityStacks == 2 &&
-                model.passiveManager.bonusInitiativeStacks == 2 &&
+            if (model.passiveManager.bonusDrawStacks == 1 &&
+                model.passiveManager.bonusStaminaStacks == 1 &&
+                model.passiveManager.bonusPowerStacks == 1 &&
+                model.passiveManager.bonusDexterityStacks == 1 &&
+                model.passiveManager.bonusInitiativeStacks == 1 &&
 
-                model.passiveManager.temporaryBonusDrawStacks == 2 &&
-                model.passiveManager.temporaryBonusStaminaStacks == 2 &&
-                model.passiveManager.temporaryBonusPowerStacks == 2 &&
-                model.passiveManager.temporaryBonusDexterityStacks == 2 &&
-                model.passiveManager.temporaryBonusInitiativeStacks == 2 )
+                model.passiveManager.temporaryBonusDrawStacks == 1 &&
+                model.passiveManager.temporaryBonusStaminaStacks == 1 &&
+                model.passiveManager.temporaryBonusPowerStacks == 1 &&
+                model.passiveManager.temporaryBonusDexterityStacks == 1 &&
+                model.passiveManager.temporaryBonusInitiativeStacks == 1 )
             {
                 expected = true;
             }

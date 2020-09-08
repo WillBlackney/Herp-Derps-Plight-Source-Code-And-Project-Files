@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class CombatLogic : Singleton<CombatLogic>
 {
+    // Properties + Variables
+    #region
+    private CombatGameState currentCombatState;
+    public CombatGameState CurrentCombatState
+    {
+        get { return currentCombatState; }
+        private set { currentCombatState = value; }
+    }
+    #endregion
 
     // Damage, Damage Type and Resistance Calculators
     #region
@@ -345,6 +354,13 @@ public class CombatLogic : Singleton<CombatLogic>
         else if (entity.allegiance == Allegiance.Player)
         {
             CharacterEntityController.Instance.RemoveDefenderFromPersistency(entity);
+
+            // if an enemy was targetting the player character that just died, find a new target
+            foreach(CharacterEntityModel enemy in CharacterEntityController.Instance.AllEnemies)
+            {
+                CharacterEntityController.Instance.AutoAquireNewTargetOfCurrentAction(enemy);
+            }
+           
         }
 
         // Disable character's level node anims and targetting path
@@ -365,7 +381,8 @@ public class CombatLogic : Singleton<CombatLogic>
         VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.FadeOutCharacterModel(view, fadeOutCharacter));
 
         // Destroy characters activation window and update other window positions
-        VisualEventManager.Instance.CreateVisualEvent(() => ActivationManager.Instance.OnCharacterKilledVisualEvent(window, null), QueuePosition.Back, 0, 1f);
+        CharacterEntityModel currentlyActivatedEntity = ActivationManager.Instance.EntityActivated;
+        VisualEventManager.Instance.CreateVisualEvent(() => ActivationManager.Instance.OnCharacterKilledVisualEvent(window, currentlyActivatedEntity, null), QueuePosition.Back, 0, 1f);
 
         // Destroy view and break references
         VisualEventManager.Instance.CreateVisualEvent(() =>
@@ -377,6 +394,21 @@ public class CombatLogic : Singleton<CombatLogic>
             // Destroy view gameobject
             CharacterEntityController.Instance.DestroyCharacterView(view);
         });
+
+
+        // Check if the game over event should be triggered
+        if(CharacterEntityController.Instance.AllDefenders.Count == 0)
+        {
+            StartGameOverDefeatProcess();
+        }
+
+        if (CharacterEntityController.Instance.AllEnemies.Count == 0 &&
+            currentCombatState == CombatGameState.CombatActive)
+        {
+            StartGameOverVictoryProcess();
+        }
+
+
 
         // do we destroy the characters model script as well as the view/gameobject?
 
@@ -474,8 +506,8 @@ public class CombatLogic : Singleton<CombatLogic>
 
         // Destroy character GO
         //Debug.Log("Destroying " + entity.myName + " game object");
-       // Destroy(entity.gameObject);
-       
+        // Destroy(entity.gameObject);
+
     }
     public void HandleDamage(int damageAmount, CharacterEntityModel attacker, CharacterEntityModel victim, DamageType damageType, Card card = null, bool ignoreBlock = false)
     {
@@ -601,12 +633,7 @@ public class CombatLogic : Singleton<CombatLogic>
 
         // Finished calculating the final damage, health lost and armor lost: p
         totalLifeLost = victim.health - healthAfter;
-
-        //victim.ModifyCurrentHealth(-totalLifeLost);
         CharacterEntityController.Instance.ModifyHealth(victim, -totalLifeLost);
-
-        //victim.SetCurrentBlock(blockAfter);
-        //CharacterEntityController.Instance.ModifyBlock(victim, blockAfter - startingBlock);
         CharacterEntityController.Instance.SetBlock(victim, blockAfter);
 
         // Play VFX depending on whether the victim lost health, block, or was damaged by poison
@@ -845,6 +872,27 @@ public class CombatLogic : Singleton<CombatLogic>
 
         // return damage type
         return damageTypeReturned;
+    }
+    public void SetCombatState(CombatGameState newState)
+    {
+        Debug.Log("CombatLogic.SetCombatState() called, new state: " + newState.ToString());
+        CurrentCombatState = newState;
+    }
+    #endregion
+
+    // Game Over Logic
+    #region
+    private void StartGameOverDefeatProcess()
+    {
+        Debug.Log("CombatLogic.StartGameOverDefeatProcess() called...");
+        currentCombatState = CombatGameState.DefeatTriggered;
+        UIManager.Instance.defeatPopup.SetActive(true);
+    }
+    private void StartGameOverVictoryProcess()
+    {
+        Debug.Log("CombatLogic.StartGameOverVictoryProcess() called...");
+        currentCombatState = CombatGameState.VictoryTriggered;
+        UIManager.Instance.victoryPopup.SetActive(true);
     }
     #endregion
 }

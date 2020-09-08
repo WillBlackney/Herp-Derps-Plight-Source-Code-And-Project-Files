@@ -92,6 +92,7 @@ public class ActivationManager : Singleton<ActivationManager>
     {
         CurrentTurn = 0;
         SetActivationWindowsParentViewState(true);
+        CombatLogic.Instance.SetCombatState(CombatGameState.CombatActive);
         StartNewTurnSequence();
     }
     public void StartNewTurnSequence()
@@ -207,8 +208,7 @@ public class ActivationManager : Singleton<ActivationManager>
         // wait until all card draw visual events have completed
         // prevent function if game over sequence triggered
         if (VisualEventManager.Instance.PendingCardDrawEvent() == false &&
-            VisualEventManager.Instance.PendingDefeatEvent() == false &&
-            VisualEventManager.Instance.PendingVictoryEvent() == false)
+            CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive)
         {
             // Trigger character on activation end sequence and events
             CharacterEntityController.Instance.CharacterOnActivationEnd(EntityActivated);
@@ -223,7 +223,7 @@ public class ActivationManager : Singleton<ActivationManager>
 
     // Entity / Activation related
     #region   
-    public void ActivateEntity(CharacterEntityModel entity)
+    private void ActivateEntity(CharacterEntityModel entity)
     {
         Debug.Log("Activating entity: " + entity.myName);
         EntityActivated = entity;
@@ -256,8 +256,7 @@ public class ActivationManager : Singleton<ActivationManager>
         CharacterEntityModel nextEntityToActivate = null;
 
         // dont activate next entity if either all defenders or all enemies are dead
-        if (VisualEventManager.Instance.PendingDefeatEvent() ||
-            VisualEventManager.Instance.PendingVictoryEvent())
+        if (CombatLogic.Instance.CurrentCombatState != CombatGameState.CombatActive)
         {
             Debug.Log("ActivationManager.ActivateNextEntity() detected that an end combat event has been triggered, " +
                 "cancelling next entity activation...");
@@ -414,17 +413,20 @@ public class ActivationManager : Singleton<ActivationManager>
     {
         Destroy(window.gameObject);
     }
-    public void OnCharacterKilledVisualEvent(ActivationWindow window, CoroutineData cData)
+    public void OnCharacterKilledVisualEvent(ActivationWindow window, CharacterEntityModel currentlyActivated, CoroutineData cData)
     {
-        StartCoroutine(OnCharacterKilledVisualEventCoroutine(window, cData));
+        // Need to cache the currently activated entity in a new variable called 'currentlyActivated'.
+        // this makes sure the arrow points to the window of the character that is VISUALLY activated,
+        // but not activated in the logic side.
+        StartCoroutine(OnCharacterKilledVisualEventCoroutine(window, currentlyActivated, cData));
     }
-    private IEnumerator OnCharacterKilledVisualEventCoroutine(ActivationWindow window, CoroutineData cData)
+    private IEnumerator OnCharacterKilledVisualEventCoroutine(ActivationWindow window, CharacterEntityModel currentlyActivated, CoroutineData cData)
     {
         FadeOutAndDestroyActivationWindow(window, null);
         yield return new WaitForSeconds(0.5f);
 
         UpdateWindowPositions();
-        MoveActivationArrowTowardsEntityWindow(EntityActivated);
+        MoveActivationArrowTowardsEntityWindow(activationOrder[activationOrder.IndexOf(currentlyActivated)]);
 
         // Resolve
         if (cData != null)
@@ -461,7 +463,6 @@ public class ActivationManager : Singleton<ActivationManager>
             Sequence s = DOTween.Sequence();
             s.Append(window.transform.DOMoveX(panelSlot.transform.position.x, 0.3f));
         }
-
     }
     private void MoveAllWindowsToStartPositions(List<CharacterEntityModel> characters)
     {
@@ -483,6 +484,9 @@ public class ActivationManager : Singleton<ActivationManager>
     private void MoveActivationArrowTowardsEntityWindow(CharacterEntityModel character)
     {
         Debug.Log("ActivationManager.MoveActivationArrowTowardsPosition() called...");
+
+        Debug.Log("PANEL SLOTS COUNT: " + panelSlots.Count);
+        Debug.Log("ACTIVATION ORDER COUNT: " + activationOrder.Count);
 
         GameObject panelSlot = panelSlots[activationOrder.IndexOf(character)];
 

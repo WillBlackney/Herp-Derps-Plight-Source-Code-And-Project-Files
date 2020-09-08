@@ -196,7 +196,8 @@ public class CardController : Singleton<CardController>
 
         bool boolReturned = false;
 
-        if(HasEnoughEnergyToPlayCard(card, owner))// &&
+        if(HasEnoughEnergyToPlayCard(card, owner) &&
+            CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive)// &&
            //ActivationManager.Instance.IsEntityActivated(owner))
 
            // TO DO: here we check for specifics on card type 
