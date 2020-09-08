@@ -67,7 +67,7 @@ namespace Tests
         }
 
         [Test]
-        public void Build_Player_Character_Entity_Passives_From_Character_Data_Applies_A_Passive_Correctly()
+        public void Build_Player_Character_Entity_Passives_From_Character_Data_Applies_ALL_Passives_Correctly()
         {
             // Arange
             CharacterEntityModel model;
@@ -76,13 +76,33 @@ namespace Tests
 
             // Act
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+
+            // Apply every single passive in the game
+            // Core stats
             PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, POWER_NAME, stacks);
             PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, STAMINA_NAME, stacks);
             PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, DRAW_NAME, stacks);
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, INITIATIVE_NAME, stacks);
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, DEXTERITY_NAME, stacks);
+
+            // Temporary Core stats
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, TEMPORARY_POWER_NAME, stacks);
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, TEMPORARY_STAMINA_NAME, stacks);
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, TEMPORARY_DRAW_NAME, stacks);
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, TEMPORARY_INITIATIVE_NAME, stacks);
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, TEMPORARY_DEXTERITY_NAME, stacks);
 
             if (model.passiveManager.bonusDrawStacks == 2 &&
                 model.passiveManager.bonusStaminaStacks == 2 &&
-                model.passiveManager.bonusPowerStacks == 2)
+                model.passiveManager.bonusPowerStacks == 2 &&
+                model.passiveManager.bonusDexterityStacks == 2 &&
+                model.passiveManager.bonusInitiativeStacks == 2 &&
+
+                model.passiveManager.temporaryBonusDrawStacks == 2 &&
+                model.passiveManager.temporaryBonusStaminaStacks == 2 &&
+                model.passiveManager.temporaryBonusPowerStacks == 2 &&
+                model.passiveManager.temporaryBonusDexterityStacks == 2 &&
+                model.passiveManager.temporaryBonusInitiativeStacks == 2 )
             {
                 expected = true;
             }

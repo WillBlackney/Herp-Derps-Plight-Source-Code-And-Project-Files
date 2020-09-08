@@ -7,7 +7,7 @@ public class CombatLogic : Singleton<CombatLogic>
 
     // Damage, Damage Type and Resistance Calculators
     #region
-    public int GetBaseDamageValue(CharacterEntityModel entity, int baseDamage, string attackDamageType, Card card = null, CardEffect cardEffect = null, EnemyActionEffect enemyAction = null)
+    private int GetBaseDamageValue(CharacterEntityModel entity, int baseDamage, DamageType damageType, Card card = null, CardEffect cardEffect = null, EnemyActionEffect enemyAction = null)
     {
         Debug.Log("CombatLogic.GetBaseDamageValue() called...");
         int baseDamageValueReturned = 0;
@@ -26,11 +26,11 @@ public class CombatLogic : Singleton<CombatLogic>
         return baseDamageValueReturned;
 
     }
-    public int GetDamageValueAfterResistances(int damageValue, string attackDamageType, CharacterEntityModel target)
+    private int GetDamageValueAfterResistances(int damageValue, DamageType damageType, CharacterEntityModel target)
     {
         // Debug
         Debug.Log("CombatLogic.GetDamageValueAfterResistances() called...");
-        Debug.Log("Damage Type received as argument: " + attackDamageType);
+        Debug.Log("Damage Type received as argument: " + damageType.ToString());
 
         // Setup
         int damageValueReturned = damageValue;
@@ -41,7 +41,7 @@ public class CombatLogic : Singleton<CombatLogic>
         //targetResistance = EntityLogic.GetTotalResistance(target, attackDamageType);
 
         // Debug
-        Debug.Log("Target has " + targetResistance + " total " + attackDamageType + " Resistance...");
+        Debug.Log("Target has " + targetResistance + " total " + damageType.ToString() + " Resistance...");
 
         // Invert the resistance value from 100. (as in, 80% fire resistance means the attack will deal 20% of it original damage
         int invertedResistanceValue = 100 - targetResistance;
@@ -58,7 +58,7 @@ public class CombatLogic : Singleton<CombatLogic>
 
         return damageValueReturned;
     }
-    private int GetDamageValueAfterNonResistanceModifiers(int damageValue, CharacterEntityModel attacker, CharacterEntityModel target, string damageType, bool critical)
+    private int GetDamageValueAfterNonResistanceModifiers(int damageValue, CharacterEntityModel attacker, CharacterEntityModel target, DamageType damageType, bool critical)
     {
         Debug.Log("CombatLogic.GetDamageValueAfterNonResistanceModifiers() called...");
 
@@ -165,7 +165,7 @@ public class CombatLogic : Singleton<CombatLogic>
         return damageValueReturned;
 
     }    
-    public int GetFinalDamageValueAfterAllCalculations(CharacterEntityModel attacker, CharacterEntityModel target, string damageType, bool critical, int baseDamage = 0, Card card = null, CardEffect cardEffect = null, EnemyActionEffect enemyAction = null)
+    public int GetFinalDamageValueAfterAllCalculations(CharacterEntityModel attacker, CharacterEntityModel target, DamageType damageType, bool critical, int baseDamage = 0, Card card = null, CardEffect cardEffect = null, EnemyActionEffect enemyAction = null)
     {
         Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() called...");
         int finalDamageValueReturned = 0;
@@ -211,23 +211,22 @@ public class CombatLogic : Singleton<CombatLogic>
         return finalDamageValueReturned;
 
     }
-    public string CalculateFinalDamageTypeOfAttack(CharacterEntityModel entity, CardEffect cardEffect = null, Card card = null, EnemyActionEffect enemyAction = null)
+    public DamageType CalculateFinalDamageTypeOfAttack(CharacterEntityModel entity, CardEffect cardEffect = null, Card card = null, EnemyActionEffect enemyAction = null)
     {
         Debug.Log("CombatLogic.CalculateFinalDamageTypeOfAttack() called...");
 
-
-        string damageTypeReturned = "None";
+        DamageType damageTypeReturned = DamageType.None;
 
         // First, draw damage type from ability
         if (cardEffect != null)
         {
-            damageTypeReturned = cardEffect.damageType.ToString();
+            damageTypeReturned = cardEffect.damageType;
         }
 
         // draw from enemyAction if enemy
         if (enemyAction != null)
         {
-            damageTypeReturned = enemyAction.damageType.ToString();
+            damageTypeReturned = enemyAction.damageType;
         }
 
         // Third, if character has a 'permanent' imbuement, get damage type from that passive
@@ -303,19 +302,6 @@ public class CombatLogic : Singleton<CombatLogic>
         */
 
         Debug.Log("CombatLogic.CalculateFinalDamageTypeOfAttack() final damage type returned: " + damageTypeReturned);
-        return damageTypeReturned;
-    }
-    public string GetRandomDamageType()
-    {
-        // Setup
-        string damageTypeReturned = "Unassigned";
-        List<string> allDamageTypes = new List<string> { "Air", "Fire", "Poison", "Physical", "Shadow", "Frost" };
-
-        // Calculate random damage type
-        damageTypeReturned = allDamageTypes[Random.Range(0, allDamageTypes.Count)];
-        Debug.Log("CombatLogic.GetRandomDamageType() randomly generated a damage type of: " + damageTypeReturned);
-
-        // return damage type
         return damageTypeReturned;
     }
     #endregion
@@ -491,7 +477,7 @@ public class CombatLogic : Singleton<CombatLogic>
        // Destroy(entity.gameObject);
        
     }
-    public void HandleDamage(int damageAmount, CharacterEntityModel attacker, CharacterEntityModel victim, string damageType, Card card = null, bool ignoreBlock = false)
+    public void HandleDamage(int damageAmount, CharacterEntityModel attacker, CharacterEntityModel victim, DamageType damageType, Card card = null, bool ignoreBlock = false)
     {
         // Debug setup
         string cardNameString = "None";
@@ -512,7 +498,7 @@ public class CombatLogic : Singleton<CombatLogic>
         }
 
         Debug.Log("CombatLogic.HandleDamage() started: damageAmount (" + damageAmount.ToString() + "), attacker (" + attackerName +
-            "), victim (" + victimName +"), damageType (" + damageType + "), card (" + cardNameString + "), ignoreBlock (" + ignoreBlock.ToString()
+            "), victim (" + victimName +"), damageType (" + damageType.ToString() + "), card (" + cardNameString + "), ignoreBlock (" + ignoreBlock.ToString()
             );
 
         // Cancel this if character is already in death process
@@ -842,6 +828,23 @@ public class CombatLogic : Singleton<CombatLogic>
 
         //yield return new WaitForSeconds(0.5f);
         //action.coroutineCompleted = true;
+    }
+    #endregion
+
+    // Misc Functions
+    #region
+    public string GetRandomDamageType()
+    {
+        // Setup
+        string damageTypeReturned = "Unassigned";
+        List<string> allDamageTypes = new List<string> { "Air", "Fire", "Poison", "Physical", "Shadow", "Frost" };
+
+        // Calculate random damage type
+        damageTypeReturned = allDamageTypes[Random.Range(0, allDamageTypes.Count)];
+        Debug.Log("CombatLogic.GetRandomDamageType() randomly generated a damage type of: " + damageTypeReturned);
+
+        // return damage type
+        return damageTypeReturned;
     }
     #endregion
 }

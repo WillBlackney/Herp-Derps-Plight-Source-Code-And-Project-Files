@@ -14,7 +14,7 @@ public class CardController : Singleton<CardController>
 
     // Build Cards, Decks, View Models and Data
     #region
-    public void BuildDefenderDeckFromDeckData(CharacterEntityModel defender, List<CardDataSO> deckData)
+    public void BuildCharacterEntityDeckFromDeckData(CharacterEntityModel defender, List<CardDataSO> deckData)
     {
         Debug.Log("CardController.BuildDefenderDeckFromDeckData() called...");
 
@@ -343,7 +343,7 @@ public class CardController : Singleton<CardController>
             }
 
             // Calculate damage
-            string damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(owner, cardEffect, card);
+            DamageType damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(owner, cardEffect, card);
             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, target, damageType, false, cardEffect.baseDamageValue, card, cardEffect);
 
             // Start damage sequence
@@ -365,7 +365,7 @@ public class CardController : Singleton<CardController>
             VisualEffectManager.Instance.CreateBloodSplatterEffect(owner.characterEntityView.transform.position);
 
             // Start self damage sequence
-            CombatLogic.Instance.HandleDamage(cardEffect.healthLost, owner, owner, "None", card, true);
+            CombatLogic.Instance.HandleDamage(cardEffect.healthLost, owner, owner, DamageType.None, card, true);
         }
 
         // Gain Energy

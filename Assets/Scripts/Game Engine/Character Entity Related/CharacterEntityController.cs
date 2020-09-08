@@ -106,7 +106,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         SetupCharacterFromCharacterData(model, data);
 
         // Build deck
-        CardController.Instance.BuildDefenderDeckFromDeckData(model, data.deck);
+        CardController.Instance.BuildCharacterEntityDeckFromDeckData(model, data.deck);
 
         // Add to persistency
         AddDefenderToPersistency(model);
@@ -691,7 +691,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             EnemyActionEffect effect = enemy.myNextAction.actionEffects[0];
 
             // Calculate damage to display
-            string damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(enemy, null, null, effect);
+            DamageType damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(enemy, null, null, effect);
             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, enemy.currentActionTarget, damageType, false, effect.baseDamage, null, null, effect);
 
             if (effect.attackLoops > 1)
@@ -1312,7 +1312,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
                     VisualEventManager.Instance.CreateVisualEvent(() => TriggerMeleeAttackAnimation(enemy.characterEntityView));
 
                     // Calculate damage
-                    string damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(enemy, null, null, effect);
+                    DamageType damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(enemy, null, null, effect);
                     int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, target, damageType, false, effect.baseDamage, null, null, effect);
 
                     // Start damage sequence

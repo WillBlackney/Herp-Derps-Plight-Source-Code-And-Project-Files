@@ -6,10 +6,7 @@ using System.Collections.Generic;
 public enum VisualStates
 {
     Transition,
-    LowHand, 
-    TopHand,
-    LowTable,
-    TopTable,
+    Hand, 
     Dragging
 }
 
@@ -50,20 +47,13 @@ public class CardLocationTracker : MonoBehaviour {
             state = value;
             switch (state)
             {
-                case VisualStates.LowHand:
+                case VisualStates.Hand:
                     hoverPreview.ThisPreviewEnabled = true;
-                    break;
-                case VisualStates.LowTable:
-                case VisualStates.TopTable:
-                    hoverPreview.ThisPreviewEnabled = true; 
                     break;
                 case VisualStates.Transition:
                     hoverPreview.ThisPreviewEnabled = false;
                     break;
                 case VisualStates.Dragging:
-                    hoverPreview.ThisPreviewEnabled = false;
-                    break;
-                case VisualStates.TopHand:
                     hoverPreview.ThisPreviewEnabled = false;
                     break;
             }
@@ -83,12 +73,6 @@ public class CardLocationTracker : MonoBehaviour {
         if (slot != -1)
             canvas.sortingOrder = HandSortingOrder(slot);
         canvas.sortingLayerName = "Cards";
-    }
-
-    public void SetTableSortingOrder()
-    {
-        canvas.sortingOrder = 0;
-        canvas.sortingLayerName = "Creatures";
     }
 
     private int HandSortingOrder(int placeInHand)
