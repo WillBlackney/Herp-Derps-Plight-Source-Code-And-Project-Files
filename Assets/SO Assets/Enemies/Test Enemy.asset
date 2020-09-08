@@ -17,7 +17,7 @@ MonoBehaviour:
   power: 0
   dexterity: 0
   initiative: 8
-  startingHealth: 1
+  startingHealth: 20
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0
@@ -36,6 +36,7 @@ MonoBehaviour:
     temporaryBonusStaminaStacks: 0
     temporaryBonusInitiativeStacks: 0
     temporaryBonusDrawStacks: 0
+    enrageStacks: 2
   allEnemyActions:
   - actionName: Howl
     actionType: 0
@@ -71,3 +72,4 @@ MonoBehaviour:
   - Shadow_Blade_Right_Arm_Wear
   - Shadow_Blade_Left_Arm_Wear
   - Shadow_Blade_Chest_Wear
+  - Human_Chest

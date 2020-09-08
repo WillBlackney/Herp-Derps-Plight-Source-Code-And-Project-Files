@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
+  m_Name: Enrage
+  m_EditorClassIdentifier: 
+  cardName: Enrage
+  cardDescription: 'Whenever you lose health, gain 1 Power. '
+  cardSprite: {fileID: 21300000, guid: 7fff36da3ad49f24f85cfbc255262fa5, type: 3}
+  cardEnergyCost: 10
+  cardType: 4
+  targettingType: 0
+  talentSchool: 2
+  rarity: 1
+  cardEffects:
+  - cardEffectType: 7
+    blockGainValue: 0
+    baseDamageValue: 0
+    damageType: 0
+    healthLost: 0
+    energyGained: 0
+    cardsDrawn: 0
+    burningApplied: 0
+    passivePairing:
+      passiveData: {fileID: 11400000, guid: 4776b8f65583265428f52c0c1c2a79c1, type: 2}
+      passiveStacks: 1

@@ -19,6 +19,8 @@ namespace Tests
         LevelNode node;
 
         // Pasive name refs;
+
+        // Core Stats
         private const string POWER_NAME = "Power";
         private const string TEMPORARY_POWER_NAME = "Temporary Power";
         private const string DRAW_NAME = "Draw";
@@ -29,6 +31,9 @@ namespace Tests
         private const string TEMPORARY_DEXTERITY_NAME = "Temporary Dexterity";
         private const string STAMINA_NAME = "Stamina";
         private const string TEMPORARY_STAMINA_NAME = "Temporary Stamina";
+
+        // Buff Stats
+        private const string ENRAGE_NAME = "Enrage";
 
         [UnitySetUp]
         public IEnumerator Setup()
@@ -92,6 +97,9 @@ namespace Tests
             PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, TEMPORARY_INITIATIVE_NAME, stacks);
             PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, TEMPORARY_DEXTERITY_NAME, stacks);
 
+            // Buff stats
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, ENRAGE_NAME, stacks);
+
             if (model.passiveManager.bonusDrawStacks == 1 &&
                 model.passiveManager.bonusStaminaStacks == 1 &&
                 model.passiveManager.bonusPowerStacks == 1 &&
@@ -102,7 +110,8 @@ namespace Tests
                 model.passiveManager.temporaryBonusStaminaStacks == 1 &&
                 model.passiveManager.temporaryBonusPowerStacks == 1 &&
                 model.passiveManager.temporaryBonusDexterityStacks == 1 &&
-                model.passiveManager.temporaryBonusInitiativeStacks == 1 )
+                model.passiveManager.temporaryBonusInitiativeStacks == 1 &&
+                model.passiveManager.enrageStacks == 1)
             {
                 expected = true;
             }
@@ -279,6 +288,24 @@ namespace Tests
 
             // Assert
             Assert.AreEqual(expectedTotal, EntityLogic.GetTotalStamina(model));
+        }
+
+        [Test]
+        public void Enrage_Triggers_Power_Gain_In_Handle_Damage_Method()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(ENRAGE_NAME).passiveName;
+            int stacks = 2;
+            int expectedTotal = 2;
+
+            // Act
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, passiveName, stacks);
+            CombatLogic.Instance.HandleDamage(10, null, model, DamageType.Physical);
+
+            // Assert
+            Assert.AreEqual(expectedTotal, EntityLogic.GetTotalPower(model));
         }
 
 

@@ -393,6 +393,13 @@ public class CardController : Singleton<CardController>
             }           
         }
 
+        // Gain Energy
+        else if (cardEffect.cardEffectType == CardEffectType.GainPassiveSelf)
+        {
+            // Gain Energy
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(owner.passiveManager, cardEffect.passivePairing.passiveData.passiveName, cardEffect.passivePairing.passiveStacks, true, 0.5f);
+        }
+
         // Apply Burning
         else if (cardEffect.cardEffectType == CardEffectType.ApplyBurning)
         {

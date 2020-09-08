@@ -645,18 +645,27 @@ public class CombatLogic : Singleton<CombatLogic>
                 VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateLoseBlockEffect(victim.characterEntityView.transform.position, adjustedDamageValue));
             }
             else if (totalLifeLost > 0)
-            {
-                // Create Lose hp / damage effect
-                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateDamageEffect(victim.characterEntityView.transform.position, totalLifeLost));
-
+            {  
                 // Play hurt animation
                 if (victim.health > 0 && totalLifeLost > 0)
                 {
-                    //victim.PlayHurtAnimation();
                     VisualEventManager.Instance.CreateVisualEvent(()=> CharacterEntityController.Instance.PlayHurtAnimation(victim.characterEntityView));
                 }
+
+                // Create Lose hp / damage effect
+                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateDamageEffect(victim.characterEntityView.transform.position, totalLifeLost), QueuePosition.Back, 0f, 0.5f);
             }
         }
+
+        // EVALUATE DAMAGE RELATED PASSIVE EFFECTS
+
+        // Enrage
+        if (victim.passiveManager.enrageStacks > 0 && totalLifeLost > 0)
+        {
+            Debug.Log(victim.myName + " 'Enrage' triggered, gaining " + victim.passiveManager.enrageStacks.ToString() + " bonus power");
+            PassiveController.Instance.ApplyPassiveToCharacterEntity(victim.passiveManager, "Power", victim.passiveManager.enrageStacks, true, 0.5f);
+        }
+
 
         // Update character data if victim is a defender
         /*

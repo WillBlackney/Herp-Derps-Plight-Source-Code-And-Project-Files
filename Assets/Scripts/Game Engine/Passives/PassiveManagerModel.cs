@@ -18,4 +18,7 @@ public class PassiveManagerModel
     public int temporaryBonusInitiativeStacks;
     public int temporaryBonusDrawStacks;
 
+    // Buff Passive bonuses
+    public int enrageStacks;
+
 }

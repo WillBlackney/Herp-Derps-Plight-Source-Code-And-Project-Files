@@ -30,10 +30,13 @@ public class CardEffect
     [ShowIf("cardEffectType", CardEffectType.ApplyBurning)]
     public int burningApplied;
 
+    [ShowIf("cardEffectType", CardEffectType.GainPassiveSelf)]
+    public PassivePairingData passivePairing;
+
 }
 
 [Serializable]
 public enum CardEffectType
 {
-    None, GainBlock, DealDamage, LoseHealth, GainEnergy, DrawCards, ApplyBurning
+    None, GainBlock, DealDamage, LoseHealth, GainEnergy, DrawCards, ApplyBurning, GainPassiveSelf,
 }

@@ -47,4 +47,9 @@ public class SerializedPassiveManagerModel
     [LabelWidth(200)]
     public int temporaryBonusDrawStacks;
 
+    // Buff Passives
+    [BoxGroup("Buff Passives", centerLabel: true)]
+    [LabelWidth(200)]
+    public int enrageStacks;
+
 }
