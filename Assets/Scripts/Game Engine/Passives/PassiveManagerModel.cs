@@ -21,4 +21,11 @@ public class PassiveManagerModel
     // Buff Passive bonuses
     public int enrageStacks;
 
+    // Core Damage % Modifier Passives
+    public int wrathStacks;
+    public int vulnerableStacks;
+    public int weakenedStacks;
+    public int gritStacks;
+
+
 }

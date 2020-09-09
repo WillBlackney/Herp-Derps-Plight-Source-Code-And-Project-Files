@@ -33,15 +33,16 @@ public class CardController : Singleton<CardController>
 
         Card card = new Card();
 
+        card.owner = owner;
         card.cardName = data.cardName;
         card.cardDescription = data.cardDescription;
         card.cardBaseEnergyCost = data.cardEnergyCost;
-        card.cardCurrentEnergyCost = data.cardEnergyCost;
         card.cardSprite = data.cardSprite;
         card.cardType = data.cardType;
         card.targettingType = data.targettingType;
         card.talentSchool = data.talentSchool;
-        card.owner = owner;
+
+        card.cardEventListeners.AddRange(data.cardEventListeners);
         card.cardEffects.AddRange(data.cardEffects);
 
         return card;
@@ -66,7 +67,7 @@ public class CardController : Singleton<CardController>
         // Set texts and images
         cardVM.SetNameText(card.cardName);
         cardVM.SetDescriptionText(card.cardDescription);
-        cardVM.SetEnergyText(card.cardCurrentEnergyCost.ToString());
+        cardVM.SetEnergyText(GetCardEnergyCost(card).ToString());
         cardVM.SetGraphicImage(card.cardSprite);
         cardVM.SetTalentSchoolImage(SpriteLibrary.Instance.GetTalentSchoolSpriteFromEnumData(card.talentSchool));
         cardVM.SetCardTypeImage(card.cardType);
@@ -223,7 +224,7 @@ public class CardController : Singleton<CardController>
     {
         Debug.Log("CardController.HasEnoughEnergyToPlayCard(), checking '" +
             card.cardName +"' owned by '" + owner.myName +"'");
-        return card.cardCurrentEnergyCost <= owner.energy;
+        return GetCardEnergyCost(card) <= owner.energy;
     }
     private bool IsDrawPileEmpty(CharacterEntityModel character)
     {
@@ -243,7 +244,7 @@ public class CardController : Singleton<CardController>
         CharacterEntityModel owner = card.owner;
 
         // Pay Energy Cost
-        CharacterEntityController.Instance.ModifyEnergy(owner, -card.cardCurrentEnergyCost);
+        CharacterEntityController.Instance.ModifyEnergy(owner, -GetCardEnergyCost(card));
 
         // Remove from hand
         RemoveCardFromHand(owner, card);
@@ -397,7 +398,7 @@ public class CardController : Singleton<CardController>
         else if (cardEffect.cardEffectType == CardEffectType.GainPassiveSelf)
         {
             // Gain Energy
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(owner.passiveManager, cardEffect.passivePairing.passiveData.passiveName, cardEffect.passivePairing.passiveStacks, true, 0.5f);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(owner.passiveManager, cardEffect.passivePairing.passiveData.passiveName, cardEffect.passivePairing.passiveStacks, true, 0.5f);
         }
 
         // Apply Burning
@@ -408,8 +409,19 @@ public class CardController : Singleton<CardController>
     }
     #endregion
 
-    // Deck + Discard Pile Functions
+    // Hand, Draw Pile + Discard Pile Functions
     #region
+    private List<Card> GetAllCharacterCardsInHandDrawAndDiscard(CharacterEntityModel model)
+    {
+        Debug.Log("CardController.GetAllCharacterCardsInHandDrawAndDiscard() called for character: " + model.myName);
+
+        List<Card> listReturned = new List<Card>();
+        listReturned.AddRange(model.hand);
+        listReturned.AddRange(model.drawPile);
+        listReturned.AddRange(model.discardPile);
+
+        return listReturned;
+    }
     private void ShuffleCards(List<Card> cards)
     {
         System.Random rng = new System.Random();
@@ -468,6 +480,63 @@ public class CardController : Singleton<CardController>
         defender.hand.Remove(card);
     }
     #endregion
+
+    // Card Event Listener Logic
+    #region
+    private void RunCardEventListenerFunction(Card card, CardEventListener e)
+    {
+        Debug.Log("CardController.RunCardEventListenerFunction() called...");
+
+        if (e.cardEventListenerFunction == CardEventListenerFunction.ReduceCardEnergyCost)
+        {
+            // Reduce cost this combat
+            card.energyReductionThisCombatOnly += e.energyReductionAmount;
+
+            // Update card vm energy text, if not null
+            if(card.cardVM != null)
+            {
+                // should this be a visual event or nah?
+                int newCostTextValue = GetCardEnergyCost(card);
+                VisualEventManager.Instance.CreateVisualEvent(()=> card.cardVM.SetEnergyText(newCostTextValue.ToString()));
+            }
+        }
+    }
+    public void HandleOnCharacterDamagedCardListeners(CharacterEntityModel character)
+    {
+        Debug.Log("CardController.HandleOnCharacterDamagedCardListeners() called...");
+
+        foreach(Card card in GetAllCharacterCardsInHandDrawAndDiscard(character))
+        {
+            foreach(CardEventListener e in card.cardEventListeners)
+            {
+                if(e.cardEventListenerType == CardEventListenerType.OnLoseHealth)
+                {
+                    RunCardEventListenerFunction(card, e);
+                }
+            }
+        }
+    }
+    #endregion
+
+    // Misc + Calculators
+    public int GetCardEnergyCost(Card card)
+    {
+        Debug.Log("CardController.GetCardEnergyCost() called for card: " + card.cardName);
+
+        int costReturned = card.cardBaseEnergyCost;
+
+        costReturned -= card.energyReductionPermanent;
+        costReturned -= card.energyReductionThisCombatOnly;
+        costReturned -= card.energyReductionUntilPlayed;
+
+        // Prevent cost going negative
+        if(costReturned < 0)
+        {
+            costReturned = 0;
+        }
+
+        return costReturned;
+    }
 
     // Visual Events
     #region

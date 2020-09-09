@@ -979,6 +979,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 87a4e8016ff27d14bac0513a3f1bdf40, type: 2}
   - {fileID: 11400000, guid: 119e3f50316b01946a133876a337f517, type: 2}
   - {fileID: 11400000, guid: 4776b8f65583265428f52c0c1c2a79c1, type: 2}
+  - {fileID: 11400000, guid: 44285bb48a164794e908c6325bd4f19f, type: 2}
+  - {fileID: 11400000, guid: 6f53a59075648034ab7c521f182140e3, type: 2}
+  - {fileID: 11400000, guid: f4d581b9181795e48b68007fcfeec3d2, type: 2}
+  - {fileID: 11400000, guid: 39fd7f98d316c4341b444096a833d84c, type: 2}
 --- !u!1 &200055974
 GameObject:
   m_ObjectHideFlags: 0
@@ -3668,51 +3672,15 @@ MonoBehaviour:
   dontDestroyOnLoad: 0
   PassiveIconViewPrefab: {fileID: 6840615612475838204, guid: 58676c2949548ec4698471fa9c1360b8,
     type: 3}
-  AbilityButtonPrefab: {fileID: 8258036272287567181, guid: 9796603b0e52fc148a8c9937c1764689,
-    type: 3}
-  abilityPageAbility: {fileID: 5924968231884054, guid: cd23ca1f37787b143a7fe60bf6f1f7fd,
-    type: 3}
-  consumable: {fileID: 2437688713306225583, guid: 5c344c2b4d256344d998ad50ffed944d,
-    type: 3}
-  AttributeTab: {fileID: 2286113637822334976, guid: bac6851d194ff944391d659cb38da36e,
-    type: 3}
-  enemyPanelAbilityTab: {fileID: 2955640079877087292, guid: 73ad31a5c130a0747914da631d634b69,
-    type: 3}
   activationWindowPrefab: {fileID: 605423732021461905, guid: 2f9127d17cf024049a9950d935ee2136,
     type: 3}
   statePrefab: {fileID: 6328745393006524892, guid: fe53cdb9c533b734f96e2751dd6d8871,
     type: 3}
-  afflicationOnPanelPrefab: {fileID: 4688364720277094522, guid: 37c1d30d0d1fa014cb8aa35d56aaf490,
-    type: 3}
   characterEntityModel: {fileID: 6154693504274587096, guid: 44aefc0aedbccff4eac6717201739444,
-    type: 3}
-  defenderPrefab: {fileID: 3890745071379925586, guid: 581f01440c9cc9b4da3c11b91878088a,
-    type: 3}
-  enemyPrefab: {fileID: 1009995944954404, guid: f7b2ed8a4f1f6274fba67f9654ad75c5,
     type: 3}
   noTargetCard: {fileID: 1000010018853698, guid: fc1ddd43186d19941972633b9fa64abe,
     type: 3}
   targetCard: {fileID: 1000013289343952, guid: 34adce538fd7a7c4eba75c3fd4e1ecad, type: 3}
-  GoldRewardButton: {fileID: 1219674534713617894, guid: 976e1a167169aab439941989b2f25a2c,
-    type: 3}
-  ConsumableRewardButton: {fileID: 2259750420976027442, guid: e98697df7639df540a6a4e9dae1035da,
-    type: 3}
-  ItemRewardButton: {fileID: 8757620878221013843, guid: b85aec8319f4a0948bdc4e9c758abcfa,
-    type: 3}
-  stateRewardButton: {fileID: 7226369991877361790, guid: 3a034ea8e68b52142ba9291ce5a0615e,
-    type: 3}
-  ArtifactGO: {fileID: 6814500050501459451, guid: 6936986fd8e3a2c438a0a25680d55000,
-    type: 3}
-  ItemCard: {fileID: 6102940201404517147, guid: aeb27dee0749bce458ec2ce0df595b1f,
-    type: 3}
-  StateCard: {fileID: 1152788829285936789, guid: 3207eeaf84e02e640b132b05a9ed31e1,
-    type: 3}
-  InventoryItem: {fileID: 1905020281608936624, guid: e8a6da6a8621d62448e6be451c8866b1,
-    type: 3}
-  AbilityTomeInventoryCard: {fileID: 8061442596405185159, guid: e8437e0028923a543915d69adab0f6cf,
-    type: 3}
-  TreasureChest: {fileID: 5594969955182072137, guid: 389a07be3a0d66243995413ce7e7d265,
-    type: 3}
   panelSlotPrefab: {fileID: 3216329357765812186, guid: aaed68e73a275e44cbbb3688ae0a3997,
     type: 3}
   slotHolderPrefab: {fileID: 310230194561123230, guid: 27dac72c26088554387ec916aca34469,
@@ -5323,7 +5291,11 @@ MonoBehaviour:
       temporaryBonusStaminaStacks: 0
       temporaryBonusInitiativeStacks: 0
       temporaryBonusDrawStacks: 0
-      enrageStacks: 2
+      enrageStacks: 0
+      wrathStacks: 0
+      weakenedStacks: 0
+      vulnerableStacks: 0
+      gritStacks: 0
     health: 20
     maxHealth: 30
     stamina: 30
@@ -5332,11 +5304,16 @@ MonoBehaviour:
     dexterity: 0
     power: 0
     deck:
-    - {fileID: 11400000, guid: 840a53b3157c62944862a5ca6193dc45, type: 2}
-    - {fileID: 11400000, guid: 840a53b3157c62944862a5ca6193dc45, type: 2}
-    - {fileID: 11400000, guid: b31f4356f84f2bd48add48495139e0e5, type: 2}
-    - {fileID: 11400000, guid: b31f4356f84f2bd48add48495139e0e5, type: 2}
-    - {fileID: 11400000, guid: b31f4356f84f2bd48add48495139e0e5, type: 2}
+    - {fileID: 11400000, guid: 0e73c280fb28d9b4d9e4fc59eab30e44, type: 2}
+    - {fileID: 11400000, guid: 0e73c280fb28d9b4d9e4fc59eab30e44, type: 2}
+    - {fileID: 11400000, guid: 0e73c280fb28d9b4d9e4fc59eab30e44, type: 2}
+    - {fileID: 11400000, guid: 0e73c280fb28d9b4d9e4fc59eab30e44, type: 2}
+    - {fileID: 11400000, guid: 0e73c280fb28d9b4d9e4fc59eab30e44, type: 2}
+    - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
+    - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
+    - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
+    - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
+    - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
     modelParts:
     - Human_Chest
     - Human_Face_1

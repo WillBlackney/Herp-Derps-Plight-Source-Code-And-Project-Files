@@ -35,6 +35,12 @@ namespace Tests
         // Buff Stats
         private const string ENRAGE_NAME = "Enrage";
 
+        // Core % Modifer Stats
+        private const string WRATH_NAME = "Wrath";
+        private const string WEAKENED_NAME = "Weakened";
+        private const string GRIT_NAME = "Grit";
+        private const string VULNERABLE_NAME = "Vulnerable";
+
         [UnitySetUp]
         public IEnumerator Setup()
         {
@@ -83,22 +89,29 @@ namespace Tests
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
 
             // Apply every single passive in the game
+
             // Core stats
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, POWER_NAME, stacks);
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, STAMINA_NAME, stacks);
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, DRAW_NAME, stacks);
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, INITIATIVE_NAME, stacks);
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, DEXTERITY_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, POWER_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, STAMINA_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, DRAW_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, INITIATIVE_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, DEXTERITY_NAME, stacks);
 
             // Temporary Core stats
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, TEMPORARY_POWER_NAME, stacks);
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, TEMPORARY_STAMINA_NAME, stacks);
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, TEMPORARY_DRAW_NAME, stacks);
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, TEMPORARY_INITIATIVE_NAME, stacks);
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, TEMPORARY_DEXTERITY_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, TEMPORARY_POWER_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, TEMPORARY_STAMINA_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, TEMPORARY_DRAW_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, TEMPORARY_INITIATIVE_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, TEMPORARY_DEXTERITY_NAME, stacks);
 
             // Buff stats
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, ENRAGE_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, ENRAGE_NAME, stacks);
+
+            // Core % Modifer Stats
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, WEAKENED_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, WRATH_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, VULNERABLE_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, GRIT_NAME, stacks);
 
             if (model.passiveManager.bonusDrawStacks == 1 &&
                 model.passiveManager.bonusStaminaStacks == 1 &&
@@ -111,7 +124,13 @@ namespace Tests
                 model.passiveManager.temporaryBonusPowerStacks == 1 &&
                 model.passiveManager.temporaryBonusDexterityStacks == 1 &&
                 model.passiveManager.temporaryBonusInitiativeStacks == 1 &&
-                model.passiveManager.enrageStacks == 1)
+
+                model.passiveManager.enrageStacks == 1 &&
+
+                model.passiveManager.weakenedStacks == 1 &&
+                model.passiveManager.wrathStacks == 1 &&
+                model.passiveManager.vulnerableStacks == 1 &&
+                model.passiveManager.gritStacks == 1 )
             {
                 expected = true;
             }
@@ -131,7 +150,7 @@ namespace Tests
             // Act
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
             expectedTotal = stacks + EntityLogic.GetTotalPower(model);
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, passiveName, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, passiveName, stacks);
 
             // Assert
             Assert.AreEqual(expectedTotal, EntityLogic.GetTotalPower(model));
@@ -148,7 +167,7 @@ namespace Tests
             // Act
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
             expectedTotal = stacks + EntityLogic.GetTotalPower(model);
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, passiveName, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, passiveName, stacks);
 
             // Assert
             Assert.AreEqual(expectedTotal, EntityLogic.GetTotalPower(model));
@@ -165,7 +184,7 @@ namespace Tests
             // Act
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
             expectedTotal = stacks + EntityLogic.GetTotalDexterity(model);
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, passiveName, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, passiveName, stacks);
 
             // Assert
             Assert.AreEqual(expectedTotal, EntityLogic.GetTotalDexterity(model));
@@ -182,7 +201,7 @@ namespace Tests
             // Act
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
             expectedTotal = stacks + EntityLogic.GetTotalDexterity(model);
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, passiveName, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, passiveName, stacks);
 
             // Assert
             Assert.AreEqual(expectedTotal, EntityLogic.GetTotalDexterity(model));
@@ -199,7 +218,7 @@ namespace Tests
             // Act
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
             expectedTotal = stacks + EntityLogic.GetTotalInitiative(model);
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, passiveName, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, passiveName, stacks);
 
             // Assert
             Assert.AreEqual(expectedTotal, EntityLogic.GetTotalInitiative(model));
@@ -216,7 +235,7 @@ namespace Tests
             // Act
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
             expectedTotal = stacks + EntityLogic.GetTotalInitiative(model);
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, passiveName, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, passiveName, stacks);
 
             // Assert
             Assert.AreEqual(expectedTotal, EntityLogic.GetTotalInitiative(model));
@@ -233,7 +252,7 @@ namespace Tests
             // Act
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
             expectedTotal = stacks + EntityLogic.GetTotalDraw(model);
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, passiveName, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, passiveName, stacks);
 
             // Assert
             Assert.AreEqual(expectedTotal, EntityLogic.GetTotalDraw(model));
@@ -250,7 +269,7 @@ namespace Tests
             // Act
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
             expectedTotal = stacks + EntityLogic.GetTotalDraw(model);
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, passiveName, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, passiveName, stacks);
 
             // Assert
             Assert.AreEqual(expectedTotal, EntityLogic.GetTotalDraw(model));
@@ -267,7 +286,7 @@ namespace Tests
             // Act
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
             expectedTotal = stacks + EntityLogic.GetTotalStamina(model);
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, passiveName, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, passiveName, stacks);
 
             // Assert
             Assert.AreEqual(expectedTotal, EntityLogic.GetTotalStamina(model));
@@ -284,7 +303,7 @@ namespace Tests
             // Act
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
             expectedTotal = stacks + EntityLogic.GetTotalStamina(model);
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, passiveName, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, passiveName, stacks);
 
             // Assert
             Assert.AreEqual(expectedTotal, EntityLogic.GetTotalStamina(model));
@@ -301,14 +320,49 @@ namespace Tests
 
             // Act
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(model.passiveManager, passiveName, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, passiveName, stacks);
             CombatLogic.Instance.HandleDamage(10, null, model, DamageType.Physical);
 
             // Assert
             Assert.AreEqual(expectedTotal, EntityLogic.GetTotalPower(model));
         }
 
+        [Test]
+        public void Wrath_Does_Increase_Damage_In_Handle_Damage_Calculations()
+        {
+            // Arange
+            CharacterEntityModel attacker;
+            CharacterEntityModel target;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(WRATH_NAME).passiveName;
+            int expectedTotal = 13;          
 
+            // Act
+            attacker = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            target = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+
+            Card card = new Card();
+            card.owner = attacker;
+            card.cardEffects.Add(new CardEffect { baseDamageValue = 10, cardEffectType = CardEffectType.DealDamage });
+            CardEffect cardEffect = card.cardEffects[0];
+
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(attacker.passiveManager, passiveName, 1);
+
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(attacker, target, DamageType.Physical, false, cardEffect.baseDamageValue, card, cardEffect);
+
+            // Assert
+            Assert.AreEqual(expectedTotal, finalDamageValue);
+        }
+
+        [Test]
+        public void Wrath_Does_Expire_On_Character_Activation_End()
+        {
+
+        }
+
+        // for each passive % 
+        // does expire on activation end
+        // doesnt expire on activation end if still 1 or more stacks
+        // does effect combat logic HandleDamage damage value
     }
 
    

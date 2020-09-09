@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -74,38 +75,39 @@ public class CombatLogic : Singleton<CombatLogic>
         int damageValueReturned = damageValue;
         float damageModifier = 1f;
 
-        /*
+        
         // vulnerable
-        if (target.myPassiveManager.vulnerable)
+        if (target.passiveManager.vulnerableStacks > 0)
         {
-            damageModifier += 0.5f;
+            damageModifier += 0.3f;
             Debug.Log("Damage percentage modifier after 'Vulnerable' bonus: " + damageModifier.ToString());
         }
 
+        // wrath
+        if (attacker.passiveManager.wrathStacks > 0)
+        {
+            damageModifier += 0.3f;
+            Debug.Log("Damage percentage modifier after 'wrath' bonus: " + damageModifier.ToString());
+        }
+
+        // grit
+        if (target.passiveManager.gritStacks > 0)
+        {
+            damageModifier -= 0.3f;
+            Debug.Log("Damage percentage modifier after 'grit' bonus: " + damageModifier.ToString());
+        }
+
         // weakened
-        if (attacker.myPassiveManager.weakened)
+        if (attacker.passiveManager.weakenedStacks > 0)
         {
-            damageModifier -= 0.5f;
-            Debug.Log("Damage percentage modifier after 'Weakened' reduction: " + damageModifier.ToString());
-        }
-
-        // critical
-        if (critical)
-        {
-            damageModifier += 0.5f;
-            Debug.Log("Damage percentage modifier after 'Critical' bonus: " + damageModifier.ToString());
-        }
-
-        // dark gift
-        if (attacker.myPassiveManager.darkGift)
-        {
-            damageModifier += 0.5f;
-            Debug.Log("Damage percentage modifier after 'Dark Gift' bonus: " + damageModifier.ToString());
+            damageModifier -= 0.3f;
+            Debug.Log("Damage percentage modifier after 'weakened' reduction: " + damageModifier.ToString());
         }
 
         // TO DO: Damage modifiers related to increasing magical damage by percentage should be moved to a new method (make some like CalculateMagicDamageModifiers())
 
         // Air Damage bonuses
+        /*
         if (damageType == "Air")
         {
             if (attacker.myPassiveManager.stormLord)
@@ -159,7 +161,8 @@ public class CombatLogic : Singleton<CombatLogic>
                 Debug.Log("Damage has a type of 'Shadow', and attacker has 'Pure Hate' passive, increasing damage by 50%...");
                 damageModifier += 0.5f;
             }
-        }
+        } 
+        */
 
         // prevent modifier from going negative
         if (damageModifier < 0)
@@ -168,9 +171,10 @@ public class CombatLogic : Singleton<CombatLogic>
             damageModifier = 0;
         }
 
-        damageValueReturned = (int)(damageValueReturned * damageModifier);
+        //damageValueReturned = (int)(damageValueReturned * damageModifier);
+        damageValueReturned = (int) Math.Ceiling(damageValueReturned * damageModifier);
         Debug.Log("Final damage value returned: " + damageValueReturned);
-        */
+
         return damageValueReturned;
 
     }    
@@ -657,13 +661,19 @@ public class CombatLogic : Singleton<CombatLogic>
             }
         }
 
+        // Card 'on damaged' event
+        if(totalLifeLost > 0 && victim.controller == Controller.Player)
+        {
+            CardController.Instance.HandleOnCharacterDamagedCardListeners(victim);
+        }       
+
         // EVALUATE DAMAGE RELATED PASSIVE EFFECTS
 
         // Enrage
         if (victim.passiveManager.enrageStacks > 0 && totalLifeLost > 0)
         {
             Debug.Log(victim.myName + " 'Enrage' triggered, gaining " + victim.passiveManager.enrageStacks.ToString() + " bonus power");
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(victim.passiveManager, "Power", victim.passiveManager.enrageStacks, true, 0.5f);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(victim.passiveManager, "Power", victim.passiveManager.enrageStacks, true, 0.5f);
         }
 
 
@@ -876,7 +886,7 @@ public class CombatLogic : Singleton<CombatLogic>
         List<string> allDamageTypes = new List<string> { "Air", "Fire", "Poison", "Physical", "Shadow", "Frost" };
 
         // Calculate random damage type
-        damageTypeReturned = allDamageTypes[Random.Range(0, allDamageTypes.Count)];
+        damageTypeReturned = allDamageTypes[RandomGenerator.NumberBetween(0, allDamageTypes.Count)];
         Debug.Log("CombatLogic.GetRandomDamageType() randomly generated a damage type of: " + damageTypeReturned);
 
         // return damage type

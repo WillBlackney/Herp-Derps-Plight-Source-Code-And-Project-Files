@@ -607,6 +607,28 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             return;
         }
 
+        // Do relevant passive expiries and logic
+        #region
+        if (entity.passiveManager.wrathStacks > 0)
+        {
+            PassiveController.Instance.ModifyWrath(entity.passiveManager, -1, true, 0.5f);
+        }
+        if (entity.passiveManager.weakenedStacks > 0)
+        {
+            PassiveController.Instance.ModifyWeakened(entity.passiveManager, - 1, true, 0.5f);
+        }
+        if (entity.passiveManager.gritStacks > 0)
+        {
+            PassiveController.Instance.ModifyGrit(entity.passiveManager, - 1, true, 0.5f);
+        }
+        if (entity.passiveManager.vulnerableStacks > 0)
+        {
+            PassiveController.Instance.ModifyVulnerable(entity.passiveManager, - 1, true, 0.5f);
+        }
+
+
+        #endregion
+
         // Do player character exclusive logic
         if (entity.controller == Controller.Player)
         {
@@ -1384,7 +1406,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
                 target = enemy;
             }
 
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(target.passiveManager, effect.passiveApplied.passiveName, effect.passiveStacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.passiveManager, effect.passiveApplied.passiveName, effect.passiveStacks);
         }
 
         // Buff All
@@ -1392,7 +1414,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         {
             foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(enemy))
             {
-                PassiveController.Instance.ApplyPassiveToCharacterEntity(ally.passiveManager, effect.passiveApplied.passiveName, effect.passiveStacks);
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(ally.passiveManager, effect.passiveApplied.passiveName, effect.passiveStacks);
             }
 
         }
@@ -1400,7 +1422,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Debuff Target
         else if (effect.actionType == ActionType.DebuffTarget)
         {
-            PassiveController.Instance.ApplyPassiveToCharacterEntity(target.passiveManager, effect.passiveApplied.passiveName, effect.passiveStacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.passiveManager, effect.passiveApplied.passiveName, effect.passiveStacks);
         }
 
         // Debuff All
@@ -1408,7 +1430,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         {
             foreach (CharacterEntityModel enemyy in GetAllEnemiesOfCharacter(enemy))
             {
-                PassiveController.Instance.ApplyPassiveToCharacterEntity(enemyy.passiveManager, effect.passiveApplied.passiveName, effect.passiveStacks);
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemyy.passiveManager, effect.passiveApplied.passiveName, effect.passiveStacks);
             }
 
         }

@@ -8,7 +8,7 @@ using Sirenix.OdinInspector;
 [Serializable]
 public class CardDataSO : ScriptableObject
 {
-    [BoxGroup("General Info")]
+    [BoxGroup("General Info", true, true)]
     [LabelWidth(100)]
     public string cardName;
     [BoxGroup("General Info")]
@@ -37,7 +37,46 @@ public class CardDataSO : ScriptableObject
     [LabelWidth(100)]
     public Rarity rarity;
 
+    [BoxGroup("Key Words", true, true)]
+    [LabelWidth(100)]
+    public bool expend;
+    [BoxGroup("Key Words")]
+    [LabelWidth(100)]
+    public bool opener;
+    [BoxGroup("Key Words")]
+    [LabelWidth(100)]
+    public bool fleeting;
+    [BoxGroup("Key Words")]
+    [LabelWidth(100)]
+    public bool unplayable;
+
     public List<CardEffect> cardEffects;
+
+    public List<CardEventListener> cardEventListeners;
+
+}
+
+[Serializable]
+public enum CardEventListenerType
+{
+    None, OnLoseHealth, OnDraw, 
+}
+
+[Serializable]
+public enum CardEventListenerFunction
+{
+    None, ReduceCardEnergyCost,
+}
+
+[Serializable]
+public class CardEventListener
+{
+    public CardEventListenerType cardEventListenerType;
+    public CardEventListenerFunction cardEventListenerFunction;
+
+    [ShowIf("cardEventListenerFunction", CardEventListenerFunction.ReduceCardEnergyCost)]
+    public int energyReductionAmount;
+
 }
 
 

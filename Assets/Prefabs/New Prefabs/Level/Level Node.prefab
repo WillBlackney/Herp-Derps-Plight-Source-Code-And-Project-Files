@@ -122,7 +122,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodePriority: 5
   allowedEntity: 2
-  myEntity: {fileID: 0}
   occupied: 0
   mouseOverParent: {fileID: 5037005589569911983}
   activatedParent: {fileID: 5017707447933946209}
@@ -147,7 +146,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &772585995128285610
 RectTransform:
   m_ObjectHideFlags: 0

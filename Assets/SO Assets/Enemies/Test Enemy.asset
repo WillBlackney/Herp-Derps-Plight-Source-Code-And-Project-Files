@@ -37,6 +37,10 @@ MonoBehaviour:
     temporaryBonusInitiativeStacks: 0
     temporaryBonusDrawStacks: 0
     enrageStacks: 2
+    wrathStacks: 0
+    weakenedStacks: 1
+    vulnerableStacks: 0
+    gritStacks: 0
   allEnemyActions:
   - actionName: Howl
     actionType: 0

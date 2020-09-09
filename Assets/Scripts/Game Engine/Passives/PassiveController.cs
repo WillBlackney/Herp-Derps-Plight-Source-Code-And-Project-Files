@@ -97,6 +97,26 @@ public class PassiveController : Singleton<PassiveController>
         }
         #endregion
 
+        // Core % Modifier passives
+        #region
+        if (originalData.weakenedStacks != 0)
+        {
+            ModifyWeakened(newClone, originalData.weakenedStacks, false);
+        }
+        if (originalData.wrathStacks != 0)
+        {
+            ModifyWrath(newClone, originalData.wrathStacks, false);
+        }
+        if (originalData.gritStacks != 0)
+        {
+            ModifyGrit(newClone, originalData.gritStacks, false);
+        }
+        if (originalData.vulnerableStacks != 0)
+        {
+            ModifyVulnerable(newClone, originalData.vulnerableStacks, false);
+        }
+        #endregion
+
     }
     public void BuildPassiveManagerFromSerializedPassiveManager(PassiveManagerModel pManager, SerializedPassiveManagerModel original)
     {
@@ -113,6 +133,11 @@ public class PassiveController : Singleton<PassiveController>
         pManager.temporaryBonusInitiativeStacks = original.temporaryBonusInitiativeStacks;
 
         pManager.enrageStacks = original.enrageStacks;
+
+        pManager.wrathStacks = original.wrathStacks;
+        pManager.gritStacks = original.gritStacks;
+        pManager.weakenedStacks = original.weakenedStacks;
+        pManager.vulnerableStacks = original.vulnerableStacks;
     }    
     public void BuildPlayerCharacterEntityPassivesFromCharacterData(CharacterEntityModel character, CharacterData data)
     {
@@ -306,31 +331,31 @@ public class PassiveController : Singleton<PassiveController>
 
     // Apply Passive To Character Entities
     #region
-    public void ApplyPassiveToCharacterEntity(PassiveManagerModel newClone, string originalData, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    public void ModifyPassiveOnCharacterEntity(PassiveManagerModel pManager, string originalData, int stacks, bool showVFX = true, float vfxDelay = 0f)
     {
-        Debug.Log("PassiveController.ApplyPassiveToCharacterEntity() called...");
+        Debug.Log("PassiveController.ModifyPassiveOnCharacterEntity() called...");
 
         // Core stat bonuses
         #region
         if (originalData == "Power")
         {
-            ModifyBonusPower(newClone, stacks, showVFX, vfxDelay);
+            ModifyBonusPower(pManager, stacks, showVFX, vfxDelay);
         }
         else if (originalData == "Dexterity")
         {
-            ModifyBonusDexterity(newClone, stacks, showVFX, vfxDelay);
+            ModifyBonusDexterity(pManager, stacks, showVFX, vfxDelay);
         }
         else if (originalData == "Draw")
         {
-            ModifyBonusDraw(newClone, stacks, showVFX, vfxDelay);
+            ModifyBonusDraw(pManager, stacks, showVFX, vfxDelay);
         }
         else if (originalData == "Initiative")
         {
-            ModifyBonusInitiative(newClone, stacks, showVFX, vfxDelay);
+            ModifyBonusInitiative(pManager, stacks, showVFX, vfxDelay);
         }
         else if (originalData == "Stamina")
         {
-            ModifyBonusStamina(newClone, stacks, showVFX, vfxDelay);
+            ModifyBonusStamina(pManager, stacks, showVFX, vfxDelay);
         }
         #endregion
 
@@ -338,23 +363,23 @@ public class PassiveController : Singleton<PassiveController>
         #region
         else if (originalData == "Temporary Power")
         {
-            ModifyTemporaryPower(newClone, stacks, showVFX, vfxDelay);
+            ModifyTemporaryPower(pManager, stacks, showVFX, vfxDelay);
         }
         else if (originalData == "Temporary Dexterity")
         {
-            ModifyTemporaryDexterity(newClone, stacks, showVFX, vfxDelay);
+            ModifyTemporaryDexterity(pManager, stacks, showVFX, vfxDelay);
         }
         else if (originalData == "Temporary Draw")
         {
-            ModifyTemporaryDraw(newClone, stacks, showVFX, vfxDelay);
+            ModifyTemporaryDraw(pManager, stacks, showVFX, vfxDelay);
         }
         else if (originalData == "Temporary Initiative")
         {
-            ModifyTemporaryInitiative(newClone, stacks, showVFX, vfxDelay);
+            ModifyTemporaryInitiative(pManager, stacks, showVFX, vfxDelay);
         }
         else if (originalData == "Temporary Stamina")
         {
-            ModifyTemporaryStamina(newClone, stacks, showVFX, vfxDelay);
+            ModifyTemporaryStamina(pManager, stacks, showVFX, vfxDelay);
         }
         #endregion
 
@@ -362,7 +387,27 @@ public class PassiveController : Singleton<PassiveController>
         #region
         else if (originalData == "Enrage")
         {
-            ModifyEnrage(newClone, stacks, showVFX, vfxDelay);
+            ModifyEnrage(pManager, stacks, showVFX, vfxDelay);
+        }
+        #endregion
+
+        // Core % Modifier passives
+        #region
+        else if (originalData == "Wrath")
+        {
+            ModifyWrath(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Weakened")
+        {
+            ModifyWeakened(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Grit")
+        {
+            ModifyGrit(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Vulnerable")
+        {
+            ModifyVulnerable(pManager, stacks, showVFX, vfxDelay);
         }
         #endregion
     }
@@ -373,7 +418,7 @@ public class PassiveController : Singleton<PassiveController>
 
     // Bonus Core Stats
     #region
-    private void ModifyBonusPower(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    public void ModifyBonusPower(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
     {
         Debug.Log("PassiveController.ModifyBonusStrength() called...");
 
@@ -411,7 +456,7 @@ public class PassiveController : Singleton<PassiveController>
             {
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Strength - " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Strength " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
                 }, QueuePosition.Back, 0, 0.5f);
             }
@@ -432,7 +477,7 @@ public class PassiveController : Singleton<PassiveController>
 
         
     }
-    private void ModifyBonusDexterity(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    public void ModifyBonusDexterity(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
     {
         Debug.Log("PassiveController.ModifyBonusDexterity() called...");
 
@@ -471,7 +516,7 @@ public class PassiveController : Singleton<PassiveController>
             {
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Dexterity - " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Dexterity " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
                 }, QueuePosition.Back, 0, 0.5f);
             }
@@ -482,7 +527,7 @@ public class PassiveController : Singleton<PassiveController>
             }
         }
     }
-    private void ModifyBonusInitiative(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    public void ModifyBonusInitiative(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
     {
         Debug.Log("PassiveController.ModifyBonusInitiative() called...");
 
@@ -521,7 +566,7 @@ public class PassiveController : Singleton<PassiveController>
             {
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Initiative - " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Initiative " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
                 }, QueuePosition.Back, 0, 0.5f);
             }
@@ -532,7 +577,7 @@ public class PassiveController : Singleton<PassiveController>
             }
         }
     }
-    private void ModifyBonusStamina(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    public void ModifyBonusStamina(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
     {
         Debug.Log("PassiveController.ModifyBonusStamina() called...");
 
@@ -571,7 +616,7 @@ public class PassiveController : Singleton<PassiveController>
             {
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Stamina - " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Stamina " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
                 }, QueuePosition.Back, 0, 0.5f);
             }
@@ -582,7 +627,7 @@ public class PassiveController : Singleton<PassiveController>
             }
         }
     }
-    private void ModifyBonusDraw(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    public void ModifyBonusDraw(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
     {
         Debug.Log("PassiveController.ModifyBonusDraw() called...");
 
@@ -621,7 +666,7 @@ public class PassiveController : Singleton<PassiveController>
             {
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Draw - " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Draw " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
                 }, QueuePosition.Back, 0, 0.5f);
             }
@@ -636,7 +681,7 @@ public class PassiveController : Singleton<PassiveController>
 
     // Temporary Bonus Core Stats
     #region
-    private void ModifyTemporaryPower(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    public void ModifyTemporaryPower(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
     {
         Debug.Log("PassiveController.ModifyTemporaryStrength() called...");
 
@@ -675,7 +720,7 @@ public class PassiveController : Singleton<PassiveController>
             {
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Strength - " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Strength " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
                 }, QueuePosition.Back, 0, 0.5f);
             }
@@ -695,7 +740,7 @@ public class PassiveController : Singleton<PassiveController>
 
 
     }
-    private void ModifyTemporaryDexterity(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    public void ModifyTemporaryDexterity(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
     {
         Debug.Log("PassiveController.ModifyTemporaryDexterity() called...");
 
@@ -734,7 +779,7 @@ public class PassiveController : Singleton<PassiveController>
             {
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Dexterity - " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Dexterity " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
                 }, QueuePosition.Back, 0, 0.5f);
             }
@@ -744,7 +789,7 @@ public class PassiveController : Singleton<PassiveController>
             }
         }
     }
-    private void ModifyTemporaryInitiative(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    public void ModifyTemporaryInitiative(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
     {
         Debug.Log("PassiveController.ModifyTemporaryInitiative() called...");
 
@@ -783,7 +828,7 @@ public class PassiveController : Singleton<PassiveController>
             {
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Initiative - " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Initiative " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
                 }, QueuePosition.Back, 0, 0.5f);
             }
@@ -794,7 +839,7 @@ public class PassiveController : Singleton<PassiveController>
             }
         }
     }
-    private void ModifyTemporaryStamina(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    public void ModifyTemporaryStamina(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
     {
         Debug.Log("PassiveController.ModifyTemporaryStamina() called...");
 
@@ -833,7 +878,7 @@ public class PassiveController : Singleton<PassiveController>
             {
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Stamina - " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Stamina " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
                 }, QueuePosition.Back, 0, 0.5f);
             }
@@ -844,7 +889,7 @@ public class PassiveController : Singleton<PassiveController>
             }
         }
     }
-    private void ModifyTemporaryDraw(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    public void ModifyTemporaryDraw(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
     {
         Debug.Log("PassiveController.ModifyTemporaryDraw() called...");
 
@@ -883,7 +928,7 @@ public class PassiveController : Singleton<PassiveController>
             {
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Draw - " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Draw " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
                 }, QueuePosition.Back, 0, 0.5f);
             }
@@ -898,7 +943,7 @@ public class PassiveController : Singleton<PassiveController>
 
     // Buff Passives
     #region
-    private void ModifyEnrage(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    public void ModifyEnrage(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
     {
         Debug.Log("PassiveController.ModifyEnrage() called...");
 
@@ -936,7 +981,7 @@ public class PassiveController : Singleton<PassiveController>
             {
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Enrage - " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Enrage " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
                 }, QueuePosition.Back, 0, 0.5f);
             }
@@ -950,5 +995,242 @@ public class PassiveController : Singleton<PassiveController>
 
     }
     #endregion
+
+    // Core % Modifier Passives
+    #region
+    public void ModifyWrath(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyWrath() called...");
+
+        // Setup + Cache refs
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Wrath");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Increment stacks
+        pManager.wrathStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Wrath + " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateCoreStatBuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back, 0, 0.5f);
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Wrath " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back, 0, 0.5f);
+            }
+
+            // Update intent GUI, if enemy and attacking
+            if (pManager.myCharacter.controller == Controller.AI &&
+                pManager.myCharacter.myNextAction != null &&
+                pManager.myCharacter.myNextAction.actionType == ActionType.AttackTarget)
+            {
+                CharacterEntityController.Instance.UpdateEnemyIntentGUI(pManager.myCharacter);
+            }
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+    }
+    public void ModifyWeakened(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyWeakened() called...");
+
+        // Setup + Cache refs
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Weakened");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Increment stacks
+        pManager.weakenedStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Weakened + " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateCoreStatBuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back, 0, 0.5f);
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Weakened " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back, 0, 0.5f);
+            }
+
+            // Update intent GUI, if enemy and attacking
+            if (pManager.myCharacter.controller == Controller.AI &&
+                pManager.myCharacter.myNextAction != null &&
+                pManager.myCharacter.myNextAction.actionType == ActionType.AttackTarget)
+            {
+                CharacterEntityController.Instance.UpdateEnemyIntentGUI(pManager.myCharacter);
+            }
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+    }
+    public void ModifyVulnerable(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyVulnerable() called...");
+
+        // Setup + Cache refs
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Vulnerable");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Increment stacks
+        pManager.vulnerableStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Vulnerable + " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateCoreStatBuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back, 0, 0.5f);
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Vulnerable " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back, 0, 0.5f);
+            }
+
+            // Update intent GUI of ai's targetting this character
+            foreach(CharacterEntityModel entity in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(pManager.myCharacter))
+            {
+                if(entity.controller == Controller.AI &&
+                   entity.myNextAction != null &&
+                   entity.currentActionTarget == pManager.myCharacter &&
+                   entity.myNextAction.actionType == ActionType.AttackTarget)
+                {
+                    CharacterEntityController.Instance.UpdateEnemyIntentGUI(entity);
+                }
+            }
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+    }
+    public void ModifyGrit(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyGrit() called...");
+
+        // Setup + Cache refs
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Grit");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Increment stacks
+        pManager.gritStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Grit + " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateCoreStatBuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back, 0, 0.5f);
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Grit " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back, 0, 0.5f);
+            }
+
+            // Update intent GUI of ai's targetting this character
+            foreach (CharacterEntityModel entity in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(pManager.myCharacter))
+            {
+                if (entity.controller == Controller.AI &&
+                   entity.myNextAction != null &&
+                   entity.currentActionTarget == pManager.myCharacter &&
+                   entity.myNextAction.actionType == ActionType.AttackTarget)
+                {
+                    CharacterEntityController.Instance.UpdateEnemyIntentGUI(entity);
+                }
+            }
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+    }
+    #endregion
+
     #endregion
 }
