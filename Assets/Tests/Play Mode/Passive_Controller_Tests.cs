@@ -77,6 +77,7 @@ namespace Tests
             node = LevelManager.Instance.GetNextAvailableDefenderNode();
         }
 
+        // Core Stat + Temp Core Stat Tests
         [Test]
         public void Build_Player_Character_Entity_Passives_From_Character_Data_Applies_ALL_Passives_Correctly()
         {
@@ -309,7 +310,8 @@ namespace Tests
             Assert.AreEqual(expectedTotal, EntityLogic.GetTotalStamina(model));
         }
 
-        [Test]
+        // Buff Passive Tests
+        [Test]        
         public void Enrage_Triggers_Power_Gain_In_Handle_Damage_Method()
         {
             // Arange
@@ -327,6 +329,7 @@ namespace Tests
             Assert.AreEqual(expectedTotal, EntityLogic.GetTotalPower(model));
         }
 
+        // Damage Perctange Modifier Passive Tests
         [Test]
         public void Wrath_Does_Increase_Damage_In_Handle_Damage_Calculations()
         {
@@ -352,7 +355,6 @@ namespace Tests
             // Assert
             Assert.AreEqual(expectedTotal, finalDamageValue);
         }
-
         [Test]
         public void Wrath_Does_Expire_On_Character_Activation_End()
         {
