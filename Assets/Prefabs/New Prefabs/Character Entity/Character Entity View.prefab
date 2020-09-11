@@ -1019,7 +1019,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 125a02b71f76c354299a45e87ccae45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: 0
   slots: {fileID: 1683842205011700705}
   DrawPreviewSpot: {fileID: 0}
   DeckTransform: {fileID: 5705084716114823804}
@@ -1379,7 +1378,7 @@ GameObject:
   - component: {fileID: 7117579002926394112}
   - component: {fileID: 4304575284958619371}
   m_Layer: 5
-  m_Name: Deck Count Text
+  m_Name: Draw Pile Count Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1765,7 +1764,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5705084716114823804}
   m_Layer: 5
-  m_Name: Deck Parent
+  m_Name: Draw Pile Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2192,7 +2191,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 22
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 87e99a81f1cbf00428f7e0adbc0d7cf5, type: 2}
   m_sharedMaterial: {fileID: 937035506399193613, guid: 87e99a81f1cbf00428f7e0adbc0d7cf5,
@@ -2262,7 +2261,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 8958646609156734319}
-    characterCount: 2
+    characterCount: 1
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -3179,6 +3178,8 @@ MonoBehaviour:
   myTargetIndicator: {fileID: 33292831621114479}
   myActivationWindow: {fileID: 0}
   handVisual: {fileID: 1683842203663576711}
+  drawPileCountText: {fileID: 4304575284958619371}
+  discardPileCountText: {fileID: 8958646609156734319}
   passiveIconsVisualParent: {fileID: 3991568431920461447}
   passiveIcons: []
 --- !u!65 &6154693504274587097
@@ -3206,7 +3207,7 @@ GameObject:
   - component: {fileID: 8233367432378261880}
   - component: {fileID: 1571036788650603486}
   m_Layer: 5
-  m_Name: Deck Image
+  m_Name: Draw Pile Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3910,7 +3911,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2353433356358755530}
   m_Layer: 5
-  m_Name: Deck Count Parent
+  m_Name: Draw Pile Count Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4461,7 +4462,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 952a99a4bf23b754db0249a056233232, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myLivingEntity: {fileID: 0}
   animator: {fileID: 8036801247496075626}
   visualParent: {fileID: 163784321236265721}
 --- !u!95 &8036801247496075626

@@ -33,6 +33,7 @@ public class CardController : Singleton<CardController>
 
         Card card = new Card();
 
+        // Core data
         card.owner = owner;
         card.cardName = data.cardName;
         card.cardDescription = data.cardDescription;
@@ -42,6 +43,13 @@ public class CardController : Singleton<CardController>
         card.targettingType = data.targettingType;
         card.talentSchool = data.talentSchool;
 
+        // key words
+        card.expend = data.expend;
+        card.fleeting = data.fleeting;
+        card.opener = data.opener;
+        card.unplayable = data.unplayable;
+
+        // lists
         card.cardEventListeners.AddRange(data.cardEventListeners);
         card.cardEffects.AddRange(data.cardEffects);
 
@@ -141,28 +149,64 @@ public class CardController : Singleton<CardController>
 
         foreach(Card card in cardsToDiscard)
         {
-            DiscardCardFromHand(defender, card);
+            DiscardCardFromHand(card);
         }
     }
-    private void DiscardCardFromHand(CharacterEntityModel defender, Card card)
+    private void DiscardCardFromHand(Card card)
     {
         Debug.Log("CardController.DiscardCardFromHand() called...");
 
         // Get handle to the card VM
         CardViewModel cvm = card.cardVM;
+        CharacterEntityModel owner = card.owner;
 
         // remove from hand
-        RemoveCardFromHand(defender, card);
+        RemoveCardFromHand(owner, card);
 
         // place on top of discard pile
-        AddCardToDiscardPile(defender, card);
+        AddCardToDiscardPile(owner, card);
 
         // does the card have a cardVM linked to it?
         if (cvm)
         {
-            VisualEventManager.Instance.CreateVisualEvent(() => DiscardCardFromHandVisualEvent(cvm, defender), 0, 0.1f);
+            VisualEventManager.Instance.CreateVisualEvent(() => DiscardCardFromHandVisualEvent(cvm, owner), 0, 0.1f);
         }                         
 
+    }
+    private void ExpendCard(Card card)
+    {
+        Debug.Log("CardController.ExpendCard() called...");
+
+        // Get handle to the card VM
+        CardViewModel cvm = card.cardVM;
+        CharacterEntityModel owner = card.owner;
+
+        // Remove card from which ever collection its in
+        if (owner.hand.Contains(card))
+        {
+            RemoveCardFromHand(owner, card);
+        }
+        else if (owner.discardPile.Contains(card))
+        {
+            RemoveCardFromDiscardPile(owner, card);
+        }
+        else if (owner.drawPile.Contains(card))
+        {
+            RemoveCardFromDrawPile(owner, card);
+        }
+
+        // place in the expend pile
+        AddCardToExpendPile(owner, card);
+
+        // does the card have a cardVM linked to it?
+        if (cvm)
+        {
+            // it does, play discard anim animation.
+            // TO DO: create an expend animation, and play it here
+            VisualEventManager.Instance.CreateVisualEvent(() => DiscardCardFromHandVisualEvent(cvm, owner), 0, 0.1f);
+        }
+
+        OnCardExpended(card);
     }
     private void DestroyCardViewModel(CardViewModel cvm)
     {
@@ -198,8 +242,7 @@ public class CardController : Singleton<CardController>
         bool boolReturned = false;
 
         if(HasEnoughEnergyToPlayCard(card, owner) &&
-            CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive)// &&
-           //ActivationManager.Instance.IsEntityActivated(owner))
+            CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive)
 
            // TO DO: here we check for specifics on card type 
            // (e.g. M attack cards not playable when disarmed)
@@ -247,7 +290,7 @@ public class CardController : Singleton<CardController>
         CharacterEntityController.Instance.ModifyEnergy(owner, -GetCardEnergyCost(card));
 
         // Remove from hand
-        RemoveCardFromHand(owner, card);
+       // RemoveCardFromHand(owner, card);
 
         // check for specific on card play effects 
         // Infuriated 
@@ -263,16 +306,59 @@ public class CardController : Singleton<CardController>
             }
             */
         }
-       
 
-        // TO DO: Add to discard pile, or exhaust pile?
+        // Where should this card be sent to?
+        if (card.expend)
+        {
+            ExpendCard(card);
+        }
+
+        else if(card.cardType == CardType.Power)
+        {
+            CardViewModel cardVM = card.cardVM;
+            if (owner.hand.Contains(card))
+            {
+                RemoveCardFromHand(owner, card);
+            }
+
+            if (cardVM)
+            {
+                // to do: create 'play power' anim
+                VisualEventManager.Instance.CreateVisualEvent(() => PlayACardFromHandVisualEvent(cardVM, owner.characterEntityView));
+            }
+        }
+
+        else
+        {
+            // Do normal 'play from hand' stuff
+            CardViewModel cardVM = card.cardVM;
+            if (owner.hand.Contains(card))
+            {
+                RemoveCardFromHand(owner, card);
+                AddCardToDiscardPile(owner, card);
+            }
+
+            if (cardVM)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => PlayACardFromHandVisualEvent(cardVM, owner.characterEntityView));
+            }
+           
+        }
+        // to do: what happens to power cards???
 
         // Add to discard pile
-        AddCardToDiscardPile(owner, card);
+        //AddCardToDiscardPile(owner, card);
     }
     private void OnCardPlayedFinish(Card card)
     {
         // called at the very end of card play
+    }
+    private void OnCardExpended(Card card)
+    {
+        // TO DO: in the future, additonal effects that occur
+        // when an expend happens will go here e.g. an item
+        // that reads 'whenever you expend a card, gain 5 block',
+        // the gain block logic will go here
     }
     public void PlayCardFromHand(Card card, CharacterEntityModel target = null)
     {
@@ -289,7 +375,7 @@ public class CardController : Singleton<CardController>
         DisconnectCardAndCardViewModel(card, cardVM);
 
         // Create visual event and enqueue
-        VisualEventManager.Instance.CreateVisualEvent(()=> PlayACardFromHandVisualEvent(cardVM, owner.characterEntityView));
+        //VisualEventManager.Instance.CreateVisualEvent(()=> PlayACardFromHandVisualEvent(cardVM, owner.characterEntityView));
 
         // Trigger all effects on card
         foreach (CardEffect effect in card.cardEffects)
@@ -364,7 +450,7 @@ public class CardController : Singleton<CardController>
         else if (cardEffect.cardEffectType == CardEffectType.LoseHealth)
         {
             // VFX
-            VisualEffectManager.Instance.CreateBloodSplatterEffect(owner.characterEntityView.transform.position);
+            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateBloodSplatterEffect(owner.characterEntityView.transform.position));
 
             // Start self damage sequence
             CombatLogic.Instance.HandleDamage(cardEffect.healthLost, owner, owner, DamageType.None, card, true);
@@ -394,11 +480,16 @@ public class CardController : Singleton<CardController>
             }           
         }
 
-        // Gain Energy
-        else if (cardEffect.cardEffectType == CardEffectType.GainPassiveSelf)
-        {
-            // Gain Energy
+        // Apply passive to self
+        else if (cardEffect.cardEffectType == CardEffectType.ApplyPassiveToSelf)
+        {            
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(owner.passiveManager, cardEffect.passivePairing.passiveData.passiveName, cardEffect.passivePairing.passiveStacks, true, 0.5f);
+        }
+
+        // Apply passive to target
+        else if (cardEffect.cardEffectType == CardEffectType.ApplyPassiveToTarget)
+        {
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.passiveManager, cardEffect.passivePairing.passiveData.passiveName, cardEffect.passivePairing.passiveStacks, true, 0.5f);
         }
 
         // Apply Burning
@@ -458,18 +549,26 @@ public class CardController : Singleton<CardController>
     private void AddCardToDrawPile(CharacterEntityModel defender, Card card)
     {
         defender.drawPile.Add(card);
+        string drawPileCount = defender.drawPile.Count.ToString();
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateDrawPileCountText(defender.characterEntityView, drawPileCount));
     }
     private void RemoveCardFromDrawPile(CharacterEntityModel defender, Card card)
     {
         defender.drawPile.Remove(card);
+        string drawPileCount = defender.drawPile.Count.ToString();
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateDrawPileCountText(defender.characterEntityView, drawPileCount));
     }
     private void AddCardToDiscardPile(CharacterEntityModel defender, Card card)
     {
         defender.discardPile.Add(card);
+        string discardPileCount = defender.discardPile.Count.ToString();
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateDiscardPileCountText(defender.characterEntityView, discardPileCount));
     }
     private void RemoveCardFromDiscardPile(CharacterEntityModel defender, Card card)
     {
         defender.discardPile.Remove(card);
+        string discardPileCount = defender.discardPile.Count.ToString();
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateDiscardPileCountText(defender.characterEntityView, discardPileCount));
     }
     private void AddCardToHand(CharacterEntityModel defender, Card card)
     {
@@ -478,6 +577,10 @@ public class CardController : Singleton<CardController>
     private void RemoveCardFromHand(CharacterEntityModel defender, Card card)
     {
         defender.hand.Remove(card);
+    }
+    private void AddCardToExpendPile(CharacterEntityModel defender, Card card)
+    {
+        defender.expendPile.Add(card);
     }
     #endregion
 
@@ -603,6 +706,20 @@ public class CardController : Singleton<CardController>
         {
             DestroyCardViewModel(cvm);
         });
+    }
+    private void UpdateDiscardPileCountText(CharacterEntityView vm, string newValue)
+    {
+        if (vm)
+        {
+            vm.discardPileCountText.text = newValue;
+        }
+    }
+    private void UpdateDrawPileCountText(CharacterEntityView vm, string newValue)
+    {
+        if (vm)
+        {
+            vm.drawPileCountText.text = newValue;
+        }
     }
 
     #endregion

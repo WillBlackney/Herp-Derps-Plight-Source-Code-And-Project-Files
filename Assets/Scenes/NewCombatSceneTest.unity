@@ -5304,16 +5304,11 @@ MonoBehaviour:
     dexterity: 0
     power: 0
     deck:
-    - {fileID: 11400000, guid: 0e73c280fb28d9b4d9e4fc59eab30e44, type: 2}
-    - {fileID: 11400000, guid: 0e73c280fb28d9b4d9e4fc59eab30e44, type: 2}
-    - {fileID: 11400000, guid: 0e73c280fb28d9b4d9e4fc59eab30e44, type: 2}
-    - {fileID: 11400000, guid: 0e73c280fb28d9b4d9e4fc59eab30e44, type: 2}
-    - {fileID: 11400000, guid: 0e73c280fb28d9b4d9e4fc59eab30e44, type: 2}
-    - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
-    - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
-    - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
-    - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
-    - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
+    - {fileID: 11400000, guid: faa0782b525bcec47bd22d3f1fa5b415, type: 2}
+    - {fileID: 11400000, guid: faa0782b525bcec47bd22d3f1fa5b415, type: 2}
+    - {fileID: 11400000, guid: faa0782b525bcec47bd22d3f1fa5b415, type: 2}
+    - {fileID: 11400000, guid: faa0782b525bcec47bd22d3f1fa5b415, type: 2}
+    - {fileID: 11400000, guid: faa0782b525bcec47bd22d3f1fa5b415, type: 2}
     modelParts:
     - Human_Chest
     - Human_Face_1

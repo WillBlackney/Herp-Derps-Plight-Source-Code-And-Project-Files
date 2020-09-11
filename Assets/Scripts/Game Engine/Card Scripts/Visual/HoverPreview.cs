@@ -37,7 +37,7 @@ public class HoverPreview: MonoBehaviour
         set 
         { 
             _thisPreviewEnabled = value;
-            if (!_thisPreviewEnabled)
+            if (!_thisPreviewEnabled )
                 StopThisPreview();
         }
     }

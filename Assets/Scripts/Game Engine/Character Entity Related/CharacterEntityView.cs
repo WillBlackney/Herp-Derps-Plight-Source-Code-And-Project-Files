@@ -49,6 +49,8 @@ public class CharacterEntityView : MonoBehaviour
 
     [Header("Card Components")]
     public HandVisual handVisual;
+    public TextMeshProUGUI drawPileCountText;
+    public TextMeshProUGUI discardPileCountText;
 
     [Header("Core Component References")]
     public GameObject passiveIconsVisualParent;

@@ -15,7 +15,17 @@ public abstract class DraggingActions : MonoBehaviour
     {
         get
         {
-            return CardController.Instance.IsCardPlayable(cardVM.card, cardVM.card.owner);
+            // prevent dragging a card that was already dragged and played, but 
+            // hasnt been removed from hand yet due to visual event delays
+            if (cardVM.card != null && cardVM.card.owner != null)
+            {
+                return CardController.Instance.IsCardPlayable(cardVM.card, cardVM.card.owner);
+            }
+            else
+            {
+                return false;
+            }
+           
         }
 
     }

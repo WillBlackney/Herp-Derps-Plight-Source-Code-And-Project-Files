@@ -15,6 +15,7 @@ namespace Tests
 
         // Mock data
         CharacterData characterData;
+        EnemyDataSO enemyData;
         List<CardDataSO> deckData;
         LevelNode node;
 
@@ -75,6 +76,9 @@ namespace Tests
 
             // Create mock level node
             node = LevelManager.Instance.GetNextAvailableDefenderNode();
+
+            // Create mock enemy data
+            enemyData = AssetDatabase.LoadAssetAtPath<EnemyDataSO>("Assets/SO Assets/Enemies/Test Enemy.asset");
         }
 
         // Core Stat + Temp Core Stat Tests
@@ -358,8 +362,151 @@ namespace Tests
         [Test]
         public void Wrath_Does_Expire_On_Character_Activation_End()
         {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(WRATH_NAME).passiveName;
+            int stacks = 1;
+            int expected = 0;
 
+            // Act 
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, passiveName, stacks);
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CharacterEntityController.Instance.CharacterOnActivationEnd(model);
+
+            // Assert
+            Assert.AreEqual(expected, model.passiveManager.wrathStacks);
         }
+        [Test]
+        public void Weakened_Does_Increase_Damage_In_Handle_Damage_Calculations()
+        {
+            // Arange
+            CharacterEntityModel attacker;
+            CharacterEntityModel target;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(WEAKENED_NAME).passiveName;
+            int expectedTotal = 7;
+
+            // Act
+            attacker = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            target = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+
+            Card card = new Card();
+            card.owner = attacker;
+            card.cardEffects.Add(new CardEffect { baseDamageValue = 10, cardEffectType = CardEffectType.DealDamage });
+            CardEffect cardEffect = card.cardEffects[0];
+
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(attacker.passiveManager, passiveName, 1);
+
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(attacker, target, DamageType.Physical, false, cardEffect.baseDamageValue, card, cardEffect);
+
+            // Assert
+            Assert.AreEqual(expectedTotal, finalDamageValue);
+        }
+        [Test]
+        public void Weakened_Does_Expire_On_Character_Activation_End()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(WEAKENED_NAME).passiveName;
+            int stacks = 1;
+            int expected = 0;
+
+            // Act 
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, passiveName, stacks);
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CharacterEntityController.Instance.CharacterOnActivationEnd(model);
+
+            // Assert
+            Assert.AreEqual(expected, model.passiveManager.weakenedStacks);
+        }
+        [Test]
+        public void Grit_Does_Decrease_Damage_In_Handle_Damage_Calculations()
+        {
+            // Arange
+            CharacterEntityModel attacker;
+            CharacterEntityModel target;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(GRIT_NAME).passiveName;
+            int expectedTotal = 7;
+
+            // Act
+            attacker = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            target = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, node);
+
+            Card card = new Card();
+            card.owner = attacker;
+            card.cardEffects.Add(new CardEffect { baseDamageValue = 10, cardEffectType = CardEffectType.DealDamage });
+            CardEffect cardEffect = card.cardEffects[0];
+
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.passiveManager, passiveName, 1);
+
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(attacker, target, DamageType.Physical, false, cardEffect.baseDamageValue, card, cardEffect);
+
+            // Assert
+            Assert.AreEqual(expectedTotal, finalDamageValue);
+        }
+        [Test]
+        public void Grit_Does_Expire_On_Character_Activation_End()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(GRIT_NAME).passiveName;
+            int stacks = 1;
+            int expected = 0;
+
+            // Act 
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, passiveName, stacks);
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CharacterEntityController.Instance.CharacterOnActivationEnd(model);
+
+            // Assert
+            Assert.AreEqual(expected, model.passiveManager.gritStacks);
+        }
+        [Test]
+        public void Vulnerable_Does_Increase_Damage_In_Handle_Damage_Calculations()
+        {
+            // Arange
+            CharacterEntityModel attacker;
+            CharacterEntityModel target;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(VULNERABLE_NAME).passiveName;
+            int expectedTotal = 13;
+
+            // Act
+            attacker = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            target = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, node);
+
+            Card card = new Card();
+            card.owner = attacker;
+            card.cardEffects.Add(new CardEffect { baseDamageValue = 10, cardEffectType = CardEffectType.DealDamage });
+            CardEffect cardEffect = card.cardEffects[0];
+
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.passiveManager, passiveName, 1);
+
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(attacker, target, DamageType.Physical, false, cardEffect.baseDamageValue, card, cardEffect);
+
+            // Assert
+            Assert.AreEqual(expectedTotal, finalDamageValue);
+        }
+        [Test]
+        public void Vulnerable_Does_Expire_On_Character_Activation_End()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(VULNERABLE_NAME).passiveName;
+            int stacks = 1;
+            int expected = 0;
+
+            // Act 
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.passiveManager, passiveName, stacks);
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CharacterEntityController.Instance.CharacterOnActivationEnd(model);
+
+            // Assert
+            Assert.AreEqual(expected, model.passiveManager.vulnerableStacks);
+        }
+
 
         // for each passive % 
         // does expire on activation end

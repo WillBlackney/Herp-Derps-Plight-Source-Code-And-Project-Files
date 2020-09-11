@@ -30,13 +30,38 @@ public class CardEffect
     [ShowIf("cardEffectType", CardEffectType.ApplyBurning)]
     public int burningApplied;
 
-    [ShowIf("cardEffectType", CardEffectType.GainPassiveSelf)]
+    [ShowIf("ShowPassivePairing")]
     public PassivePairingData passivePairing;
+
+    public bool ShowPassivePairing()
+    {
+        if(cardEffectType == CardEffectType.ApplyPassiveToAllAllies ||
+            cardEffectType == CardEffectType.ApplyPassiveToAllEnemies ||
+            cardEffectType == CardEffectType.ApplyPassiveToSelf ||
+            cardEffectType == CardEffectType.ApplyPassiveToTarget)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
 }
 
 [Serializable]
 public enum CardEffectType
 {
-    None, GainBlock, DealDamage, LoseHealth, GainEnergy, DrawCards, ApplyBurning, GainPassiveSelf,
+    None, 
+    GainBlock, 
+    DealDamage, 
+    LoseHealth, 
+    GainEnergy, 
+    DrawCards, 
+    ApplyBurning, 
+    ApplyPassiveToSelf, 
+    ApplyPassiveToTarget, 
+    ApplyPassiveToAllEnemies,
+    ApplyPassiveToAllAllies,
 }

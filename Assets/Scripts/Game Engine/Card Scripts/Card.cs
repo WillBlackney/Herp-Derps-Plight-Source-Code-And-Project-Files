@@ -21,4 +21,11 @@ public class Card
     public int energyReductionUntilPlayed;
     public int energyReductionPermanent;
     public int energyReductionThisCombatOnly;
+
+    // Key words
+    public bool expend;
+    public bool opener;
+    public bool fleeting;
+    public bool unplayable;
+    
 }

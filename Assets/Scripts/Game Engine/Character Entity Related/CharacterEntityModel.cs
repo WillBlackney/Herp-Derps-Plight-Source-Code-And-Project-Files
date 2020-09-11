@@ -38,6 +38,7 @@ public class CharacterEntityModel
     [HideInInspector] public List<Card> drawPile = new List<Card>();
     [HideInInspector] public List<Card> discardPile = new List<Card>();
     [HideInInspector] public List<Card> hand = new List<Card>();
+    [HideInInspector] public List<Card> expendPile = new List<Card>();
 
     [Header("Misc Combat Properties")]
     [HideInInspector] public int currentInitiativeRoll;

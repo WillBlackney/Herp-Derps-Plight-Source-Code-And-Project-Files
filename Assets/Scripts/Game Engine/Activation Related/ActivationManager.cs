@@ -95,7 +95,7 @@ public class ActivationManager : Singleton<ActivationManager>
         CombatLogic.Instance.SetCombatState(CombatGameState.CombatActive);
         StartNewTurnSequence();
     }
-    public void StartNewTurnSequence()
+    private void StartNewTurnSequence()
     {
         // Disable arrow
         VisualEventManager.Instance.CreateVisualEvent(() => SetPanelArrowViewState(false));
