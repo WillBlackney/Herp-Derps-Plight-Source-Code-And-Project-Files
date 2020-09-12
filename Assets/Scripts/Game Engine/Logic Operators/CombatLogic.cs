@@ -77,28 +77,28 @@ public class CombatLogic : Singleton<CombatLogic>
 
         
         // vulnerable
-        if (target.passiveManager.vulnerableStacks > 0)
+        if (target.pManager.vulnerableStacks > 0)
         {
             damageModifier += 0.3f;
             Debug.Log("Damage percentage modifier after 'Vulnerable' bonus: " + damageModifier.ToString());
         }
 
         // wrath
-        if (attacker.passiveManager.wrathStacks > 0)
+        if (attacker.pManager.wrathStacks > 0)
         {
             damageModifier += 0.3f;
             Debug.Log("Damage percentage modifier after 'wrath' bonus: " + damageModifier.ToString());
         }
 
         // grit
-        if (target.passiveManager.gritStacks > 0)
+        if (target.pManager.gritStacks > 0)
         {
             damageModifier -= 0.3f;
             Debug.Log("Damage percentage modifier after 'grit' bonus: " + damageModifier.ToString());
         }
 
         // weakened
-        if (attacker.passiveManager.weakenedStacks > 0)
+        if (attacker.pManager.weakenedStacks > 0)
         {
             damageModifier -= 0.3f;
             Debug.Log("Damage percentage modifier after 'weakened' reduction: " + damageModifier.ToString());
@@ -670,10 +670,10 @@ public class CombatLogic : Singleton<CombatLogic>
         // EVALUATE DAMAGE RELATED PASSIVE EFFECTS
 
         // Enrage
-        if (victim.passiveManager.enrageStacks > 0 && totalLifeLost > 0)
+        if (victim.pManager.enrageStacks > 0 && totalLifeLost > 0)
         {
-            Debug.Log(victim.myName + " 'Enrage' triggered, gaining " + victim.passiveManager.enrageStacks.ToString() + " bonus power");
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(victim.passiveManager, "Power", victim.passiveManager.enrageStacks, true, 0.5f);
+            Debug.Log(victim.myName + " 'Enrage' triggered, gaining " + victim.pManager.enrageStacks.ToString() + " bonus power");
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(victim.pManager, "Power", victim.pManager.enrageStacks, true, 0.5f);
         }
 
 

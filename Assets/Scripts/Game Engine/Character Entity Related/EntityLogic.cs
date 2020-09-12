@@ -16,11 +16,11 @@ public static class EntityLogic
         Debug.Log(entity.myName + " base stamina: " + staminaReturned.ToString());
 
         // Bonus Stamina
-        staminaReturned += entity.passiveManager.bonusStaminaStacks;
+        staminaReturned += entity.pManager.bonusStaminaStacks;
         Debug.Log("Value after bonus stamina added: " + staminaReturned.ToString());
 
         // Temporary Bonus Stamina
-        staminaReturned += entity.passiveManager.temporaryBonusStaminaStacks;
+        staminaReturned += entity.pManager.temporaryBonusStaminaStacks;
         Debug.Log("Value after temporary bonus stamina added: " + staminaReturned.ToString());
 
         // Return final value
@@ -36,11 +36,11 @@ public static class EntityLogic
         Debug.Log(entity.myName + " base draw: " + drawReturned.ToString());
 
         // Bonus Draw
-        drawReturned += entity.passiveManager.bonusDrawStacks;
+        drawReturned += entity.pManager.bonusDrawStacks;
         Debug.Log("Value after bonus draw added: " + drawReturned.ToString());
 
         // Temporary Bonus Draw
-        drawReturned += entity.passiveManager.temporaryBonusDrawStacks;
+        drawReturned += entity.pManager.temporaryBonusDrawStacks;
         Debug.Log("Value after temporary bonus draw added: " + drawReturned.ToString());
 
         // Return final value
@@ -56,11 +56,11 @@ public static class EntityLogic
         Debug.Log(entity.myName + " base strength: " + strengthReturned.ToString());
 
         // Bonus Power
-        strengthReturned += entity.passiveManager.bonusPowerStacks;
+        strengthReturned += entity.pManager.bonusPowerStacks;
         Debug.Log("Value after bonus strength added: " + strengthReturned.ToString());
 
         // Temporary Bonus Power
-        strengthReturned += entity.passiveManager.temporaryBonusPowerStacks;
+        strengthReturned += entity.pManager.temporaryBonusPowerStacks;
         Debug.Log("Value after temporary bonus strength added: " + strengthReturned.ToString());
 
         // Return final value
@@ -76,11 +76,11 @@ public static class EntityLogic
         Debug.Log(entity.myName + " base initiative: " + initiativeReturned.ToString());
 
         // Bonus Stamina
-        initiativeReturned += entity.passiveManager.bonusInitiativeStacks;
+        initiativeReturned += entity.pManager.bonusInitiativeStacks;
         Debug.Log("Value after bonus initiative added: " + initiativeReturned.ToString());
 
         // Temporary Bonus Stamina
-        initiativeReturned += entity.passiveManager.temporaryBonusInitiativeStacks;
+        initiativeReturned += entity.pManager.temporaryBonusInitiativeStacks;
         Debug.Log("Value after temporary bonus initiative added: " + initiativeReturned.ToString());
 
         // Return final value
@@ -96,11 +96,11 @@ public static class EntityLogic
         Debug.Log(entity.myName + " base dexterity: " + dexterityReturned.ToString());
 
         // Bonus Dexterity
-        dexterityReturned += entity.passiveManager.bonusDexterityStacks;
+        dexterityReturned += entity.pManager.bonusDexterityStacks;
         Debug.Log("Value after bonus dexterity added: " + dexterityReturned.ToString());
 
         // Temporary Bonus Dexterity
-        dexterityReturned += entity.passiveManager.temporaryBonusDexterityStacks;
+        dexterityReturned += entity.pManager.temporaryBonusDexterityStacks;
         Debug.Log("Value after temporary bonus dexterity added: " + dexterityReturned.ToString());
 
         // Return final value

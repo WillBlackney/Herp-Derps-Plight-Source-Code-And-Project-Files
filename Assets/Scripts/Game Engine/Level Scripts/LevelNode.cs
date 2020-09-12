@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class LevelNode : MonoBehaviour
 {
+    [HideInInspector] public CharacterEntityModel myEntity;
+    [HideInInspector] public bool occupied;
     public int nodePriority;
-    public AllowedEntity allowedEntity;
-    public CharacterEntityModel myEntity;
-    public bool occupied;
+    public AllowedEntity allowedEntity;   
     public GameObject mouseOverParent;
     public GameObject activatedParent;
 
@@ -34,13 +34,16 @@ public class LevelNode : MonoBehaviour
     }
     public void DisableAllExtraViews()
     {
-       // SetMouseOverViewState(false);
         SetLineViewState(false);
     }
     public void ConnectTargetPathToTargetNode(LevelNode targetNode)
     {
-        // Activate view
-        SetLineViewState(true);
+        // Dont show path if player is dragging a card over the enemy
+        if(Draggable.DraggingThis == null)
+        {
+            // Activate view
+            SetLineViewState(true);
+        }       
 
         // Clear previous path
         myLr.positionCount = 0;

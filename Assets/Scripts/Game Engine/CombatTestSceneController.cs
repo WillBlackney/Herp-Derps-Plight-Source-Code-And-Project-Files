@@ -7,7 +7,8 @@ public class CombatTestSceneController : Singleton<CombatTestSceneController>
 {
     public bool runMockScene;
     public EnemyWaveSO testingEnemyWave;
-    public CharacterData characterDataSample;
+    public List<CharacterTemplateSO> characterTemplates;
+    public CharacterData characterDataSample;    
 
     private void Start()
     {
@@ -27,6 +28,7 @@ public class CombatTestSceneController : Singleton<CombatTestSceneController>
 
         if (runMockScene)
         {
+            //CharacterDataController.Instance.BuildAllCharactersFromCharacterTemplateList(characterTemplates);
             CharacterDataController.Instance.BuildAllCharactersFromMockCharacterData(characterDataSample);
             CreateTestingPlayerCharacters();
             EnemySpawner.Instance.SpawnEnemyWave("Basic", testingEnemyWave);

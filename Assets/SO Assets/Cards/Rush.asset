@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Rush
   cardDescription: 'Deal 5 Physical damage. Gain 10 Energy next activation. '
-  cardSprite: {fileID: 21300000, guid: 02e4bbfee641dfa409c16926f89bad03, type: 3}
+  cardSprite: {fileID: 21300000, guid: fe96b5bcbf72f2e49b92983a290fcef2, type: 3}
   cardEnergyCost: 10
   cardType: 2
   targettingType: 3

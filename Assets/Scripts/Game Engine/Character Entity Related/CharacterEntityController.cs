@@ -103,7 +103,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         SetCharacterViewStartingState(model);
 
         // Copy data from character data into new model
-        SetupCharacterFromCharacterData(model, data);
+        SetupCharacterFromCharacterData(model, model.characterData);
 
         // Build deck
         CardController.Instance.BuildCharacterEntityDeckFromDeckData(model, data.deck);
@@ -176,6 +176,8 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Set up passive traits
         PassiveController.Instance.BuildPlayerCharacterEntityPassivesFromCharacterData(character, data);
 
+        // Set up items
+        ItemController.Instance.RunItemSetupOnCharacterEntityFromItemManagerData(character, data.itemManager);
     }
     private void SetupCharacterFromEnemyData(CharacterEntityModel character, EnemyDataSO data)
     {
@@ -527,10 +529,15 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
         character.hasActivatedThisTurn = true;
         ModifyEnergy(character, EntityLogic.GetTotalStamina(character));
-        ModifyBlockOnActivationStart(character);
 
         // enable activated view state
         VisualEventManager.Instance.CreateVisualEvent(() => character.levelNode.SetActivatedViewState(true), QueuePosition.Back);
+
+        // Modify relevant passives
+        if(character.pManager.temporaryBonusStaminaStacks > 0)
+        {
+            PassiveController.Instance.ModifyTemporaryStamina(character.pManager, -character.pManager.temporaryBonusStaminaStacks, true, 0.5f);
+        }
 
         // is the character player controller?
         if (character.controller == Controller.Player)
@@ -541,6 +548,12 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
             // Draw cards on turn start
             CardController.Instance.DrawCardsOnActivationStart(character);
+
+            // Remove temp draw
+            if (character.pManager.temporaryBonusDrawStacks > 0)
+            {
+                PassiveController.Instance.ModifyTemporaryDraw(character.pManager, -character.pManager.temporaryBonusDrawStacks, true, 0.5f);
+            }
         }
 
         // is the character an enemy?
@@ -552,46 +565,11 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
             // Star enemy activation process
             StartEnemyActivation(character);
-        }       
-
-        /*
-        // check if taunted, and if taunter died 
-        if (myPassiveManager.taunted && myTaunter == null)
-        {
-            myPassiveManager.ModifyTaunted(-myPassiveManager.tauntedStacks, null);
-        }
-
-        // Remove time warp
-        if (myPassiveManager.timeWarp && hasActivatedThisTurn)
-        {
-            myPassiveManager.ModifyTimeWarp(-myPassiveManager.timeWarpStacks);
-        }
-
-        // Cautious
-        if (myPassiveManager.cautious)
-        {
-            Debug.Log("OnActivationEndCoroutine() checking Cautious...");
-            VisualEffectManager.Instance.CreateStatusEffect(transform.position, "Cautious");
-            ModifyCurrentBlock(CombatLogic.Instance.CalculateBlockGainedByEffect(myPassiveManager.cautiousStacks, this));
-            //yield return new WaitForSeconds(1f);
-        }
+        }      
         
-        // Growing
-        if (myPassiveManager.growing)
-        {
-            myPassiveManager.ModifyBonusStrength(myPassiveManager.growingStacks);
-            //yield return new WaitForSeconds(1);
-        }
+        
 
-        // Fast Learner
-        if (myPassiveManager.fastLearner)
-        {
-            myPassiveManager.ModifyBonusWisdom(myPassiveManager.fastLearnerStacks);
-            //yield return new WaitForSeconds(1);
-        }
-        */
 
-        //action.coroutineCompleted = true;
     }
     public void CharacterOnActivationEnd(CharacterEntityModel entity)
     {
@@ -609,22 +587,35 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
         // Do relevant passive expiries and logic
         #region
-        if (entity.passiveManager.wrathStacks > 0)
+
+        // Temp core stats
+        if (entity.pManager.temporaryBonusPowerStacks > 0)
         {
-            PassiveController.Instance.ModifyWrath(entity.passiveManager, -1, true, 0.5f);
+            PassiveController.Instance.ModifyTemporaryPower(entity.pManager, -1, true, 0.5f);
         }
-        if (entity.passiveManager.weakenedStacks > 0)
+        if (entity.pManager.temporaryBonusDexterityStacks > 0)
         {
-            PassiveController.Instance.ModifyWeakened(entity.passiveManager, - 1, true, 0.5f);
+            PassiveController.Instance.ModifyTemporaryDexterity(entity.pManager, -1, true, 0.5f);
         }
-        if (entity.passiveManager.gritStacks > 0)
+
+        // Percentage modifiers
+        if (entity.pManager.wrathStacks > 0)
         {
-            PassiveController.Instance.ModifyGrit(entity.passiveManager, - 1, true, 0.5f);
+            PassiveController.Instance.ModifyWrath(entity.pManager, -1, true, 0.5f);
         }
-        if (entity.passiveManager.vulnerableStacks > 0)
+        if (entity.pManager.weakenedStacks > 0)
         {
-            PassiveController.Instance.ModifyVulnerable(entity.passiveManager, - 1, true, 0.5f);
+            PassiveController.Instance.ModifyWeakened(entity.pManager, - 1, true, 0.5f);
         }
+        if (entity.pManager.gritStacks > 0)
+        {
+            PassiveController.Instance.ModifyGrit(entity.pManager, - 1, true, 0.5f);
+        }
+        if (entity.pManager.vulnerableStacks > 0)
+        {
+            PassiveController.Instance.ModifyVulnerable(entity.pManager, - 1, true, 0.5f);
+        }
+
 
 
         #endregion
@@ -1130,7 +1121,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             
             // Check HasPassive
             if (ar.requirementType == ActionRequirementType.HasPassiveTrait &&
-                PassiveController.Instance.IsEntityAffectedByPassive(enemy.passiveManager, ar.passiveRequired.passiveName) == false)
+                PassiveController.Instance.IsEntityAffectedByPassive(enemy.pManager, ar.passiveRequired.passiveName) == false)
             {
                 Debug.Log(enemyAction.actionName + " failed 'HasPassive' requirement");
                 checkResults.Add(false);
@@ -1406,7 +1397,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
                 target = enemy;
             }
 
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.passiveManager, effect.passiveApplied.passiveName, effect.passiveStacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, effect.passiveApplied.passiveName, effect.passiveStacks);
         }
 
         // Buff All
@@ -1414,7 +1405,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         {
             foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(enemy))
             {
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(ally.passiveManager, effect.passiveApplied.passiveName, effect.passiveStacks);
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(ally.pManager, effect.passiveApplied.passiveName, effect.passiveStacks);
             }
 
         }
@@ -1422,7 +1413,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Debuff Target
         else if (effect.actionType == ActionType.DebuffTarget)
         {
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.passiveManager, effect.passiveApplied.passiveName, effect.passiveStacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, effect.passiveApplied.passiveName, effect.passiveStacks);
         }
 
         // Debuff All
@@ -1430,7 +1421,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         {
             foreach (CharacterEntityModel enemyy in GetAllEnemiesOfCharacter(enemy))
             {
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemyy.passiveManager, effect.passiveApplied.passiveName, effect.passiveStacks);
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemyy.pManager, effect.passiveApplied.passiveName, effect.passiveStacks);
             }
 
         }

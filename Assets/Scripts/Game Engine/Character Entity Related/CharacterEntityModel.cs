@@ -24,7 +24,10 @@ public class CharacterEntityModel
     public int block;
 
     [Header("Model Component References")]
-    [HideInInspector] public PassiveManagerModel passiveManager;
+    [HideInInspector] public PassiveManagerModel pManager;
+
+    [Header("Item Data References")]
+    [HideInInspector] public ItemManagerModel iManager;
 
     [Header("View Components Properties ")]
     public LevelNode levelNode;

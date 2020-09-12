@@ -2777,6 +2777,52 @@ RectTransform:
   m_AnchoredPosition: {x: 35, y: 0}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &644247406
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 644247407}
+  - component: {fileID: 644247408}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &644247407
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644247406}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1578110374}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &644247408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644247406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb3226130b528b44a86d5246aee1fff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
+  allItems:
+  - {fileID: 11400000, guid: 8487b0bcf8b350246ad6ff676ec686f4, type: 2}
 --- !u!4 &645276290 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4237560656749904, guid: 341961fb75a51fb4c844909972cb6b1a,
@@ -5278,6 +5324,10 @@ MonoBehaviour:
   dontDestroyOnLoad: 0
   runMockScene: 1
   testingEnemyWave: {fileID: 11400000, guid: a925a91cb3c75e64cadf1f518e9a621e, type: 2}
+  characterTemplates:
+  - {fileID: 11400000, guid: 52b82b5c29e34814cacd91cfb9439876, type: 2}
+  - {fileID: 11400000, guid: 52b82b5c29e34814cacd91cfb9439876, type: 2}
+  - {fileID: 11400000, guid: 52b82b5c29e34814cacd91cfb9439876, type: 2}
   characterDataSample:
     myName: Test
     serializedPassiveManager:
@@ -5305,10 +5355,10 @@ MonoBehaviour:
     power: 0
     deck:
     - {fileID: 11400000, guid: faa0782b525bcec47bd22d3f1fa5b415, type: 2}
-    - {fileID: 11400000, guid: faa0782b525bcec47bd22d3f1fa5b415, type: 2}
-    - {fileID: 11400000, guid: faa0782b525bcec47bd22d3f1fa5b415, type: 2}
-    - {fileID: 11400000, guid: faa0782b525bcec47bd22d3f1fa5b415, type: 2}
-    - {fileID: 11400000, guid: faa0782b525bcec47bd22d3f1fa5b415, type: 2}
+    - {fileID: 11400000, guid: 00b73be375fd9ce4e9735d3cba2ca025, type: 2}
+    - {fileID: 11400000, guid: b31f4356f84f2bd48add48495139e0e5, type: 2}
+    - {fileID: 11400000, guid: 37325f26ba4983840af841104c1c1b26, type: 2}
+    - {fileID: 11400000, guid: 0e73c280fb28d9b4d9e4fc59eab30e44, type: 2}
     modelParts:
     - Human_Chest
     - Human_Face_1
@@ -5316,6 +5366,9 @@ MonoBehaviour:
     - Human_Right_Arm
     - Human_Right_Hand
     - Human_Right_Leg
+    itemManager:
+      mainHandItem: {fileID: 11400000, guid: 8487b0bcf8b350246ad6ff676ec686f4, type: 2}
+      offHandItem: {fileID: 0}
 --- !u!4 &1154659050
 Transform:
   m_ObjectHideFlags: 0
@@ -7195,6 +7248,7 @@ Transform:
   - {fileID: 196763682}
   - {fileID: 1291112705}
   - {fileID: 362006294}
+  - {fileID: 644247407}
   m_Father: {fileID: 937172827}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

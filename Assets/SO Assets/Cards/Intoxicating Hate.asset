@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Intoxicating Hate
   cardDescription: Give a target 2 Wrath. Lose 2 HP. Expend.
-  cardSprite: {fileID: 21300000, guid: 8f0c1809320bad14899e5530b31c726f, type: 3}
+  cardSprite: {fileID: 21300000, guid: d639a938d27c5bf4e8bc60abf0087452, type: 3}
   cardEnergyCost: 10
   cardType: 1
   targettingType: 2

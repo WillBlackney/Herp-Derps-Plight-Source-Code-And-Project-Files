@@ -4,17 +4,20 @@ using UnityEngine;
 using System;
 using Sirenix.OdinInspector;
 
-[CreateAssetMenu(fileName = "New EnemyDataSO", menuName = "EnemyDataSO", order = 52)]
+[CreateAssetMenu(fileName = "New CharacterTemplateSO", menuName = "CharacterTemplateSO", order = 52)]
 [Serializable]
-public class EnemyDataSO : ScriptableObject
+public class CharacterTemplateSO : ScriptableObject
 {
     // General Info
     [BoxGroup("General Info", centerLabel: true)]
     [LabelWidth(100)]
-    public string enemyName;
+    public string myName;
 
     // Core Stats
     [BoxGroup("Core Stats", centerLabel: true)]
+    [LabelWidth(100)]
+    public int health;
+    [BoxGroup("Core Stats")]
     [LabelWidth(100)]
     public int maxHealth;
     [BoxGroup("Core Stats")]
@@ -25,14 +28,17 @@ public class EnemyDataSO : ScriptableObject
     public int dexterity;
     [BoxGroup("Core Stats")]
     [LabelWidth(100)]
+    public int stamina;
+    [BoxGroup("Core Stats")]
+    [LabelWidth(100)]
+    public int draw;
+    [BoxGroup("Core Stats")]
+    [LabelWidth(100)]
     public int initiative;
 
 
     // Misc Stats
     [BoxGroup("Misc Stats", centerLabel: true)]
-    [LabelWidth(100)]
-    public int startingHealth;
-    [BoxGroup("Misc Stats")]
     [LabelWidth(100)]
     public int startingBlock;
 
@@ -73,13 +79,12 @@ public class EnemyDataSO : ScriptableObject
     [LabelWidth(100)]
     public SerializedPassiveManagerModel serializedPassiveManager;
 
-    // Actions and routines
-    [BoxGroup("Actions + Combat AI", centerLabel: true)]
-    [LabelWidth(100)]
-    public List<EnemyAction> allEnemyActions;
+    [Header("Deck Properties")]
+    public List<CardDataSO> deck;
 
-    // Character Model Data 
-    [BoxGroup("Character Model Data", centerLabel: true)]
-    [LabelWidth(100)]
-    public List<string> allBodyParts;
+    [Header("Model Properties")]
+    public List<string> modelParts;
+
+    [Header("Item Properties")]
+    public ItemManagerModel itemManager;
 }

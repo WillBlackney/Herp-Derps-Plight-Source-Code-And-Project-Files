@@ -8,6 +8,13 @@ public class CharacterDataController : Singleton<CharacterDataController>
 
     // Mock Data + Testing Stuff
     #region
+    public void BuildAllCharactersFromCharacterTemplateList(List<CharacterTemplateSO> characters)
+    {
+        foreach(CharacterTemplateSO template in characters)
+        {
+            BuildCharacterDataFromCharacterTemplate(template);
+        }
+    }
     public void BuildAllCharactersFromMockCharacterData(CharacterData mockData)
     {
         for(int i = 0; i < 3; i++)
@@ -17,6 +24,8 @@ public class CharacterDataController : Singleton<CharacterDataController>
     }
     public void BuildCharacterDataFromMockData(CharacterData mockData)
     {
+        Debug.Log("CharacterDataController.BuildCharacterDataFromMockData() called...");
+
         CharacterData newCharacter = new CharacterData();
         allPlayerCharacters.Add(newCharacter);
 
@@ -36,9 +45,40 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.modelParts = new List<string>();
         newCharacter.modelParts.AddRange(mockData.modelParts);
 
-        newCharacter.passiveManager = new PassiveManagerModel();
+        newCharacter.passiveManager = new PassiveManagerModel();       
         PassiveController.Instance.BuildPassiveManagerFromSerializedPassiveManager(newCharacter.passiveManager, mockData.serializedPassiveManager);
 
+        newCharacter.itemManager = new ItemManagerModel();
+        ItemController.Instance.CopyItemManagerDataIntoOtherItemManager(mockData.itemManager, newCharacter.itemManager);
+    }
+    public void BuildCharacterDataFromCharacterTemplate(CharacterTemplateSO template)
+    {
+        Debug.Log("CharacterDataController.BuildCharacterDataFromMockData() called...");
+
+        CharacterData newCharacter = new CharacterData();
+        allPlayerCharacters.Add(newCharacter);
+
+        newCharacter.myName = template.myName;
+        newCharacter.health = template.health;
+        newCharacter.maxHealth = template.maxHealth;
+
+        newCharacter.stamina = template.stamina;
+        newCharacter.initiative = template.initiative;
+        newCharacter.dexterity = template.dexterity;
+        newCharacter.draw = template.draw;
+        newCharacter.power = template.power;
+
+        newCharacter.deck = new List<CardDataSO>();
+        newCharacter.deck.AddRange(template.deck);
+
+        newCharacter.modelParts = new List<string>();
+        newCharacter.modelParts.AddRange(template.modelParts);
+
+        newCharacter.passiveManager = new PassiveManagerModel();
+        PassiveController.Instance.BuildPassiveManagerFromSerializedPassiveManager(newCharacter.passiveManager, template.serializedPassiveManager);
+
+        newCharacter.itemManager = new ItemManagerModel();
+        ItemController.Instance.CopyItemManagerDataIntoOtherItemManager(template.itemManager, newCharacter.itemManager);
     }
     #endregion
 }

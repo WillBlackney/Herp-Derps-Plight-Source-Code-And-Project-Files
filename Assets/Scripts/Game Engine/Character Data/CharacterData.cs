@@ -46,4 +46,8 @@ public class CharacterData
 
     [Header("Model Properties")]
     public List<string> modelParts;
+
+    [Header("Item Properties")]
+    public ItemManagerModel itemManager = new ItemManagerModel();
+
 }

@@ -5,9 +5,11 @@ using System;
 public class UniversalCharacterModel : MonoBehaviour
 {
     // TO DO: remove this awake function , find a better solution
+    /*
     private void Awake()
     {
         // automatically clear null values from inspector, then trim all lists
+        
         allModelElements.RemoveAll(list_item => list_item == null);
         allHeadWearSpriteMasks.RemoveAll(list_item => list_item == null);
         allHeadWear.RemoveAll(list_item => list_item == null);
@@ -29,6 +31,8 @@ public class UniversalCharacterModel : MonoBehaviour
         elfHeads.RemoveAll(list_item => list_item == null);
         elfFaces.RemoveAll(list_item => list_item == null);
     }
+    */
+
     // Enum Declaration
     [Serializable]
     public enum ModelRace { None, Human, Orc, Undead, Elf, Goblin, Satyr, Gnoll};

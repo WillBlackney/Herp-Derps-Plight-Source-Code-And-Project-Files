@@ -142,10 +142,10 @@ public class PassiveController : Singleton<PassiveController>
     public void BuildPlayerCharacterEntityPassivesFromCharacterData(CharacterEntityModel character, CharacterData data)
     {
         Debug.Log("PassiveController.BuildPlayerCharacterEntityPassivesFromCharacterData() called...");
-        character.passiveManager = new PassiveManagerModel();
-        character.passiveManager.myCharacter = character;
+        character.pManager = new PassiveManagerModel();
+        character.pManager.myCharacter = character;
 
-        BuildPassiveManagerFromOtherPassiveManager(data.passiveManager, character.passiveManager);
+        BuildPassiveManagerFromOtherPassiveManager(data.passiveManager, character.pManager);
     }
     public void BuildEnemyCharacterEntityPassivesFromEnemyData(CharacterEntityModel character, EnemyDataSO data)
     {
@@ -155,11 +155,11 @@ public class PassiveController : Singleton<PassiveController>
         PassiveManagerModel deserializedManager = new PassiveManagerModel();
         BuildPassiveManagerFromSerializedPassiveManager(deserializedManager, data.serializedPassiveManager);
 
-        character.passiveManager = new PassiveManagerModel();
-        character.passiveManager.myCharacter = character;
+        character.pManager = new PassiveManagerModel();
+        character.pManager.myCharacter = character;
 
         // Copy data from desrialized pManager into the characters actual pManager
-        BuildPassiveManagerFromOtherPassiveManager(deserializedManager, character.passiveManager);
+        BuildPassiveManagerFromOtherPassiveManager(deserializedManager, character.pManager);
     }
 
     #endregion

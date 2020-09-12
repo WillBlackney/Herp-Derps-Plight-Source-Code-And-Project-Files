@@ -124,6 +124,15 @@ public class ActivationManager : Singleton<ActivationManager>
         GenerateInitiativeRolls();
         SetActivationOrderBasedOnCurrentInitiativeRolls();
 
+        // Remove temp draw
+        foreach (CharacterEntityModel entity in CharacterEntityController.Instance.AllCharacters)
+        {
+            if (entity.pManager.temporaryBonusInitiativeStacks > 0)
+            {
+                PassiveController.Instance.ModifyTemporaryInitiative(entity.pManager, -entity.pManager.temporaryBonusInitiativeStacks, true);
+            }
+        }            
+
         // Play roll animation sequence
         CoroutineData rollsCoroutine = new CoroutineData();
         VisualEventManager.Instance.CreateVisualEvent(() => PlayActivationRollSequence(rollsCoroutine), rollsCoroutine, QueuePosition.Back, 0, 0);

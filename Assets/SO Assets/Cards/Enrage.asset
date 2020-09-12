@@ -14,12 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Enrage
   cardDescription: 'Whenever you lose health, gain 1 Power. '
-  cardSprite: {fileID: 21300000, guid: 7fff36da3ad49f24f85cfbc255262fa5, type: 3}
+  cardSprite: {fileID: 21300000, guid: f3d0523c09a8bc44abd25a67f73e061d, type: 3}
   cardEnergyCost: 10
   cardType: 4
   targettingType: 0
   talentSchool: 2
   rarity: 1
+  expend: 0
+  opener: 0
+  fleeting: 0
+  unplayable: 0
   cardEffects:
   - cardEffectType: 7
     blockGainValue: 0
@@ -32,3 +36,4 @@ MonoBehaviour:
     passivePairing:
       passiveData: {fileID: 11400000, guid: 4776b8f65583265428f52c0c1c2a79c1, type: 2}
       passiveStacks: 1
+  cardEventListeners: []

@@ -88,8 +88,43 @@ public static class CharacterModelController
                 }
             }
         }      
-
     }
+    public static void ApplyItemManagerDataToCharacterModelView(ItemManagerModel iManager, UniversalCharacterModel model)
+    {
+        // Do weapons first
+
+        // MH
+        if(iManager.mainHandItem != null)
+        {
+            foreach (UniversalCharacterModelElement ucme in model.allMainHandWeapons)
+            {
+                if (ucme.itemsWithMyView.Contains(iManager.mainHandItem))
+                {
+                    Debug.Log("CharacterModelController.ApplyItemManagerDataToCharacterModelView() found model element GO with matching name of " +
+                        iManager.mainHandItem.itemName + ", enabling GO...");
+                    EnableAndSetElementOnModel(model, ucme);
+                    break;
+                }
+            }
+        }
+
+        // Off hand
+        if (iManager.offHandItem != null)
+        {
+            foreach (UniversalCharacterModelElement ucme in model.allOffHandWeapons)
+            {
+                if (ucme.itemsWithMyView.Contains(iManager.offHandItem))
+                {
+                    Debug.Log("CharacterModelController.ApplyItemManagerDataToCharacterModelView() found model element GO with matching name of " +
+                        iManager.mainHandItem.itemName + ", enabling GO...");
+                    EnableAndSetElementOnModel(model, ucme);
+                    break;
+                }
+            }
+        }
+    }
+    
+
     /*
     public static void BuildModelFromCharacterPresetData(UniversalCharacterModel model, CharacterPresetData data)
     {
@@ -145,6 +180,7 @@ public static class CharacterModelController
         }
     }
     */
+
     public static void CompletelyDisableAllViews(UniversalCharacterModel model)
     {
         Debug.Log("CharacterModelController.CompletelyDisableAllViews() called...");

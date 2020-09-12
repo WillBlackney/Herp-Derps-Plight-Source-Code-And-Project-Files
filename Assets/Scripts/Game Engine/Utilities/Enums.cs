@@ -46,6 +46,7 @@ public enum Rarity
     Common,
     Rare,
     Epic,
+    Legendary,
 }
 
 public enum CombatGameState
@@ -54,4 +55,12 @@ public enum CombatGameState
     VictoryTriggered,
     DefeatTriggered,
     CombatActive,
+}
+public enum ItemType
+{
+    None,
+    OneHandMelee,
+    TwoHandMelee,
+    TwoHandRanged,
+    Shield,
 }

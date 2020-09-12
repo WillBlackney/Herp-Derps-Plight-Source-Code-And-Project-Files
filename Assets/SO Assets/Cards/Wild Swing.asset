@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Wild Swing
   cardDescription: 'Deal 10 Physical Damage. Costs 10 less Energy each time you lose
     health this combat. '
-  cardSprite: {fileID: 21300000, guid: 4057ff219be9f5548af7018d00aa897c, type: 3}
+  cardSprite: {fileID: 21300000, guid: 7f00ed5900d724246944c145cb7d0b37, type: 3}
   cardEnergyCost: 40
   cardType: 2
   targettingType: 3
@@ -23,7 +23,7 @@ MonoBehaviour:
   rarity: 1
   expend: 0
   opener: 0
-  volatilee: 0
+  fleeting: 0
   unplayable: 0
   cardEffects:
   - cardEffectType: 2

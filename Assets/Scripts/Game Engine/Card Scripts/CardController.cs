@@ -483,13 +483,13 @@ public class CardController : Singleton<CardController>
         // Apply passive to self
         else if (cardEffect.cardEffectType == CardEffectType.ApplyPassiveToSelf)
         {            
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(owner.passiveManager, cardEffect.passivePairing.passiveData.passiveName, cardEffect.passivePairing.passiveStacks, true, 0.5f);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(owner.pManager, cardEffect.passivePairing.passiveData.passiveName, cardEffect.passivePairing.passiveStacks, true, 0.5f);
         }
 
         // Apply passive to target
         else if (cardEffect.cardEffectType == CardEffectType.ApplyPassiveToTarget)
         {
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.passiveManager, cardEffect.passivePairing.passiveData.passiveName, cardEffect.passivePairing.passiveStacks, true, 0.5f);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, cardEffect.passivePairing.passiveData.passiveName, cardEffect.passivePairing.passiveStacks, true, 0.5f);
         }
 
         // Apply Burning

@@ -23,6 +23,8 @@ namespace CustomOdinGUI
         private DrawSelected<CardDataSO> drawCards = new DrawSelected<CardDataSO>();
         private DrawSelected<EnemyWaveSO> drawEncounters = new DrawSelected<EnemyWaveSO>();
         private DrawSelected<PassiveIconDataSO> drawPassives = new DrawSelected<PassiveIconDataSO>();
+        private DrawSelected<ItemDataSO> drawItems = new DrawSelected<ItemDataSO>();
+        private DrawSelected<ItemDataSO> drawCharacterTemplates = new DrawSelected<ItemDataSO>();
 
         // Create field for each type of manager object in project to be drawn
         private DrawTestSceneManager drawTestSceneManager = new DrawTestSceneManager();
@@ -33,6 +35,8 @@ namespace CustomOdinGUI
         private string cardPath = "Assets/SO Assets/Cards";
         private string encountersPath = "Assets/SO Assets/Enemy Encounters";
         private string passivesPath = "Assets/SO Assets/Passive Icons";
+        private string itemsPath = "Assets/SO Assets/Items";
+        private string characterTemplatesPath = "Assets/SO Assets/Character Templates";
 
         [MenuItem("Tools/The Game Manager")]
         public static void OpenWindow()
@@ -54,6 +58,8 @@ namespace CustomOdinGUI
             drawCards.SetPath(cardPath);
             drawEncounters.SetPath(encountersPath);
             drawPassives.SetPath(passivesPath);
+            drawItems.SetPath(itemsPath);
+            drawCharacterTemplates.SetPath(characterTemplatesPath);
 
             // Find manager objects
             drawTestSceneManager.FindMyObject();
@@ -79,6 +85,7 @@ namespace CustomOdinGUI
                 case ManagerState.cards:
                 case ManagerState.passives:
                 case ManagerState.combatEncounters:
+                case ManagerState.characterTemplates:
                     DrawEditor(enumIndex);
                     break;
                 default:
@@ -106,6 +113,7 @@ namespace CustomOdinGUI
                     break;
               
                 case ManagerState.items:
+                    drawItems.SetSelected(MenuTree.Selection.SelectedValue);
                     break;
 
                 case ManagerState.cards:
@@ -120,7 +128,9 @@ namespace CustomOdinGUI
                     drawEncounters.SetSelected(MenuTree.Selection.SelectedValue);
                     break;
 
-                
+                case ManagerState.characterTemplates:
+                    drawEncounters.SetSelected(MenuTree.Selection.SelectedValue);
+                    break;
 
                 case ManagerState.spriteLibrary:
                     DrawEditor(enumIndex);
@@ -145,10 +155,11 @@ namespace CustomOdinGUI
             // Otherwise, just add a null for managers
             targets.Add(drawTestSceneManager);
             targets.Add(drawEnemies);
-            targets.Add(null);
+            targets.Add(drawItems);
             targets.Add(drawCards);
             targets.Add(drawPassives);
-            targets.Add(drawEncounters);            
+            targets.Add(drawEncounters);
+            targets.Add(drawCharacterTemplates);
             targets.Add(drawSpriteLibrary);
             targets.Add(base.GetTarget());            
 
@@ -164,7 +175,8 @@ namespace CustomOdinGUI
                 case ManagerState.items:
                 case ManagerState.cards:
                 case ManagerState.passives:
-                case ManagerState.combatEncounters:                
+                case ManagerState.combatEncounters:
+                case ManagerState.characterTemplates:
                     base.DrawMenu();
                     break;
                 default:
@@ -183,13 +195,19 @@ namespace CustomOdinGUI
                 case ManagerState.enemies:
                     tree.AddAllAssetsAtPath("Enemy Data", enemyPath, typeof(EnemyDataSO));
                     break;
+                case ManagerState.items:
+                    tree.AddAllAssetsAtPath("Item Data", itemsPath, typeof(ItemDataSO));
+                    break;
                 case ManagerState.passives:
                     tree.AddAllAssetsAtPath("Passive Icon Data", passivesPath, typeof(PassiveIconDataSO));
                     break;
                 case ManagerState.combatEncounters:
                     tree.AddAllAssetsAtPath("Combat Encounters", encountersPath, typeof(EnemyWaveSO));
                     break;
-                
+                case ManagerState.characterTemplates:
+                    tree.AddAllAssetsAtPath("Character Templates", characterTemplatesPath, typeof(CharacterTemplateSO));
+                    break;
+
             }
             return tree;
         }
@@ -201,6 +219,7 @@ namespace CustomOdinGUI
             cards,
             passives,
             combatEncounters,
+            characterTemplates,
             spriteLibrary,
         }
 
