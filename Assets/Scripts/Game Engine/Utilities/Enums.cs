@@ -64,3 +64,11 @@ public enum ItemType
     TwoHandRanged,
     Shield,
 }
+public enum CardWeaponRequirement
+{
+    None,
+    Shielded,
+    TwoHanded,
+    DW,
+    Ranged,
+}

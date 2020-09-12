@@ -527,16 +527,27 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     {
         Debug.Log("CharacterEntityController.CharacterOnActivationStart() called for " + character.myName);
 
-        character.hasActivatedThisTurn = true;
-        ModifyEnergy(character, EntityLogic.GetTotalStamina(character));
-
-        // enable activated view state
+        // Enable activated view state
         VisualEventManager.Instance.CreateVisualEvent(() => character.levelNode.SetActivatedViewState(true), QueuePosition.Back);
+
+        // Gain Energy
+        character.hasActivatedThisTurn = true;
+        ModifyEnergy(character, EntityLogic.GetTotalStamina(character));        
 
         // Modify relevant passives
         if(character.pManager.temporaryBonusStaminaStacks > 0)
         {
             PassiveController.Instance.ModifyTemporaryStamina(character.pManager, -character.pManager.temporaryBonusStaminaStacks, true, 0.5f);
+        }
+
+        if (character.pManager.shieldWallStacks > 0)
+        {
+            // Notication vfx
+            VisualEventManager.Instance.CreateVisualEvent(()=>       
+                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Shield Wall"));
+            
+            // Apply block gain
+            ModifyBlock(character, CombatLogic.Instance.CalculateBlockGainedByEffect(character.pManager.shieldWallStacks, character, character));
         }
 
         // is the character player controller?
@@ -1374,7 +1385,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Defend self + Defend target
         else if (effect.actionType == ActionType.DefendSelf || effect.actionType == ActionType.DefendTarget)
         {
-            ModifyBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy, target));
+            ModifyBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy, target, effect, null));
         }
 
         // Defend All
@@ -1382,7 +1393,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         {
             foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(enemy))
             {
-                ModifyBlock(ally, CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy, ally));
+                ModifyBlock(ally, CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy, ally, effect, null));
             }
 
         }

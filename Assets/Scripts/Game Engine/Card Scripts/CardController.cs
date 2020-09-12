@@ -277,6 +277,37 @@ public class CardController : Singleton<CardController>
     {
         return character.hand.Count >= 10;
     }
+    private bool DoesCardEffectMeetWeaponRequirement(CardEffect ce, CharacterEntityModel owner)
+    {
+        bool boolReturned = false;
+
+        if(ce.weaponRequirement == CardWeaponRequirement.None)
+        {
+            boolReturned = true;
+        }
+        else if(ce.weaponRequirement == CardWeaponRequirement.DW &&
+            ItemController.Instance.IsDualWielding(owner.iManager))
+        {
+            boolReturned = true;
+        }
+        else if (ce.weaponRequirement == CardWeaponRequirement.Shielded &&
+            ItemController.Instance.IsShielded(owner.iManager))
+        {
+            boolReturned = true;
+        }
+        else if (ce.weaponRequirement == CardWeaponRequirement.TwoHanded &&
+            ItemController.Instance.IsTwoHanding(owner.iManager))
+        {
+            boolReturned = true;
+        }
+        else if (ce.weaponRequirement == CardWeaponRequirement.Ranged &&
+           ItemController.Instance.IsRanged(owner.iManager))
+        {
+            boolReturned = true;
+        }
+
+        return boolReturned;
+    }
     #endregion
 
     // Playing Cards Logic
@@ -374,13 +405,13 @@ public class CardController : Singleton<CardController>
         // Remove references between card and its view
         DisconnectCardAndCardViewModel(card, cardVM);
 
-        // Create visual event and enqueue
-        //VisualEventManager.Instance.CreateVisualEvent(()=> PlayACardFromHandVisualEvent(cardVM, owner.characterEntityView));
-
         // Trigger all effects on card
         foreach (CardEffect effect in card.cardEffects)
         {
-            TriggerEffectFromCard(card, effect, target);
+            if(DoesCardEffectMeetWeaponRequirement(effect, owner))
+            {
+                TriggerEffectFromCard(card, effect, target);
+            }            
         }
 
         // On end events
@@ -402,15 +433,25 @@ public class CardController : Singleton<CardController>
         CharacterEntityModel owner = card.owner;
         bool hasMovedOffStartingNode = false;
 
-        // Gain Block
-        if (cardEffect.cardEffectType == CardEffectType.GainBlock)
+        // Gain Block Self
+        if (cardEffect.cardEffectType == CardEffectType.GainBlockSelf)
         {
-            if(target == null)
-            {
-                target = owner;
-            }
+            CharacterEntityController.Instance.ModifyBlock(owner, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, owner, null, cardEffect));
+        }
 
-            CharacterEntityController.Instance.ModifyBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, target));
+        // Gain Block Target
+        else if (cardEffect.cardEffectType == CardEffectType.GainBlockTarget)
+        {
+            CharacterEntityController.Instance.ModifyBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, target, null, cardEffect));
+        }
+
+        // Gain Block All Allies
+        else if (cardEffect.cardEffectType == CardEffectType.GainBlockAllAllies)
+        {
+            foreach (CharacterEntityModel ally in CharacterEntityController.Instance.GetAllAlliesOfCharacter(owner))
+            {
+                CharacterEntityController.Instance.ModifyBlock(ally, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, ally, null, cardEffect));
+            }            
         }
 
         // Deal Damage
@@ -432,7 +473,20 @@ public class CardController : Singleton<CardController>
 
             // Calculate damage
             DamageType damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(owner, cardEffect, card);
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, target, damageType, false, cardEffect.baseDamageValue, card, cardEffect);
+            int baseDamage;
+
+            // Do normal base damage, or draw base damage from another source?
+            if (cardEffect.drawBaseDamageFromCurrentBlock) 
+            {
+                baseDamage = owner.block;
+            }
+            else
+            {
+                baseDamage = cardEffect.baseDamageValue;
+            }
+
+            // Calculate the end damage value
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, target, damageType, false, baseDamage, card, cardEffect);
 
             // Start damage sequence
             CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, damageType, card);
@@ -467,16 +521,10 @@ public class CardController : Singleton<CardController>
         // Draw Cards
         else if (cardEffect.cardEffectType == CardEffectType.DrawCards)
         {
-            // Determine target
-            if (target == null)
-            {
-                target = owner;
-            }
-
             // Draw cards
             for(int draws = 0; draws < cardEffect.cardsDrawn; draws++)
             {
-                DrawACardFromDrawPile(target);
+                DrawACardFromDrawPile(owner);
             }           
         }
 

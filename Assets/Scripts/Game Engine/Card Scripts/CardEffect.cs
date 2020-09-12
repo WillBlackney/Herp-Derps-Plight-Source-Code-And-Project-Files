@@ -8,12 +8,16 @@ using Sirenix.OdinInspector;
 public class CardEffect
 {
     public CardEffectType cardEffectType;
+    public CardWeaponRequirement weaponRequirement;
 
-    [ShowIf("cardEffectType", CardEffectType.GainBlock)]
+    [ShowIf("ShowBlockGainValue")]
     public int blockGainValue;
 
-    [ShowIf("cardEffectType", CardEffectType.DealDamage)]
+    [ShowIf("ShowBaseDamageValue")]
     public int baseDamageValue;
+
+    [ShowIf("ShowDrawDamageFromBlock")]
+    public bool drawBaseDamageFromCurrentBlock;
 
     [ShowIf("cardEffectType", CardEffectType.DealDamage)]
     public DamageType damageType;
@@ -47,15 +51,54 @@ public class CardEffect
             return false;
         }
     }
+    public bool ShowBlockGainValue()
+    {
+        if (cardEffectType == CardEffectType.GainBlockSelf ||
+            cardEffectType == CardEffectType.GainBlockTarget ||
+            cardEffectType == CardEffectType.GainBlockAllAllies)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowBaseDamageValue()
+    {
+        if (cardEffectType != CardEffectType.DealDamage ||
+            (cardEffectType == CardEffectType.DealDamage && drawBaseDamageFromCurrentBlock)
+            )
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    public bool ShowDrawDamageFromBlock()
+    {
+        if (cardEffectType == CardEffectType.DealDamage)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
 }
 
 [Serializable]
 public enum CardEffectType
 {
-    None, 
-    GainBlock, 
-    DealDamage, 
+    None,
+    DealDamage,
+    GainBlockSelf,
+    GainBlockTarget,
+    GainBlockAllAllies,    
     LoseHealth, 
     GainEnergy, 
     DrawCards, 

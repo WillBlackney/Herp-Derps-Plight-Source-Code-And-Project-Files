@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2410c6608dbef744a9643f0571333299, type: 3}
+  m_Name: Juggernaut_1
+  m_EditorClassIdentifier: 
+  myName: Juggernaut_1
+  health: 30
+  maxHealth: 30
+  power: 0
+  dexterity: 0
+  stamina: 30
+  draw: 5
+  initiative: 3
+  startingBlock: 0
+  physicalResistance: 0
+  fireResistance: 0
+  frostResistance: 0
+  shadowResistance: 0
+  poisonResistance: 0
+  airResistance: 0
+  serializedPassiveManager:
+    bonusPowerStacks: 0
+    bonusDexterityStacks: 0
+    bonusStaminaStacks: 0
+    bonusInitiativeStacks: 0
+    bonusDrawStacks: 0
+    temporaryBonusPowerStacks: 0
+    temporaryBonusDexterityStacks: 0
+    temporaryBonusStaminaStacks: 0
+    temporaryBonusInitiativeStacks: 0
+    temporaryBonusDrawStacks: 0
+    enrageStacks: 0
+    shieldWallStacks: 0
+    wrathStacks: 0
+    weakenedStacks: 0
+    vulnerableStacks: 0
+    gritStacks: 0
+  deck:
+  - {fileID: 11400000, guid: 3d57eb73a05e9a04b96c08944c441410, type: 2}
+  - {fileID: 11400000, guid: 3d57eb73a05e9a04b96c08944c441410, type: 2}
+  - {fileID: 11400000, guid: 3d57eb73a05e9a04b96c08944c441410, type: 2}
+  - {fileID: 11400000, guid: 58ad3605f0bb1844dac2124cd71174c1, type: 2}
+  - {fileID: 11400000, guid: 58ad3605f0bb1844dac2124cd71174c1, type: 2}
+  modelParts:
+  - Human_Chest
+  - Human_Face_1
+  - Human_Head_3
+  - Human_Right_Arm
+  - Human_Right_Hand
+  - Human_Right_Leg
+  - Knight_Head_Wear
+  - Knight_Chest_Wear
+  itemManager:
+    mainHandItem: {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}
+    offHandItem: {fileID: 11400000, guid: a49466273aff6954d8e0303879ded604, type: 2}

@@ -74,6 +74,18 @@ public class ItemController : Singleton<ItemController>
 
         return boolReturned;
     }
+    public bool IsShielded(ItemManagerModel iManager)
+    {
+        bool boolReturned = false;
+
+        if (iManager.offHandItem != null &&
+            iManager.offHandItem.itemType == ItemType.Shield)
+        {
+            boolReturned = true;
+        }
+
+        return boolReturned;
+    }
     #endregion
 
     // Character Entity Logic

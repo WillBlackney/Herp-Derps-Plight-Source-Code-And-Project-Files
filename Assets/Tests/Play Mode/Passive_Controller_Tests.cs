@@ -35,6 +35,7 @@ namespace Tests
 
         // Buff Stats
         private const string ENRAGE_NAME = "Enrage";
+        private const string SHIELD_WALL_NAME = "Shield Wall";
 
         // Core % Modifer Stats
         private const string WRATH_NAME = "Wrath";
@@ -111,6 +112,7 @@ namespace Tests
 
             // Buff stats
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, ENRAGE_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, SHIELD_WALL_NAME, stacks);
 
             // Core % Modifer Stats
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, WEAKENED_NAME, stacks);
@@ -131,6 +133,7 @@ namespace Tests
                 model.pManager.temporaryBonusInitiativeStacks == 1 &&
 
                 model.pManager.enrageStacks == 1 &&
+                model.pManager.shieldWallStacks == 1 &&
 
                 model.pManager.weakenedStacks == 1 &&
                 model.pManager.wrathStacks == 1 &&
@@ -385,7 +388,7 @@ namespace Tests
             Assert.AreEqual(expectedTotal, EntityLogic.GetTotalStamina(model));
         }
         [Test]
-        public void Temporary_Bonus_Stamina_Does_On_Activation_Start()
+        public void Temporary_Bonus_Stamina_Does_Expire_On_Activation_Start()
         {
             // Arange
             CharacterEntityModel model;
@@ -420,6 +423,23 @@ namespace Tests
 
             // Assert
             Assert.AreEqual(expectedTotal, EntityLogic.GetTotalPower(model));
+        }
+        [Test]
+        public void Shield_Wall_Does_Grant_Block_On_Activation_Start()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(SHIELD_WALL_NAME).passiveName;
+            int stacks = 3;
+            int expected = 3;
+
+            // Act 
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
+            ActivationManager.Instance.OnNewCombatEventStarted();
+
+            // Assert
+            Assert.AreEqual(expected, model.block);
         }
 
         // Damage Perctange Modifier Passive Tests

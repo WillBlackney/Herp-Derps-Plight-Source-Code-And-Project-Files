@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
+  m_Name: Sword And Board
+  m_EditorClassIdentifier: 
+  cardName: Sword And Board
+  cardDescription: 'Deal 4 Physical damage. Shielded: Gain 4 Block.'
+  cardSprite: {fileID: 21300000, guid: c3e61814299f211469ed93b6ee86c48c, type: 3}
+  cardEnergyCost: 10
+  cardType: 2
+  targettingType: 3
+  talentSchool: 5
+  rarity: 1
+  expend: 0
+  opener: 0
+  fleeting: 0
+  unplayable: 0
+  cardEffects:
+  - cardEffectType: 1
+    weaponRequirement: 0
+    blockGainValue: 0
+    baseDamageValue: 4
+    damageType: 1
+    healthLost: 0
+    energyGained: 0
+    cardsDrawn: 0
+    burningApplied: 0
+    passivePairing:
+      passiveData: {fileID: 0}
+      passiveStacks: 0
+  - cardEffectType: 2
+    weaponRequirement: 1
+    blockGainValue: 4
+    baseDamageValue: 0
+    damageType: 0
+    healthLost: 0
+    energyGained: 0
+    cardsDrawn: 0
+    burningApplied: 0
+    passivePairing:
+      passiveData: {fileID: 0}
+      passiveStacks: 0
+  cardEventListeners: []

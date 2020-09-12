@@ -983,6 +983,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6f53a59075648034ab7c521f182140e3, type: 2}
   - {fileID: 11400000, guid: f4d581b9181795e48b68007fcfeec3d2, type: 2}
   - {fileID: 11400000, guid: 39fd7f98d316c4341b444096a833d84c, type: 2}
+  - {fileID: 11400000, guid: e08bcb48758dcfd43a52ffed8c7e1556, type: 2}
 --- !u!1 &200055974
 GameObject:
   m_ObjectHideFlags: 0
@@ -2788,7 +2789,7 @@ GameObject:
   - component: {fileID: 644247407}
   - component: {fileID: 644247408}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Item Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2823,6 +2824,8 @@ MonoBehaviour:
   dontDestroyOnLoad: 0
   allItems:
   - {fileID: 11400000, guid: 8487b0bcf8b350246ad6ff676ec686f4, type: 2}
+  - {fileID: 11400000, guid: a49466273aff6954d8e0303879ded604, type: 2}
+  - {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}
 --- !u!4 &645276290 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4237560656749904, guid: 341961fb75a51fb4c844909972cb6b1a,
@@ -5325,9 +5328,9 @@ MonoBehaviour:
   runMockScene: 1
   testingEnemyWave: {fileID: 11400000, guid: a925a91cb3c75e64cadf1f518e9a621e, type: 2}
   characterTemplates:
-  - {fileID: 11400000, guid: 52b82b5c29e34814cacd91cfb9439876, type: 2}
-  - {fileID: 11400000, guid: 52b82b5c29e34814cacd91cfb9439876, type: 2}
-  - {fileID: 11400000, guid: 52b82b5c29e34814cacd91cfb9439876, type: 2}
+  - {fileID: 11400000, guid: b032cf78d33b0f2459c4af64779ad485, type: 2}
+  - {fileID: 11400000, guid: b032cf78d33b0f2459c4af64779ad485, type: 2}
+  - {fileID: 11400000, guid: b032cf78d33b0f2459c4af64779ad485, type: 2}
   characterDataSample:
     myName: Test
     serializedPassiveManager:
@@ -5342,6 +5345,7 @@ MonoBehaviour:
       temporaryBonusInitiativeStacks: 0
       temporaryBonusDrawStacks: 0
       enrageStacks: 0
+      shieldWallStacks: 0
       wrathStacks: 0
       weakenedStacks: 0
       vulnerableStacks: 0

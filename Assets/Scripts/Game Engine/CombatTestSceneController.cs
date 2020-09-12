@@ -28,8 +28,8 @@ public class CombatTestSceneController : Singleton<CombatTestSceneController>
 
         if (runMockScene)
         {
-            //CharacterDataController.Instance.BuildAllCharactersFromCharacterTemplateList(characterTemplates);
-            CharacterDataController.Instance.BuildAllCharactersFromMockCharacterData(characterDataSample);
+            CharacterDataController.Instance.BuildAllCharactersFromCharacterTemplateList(characterTemplates);
+            //CharacterDataController.Instance.BuildAllCharactersFromMockCharacterData(characterDataSample);
             CreateTestingPlayerCharacters();
             EnemySpawner.Instance.SpawnEnemyWave("Basic", testingEnemyWave);
             ActivationManager.Instance.OnNewCombatEventStarted();

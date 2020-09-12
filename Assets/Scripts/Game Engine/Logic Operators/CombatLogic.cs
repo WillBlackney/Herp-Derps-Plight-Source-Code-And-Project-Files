@@ -75,7 +75,7 @@ public class CombatLogic : Singleton<CombatLogic>
         int damageValueReturned = damageValue;
         float damageModifier = 1f;
 
-        
+
         // vulnerable
         if (target.pManager.vulnerableStacks > 0)
         {
@@ -172,12 +172,12 @@ public class CombatLogic : Singleton<CombatLogic>
         }
 
         //damageValueReturned = (int)(damageValueReturned * damageModifier);
-        damageValueReturned = (int) Math.Ceiling(damageValueReturned * damageModifier);
+        damageValueReturned = (int)Math.Ceiling(damageValueReturned * damageModifier);
         Debug.Log("Final damage value returned: " + damageValueReturned);
 
         return damageValueReturned;
 
-    }    
+    }
     public int GetFinalDamageValueAfterAllCalculations(CharacterEntityModel attacker, CharacterEntityModel target, DamageType damageType, bool critical, int baseDamage = 0, Card card = null, CardEffect cardEffect = null, EnemyActionEffect enemyAction = null)
     {
         Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() called...");
@@ -205,19 +205,19 @@ public class CombatLogic : Singleton<CombatLogic>
         Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned value after resitance type calculations: " + finalDamageValueReturned.ToString());
 
         // calcualte damage value after resistances
-            /*
-            if (attacker.defender &&
-                StateManager.Instance.DoesPlayerAlreadyHaveState("Godly"))
-            {
-                Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() detected that attacker is defender and has state 'Godly', ignoring target resistances...");
-            }
-            
-        else
+        /*
+        if (attacker.defender &&
+            StateManager.Instance.DoesPlayerAlreadyHaveState("Godly"))
         {
-            finalDamageValueReturned = GetDamageValueAfterResistances(finalDamageValueReturned, damageType, target);
-            Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned value after resitance type calculations: " + finalDamageValueReturned.ToString());
+            Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() detected that attacker is defender and has state 'Godly', ignoring target resistances...");
         }
-        */
+
+    else
+    {
+        finalDamageValueReturned = GetDamageValueAfterResistances(finalDamageValueReturned, damageType, target);
+        Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned value after resitance type calculations: " + finalDamageValueReturned.ToString());
+    }
+    */
 
         // return final value
         Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned final value returned: " + finalDamageValueReturned.ToString());
@@ -321,15 +321,23 @@ public class CombatLogic : Singleton<CombatLogic>
 
     // Calculate Block Gain
     #region
-    public int CalculateBlockGainedByEffect(int baseBlockGain, CharacterEntityModel caster, CharacterEntityModel target)
+    public int CalculateBlockGainedByEffect(int baseBlockGain, CharacterEntityModel caster, CharacterEntityModel target, EnemyActionEffect enemyEffect = null, CardEffect cardEffect = null)
     {
         Debug.Log("CombatLogic.CalculateBlockGainedByEffect() called for " + caster.myName + " against target: " + target.myName);
 
         int valueReturned = baseBlockGain;
         Debug.Log("Base block gain value: " + valueReturned);
 
-        valueReturned += EntityLogic.GetTotalDexterity(caster);
-        Debug.Log("Block gain value after dexterity added: " + valueReturned);
+        // Dexterity bonus only applies when playing a card,
+        // or from enemy abilities (passives like 'Shield Wall' dont 
+        // get the dexterity bonus
+        if (cardEffect != null ||
+            enemyEffect != null)
+        {
+            valueReturned += EntityLogic.GetTotalDexterity(caster);
+            Debug.Log("Block gain value after dexterity added: " + valueReturned);
+        }
+      
 
         Debug.Log("Final block gain value calculated: " + valueReturned);
         return valueReturned;

@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9a6346e66fdb7e47bd30f751d29c6a7, type: 3}
-  m_Name: Simple Battle Axe
+  m_Name: Simple Sword
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: ecf938f2a9101aa479b3c210b7942d80, type: 3}
-  itemName: Simple Battle Axe
-  itemType: 2
+  itemSprite: {fileID: 21300000, guid: 576a27d7d2a27624abe2bdcc57d5e45c, type: 3}
+  itemName: Simple Sword
+  itemType: 1
   itemRarity: 1
   passivePairings: []

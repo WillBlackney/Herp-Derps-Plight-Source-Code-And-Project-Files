@@ -37,6 +37,7 @@ MonoBehaviour:
     temporaryBonusInitiativeStacks: 0
     temporaryBonusDrawStacks: 0
     enrageStacks: 0
+    shieldWallStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -76,5 +77,6 @@ MonoBehaviour:
   - Shadow_Blade_Right_Arm_Wear
   - Shadow_Blade_Left_Arm_Wear
   - Shadow_Blade_Chest_Wear
+  - Human_Chest
   - Human_Chest
   - Human_Chest

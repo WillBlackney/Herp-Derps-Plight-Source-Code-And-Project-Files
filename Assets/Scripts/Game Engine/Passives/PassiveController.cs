@@ -95,6 +95,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyEnrage(newClone, originalData.enrageStacks, false);
         }
+        if (originalData.shieldWallStacks != 0)
+        {
+            ModifyShieldWall(newClone, originalData.shieldWallStacks, false);
+        }
         #endregion
 
         // Core % Modifier passives
@@ -133,6 +137,7 @@ public class PassiveController : Singleton<PassiveController>
         pManager.temporaryBonusInitiativeStacks = original.temporaryBonusInitiativeStacks;
 
         pManager.enrageStacks = original.enrageStacks;
+        pManager.shieldWallStacks = original.shieldWallStacks;
 
         pManager.wrathStacks = original.wrathStacks;
         pManager.gritStacks = original.gritStacks;
@@ -388,6 +393,10 @@ public class PassiveController : Singleton<PassiveController>
         else if (originalData == "Enrage")
         {
             ModifyEnrage(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Shield Wall")
+        {
+            ModifyShieldWall(pManager, stacks, showVFX, vfxDelay);
         }
         #endregion
 
@@ -982,6 +991,57 @@ public class PassiveController : Singleton<PassiveController>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Enrage " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back, 0, 0.5f);
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+
+
+    }
+    public void ModifyShieldWall(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyShieldWall() called...");
+
+        // Setup + Cache refs
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Shield Wall");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Increment stacks
+        pManager.shieldWallStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Shield Wall + " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateCoreStatBuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back, 0, 0.5f);
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Shield Wall " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
                 }, QueuePosition.Back, 0, 0.5f);
             }
