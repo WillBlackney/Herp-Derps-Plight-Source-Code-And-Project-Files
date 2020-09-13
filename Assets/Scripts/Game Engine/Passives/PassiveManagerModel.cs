@@ -1,4 +1,4 @@
-﻿
+﻿using UnityEngine;
 public class PassiveManagerModel
 {
     // Properties + References
@@ -21,12 +21,21 @@ public class PassiveManagerModel
     // Buff Passive bonuses
     public int enrageStacks;
     public int shieldWallStacks;
+    public int fanOfKnivesStacks;
 
     // Core Damage % Modifier Passives
     public int wrathStacks;
     public int vulnerableStacks;
     public int weakenedStacks;
     public int gritStacks;
+    public int poisonousStacks;
+    public int venomousStacks;
 
+    // Misc passives
+    [HideInInspector] public int tauntStacks;
+    [HideInInspector] public CharacterEntityModel myTaunter;
+
+    // DoT Debuff Passives
+    public int poisonedStacks;
 
 }

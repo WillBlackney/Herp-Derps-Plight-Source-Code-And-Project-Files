@@ -984,6 +984,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f4d581b9181795e48b68007fcfeec3d2, type: 2}
   - {fileID: 11400000, guid: 39fd7f98d316c4341b444096a833d84c, type: 2}
   - {fileID: 11400000, guid: e08bcb48758dcfd43a52ffed8c7e1556, type: 2}
+  - {fileID: 11400000, guid: 30ab842a7e54aab4290645cb4610b843, type: 2}
+  - {fileID: 11400000, guid: 983e03403ca788d4b879860d031bc268, type: 2}
+  - {fileID: 11400000, guid: 9f37b15771fd5ba4ab2b6e6dcc1927f6, type: 2}
+  - {fileID: 11400000, guid: d875c5e3ba58d0949944097e00336a53, type: 2}
+  - {fileID: 11400000, guid: f2d78fd30b5ba4f41ba4c7aa29b8af25, type: 2}
 --- !u!1 &200055974
 GameObject:
   m_ObjectHideFlags: 0
@@ -1970,6 +1975,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
   cardTransistionSpeed: 0.25
+  allCards:
+  - {fileID: 11400000, guid: 648ee25c51574a74983929772bcecb4d, type: 2}
 --- !u!1 &557062746
 GameObject:
   m_ObjectHideFlags: 0
@@ -5328,9 +5335,9 @@ MonoBehaviour:
   runMockScene: 1
   testingEnemyWave: {fileID: 11400000, guid: a925a91cb3c75e64cadf1f518e9a621e, type: 2}
   characterTemplates:
-  - {fileID: 11400000, guid: b032cf78d33b0f2459c4af64779ad485, type: 2}
-  - {fileID: 11400000, guid: b032cf78d33b0f2459c4af64779ad485, type: 2}
-  - {fileID: 11400000, guid: b032cf78d33b0f2459c4af64779ad485, type: 2}
+  - {fileID: 11400000, guid: 1d0339b9767137d4a8b3c1e5af99a706, type: 2}
+  - {fileID: 11400000, guid: 1d0339b9767137d4a8b3c1e5af99a706, type: 2}
+  - {fileID: 11400000, guid: 1d0339b9767137d4a8b3c1e5af99a706, type: 2}
   characterDataSample:
     myName: Test
     serializedPassiveManager:
@@ -5346,10 +5353,14 @@ MonoBehaviour:
       temporaryBonusDrawStacks: 0
       enrageStacks: 0
       shieldWallStacks: 0
+      fanOfKnivesStacks: 0
+      poisonousStacks: 0
+      venomousStacks: 0
       wrathStacks: 0
       weakenedStacks: 0
       vulnerableStacks: 0
       gritStacks: 0
+      poisonedStacks: 0
     health: 20
     maxHealth: 30
     stamina: 30

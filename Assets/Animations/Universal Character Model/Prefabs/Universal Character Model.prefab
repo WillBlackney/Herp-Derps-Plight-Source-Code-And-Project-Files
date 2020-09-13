@@ -19280,7 +19280,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView: []
+  itemsWithMyView:
+  - {fileID: 11400000, guid: b441e018b9d907a49b6f8e74e5b0e065, type: 2}
   connectedElements: []
 --- !u!1 &2478136809892061586
 GameObject:
@@ -29058,7 +29059,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 7
   bodyPartType: 19
-  itemsWithMyView: []
+  itemsWithMyView:
+  - {fileID: 11400000, guid: b441e018b9d907a49b6f8e74e5b0e065, type: 2}
   connectedElements: []
 --- !u!1 &4206463930371677015
 GameObject:

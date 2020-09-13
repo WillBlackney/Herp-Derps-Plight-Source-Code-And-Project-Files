@@ -68,41 +68,47 @@ public class CombatLogic : Singleton<CombatLogic>
 
         return damageValueReturned;
     }
-    private int GetDamageValueAfterNonResistanceModifiers(int damageValue, CharacterEntityModel attacker, CharacterEntityModel target, DamageType damageType, bool critical)
+    private int GetDamageValueAfterNonResistanceModifiers(int damageValue, CharacterEntityModel attacker, CharacterEntityModel target, DamageType damageType, Card card = null, CardEffect cardEffect = null, EnemyActionEffect enemyAction = null)
     {
         Debug.Log("CombatLogic.GetDamageValueAfterNonResistanceModifiers() called...");
 
         int damageValueReturned = damageValue;
         float damageModifier = 1f;
 
-
-        // vulnerable
-        if (target.pManager.vulnerableStacks > 0)
+        // These effects only apply to damage from cards, or from enemy abilities
+        // they are not triggered by passives like poisoned damage
+        if ((card != null && cardEffect != null) ||
+            enemyAction != null)
         {
-            damageModifier += 0.3f;
-            Debug.Log("Damage percentage modifier after 'Vulnerable' bonus: " + damageModifier.ToString());
-        }
+            // vulnerable
+            if (target.pManager.vulnerableStacks > 0)
+            {
+                damageModifier += 0.3f;
+                Debug.Log("Damage percentage modifier after 'Vulnerable' bonus: " + damageModifier.ToString());
+            }
 
-        // wrath
-        if (attacker.pManager.wrathStacks > 0)
-        {
-            damageModifier += 0.3f;
-            Debug.Log("Damage percentage modifier after 'wrath' bonus: " + damageModifier.ToString());
-        }
+            // wrath
+            if (attacker.pManager.wrathStacks > 0)
+            {
+                damageModifier += 0.3f;
+                Debug.Log("Damage percentage modifier after 'wrath' bonus: " + damageModifier.ToString());
+            }
 
-        // grit
-        if (target.pManager.gritStacks > 0)
-        {
-            damageModifier -= 0.3f;
-            Debug.Log("Damage percentage modifier after 'grit' bonus: " + damageModifier.ToString());
-        }
+            // grit
+            if (target.pManager.gritStacks > 0)
+            {
+                damageModifier -= 0.3f;
+                Debug.Log("Damage percentage modifier after 'grit' bonus: " + damageModifier.ToString());
+            }
 
-        // weakened
-        if (attacker.pManager.weakenedStacks > 0)
-        {
-            damageModifier -= 0.3f;
-            Debug.Log("Damage percentage modifier after 'weakened' reduction: " + damageModifier.ToString());
+            // weakened
+            if (attacker.pManager.weakenedStacks > 0)
+            {
+                damageModifier -= 0.3f;
+                Debug.Log("Damage percentage modifier after 'weakened' reduction: " + damageModifier.ToString());
+            }
         }
+        
 
         // TO DO: Damage modifiers related to increasing magical damage by percentage should be moved to a new method (make some like CalculateMagicDamageModifiers())
 
@@ -197,7 +203,7 @@ public class CombatLogic : Singleton<CombatLogic>
         Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned value after base calculations: " + finalDamageValueReturned.ToString());
 
         // calculate damage after standard modifiers
-        finalDamageValueReturned = GetDamageValueAfterNonResistanceModifiers(finalDamageValueReturned, attacker, target, damageType, critical);
+        finalDamageValueReturned = GetDamageValueAfterNonResistanceModifiers(finalDamageValueReturned, attacker, target, damageType, card, cardEffect, enemyAction);
         Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned value after non resistance modifier calculations: " + finalDamageValueReturned.ToString());
 
         // calculate damage after resistances
@@ -371,8 +377,7 @@ public class CombatLogic : Singleton<CombatLogic>
             foreach(CharacterEntityModel enemy in CharacterEntityController.Instance.AllEnemies)
             {
                 CharacterEntityController.Instance.AutoAquireNewTargetOfCurrentAction(enemy);
-            }
-           
+            }           
         }
 
         // Disable character's level node anims and targetting path
@@ -405,11 +410,19 @@ public class CombatLogic : Singleton<CombatLogic>
 
             // Destroy view gameobject
             CharacterEntityController.Instance.DestroyCharacterView(view);
-        });
-
+        }); 
+        
+        // If character dying has taunted others, remove taunt from the other characters
+        foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(entity))
+        {
+            if (enemy.pManager.myTaunter == entity)
+            {
+                PassiveController.Instance.ModifyTaunted(null, enemy.pManager, -enemy.pManager.tauntStacks);
+            }
+        }
 
         // Check if the game over event should be triggered
-        if(CharacterEntityController.Instance.AllDefenders.Count == 0)
+        if (CharacterEntityController.Instance.AllDefenders.Count == 0)
         {
             StartGameOverDefeatProcess();
         }
@@ -521,7 +534,7 @@ public class CombatLogic : Singleton<CombatLogic>
         // Destroy(entity.gameObject);
 
     }
-    public void HandleDamage(int damageAmount, CharacterEntityModel attacker, CharacterEntityModel victim, DamageType damageType, Card card = null, bool ignoreBlock = false)
+    public void HandleDamage(int damageAmount, CharacterEntityModel attacker, CharacterEntityModel victim, DamageType damageType, Card card = null, EnemyActionEffect enemyEffect = null, bool ignoreBlock = false)
     {
         // Debug setup
         string cardNameString = "None";
@@ -683,6 +696,27 @@ public class CombatLogic : Singleton<CombatLogic>
             Debug.Log(victim.myName + " 'Enrage' triggered, gaining " + victim.pManager.enrageStacks.ToString() + " bonus power");
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(victim.pManager, "Power", victim.pManager.enrageStacks, true, 0.5f);
         }
+
+        // Poisonous 
+        if (attacker != null &&
+            attacker.pManager.poisonousStacks > 0)
+        {
+            if (card != null && 
+               (card.cardType == CardType.MeleeAttack || card.cardType == CardType.RangedAttack))
+            {
+                PassiveController.Instance.ModifyPoisoned(attacker, victim.pManager, attacker.pManager.poisonousStacks, true, 0.5f);
+            }
+            else if (enemyEffect != null && 
+               (enemyEffect.actionType == ActionType.AttackTarget || 
+                enemyEffect.actionType == ActionType.AttackAll || 
+                enemyEffect.actionType == ActionType.AttackTargetAndBuffSelf ||
+                enemyEffect.actionType == ActionType.AttackTargetAndDefendSelf)
+                )
+            {
+                PassiveController.Instance.ModifyPoisoned(attacker, victim.pManager, attacker.pManager.poisonousStacks, true, 0.5f);
+            }
+        }
+        
 
 
         // Update character data if victim is a defender
@@ -882,7 +916,7 @@ public class CombatLogic : Singleton<CombatLogic>
 
         //yield return new WaitForSeconds(0.5f);
         //action.coroutineCompleted = true;
-    }
+    }  
     #endregion
 
     // Misc Functions

@@ -31,7 +31,7 @@ public class VisualEventManager : Singleton<VisualEventManager>
     {
         if(ve.eventFunction != null)
         {
-            Debug.Log("VisualEventManager.PlayEventFromQueue() called, running function: " + ve.eventFunction.Method.Name);
+            //Debug.Log("VisualEventManager.PlayEventFromQueue() called, running function: " + ve.eventFunction.Method.Name);
         }       
         ve.isPlaying = true;
         StartCoroutine(PlayEventFromQueueCoroutine(ve));
@@ -40,7 +40,7 @@ public class VisualEventManager : Singleton<VisualEventManager>
     {
         if (ve.eventFunction != null)
         {
-            Debug.Log("VisualEventManager.PlayEventFromQueueCoroutine() called, running function: " + ve.eventFunction.Method.Name);
+            //Debug.Log("VisualEventManager.PlayEventFromQueueCoroutine() called, running function: " + ve.eventFunction.Method.Name);
         }            
 
         // Start Delay    
@@ -77,17 +77,17 @@ public class VisualEventManager : Singleton<VisualEventManager>
     #region
     private void RemoveEventFromQueue(VisualEvent ve)
     {
-        Debug.Log("VisualEventManager.RemoveEventFromQueue() called, current queue count = " + (eventQueue.Count - 1).ToString());
+        //Debug.Log("VisualEventManager.RemoveEventFromQueue() called, current queue count = " + (eventQueue.Count - 1).ToString());
         eventQueue.Remove(ve);
     }
     private void AddEventToFrontOfQueue(VisualEvent ve)
     {
-        Debug.Log("VisualEventManager.AddEventToFrontOfQueue() called...");
+       // Debug.Log("VisualEventManager.AddEventToFrontOfQueue() called...");
         eventQueue.Insert(0, ve);
     }
     private void AddEventToBackOfQueue(VisualEvent ve)
     {
-        Debug.Log("VisualEventManager.AddEventToBackOfQueue() called...");
+        //Debug.Log("VisualEventManager.AddEventToBackOfQueue() called...");
         eventQueue.Add(ve);
     }
     #endregion
@@ -103,7 +103,7 @@ public class VisualEventManager : Singleton<VisualEventManager>
         // it should be called using the overload function below this function
 
 
-        Debug.Log("VisualEventManager.CreateVisualEvent() called, current queue count = " + (eventQueue.Count + 1).ToString());
+        //Debug.Log("VisualEventManager.CreateVisualEvent() called, current queue count = " + (eventQueue.Count + 1).ToString());
 
         VisualEvent vEvent = new VisualEvent(eventFunction, cData, startDelay, endDelay, eventDetail);
 
@@ -118,7 +118,7 @@ public class VisualEventManager : Singleton<VisualEventManager>
     }
     public void CreateVisualEvent(Action eventFunction, QueuePosition position = QueuePosition.Back, float startDelay = 0f, float endDelay = 0f, EventDetail eventDetail = EventDetail.None)
     {
-        Debug.Log("VisualEventManager.CreateVisualEvent() called, current queue count = " + (eventQueue.Count + 1).ToString());
+        //Debug.Log("VisualEventManager.CreateVisualEvent() called, current queue count = " + (eventQueue.Count + 1).ToString());
 
         VisualEvent vEvent = new VisualEvent(eventFunction, null, startDelay, endDelay, eventDetail);
 
@@ -154,7 +154,7 @@ public class VisualEventManager : Singleton<VisualEventManager>
     #region
     public bool PendingCardDrawEvent()
     {
-        Debug.Log("VisualEventManager.PendingCardDrawEvent() called...");
+        //Debug.Log("VisualEventManager.PendingCardDrawEvent() called...");
         bool boolReturned = false;
         foreach(VisualEvent ve in eventQueue)
         {
@@ -165,12 +165,12 @@ public class VisualEventManager : Singleton<VisualEventManager>
             }
         }
 
-        Debug.Log("VisualEventManager.PendingCardDrawEvent() returning: " + boolReturned.ToString());
+        //Debug.Log("VisualEventManager.PendingCardDrawEvent() returning: " + boolReturned.ToString());
         return boolReturned;
     }
     public bool PendingDefeatEvent()
     {
-        Debug.Log("VisualEventManager.PendingDefeatEvent() called...");
+        //Debug.Log("VisualEventManager.PendingDefeatEvent() called...");
         bool boolReturned = false;
         foreach (VisualEvent ve in eventQueue)
         {
@@ -186,7 +186,7 @@ public class VisualEventManager : Singleton<VisualEventManager>
     }
     public bool PendingVictoryEvent()
     {
-        Debug.Log("VisualEventManager.PendingVictoryEvent() called...");
+        //Debug.Log("VisualEventManager.PendingVictoryEvent() called...");
         bool boolReturned = false;
         foreach (VisualEvent ve in eventQueue)
         {

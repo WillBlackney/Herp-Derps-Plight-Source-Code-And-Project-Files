@@ -99,6 +99,26 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyShieldWall(newClone, originalData.shieldWallStacks, false);
         }
+        if (originalData.fanOfKnivesStacks != 0)
+        {
+            ModifyFanOfKnives(newClone, originalData.fanOfKnivesStacks, false);
+        }
+        if (originalData.poisonousStacks != 0)
+        {
+            ModifyPoisonous(newClone, originalData.poisonousStacks, false);
+        }
+        if (originalData.venomousStacks != 0)
+        {
+            ModifyVenomous(newClone, originalData.venomousStacks, false);
+        }
+        #endregion
+
+        // Dot Passives
+        #region
+        if (originalData.poisonedStacks != 0)
+        {
+            ModifyPoisoned(null, newClone, originalData.poisonedStacks, false);
+        }
         #endregion
 
         // Core % Modifier passives
@@ -138,11 +158,16 @@ public class PassiveController : Singleton<PassiveController>
 
         pManager.enrageStacks = original.enrageStacks;
         pManager.shieldWallStacks = original.shieldWallStacks;
+        pManager.fanOfKnivesStacks = original.fanOfKnivesStacks;
+        pManager.poisonousStacks = original.poisonousStacks;
+        pManager.venomousStacks = original.venomousStacks;
 
         pManager.wrathStacks = original.wrathStacks;
         pManager.gritStacks = original.gritStacks;
         pManager.weakenedStacks = original.weakenedStacks;
         pManager.vulnerableStacks = original.vulnerableStacks;
+
+        pManager.poisonedStacks = original.poisonedStacks;
     }    
     public void BuildPlayerCharacterEntityPassivesFromCharacterData(CharacterEntityModel character, CharacterData data)
     {
@@ -397,6 +422,26 @@ public class PassiveController : Singleton<PassiveController>
         else if (originalData == "Shield Wall")
         {
             ModifyShieldWall(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Fan Of Knives")
+        {
+            ModifyFanOfKnives(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Poisonous")
+        {
+            ModifyPoisonous(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Venomous")
+        {
+            ModifyVenomous(pManager, stacks, showVFX, vfxDelay);
+        }
+        #endregion
+
+        // DoT passives
+        #region
+        else if (originalData == "Poisoned")
+        {
+            ModifyPoisoned(null, pManager, stacks, showVFX, vfxDelay);
         }
         #endregion
 
@@ -1054,6 +1099,159 @@ public class PassiveController : Singleton<PassiveController>
 
 
     }
+    public void ModifyFanOfKnives(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyFanOfKnives() called...");
+
+        // Setup + Cache refs
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Fan Of Knives");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Increment stacks
+        pManager.fanOfKnivesStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Fan Of Knives");
+                    VisualEffectManager.Instance.CreateCoreStatBuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back, 0, 0.5f);
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Fan Of Knives Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back, 0, 0.5f);
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+
+
+    }
+    public void ModifyPoisonous(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyPoisonous() called...");
+
+        // Setup + Cache refs
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Poisonous");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Increment stacks
+        pManager.poisonousStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Poisonous");
+                    VisualEffectManager.Instance.CreateCoreStatBuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back, 0, 0.5f);
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Poisonous Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back, 0, 0.5f);
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+
+
+    }
+    public void ModifyVenomous(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyVenomous() called...");
+
+        // Setup + Cache refs
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Venomous");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Increment stacks
+        pManager.venomousStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Venomous");
+                    VisualEffectManager.Instance.CreateCoreStatBuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back, 0, 0.5f);
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Venomous Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back, 0, 0.5f);
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+
+
+    }
     #endregion
 
     // Core % Modifier Passives
@@ -1292,5 +1490,121 @@ public class PassiveController : Singleton<PassiveController>
     }
     #endregion
 
+    // DoT Passives
+    #region
+    public void ModifyPoisoned(CharacterEntityModel applier, PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyPoisoned() called...");
+
+        // Setup + Cache refs
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Poisoned");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Add venomous bonus from applier
+        if (applier != null &&
+            applier.pManager.venomousStacks > 0)
+        {
+            stacks += applier.pManager.venomousStacks;
+        }
+
+        // Increment stacks
+        pManager.poisonedStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Poisoned + " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back);
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Poisoned " + stacks.ToString());
+                }, QueuePosition.Back);
+            }
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+    }
+    #endregion
+
+    // Misc Passives
+    #region
+    public void ModifyTaunted(CharacterEntityModel taunter, PassiveManagerModel targetPManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyTaunted() called...");
+
+        // Setup + Cache refs
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Taunted");
+        CharacterEntityModel character = targetPManager.myCharacter;
+
+        // Increment stacks and cache taunter
+        targetPManager.tauntStacks += stacks;
+        targetPManager.myTaunter = taunter;
+
+        // Null taunt variable when removing taunt
+        if(targetPManager.tauntStacks == 0)
+        {
+            targetPManager.myTaunter = null;
+        }
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Taunted");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back, 0, 0.5f);
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Taunted Removed");
+                }, QueuePosition.Back);
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+    }
+    #endregion
     #endregion
 }

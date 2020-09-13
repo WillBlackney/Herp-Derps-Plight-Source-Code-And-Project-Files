@@ -10,6 +10,8 @@ namespace Tests
 {
     public class Passive_Controller_Tests
     {
+        // Declarations + Setup
+        #region
         // Scene ref
         private const string SCENE_NAME = "NewCombatSceneTest";
 
@@ -17,7 +19,13 @@ namespace Tests
         CharacterData characterData;
         EnemyDataSO enemyData;
         List<CardDataSO> deckData;
-        LevelNode node;
+        LevelNode defenderNode;
+        LevelNode enemyNode;
+
+        // Mock cards
+        CardDataSO mockMeleeAttackCard;
+        CardDataSO mockRangedAttackCard;
+        CardDataSO mockSkillDamagingCard;
 
         // Pasive name refs;
 
@@ -36,12 +44,21 @@ namespace Tests
         // Buff Stats
         private const string ENRAGE_NAME = "Enrage";
         private const string SHIELD_WALL_NAME = "Shield Wall";
+        private const string FAN_OF_KNIVES_NAME = "Fan Of Knives";
+        private const string POISONOUS_NAME = "Poisonous";
+        private const string VENOMOUS_NAME = "Venomous";
 
         // Core % Modifer Stats
         private const string WRATH_NAME = "Wrath";
         private const string WEAKENED_NAME = "Weakened";
         private const string GRIT_NAME = "Grit";
-        private const string VULNERABLE_NAME = "Vulnerable";
+        private const string VULNERABLE_NAME = "Vulnerable";      
+
+        // Misc passives
+        private const string TAUNTED_NAME = "Taunted";
+
+        // DoTs 
+        private const string POISONED_NAME = "Poisoned";
 
         [UnitySetUp]
         public IEnumerator Setup()
@@ -69,6 +86,11 @@ namespace Tests
             characterData.deck = deckData;
             deckData.Add(AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/SO Assets/Cards/Strike.asset"));
 
+            // Create mock cards
+            mockMeleeAttackCard = AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/Tests/Mock Data Files/Mock Melee Attack Card.asset");
+            mockRangedAttackCard = AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/Tests/Mock Data Files/Mock Ranged Attack Card.asset");
+            mockSkillDamagingCard = AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/Tests/Mock Data Files/Mock Skill Damaging Card.asset");
+
             // Create mock model data
             characterData.modelParts = new List<string>();
 
@@ -76,13 +98,16 @@ namespace Tests
             characterData.passiveManager = new PassiveManagerModel();
 
             // Create mock level node
-            node = LevelManager.Instance.GetNextAvailableDefenderNode();
+            defenderNode = LevelManager.Instance.GetNextAvailableDefenderNode();
+            enemyNode = LevelManager.Instance.GetNextAvailableEnemyNode();
 
             // Create mock enemy data
             enemyData = AssetDatabase.LoadAssetAtPath<EnemyDataSO>("Assets/SO Assets/Enemies/Test Enemy.asset");
         }
+        #endregion
 
         // Core Stat + Temp Core Stat Tests
+        #region
         [Test]
         public void Build_Player_Character_Entity_Passives_From_Character_Data_Applies_ALL_Passives_Correctly()
         {
@@ -92,7 +117,7 @@ namespace Tests
             bool expected = false;
 
             // Act
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
 
             // Apply every single passive in the game
 
@@ -113,12 +138,18 @@ namespace Tests
             // Buff stats
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, ENRAGE_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, SHIELD_WALL_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, FAN_OF_KNIVES_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, POISONOUS_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, VENOMOUS_NAME, stacks);
 
             // Core % Modifer Stats
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, WEAKENED_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, WRATH_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, VULNERABLE_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, GRIT_NAME, stacks);
+
+            // DoTs
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, POISONED_NAME, stacks);
 
             if (model.pManager.bonusDrawStacks == 1 &&
                 model.pManager.bonusStaminaStacks == 1 &&
@@ -134,11 +165,16 @@ namespace Tests
 
                 model.pManager.enrageStacks == 1 &&
                 model.pManager.shieldWallStacks == 1 &&
+                model.pManager.fanOfKnivesStacks == 1 &&
+                model.pManager.poisonousStacks == 1 &&
+                model.pManager.venomousStacks == 1 &&
 
                 model.pManager.weakenedStacks == 1 &&
                 model.pManager.wrathStacks == 1 &&
                 model.pManager.vulnerableStacks == 1 &&
-                model.pManager.gritStacks == 1 )
+                model.pManager.gritStacks == 1 &&
+
+                model.pManager.poisonedStacks == 1)
             {
                 expected = true;
             }
@@ -156,7 +192,7 @@ namespace Tests
             int stacks = 2;
 
             // Act
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             expectedTotal = stacks + EntityLogic.GetTotalPower(model);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
 
@@ -173,7 +209,7 @@ namespace Tests
             int stacks = 2;
 
             // Act
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             expectedTotal = stacks + EntityLogic.GetTotalPower(model);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
 
@@ -190,7 +226,7 @@ namespace Tests
             int expected = 0;
 
             // Act 
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
             ActivationManager.Instance.OnNewCombatEventStarted();
             CharacterEntityController.Instance.CharacterOnActivationEnd(model);
@@ -208,7 +244,7 @@ namespace Tests
             int stacks = 2;
 
             // Act
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             expectedTotal = stacks + EntityLogic.GetTotalDexterity(model);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
 
@@ -225,7 +261,7 @@ namespace Tests
             int stacks = 2;
 
             // Act
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             expectedTotal = stacks + EntityLogic.GetTotalDexterity(model);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
 
@@ -242,7 +278,7 @@ namespace Tests
             int expected = 0;
 
             // Act 
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
             ActivationManager.Instance.OnNewCombatEventStarted();
             CharacterEntityController.Instance.CharacterOnActivationEnd(model);
@@ -260,7 +296,7 @@ namespace Tests
             int stacks = 2;
 
             // Act
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             expectedTotal = stacks + EntityLogic.GetTotalInitiative(model);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
 
@@ -277,7 +313,7 @@ namespace Tests
             int stacks = 2;
 
             // Act
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             expectedTotal = stacks + EntityLogic.GetTotalInitiative(model);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
 
@@ -294,7 +330,7 @@ namespace Tests
             int expected = 0;
 
             // Act 
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
             ActivationManager.Instance.OnNewCombatEventStarted();
 
@@ -311,7 +347,7 @@ namespace Tests
             int stacks = 2;
 
             // Act
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             expectedTotal = stacks + EntityLogic.GetTotalDraw(model);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
 
@@ -328,7 +364,7 @@ namespace Tests
             int stacks = 2;
 
             // Act
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             expectedTotal = stacks + EntityLogic.GetTotalDraw(model);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
 
@@ -345,7 +381,7 @@ namespace Tests
             int expected = 0;
 
             // Act 
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             expected = EntityLogic.GetTotalDraw(model);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
             ActivationManager.Instance.OnNewCombatEventStarted();
@@ -363,7 +399,7 @@ namespace Tests
             int stacks = 2;
 
             // Act
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             expectedTotal = stacks + EntityLogic.GetTotalStamina(model);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
 
@@ -380,7 +416,7 @@ namespace Tests
             int stacks = 2;
 
             // Act
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             expectedTotal = stacks + EntityLogic.GetTotalStamina(model);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
 
@@ -397,7 +433,7 @@ namespace Tests
             int expected = 0;
 
             // Act 
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             expected = EntityLogic.GetTotalStamina(model);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
             ActivationManager.Instance.OnNewCombatEventStarted();
@@ -405,8 +441,10 @@ namespace Tests
             // Assert
             Assert.AreEqual(expected, EntityLogic.GetTotalStamina(model));
         }
+        #endregion
 
         // Buff Passive Tests
+        #region
         [Test]        
         public void Enrage_Triggers_Power_Gain_In_Handle_Damage_Method()
         {
@@ -417,7 +455,7 @@ namespace Tests
             int expectedTotal = 2;
 
             // Act
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
             CombatLogic.Instance.HandleDamage(10, null, model, DamageType.Physical);
 
@@ -434,15 +472,184 @@ namespace Tests
             int expected = 3;
 
             // Act 
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
             ActivationManager.Instance.OnNewCombatEventStarted();
 
             // Assert
             Assert.AreEqual(expected, model.block);
         }
+        [Test]
+        public void Fan_Of_Knives_Does_Grant_Shank_Cards_On_Activation_Start()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(FAN_OF_KNIVES_NAME).passiveName;
+            int stacks = 3;
+            int expected = 3;
 
-        // Damage Perctange Modifier Passive Tests
+            // Act 
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
+            ActivationManager.Instance.OnNewCombatEventStarted();
+
+            // how many shanks in hand?
+            int shanksInHand = 0;
+            foreach(Card card in model.hand)
+            {
+                if(card.cardName == "Shank")
+                {
+                    shanksInHand++;
+                }
+            }
+
+            // Assert
+            Assert.AreEqual(expected, shanksInHand);
+        }
+
+
+
+        // Poisonous Tests
+        // Player Character with poisonous does apply poison with melee attack/ ranged attack
+        // Player Character with poisonous does NOT apply poison with skill ability
+        // Enemy character with poisonous does apply poisonous with attack
+        [Test]
+        public void Poisonous_Player_Character_Does_Apply_Poison_With_Melee_Attack()
+        {
+            // Arange
+            CharacterEntityModel playerModel;
+            CharacterEntityModel enemyModel;
+            Card card;
+           
+            deckData = new List<CardDataSO>();
+            characterData.deck = deckData;
+            deckData.Add(mockMeleeAttackCard);
+
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(POISONOUS_NAME).passiveName;
+            int stacks = 2;
+            int expected = 2;
+
+            // Act
+            playerModel = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(playerModel.pManager, passiveName, stacks);
+            playerModel.initiative = 1000;
+            card = playerModel.drawPile[0];
+
+            enemyModel = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, defenderNode);            
+            
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CardController.Instance.PlayCardFromHand(card, enemyModel);
+
+            // Assert 
+            Assert.AreEqual(expected, enemyModel.pManager.poisonedStacks);
+        }
+        [Test]
+        public void Poisonous_Player_Character_Does_Apply_Poison_With_Ranged_Attack()
+        {
+            // Arange
+            CharacterEntityModel playerModel;
+            CharacterEntityModel enemyModel;
+            Card card;
+
+            deckData = new List<CardDataSO>();
+            characterData.deck = deckData;
+            deckData.Add(mockRangedAttackCard);
+
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(POISONOUS_NAME).passiveName;
+            int stacks = 2;
+            int expected = 2;
+
+            // Act
+            playerModel = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(playerModel.pManager, passiveName, stacks);
+            playerModel.initiative = 1000;
+            card = playerModel.drawPile[0];
+
+            enemyModel = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, defenderNode);
+
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CardController.Instance.PlayCardFromHand(card, enemyModel);
+
+            // Assert 
+            Assert.AreEqual(expected, enemyModel.pManager.poisonedStacks);
+        }
+        [Test]
+        public void Poisonous_Player_Character_Does_NOT_Apply_Poison_With_Non_Attack_Card()
+        {
+            // Arange
+            CharacterEntityModel playerModel;
+            CharacterEntityModel enemyModel;
+            Card card;
+
+            deckData = new List<CardDataSO>();
+            characterData.deck = deckData;
+            deckData.Add(mockSkillDamagingCard);
+
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(POISONOUS_NAME).passiveName;
+            int stacks = 2;
+            int expected = 0;
+
+            // Act
+            playerModel = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(playerModel.pManager, passiveName, stacks);
+            playerModel.initiative = 1000;
+            card = playerModel.drawPile[0];
+
+            enemyModel = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, defenderNode);
+
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CardController.Instance.PlayCardFromHand(card, enemyModel);
+
+            // Assert 
+            Assert.AreEqual(expected, enemyModel.pManager.poisonedStacks);
+        }
+        [Test]
+        public void Poisonous_Enemy_Character_Does_Apply_Poison_With_Attack_Enemy_Action_Effect()
+        {
+            // Arange
+            CharacterEntityModel playerModel;
+            CharacterEntityModel enemyModel;
+
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(POISONOUS_NAME).passiveName;
+            int stacks = 2;
+            int expected = 2;
+
+            // Act
+            playerModel = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);            
+            enemyModel = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, defenderNode);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemyModel.pManager, passiveName, stacks);
+            enemyModel.initiative = 1000;
+
+            // setup enemy action
+            /*
+            EnemyAction enemyAction = new EnemyAction();
+            enemyAction.actionType = ActionType.AttackTarget;
+            enemyAction.actionLoops = 1;
+            enemyModel.myNextAction = enemyAction;
+            enemyModel.currentActionTarget = playerModel;
+
+            // setup enemy action effect
+            EnemyActionEffect eae = new EnemyActionEffect();
+            eae.actionType = ActionType.AttackTarget;
+            eae.baseDamage = 5;
+            eae.damageType = DamageType.Physical;
+            eae.attackLoops = 1;
+            enemyAction.actionEffects.Add(eae);
+            */
+
+            ActivationManager.Instance.OnNewCombatEventStarted();
+
+            // Assert 
+            Assert.AreEqual(expected, playerModel.pManager.poisonedStacks);            
+        }
+
+        // Venomous Tests
+        // Venomous does work with poisonous
+        // Venomous does work normal card
+        #endregion
+
+        // Damage Percentage Modifier Passive Tests
+        #region
         [Test]
         public void Wrath_Does_Increase_Damage_In_Handle_Damage_Calculations()
         {
@@ -453,8 +660,8 @@ namespace Tests
             int expectedTotal = 13;          
 
             // Act
-            attacker = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
-            target = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            attacker = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            target = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
 
             Card card = new Card();
             card.owner = attacker;
@@ -478,7 +685,7 @@ namespace Tests
             int expected = 0;
 
             // Act 
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
             ActivationManager.Instance.OnNewCombatEventStarted();
             CharacterEntityController.Instance.CharacterOnActivationEnd(model);
@@ -496,8 +703,8 @@ namespace Tests
             int expectedTotal = 7;
 
             // Act
-            attacker = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
-            target = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            attacker = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            target = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
 
             Card card = new Card();
             card.owner = attacker;
@@ -521,7 +728,7 @@ namespace Tests
             int expected = 0;
 
             // Act 
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
             ActivationManager.Instance.OnNewCombatEventStarted();
             CharacterEntityController.Instance.CharacterOnActivationEnd(model);
@@ -539,8 +746,8 @@ namespace Tests
             int expectedTotal = 7;
 
             // Act
-            attacker = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
-            target = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, node);
+            attacker = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            target = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, defenderNode);
 
             Card card = new Card();
             card.owner = attacker;
@@ -564,7 +771,7 @@ namespace Tests
             int expected = 0;
 
             // Act 
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
             ActivationManager.Instance.OnNewCombatEventStarted();
             CharacterEntityController.Instance.CharacterOnActivationEnd(model);
@@ -582,8 +789,8 @@ namespace Tests
             int expectedTotal = 13;
 
             // Act
-            attacker = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
-            target = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, node);
+            attacker = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            target = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, defenderNode);
 
             Card card = new Card();
             card.owner = attacker;
@@ -607,7 +814,7 @@ namespace Tests
             int expected = 0;
 
             // Act 
-            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, node);
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
             ActivationManager.Instance.OnNewCombatEventStarted();
             CharacterEntityController.Instance.CharacterOnActivationEnd(model);
@@ -615,13 +822,178 @@ namespace Tests
             // Assert
             Assert.AreEqual(expected, model.pManager.vulnerableStacks);
         }
+        #endregion
+
+        // Taunted Tests
+        #region
+        // tests to do
+        // taunt does expire on activation end
+        // taunt does change enemy's current target
+        // taunt does nothing if target is not using a targetable attack action
+        // taunt is removed if character's taunter is killed
+        [Test]
+        public void Taunt_Does_Expire_On_Character_Activation_End()
+        {
+            // Arange
+            CharacterEntityModel playerModel;
+            CharacterEntityModel enemyModel;
+            bool expected = false;
+
+            // Act 
+            playerModel = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            enemyModel = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, enemyNode);
+            
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CharacterEntityController.Instance.HandleTaunt(playerModel, enemyModel);
+            CharacterEntityController.Instance.CharacterOnActivationEnd(enemyModel);
+
+            if (enemyModel.pManager.tauntStacks == 0 && 
+                enemyModel.pManager.myTaunter == null)
+            {
+                expected = true;
+            }
+
+            // Assert
+            Assert.IsTrue(expected);
+        }
+        [Test]
+        public void Taunt_Does_Change_Characters_Target()
+        {
+            // Arange
+            CharacterEntityModel playerModelOne;
+            CharacterEntityModel playerModelTwo;
+            CharacterEntityModel enemyModel;
+            CharacterEntityModel expectedTarget;
+
+            // Act 
+            playerModelOne = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            playerModelTwo = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, LevelManager.Instance.GetNextAvailableDefenderNode());            
+            enemyModel = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, enemyNode);
+            enemyModel.initiative = 0;
+            expectedTarget = playerModelTwo;
+
+            // setup enemy action
+            EnemyAction enemyAction = new EnemyAction();
+            enemyAction.actionType = ActionType.AttackTarget;
+            enemyModel.myNextAction = enemyAction;
+            enemyModel.currentActionTarget = playerModelOne;
+
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CharacterEntityController.Instance.HandleTaunt(playerModelOne, enemyModel);
+            CharacterEntityController.Instance.HandleTaunt(playerModelTwo, enemyModel);
+
+            // Assert
+            Assert.AreEqual(expectedTarget, enemyModel.pManager.myTaunter);
+        }
+        [Test]
+        public void Taunt_Is_Removed_When_Original_Taunter_Dies()
+        {
+            // Arange
+            CharacterEntityModel playerModelOne;
+            CharacterEntityModel playerModelTwo;
+            CharacterEntityModel enemyModel;
+            CharacterEntityModel expectedTarget = null;
+
+            // Act 
+            playerModelOne = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            playerModelTwo = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, LevelManager.Instance.GetNextAvailableDefenderNode());
+            enemyModel = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, enemyNode);
+            enemyModel.initiative = 0;
+
+            // setup enemy action
+            EnemyAction enemyAction = new EnemyAction();
+            enemyAction.actionType = ActionType.AttackTarget;
+            enemyModel.myNextAction = enemyAction;
+            enemyModel.currentActionTarget = playerModelOne;
+
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CharacterEntityController.Instance.HandleTaunt(playerModelOne, enemyModel);
+            CombatLogic.Instance.HandleDamage(1000, null, playerModelOne, DamageType.Physical, null);
+
+            // Assert
+            Assert.AreEqual(expectedTarget, enemyModel.pManager.myTaunter);
+        }
+        [Test]
+        public void Taunt_Removal_Auto_Sets_New_Target_When_Original_Taunter_Dies()
+        {
+            // Arange
+            CharacterEntityModel playerModelOne;
+            CharacterEntityModel playerModelTwo;
+            CharacterEntityModel enemyModel;
+            CharacterEntityModel expectedTarget;
+
+            // Act 
+            playerModelOne = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            playerModelTwo = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, LevelManager.Instance.GetNextAvailableDefenderNode());
+            enemyModel = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, enemyNode);
+            enemyModel.initiative = 0;
+            expectedTarget = playerModelTwo;
+
+            // Setup enemy action
+            EnemyAction enemyAction = new EnemyAction();
+            enemyAction.actionType = ActionType.AttackTarget;
+            enemyModel.myNextAction = enemyAction;
+            enemyModel.currentActionTarget = playerModelOne;
+
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CharacterEntityController.Instance.HandleTaunt(playerModelOne, enemyModel);
+            CombatLogic.Instance.HandleDamage(1000, null, playerModelOne, DamageType.Physical, null);
+
+            // Assert
+            Assert.AreEqual(expectedTarget, enemyModel.currentActionTarget);
+        }
 
 
-        // for each passive % 
-        // does expire on activation end
-        // doesnt expire on activation end if still 1 or more stacks
-        // does effect combat logic HandleDamage damage value
+        #endregion
+
+        // DoT Tests
+        #region
+        [Test]
+        public void Poisoned_Does_Deal_Damage_On_Character_Activation_End()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(POISONED_NAME).passiveName;
+            int stacks = 10;
+            int expected;
+
+            // Act 
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            expected = model.health - stacks;
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CharacterEntityController.Instance.CharacterOnActivationEnd(model);
+
+            // Assert
+            Assert.AreEqual(expected, model.health);
+        }
+        [Test]
+        public void Poisoned_Does_Kill_Character_If_Lethal_On_Character_Activation_End()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(POISONED_NAME).passiveName;
+            int stacks = 1000;
+
+            // Act 
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CharacterEntityController.Instance.CharacterOnActivationEnd(model);
+
+            // Assert
+            Assert.IsTrue(model.livingState == LivingState.Dead);
+        }
+        [Test]
+        public void Poisoned_Damage_Is_Affected_By_Poison_Resistance()
+        {
+            // TO DO: write this test when damage type resistance logic is written
+        }
+
+        #endregion
+
+
     }
 
-   
+
 }

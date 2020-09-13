@@ -19,6 +19,9 @@ public class CardEffect
     [ShowIf("ShowDrawDamageFromBlock")]
     public bool drawBaseDamageFromCurrentBlock;
 
+    [ShowIf("ShowDrawDamageFromTargetPoisoned")]
+    public bool drawBaseDamageFromTargetPoisoned;
+
     [ShowIf("cardEffectType", CardEffectType.DealDamage)]
     public DamageType damageType;
 
@@ -31,11 +34,14 @@ public class CardEffect
     [ShowIf("cardEffectType", CardEffectType.DrawCards)]
     public int cardsDrawn;
 
-    [ShowIf("cardEffectType", CardEffectType.ApplyBurning)]
-    public int burningApplied;
-
     [ShowIf("ShowPassivePairing")]
     public PassivePairingData passivePairing;
+
+    [ShowIf("cardEffectType", CardEffectType.AddCardsToHand)]
+    public CardDataSO cardAdded;
+
+    [ShowIf("cardEffectType", CardEffectType.AddCardsToHand)]
+    public int copiesAdded;
 
     public bool ShowPassivePairing()
     {
@@ -67,7 +73,8 @@ public class CardEffect
     public bool ShowBaseDamageValue()
     {
         if (cardEffectType != CardEffectType.DealDamage ||
-            (cardEffectType == CardEffectType.DealDamage && drawBaseDamageFromCurrentBlock)
+            ((cardEffectType == CardEffectType.DealDamage && drawBaseDamageFromCurrentBlock )||
+             (cardEffectType == CardEffectType.DealDamage && drawBaseDamageFromTargetPoisoned))
             )
         {
             return false;
@@ -79,7 +86,20 @@ public class CardEffect
     }
     public bool ShowDrawDamageFromBlock()
     {
-        if (cardEffectType == CardEffectType.DealDamage)
+        if (cardEffectType == CardEffectType.DealDamage &&
+            drawBaseDamageFromTargetPoisoned == false)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowDrawDamageFromTargetPoisoned()
+    {
+        if (cardEffectType == CardEffectType.DealDamage &&
+            drawBaseDamageFromCurrentBlock == false)
         {
             return true;
         }
@@ -102,9 +122,13 @@ public enum CardEffectType
     LoseHealth, 
     GainEnergy, 
     DrawCards, 
-    ApplyBurning, 
     ApplyPassiveToSelf, 
     ApplyPassiveToTarget, 
     ApplyPassiveToAllEnemies,
     ApplyPassiveToAllAllies,
+    TauntTarget,
+    TauntAllEnemies,
+    AddCardsToHand,
+    RemoveAllPoisonedFromSelf,
+    RemoveAllPoisonedFromTarget,
 }

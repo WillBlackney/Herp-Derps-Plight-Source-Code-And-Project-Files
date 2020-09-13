@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Juggernaut_1
   m_EditorClassIdentifier: 
   myName: Juggernaut_1
-  health: 30
+  health: 1
   maxHealth: 30
   power: 0
   dexterity: 0
@@ -40,20 +40,24 @@ MonoBehaviour:
     temporaryBonusDrawStacks: 0
     enrageStacks: 0
     shieldWallStacks: 0
+    fanOfKnivesStacks: 0
+    poisonousStacks: 0
+    venomousStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
     gritStacks: 0
+    poisonedStacks: 0
   deck:
-  - {fileID: 11400000, guid: 3d57eb73a05e9a04b96c08944c441410, type: 2}
-  - {fileID: 11400000, guid: 3d57eb73a05e9a04b96c08944c441410, type: 2}
-  - {fileID: 11400000, guid: 3d57eb73a05e9a04b96c08944c441410, type: 2}
-  - {fileID: 11400000, guid: 58ad3605f0bb1844dac2124cd71174c1, type: 2}
-  - {fileID: 11400000, guid: 58ad3605f0bb1844dac2124cd71174c1, type: 2}
+  - {fileID: 11400000, guid: 1e3cea44d9e2f904698519977bd5198c, type: 2}
+  - {fileID: 11400000, guid: 1e3cea44d9e2f904698519977bd5198c, type: 2}
+  - {fileID: 11400000, guid: 1e3cea44d9e2f904698519977bd5198c, type: 2}
+  - {fileID: 11400000, guid: 1e3cea44d9e2f904698519977bd5198c, type: 2}
+  - {fileID: 11400000, guid: 1e3cea44d9e2f904698519977bd5198c, type: 2}
   modelParts:
   - Human_Chest
   - Human_Face_1
-  - Human_Head_3
+  - Human_Head_1
   - Human_Right_Arm
   - Human_Right_Hand
   - Human_Right_Leg

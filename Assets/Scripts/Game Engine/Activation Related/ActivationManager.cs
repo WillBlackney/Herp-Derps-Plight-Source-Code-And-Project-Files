@@ -435,7 +435,16 @@ public class ActivationManager : Singleton<ActivationManager>
         yield return new WaitForSeconds(0.5f);
 
         UpdateWindowPositions();
-        MoveActivationArrowTowardsEntityWindow(activationOrder[activationOrder.IndexOf(currentlyActivated)]);
+
+        // If the entity that just died wasn't killed during its activation, do this
+        if (activationOrder.Contains(currentlyActivated))
+        {
+            MoveActivationArrowTowardsEntityWindow(activationOrder[activationOrder.IndexOf(currentlyActivated)]);
+        }
+        else if (activationOrder.Contains(EntityActivated))
+        {
+            MoveActivationArrowTowardsEntityWindow(activationOrder[activationOrder.IndexOf(EntityActivated)]);
+        }
 
         // Resolve
         if (cData != null)

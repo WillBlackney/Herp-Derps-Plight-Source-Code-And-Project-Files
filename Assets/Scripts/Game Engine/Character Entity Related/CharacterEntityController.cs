@@ -557,6 +557,15 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             CoroutineData cData = new CoroutineData();
             VisualEventManager.Instance.CreateVisualEvent(()=> FadeInCharacterUICanvas(character.characterEntityView, cData), cData, QueuePosition.Back);
 
+            // Before normal card draw, add cards to hand from passive effects (e.g. Fan Of Knives)
+            if(character.pManager.fanOfKnivesStacks > 0)
+            {
+                for(int i = 0; i < character.pManager.fanOfKnivesStacks; i++)
+                {
+                    CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetCardFromLibraryByName("Shank"));
+                }                
+            }
+
             // Draw cards on turn start
             CardController.Instance.DrawCardsOnActivationStart(character);
 
@@ -596,8 +605,27 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             return;
         }
 
+        // Do player character exclusive logic
+        if (entity.controller == Controller.Player)
+        {
+            // Lose unused energy, discard hand
+            ModifyEnergy(entity, -entity.energy);
+
+            // Discard Hand
+            CardController.Instance.DiscardHandOnActivationEnd(entity);
+
+            // Fade out view
+            CoroutineData fadeOutEvent = new CoroutineData();
+            VisualEventManager.Instance.CreateVisualEvent(() => FadeOutCharacterUICanvas(entity.characterEntityView, fadeOutEvent), fadeOutEvent);
+        }
+
         // Do relevant passive expiries and logic
         #region
+        // Remove Taunt
+        if (entity.pManager.tauntStacks > 0)
+        {
+            PassiveController.Instance.ModifyTaunted(null, entity.pManager, -entity.pManager.tauntStacks, true, 0.5f);
+        }
 
         // Temp core stats
         if (entity.pManager.temporaryBonusPowerStacks > 0)
@@ -627,26 +655,19 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             PassiveController.Instance.ModifyVulnerable(entity.pManager, - 1, true, 0.5f);
         }
 
-
-
-        #endregion
-
-        // Do player character exclusive logic
-        if (entity.controller == Controller.Player)
+        // DoTs
+        if (entity.pManager.poisonedStacks > 0)
         {
-            // Lose unused energy, discard hand
-            ModifyEnergy(entity, -entity.energy);
-
-            // Discard Hand
-            CardController.Instance.DiscardHandOnActivationEnd(entity);
-
-            // Fade out view
-            CoroutineData fadeOutEvent = new CoroutineData();
-            VisualEventManager.Instance.CreateVisualEvent(() => FadeOutCharacterUICanvas(entity.characterEntityView, fadeOutEvent), fadeOutEvent);
+            // Calculate and deal Poison damage
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Poison, false, entity.pManager.poisonedStacks, null, null);
+            CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Poison, null, null, true);
         }
 
+        #endregion
+               
+
         // Do enemy character exclusive logic
-        if (entity.controller == Controller.AI)
+        if (entity.controller == Controller.AI && entity.livingState == LivingState.Alive)
         {
             // Brief pause at the end of enemy action, so player can process whats happened
             VisualEventManager.Instance.InsertTimeDelayInQueue(1f);
@@ -656,10 +677,12 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         }
 
         // Disable level node activation ring view
-        VisualEventManager.Instance.CreateVisualEvent(() => entity.levelNode.SetActivatedViewState(false));
+        LevelNode veNode = entity.levelNode;
+        VisualEventManager.Instance.CreateVisualEvent(() => veNode.SetActivatedViewState(false));
 
-        // activate the next character
+        // Activate next character
         ActivationManager.Instance.ActivateNextEntity();
+
     }
     #endregion
 
@@ -733,12 +756,25 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     {
         Debug.Log("CharacterEntityController.UpdateEnemyIntentGUI() called...");
 
+        // cancel if target of enemy is null, and there are no valid targets left
+        // for example, all characters are dead.
+        if(enemy.currentActionTarget == null &&
+            (enemy.myNextAction.actionType == ActionType.AttackTarget ||
+             enemy.myNextAction.actionType == ActionType.DebuffTarget ||
+             enemy.myNextAction.actionType == ActionType.DefendTarget ||
+             enemy.myNextAction.actionType == ActionType.AttackTargetAndBuffSelf ||
+             enemy.myNextAction.actionType == ActionType.AttackTargetAndDefendSelf))
+        {
+            return;
+        }
+
         // Setup for visual event
         Sprite intentSprite = SpriteLibrary.Instance.GetIntentSpriteFromIntentEnumData(enemy.myNextAction.intentImage);
         string attackDamageString = "";
 
         // if attacking, calculate + enable + set damage value text
-        if (enemy.myNextAction.actionType == ActionType.AttackTarget)
+        if (enemy.currentActionTarget != null &&
+            enemy.myNextAction.actionType == ActionType.AttackTarget)
         {
             // Use the first EnemyActionEffect in the list to base damage calcs off of.
             EnemyActionEffect effect = enemy.myNextAction.actionEffects[0];
@@ -1257,7 +1293,15 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
         CharacterEntityModel targetReturned = null;
 
-        if (action.actionType == ActionType.AttackTarget || action.actionType == ActionType.DebuffTarget)
+        // Check taunt first
+        if(enemy.pManager.tauntStacks > 0 && 
+            enemy.pManager.myTaunter != null &&
+            enemy.pManager.myTaunter.livingState == LivingState.Alive)
+        {
+            targetReturned = enemy.pManager.myTaunter;
+        }
+
+        else if (action.actionType == ActionType.AttackTarget || action.actionType == ActionType.DebuffTarget)
         {
             if(AllDefenders.Count > 1)
             {
@@ -1377,7 +1421,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
                     int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, target, damageType, false, effect.baseDamage, null, null, effect);
 
                     // Start damage sequence
-                    CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, target, damageType);
+                    CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, target, damageType, null, effect);
                 }
             }
         }
@@ -1607,6 +1651,27 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         }
 
         return listReturned;
+    }
+    #endregion
+
+    // Misc Events Handlers
+    #region
+    public void HandleTaunt(CharacterEntityModel taunter, CharacterEntityModel target)
+    {
+        Debug.Log("CharacterEntityController.HandleTaunt() called...");
+
+        // does the enemy actually intent to attack?
+        if (target.myNextAction.actionType == ActionType.AttackTarget)
+        {
+            // Set taunter as target of next enemy attack
+            SetEnemyTarget(target, taunter);
+
+            // Apply taunted passive
+            PassiveController.Instance.ModifyTaunted(taunter, target.pManager, 1);
+
+            // Update targeting gui/view
+            UpdateEnemyIntentGUI(target);
+        }
     }
     #endregion
 

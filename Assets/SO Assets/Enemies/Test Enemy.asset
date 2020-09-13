@@ -16,7 +16,7 @@ MonoBehaviour:
   maxHealth: 30
   power: 0
   dexterity: 0
-  initiative: 1
+  initiative: 11
   startingHealth: 20
   startingBlock: 0
   physicalResistance: 0
@@ -38,10 +38,14 @@ MonoBehaviour:
     temporaryBonusDrawStacks: 0
     enrageStacks: 0
     shieldWallStacks: 0
+    fanOfKnivesStacks: 0
+    poisonousStacks: 0
+    venomousStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
     gritStacks: 0
+    poisonedStacks: 0
   allEnemyActions:
   - actionName: Howl
     actionType: 0
@@ -77,6 +81,10 @@ MonoBehaviour:
   - Shadow_Blade_Right_Arm_Wear
   - Shadow_Blade_Left_Arm_Wear
   - Shadow_Blade_Chest_Wear
+  - Human_Chest
+  - Human_Chest
+  - Human_Chest
+  - Human_Chest
   - Human_Chest
   - Human_Chest
   - Human_Chest

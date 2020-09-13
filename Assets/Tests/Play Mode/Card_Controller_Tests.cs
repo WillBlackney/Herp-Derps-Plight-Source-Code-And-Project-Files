@@ -23,6 +23,8 @@ namespace Tests
         // Mock card data SO's
         CardDataSO mockExpendCard;
         CardDataSO mockPowerCard;
+        CardDataSO mockMeleeAttackCard;
+        CardDataSO mockRangedAttackCard;
 
         [UnitySetUp]
         public IEnumerator Setup()
@@ -52,6 +54,8 @@ namespace Tests
             // Create mock cards
             mockExpendCard = AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/Tests/Mock Data Files/Mock Exhaust Card.asset");
             mockPowerCard = AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/Tests/Mock Data Files/Mock Power Card.asset");
+            mockMeleeAttackCard = AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/Tests/Mock Data Files/Mock Melee Attack Card.asset");
+            mockRangedAttackCard = AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/Tests/Mock Data Files/Mock Ranged Attack Card.asset");
 
             // Create mock model data
             characterData.modelParts = new List<string>();

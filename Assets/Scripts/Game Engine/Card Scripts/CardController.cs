@@ -10,6 +10,38 @@ public class CardController : Singleton<CardController>
     #region
     [Header("Card Properties")]
     [SerializeField] private float cardTransistionSpeed;
+
+    [Header("Card Library Properties")]
+    [SerializeField] private List<CardDataSO> allCards;
+    public List<CardDataSO> AllCards
+    {
+        get { return allCards; }
+        private set { allCards = value; }
+    }
+    #endregion
+
+    // Card Library Logic
+    #region
+    public CardDataSO GetCardFromLibraryByName(string name)
+    {
+        CardDataSO cardReturned = null;
+
+        foreach(CardDataSO card in AllCards)
+        {
+            if(card.cardName == name)
+            {
+                cardReturned = card;
+                break;
+            }
+        }
+
+        if(cardReturned == null)
+        {
+            Debug.Log("WARNING! CardController.GetCardFromLibraryByName() could not find a card " +
+                "with a matching name of " + name + ", returning null...");
+        }
+        return cardReturned;
+    }
     #endregion
 
     // Build Cards, Decks, View Models and Data
@@ -134,6 +166,24 @@ public class CardController : Singleton<CardController>
         for (int i = 0; i < EntityLogic.GetTotalDraw(defender); i++)
         {
             DrawACardFromDrawPile(defender);
+        }
+    }
+    #endregion
+
+    // Gain card not from deck logic
+    #region
+    public void CreateAndAddNewCardToCharacterHand(CharacterEntityModel defender, CardDataSO data)
+    {
+        if (!IsHandFull(defender))
+        {
+            // Get card and remove from deck
+            Card newCard = BuildCardFromCardData(data, defender);
+
+            // Add card to hand
+            AddCardToHand(defender, newCard);
+
+            // Create and queue card drawn visual event
+            VisualEventManager.Instance.CreateVisualEvent(() => CreateAndAddNewCardToCharacterHandVisualEvent(newCard, defender), QueuePosition.Back, 0, 0.2f, EventDetail.CardDraw);
         }
     }
     #endregion
@@ -480,6 +530,10 @@ public class CardController : Singleton<CardController>
             {
                 baseDamage = owner.block;
             }
+            else if (cardEffect.drawBaseDamageFromTargetPoisoned)
+            {
+                baseDamage = target.pManager.poisonedStacks;
+            }
             else
             {
                 baseDamage = cardEffect.baseDamageValue;
@@ -507,7 +561,7 @@ public class CardController : Singleton<CardController>
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateBloodSplatterEffect(owner.characterEntityView.transform.position));
 
             // Start self damage sequence
-            CombatLogic.Instance.HandleDamage(cardEffect.healthLost, owner, owner, DamageType.None, card, true);
+            CombatLogic.Instance.HandleDamage(cardEffect.healthLost, owner, owner, DamageType.None, card, null, true);
         }
 
         // Gain Energy
@@ -540,10 +594,36 @@ public class CardController : Singleton<CardController>
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, cardEffect.passivePairing.passiveData.passiveName, cardEffect.passivePairing.passiveStacks, true, 0.5f);
         }
 
-        // Apply Burning
-        else if (cardEffect.cardEffectType == CardEffectType.ApplyBurning)
+        // Remove poisoned from target
+        else if (cardEffect.cardEffectType == CardEffectType.RemoveAllPoisonedFromTarget)
         {
-            //StatusController.Instance.ApplyStatusToLivingEntity(target, StatusIconLibrary.Instance.GetStatusIconByName("Burning"), cardEffect.burningApplied);
+            PassiveController.Instance.ModifyPoisoned(null, target.pManager, -target.pManager.poisonedStacks, true);
+        }
+
+        // Taunt Target
+        else if (cardEffect.cardEffectType == CardEffectType.TauntTarget)
+        {
+            CharacterEntityController.Instance.HandleTaunt(owner, target);
+        }
+
+        // Taunt all enemies
+        else if (cardEffect.cardEffectType == CardEffectType.TauntAllEnemies)
+        {
+            // get all enemies
+            foreach(CharacterEntityModel character in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
+            {
+                // taunt each enemy
+                CharacterEntityController.Instance.HandleTaunt(owner, character);
+            }            
+        }
+
+        // Add new non deck card to hand
+        else if(cardEffect.cardEffectType == CardEffectType.AddCardsToHand)
+        {
+            for(int i = 0; i < cardEffect.copiesAdded; i++)
+            {
+                CreateAndAddNewCardToCharacterHand(owner, cardEffect.cardAdded);
+            }            
         }
     }
     #endregion
@@ -691,6 +771,31 @@ public class CardController : Singleton<CardController>
 
     // Visual Events
     #region
+    private void CreateAndAddNewCardToCharacterHandVisualEvent(Card card, CharacterEntityModel character)
+    {
+        Debug.Log("CardController.CreateAndAddNewCardToCharacterHandVisualEvent() called...");
+        CharacterEntityView characterView = character.characterEntityView;
+
+        GameObject cardVM;
+        cardVM = BuildCardViewModelFromCard(card, characterView.handVisual.NonDeckCardCreationTransform.position).gameObject;
+
+        // pass this card to HandVisual class
+        characterView.handVisual.AddCard(cardVM);
+
+        // Bring card to front while it travels from draw spot to hand
+        CardLocationTracker clt = cardVM.GetComponent<CardLocationTracker>();
+        clt.BringToFront();
+        clt.Slot = 0;
+        clt.VisualState = VisualStates.Transition;
+
+        // move card to the hand;
+        Sequence s = DOTween.Sequence();
+
+        // displace the card so that we can select it in the scene easier.
+        s.Append(cardVM.transform.DOLocalMove(characterView.handVisual.slots.Children[0].transform.localPosition, cardTransistionSpeed));
+
+        s.OnComplete(() => clt.SetHandSortingOrder());
+    }
     private void DrawCardFromDeckVisualEvent(Card card, CharacterEntityModel character)
     {
         Debug.Log("CardController.DrawCardFromDeckVisualEvent() called...");

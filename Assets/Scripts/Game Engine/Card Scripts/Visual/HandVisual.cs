@@ -11,11 +11,9 @@ public class HandVisual : MonoBehaviour
     public SameDistanceChildren slots;
 
     [Header("Transform References")]
-    public Transform DrawPreviewSpot;
     public Transform DeckTransform;
     public Transform DiscardPileTransform;
-    public Transform OtherCardDrawSourceTransform;
-    public Transform PlayPreviewSpot;
+    public Transform NonDeckCardCreationTransform;
 
     [Header("Variables")]
     private List<GameObject> cardsInHand = new List<GameObject>();
