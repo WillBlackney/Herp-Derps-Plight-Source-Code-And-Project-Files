@@ -103,6 +103,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyFanOfKnives(newClone, originalData.fanOfKnivesStacks, false);
         }
+        if (originalData.phoenixFormStacks != 0)
+        {
+            ModifyPhoenixForm(newClone, originalData.phoenixFormStacks, false);
+        }
         if (originalData.poisonousStacks != 0)
         {
             ModifyPoisonous(newClone, originalData.poisonousStacks, false);
@@ -118,6 +122,10 @@ public class PassiveController : Singleton<PassiveController>
         if (originalData.poisonedStacks != 0)
         {
             ModifyPoisoned(null, newClone, originalData.poisonedStacks, false);
+        }
+        if (originalData.burningStacks != 0)
+        {
+            ModifyBurning(newClone, originalData.burningStacks, false);
         }
         #endregion
 
@@ -141,6 +149,14 @@ public class PassiveController : Singleton<PassiveController>
         }
         #endregion
 
+        // Misc Passives
+        #region
+        if (originalData.fireBallBonusDamageStacks != 0)
+        {
+            ModifyFireBallBonusDamage(newClone, originalData.fireBallBonusDamageStacks, false);
+        }
+        #endregion
+
     }
     public void BuildPassiveManagerFromSerializedPassiveManager(PassiveManagerModel pManager, SerializedPassiveManagerModel original)
     {
@@ -159,6 +175,7 @@ public class PassiveController : Singleton<PassiveController>
         pManager.enrageStacks = original.enrageStacks;
         pManager.shieldWallStacks = original.shieldWallStacks;
         pManager.fanOfKnivesStacks = original.fanOfKnivesStacks;
+        pManager.phoenixFormStacks = original.phoenixFormStacks;       
         pManager.poisonousStacks = original.poisonousStacks;
         pManager.venomousStacks = original.venomousStacks;
 
@@ -168,6 +185,10 @@ public class PassiveController : Singleton<PassiveController>
         pManager.vulnerableStacks = original.vulnerableStacks;
 
         pManager.poisonedStacks = original.poisonedStacks;
+        pManager.burningStacks = original.burningStacks;
+
+        pManager.fireBallBonusDamageStacks = original.fireBallBonusDamageStacks;
+
     }    
     public void BuildPlayerCharacterEntityPassivesFromCharacterData(CharacterEntityModel character, CharacterData data)
     {
@@ -427,6 +448,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyFanOfKnives(pManager, stacks, showVFX, vfxDelay);
         }
+        else if (originalData == "Phoenix Form")
+        {
+            ModifyPhoenixForm(pManager, stacks, showVFX, vfxDelay);
+        }
         else if (originalData == "Poisonous")
         {
             ModifyPoisonous(pManager, stacks, showVFX, vfxDelay);
@@ -442,6 +467,10 @@ public class PassiveController : Singleton<PassiveController>
         else if (originalData == "Poisoned")
         {
             ModifyPoisoned(null, pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Burning")
+        {
+            ModifyBurning(pManager, stacks, showVFX, vfxDelay);
         }
         #endregion
 
@@ -462,6 +491,14 @@ public class PassiveController : Singleton<PassiveController>
         else if (originalData == "Vulnerable")
         {
             ModifyVulnerable(pManager, stacks, showVFX, vfxDelay);
+        }
+        #endregion
+
+        // Misc Stats
+        #region
+        else if (originalData == "Fire Ball Bonus Damage")
+        {
+            ModifyFireBallBonusDamage(pManager, stacks, showVFX, vfxDelay);
         }
         #endregion
     }
@@ -1150,6 +1187,57 @@ public class PassiveController : Singleton<PassiveController>
 
 
     }
+    public void ModifyPhoenixForm(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyPhoenixForm() called...");
+
+        // Setup + Cache refs
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Phoenix Form");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Increment stacks
+        pManager.phoenixFormStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Phoenix Form");
+                    VisualEffectManager.Instance.CreateCoreStatBuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back, 0, 0.5f);
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Phoenix Form Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back, 0, 0.5f);
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+
+
+    }
     public void ModifyPoisonous(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
     {
         Debug.Log("PassiveController.ModifyPoisonous() called...");
@@ -1546,6 +1634,53 @@ public class PassiveController : Singleton<PassiveController>
             }
         }
     }
+    public void ModifyBurning(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyBurning() called...");
+
+        // Setup + Cache refs
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Burning");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Increment stacks
+        pManager.burningStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Burning +" + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back);
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Burning " + stacks.ToString());
+                }, QueuePosition.Back);
+            }
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+    }
     #endregion
 
     // Misc Passives
@@ -1604,6 +1739,57 @@ public class PassiveController : Singleton<PassiveController>
                 VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
             }
         }
+    }
+    public void ModifyFireBallBonusDamage(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyBonusFireBallDamage() called...");
+
+        // Setup + Cache refs
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Fire Ball Bonus Damage");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Increment stacks
+        pManager.fireBallBonusDamageStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Fire Ball Damage +" + stacks.ToString());
+                    VisualEffectManager.Instance.CreateCoreStatBuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back, 0, 0.5f);
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Fire Ball Damage " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back, 0, 0.5f);
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+
+
     }
     #endregion
     #endregion

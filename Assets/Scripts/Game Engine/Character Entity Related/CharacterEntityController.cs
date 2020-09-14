@@ -558,12 +558,23 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             VisualEventManager.Instance.CreateVisualEvent(()=> FadeInCharacterUICanvas(character.characterEntityView, cData), cData, QueuePosition.Back);
 
             // Before normal card draw, add cards to hand from passive effects (e.g. Fan Of Knives)
+
+            // Fan of Knives
             if(character.pManager.fanOfKnivesStacks > 0)
             {
                 for(int i = 0; i < character.pManager.fanOfKnivesStacks; i++)
                 {
                     CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetCardFromLibraryByName("Shank"));
                 }                
+            }
+
+            // Phoenix Form
+            if (character.pManager.phoenixFormStacks > 0)
+            {
+                for (int i = 0; i < character.pManager.phoenixFormStacks; i++)
+                {
+                    CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetCardFromLibraryByName("Fire Ball"));
+                }
             }
 
             // Draw cards on turn start
@@ -610,6 +621,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         {
             // Lose unused energy, discard hand
             ModifyEnergy(entity, -entity.energy);
+
+            // Run events on cards with 'OnActivationEnd' listener
+            CardController.Instance.HandleOnCharacterActivationEndCardListeners(entity);
 
             // Discard Hand
             CardController.Instance.DiscardHandOnActivationEnd(entity);
@@ -662,9 +676,15 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Poison, false, entity.pManager.poisonedStacks, null, null);
             CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Poison, null, null, true);
         }
+        if (entity.pManager.burningStacks > 0)
+        {
+            // Calculate and deal Poison damage
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Fire, false, entity.pManager.burningStacks, null, null);
+            CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Fire, null, null, true);
+        }
 
         #endregion
-               
+
 
         // Do enemy character exclusive logic
         if (entity.controller == Controller.AI && entity.livingState == LivingState.Alive)

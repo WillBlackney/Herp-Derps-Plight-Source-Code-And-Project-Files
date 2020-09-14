@@ -59,6 +59,9 @@ public class SerializedPassiveManagerModel
     public int fanOfKnivesStacks;
     [BoxGroup("Buff Passives")]
     [LabelWidth(200)]
+    public int phoenixFormStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
     public int poisonousStacks;
     [BoxGroup("Buff Passives")]
     [LabelWidth(200)]
@@ -82,11 +85,17 @@ public class SerializedPassiveManagerModel
     public int gritStacks;
 
     // DoT Debuff Passives
-    [BoxGroup(" DoT Debuff Passives", centerLabel: true)]
+    [BoxGroup("DoT Debuff Passives", centerLabel: true)]
     [LabelWidth(200)]
     public int poisonedStacks;
+    [BoxGroup("DoT Debuff Passives")]
+    [LabelWidth(200)]
+    public int burningStacks;
 
-
+    // Misc Passives
+    [BoxGroup("Misc Passives", centerLabel: true)]
+    [LabelWidth(200)]
+    public int fireBallBonusDamageStacks;
 
 
 }

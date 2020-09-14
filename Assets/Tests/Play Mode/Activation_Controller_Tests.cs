@@ -8,21 +8,13 @@ namespace Tests
 {
     public class Activation_Controller_Tests
     {
-        // A Test behaves as an ordinary method
-        [Test]
-        public void Activation_Controller_TestsSimplePasses()
-        {
-            // Use the Assert class to test conditions
-        }
 
-        // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-        // `yield return null;` to skip a frame.
-        [UnityTest]
-        public IEnumerator Activation_Controller_TestsWithEnumeratorPasses()
-        {
-            // Use the Assert class to test conditions.
-            // Use yield to skip a frame.
-            yield return null;
-        }
+        // TESTS TO WRITE
+        /* If character dies during turn, next entity does activate
+         * If character dies during CharacterOnActivationEnd phase (e.g. from poisoned damage), next entity does activate
+         * If character dies during turn and is last defender, game over event does trigger
+         * If character dies during turn and is last enemy, victory event does trigger 
+         * 
+         */
     }
 }

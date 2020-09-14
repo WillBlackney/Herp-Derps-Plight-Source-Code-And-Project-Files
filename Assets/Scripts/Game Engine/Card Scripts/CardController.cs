@@ -292,7 +292,8 @@ public class CardController : Singleton<CardController>
         bool boolReturned = false;
 
         if(HasEnoughEnergyToPlayCard(card, owner) &&
-            CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive)
+            CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive &&
+            card.unplayable == false)
 
            // TO DO: here we check for specifics on card type 
            // (e.g. M attack cards not playable when disarmed)
@@ -504,8 +505,8 @@ public class CardController : Singleton<CardController>
             }            
         }
 
-        // Deal Damage
-        else if (cardEffect.cardEffectType == CardEffectType.DealDamage)
+        // Deal Damage Target
+        else if (cardEffect.cardEffectType == CardEffectType.DamageTarget)
         {
             // Attack animation stuff
             if(card.cardType == CardType.MeleeAttack && target != null)
@@ -551,11 +552,46 @@ public class CardController : Singleton<CardController>
                 CoroutineData cData = new CoroutineData();
                 VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.MoveEntityToNodeCentre(owner, owner.levelNode, cData), cData, QueuePosition.Back, 0.3f, 0);
             }
+        }
+
+        // Deal Damage Self
+        else if (cardEffect.cardEffectType == CardEffectType.DamageSelf)
+        {
+            // Calculate damage
+            DamageType damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(owner, cardEffect, card);
+            int baseDamage;
+
+            // Do normal base damage, or draw base damage from another source?
+            if (cardEffect.drawBaseDamageFromCurrentBlock)
+            {
+                baseDamage = owner.block;
+            }
+            else if (cardEffect.drawBaseDamageFromTargetPoisoned)
+            {
+                baseDamage = target.pManager.poisonedStacks;
+            }
+            else
+            {
+                baseDamage = cardEffect.baseDamageValue;
+            }
+
+            // Calculate the end damage value
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, target, damageType, false, baseDamage, card, cardEffect);
+
+            // Start damage sequence
+            CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, damageType, card);
+
+            // Move back to starting node pos, if we moved off 
+            if (hasMovedOffStartingNode && owner.livingState == LivingState.Alive)
+            {
+                CoroutineData cData = new CoroutineData();
+                VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.MoveEntityToNodeCentre(owner, owner.levelNode, cData), cData, QueuePosition.Back, 0.3f, 0);
+            }
 
         }
 
         // Lose Health
-        else if (cardEffect.cardEffectType == CardEffectType.LoseHealth)
+        else if (cardEffect.cardEffectType == CardEffectType.LoseHP)
         {
             // VFX
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateBloodSplatterEffect(owner.characterEntityView.transform.position));
@@ -718,6 +754,7 @@ public class CardController : Singleton<CardController>
     {
         Debug.Log("CardController.RunCardEventListenerFunction() called...");
 
+        // Reduce energy cost of card
         if (e.cardEventListenerFunction == CardEventListenerFunction.ReduceCardEnergyCost)
         {
             // Reduce cost this combat
@@ -731,6 +768,12 @@ public class CardController : Singleton<CardController>
                 VisualEventManager.Instance.CreateVisualEvent(()=> card.cardVM.SetEnergyText(newCostTextValue.ToString()));
             }
         }
+
+        // Apply passive
+        else if (e.cardEventListenerFunction == CardEventListenerFunction.ApplyPassiveToSelf)
+        {
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(card.owner.pManager, e.passivePairing.passiveData.passiveName, e.passivePairing.passiveStacks);
+        }
     }
     public void HandleOnCharacterDamagedCardListeners(CharacterEntityModel character)
     {
@@ -741,6 +784,19 @@ public class CardController : Singleton<CardController>
             foreach(CardEventListener e in card.cardEventListeners)
             {
                 if(e.cardEventListenerType == CardEventListenerType.OnLoseHealth)
+                {
+                    RunCardEventListenerFunction(card, e);
+                }
+            }
+        }
+    }
+    public void HandleOnCharacterActivationEndCardListeners(CharacterEntityModel character)
+    {
+        foreach (Card card in character.hand)
+        {
+            foreach (CardEventListener e in card.cardEventListeners)
+            {
+                if (e.cardEventListenerType == CardEventListenerType.OnActivationEnd)
                 {
                     RunCardEventListenerFunction(card, e);
                 }

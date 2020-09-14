@@ -22,10 +22,10 @@ public class CardEffect
     [ShowIf("ShowDrawDamageFromTargetPoisoned")]
     public bool drawBaseDamageFromTargetPoisoned;
 
-    [ShowIf("cardEffectType", CardEffectType.DealDamage)]
+    [ShowIf("cardEffectType", CardEffectType.DamageTarget)]
     public DamageType damageType;
 
-    [ShowIf("cardEffectType", CardEffectType.LoseHealth)]
+    [ShowIf("cardEffectType", CardEffectType.LoseHP)]
     public int healthLost;
 
     [ShowIf("cardEffectType", CardEffectType.GainEnergy)]
@@ -72,9 +72,9 @@ public class CardEffect
     }
     public bool ShowBaseDamageValue()
     {
-        if (cardEffectType != CardEffectType.DealDamage ||
-            ((cardEffectType == CardEffectType.DealDamage && drawBaseDamageFromCurrentBlock )||
-             (cardEffectType == CardEffectType.DealDamage && drawBaseDamageFromTargetPoisoned))
+        if (cardEffectType != CardEffectType.DamageTarget ||
+            ((cardEffectType == CardEffectType.DamageTarget && drawBaseDamageFromCurrentBlock )||
+             (cardEffectType == CardEffectType.DamageTarget && drawBaseDamageFromTargetPoisoned))
             )
         {
             return false;
@@ -86,7 +86,7 @@ public class CardEffect
     }
     public bool ShowDrawDamageFromBlock()
     {
-        if (cardEffectType == CardEffectType.DealDamage &&
+        if (cardEffectType == CardEffectType.DamageTarget &&
             drawBaseDamageFromTargetPoisoned == false)
         {
             return true;
@@ -98,7 +98,7 @@ public class CardEffect
     }
     public bool ShowDrawDamageFromTargetPoisoned()
     {
-        if (cardEffectType == CardEffectType.DealDamage &&
+        if (cardEffectType == CardEffectType.DamageTarget &&
             drawBaseDamageFromCurrentBlock == false)
         {
             return true;
@@ -115,11 +115,13 @@ public class CardEffect
 public enum CardEffectType
 {
     None,
-    DealDamage,
+    DamageTarget,
+    DamageSelf,
+    DamageAllEnemies,
     GainBlockSelf,
     GainBlockTarget,
     GainBlockAllAllies,    
-    LoseHealth, 
+    LoseHP, 
     GainEnergy, 
     DrawCards, 
     ApplyPassiveToSelf, 
@@ -131,4 +133,5 @@ public enum CardEffectType
     AddCardsToHand,
     RemoveAllPoisonedFromSelf,
     RemoveAllPoisonedFromTarget,
+
 }

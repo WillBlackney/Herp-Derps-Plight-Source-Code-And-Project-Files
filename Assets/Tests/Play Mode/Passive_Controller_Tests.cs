@@ -45,6 +45,7 @@ namespace Tests
         private const string ENRAGE_NAME = "Enrage";
         private const string SHIELD_WALL_NAME = "Shield Wall";
         private const string FAN_OF_KNIVES_NAME = "Fan Of Knives";
+        private const string PHOENIX_FORM_NAME = "Phoenix Form";
         private const string POISONOUS_NAME = "Poisonous";
         private const string VENOMOUS_NAME = "Venomous";
 
@@ -56,9 +57,11 @@ namespace Tests
 
         // Misc passives
         private const string TAUNTED_NAME = "Taunted";
+        private const string FIRE_BALL_BONUS_DAMAGE_NAME = "Fire Ball Bonus Damage";
 
         // DoTs 
         private const string POISONED_NAME = "Poisoned";
+        private const string BURNING_NAME = "Burning";
 
         [UnitySetUp]
         public IEnumerator Setup()
@@ -139,6 +142,7 @@ namespace Tests
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, ENRAGE_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, SHIELD_WALL_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, FAN_OF_KNIVES_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, PHOENIX_FORM_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, POISONOUS_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, VENOMOUS_NAME, stacks);
 
@@ -150,6 +154,10 @@ namespace Tests
 
             // DoTs
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, POISONED_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, BURNING_NAME, stacks);
+
+            // Misc
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, FIRE_BALL_BONUS_DAMAGE_NAME, stacks);
 
             if (model.pManager.bonusDrawStacks == 1 &&
                 model.pManager.bonusStaminaStacks == 1 &&
@@ -166,6 +174,7 @@ namespace Tests
                 model.pManager.enrageStacks == 1 &&
                 model.pManager.shieldWallStacks == 1 &&
                 model.pManager.fanOfKnivesStacks == 1 &&
+                model.pManager.phoenixFormStacks == 1 &&
                 model.pManager.poisonousStacks == 1 &&
                 model.pManager.venomousStacks == 1 &&
 
@@ -174,7 +183,11 @@ namespace Tests
                 model.pManager.vulnerableStacks == 1 &&
                 model.pManager.gritStacks == 1 &&
 
-                model.pManager.poisonedStacks == 1)
+                model.pManager.poisonedStacks == 1 &&
+                model.pManager.burningStacks == 1 &&
+
+                model.pManager.fireBallBonusDamageStacks == 1 
+                )
             {
                 expected = true;
             }
@@ -506,6 +519,33 @@ namespace Tests
             // Assert
             Assert.AreEqual(expected, shanksInHand);
         }
+        [Test]
+        public void Phoenix_Form_Does_Grant_Fire_Ball_Cards_On_Activation_Start()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(PHOENIX_FORM_NAME).passiveName;
+            int stacks = 3;
+            int expected = 3;
+
+            // Act 
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
+            ActivationManager.Instance.OnNewCombatEventStarted();
+
+            // how many fire balls in hand?
+            int fireBallsInHand = 0;
+            foreach (Card card in model.hand)
+            {
+                if (card.cardName == "Fire Ball")
+                {
+                    fireBallsInHand++;
+                }
+            }
+
+            // Assert
+            Assert.AreEqual(expected, fireBallsInHand);
+        }
 
 
 
@@ -620,23 +660,6 @@ namespace Tests
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemyModel.pManager, passiveName, stacks);
             enemyModel.initiative = 1000;
 
-            // setup enemy action
-            /*
-            EnemyAction enemyAction = new EnemyAction();
-            enemyAction.actionType = ActionType.AttackTarget;
-            enemyAction.actionLoops = 1;
-            enemyModel.myNextAction = enemyAction;
-            enemyModel.currentActionTarget = playerModel;
-
-            // setup enemy action effect
-            EnemyActionEffect eae = new EnemyActionEffect();
-            eae.actionType = ActionType.AttackTarget;
-            eae.baseDamage = 5;
-            eae.damageType = DamageType.Physical;
-            eae.attackLoops = 1;
-            enemyAction.actionEffects.Add(eae);
-            */
-
             ActivationManager.Instance.OnNewCombatEventStarted();
 
             // Assert 
@@ -665,7 +688,7 @@ namespace Tests
 
             Card card = new Card();
             card.owner = attacker;
-            card.cardEffects.Add(new CardEffect { baseDamageValue = 10, cardEffectType = CardEffectType.DealDamage });
+            card.cardEffects.Add(new CardEffect { baseDamageValue = 10, cardEffectType = CardEffectType.DamageTarget });
             CardEffect cardEffect = card.cardEffects[0];
 
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(attacker.pManager, passiveName, 1);
@@ -708,7 +731,7 @@ namespace Tests
 
             Card card = new Card();
             card.owner = attacker;
-            card.cardEffects.Add(new CardEffect { baseDamageValue = 10, cardEffectType = CardEffectType.DealDamage });
+            card.cardEffects.Add(new CardEffect { baseDamageValue = 10, cardEffectType = CardEffectType.DamageTarget });
             CardEffect cardEffect = card.cardEffects[0];
 
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(attacker.pManager, passiveName, 1);
@@ -751,7 +774,7 @@ namespace Tests
 
             Card card = new Card();
             card.owner = attacker;
-            card.cardEffects.Add(new CardEffect { baseDamageValue = 10, cardEffectType = CardEffectType.DealDamage });
+            card.cardEffects.Add(new CardEffect { baseDamageValue = 10, cardEffectType = CardEffectType.DamageTarget });
             CardEffect cardEffect = card.cardEffects[0];
 
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, passiveName, 1);
@@ -794,7 +817,7 @@ namespace Tests
 
             Card card = new Card();
             card.owner = attacker;
-            card.cardEffects.Add(new CardEffect { baseDamageValue = 10, cardEffectType = CardEffectType.DealDamage });
+            card.cardEffects.Add(new CardEffect { baseDamageValue = 10, cardEffectType = CardEffectType.DamageTarget });
             CardEffect cardEffect = card.cardEffects[0];
 
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, passiveName, 1);
@@ -989,7 +1012,47 @@ namespace Tests
         {
             // TO DO: write this test when damage type resistance logic is written
         }
+        [Test]
+        public void Burning_Does_Deal_Damage_On_Character_Activation_End()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(BURNING_NAME).passiveName;
+            int stacks = 10;
+            int expected;
 
+            // Act 
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            expected = model.health - stacks;
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CharacterEntityController.Instance.CharacterOnActivationEnd(model);
+
+            // Assert
+            Assert.AreEqual(expected, model.health);
+        }
+        [Test]
+        public void Burning_Does_Kill_Character_If_Lethal_On_Character_Activation_End()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(BURNING_NAME).passiveName;
+            int stacks = 1000;
+
+            // Act 
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CharacterEntityController.Instance.CharacterOnActivationEnd(model);
+
+            // Assert
+            Assert.IsTrue(model.livingState == LivingState.Dead);
+        }
+        [Test]
+        public void Burning_Damage_Is_Affected_By_Fire_Resistance()
+        {
+            // TO DO: write this test when damage type resistance logic is written
+        }
         #endregion
 
 

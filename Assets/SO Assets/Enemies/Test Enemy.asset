@@ -16,7 +16,7 @@ MonoBehaviour:
   maxHealth: 30
   power: 0
   dexterity: 0
-  initiative: 11
+  initiative: 0
   startingHealth: 20
   startingBlock: 0
   physicalResistance: 0
@@ -39,6 +39,7 @@ MonoBehaviour:
     enrageStacks: 0
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
+    phoenixFormStacks: 0
     poisonousStacks: 0
     venomousStacks: 0
     wrathStacks: 0
@@ -46,6 +47,7 @@ MonoBehaviour:
     vulnerableStacks: 0
     gritStacks: 0
     poisonedStacks: 0
+    fireBallBonusDamageStacks: 0
   allEnemyActions:
   - actionName: Howl
     actionType: 0

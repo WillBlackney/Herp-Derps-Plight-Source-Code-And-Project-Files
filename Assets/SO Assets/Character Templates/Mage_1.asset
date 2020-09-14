@@ -9,15 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 272d402ffa0a347429dfe06011e3d167, type: 3}
-  m_Name: Satyr Ranger
+  m_Script: {fileID: 11500000, guid: 2410c6608dbef744a9643f0571333299, type: 3}
+  m_Name: Mage_1
   m_EditorClassIdentifier: 
-  enemyName: Satyr Ranger
-  maxHealth: 17
+  myName: Mage_1
+  health: 30
+  maxHealth: 30
   power: 0
   dexterity: 0
+  stamina: 30
+  draw: 5
   initiative: 3
-  startingHealth: 17
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0
@@ -39,6 +41,7 @@ MonoBehaviour:
     enrageStacks: 0
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
+    phoenixFormStacks: 3
     poisonousStacks: 0
     venomousStacks: 0
     wrathStacks: 0
@@ -46,35 +49,24 @@ MonoBehaviour:
     vulnerableStacks: 0
     gritStacks: 0
     poisonedStacks: 0
-  allEnemyActions:
-  - actionName: Shoot
-    actionType: 0
-    intentImage: 0
-    actionLoops: 1
-    doThisOnFirstActivation: 0
-    canBeConsecutive: 1
-    prioritiseWhenRequirementsMet: 0
-    actionRequirements: []
-    actionEffects: []
-  - actionName: Enfeeble
-    actionType: 5
-    intentImage: 7
-    actionLoops: 1
-    doThisOnFirstActivation: 0
-    canBeConsecutive: 0
-    prioritiseWhenRequirementsMet: 0
-    actionRequirements: []
-    actionEffects: []
-  allBodyParts:
-  - Satyr_Head_3
-  - Satyr_Face_2
-  - Satyr_Right_Hand
-  - Satyr_Right_Arm
-  - Satyr_Left_Hand
-  - Satyr_Left_Arm
-  - Satyr_Chest
-  - Satyr_Right_Leg
-  - Satyr_Left_Leg
-  - Left_Hand_Recurve_Bow_1
-  - Marksman_Right_Arm_Wear
-  - Marksman_Chest_Wear
+    burningStacks: 0
+    fireBallBonusDamageStacks: 0
+  deck:
+  - {fileID: 11400000, guid: e4da3cf9bac315a4586b6ba520cf9a90, type: 2}
+  - {fileID: 11400000, guid: e4da3cf9bac315a4586b6ba520cf9a90, type: 2}
+  - {fileID: 11400000, guid: e4da3cf9bac315a4586b6ba520cf9a90, type: 2}
+  - {fileID: 11400000, guid: e4da3cf9bac315a4586b6ba520cf9a90, type: 2}
+  - {fileID: 11400000, guid: e4da3cf9bac315a4586b6ba520cf9a90, type: 2}
+  modelParts:
+  - Human_Chest
+  - Elf_Face_4
+  - Elf_Head_1
+  - Human_Right_Arm
+  - Human_Right_Hand
+  - Human_Right_Leg
+  - Arcanist_Head_Wear
+  - Arcanist_Chest_Wear
+  - Arcanist_Right_Leg_Wear
+  itemManager:
+    mainHandItem: {fileID: 11400000, guid: bfbdb5e21e389ab4c9aae5b49350a1d0, type: 2}
+    offHandItem: {fileID: 0}

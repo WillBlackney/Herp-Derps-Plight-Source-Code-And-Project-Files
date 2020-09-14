@@ -22,6 +22,7 @@ public class PassiveManagerModel
     public int enrageStacks;
     public int shieldWallStacks;
     public int fanOfKnivesStacks;
+    public int phoenixFormStacks;
 
     // Core Damage % Modifier Passives
     public int wrathStacks;
@@ -34,8 +35,10 @@ public class PassiveManagerModel
     // Misc passives
     [HideInInspector] public int tauntStacks;
     [HideInInspector] public CharacterEntityModel myTaunter;
+    public int fireBallBonusDamageStacks;
 
     // DoT Debuff Passives
     public int poisonedStacks;
+    public int burningStacks;
 
 }
