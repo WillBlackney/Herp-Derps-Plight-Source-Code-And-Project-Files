@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Phoenix Form
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: 7fad5f16336af85409af81023096187a, type: 3}
+  passiveSprite: {fileID: 21300000, guid: f881fcb4e6894f243bd78199c38feb55, type: 3}
   passiveName: Phoenix Form
   showStackCount: 1

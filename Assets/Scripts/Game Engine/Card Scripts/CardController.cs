@@ -135,9 +135,10 @@ public class CardController : Singleton<CardController>
 
     // Card draw Logic
     #region
-    private void DrawACardFromDrawPile(CharacterEntityModel defender, int drawPileIndex = 0)
+    private Card DrawACardFromDrawPile(CharacterEntityModel defender, int drawPileIndex = 0)
     {
         Debug.Log("CardController.DrawACardFromDrawPile() called...");
+        Card cardDrawn = null;
 
         // Shuffle discard pile back into draw pile if draw pile is empty
         if (IsDrawPileEmpty(defender))
@@ -147,7 +148,7 @@ public class CardController : Singleton<CardController>
         if (IsCardDrawValid(defender))
         {
             // Get card and remove from deck
-            Card cardDrawn = defender.drawPile[drawPileIndex];
+            cardDrawn = defender.drawPile[drawPileIndex];
             RemoveCardFromDrawPile(defender, cardDrawn);
 
             // Add card to hand
@@ -157,7 +158,7 @@ public class CardController : Singleton<CardController>
             VisualEventManager.Instance.CreateVisualEvent(() => DrawCardFromDeckVisualEvent(cardDrawn, defender), QueuePosition.Back, 0, 0.2f, EventDetail.CardDraw);
         }
 
-
+        return cardDrawn;
     }
     public void DrawCardsOnActivationStart(CharacterEntityModel defender)
     {
@@ -219,7 +220,7 @@ public class CardController : Singleton<CardController>
         // does the card have a cardVM linked to it?
         if (cvm)
         {
-            VisualEventManager.Instance.CreateVisualEvent(() => DiscardCardFromHandVisualEvent(cvm, owner), 0, 0.1f);
+            VisualEventManager.Instance.CreateVisualEvent(() => DiscardCardFromHandVisualEvent(cvm, owner), QueuePosition.Back, 0f, 0.1f);
         }                         
 
     }
@@ -554,6 +555,37 @@ public class CardController : Singleton<CardController>
             }
         }
 
+        // Deal Damage All Enemies
+        else if (cardEffect.cardEffectType == CardEffectType.DamageAllEnemies)
+        {
+            foreach(CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
+            {
+                // Calculate damage
+                DamageType damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(owner, cardEffect, card);
+                int baseDamage;
+
+                // Do normal base damage, or draw base damage from another source?
+                if (cardEffect.drawBaseDamageFromCurrentBlock)
+                {
+                    baseDamage = owner.block;
+                }
+                else if (cardEffect.drawBaseDamageFromTargetPoisoned)
+                {
+                    baseDamage = target.pManager.poisonedStacks;
+                }
+                else
+                {
+                    baseDamage = cardEffect.baseDamageValue;
+                }
+
+                // Calculate the end damage value
+                int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, enemy, damageType, false, baseDamage, card, cardEffect);
+
+                // Start damage sequence
+                CombatLogic.Instance.HandleDamage(finalDamageValue, owner, enemy, damageType, card);
+            }            
+        }
+
         // Deal Damage Self
         else if (cardEffect.cardEffectType == CardEffectType.DamageSelf)
         {
@@ -580,14 +612,6 @@ public class CardController : Singleton<CardController>
 
             // Start damage sequence
             CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, damageType, card);
-
-            // Move back to starting node pos, if we moved off 
-            if (hasMovedOffStartingNode && owner.livingState == LivingState.Alive)
-            {
-                CoroutineData cData = new CoroutineData();
-                VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.MoveEntityToNodeCentre(owner, owner.levelNode, cData), cData, QueuePosition.Back, 0.3f, 0);
-            }
-
         }
 
         // Lose Health
@@ -614,7 +638,15 @@ public class CardController : Singleton<CardController>
             // Draw cards
             for(int draws = 0; draws < cardEffect.cardsDrawn; draws++)
             {
-                DrawACardFromDrawPile(owner);
+                Card cardDrawn = DrawACardFromDrawPile(owner);
+                if(cardEffect.extraDrawEffect == ExtraDrawEffect.ReduceEnergyCostThisCombat)
+                {
+                    ReduceCardEnergyCostThisCombat(cardDrawn, cardEffect.cardEnergyReduction);
+                }
+                else if (cardEffect.extraDrawEffect == ExtraDrawEffect.SetEnergyCostToZeroThisCombat)
+                {
+                    ReduceCardEnergyCostThisCombat(cardDrawn, cardDrawn.cardBaseEnergyCost);
+                }
             }           
         }
 
@@ -754,25 +786,22 @@ public class CardController : Singleton<CardController>
     {
         Debug.Log("CardController.RunCardEventListenerFunction() called...");
 
+        // TO DO: Create a small visual event dotween sequence
+        // on card VM's when they trigger on listener event,
+        // something like scales up and then back down quickly
+
         // Reduce energy cost of card
         if (e.cardEventListenerFunction == CardEventListenerFunction.ReduceCardEnergyCost)
         {
             // Reduce cost this combat
-            card.energyReductionThisCombatOnly += e.energyReductionAmount;
-
-            // Update card vm energy text, if not null
-            if(card.cardVM != null)
-            {
-                // should this be a visual event or nah?
-                int newCostTextValue = GetCardEnergyCost(card);
-                VisualEventManager.Instance.CreateVisualEvent(()=> card.cardVM.SetEnergyText(newCostTextValue.ToString()));
-            }
+            ReduceCardEnergyCostThisCombat(card, e.energyReductionAmount);
         }
 
         // Apply passive
         else if (e.cardEventListenerFunction == CardEventListenerFunction.ApplyPassiveToSelf)
         {
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(card.owner.pManager, e.passivePairing.passiveData.passiveName, e.passivePairing.passiveStacks);
+            VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(card.cardVM));
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(card.owner.pManager, e.passivePairing.passiveData.passiveName, e.passivePairing.passiveStacks, true, 0.5f);
         }
     }
     public void HandleOnCharacterDamagedCardListeners(CharacterEntityModel character)
@@ -806,7 +835,7 @@ public class CardController : Singleton<CardController>
     #endregion
 
     // Misc + Calculators
-    public int GetCardEnergyCost(Card card)
+    private int GetCardEnergyCost(Card card)
     {
         Debug.Log("CardController.GetCardEnergyCost() called for card: " + card.cardName);
 
@@ -823,6 +852,16 @@ public class CardController : Singleton<CardController>
         }
 
         return costReturned;
+    }
+    private void ReduceCardEnergyCostThisCombat(Card card, int reductionAmount)
+    {
+        // Reduce cost this combat
+        card.energyReductionThisCombatOnly += reductionAmount;
+
+        // Update card vm energy text, if not null
+        int newCostTextValue = GetCardEnergyCost(card);
+        VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(card.cardVM));
+        VisualEventManager.Instance.CreateVisualEvent(() => card.cardVM.SetEnergyText(newCostTextValue.ToString()));
     }
 
     // Visual Events
@@ -899,6 +938,24 @@ public class CardController : Singleton<CardController>
         s.Append(cvm.transform.DOMove(discardPileLocation.position, 0.5f));
 
         return s;
+    }
+    private void PlayCardBreathAnimationVisualEvent(CardViewModel cvm)
+    {
+        StartCoroutine(PlayCardBreathAnimationVisualEventCoroutine(cvm));
+    }
+    private IEnumerator PlayCardBreathAnimationVisualEventCoroutine(CardViewModel cvm)
+    {
+        if(cvm != null)
+        {
+            float currentScale = cvm.transform.localScale.x;
+            float endScale = currentScale * 1.5f;
+            float animSpeed = 0.25f;
+
+            cvm.transform.DOScale(endScale, animSpeed).SetEase(Ease.OutQuint);
+            yield return new WaitForSeconds(animSpeed);
+            cvm.transform.DOScale(currentScale, animSpeed).SetEase(Ease.OutQuint);
+        }
+        
     }
     private void PlayACardFromHandVisualEvent(CardViewModel cvm, CharacterEntityView view)
     {

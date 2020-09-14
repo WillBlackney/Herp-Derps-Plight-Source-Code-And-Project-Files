@@ -22,7 +22,7 @@ public class CardEffect
     [ShowIf("ShowDrawDamageFromTargetPoisoned")]
     public bool drawBaseDamageFromTargetPoisoned;
 
-    [ShowIf("cardEffectType", CardEffectType.DamageTarget)]
+    [ShowIf("ShowDamageType")]
     public DamageType damageType;
 
     [ShowIf("cardEffectType", CardEffectType.LoseHP)]
@@ -33,6 +33,12 @@ public class CardEffect
 
     [ShowIf("cardEffectType", CardEffectType.DrawCards)]
     public int cardsDrawn;
+
+    [ShowIf("cardEffectType", CardEffectType.DrawCards)]
+    public ExtraDrawEffect extraDrawEffect;
+
+    [ShowIf("extraDrawEffect", ExtraDrawEffect.ReduceEnergyCostThisCombat)]
+    public int cardEnergyReduction;
 
     [ShowIf("ShowPassivePairing")]
     public PassivePairingData passivePairing;
@@ -72,9 +78,9 @@ public class CardEffect
     }
     public bool ShowBaseDamageValue()
     {
-        if (cardEffectType != CardEffectType.DamageTarget ||
-            ((cardEffectType == CardEffectType.DamageTarget && drawBaseDamageFromCurrentBlock )||
-             (cardEffectType == CardEffectType.DamageTarget && drawBaseDamageFromTargetPoisoned))
+        if ((cardEffectType != CardEffectType.DamageTarget && cardEffectType != CardEffectType.DamageSelf && cardEffectType != CardEffectType.DamageAllEnemies) ||
+            ((drawBaseDamageFromCurrentBlock )||
+             (drawBaseDamageFromTargetPoisoned))
             )
         {
             return false;
@@ -86,7 +92,7 @@ public class CardEffect
     }
     public bool ShowDrawDamageFromBlock()
     {
-        if (cardEffectType == CardEffectType.DamageTarget &&
+        if ((cardEffectType == CardEffectType.DamageTarget || cardEffectType == CardEffectType.DamageSelf || cardEffectType == CardEffectType.DamageAllEnemies)  &&
             drawBaseDamageFromTargetPoisoned == false)
         {
             return true;
@@ -98,8 +104,19 @@ public class CardEffect
     }
     public bool ShowDrawDamageFromTargetPoisoned()
     {
-        if (cardEffectType == CardEffectType.DamageTarget &&
+        if ((cardEffectType == CardEffectType.DamageTarget || cardEffectType == CardEffectType.DamageSelf || cardEffectType == CardEffectType.DamageAllEnemies) &&
             drawBaseDamageFromCurrentBlock == false)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowDamageType()
+    {
+        if (cardEffectType == CardEffectType.DamageTarget || cardEffectType == CardEffectType.DamageSelf || cardEffectType == CardEffectType.DamageAllEnemies)
         {
             return true;
         }
@@ -114,24 +131,35 @@ public class CardEffect
 [Serializable]
 public enum CardEffectType
 {
-    None,
-    DamageTarget,
-    DamageSelf,
-    DamageAllEnemies,
-    GainBlockSelf,
-    GainBlockTarget,
-    GainBlockAllAllies,    
-    LoseHP, 
-    GainEnergy, 
-    DrawCards, 
-    ApplyPassiveToSelf, 
-    ApplyPassiveToTarget, 
-    ApplyPassiveToAllEnemies,
-    ApplyPassiveToAllAllies,
-    TauntTarget,
-    TauntAllEnemies,
-    AddCardsToHand,
-    RemoveAllPoisonedFromSelf,
-    RemoveAllPoisonedFromTarget,
+    None = 0,
+    AddCardsToHand = 1,
+    ApplyPassiveToSelf = 2,
+    ApplyPassiveToTarget = 3,
+    ApplyPassiveToAllEnemies = 4,
+    ApplyPassiveToAllAllies = 5,
+    DamageTarget = 6,
+    DamageSelf = 7,
+    DamageAllEnemies = 8,
+    DrawCards = 9,
+    GainBlockSelf = 10,
+    GainBlockTarget = 19,
+    GainBlockAllAllies = 12,
+    GainEnergy = 13,
+    LoseHP = 14,
+    RemoveAllPoisonedFromSelf = 15,
+    RemoveAllPoisonedFromTarget = 16,
+    TauntTarget = 17,
+    TauntAllEnemies = 18,
+    
+    
 
 }
+[Serializable]
+public enum ExtraDrawEffect
+{
+    None,
+    ReduceEnergyCostThisCombat,
+    SetEnergyCostToZeroThisCombat,
+}
+
+

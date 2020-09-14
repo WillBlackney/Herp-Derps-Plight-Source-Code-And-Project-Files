@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Stab And Run
+  m_Name: Flame Ward
   m_EditorClassIdentifier: 
-  cardName: Stab And Run
-  cardDescription: Gain 3 Block. Add a Shank to your hand.
-  cardSprite: {fileID: 21300000, guid: c1d9fca0e66bdf546aff06f8dc490319, type: 3}
+  cardName: Flame Ward
+  cardDescription: Give a target 7 Block. Add a Burn to your hand.
+  cardSprite: {fileID: 21300000, guid: baac960313a3b5a4b874d9bd546cc66a, type: 3}
   cardEnergyCost: 10
   cardType: 1
-  targettingType: 0
-  talentSchool: 4
+  targettingType: 2
+  talentSchool: 6
   rarity: 1
   expend: 0
   opener: 0
   fleeting: 0
   unplayable: 0
   cardEffects:
-  - cardEffectType: 10
+  - cardEffectType: 19
     weaponRequirement: 0
-    blockGainValue: 3
+    blockGainValue: 7
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
@@ -57,6 +57,6 @@ MonoBehaviour:
     passivePairing:
       passiveData: {fileID: 0}
       passiveStacks: 0
-    cardAdded: {fileID: 11400000, guid: 648ee25c51574a74983929772bcecb4d, type: 2}
+    cardAdded: {fileID: 11400000, guid: e4da3cf9bac315a4586b6ba520cf9a90, type: 2}
     copiesAdded: 1
   cardEventListeners: []

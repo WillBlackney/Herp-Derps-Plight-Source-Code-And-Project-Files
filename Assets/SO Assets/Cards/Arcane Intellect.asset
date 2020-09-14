@@ -10,39 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Stab And Run
+  m_Name: Arcane Intellect
   m_EditorClassIdentifier: 
-  cardName: Stab And Run
-  cardDescription: Gain 3 Block. Add a Shank to your hand.
-  cardSprite: {fileID: 21300000, guid: c1d9fca0e66bdf546aff06f8dc490319, type: 3}
-  cardEnergyCost: 10
+  cardName: Arcane Intellect
+  cardDescription: 'Draw 2 cards. Reduce their cost by 10 this combat. '
+  cardSprite: {fileID: 21300000, guid: 91643d043fe4c5d45af86edcd0d20843, type: 3}
+  cardEnergyCost: 20
   cardType: 1
   targettingType: 0
-  talentSchool: 4
+  talentSchool: 9
   rarity: 1
   expend: 0
   opener: 0
   fleeting: 0
   unplayable: 0
   cardEffects:
-  - cardEffectType: 10
-    weaponRequirement: 0
-    blockGainValue: 3
-    baseDamageValue: 0
-    drawBaseDamageFromCurrentBlock: 0
-    drawBaseDamageFromTargetPoisoned: 0
-    damageType: 0
-    healthLost: 0
-    energyGained: 0
-    cardsDrawn: 0
-    extraDrawEffect: 0
-    cardEnergyReduction: 0
-    passivePairing:
-      passiveData: {fileID: 0}
-      passiveStacks: 0
-    cardAdded: {fileID: 0}
-    copiesAdded: 0
-  - cardEffectType: 1
+  - cardEffectType: 9
     weaponRequirement: 0
     blockGainValue: 0
     baseDamageValue: 0
@@ -51,12 +34,12 @@ MonoBehaviour:
     damageType: 0
     healthLost: 0
     energyGained: 0
-    cardsDrawn: 0
-    extraDrawEffect: 0
-    cardEnergyReduction: 0
+    cardsDrawn: 2
+    extraDrawEffect: 1
+    cardEnergyReduction: 10
     passivePairing:
       passiveData: {fileID: 0}
       passiveStacks: 0
-    cardAdded: {fileID: 11400000, guid: 648ee25c51574a74983929772bcecb4d, type: 2}
-    copiesAdded: 1
+    cardAdded: {fileID: 0}
+    copiesAdded: 0
   cardEventListeners: []

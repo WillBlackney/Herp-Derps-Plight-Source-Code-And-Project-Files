@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Phoenix Form
   cardDescription: 'On activation start, add a Fire Ball to your hand. '
-  cardSprite: {fileID: 21300000, guid: 7fad5f16336af85409af81023096187a, type: 3}
+  cardSprite: {fileID: 21300000, guid: f881fcb4e6894f243bd78199c38feb55, type: 3}
   cardEnergyCost: 20
   cardType: 4
   targettingType: 0
@@ -25,7 +25,7 @@ MonoBehaviour:
   fleeting: 0
   unplayable: 0
   cardEffects:
-  - cardEffectType: 8
+  - cardEffectType: 2
     weaponRequirement: 0
     blockGainValue: 0
     baseDamageValue: 0
@@ -35,6 +35,8 @@ MonoBehaviour:
     healthLost: 0
     energyGained: 0
     cardsDrawn: 0
+    extraDrawEffect: 0
+    cardEnergyReduction: 0
     passivePairing:
       passiveData: {fileID: 11400000, guid: 133261c50fc6b4a40aa6a50e7afc018b, type: 2}
       passiveStacks: 1

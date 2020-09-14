@@ -14,15 +14,49 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Hot Head
   cardDescription: 'Gain 10 Energy. Add a Burn to your hand. '
-  cardSprite: {fileID: 0}
+  cardSprite: {fileID: 21300000, guid: c25c4bdfff04b10489732d4b584103dc, type: 3}
   cardEnergyCost: 0
-  cardType: 0
+  cardType: 1
   targettingType: 0
-  talentSchool: 0
-  rarity: 0
+  talentSchool: 6
+  rarity: 1
   expend: 0
   opener: 0
   fleeting: 0
   unplayable: 0
-  cardEffects: []
+  cardEffects:
+  - cardEffectType: 13
+    weaponRequirement: 0
+    blockGainValue: 0
+    baseDamageValue: 0
+    drawBaseDamageFromCurrentBlock: 0
+    drawBaseDamageFromTargetPoisoned: 0
+    damageType: 0
+    healthLost: 0
+    energyGained: 10
+    cardsDrawn: 0
+    extraDrawEffect: 0
+    cardEnergyReduction: 0
+    passivePairing:
+      passiveData: {fileID: 0}
+      passiveStacks: 0
+    cardAdded: {fileID: 0}
+    copiesAdded: 0
+  - cardEffectType: 1
+    weaponRequirement: 0
+    blockGainValue: 0
+    baseDamageValue: 0
+    drawBaseDamageFromCurrentBlock: 0
+    drawBaseDamageFromTargetPoisoned: 0
+    damageType: 0
+    healthLost: 0
+    energyGained: 0
+    cardsDrawn: 0
+    extraDrawEffect: 0
+    cardEnergyReduction: 0
+    passivePairing:
+      passiveData: {fileID: 0}
+      passiveStacks: 0
+    cardAdded: {fileID: 11400000, guid: e4da3cf9bac315a4586b6ba520cf9a90, type: 2}
+    copiesAdded: 1
   cardEventListeners: []

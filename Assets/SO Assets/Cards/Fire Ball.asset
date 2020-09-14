@@ -26,7 +26,7 @@ MonoBehaviour:
   fleeting: 0
   unplayable: 0
   cardEffects:
-  - cardEffectType: 1
+  - cardEffectType: 6
     weaponRequirement: 0
     blockGainValue: 0
     baseDamageValue: 3
@@ -36,12 +36,14 @@ MonoBehaviour:
     healthLost: 0
     energyGained: 0
     cardsDrawn: 0
+    extraDrawEffect: 0
+    cardEnergyReduction: 0
     passivePairing:
       passiveData: {fileID: 0}
       passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
-  - cardEffectType: 8
+  - cardEffectType: 2
     weaponRequirement: 0
     blockGainValue: 0
     baseDamageValue: 0
@@ -51,6 +53,8 @@ MonoBehaviour:
     healthLost: 0
     energyGained: 0
     cardsDrawn: 0
+    extraDrawEffect: 0
+    cardEnergyReduction: 0
     passivePairing:
       passiveData: {fileID: 11400000, guid: d8fad9c5a5824f544a127076c5d15d22, type: 2}
       passiveStacks: 2

@@ -25,17 +25,21 @@ MonoBehaviour:
   fleeting: 0
   unplayable: 0
   cardEffects:
-  - cardEffectType: 13
+  - cardEffectType: 3
     weaponRequirement: 0
     blockGainValue: 0
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
+    drawBaseDamageFromTargetPoisoned: 0
     damageType: 0
     healthLost: 0
     energyGained: 0
     cardsDrawn: 0
-    burningApplied: 0
+    extraDrawEffect: 0
+    cardEnergyReduction: 0
     passivePairing:
       passiveData: {fileID: 11400000, guid: 30ab842a7e54aab4290645cb4610b843, type: 2}
       passiveStacks: 1
+    cardAdded: {fileID: 0}
+    copiesAdded: 0
   cardEventListeners: []

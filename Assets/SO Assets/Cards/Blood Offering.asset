@@ -20,20 +20,43 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 12
   rarity: 0
+  expend: 0
+  opener: 0
+  fleeting: 0
+  unplayable: 0
   cardEffects:
-  - cardEffectType: 3
+  - cardEffectType: 14
+    weaponRequirement: 0
     blockGainValue: 0
     baseDamageValue: 0
+    drawBaseDamageFromCurrentBlock: 0
+    drawBaseDamageFromTargetPoisoned: 0
     damageType: 0
-    healthLost: 3
+    healthLost: 2
     energyGained: 0
     cardsDrawn: 0
-    burningApplied: 0
-  - cardEffectType: 4
+    extraDrawEffect: 0
+    cardEnergyReduction: 0
+    passivePairing:
+      passiveData: {fileID: 0}
+      passiveStacks: 0
+    cardAdded: {fileID: 0}
+    copiesAdded: 0
+  - cardEffectType: 13
+    weaponRequirement: 0
     blockGainValue: 0
     baseDamageValue: 0
+    drawBaseDamageFromCurrentBlock: 0
+    drawBaseDamageFromTargetPoisoned: 0
     damageType: 0
     healthLost: 0
     energyGained: 10
     cardsDrawn: 0
-    burningApplied: 0
+    extraDrawEffect: 0
+    cardEnergyReduction: 0
+    passivePairing:
+      passiveData: {fileID: 0}
+      passiveStacks: 0
+    cardAdded: {fileID: 0}
+    copiesAdded: 0
+  cardEventListeners: []
