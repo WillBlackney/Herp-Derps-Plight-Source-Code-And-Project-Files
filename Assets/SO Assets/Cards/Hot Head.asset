@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hot Head
   m_EditorClassIdentifier: 
   cardName: Hot Head
-  cardDescription: 'Gain 10 Energy. Add a Burn to your hand. '
+  cardDescription: 'Gain 1 Energy. Add a Burn to your hand. '
   cardSprite: {fileID: 21300000, guid: c25c4bdfff04b10489732d4b584103dc, type: 3}
   cardEnergyCost: 0
   cardType: 1
@@ -33,7 +33,7 @@ MonoBehaviour:
     drawBaseDamageFromTargetPoisoned: 0
     damageType: 0
     healthLost: 0
-    energyGained: 10
+    energyGained: 1
     cardsDrawn: 0
     extraDrawEffect: 0
     cardEnergyReduction: 0

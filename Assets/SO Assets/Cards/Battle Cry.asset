@@ -15,14 +15,31 @@ MonoBehaviour:
   cardName: Battle Cry
   cardDescription: Draw 3 Cards
   cardSprite: {fileID: 21300000, guid: 333e247e6a5b8db4887018416209cb0d, type: 3}
-  cardEnergyCost: 10
+  cardEnergyCost: 1
   cardType: 1
   targettingType: 0
+  talentSchool: 0
+  rarity: 0
+  expend: 0
+  opener: 0
+  fleeting: 0
+  unplayable: 0
   cardEffects:
   - cardEffectType: 5
+    weaponRequirement: 0
     blockGainValue: 0
     baseDamageValue: 0
+    drawBaseDamageFromCurrentBlock: 0
+    drawBaseDamageFromTargetPoisoned: 0
     damageType: 0
     healthLost: 0
     energyGained: 0
     cardsDrawn: 3
+    extraDrawEffect: 0
+    cardEnergyReduction: 0
+    passivePairing:
+      passiveData: {fileID: 0}
+      passiveStacks: 0
+    cardAdded: {fileID: 0}
+    copiesAdded: 0
+  cardEventListeners: []

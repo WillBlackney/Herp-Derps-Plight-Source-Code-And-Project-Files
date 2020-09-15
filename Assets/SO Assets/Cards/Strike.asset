@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Strike
   cardDescription: Deal 6 Physical Damage
   cardSprite: {fileID: 21300000, guid: 4057ff219be9f5548af7018d00aa897c, type: 3}
-  cardEnergyCost: 10
+  cardEnergyCost: 1
   cardType: 2
   targettingType: 3
   talentSchool: 0

@@ -687,6 +687,18 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Fire, null, null, true);
         }
 
+        // Overload
+        if (entity.pManager.overloadStacks > 0)
+        {
+            // Get random enemy
+            List<CharacterEntityModel> enemies = GetAllEnemiesOfCharacter(entity);
+            CharacterEntityModel randomEnemy = enemies[Random.Range(0, enemies.Count)];
+
+            // Deal air damage
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(entity, randomEnemy, DamageType.Air, false, entity.pManager.overloadStacks, null, null);
+            CombatLogic.Instance.HandleDamage(finalDamageValue, entity, randomEnemy, DamageType.Air, null, null, true);
+        }
+
         #endregion
 
 

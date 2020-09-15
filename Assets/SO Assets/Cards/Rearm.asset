@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Rearm
   cardDescription: Add 2 Shank cards to your hand.
   cardSprite: {fileID: 21300000, guid: 5f3171b0b1a60d141876fbc49914042a, type: 3}
-  cardEnergyCost: 10
+  cardEnergyCost: 1
   cardType: 1
   targettingType: 0
   talentSchool: 4

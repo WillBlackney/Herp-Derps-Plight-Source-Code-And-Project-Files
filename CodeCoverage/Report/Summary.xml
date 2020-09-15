@@ -1,44 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CoverageReport scope="Summary">
   <Summary>
-    <Generatedon>11/09/2020 - 10:52:51 PM</Generatedon>
+    <Generatedon>15/09/2020 - 5:25:11 PM</Generatedon>
     <Parser>OpenCoverParser</Parser>
     <Assemblies>1</Assemblies>
-    <Classes>100</Classes>
-    <Files>79</Files>
-    <Coveredlines>1880</Coveredlines>
-    <Uncoveredlines>4647</Uncoveredlines>
-    <Coverablelines>6527</Coverablelines>
-    <Totallines>13392</Totallines>
-    <Linecoverage>28.8</Linecoverage>
+    <Classes>104</Classes>
+    <Files>83</Files>
+    <Coveredlines>2584</Coveredlines>
+    <Uncoveredlines>4979</Uncoveredlines>
+    <Coverablelines>7563</Coverablelines>
+    <Totallines>14935</Totallines>
+    <Linecoverage>34.1</Linecoverage>
     <Coveredbranches>0</Coveredbranches>
     <Totalbranches>0</Totalbranches>
   </Summary>
   <Coverage>
-    <Assembly name="Main" classes="100" coverage="28.8" coveredlines="1880" coverablelines="6527" totallines="17794" branchcoverage="" coveredbranches="0" totalbranches="0">
-      <Class name="ActionRequirement" coverage="0" coveredlines="0" coverablelines="14" totallines="269" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="ActivationManager" coverage="35" coveredlines="108" coverablelines="308" totallines="573" branchcoverage="" coveredbranches="0" totalbranches="0" />
+    <Assembly name="Main" classes="104" coverage="34.1" coveredlines="2584" coverablelines="7563" totallines="19178" branchcoverage="" coveredbranches="0" totalbranches="0">
+      <Class name="ActionRequirement" coverage="0" coveredlines="0" coverablelines="14" totallines="216" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="ActivationManager" coverage="42.8" coveredlines="138" coverablelines="322" totallines="591" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="ActivationWindow" coverage="0" coveredlines="0" coverablelines="8" totallines="38" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="AddBoxToDrawer[T]" coverage="0" coveredlines="0" coverablelines="5" totallines="269" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="AddBoxToDrawer[T]" coverage="0" coveredlines="0" coverablelines="5" totallines="216" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="AutoDestructObject" coverage="0" coveredlines="0" coverablelines="5" totallines="16" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="BetterCardRotation" coverage="4.3" coveredlines="1" coverablelines="23" totallines="62" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="BuffEffect" coverage="0" coveredlines="0" coverablelines="10" totallines="27" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="CameraManager" coverage="50" coveredlines="1" coverablelines="2" totallines="22" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="Card" coverage="100" coveredlines="2" coverablelines="2" totallines="24" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="CardController" coverage="35.6" coveredlines="123" coverablelines="345" totallines="610" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="Card" coverage="100" coveredlines="2" coverablelines="2" totallines="31" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="CardController" coverage="49.4" coveredlines="299" coverablelines="605" totallines="994" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="CardDataEditor" coverage="0" coveredlines="0" coverablelines="43" totallines="82" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="CardEffect" coverage="0" coveredlines="0" coverablelines="42" totallines="133" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="CardEventListener" coverage="0" coveredlines="0" coverablelines="7" totallines="31" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="CardLocationTracker" coverage="6.8" coveredlines="2" coverablelines="29" totallines="80" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="CardPreviewViewModel" coverage="0" coveredlines="0" coverablelines="25" totallines="54" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="CardViewModel" coverage="0" coveredlines="0" coverablelines="65" totallines="120" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="CharacterDataController" coverage="4" coveredlines="1" coverablelines="25" totallines="44" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="CharacterEntityController" coverage="29" coveredlines="260" coverablelines="894" totallines="1611" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="CharacterEntityModel" coverage="100" coveredlines="5" coverablelines="5" totallines="67" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="CharacterEntityView" coverage="0" coveredlines="0" coverablelines="8" totallines="68" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="CharacterModelController" coverage="32.6" coveredlines="355" coverablelines="1086" totallines="1513" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="CharacterData" coverage="100" coveredlines="1" coverablelines="1" totallines="53" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="CharacterDataController" coverage="1.8" coveredlines="1" coverablelines="55" totallines="84" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="CharacterEntityController" coverage="48.6" coveredlines="469" coverablelines="964" totallines="1701" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="CharacterEntityModel" coverage="100" coveredlines="6" coverablelines="6" totallines="57" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="CharacterEntityView" coverage="0" coveredlines="0" coverablelines="8" totallines="70" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="CharacterModelController" coverage="32.3" coveredlines="359" coverablelines="1110" totallines="1549" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="CharacterTemplateEditor" coverage="0" coveredlines="0" coverablelines="43" totallines="82" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="ColorFoldoutGroupAttribute" coverage="0" coveredlines="0" coverablelines="17" totallines="298" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="ColorFoldoutGroupAttributeDrawer" coverage="0" coveredlines="0" coverablelines="20" totallines="298" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="CombatLogic" coverage="61" coveredlines="160" coverablelines="262" totallines="917" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="CombatTestSceneController" coverage="40" coveredlines="8" coverablelines="20" totallines="47" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="CombatLogic" coverage="80.7" coveredlines="235" coverablelines="291" totallines="871" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="CombatTestSceneController" coverage="40" coveredlines="8" coverablelines="20" totallines="49" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="CoroutineData" coverage="0" coveredlines="0" coverablelines="6" totallines="19" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="CustomOdinGUI.ColorFoldoutGroupAttribute" coverage="0" coveredlines="0" coverablelines="17" totallines="38" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="CustomOdinGUI.ColorFoldoutGroupAttributeDrawer" coverage="0" coveredlines="0" coverablelines="20" totallines="43" branchcoverage="" coveredbranches="0" totalbranches="0" />
@@ -46,14 +50,14 @@
       <Class name="CustomOdinGUI.DrawSelected[T]" coverage="0" coveredlines="0" coverablelines="32" totallines="94" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="CustomOdinGUI.DrawSpriteLibrary" coverage="0" coveredlines="0" coverablelines="8" totallines="27" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="CustomOdinGUI.DrawTestSceneManager" coverage="0" coveredlines="0" coverablelines="5" totallines="23" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="CustomOdinGUI.TheGameManager" coverage="0" coveredlines="0" coverablelines="90" totallines="213" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="CustomOdinGUI.TheGameManager" coverage="0" coveredlines="0" coverablelines="104" totallines="232" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="DamEffect.DamageEffect" coverage="0" coveredlines="0" coverablelines="33" totallines="72" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Draggable" coverage="2.6" coveredlines="1" coverablelines="38" totallines="85" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="DraggingActions" coverage="0" coveredlines="0" coverablelines="3" totallines="24" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="DraggingActions" coverage="0" coveredlines="0" coverablelines="7" totallines="34" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="DragSpellNoTarget" coverage="0" coveredlines="0" coverablelines="26" totallines="74" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="DragSpellOnTarget" coverage="0" coveredlines="0" coverablelines="82" totallines="144" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="EnemyAction" coverage="0" coveredlines="0" coverablelines="1" totallines="269" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="EnemyActionEffect" coverage="0" coveredlines="0" coverablelines="29" totallines="269" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="EnemyAction" coverage="100" coveredlines="1" coverablelines="1" totallines="216" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="EnemyActionEffect" coverage="3.4" coveredlines="1" coverablelines="29" totallines="216" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="EnemyDataEditor" coverage="0" coveredlines="0" coverablelines="43" totallines="82" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="EnemySpawner" coverage="36.3" coveredlines="8" coverablelines="22" totallines="149" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="EntityLogic" coverage="100" coveredlines="55" coverablelines="55" totallines="111" branchcoverage="" coveredbranches="0" totalbranches="0" />
@@ -61,25 +65,25 @@
       <Class name="GainArmorEffect" coverage="0" coveredlines="0" coverablelines="7" totallines="22" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="HandControl" coverage="0" coveredlines="0" coverablelines="36" totallines="73" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="HandControlSprite" coverage="0" coveredlines="0" coverablelines="10" totallines="25" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="HandVisual" coverage="3.3" coveredlines="1" coverablelines="30" totallines="83" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="HandVisual" coverage="3.3" coveredlines="1" coverablelines="30" totallines="81" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="HomingScript" coverage="0" coveredlines="0" coverablelines="12" totallines="26" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="HoverPreview" coverage="5.4" coveredlines="4" coverablelines="74" totallines="133" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="ImpactEffect" coverage="0" coveredlines="0" coverablelines="5" totallines="19" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="ImpactVFXManager" coverage="0" coveredlines="0" coverablelines="3" totallines="17" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="IntentViewModel" coverage="0" coveredlines="0" coverablelines="19" totallines="41" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="LevelManager" coverage="81" coveredlines="30" coverablelines="37" totallines="68" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="LevelNode" coverage="0" coveredlines="0" coverablelines="23" totallines="65" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="ItemController" coverage="17.7" coveredlines="14" coverablelines="79" totallines="133" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="ItemDataEditor" coverage="0" coveredlines="0" coverablelines="43" totallines="84" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="LevelManager" coverage="64" coveredlines="64" coverablelines="100" totallines="166" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="MeleeAttackEffect" coverage="0" coveredlines="0" coverablelines="6" totallines="19" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="ParticleSpawner" coverage="0" coveredlines="0" coverablelines="83" totallines="135" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="PassiveController" coverage="61.7" coveredlines="528" coverablelines="855" totallines="1236" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="PassiveController" coverage="58.2" coveredlines="734" coverablelines="1261" totallines="1800" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="PassiveIconDataEditor" coverage="0" coveredlines="0" coverablelines="43" totallines="83" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="PlayerControl" coverage="0" coveredlines="0" coverablelines="30" totallines="76" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="PlayerControlSprite" coverage="0" coveredlines="0" coverablelines="40" totallines="66" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="PositionLogic" coverage="73.6" coveredlines="28" coverablelines="38" totallines="57" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="RandomGenerator" coverage="100" coveredlines="10" coverablelines="10" totallines="30" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="SameDistanceChildren" coverage="100" coveredlines="12" coverablelines="12" totallines="30" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Singleton[T]" coverage="62.5" coveredlines="10" coverablelines="16" totallines="54" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="SpriteLibrary" coverage="5.7" coveredlines="6" coverablelines="105" totallines="298" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="SpriteLibrary" coverage="13.3" coveredlines="14" coverablelines="105" totallines="298" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Spriter2UnityDX.Animations.AnimationBuilder" coverage="0" coveredlines="0" coverablelines="279" totallines="350" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Spriter2UnityDX.Editors.ERenderEdit" coverage="0" coveredlines="0" coverablelines="29" totallines="48" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="Spriter2UnityDX.EntityRenderer" coverage="42.5" coveredlines="37" coverablelines="87" totallines="139" branchcoverage="" coveredbranches="0" totalbranches="0" />
@@ -111,10 +115,10 @@
       <Class name="ToonEffect" coverage="0" coveredlines="0" coverablelines="32" totallines="68" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="ToonProjectile" coverage="2.8" coveredlines="2" coverablelines="71" totallines="139" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="UIManager" coverage="6" coveredlines="3" coverablelines="50" totallines="96" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="UniversalCharacterModel" coverage="93.3" coveredlines="42" coverablelines="45" totallines="199" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="UniversalCharacterModel" coverage="86.9" coveredlines="20" coverablelines="23" totallines="199" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="VisualEffectManager" coverage="0" coveredlines="0" coverablelines="95" totallines="1157" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="VisualEvent" coverage="100" coveredlines="8" coverablelines="8" totallines="34" branchcoverage="" coveredbranches="0" totalbranches="0" />
-      <Class name="VisualEventManager" coverage="46.1" coveredlines="60" coverablelines="130" totallines="221" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="VisualEvent" coverage="100" coveredlines="8" coverablelines="8" totallines="28" branchcoverage="" coveredbranches="0" totalbranches="0" />
+      <Class name="VisualEventManager" coverage="45.3" coveredlines="54" coverablelines="119" totallines="217" branchcoverage="" coveredbranches="0" totalbranches="0" />
       <Class name="WallExplodeOnHit" coverage="0" coveredlines="0" coverablelines="7" totallines="26" branchcoverage="" coveredbranches="0" totalbranches="0" />
     </Assembly>
   </Coverage>

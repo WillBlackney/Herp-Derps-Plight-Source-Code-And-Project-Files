@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Reckless Strike
   cardDescription: Deal 10 Physical damage. Lose 2HP.
   cardSprite: {fileID: 21300000, guid: bace5b0cedc5b544f98c0d9beeefe0b0, type: 3}
-  cardEnergyCost: 10
+  cardEnergyCost: 1
   cardType: 2
   targettingType: 3
   talentSchool: 2

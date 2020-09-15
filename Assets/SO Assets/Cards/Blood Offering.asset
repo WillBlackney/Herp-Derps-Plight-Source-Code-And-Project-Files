@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Blood Offering
   m_EditorClassIdentifier: 
   cardName: Blood Offering
-  cardDescription: Lose 2 HP. Gain 10 Energy.
+  cardDescription: Lose 2 HP. Gain 1 Energy.
   cardSprite: {fileID: 21300000, guid: a1f99f110531a904fbc535644bfd103d, type: 3}
   cardEnergyCost: 0
   cardType: 1
@@ -50,7 +50,7 @@ MonoBehaviour:
     drawBaseDamageFromTargetPoisoned: 0
     damageType: 0
     healthLost: 0
-    energyGained: 10
+    energyGained: 1
     cardsDrawn: 0
     extraDrawEffect: 0
     cardEnergyReduction: 0

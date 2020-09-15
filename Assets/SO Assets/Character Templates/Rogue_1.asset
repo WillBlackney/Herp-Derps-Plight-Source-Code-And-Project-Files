@@ -17,7 +17,7 @@ MonoBehaviour:
   maxHealth: 30
   power: 0
   dexterity: 0
-  stamina: 100
+  stamina: 3
   draw: 5
   initiative: 3
   startingBlock: 0
@@ -41,6 +41,7 @@ MonoBehaviour:
     enrageStacks: 0
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
+    phoenixFormStacks: 0
     poisonousStacks: 0
     venomousStacks: 0
     wrathStacks: 0
@@ -48,6 +49,8 @@ MonoBehaviour:
     vulnerableStacks: 0
     gritStacks: 0
     poisonedStacks: 0
+    burningStacks: 0
+    fireBallBonusDamageStacks: 0
   deck:
   - {fileID: 11400000, guid: 07576fe85892f0b46a604ce986a50e6e, type: 2}
   - {fileID: 11400000, guid: b888a78f01d9d114e94eb71e20cda519, type: 2}

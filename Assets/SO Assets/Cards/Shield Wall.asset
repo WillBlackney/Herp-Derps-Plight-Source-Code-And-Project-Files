@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Shield Wall
   m_EditorClassIdentifier: 
   cardName: Shield Wall
-  cardDescription: On activation start, gain 3 Block.
+  cardDescription: On activation start, gain 4 Block.
   cardSprite: {fileID: 21300000, guid: a0eb803a7442abd4abaad9211a3465cb, type: 3}
-  cardEnergyCost: 10
+  cardEnergyCost: 2
   cardType: 4
   targettingType: 0
   talentSchool: 5

@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Provoke
   cardDescription: Force an enemy to focus its next attack on you.
   cardSprite: {fileID: 21300000, guid: 04993c9351cbe4f43b686ecfada61219, type: 3}
-  cardEnergyCost: 10
+  cardEnergyCost: 1
   cardType: 1
   targettingType: 3
   talentSchool: 5

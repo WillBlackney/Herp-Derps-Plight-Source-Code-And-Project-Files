@@ -586,7 +586,7 @@ PrefabInstance:
     - target: {fileID: 3921468461960682075, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3921468461960682075, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
         type: 3}

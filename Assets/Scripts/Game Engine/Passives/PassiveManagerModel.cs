@@ -23,14 +23,16 @@ public class PassiveManagerModel
     public int shieldWallStacks;
     public int fanOfKnivesStacks;
     public int phoenixFormStacks;
+    public int poisonousStacks;
+    public int venomousStacks;
+    public int overloadStacks;
 
     // Core Damage % Modifier Passives
     public int wrathStacks;
     public int vulnerableStacks;
     public int weakenedStacks;
     public int gritStacks;
-    public int poisonousStacks;
-    public int venomousStacks;
+    
 
     // Misc passives
     [HideInInspector] public int tauntStacks;

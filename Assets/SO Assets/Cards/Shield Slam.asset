@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Shield Slam
   cardDescription: Deal Physical damage equal to your current block.
   cardSprite: {fileID: 21300000, guid: b1deb416e14eae749bd6a088c48ac8e7, type: 3}
-  cardEnergyCost: 10
+  cardEnergyCost: 1
   cardType: 2
   targettingType: 3
   talentSchool: 5

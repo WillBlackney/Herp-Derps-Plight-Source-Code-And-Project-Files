@@ -115,6 +115,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyVenomous(newClone, originalData.venomousStacks, false);
         }
+        if (originalData.overloadStacks != 0)
+        {
+            ModifyOverload(newClone, originalData.overloadStacks, false);
+        }
         #endregion
 
         // Dot Passives
@@ -178,6 +182,7 @@ public class PassiveController : Singleton<PassiveController>
         pManager.phoenixFormStacks = original.phoenixFormStacks;       
         pManager.poisonousStacks = original.poisonousStacks;
         pManager.venomousStacks = original.venomousStacks;
+        pManager.overloadStacks = original.overloadStacks;
 
         pManager.wrathStacks = original.wrathStacks;
         pManager.gritStacks = original.gritStacks;
@@ -463,6 +468,10 @@ public class PassiveController : Singleton<PassiveController>
         else if (originalData == "Venomous")
         {
             ModifyVenomous(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Overload")
+        {
+            ModifyOverload(pManager, stacks, showVFX, vfxDelay);
         }
         #endregion
 
@@ -1332,6 +1341,57 @@ public class PassiveController : Singleton<PassiveController>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Venomous Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back, 0, 0.5f);
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+
+
+    }
+    public void ModifyOverload(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyOverload() called...");
+
+        // Setup + Cache refs
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Overload");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Increment stacks
+        pManager.overloadStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Overload +" + stacks.ToString());
+                    VisualEffectManager.Instance.CreateCoreStatBuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back, 0, 0.5f);
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Overload Removed");
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
                 }, QueuePosition.Back, 0, 0.5f);
             }

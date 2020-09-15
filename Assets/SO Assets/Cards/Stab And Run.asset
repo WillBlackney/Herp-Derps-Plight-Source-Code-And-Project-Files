@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Stab And Run
   cardDescription: Gain 3 Block. Add a Shank to your hand.
   cardSprite: {fileID: 21300000, guid: c1d9fca0e66bdf546aff06f8dc490319, type: 3}
-  cardEnergyCost: 10
+  cardEnergyCost: 1
   cardType: 1
   targettingType: 0
   talentSchool: 4

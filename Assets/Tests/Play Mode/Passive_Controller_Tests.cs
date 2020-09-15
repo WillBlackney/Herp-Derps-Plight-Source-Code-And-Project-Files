@@ -48,6 +48,7 @@ namespace Tests
         private const string PHOENIX_FORM_NAME = "Phoenix Form";
         private const string POISONOUS_NAME = "Poisonous";
         private const string VENOMOUS_NAME = "Venomous";
+        private const string OVERLOAD_NAME = "Overload";
 
         // Core % Modifer Stats
         private const string WRATH_NAME = "Wrath";
@@ -145,6 +146,7 @@ namespace Tests
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, PHOENIX_FORM_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, POISONOUS_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, VENOMOUS_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, OVERLOAD_NAME, stacks);
 
             // Core % Modifer Stats
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, WEAKENED_NAME, stacks);
@@ -177,6 +179,7 @@ namespace Tests
                 model.pManager.phoenixFormStacks == 1 &&
                 model.pManager.poisonousStacks == 1 &&
                 model.pManager.venomousStacks == 1 &&
+                model.pManager.overloadStacks == 1 &&
 
                 model.pManager.weakenedStacks == 1 &&
                 model.pManager.wrathStacks == 1 &&
@@ -1052,6 +1055,29 @@ namespace Tests
         public void Burning_Damage_Is_Affected_By_Fire_Resistance()
         {
             // TO DO: write this test when damage type resistance logic is written
+        }
+        [Test]
+        public void Overload_Does_Deal_Damage_To_Random_Enemy_On_Character_Activation_End()
+        {
+            // Arange
+            CharacterEntityModel player;
+            CharacterEntityModel enemy;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(OVERLOAD_NAME).passiveName;
+            int stacks = 10;
+            int expected = 20;
+
+            // Act 
+            player = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            enemy = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, enemyNode);
+            player.initiative = 100;
+            enemy.health = 30;
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(player.pManager, passiveName, stacks);
+
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CharacterEntityController.Instance.CharacterOnActivationEnd(ActivationManager.Instance.EntityActivated);
+
+            // Assert
+            Assert.AreEqual(expected, enemy.health);
         }
         #endregion
 

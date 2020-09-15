@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Fan Of Knives
   cardDescription: On activation start, add a Shank to your hand.
   cardSprite: {fileID: 21300000, guid: 8b44c73ff4229cf40b61125a3045b470, type: 3}
-  cardEnergyCost: 10
+  cardEnergyCost: 1
   cardType: 4
   targettingType: 0
   talentSchool: 4

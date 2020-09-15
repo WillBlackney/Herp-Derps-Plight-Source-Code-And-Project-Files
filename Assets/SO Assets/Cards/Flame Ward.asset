@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Flame Ward
   cardDescription: Give a target 7 Block. Add a Burn to your hand.
   cardSprite: {fileID: 21300000, guid: baac960313a3b5a4b874d9bd546cc66a, type: 3}
-  cardEnergyCost: 10
+  cardEnergyCost: 1
   cardType: 1
   targettingType: 2
   talentSchool: 6

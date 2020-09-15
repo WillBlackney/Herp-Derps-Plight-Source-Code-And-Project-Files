@@ -66,6 +66,9 @@ public class SerializedPassiveManagerModel
     [BoxGroup("Buff Passives")]
     [LabelWidth(200)]
     public int venomousStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
+    public int overloadStacks;
 
     // Buff Passives
     [BoxGroup("Core Damage % Modifier Passives", centerLabel: true)]
