@@ -25,10 +25,4 @@ public class EnemyGroup
     public List<EnemyDataSO> possibleEnemies;
 }
 
-public enum CombatDifficulty
-{
-    None,
-    Basic,
-    Elite,
-    Boss,
-}
+

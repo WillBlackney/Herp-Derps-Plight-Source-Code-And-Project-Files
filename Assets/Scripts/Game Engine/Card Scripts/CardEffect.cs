@@ -128,38 +128,6 @@ public class CardEffect
 
 }
 
-[Serializable]
-public enum CardEffectType
-{
-    None = 0,
-    AddCardsToHand = 1,
-    ApplyPassiveToSelf = 2,
-    ApplyPassiveToTarget = 3,
-    ApplyPassiveToAllEnemies = 4,
-    ApplyPassiveToAllAllies = 5,
-    DamageTarget = 6,
-    DamageSelf = 7,
-    DamageAllEnemies = 8,
-    DrawCards = 9,
-    GainBlockSelf = 10,
-    GainBlockTarget = 19,
-    GainBlockAllAllies = 12,
-    GainEnergy = 13,
-    LoseHP = 14,
-    RemoveAllPoisonedFromSelf = 15,
-    RemoveAllPoisonedFromTarget = 16,
-    TauntTarget = 17,
-    TauntAllEnemies = 18,
-    
-    
 
-}
-[Serializable]
-public enum ExtraDrawEffect
-{
-    None,
-    ReduceEnergyCostThisCombat,
-    SetEnergyCostToZeroThisCombat,
-}
 
 

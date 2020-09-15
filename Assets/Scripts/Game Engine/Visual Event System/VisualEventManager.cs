@@ -214,8 +214,4 @@ public class VisualEventManager : Singleton<VisualEventManager>
     }
     #endregion
 }
-public enum QueuePosition
-{
-    Front,
-    Back
-}
+

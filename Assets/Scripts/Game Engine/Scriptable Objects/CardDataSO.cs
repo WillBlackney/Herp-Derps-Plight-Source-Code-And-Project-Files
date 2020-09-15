@@ -56,48 +56,7 @@ public class CardDataSO : ScriptableObject
 
 }
 
-[Serializable]
-public enum CardEventListenerType
-{
-    None, 
-    OnLoseHealth, 
-    OnDraw, 
-    OnActivationEnd,
-}
 
-[Serializable]
-public enum CardEventListenerFunction
-{
-    None, 
-    ReduceCardEnergyCost,
-    ApplyPassiveToSelf
-}
-
-[Serializable]
-public class CardEventListener
-{
-    public CardEventListenerType cardEventListenerType;
-    public CardEventListenerFunction cardEventListenerFunction;
-
-    [ShowIf("cardEventListenerFunction", CardEventListenerFunction.ReduceCardEnergyCost)]
-    public int energyReductionAmount;
-
-    [ShowIf("ShowPassivePairing")]
-    public PassivePairingData passivePairing;
-
-    public bool ShowPassivePairing()
-    {
-        if (cardEventListenerFunction == CardEventListenerFunction.ApplyPassiveToSelf)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-}
 
 
 

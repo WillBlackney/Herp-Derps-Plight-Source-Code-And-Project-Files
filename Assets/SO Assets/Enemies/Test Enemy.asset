@@ -47,6 +47,7 @@ MonoBehaviour:
     vulnerableStacks: 0
     gritStacks: 0
     poisonedStacks: 0
+    burningStacks: 0
     fireBallBonusDamageStacks: 0
   allEnemyActions:
   - actionName: Howl
@@ -83,6 +84,8 @@ MonoBehaviour:
   - Shadow_Blade_Right_Arm_Wear
   - Shadow_Blade_Left_Arm_Wear
   - Shadow_Blade_Chest_Wear
+  - Human_Chest
+  - Human_Chest
   - Human_Chest
   - Human_Chest
   - Human_Chest

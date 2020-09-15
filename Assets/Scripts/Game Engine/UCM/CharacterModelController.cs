@@ -30,12 +30,12 @@ public static class CharacterModelController
     public static void AutoSetModelScaleFromRace(UniversalCharacterModel model)
     {
         Debug.Log("CharacterModelController.AutoSetModelScaleFromRace() called...");
-        if (model.myModelRace == UniversalCharacterModel.ModelRace.Gnoll ||
-            model.myModelRace == UniversalCharacterModel.ModelRace.Goblin)
+        if (model.myModelRace == CharacterRace.Gnoll ||
+            model.myModelRace == CharacterRace.Goblin)
         {
             SetModelSmallScale(model);
         }
-        else if (model.myModelRace == UniversalCharacterModel.ModelRace.Orc)
+        else if (model.myModelRace == CharacterRace.Orc)
         {
             SetModelLargeScale(model);
         }
@@ -886,7 +886,7 @@ public static class CharacterModelController
 
         //ClearAllActiveBodyPartReferences(model);
 
-        model.myModelRace = UniversalCharacterModel.ModelRace.Human;
+        model.myModelRace = CharacterRace.Human;
         //AutoSetModelScaleFromRace(model);
 
         // Body parts
@@ -901,7 +901,7 @@ public static class CharacterModelController
     {
         Debug.Log("CharacterModelController.SetBaseOrcView() called...");
 
-        model.myModelRace = UniversalCharacterModel.ModelRace.Orc;
+        model.myModelRace = CharacterRace.Orc;
         //AutoSetModelScaleFromRace(model);
 
         // Body parts
@@ -916,7 +916,7 @@ public static class CharacterModelController
     {
         Debug.Log("CharacterModelController.SetBaseUndeadView() called...");
 
-        model.myModelRace = UniversalCharacterModel.ModelRace.Undead;
+        model.myModelRace = CharacterRace.Undead;
         //AutoSetModelScaleFromRace(model);
 
         // Body parts
@@ -931,7 +931,7 @@ public static class CharacterModelController
     {
         Debug.Log("CharacterModelController.SetBaseElfView() called...");
 
-        model.myModelRace = UniversalCharacterModel.ModelRace.Elf;
+        model.myModelRace = CharacterRace.Elf;
         //AutoSetModelScaleFromRace(model);
 
         // Body parts
@@ -946,7 +946,7 @@ public static class CharacterModelController
     {
         Debug.Log("CharacterModelController.SetBaseGnollView() called...");
 
-        model.myModelRace = UniversalCharacterModel.ModelRace.Gnoll;
+        model.myModelRace = CharacterRace.Gnoll;
        // AutoSetModelScaleFromRace(model);
 
         // Body parts
@@ -961,7 +961,7 @@ public static class CharacterModelController
     {
         Debug.Log("CharacterModelController.SetBaseSatyrView() called...");
 
-        model.myModelRace = UniversalCharacterModel.ModelRace.Satyr;
+        model.myModelRace = CharacterRace.Satyr;
        // AutoSetModelScaleFromRace(model);
 
         // Body parts
@@ -982,7 +982,7 @@ public static class CharacterModelController
             element.gameObject.name + " GO");
 
         // Set Active Body Part Reference
-        if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.Chest)
+        if (element.bodyPartType == BodyPartType.Chest)
         {
             if (model.activeChest != null)
             {
@@ -990,7 +990,7 @@ public static class CharacterModelController
             }            
             model.activeChest = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.Head)
+        else if (element.bodyPartType == BodyPartType.Head)
         {
             if (model.activeHead != null)
             {
@@ -998,7 +998,7 @@ public static class CharacterModelController
             }
             model.activeHead = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.Face)
+        else if (element.bodyPartType == BodyPartType.Face)
         {
             if (model.activeFace != null)
             {
@@ -1006,7 +1006,7 @@ public static class CharacterModelController
             }
             model.activeFace = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.RightArm)
+        else if (element.bodyPartType == BodyPartType.RightArm)
         {
             if (model.activeRightArm != null)
             {
@@ -1014,7 +1014,7 @@ public static class CharacterModelController
             }
             model.activeRightArm = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.RightHand)
+        else if (element.bodyPartType == BodyPartType.RightHand)
         {
             if (model.activeRightHand != null)
             {
@@ -1022,7 +1022,7 @@ public static class CharacterModelController
             }
             model.activeRightHand = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.LeftArm)
+        else if (element.bodyPartType == BodyPartType.LeftArm)
         {
             if (model.activeLeftArm != null)
             {
@@ -1030,7 +1030,7 @@ public static class CharacterModelController
             }
             model.activeLeftArm = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.LeftHand)
+        else if (element.bodyPartType == BodyPartType.LeftHand)
         {
             if (model.activeLeftHand != null)
             {
@@ -1038,7 +1038,7 @@ public static class CharacterModelController
             }
             model.activeLeftHand = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.RightLeg)
+        else if (element.bodyPartType == BodyPartType.RightLeg)
         {
             if (model.activeRightLeg != null)
             {
@@ -1046,7 +1046,7 @@ public static class CharacterModelController
             }
             model.activeRightLeg = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.LeftLeg)
+        else if (element.bodyPartType == BodyPartType.LeftLeg)
         {
             if (model.activeLeftLeg != null)
             {
@@ -1056,7 +1056,7 @@ public static class CharacterModelController
         }
 
         // Set Active Weapons + Clothing Reference
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.HeadWear)
+        else if (element.bodyPartType == BodyPartType.HeadWear)
         {
             if (model.activeHeadWear != null)
             {
@@ -1064,7 +1064,7 @@ public static class CharacterModelController
             }
             model.activeHeadWear = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.ChestWear)
+        else if (element.bodyPartType == BodyPartType.ChestWear)
         {
             if (model.activeChestWear != null)
             {
@@ -1072,7 +1072,7 @@ public static class CharacterModelController
             }
             model.activeChestWear = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.LeftLegWear)
+        else if (element.bodyPartType == BodyPartType.LeftLegWear)
         {
             if (model.activeLeftLegWear != null)
             {
@@ -1080,7 +1080,7 @@ public static class CharacterModelController
             }
             model.activeLeftLegWear = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.RightLegWear)
+        else if (element.bodyPartType == BodyPartType.RightLegWear)
         {
             if (model.activeRightLegWear != null)
             {
@@ -1088,7 +1088,7 @@ public static class CharacterModelController
             }
             model.activeRightLegWear = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.LeftArmWear)
+        else if (element.bodyPartType == BodyPartType.LeftArmWear)
         {
             if (model.activeLeftArmWear != null)
             {
@@ -1096,7 +1096,7 @@ public static class CharacterModelController
             }
             model.activeLeftArmWear = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.RightArmWear)
+        else if (element.bodyPartType == BodyPartType.RightArmWear)
         {
             if (model.activeRightArmWear != null)
             {
@@ -1104,7 +1104,7 @@ public static class CharacterModelController
             }
             model.activeRightArmWear = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.LeftHandWear)
+        else if (element.bodyPartType == BodyPartType.LeftHandWear)
         {
             if (model.activeLeftHandWear != null)
             {
@@ -1112,7 +1112,7 @@ public static class CharacterModelController
             }
             model.activeLeftHandWear = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.RightHandWear)
+        else if (element.bodyPartType == BodyPartType.RightHandWear)
         {
             if (model.activeRightHandWear != null)
             {
@@ -1120,7 +1120,7 @@ public static class CharacterModelController
             }
             model.activeRightHandWear = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.MainHandWeapon)
+        else if (element.bodyPartType == BodyPartType.MainHandWeapon)
         {
             if (model.activeMainHandWeapon != null)
             {
@@ -1128,7 +1128,7 @@ public static class CharacterModelController
             }
             model.activeMainHandWeapon = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.OffHandWeapon)
+        else if (element.bodyPartType == BodyPartType.OffHandWeapon)
         {
             if (model.activeOffHandWeapon != null)
             {
@@ -1179,7 +1179,7 @@ public static class CharacterModelController
         }
 
         // Set Active Body Part Reference
-        if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.Chest)
+        if (element.bodyPartType == BodyPartType.Chest)
         {
             if (model.activeChest != null)
             {
@@ -1187,7 +1187,7 @@ public static class CharacterModelController
             }
             model.activeChest = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.Head)
+        else if (element.bodyPartType == BodyPartType.Head)
         {
             if (model.activeHead != null)
             {
@@ -1195,7 +1195,7 @@ public static class CharacterModelController
             }
             model.activeHead = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.Face)
+        else if (element.bodyPartType == BodyPartType.Face)
         {
             if (model.activeFace != null)
             {
@@ -1203,7 +1203,7 @@ public static class CharacterModelController
             }
             model.activeFace = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.RightArm)
+        else if (element.bodyPartType == BodyPartType.RightArm)
         {
             if (model.activeRightArm != null)
             {
@@ -1211,7 +1211,7 @@ public static class CharacterModelController
             }
             model.activeRightArm = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.RightHand)
+        else if (element.bodyPartType == BodyPartType.RightHand)
         {
             if (model.activeRightHand != null)
             {
@@ -1219,7 +1219,7 @@ public static class CharacterModelController
             }
             model.activeRightHand = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.LeftArm)
+        else if (element.bodyPartType == BodyPartType.LeftArm)
         {
             if (model.activeLeftArm != null)
             {
@@ -1227,7 +1227,7 @@ public static class CharacterModelController
             }
             model.activeLeftArm = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.LeftHand)
+        else if (element.bodyPartType == BodyPartType.LeftHand)
         {
             if (model.activeLeftHand != null)
             {
@@ -1235,7 +1235,7 @@ public static class CharacterModelController
             }
             model.activeLeftHand = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.RightLeg)
+        else if (element.bodyPartType == BodyPartType.RightLeg)
         {
             if (model.activeRightLeg != null)
             {
@@ -1243,7 +1243,7 @@ public static class CharacterModelController
             }
             model.activeRightLeg = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.LeftLeg)
+        else if (element.bodyPartType == BodyPartType.LeftLeg)
         {
             if (model.activeLeftLeg != null)
             {
@@ -1253,7 +1253,7 @@ public static class CharacterModelController
         }
 
         // Set Active Weapons + Clothing Reference
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.HeadWear)
+        else if (element.bodyPartType == BodyPartType.HeadWear)
         {
             if (model.activeHeadWear != null)
             {
@@ -1261,7 +1261,7 @@ public static class CharacterModelController
             }
             model.activeHeadWear = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.ChestWear)
+        else if (element.bodyPartType == BodyPartType.ChestWear)
         {
             if (model.activeChestWear != null)
             {
@@ -1269,7 +1269,7 @@ public static class CharacterModelController
             }
             model.activeChestWear = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.LeftLegWear)
+        else if (element.bodyPartType == BodyPartType.LeftLegWear)
         {
             if (model.activeLeftLegWear != null)
             {
@@ -1277,7 +1277,7 @@ public static class CharacterModelController
             }
             model.activeLeftLegWear = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.RightLegWear)
+        else if (element.bodyPartType == BodyPartType.RightLegWear)
         {
             if (model.activeRightLegWear != null)
             {
@@ -1285,7 +1285,7 @@ public static class CharacterModelController
             }
             model.activeRightLegWear = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.LeftArmWear)
+        else if (element.bodyPartType == BodyPartType.LeftArmWear)
         {
             if (model.activeLeftArmWear != null)
             {
@@ -1293,7 +1293,7 @@ public static class CharacterModelController
             }
             model.activeLeftArmWear = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.RightArmWear)
+        else if (element.bodyPartType == BodyPartType.RightArmWear)
         {
             if (model.activeRightArmWear != null)
             {
@@ -1301,7 +1301,7 @@ public static class CharacterModelController
             }
             model.activeRightArmWear = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.LeftHandWear)
+        else if (element.bodyPartType == BodyPartType.LeftHandWear)
         {
             if (model.activeLeftHandWear != null)
             {
@@ -1309,7 +1309,7 @@ public static class CharacterModelController
             }
             model.activeLeftHandWear = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.RightHandWear)
+        else if (element.bodyPartType == BodyPartType.RightHandWear)
         {
             if (model.activeRightHandWear != null)
             {
@@ -1317,7 +1317,7 @@ public static class CharacterModelController
             }
             model.activeRightHandWear = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.MainHandWeapon)
+        else if (element.bodyPartType == BodyPartType.MainHandWeapon)
         {
             if (model.activeMainHandWeapon != null)
             {
@@ -1325,7 +1325,7 @@ public static class CharacterModelController
             }
             model.activeMainHandWeapon = element;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.OffHandWeapon)
+        else if (element.bodyPartType == BodyPartType.OffHandWeapon)
         {
             if (model.activeOffHandWeapon != null)
             {
@@ -1360,81 +1360,81 @@ public static class CharacterModelController
         element.gameObject.SetActive(false);
 
         // Clear reference on model
-        if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.Chest)
+        if (element.bodyPartType == BodyPartType.Chest)
         {
             model.activeChest = null;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.Head)
+        else if (element.bodyPartType == BodyPartType.Head)
         {
             model.activeHead = null;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.Face)
+        else if (element.bodyPartType == BodyPartType.Face)
         {
             model.activeFace = null;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.RightArm)
+        else if (element.bodyPartType == BodyPartType.RightArm)
         {
             model.activeRightArm = null;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.RightHand)
+        else if (element.bodyPartType == BodyPartType.RightHand)
         {
             model.activeRightHand = null;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.LeftArm)
+        else if (element.bodyPartType == BodyPartType.LeftArm)
         {
             model.activeLeftArm = null;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.LeftHand)
+        else if (element.bodyPartType == BodyPartType.LeftHand)
         {
             model.activeLeftHand = null;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.RightLeg)
+        else if (element.bodyPartType == BodyPartType.RightLeg)
         {
             model.activeRightLeg = null;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.LeftLeg)
+        else if (element.bodyPartType == BodyPartType.LeftLeg)
         {
             model.activeLeftLeg = null;
         }
 
         // Set Active Weapons + Clothing Reference
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.HeadWear)
+        else if (element.bodyPartType == BodyPartType.HeadWear)
         {
             model.activeHeadWear = null;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.ChestWear)
+        else if (element.bodyPartType == BodyPartType.ChestWear)
         {
             model.activeChestWear = null;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.LeftLegWear)
+        else if (element.bodyPartType == BodyPartType.LeftLegWear)
         {
             model.activeLeftLegWear = null;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.RightLegWear)
+        else if (element.bodyPartType == BodyPartType.RightLegWear)
         {
             model.activeRightLegWear = null;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.LeftArmWear)
+        else if (element.bodyPartType == BodyPartType.LeftArmWear)
         {
             model.activeLeftArmWear = null;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.RightArmWear)
+        else if (element.bodyPartType == BodyPartType.RightArmWear)
         {
             model.activeRightArmWear = null;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.LeftHandWear)
+        else if (element.bodyPartType == BodyPartType.LeftHandWear)
         {
             model.activeLeftHandWear = null;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.RightHandWear)
+        else if (element.bodyPartType == BodyPartType.RightHandWear)
         {
             model.activeRightHandWear = null;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.MainHandWeapon)
+        else if (element.bodyPartType == BodyPartType.MainHandWeapon)
         {
             model.activeMainHandWeapon = null;
         }
-        else if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.OffHandWeapon)
+        else if (element.bodyPartType == BodyPartType.OffHandWeapon)
         {
             model.activeOffHandWeapon = null;
         }

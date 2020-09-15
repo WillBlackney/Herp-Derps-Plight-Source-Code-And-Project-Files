@@ -49,61 +49,8 @@ public class EnemyAction
   
 
 }
-public enum ActionType
-{
-    AttackTarget,
-    AttackAll,
-    BuffSelf,
-    BuffTarget,
-    BuffAll,
-    DebuffTarget,
-    DebuffAll,
-    DefendSelf,
-    DefendTarget,
-    DefendAll, 
-    Sleep,
-    PassTurn,
-    DefendAndBuffSelf,
-    AttackTargetAndDefendSelf,
-    AttackTargetAndBuffSelf,
-    AddCard,
-}
-public enum ActionRequirementType
-{
-    None,
-    IsTurn,
-    IsMoreThanTurn,
-    IsLessThanTurn,
-    HealthIsLessThan,
-    HealthIsMoreThan,
-    AtLeastXAlliesAlive,
-    HaventUsedActionInXTurns,
-    ActivatedXTimesOrMore,
-    ActivatedXTimesOrLess,
-    HasPassiveTrait,
-}
-public enum IntentImage
-{
-    Attack,
-    AttackBuff,
-    AttackDebuff,
-    AttackDefend,
-    Buff,
-    DefendBuff,
-    Defend,
-    GreenDebuff,
-    PurpleDebuff,
-    Unknown,
-    Flee,
 
-}
-public enum CardCollection
-{
-    Hand,
-    DrawPile,
-    DiscardPile,
-    PermanentDeck,
-}
+
 
 [Serializable]
 public class ActionRequirement

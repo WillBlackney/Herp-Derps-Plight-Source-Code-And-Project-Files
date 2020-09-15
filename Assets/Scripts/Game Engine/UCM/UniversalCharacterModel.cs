@@ -33,10 +33,6 @@ public class UniversalCharacterModel : MonoBehaviour
     }
     */
 
-    // Enum Declaration
-    [Serializable]
-    public enum ModelRace { None, Human, Orc, Undead, Elf, Goblin, Satyr, Gnoll};
-
     [Header("All Model Element References")]
     public List<UniversalCharacterModelElement> allModelElements;
     public List<SpriteMask> allHeadWearSpriteMasks;
@@ -158,7 +154,7 @@ public class UniversalCharacterModel : MonoBehaviour
     public Transform scalingParent;
 
     [Header("Properties")]
-    public ModelRace myModelRace;
+    public CharacterRace myModelRace;
     public bool initializedScaling;
     public float normalSizeScale;
     public float smallSizeScale;

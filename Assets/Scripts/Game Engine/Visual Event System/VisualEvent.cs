@@ -25,10 +25,4 @@ public class VisualEvent
 
 
 }
-public enum EventDetail
-{
-    None,
-    CardDraw,
-    GameOverVictory,
-    GameOverDefeat,
-}
+

@@ -54,18 +54,4 @@ public class CharacterEntityModel
     [HideInInspector] public List<EnemyAction> myPreviousActionLog = new List<EnemyAction>();
     
 }
-public enum Allegiance
-{
-    Player,
-    Enemy,
-}
-public enum Controller
-{
-    Player,
-    AI
-}
-public enum LivingState
-{
-    Alive,
-    Dead,
-}
+

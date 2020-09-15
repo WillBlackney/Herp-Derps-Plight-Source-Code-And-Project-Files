@@ -551,7 +551,8 @@ public class CardController : Singleton<CardController>
             if (hasMovedOffStartingNode && owner.livingState == LivingState.Alive) 
             {
                 CoroutineData cData = new CoroutineData();
-                VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.MoveEntityToNodeCentre(owner, owner.levelNode, cData), cData, QueuePosition.Back, 0.3f, 0);
+                LevelNode node = owner.levelNode;
+                VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.MoveEntityToNodeCentre(owner, node, cData), cData, QueuePosition.Back, 0.3f, 0);
             }
         }
 

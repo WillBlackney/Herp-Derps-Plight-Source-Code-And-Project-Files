@@ -80,7 +80,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         CharacterEntityView vm = CreateCharacterEntityView().GetComponent<CharacterEntityView>();
 
         // Face enemies
-        PositionLogic.Instance.SetDirection(vm, "Right");
+        LevelManager.Instance.SetDirection(vm, FacingDirection.Right);
 
         // Create data object
         CharacterEntityModel model = new CharacterEntityModel();
@@ -119,7 +119,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         CharacterEntityView vm = CreateCharacterEntityView().GetComponent<CharacterEntityView>();
 
         // Face player characters
-        PositionLogic.Instance.SetDirection(vm, "Left");
+        LevelManager.Instance.SetDirection(vm, FacingDirection.Left);
 
         // Create data object
         CharacterEntityModel model = new CharacterEntityModel();
@@ -352,35 +352,35 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     {
         Debug.Log("CharacterEntityController.ModifyEnergy() called for " + character.myName);
         character.energy += energyGainedOrLost;
+        CharacterEntityView view = character.characterEntityView;
 
         if (character.energy < 0)
         {
             character.energy = 0;
         }
 
-        VisualEventManager.Instance.CreateVisualEvent(() => UpdateEnergyGUI(character, character.energy), QueuePosition.Back, 0, 0);
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateEnergyGUI(view, character.energy), QueuePosition.Back, 0, 0);
     }
     public void ModifyStamina(CharacterEntityModel character, int staminaGainedOrLost)
     {
         Debug.Log("CharacterEntityController.ModifyStamina() called for " + character.myName);
         character.stamina += staminaGainedOrLost;
+        CharacterEntityView view = character.characterEntityView;
 
         if (character.stamina < 0)
         {
             character.stamina = 0;
         }
 
-        VisualEventManager.Instance.CreateVisualEvent(() => UpdateStaminaGUI(character), QueuePosition.Back, 0, 0);
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateStaminaGUI(view, EntityLogic.GetTotalStamina(character)), QueuePosition.Back, 0, 0);
     }
-    private void UpdateEnergyGUI(CharacterEntityModel character, int newValue)
+    private void UpdateEnergyGUI(CharacterEntityView view, int newValue)
     {
-        Debug.Log("CharacterEntityController.UpdateEnergyGUI() called for " + character.myName);
-        character.characterEntityView.energyText.text = newValue.ToString();
+        view.energyText.text = newValue.ToString();
     }
-    private void UpdateStaminaGUI(CharacterEntityModel character)
+    private void UpdateStaminaGUI(CharacterEntityView view, int newValue)
     {
-        Debug.Log("CharacterEntityController.UpdateStaminaGUI() called for " + character.myName);
-        character.characterEntityView.staminaText.text = EntityLogic.GetTotalStamina(character).ToString();
+        view.staminaText.text = newValue.ToString();
     }
     #endregion
 
@@ -528,7 +528,8 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         Debug.Log("CharacterEntityController.CharacterOnActivationStart() called for " + character.myName);
 
         // Enable activated view state
-        VisualEventManager.Instance.CreateVisualEvent(() => character.levelNode.SetActivatedViewState(true), QueuePosition.Back);
+        LevelNode charNode = character.levelNode;
+        VisualEventManager.Instance.CreateVisualEvent(() => LevelManager.Instance.SetActivatedViewState(charNode, true), QueuePosition.Back);
 
         // Gain Energy
         character.hasActivatedThisTurn = true;
@@ -604,7 +605,10 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     }
     public void CharacterOnActivationEnd(CharacterEntityModel entity)
     {
-        Debug.Log("CharacterEntityController.CharacterOnActivationEnd() called for " + entity.myName);       
+        Debug.Log("CharacterEntityController.CharacterOnActivationEnd() called for " + entity.myName);
+
+        // Cache refs for visual events
+        LevelNode veNode = entity.levelNode;
 
         // Disable end turn button clickability
         UIManager.Instance.DisableEndTurnButtonInteractions();
@@ -696,9 +700,8 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             StartAutoSetEnemyIntentProcess(entity);
         }
 
-        // Disable level node activation ring view
-        LevelNode veNode = entity.levelNode;
-        VisualEventManager.Instance.CreateVisualEvent(() => veNode.SetActivatedViewState(false));
+        // Disable level node activation ring view        
+        VisualEventManager.Instance.CreateVisualEvent(() => LevelManager.Instance.SetActivatedViewState(veNode, false));
 
         // Activate next character
         ActivationManager.Instance.ActivateNextEntity();
@@ -731,7 +734,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Disable targeting path lines from all nodes
         foreach (LevelNode node in LevelManager.Instance.allLevelNodes)
         {
-            node.DisableAllExtraViews();
+            LevelManager.Instance.DisableAllExtraViews(node);
         }
     }
     #endregion
@@ -1023,13 +1026,13 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         {
             // Prevents GUI bugs when mousing over an enemy that is dying
             DisableAllDefenderTargetIndicators();
-            view.character.levelNode.SetMouseOverViewState(false);
+            LevelManager.Instance.SetMouseOverViewState(view.character.levelNode, false);
             return;
         }
 
         // Enable activation window glow
         view.myActivationWindow.myGlowOutline.SetActive(true);
-        view.character.levelNode.SetMouseOverViewState(true);
+        LevelManager.Instance.SetMouseOverViewState(view.character.levelNode, true);
 
         // Set character highlight color
         SetCharacterColor(view, highlightColour);
@@ -1046,9 +1049,8 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
                 EnableDefenderTargetIndicator(enemy.currentActionTarget.characterEntityView);
                 if (enemy.levelNode != null && enemy.livingState == LivingState.Alive)
                 {
-                    enemy.levelNode.ConnectTargetPathToTargetNode(enemy.currentActionTarget.levelNode);
+                    LevelManager.Instance.ConnectTargetPathToTargetNode(enemy.levelNode, enemy.currentActionTarget.levelNode);
                 }
-
             }
         }
 
@@ -1062,7 +1064,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         {
             // Prevents GUI bugs when mousing over an enemy that is dying
             DisableAllDefenderTargetIndicators();
-            view.character.levelNode.SetMouseOverViewState(false);
+            LevelManager.Instance.SetMouseOverViewState(view.character.levelNode, false);
             return;
         }
         // Enable activation window glow
@@ -1077,7 +1079,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             // Set character's level node mouse over state
             if (view.character.levelNode != null)
             {
-                view.character.levelNode.SetMouseOverViewState(false);
+                LevelManager.Instance.SetMouseOverViewState(view.character.levelNode, false);
             }
         }
 
@@ -1090,7 +1092,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
             if (enemy.livingState == LivingState.Alive && enemy.levelNode != null)
             {
-                enemy.levelNode.SetLineViewState(false);
+                LevelManager.Instance.SetLineViewState(enemy.levelNode, false);
             }
         }
 
@@ -1403,7 +1405,8 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         if (hasMovedOffStartingNode && enemy.livingState == LivingState.Alive)
         {
             CoroutineData cData = new CoroutineData();
-            VisualEventManager.Instance.CreateVisualEvent(() => MoveEntityToNodeCentre(enemy, enemy.levelNode, cData), cData, QueuePosition.Back, 0.3f, 0);
+            LevelNode node = enemy.levelNode;
+            VisualEventManager.Instance.CreateVisualEvent(() => MoveEntityToNodeCentre(enemy, node, cData), cData, QueuePosition.Back, 0.3f, 0);
         }
     }
     private void TriggerEnemyActionEffect(CharacterEntityModel enemy, EnemyActionEffect effect)
@@ -1547,7 +1550,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         float moveSpeed = 10;
 
         // Face direction of destination
-        PositionLogic.Instance.TurnFacingTowardsLocation(attacker.characterEntityView, target.characterEntityView.transform.position);
+        LevelManager.Instance.TurnFacingTowardsLocation(attacker.characterEntityView, target.characterEntityView.transform.position);
 
         // Play movement animation
         PlayMoveAnimation(attacker.characterEntityView);
@@ -1584,7 +1587,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         float moveSpeed = 10;
 
         // Face direction of destination node
-        PositionLogic.Instance.TurnFacingTowardsLocation(entity.characterEntityView, node.transform.position);
+        LevelManager.Instance.TurnFacingTowardsLocation(entity.characterEntityView, node.transform.position);
 
         // Play movement animation
         PlayMoveAnimation(entity.characterEntityView);
@@ -1605,11 +1608,11 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Reset facing, depending on living entity type
         if (entity.allegiance == Allegiance.Player)
         {
-            PositionLogic.Instance.SetDirection(entity.characterEntityView, "Right");
+            LevelManager.Instance.SetDirection(entity.characterEntityView, FacingDirection.Right);
         }
         else if (entity.allegiance == Allegiance.Enemy)
         {
-            PositionLogic.Instance.SetDirection(entity.characterEntityView, "Left");
+            LevelManager.Instance.SetDirection(entity.characterEntityView, FacingDirection.Left);
         }
 
         // Idle anim

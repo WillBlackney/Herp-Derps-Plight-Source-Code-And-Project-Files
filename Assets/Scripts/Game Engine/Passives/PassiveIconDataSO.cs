@@ -16,4 +16,7 @@ public class PassiveIconDataSO : ScriptableObject
     [VerticalGroup("Core Data/Properties")]
     [LabelWidth(200)]
     public bool showStackCount;
+    [VerticalGroup("Core Data/Properties")]
+    [LabelWidth(200)]
+    public bool hiddenOnPassivePanel;
 }

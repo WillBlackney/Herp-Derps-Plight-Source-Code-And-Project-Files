@@ -229,6 +229,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             icon.statusStacksText.gameObject.SetActive(true);
         }
+        if (iconData.hiddenOnPassivePanel)
+        {
+            icon.gameObject.SetActive(false);
+        }
 
         icon.statusStacksText.text = icon.statusStacks.ToString();
 
