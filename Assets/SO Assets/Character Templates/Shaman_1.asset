@@ -44,7 +44,9 @@ MonoBehaviour:
     phoenixFormStacks: 0
     poisonousStacks: 0
     venomousStacks: 0
-    overloadStacks: 5
+    overloadStacks: 0
+    fusionStacks: 0
+    meleeAttackReductionStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -53,17 +55,24 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 0aa74ca6548051f42aecea063a3f3ef0, type: 2}
-  - {fileID: 11400000, guid: 0aa74ca6548051f42aecea063a3f3ef0, type: 2}
+  - {fileID: 11400000, guid: ef2b9ffdee54c0a48adddcc159a622a3, type: 2}
+  - {fileID: 11400000, guid: ef2b9ffdee54c0a48adddcc159a622a3, type: 2}
+  - {fileID: 11400000, guid: ef2b9ffdee54c0a48adddcc159a622a3, type: 2}
+  - {fileID: 11400000, guid: ef2b9ffdee54c0a48adddcc159a622a3, type: 2}
   modelParts:
-  - Human_Chest
-  - Human_Face_1
-  - Human_Head_1
-  - Human_Right_Arm
-  - Human_Right_Hand
-  - Human_Right_Leg
-  - Red_Face_Mask_Head_Wear
-  - Black_Leather_Chest_Wear
+  - Orc_Head_1
+  - Orc_Face_1
+  - Orc_Chest
+  - Orc_Right_Arm
+  - Orc_Right_Hand
+  - Orc_Left_Arm
+  - Orc_Left_Hand
+  - Orc_Right_Leg
+  - Orc_Left_Leg
+  - Shaman_Chest_Wear
+  - Left_Hand_Simple_Battle_Axe
+  - Shaman_Right_Leg_Wear
+  - Shaman_Mask_Head_Wear
   itemManager:
     mainHandItem: {fileID: 11400000, guid: 8487b0bcf8b350246ad6ff676ec686f4, type: 2}
     offHandItem: {fileID: 0}

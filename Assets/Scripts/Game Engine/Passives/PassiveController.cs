@@ -119,6 +119,14 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyOverload(newClone, originalData.overloadStacks, false);
         }
+        if (originalData.fusionStacks != 0)
+        {
+            ModifyFusion(newClone, originalData.fusionStacks, false);
+        }
+        if (originalData.meleeAttackReductionStacks != 0)
+        {
+            ModifyMeleeAttackReduction(newClone, originalData.meleeAttackReductionStacks, false);
+        }
         #endregion
 
         // Dot Passives
@@ -183,6 +191,8 @@ public class PassiveController : Singleton<PassiveController>
         pManager.poisonousStacks = original.poisonousStacks;
         pManager.venomousStacks = original.venomousStacks;
         pManager.overloadStacks = original.overloadStacks;
+        pManager.fusionStacks = original.fusionStacks;
+        pManager.meleeAttackReductionStacks = original.meleeAttackReductionStacks;
 
         pManager.wrathStacks = original.wrathStacks;
         pManager.gritStacks = original.gritStacks;
@@ -472,6 +482,14 @@ public class PassiveController : Singleton<PassiveController>
         else if (originalData == "Overload")
         {
             ModifyOverload(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Fusion")
+        {
+            ModifyFusion(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Melee Attack Reduction")
+        {
+            ModifyMeleeAttackReduction(pManager, stacks, showVFX, vfxDelay);
         }
         #endregion
 
@@ -1395,6 +1413,128 @@ public class PassiveController : Singleton<PassiveController>
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
                 }, QueuePosition.Back, 0, 0.5f);
             }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+
+            // Handle extra draw from fusion passive, if it is a player character and it is their activation
+            if (pManager.fusionStacks > 0 &&
+                pManager.myCharacter != null &&
+                pManager.myCharacter.controller == Controller.Player &&
+                ActivationManager.Instance.EntityActivated == pManager.myCharacter
+                )
+            {
+                // Draw a card for each stack of fusion
+                for (int i = 0; i < pManager.fusionStacks; i++)
+                {
+                    CardController.Instance.DrawACardFromDrawPile(pManager.myCharacter);
+                }
+            }
+        }
+
+
+    }
+    public void ModifyFusion(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyFusion() called...");
+
+        // Setup + Cache refs
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Fusion");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Increment stacks
+        pManager.fusionStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Fusion +" + stacks.ToString());
+                    VisualEffectManager.Instance.CreateCoreStatBuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back, 0, 0.5f);
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Fusion Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back, 0, 0.5f);
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }          
+        }
+
+
+    }
+    public void ModifyMeleeAttackReduction(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyMeleeAttackReduction() called...");
+
+        // Setup + Cache refs
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Melee Attack Reduction");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Increment stacks
+        pManager.meleeAttackReductionStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Melee Attack Reduction!" + stacks.ToString());
+                    VisualEffectManager.Instance.CreateCoreStatBuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back);
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Melee Attack Reduction Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.transform.position);
+                }, QueuePosition.Back);
+            }
+
+            // Update cost of cards in hand
+            if(pManager.myCharacter != null)
+            {
+                CardController.Instance.OnMeleeAttackReductionModified(pManager.myCharacter);
+            }           
 
             if (showVFX)
             {

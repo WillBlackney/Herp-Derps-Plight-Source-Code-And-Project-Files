@@ -135,7 +135,7 @@ public class CardController : Singleton<CardController>
 
     // Card draw Logic
     #region
-    private Card DrawACardFromDrawPile(CharacterEntityModel defender, int drawPileIndex = 0)
+    public Card DrawACardFromDrawPile(CharacterEntityModel defender, int drawPileIndex = 0)
     {
         Debug.Log("CardController.DrawACardFromDrawPile() called...");
         Card cardDrawn = null;
@@ -372,10 +372,14 @@ public class CardController : Singleton<CardController>
         // Pay Energy Cost
         CharacterEntityController.Instance.ModifyEnergy(owner, -GetCardEnergyCost(card));
 
-        // Remove from hand
-       // RemoveCardFromHand(owner, card);
-
         // check for specific on card play effects 
+        // Remove Melee Attack reduction passive
+        if (card.cardType == CardType.MeleeAttack &&
+            owner.pManager.meleeAttackReductionStacks > 0)
+        {
+            PassiveController.Instance.ModifyMeleeAttackReduction(owner.pManager, -owner.pManager.meleeAttackReductionStacks, false);
+        }
+
         // Infuriated 
         if (card.cardType == CardType.Skill)
         {
@@ -653,14 +657,66 @@ public class CardController : Singleton<CardController>
 
         // Apply passive to self
         else if (cardEffect.cardEffectType == CardEffectType.ApplyPassiveToSelf)
-        {            
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(owner.pManager, cardEffect.passivePairing.passiveData.passiveName, cardEffect.passivePairing.passiveStacks, true, 0.5f);
+        {
+            int stacks = cardEffect.passivePairing.passiveStacks;
+            if (cardEffect.drawStacksFromOverload)
+            {
+                stacks = owner.pManager.overloadStacks;
+            }
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(owner.pManager, cardEffect.passivePairing.passiveData.passiveName, stacks, true, 0.5f);
         }
 
         // Apply passive to target
         else if (cardEffect.cardEffectType == CardEffectType.ApplyPassiveToTarget)
         {
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, cardEffect.passivePairing.passiveData.passiveName, cardEffect.passivePairing.passiveStacks, true, 0.5f);
+            int stacks = cardEffect.passivePairing.passiveStacks;
+            if (cardEffect.drawStacksFromOverload)
+            {
+                stacks = owner.pManager.overloadStacks;
+            }
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, cardEffect.passivePairing.passiveData.passiveName, stacks, true, 0.5f);
+        }
+
+        // Apply passive to all enemies
+        else if (cardEffect.cardEffectType == CardEffectType.ApplyPassiveToAllEnemies)
+        {
+            int stacks = cardEffect.passivePairing.passiveStacks;
+            if (cardEffect.drawStacksFromOverload)
+            {
+                stacks = owner.pManager.overloadStacks;
+            }
+
+            foreach(CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
+            {
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemy.pManager, cardEffect.passivePairing.passiveData.passiveName, stacks, true);
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+            }           
+        }
+        // Apply passive to all allies
+        else if (cardEffect.cardEffectType == CardEffectType.ApplyPassiveToAllEnemies)
+        {
+            int stacks = cardEffect.passivePairing.passiveStacks;
+            if (cardEffect.drawStacksFromOverload)
+            {
+                stacks = owner.pManager.overloadStacks;
+            }
+
+            foreach (CharacterEntityModel ally in CharacterEntityController.Instance.GetAllAlliesOfCharacter(owner))
+            {
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(ally.pManager, cardEffect.passivePairing.passiveData.passiveName, stacks, true);
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+            }
+        }
+
+        // Remove overload from self
+        else if (cardEffect.cardEffectType == CardEffectType.RemoveAllOverloadFromSelf)
+        {
+            PassiveController.Instance.ModifyOverload(owner.pManager, -owner.pManager.overloadStacks, true);
+        }
+        // Remove poisoned from self
+        else if (cardEffect.cardEffectType == CardEffectType.RemoveAllPoisonedFromSelf)
+        {
+            PassiveController.Instance.ModifyPoisoned(null, owner.pManager, -owner.pManager.poisonedStacks, true);
         }
 
         // Remove poisoned from target
@@ -833,10 +889,33 @@ public class CardController : Singleton<CardController>
             }
         }
     }
+    public void OnMeleeAttackReductionModified(CharacterEntityModel model)
+    {
+        foreach (Card card in model.hand)
+        {
+            if (card.cardType == CardType.MeleeAttack)
+            {
+                // Update card vm energy text, if not null
+                CardViewModel cvm = card.cardVM;
+                int newCostTextValue = GetCardEnergyCost(card);
+                if (cvm)
+                {
+                    // Update energy cost text
+                    VisualEventManager.Instance.CreateVisualEvent(() => cvm.SetEnergyText(newCostTextValue.ToString()));
+
+                    // only play breath if cost of card is reduced, not increased
+                    if (model.pManager.meleeAttackReductionStacks > 0)
+                    {
+                        VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(cvm));
+                    }
+                }                
+            }
+        }
+    }
     #endregion
 
-    // Misc + Calculators
-    private int GetCardEnergyCost(Card card)
+    // Misc + Calculators + Events
+    public int GetCardEnergyCost(Card card)
     {
         Debug.Log("CardController.GetCardEnergyCost() called for card: " + card.cardName);
 
@@ -845,6 +924,13 @@ public class CardController : Singleton<CardController>
         costReturned -= card.energyReductionPermanent;
         costReturned -= card.energyReductionThisCombatOnly;
         costReturned -= card.energyReductionUntilPlayed;
+
+        
+        if(card.owner.pManager != null && 
+            card.owner.pManager.meleeAttackReductionStacks > 0)
+        {
+            costReturned -= card.owner.pManager.meleeAttackReductionStacks;
+        }
 
         // Prevent cost going negative
         if(costReturned < 0)
@@ -856,14 +942,21 @@ public class CardController : Singleton<CardController>
     }
     private void ReduceCardEnergyCostThisCombat(Card card, int reductionAmount)
     {
+        // Setup
+        CardViewModel cvm = card.cardVM;
+
         // Reduce cost this combat
         card.energyReductionThisCombatOnly += reductionAmount;
 
         // Update card vm energy text, if not null
         int newCostTextValue = GetCardEnergyCost(card);
-        VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(card.cardVM));
-        VisualEventManager.Instance.CreateVisualEvent(() => card.cardVM.SetEnergyText(newCostTextValue.ToString()));
-    }
+        if (cvm)
+        {
+            VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(cvm));
+            VisualEventManager.Instance.CreateVisualEvent(() => cvm.SetEnergyText(newCostTextValue.ToString()));
+        }
+       
+    }  
 
     // Visual Events
     #region

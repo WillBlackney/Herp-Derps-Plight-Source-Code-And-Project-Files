@@ -24,11 +24,12 @@ namespace CustomOdinGUI
         private DrawSelected<EnemyWaveSO> drawEncounters = new DrawSelected<EnemyWaveSO>();
         private DrawSelected<PassiveIconDataSO> drawPassives = new DrawSelected<PassiveIconDataSO>();
         private DrawSelected<ItemDataSO> drawItems = new DrawSelected<ItemDataSO>();
-        private DrawSelected<ItemDataSO> drawCharacterTemplates = new DrawSelected<ItemDataSO>();
+        private DrawSelected<CharacterTemplateSO> drawCharacterTemplates = new DrawSelected<CharacterTemplateSO>();
 
         // Create field for each type of manager object in project to be drawn
         private DrawTestSceneManager drawTestSceneManager = new DrawTestSceneManager();
         private DrawSpriteLibrary drawSpriteLibrary = new DrawSpriteLibrary();
+        private DrawPrefabHolder drawPrefabHolder = new DrawPrefabHolder();
 
         // Hard coded file directory paths to specific SO's
         private string enemyPath = "Assets/SO Assets/Enemies";
@@ -55,15 +56,16 @@ namespace CustomOdinGUI
         {
             // Set SO directory folder paths
             drawEnemies.SetPath(enemyPath);
-            drawCards.SetPath(cardPath);
-            drawEncounters.SetPath(encountersPath);
-            drawPassives.SetPath(passivesPath);
             drawItems.SetPath(itemsPath);
+            drawCards.SetPath(cardPath);
+            drawPassives.SetPath(passivesPath);
+            drawEncounters.SetPath(encountersPath);            
             drawCharacterTemplates.SetPath(characterTemplatesPath);
 
             // Find manager objects
-            drawTestSceneManager.FindMyObject();
             drawSpriteLibrary.FindMyObject();
+            drawTestSceneManager.FindMyObject();
+            drawPrefabHolder.FindMyObject();
         }
         protected override void OnGUI()
         {
@@ -104,10 +106,6 @@ namespace CustomOdinGUI
 
             switch (managerState)
             {
-                case ManagerState.testTab:
-                    DrawEditor(enumIndex);
-                    break;
-
                 case ManagerState.enemies:
                     drawEnemies.SetSelected(MenuTree.Selection.SelectedValue);
                     break;
@@ -121,7 +119,7 @@ namespace CustomOdinGUI
                     break;
 
                 case ManagerState.passives:
-                    drawEncounters.SetSelected(MenuTree.Selection.SelectedValue);
+                    drawPassives.SetSelected(MenuTree.Selection.SelectedValue);
                     break;
 
                 case ManagerState.combatEncounters:
@@ -129,10 +127,18 @@ namespace CustomOdinGUI
                     break;
 
                 case ManagerState.characterTemplates:
-                    drawEncounters.SetSelected(MenuTree.Selection.SelectedValue);
+                    drawCharacterTemplates.SetSelected(MenuTree.Selection.SelectedValue);
                     break;
 
                 case ManagerState.spriteLibrary:
+                    DrawEditor(enumIndex);
+                    break;
+
+                case ManagerState.testTab:
+                    DrawEditor(enumIndex);
+                    break;
+
+                case ManagerState.prefabHolder:
                     DrawEditor(enumIndex);
                     break;
 
@@ -152,8 +158,7 @@ namespace CustomOdinGUI
             // numerical value behind the enum values
 
             // Only draw for layouts that need to display scriptable objects
-            // Otherwise, just add a null for managers
-            targets.Add(drawTestSceneManager);
+            // Otherwise, just add a null for managers            
             targets.Add(drawEnemies);
             targets.Add(drawItems);
             targets.Add(drawCards);
@@ -161,6 +166,8 @@ namespace CustomOdinGUI
             targets.Add(drawEncounters);
             targets.Add(drawCharacterTemplates);
             targets.Add(drawSpriteLibrary);
+            targets.Add(drawTestSceneManager);
+            targets.Add(drawPrefabHolder);
             targets.Add(base.GetTarget());            
 
             enumIndex = targets.Count - 1;
@@ -189,14 +196,15 @@ namespace CustomOdinGUI
 
             switch (managerState)
             {
-                case ManagerState.cards:
-                    tree.AddAllAssetsAtPath("Card Data", cardPath, typeof(CardDataSO));
-                    break;
+                
                 case ManagerState.enemies:
                     tree.AddAllAssetsAtPath("Enemy Data", enemyPath, typeof(EnemyDataSO));
                     break;
                 case ManagerState.items:
                     tree.AddAllAssetsAtPath("Item Data", itemsPath, typeof(ItemDataSO));
+                    break;
+                case ManagerState.cards:
+                    tree.AddAllAssetsAtPath("Card Data", cardPath, typeof(CardDataSO));
                     break;
                 case ManagerState.passives:
                     tree.AddAllAssetsAtPath("Passive Icon Data", passivesPath, typeof(PassiveIconDataSO));
@@ -212,8 +220,7 @@ namespace CustomOdinGUI
             return tree;
         }
         public enum ManagerState
-        {
-            testTab,
+        {           
             enemies,
             items,
             cards,
@@ -221,6 +228,8 @@ namespace CustomOdinGUI
             combatEncounters,
             characterTemplates,
             spriteLibrary,
+            testTab,
+            prefabHolder,
         }
 
 

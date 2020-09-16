@@ -10,29 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Thunder Strike
+  m_Name: Whirlwind
   m_EditorClassIdentifier: 
-  cardName: Thunder Strike
-  cardDescription: Deal 4 Air damage. Gain 2 Overload.
-  cardSprite: {fileID: 21300000, guid: b2f34775f8805dd47ae9bee91d93d43d, type: 3}
+  cardName: Whirlwind
+  cardDescription: 'Deal 3 Physical Damage to all enemies. 2H: Draw 1 card. '
+  cardSprite: {fileID: 21300000, guid: 30cde6e6e1bc7ca46a185383480d7a04, type: 3}
   cardEnergyCost: 1
   cardType: 2
-  targettingType: 3
-  talentSchool: 13
+  targettingType: 0
+  talentSchool: 14
   rarity: 1
   expend: 0
   opener: 0
   fleeting: 0
   unplayable: 0
   cardEffects:
-  - cardEffectType: 6
+  - cardEffectType: 8
     weaponRequirement: 0
-    drawStacksFromOverload: 0
     blockGainValue: 0
-    baseDamageValue: 4
+    baseDamageValue: 3
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
-    damageType: 6
+    damageType: 1
     healthLost: 0
     energyGained: 0
     cardsDrawn: 0
@@ -43,9 +42,8 @@ MonoBehaviour:
       passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
-  - cardEffectType: 2
-    weaponRequirement: 0
-    drawStacksFromOverload: 0
+  - cardEffectType: 9
+    weaponRequirement: 2
     blockGainValue: 0
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
@@ -53,12 +51,12 @@ MonoBehaviour:
     damageType: 0
     healthLost: 0
     energyGained: 0
-    cardsDrawn: 0
+    cardsDrawn: 1
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: {fileID: 11400000, guid: dcdd2890a1d32f04b83aff87ff075399, type: 2}
-      passiveStacks: 2
+      passiveData: {fileID: 0}
+      passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
   cardEventListeners: []

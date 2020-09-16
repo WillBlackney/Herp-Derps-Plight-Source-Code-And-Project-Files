@@ -49,6 +49,8 @@ namespace Tests
         private const string POISONOUS_NAME = "Poisonous";
         private const string VENOMOUS_NAME = "Venomous";
         private const string OVERLOAD_NAME = "Overload";
+        private const string FUSION_NAME = "Fusion";
+        private const string MELEE_ATTACK_REDUCTION_NAME = "Melee Attack Reduction";
 
         // Core % Modifer Stats
         private const string WRATH_NAME = "Wrath";
@@ -147,6 +149,8 @@ namespace Tests
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, POISONOUS_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, VENOMOUS_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, OVERLOAD_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, FUSION_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, MELEE_ATTACK_REDUCTION_NAME, stacks);
 
             // Core % Modifer Stats
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, WEAKENED_NAME, stacks);
@@ -180,6 +184,8 @@ namespace Tests
                 model.pManager.poisonousStacks == 1 &&
                 model.pManager.venomousStacks == 1 &&
                 model.pManager.overloadStacks == 1 &&
+                model.pManager.fusionStacks == 1 &&
+                model.pManager.meleeAttackReductionStacks == 1 &&
 
                 model.pManager.weakenedStacks == 1 &&
                 model.pManager.wrathStacks == 1 &&
@@ -549,13 +555,6 @@ namespace Tests
             // Assert
             Assert.AreEqual(expected, fireBallsInHand);
         }
-
-
-
-        // Poisonous Tests
-        // Player Character with poisonous does apply poison with melee attack/ ranged attack
-        // Player Character with poisonous does NOT apply poison with skill ability
-        // Enemy character with poisonous does apply poisonous with attack
         [Test]
         public void Poisonous_Player_Character_Does_Apply_Poison_With_Melee_Attack()
         {
@@ -668,10 +667,132 @@ namespace Tests
             // Assert 
             Assert.AreEqual(expected, playerModel.pManager.poisonedStacks);            
         }
+        [Test]
+        public void Fusion_Does_Draw_Card_On_Character_Gain_Overload()
+        {
+            // Arange
+            CharacterEntityModel player;
+            CharacterEntityModel enemy;
+            string overload = PassiveController.Instance.GetPassiveIconDataByName(OVERLOAD_NAME).passiveName;
+            string fusion = PassiveController.Instance.GetPassiveIconDataByName(FUSION_NAME).passiveName;
+            int stacks = 1;
+            int expected = 6;
 
-        // Venomous Tests
-        // Venomous does work with poisonous
-        // Venomous does work normal card
+            // Act 
+            player = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            enemy = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, enemyNode);
+            player.initiative = 100;
+            player.draw = 5;
+
+            // add cards to deck 
+            for (int i = 0; i < 10; i++)
+            {
+                player.drawPile.Add(new Card());
+            }
+
+            // Apply fusion
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(player.pManager, fusion, stacks);
+
+            // start combat
+            ActivationManager.Instance.OnNewCombatEventStarted();
+
+            // apply overload
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(player.pManager, overload, 1);
+
+            // Assert
+            Assert.AreEqual(expected, player.hand.Count);
+        }
+        [Test]
+        public void Melee_Attack_Reduction_Does_Reduce_Melee_Attack_Card_Cost()
+        {
+            // Arange
+            CharacterEntityModel playerModel;
+            CharacterEntityModel enemyModel;
+
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(MELEE_ATTACK_REDUCTION_NAME).passiveName;
+            int stacks = 1;
+            int expected = 0;
+
+            // Act
+            playerModel = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            enemyModel = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, enemyNode);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(playerModel.pManager, passiveName, stacks);
+            playerModel.initiative = 1000;
+            playerModel.draw = 5;
+
+            // add some m attack cards to deck
+            // add cards to deck 
+            for (int i = 0; i < 10; i++)
+            {
+                Card card = new Card();
+                card.owner = playerModel;
+                card.cardType = CardType.MeleeAttack;
+                card.cardBaseEnergyCost = 1;
+                playerModel.drawPile.Add(card);
+            }
+
+            ActivationManager.Instance.OnNewCombatEventStarted();
+
+            // Assert 
+            Assert.AreEqual(expected, CardController.Instance.GetCardEnergyCost(playerModel.hand[0]));
+        }
+        [Test]
+        public void Melee_Attack_Card_Does_Have_Cost_Normalized_When_Melee_Attack_Reduction_Expires()
+        {
+            // Arange
+            CharacterEntityModel playerModel;
+            CharacterEntityModel enemyModel;
+
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(MELEE_ATTACK_REDUCTION_NAME).passiveName;
+            int stacks = 1;
+            int expected = 1;
+            bool didReduce = false;
+            bool didIncrease = false;
+            bool passed = false;
+
+            // Act
+            playerModel = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            enemyModel = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, enemyNode);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(playerModel.pManager, passiveName, stacks);
+            playerModel.initiative = 1000;
+            playerModel.draw = 5;
+            
+
+            // add some m attack cards to deck
+            // add cards to deck 
+            for (int i = 0; i < 10; i++)
+            {
+                Card card = new Card();
+                card.owner = playerModel;
+                card.cardType = CardType.MeleeAttack;
+                card.cardBaseEnergyCost = 1;
+                playerModel.drawPile.Add(card);
+            }
+
+            ActivationManager.Instance.OnNewCombatEventStarted();
+
+            // did passive reduce MA card cost?
+            if(CardController.Instance.GetCardEnergyCost(playerModel.hand[0]) == 0)
+            {
+                didReduce = true;
+            }
+
+            CardController.Instance.PlayCardFromHand(playerModel.hand[0], enemyModel);
+
+            // did MA cost reset to original value after passive removed?
+            if (CardController.Instance.GetCardEnergyCost(playerModel.hand[0]) == 1)
+            {
+                didIncrease = true;
+            }
+
+            if(didIncrease && didReduce)
+            {
+                passed = true;
+            }
+
+            // Assert 
+            Assert.IsTrue(passed);
+        }
         #endregion
 
         // Damage Percentage Modifier Passive Tests
@@ -1079,6 +1200,7 @@ namespace Tests
             // Assert
             Assert.AreEqual(expected, enemy.health);
         }
+        
         #endregion
 
 

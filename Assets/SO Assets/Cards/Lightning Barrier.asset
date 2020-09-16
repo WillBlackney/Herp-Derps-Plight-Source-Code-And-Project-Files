@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Thunder Strike
+  m_Name: Lightning Barrier
   m_EditorClassIdentifier: 
-  cardName: Thunder Strike
-  cardDescription: Deal 4 Air damage. Gain 2 Overload.
-  cardSprite: {fileID: 21300000, guid: b2f34775f8805dd47ae9bee91d93d43d, type: 3}
+  cardName: Lightning Barrier
+  cardDescription: Gain 4 Block. Gain 2 Overload.
+  cardSprite: {fileID: 21300000, guid: 938e8f609a2c284479ee3e39289eba29, type: 3}
   cardEnergyCost: 1
-  cardType: 2
-  targettingType: 3
+  cardType: 1
+  targettingType: 0
   talentSchool: 13
   rarity: 1
   expend: 0
@@ -25,14 +25,14 @@ MonoBehaviour:
   fleeting: 0
   unplayable: 0
   cardEffects:
-  - cardEffectType: 6
+  - cardEffectType: 10
     weaponRequirement: 0
     drawStacksFromOverload: 0
-    blockGainValue: 0
-    baseDamageValue: 4
+    blockGainValue: 4
+    baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
-    damageType: 6
+    damageType: 0
     healthLost: 0
     energyGained: 0
     cardsDrawn: 0

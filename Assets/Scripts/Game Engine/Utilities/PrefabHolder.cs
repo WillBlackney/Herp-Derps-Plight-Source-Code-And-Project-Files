@@ -9,7 +9,6 @@ public class PrefabHolder : Singleton<PrefabHolder>
     [Header("Buttons + UI")]
     public GameObject PassiveIconViewPrefab;
     public GameObject activationWindowPrefab;
-    public GameObject statePrefab;
 
     [Header("Character Entity Prefabs")]
     public GameObject characterEntityModel;
@@ -20,8 +19,6 @@ public class PrefabHolder : Singleton<PrefabHolder>
 
     [Header("Activation Window Related")]
     public GameObject panelSlotPrefab;
-    public GameObject slotHolderPrefab;
-    public GameObject windowHolderPrefab;
     #endregion
 
 

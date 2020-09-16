@@ -26,6 +26,9 @@ public class PassiveManagerModel
     public int poisonousStacks;
     public int venomousStacks;
     public int overloadStacks;
+    public int fusionStacks;
+    public int meleeAttackReductionStacks;
+
 
     // Core Damage % Modifier Passives
     public int wrathStacks;

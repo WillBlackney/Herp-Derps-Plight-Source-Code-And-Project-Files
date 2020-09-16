@@ -10,6 +10,9 @@ public class CardEffect
     public CardEffectType cardEffectType;
     public CardWeaponRequirement weaponRequirement;
 
+    [ShowIf("ShowDrawStacksFromOverload")]
+    public bool drawStacksFromOverload;
+
     [ShowIf("ShowBlockGainValue")]
     public int blockGainValue;
 
@@ -117,6 +120,20 @@ public class CardEffect
     public bool ShowDamageType()
     {
         if (cardEffectType == CardEffectType.DamageTarget || cardEffectType == CardEffectType.DamageSelf || cardEffectType == CardEffectType.DamageAllEnemies)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowDrawStacksFromOverload()
+    {
+        if (cardEffectType == CardEffectType.ApplyPassiveToAllAllies ||
+            cardEffectType == CardEffectType.ApplyPassiveToAllEnemies || 
+            cardEffectType == CardEffectType.ApplyPassiveToSelf ||
+            cardEffectType == CardEffectType.ApplyPassiveToTarget)
         {
             return true;
         }

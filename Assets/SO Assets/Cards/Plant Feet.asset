@@ -10,39 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Thunder Strike
+  m_Name: Plant Feet
   m_EditorClassIdentifier: 
-  cardName: Thunder Strike
-  cardDescription: Deal 4 Air damage. Gain 2 Overload.
-  cardSprite: {fileID: 21300000, guid: b2f34775f8805dd47ae9bee91d93d43d, type: 3}
-  cardEnergyCost: 1
-  cardType: 2
-  targettingType: 3
-  talentSchool: 13
+  cardName: Plant Feet
+  cardDescription: Your next Melee Attack card cost 1 Energy less.
+  cardSprite: {fileID: 21300000, guid: 487bda85feb1f464b8ac7d5b0656b1f2, type: 3}
+  cardEnergyCost: 0
+  cardType: 1
+  targettingType: 0
+  talentSchool: 14
   rarity: 1
   expend: 0
   opener: 0
   fleeting: 0
   unplayable: 0
   cardEffects:
-  - cardEffectType: 6
-    weaponRequirement: 0
-    drawStacksFromOverload: 0
-    blockGainValue: 0
-    baseDamageValue: 4
-    drawBaseDamageFromCurrentBlock: 0
-    drawBaseDamageFromTargetPoisoned: 0
-    damageType: 6
-    healthLost: 0
-    energyGained: 0
-    cardsDrawn: 0
-    extraDrawEffect: 0
-    cardEnergyReduction: 0
-    passivePairing:
-      passiveData: {fileID: 0}
-      passiveStacks: 0
-    cardAdded: {fileID: 0}
-    copiesAdded: 0
   - cardEffectType: 2
     weaponRequirement: 0
     drawStacksFromOverload: 0
@@ -57,8 +39,8 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: {fileID: 11400000, guid: dcdd2890a1d32f04b83aff87ff075399, type: 2}
-      passiveStacks: 2
+      passiveData: {fileID: 11400000, guid: 7b7b1835b0ce0b14da1a887a1653b86c, type: 2}
+      passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0
   cardEventListeners: []

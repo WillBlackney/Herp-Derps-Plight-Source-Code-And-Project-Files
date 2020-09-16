@@ -505,7 +505,7 @@ public class CombatLogic : Singleton<CombatLogic>
                 }
 
                 // Create Lose hp / damage effect
-                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateDamageEffect(victim.characterEntityView.transform.position, totalLifeLost), QueuePosition.Back, 0f, 0.5f);
+                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateDamageEffect(victim.characterEntityView.transform.position, totalLifeLost));
             }
         }
 

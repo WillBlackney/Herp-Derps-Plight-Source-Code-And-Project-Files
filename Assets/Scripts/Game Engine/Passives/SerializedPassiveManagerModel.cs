@@ -69,6 +69,12 @@ public class SerializedPassiveManagerModel
     [BoxGroup("Buff Passives")]
     [LabelWidth(200)]
     public int overloadStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
+    public int fusionStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
+    public int meleeAttackReductionStacks;
 
     // Buff Passives
     [BoxGroup("Core Damage % Modifier Passives", centerLabel: true)]

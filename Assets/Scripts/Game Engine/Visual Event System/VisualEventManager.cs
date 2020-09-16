@@ -16,25 +16,25 @@ public class VisualEventManager : Singleton<VisualEventManager>
     #region
     private void Update()
     {
-        if (eventQueue.Count > 0 &&
-            !eventQueue[0].isPlaying && 
-            paused == false)
-        {
-            PlayEventFromQueue(eventQueue[0]);
-        }
+        PlayNextEventFromQueue();
     }
     #endregion
 
     // Trigger Visual Events
     #region
     private void PlayEventFromQueue(VisualEvent ve)
-    {
-        if(ve.eventFunction != null)
-        {
-            //Debug.Log("VisualEventManager.PlayEventFromQueue() called, running function: " + ve.eventFunction.Method.Name);
-        }       
+    {        
         ve.isPlaying = true;
         StartCoroutine(PlayEventFromQueueCoroutine(ve));
+    }
+    private void PlayNextEventFromQueue()
+    {
+        if (eventQueue.Count > 0 &&
+            !eventQueue[0].isPlaying &&
+            paused == false)
+        {
+            PlayEventFromQueue(eventQueue[0]);
+        }
     }
     private IEnumerator PlayEventFromQueueCoroutine(VisualEvent ve)
     {
@@ -69,6 +69,9 @@ public class VisualEventManager : Singleton<VisualEventManager>
 
         // Remove from queue
         RemoveEventFromQueue(ve);
+
+        // Start next event
+        PlayNextEventFromQueue();
 
     }
     #endregion

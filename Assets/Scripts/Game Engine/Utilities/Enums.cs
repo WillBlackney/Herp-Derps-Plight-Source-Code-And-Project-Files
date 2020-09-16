@@ -58,6 +58,7 @@ public enum CardEffectType
     LoseHP = 14,
     RemoveAllPoisonedFromSelf = 15,
     RemoveAllPoisonedFromTarget = 16,
+    RemoveAllOverloadFromSelf = 20,
     TauntTarget = 17,
     TauntAllEnemies = 18,
 
@@ -104,6 +105,7 @@ public enum DamageType
 public enum TalentSchool
 {
     None = 0,
+    Arms = 14,
     Neutral = 1,
     Brawler = 2,
     Duelist = 3,
