@@ -12,7 +12,9 @@ public class CardViewModel : MonoBehaviour
     public Card card;
 
     [Header("General Components")]
-    public CardPreviewViewModel myPreviewCard;
+    public Transform mainParent;
+    public CardViewModel myPreviewCard;
+    public bool isPreviewCard;
 
     [Header("Core GUI Components")]
     public CardLocationTracker locationTracker;
@@ -30,6 +32,13 @@ public class CardViewModel : MonoBehaviour
     public Image talentSchoolImage;
     public GameObject talentSchoolParent;
 
+    [Header("Colouring References")]
+    public List<Image> talentRenderers;
+    public List<Image> rarityRenderers;
+
+    [Header("Canvas References")]
+    public Canvas canvas;
+
     [Header("Card Type Parent References")]
     public GameObject mAttackParent;
     public GameObject rAttackParent;
@@ -37,84 +46,11 @@ public class CardViewModel : MonoBehaviour
     public GameObject powerParent;
     #endregion
 
-    public CharacterEntityModel owner()
+    private void OnEnable()
     {
-        return card.owner;
-    }
-
-    // Set View Elements Logic
-    #region
-    public void SetNameText(string name)
-    {
-        nameText.text = name;
-        if(myPreviewCard != null)
+        if (isPreviewCard)
         {
-            myPreviewCard.nameText.text = name;
+            CardController.Instance.SetUpCardViewModelPreviewCanvas(this);
         }
     }
-    public void SetDescriptionText(string description)
-    {
-        descriptionText.text = description;
-        if (myPreviewCard != null)
-        {
-            myPreviewCard.descriptionText.text = description;
-        }
-    }
-    public void SetEnergyText(string energyCost)
-    {
-        energyText.text = energyCost;
-        if (myPreviewCard != null)
-        {
-            myPreviewCard.energyText.text = energyCost;
-        }
-    }
-    public void SetGraphicImage(Sprite sprite)
-    {
-        graphicImage.sprite = sprite;
-        if (myPreviewCard != null)
-        {
-            myPreviewCard.graphicImage.sprite = sprite;
-        }
-    }
-    public void SetTalentSchoolImage(Sprite sprite)
-    {
-        if (sprite)
-        {
-            talentSchoolParent.SetActive(true);
-            talentSchoolImage.sprite = sprite;
-            if (myPreviewCard != null)
-            {
-                myPreviewCard.talentSchoolParent.SetActive(true);
-                myPreviewCard.talentSchoolImage.sprite = sprite;
-            }
-        }
-       
-    }
-    public void SetCardTypeImage(CardType cardType)
-    {
-        if(cardType == CardType.MeleeAttack)
-        {
-            mAttackParent.SetActive(true);
-        }
-        else if (cardType == CardType.RangedAttack)
-        {
-            rAttackParent.SetActive(true);
-        }
-        else if (cardType == CardType.Skill)
-        {
-            skillParent.SetActive(true);
-        }
-        else if (cardType == CardType.Power)
-        {
-            powerParent.SetActive(true);
-        }
-
-        // do for card preview also
-        if(myPreviewCard != null)
-        {
-            myPreviewCard.SetCardTypeImage(cardType);
-        }
-    }
-    #endregion
-
 }

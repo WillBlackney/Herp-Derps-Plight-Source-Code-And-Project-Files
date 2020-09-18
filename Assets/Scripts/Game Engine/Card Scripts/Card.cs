@@ -12,6 +12,7 @@ public class Card
     public string cardDescription;
     public int cardBaseEnergyCost;
     public CardType cardType;
+    public Rarity rarity;
     public TargettingType targettingType;
     public TalentSchool talentSchool;
     public List<CardEffect> cardEffects = new List<CardEffect>();

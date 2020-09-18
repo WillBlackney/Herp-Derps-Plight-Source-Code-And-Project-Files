@@ -59,7 +59,7 @@ namespace CustomOdinGUI
             drawItems.SetPath(itemsPath);
             drawCards.SetPath(cardPath);
             drawPassives.SetPath(passivesPath);
-            drawEncounters.SetPath(encountersPath);            
+            drawEncounters.SetPath(encountersPath);
             drawCharacterTemplates.SetPath(characterTemplatesPath);
 
             // Find manager objects
@@ -88,6 +88,8 @@ namespace CustomOdinGUI
                 case ManagerState.passives:
                 case ManagerState.combatEncounters:
                 case ManagerState.characterTemplates:
+                    Debug.Log("Enum Index is: " + enumIndex.ToString());
+                    Debug.Log("managerState Index is: " + enumIndex.ToString());
                     DrawEditor(enumIndex);
                     break;
                 default:
@@ -109,7 +111,7 @@ namespace CustomOdinGUI
                 case ManagerState.enemies:
                     drawEnemies.SetSelected(MenuTree.Selection.SelectedValue);
                     break;
-              
+
                 case ManagerState.items:
                     drawItems.SetSelected(MenuTree.Selection.SelectedValue);
                     break;
@@ -168,7 +170,7 @@ namespace CustomOdinGUI
             targets.Add(drawSpriteLibrary);
             targets.Add(drawTestSceneManager);
             targets.Add(drawPrefabHolder);
-            targets.Add(base.GetTarget());            
+            targets.Add(base.GetTarget());
 
             enumIndex = targets.Count - 1;
 
@@ -196,7 +198,7 @@ namespace CustomOdinGUI
 
             switch (managerState)
             {
-                
+
                 case ManagerState.enemies:
                     tree.AddAllAssetsAtPath("Enemy Data", enemyPath, typeof(EnemyDataSO));
                     break;
@@ -220,7 +222,7 @@ namespace CustomOdinGUI
             return tree;
         }
         public enum ManagerState
-        {           
+        {
             enemies,
             items,
             cards,
@@ -235,6 +237,8 @@ namespace CustomOdinGUI
 
     }
 }
+
+
 
 
 

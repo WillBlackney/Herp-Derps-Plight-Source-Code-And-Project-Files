@@ -44,6 +44,9 @@ MonoBehaviour:
     phoenixFormStacks: 0
     poisonousStacks: 0
     venomousStacks: 0
+    overloadStacks: 0
+    fusionStacks: 0
+    meleeAttackReductionStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -53,10 +56,15 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
   deck:
   - {fileID: 11400000, guid: 1e3cea44d9e2f904698519977bd5198c, type: 2}
-  - {fileID: 11400000, guid: 1e3cea44d9e2f904698519977bd5198c, type: 2}
-  - {fileID: 11400000, guid: 1e3cea44d9e2f904698519977bd5198c, type: 2}
-  - {fileID: 11400000, guid: 1e3cea44d9e2f904698519977bd5198c, type: 2}
-  - {fileID: 11400000, guid: 1e3cea44d9e2f904698519977bd5198c, type: 2}
+  - {fileID: 11400000, guid: 3d57eb73a05e9a04b96c08944c441410, type: 2}
+  - {fileID: 11400000, guid: 63b57dcf22d80b749bf6fdcebe2b66cb, type: 2}
+  - {fileID: 11400000, guid: 63b57dcf22d80b749bf6fdcebe2b66cb, type: 2}
+  - {fileID: 11400000, guid: c725ced37bae68e4ea02c145e66668d9, type: 2}
+  - {fileID: 11400000, guid: c725ced37bae68e4ea02c145e66668d9, type: 2}
+  - {fileID: 11400000, guid: 58ad3605f0bb1844dac2124cd71174c1, type: 2}
+  - {fileID: 11400000, guid: 58ad3605f0bb1844dac2124cd71174c1, type: 2}
+  - {fileID: 11400000, guid: fdcce8d7a9e4a0748bf221b25c761b09, type: 2}
+  - {fileID: 11400000, guid: fdcce8d7a9e4a0748bf221b25c761b09, type: 2}
   modelParts:
   - Human_Chest
   - Human_Face_1

@@ -838,6 +838,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 433462269}
+  - {fileID: 1487477227}
   m_Father: {fileID: 937172827}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3737,18 +3738,12 @@ MonoBehaviour:
     type: 3}
   activationWindowPrefab: {fileID: 605423732021461905, guid: 2f9127d17cf024049a9950d935ee2136,
     type: 3}
-  statePrefab: {fileID: 6328745393006524892, guid: fe53cdb9c533b734f96e2751dd6d8871,
-    type: 3}
   characterEntityModel: {fileID: 6154693504274587096, guid: 44aefc0aedbccff4eac6717201739444,
     type: 3}
   noTargetCard: {fileID: 1000010018853698, guid: fc1ddd43186d19941972633b9fa64abe,
     type: 3}
   targetCard: {fileID: 1000013289343952, guid: 34adce538fd7a7c4eba75c3fd4e1ecad, type: 3}
   panelSlotPrefab: {fileID: 3216329357765812186, guid: aaed68e73a275e44cbbb3688ae0a3997,
-    type: 3}
-  slotHolderPrefab: {fileID: 310230194561123230, guid: 27dac72c26088554387ec916aca34469,
-    type: 3}
-  windowHolderPrefab: {fileID: 1109477202567006131, guid: 4b589616e8bc14c4c924cb6c0ecd8bbf,
     type: 3}
 --- !u!1 &802763455
 GameObject:
@@ -5343,8 +5338,8 @@ MonoBehaviour:
   testingEnemyWave: {fileID: 11400000, guid: a925a91cb3c75e64cadf1f518e9a621e, type: 2}
   characterTemplates:
   - {fileID: 11400000, guid: 11330c0f179f1fb49b8fc2aac3fe768b, type: 2}
-  - {fileID: 11400000, guid: 11330c0f179f1fb49b8fc2aac3fe768b, type: 2}
-  - {fileID: 11400000, guid: 11330c0f179f1fb49b8fc2aac3fe768b, type: 2}
+  - {fileID: 11400000, guid: b032cf78d33b0f2459c4af64779ad485, type: 2}
+  - {fileID: 11400000, guid: 1d0339b9767137d4a8b3c1e5af99a706, type: 2}
   characterDataSample:
     myName: Test
     serializedPassiveManager:
@@ -6537,6 +6532,67 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1481352050}
   m_CullTransparentMesh: 0
+--- !u!1 &1487477226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1487477227}
+  - component: {fileID: 1487477228}
+  m_Layer: 0
+  m_Name: Color Library
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1487477227
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487477226}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 158779679}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1487477228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487477226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ae054077142d3a4c934ec977bb60648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
+  neutralColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0.39215687}
+  brawlerColor: {r: 0.4056604, g: 0, b: 0, a: 0.39215687}
+  armsColor: {r: 1, g: 0.05694356, b: 0, a: 0.39215687}
+  guardianColor: {r: 0, g: 0, b: 0, a: 0.39215687}
+  pyromaniaColor: {r: 1, g: 0.45144096, b: 0.15566039, a: 0.39215687}
+  manipulationColor: {r: 0, g: 0.029119492, b: 1, a: 0.39215687}
+  rangerColor: {r: 0.15265143, g: 1, b: 0, a: 0.39215687}
+  shadowcraftColor: {r: 0.72697544, g: 0, b: 1, a: 0.39215687}
+  divinityColor: {r: 1, g: 0.9665771, b: 0, a: 0.39215687}
+  naturalismColor: {r: 0, g: 0.94952226, b: 1, a: 0.39215687}
+  corruptionColor: {r: 0, g: 0.3490566, b: 0.07531744, a: 0.39215687}
+  assassinationColor: {r: 0, g: 0, b: 0, a: 0.39215687}
+  duelistColor: {r: 0.6784314, g: 0.3529412, b: 0, a: 0.39215687}
+  commonColor: {r: 1, g: 1, b: 1, a: 1}
+  rareColor: {r: 0.41960785, g: 1, b: 0.8862745, a: 1}
+  epicColor: {r: 0.8188959, g: 0.3066038, b: 1, a: 1}
+  legendaryColor: {r: 1, g: 0.82941175, b: 0.25, a: 1}
 --- !u!1 &1518141181
 GameObject:
   m_ObjectHideFlags: 0

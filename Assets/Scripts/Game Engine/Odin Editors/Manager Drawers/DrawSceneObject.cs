@@ -50,7 +50,7 @@ namespace CustomOdinGUI
             // Finds the manager game object in the scene
             if (myObject == null)
             {
-                myObject = Object.FindObjectOfType<T>();
+                myObject = GameObject.FindObjectOfType<T>();
             }
         }
     }

@@ -69,6 +69,11 @@ public class HandVisual : MonoBehaviour
 
             // apply correct sorting order and HandSlot value for later 
             CardLocationTracker w = g.GetComponent<CardLocationTracker>();
+            if(w == null)
+            {
+                Debug.Log("CardLocationTracker was null on game object card, searching in children...");
+                w = g.GetComponentInChildren<CardLocationTracker>();
+            }
             w.Slot = cardsInHand.IndexOf(g);
             w.SetHandSortingOrder();
         }

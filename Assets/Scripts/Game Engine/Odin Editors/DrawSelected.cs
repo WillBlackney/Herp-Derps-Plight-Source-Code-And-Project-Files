@@ -80,7 +80,7 @@ namespace CustomOdinGUI
             var attempt = item as T;
             if (attempt != null)
             {
-                selected = attempt;
+                this.selected = attempt;
             }
         }
 
@@ -88,7 +88,7 @@ namespace CustomOdinGUI
         // that an SO is saved to.
         public void SetPath(string _path)
         {
-            path = _path;
+            this.path = _path;
         }
     }
 }

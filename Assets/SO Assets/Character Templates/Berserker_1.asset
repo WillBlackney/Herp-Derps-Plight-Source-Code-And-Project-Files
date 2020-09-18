@@ -44,6 +44,9 @@ MonoBehaviour:
     phoenixFormStacks: 0
     poisonousStacks: 0
     venomousStacks: 0
+    overloadStacks: 0
+    fusionStacks: 0
+    meleeAttackReductionStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -57,6 +60,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b31f4356f84f2bd48add48495139e0e5, type: 2}
   - {fileID: 11400000, guid: 37325f26ba4983840af841104c1c1b26, type: 2}
   - {fileID: 11400000, guid: 0e73c280fb28d9b4d9e4fc59eab30e44, type: 2}
+  - {fileID: 11400000, guid: 00b73be375fd9ce4e9735d3cba2ca025, type: 2}
+  - {fileID: 11400000, guid: 0e73c280fb28d9b4d9e4fc59eab30e44, type: 2}
+  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
+  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
+  - {fileID: 11400000, guid: b31f4356f84f2bd48add48495139e0e5, type: 2}
   modelParts:
   - Human_Chest
   - Human_Face_2

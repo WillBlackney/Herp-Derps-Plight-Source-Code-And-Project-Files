@@ -66,7 +66,7 @@ public class DragSpellOnTarget : DraggingActions {
 
         // Set up
         CharacterEntityModel target = null;
-        CharacterEntityModel owner = cardVM.owner();
+        CharacterEntityModel owner = cardVM.card.owner;
         Card card = cardVM.card;
 
         // Raycast from cam to mouse

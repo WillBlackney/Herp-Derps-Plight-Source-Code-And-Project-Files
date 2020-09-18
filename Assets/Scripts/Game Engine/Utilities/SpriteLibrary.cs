@@ -121,6 +121,7 @@ using Sirenix.OdinInspector.Editor;
         [PreviewField(75)]
         public Sprite flee;
         #endregion
+
         // Logic 
         #region
         public Sprite GetTalentSchoolSpriteFromEnumData(TalentSchool data)
@@ -132,6 +133,10 @@ using Sirenix.OdinInspector.Editor;
                 spriteReturned = assassinationBadge;
             }
             else if (data == TalentSchool.Brawler)
+            {
+                spriteReturned = brawlerBadge;
+            }
+            else if (data == TalentSchool.Arms)
             {
                 spriteReturned = brawlerBadge;
             }

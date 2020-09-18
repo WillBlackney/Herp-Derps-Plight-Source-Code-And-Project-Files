@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System;
+using UnityEngine.UI;
 
 public class CardController : Singleton<CardController>
 {
@@ -72,6 +73,7 @@ public class CardController : Singleton<CardController>
         card.cardBaseEnergyCost = data.cardEnergyCost;
         card.cardSprite = data.cardSprite;
         card.cardType = data.cardType;
+        card.rarity = data.rarity;
         card.targettingType = data.targettingType;
         card.talentSchool = data.talentSchool;
 
@@ -94,23 +96,28 @@ public class CardController : Singleton<CardController>
         CardViewModel cardVM = null;
         if(card.targettingType == TargettingType.NoTarget)
         {
-            cardVM = Instantiate(PrefabHolder.Instance.noTargetCard, position, Quaternion.identity).GetComponent<CardViewModel>();
+            cardVM = Instantiate(PrefabHolder.Instance.noTargetCard, position, Quaternion.identity).GetComponentInChildren<CardViewModel>();
         }
         else
         {
-            cardVM = Instantiate(PrefabHolder.Instance.targetCard, position, Quaternion.identity).GetComponent<CardViewModel>();
-        }       
+            cardVM = Instantiate(PrefabHolder.Instance.targetCard, position, Quaternion.identity).GetComponentInChildren<CardViewModel>();
+        }
+
+        // Set main parent 
+        cardVM.mainParent = cardVM.transform.parent.transform;
 
         // Cache references
         ConnectCardWithCardViewModel(card, cardVM);
 
         // Set texts and images
-        cardVM.SetNameText(card.cardName);
-        cardVM.SetDescriptionText(card.cardDescription);
-        cardVM.SetEnergyText(GetCardEnergyCost(card).ToString());
-        cardVM.SetGraphicImage(card.cardSprite);
-        cardVM.SetTalentSchoolImage(SpriteLibrary.Instance.GetTalentSchoolSpriteFromEnumData(card.talentSchool));
-        cardVM.SetCardTypeImage(card.cardType);
+        SetCardViewModelNameText(cardVM, card.cardName);
+        SetCardViewModelDescriptionText(cardVM, card.cardDescription);
+        SetCardViewModelEnergyText(cardVM, GetCardEnergyCost(card).ToString());
+        SetCardViewModelGraphicImage(cardVM, card.cardSprite);
+        SetCardViewModelTalentSchoolImage(cardVM, SpriteLibrary.Instance.GetTalentSchoolSpriteFromEnumData(card.talentSchool));
+        ApplyCardViewModelTalentColoring(cardVM, ColorLibrary.Instance.GetTalentColor(card.talentSchool));
+        ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(card.rarity));
+        SetCardViewModelCardTypeImage(cardVM, card.cardType);
 
         return cardVM;
     }
@@ -130,6 +137,108 @@ public class CardController : Singleton<CardController>
             cardVM.card = null;
         }       
         
+    }
+    #endregion
+
+    // Card View Model Specific Logic
+    #region
+    public void SetCardViewModelNameText(CardViewModel cvm, string name)
+    {
+        cvm.nameText.text = name;
+        if (cvm.myPreviewCard != null)
+        {
+            Debug.Log("SETTING CARD VIEW MODEL PREVIEW NAME!!");
+            SetCardViewModelNameText(cvm.myPreviewCard, name);
+        }
+    }
+    public void SetCardViewModelDescriptionText(CardViewModel cvm, string description)
+    {
+        cvm.descriptionText.text = description;
+        if (cvm.myPreviewCard != null)
+        {
+            SetCardViewModelDescriptionText(cvm.myPreviewCard, description);
+        }
+    }
+    public void SetCardViewModelEnergyText(CardViewModel cvm, string energyCost)
+    {
+        cvm.energyText.text = energyCost;
+        if (cvm.myPreviewCard != null)
+        {
+            SetCardViewModelEnergyText(cvm.myPreviewCard, energyCost);
+        }
+    }
+    public void SetCardViewModelGraphicImage(CardViewModel cvm, Sprite sprite)
+    {
+        cvm.graphicImage.sprite = sprite;
+        if (cvm.myPreviewCard != null)
+        {
+            SetCardViewModelGraphicImage(cvm.myPreviewCard, sprite);
+        }
+    }
+    public void SetCardViewModelTalentSchoolImage(CardViewModel cvm, Sprite sprite)
+    {
+        if (sprite)
+        {
+            cvm.talentSchoolParent.SetActive(true);
+            cvm.talentSchoolImage.sprite = sprite;
+            if (cvm.myPreviewCard != null)
+            {
+                SetCardViewModelTalentSchoolImage(cvm.myPreviewCard, sprite);
+            }
+        }
+    }
+    public void ApplyCardViewModelTalentColoring(CardViewModel cvm, Color color)
+    {
+        foreach (Image sr in cvm.talentRenderers)
+        {
+            sr.color = color;
+        }
+        if (cvm.myPreviewCard != null)
+        {
+            ApplyCardViewModelTalentColoring(cvm.myPreviewCard, color);
+        }
+    }
+    public void ApplyCardViewModelRarityColoring(CardViewModel cvm, Color color)
+    {
+        foreach (Image sr in cvm.rarityRenderers)
+        {
+            sr.color = color;
+        }
+        if (cvm.myPreviewCard != null)
+        {
+            ApplyCardViewModelRarityColoring(cvm.myPreviewCard, color);
+        }
+    }
+    public void SetCardViewModelCardTypeImage(CardViewModel cvm, CardType cardType)
+    {
+        if (cardType == CardType.MeleeAttack)
+        {
+            cvm.mAttackParent.SetActive(true);
+        }
+        else if (cardType == CardType.RangedAttack)
+        {
+            cvm.rAttackParent.SetActive(true);
+        }
+        else if (cardType == CardType.Skill)
+        {
+            cvm.skillParent.SetActive(true);
+        }
+        else if (cardType == CardType.Power)
+        {
+            cvm.powerParent.SetActive(true);
+        }
+
+        // do for card preview also
+        if (cvm.myPreviewCard != null)
+        {
+            SetCardViewModelCardTypeImage(cvm.myPreviewCard, cardType);
+        }
+    }
+
+    public void SetUpCardViewModelPreviewCanvas(CardViewModel cvm)
+    {
+        cvm.canvas.overrideSorting = true;
+        cvm.canvas.sortingOrder = 1000;
     }
     #endregion
 
@@ -264,7 +373,7 @@ public class CardController : Singleton<CardController>
         Debug.Log("CardController.DestroyCardViewModel() called...");
 
         // Destoy script + GO
-        Destroy(cvm.gameObject);
+        Destroy(cvm.mainParent.gameObject);
     }
     #endregion
 
@@ -901,7 +1010,7 @@ public class CardController : Singleton<CardController>
                 if (cvm)
                 {
                     // Update energy cost text
-                    VisualEventManager.Instance.CreateVisualEvent(() => cvm.SetEnergyText(newCostTextValue.ToString()));
+                    VisualEventManager.Instance.CreateVisualEvent(() => SetCardViewModelEnergyText(cvm, newCostTextValue.ToString()));
 
                     // only play breath if cost of card is reduced, not increased
                     if (model.pManager.meleeAttackReductionStacks > 0)
@@ -915,6 +1024,7 @@ public class CardController : Singleton<CardController>
     #endregion
 
     // Misc + Calculators + Events
+    #region
     public int GetCardEnergyCost(Card card)
     {
         Debug.Log("CardController.GetCardEnergyCost() called for card: " + card.cardName);
@@ -953,10 +1063,14 @@ public class CardController : Singleton<CardController>
         if (cvm)
         {
             VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(cvm));
-            VisualEventManager.Instance.CreateVisualEvent(() => cvm.SetEnergyText(newCostTextValue.ToString()));
+            VisualEventManager.Instance.CreateVisualEvent(() => SetCardViewModelEnergyText(cvm, newCostTextValue.ToString()));
         }
        
-    }  
+    }
+    #endregion
+
+    // Colouring Logic
+
 
     // Visual Events
     #region
@@ -965,14 +1079,14 @@ public class CardController : Singleton<CardController>
         Debug.Log("CardController.CreateAndAddNewCardToCharacterHandVisualEvent() called...");
         CharacterEntityView characterView = character.characterEntityView;
 
-        GameObject cardVM;
-        cardVM = BuildCardViewModelFromCard(card, characterView.handVisual.NonDeckCardCreationTransform.position).gameObject;
+        CardViewModel cardVM;
+        cardVM = BuildCardViewModelFromCard(card, characterView.handVisual.NonDeckCardCreationTransform.position);
 
         // pass this card to HandVisual class
-        characterView.handVisual.AddCard(cardVM);
+        characterView.handVisual.AddCard(cardVM.mainParent.gameObject);
 
         // Bring card to front while it travels from draw spot to hand
-        CardLocationTracker clt = cardVM.GetComponent<CardLocationTracker>();
+        CardLocationTracker clt = cardVM.locationTracker;
         clt.BringToFront();
         clt.Slot = 0;
         clt.VisualState = VisualStates.Transition;
@@ -981,7 +1095,7 @@ public class CardController : Singleton<CardController>
         Sequence s = DOTween.Sequence();
 
         // displace the card so that we can select it in the scene easier.
-        s.Append(cardVM.transform.DOLocalMove(characterView.handVisual.slots.Children[0].transform.localPosition, cardTransistionSpeed));
+        s.Append(cardVM.mainParent.DOLocalMove(characterView.handVisual.slots.Children[0].transform.localPosition, cardTransistionSpeed));
 
         s.OnComplete(() => clt.SetHandSortingOrder());
     }
@@ -990,14 +1104,14 @@ public class CardController : Singleton<CardController>
         Debug.Log("CardController.DrawCardFromDeckVisualEvent() called...");
         CharacterEntityView characterView = character.characterEntityView;
 
-        GameObject cardVM;        
-        cardVM = BuildCardViewModelFromCard(card, characterView.handVisual.DeckTransform.position).gameObject;
+        CardViewModel cardVM;        
+        cardVM = BuildCardViewModelFromCard(card, characterView.handVisual.DeckTransform.position);
 
         // pass this card to HandVisual class
-        characterView.handVisual.AddCard(cardVM);
+        characterView.handVisual.AddCard(cardVM.mainParent.gameObject);
 
         // Bring card to front while it travels from draw spot to hand
-        CardLocationTracker clt = cardVM.GetComponent<CardLocationTracker>();
+        CardLocationTracker clt = cardVM.locationTracker;
         clt.BringToFront();
         clt.Slot = 0;
         clt.VisualState = VisualStates.Transition;
@@ -1006,14 +1120,14 @@ public class CardController : Singleton<CardController>
         Sequence s = DOTween.Sequence();
 
         // displace the card so that we can select it in the scene easier.
-        s.Append(cardVM.transform.DOLocalMove(characterView.handVisual.slots.Children[0].transform.localPosition, cardTransistionSpeed));
+        s.Append(cardVM.mainParent.DOLocalMove(characterView.handVisual.slots.Children[0].transform.localPosition, cardTransistionSpeed));
 
         s.OnComplete(() => clt.SetHandSortingOrder());
     }
     private void DiscardCardFromHandVisualEvent(CardViewModel cvm, CharacterEntityModel character)
     {
         // remove from hand visual
-        character.characterEntityView.handVisual.RemoveCard(cvm.gameObject);
+        character.characterEntityView.handVisual.RemoveCard(cvm.mainParent.gameObject);
 
         // move card to the discard pile
         Sequence s = MoveCardVmFromHandToDiscardPile(cvm, character.characterEntityView.handVisual.DiscardPileTransform);
@@ -1029,7 +1143,7 @@ public class CardController : Singleton<CardController>
         // move card to the hand;
         Sequence s = DOTween.Sequence();
         // displace the card so that we can select it in the scene easier.
-        s.Append(cvm.transform.DOMove(discardPileLocation.position, 0.5f));
+        s.Append(cvm.mainParent.DOMove(discardPileLocation.position, 0.5f));
 
         return s;
     }
@@ -1045,9 +1159,9 @@ public class CardController : Singleton<CardController>
             float endScale = currentScale * 1.5f;
             float animSpeed = 0.25f;
 
-            cvm.transform.DOScale(endScale, animSpeed).SetEase(Ease.OutQuint);
+            cvm.mainParent.DOScale(endScale, animSpeed).SetEase(Ease.OutQuint);
             yield return new WaitForSeconds(animSpeed);
-            cvm.transform.DOScale(currentScale, animSpeed).SetEase(Ease.OutQuint);
+            cvm.mainParent.DOScale(currentScale, animSpeed).SetEase(Ease.OutQuint);
         }
         
     }
@@ -1056,12 +1170,12 @@ public class CardController : Singleton<CardController>
         Debug.Log("CardController.PlayACardFromHandVisualEvent() called...");
 
         cvm.locationTracker.VisualState = VisualStates.Transition;
-        view.handVisual.RemoveCard(cvm.gameObject);
+        view.handVisual.RemoveCard(cvm.mainParent.gameObject);
 
-        cvm.transform.SetParent(null);
+        cvm.mainParent.SetParent(null);
 
         Sequence seqOne = DOTween.Sequence();
-        seqOne.Append(cvm.transform.DOMove(view.handVisual.DiscardPileTransform.position, 0.5f));
+        seqOne.Append(cvm.mainParent.DOMove(view.handVisual.DiscardPileTransform.position, 0.5f));
         seqOne.OnComplete(() =>
         {
             DestroyCardViewModel(cvm);
