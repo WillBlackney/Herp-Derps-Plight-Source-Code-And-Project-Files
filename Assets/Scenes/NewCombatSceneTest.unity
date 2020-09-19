@@ -4791,7 +4791,9 @@ MonoBehaviour:
     type: 3}
   toonGainCamoflagePrefab: {fileID: 7534306385490995454, guid: d552aa5ca5eb1814bb3907240a7d11e4,
     type: 3}
-  toonGeneralDebuff: {fileID: 3960113531957254273, guid: 42b38830cfa9fba439d9dc200d511e11,
+  redPillarBuff: {fileID: 4078254371300037518, guid: ee4b887faa6205f4caa497fd31a4b80b,
+    type: 3}
+  yellowPillarBuff: {fileID: 6365200369247628575, guid: 8c9b6bf7680a1c047bc14daeefd92dcb,
     type: 3}
   toonApplyStunned: {fileID: 4211829791415223923, guid: a89242a0debbba945a1c58a24dcf7a07,
     type: 3}
@@ -4810,6 +4812,10 @@ MonoBehaviour:
   smallPoisonExplosion: {fileID: 7225358078336664810, guid: 0f816b8a50bc40e4b91bffa084ff4674,
     type: 3}
   smallLightningExplosion: {fileID: 6053030748321263839, guid: a1e4e73ef273199478fcbc451062f991,
+    type: 3}
+  smallFireExplosion: {fileID: 3841271663817449560, guid: 34ad8df778193254aacd0f1245ffe69d,
+    type: 3}
+  smallShadowExplosion: {fileID: 5267848370820392643, guid: d616a0730c9c91d42b34cad80cbb9e12,
     type: 3}
   smallMeleeImpact: {fileID: 692682014936523782, guid: 5abcae1efbfe96e419214726503971da,
     type: 3}
@@ -5373,9 +5379,9 @@ MonoBehaviour:
   runMockScene: 1
   testingEnemyWave: {fileID: 11400000, guid: a925a91cb3c75e64cadf1f518e9a621e, type: 2}
   characterTemplates:
-  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
-  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
-  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
+  - {fileID: 11400000, guid: 1d0339b9767137d4a8b3c1e5af99a706, type: 2}
+  - {fileID: 11400000, guid: 11330c0f179f1fb49b8fc2aac3fe768b, type: 2}
+  - {fileID: 11400000, guid: 8d4ecf2085d9be843b2d44cb7360b5d7, type: 2}
   characterDataSample:
     myName: Test
     serializedPassiveManager:
@@ -7217,6 +7223,75 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1001 &1572616250
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8636529612959752039, guid: 66be78d695dc4ac4fa353fc9e2079459,
+        type: 3}
+      propertyPath: m_Name
+      value: Apply Burning Effect 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8636529612959988591, guid: 66be78d695dc4ac4fa353fc9e2079459,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.2125707
+      objectReference: {fileID: 0}
+    - target: {fileID: 8636529612959988591, guid: 66be78d695dc4ac4fa353fc9e2079459,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 8636529612959988591, guid: 66be78d695dc4ac4fa353fc9e2079459,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 8636529612959988591, guid: 66be78d695dc4ac4fa353fc9e2079459,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.38268343
+      objectReference: {fileID: 0}
+    - target: {fileID: 8636529612959988591, guid: 66be78d695dc4ac4fa353fc9e2079459,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8636529612959988591, guid: 66be78d695dc4ac4fa353fc9e2079459,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8636529612959988591, guid: 66be78d695dc4ac4fa353fc9e2079459,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.92387956
+      objectReference: {fileID: 0}
+    - target: {fileID: 8636529612959988591, guid: 66be78d695dc4ac4fa353fc9e2079459,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8636529612959988591, guid: 66be78d695dc4ac4fa353fc9e2079459,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8636529612959988591, guid: 66be78d695dc4ac4fa353fc9e2079459,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8636529612959988591, guid: 66be78d695dc4ac4fa353fc9e2079459,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 66be78d695dc4ac4fa353fc9e2079459, type: 3}
 --- !u!1 &1574626205
 GameObject:
   m_ObjectHideFlags: 0

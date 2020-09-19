@@ -46,6 +46,7 @@ MonoBehaviour:
     animationEventData:
       effectOnSelfAtStart: 0
       startingMovementEvent: 0
+      returnToMyNodeOnCardEffectResolved: 0
       characterAnimation: 4
       onCharacterAnimationFinish: 0
       projectileFired: 0

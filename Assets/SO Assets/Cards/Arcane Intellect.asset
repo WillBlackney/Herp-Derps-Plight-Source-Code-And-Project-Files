@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Arcane Intellect
   m_EditorClassIdentifier: 
   cardName: Arcane Intellect
-  cardDescription: Draw 2 cards. Reduce their Energy cost by 1.
+  cardDescription: Draw 2 cards. Reduce their Energy cost by 1 this combat.
   cardSprite: {fileID: 21300000, guid: 91643d043fe4c5d45af86edcd0d20843, type: 3}
   cardEnergyCost: 2
   cardType: 1
@@ -37,7 +37,7 @@ MonoBehaviour:
     energyGained: 0
     cardsDrawn: 2
     extraDrawEffect: 1
-    cardEnergyReduction: 10
+    cardEnergyReduction: 1
     passivePairing:
       passiveData: {fileID: 0}
       passiveStacks: 0
@@ -46,6 +46,7 @@ MonoBehaviour:
     animationEventData:
       effectOnSelfAtStart: 0
       startingMovementEvent: 0
+      returnToMyNodeOnCardEffectResolved: 0
       characterAnimation: 4
       onCharacterAnimationFinish: 0
       projectileFired: 0

@@ -1588,9 +1588,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
         while (reachedDestination == false)
         {
-            attacker.characterEntityView.ucmMovementParent.transform.position = Vector2.MoveTowards(attacker.characterEntityView.ucmMovementParent.transform.position, destination, moveSpeed * Time.deltaTime);
+            attacker.characterEntityView.ucmMovementParent.transform.position = Vector2.MoveTowards(attacker.characterEntityView.WorldPosition, destination, moveSpeed * Time.deltaTime);
 
-            if (attacker.characterEntityView.ucmMovementParent.transform.position == destination)
+            if (attacker.characterEntityView.WorldPosition == destination)
             {
                 Debug.Log("CharacterEntityController.MoveAttackerToTargetNodeAttackPositionCoroutine() detected destination was reached...");
                 reachedDestination = true;
@@ -1626,9 +1626,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Move
         while (reachedDestination == false)
         {
-            entity.characterEntityView.ucmMovementParent.transform.position = Vector2.MoveTowards(entity.characterEntityView.ucmMovementParent.transform.position, destination, moveSpeed * Time.deltaTime);
+            entity.characterEntityView.ucmMovementParent.transform.position = Vector2.MoveTowards(entity.characterEntityView.WorldPosition, destination, moveSpeed * Time.deltaTime);
 
-            if (entity.characterEntityView.ucmMovementParent.transform.position == destination)
+            if (entity.characterEntityView.WorldPosition == destination)
             {
                 Debug.Log("CharacterEntityController.MoveEntityToNodeCentreCoroutine() detected destination was reached...");
                 reachedDestination = true;
@@ -1684,9 +1684,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
         while (reachedDestination == false)
         {
-            attacker.characterEntityView.ucmMovementParent.transform.position = Vector2.MoveTowards(attacker.characterEntityView.ucmMovementParent.transform.position, destination, moveSpeed * Time.deltaTime);
+            attacker.characterEntityView.ucmMovementParent.transform.position = Vector2.MoveTowards(attacker.characterEntityView.WorldPosition, destination, moveSpeed * Time.deltaTime);
 
-            if (attacker.characterEntityView.ucmMovementParent.transform.position == destination)
+            if (attacker.characterEntityView.WorldPosition == destination)
             {
                 reachedDestination = true;
             }

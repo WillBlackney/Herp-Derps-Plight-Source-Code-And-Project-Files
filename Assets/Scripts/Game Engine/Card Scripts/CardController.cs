@@ -576,8 +576,30 @@ public class CardController : Singleton<CardController>
             if(DoesCardEffectMeetWeaponRequirement(effect, owner))
             {
                 TriggerEffectFromCard(card, effect, target);
-            }            
+            }
+
+            // Move back to home node early if declarded to do so
+            if (owner.hasMovedOffStartingNode && owner.livingState == LivingState.Alive &&
+                effect.animationEventData.returnToMyNodeOnCardEffectResolved)
+            {
+                owner.hasMovedOffStartingNode = false;
+                CoroutineData cData = new CoroutineData();
+                LevelNode node = owner.levelNode;
+                VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.MoveEntityToNodeCentre(owner, node, cData), cData, QueuePosition.Back, 0.3f, 0);
+            }
         }
+
+        // If character moved off node, move back after all card effects resolved
+        if (owner.hasMovedOffStartingNode && owner.livingState == LivingState.Alive)
+        {
+            owner.hasMovedOffStartingNode = false;
+            CoroutineData cData = new CoroutineData();
+            LevelNode node = owner.levelNode;
+            VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.MoveEntityToNodeCentre(owner, node, cData), cData, QueuePosition.Back, 0.3f, 0);
+        }
+
+        // Brief pause at the of all effects
+        VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);        
 
         // On end events
         OnCardPlayedFinish(card);
@@ -596,105 +618,105 @@ public class CardController : Singleton<CardController>
         "' from card: '" + card.cardName);
 
         CharacterEntityModel owner = card.owner;
-        bool hasMovedOffStartingNode = false;
 
         // Queue starting anims and particles
         if(cardEffect.animationEventData != null)
         {
             // EFFECT ON SELF AT START SEQUENCE
-            if (cardEffect.animationEventData.effectOnSelfAtStart == ParticleEffect.LightningExplosion1)
-            {
-                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateApplyShockedEffect(owner.characterEntityView.transform.position));
-            }
-
-            else if (cardEffect.animationEventData.effectOnSelfAtStart == ParticleEffect.BloodExplosion1)
-            {
-                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateBloodSplatterEffect(owner.characterEntityView.transform.position));
-            }
-            else if (cardEffect.animationEventData.effectOnSelfAtStart == ParticleEffect.AoeMeleeArc)
-            {
-                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateAoEMeleeArcEffect(owner.characterEntityView.ucmMovementParent.transform.position));
-            }
+            VisualEventManager.Instance.CreateVisualEvent(()=>
+            VisualEffectManager.Instance.CreatEffectAtLocation(cardEffect.animationEventData.effectOnSelfAtStart, owner.characterEntityView.WorldPosition));
 
             // MOVEMENT SEQUENCE
             if (cardEffect.animationEventData.startingMovementEvent == MovementAnimEvent.MoveTowardsTarget &&
                 target != null)
             {
                 // Move towards target visual event
-                hasMovedOffStartingNode = true;
+                owner.hasMovedOffStartingNode = true;
                 LevelNode node = target.levelNode;
                 CoroutineData cData = new CoroutineData();
                 VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.MoveAttackerToTargetNodeAttackPosition(owner, node, cData), cData);
             }
             else if (cardEffect.animationEventData.startingMovementEvent == MovementAnimEvent.MoveToCentre)
             {
-                hasMovedOffStartingNode = true;
+                owner.hasMovedOffStartingNode = true;
                 CoroutineData cData = new CoroutineData();
                 VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.MoveAttackerToCentrePosition(owner, cData), cData);
             }
 
 
             // CHARACTER ANIMATION SEQUENCE
-
             // Melee Attack 
             if (cardEffect.animationEventData.characterAnimation == CharacterAnimation.MeleeAttack)
             {
                 VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.TriggerMeleeAttackAnimation(owner.characterEntityView));
             }
-
             // Skill
             else if (cardEffect.animationEventData.characterAnimation == CharacterAnimation.Skill)
             {
                 VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.PlaySkillAnimation(owner.characterEntityView));
             }
-
-            // Shoot Projectile 
-            else if (cardEffect.animationEventData.characterAnimation == CharacterAnimation.ShootProjectile)
-            {
-                VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.TriggerMeleeAttackAnimation(owner.characterEntityView));
-
-                // SHOOT PROJECTILE SEQUENCE
-                if (cardEffect.animationEventData.projectileFired == ProjectileFired.FireBall1)
-                {
-                    CoroutineData cData = new CoroutineData();
-                    Debug.Log("CHARACTER POS INITIAL: " + owner.characterEntityView.transform.position.ToString());
-                    VisualEventManager.Instance.CreateVisualEvent(() =>
-                    VisualEffectManager.Instance.ShootToonFireball(owner.characterEntityView.ucmMovementParent.transform.position, target.characterEntityView.transform.position, cData), cData);
-                }
-            }
-
             // Shoot Bow 
             else if (cardEffect.animationEventData.characterAnimation == CharacterAnimation.ShootBow)
             {
+                // Character shoot bow animation
                 CoroutineData cData = new CoroutineData();
                 VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.PlayShootBowAnimation(owner.characterEntityView, cData), cData);
 
-                // shoot arrow
+                // Create and launch arrow projectile
                 CoroutineData cData2 = new CoroutineData();
                 VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.ShootArrow(owner.characterEntityView.ucmMovementParent.transform.position, target.characterEntityView.transform.position, cData2), cData2);
+                VisualEffectManager.Instance.ShootArrow(owner.characterEntityView.WorldPosition, target.characterEntityView.WorldPosition, cData2), cData2);
+            }
+            // Shoot Projectile 
+            else if (cardEffect.animationEventData.characterAnimation == CharacterAnimation.ShootProjectile)
+            {
+                // Play character shoot anim
+                VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.TriggerMeleeAttackAnimation(owner.characterEntityView));
+
+                // Create projectile
+                CoroutineData cData = new CoroutineData();
+                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.ShootProjectileAtLocation
+                (cardEffect.animationEventData.projectileFired, owner.characterEntityView.WorldPosition, target.characterEntityView.WorldPosition, cData), cData);                                
             }
 
             // ON CHARACTER ANIMATION FINISHED
-            if (cardEffect.animationEventData.onCharacterAnimationFinish == ParticleEffect.AoeMeleeArc)
-            {
-                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateAoEMeleeArcEffect(owner.characterEntityView.ucmMovementParent.transform.position));
-            }
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+            VisualEffectManager.Instance.CreatEffectAtLocation(cardEffect.animationEventData.onCharacterAnimationFinish, owner.characterEntityView.WorldPosition));
 
             // ON TARGET HIT SEQUENCE
-            if (cardEffect.animationEventData.onTargetHit == ParticleEffect.LightningExplosion1)
+            // Create effect on single target
+            if(target != null)
             {
-                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateApplyShockedEffect(target.characterEntityView.transform.position));
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreatEffectAtLocation(cardEffect.animationEventData.onTargetHit, target.characterEntityView.WorldPosition));
             }
 
-            else if (cardEffect.animationEventData.onTargetHit == ParticleEffect.BloodExplosion1)
+            // Create effect on all allies
+            else if (cardEffect.cardEffectType == CardEffectType.ApplyPassiveToAllAllies ||
+                     cardEffect.cardEffectType == CardEffectType.GainBlockAllAllies)
             {
-                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateBloodSplatterEffect(target.characterEntityView.transform.position));
+                foreach(CharacterEntityModel model in CharacterEntityController.Instance.GetAllAlliesOfCharacter(owner))
+                {
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreatEffectAtLocation(cardEffect.animationEventData.onTargetHit, model.characterEntityView.WorldPosition));
+                }
             }
 
+            // Create effect on all enemies
+            else if (cardEffect.cardEffectType == CardEffectType.ApplyPassiveToAllEnemies ||
+                     cardEffect.cardEffectType == CardEffectType.DamageAllEnemies ||
+                     cardEffect.cardEffectType == CardEffectType.TauntAllEnemies)
+            {
+                foreach (CharacterEntityModel model in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
+                {
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreatEffectAtLocation(cardEffect.animationEventData.onTargetHit, model.characterEntityView.WorldPosition));
+                }
+            }
         }
 
 
+        // RESOLVE EFFECT LOGIC START!
         // Gain Block Self
         if (cardEffect.cardEffectType == CardEffectType.GainBlockSelf)
         {
@@ -742,16 +764,6 @@ public class CardController : Singleton<CardController>
 
             // Start damage sequence
             CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, damageType, card);
-
-            // Move back to starting node pos, if we moved off 
-            /*
-            if (hasMovedOffStartingNode && owner.livingState == LivingState.Alive) 
-            {
-                CoroutineData cData = new CoroutineData();
-                LevelNode node = owner.levelNode;
-                VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.MoveEntityToNodeCentre(owner, node, cData), cData, QueuePosition.Back, 0.3f, 0);
-            }
-            */
         }
 
         // Deal Damage All Enemies
@@ -826,7 +838,7 @@ public class CardController : Singleton<CardController>
         {
             // Gain Energy
             CharacterEntityController.Instance.ModifyEnergy(owner, cardEffect.energyGained);
-            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateGainEnergyBuffEffect(owner.characterEntityView.transform.position));
+            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateGeneralBuffEffect(owner.characterEntityView.transform.position));
         }
 
         // Draw Cards
@@ -945,7 +957,7 @@ public class CardController : Singleton<CardController>
             }            
         }
 
-
+        /*
         // CONCLUDING VISUAL EVENTS!
         if (hasMovedOffStartingNode && owner.livingState == LivingState.Alive)
         {
@@ -953,6 +965,7 @@ public class CardController : Singleton<CardController>
             LevelNode node = owner.levelNode;
             VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.MoveEntityToNodeCentre(owner, node, cData), cData, QueuePosition.Back, 0.3f, 0);
         }
+        */
     }
     #endregion
 

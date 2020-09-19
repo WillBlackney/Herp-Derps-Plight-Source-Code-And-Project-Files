@@ -13,7 +13,7 @@ namespace CustomOdinGUI
 
         protected override void Initialize()
         {
-            this.isExpanded = this.GetPersistentValue<bool>("ColorFoldoutGroupAttributeDrawer.isExpaned",
+            this.isExpanded = this.GetPersistentValue<bool>("ColorFoldoutGroupAttributeDrawer.isExpanded",
                 GeneralDrawerConfig.Instance.ExpandFoldoutByDefault);
         }
 

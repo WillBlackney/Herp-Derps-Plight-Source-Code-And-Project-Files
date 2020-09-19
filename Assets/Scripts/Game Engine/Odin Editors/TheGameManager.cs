@@ -31,6 +31,7 @@ namespace CustomOdinGUI
         private DrawSpriteLibrary drawSpriteLibrary = new DrawSpriteLibrary();
         private DrawPrefabHolder drawPrefabHolder = new DrawPrefabHolder();
         private DrawColorLibrary drawColorLibrary = new DrawColorLibrary();
+        private DrawVisualEffects drawVisualEffects = new DrawVisualEffects();
 
         // Hard coded file directory paths to specific SO's
         private string enemyPath = "Assets/SO Assets/Enemies";
@@ -68,6 +69,7 @@ namespace CustomOdinGUI
             drawTestSceneManager.FindMyObject();
             drawPrefabHolder.FindMyObject();
             drawColorLibrary.FindMyObject();
+            drawVisualEffects.FindMyObject();
         }
         protected override void OnGUI()
         {
@@ -105,7 +107,8 @@ namespace CustomOdinGUI
             // in cases where SO's need to be drawn, do SetSelected();
             // this takes the selected value from the menu tree, then
             // then draws it in the main window for editing
-
+            //
+            //
             switch (managerState)
             {
                 case ManagerState.testTab:
@@ -171,8 +174,8 @@ namespace CustomOdinGUI
             targets.Add(drawSpriteLibrary);           
             targets.Add(drawPrefabHolder);
             targets.Add(drawColorLibrary);
-            //
-            
+            targets.Add(drawVisualEffects);
+
             targets.Add(base.GetTarget());
 
             enumIndex = targets.Count - 1;
@@ -236,8 +239,14 @@ namespace CustomOdinGUI
             spriteLibrary,
             prefabHolder,
             colorLibrary,
-        }
+            visualEffects,
+        };
 
+
+    }
+
+    public class DrawVisualEffects : DrawSceneObject<VisualEffectManager>
+    {
 
     }
 }

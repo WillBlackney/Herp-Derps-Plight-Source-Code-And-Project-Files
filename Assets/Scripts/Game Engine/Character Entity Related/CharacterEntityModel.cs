@@ -47,11 +47,12 @@ public class CharacterEntityModel
     [HideInInspector] public int currentInitiativeRoll;
     [HideInInspector] public bool hasActivatedThisTurn;
     [HideInInspector] public int nextActivationCount = 1;
+    [HideInInspector] public bool hasMovedOffStartingNode = false;
 
     [Header("Enemy Specific Properties")]
     [HideInInspector] public CharacterEntityModel currentActionTarget;
     [HideInInspector] public EnemyAction myNextAction;
-    [HideInInspector] public List<EnemyAction> myPreviousActionLog = new List<EnemyAction>();
+    [HideInInspector] public List<EnemyAction> myPreviousActionLog = new List<EnemyAction>();    
     
 }
 

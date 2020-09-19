@@ -328,9 +328,25 @@ public enum CharacterAnimation
 public enum ParticleEffect
 {
     None = 0,
+    GeneralBuff = 14,
+    GeneralDebuff = 15,
+    ApplyBurning = 16,
+    ApplyPoisoned = 17,
+    GainOverload = 18,
     LightningExplosion1 = 1,
+    FireExplosion1 = 4,
+    PoisonExplosion1 = 5,
+    ShadowExplosion1 = 6,
+    FrostExplosion1 = 7,
     BloodExplosion1 = 2,
     AoeMeleeArc = 3,
+    FireNova = 8,
+    PoisonNova = 9,
+    ShadowNova = 10,
+    LightningNova = 11,
+    FrostNova = 12,
+    HolyNova = 13,
+
 }
 public enum ProjectileFired
 {
@@ -339,6 +355,9 @@ public enum ProjectileFired
     FireBall1 = 1,
     ShadowBall1 = 2,
     PoisonBall1 = 3,
+    FrostBall1 = 6,
+    LightningBall1 = 7,
+    HolyBall1 = 8,
 
 }
 #endregion

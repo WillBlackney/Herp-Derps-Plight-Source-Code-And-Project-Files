@@ -15,6 +15,19 @@ public class AnimationEventData
 
     public ParticleEffect effectOnSelfAtStart;
     public MovementAnimEvent startingMovementEvent;
+
+    // NOTE: this bool should be true if the card used
+    // is a melee attack that applies a buff to self
+    // However, it should normally be false if the effect
+    // applies a debuff to the enemy. This is purely to
+    // to make visual event sequences look better.
+    // It also prevents characters from running back and 
+    // forth between the target and home node. For example, 
+    // if a card read 'Deal damage to a random enemy 5 times',
+    // and this was wrongly marked as true, the character would return 
+    // back to its node at the end of each attack.
+    [ShowIf("ShowReturnToMyNodeOnCardEffectResolved")]
+    public bool returnToMyNodeOnCardEffectResolved;
     public CharacterAnimation characterAnimation;
     public ParticleEffect onCharacterAnimationFinish;
     [ShowIf("ShowProjectileFired")]
@@ -24,6 +37,18 @@ public class AnimationEventData
     public bool ShowProjectileFired()
     {
         if (characterAnimation == CharacterAnimation.ShootProjectile)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowReturnToMyNodeOnCardEffectResolved()
+    {
+        if (startingMovementEvent == MovementAnimEvent.MoveToCentre ||
+            startingMovementEvent == MovementAnimEvent.MoveTowardsTarget)
         {
             return true;
         }

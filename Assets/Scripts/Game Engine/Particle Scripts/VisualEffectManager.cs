@@ -56,7 +56,8 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
     public GameObject toonGainCamoflagePrefab;
 
     [Header("TOON Debuff Prefab References")]
-    public GameObject toonGeneralDebuff;
+    public GameObject redPillarBuff;
+    public GameObject yellowPillarBuff;
     public GameObject toonApplyStunned;
     public GameObject toonApplyPoisoned;
     public GameObject toonApplyBurning;
@@ -69,6 +70,8 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
     public GameObject smallFrostExplosion;
     public GameObject smallPoisonExplosion;
     public GameObject smallLightningExplosion;
+    public GameObject smallFireExplosion;
+    public GameObject smallShadowExplosion;
 
     [Header("TOON Melee Impact Prefab References")]
     public GameObject smallMeleeImpact;
@@ -1049,78 +1052,133 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
 
     #endregion
 
-    // Toon Misc Effects
+
+    // CORE FUNCTIONS
     #region
-    /*
-    // Hard Landing
-    public OldCoroutineData CreateHardLandingEffect(Vector3 location, int sortingOrderBonus = 0, float scaleModifier = 1f)
+    public void CreatEffectAtLocation(ParticleEffect effect, Vector3 location)
     {
-        OldCoroutineData action = new OldCoroutineData();
-        StartCoroutine(CreateHardLandingEffectCoroutine(location, action, sortingOrderBonus, scaleModifier));
-        return action;
+        if (effect == ParticleEffect.None)
+        {
+            return;
+        }
+
+        // General Buff FX
+        if (effect == ParticleEffect.GeneralBuff)
+        {
+            CreateGeneralBuffEffect(location);
+        }
+        else if (effect == ParticleEffect.GeneralDebuff)
+        {
+            CreateGeneralDebuffEffect(location);
+        }
+        else if (effect == ParticleEffect.ApplyPoisoned)
+        {
+            CreateApplyPoisonedEffect(location);
+        }
+        else if (effect == ParticleEffect.ApplyBurning)
+        {
+            CreateApplyBurningEffect(location);
+        }
+        else if (effect == ParticleEffect.GainOverload)
+        {
+            CreateGainOverloadEffect(location);
+        }        
+
+        // Explosions
+        else if (effect == ParticleEffect.LightningExplosion1)
+        {
+            CreateLightningExplosion(location);
+        }
+        else if (effect == ParticleEffect.FireExplosion1)
+        {
+            CreateFireExplosion(location);
+        }
+        else if (effect == ParticleEffect.FrostExplosion1)
+        {
+            CreateFrostExplosion(location);
+        }
+        else if (effect == ParticleEffect.PoisonExplosion1)
+        {
+            CreatePoisonExplosion(location);
+        }
+        else if (effect == ParticleEffect.ShadowExplosion1)
+        {
+            CreateShadowExplosion(location);
+        }
+        else if (effect == ParticleEffect.BloodExplosion1)
+        {
+            CreateBloodExplosion(location);
+        }
+
+        // Novas
+        else if (effect == ParticleEffect.FireNova)
+        {
+            CreateFireNova(location);
+        }
+        else if (effect == ParticleEffect.FrostNova)
+        {
+            CreateFrostNova(location);
+        }
+        else if (effect == ParticleEffect.PoisonNova)
+        {
+            CreatePoisonNova(location);
+        }
+        else if (effect == ParticleEffect.ShadowNova)
+        {
+            CreateShadowNova(location);
+        }
+        else if (effect == ParticleEffect.HolyNova)
+        {
+            CreateHolyNova(location);
+        }
+        else if (effect == ParticleEffect.LightningNova)
+        {
+            CreateLightningNova(location);
+        }
+
+        // Misc
+        else if (effect == ParticleEffect.AoeMeleeArc)
+        {
+            CreateAoEMeleeArc(location);
+        }
     }
-    private IEnumerator CreateHardLandingEffectCoroutine(Vector3 location, OldCoroutineData action, int sortingOrderBonus, float scaleModifier)
+    public void ShootProjectileAtLocation(ProjectileFired projectileFired, Vector3 start, Vector3 end, CoroutineData cData)
     {
-        Vector3 offsetLocation = new Vector3(location.x, location.y - 0.2f, location.z);
+        if (projectileFired == ProjectileFired.None)
+        {
+            return;
+        }
 
-        GameObject hn = Instantiate(hardLandingEffect, offsetLocation, hardLandingEffect.transform.rotation);
-        ToonEffect teScript = hn.GetComponent<ToonEffect>();
-        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
-        action.coroutineCompleted = true;
-        yield return null;
-
+        // SHOOT PROJECTILE SEQUENCE
+        if (projectileFired == ProjectileFired.FireBall1)
+        {
+            ShootFireball(start, end, cData);
+        }
+        else if (projectileFired == ProjectileFired.PoisonBall1)
+        {
+            ShootPoisonBall(start, end, cData);
+        }
+        else if (projectileFired == ProjectileFired.ShadowBall1)
+        {
+            ShootShadowBall(start, end, cData);
+        }
+        else if (projectileFired == ProjectileFired.LightningBall1)
+        {
+            ShootLightningBall(start, end, cData);
+        }
+        else if (projectileFired == ProjectileFired.HolyBall1)
+        {
+            ShootHolyBall(start, end, cData);
+        }
+        else if (projectileFired == ProjectileFired.FrostBall1)
+        {
+            ShootFrostBall(start, end, cData);
+        }
     }
-    */
     #endregion
 
-
-
-
-
-    // REFACTORED VFX
+    // GENERAL FX
     #region
-
-    // Small Melee Impact
-    public void CreateSmallMeleeImpact(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
-    {
-        Debug.Log("VisualEffectManager.CreateSmallMeleeImpact() called...");
-        GameObject hn = Instantiate(smallMeleeImpact, location, smallMeleeImpact.transform.rotation);
-        ToonEffect teScript = hn.GetComponent<ToonEffect>();
-        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
-    }
-
-    // AoE Melee Arc
-    public void CreateAoEMeleeArcEffect(Vector3 location, int sortingOrderBonus = 15)
-    {
-        Debug.Log("VisualEffectManager.CreateAoEMeleeArcEffect() called...");
-        GameObject hn = Instantiate(AoeMeleeAttackEffectPrefab, location, AoeMeleeAttackEffectPrefab.transform.rotation);
-        BuffEffect teScript = hn.GetComponent<BuffEffect>();
-        teScript.InitializeSetup(location, sortingOrderBonus);   
-    }
-
-
-    // Blood Splatter
-    public void CreateBloodSplatterEffect(Vector3 location, int sortingOrderBonus = 0, float scaleModifier = 1f)
-    {
-        GameObject hn = Instantiate(bloodSplatterEffect, location, bloodSplatterEffect.transform.rotation);
-        ToonEffect teScript = hn.GetComponent<ToonEffect>();
-        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
-    }
-
-    // Gain Block
-    public void CreateGainBlockEffect(Vector3 location, int blockGained)
-    {
-        GameObject newImpactVFX = Instantiate(GainBlockEffectPrefab, location, Quaternion.identity);
-        newImpactVFX.GetComponent<GainArmorEffect>().InitializeSetup(location, blockGained);
-    }
-
-    // Lose Block Effect
-    public void CreateLoseBlockEffect(Vector3 location, int blockLost)
-    {
-        GameObject newImpactVFX = Instantiate(LoseBlockEffectPrefab, location, Quaternion.identity);
-        newImpactVFX.GetComponent<GainArmorEffect>().InitializeSetup(location, blockLost);
-        CreateDamageEffect(location, blockLost, false, false);
-    }
 
     // Damage Text Value Effect
     public void CreateDamageEffect(Vector3 location, int damageAmount, bool heal = false, bool healthLost = true)
@@ -1137,41 +1195,43 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
         damageEffect.GetComponent<StatusEffect>().InitializeSetup(statusEffectName, thisColor);
     }
 
-    // Gain Energy Effect
-    public void CreateGainEnergyBuffEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
-    {
-        GameObject hn = Instantiate(toonGainEnergyPrefab, location, toonGainEnergyPrefab.transform.rotation);
-        ToonEffect teScript = hn.GetComponent<ToonEffect>();
-        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
-
-    }
-
-    // Core Stat Buff
-    public void CreateCoreStatBuffEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
-    {
-        GameObject hn = Instantiate(toonGainCoreStatPrefab, location, toonGainCoreStatPrefab.transform.rotation);
-        ToonEffect teScript = hn.GetComponent<ToonEffect>();
-        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
-    }
-
-    // Apply General Debuff
+    // General Debuff
     public void CreateGeneralDebuffEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
     {
-        GameObject hn = Instantiate(toonGeneralDebuff, location, toonGeneralDebuff.transform.rotation);
+        GameObject hn = Instantiate(redPillarBuff, location, redPillarBuff.transform.rotation);
         ToonEffect teScript = hn.GetComponent<ToonEffect>();
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
     }
 
-    // Apply Shocked Effect    
-    public void CreateApplyShockedEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
+    // General Buff
+    public void CreateGeneralBuffEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
     {
-        GameObject hn = Instantiate(toonApplyShocked, location, toonApplyShocked.transform.rotation);
+        GameObject hn = Instantiate(yellowPillarBuff, location, yellowPillarBuff.transform.rotation);
         ToonEffect teScript = hn.GetComponent<ToonEffect>();
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
     }
     #endregion
 
-    // REFACTORED PROJECTILES
+    // BLOCK FX
+    #region
+
+    // Gain Block
+    public void CreateGainBlockEffect(Vector3 location, int blockGained)
+    {
+        GameObject newImpactVFX = Instantiate(GainBlockEffectPrefab, location, Quaternion.identity);
+        newImpactVFX.GetComponent<GainArmorEffect>().InitializeSetup(location, blockGained);
+    }
+
+    // Lose Block Effect
+    public void CreateLoseBlockEffect(Vector3 location, int blockLost)
+    {
+        GameObject newImpactVFX = Instantiate(LoseBlockEffectPrefab, location, Quaternion.identity);
+        newImpactVFX.GetComponent<GainArmorEffect>().InitializeSetup(location, blockLost);
+        CreateDamageEffect(location, blockLost, false, false);
+    }
+    #endregion
+
+    // PROJECTILES
     #region
 
     // Shoot Arrow
@@ -1190,12 +1250,12 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
     }
 
     // Fire Ball
-    public void ShootToonFireball(Vector3 startPos, Vector3 endPos, CoroutineData cData, float speed = 12.5f, int sortingOrderBonus = 15, float scaleModifier = 0.7f)
+    public void ShootFireball(Vector3 startPos, Vector3 endPos, CoroutineData cData, float speed = 12.5f, int sortingOrderBonus = 15, float scaleModifier = 0.7f)
     {
         Debug.Log("VisualEffectManager.ShootToonFireball() called...");
-        StartCoroutine(ShootToonFireballCoroutine(startPos, endPos, cData, speed, sortingOrderBonus, scaleModifier));
+        StartCoroutine(ShootFireballCoroutine(startPos, endPos, cData, speed, sortingOrderBonus, scaleModifier));
     }
-    private IEnumerator ShootToonFireballCoroutine(Vector3 startPosition, Vector3 endPosition, CoroutineData cData, float speed, int sortingOrderBonus, float scaleModifier)
+    private IEnumerator ShootFireballCoroutine(Vector3 startPosition, Vector3 endPosition, CoroutineData cData, float speed, int sortingOrderBonus, float scaleModifier)
     {
         GameObject fireBall = Instantiate(toonFireBall, startPosition, toonFireBall.transform.rotation);
         ToonProjectile tsScript = fireBall.GetComponent<ToonProjectile>();
@@ -1239,5 +1299,416 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
         }
 
     }
+
+    // Shadow Ball
+    public void ShootShadowBall(Vector3 startPos, Vector3 endPos, CoroutineData cData, float speed = 12.5f, int sortingOrderBonus = 15, float scaleModifier = 0.7f)
+    {
+        Debug.Log("VisualEffectManager.ShootShadowBall() called...");
+        StartCoroutine(ShootShadowBallCoroutine(startPos, endPos, cData, speed, sortingOrderBonus, scaleModifier));
+    }
+    private IEnumerator ShootShadowBallCoroutine(Vector3 startPosition, Vector3 endPosition, CoroutineData cData, float speed, int sortingOrderBonus, float scaleModifier)
+    {
+        GameObject shadowBall = Instantiate(toonShadowBall, startPosition, toonShadowBall.transform.rotation);
+        ToonProjectile tsScript = shadowBall.GetComponent<ToonProjectile>();
+        tsScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+        bool destinationReached = false;
+
+        // insta explode if created at destination
+        if (shadowBall.transform.position.x == endPosition.x &&
+            shadowBall.transform.position.y == endPosition.y &&
+            destinationReached == false)
+        {
+            destinationReached = true;
+
+            tsScript.OnDestinationReached();
+
+            // Resolve early
+            if (cData != null)
+            {
+                cData.MarkAsCompleted();
+            }
+        }
+
+        while (shadowBall.transform.position != endPosition &&
+               destinationReached == false)
+        {
+            shadowBall.transform.position = Vector2.MoveTowards(shadowBall.transform.position, endPosition, speed * Time.deltaTime);
+
+            if (shadowBall.transform.position.x == endPosition.x &&
+                shadowBall.transform.position.y == endPosition.y)
+            {
+                tsScript.OnDestinationReached();
+                destinationReached = true;
+            }
+            yield return null;
+        }
+
+        // Resolve
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+
+    }
+
+    // Poison Ball
+    public void ShootPoisonBall(Vector3 startPos, Vector3 endPos, CoroutineData cData, float speed = 12.5f, int sortingOrderBonus = 15, float scaleModifier = 0.7f)
+    {
+        Debug.Log("VisualEffectManager.ShootPoisonBallCoroutine() called...");
+        StartCoroutine(ShootPoisonBallCoroutine(startPos, endPos, cData, speed, sortingOrderBonus, scaleModifier));
+    }
+    private IEnumerator ShootPoisonBallCoroutine(Vector3 startPosition, Vector3 endPosition, CoroutineData cData, float speed, int sortingOrderBonus, float scaleModifier)
+    {
+        GameObject poisonBall = Instantiate(toonPoisonBall, startPosition, toonPoisonBall.transform.rotation);
+        ToonProjectile tsScript = poisonBall.GetComponent<ToonProjectile>();
+        tsScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+        bool destinationReached = false;
+
+        // insta explode if created at destination
+        if (poisonBall.transform.position.x == endPosition.x &&
+            poisonBall.transform.position.y == endPosition.y &&
+            destinationReached == false)
+        {
+            destinationReached = true;
+
+            tsScript.OnDestinationReached();
+
+            // Resolve early
+            if (cData != null)
+            {
+                cData.MarkAsCompleted();
+            }
+        }
+
+        while (poisonBall.transform.position != endPosition &&
+               destinationReached == false)
+        {
+            poisonBall.transform.position = Vector2.MoveTowards(poisonBall.transform.position, endPosition, speed * Time.deltaTime);
+
+            if (poisonBall.transform.position.x == endPosition.x &&
+                poisonBall.transform.position.y == endPosition.y)
+            {
+                tsScript.OnDestinationReached();
+                destinationReached = true;
+            }
+            yield return null;
+        }
+
+        // Resolve
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+
+    }
+
+    // Lightning Ball
+    public void ShootLightningBall(Vector3 startPos, Vector3 endPos, CoroutineData cData, float speed = 12.5f, int sortingOrderBonus = 15, float scaleModifier = 0.7f)
+    {
+        Debug.Log("VisualEffectManager.ShootLightningBallCoroutine() called...");
+        StartCoroutine(ShootLightningBallCoroutine(startPos, endPos, cData, speed, sortingOrderBonus, scaleModifier));
+    }
+    private IEnumerator ShootLightningBallCoroutine(Vector3 startPosition, Vector3 endPosition, CoroutineData cData, float speed, int sortingOrderBonus, float scaleModifier)
+    {
+        GameObject lightningBall = Instantiate(toonLightningBall, startPosition, toonLightningBall.transform.rotation);
+        ToonProjectile tsScript = lightningBall.GetComponent<ToonProjectile>();
+        tsScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+        bool destinationReached = false;
+
+        // insta explode if created at destination
+        if (lightningBall.transform.position.x == endPosition.x &&
+            lightningBall.transform.position.y == endPosition.y &&
+            destinationReached == false)
+        {
+            destinationReached = true;
+
+            tsScript.OnDestinationReached();
+
+            // Resolve early
+            if (cData != null)
+            {
+                cData.MarkAsCompleted();
+            }
+        }
+
+        while (lightningBall.transform.position != endPosition &&
+               destinationReached == false)
+        {
+            lightningBall.transform.position = Vector2.MoveTowards(lightningBall.transform.position, endPosition, speed * Time.deltaTime);
+
+            if (lightningBall.transform.position.x == endPosition.x &&
+                lightningBall.transform.position.y == endPosition.y)
+            {
+                tsScript.OnDestinationReached();
+                destinationReached = true;
+            }
+            yield return null;
+        }
+
+        // Resolve
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+
+    }
+
+    // Holy Ball
+    public void ShootHolyBall(Vector3 startPos, Vector3 endPos, CoroutineData cData, float speed = 12.5f, int sortingOrderBonus = 15, float scaleModifier = 0.7f)
+    {
+        Debug.Log("VisualEffectManager.ShootHolyBallCoroutine() called...");
+        StartCoroutine(ShootHolyBallCoroutine(startPos, endPos, cData, speed, sortingOrderBonus, scaleModifier));
+    }
+    private IEnumerator ShootHolyBallCoroutine(Vector3 startPosition, Vector3 endPosition, CoroutineData cData, float speed, int sortingOrderBonus, float scaleModifier)
+    {
+        GameObject holyBall = Instantiate(toonHolyBall, startPosition, toonHolyBall.transform.rotation);
+        ToonProjectile tsScript = holyBall.GetComponent<ToonProjectile>();
+        tsScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+        bool destinationReached = false;
+
+        // insta explode if created at destination
+        if (holyBall.transform.position.x == endPosition.x &&
+            holyBall.transform.position.y == endPosition.y &&
+            destinationReached == false)
+        {
+            destinationReached = true;
+
+            tsScript.OnDestinationReached();
+
+            // Resolve early
+            if (cData != null)
+            {
+                cData.MarkAsCompleted();
+            }
+        }
+
+        while (holyBall.transform.position != endPosition &&
+               destinationReached == false)
+        {
+            holyBall.transform.position = Vector2.MoveTowards(holyBall.transform.position, endPosition, speed * Time.deltaTime);
+
+            if (holyBall.transform.position.x == endPosition.x &&
+                holyBall.transform.position.y == endPosition.y)
+            {
+                tsScript.OnDestinationReached();
+                destinationReached = true;
+            }
+            yield return null;
+        }
+
+        // Resolve
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+
+    }
+
+    // Holy Ball
+    public void ShootFrostBall(Vector3 startPos, Vector3 endPos, CoroutineData cData, float speed = 12.5f, int sortingOrderBonus = 15, float scaleModifier = 0.7f)
+    {
+        Debug.Log("VisualEffectManager.ShootFrostBallCoroutine() called...");
+        StartCoroutine(ShootFrostBallCoroutine(startPos, endPos, cData, speed, sortingOrderBonus, scaleModifier));
+    }
+    private IEnumerator ShootFrostBallCoroutine(Vector3 startPosition, Vector3 endPosition, CoroutineData cData, float speed, int sortingOrderBonus, float scaleModifier)
+    {
+        GameObject frostBall = Instantiate(toonFrostBall, startPosition, toonFrostBall.transform.rotation);
+        ToonProjectile tsScript = frostBall.GetComponent<ToonProjectile>();
+        tsScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+        bool destinationReached = false;
+
+        // insta explode if created at destination
+        if (frostBall.transform.position.x == endPosition.x &&
+            frostBall.transform.position.y == endPosition.y &&
+            destinationReached == false)
+        {
+            destinationReached = true;
+
+            tsScript.OnDestinationReached();
+
+            // Resolve early
+            if (cData != null)
+            {
+                cData.MarkAsCompleted();
+            }
+        }
+
+        while (frostBall.transform.position != endPosition &&
+               destinationReached == false)
+        {
+            frostBall.transform.position = Vector2.MoveTowards(frostBall.transform.position, endPosition, speed * Time.deltaTime);
+
+            if (frostBall.transform.position.x == endPosition.x &&
+                frostBall.transform.position.y == endPosition.y)
+            {
+                tsScript.OnDestinationReached();
+                destinationReached = true;
+            }
+            yield return null;
+        }
+
+        // Resolve
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+
+    }
     #endregion
+
+    // APPLY BUFF + DEBUFF FX
+    #region
+
+    // Apply Poisoned Effect
+    public void CreateApplyPoisonedEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(toonApplyPoisoned, location, toonApplyPoisoned.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+
+    }
+
+    // Apply Burning Effect
+    public void CreateApplyBurningEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(toonApplyBurning, location, toonApplyBurning.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+
+    }
+
+    // Apply Overload Effect    
+    public void CreateGainOverloadEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(toonApplyShocked, location, toonApplyShocked.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+    }
+    #endregion
+
+    // MELEE ATTACK VFX
+    #region
+    // Small Melee Impact
+    public void CreateSmallMeleeImpact(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
+    {
+        Debug.Log("VisualEffectManager.CreateSmallMeleeImpact() called...");
+        GameObject hn = Instantiate(smallMeleeImpact, location, smallMeleeImpact.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+    }
+
+    // AoE Melee Arc
+    public void CreateAoEMeleeArc(Vector3 location, int sortingOrderBonus = 15)
+    {
+        Debug.Log("VisualEffectManager.CreateAoEMeleeArcEffect() called...");
+        GameObject hn = Instantiate(AoeMeleeAttackEffectPrefab, location, AoeMeleeAttackEffectPrefab.transform.rotation);
+        BuffEffect teScript = hn.GetComponent<BuffEffect>();
+        teScript.InitializeSetup(location, sortingOrderBonus);
+    }
+    #endregion
+
+    // EXPLOSIONS
+    #region
+
+    // Blood Explosion
+    public void CreateBloodExplosion(Vector3 location, int sortingOrderBonus = 0, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(bloodSplatterEffect, location, bloodSplatterEffect.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+    }
+
+    // Lightning Explosion
+    public void CreateLightningExplosion(Vector3 location, int sortingOrderBonus = 0, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(smallLightningExplosion, location, smallLightningExplosion.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+    }
+
+    // Fire Explosion
+    public void CreateFireExplosion(Vector3 location, int sortingOrderBonus = 0, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(smallFireExplosion, location, smallFireExplosion.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+    }
+
+    // Poison Explosion
+    public void CreatePoisonExplosion(Vector3 location, int sortingOrderBonus = 0, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(smallPoisonExplosion, location, smallPoisonExplosion.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+    }
+
+    // Frost Explosion
+    public void CreateFrostExplosion(Vector3 location, int sortingOrderBonus = 0, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(smallFrostExplosion, location, smallFrostExplosion.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+    }
+
+    // Shadow Explosion
+    public void CreateShadowExplosion(Vector3 location, int sortingOrderBonus = 0, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(smallShadowExplosion, location, smallShadowExplosion.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+    }
+    #endregion
+
+    // NOVAS
+    #region
+    // Fire Nova
+    public void CreateFireNova(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(toonFireNova, location, toonFireNova.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+    }
+
+    // Poison Nova
+    public void CreatePoisonNova(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(toonPoisonNova, location, toonPoisonNova.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+    }
+
+    // Frost Nova
+    public void CreateFrostNova(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(toonFrostNova, location, toonFrostNova.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+    }
+
+    // Lightning Nova
+    public void CreateLightningNova(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(toonLightningNova, location, toonLightningNova.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+    }
+
+    // Shadow Nova
+    public void CreateShadowNova(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(toonShadowNova, location, toonShadowNova.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+    }
+
+    // Holy Nova
+    public void CreateHolyNova(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(toonHolyNova, location, toonHolyNova.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+    }
+    #endregion
+
+
 }

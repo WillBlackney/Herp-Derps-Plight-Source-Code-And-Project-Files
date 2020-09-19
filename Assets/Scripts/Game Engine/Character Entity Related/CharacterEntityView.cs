@@ -67,4 +67,13 @@ public class CharacterEntityView : MonoBehaviour
         Debug.Log("CharacterEntityView.OnMouseExit called...");
         CharacterEntityController.Instance.OnCharacterMouseExit(this);
     }
+
+    // Getters
+    #region
+    public Vector3 WorldPosition
+    {
+        get { return ucmMovementParent.transform.position; }
+    }
+
+    #endregion
 }

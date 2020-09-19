@@ -155,11 +155,11 @@ public class LevelManager : Singleton<LevelManager>
     }
     public void TurnFacingTowardsLocation(CharacterEntityView entity, Vector3 location)
     {
-        if (entity.ucmMovementParent.transform.position.x < location.x)
+        if (entity.WorldPosition.x < location.x)
         {
             SetDirection(entity, FacingDirection.Right);
         }
-        else if (entity.ucmMovementParent.transform.position.x > location.x)
+        else if (entity.WorldPosition.x > location.x)
         {
             SetDirection(entity, FacingDirection.Left);
         }

@@ -45,9 +45,10 @@ MonoBehaviour:
     copiesAdded: 0
     animationEventData:
       effectOnSelfAtStart: 0
-      startingMovementEvent: 0
+      startingMovementEvent: 2
+      returnToMyNodeOnCardEffectResolved: 0
       characterAnimation: 4
-      onCharacterAnimationFinish: 0
+      onCharacterAnimationFinish: 8
       projectileFired: 0
-      onTargetHit: 0
+      onTargetHit: 4
   cardEventListeners: []
