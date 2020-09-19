@@ -30,6 +30,7 @@ namespace CustomOdinGUI
         private DrawTestSceneManager drawTestSceneManager = new DrawTestSceneManager();
         private DrawSpriteLibrary drawSpriteLibrary = new DrawSpriteLibrary();
         private DrawPrefabHolder drawPrefabHolder = new DrawPrefabHolder();
+        private DrawColorLibrary drawColorLibrary = new DrawColorLibrary();
 
         // Hard coded file directory paths to specific SO's
         private string enemyPath = "Assets/SO Assets/Enemies";
@@ -66,6 +67,7 @@ namespace CustomOdinGUI
             drawSpriteLibrary.FindMyObject();
             drawTestSceneManager.FindMyObject();
             drawPrefabHolder.FindMyObject();
+            drawColorLibrary.FindMyObject();
         }
         protected override void OnGUI()
         {
@@ -88,8 +90,6 @@ namespace CustomOdinGUI
                 case ManagerState.passives:
                 case ManagerState.combatEncounters:
                 case ManagerState.characterTemplates:
-                    Debug.Log("Enum Index is: " + enumIndex.ToString());
-                    Debug.Log("managerState Index is: " + enumIndex.ToString());
                     DrawEditor(enumIndex);
                     break;
                 default:
@@ -108,6 +108,10 @@ namespace CustomOdinGUI
 
             switch (managerState)
             {
+                case ManagerState.testTab:
+                    DrawEditor(enumIndex);
+                    break;
+
                 case ManagerState.enemies:
                     drawEnemies.SetSelected(MenuTree.Selection.SelectedValue);
                     break;
@@ -134,11 +138,7 @@ namespace CustomOdinGUI
 
                 case ManagerState.spriteLibrary:
                     DrawEditor(enumIndex);
-                    break;
-
-                case ManagerState.testTab:
-                    DrawEditor(enumIndex);
-                    break;
+                    break;                
 
                 case ManagerState.prefabHolder:
                     DrawEditor(enumIndex);
@@ -160,16 +160,19 @@ namespace CustomOdinGUI
             // numerical value behind the enum values
 
             // Only draw for layouts that need to display scriptable objects
-            // Otherwise, just add a null for managers            
+            // Otherwise, just add a null for managers    
+            targets.Add(drawTestSceneManager);
             targets.Add(drawEnemies);
             targets.Add(drawItems);
             targets.Add(drawCards);
             targets.Add(drawPassives);
             targets.Add(drawEncounters);
             targets.Add(drawCharacterTemplates);
-            targets.Add(drawSpriteLibrary);
-            targets.Add(drawTestSceneManager);
+            targets.Add(drawSpriteLibrary);           
             targets.Add(drawPrefabHolder);
+            targets.Add(drawColorLibrary);
+            //
+            
             targets.Add(base.GetTarget());
 
             enumIndex = targets.Count - 1;
@@ -223,6 +226,7 @@ namespace CustomOdinGUI
         }
         public enum ManagerState
         {
+            testTab,
             enemies,
             items,
             cards,
@@ -230,8 +234,8 @@ namespace CustomOdinGUI
             combatEncounters,
             characterTemplates,
             spriteLibrary,
-            testTab,
             prefabHolder,
+            colorLibrary,
         }
 
 
