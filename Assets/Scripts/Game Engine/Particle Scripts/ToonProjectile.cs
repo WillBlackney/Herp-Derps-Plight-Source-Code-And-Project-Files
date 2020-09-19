@@ -30,6 +30,8 @@ public class ToonProjectile : MonoBehaviour
     
     public void InitializeSetup(int sortingOrder, float scaleModifier)
     {
+        Debug.Log("TOON PROJECTILE InitializeSetup");
+
         // Get core components (rigid body, colliders, etc)
         GetMyComponents();
 
@@ -113,21 +115,23 @@ public class ToonProjectile : MonoBehaviour
 
     public void OnDestinationReached()
     {
+        Debug.Log("TOON PROJECTILE OnDestinationReached");
+
         // Create impact / explosion
         GameObject impactP = Instantiate(impactParticle, transform.position, Quaternion.identity) as GameObject;
         SetSortingOrder(impactP, mySortingOrder);
         SetScale(impactP, myScaleModifier);
 
         // Detach all children + particle systems from the parent
-        ParticleSystem[] trails = GetComponentsInChildren<ParticleSystem>(); 
-        for (int i = 1; i < trails.Length; i++) 
+        ParticleSystem[] trails = GetComponentsInChildren<ParticleSystem>();
+        for (int i = 1; i < trails.Length; i++)
         {
             ParticleSystem trail = trails[i];
 
             if (trail.gameObject.name.Contains("Trail"))
             {
-                trail.transform.SetParent(null); 
-                Destroy(trail.gameObject, 2f); 
+                trail.transform.SetParent(null);
+                Destroy(trail.gameObject, 2f);
             }
         }
 
@@ -135,5 +139,6 @@ public class ToonProjectile : MonoBehaviour
         Destroy(projectileParticle, projectileDestroyDelay); // Destroy projectile
         Destroy(impactP, 3.5f); // Destroy impact / explosion effect
         Destroy(gameObject, 10); // Destroy this script + gameobject
+
     }
 }

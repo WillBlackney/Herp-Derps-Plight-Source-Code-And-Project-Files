@@ -10,11 +10,13 @@ public class BuffEffect : MonoBehaviour
     public Canvas myCanvas;
     public void InitializeSetup(Vector3 location)
     {
+        Debug.Log("SETUP");
         transform.position = new Vector2(location.x, location.y);       
 
     }
     public void InitializeSetup(Vector3 location, int sortingOrder)
     {
+        Debug.Log("SETUP");
         transform.position = new Vector2(location.x, location.y);
         myCanvas.sortingOrder = sortingOrder;
 
@@ -22,6 +24,7 @@ public class BuffEffect : MonoBehaviour
 
     public void DestroyThis()
     {
+        Debug.Log("DESTROY");
         Destroy(gameObject);
     }
 }

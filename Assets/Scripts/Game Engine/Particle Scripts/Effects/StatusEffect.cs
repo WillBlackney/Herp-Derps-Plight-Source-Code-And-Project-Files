@@ -7,7 +7,6 @@ public class StatusEffect : MonoBehaviour
 {
     [Header("Component References")]
     public TextMeshProUGUI statusText;
-    public Animator myAnim;
     public Canvas myCanvas;
 
     public void InitializeSetup(string statusName, Color textColor)

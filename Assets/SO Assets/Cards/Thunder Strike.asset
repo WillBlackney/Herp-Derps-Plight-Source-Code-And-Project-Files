@@ -43,6 +43,10 @@ MonoBehaviour:
       passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
+    animationEventData:
+      startingMovementEvent: 1
+      characterAnimation: 1
+      onTargetHit: 1
   - cardEffectType: 2
     weaponRequirement: 0
     drawStacksFromOverload: 0
@@ -61,4 +65,8 @@ MonoBehaviour:
       passiveStacks: 2
     cardAdded: {fileID: 0}
     copiesAdded: 0
+    animationEventData:
+      startingMovementEvent: 0
+      characterAnimation: 0
+      onTargetHit: 0
   cardEventListeners: []

@@ -41,15 +41,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 375551705613102201}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 787f097cf9baade44adfd5b217fdf580, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c0aaf6df9cdf6e4e935b859568d4c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myAnim: {fileID: 0}
-  destination: {x: 0, y: 0, z: 0}
-  readyToMove: 0
-  destinationReached: 0
-  travelSpeed: 0
-  imageParent: {fileID: 1129745320912528202}
+  yOffset: 0.1
 --- !u!1 &1129745320912528202
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,7 +71,7 @@ Transform:
   m_GameObject: {fileID: 1129745320912528202}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 3581451022280501302}
   m_RootOrder: 0
@@ -95,6 +90,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -106,6 +102,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0

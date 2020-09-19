@@ -9,7 +9,14 @@ public class LevelManager : Singleton<LevelManager>
     // Properties + Components
     #region
     [Header("Component References")]
-    public List<LevelNode> allLevelNodes;
+    [SerializeField] private Transform centrePos;
+    public List<LevelNode> allLevelNodes;   
+
+    public Transform CentrePos
+    {
+        get { return centrePos; }
+        private set { centrePos = value; }
+    }
     #endregion  
 
     // Level Node Logic   
@@ -59,11 +66,6 @@ public class LevelManager : Singleton<LevelManager>
     }
     public void DisconnectEntityFromNode(CharacterEntityModel entity, LevelNode node)
     {
-        //DisableAllExtraViews(entity.levelNode);
-        //entity.levelNode.occupied = false;
-        //entity.levelNode.myEntity = null;
-        //entity.levelNode = null;
-
         node.occupied = false;
         node.myEntity = null;
         entity.levelNode = null;

@@ -27,7 +27,7 @@ RectTransform:
   m_GameObject: {fileID: 2652439481532126405}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.0115, y: 0.0115, z: 1}
+  m_LocalScale: {x: 0.016, y: 0.016, z: 1}
   m_Children: []
   m_Father: {fileID: 3032123674051237058}
   m_RootOrder: 0
@@ -203,7 +203,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statusText: {fileID: 4862495376848011448}
-  myAnim: {fileID: 5797780097810648836}
   myCanvas: {fileID: 5802570069809789151}
 --- !u!95 &5797780097810648836
 Animator:
@@ -323,7 +322,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
 --- !u!225 &1828048456159371065
 CanvasGroup:
   m_ObjectHideFlags: 0

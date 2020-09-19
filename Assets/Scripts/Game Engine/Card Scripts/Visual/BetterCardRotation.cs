@@ -24,6 +24,7 @@ public class BetterCardRotation : MonoBehaviour {
     private bool showingBack = false;
 
 	// Update is called once per frame
+    /*
 	void Update () 
     {
         // Raycast from Camera to a target point on the face of the card
@@ -59,4 +60,5 @@ public class BetterCardRotation : MonoBehaviour {
         }
 
 	}
+    */
 }

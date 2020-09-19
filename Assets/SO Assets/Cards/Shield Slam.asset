@@ -27,6 +27,7 @@ MonoBehaviour:
   cardEffects:
   - cardEffectType: 6
     weaponRequirement: 0
+    drawStacksFromOverload: 0
     blockGainValue: 0
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 1
@@ -42,4 +43,11 @@ MonoBehaviour:
       passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
+    animationEventData:
+      effectOnSelfAtStart: 0
+      startingMovementEvent: 1
+      characterAnimation: 1
+      onCharacterAnimationFinish: 0
+      projectileFired: 0
+      onTargetHit: 0
   cardEventListeners: []

@@ -308,4 +308,39 @@ public enum BodyPartType
 };
 #endregion
 
+// Animation Event Data Enums
+#region
+
+public enum MovementAnimEvent
+{
+    None = 0,
+    MoveTowardsTarget = 1,
+    MoveToCentre = 2,
+}
+public enum CharacterAnimation
+{
+    None = 0,
+    MeleeAttack = 1,
+    ShootBow = 2,
+    ShootProjectile = 3,
+    Skill = 4,
+}
+public enum ParticleEffect
+{
+    None = 0,
+    LightningExplosion1 = 1,
+    BloodExplosion1 = 2,
+    AoeMeleeArc = 3,
+}
+public enum ProjectileFired
+{
+    None = 4,
+    Arrow = 0,
+    FireBall1 = 1,
+    ShadowBall1 = 2,
+    PoisonBall1 = 3,
+
+}
+#endregion
+
 

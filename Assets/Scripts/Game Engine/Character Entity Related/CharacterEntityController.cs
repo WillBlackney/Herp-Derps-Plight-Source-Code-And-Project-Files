@@ -1004,13 +1004,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     {
         view.ucmAnimator.SetTrigger("Idle");
     }
-    public void PlayRangedAttackAnimation(CharacterEntityView view)
-    {
-        view.ucmAnimator.SetTrigger("Shoot Bow");
-    }
     public void PlaySkillAnimation(CharacterEntityView view)
     {
-        view.ucmAnimator.SetTrigger("Skill One");
+        view.ucmAnimator.SetTrigger("Skill Two");
     }    
     public void PlayMoveAnimation(CharacterEntityView view)
     {
@@ -1023,6 +1019,22 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     public void PlayDeathAnimation(CharacterEntityView view)
     {
         view.ucmAnimator.SetTrigger("Die");
+    }
+    public void PlayShootBowAnimation(CharacterEntityView view, CoroutineData cData)
+    {
+        Debug.Log("CharacterEntityController.PlayRangedAttackAnimation() called...");
+        StartCoroutine(PlayShootBowAnimationCoroutine(view, cData));
+    }
+    private IEnumerator PlayShootBowAnimationCoroutine(CharacterEntityView view, CoroutineData cData)
+    {
+        view.ucmAnimator.SetTrigger("Shoot Bow");
+        yield return new WaitForSeconds(0.5f);
+
+        // Resolve
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
     }
     #endregion
 
@@ -1076,7 +1088,13 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         {
             // Prevents GUI bugs when mousing over an enemy that is dying
             DisableAllDefenderTargetIndicators();
-            LevelManager.Instance.SetMouseOverViewState(view.character.levelNode, false);
+
+            // Disable all node mouse stats
+            foreach(LevelNode node in LevelManager.Instance.allLevelNodes)
+            {
+                LevelManager.Instance.SetMouseOverViewState(node, false);
+            }
+           
             return;
         }
         // Enable activation window glow
@@ -1445,8 +1463,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
                    target.livingState == LivingState.Alive)
                 {
                     // Move towards target visual event
+                    LevelNode node = target.levelNode;
                     CoroutineData cData = new CoroutineData();
-                    VisualEventManager.Instance.CreateVisualEvent(() => MoveAttackerToTargetNodeAttackPosition(enemy, target, cData), cData);
+                    VisualEventManager.Instance.CreateVisualEvent(() => MoveAttackerToTargetNodeAttackPosition(enemy, node, cData), cData);
 
                     // Play melee attack anim
                     VisualEventManager.Instance.CreateVisualEvent(() => TriggerMeleeAttackAnimation(enemy.characterEntityView));
@@ -1549,20 +1568,20 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
     // Move Character Visual Events
     #region
-    public void MoveAttackerToTargetNodeAttackPosition(CharacterEntityModel attacker, CharacterEntityModel target, CoroutineData cData)
+    public void MoveAttackerToTargetNodeAttackPosition(CharacterEntityModel attacker, LevelNode node, CoroutineData cData)
     {
         Debug.Log("CharacterEntityController.MoveAttackerToTargetNodeAttackPosition() called...");
-        StartCoroutine(MoveAttackerToTargetNodeAttackPositionCoroutine(attacker, target, cData));
+        StartCoroutine(MoveAttackerToTargetNodeAttackPositionCoroutine(attacker, node, cData));
     }
-    private IEnumerator MoveAttackerToTargetNodeAttackPositionCoroutine(CharacterEntityModel attacker, CharacterEntityModel target, CoroutineData cData)
+    private IEnumerator MoveAttackerToTargetNodeAttackPositionCoroutine(CharacterEntityModel attacker, LevelNode node, CoroutineData cData)
     {
         // Set up
         bool reachedDestination = false;
-        Vector3 destination = new Vector3(target.levelNode.nose.position.x, target.levelNode.nose.position.y, 0);
+        Vector3 destination = new Vector3(node.nose.position.x, node.nose.position.y, 0);
         float moveSpeed = 10;
 
         // Face direction of destination
-        LevelManager.Instance.TurnFacingTowardsLocation(attacker.characterEntityView, target.characterEntityView.transform.position);
+        LevelManager.Instance.TurnFacingTowardsLocation(attacker.characterEntityView, node.transform.position);
 
         // Play movement animation
         PlayMoveAnimation(attacker.characterEntityView);
@@ -1631,6 +1650,50 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         PlayIdleAnimation(entity.characterEntityView);
 
         // Resolve event
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+
+    }
+    public void MoveAttackerToCentrePosition(CharacterEntityModel attacker, CoroutineData cData)
+    {
+        Debug.Log("CharacterEntityController.MoveAttackerToTargetNodeAttackPosition() called...");
+        StartCoroutine(MoveAttackerToCentrePositionCoroutine(attacker, cData));
+    }
+    private IEnumerator MoveAttackerToCentrePositionCoroutine(CharacterEntityModel attacker,  CoroutineData cData)
+    {
+        // Set up
+        bool reachedDestination = false;
+        Transform centrePos = LevelManager.Instance.CentrePos;
+        Vector3 destination = new Vector3(centrePos.position.x, centrePos.position.y, 0);
+        float moveSpeed = 10;
+
+        // Face direction of centre pos
+        if(attacker.allegiance == Allegiance.Player)
+        {
+            LevelManager.Instance.SetDirection(attacker.characterEntityView, FacingDirection.Right);
+        }
+        else if (attacker.allegiance == Allegiance.Enemy)
+        {
+            LevelManager.Instance.SetDirection(attacker.characterEntityView, FacingDirection.Left);
+        }
+
+        // Play movement animation
+        PlayMoveAnimation(attacker.characterEntityView);
+
+        while (reachedDestination == false)
+        {
+            attacker.characterEntityView.ucmMovementParent.transform.position = Vector2.MoveTowards(attacker.characterEntityView.ucmMovementParent.transform.position, destination, moveSpeed * Time.deltaTime);
+
+            if (attacker.characterEntityView.ucmMovementParent.transform.position == destination)
+            {
+                reachedDestination = true;
+            }
+            yield return null;
+        }
+
+        // Resolve
         if (cData != null)
         {
             cData.MarkAsCompleted();

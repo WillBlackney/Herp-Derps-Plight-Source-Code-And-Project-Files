@@ -30,7 +30,7 @@ public class VisualEventManager : Singleton<VisualEventManager>
     private void PlayNextEventFromQueue()
     {
         if (eventQueue.Count > 0 &&
-            !eventQueue[0].isPlaying &&
+            eventQueue[0].isPlaying == false &&
             paused == false)
         {
             PlayEventFromQueue(eventQueue[0]);
@@ -38,11 +38,6 @@ public class VisualEventManager : Singleton<VisualEventManager>
     }
     private IEnumerator PlayEventFromQueueCoroutine(VisualEvent ve)
     {
-        if (ve.eventFunction != null)
-        {
-            //Debug.Log("VisualEventManager.PlayEventFromQueueCoroutine() called, running function: " + ve.eventFunction.Method.Name);
-        }            
-
         // Start Delay    
         if(ve.startDelay > 0)
         {

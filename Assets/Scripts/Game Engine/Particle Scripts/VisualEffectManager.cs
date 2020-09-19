@@ -790,7 +790,6 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
         action.coroutineCompleted = true;
         yield return null;
-
     }
 
     // Apply Chilled Effect
@@ -1090,6 +1089,16 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
     }
 
+    // AoE Melee Arc
+    public void CreateAoEMeleeArcEffect(Vector3 location, int sortingOrderBonus = 15)
+    {
+        Debug.Log("VisualEffectManager.CreateAoEMeleeArcEffect() called...");
+        GameObject hn = Instantiate(AoeMeleeAttackEffectPrefab, location, AoeMeleeAttackEffectPrefab.transform.rotation);
+        BuffEffect teScript = hn.GetComponent<BuffEffect>();
+        teScript.InitializeSetup(location, sortingOrderBonus);   
+    }
+
+
     // Blood Splatter
     public void CreateBloodSplatterEffect(Vector3 location, int sortingOrderBonus = 0, float scaleModifier = 1f)
     {
@@ -1152,6 +1161,83 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
         ToonEffect teScript = hn.GetComponent<ToonEffect>();
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
     }
-    
+
+    // Apply Shocked Effect    
+    public void CreateApplyShockedEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(toonApplyShocked, location, toonApplyShocked.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+    }
+    #endregion
+
+    // REFACTORED PROJECTILES
+    #region
+
+    // Shoot Arrow
+    public void ShootArrow(Vector3 startPos, Vector3 endPos, CoroutineData cData, float speed = 15)
+    {
+        Debug.Log("VisualEffectManager.ShootArrow() called...");
+        StartCoroutine(ShootArrowCoroutine(startPos, endPos, cData, speed));
+    }
+    private IEnumerator ShootArrowCoroutine(Vector3 startPos, Vector3 endPos, CoroutineData cData, float speed)
+    {
+        GameObject arrow = Instantiate(ArrowPrefab, startPos, Quaternion.identity);
+        Projectile projectileScript = arrow.GetComponent<Projectile>();
+        projectileScript.InitializeSetup(startPos, endPos, speed);
+        yield return new WaitUntil(() => projectileScript.DestinationReached == true);
+        cData.MarkAsCompleted();
+    }
+
+    // Fire Ball
+    public void ShootToonFireball(Vector3 startPos, Vector3 endPos, CoroutineData cData, float speed = 12.5f, int sortingOrderBonus = 15, float scaleModifier = 0.7f)
+    {
+        Debug.Log("VisualEffectManager.ShootToonFireball() called...");
+        StartCoroutine(ShootToonFireballCoroutine(startPos, endPos, cData, speed, sortingOrderBonus, scaleModifier));
+    }
+    private IEnumerator ShootToonFireballCoroutine(Vector3 startPosition, Vector3 endPosition, CoroutineData cData, float speed, int sortingOrderBonus, float scaleModifier)
+    {
+        GameObject fireBall = Instantiate(toonFireBall, startPosition, toonFireBall.transform.rotation);
+        ToonProjectile tsScript = fireBall.GetComponent<ToonProjectile>();
+        tsScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+        bool destinationReached = false;
+
+        // insta explode if created at destination
+        if (fireBall.transform.position.x == endPosition.x &&
+            fireBall.transform.position.y == endPosition.y &&
+            destinationReached == false)
+        {
+            destinationReached = true;
+
+            tsScript.OnDestinationReached();
+
+            // Resolve early
+            if(cData != null)
+            {
+                cData.MarkAsCompleted();
+            }          
+        }
+
+        while (fireBall.transform.position != endPosition && 
+               destinationReached == false)
+        {
+            fireBall.transform.position = Vector2.MoveTowards(fireBall.transform.position, endPosition, speed * Time.deltaTime);
+
+            if (fireBall.transform.position.x == endPosition.x &&
+                fireBall.transform.position.y == endPosition.y)
+            {
+                tsScript.OnDestinationReached();
+                destinationReached = true;
+            }
+            yield return null;
+        }
+
+        // Resolve
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+
+    }
     #endregion
 }

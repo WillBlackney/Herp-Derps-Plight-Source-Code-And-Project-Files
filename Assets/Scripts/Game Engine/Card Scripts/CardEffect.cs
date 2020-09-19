@@ -52,6 +52,8 @@ public class CardEffect
     [ShowIf("cardEffectType", CardEffectType.AddCardsToHand)]
     public int copiesAdded;
 
+    public AnimationEventData animationEventData;
+
     public bool ShowPassivePairing()
     {
         if(cardEffectType == CardEffectType.ApplyPassiveToAllAllies ||
