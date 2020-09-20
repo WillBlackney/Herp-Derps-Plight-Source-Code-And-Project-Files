@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Thunder Strike
   cardDescription: Deal 4 Air damage. Gain 2 Overload.
-  cardSprite: {fileID: 21300000, guid: b2f34775f8805dd47ae9bee91d93d43d, type: 3}
+  cardSprite: {fileID: 21300000, guid: 1742843d0d172bf438fbb3013d5dbcdc, type: 3}
   cardEnergyCost: 1
   cardType: 2
   targettingType: 3
@@ -44,8 +44,12 @@ MonoBehaviour:
     cardAdded: {fileID: 0}
     copiesAdded: 0
     animationEventData:
+      effectOnSelfAtStart: 0
       startingMovementEvent: 1
+      returnToMyNodeOnCardEffectResolved: 0
       characterAnimation: 1
+      onCharacterAnimationFinish: 0
+      projectileFired: 0
       onTargetHit: 1
   - cardEffectType: 2
     weaponRequirement: 0
@@ -66,7 +70,11 @@ MonoBehaviour:
     cardAdded: {fileID: 0}
     copiesAdded: 0
     animationEventData:
+      effectOnSelfAtStart: 0
       startingMovementEvent: 0
+      returnToMyNodeOnCardEffectResolved: 0
       characterAnimation: 0
+      onCharacterAnimationFinish: 0
+      projectileFired: 0
       onTargetHit: 0
   cardEventListeners: []

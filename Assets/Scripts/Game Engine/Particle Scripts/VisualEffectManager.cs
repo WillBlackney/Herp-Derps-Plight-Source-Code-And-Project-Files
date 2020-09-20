@@ -1055,7 +1055,7 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
 
     // CORE FUNCTIONS
     #region
-    public void CreatEffectAtLocation(ParticleEffect effect, Vector3 location)
+    public void CreateEffectAtLocation(ParticleEffect effect, Vector3 location)
     {
         if (effect == ParticleEffect.None)
         {

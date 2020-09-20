@@ -609,6 +609,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
         // Cache refs for visual events
         LevelNode veNode = entity.levelNode;
+        CharacterEntityView view = entity.characterEntityView;
 
         // Disable end turn button clickability
         UIManager.Instance.DisableEndTurnButtonInteractions();
@@ -679,12 +680,14 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             // Calculate and deal Poison damage
             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Poison, false, entity.pManager.poisonedStacks, null, null);
             CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Poison, null, null, true);
+            VisualEventManager.Instance.CreateVisualEvent(()=> VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.PoisonExplosion1, view.WorldPosition));
         }
         if (entity.pManager.burningStacks > 0)
         {
             // Calculate and deal Poison damage
             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Fire, false, entity.pManager.burningStacks, null, null);
             CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Fire, null, null, true);
+            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.FireExplosion1, view.WorldPosition));
         }
 
         // Overload
@@ -693,10 +696,19 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             // Get random enemy
             List<CharacterEntityModel> enemies = GetAllEnemiesOfCharacter(entity);
             CharacterEntityModel randomEnemy = enemies[Random.Range(0, enemies.Count)];
+            CharacterEntityView randomEnemyView = randomEnemy.characterEntityView;
+
+            // Create lightning ball missle
+            CoroutineData cData = new CoroutineData();
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+            VisualEffectManager.Instance.ShootProjectileAtLocation(ProjectileFired.LightningBall1, view.WorldPosition, randomEnemyView.WorldPosition, cData), cData);
 
             // Deal air damage
             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(entity, randomEnemy, DamageType.Air, false, entity.pManager.overloadStacks, null, null);
             CombatLogic.Instance.HandleDamage(finalDamageValue, entity, randomEnemy, DamageType.Air, null, null, true);
+
+            // Brief pause here
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
         }
 
         #endregion
@@ -797,8 +809,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             (enemy.myNextAction.actionType == ActionType.AttackTarget ||
              enemy.myNextAction.actionType == ActionType.DebuffTarget ||
              enemy.myNextAction.actionType == ActionType.DefendTarget ||
-             enemy.myNextAction.actionType == ActionType.AttackTargetAndBuffSelf ||
-             enemy.myNextAction.actionType == ActionType.AttackTargetAndDefendSelf))
+              enemy.myNextAction.actionType == ActionType.BuffTarget))
         {
             return;
         }
@@ -808,19 +819,31 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         string attackDamageString = "";
 
         // if attacking, calculate + enable + set damage value text
-        if (enemy.currentActionTarget != null &&
-            enemy.myNextAction.actionType == ActionType.AttackTarget)
+        if (enemy.myNextAction.actionType == ActionType.AttackTarget ||
+            enemy.myNextAction.actionType == ActionType.AttackAllEnemies)
         {
-            // Use the first EnemyActionEffect in the list to base damage calcs off of.
-            EnemyActionEffect effect = enemy.myNextAction.actionEffects[0];
+            // Find the attack action effect in the actions lists of effects
+            EnemyActionEffect effect = null;
+            foreach(EnemyActionEffect effectt in enemy.myNextAction.actionEffects)
+            {
+                if(effectt.actionType == ActionType.AttackTarget ||
+                    effectt.actionType == ActionType.AttackAllEnemies)
+                {
+                    effect = effectt;
+                    break;
+                }
+            }
+
+            CharacterEntityModel target = enemy.currentActionTarget;
 
             // Calculate damage to display
             DamageType damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(enemy, null, null, effect);
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, enemy.currentActionTarget, damageType, false, effect.baseDamage, null, null, effect);
+            
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, target, damageType, false, effect.baseDamage, null, null, effect);
 
-            if (effect.attackLoops > 1)
+            if (enemy.myNextAction.actionLoops > 1)
             {
-                attackDamageString = finalDamageValue.ToString() + " x " + effect.attackLoops.ToString();
+                attackDamageString = finalDamageValue.ToString() + " x " + enemy.myNextAction.actionLoops.ToString();
             }
             else
             {
@@ -1355,38 +1378,34 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
         else if (action.actionType == ActionType.AttackTarget || action.actionType == ActionType.DebuffTarget)
         {
-            if(AllDefenders.Count > 1)
+            List<CharacterEntityModel> enemies = GetAllEnemiesOfCharacter(enemy);
+
+            if(enemies.Count > 1)
             {
-                targetReturned = AllDefenders[Random.Range(0, AllDefenders.Count)];
+                targetReturned = enemies[Random.Range(0, enemies.Count)];
             }
-            else if(AllDefenders.Count == 1)
+            else if(enemies.Count == 1)
             {
-                targetReturned = AllDefenders[0];
+                targetReturned = enemies[0];
             }
             
         }
-        else if (action.actionType == ActionType.DefendTarget)
+        else if (action.actionType == ActionType.DefendTarget || 
+                 action.actionType == ActionType.BuffTarget)
         {
             // Get a valid target
-            List<CharacterEntityModel> validTargets = new List<CharacterEntityModel>();
-
-            // add all enemies
-            validTargets.AddRange(AllEnemies);
-
-            // remove self from consideration
-            validTargets.Remove(enemy);
+            List<CharacterEntityModel> allies = GetAllAlliesOfCharacter(enemy, false);
 
             // randomly chose enemy from remaining valid choices
-            if (validTargets.Count > 0)
+            if (allies.Count > 0)
             {
-                targetReturned = validTargets[Random.Range(0, validTargets.Count)];
+                targetReturned = allies[Random.Range(0, allies.Count)];
             }
             else
             {
                 // set self as target, if no valid allies
                 targetReturned = enemy;
             }
-
         }
 
         return targetReturned;
@@ -1397,17 +1416,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
         // Setup
         EnemyAction nextAction = enemy.myNextAction;
-        bool hasMovedOffStartingNode = false;
 
-        // Reaquire target (if the target was killed since setting the intent
-        // TO DO IN FUTURE: this target reaquisition process should occur when an entity dies,
-        // not right before an enemy performs its action
-        // Was the target killed after the intent was decided?
-        /*if (enemy.currentActionTarget == null)
-        {
-            // it was, find a new target
-            enemy.currentActionTarget = DetermineTargetOfNextEnemyAction(enemy, nextAction);
-        }*/
         // Trigger and resolve all effects of the action        
         for (int i = 0; i < nextAction.actionLoops; i++)
         {
@@ -1415,14 +1424,17 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             {
                 foreach (EnemyActionEffect effect in nextAction.actionEffects)
                 {
-                    // if this action moves enemy off its level node,
-                    // remember this for later and move back to start pos
-                    if (nextAction.actionType == ActionType.AttackTarget)
-                    {
-                        hasMovedOffStartingNode = true;
-                    }
-
                     TriggerEnemyActionEffect(enemy, effect);
+
+                    // Move back to home node early if declarded to do so
+                    if (enemy.hasMovedOffStartingNode && enemy.livingState == LivingState.Alive &&
+                        effect.animationEventData.returnToMyNodeOnCardEffectResolved)
+                    {
+                        enemy.hasMovedOffStartingNode = false;
+                        CoroutineData cData = new CoroutineData();
+                        LevelNode node = enemy.levelNode;
+                        VisualEventManager.Instance.CreateVisualEvent(() => MoveEntityToNodeCentre(enemy, node, cData), cData, QueuePosition.Back, 0.3f, 0);
+                    }
                 }
             }
         }
@@ -1431,13 +1443,17 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Record action
         AddActionToEnemyPastActionsLog(enemy, nextAction);
 
-        // Move back to starting node pos, if we moved off 
-        if (hasMovedOffStartingNode && enemy.livingState == LivingState.Alive)
+        // If character moved off node, move back after all card effects resolved
+        if (enemy.hasMovedOffStartingNode && enemy.livingState == LivingState.Alive)
         {
+            enemy.hasMovedOffStartingNode = false;
             CoroutineData cData = new CoroutineData();
             LevelNode node = enemy.levelNode;
             VisualEventManager.Instance.CreateVisualEvent(() => MoveEntityToNodeCentre(enemy, node, cData), cData, QueuePosition.Back, 0.3f, 0);
         }
+
+        // Brief pause at the of all effects
+        VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
     }
     private void TriggerEnemyActionEffect(CharacterEntityModel enemy, EnemyActionEffect effect)
     {
@@ -1446,38 +1462,162 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Cache refs for visual events
         CharacterEntityModel target = enemy.currentActionTarget;
 
+        // if invalid targetting issues occured before triggering event, return
+        // TO DO: we should probably perform this validation process before calling 'TriggerEnemyActionEffect'
+        if ((target != null && target.livingState == LivingState.Dead) ||
+            ((effect.actionType == ActionType.AttackTarget ||
+            effect.actionType == ActionType.DebuffTarget)  && target == enemy))
+        {
+            return;
+        }
+        
+        // TO DO: we should probably remove this and find a better way to make enemies target themselves
+        if ((effect.actionType == ActionType.AttackTarget ||
+            effect.actionType == ActionType.DebuffTarget) &&
+            target == null)
+        {
+            return;
+        }
+
         // If no target, set self as target
-        if (target == null)
+        if ((effect.actionType == ActionType.DefendTarget ||
+            effect.actionType == ActionType.BuffTarget) &&
+            target == null)
         {
             target = enemy;
         }
 
+        // Queue starting anims and particles
+        if (effect.animationEventData != null)
+        {
+            // EFFECT ON SELF AT START SEQUENCE
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+            VisualEffectManager.Instance.CreateEffectAtLocation(effect.animationEventData.effectOnSelfAtStart, enemy.characterEntityView.WorldPosition));
+
+            // MOVEMENT SEQUENCE
+            if (effect.animationEventData.startingMovementEvent == MovementAnimEvent.MoveTowardsTarget &&
+                target != null)
+            {
+                // Move towards target visual event
+                enemy.hasMovedOffStartingNode = true;
+                LevelNode node = target.levelNode;
+                CoroutineData cData = new CoroutineData();
+                VisualEventManager.Instance.CreateVisualEvent(() => MoveAttackerToTargetNodeAttackPosition(enemy, node, cData), cData);
+            }
+            else if (effect.animationEventData.startingMovementEvent == MovementAnimEvent.MoveToCentre)
+            {
+                enemy.hasMovedOffStartingNode = true;
+                CoroutineData cData = new CoroutineData();
+                VisualEventManager.Instance.CreateVisualEvent(() => MoveAttackerToCentrePosition(enemy, cData), cData);
+            }
+
+
+            // CHARACTER ANIMATION SEQUENCE
+            // Melee Attack 
+            if (effect.animationEventData.characterAnimation == CharacterAnimation.MeleeAttack)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => TriggerMeleeAttackAnimation(enemy.characterEntityView));
+            }
+            // Skill
+            else if (effect.animationEventData.characterAnimation == CharacterAnimation.Skill)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => PlaySkillAnimation(enemy.characterEntityView));
+            }
+            // Shoot Bow 
+            else if (effect.animationEventData.characterAnimation == CharacterAnimation.ShootBow)
+            {
+                // Character shoot bow animation
+                CoroutineData cData = new CoroutineData();
+                VisualEventManager.Instance.CreateVisualEvent(() => PlayShootBowAnimation(enemy.characterEntityView, cData), cData);
+
+                // Create and launch arrow projectile
+                CoroutineData cData2 = new CoroutineData();
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.ShootArrow(enemy.characterEntityView.WorldPosition, target.characterEntityView.WorldPosition, cData2), cData2);
+            }
+            // Shoot Projectile 
+            else if (effect.animationEventData.characterAnimation == CharacterAnimation.ShootProjectile)
+            {
+                // Play character shoot anim
+                VisualEventManager.Instance.CreateVisualEvent(() => TriggerMeleeAttackAnimation(enemy.characterEntityView));
+
+                // Create projectile
+                CoroutineData cData = new CoroutineData();
+                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.ShootProjectileAtLocation
+                (effect.animationEventData.projectileFired, enemy.characterEntityView.WorldPosition, target.characterEntityView.WorldPosition, cData), cData);
+            }
+
+            // ON CHARACTER ANIMATION FINISHED
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+            VisualEffectManager.Instance.CreateEffectAtLocation(effect.animationEventData.onCharacterAnimationFinish, enemy.characterEntityView.WorldPosition));
+
+            // ON TARGET HIT SEQUENCE
+            // Create effect on single target
+            if (target != null)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateEffectAtLocation(effect.animationEventData.onTargetHit, target.characterEntityView.WorldPosition));
+            }
+
+            // Create effect on all allies
+            else if (effect.actionType == ActionType.BuffAllAllies ||
+                     effect.actionType == ActionType.DefendAllAllies)
+            {
+                foreach (CharacterEntityModel model in GetAllAlliesOfCharacter(enemy))
+                {
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateEffectAtLocation(effect.animationEventData.onTargetHit, model.characterEntityView.WorldPosition));
+                }
+            }
+
+            // Create effect on all enemies
+            else if (effect.actionType == ActionType.DebuffAllEnemies ||
+                     effect.actionType == ActionType.AttackAllEnemies)
+            {
+                foreach (CharacterEntityModel model in GetAllEnemiesOfCharacter(enemy))
+                {
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateEffectAtLocation(effect.animationEventData.onTargetHit, model.characterEntityView.WorldPosition));
+                }
+            }
+        }
+
+
+
+        // RESOLVE EFFECT LOGIC START!
         // Execute effect based on effect type
 
         // Attack Target
         if (effect.actionType == ActionType.AttackTarget)
         {
-            for (int i = 0; i < effect.attackLoops; i++)
+            if (target != null &&
+                 target.livingState == LivingState.Alive)
             {
-                if (target != null &&
-                   target.livingState == LivingState.Alive)
+                // Calculate damage
+                DamageType damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(enemy, null, null, effect);
+                int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, target, damageType, false, effect.baseDamage, null, null, effect);
+
+                // Start damage sequence
+                CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, target, damageType, null, effect);
+            }
+        }
+
+        // Attack All Enemies
+        else if (effect.actionType == ActionType.AttackAllEnemies)
+        {
+            foreach (CharacterEntityModel enemyCharacter in GetAllEnemiesOfCharacter(enemy))
+            {
+                if (enemyCharacter != null &&
+                 enemyCharacter.livingState == LivingState.Alive)
                 {
-                    // Move towards target visual event
-                    LevelNode node = target.levelNode;
-                    CoroutineData cData = new CoroutineData();
-                    VisualEventManager.Instance.CreateVisualEvent(() => MoveAttackerToTargetNodeAttackPosition(enemy, node, cData), cData);
-
-                    // Play melee attack anim
-                    VisualEventManager.Instance.CreateVisualEvent(() => TriggerMeleeAttackAnimation(enemy.characterEntityView));
-
                     // Calculate damage
                     DamageType damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(enemy, null, null, effect);
-                    int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, target, damageType, false, effect.baseDamage, null, null, effect);
+                    int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, enemyCharacter, damageType, false, effect.baseDamage, null, null, effect);
 
                     // Start damage sequence
-                    CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, target, damageType, null, effect);
+                    CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, enemyCharacter, damageType, null, effect);
                 }
-            }
+            }                
         }
 
         // Defend self + Defend target
@@ -1487,13 +1627,12 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         }
 
         // Defend All
-        else if (effect.actionType == ActionType.DefendAll)
+        else if (effect.actionType == ActionType.DefendAllAllies)
         {
             foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(enemy))
             {
                 ModifyBlock(ally, CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy, ally, effect, null));
             }
-
         }
 
         // Buff Self + Buff Target
@@ -1510,7 +1649,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         }
 
         // Buff All
-        else if (effect.actionType == ActionType.BuffAll)
+        else if (effect.actionType == ActionType.BuffAllAllies)
         {
             foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(enemy))
             {
@@ -1526,7 +1665,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         }
 
         // Debuff All
-        else if (effect.actionType == ActionType.DebuffAll)
+        else if (effect.actionType == ActionType.DebuffAllEnemies)
         {
             foreach (CharacterEntityModel enemyy in GetAllEnemiesOfCharacter(enemy))
             {
@@ -1548,15 +1687,8 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
                     //CardController.Instance.AddCardToDiscardPile(enemy.currentActionTarget.defender, card);
                 }
             }
-
         }
 
-
-        // TO DO: This pause occurs even if the target or enemy is dead, how 
-        // to remove this pause when this occurs?
-
-        // Brief pause at end of each effect
-        //yield return new WaitForSeconds(0.5f);
     }
     private void StartEnemyActivation(CharacterEntityModel enemy)
     {

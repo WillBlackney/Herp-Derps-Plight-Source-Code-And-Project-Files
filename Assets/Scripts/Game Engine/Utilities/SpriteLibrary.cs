@@ -83,6 +83,10 @@ using Sirenix.OdinInspector.Editor;
 
         [ColorFoldoutGroup("Intent Images")]
         [PreviewField(75)]
+        public Sprite attackAll;
+
+        [ColorFoldoutGroup("Intent Images")]
+        [PreviewField(75)]
         public Sprite attackDefend;
 
         [ColorFoldoutGroup("Intent Images")]
@@ -186,6 +190,10 @@ using Sirenix.OdinInspector.Editor;
             if (data == IntentImage.Attack)
             {
                 spriteReturned = attack;
+            }
+            else if (data == IntentImage.AttackAll)
+            {
+                spriteReturned = attackAll;
             }
             else if (data == IntentImage.AttackBuff)
             {

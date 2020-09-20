@@ -92,8 +92,10 @@ public class EnemyActionEffect
 {
     [VerticalGroup("General Properties")]
     [LabelWidth(150)]
+    public AnimationEventData animationEventData;
+    [VerticalGroup("General Properties")]
+    [LabelWidth(150)]
     public ActionType actionType;
-
 
     // damage target
     [VerticalGroup("Damage Properties")]
@@ -105,12 +107,6 @@ public class EnemyActionEffect
     [ShowIf("ShowDamage")]
     [LabelWidth(150)]
     public DamageType damageType;
-
-    [VerticalGroup("Damage Properties")]
-    [ShowIf("ShowDamage")]
-    [LabelWidth(150)]
-    public int attackLoops = 1;
-
 
 
     // Status properties
@@ -153,7 +149,7 @@ public class EnemyActionEffect
     // Inspector bools
     public bool ShowDamage()
     {
-        if(actionType == ActionType.AttackAll ||
+        if(actionType == ActionType.AttackAllEnemies ||
             actionType == ActionType.AttackTarget)
         {
             return true;
@@ -166,10 +162,10 @@ public class EnemyActionEffect
 
     public bool ShowStatus()
     {
-        if (actionType == ActionType.BuffAll ||
+        if (actionType == ActionType.BuffAllAllies ||
             actionType == ActionType.BuffSelf ||
             actionType == ActionType.BuffTarget ||
-            actionType == ActionType.DebuffAll ||
+            actionType == ActionType.DebuffAllEnemies ||
             actionType == ActionType.DebuffTarget)
         {
             return true;
@@ -181,7 +177,7 @@ public class EnemyActionEffect
     }
     public bool ShowBlock()
     {
-        if (actionType == ActionType.DefendAll ||
+        if (actionType == ActionType.DefendAllAllies ||
             actionType == ActionType.DefendSelf ||
             actionType == ActionType.DefendTarget)
         {

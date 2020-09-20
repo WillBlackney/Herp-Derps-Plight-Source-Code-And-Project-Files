@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Sword And Board
   cardDescription: 'Deal 4 Physical damage. Shielded: Gain 4 Block.'
-  cardSprite: {fileID: 21300000, guid: c3e61814299f211469ed93b6ee86c48c, type: 3}
+  cardSprite: {fileID: 21300000, guid: 781c073379810db44b755b77d2d99ee4, type: 3}
   cardEnergyCost: 1
   cardType: 2
   targettingType: 3

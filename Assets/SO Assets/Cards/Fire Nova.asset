@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Fire Nova
   cardDescription: Deal 6 Fire damage to all enemies.
-  cardSprite: {fileID: 21300000, guid: 0bea9301a287ca14b8a643f5a196beb2, type: 3}
+  cardSprite: {fileID: 21300000, guid: 8f0ee2553edb5da418be1c86a2557239, type: 3}
   cardEnergyCost: 2
   cardType: 1
   targettingType: 0

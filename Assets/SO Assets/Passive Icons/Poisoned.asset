@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Poisoned
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: 916b0a982b57a2c488514a8f0d9b7dd2, type: 3}
+  passiveSprite: {fileID: 21300000, guid: b7b37f112e8ed314c8a54b9b0a22d36b, type: 3}
   passiveName: Poisoned
   showStackCount: 1
+  hiddenOnPassivePanel: 0

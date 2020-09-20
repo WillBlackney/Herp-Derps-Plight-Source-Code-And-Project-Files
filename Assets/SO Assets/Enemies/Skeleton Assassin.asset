@@ -13,13 +13,11 @@ MonoBehaviour:
   m_Name: Skeleton Assassin
   m_EditorClassIdentifier: 
   enemyName: Skeleton Assassin
-  description: 
   maxHealth: 14
-  strength: 0
-  wisdom: 0
+  power: 0
   dexterity: 0
   initiative: 3
-  startingHealth: 30
+  startingHealth: 14
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0
@@ -27,15 +25,60 @@ MonoBehaviour:
   shadowResistance: 0
   poisonResistance: 0
   airResistance: 0
+  serializedPassiveManager:
+    bonusPowerStacks: 0
+    bonusDexterityStacks: 0
+    bonusStaminaStacks: 0
+    bonusInitiativeStacks: 0
+    bonusDrawStacks: 0
+    temporaryBonusPowerStacks: 0
+    temporaryBonusDexterityStacks: 0
+    temporaryBonusStaminaStacks: 0
+    temporaryBonusInitiativeStacks: 0
+    temporaryBonusDrawStacks: 0
+    enrageStacks: 0
+    shieldWallStacks: 0
+    fanOfKnivesStacks: 0
+    phoenixFormStacks: 0
+    poisonousStacks: 0
+    venomousStacks: 0
+    overloadStacks: 0
+    fusionStacks: 0
+    meleeAttackReductionStacks: 0
+    wrathStacks: 0
+    weakenedStacks: 0
+    vulnerableStacks: 0
+    gritStacks: 0
+    poisonedStacks: 0
+    burningStacks: 0
+    fireBallBonusDamageStacks: 0
   allEnemyActions:
   - actionName: Puncture
     actionType: 0
-    actionValue: 9
+    intentImage: 0
     actionLoops: 1
-    damageType: 1
+    doThisOnFirstActivation: 0
     canBeConsecutive: 1
     prioritiseWhenRequirementsMet: 0
     actionRequirements: []
+    actionEffects:
+    - animationEventData:
+        effectOnSelfAtStart: 0
+        startingMovementEvent: 1
+        returnToMyNodeOnCardEffectResolved: 0
+        characterAnimation: 0
+        onCharacterAnimationFinish: 0
+        projectileFired: 0
+        onTargetHit: 2
+      actionType: 0
+      baseDamage: 9
+      damageType: 1
+      passiveApplied: {fileID: 0}
+      passiveStacks: 0
+      blockGained: 0
+      cardAdded: {fileID: 0}
+      copiesAdded: 0
+      collection: 0
   allBodyParts:
   - Undead_Head_1
   - Undead_Face_1

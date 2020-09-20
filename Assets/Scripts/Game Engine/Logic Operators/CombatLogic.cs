@@ -56,8 +56,13 @@ public class CombatLogic : Singleton<CombatLogic>
         int targetResistance = 0;
         float resistanceMultiplier = 0;
 
-        // Get total resistance
-        //targetResistance = EntityLogic.GetTotalResistance(target, attackDamageType);
+        /*
+        //Get total resistance
+        if(target != null)
+        {
+            targetResistance = EntityLogic.GetTotalResistance(target, attackDamageType);
+        }
+        */
 
         // Debug
         Debug.Log("Target has " + targetResistance + " total " + damageType.ToString() + " Resistance...");
@@ -90,7 +95,7 @@ public class CombatLogic : Singleton<CombatLogic>
             enemyAction != null)
         {
             // vulnerable
-            if (target.pManager.vulnerableStacks > 0)
+            if (target != null && target.pManager.vulnerableStacks > 0)
             {
                 damageModifier += 0.3f;
                 Debug.Log("Damage percentage modifier after 'Vulnerable' bonus: " + damageModifier.ToString());
@@ -104,7 +109,7 @@ public class CombatLogic : Singleton<CombatLogic>
             }
 
             // grit
-            if (target.pManager.gritStacks > 0)
+            if (target != null && target.pManager.gritStacks > 0)
             {
                 damageModifier -= 0.3f;
                 Debug.Log("Damage percentage modifier after 'grit' bonus: " + damageModifier.ToString());
@@ -218,21 +223,6 @@ public class CombatLogic : Singleton<CombatLogic>
         // calculate damage after resistances
         finalDamageValueReturned = GetDamageValueAfterResistances(finalDamageValueReturned, damageType, target);
         Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned value after resitance type calculations: " + finalDamageValueReturned.ToString());
-
-        // calcualte damage value after resistances
-        /*
-        if (attacker.defender &&
-            StateManager.Instance.DoesPlayerAlreadyHaveState("Godly"))
-        {
-            Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() detected that attacker is defender and has state 'Godly', ignoring target resistances...");
-        }
-
-    else
-    {
-        finalDamageValueReturned = GetDamageValueAfterResistances(finalDamageValueReturned, damageType, target);
-        Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned value after resitance type calculations: " + finalDamageValueReturned.ToString());
-    }
-    */
 
         // return final value
         Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned final value returned: " + finalDamageValueReturned.ToString());
@@ -535,9 +525,7 @@ public class CombatLogic : Singleton<CombatLogic>
             }
             else if (enemyEffect != null && 
                (enemyEffect.actionType == ActionType.AttackTarget || 
-                enemyEffect.actionType == ActionType.AttackAll || 
-                enemyEffect.actionType == ActionType.AttackTargetAndBuffSelf ||
-                enemyEffect.actionType == ActionType.AttackTargetAndDefendSelf)
+                enemyEffect.actionType == ActionType.AttackAllEnemies)
                 )
             {
                 PassiveController.Instance.ModifyPoisoned(attacker, victim.pManager, attacker.pManager.poisonousStacks, true, 0.5f);

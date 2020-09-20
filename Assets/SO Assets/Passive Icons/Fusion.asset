@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Fusion
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: 61d73e534fa3daf4a9c79a1a123974bd, type: 3}
+  passiveSprite: {fileID: 21300000, guid: ee7ca44fbf0859e409e5173da4d4cf5a, type: 3}
   passiveName: Fusion
   showStackCount: 1
   hiddenOnPassivePanel: 0

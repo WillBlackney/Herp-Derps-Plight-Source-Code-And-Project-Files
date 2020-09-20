@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Provoke
   cardDescription: Force an enemy to focus its next attack on you.
-  cardSprite: {fileID: 21300000, guid: 04993c9351cbe4f43b686ecfada61219, type: 3}
+  cardSprite: {fileID: 21300000, guid: 70e8e4b4827207e408009613fd7c9ddf, type: 3}
   cardEnergyCost: 1
   cardType: 1
   targettingType: 3
@@ -46,6 +46,7 @@ MonoBehaviour:
     animationEventData:
       effectOnSelfAtStart: 0
       startingMovementEvent: 2
+      returnToMyNodeOnCardEffectResolved: 0
       characterAnimation: 4
       onCharacterAnimationFinish: 0
       projectileFired: 0

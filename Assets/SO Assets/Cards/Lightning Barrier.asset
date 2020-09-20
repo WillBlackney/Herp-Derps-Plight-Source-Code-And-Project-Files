@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Lightning Barrier
   cardDescription: Gain 4 Block. Gain 2 Overload.
-  cardSprite: {fileID: 21300000, guid: 938e8f609a2c284479ee3e39289eba29, type: 3}
+  cardSprite: {fileID: 21300000, guid: 60eb5d5085e402348ae8b821e07250d2, type: 3}
   cardEnergyCost: 1
   cardType: 1
   targettingType: 0

@@ -586,7 +586,8 @@ public class PassiveController : Singleton<PassiveController>
             // Update intent GUI, if enemy and attacking
             if (pManager.myCharacter.controller == Controller.AI &&
                 pManager.myCharacter.myNextAction != null &&
-                pManager.myCharacter.myNextAction.actionType == ActionType.AttackTarget)
+                (pManager.myCharacter.myNextAction.actionType == ActionType.AttackTarget ||
+                 pManager.myCharacter.myNextAction.actionType == ActionType.AttackAllEnemies))
             {
                 CharacterEntityController.Instance.UpdateEnemyIntentGUI(pManager.myCharacter);
             }
@@ -850,7 +851,8 @@ public class PassiveController : Singleton<PassiveController>
             // Update intent GUI, if enemy and attacking
             if (pManager.myCharacter.controller == Controller.AI &&
                 pManager.myCharacter.myNextAction != null &&
-                pManager.myCharacter.myNextAction.actionType == ActionType.AttackTarget)
+                 (pManager.myCharacter.myNextAction.actionType == ActionType.AttackTarget ||
+                 pManager.myCharacter.myNextAction.actionType == ActionType.AttackAllEnemies))
             {
                 CharacterEntityController.Instance.UpdateEnemyIntentGUI(pManager.myCharacter);
             }
@@ -1594,7 +1596,8 @@ public class PassiveController : Singleton<PassiveController>
             // Update intent GUI, if enemy and attacking
             if (pManager.myCharacter.controller == Controller.AI &&
                 pManager.myCharacter.myNextAction != null &&
-                pManager.myCharacter.myNextAction.actionType == ActionType.AttackTarget)
+                 (pManager.myCharacter.myNextAction.actionType == ActionType.AttackTarget ||
+                 pManager.myCharacter.myNextAction.actionType == ActionType.AttackAllEnemies))
             {
                 CharacterEntityController.Instance.UpdateEnemyIntentGUI(pManager.myCharacter);
             }
@@ -1650,7 +1653,8 @@ public class PassiveController : Singleton<PassiveController>
             // Update intent GUI, if enemy and attacking
             if (pManager.myCharacter.controller == Controller.AI &&
                 pManager.myCharacter.myNextAction != null &&
-                pManager.myCharacter.myNextAction.actionType == ActionType.AttackTarget)
+                 (pManager.myCharacter.myNextAction.actionType == ActionType.AttackTarget ||
+                 pManager.myCharacter.myNextAction.actionType == ActionType.AttackAllEnemies))
             {
                 CharacterEntityController.Instance.UpdateEnemyIntentGUI(pManager.myCharacter);
             }
@@ -1709,7 +1713,8 @@ public class PassiveController : Singleton<PassiveController>
                 if(entity.controller == Controller.AI &&
                    entity.myNextAction != null &&
                    entity.currentActionTarget == pManager.myCharacter &&
-                   entity.myNextAction.actionType == ActionType.AttackTarget)
+                    (pManager.myCharacter.myNextAction.actionType == ActionType.AttackTarget ||
+                 pManager.myCharacter.myNextAction.actionType == ActionType.AttackAllEnemies))
                 {
                     CharacterEntityController.Instance.UpdateEnemyIntentGUI(entity);
                 }
@@ -1769,7 +1774,8 @@ public class PassiveController : Singleton<PassiveController>
                 if (entity.controller == Controller.AI &&
                    entity.myNextAction != null &&
                    entity.currentActionTarget == pManager.myCharacter &&
-                   entity.myNextAction.actionType == ActionType.AttackTarget)
+                   (pManager.myCharacter.myNextAction.actionType == ActionType.AttackTarget ||
+                   pManager.myCharacter.myNextAction.actionType == ActionType.AttackAllEnemies))
                 {
                     CharacterEntityController.Instance.UpdateEnemyIntentGUI(entity);
                 }

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Reckless Strike
   cardDescription: Deal 10 Physical damage. Lose 2HP.
-  cardSprite: {fileID: 21300000, guid: bace5b0cedc5b544f98c0d9beeefe0b0, type: 3}
+  cardSprite: {fileID: 21300000, guid: d71827c08a0e7984492d5d99d1fc32cc, type: 3}
   cardEnergyCost: 1
   cardType: 2
   targettingType: 3
@@ -46,6 +46,7 @@ MonoBehaviour:
     animationEventData:
       effectOnSelfAtStart: 0
       startingMovementEvent: 1
+      returnToMyNodeOnCardEffectResolved: 0
       characterAnimation: 1
       onCharacterAnimationFinish: 0
       projectileFired: 0
@@ -71,6 +72,7 @@ MonoBehaviour:
     animationEventData:
       effectOnSelfAtStart: 0
       startingMovementEvent: 0
+      returnToMyNodeOnCardEffectResolved: 0
       characterAnimation: 0
       onCharacterAnimationFinish: 0
       projectileFired: 0

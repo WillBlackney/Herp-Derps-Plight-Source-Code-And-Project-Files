@@ -624,7 +624,7 @@ public class CardController : Singleton<CardController>
         {
             // EFFECT ON SELF AT START SEQUENCE
             VisualEventManager.Instance.CreateVisualEvent(()=>
-            VisualEffectManager.Instance.CreatEffectAtLocation(cardEffect.animationEventData.effectOnSelfAtStart, owner.characterEntityView.WorldPosition));
+            VisualEffectManager.Instance.CreateEffectAtLocation(cardEffect.animationEventData.effectOnSelfAtStart, owner.characterEntityView.WorldPosition));
 
             // MOVEMENT SEQUENCE
             if (cardEffect.animationEventData.startingMovementEvent == MovementAnimEvent.MoveTowardsTarget &&
@@ -681,14 +681,14 @@ public class CardController : Singleton<CardController>
 
             // ON CHARACTER ANIMATION FINISHED
             VisualEventManager.Instance.CreateVisualEvent(() =>
-            VisualEffectManager.Instance.CreatEffectAtLocation(cardEffect.animationEventData.onCharacterAnimationFinish, owner.characterEntityView.WorldPosition));
+            VisualEffectManager.Instance.CreateEffectAtLocation(cardEffect.animationEventData.onCharacterAnimationFinish, owner.characterEntityView.WorldPosition));
 
             // ON TARGET HIT SEQUENCE
             // Create effect on single target
             if(target != null)
             {
                 VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreatEffectAtLocation(cardEffect.animationEventData.onTargetHit, target.characterEntityView.WorldPosition));
+                VisualEffectManager.Instance.CreateEffectAtLocation(cardEffect.animationEventData.onTargetHit, target.characterEntityView.WorldPosition));
             }
 
             // Create effect on all allies
@@ -698,7 +698,7 @@ public class CardController : Singleton<CardController>
                 foreach(CharacterEntityModel model in CharacterEntityController.Instance.GetAllAlliesOfCharacter(owner))
                 {
                     VisualEventManager.Instance.CreateVisualEvent(() =>
-                    VisualEffectManager.Instance.CreatEffectAtLocation(cardEffect.animationEventData.onTargetHit, model.characterEntityView.WorldPosition));
+                    VisualEffectManager.Instance.CreateEffectAtLocation(cardEffect.animationEventData.onTargetHit, model.characterEntityView.WorldPosition));
                 }
             }
 
@@ -710,7 +710,7 @@ public class CardController : Singleton<CardController>
                 foreach (CharacterEntityModel model in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
                 {
                     VisualEventManager.Instance.CreateVisualEvent(() =>
-                    VisualEffectManager.Instance.CreatEffectAtLocation(cardEffect.animationEventData.onTargetHit, model.characterEntityView.WorldPosition));
+                    VisualEffectManager.Instance.CreateEffectAtLocation(cardEffect.animationEventData.onTargetHit, model.characterEntityView.WorldPosition));
                 }
             }
         }

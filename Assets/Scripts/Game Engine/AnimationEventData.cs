@@ -13,7 +13,12 @@ public class AnimationEventData
     // these types of events via the inspector, instead of programmatically
     // creating these effects on cards/enemy effects individually/
 
+    [VerticalGroup("General Properties")]
+    [LabelWidth(250)]
     public ParticleEffect effectOnSelfAtStart;
+
+    [VerticalGroup("General Properties")]
+    [LabelWidth(250)]
     public MovementAnimEvent startingMovementEvent;
 
     // NOTE: this bool should be true if the card used
@@ -26,12 +31,26 @@ public class AnimationEventData
     // if a card read 'Deal damage to a random enemy 5 times',
     // and this was wrongly marked as true, the character would return 
     // back to its node at the end of each attack.
+    [VerticalGroup("General Properties")]
+    [LabelWidth(250)]
     [ShowIf("ShowReturnToMyNodeOnCardEffectResolved")]
     public bool returnToMyNodeOnCardEffectResolved;
+
+    [VerticalGroup("General Properties")]
+    [LabelWidth(250)]
     public CharacterAnimation characterAnimation;
+
+    [VerticalGroup("General Properties")]
+    [LabelWidth(250)]
     public ParticleEffect onCharacterAnimationFinish;
+
+    [VerticalGroup("General Properties")]
+    [LabelWidth(250)]
     [ShowIf("ShowProjectileFired")]
     public ProjectileFired projectileFired;
+
+    [VerticalGroup("General Properties")]
+    [LabelWidth(250)]
     public ParticleEffect onTargetHit;
 
     public bool ShowProjectileFired()

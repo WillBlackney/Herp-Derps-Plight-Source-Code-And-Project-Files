@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: Skeleton Mage
   m_EditorClassIdentifier: 
   enemyName: Skeleton Mage
-  description: 
   maxHealth: 25
-  strength: 0
-  wisdom: 0
+  power: 0
   dexterity: 0
   initiative: 3
   startingHealth: 25
@@ -27,28 +25,94 @@ MonoBehaviour:
   shadowResistance: 0
   poisonResistance: 0
   airResistance: 0
-  allPassives: []
+  serializedPassiveManager:
+    bonusPowerStacks: 0
+    bonusDexterityStacks: 0
+    bonusStaminaStacks: 0
+    bonusInitiativeStacks: 0
+    bonusDrawStacks: 0
+    temporaryBonusPowerStacks: 0
+    temporaryBonusDexterityStacks: 0
+    temporaryBonusStaminaStacks: 0
+    temporaryBonusInitiativeStacks: 0
+    temporaryBonusDrawStacks: 0
+    enrageStacks: 0
+    shieldWallStacks: 0
+    fanOfKnivesStacks: 0
+    phoenixFormStacks: 0
+    poisonousStacks: 0
+    venomousStacks: 0
+    overloadStacks: 0
+    fusionStacks: 0
+    meleeAttackReductionStacks: 0
+    wrathStacks: 0
+    weakenedStacks: 0
+    vulnerableStacks: 0
+    gritStacks: 0
+    poisonedStacks: 0
+    burningStacks: 0
+    fireBallBonusDamageStacks: 0
   allEnemyActions:
   - actionName: Charging
     actionType: 11
-    actionValue: 0
+    intentImage: 9
     actionLoops: 1
-    damageType: 0
+    doThisOnFirstActivation: 1
     canBeConsecutive: 1
     prioritiseWhenRequirementsMet: 0
     actionRequirements: []
+    actionEffects:
+    - animationEventData:
+        effectOnSelfAtStart: 0
+        startingMovementEvent: 0
+        returnToMyNodeOnCardEffectResolved: 0
+        characterAnimation: 0
+        onCharacterAnimationFinish: 0
+        projectileFired: 0
+        onTargetHit: 0
+      actionType: 11
+      baseDamage: 0
+      damageType: 0
+      passiveApplied: {fileID: 0}
+      passiveStacks: 0
+      blockGained: 0
+      cardAdded: {fileID: 0}
+      copiesAdded: 0
+      collection: 0
   - actionName: Meteor
     actionType: 0
-    actionValue: 25
+    intentImage: 0
     actionLoops: 1
-    damageType: 5
+    doThisOnFirstActivation: 0
     canBeConsecutive: 0
     prioritiseWhenRequirementsMet: 1
     actionRequirements:
     - requirementType: 7
       requirementTypeValue: 2
+      passiveRequired: {fileID: 0}
+      statusStacksRequired: 0
     - requirementType: 8
       requirementTypeValue: 2
+      passiveRequired: {fileID: 0}
+      statusStacksRequired: 0
+    actionEffects:
+    - animationEventData:
+        effectOnSelfAtStart: 0
+        startingMovementEvent: 0
+        returnToMyNodeOnCardEffectResolved: 0
+        characterAnimation: 3
+        onCharacterAnimationFinish: 0
+        projectileFired: 1
+        onTargetHit: 0
+      actionType: 0
+      baseDamage: 25
+      damageType: 4
+      passiveApplied: {fileID: 0}
+      passiveStacks: 0
+      blockGained: 0
+      cardAdded: {fileID: 0}
+      copiesAdded: 0
+      collection: 0
   allBodyParts:
   - Undead_Head_1
   - Undead_Face_1

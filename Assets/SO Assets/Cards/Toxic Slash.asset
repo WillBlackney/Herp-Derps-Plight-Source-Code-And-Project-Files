@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Toxic Slash
   cardDescription: Deal 4 Poison damage. Apply 2 Poisoned.
-  cardSprite: {fileID: 21300000, guid: 66c07c61f3600934b8cd2f1bbbecb3f8, type: 3}
+  cardSprite: {fileID: 21300000, guid: c7ffcbcad63dd9c43befef7650b6b5da, type: 3}
   cardEnergyCost: 1
   cardType: 2
   targettingType: 3

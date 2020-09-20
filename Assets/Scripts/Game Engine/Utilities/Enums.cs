@@ -195,21 +195,18 @@ public enum LivingState
 public enum ActionType
 {
     AttackTarget = 0,
-    AttackAll = 1,
+    AttackAllEnemies = 1,
     BuffSelf = 2,
     BuffTarget = 3,
-    BuffAll = 4,
+    BuffAllAllies = 4,
     DebuffTarget = 5,
-    DebuffAll = 6,
+    DebuffAllEnemies = 6,
     DefendSelf = 7,
     DefendTarget = 8,
-    DefendAll = 9,
+    DefendAllAllies = 9,
     Sleep = 10,
     PassTurn = 11,
-    DefendAndBuffSelf = 12,
-    AttackTargetAndDefendSelf = 13,
-    AttackTargetAndBuffSelf = 14,
-    AddCard = 15,
+    AddCard = 12,
 }
 public enum ActionRequirementType
 {
@@ -228,6 +225,7 @@ public enum ActionRequirementType
 public enum IntentImage
 {
     Attack = 0,
+    AttackAll = 11,
     AttackBuff = 1,
     AttackDebuff = 2,
     AttackDefend = 3,
@@ -238,6 +236,7 @@ public enum IntentImage
     PurpleDebuff = 8,
     Unknown = 9,
     Flee = 10,
+    
 
 }
 #endregion

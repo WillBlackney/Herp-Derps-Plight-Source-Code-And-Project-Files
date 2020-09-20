@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Fan Of Knives
   cardDescription: On activation start, add a Shank to your hand.
-  cardSprite: {fileID: 21300000, guid: 8b44c73ff4229cf40b61125a3045b470, type: 3}
+  cardSprite: {fileID: 21300000, guid: 72f7afdc8fa41e94c9e2cf4077dd9d34, type: 3}
   cardEnergyCost: 1
   cardType: 4
   targettingType: 0
@@ -46,6 +46,7 @@ MonoBehaviour:
     animationEventData:
       effectOnSelfAtStart: 0
       startingMovementEvent: 0
+      returnToMyNodeOnCardEffectResolved: 0
       characterAnimation: 4
       onCharacterAnimationFinish: 0
       projectileFired: 0

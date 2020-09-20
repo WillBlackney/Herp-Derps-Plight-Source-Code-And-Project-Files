@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: Skeleton Berserker
   m_EditorClassIdentifier: 
   enemyName: Skeleton Berserker
-  description: 
   maxHealth: 24
-  strength: 0
-  wisdom: 0
+  power: 0
   dexterity: 0
   initiative: 0
   startingHealth: 24
@@ -27,58 +25,60 @@ MonoBehaviour:
   shadowResistance: 0
   poisonResistance: 0
   airResistance: 0
-  allPassives:
-  - statusData: {fileID: 11400000, guid: f846578f9a6894a4e8797ba37d30393b, type: 2}
-    statusStacks: 2
+  serializedPassiveManager:
+    bonusPowerStacks: 0
+    bonusDexterityStacks: 0
+    bonusStaminaStacks: 0
+    bonusInitiativeStacks: 0
+    bonusDrawStacks: 0
+    temporaryBonusPowerStacks: 0
+    temporaryBonusDexterityStacks: 0
+    temporaryBonusStaminaStacks: 0
+    temporaryBonusInitiativeStacks: 0
+    temporaryBonusDrawStacks: 0
+    enrageStacks: 2
+    shieldWallStacks: 0
+    fanOfKnivesStacks: 0
+    phoenixFormStacks: 0
+    poisonousStacks: 0
+    venomousStacks: 0
+    overloadStacks: 0
+    fusionStacks: 0
+    meleeAttackReductionStacks: 0
+    wrathStacks: 0
+    weakenedStacks: 0
+    vulnerableStacks: 0
+    gritStacks: 0
+    poisonedStacks: 0
+    burningStacks: 0
+    fireBallBonusDamageStacks: 0
   allEnemyActions:
   - actionName: Strike
     actionType: 0
     intentImage: 0
-    actionLoops: 3
-    actionEffects:
-    - actionType: 0
-      baseDamage: 8
-      damageType: 1
-      attackLoops: 3
-      statusApplied: {fileID: 0}
-      statusStacks: 0
-      blockGained: 0
-      cardAdded: {fileID: 0}
-      copiesAdded: 0
-      collection: 0
-    - actionType: 5
-      baseDamage: 0
-      damageType: 0
-      attackLoops: 0
-      statusApplied: {fileID: 11400000, guid: aa22de6de15a02c41b68c3de8023de67, type: 2}
-      statusStacks: 3
-      blockGained: 0
-      cardAdded: {fileID: 0}
-      copiesAdded: 0
-      collection: 0
-    - actionType: 5
-      baseDamage: 0
-      damageType: 0
-      attackLoops: 0
-      statusApplied: {fileID: 11400000, guid: c581a48a8af96034f9df9bf0e66126b1, type: 2}
-      statusStacks: 3
-      blockGained: 0
-      cardAdded: {fileID: 0}
-      copiesAdded: 0
-      collection: 0
-    - actionType: 3
-      baseDamage: 0
-      damageType: 0
-      attackLoops: 0
-      statusApplied: {fileID: 11400000, guid: 28e5b8be23558bc4d9ac21773f3b969e, type: 2}
-      statusStacks: 5
-      blockGained: 0
-      cardAdded: {fileID: 0}
-      copiesAdded: 0
-      collection: 0
+    actionLoops: 1
+    doThisOnFirstActivation: 0
     canBeConsecutive: 1
     prioritiseWhenRequirementsMet: 0
     actionRequirements: []
+    actionEffects:
+    - animationEventData:
+        effectOnSelfAtStart: 0
+        startingMovementEvent: 1
+        returnToMyNodeOnCardEffectResolved: 0
+        characterAnimation: 1
+        onCharacterAnimationFinish: 0
+        projectileFired: 0
+        onTargetHit: 2
+      actionType: 0
+      baseDamage: 8
+      damageType: 1
+      passiveApplied: {fileID: 0}
+      passiveStacks: 0
+      blockGained: 0
+      cardAdded: {fileID: 0}
+      copiesAdded: 0
+      collection: 0
   allBodyParts:
   - Undead_Head_1
   - Undead_Face_1

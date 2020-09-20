@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Fusion
   cardDescription: Whenever you gain Overload, draw 1 card.
-  cardSprite: {fileID: 21300000, guid: 61d73e534fa3daf4a9c79a1a123974bd, type: 3}
+  cardSprite: {fileID: 21300000, guid: ee7ca44fbf0859e409e5173da4d4cf5a, type: 3}
   cardEnergyCost: 1
   cardType: 4
   targettingType: 0

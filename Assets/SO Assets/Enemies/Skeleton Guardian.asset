@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: Skeleton Guardian
   m_EditorClassIdentifier: 
   enemyName: Skeleton Guardian
-  description: 
   maxHealth: 15
-  strength: 0
-  wisdom: 0
+  power: 0
   dexterity: 0
   initiative: 0
   startingHealth: 15
@@ -27,26 +25,90 @@ MonoBehaviour:
   shadowResistance: 0
   poisonResistance: 0
   airResistance: 0
-  allPassives: []
+  serializedPassiveManager:
+    bonusPowerStacks: 0
+    bonusDexterityStacks: 0
+    bonusStaminaStacks: 0
+    bonusInitiativeStacks: 0
+    bonusDrawStacks: 0
+    temporaryBonusPowerStacks: 0
+    temporaryBonusDexterityStacks: 0
+    temporaryBonusStaminaStacks: 0
+    temporaryBonusInitiativeStacks: 0
+    temporaryBonusDrawStacks: 0
+    enrageStacks: 0
+    shieldWallStacks: 0
+    fanOfKnivesStacks: 0
+    phoenixFormStacks: 0
+    poisonousStacks: 0
+    venomousStacks: 0
+    overloadStacks: 0
+    fusionStacks: 0
+    meleeAttackReductionStacks: 0
+    wrathStacks: 0
+    weakenedStacks: 0
+    vulnerableStacks: 0
+    gritStacks: 0
+    poisonedStacks: 0
+    burningStacks: 0
+    fireBallBonusDamageStacks: 0
   allEnemyActions:
   - actionName: Protect
     actionType: 8
-    actionValue: 7
+    intentImage: 6
     actionLoops: 1
-    damageType: 0
+    doThisOnFirstActivation: 0
     canBeConsecutive: 1
     prioritiseWhenRequirementsMet: 1
     actionRequirements:
     - requirementType: 6
       requirementTypeValue: 2
+      passiveRequired: {fileID: 0}
+      statusStacksRequired: 0
+    actionEffects:
+    - animationEventData:
+        effectOnSelfAtStart: 0
+        startingMovementEvent: 0
+        returnToMyNodeOnCardEffectResolved: 0
+        characterAnimation: 4
+        onCharacterAnimationFinish: 0
+        projectileFired: 0
+        onTargetHit: 0
+      actionType: 8
+      baseDamage: 0
+      damageType: 0
+      passiveApplied: {fileID: 0}
+      passiveStacks: 0
+      blockGained: 7
+      cardAdded: {fileID: 0}
+      copiesAdded: 0
+      collection: 0
   - actionName: Shield Bash
     actionType: 0
-    actionValue: 6
+    intentImage: 0
     actionLoops: 1
-    damageType: 1
+    doThisOnFirstActivation: 0
     canBeConsecutive: 1
     prioritiseWhenRequirementsMet: 0
     actionRequirements: []
+    actionEffects:
+    - animationEventData:
+        effectOnSelfAtStart: 0
+        startingMovementEvent: 1
+        returnToMyNodeOnCardEffectResolved: 0
+        characterAnimation: 1
+        onCharacterAnimationFinish: 0
+        projectileFired: 0
+        onTargetHit: 2
+      actionType: 0
+      baseDamage: 6
+      damageType: 1
+      passiveApplied: {fileID: 0}
+      passiveStacks: 0
+      blockGained: 0
+      cardAdded: {fileID: 0}
+      copiesAdded: 0
+      collection: 0
   allBodyParts:
   - Undead_Head_1
   - Undead_Face_1
