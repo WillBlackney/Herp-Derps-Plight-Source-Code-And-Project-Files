@@ -14,10 +14,7 @@ public class ColorLibrary : Singleton<ColorLibrary>
     public Color neutralColor;
 
     [ColorFoldoutGroup("Talent Colors")]
-    public Color brawlerColor;
-
-    [ColorFoldoutGroup("Talent Colors")]
-    public Color armsColor;
+    public Color warfareColor;
 
     [ColorFoldoutGroup("Talent Colors")]
     public Color guardianColor;
@@ -44,10 +41,8 @@ public class ColorLibrary : Singleton<ColorLibrary>
     public Color corruptionColor;
 
     [ColorFoldoutGroup("Talent Colors")]
-    public Color assassinationColor;
+    public Color scoundrelColor;
 
-    [ColorFoldoutGroup("Talent Colors")]
-    public Color duelistColor;
     #endregion
 
     // Rarity Colors
@@ -71,25 +66,17 @@ public class ColorLibrary : Singleton<ColorLibrary>
     {
         Color colorReturned = neutralColor;
 
-        if(talent == TalentSchool.Arms)
+        if(talent == TalentSchool.Warfare)
         {
-            colorReturned = armsColor;
-        }
-        else if (talent == TalentSchool.Brawler)
-        {
-            colorReturned = brawlerColor;
+            colorReturned = warfareColor;
         }
         else if (talent == TalentSchool.Guardian)
         {
             colorReturned = guardianColor;
         }
-        else if (talent == TalentSchool.Assassination)
+        else if (talent == TalentSchool.Scoundrel)
         {
-            colorReturned = assassinationColor;
-        }
-        else if (talent == TalentSchool.Duelist)
-        {
-            colorReturned = duelistColor;
+            colorReturned = scoundrelColor;
         }
         else if (talent == TalentSchool.Ranger)
         {

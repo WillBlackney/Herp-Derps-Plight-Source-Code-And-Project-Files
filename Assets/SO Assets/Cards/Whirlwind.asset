@@ -18,7 +18,7 @@ MonoBehaviour:
   cardEnergyCost: 1
   cardType: 2
   targettingType: 0
-  talentSchool: 14
+  talentSchool: 2
   rarity: 1
   expend: 0
   opener: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
       effectOnSelfAtStart: 0
       startingMovementEvent: 2
       returnToMyNodeOnCardEffectResolved: 0
-      characterAnimation: 1
+      characterAnimation: 5
       onCharacterAnimationFinish: 3
       projectileFired: 0
       onTargetHit: 0

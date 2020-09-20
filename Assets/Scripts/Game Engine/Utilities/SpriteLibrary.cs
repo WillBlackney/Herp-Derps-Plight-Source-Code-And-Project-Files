@@ -22,17 +22,13 @@ using Sirenix.OdinInspector.Editor;
                 Destroy(gameObject);
             }
         }
-        #endregion
+    #endregion
 
         // Talent School Badges
         #region
-        [ColorFoldoutGroup("Talent School Badges", 0f, 1f, 0f)]
-        [PreviewField(75)]
-        public Sprite duelistBadge;
-
-        [ColorFoldoutGroup("Talent School Badges")]
-        [PreviewField(75)]
-        public Sprite brawlerBadge;
+    [ColorFoldoutGroup("Talent School Badges", 0f, 1f, 0f)]
+    [PreviewField(75)]
+    public Sprite warfareBadge;
 
         [ColorFoldoutGroup("Talent School Badges")]
         [PreviewField(75)]
@@ -40,7 +36,7 @@ using Sirenix.OdinInspector.Editor;
 
         [ColorFoldoutGroup("Talent School Badges")]
         [PreviewField(75)]
-        public Sprite assassinationBadge;
+        public Sprite scoundrelBadge;
 
         [ColorFoldoutGroup("Talent School Badges")]
         [PreviewField(75)]
@@ -49,10 +45,6 @@ using Sirenix.OdinInspector.Editor;
         [ColorFoldoutGroup("Talent School Badges")]
         [PreviewField(75)]
         public Sprite pyromaniaBadge;
-
-        [ColorFoldoutGroup("Talent School Badges")]
-        [PreviewField(75)]
-        public Sprite cyromancyBadge;
 
         [ColorFoldoutGroup("Talent School Badges")]
         [PreviewField(75)]
@@ -124,41 +116,48 @@ using Sirenix.OdinInspector.Editor;
         [ColorFoldoutGroup("Intent Images")]
         [PreviewField(75)]
         public Sprite flee;
-        #endregion
+    #endregion
+
+        // Card Type Images
+        #region
+    [ColorFoldoutGroup("Card Type Images", 1f, 0f, 0f)]
+    [PreviewField(75)]
+    public Sprite meleeAttack;
+
+    [ColorFoldoutGroup("Card Type Images")]
+    [PreviewField(75)]
+    public Sprite rangedAttack;
+
+    [ColorFoldoutGroup("Card Type Images")]
+    [PreviewField(75)]
+    public Sprite skill;
+
+    [ColorFoldoutGroup("Card Type Images")]
+    [PreviewField(75)]
+    public Sprite power;
+    #endregion
 
         // Logic 
         #region
-        public Sprite GetTalentSchoolSpriteFromEnumData(TalentSchool data)
+    public Sprite GetTalentSchoolSpriteFromEnumData(TalentSchool data)
         {
             Sprite spriteReturned = null;
 
-            if (data == TalentSchool.Assassination)
+            if (data == TalentSchool.Scoundrel)
             {
-                spriteReturned = assassinationBadge;
+                spriteReturned = scoundrelBadge;
             }
-            else if (data == TalentSchool.Brawler)
+            else if (data == TalentSchool.Warfare)
             {
-                spriteReturned = brawlerBadge;
-            }
-            else if (data == TalentSchool.Arms)
-            {
-                spriteReturned = brawlerBadge;
+                spriteReturned = warfareBadge;
             }
             else if (data == TalentSchool.Corruption)
             {
                 spriteReturned = corruptionBadge;
             }
-            else if (data == TalentSchool.Cyromancy)
-            {
-                spriteReturned = cyromancyBadge;
-            }
             else if (data == TalentSchool.Divinity)
             {
                 spriteReturned = divinityBadge;
-            }
-            else if (data == TalentSchool.Duelist)
-            {
-                spriteReturned = duelistBadge;
             }
             else if (data == TalentSchool.Guardian)
             {
@@ -183,7 +182,7 @@ using Sirenix.OdinInspector.Editor;
 
             return spriteReturned;
         }
-        public Sprite GetIntentSpriteFromIntentEnumData(IntentImage data)
+    public Sprite GetIntentSpriteFromIntentEnumData(IntentImage data)
         {
             Sprite spriteReturned = null;
 
@@ -238,9 +237,32 @@ using Sirenix.OdinInspector.Editor;
 
             return spriteReturned;
         }
-        #endregion
+    public Sprite GetCardTypeImageFromTypeEnumData(CardType data)
+    {
+        Sprite spriteReturned = null;
 
+        if (data == CardType.MeleeAttack)
+        {
+            spriteReturned = meleeAttack;
+        }
+        else if (data == CardType.RangedAttack)
+        {
+            spriteReturned = rangedAttack;
+        }
+        else if (data == CardType.Power)
+        {
+            spriteReturned = power;
+        }
+        else if (data == CardType.Skill)
+        {
+            spriteReturned = skill;
+        }        
+
+        return spriteReturned;
     }
+    #endregion
+
+}
 
 
     public class ColorFoldoutGroupAttribute : PropertyGroupAttribute

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using DG.Tweening;
 
 
 public class CharacterEntityController: Singleton<CharacterEntityController>
@@ -1019,7 +1020,45 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
     // Trigger Animations
     #region
+    public void TriggerShootProjectileAnimation(CharacterEntityView view)
+    {
+        view.ucmAnimator.SetTrigger("Melee Attack");
+    }
     public void TriggerMeleeAttackAnimation(CharacterEntityView view)
+    {
+        StartCoroutine(TriggerMeleeAttackAnimationCoroutine(view));
+    }
+    private IEnumerator TriggerMeleeAttackAnimationCoroutine(CharacterEntityView view)
+    {
+        view.ucmAnimator.SetTrigger("Melee Attack");
+        float startX = view.WorldPosition.x;
+        float forwardPos = 0;
+        float moveSpeedTime = 0.25f;
+        float distance = 0.75f;
+
+        CharacterEntityModel model = view.character;
+        if (model != null)
+        {
+            if(model.allegiance == Allegiance.Player)
+            {
+                forwardPos = view.WorldPosition.x + distance;
+            }
+            else if (model.allegiance == Allegiance.Enemy)
+            {
+                forwardPos = view.WorldPosition.x - distance;
+            }
+
+            // slight movement forward
+            view.ucmMovementParent.transform.DOMoveX(forwardPos, moveSpeedTime);
+            yield return new WaitForSeconds(moveSpeedTime);
+
+            // move back to start pos
+            view.ucmMovementParent.transform.DOMoveX(startX, moveSpeedTime);
+            yield return new WaitForSeconds(moveSpeedTime);
+        }
+
+    }
+    public void TriggerAoeMeleeAttackAnimation(CharacterEntityView view)
     {
         view.ucmAnimator.SetTrigger("Melee Attack");
     }
@@ -1417,6 +1456,10 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Setup
         EnemyAction nextAction = enemy.myNextAction;
 
+        // Status Notification
+        VisualEventManager.Instance.CreateVisualEvent(()=>
+        VisualEffectManager.Instance.CreateStatusEffect(enemy.characterEntityView.WorldPosition, enemy.myNextAction.actionName), QueuePosition.Back, 0, 1f);
+
         // Trigger and resolve all effects of the action        
         for (int i = 0; i < nextAction.actionLoops; i++)
         {
@@ -1512,9 +1555,14 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             }
 
 
-            // CHARACTER ANIMATION SEQUENCE
+            // CHARACTER ANIMATION SEQUENCE TriggerAoeMeleeAttackAnimation
             // Melee Attack 
             if (effect.animationEventData.characterAnimation == CharacterAnimation.MeleeAttack)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => TriggerMeleeAttackAnimation(enemy.characterEntityView));
+            }
+            // AoE Melee Attack 
+            else if (effect.animationEventData.characterAnimation == CharacterAnimation.AoeMeleeAttack)
             {
                 VisualEventManager.Instance.CreateVisualEvent(() => TriggerMeleeAttackAnimation(enemy.characterEntityView));
             }
@@ -1539,7 +1587,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             else if (effect.animationEventData.characterAnimation == CharacterAnimation.ShootProjectile)
             {
                 // Play character shoot anim
-                VisualEventManager.Instance.CreateVisualEvent(() => TriggerMeleeAttackAnimation(enemy.characterEntityView));
+                VisualEventManager.Instance.CreateVisualEvent(() => TriggerShootProjectileAnimation(enemy.characterEntityView));
 
                 // Create projectile
                 CoroutineData cData = new CoroutineData();
@@ -1709,7 +1757,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     {
         // Set up
         bool reachedDestination = false;
-        Vector3 destination = new Vector3(node.nose.position.x, node.nose.position.y, 0);
+        Vector3 destination = new Vector3(node.attackPos.position.x, node.attackPos.position.y, 0);
         float moveSpeed = 10;
 
         // Face direction of destination

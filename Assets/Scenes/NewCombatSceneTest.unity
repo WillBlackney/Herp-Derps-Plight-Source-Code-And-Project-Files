@@ -1820,30 +1820,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6068b8fb8d74d634e82d53a8b30598a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duelistBadge: {fileID: -7456311090437033505, guid: 0e21d2f36f3bd514daa3ada97e3c6cdd,
-    type: 3}
-  brawlerBadge: {fileID: 6105321093056775754, guid: 0e21d2f36f3bd514daa3ada97e3c6cdd,
-    type: 3}
-  guardianBadge: {fileID: 8103876691745569398, guid: 0e21d2f36f3bd514daa3ada97e3c6cdd,
-    type: 3}
-  assassinationBadge: {fileID: -7749943096655056732, guid: 0e21d2f36f3bd514daa3ada97e3c6cdd,
-    type: 3}
-  rangerBadge: {fileID: -7809947285335381307, guid: 0e21d2f36f3bd514daa3ada97e3c6cdd,
-    type: 3}
-  pyromaniaBadge: {fileID: 1129817186253690143, guid: 0e21d2f36f3bd514daa3ada97e3c6cdd,
-    type: 3}
-  cyromancyBadge: {fileID: 1477574791849594528, guid: 0e21d2f36f3bd514daa3ada97e3c6cdd,
-    type: 3}
-  divinityBadge: {fileID: 5170360715579544569, guid: 0e21d2f36f3bd514daa3ada97e3c6cdd,
-    type: 3}
-  shadowCraftBadge: {fileID: -5049135859818298369, guid: 0e21d2f36f3bd514daa3ada97e3c6cdd,
-    type: 3}
-  corruptionBadge: {fileID: 8643953380162133129, guid: 0e21d2f36f3bd514daa3ada97e3c6cdd,
-    type: 3}
-  naturalismBadge: {fileID: 4577443855394984127, guid: 0e21d2f36f3bd514daa3ada97e3c6cdd,
-    type: 3}
-  manipulationBadge: {fileID: -6612068621537461715, guid: 0e21d2f36f3bd514daa3ada97e3c6cdd,
-    type: 3}
+  warfareBadge: {fileID: 21300000, guid: d79d7c807a1112f4e9a4f165f5df7283, type: 3}
+  guardianBadge: {fileID: 21300000, guid: ea193ae409b689c4f8233c186670edf7, type: 3}
+  scoundrelBadge: {fileID: 21300000, guid: ecffc089e4044704e9f33e0a78a0e1f8, type: 3}
+  rangerBadge: {fileID: 21300000, guid: 7891865a47173a54fa69115dd81dcaaa, type: 3}
+  pyromaniaBadge: {fileID: 21300000, guid: c422d203c6d006342aa5407dd3fec0fd, type: 3}
+  divinityBadge: {fileID: 21300000, guid: 8efaf761c7d4a97479eb0769e54b9fb8, type: 3}
+  shadowCraftBadge: {fileID: 21300000, guid: 873b1ed9c6b93134fba967014bdd0369, type: 3}
+  corruptionBadge: {fileID: 21300000, guid: 6cc881c62c4b168429d77740132668f7, type: 3}
+  naturalismBadge: {fileID: 21300000, guid: df39fbab41a73fc40ac35d16dacc0aeb, type: 3}
+  manipulationBadge: {fileID: 21300000, guid: 61611a17943751a43b908b076508cba6, type: 3}
   attack: {fileID: 21300000, guid: 215447c6d67436241a7a9238509656ce, type: 3}
   attackAll: {fileID: 21300000, guid: a17706585a5a0aa4c98f0df0beddce31, type: 3}
   attackDefend: {fileID: 21300000, guid: 8326a785b3e4c0a4c981614df113fa0a, type: 3}
@@ -1856,6 +1842,10 @@ MonoBehaviour:
   purpleDebuff: {fileID: 21300000, guid: 05053a0620851bc41ab7c64b7a4ecf87, type: 3}
   unknown: {fileID: 21300000, guid: c359661e98a82ba4db1393090f4fdeac, type: 3}
   flee: {fileID: 21300000, guid: b2ba2911e4d196a47a1d6567cad57a64, type: 3}
+  meleeAttack: {fileID: 21300000, guid: c9f0f55c4f1e50046b1c701d23111c09, type: 3}
+  rangedAttack: {fileID: 21300000, guid: 967c3c016f326844abc482a90cfb1ed9, type: 3}
+  skill: {fileID: 21300000, guid: 89f5eeeb59ee72c4084e2336cc3addb0, type: 3}
+  power: {fileID: 21300000, guid: d62fe2743cf30c1499f022e909bfc0f8, type: 3}
 --- !u!1 &437334439
 GameObject:
   m_ObjectHideFlags: 0
@@ -5378,11 +5368,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
   runMockScene: 1
-  testingEnemyWave: {fileID: 11400000, guid: 196d21c94a6e94b42ab0250cb4bedcdd, type: 2}
+  testingEnemyWave: {fileID: 11400000, guid: a925a91cb3c75e64cadf1f518e9a621e, type: 2}
   characterTemplates:
-  - {fileID: 11400000, guid: b032cf78d33b0f2459c4af64779ad485, type: 2}
-  - {fileID: 11400000, guid: 11330c0f179f1fb49b8fc2aac3fe768b, type: 2}
-  - {fileID: 11400000, guid: 8d4ecf2085d9be843b2d44cb7360b5d7, type: 2}
+  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
+  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
+  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
   characterDataSample:
     myName: Test
     serializedPassiveManager:
@@ -6657,8 +6647,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
   neutralColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0.39215687}
-  brawlerColor: {r: 0.4056604, g: 0, b: 0, a: 0.39215687}
-  armsColor: {r: 1, g: 0.05694356, b: 0, a: 0.39215687}
+  warfareColor: {r: 0, g: 0, b: 0, a: 0}
   guardianColor: {r: 0, g: 0, b: 0, a: 0.39215687}
   pyromaniaColor: {r: 1, g: 0.45144096, b: 0.15566039, a: 0.39215687}
   manipulationColor: {r: 0, g: 0.029119492, b: 1, a: 0.39215687}
@@ -6667,8 +6656,7 @@ MonoBehaviour:
   divinityColor: {r: 1, g: 0.9665771, b: 0, a: 0.39215687}
   naturalismColor: {r: 0, g: 0.94952226, b: 1, a: 0.39215687}
   corruptionColor: {r: 0, g: 0.3490566, b: 0.07531744, a: 0.39215687}
-  assassinationColor: {r: 0, g: 0, b: 0, a: 0.39215687}
-  duelistColor: {r: 0.6784314, g: 0.3529412, b: 0, a: 0.39215687}
+  scoundrelColor: {r: 0, g: 0, b: 0, a: 0}
   commonColor: {r: 1, g: 1, b: 1, a: 1}
   rareColor: {r: 0.41960785, g: 1, b: 0.8862745, a: 1}
   epicColor: {r: 0.8188959, g: 0.3066038, b: 1, a: 1}

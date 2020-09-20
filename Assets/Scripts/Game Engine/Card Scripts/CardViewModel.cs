@@ -30,6 +30,7 @@ public class CardViewModel : MonoBehaviour
     [Header("Image References")]
     public Image graphicImage;
     public Image talentSchoolImage;
+    public Image cardTypeImage;
     public GameObject talentSchoolParent;
 
     [Header("Colouring References")]
@@ -38,12 +39,6 @@ public class CardViewModel : MonoBehaviour
 
     [Header("Canvas References")]
     public Canvas canvas;
-
-    [Header("Card Type Parent References")]
-    public GameObject mAttackParent;
-    public GameObject rAttackParent;
-    public GameObject skillParent;
-    public GameObject powerParent;
     #endregion
 
     private void OnEnable()

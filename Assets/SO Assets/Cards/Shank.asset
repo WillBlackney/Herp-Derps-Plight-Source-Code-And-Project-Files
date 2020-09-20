@@ -18,7 +18,7 @@ MonoBehaviour:
   cardEnergyCost: 0
   cardType: 2
   targettingType: 3
-  talentSchool: 0
+  talentSchool: 3
   rarity: 1
   expend: 1
   opener: 0

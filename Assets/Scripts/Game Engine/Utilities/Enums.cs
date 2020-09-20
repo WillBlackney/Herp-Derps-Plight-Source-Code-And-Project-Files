@@ -105,14 +105,11 @@ public enum DamageType
 public enum TalentSchool
 {
     None = 0,
-    Arms = 14,
     Neutral = 1,
-    Brawler = 2,
-    Duelist = 3,
-    Assassination = 4,
+    Warfare = 2,
+    Scoundrel = 3,
     Guardian = 5,
     Pyromania = 6,
-    Cyromancy = 7,
     Ranger = 8,
     Manipulation = 9,
     Divinity = 10,
@@ -320,6 +317,7 @@ public enum CharacterAnimation
 {
     None = 0,
     MeleeAttack = 1,
+    AoeMeleeAttack = 5,
     ShootBow = 2,
     ShootProjectile = 3,
     Skill = 4,

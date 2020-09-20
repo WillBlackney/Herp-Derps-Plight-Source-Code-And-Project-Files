@@ -64,13 +64,13 @@ MonoBehaviour:
     actionEffects:
     - animationEventData:
         effectOnSelfAtStart: 0
-        startingMovementEvent: 2
+        startingMovementEvent: 1
         returnToMyNodeOnCardEffectResolved: 0
         characterAnimation: 1
-        onCharacterAnimationFinish: 3
+        onCharacterAnimationFinish: 0
         projectileFired: 0
-        onTargetHit: 0
-      actionType: 1
+        onTargetHit: 2
+      actionType: 0
       baseDamage: 5
       damageType: 1
       passiveApplied: {fileID: 11400000, guid: 6d216e783d4ba3a49a8dd267aa727fd3, type: 2}

@@ -112,13 +112,12 @@ public class CardController : Singleton<CardController>
         // Set texts and images
         SetCardViewModelNameText(cardVM, card.cardName);
         SetCardViewModelDescriptionText(cardVM, card.cardDescription);
-        SetCardViewModelEnergyText(cardVM, GetCardEnergyCost(card).ToString());
+        SetCardViewModelEnergyText(card, cardVM, GetCardEnergyCost(card).ToString());
         SetCardViewModelGraphicImage(cardVM, card.cardSprite);
         SetCardViewModelTalentSchoolImage(cardVM, SpriteLibrary.Instance.GetTalentSchoolSpriteFromEnumData(card.talentSchool));
         ApplyCardViewModelTalentColoring(cardVM, ColorLibrary.Instance.GetTalentColor(card.talentSchool));
         ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(card.rarity));
-        SetCardViewModelCardTypeImage(cardVM, card.cardType);
-
+        SetCardViewModelCardTypeImage(cardVM, SpriteLibrary.Instance.GetCardTypeImageFromTypeEnumData(card.cardType));
         return cardVM;
     }
     private void ConnectCardWithCardViewModel(Card card, CardViewModel cardVM)
@@ -159,12 +158,29 @@ public class CardController : Singleton<CardController>
             SetCardViewModelDescriptionText(cvm.myPreviewCard, description);
         }
     }
-    public void SetCardViewModelEnergyText(CardViewModel cvm, string energyCost)
+    public void SetCardViewModelEnergyText(Card card, CardViewModel cvm, string energyCost)
     {
         cvm.energyText.text = energyCost;
+        cvm.energyText.color = Color.white;
+
+        // color text if cost is more or less then base.
+        if(card != null)
+        {
+            int currentCost = GetCardEnergyCost(card);
+
+            if(currentCost > card.cardBaseEnergyCost)
+            {
+                cvm.energyText.color = Color.red;
+            }
+            else if (currentCost < card.cardBaseEnergyCost)
+            {
+                cvm.energyText.color = Color.green;
+            }
+        }
+
         if (cvm.myPreviewCard != null)
         {
-            SetCardViewModelEnergyText(cvm.myPreviewCard, energyCost);
+            SetCardViewModelEnergyText(card, cvm.myPreviewCard, energyCost);
         }
     }
     public void SetCardViewModelGraphicImage(CardViewModel cvm, Sprite sprite)
@@ -209,29 +225,14 @@ public class CardController : Singleton<CardController>
             ApplyCardViewModelRarityColoring(cvm.myPreviewCard, color);
         }
     }
-    public void SetCardViewModelCardTypeImage(CardViewModel cvm, CardType cardType)
+    public void SetCardViewModelCardTypeImage(CardViewModel cvm, Sprite sprite)
     {
-        if (cardType == CardType.MeleeAttack)
-        {
-            cvm.mAttackParent.SetActive(true);
-        }
-        else if (cardType == CardType.RangedAttack)
-        {
-            cvm.rAttackParent.SetActive(true);
-        }
-        else if (cardType == CardType.Skill)
-        {
-            cvm.skillParent.SetActive(true);
-        }
-        else if (cardType == CardType.Power)
-        {
-            cvm.powerParent.SetActive(true);
-        }
+        cvm.cardTypeImage.sprite = sprite;
 
         // do for card preview also
         if (cvm.myPreviewCard != null)
         {
-            SetCardViewModelCardTypeImage(cvm.myPreviewCard, cardType);
+            SetCardViewModelCardTypeImage(cvm.myPreviewCard, sprite);
         }
     }
 
@@ -650,6 +651,11 @@ public class CardController : Singleton<CardController>
             {
                 VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.TriggerMeleeAttackAnimation(owner.characterEntityView));
             }
+            // AoE Melee Attack 
+            else if (cardEffect.animationEventData.characterAnimation == CharacterAnimation.AoeMeleeAttack)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.TriggerAoeMeleeAttackAnimation(owner.characterEntityView));
+            }
             // Skill
             else if (cardEffect.animationEventData.characterAnimation == CharacterAnimation.Skill)
             {
@@ -671,7 +677,7 @@ public class CardController : Singleton<CardController>
             else if (cardEffect.animationEventData.characterAnimation == CharacterAnimation.ShootProjectile)
             {
                 // Play character shoot anim
-                VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.TriggerMeleeAttackAnimation(owner.characterEntityView));
+                VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.TriggerShootProjectileAnimation(owner.characterEntityView));
 
                 // Create projectile
                 CoroutineData cData = new CoroutineData();
@@ -1117,7 +1123,7 @@ public class CardController : Singleton<CardController>
                 if (cvm)
                 {
                     // Update energy cost text
-                    VisualEventManager.Instance.CreateVisualEvent(() => SetCardViewModelEnergyText(cvm, newCostTextValue.ToString()));
+                    VisualEventManager.Instance.CreateVisualEvent(() => SetCardViewModelEnergyText(card, cvm, newCostTextValue.ToString()));
 
                     // only play breath if cost of card is reduced, not increased
                     if (model.pManager.meleeAttackReductionStacks > 0)
@@ -1170,7 +1176,7 @@ public class CardController : Singleton<CardController>
         if (cvm)
         {
             VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(cvm));
-            VisualEventManager.Instance.CreateVisualEvent(() => SetCardViewModelEnergyText(cvm, newCostTextValue.ToString()));
+            VisualEventManager.Instance.CreateVisualEvent(() => SetCardViewModelEnergyText(card, cvm, newCostTextValue.ToString()));
         }
        
     }
