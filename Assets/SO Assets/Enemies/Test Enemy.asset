@@ -16,7 +16,7 @@ MonoBehaviour:
   maxHealth: 30
   power: 0
   dexterity: 0
-  initiative: 11
+  initiative: 1
   startingHealth: 20
   startingBlock: 0
   physicalResistance: 0

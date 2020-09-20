@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using EZCameraShake;
 public class CameraManager : Singleton<CameraManager>
 {
     [Header("Component References")]
@@ -19,4 +19,11 @@ public class CameraManager : Singleton<CameraManager>
     }
     #endregion
 
+    // Camera Shake Logic
+    #region
+    public void CreateSmallCameraShake()
+    {
+        CameraShaker.Instance.ShakeOnce(4f, 4f, 0.1f, 1);
+    }
+    #endregion
 }
