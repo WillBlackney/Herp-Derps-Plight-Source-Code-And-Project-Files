@@ -1713,8 +1713,7 @@ public class PassiveController : Singleton<PassiveController>
                 if(entity.controller == Controller.AI &&
                    entity.myNextAction != null &&
                    entity.currentActionTarget == pManager.myCharacter &&
-                    (pManager.myCharacter.myNextAction.actionType == ActionType.AttackTarget ||
-                 pManager.myCharacter.myNextAction.actionType == ActionType.AttackAllEnemies))
+                    pManager.myCharacter.myNextAction.actionType == ActionType.AttackTarget)
                 {
                     CharacterEntityController.Instance.UpdateEnemyIntentGUI(entity);
                 }
@@ -1774,8 +1773,7 @@ public class PassiveController : Singleton<PassiveController>
                 if (entity.controller == Controller.AI &&
                    entity.myNextAction != null &&
                    entity.currentActionTarget == pManager.myCharacter &&
-                   (pManager.myCharacter.myNextAction.actionType == ActionType.AttackTarget ||
-                   pManager.myCharacter.myNextAction.actionType == ActionType.AttackAllEnemies))
+                   pManager.myCharacter.myNextAction.actionType == ActionType.AttackTarget)
                 {
                     CharacterEntityController.Instance.UpdateEnemyIntentGUI(entity);
                 }

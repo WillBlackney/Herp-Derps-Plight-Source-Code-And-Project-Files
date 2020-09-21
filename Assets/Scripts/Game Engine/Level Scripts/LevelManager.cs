@@ -78,7 +78,10 @@ public class LevelManager : Singleton<LevelManager>
     {
         Debug.Log("LevelNode.SetMouseOverViewState() called, setting view state: " + onOrOff.ToString());
 
-        node.mouseOverParent.SetActive(onOrOff);
+        if(node != null)
+        {
+            node.mouseOverParent.SetActive(onOrOff);
+        }        
     }
     public void SetActivatedViewState(LevelNode node, bool onOrOff)
     {

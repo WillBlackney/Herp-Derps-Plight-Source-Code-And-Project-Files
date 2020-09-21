@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Testudo
   m_EditorClassIdentifier: 
   cardName: Testudo
-  cardDescription: 'Give a target 3 Block. Shielded: Draw 1 card.'
+  cardDescription: 'Give a target 3 Block.
+
+    Shielded: Draw 1 card.'
   cardSprite: {fileID: 21300000, guid: d3de1c39883d72b46b319c8a5cef9a9b, type: 3}
   cardEnergyCost: 0
   cardType: 1
@@ -45,12 +47,14 @@ MonoBehaviour:
     copiesAdded: 0
     animationEventData:
       effectOnSelfAtStart: 0
+      cameraShakeOnStart: 0
       startingMovementEvent: 0
       returnToMyNodeOnCardEffectResolved: 0
       characterAnimation: 4
-      onCharacterAnimationFinish: 0
       projectileFired: 0
+      onCharacterAnimationFinish: 0
       onTargetHit: 0
+      onTargetHitCameraShake: 0
   - cardEffectType: 9
     weaponRequirement: 1
     drawStacksFromOverload: 0
@@ -71,10 +75,12 @@ MonoBehaviour:
     copiesAdded: 0
     animationEventData:
       effectOnSelfAtStart: 0
+      cameraShakeOnStart: 0
       startingMovementEvent: 0
       returnToMyNodeOnCardEffectResolved: 0
       characterAnimation: 0
-      onCharacterAnimationFinish: 0
       projectileFired: 0
+      onCharacterAnimationFinish: 0
       onTargetHit: 0
+      onTargetHitCameraShake: 0
   cardEventListeners: []

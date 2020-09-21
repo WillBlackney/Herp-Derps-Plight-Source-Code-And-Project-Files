@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Lightning Barrier
   m_EditorClassIdentifier: 
   cardName: Lightning Barrier
-  cardDescription: Gain 4 Block. Gain 2 Overload.
+  cardDescription: 'Gain 4 Block.
+
+    Gain 2 Overload.'
   cardSprite: {fileID: 21300000, guid: 60eb5d5085e402348ae8b821e07250d2, type: 3}
   cardEnergyCost: 1
   cardType: 1
@@ -45,12 +47,14 @@ MonoBehaviour:
     copiesAdded: 0
     animationEventData:
       effectOnSelfAtStart: 0
+      cameraShakeOnStart: 0
       startingMovementEvent: 0
       returnToMyNodeOnCardEffectResolved: 0
       characterAnimation: 4
-      onCharacterAnimationFinish: 0
       projectileFired: 0
+      onCharacterAnimationFinish: 0
       onTargetHit: 1
+      onTargetHitCameraShake: 0
   - cardEffectType: 2
     weaponRequirement: 0
     drawStacksFromOverload: 0
@@ -71,10 +75,12 @@ MonoBehaviour:
     copiesAdded: 0
     animationEventData:
       effectOnSelfAtStart: 0
+      cameraShakeOnStart: 0
       startingMovementEvent: 0
       returnToMyNodeOnCardEffectResolved: 0
       characterAnimation: 0
-      onCharacterAnimationFinish: 0
       projectileFired: 0
+      onCharacterAnimationFinish: 0
       onTargetHit: 0
+      onTargetHitCameraShake: 0
   cardEventListeners: []

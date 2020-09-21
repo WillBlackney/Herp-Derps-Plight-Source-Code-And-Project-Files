@@ -294,7 +294,7 @@ public class ActivationManager : Singleton<ActivationManager>
             ActivateEntity(nextEntityToActivate);
         }      
     }
-    public bool AllEntitiesHaveActivatedThisTurn()
+    private bool AllEntitiesHaveActivatedThisTurn()
     {
         Debug.Log("ActivationManager.AllEntitiesHaveActivatedThisTurn() called...");
         bool boolReturned = true;

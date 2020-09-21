@@ -680,6 +680,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         {
             // Calculate and deal Poison damage
             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Poison, false, entity.pManager.poisonedStacks, null, null);
+            VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
             CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Poison, null, null, true);
             VisualEventManager.Instance.CreateVisualEvent(()=> VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.PoisonExplosion1, view.WorldPosition));
         }
@@ -687,6 +688,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         {
             // Calculate and deal Poison damage
             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Fire, false, entity.pManager.burningStacks, null, null);
+            VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
             CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Fire, null, null, true);
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.FireExplosion1, view.WorldPosition));
         }
@@ -703,6 +705,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             CoroutineData cData = new CoroutineData();
             VisualEventManager.Instance.CreateVisualEvent(() =>
             VisualEffectManager.Instance.ShootProjectileAtLocation(ProjectileFired.LightningBall1, view.WorldPosition, randomEnemyView.WorldPosition, cData), cData);
+            VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
 
             // Deal air damage
             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(entity, randomEnemy, DamageType.Air, false, entity.pManager.overloadStacks, null, null);
@@ -1024,11 +1027,11 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     {
         view.ucmAnimator.SetTrigger("Melee Attack");
     }
-    public void TriggerMeleeAttackAnimation(CharacterEntityView view)
+    public void TriggerMeleeAttackAnimation(CharacterEntityView view, CoroutineData cData)
     {
-        StartCoroutine(TriggerMeleeAttackAnimationCoroutine(view));
+        StartCoroutine(TriggerMeleeAttackAnimationCoroutine(view, cData));
     }
-    private IEnumerator TriggerMeleeAttackAnimationCoroutine(CharacterEntityView view)
+    private IEnumerator TriggerMeleeAttackAnimationCoroutine(CharacterEntityView view, CoroutineData cData)
     {
         view.ucmAnimator.SetTrigger("Melee Attack");
         float startX = view.WorldPosition.x;
@@ -1050,7 +1053,14 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
             // slight movement forward
             view.ucmMovementParent.transform.DOMoveX(forwardPos, moveSpeedTime);
-            yield return new WaitForSeconds(moveSpeedTime);
+            yield return new WaitForSeconds(moveSpeedTime / 2);
+
+            if (cData != null)
+            {
+                cData.MarkAsCompleted();
+            }
+
+            yield return new WaitForSeconds(moveSpeedTime / 2);
 
             // move back to start pos
             view.ucmMovementParent.transform.DOMoveX(startX, moveSpeedTime);
@@ -1410,7 +1420,8 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Check taunt first
         if(enemy.pManager.tauntStacks > 0 && 
             enemy.pManager.myTaunter != null &&
-            enemy.pManager.myTaunter.livingState == LivingState.Alive)
+            enemy.pManager.myTaunter.livingState == LivingState.Alive &&
+            action.actionType == ActionType.AttackTarget)
         {
             targetReturned = enemy.pManager.myTaunter;
         }
@@ -1435,8 +1446,14 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             // Get a valid target
             List<CharacterEntityModel> allies = GetAllAlliesOfCharacter(enemy, false);
 
+            // if no valid allies, target self
+            if(allies.Count == 0)
+            {
+                targetReturned = enemy;
+            }
+
             // randomly chose enemy from remaining valid choices
-            if (allies.Count > 0)
+            else if (allies.Count > 0)
             {
                 targetReturned = allies[Random.Range(0, allies.Count)];
             }
@@ -1447,6 +1464,12 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             }
         }
 
+        if(targetReturned != null)
+        {
+            Debug.Log("CharacterEntityController.DetermineTargetOfNextEnemyAction() setting "
+           + targetReturned + " as the target of action " + action.actionName + " by " + enemy.myName);
+        }       
+
         return targetReturned;
     }
     private void ExecuteEnemyNextAction(CharacterEntityModel enemy)
@@ -1455,10 +1478,11 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
         // Setup
         EnemyAction nextAction = enemy.myNextAction;
+        string notificationName = enemy.myNextAction.actionName;
 
         // Status Notification
         VisualEventManager.Instance.CreateVisualEvent(()=>
-        VisualEffectManager.Instance.CreateStatusEffect(enemy.characterEntityView.WorldPosition, enemy.myNextAction.actionName), QueuePosition.Back, 0, 1f);
+        VisualEffectManager.Instance.CreateStatusEffect(enemy.characterEntityView.WorldPosition, notificationName), QueuePosition.Back, 0, 1f);
 
         // Trigger and resolve all effects of the action        
         for (int i = 0; i < nextAction.actionLoops; i++)
@@ -1514,7 +1538,8 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             return;
         }
         
-        // TO DO: we should probably remove this and find a better way to make enemies target themselves
+        // TO DO: we should probably remove this and find a better way to prevent enemies targetting themselves
+        // with harmful effects
         if ((effect.actionType == ActionType.AttackTarget ||
             effect.actionType == ActionType.DebuffTarget) &&
             target == null)
@@ -1533,6 +1558,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Queue starting anims and particles
         if (effect.animationEventData != null)
         {
+            // CAMERA SHAKE ON START
+            VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(effect.animationEventData.cameraShakeOnStart));
+
             // EFFECT ON SELF AT START SEQUENCE
             VisualEventManager.Instance.CreateVisualEvent(() =>
             VisualEffectManager.Instance.CreateEffectAtLocation(effect.animationEventData.effectOnSelfAtStart, enemy.characterEntityView.WorldPosition));
@@ -1559,12 +1587,13 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             // Melee Attack 
             if (effect.animationEventData.characterAnimation == CharacterAnimation.MeleeAttack)
             {
-                VisualEventManager.Instance.CreateVisualEvent(() => TriggerMeleeAttackAnimation(enemy.characterEntityView));
+                CoroutineData cData = new CoroutineData();
+                VisualEventManager.Instance.CreateVisualEvent(() => TriggerMeleeAttackAnimation(enemy.characterEntityView, cData), cData);
             }
             // AoE Melee Attack 
             else if (effect.animationEventData.characterAnimation == CharacterAnimation.AoeMeleeAttack)
             {
-                VisualEventManager.Instance.CreateVisualEvent(() => TriggerMeleeAttackAnimation(enemy.characterEntityView));
+                VisualEventManager.Instance.CreateVisualEvent(() => TriggerAoeMeleeAttackAnimation(enemy.characterEntityView));
             }
             // Skill
             else if (effect.animationEventData.characterAnimation == CharacterAnimation.Skill)
@@ -1628,6 +1657,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
                     VisualEffectManager.Instance.CreateEffectAtLocation(effect.animationEventData.onTargetHit, model.characterEntityView.WorldPosition));
                 }
             }
+
+            // ON TARGET HIT CAMERA SHAKE
+            VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(effect.animationEventData.onTargetHitCameraShake));
         }
 
 
@@ -1796,6 +1828,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         bool reachedDestination = false;
         Vector3 destination = new Vector3(node.transform.position.x, node.transform.position.y, 0);
         float moveSpeed = 10;
+
+        // Brief yield here (incase melee attack anim played and character hasn't returned to attack pos )
+        yield return new WaitForSeconds(0.3f);
 
         // Face direction of destination node
         LevelManager.Instance.TurnFacingTowardsLocation(entity.characterEntityView, node.transform.position);

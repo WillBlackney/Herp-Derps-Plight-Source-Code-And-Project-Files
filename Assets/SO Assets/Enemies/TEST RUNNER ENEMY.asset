@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 272d402ffa0a347429dfe06011e3d167, type: 3}
-  m_Name: Skeleton Assassin
+  m_Name: TEST RUNNER ENEMY
   m_EditorClassIdentifier: 
-  enemyName: Skeleton Assassin
-  maxHealth: 14
+  enemyName: Test Enemy
+  maxHealth: 30
   power: 0
   dexterity: 0
-  initiative: 3
-  startingHealth: 14
+  initiative: 1
+  startingHealth: 20
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0
@@ -53,11 +53,11 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   allEnemyActions:
-  - actionName: Puncture
+  - actionName: Howl
     actionType: 0
     intentImage: 0
     actionLoops: 1
-    doThisOnFirstActivation: 0
+    doThisOnFirstActivation: 1
     canBeConsecutive: 1
     prioritiseWhenRequirementsMet: 0
     actionRequirements: []
@@ -71,27 +71,37 @@ MonoBehaviour:
         projectileFired: 0
         onCharacterAnimationFinish: 0
         onTargetHit: 2
-        onTargetHitCameraShake: 1
+        onTargetHitCameraShake: 0
       actionType: 0
-      baseDamage: 9
+      baseDamage: 5
       damageType: 1
-      passiveApplied: {fileID: 0}
-      passiveStacks: 0
-      blockGained: 0
+      passiveApplied: {fileID: 11400000, guid: 6d216e783d4ba3a49a8dd267aa727fd3, type: 2}
+      passiveStacks: 2
+      blockGained: 5
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0
   allBodyParts:
-  - Undead_Head_1
-  - Undead_Face_1
-  - Undead_Chest
-  - Undead_Right_Arm
-  - Undead_Right_Hand
-  - Undead_Left_Arm
-  - Undead_Left_Hand
-  - Undead_Right_Leg
-  - Undead_Left_Leg
+  - Satyr_Head_1
+  - Satyr_Face_1
+  - Satyr_Right_Hand
+  - Satyr_Right_Arm
+  - Satyr_Left_Hand
+  - Satyr_Left_Arm
+  - Satyr_Chest
+  - Satyr_Right_Leg
+  - Satyr_Left_Leg
+  - Right_Hand_Assassin_Dagger
+  - Left_Hand_Assassin_Dagger
+  - Shadow_Blade_Right_Arm_Wear
+  - Shadow_Blade_Left_Arm_Wear
   - Shadow_Blade_Chest_Wear
-  - Left_Hand_Simple_Dagger
-  - Right_Hand_Simple_Dagger
-  - Red_Face_Mask_Head_Wear
+  - Human_Chest
+  - Human_Chest
+  - Human_Chest
+  - Human_Chest
+  - Human_Chest
+  - Human_Chest
+  - Human_Chest
+  - Human_Chest
+  - Human_Chest

@@ -899,6 +899,7 @@ GameObject:
   m_Component:
   - component: {fileID: 182950883}
   - component: {fileID: 182950882}
+  - component: {fileID: 182950884}
   m_Layer: 0
   m_Name: Cameras
   m_TagString: Untagged
@@ -920,7 +921,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
   mainCamera: {fileID: 8228104370899868502}
-  currentLookAtTarget: {fileID: 0}
+  sMagnitude: 2.5
+  sRoughness: 3.5
+  sDuration: 0.5
+  mMagnitude: 4
+  mRoughness: 4
+  mDuration: 1
 --- !u!4 &182950883
 Transform:
   m_ObjectHideFlags: 0
@@ -936,6 +942,22 @@ Transform:
   m_Father: {fileID: 1080712268}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &182950884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182950881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab8353b5ebd32545867da143199a814, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultPosInfluence: {x: 0.15, y: 0.15, z: 0.15}
+  DefaultRotInfluence: {x: 0, y: 0, z: 1}
+  RestPositionOffset: {x: 0, y: 0, z: 0}
+  RestRotationOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &196763681
 GameObject:
   m_ObjectHideFlags: 0
@@ -1535,7 +1557,6 @@ GameObject:
   - component: {fileID: 375255551}
   - component: {fileID: 375255554}
   - component: {fileID: 375255553}
-  - component: {fileID: 375255552}
   m_Layer: 0
   m_Name: Level Background Canvas
   m_TagString: Untagged
@@ -1561,25 +1582,8 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920.3324, y: 1079.8131}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &375255552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 375255550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 55
 --- !u!114 &375255553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5564,8 +5568,8 @@ MonoBehaviour:
   testingEnemyWave: {fileID: 11400000, guid: 196d21c94a6e94b42ab0250cb4bedcdd, type: 2}
   characterTemplates:
   - {fileID: 11400000, guid: 52b82b5c29e34814cacd91cfb9439876, type: 2}
-  - {fileID: 11400000, guid: b032cf78d33b0f2459c4af64779ad485, type: 2}
-  - {fileID: 11400000, guid: 11330c0f179f1fb49b8fc2aac3fe768b, type: 2}
+  - {fileID: 11400000, guid: 8d4ecf2085d9be843b2d44cb7360b5d7, type: 2}
+  - {fileID: 11400000, guid: 1d0339b9767137d4a8b3c1e5af99a706, type: 2}
   characterDataSample:
     myName: Test
     serializedPassiveManager:

@@ -108,7 +108,7 @@ namespace Tests
             enemyNode = LevelManager.Instance.GetNextAvailableEnemyNode();
 
             // Create mock enemy data
-            enemyData = AssetDatabase.LoadAssetAtPath<EnemyDataSO>("Assets/SO Assets/Enemies/Test Enemy.asset");
+            enemyData = AssetDatabase.LoadAssetAtPath<EnemyDataSO>("Assets/SO Assets/Enemies/TEST RUNNER ENEMY.asset");
         }
         #endregion
 

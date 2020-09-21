@@ -64,12 +64,14 @@ MonoBehaviour:
     actionEffects:
     - animationEventData:
         effectOnSelfAtStart: 0
+        cameraShakeOnStart: 0
         startingMovementEvent: 1
         returnToMyNodeOnCardEffectResolved: 0
         characterAnimation: 1
-        onCharacterAnimationFinish: 0
         projectileFired: 0
+        onCharacterAnimationFinish: 0
         onTargetHit: 2
+        onTargetHitCameraShake: 1
       actionType: 0
       baseDamage: 8
       damageType: 1

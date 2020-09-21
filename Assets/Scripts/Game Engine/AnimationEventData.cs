@@ -19,6 +19,10 @@ public class AnimationEventData
 
     [VerticalGroup("General Properties")]
     [LabelWidth(250)]
+    public CameraShakeType cameraShakeOnStart;
+
+    [VerticalGroup("General Properties")]
+    [LabelWidth(250)]
     public MovementAnimEvent startingMovementEvent;
 
     // NOTE: this bool should be true if the card used
@@ -42,16 +46,20 @@ public class AnimationEventData
 
     [VerticalGroup("General Properties")]
     [LabelWidth(250)]
-    public ParticleEffect onCharacterAnimationFinish;
-
-    [VerticalGroup("General Properties")]
-    [LabelWidth(250)]
     [ShowIf("ShowProjectileFired")]
     public ProjectileFired projectileFired;
 
     [VerticalGroup("General Properties")]
     [LabelWidth(250)]
+    public ParticleEffect onCharacterAnimationFinish;    
+
+    [VerticalGroup("General Properties")]
+    [LabelWidth(250)]
     public ParticleEffect onTargetHit;
+
+    [VerticalGroup("General Properties")]
+    [LabelWidth(250)]
+    public CameraShakeType onTargetHitCameraShake;
 
     public bool ShowProjectileFired()
     {

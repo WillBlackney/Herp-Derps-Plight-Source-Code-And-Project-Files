@@ -623,6 +623,9 @@ public class CardController : Singleton<CardController>
         // Queue starting anims and particles
         if(cardEffect.animationEventData != null)
         {
+            // CAMERA SHAKE ON START
+            VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(cardEffect.animationEventData.cameraShakeOnStart));
+
             // EFFECT ON SELF AT START SEQUENCE
             VisualEventManager.Instance.CreateVisualEvent(()=>
             VisualEffectManager.Instance.CreateEffectAtLocation(cardEffect.animationEventData.effectOnSelfAtStart, owner.characterEntityView.WorldPosition));
@@ -649,7 +652,8 @@ public class CardController : Singleton<CardController>
             // Melee Attack 
             if (cardEffect.animationEventData.characterAnimation == CharacterAnimation.MeleeAttack)
             {
-                VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.TriggerMeleeAttackAnimation(owner.characterEntityView));
+                CoroutineData cData = new CoroutineData();
+                VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.TriggerMeleeAttackAnimation(owner.characterEntityView, cData), cData);
             }
             // AoE Melee Attack 
             else if (cardEffect.animationEventData.characterAnimation == CharacterAnimation.AoeMeleeAttack)
@@ -719,6 +723,9 @@ public class CardController : Singleton<CardController>
                     VisualEffectManager.Instance.CreateEffectAtLocation(cardEffect.animationEventData.onTargetHit, model.characterEntityView.WorldPosition));
                 }
             }
+
+            // ON TARGET HIT CAMERA SHAKE
+            VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(cardEffect.animationEventData.onTargetHitCameraShake));
         }
 
 

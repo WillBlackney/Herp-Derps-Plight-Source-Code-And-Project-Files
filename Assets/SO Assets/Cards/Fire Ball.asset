@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Fire Ball
   m_EditorClassIdentifier: 
   cardName: Fire Ball
-  cardDescription: Deal 3 Fire damage. Increase the damage of all Fire Ball cards
-    this combat by 2.
+  cardDescription: 'Deal 3 Fire damage.
+
+    Increase the damage of all Fire Ball
+    cards this combat by 2.'
   cardSprite: {fileID: 21300000, guid: 2476965c2d002fd4cb2c673a276b14f6, type: 3}
   cardEnergyCost: 1
   cardType: 3
@@ -46,12 +48,14 @@ MonoBehaviour:
     copiesAdded: 0
     animationEventData:
       effectOnSelfAtStart: 0
+      cameraShakeOnStart: 0
       startingMovementEvent: 0
       returnToMyNodeOnCardEffectResolved: 0
       characterAnimation: 3
-      onCharacterAnimationFinish: 0
       projectileFired: 1
+      onCharacterAnimationFinish: 0
       onTargetHit: 0
+      onTargetHitCameraShake: 1
   - cardEffectType: 2
     weaponRequirement: 0
     drawStacksFromOverload: 0
@@ -72,10 +76,12 @@ MonoBehaviour:
     copiesAdded: 0
     animationEventData:
       effectOnSelfAtStart: 0
+      cameraShakeOnStart: 0
       startingMovementEvent: 0
       returnToMyNodeOnCardEffectResolved: 0
       characterAnimation: 0
-      onCharacterAnimationFinish: 0
       projectileFired: 0
+      onCharacterAnimationFinish: 0
       onTargetHit: 0
+      onTargetHitCameraShake: 0
   cardEventListeners: []

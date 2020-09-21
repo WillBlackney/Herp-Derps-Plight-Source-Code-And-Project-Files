@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sword And Board
   m_EditorClassIdentifier: 
   cardName: Sword And Board
-  cardDescription: 'Deal 4 Physical damage. Shielded: Gain 4 Block.'
+  cardDescription: "Deal 4 Physical damage. \nShielded: Gain 4 Block."
   cardSprite: {fileID: 21300000, guid: 781c073379810db44b755b77d2d99ee4, type: 3}
   cardEnergyCost: 1
   cardType: 2
@@ -45,12 +45,14 @@ MonoBehaviour:
     copiesAdded: 0
     animationEventData:
       effectOnSelfAtStart: 0
+      cameraShakeOnStart: 0
       startingMovementEvent: 1
       returnToMyNodeOnCardEffectResolved: 1
       characterAnimation: 1
-      onCharacterAnimationFinish: 0
       projectileFired: 0
+      onCharacterAnimationFinish: 0
       onTargetHit: 0
+      onTargetHitCameraShake: 1
   - cardEffectType: 10
     weaponRequirement: 1
     drawStacksFromOverload: 0
@@ -71,10 +73,12 @@ MonoBehaviour:
     copiesAdded: 0
     animationEventData:
       effectOnSelfAtStart: 0
+      cameraShakeOnStart: 0
       startingMovementEvent: 0
       returnToMyNodeOnCardEffectResolved: 0
       characterAnimation: 0
-      onCharacterAnimationFinish: 0
       projectileFired: 0
+      onCharacterAnimationFinish: 0
       onTargetHit: 0
+      onTargetHitCameraShake: 0
   cardEventListeners: []

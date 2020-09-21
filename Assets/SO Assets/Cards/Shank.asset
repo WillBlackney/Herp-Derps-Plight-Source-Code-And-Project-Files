@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shank
   m_EditorClassIdentifier: 
   cardName: Shank
-  cardDescription: Deal 2 Physical Damage. Expend.
+  cardDescription: "Deal 2 Physical Damage. \nExpend."
   cardSprite: {fileID: 21300000, guid: ac89caee6d8bd8d4984131d369f1e01e, type: 3}
   cardEnergyCost: 0
   cardType: 2
@@ -45,10 +45,12 @@ MonoBehaviour:
     copiesAdded: 0
     animationEventData:
       effectOnSelfAtStart: 0
+      cameraShakeOnStart: 0
       startingMovementEvent: 1
       returnToMyNodeOnCardEffectResolved: 0
       characterAnimation: 1
-      onCharacterAnimationFinish: 0
       projectileFired: 0
+      onCharacterAnimationFinish: 0
       onTargetHit: 0
+      onTargetHitCameraShake: 1
   cardEventListeners: []

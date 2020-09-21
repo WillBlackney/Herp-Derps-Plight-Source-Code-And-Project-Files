@@ -481,6 +481,18 @@ public class CombatLogic : Singleton<CombatLogic>
         // Play VFX depending on whether the victim lost health, block, or was damaged by poison
         if (adjustedDamageValue > 0)
         {
+            // Shake camera based on damage taken
+            /*
+            if(adjustedDamageValue >= 1 && adjustedDamageValue <= 10)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(()=> CameraManager.Instance.CreateSmallCameraShake());
+            }
+            else if (adjustedDamageValue >= 11)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateMediumCameraShake());
+            }
+            */
+
             if (totalLifeLost == 0 && blockAfter < startingBlock)
             {
                 // Create Lose Armor Effect
@@ -752,12 +764,16 @@ public class CombatLogic : Singleton<CombatLogic>
         else if (entity.allegiance == Allegiance.Player)
         {
             CharacterEntityController.Instance.RemoveDefenderFromPersistency(entity);
+        }
 
-            // if an enemy was targetting the player character that just died, find a new target
-            foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.AllEnemies)
+        // If an AI character was targetting the dying character with its next action, aquire a new target
+        foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.AllEnemies)
+        {
+            if (enemy.currentActionTarget == entity)
             {
                 CharacterEntityController.Instance.AutoAquireNewTargetOfCurrentAction(enemy);
             }
+
         }
 
         // Disable character's level node anims and targetting path
