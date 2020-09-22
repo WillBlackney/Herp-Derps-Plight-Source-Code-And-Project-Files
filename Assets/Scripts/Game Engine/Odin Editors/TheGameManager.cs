@@ -32,6 +32,7 @@ namespace CustomOdinGUI
         private DrawPrefabHolder drawPrefabHolder = new DrawPrefabHolder();
         private DrawColorLibrary drawColorLibrary = new DrawColorLibrary();
         private DrawVisualEffects drawVisualEffects = new DrawVisualEffects();
+        private DrawAudioManager drawAudioManager = new DrawAudioManager();
 
         // Hard coded file directory paths to specific SO's
         private string enemyPath = "Assets/SO Assets/Enemies";
@@ -70,6 +71,7 @@ namespace CustomOdinGUI
             drawPrefabHolder.FindMyObject();
             drawColorLibrary.FindMyObject();
             drawVisualEffects.FindMyObject();
+            drawAudioManager.FindMyObject();
         }
         protected override void OnGUI()
         {
@@ -175,6 +177,7 @@ namespace CustomOdinGUI
             targets.Add(drawPrefabHolder);
             targets.Add(drawColorLibrary);
             targets.Add(drawVisualEffects);
+            targets.Add(drawAudioManager);
 
             targets.Add(base.GetTarget());
 
@@ -240,12 +243,17 @@ namespace CustomOdinGUI
             prefabHolder,
             colorLibrary,
             visualEffects,
+            audioManager,
         };
 
 
     }
 
     public class DrawVisualEffects : DrawSceneObject<VisualEffectManager>
+    {
+
+    }
+    public class DrawAudioManager : DrawSceneObject<AudioManager>
     {
 
     }
