@@ -92,7 +92,12 @@ public class EnemyActionEffect
 {
     [VerticalGroup("General Properties")]
     [LabelWidth(150)]
-    public AnimationEventData animationEventData;
+    public List<AnimationEventData> visualEventsOnStart;
+
+    [VerticalGroup("General Properties")]
+    [LabelWidth(150)]
+    public List<AnimationEventData> visualEventsOnFinish;
+
     [VerticalGroup("General Properties")]
     [LabelWidth(150)]
     public ActionType actionType;

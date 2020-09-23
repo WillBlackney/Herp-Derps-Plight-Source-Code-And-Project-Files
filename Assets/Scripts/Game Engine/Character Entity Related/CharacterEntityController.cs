@@ -678,6 +678,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // DoTs
         if (entity.pManager.poisonedStacks > 0)
         {
+            // Notification event
+            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Poisoned!"), QueuePosition.Back, 0, 0.5f);
+
             // Calculate and deal Poison damage
             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Poison, false, entity.pManager.poisonedStacks, null, null);
             VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
@@ -686,6 +689,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         }
         if (entity.pManager.burningStacks > 0)
         {
+            // Notification event
+            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Burning!"), QueuePosition.Back, 0, 0.5f);
+
             // Calculate and deal Poison damage
             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Fire, false, entity.pManager.burningStacks, null, null);
             VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
@@ -696,6 +702,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Overload
         if (entity.pManager.overloadStacks > 0)
         {
+            // Notification event
+            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Overload!"), QueuePosition.Back, 0, 0.5f);
+
             // Get random enemy
             List<CharacterEntityModel> enemies = GetAllEnemiesOfCharacter(entity);
             CharacterEntityModel randomEnemy = enemies[Random.Range(0, enemies.Count)];
@@ -1494,6 +1503,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
                     TriggerEnemyActionEffect(enemy, effect);
 
                     // Move back to home node early if declarded to do so
+                    /*
                     if (enemy.hasMovedOffStartingNode && enemy.livingState == LivingState.Alive &&
                         effect.animationEventData.returnToMyNodeOnCardEffectResolved)
                     {
@@ -1502,6 +1512,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
                         LevelNode node = enemy.levelNode;
                         VisualEventManager.Instance.CreateVisualEvent(() => MoveEntityToNodeCentre(enemy, node, cData), cData, QueuePosition.Back, 0.3f, 0);
                     }
+                    */
                 }
             }
         }
@@ -1555,118 +1566,15 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             target = enemy;
         }
 
-        // Queue starting anims and particles
-        if (effect.animationEventData != null)
+        // trigger starting visual events
+        foreach(AnimationEventData vEvent in effect.visualEventsOnStart)
         {
-            // CAMERA SHAKE ON START
-            VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(effect.animationEventData.cameraShakeOnStart));
-
-            // EFFECT ON SELF AT START SEQUENCE
-            VisualEventManager.Instance.CreateVisualEvent(() =>
-            VisualEffectManager.Instance.CreateEffectAtLocation(effect.animationEventData.effectOnSelfAtStart, enemy.characterEntityView.WorldPosition));
-
-            // MOVEMENT SEQUENCE
-            if (effect.animationEventData.startingMovementEvent == MovementAnimEvent.MoveTowardsTarget &&
-                target != null)
-            {
-                // Move towards target visual event
-                enemy.hasMovedOffStartingNode = true;
-                LevelNode node = target.levelNode;
-                CoroutineData cData = new CoroutineData();
-                VisualEventManager.Instance.CreateVisualEvent(() => MoveAttackerToTargetNodeAttackPosition(enemy, node, cData), cData);
-            }
-            else if (effect.animationEventData.startingMovementEvent == MovementAnimEvent.MoveToCentre)
-            {
-                enemy.hasMovedOffStartingNode = true;
-                CoroutineData cData = new CoroutineData();
-                VisualEventManager.Instance.CreateVisualEvent(() => MoveAttackerToCentrePosition(enemy, cData), cData);
-            }
-
-
-            // CHARACTER ANIMATION SEQUENCE TriggerAoeMeleeAttackAnimation
-            // Melee Attack 
-            if (effect.animationEventData.characterAnimation == CharacterAnimation.MeleeAttack)
-            {
-                CoroutineData cData = new CoroutineData();
-                VisualEventManager.Instance.CreateVisualEvent(() => TriggerMeleeAttackAnimation(enemy.characterEntityView, cData), cData);
-            }
-            // AoE Melee Attack 
-            else if (effect.animationEventData.characterAnimation == CharacterAnimation.AoeMeleeAttack)
-            {
-                VisualEventManager.Instance.CreateVisualEvent(() => TriggerAoeMeleeAttackAnimation(enemy.characterEntityView));
-            }
-            // Skill
-            else if (effect.animationEventData.characterAnimation == CharacterAnimation.Skill)
-            {
-                VisualEventManager.Instance.CreateVisualEvent(() => PlaySkillAnimation(enemy.characterEntityView));
-            }
-            // Shoot Bow 
-            else if (effect.animationEventData.characterAnimation == CharacterAnimation.ShootBow)
-            {
-                // Character shoot bow animation
-                CoroutineData cData = new CoroutineData();
-                VisualEventManager.Instance.CreateVisualEvent(() => PlayShootBowAnimation(enemy.characterEntityView, cData), cData);
-
-                // Create and launch arrow projectile
-                CoroutineData cData2 = new CoroutineData();
-                VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.ShootArrow(enemy.characterEntityView.WorldPosition, target.characterEntityView.WorldPosition, cData2), cData2);
-            }
-            // Shoot Projectile 
-            else if (effect.animationEventData.characterAnimation == CharacterAnimation.ShootProjectile)
-            {
-                // Play character shoot anim
-                VisualEventManager.Instance.CreateVisualEvent(() => TriggerShootProjectileAnimation(enemy.characterEntityView));
-
-                // Create projectile
-                CoroutineData cData = new CoroutineData();
-                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.ShootProjectileAtLocation
-                (effect.animationEventData.projectileFired, enemy.characterEntityView.WorldPosition, target.characterEntityView.WorldPosition, cData), cData);
-            }
-
-            // ON CHARACTER ANIMATION FINISHED
-            VisualEventManager.Instance.CreateVisualEvent(() =>
-            VisualEffectManager.Instance.CreateEffectAtLocation(effect.animationEventData.onCharacterAnimationFinish, enemy.characterEntityView.WorldPosition));
-
-            // ON TARGET HIT SEQUENCE
-            // Create effect on single target
-            if (target != null)
-            {
-                VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateEffectAtLocation(effect.animationEventData.onTargetHit, target.characterEntityView.WorldPosition));
-            }
-
-            // Create effect on all allies
-            else if (effect.actionType == ActionType.BuffAllAllies ||
-                     effect.actionType == ActionType.DefendAllAllies)
-            {
-                foreach (CharacterEntityModel model in GetAllAlliesOfCharacter(enemy))
-                {
-                    VisualEventManager.Instance.CreateVisualEvent(() =>
-                    VisualEffectManager.Instance.CreateEffectAtLocation(effect.animationEventData.onTargetHit, model.characterEntityView.WorldPosition));
-                }
-            }
-
-            // Create effect on all enemies
-            else if (effect.actionType == ActionType.DebuffAllEnemies ||
-                     effect.actionType == ActionType.AttackAllEnemies)
-            {
-                foreach (CharacterEntityModel model in GetAllEnemiesOfCharacter(enemy))
-                {
-                    VisualEventManager.Instance.CreateVisualEvent(() =>
-                    VisualEffectManager.Instance.CreateEffectAtLocation(effect.animationEventData.onTargetHit, model.characterEntityView.WorldPosition));
-                }
-            }
-
-            // ON TARGET HIT CAMERA SHAKE
-            VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(effect.animationEventData.onTargetHitCameraShake));
+            AnimationEventController.Instance.PlayAnimationEvent(vEvent, enemy, target);
         }
-
 
 
         // RESOLVE EFFECT LOGIC START!
         // Execute effect based on effect type
-
         // Attack Target
         if (effect.actionType == ActionType.AttackTarget)
         {
@@ -1766,6 +1674,22 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
                     //Card card = CardController.Instance.BuildCardFromCardData(effect.cardAdded, enemy.currentActionTarget.defender);
                     //CardController.Instance.AddCardToDiscardPile(enemy.currentActionTarget.defender, card);
                 }
+            }
+        }
+
+        // CONCLUDING VISUAL EVENTS!
+        if (CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive &&
+            enemy.livingState == LivingState.Alive)
+        {
+            // cancel if the target was killed
+            if (target != null && target.livingState == LivingState.Dead)
+            {
+                return;
+            }
+
+            foreach (AnimationEventData vEvent in effect.visualEventsOnFinish)
+            {
+                AnimationEventController.Instance.PlayAnimationEvent(vEvent, enemy, target);
             }
         }
 

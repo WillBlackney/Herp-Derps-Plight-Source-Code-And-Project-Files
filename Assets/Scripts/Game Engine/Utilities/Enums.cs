@@ -306,12 +306,22 @@ public enum BodyPartType
 
 // Animation Event Data Enums
 #region
-
+public enum AnimationEventType
+{
+    None,
+    Movement,
+    CharacterAnimation,
+    ParticleEffect,
+    CameraShake,
+    SoundEffect,
+    Delay,
+}
 public enum MovementAnimEvent
 {
     None = 0,
     MoveTowardsTarget = 1,
     MoveToCentre = 2,
+    MoveToMyNode = 3,
 }
 public enum CharacterAnimation
 {
@@ -363,6 +373,15 @@ public enum CameraShakeType
     Small = 1,
     Medium = 2,
     Large = 3,
+}
+public enum CreateOnCharacter
+{
+    None,
+    Self,
+    Target,
+    All,
+    AllAllies,
+    AllEnemies,
 }
 #endregion
 

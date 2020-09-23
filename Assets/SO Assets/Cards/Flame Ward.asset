@@ -45,16 +45,24 @@ MonoBehaviour:
       passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
-    animationEventData:
-      effectOnSelfAtStart: 0
-      cameraShakeOnStart: 0
-      startingMovementEvent: 0
-      returnToMyNodeOnCardEffectResolved: 0
+    visualEventsOnStart:
+    - eventType: 2
+      particleEffect: 0
+      cameraShake: 0
+      movementAnimation: 0
       characterAnimation: 4
+      delayDuration: 0
       projectileFired: 0
-      onCharacterAnimationFinish: 0
-      onTargetHit: 16
-      onTargetHitCameraShake: 0
+      onCharacter: 0
+    - eventType: 3
+      particleEffect: 16
+      cameraShake: 0
+      movementAnimation: 0
+      characterAnimation: 0
+      delayDuration: 0
+      projectileFired: 0
+      onCharacter: 2
+    visualEventsOnFinish: []
   - cardEffectType: 1
     weaponRequirement: 0
     drawStacksFromOverload: 0
@@ -73,14 +81,14 @@ MonoBehaviour:
       passiveStacks: 0
     cardAdded: {fileID: 11400000, guid: e4da3cf9bac315a4586b6ba520cf9a90, type: 2}
     copiesAdded: 1
-    animationEventData:
-      effectOnSelfAtStart: 0
-      cameraShakeOnStart: 0
-      startingMovementEvent: 0
-      returnToMyNodeOnCardEffectResolved: 0
+    visualEventsOnStart:
+    - eventType: 3
+      particleEffect: 16
+      cameraShake: 0
+      movementAnimation: 0
       characterAnimation: 0
+      delayDuration: 0
       projectileFired: 0
-      onCharacterAnimationFinish: 0
-      onTargetHit: 0
-      onTargetHitCameraShake: 0
+      onCharacter: 1
+    visualEventsOnFinish: []
   cardEventListeners: []

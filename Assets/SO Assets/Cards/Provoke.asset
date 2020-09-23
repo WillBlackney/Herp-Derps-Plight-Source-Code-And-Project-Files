@@ -43,12 +43,14 @@ MonoBehaviour:
       passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0
-    animationEventData:
-      effectOnSelfAtStart: 0
-      startingMovementEvent: 2
-      returnToMyNodeOnCardEffectResolved: 0
+    visualEventsOnStart:
+    - eventType: 2
+      particleEffect: 0
+      cameraShake: 0
+      movementAnimation: 0
       characterAnimation: 4
-      onCharacterAnimationFinish: 0
+      delayDuration: 0
       projectileFired: 0
-      onTargetHit: 0
+      onCharacter: 0
+    visualEventsOnFinish: []
   cardEventListeners: []
