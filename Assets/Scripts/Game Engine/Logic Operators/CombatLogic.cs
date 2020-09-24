@@ -766,6 +766,9 @@ public class CombatLogic : Singleton<CombatLogic>
             CharacterEntityController.Instance.RemoveDefenderFromPersistency(entity);
         }
 
+        // Remove from activation order
+        ActivationManager.Instance.RemoveEntityFromActivationOrder(entity);
+
         // If an AI character was targetting the dying character with its next action, aquire a new target
         foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.AllEnemies)
         {
@@ -773,8 +776,8 @@ public class CombatLogic : Singleton<CombatLogic>
             {
                 CharacterEntityController.Instance.AutoAquireNewTargetOfCurrentAction(enemy);
             }
-
         }
+
 
         // Disable character's level node anims and targetting path
         VisualEventManager.Instance.CreateVisualEvent(() =>
@@ -803,10 +806,6 @@ public class CombatLogic : Singleton<CombatLogic>
         // Destroy view and break references
         VisualEventManager.Instance.CreateVisualEvent(() =>
         {
-            // Break references
-            //LevelManager.Instance.DisconnectEntityFromNode(entity);
-            //CharacterEntityController.Instance.DisconnectModelFromView(entity);
-
             // Destroy view gameobject
             CharacterEntityController.Instance.DisconnectModelFromView(entity);
             CharacterEntityController.Instance.DestroyCharacterView(view);

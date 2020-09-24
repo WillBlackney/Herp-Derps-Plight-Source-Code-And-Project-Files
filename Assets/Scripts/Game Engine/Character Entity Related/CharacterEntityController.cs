@@ -533,7 +533,6 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         VisualEventManager.Instance.CreateVisualEvent(() => LevelManager.Instance.SetActivatedViewState(charNode, true), QueuePosition.Back);
 
         // Gain Energy
-        character.hasActivatedThisTurn = true;
         ModifyEnergy(character, EntityLogic.GetTotalStamina(character));        
 
         // Modify relevant passives

@@ -1420,13 +1420,60 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
-  allAudioModels:
-  - audioClip: {fileID: 8300000, guid: b70d834014ccc914eac6c76c5e969416, type: 3}
-    name: Battle Theme Music
-    volume: 0.5
+  battleTheme1:
+    audioClip: {fileID: 8300000, guid: b70d834014ccc914eac6c76c5e969416, type: 3}
+    soundType: 7
+    volume: 0.3
     pitch: 1
     loop: 1
     source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  cardDraw:
+    audioClip: {fileID: 8300000, guid: 656be0721b8854a57aabe7740d0eec5a, type: 3}
+    soundType: 0
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  cardMousedOver:
+    audioClip: {fileID: 8300000, guid: d242307039d804d97b0b2cd6a7fe2f4a, type: 3}
+    soundType: 1
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  cardDiscarded:
+    audioClip: {fileID: 8300000, guid: c01812782cdf2488c8d1ec8cd97f8f50, type: 3}
+    soundType: 4
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  cardDragging:
+    audioClip: {fileID: 8300000, guid: 66b3b02594766c34f92f0347c7d17491, type: 3}
+    soundType: 2
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  cardBreathe:
+    audioClip: {fileID: 0}
+    soundType: 0
+    volume: 0
+    pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
 --- !u!1 &285954528
 GameObject:
   m_ObjectHideFlags: 0

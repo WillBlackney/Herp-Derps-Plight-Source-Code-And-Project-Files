@@ -33,7 +33,7 @@ public class ActivationManager : Singleton<ActivationManager>
     private int currentTurn;
     #endregion
 
-    // Properties Accessors
+    // Properties + Accessors
     #region
     public CharacterEntityModel EntityActivated
     {
@@ -50,6 +50,17 @@ public class ActivationManager : Singleton<ActivationManager>
     {
         get { return currentTurn; }
         private set { currentTurn = value; }
+    }
+    public void RemoveEntityFromActivationOrder(CharacterEntityModel entity)
+    {
+        if (activationOrder.Contains(entity))
+        {
+            activationOrder.Remove(entity);
+        }
+    }
+    public void AddEntityToActivationOrder(CharacterEntityModel entity)
+    {
+        activationOrder.Add(entity);
     }
     #endregion
 
@@ -75,7 +86,7 @@ public class ActivationManager : Singleton<ActivationManager>
         newWindowScript.gameObject.SetActive(true);
 
         // add character to activation order list
-        activationOrder.Add(entity);
+        AddEntityToActivationOrder(entity);
 
         // Build window UCM
         CharacterModelController.BuildModelFromModelClone(newWindowScript.myUCM, entity.characterEntityView.ucm);
@@ -236,6 +247,7 @@ public class ActivationManager : Singleton<ActivationManager>
     {
         Debug.Log("Activating entity: " + entity.myName);
         EntityActivated = entity;
+        entity.hasActivatedThisTurn = true;
 
         // Player controlled characters
         if (entity.controller == Controller.Player)
@@ -280,6 +292,7 @@ public class ActivationManager : Singleton<ActivationManager>
         else
         {
             // check each entity to see if they should activate, start search from front of activation order list
+            /*
             for (int index = 0; index < activationOrder.Count; index++)
             {
                 // check if the character is alive, and not yet activated this turn cycle
@@ -290,8 +303,28 @@ public class ActivationManager : Singleton<ActivationManager>
                     break;
                 }
             }
+            */
 
-            ActivateEntity(nextEntityToActivate);
+            foreach(CharacterEntityModel entity in activationOrder)
+            {
+                // check if the character is alive, and not yet activated this turn cycle
+                if (entity.livingState == LivingState.Alive &&
+                    entity.hasActivatedThisTurn == false)
+                {
+                    nextEntityToActivate = entity;
+                    break;
+                }
+            }            
+
+            if(nextEntityToActivate != null)
+            {
+                ActivateEntity(nextEntityToActivate);
+            }
+            else
+            {
+                StartNewTurnSequence();
+            }
+            
         }      
     }
     private bool AllEntitiesHaveActivatedThisTurn()
@@ -398,7 +431,7 @@ public class ActivationManager : Singleton<ActivationManager>
                 GameObject slotDestroyed = panelSlots[panelSlots.Count - 1];
                 if (activationOrder.Contains(window.myCharacter))
                 {
-                    activationOrder.Remove(window.myCharacter);
+                    RemoveEntityFromActivationOrder(window.myCharacter);
                 }
 
                 // Remove slot from list and destroy

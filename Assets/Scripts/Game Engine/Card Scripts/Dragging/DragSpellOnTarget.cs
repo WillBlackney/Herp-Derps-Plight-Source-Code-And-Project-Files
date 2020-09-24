@@ -31,6 +31,9 @@ public class DragSpellOnTarget : DraggingActions {
         locationTracker.VisualState = VisualStates.Dragging;
         sr.enabled = true;
         lr.enabled = true;
+
+        // play sfx
+        AudioManager.Instance.FadeInSound(Sound.Card_dragging, 0.5f);
     }
 
     public override void OnDraggingInUpdate()
@@ -63,6 +66,9 @@ public class DragSpellOnTarget : DraggingActions {
     public override void OnEndDrag()
     {
         Debug.Log("DragSpellOnTarget.OnEndDrag() called...");
+
+        // Stop dragging SFX
+        AudioManager.Instance.FadeOutSound(Sound.Card_dragging, 0.5f);
 
         // Set up
         CharacterEntityModel target = null;

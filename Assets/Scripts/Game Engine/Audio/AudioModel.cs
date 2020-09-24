@@ -14,7 +14,7 @@ public class AudioModel
 
     [VerticalGroup("General Properties/Stats")]
     [LabelWidth(100)]
-    public string name;
+    public Sound soundType;
 
     [VerticalGroup("General Properties/Stats")]
     [LabelWidth(100)]
@@ -24,7 +24,7 @@ public class AudioModel
     [VerticalGroup("General Properties/Stats")]
     [LabelWidth(100)]
     [Range(0.1f, 3f)]
-    public float pitch;
+    public float pitch = 1f;
 
     [VerticalGroup("General Properties/Stats")]
     [LabelWidth(100)]
@@ -32,6 +32,10 @@ public class AudioModel
 
     [HideInInspector]
     public AudioSource source;
+
+    // Misc
+    [HideInInspector] public bool fadingIn;
+    [HideInInspector] public bool fadingOut;
 
 
 
