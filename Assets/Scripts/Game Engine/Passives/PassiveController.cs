@@ -568,7 +568,7 @@ public class PassiveController : Singleton<PassiveController>
                 // VFX visual events
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Strength + " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Strength +" + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
                 }, QueuePosition.Back, 0, 0.5f);
                
@@ -629,9 +629,9 @@ public class PassiveController : Singleton<PassiveController>
                 // VFX visual events
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Dexterity + " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Dexterity +" + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
 
             }
 
@@ -641,7 +641,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Dexterity " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
             }
 
             if (showVFX)
@@ -681,7 +681,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Initiative + " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
 
             }
 
@@ -691,7 +691,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Initiative " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
             }
 
             if (showVFX)
@@ -729,9 +729,9 @@ public class PassiveController : Singleton<PassiveController>
                 // VFX visual events
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Stamina + " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Stamina +" + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
 
             }
 
@@ -741,7 +741,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Stamina " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
             }
 
             if (showVFX)
@@ -781,7 +781,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Draw + " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
 
             }
 
@@ -791,7 +791,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Draw " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
             }
 
             if (showVFX)
@@ -833,9 +833,9 @@ public class PassiveController : Singleton<PassiveController>
                 // VFX visual events
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Strength + " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Strength +" + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
 
             }
 
@@ -893,9 +893,9 @@ public class PassiveController : Singleton<PassiveController>
                 // VFX visual events
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Dexterity + " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Dexterity +" + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
 
             }
 
@@ -905,7 +905,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Dexterity " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
             }
             if (showVFX)
             {
@@ -942,9 +942,9 @@ public class PassiveController : Singleton<PassiveController>
                 // VFX visual events
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Initiative + " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Initiative +" + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
 
             }
 
@@ -954,7 +954,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Initiative " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
             }
 
             if (showVFX)
@@ -994,7 +994,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Stamina + " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
 
             }
 
@@ -1004,7 +1004,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Stamina " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
             }
 
             if (showVFX)
@@ -1020,7 +1020,6 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Temporary Draw");
         CharacterEntityModel character = pManager.myCharacter;
-        //CharacterData data = pManager.myCharacterData;
 
         // Increment stacks
         pManager.temporaryBonusDrawStacks += stacks;
@@ -1044,7 +1043,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Draw + " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
 
             }
 
@@ -1054,7 +1053,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Draw " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
             }
 
             if (showVFX)
@@ -1095,9 +1094,9 @@ public class PassiveController : Singleton<PassiveController>
                 // VFX visual events
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Enrage + " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Enrage +" + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
 
             }
 
@@ -1107,7 +1106,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Enrage " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
             }
 
             if (showVFX)
@@ -1146,9 +1145,9 @@ public class PassiveController : Singleton<PassiveController>
                 // VFX visual events
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Shield Wall + " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Shield Wall +" + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
 
             }
 
@@ -1158,7 +1157,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Shield Wall " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
             }
 
             if (showVFX)
@@ -1199,7 +1198,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Fan Of Knives");
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
 
             }
 
@@ -1209,7 +1208,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Fan Of Knives Removed");
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
             }
 
             if (showVFX)
@@ -1250,7 +1249,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Phoenix Form");
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
 
             }
 
@@ -1260,7 +1259,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Phoenix Form Removed");
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
             }
 
             if (showVFX)
@@ -1301,7 +1300,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Poisonous");
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
 
             }
 
@@ -1311,7 +1310,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Poisonous Removed");
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
             }
 
             if (showVFX)
@@ -1352,7 +1351,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Venomous");
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
 
             }
 
@@ -1362,7 +1361,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Venomous Removed");
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
             }
 
             if (showVFX)
@@ -1403,7 +1402,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Overload +" + stacks.ToString());
                     VisualEffectManager.Instance.CreateGainOverloadEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
 
             }
 
@@ -1413,7 +1412,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Overload Removed");
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
             }
 
             if (showVFX)
@@ -1468,7 +1467,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Fusion +" + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
 
             }
 
@@ -1478,7 +1477,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Fusion Removed");
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
             }
 
             if (showVFX)
@@ -1519,7 +1518,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Melee Attack Reduction!" + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back);
+                });
 
             }
 
@@ -1529,7 +1528,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Melee Attack Reduction Removed");
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back);
+                });
             }
 
             // Update cost of cards in hand
@@ -1578,9 +1577,9 @@ public class PassiveController : Singleton<PassiveController>
                 // VFX visual events
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Wrath + " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Wrath +" + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
 
             }
 
@@ -1590,7 +1589,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Wrath " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
             }
 
             // Update intent GUI, if enemy and attacking
@@ -1637,7 +1636,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Weakened + " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
 
             }
 
@@ -1647,7 +1646,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Weakened " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
             }
 
             // Update intent GUI, if enemy and attacking
@@ -1694,7 +1693,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Vulnerable + " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
 
             }
 
@@ -1704,7 +1703,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Vulnerable " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
             }
 
             // Update intent GUI of ai's targetting this character
@@ -1752,9 +1751,9 @@ public class PassiveController : Singleton<PassiveController>
                 // VFX visual events
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Grit + " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Grit +" + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
 
             }
 
@@ -1764,7 +1763,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Grit " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
             }
 
             // Update intent GUI of ai's targetting this character
@@ -1825,7 +1824,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Poisoned + " + stacks.ToString());
                     VisualEffectManager.Instance.CreateApplyPoisonedEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back);
+                });
 
             }
 
@@ -1834,7 +1833,7 @@ public class PassiveController : Singleton<PassiveController>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Poisoned " + stacks.ToString());
-                }, QueuePosition.Back);
+                });
             }
             if (showVFX)
             {
@@ -1872,7 +1871,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Burning +" + stacks.ToString());
                     VisualEffectManager.Instance.CreateApplyBurningEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back);
+                });
 
             }
 
@@ -1881,7 +1880,7 @@ public class PassiveController : Singleton<PassiveController>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Burning " + stacks.ToString());
-                }, QueuePosition.Back);
+                });
             }
             if (showVFX)
             {
@@ -1930,7 +1929,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Taunted");
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
 
             }
 
@@ -1939,7 +1938,7 @@ public class PassiveController : Singleton<PassiveController>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Taunted Removed");
-                }, QueuePosition.Back);
+                });
             }
 
             if (showVFX)
@@ -1978,7 +1977,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Fire Ball Damage +" + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
 
             }
 
@@ -1988,7 +1987,7 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Fire Ball Damage " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
             }
 
             if (showVFX)

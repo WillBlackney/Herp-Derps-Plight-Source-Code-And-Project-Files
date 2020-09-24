@@ -5,8 +5,11 @@ using System;
 
 public class AudioManager : Singleton<AudioManager>
 {
+    [Header("Sound Effects")]
     public AudioModel[] allAudioModels;
 
+    // Initialization 
+    #region
     private void Start()
     {
 
@@ -21,7 +24,10 @@ public class AudioManager : Singleton<AudioManager>
 
         PlaySound("Battle Theme Music");
     }
+    #endregion
 
+    // Play Sounds
+    #region
     public void PlaySound(string name)
     {
         AudioModel a = Array.Find(allAudioModels, sound => sound.name == name);
@@ -32,7 +38,7 @@ public class AudioManager : Singleton<AudioManager>
         else
         {
             Debug.LogWarning("AudioManager.PlaySound() did not find an audio model with the name " + name);
-        }
-       
+        }       
     }
+    #endregion
 }

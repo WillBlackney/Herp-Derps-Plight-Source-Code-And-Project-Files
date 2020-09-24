@@ -61,6 +61,14 @@ MonoBehaviour:
       projectileFired: 0
       onCharacter: 0
     - eventType: 3
+      particleEffect: 3
+      cameraShake: 0
+      movementAnimation: 0
+      characterAnimation: 0
+      delayDuration: 0
+      projectileFired: 0
+      onCharacter: 1
+    - eventType: 3
       particleEffect: 2
       cameraShake: 0
       movementAnimation: 0
