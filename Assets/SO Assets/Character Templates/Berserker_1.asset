@@ -19,7 +19,7 @@ MonoBehaviour:
   dexterity: 0
   stamina: 3
   draw: 5
-  initiative: 3
+  initiative: 15
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0

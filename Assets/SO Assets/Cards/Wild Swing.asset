@@ -49,6 +49,7 @@ MonoBehaviour:
       particleEffect: 0
       cameraShake: 0
       movementAnimation: 1
+      soundEffect: 0
       characterAnimation: 0
       delayDuration: 0
       projectileFired: 0
@@ -57,6 +58,7 @@ MonoBehaviour:
       particleEffect: 0
       cameraShake: 0
       movementAnimation: 0
+      soundEffect: 0
       characterAnimation: 1
       delayDuration: 0
       projectileFired: 0
@@ -65,6 +67,7 @@ MonoBehaviour:
       particleEffect: 0
       cameraShake: 1
       movementAnimation: 0
+      soundEffect: 0
       characterAnimation: 0
       delayDuration: 0
       projectileFired: 0
@@ -73,10 +76,20 @@ MonoBehaviour:
       particleEffect: 2
       cameraShake: 0
       movementAnimation: 0
+      soundEffect: 0
       characterAnimation: 0
       delayDuration: 0
       projectileFired: 0
       onCharacter: 2
+    - eventType: 5
+      particleEffect: 0
+      cameraShake: 0
+      movementAnimation: 0
+      soundEffect: 15
+      characterAnimation: 0
+      delayDuration: 0
+      projectileFired: 0
+      onCharacter: 0
     visualEventsOnFinish: []
   cardEventListeners:
   - cardEventListenerType: 1

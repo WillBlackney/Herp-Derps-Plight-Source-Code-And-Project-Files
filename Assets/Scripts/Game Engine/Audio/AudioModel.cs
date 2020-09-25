@@ -19,7 +19,7 @@ public class AudioModel
     [VerticalGroup("General Properties/Stats")]
     [LabelWidth(100)]
     [Range(0f, 1f)]
-    public float volume;
+    public float volume = 0.5f;
 
     [VerticalGroup("General Properties/Stats")]
     [LabelWidth(100)]

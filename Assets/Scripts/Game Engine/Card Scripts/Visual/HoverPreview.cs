@@ -82,7 +82,7 @@ public class HoverPreview: MonoBehaviour
         if (TurnThisOffWhenPreviewing!=null)
             TurnThisOffWhenPreviewing.SetActive(false);
         // 5) play sfx
-        AudioManager.Instance.PlaySound(Sound.Card_moused_over);
+        AudioManager.Instance.PlaySound(Sound.Card_Moused_Over);
         // 6) tween to target position
         previewGameObject.transform.localPosition = Vector3.zero;
         previewGameObject.transform.localScale = Vector3.one;

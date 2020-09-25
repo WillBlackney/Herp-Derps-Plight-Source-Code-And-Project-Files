@@ -196,4 +196,5 @@ public class UniversalCharacterModel : MonoBehaviour
     }
 
     #endregion
+
 }

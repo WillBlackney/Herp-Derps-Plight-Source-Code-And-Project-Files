@@ -497,6 +497,7 @@ public class CombatLogic : Singleton<CombatLogic>
             {
                 // Create Lose Armor Effect
                 VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateLoseBlockEffect(victim.characterEntityView.transform.position, adjustedDamageValue));
+                
             }
             else if (totalLifeLost > 0)
             {  
@@ -508,6 +509,9 @@ public class CombatLogic : Singleton<CombatLogic>
 
                 // Create Lose hp / damage effect
                 VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateDamageEffect(victim.characterEntityView.transform.position, totalLifeLost));
+                VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Ability_Damaged_Health_Lost));
+
+                
             }
         }
 
@@ -523,7 +527,8 @@ public class CombatLogic : Singleton<CombatLogic>
         if (victim.pManager.enrageStacks > 0 && totalLifeLost > 0)
         {
             Debug.Log(victim.myName + " 'Enrage' triggered, gaining " + victim.pManager.enrageStacks.ToString() + " bonus power");
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(victim.pManager, "Power", victim.pManager.enrageStacks, true, 0.5f);
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(victim.pManager, "Power", victim.pManager.enrageStacks, true);
         }
 
         // Poisonous 
@@ -533,6 +538,7 @@ public class CombatLogic : Singleton<CombatLogic>
             if (card != null && 
                (card.cardType == CardType.MeleeAttack || card.cardType == CardType.RangedAttack))
             {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
                 PassiveController.Instance.ModifyPoisoned(attacker, victim.pManager, attacker.pManager.poisonousStacks, true, 0.5f);
             }
             else if (enemyEffect != null && 
@@ -540,6 +546,7 @@ public class CombatLogic : Singleton<CombatLogic>
                 enemyEffect.actionType == ActionType.AttackAllEnemies)
                 )
             {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
                 PassiveController.Instance.ModifyPoisoned(attacker, victim.pManager, attacker.pManager.poisonousStacks, true, 0.5f);
             }
         }

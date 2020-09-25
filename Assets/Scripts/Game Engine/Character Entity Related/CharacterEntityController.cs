@@ -1033,10 +1033,12 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     #region
     public void TriggerShootProjectileAnimation(CharacterEntityView view)
     {
+        AudioManager.Instance.StopSound(Sound.Character_Footsteps);
         view.ucmAnimator.SetTrigger("Melee Attack");
     }
     public void TriggerMeleeAttackAnimation(CharacterEntityView view, CoroutineData cData)
     {
+        AudioManager.Instance.StopSound(Sound.Character_Footsteps);
         StartCoroutine(TriggerMeleeAttackAnimationCoroutine(view, cData));
     }
     private IEnumerator TriggerMeleeAttackAnimationCoroutine(CharacterEntityView view, CoroutineData cData)
@@ -1079,35 +1081,44 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     public void TriggerAoeMeleeAttackAnimation(CharacterEntityView view)
     {
         view.ucmAnimator.SetTrigger("Melee Attack");
+        AudioManager.Instance.StopSound(Sound.Character_Footsteps);
     }
     public void PlayIdleAnimation(CharacterEntityView view)
     {
         view.ucmAnimator.SetTrigger("Idle");
+        AudioManager.Instance.StopSound(Sound.Character_Footsteps);
     }
     public void PlaySkillAnimation(CharacterEntityView view)
     {
         view.ucmAnimator.SetTrigger("Skill Two");
+        AudioManager.Instance.StopSound(Sound.Character_Footsteps);
     }    
     public void PlayMoveAnimation(CharacterEntityView view)
     {
+        AudioManager.Instance.PlaySound(Sound.Character_Footsteps);
         view.ucmAnimator.SetTrigger("Move");
     }
     public void PlayHurtAnimation(CharacterEntityView view)
     {
+        AudioManager.Instance.StopSound(Sound.Character_Footsteps);
         view.ucmAnimator.SetTrigger("Hurt");
     }
     public void PlayDeathAnimation(CharacterEntityView view)
     {
+        AudioManager.Instance.StopSound(Sound.Character_Footsteps);
         view.ucmAnimator.SetTrigger("Die");
     }
     public void PlayShootBowAnimation(CharacterEntityView view, CoroutineData cData)
     {
         Debug.Log("CharacterEntityController.PlayRangedAttackAnimation() called...");
+        AudioManager.Instance.StopSound(Sound.Character_Footsteps);
+        AudioManager.Instance.PlaySound(Sound.Character_Draw_Bow);
         StartCoroutine(PlayShootBowAnimationCoroutine(view, cData));
     }
     private IEnumerator PlayShootBowAnimationCoroutine(CharacterEntityView view, CoroutineData cData)
     {
         view.ucmAnimator.SetTrigger("Shoot Bow");
+        AudioManager.Instance.StopSound(Sound.Character_Footsteps);
         yield return new WaitForSeconds(0.5f);
 
         // Resolve

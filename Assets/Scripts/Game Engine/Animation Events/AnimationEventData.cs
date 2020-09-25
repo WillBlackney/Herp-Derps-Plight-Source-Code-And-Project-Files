@@ -35,11 +35,17 @@ public class AnimationEventData
     [ShowIf("ShowMovementAnimation")]
     public MovementAnimEvent movementAnimation;
 
+    [VerticalGroup("General Properties")]
+    [LabelWidth(250)]
+    [ShowIf("ShowSoundEffect")]
+    public Sound soundEffect;
+
 
     [VerticalGroup("General Properties")]
     [LabelWidth(250)]
     [ShowIf("ShowCharacterAnimation")]
     public CharacterAnimation characterAnimation;
+
 
     [VerticalGroup("General Properties")]
     [LabelWidth(250)]
@@ -59,6 +65,10 @@ public class AnimationEventData
 
 
 
+    public bool ShowSoundEffect()
+    {
+        return eventType == AnimationEventType.SoundEffect;
+    }
     public bool ShowParticleEffect()
     {
         return eventType == AnimationEventType.ParticleEffect;

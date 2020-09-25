@@ -1201,6 +1201,7 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
         GameObject hn = Instantiate(redPillarBuff, location, redPillarBuff.transform.rotation);
         ToonEffect teScript = hn.GetComponent<ToonEffect>();
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+        AudioManager.Instance.PlaySound(Sound.Passive_General_Debuff);
     }
 
     // General Buff
@@ -1209,6 +1210,7 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
         GameObject hn = Instantiate(yellowPillarBuff, location, yellowPillarBuff.transform.rotation);
         ToonEffect teScript = hn.GetComponent<ToonEffect>();
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+        AudioManager.Instance.PlaySound(Sound.Passive_General_Buff);
     }
     #endregion
 
@@ -1220,6 +1222,7 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
     {
         GameObject newImpactVFX = Instantiate(GainBlockEffectPrefab, location, Quaternion.identity);
         newImpactVFX.GetComponent<GainArmorEffect>().InitializeSetup(location, blockGained);
+        AudioManager.Instance.PlaySound(Sound.Ability_Gain_Block);
     }
 
     // Lose Block Effect
@@ -1228,6 +1231,7 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
         GameObject newImpactVFX = Instantiate(LoseBlockEffectPrefab, location, Quaternion.identity);
         newImpactVFX.GetComponent<GainArmorEffect>().InitializeSetup(location, blockLost);
         CreateDamageEffect(location, blockLost, false, false);
+        AudioManager.Instance.PlaySound(Sound.Ability_Damaged_Block_Lost);
     }
     #endregion
 
@@ -1242,6 +1246,7 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
     }
     private IEnumerator ShootArrowCoroutine(Vector3 startPos, Vector3 endPos, CoroutineData cData, float speed)
     {
+        AudioManager.Instance.PlaySound(Sound.Projectile_Arrow_Fired);
         GameObject arrow = Instantiate(ArrowPrefab, startPos, Quaternion.identity);
         Projectile projectileScript = arrow.GetComponent<Projectile>();
         projectileScript.InitializeSetup(startPos, endPos, speed);
@@ -1257,6 +1262,7 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
     }
     private IEnumerator ShootFireballCoroutine(Vector3 startPosition, Vector3 endPosition, CoroutineData cData, float speed, int sortingOrderBonus, float scaleModifier)
     {
+        AudioManager.Instance.PlaySound(Sound.Projectile_Fireball_Fired);
         GameObject fireBall = Instantiate(toonFireBall, startPosition, toonFireBall.transform.rotation);
         ToonProjectile tsScript = fireBall.GetComponent<ToonProjectile>();
         tsScript.InitializeSetup(sortingOrderBonus, scaleModifier);
@@ -1268,8 +1274,8 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
             destinationReached == false)
         {
             destinationReached = true;
-
             tsScript.OnDestinationReached();
+            AudioManager.Instance.PlaySound(Sound.Explosion_Fire_1);
 
             // Resolve early
             if(cData != null)
@@ -1287,6 +1293,7 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
                 fireBall.transform.position.y == endPosition.y)
             {
                 tsScript.OnDestinationReached();
+                AudioManager.Instance.PlaySound(Sound.Explosion_Fire_1);
                 destinationReached = true;
             }
             yield return null;
@@ -1308,6 +1315,7 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
     }
     private IEnumerator ShootShadowBallCoroutine(Vector3 startPosition, Vector3 endPosition, CoroutineData cData, float speed, int sortingOrderBonus, float scaleModifier)
     {
+        AudioManager.Instance.PlaySound(Sound.Projectile_Shadowball_Fired);
         GameObject shadowBall = Instantiate(toonShadowBall, startPosition, toonShadowBall.transform.rotation);
         ToonProjectile tsScript = shadowBall.GetComponent<ToonProjectile>();
         tsScript.InitializeSetup(sortingOrderBonus, scaleModifier);
@@ -1319,8 +1327,8 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
             destinationReached == false)
         {
             destinationReached = true;
-
             tsScript.OnDestinationReached();
+            AudioManager.Instance.PlaySound(Sound.Explosion_Shadow_1);
 
             // Resolve early
             if (cData != null)
@@ -1338,6 +1346,7 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
                 shadowBall.transform.position.y == endPosition.y)
             {
                 tsScript.OnDestinationReached();
+                AudioManager.Instance.PlaySound(Sound.Explosion_Shadow_1);
                 destinationReached = true;
             }
             yield return null;
@@ -1359,6 +1368,7 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
     }
     private IEnumerator ShootPoisonBallCoroutine(Vector3 startPosition, Vector3 endPosition, CoroutineData cData, float speed, int sortingOrderBonus, float scaleModifier)
     {
+        AudioManager.Instance.PlaySound(Sound.Projectile_Poison_Fired);
         GameObject poisonBall = Instantiate(toonPoisonBall, startPosition, toonPoisonBall.transform.rotation);
         ToonProjectile tsScript = poisonBall.GetComponent<ToonProjectile>();
         tsScript.InitializeSetup(sortingOrderBonus, scaleModifier);
@@ -1372,6 +1382,7 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
             destinationReached = true;
 
             tsScript.OnDestinationReached();
+            AudioManager.Instance.PlaySound(Sound.Explosion_Poison_1);
 
             // Resolve early
             if (cData != null)
@@ -1389,6 +1400,7 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
                 poisonBall.transform.position.y == endPosition.y)
             {
                 tsScript.OnDestinationReached();
+                AudioManager.Instance.PlaySound(Sound.Explosion_Poison_1);
                 destinationReached = true;
             }
             yield return null;
@@ -1410,6 +1422,7 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
     }
     private IEnumerator ShootLightningBallCoroutine(Vector3 startPosition, Vector3 endPosition, CoroutineData cData, float speed, int sortingOrderBonus, float scaleModifier)
     {
+        AudioManager.Instance.PlaySound(Sound.Projectile_Lightning_Fired);
         GameObject lightningBall = Instantiate(toonLightningBall, startPosition, toonLightningBall.transform.rotation);
         ToonProjectile tsScript = lightningBall.GetComponent<ToonProjectile>();
         tsScript.InitializeSetup(sortingOrderBonus, scaleModifier);
@@ -1423,6 +1436,7 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
             destinationReached = true;
 
             tsScript.OnDestinationReached();
+            AudioManager.Instance.PlaySound(Sound.Explosion_Lightning_1);
 
             // Resolve early
             if (cData != null)
@@ -1440,6 +1454,7 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
                 lightningBall.transform.position.y == endPosition.y)
             {
                 tsScript.OnDestinationReached();
+                AudioManager.Instance.PlaySound(Sound.Explosion_Lightning_1);
                 destinationReached = true;
             }
             yield return null;
@@ -1571,6 +1586,7 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
     // Apply Burning Effect
     public void CreateApplyBurningEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
     {
+        AudioManager.Instance.PlaySound(Sound.Passive_Burning_Gained);
         GameObject hn = Instantiate(toonApplyBurning, location, toonApplyBurning.transform.rotation);
         ToonEffect teScript = hn.GetComponent<ToonEffect>();
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
@@ -1580,6 +1596,7 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
     // Apply Overload Effect    
     public void CreateGainOverloadEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
     {
+        AudioManager.Instance.PlaySound(Sound.Passive_Overload_Gained);
         GameObject hn = Instantiate(toonApplyShocked, location, toonApplyShocked.transform.rotation);
         ToonEffect teScript = hn.GetComponent<ToonEffect>();
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
@@ -1624,6 +1641,7 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
         GameObject hn = Instantiate(smallLightningExplosion, location, smallLightningExplosion.transform.rotation);
         ToonEffect teScript = hn.GetComponent<ToonEffect>();
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+        AudioManager.Instance.PlaySound(Sound.Explosion_Lightning_1);
     }
 
     // Fire Explosion
@@ -1632,6 +1650,7 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
         GameObject hn = Instantiate(smallFireExplosion, location, smallFireExplosion.transform.rotation);
         ToonEffect teScript = hn.GetComponent<ToonEffect>();
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+        AudioManager.Instance.PlaySound(Sound.Explosion_Fire_1);
     }
 
     // Poison Explosion
@@ -1640,6 +1659,7 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
         GameObject hn = Instantiate(smallPoisonExplosion, location, smallPoisonExplosion.transform.rotation);
         ToonEffect teScript = hn.GetComponent<ToonEffect>();
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+        AudioManager.Instance.PlaySound(Sound.Explosion_Poison_1);
     }
 
     // Frost Explosion
@@ -1656,6 +1676,7 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
         GameObject hn = Instantiate(smallShadowExplosion, location, smallShadowExplosion.transform.rotation);
         ToonEffect teScript = hn.GetComponent<ToonEffect>();
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+        AudioManager.Instance.PlaySound(Sound.Explosion_Shadow_1);
     }
     #endregion
 

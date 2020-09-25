@@ -1143,7 +1143,7 @@ public class CardController : Singleton<CardController>
         clt.VisualState = VisualStates.Transition;
 
         // Start SFX
-        AudioManager.Instance.PlaySound(Sound.Card_draw);
+        AudioManager.Instance.PlaySound(Sound.Card_Draw);
 
         // move card to the hand;
         Sequence s = DOTween.Sequence();
@@ -1159,7 +1159,7 @@ public class CardController : Singleton<CardController>
         character.characterEntityView.handVisual.RemoveCard(cvm.mainParent.gameObject);
 
         // SFX
-        AudioManager.Instance.PlaySound(Sound.Card_discarded);
+        AudioManager.Instance.PlaySound(Sound.Card_Discarded);
 
         // move card to the discard pile
         Sequence s = MoveCardVmFromHandToDiscardPile(cvm, character.characterEntityView.handVisual.DiscardPileTransform);
@@ -1207,7 +1207,7 @@ public class CardController : Singleton<CardController>
         cvm.mainParent.SetParent(null);
 
         // SFX
-        AudioManager.Instance.PlaySound(Sound.Card_discarded);
+        AudioManager.Instance.PlaySound(Sound.Card_Discarded);
 
         // Move card
         Sequence seqOne = DOTween.Sequence();

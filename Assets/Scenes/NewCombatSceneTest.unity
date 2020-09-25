@@ -1420,8 +1420,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
-  battleTheme1:
-    audioClip: {fileID: 8300000, guid: b70d834014ccc914eac6c76c5e969416, type: 3}
+  allMusic:
+  - audioClip: {fileID: 8300000, guid: b70d834014ccc914eac6c76c5e969416, type: 3}
     soundType: 7
     volume: 0.3
     pitch: 1
@@ -1429,8 +1429,8 @@ MonoBehaviour:
     source: {fileID: 0}
     fadingIn: 0
     fadingOut: 0
-  cardDraw:
-    audioClip: {fileID: 8300000, guid: 656be0721b8854a57aabe7740d0eec5a, type: 3}
+  allCardSFX:
+  - audioClip: {fileID: 8300000, guid: 656be0721b8854a57aabe7740d0eec5a, type: 3}
     soundType: 0
     volume: 0.5
     pitch: 1
@@ -1438,8 +1438,7 @@ MonoBehaviour:
     source: {fileID: 0}
     fadingIn: 0
     fadingOut: 0
-  cardMousedOver:
-    audioClip: {fileID: 8300000, guid: d242307039d804d97b0b2cd6a7fe2f4a, type: 3}
+  - audioClip: {fileID: 8300000, guid: d242307039d804d97b0b2cd6a7fe2f4a, type: 3}
     soundType: 1
     volume: 0.3
     pitch: 1
@@ -1447,17 +1446,7 @@ MonoBehaviour:
     source: {fileID: 0}
     fadingIn: 0
     fadingOut: 0
-  cardDiscarded:
-    audioClip: {fileID: 8300000, guid: c01812782cdf2488c8d1ec8cd97f8f50, type: 3}
-    soundType: 4
-    volume: 0.3
-    pitch: 1
-    loop: 0
-    source: {fileID: 0}
-    fadingIn: 0
-    fadingOut: 0
-  cardDragging:
-    audioClip: {fileID: 8300000, guid: 66b3b02594766c34f92f0347c7d17491, type: 3}
+  - audioClip: {fileID: 8300000, guid: 66b3b02594766c34f92f0347c7d17491, type: 3}
     soundType: 2
     volume: 0.3
     pitch: 1
@@ -1465,11 +1454,207 @@ MonoBehaviour:
     source: {fileID: 0}
     fadingIn: 0
     fadingOut: 0
-  cardBreathe:
-    audioClip: {fileID: 0}
-    soundType: 0
-    volume: 0
-    pitch: 0.1
+  - audioClip: {fileID: 8300000, guid: c01812782cdf2488c8d1ec8cd97f8f50, type: 3}
+    soundType: 4
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  allAbilitySFX:
+  - audioClip: {fileID: 8300000, guid: c9c92032d23be1149a1640ee6baab50a, type: 3}
+    soundType: 13
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  - audioClip: {fileID: 8300000, guid: 0355e55f22a1e824ba44a584877286aa, type: 3}
+    soundType: 12
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  - audioClip: {fileID: 8300000, guid: 227c7ab3588d0f04b8a98ef3a754f7ce, type: 3}
+    soundType: 14
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  - audioClip: {fileID: 8300000, guid: f1470e8d7acc6bf40897f9ff339c7524, type: 3}
+    soundType: 15
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  - audioClip: {fileID: 8300000, guid: 7b5bd701461360b4d9563f4925ea21e8, type: 3}
+    soundType: 16
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  - audioClip: {fileID: 8300000, guid: befa07ea02fcebf47bc451bad5ac9b1b, type: 3}
+    soundType: 17
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  - audioClip: {fileID: 8300000, guid: bb87079422ba7d4428378a07e71e4c4f, type: 3}
+    soundType: 18
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  - audioClip: {fileID: 8300000, guid: 35d095a87af420c40853f0a9f23e3d45, type: 3}
+    soundType: 20
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  - audioClip: {fileID: 8300000, guid: 86efb39f04fdd934d9c86e481e516454, type: 3}
+    soundType: 19
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  allCharacterSFX:
+  - audioClip: {fileID: 8300000, guid: 11047a57f074f184db90d3e1b3d90175, type: 3}
+    soundType: 9
+    volume: 0.2
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  - audioClip: {fileID: 8300000, guid: 5e5f6b468478d864881d6d3a8d913105, type: 3}
+    soundType: 10
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  allProjectileSFX:
+  - audioClip: {fileID: 8300000, guid: c48b492de7da4ec46ad497f52d05648a, type: 3}
+    soundType: 26
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  - audioClip: {fileID: 8300000, guid: d87a10efc8ae0684182dc5a1b22ee5a5, type: 3}
+    soundType: 27
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  - audioClip: {fileID: 8300000, guid: 93a69bf62634cd34a917413767844e34, type: 3}
+    soundType: 28
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  - audioClip: {fileID: 8300000, guid: e0f8074327731a947b02c18d90cc7085, type: 3}
+    soundType: 29
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  - audioClip: {fileID: 8300000, guid: dbc32bf1038a64242826e2e679e93e05, type: 3}
+    soundType: 30
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  allExplosionSFX:
+  - audioClip: {fileID: 8300000, guid: debf5cf48c4b28b409e6a9c20dbb7301, type: 3}
+    soundType: 21
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  - audioClip: {fileID: 8300000, guid: 119619c74036e574aae86d373baf02f1, type: 3}
+    soundType: 22
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  - audioClip: {fileID: 8300000, guid: cd42fc3c60305214daafa1fa16a8cb46, type: 3}
+    soundType: 23
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  - audioClip: {fileID: 8300000, guid: 08696b44c4308d741a1623219bc25394, type: 3}
+    soundType: 22
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  allPassiveSFX:
+  - audioClip: {fileID: 8300000, guid: abbbb648ec3f4cc43a048c4c6b7cfbff, type: 3}
+    soundType: 5
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  - audioClip: {fileID: 8300000, guid: 3e2f3f4543d334f19898e43ad3c3851b, type: 3}
+    soundType: 6
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  - audioClip: {fileID: 8300000, guid: 715780c44280b5a478739a8d5c7221ce, type: 3}
+    soundType: 24
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  - audioClip: {fileID: 8300000, guid: 97575ecdc2067844eb8f76836f2c937e, type: 3}
+    soundType: 25
+    volume: 0.5
+    pitch: 1
     loop: 0
     source: {fileID: 0}
     fadingIn: 0
@@ -5710,8 +5895,8 @@ MonoBehaviour:
   testingEnemyWave: {fileID: 11400000, guid: 196d21c94a6e94b42ab0250cb4bedcdd, type: 2}
   characterTemplates:
   - {fileID: 11400000, guid: 52b82b5c29e34814cacd91cfb9439876, type: 2}
-  - {fileID: 11400000, guid: 8d4ecf2085d9be843b2d44cb7360b5d7, type: 2}
-  - {fileID: 11400000, guid: 11330c0f179f1fb49b8fc2aac3fe768b, type: 2}
+  - {fileID: 11400000, guid: 52b82b5c29e34814cacd91cfb9439876, type: 2}
+  - {fileID: 11400000, guid: 52b82b5c29e34814cacd91cfb9439876, type: 2}
   characterDataSample:
     myName: Test
     serializedPassiveManager:

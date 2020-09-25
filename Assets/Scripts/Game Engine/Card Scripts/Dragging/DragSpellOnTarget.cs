@@ -33,7 +33,7 @@ public class DragSpellOnTarget : DraggingActions {
         lr.enabled = true;
 
         // play sfx
-        AudioManager.Instance.FadeInSound(Sound.Card_dragging, 0.5f);
+        AudioManager.Instance.FadeInSound(Sound.Card_Dragging, 0.5f);
     }
 
     public override void OnDraggingInUpdate()
@@ -68,7 +68,7 @@ public class DragSpellOnTarget : DraggingActions {
         Debug.Log("DragSpellOnTarget.OnEndDrag() called...");
 
         // Stop dragging SFX
-        AudioManager.Instance.FadeOutSound(Sound.Card_dragging, 0.5f);
+        AudioManager.Instance.FadeOutSound(Sound.Card_Dragging, 0.5f);
 
         // Set up
         CharacterEntityModel target = null;

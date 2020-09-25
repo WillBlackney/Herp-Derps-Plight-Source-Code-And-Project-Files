@@ -32,7 +32,10 @@ public class AnimationEventController : Singleton<AnimationEventController>
         {
             ResolveMovement(vEvent, user, target);
         }
-        // TO DO!! resolve sound effect
+        else if (vEvent.eventType == AnimationEventType.SoundEffect)
+        {
+            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(vEvent.soundEffect));
+        }
     }
     #endregion
 
