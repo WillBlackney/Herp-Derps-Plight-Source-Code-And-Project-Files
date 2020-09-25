@@ -1423,7 +1423,7 @@ MonoBehaviour:
   allMusic:
   - audioClip: {fileID: 8300000, guid: b70d834014ccc914eac6c76c5e969416, type: 3}
     soundType: 7
-    volume: 0.3
+    volume: 0.2
     pitch: 1
     loop: 1
     source: {fileID: 0}
@@ -1653,6 +1653,48 @@ MonoBehaviour:
     fadingOut: 0
   - audioClip: {fileID: 8300000, guid: 97575ecdc2067844eb8f76836f2c937e, type: 3}
     soundType: 25
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  allGuiSFX:
+  - audioClip: {fileID: 8300000, guid: bf9077d287dba408fb0cce5740890c59, type: 3}
+    soundType: 31
+    volume: 0.4
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  - audioClip: {fileID: 8300000, guid: f77fea83637b72b4cb8db6d437de0cd5, type: 3}
+    soundType: 32
+    volume: 0.1
+    pitch: 1.5
+    loop: 1
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  - audioClip: {fileID: 8300000, guid: 57c1aff95ef2b4e3796ec41861a60dd8, type: 3}
+    soundType: 33
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  - audioClip: {fileID: 8300000, guid: 218aee4016d9d49e583974f317bc52e5, type: 3}
+    soundType: 34
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    fadingIn: 0
+    fadingOut: 0
+  allEventsSFX:
+  - audioClip: {fileID: 8300000, guid: f71bd22c429c3274890e785b601d7ec4, type: 3}
+    soundType: 35
     volume: 0.5
     pitch: 1
     loop: 0
@@ -5894,9 +5936,9 @@ MonoBehaviour:
   runMockScene: 1
   testingEnemyWave: {fileID: 11400000, guid: 196d21c94a6e94b42ab0250cb4bedcdd, type: 2}
   characterTemplates:
-  - {fileID: 11400000, guid: 52b82b5c29e34814cacd91cfb9439876, type: 2}
-  - {fileID: 11400000, guid: 52b82b5c29e34814cacd91cfb9439876, type: 2}
-  - {fileID: 11400000, guid: 52b82b5c29e34814cacd91cfb9439876, type: 2}
+  - {fileID: 11400000, guid: 8d4ecf2085d9be843b2d44cb7360b5d7, type: 2}
+  - {fileID: 11400000, guid: 1d0339b9767137d4a8b3c1e5af99a706, type: 2}
+  - {fileID: 11400000, guid: b032cf78d33b0f2459c4af64779ad485, type: 2}
   characterDataSample:
     myName: Test
     serializedPassiveManager:

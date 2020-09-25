@@ -135,7 +135,7 @@ public class ActivationManager : Singleton<ActivationManager>
         GenerateInitiativeRolls();
         SetActivationOrderBasedOnCurrentInitiativeRolls();
 
-        // Remove temp draw
+        // Remove temp initiative
         foreach (CharacterEntityModel entity in CharacterEntityController.Instance.AllCharacters)
         {
             if (entity.pManager.temporaryBonusInitiativeStacks > 0)
@@ -223,13 +223,16 @@ public class ActivationManager : Singleton<ActivationManager>
     #region
     public void OnEndTurnButtonClicked()
     {
-        Debug.Log("ActivationManager.OnEndTurnButtonClicked() called...");
+        Debug.Log("ActivationManager.OnEndTurnButtonClicked() called...");        
 
         // wait until all card draw visual events have completed
         // prevent function if game over sequence triggered
         if (VisualEventManager.Instance.PendingCardDrawEvent() == false &&
             CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive)
         {
+            // Mouse click SFX
+            AudioManager.Instance.PlaySound(Sound.GUI_Button_Clicked);
+
             // Trigger character on activation end sequence and events
             CharacterEntityController.Instance.CharacterOnActivationEnd(EntityActivated);
         }        
@@ -358,6 +361,9 @@ public class ActivationManager : Singleton<ActivationManager>
         //panelArrow.SetActive(false);
         SetPanelArrowViewState(false);
 
+        // start number rolling sfx
+        AudioManager.Instance.PlaySound(Sound.GUI_Rolling_Bells);
+
         foreach (CharacterEntityModel entity in activationOrder)
         {
             // start animating their roll number text
@@ -368,15 +374,34 @@ public class ActivationManager : Singleton<ActivationManager>
 
         foreach (CharacterEntityModel entity in activationOrder)
         {
+            // cache window
+            ActivationWindow window = entity.characterEntityView.myActivationWindow;
+
             // stop the number anim
-            entity.characterEntityView.myActivationWindow.animateNumberText = false;
+            window.animateNumberText = false;
+
             // set the number text as their initiative roll
-            entity.characterEntityView.myActivationWindow.rollText.text = entity.currentInitiativeRoll.ToString();
-            yield return new WaitForSeconds(0.3f);
+            window.rollText.text = entity.currentInitiativeRoll.ToString();
+
+            // chime ping SFX
+            AudioManager.Instance.PlaySound(Sound.GUI_Chime_1);
+
+            // do breath effect on window
+            float currentScale = window.rollText.transform.localScale.x;
+            float endScale = currentScale * 1.5f;
+            float animSpeed = 0.25f;
+            window.rollText.transform.DOScale(endScale, animSpeed).SetEase(Ease.OutQuint);
+            yield return new WaitForSeconds(animSpeed);
+            window.rollText.transform.DOScale(currentScale, animSpeed).SetEase(Ease.OutQuint);
+            
+            // brief yield before animating next window
+            yield return new WaitForSeconds(0.1f);
         }
 
-        // Move activation windows to their new positions
-        //ArrangeActivationWindowPositions();
+        // stop rolling sfx
+        AudioManager.Instance.StopSound(Sound.GUI_Rolling_Bells);
+
+        // brief yield
         yield return new WaitForSeconds(1f);
 
         // Disable roll number text components
@@ -571,6 +596,9 @@ public class ActivationManager : Singleton<ActivationManager>
         visualParentCG.alpha = 0;
         whoseTurnText.text = "Turn " + CurrentTurn.ToString();
 
+        // Start SFX
+        AudioManager.Instance.FadeInSound(Sound.Events_Turn_Change_Notification, 0.2f);
+
         // Start fade in
         StartCoroutine(FadeInTurnChangeNotification());
 
@@ -587,6 +615,9 @@ public class ActivationManager : Singleton<ActivationManager>
         // Move off screen
         Sequence moveOffScreen = DOTween.Sequence();
         moveOffScreen.Append(parent.DOMoveX(endPos.position.x, 0.5f));
+
+        // Fade out SFX
+        AudioManager.Instance.FadeOutSound(Sound.Events_Turn_Change_Notification, 1f);
 
         yield return new WaitForSeconds(1);
 

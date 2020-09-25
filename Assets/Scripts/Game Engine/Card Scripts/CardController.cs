@@ -749,8 +749,7 @@ public class CardController : Singleton<CardController>
         else if (cardEffect.cardEffectType == CardEffectType.GainEnergy)
         {
             // Gain Energy
-            CharacterEntityController.Instance.ModifyEnergy(owner, cardEffect.energyGained);
-            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateGeneralBuffEffect(owner.characterEntityView.transform.position));
+            CharacterEntityController.Instance.ModifyEnergy(owner, cardEffect.energyGained, true);
         }
 
         // Draw Cards

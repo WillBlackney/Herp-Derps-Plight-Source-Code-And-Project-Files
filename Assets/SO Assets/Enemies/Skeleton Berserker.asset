@@ -62,16 +62,35 @@ MonoBehaviour:
     prioritiseWhenRequirementsMet: 0
     actionRequirements: []
     actionEffects:
-    - animationEventData:
-        effectOnSelfAtStart: 0
-        cameraShakeOnStart: 0
-        startingMovementEvent: 1
-        returnToMyNodeOnCardEffectResolved: 0
-        characterAnimation: 1
+    - visualEventsOnStart:
+      - eventType: 1
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 1
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0
         projectileFired: 0
-        onCharacterAnimationFinish: 0
-        onTargetHit: 2
-        onTargetHitCameraShake: 1
+        onCharacter: 0
+      - eventType: 2
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 1
+        delayDuration: 0
+        projectileFired: 0
+        onCharacter: 0
+      - eventType: 4
+        particleEffect: 0
+        cameraShake: 1
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0
+        projectileFired: 0
+        onCharacter: 0
+      visualEventsOnFinish: []
       actionType: 0
       baseDamage: 8
       damageType: 1

@@ -29,6 +29,12 @@ public class AudioManager : Singleton<AudioManager>
     [Header("Passive SFX")]
     [SerializeField] private AudioModel[] allPassiveSFX;
 
+    [Header("GUI SFX")]
+    [SerializeField] private AudioModel[] allGuiSFX;
+
+    [Header("Events SFX")]
+    [SerializeField] private AudioModel[] allEventsSFX;
+
     // Initialization 
     #region
     private void Start()
@@ -44,6 +50,8 @@ public class AudioManager : Singleton<AudioManager>
         allAudioModelsList.AddRange(allProjectileSFX);
         allAudioModelsList.AddRange(allExplosionSFX);
         allAudioModelsList.AddRange(allPassiveSFX);
+        allAudioModelsList.AddRange(allGuiSFX);
+        allAudioModelsList.AddRange(allEventsSFX);
 
         // Convert list to array
         allAudioModels = allAudioModelsList.ToArray();
@@ -121,12 +129,6 @@ public class AudioManager : Singleton<AudioManager>
 public enum Sound
 {
     None = 8,
-
-    Card_Draw = 0,
-    Card_Moused_Over = 1,
-    Card_Dragging = 2,
-    Card_Breathe = 3,
-    Card_Discarded = 4,
     
     Ability_Gain_Block = 19,
     Ability_Damaged_Health_Lost = 12,
@@ -136,15 +138,28 @@ public enum Sound
     Ability_Sword_Ching = 16,
     Ability_Fire_Buff = 17,
     Ability_Holy_Buff = 18,
-    Ability_Shadow_Buff = 20,    
+    Ability_Shadow_Buff = 20,
+
+    Card_Draw = 0,
+    Card_Moused_Over = 1,
+    Card_Dragging = 2,
+    Card_Breathe = 3,
+    Card_Discarded = 4,
+
+    Character_Footsteps = 9,
+    Character_Draw_Bow = 10,
+
+    Events_Turn_Change_Notification = 35,
 
     Explosion_Fire_1 = 21,
     Explosion_Shadow_1 = 22,
     Explosion_Lightning_1 = 22,
-    Explosion_Poison_1 = 23,
+    Explosion_Poison_1 = 23,    
 
-    Character_Footsteps = 9,
-    Character_Draw_Bow = 10,
+    GUI_Chime_1 = 31,
+    GUI_Rolling_Bells = 32,
+    GUI_Button_Mouse_Over = 33,
+    GUI_Button_Clicked = 34,
 
     Passive_General_Buff = 5,
     Passive_General_Debuff = 6,

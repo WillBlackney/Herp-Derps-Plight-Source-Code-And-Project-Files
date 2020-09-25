@@ -349,7 +349,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
     // Modify Energy
     #region
-    public void ModifyEnergy(CharacterEntityModel character, int energyGainedOrLost)
+    public void ModifyEnergy(CharacterEntityModel character, int energyGainedOrLost, bool showVFX = false)
     {
         Debug.Log("CharacterEntityController.ModifyEnergy() called for " + character.myName);
         character.energy += energyGainedOrLost;
@@ -358,6 +358,16 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         if (character.energy < 0)
         {
             character.energy = 0;
+        }
+
+        if (showVFX && view != null)
+        {
+            // Status notification
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+            VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Energy +" + energyGainedOrLost.ToString()));
+
+            // Buff sparkle VFX
+            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateGeneralBuffEffect(view.WorldPosition));
         }
 
         VisualEventManager.Instance.CreateVisualEvent(() => UpdateEnergyGUI(view, character.energy), QueuePosition.Back, 0, 0);
@@ -1134,6 +1144,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     public void OnCharacterMouseEnter(CharacterEntityView view)
     {
         Debug.Log("CharacterEntityController.OnCharacterMouseOver() called...");
+
+        // Mouse over SFX
+        AudioManager.Instance.PlaySound(Sound.GUI_Button_Mouse_Over);
 
         // Cancel this if character is dead
         if(view.character == null ||
