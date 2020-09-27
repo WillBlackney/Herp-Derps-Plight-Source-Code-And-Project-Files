@@ -25,7 +25,7 @@ public class DragSpellNoTarget: DraggingActions{
         locationTracker.BringToFront();
 
         // play sfx
-        AudioManager.Instance.FadeInSound(Sound.Card_Dragging, 0.5f);
+        AudioManager.Instance.FadeInSound(Sound.Card_Dragging, 0.2f);
     }
 
     public override void OnDraggingInUpdate()
@@ -38,7 +38,7 @@ public class DragSpellNoTarget: DraggingActions{
         Debug.Log("DragSpellNoTarget.OnEndDrag() called...");
 
         // Stop dragging SFX
-        AudioManager.Instance.FadeOutSound(Sound.Card_Dragging, 0.5f);
+        AudioManager.Instance.FadeOutSound(Sound.Card_Dragging, 0.2f);
 
         // Check if we are holding a card over the table
         if (DragSuccessful())
@@ -48,31 +48,21 @@ public class DragSpellNoTarget: DraggingActions{
         }
         else
         {
-            // TO DO IN FUTURE: make it so the character can make a no target
-            // card return to hand IF IT IS NOT OVER THE TABLE
-            // the logic would go here
-
-            /*
-            Debug.Log("DragSpellNoTarget.OnEndDrag() detected failed drag and drop, returning the card to hand...");
             // Set old sorting order 
-            whereIsCard.Slot = savedHandSlot;
-            if (tag.Contains("Low"))
-                whereIsCard.VisualState = VisualStates.LowHand;
-            else
-                whereIsCard.VisualState = VisualStates.TopHand;
+            locationTracker.Slot = savedHandSlot;
+            locationTracker.VisualState = VisualStates.Hand;
+
             // Move this card back to its slot position
-            HandVisual PlayerHand = playerOwner.PArea.handVisual;
+            HandVisual PlayerHand = cardVM.card.owner.characterEntityView.handVisual;
             Vector3 oldCardPos = PlayerHand.slots.Children[savedHandSlot].transform.localPosition;
-            transform.DOLocalMove(oldCardPos, 1f);
-            */
+            cardVM.mainParent.transform.DOLocalMove(oldCardPos, 0.25f);            
         } 
     }
 
     protected override bool DragSuccessful()
     {
         Debug.Log("DragSpellNoTarget.DragSuccessful() called...");
-        //return TableVisual.CursorOverSomeTable; 
-        return true;
+        return CardController.Instance.IsCursorOverTable();
     }
 
 

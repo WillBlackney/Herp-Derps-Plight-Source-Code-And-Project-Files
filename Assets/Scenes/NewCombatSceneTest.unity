@@ -1826,6 +1826,81 @@ RectTransform:
   m_AnchoredPosition: {x: -32, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &344863971
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1080712268}
+    m_Modifications:
+    - target: {fileID: 4258094989255342213, guid: 2bbbca2e6f097304f8d94cb56aff092f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4258094989255342213, guid: 2bbbca2e6f097304f8d94cb56aff092f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4258094989255342213, guid: 2bbbca2e6f097304f8d94cb56aff092f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4258094989255342213, guid: 2bbbca2e6f097304f8d94cb56aff092f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4258094989255342213, guid: 2bbbca2e6f097304f8d94cb56aff092f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4258094989255342213, guid: 2bbbca2e6f097304f8d94cb56aff092f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4258094989255342213, guid: 2bbbca2e6f097304f8d94cb56aff092f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4258094989255342213, guid: 2bbbca2e6f097304f8d94cb56aff092f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4258094989255342213, guid: 2bbbca2e6f097304f8d94cb56aff092f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4258094989255342213, guid: 2bbbca2e6f097304f8d94cb56aff092f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4258094989255342213, guid: 2bbbca2e6f097304f8d94cb56aff092f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4258094989255342219, guid: 2bbbca2e6f097304f8d94cb56aff092f,
+        type: 3}
+      propertyPath: m_Name
+      value: Targetting Arrow
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2bbbca2e6f097304f8d94cb56aff092f, type: 3}
+--- !u!4 &344863972 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4258094989255342213, guid: 2bbbca2e6f097304f8d94cb56aff092f,
+    type: 3}
+  m_PrefabInstance: {fileID: 344863971}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &362006293
 GameObject:
   m_ObjectHideFlags: 0
@@ -2425,6 +2500,7 @@ GameObject:
   m_Component:
   - component: {fileID: 555152579}
   - component: {fileID: 555152580}
+  - component: {fileID: 555152581}
   m_Layer: 0
   m_Name: Card Controller
   m_TagString: Untagged
@@ -2460,9 +2536,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
   cardTransistionSpeed: 0.25
+  tableCollider: {fileID: 0}
+  mouseIsOverTable: 0
   allCards:
   - {fileID: 11400000, guid: 648ee25c51574a74983929772bcecb4d, type: 2}
   - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
+--- !u!61 &555152581
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555152578}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 1}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 20, y: 7.5}
+  m_EdgeRadius: 0
 --- !u!1 &557062746
 GameObject:
   m_ObjectHideFlags: 0
@@ -5602,6 +5706,7 @@ Transform:
   - {fileID: 1020706115}
   - {fileID: 937172827}
   - {fileID: 1859064809}
+  - {fileID: 344863972}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

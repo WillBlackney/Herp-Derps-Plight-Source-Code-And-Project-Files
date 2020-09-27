@@ -29,15 +29,22 @@ public class DragSpellOnTarget : DraggingActions {
         Debug.Log("DragSpellOnTarget.OnStartDrag() called...");
         tempVisualState = locationTracker.VisualState;
         locationTracker.VisualState = VisualStates.Dragging;
-        sr.enabled = true;
-        lr.enabled = true;
+       // sr.enabled = true;
+      //  lr.enabled = true;
+
+        // enable targetting arrow
+        TargettingArrow.Instance.EnableArrow(cardVM);
+
+        // move to play preview spot
+        CardController.Instance.MoveCardVMToPlayPreviewSpot(cardVM);
 
         // play sfx
-        AudioManager.Instance.FadeInSound(Sound.Card_Dragging, 0.5f);
+        AudioManager.Instance.FadeInSound(Sound.Card_Dragging, 0.2f);
     }
 
     public override void OnDraggingInUpdate()
     {
+        /*
         Vector3 notNormalized = transform.position - transform.parent.position;
         Vector3 direction = notNormalized.normalized;
         float distanceToTarget = (direction*2.3f).magnitude;
@@ -61,6 +68,7 @@ public class DragSpellOnTarget : DraggingActions {
             lr.enabled = false;
             triangleSR.enabled = false;
         }
+        */
 
     }
     public override void OnEndDrag()
@@ -68,7 +76,7 @@ public class DragSpellOnTarget : DraggingActions {
         Debug.Log("DragSpellOnTarget.OnEndDrag() called...");
 
         // Stop dragging SFX
-        AudioManager.Instance.FadeOutSound(Sound.Card_Dragging, 0.5f);
+        AudioManager.Instance.FadeOutSound(Sound.Card_Dragging, 0.2f);
 
         // Set up
         CharacterEntityModel target = null;
@@ -76,9 +84,9 @@ public class DragSpellOnTarget : DraggingActions {
         Card card = cardVM.card;
 
         // Raycast from cam to mouse
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = CameraManager.Instance.MainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit[] hits;
-        hits = Physics.RaycastAll(Camera.main.ScreenPointToRay(Input.mousePosition), 1000.0f);
+        hits = Physics.RaycastAll(CameraManager.Instance.MainCamera.ScreenPointToRay(Input.mousePosition), 1000.0f);
 
         // Get Character views from raycast hits
         foreach (RaycastHit h in hits)
@@ -123,9 +131,15 @@ public class DragSpellOnTarget : DraggingActions {
         // Did we hit a valid target?
         if (!targetValid)
         {
+            Debug.LogWarning("Didnt hit a valid target");
             // not a valid target, return
             locationTracker.VisualState = tempVisualState;
             locationTracker.SetHandSortingOrder();
+
+            // Move this card back to its slot position
+            HandVisual PlayerHand = cardVM.card.owner.characterEntityView.handVisual;
+            Vector3 oldCardPos = PlayerHand.slots.Children[locationTracker.Slot].transform.localPosition;
+            cardVM.mainParent.DOLocalMove(oldCardPos, 0.25f);
         }
         else
         {
@@ -133,15 +147,20 @@ public class DragSpellOnTarget : DraggingActions {
             CardController.Instance.PlayCardFromHand(card, target);
         }
 
+        TargettingArrow.Instance.DisableArrow();
+
         // return target and arrow to original position
         // this position is special for spell cards to show the arrow on top
+       
         transform.localPosition = new Vector3(0f, 0f, -0.1f);
-        sr.enabled = false;
-        lr.enabled = false;
-        triangleSR.enabled = false;
+        /*
+       sr.enabled = false;
+       lr.enabled = false;
+       triangleSR.enabled = false;
+       */
 
     }
-   
+
     // NOT USED IN THIS SCRIPT
     protected override bool DragSuccessful()
     {

@@ -127,8 +127,6 @@ public class VisualEventManager : Singleton<VisualEventManager>
             }
         }
 
-        Debug.LogWarning("Inserting event at batched event index: " + (index + 1).ToString());
-
         eventQueue.Insert(index + 1, ve);
     }
     #endregion

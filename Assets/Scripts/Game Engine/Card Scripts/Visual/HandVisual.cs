@@ -14,6 +14,7 @@ public class HandVisual : MonoBehaviour
     public Transform DeckTransform;
     public Transform DiscardPileTransform;
     public Transform NonDeckCardCreationTransform;
+    public Transform PlayPreviewSpot;
 
     [Header("Variables")]
     private List<GameObject> cardsInHand = new List<GameObject>();

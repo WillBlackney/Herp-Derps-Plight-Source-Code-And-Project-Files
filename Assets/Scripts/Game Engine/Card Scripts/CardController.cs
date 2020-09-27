@@ -11,6 +11,8 @@ public class CardController : Singleton<CardController>
     #region
     [Header("Card Properties")]
     [SerializeField] private float cardTransistionSpeed;
+    [SerializeField] private BoxCollider2D tableCollider;
+    [SerializeField] private bool mouseIsOverTable;
 
     [Header("Card Library Properties")]
     [SerializeField] private List<CardDataSO> allCards;
@@ -470,6 +472,7 @@ public class CardController : Singleton<CardController>
 
         return boolReturned;
     }
+   
     #endregion
 
     // Playing Cards Logic
@@ -1097,7 +1100,21 @@ public class CardController : Singleton<CardController>
     }
     #endregion
 
-    // Colouring Logic
+    // Table Logic
+    #region
+    public bool IsCursorOverTable()
+    {
+        return mouseIsOverTable;
+    }
+    private void OnMouseOver()
+    {
+        mouseIsOverTable = true;
+    }
+    private void OnMouseExit()
+    {
+        mouseIsOverTable = false;
+    }
+    #endregion
 
 
     // Visual Events
@@ -1180,6 +1197,12 @@ public class CardController : Singleton<CardController>
         s.Append(cvm.mainParent.DOMove(discardPileLocation.position, 0.5f));
 
         return s;
+    }
+    public void MoveCardVMToPlayPreviewSpot(CardViewModel cvm)
+    {
+        Transform location = cvm.card.owner.characterEntityView.handVisual.PlayPreviewSpot;
+        Sequence s = DOTween.Sequence();
+        s.Append(cvm.mainParent.DOMove(location.position, 0.25f));
     }
     private void PlayCardBreathAnimationVisualEvent(CardViewModel cvm)
     {
