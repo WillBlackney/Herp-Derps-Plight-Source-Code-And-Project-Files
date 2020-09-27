@@ -16,7 +16,7 @@ MonoBehaviour:
   maxHealth: 30
   power: 0
   dexterity: 0
-  initiative: 3
+  initiative: 1
   startingHealth: 20
   startingBlock: 0
   physicalResistance: 0
@@ -99,6 +99,24 @@ MonoBehaviour:
         delayDuration: 0
         projectileFired: 0
         onCharacter: 0
+      - eventType: 5
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 16
+        characterAnimation: 0
+        delayDuration: 0
+        projectileFired: 0
+        onCharacter: 0
+      - eventType: 3
+        particleEffect: 2
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0
+        projectileFired: 0
+        onCharacter: 5
       visualEventsOnFinish: []
       actionType: 1
       baseDamage: 5

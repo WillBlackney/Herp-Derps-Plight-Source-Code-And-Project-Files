@@ -404,11 +404,13 @@ public class CombatLogic : Singleton<CombatLogic>
 
         // play impact VFX        
         // TO DO: implement logic that makes enemies also consider if their attack is a melee attack
+        /*
         if (card != null &&
             card.cardType == CardType.MeleeAttack)
         {
             VisualEventManager.Instance.CreateVisualEvent(()=> VisualEffectManager.Instance.CreateSmallMeleeImpact(victim.characterEntityView.transform.position), queuePosition, 0, 0, EventDetail.None, batchedEvent);
         }
+        */
         
 
         // Check for no block

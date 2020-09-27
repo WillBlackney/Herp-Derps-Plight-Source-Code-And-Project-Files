@@ -23,12 +23,24 @@ public class TargettingArrow : Singleton<TargettingArrow>
     {
         for (var i = 0; i < NumPartsTargetingArrow - 1; i++)
         {
-            var body = Instantiate(bodyPrefab, gameObject.transform);
+            GameObject body;
+
+            // new head pos.
+            if(i == 15)
+            {
+                body = Instantiate(headPrefab, gameObject.transform);
+            }
+            else
+            {
+                body = Instantiate(bodyPrefab, gameObject.transform);
+            }
+           
             arrow.Add(body);
         }
 
         var head = Instantiate(headPrefab, gameObject.transform);
         arrow.Add(head);
+        head.GetComponent<SpriteRenderer>().enabled = false;
 
         foreach (var part in arrow)
             part.SetActive(false);
@@ -107,9 +119,17 @@ public class TargettingArrow : Singleton<TargettingArrow>
 
             part.transform.rotation = Quaternion.Euler(0, 0, -Mathf.Atan2(lenX, lenY) * Mathf.Rad2Deg);
 
+            // override scaling for new arrow head
+            float scale = 1f;
+
+            if(i == 15)
+            {
+                scale = 0.7f;
+            }
+
             part.transform.localScale = new Vector3(
-                1.0f - 0.03f * (arrow.Count - 1 - i),
-                1.0f - 0.03f * (arrow.Count - 1 - i),
+                scale - 0.03f * (arrow.Count - 1 - i),
+                scale - 0.03f * (arrow.Count - 1 - i),
                 0);
         }
     }

@@ -116,6 +116,7 @@ public class VisualEventManager : Singleton<VisualEventManager>
     }
     private void AddEventAfterBatchedEvent(VisualEvent ve, VisualEvent batchedEvent)
     {
+        /*
         int index = 0;
 
         for (int i = 0; i < eventQueue.Count; i++)
@@ -128,6 +129,9 @@ public class VisualEventManager : Singleton<VisualEventManager>
         }
 
         eventQueue.Insert(index + 1, ve);
+        */
+        int index = eventQueue.IndexOf(batchedEvent) + 1;
+        eventQueue.Insert(index, ve);
     }
     #endregion
 
@@ -207,10 +211,6 @@ public class VisualEventManager : Singleton<VisualEventManager>
         {
             AddEventToFrontOfQueue(vEvent);
         }
-        else if (position == QueuePosition.AfterNextCoroutine)
-        {
-            AddEventAfterNextCoroutine(vEvent);
-        }
 
         return vEvent;
     }
@@ -220,7 +220,6 @@ public class VisualEventManager : Singleton<VisualEventManager>
     #region
     public bool PendingCardDrawEvent()
     {
-        //Debug.Log("VisualEventManager.PendingCardDrawEvent() called...");
         bool boolReturned = false;
         foreach(VisualEvent ve in eventQueue)
         {
@@ -231,12 +230,10 @@ public class VisualEventManager : Singleton<VisualEventManager>
             }
         }
 
-        //Debug.Log("VisualEventManager.PendingCardDrawEvent() returning: " + boolReturned.ToString());
         return boolReturned;
     }
     public bool PendingDefeatEvent()
     {
-        //Debug.Log("VisualEventManager.PendingDefeatEvent() called...");
         bool boolReturned = false;
         foreach (VisualEvent ve in eventQueue)
         {
@@ -252,7 +249,6 @@ public class VisualEventManager : Singleton<VisualEventManager>
     }
     public bool PendingVictoryEvent()
     {
-        //Debug.Log("VisualEventManager.PendingVictoryEvent() called...");
         bool boolReturned = false;
         foreach (VisualEvent ve in eventQueue)
         {
