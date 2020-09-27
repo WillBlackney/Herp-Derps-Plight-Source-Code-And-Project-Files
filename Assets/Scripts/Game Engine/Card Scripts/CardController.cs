@@ -364,9 +364,8 @@ public class CardController : Singleton<CardController>
         // does the card have a cardVM linked to it?
         if (cvm)
         {
-            // it does, play discard anim animation.
-            // TO DO: create an expend animation, and play it here
-            VisualEventManager.Instance.CreateVisualEvent(() => DiscardCardFromHandVisualEvent(cvm, owner), 0, 0.1f);
+            // VisualEventManager.Instance.CreateVisualEvent(() => ExpendCardVisualEvent(cvm, owner), QueuePosition.Front);
+            ExpendCardVisualEvent(cvm, owner);
         }
 
         OnCardExpended(card);
@@ -524,7 +523,8 @@ public class CardController : Singleton<CardController>
             if (cardVM)
             {
                 // to do: create 'play power' anim
-                VisualEventManager.Instance.CreateVisualEvent(() => PlayACardFromHandVisualEvent(cardVM, owner.characterEntityView));
+                //VisualEventManager.Instance.CreateVisualEvent(() => PlayACardFromHandVisualEvent(cardVM, owner.characterEntityView), QueuePosition.Front);
+                PlayACardFromHandVisualEvent(cardVM, owner.characterEntityView);
             }
         }
 
@@ -540,7 +540,8 @@ public class CardController : Singleton<CardController>
 
             if (cardVM)
             {
-                VisualEventManager.Instance.CreateVisualEvent(() => PlayACardFromHandVisualEvent(cardVM, owner.characterEntityView));
+                //VisualEventManager.Instance.CreateVisualEvent(() => PlayACardFromHandVisualEvent(cardVM, owner.characterEntityView), QueuePosition.Front);
+                PlayACardFromHandVisualEvent(cardVM, owner.characterEntityView);
             }
            
         }
@@ -1068,6 +1069,7 @@ public class CardController : Singleton<CardController>
 
         
         if(card.owner.pManager != null && 
+            card.cardType == CardType.MeleeAttack &&
             card.owner.pManager.meleeAttackReductionStacks > 0)
         {
             costReturned -= card.owner.pManager.meleeAttackReductionStacks;
@@ -1136,6 +1138,21 @@ public class CardController : Singleton<CardController>
         clt.Slot = 0;
         clt.VisualState = VisualStates.Transition;
 
+        // Start SFX
+        AudioManager.Instance.PlaySound(Sound.Card_Draw);
+
+        // Shrink card, then scale up as it moves to hand
+
+        // Get starting scale
+        Vector3 originalScale = new Vector3
+            (cardVM.mainParent.transform.localScale.x, cardVM.mainParent.transform.localScale.y, cardVM.mainParent.transform.localScale.z);
+
+        // Shrink card
+        cardVM.mainParent.transform.localScale = new Vector3(0.1f, 0.1f, cardVM.mainParent.transform.localScale.z);
+
+        // Scale up
+        cardVM.mainParent.DOScale(originalScale, cardTransistionSpeed).SetEase(Ease.OutQuint);
+
         // move card to the hand;
         Sequence s = DOTween.Sequence();
 
@@ -1164,6 +1181,18 @@ public class CardController : Singleton<CardController>
         // Start SFX
         AudioManager.Instance.PlaySound(Sound.Card_Draw);
 
+        // Shrink card, then scale up as it moves to hand
+
+        // Get starting scale
+        Vector3 originalScale = new Vector3
+            (cardVM.mainParent.transform.localScale.x, cardVM.mainParent.transform.localScale.y, cardVM.mainParent.transform.localScale.z);
+
+        // Shrink card
+        cardVM.mainParent.transform.localScale = new Vector3(0.1f, 0.1f, cardVM.mainParent.transform.localScale.z);
+
+        // Scale up
+        cardVM.mainParent.DOScale(originalScale, cardTransistionSpeed).SetEase(Ease.OutQuint);
+
         // move card to the hand;
         Sequence s = DOTween.Sequence();
 
@@ -1180,9 +1209,13 @@ public class CardController : Singleton<CardController>
         // SFX
         AudioManager.Instance.PlaySound(Sound.Card_Discarded);
 
+        float startScale = cvm.mainParent.localScale.x;
+        float endScale = 0.5f;
+        float animSpeed = 0.5f;
+        cvm.mainParent.DOScale(endScale, animSpeed).SetEase(Ease.OutQuint);
+
         // move card to the discard pile
         Sequence s = MoveCardVmFromHandToDiscardPile(cvm, character.characterEntityView.handVisual.DiscardPileTransform);
-        //s.Append(cvm.transform.DOMove(character.characterEntityView.handVisual.DiscardPileTransform, 0.5f));
 
         // Once the anim is finished, destroy the CVM 
         s.OnComplete(() => DestroyCardViewModel(cvm));
@@ -1197,6 +1230,45 @@ public class CardController : Singleton<CardController>
         s.Append(cvm.mainParent.DOMove(discardPileLocation.position, 0.5f));
 
         return s;
+    }   
+    private void ExpendCardVisualEvent(CardViewModel cvm, CharacterEntityModel character)
+    {
+        // remove from hand visual
+        character.characterEntityView.handVisual.RemoveCard(cvm.mainParent.gameObject);
+
+        // SFX
+        AudioManager.Instance.PlaySound(Sound.Explosion_Fire_1);
+
+        // TO DO: fade out card canvas gradually
+        FadeOutCardViewModel(cvm, null, ()=> DestroyCardViewModel(cvm));
+
+        // Create smokey effect
+        VisualEffectManager.Instance.CreateExpendEffect(cvm.mainParent.transform.position);
+    }
+    private void FadeOutCardViewModel(CardViewModel cvm, CoroutineData cData, Action onCompleteCallBack = null)
+    {
+        StartCoroutine(FadeOutCardViewModelCoroutine(cvm, cData, onCompleteCallBack));
+    }
+    private IEnumerator FadeOutCardViewModelCoroutine(CardViewModel cvm, CoroutineData cData, Action onCompleteCallBack)
+    {
+        float fadeSpeed = 1f;
+
+        while(cvm.cg.alpha > 0)
+        {
+            cvm.cg.alpha -= fadeSpeed * Time.deltaTime;
+            yield return null;
+        }
+
+        if(cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+
+        if (onCompleteCallBack != null)
+        {
+            onCompleteCallBack.Invoke();
+        }
+       
     }
     public void MoveCardVMToPlayPreviewSpot(CardViewModel cvm)
     {
@@ -1228,11 +1300,17 @@ public class CardController : Singleton<CardController>
 
         // Set state and remove from hand visual
         cvm.locationTracker.VisualState = VisualStates.Transition;
+        //cvm.mainParent.SetParent(null);
         view.handVisual.RemoveCard(cvm.mainParent.gameObject);
         cvm.mainParent.SetParent(null);
 
         // SFX
         AudioManager.Instance.PlaySound(Sound.Card_Discarded);
+
+        float startScale = cvm.mainParent.localScale.x;
+        float endScale = 0.5f;
+        float animSpeed = 0.5f;
+        cvm.mainParent.DOScale(endScale, animSpeed).SetEase(Ease.OutQuint);
 
         // Move card
         Sequence seqOne = DOTween.Sequence();

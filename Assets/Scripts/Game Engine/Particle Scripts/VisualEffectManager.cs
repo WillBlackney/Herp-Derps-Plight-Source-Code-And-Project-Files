@@ -8,6 +8,9 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
     [Header("Properties")]
     public int campsiteVfxSortingLayer;
 
+    [Header("Card VFX Prefab References")]
+    public GameObject ExpendEffectPrefab;
+
     [Header("VFX Prefab References")]
     public GameObject DamageEffectPrefab;
     public GameObject StatusEffectPrefab;
@@ -1177,6 +1180,17 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
     }
     #endregion
 
+    // CARD FX
+    #region
+    // General Buff
+    public void CreateExpendEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(ExpendEffectPrefab, location, ExpendEffectPrefab.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+        AudioManager.Instance.PlaySound(Sound.Explosion_Fire_1);
+    }
+    #endregion
     // GENERAL FX
     #region
 

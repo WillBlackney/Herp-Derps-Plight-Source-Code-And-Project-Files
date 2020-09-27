@@ -39,6 +39,7 @@ public class CardViewModel : MonoBehaviour
 
     [Header("Canvas References")]
     public Canvas canvas;
+    public CanvasGroup cg;
     #endregion
 
     private void OnEnable()

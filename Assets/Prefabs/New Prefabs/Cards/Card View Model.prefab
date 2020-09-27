@@ -2085,10 +2085,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8798495303511279662}
+  - component: {fileID: 434137997889915102}
   - component: {fileID: 8798071437363213220}
+  - component: {fileID: 6817383806523855962}
   - component: {fileID: 8688644794246654566}
   - component: {fileID: 8688644792874207458}
-  - component: {fileID: 434137997889915102}
   m_Layer: 5
   m_Name: Card View Model
   m_TagString: Untagged
@@ -2116,6 +2117,42 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 400, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &434137997889915102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8719755639736460736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dce8cdaa7a33aad42b6bb02910bcc52b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainParent: {fileID: 0}
+  myPreviewCard: {fileID: 0}
+  isPreviewCard: 0
+  locationTracker: {fileID: 0}
+  draggingActions: {fileID: 0}
+  draggable: {fileID: 0}
+  hoverPreview: {fileID: 0}
+  nameText: {fileID: 8785619405684675985}
+  descriptionText: {fileID: 7441281725316709466}
+  energyText: {fileID: 3921468461960682075}
+  graphicImage: {fileID: 8688644795446371602}
+  talentSchoolImage: {fileID: 1083204870089020803}
+  cardTypeImage: {fileID: 1027898923275888366}
+  talentSchoolParent: {fileID: 2029414629736561417}
+  talentRenderers:
+  - {fileID: 617415800158423811}
+  - {fileID: 5914775804615397183}
+  - {fileID: 3020302516707136508}
+  - {fileID: 4078746338460060198}
+  rarityRenderers:
+  - {fileID: 3006904464164090457}
+  - {fileID: 1463989514377120598}
+  canvas: {fileID: 8798071437363213220}
+  cg: {fileID: 6817383806523855962}
 --- !u!223 &8798071437363213220
 Canvas:
   m_ObjectHideFlags: 0
@@ -2137,6 +2174,18 @@ Canvas:
   m_SortingLayerID: -997095313
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!225 &6817383806523855962
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8719755639736460736}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!114 &8688644794246654566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2176,41 +2225,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 55
---- !u!114 &434137997889915102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8719755639736460736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dce8cdaa7a33aad42b6bb02910bcc52b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainParent: {fileID: 0}
-  myPreviewCard: {fileID: 0}
-  isPreviewCard: 0
-  locationTracker: {fileID: 0}
-  draggingActions: {fileID: 0}
-  draggable: {fileID: 0}
-  hoverPreview: {fileID: 0}
-  nameText: {fileID: 8785619405684675985}
-  descriptionText: {fileID: 7441281725316709466}
-  energyText: {fileID: 3921468461960682075}
-  graphicImage: {fileID: 8688644795446371602}
-  talentSchoolImage: {fileID: 1083204870089020803}
-  cardTypeImage: {fileID: 1027898923275888366}
-  talentSchoolParent: {fileID: 2029414629736561417}
-  talentRenderers:
-  - {fileID: 617415800158423811}
-  - {fileID: 5914775804615397183}
-  - {fileID: 3020302516707136508}
-  - {fileID: 4078746338460060198}
-  rarityRenderers:
-  - {fileID: 3006904464164090457}
-  - {fileID: 1463989514377120598}
-  canvas: {fileID: 8798071437363213220}
 --- !u!1 &8719755640443806362
 GameObject:
   m_ObjectHideFlags: 0

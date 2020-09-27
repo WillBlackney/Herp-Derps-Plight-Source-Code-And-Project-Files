@@ -5378,6 +5378,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
   campsiteVfxSortingLayer: 2100
+  ExpendEffectPrefab: {fileID: 3000056926127561894, guid: 6c76695e930be2d4ca459942c1886c96,
+    type: 3}
   DamageEffectPrefab: {fileID: 4231728771203878851, guid: 41e0b29e8e16a2d43b3dbfde09abfee8,
     type: 3}
   StatusEffectPrefab: {fileID: 5797780097810648835, guid: 6830b51eb051664429c60f70a0a2b6d9,
@@ -6039,11 +6041,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
   runMockScene: 1
-  testingEnemyWave: {fileID: 11400000, guid: a925a91cb3c75e64cadf1f518e9a621e, type: 2}
+  testingEnemyWave: {fileID: 11400000, guid: 196d21c94a6e94b42ab0250cb4bedcdd, type: 2}
   characterTemplates:
-  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
-  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
-  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
+  - {fileID: 11400000, guid: 1d0339b9767137d4a8b3c1e5af99a706, type: 2}
+  - {fileID: 11400000, guid: b032cf78d33b0f2459c4af64779ad485, type: 2}
+  - {fileID: 11400000, guid: 11330c0f179f1fb49b8fc2aac3fe768b, type: 2}
   characterDataSample:
     myName: Test
     serializedPassiveManager:
