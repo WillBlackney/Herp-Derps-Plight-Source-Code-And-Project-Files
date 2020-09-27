@@ -681,7 +681,10 @@ public class CardController : Singleton<CardController>
         // Deal Damage All Enemies
         else if (cardEffect.cardEffectType == CardEffectType.DamageAllEnemies)
         {
-            foreach(CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
+
+            VisualEvent batchedEvent = VisualEventManager.Instance.InsertTimeDelayInQueue(0f);
+
+            foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
             {
                 // Calculate damage
                 DamageType damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(owner, cardEffect, card);
@@ -705,7 +708,7 @@ public class CardController : Singleton<CardController>
                 int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, enemy, damageType, false, baseDamage, card, cardEffect);
 
                 // Start damage sequence
-                CombatLogic.Instance.HandleDamage(finalDamageValue, owner, enemy, damageType, card);
+                CombatLogic.Instance.HandleDamage(finalDamageValue, owner, enemy, damageType, card, null, false, QueuePosition.BatchedEvent, batchedEvent);
             }            
         }
 

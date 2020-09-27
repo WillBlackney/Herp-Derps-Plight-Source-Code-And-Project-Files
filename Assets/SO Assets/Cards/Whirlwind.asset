@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Whirlwind
   cardDescription: "Deal 5 Physical Damage to all enemies. \n2H: Draw 1 card. "
-  cardSprite: {fileID: 21300000, guid: 7c6aefc7061f21e43848090af8b5c404, type: 3}
+  cardSprite: {fileID: 21300000, guid: ad8fbb614fb12194f9c879d370c80a91, type: 3}
   cardEnergyCost: 2
   cardType: 2
   targettingType: 0

@@ -2237,7 +2237,7 @@ MonoBehaviour:
   warfareBadge: {fileID: 21300000, guid: d79d7c807a1112f4e9a4f165f5df7283, type: 3}
   guardianBadge: {fileID: 21300000, guid: ea193ae409b689c4f8233c186670edf7, type: 3}
   scoundrelBadge: {fileID: 21300000, guid: ecffc089e4044704e9f33e0a78a0e1f8, type: 3}
-  rangerBadge: {fileID: 21300000, guid: 7891865a47173a54fa69115dd81dcaaa, type: 3}
+  rangerBadge: {fileID: 21300000, guid: 6c7d864bda1e52e42ae4bb0c71c5e48d, type: 3}
   pyromaniaBadge: {fileID: 21300000, guid: c422d203c6d006342aa5407dd3fec0fd, type: 3}
   divinityBadge: {fileID: 21300000, guid: 8efaf761c7d4a97479eb0769e54b9fb8, type: 3}
   shadowCraftBadge: {fileID: 21300000, guid: 873b1ed9c6b93134fba967014bdd0369, type: 3}
@@ -2256,10 +2256,10 @@ MonoBehaviour:
   purpleDebuff: {fileID: 21300000, guid: 05053a0620851bc41ab7c64b7a4ecf87, type: 3}
   unknown: {fileID: 21300000, guid: c359661e98a82ba4db1393090f4fdeac, type: 3}
   flee: {fileID: 21300000, guid: b2ba2911e4d196a47a1d6567cad57a64, type: 3}
-  meleeAttack: {fileID: 21300000, guid: c9f0f55c4f1e50046b1c701d23111c09, type: 3}
-  rangedAttack: {fileID: 21300000, guid: 967c3c016f326844abc482a90cfb1ed9, type: 3}
-  skill: {fileID: 21300000, guid: 89f5eeeb59ee72c4084e2336cc3addb0, type: 3}
-  power: {fileID: 21300000, guid: d62fe2743cf30c1499f022e909bfc0f8, type: 3}
+  meleeAttack: {fileID: 21300000, guid: 7fc1c926f4f7f1440a42104aec0f54a5, type: 3}
+  rangedAttack: {fileID: 21300000, guid: 850f776f8097a3c40b8b9d14adf74c04, type: 3}
+  skill: {fileID: 21300000, guid: b5b94ac2d0df7324eaf48d4f4a568765, type: 3}
+  power: {fileID: 21300000, guid: d84ee2b65fb202845ae7822ca0fa973a, type: 3}
 --- !u!1 &437334439
 GameObject:
   m_ObjectHideFlags: 0
@@ -5934,11 +5934,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
   runMockScene: 1
-  testingEnemyWave: {fileID: 11400000, guid: 196d21c94a6e94b42ab0250cb4bedcdd, type: 2}
+  testingEnemyWave: {fileID: 11400000, guid: a925a91cb3c75e64cadf1f518e9a621e, type: 2}
   characterTemplates:
-  - {fileID: 11400000, guid: 8d4ecf2085d9be843b2d44cb7360b5d7, type: 2}
-  - {fileID: 11400000, guid: 1d0339b9767137d4a8b3c1e5af99a706, type: 2}
-  - {fileID: 11400000, guid: b032cf78d33b0f2459c4af64779ad485, type: 2}
+  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
+  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
+  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
   characterDataSample:
     myName: Test
     serializedPassiveManager:

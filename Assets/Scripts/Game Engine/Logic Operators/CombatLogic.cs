@@ -351,8 +351,8 @@ public class CombatLogic : Singleton<CombatLogic>
 
     // Handle damage + death
     #region   
-    public void HandleDamage(int damageAmount, CharacterEntityModel attacker, CharacterEntityModel victim, DamageType damageType, Card card = null, EnemyActionEffect enemyEffect = null, bool ignoreBlock = false)
-    {
+    public void HandleDamage(int damageAmount, CharacterEntityModel attacker, CharacterEntityModel victim, DamageType damageType, Card card = null, EnemyActionEffect enemyEffect = null, bool ignoreBlock = false, QueuePosition queuePosition = QueuePosition.Back, VisualEvent batchedEvent = null)
+    { 
         // Debug setup
         string cardNameString = "None";
         string attackerName = "No Attacker";
@@ -407,8 +407,7 @@ public class CombatLogic : Singleton<CombatLogic>
         if (card != null &&
             card.cardType == CardType.MeleeAttack)
         {
-            Debug.Log("MELEE ATTACK VFX START");
-            VisualEventManager.Instance.CreateVisualEvent(()=> VisualEffectManager.Instance.CreateSmallMeleeImpact(victim.characterEntityView.transform.position));
+            VisualEventManager.Instance.CreateVisualEvent(()=> VisualEffectManager.Instance.CreateSmallMeleeImpact(victim.characterEntityView.transform.position), queuePosition, 0, 0, EventDetail.None, batchedEvent);
         }
         
 
@@ -481,22 +480,11 @@ public class CombatLogic : Singleton<CombatLogic>
         // Play VFX depending on whether the victim lost health, block, or was damaged by poison
         if (adjustedDamageValue > 0)
         {
-            // Shake camera based on damage taken
-            /*
-            if(adjustedDamageValue >= 1 && adjustedDamageValue <= 10)
-            {
-                VisualEventManager.Instance.CreateVisualEvent(()=> CameraManager.Instance.CreateSmallCameraShake());
-            }
-            else if (adjustedDamageValue >= 11)
-            {
-                VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateMediumCameraShake());
-            }
-            */
-
             if (totalLifeLost == 0 && blockAfter < startingBlock)
             {
                 // Create Lose Armor Effect
-                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateLoseBlockEffect(victim.characterEntityView.transform.position, adjustedDamageValue));
+                VisualEventManager.Instance.CreateVisualEvent(() => 
+                VisualEffectManager.Instance.CreateLoseBlockEffect(victim.characterEntityView.transform.position, adjustedDamageValue), queuePosition, 0, 0, EventDetail.None, batchedEvent);
                 
             }
             else if (totalLifeLost > 0)
@@ -504,13 +492,16 @@ public class CombatLogic : Singleton<CombatLogic>
                 // Play hurt animation
                 if (victim.health > 0 && totalLifeLost > 0)
                 {
-                    VisualEventManager.Instance.CreateVisualEvent(()=> CharacterEntityController.Instance.PlayHurtAnimation(victim.characterEntityView));
+                    VisualEventManager.Instance.CreateVisualEvent(()=> 
+                    CharacterEntityController.Instance.PlayHurtAnimation(victim.characterEntityView), queuePosition, 0, 0, EventDetail.None, batchedEvent);
                 }
 
                 // Create Lose hp / damage effect
-                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateDamageEffect(victim.characterEntityView.transform.position, totalLifeLost));
-                VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Ability_Damaged_Health_Lost));
+                VisualEventManager.Instance.CreateVisualEvent(() => 
+                VisualEffectManager.Instance.CreateDamageEffect(victim.characterEntityView.transform.position, totalLifeLost), queuePosition, 0, 0, EventDetail.None, batchedEvent);
 
+                VisualEventManager.Instance.CreateVisualEvent(() => 
+                AudioManager.Instance.PlaySound(Sound.Ability_Damaged_Health_Lost), queuePosition, 0, 0, EventDetail.None, batchedEvent);
                 
             }
         }

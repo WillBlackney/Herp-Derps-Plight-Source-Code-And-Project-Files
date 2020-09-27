@@ -38,7 +38,7 @@ MonoBehaviour:
     temporaryBonusStaminaStacks: 0
     temporaryBonusInitiativeStacks: 0
     temporaryBonusDrawStacks: 0
-    enrageStacks: 0
+    enrageStacks: 2
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
     phoenixFormStacks: 0
@@ -55,9 +55,9 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 042a64b08314c504b9cc15a2e47d5cba, type: 2}
-  - {fileID: 11400000, guid: 042a64b08314c504b9cc15a2e47d5cba, type: 2}
-  - {fileID: 11400000, guid: 042a64b08314c504b9cc15a2e47d5cba, type: 2}
+  - {fileID: 11400000, guid: ef2b9ffdee54c0a48adddcc159a622a3, type: 2}
+  - {fileID: 11400000, guid: ef2b9ffdee54c0a48adddcc159a622a3, type: 2}
+  - {fileID: 11400000, guid: ef2b9ffdee54c0a48adddcc159a622a3, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1

@@ -263,6 +263,8 @@ public enum QueuePosition
 {
     Front = 0,
     Back = 1,
+    AfterNextCoroutine = 2,
+    BatchedEvent = 3,
 }
 #endregion
 

@@ -1616,6 +1616,8 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Attack All Enemies
         else if (effect.actionType == ActionType.AttackAllEnemies)
         {
+            VisualEvent batchedEvent = VisualEventManager.Instance.InsertTimeDelayInQueue(0f);
+
             foreach (CharacterEntityModel enemyCharacter in GetAllEnemiesOfCharacter(enemy))
             {
                 if (enemyCharacter != null &&
@@ -1626,7 +1628,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
                     int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, enemyCharacter, damageType, false, effect.baseDamage, null, null, effect);
 
                     // Start damage sequence
-                    CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, enemyCharacter, damageType, null, effect);
+                    CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, enemyCharacter, damageType, null, effect, false, QueuePosition.BatchedEvent, batchedEvent);
                 }
             }                
         }

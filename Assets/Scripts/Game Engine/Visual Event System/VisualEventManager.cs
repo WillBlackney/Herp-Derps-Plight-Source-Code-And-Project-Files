@@ -10,6 +10,7 @@ public class VisualEventManager : Singleton<VisualEventManager>
     [SerializeField] private float startDelayExtra;
     [SerializeField] private float endDelayExtra;
     private bool paused;
+    private bool currentEventPlaying;
     #endregion
 
     // Misc Logic
@@ -31,13 +32,16 @@ public class VisualEventManager : Singleton<VisualEventManager>
     {
         if (eventQueue.Count > 0 &&
             eventQueue[0].isPlaying == false &&
-            paused == false)
+            paused == false &&
+            currentEventPlaying == false)
         {
             PlayEventFromQueue(eventQueue[0]);
         }
     }
     private IEnumerator PlayEventFromQueueCoroutine(VisualEvent ve)
     {
+        currentEventPlaying = true;
+
         // Start Delay    
         if(ve.startDelay > 0)
         {
@@ -64,6 +68,7 @@ public class VisualEventManager : Singleton<VisualEventManager>
 
         // Remove from queue
         RemoveEventFromQueue(ve);
+        currentEventPlaying = false;
 
         // Start next event
         PlayNextEventFromQueue();
@@ -75,24 +80,62 @@ public class VisualEventManager : Singleton<VisualEventManager>
     #region
     private void RemoveEventFromQueue(VisualEvent ve)
     {
-        //Debug.Log("VisualEventManager.RemoveEventFromQueue() called, current queue count = " + (eventQueue.Count - 1).ToString());
         eventQueue.Remove(ve);
     }
     private void AddEventToFrontOfQueue(VisualEvent ve)
     {
-       // Debug.Log("VisualEventManager.AddEventToFrontOfQueue() called...");
-        eventQueue.Insert(0, ve);
+        if(eventQueue.Count > 0)
+        {
+            eventQueue.Insert(1, ve);
+        }
+        else
+        {
+            eventQueue.Insert(0, ve);
+        }        
     }
     private void AddEventToBackOfQueue(VisualEvent ve)
     {
-        //Debug.Log("VisualEventManager.AddEventToBackOfQueue() called...");
         eventQueue.Add(ve);
+    }
+    private void AddEventAfterNextCoroutine(VisualEvent ve)
+    {
+        int index = 0;
+
+        for(int i  = 0; i < eventQueue.Count; i++)
+        {
+            if(eventQueue[i].cData != null)
+            {
+                index = i;
+                break;
+            }
+        }
+
+        Debug.LogWarning("Inserting event at index: " + (index + 1).ToString());
+
+        eventQueue.Insert(index + 1, ve);
+    }
+    private void AddEventAfterBatchedEvent(VisualEvent ve, VisualEvent batchedEvent)
+    {
+        int index = 0;
+
+        for (int i = 0; i < eventQueue.Count; i++)
+        {
+            if (eventQueue[i] == batchedEvent)
+            {
+                index = i;
+                break;
+            }
+        }
+
+        Debug.LogWarning("Inserting event at batched event index: " + (index + 1).ToString());
+
+        eventQueue.Insert(index + 1, ve);
     }
     #endregion
 
     // Create Events
     #region
-    public void CreateVisualEvent(Action eventFunction, CoroutineData cData, QueuePosition position = QueuePosition.Back, float startDelay = 0f, float endDelay = 0f, EventDetail eventDetail = EventDetail.None)
+    public VisualEvent CreateVisualEvent(Action eventFunction, CoroutineData cData, QueuePosition position = QueuePosition.Back, float startDelay = 0f, float endDelay = 0f, EventDetail eventDetail = EventDetail.None, VisualEvent batchedEvent = null)
     {
         // NOTE: This method requires on argument of 'CoroutineData'.
         // this function is only for visual events that have their sequence
@@ -113,8 +156,18 @@ public class VisualEventManager : Singleton<VisualEventManager>
         {
             AddEventToFrontOfQueue(vEvent);
         }
+        else if (position == QueuePosition.AfterNextCoroutine)
+        {
+            AddEventAfterNextCoroutine(vEvent);
+        }
+        else if (position == QueuePosition.BatchedEvent)
+        {
+            AddEventAfterBatchedEvent(vEvent, batchedEvent);
+        }
+
+        return vEvent;
     }
-    public void CreateVisualEvent(Action eventFunction, QueuePosition position = QueuePosition.Back, float startDelay = 0f, float endDelay = 0f, EventDetail eventDetail = EventDetail.None)
+    public VisualEvent CreateVisualEvent(Action eventFunction, QueuePosition position = QueuePosition.Back, float startDelay = 0f, float endDelay = 0f, EventDetail eventDetail = EventDetail.None, VisualEvent batchedEvent = null)
     {
         //Debug.Log("VisualEventManager.CreateVisualEvent() called, current queue count = " + (eventQueue.Count + 1).ToString());
 
@@ -128,12 +181,23 @@ public class VisualEventManager : Singleton<VisualEventManager>
         {
             AddEventToFrontOfQueue(vEvent);
         }
+        else if (position == QueuePosition.AfterNextCoroutine)
+        {
+            AddEventAfterNextCoroutine(vEvent);
+        }
+        else if (position == QueuePosition.BatchedEvent)
+        {
+            AddEventAfterBatchedEvent(vEvent, batchedEvent);
+        }
+
+        return vEvent;
+
     }
     #endregion
 
     // Custom Events
     #region
-    public void InsertTimeDelayInQueue(float delayDuration, QueuePosition position = QueuePosition.Back)
+    public VisualEvent InsertTimeDelayInQueue(float delayDuration, QueuePosition position = QueuePosition.Back)
     {
         VisualEvent vEvent = new VisualEvent(null, null, 0, delayDuration, EventDetail.None);
 
@@ -145,6 +209,12 @@ public class VisualEventManager : Singleton<VisualEventManager>
         {
             AddEventToFrontOfQueue(vEvent);
         }
+        else if (position == QueuePosition.AfterNextCoroutine)
+        {
+            AddEventAfterNextCoroutine(vEvent);
+        }
+
+        return vEvent;
     }
     #endregion
 

@@ -16,7 +16,7 @@ MonoBehaviour:
   cardDescription: "On activation end, apply 2 Burning to self. \nUnplayable."
   cardSprite: {fileID: 21300000, guid: 6ba3aba52078e4f4aa3fa9fbdc76a444, type: 3}
   cardEnergyCost: 0
-  cardType: 0
+  cardType: 1
   targettingType: 0
   talentSchool: 6
   rarity: 1
