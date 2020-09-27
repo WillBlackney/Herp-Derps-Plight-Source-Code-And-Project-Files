@@ -10,6 +10,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
 
     [Header("Card VFX Prefab References")]
     public GameObject ExpendEffectPrefab;
+    public GameObject GlowTrailEffectPrefab;
 
     [Header("VFX Prefab References")]
     public GameObject DamageEffectPrefab;
@@ -1182,7 +1183,17 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
 
     // CARD FX
     #region
-    // General Buff
+    // Glow Trail
+    public ToonEffect CreateGlowTrailEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(GlowTrailEffectPrefab, location, GlowTrailEffectPrefab.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+
+        return teScript;
+    }
+
+    // Expend
     public void CreateExpendEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
     {
         GameObject hn = Instantiate(ExpendEffectPrefab, location, ExpendEffectPrefab.transform.rotation);

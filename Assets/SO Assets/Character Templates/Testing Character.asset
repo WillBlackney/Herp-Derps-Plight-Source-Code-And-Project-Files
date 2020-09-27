@@ -55,9 +55,9 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 648ee25c51574a74983929772bcecb4d, type: 2}
-  - {fileID: 11400000, guid: 648ee25c51574a74983929772bcecb4d, type: 2}
-  - {fileID: 11400000, guid: 648ee25c51574a74983929772bcecb4d, type: 2}
+  - {fileID: 11400000, guid: 0aa74ca6548051f42aecea063a3f3ef0, type: 2}
+  - {fileID: 11400000, guid: 0aa74ca6548051f42aecea063a3f3ef0, type: 2}
+  - {fileID: 11400000, guid: 0aa74ca6548051f42aecea063a3f3ef0, type: 2}
   - {fileID: 11400000, guid: 648ee25c51574a74983929772bcecb4d, type: 2}
   - {fileID: 11400000, guid: 648ee25c51574a74983929772bcecb4d, type: 2}
   modelParts:

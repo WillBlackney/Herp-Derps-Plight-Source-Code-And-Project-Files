@@ -1300,24 +1300,35 @@ public class CardController : Singleton<CardController>
 
         // Set state and remove from hand visual
         cvm.locationTracker.VisualState = VisualStates.Transition;
-        //cvm.mainParent.SetParent(null);
         view.handVisual.RemoveCard(cvm.mainParent.gameObject);
         cvm.mainParent.SetParent(null);
 
         // SFX
         AudioManager.Instance.PlaySound(Sound.Card_Discarded);
 
+        // Create Glow Trail
+        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGlowTrailEffect(cvm.mainParent.position);
+
         float startScale = cvm.mainParent.localScale.x;
-        float endScale = 0.5f;
+        float endScale = 0.1f;
         float animSpeed = 0.5f;
         cvm.mainParent.DOScale(endScale, animSpeed).SetEase(Ease.OutQuint);
 
         // Move card
-        Sequence seqOne = DOTween.Sequence();
-        seqOne.Append(cvm.mainParent.DOMove(view.handVisual.DiscardPileTransform.position, 0.5f));
-        seqOne.OnComplete(() =>
+        Sequence cardSequence = DOTween.Sequence();
+        cardSequence.Append(cvm.mainParent.DOMove(view.handVisual.DiscardPileTransform.position, 0.5f));
+        cardSequence.OnComplete(() =>
         {
             DestroyCardViewModel(cvm);
+        });
+
+        // Move glow trail
+        Sequence glowFollow = DOTween.Sequence();
+        glowFollow.Append(glowTrail.transform.DOMove(view.handVisual.DiscardPileTransform.position, 0.5f));
+        glowFollow.OnComplete(() =>
+        {
+            glowTrail.StopAllEmissions();
+            Destroy(glowTrail, 3);
         });
     }
     private void UpdateDiscardPileCountText(CharacterEntityView vm, string newValue)

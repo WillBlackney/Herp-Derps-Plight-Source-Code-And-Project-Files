@@ -1376,6 +1376,80 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a93c7bdae2e79e549b82e57b6abca21c, type: 3}
+--- !u!1001 &266798628
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8792633887459290858, guid: f18b8d699f330d7499363841b987d915,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 8792633887459290858, guid: f18b8d699f330d7499363841b987d915,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 8792633887459290858, guid: f18b8d699f330d7499363841b987d915,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8792633887459290858, guid: f18b8d699f330d7499363841b987d915,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8792633887459290858, guid: f18b8d699f330d7499363841b987d915,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8792633887459290858, guid: f18b8d699f330d7499363841b987d915,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8792633887459290858, guid: f18b8d699f330d7499363841b987d915,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8792633887459290858, guid: f18b8d699f330d7499363841b987d915,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8792633887459290858, guid: f18b8d699f330d7499363841b987d915,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8792633887459290858, guid: f18b8d699f330d7499363841b987d915,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8792633887459290858, guid: f18b8d699f330d7499363841b987d915,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8792633887459523478, guid: f18b8d699f330d7499363841b987d915,
+        type: 3}
+      propertyPath: m_Name
+      value: Card Glow Trail
+      objectReference: {fileID: 0}
+    - target: {fileID: 8792633887459523478, guid: f18b8d699f330d7499363841b987d915,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f18b8d699f330d7499363841b987d915, type: 3}
 --- !u!1 &273634711
 GameObject:
   m_ObjectHideFlags: 0
@@ -5380,6 +5454,8 @@ MonoBehaviour:
   campsiteVfxSortingLayer: 2100
   ExpendEffectPrefab: {fileID: 3000056926127561894, guid: 6c76695e930be2d4ca459942c1886c96,
     type: 3}
+  GlowTrailEffectPrefab: {fileID: 8792633887459523478, guid: f18b8d699f330d7499363841b987d915,
+    type: 3}
   DamageEffectPrefab: {fileID: 4231728771203878851, guid: 41e0b29e8e16a2d43b3dbfde09abfee8,
     type: 3}
   StatusEffectPrefab: {fileID: 5797780097810648835, guid: 6830b51eb051664429c60f70a0a2b6d9,
@@ -6043,9 +6119,9 @@ MonoBehaviour:
   runMockScene: 1
   testingEnemyWave: {fileID: 11400000, guid: 196d21c94a6e94b42ab0250cb4bedcdd, type: 2}
   characterTemplates:
-  - {fileID: 11400000, guid: 1d0339b9767137d4a8b3c1e5af99a706, type: 2}
-  - {fileID: 11400000, guid: b032cf78d33b0f2459c4af64779ad485, type: 2}
-  - {fileID: 11400000, guid: 11330c0f179f1fb49b8fc2aac3fe768b, type: 2}
+  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
+  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
+  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
   characterDataSample:
     myName: Test
     serializedPassiveManager:

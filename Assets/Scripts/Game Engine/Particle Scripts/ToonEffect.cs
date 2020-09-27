@@ -7,6 +7,7 @@ public class ToonEffect : MonoBehaviour
     [Header("View Properties")]
     public float myScaleModifier;
     public int mySortingOrder;
+    public List<ParticleSystem> allMyPSystems;
 
     public void InitializeSetup(int sortingOrder, float scaleModifier)
     {
@@ -26,7 +27,7 @@ public class ToonEffect : MonoBehaviour
     {
         Debug.Log("SetSortingOrder() called on " + parent.name);
 
-        List<ParticleSystem> allMyPSystems = new List<ParticleSystem>();
+        allMyPSystems = new List<ParticleSystem>();
 
         // get the ps on the parent
         ParticleSystem parentPS = parent.GetComponent<ParticleSystem>();
@@ -64,5 +65,12 @@ public class ToonEffect : MonoBehaviour
         // set new scale
         parent.transform.localScale = newScale;
         Debug.Log(parent.name + " new scale: " + parent.transform.localScale.x.ToString() + ", " + parent.transform.localScale.y.ToString() + ", " + parent.transform.localScale.z.ToString());
+    }
+    public void StopAllEmissions()
+    {
+        foreach(ParticleSystem ps in allMyPSystems)
+        {
+            ps.Stop();
+        }
     }
 }
