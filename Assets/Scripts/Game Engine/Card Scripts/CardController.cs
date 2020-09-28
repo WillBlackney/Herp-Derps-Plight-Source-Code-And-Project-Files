@@ -16,10 +16,16 @@ public class CardController : Singleton<CardController>
 
     [Header("Card Library Properties")]
     [SerializeField] private List<CardDataSO> allCards;
+    [SerializeField] private List<CardDataSO> allBlessingCards;
     public List<CardDataSO> AllCards
     {
         get { return allCards; }
         private set { allCards = value; }
+    }
+    public List<CardDataSO> AllBlessingCards
+    {
+        get { return allBlessingCards; }
+        private set { allBlessingCards = value; }
     }
     #endregion
 
@@ -44,6 +50,10 @@ public class CardController : Singleton<CardController>
                 "with a matching name of " + name + ", returning null...");
         }
         return cardReturned;
+    }
+    public CardDataSO GetRandomBlessingCard()
+    {
+        return AllBlessingCards[RandomGenerator.NumberBetween(0, AllBlessingCards.Count - 1)];
     }
     #endregion
 
@@ -755,7 +765,6 @@ public class CardController : Singleton<CardController>
         // Gain Energy
         else if (cardEffect.cardEffectType == CardEffectType.GainEnergy)
         {
-            // Gain Energy
             CharacterEntityController.Instance.ModifyEnergy(owner, cardEffect.energyGained, true);
         }
 
@@ -872,11 +881,20 @@ public class CardController : Singleton<CardController>
             for(int i = 0; i < cardEffect.copiesAdded; i++)
             {
                 CreateAndAddNewCardToCharacterHand(owner, cardEffect.cardAdded);
-            }            
+            }
+        }
+        
+        // Add random blessings to hand
+        else if (cardEffect.cardEffectType == CardEffectType.AddRandomBlessingsToHand)
+        {
+            for (int i = 0; i < cardEffect.blessingsGained; i++)
+            {
+                CreateAndAddNewCardToCharacterHand(owner, GetRandomBlessingCard());
+            }
         }
 
         // CONCLUDING VISUAL EVENTS!
-        if(CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive &&
+        if (CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive &&
             owner.livingState == LivingState.Alive)
         {
             // cancel if the target was killed
@@ -1126,14 +1144,14 @@ public class CardController : Singleton<CardController>
         Debug.Log("CardController.CreateAndAddNewCardToCharacterHandVisualEvent() called...");
         CharacterEntityView characterView = character.characterEntityView;
 
-        CardViewModel cardVM;
-        cardVM = BuildCardViewModelFromCard(card, characterView.handVisual.NonDeckCardCreationTransform.position);
+        CardViewModel cvm;
+        cvm = BuildCardViewModelFromCard(card, characterView.handVisual.NonDeckCardCreationTransform.position);
 
         // pass this card to HandVisual class
-        characterView.handVisual.AddCard(cardVM.mainParent.gameObject);
+        characterView.handVisual.AddCard(cvm.mainParent.gameObject);
 
         // Bring card to front while it travels from draw spot to hand
-        CardLocationTracker clt = cardVM.locationTracker;
+        CardLocationTracker clt = cvm.locationTracker;
         clt.BringToFront();
         clt.Slot = 0;
         clt.VisualState = VisualStates.Transition;
@@ -1142,38 +1160,42 @@ public class CardController : Singleton<CardController>
         AudioManager.Instance.PlaySound(Sound.Card_Draw);
 
         // Shrink card, then scale up as it moves to hand
-
         // Get starting scale
         Vector3 originalScale = new Vector3
-            (cardVM.mainParent.transform.localScale.x, cardVM.mainParent.transform.localScale.y, cardVM.mainParent.transform.localScale.z);
+            (cvm.mainParent.transform.localScale.x, cvm.mainParent.transform.localScale.y, cvm.mainParent.transform.localScale.z);
 
         // Shrink card
-        cardVM.mainParent.transform.localScale = new Vector3(0.1f, 0.1f, cardVM.mainParent.transform.localScale.z);
+        cvm.mainParent.transform.localScale = new Vector3(0.1f, 0.1f, cvm.mainParent.transform.localScale.z);
 
         // Scale up
-        cardVM.mainParent.DOScale(originalScale, cardTransistionSpeed).SetEase(Ease.OutQuint);
+        ScaleCardViewModel(cvm, originalScale.x, cardTransistionSpeed);
+        //cvm.mainParent.DOScale(originalScale, cardTransistionSpeed).SetEase(Ease.OutQuint);
 
         // move card to the hand;
+        MoveTransformToLocation(cvm.mainParent, characterView.handVisual.slots.Children[0].transform.localPosition, cardTransistionSpeed, true, () => clt.SetHandSortingOrder());
+
+        /*
         Sequence s = DOTween.Sequence();
 
         // displace the card so that we can select it in the scene easier.
-        s.Append(cardVM.mainParent.DOLocalMove(characterView.handVisual.slots.Children[0].transform.localPosition, cardTransistionSpeed));
+        s.Append(cvm.mainParent.DOLocalMove(characterView.handVisual.slots.Children[0].transform.localPosition, cardTransistionSpeed));
 
         s.OnComplete(() => clt.SetHandSortingOrder());
+        */
     }
     private void DrawCardFromDeckVisualEvent(Card card, CharacterEntityModel character)
     {
         Debug.Log("CardController.DrawCardFromDeckVisualEvent() called...");
         CharacterEntityView characterView = character.characterEntityView;
 
-        CardViewModel cardVM;        
-        cardVM = BuildCardViewModelFromCard(card, characterView.handVisual.DeckTransform.position);
+        CardViewModel cvm;        
+        cvm = BuildCardViewModelFromCard(card, characterView.handVisual.DeckTransform.position);
 
         // pass this card to HandVisual class
-        characterView.handVisual.AddCard(cardVM.mainParent.gameObject);
+        characterView.handVisual.AddCard(cvm.mainParent.gameObject);
 
         // Bring card to front while it travels from draw spot to hand
-        CardLocationTracker clt = cardVM.locationTracker;
+        CardLocationTracker clt = cvm.locationTracker;
         clt.BringToFront();
         clt.Slot = 0;
         clt.VisualState = VisualStates.Transition;
@@ -1181,44 +1203,78 @@ public class CardController : Singleton<CardController>
         // Start SFX
         AudioManager.Instance.PlaySound(Sound.Card_Draw);
 
-        // Shrink card, then scale up as it moves to hand
-
         // Get starting scale
         Vector3 originalScale = new Vector3
-            (cardVM.mainParent.transform.localScale.x, cardVM.mainParent.transform.localScale.y, cardVM.mainParent.transform.localScale.z);
+            (cvm.mainParent.transform.localScale.x, cvm.mainParent.transform.localScale.y, cvm.mainParent.transform.localScale.z);
 
         // Shrink card
-        cardVM.mainParent.transform.localScale = new Vector3(0.1f, 0.1f, cardVM.mainParent.transform.localScale.z);
+        cvm.mainParent.transform.localScale = new Vector3(0.1f, 0.1f, cvm.mainParent.transform.localScale.z);
 
         // Scale up
-        cardVM.mainParent.DOScale(originalScale, cardTransistionSpeed).SetEase(Ease.OutQuint);
+        ScaleCardViewModel(cvm, originalScale.x, cardTransistionSpeed);
+
+        // Move to hand slot
+        MoveTransformToLocation(cvm.mainParent, characterView.handVisual.slots.Children[0].transform.localPosition, cardTransistionSpeed, true, () => clt.SetHandSortingOrder());
 
         // move card to the hand;
+        /*
         Sequence s = DOTween.Sequence();
 
         // displace the card so that we can select it in the scene easier.
-        s.Append(cardVM.mainParent.DOLocalMove(characterView.handVisual.slots.Children[0].transform.localPosition, cardTransistionSpeed));
+        s.Append(cvm.mainParent.DOLocalMove(characterView.handVisual.slots.Children[0].transform.localPosition, cardTransistionSpeed));
 
         s.OnComplete(() => clt.SetHandSortingOrder());
+        */
     }
     private void DiscardCardFromHandVisualEvent(CardViewModel cvm, CharacterEntityModel character)
     {
+        StartCoroutine(DiscardCardFromHandVisualEventCoroutine(cvm, character));
+    }
+    private IEnumerator DiscardCardFromHandVisualEventCoroutine(CardViewModel cvm, CharacterEntityModel character)
+    {
+        // Setup 
+        CharacterEntityView view = character.characterEntityView;
+
         // remove from hand visual
         character.characterEntityView.handVisual.RemoveCard(cvm.mainParent.gameObject);
 
         // SFX
         AudioManager.Instance.PlaySound(Sound.Card_Discarded);
 
-        float startScale = cvm.mainParent.localScale.x;
-        float endScale = 0.5f;
-        float animSpeed = 0.5f;
-        cvm.mainParent.DOScale(endScale, animSpeed).SetEase(Ease.OutQuint);
+        // Create Glow Trail
+        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGlowTrailEffect(cvm.mainParent.position);
+
+        // Shrink card
+        ScaleCardViewModel(cvm, 0.1f, 0.5f);
+
+        // Rotate card upside down
+        RotateCardVisualEvent(cvm, 180, 0.5f);
+
+        // Move card + glow outline to quick lerp spot
+        MoveTransformToQuickLerpPosition(cvm.mainParent, 0.25f);
+        MoveTransformToQuickLerpPosition(glowTrail.transform, 0.25f);
+        yield return new WaitForSeconds(0.25f);
+
+        // Move card
+        MoveTransformToLocation(cvm.mainParent, view.handVisual.DiscardPileTransform.position, 0.5f, false, () => DestroyCardViewModel(cvm));
+        MoveTransformToLocation(glowTrail.transform, view.handVisual.DiscardPileTransform.position, 0.5f, false, () =>
+        {
+            glowTrail.StopAllEmissions();
+            Destroy(glowTrail, 3);
+        });
+
+        // float startScale = cvm.mainParent.localScale.x;
+        // float endScale = 0.5f;
+        // float animSpeed = 0.5f;
+        // cvm.mainParent.DOScale(endScale, animSpeed).SetEase(Ease.OutQuint);
 
         // move card to the discard pile
-        Sequence s = MoveCardVmFromHandToDiscardPile(cvm, character.characterEntityView.handVisual.DiscardPileTransform);
+        // MoveTransformToLocation
+        //   (cvm.mainParent, character.characterEntityView.handVisual.DiscardPileTransform.position, 0.5f, false, () => DestroyCardViewModel(cvm));
+        // Sequence s = MoveCardVmFromHandToDiscardPile(cvm, character.characterEntityView.handVisual.DiscardPileTransform);
 
         // Once the anim is finished, destroy the CVM 
-        s.OnComplete(() => DestroyCardViewModel(cvm));
+        // s.OnComplete(() => DestroyCardViewModel(cvm));
     }
     private Sequence MoveCardVmFromHandToDiscardPile(CardViewModel cvm, Transform discardPileLocation)
     {
@@ -1272,9 +1328,10 @@ public class CardController : Singleton<CardController>
     }
     public void MoveCardVMToPlayPreviewSpot(CardViewModel cvm)
     {
-        Transform location = cvm.card.owner.characterEntityView.handVisual.PlayPreviewSpot;
-        Sequence s = DOTween.Sequence();
-        s.Append(cvm.mainParent.DOMove(location.position, 0.25f));
+        MoveTransformToLocation(cvm.mainParent, cvm.card.owner.characterEntityView.handVisual.PlayPreviewSpot.position, 0.25f);
+        //Transform location = cvm.card.owner.characterEntityView.handVisual.PlayPreviewSpot;
+        //Sequence s = DOTween.Sequence();
+       // s.Append(cvm.mainParent.DOMove(location.position, 0.25f));
     }
     private void PlayCardBreathAnimationVisualEvent(CardViewModel cvm)
     {
@@ -1297,7 +1354,10 @@ public class CardController : Singleton<CardController>
     private void PlayACardFromHandVisualEvent(CardViewModel cvm, CharacterEntityView view)
     {
         Debug.Log("CardController.PlayACardFromHandVisualEvent() called...");
-
+        StartCoroutine(PlayACardFromHandVisualEventCoroutine(cvm, view));
+    }
+    private IEnumerator PlayACardFromHandVisualEventCoroutine(CardViewModel cvm, CharacterEntityView view)
+    {
         // Set state and remove from hand visual
         cvm.locationTracker.VisualState = VisualStates.Transition;
         view.handVisual.RemoveCard(cvm.mainParent.gameObject);
@@ -1309,28 +1369,69 @@ public class CardController : Singleton<CardController>
         // Create Glow Trail
         ToonEffect glowTrail = VisualEffectManager.Instance.CreateGlowTrailEffect(cvm.mainParent.position);
 
-        float startScale = cvm.mainParent.localScale.x;
-        float endScale = 0.1f;
-        float animSpeed = 0.5f;
-        cvm.mainParent.DOScale(endScale, animSpeed).SetEase(Ease.OutQuint);
+        // Shrink card
+        ScaleCardViewModel(cvm, 0.1f, 0.5f);
+
+        // Rotate card upside down
+        RotateCardVisualEvent(cvm, 180, 0.5f);
+
+        // Move card + glow outline to quick lerp spot
+        MoveTransformToQuickLerpPosition(cvm.mainParent, 0.25f);
+        MoveTransformToQuickLerpPosition(glowTrail.transform, 0.25f);
+        yield return new WaitForSeconds(0.25f);
 
         // Move card
-        Sequence cardSequence = DOTween.Sequence();
-        cardSequence.Append(cvm.mainParent.DOMove(view.handVisual.DiscardPileTransform.position, 0.5f));
-        cardSequence.OnComplete(() =>
-        {
-            DestroyCardViewModel(cvm);
-        });
-
-        // Move glow trail
-        Sequence glowFollow = DOTween.Sequence();
-        glowFollow.Append(glowTrail.transform.DOMove(view.handVisual.DiscardPileTransform.position, 0.5f));
-        glowFollow.OnComplete(() =>
+        MoveTransformToLocation(cvm.mainParent, view.handVisual.DiscardPileTransform.position, 0.5f, false, ()=> DestroyCardViewModel(cvm));
+        MoveTransformToLocation(glowTrail.transform, view.handVisual.DiscardPileTransform.position, 0.5f, false, () =>
         {
             glowTrail.StopAllEmissions();
             Destroy(glowTrail, 3);
         });
     }
+
+    // Dotween Functions
+    #region
+    private void MoveTransformToLocation(Transform t, Vector3 location, float speed, bool localMove = false, Action onCompleteCallBack = null)
+    {
+        
+        Sequence cardSequence = DOTween.Sequence();
+
+        if (localMove)
+        {
+            cardSequence.Append(t.DOLocalMove(location, speed));
+        }
+        else
+        {
+            cardSequence.Append(t.DOMove(location, speed));
+        }
+
+        cardSequence.OnComplete(() =>
+        {
+            if (onCompleteCallBack != null)
+            {
+                onCompleteCallBack.Invoke();
+            }
+        });
+    }
+    private void RotateCardVisualEvent(CardViewModel cvm, float endDegrees, float rotationSpeed)
+    {
+        // Rotate card upside down
+        Vector3 endRotation = new Vector3(0, 0, endDegrees);
+        cvm.mainParent.DORotate(endRotation, rotationSpeed);
+    }
+    private void MoveTransformToQuickLerpPosition(Transform t, float speed)
+    {
+        Vector3 quickLerpSpot = new Vector3(t.position.x - 1, t.position.y + 1, t.position.z);
+        t.DOMove(quickLerpSpot, speed);
+    }
+    private void ScaleCardViewModel(CardViewModel cvm, float endScale, float shrinkSpeed)
+    {
+        cvm.mainParent.DOScale(endScale, shrinkSpeed).SetEase(Ease.OutQuint);
+    }
+    #endregion
+
+    // Text Related Visual Events
+    #region
     private void UpdateDiscardPileCountText(CharacterEntityView vm, string newValue)
     {
         if (vm)
@@ -1345,6 +1446,7 @@ public class CardController : Singleton<CardController>
             vm.drawPileCountText.text = newValue;
         }
     }
+    #endregion
 
     #endregion
 

@@ -32,6 +32,7 @@ public class PassiveIconDataEditor : OdinMenuEditorWindow
         createNewPassiveData = new CreatePassiveData();
         tree.Add("Create New", new CreatePassiveData());
         tree.AddAllAssetsAtPath("Passive Icon Data", "Assets/SO Assets/Passive Icons", typeof(PassiveIconDataSO));
+        tree.SortMenuItemsByName();
         return tree;
     }
 

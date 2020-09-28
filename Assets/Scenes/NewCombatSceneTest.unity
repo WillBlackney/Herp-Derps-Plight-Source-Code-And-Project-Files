@@ -1030,6 +1030,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dcdd2890a1d32f04b83aff87ff075399, type: 2}
   - {fileID: 11400000, guid: 3db93fc554f34374883814a43acff411, type: 2}
   - {fileID: 11400000, guid: 7b7b1835b0ce0b14da1a887a1653b86c, type: 2}
+  - {fileID: 11400000, guid: 3276c6384a7df8f48a004957ea667c8d, type: 2}
+  - {fileID: 11400000, guid: de12560e8a47cd540afc4af2727701ec, type: 2}
 --- !u!1 &200055974
 GameObject:
   m_ObjectHideFlags: 0
@@ -1376,80 +1378,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a93c7bdae2e79e549b82e57b6abca21c, type: 3}
---- !u!1001 &266798628
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8792633887459290858, guid: f18b8d699f330d7499363841b987d915,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -9.88
-      objectReference: {fileID: 0}
-    - target: {fileID: 8792633887459290858, guid: f18b8d699f330d7499363841b987d915,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4.71
-      objectReference: {fileID: 0}
-    - target: {fileID: 8792633887459290858, guid: f18b8d699f330d7499363841b987d915,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8792633887459290858, guid: f18b8d699f330d7499363841b987d915,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8792633887459290858, guid: f18b8d699f330d7499363841b987d915,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8792633887459290858, guid: f18b8d699f330d7499363841b987d915,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8792633887459290858, guid: f18b8d699f330d7499363841b987d915,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8792633887459290858, guid: f18b8d699f330d7499363841b987d915,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8792633887459290858, guid: f18b8d699f330d7499363841b987d915,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8792633887459290858, guid: f18b8d699f330d7499363841b987d915,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8792633887459290858, guid: f18b8d699f330d7499363841b987d915,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8792633887459523478, guid: f18b8d699f330d7499363841b987d915,
-        type: 3}
-      propertyPath: m_Name
-      value: Card Glow Trail
-      objectReference: {fileID: 0}
-    - target: {fileID: 8792633887459523478, guid: f18b8d699f330d7499363841b987d915,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f18b8d699f330d7499363841b987d915, type: 3}
 --- !u!1 &273634711
 GameObject:
   m_ObjectHideFlags: 0
@@ -1561,9 +1489,9 @@ MonoBehaviour:
     source: {fileID: 0}
     fadingIn: 0
     fadingOut: 0
-  - audioClip: {fileID: 8300000, guid: f1470e8d7acc6bf40897f9ff339c7524, type: 3}
+  - audioClip: {fileID: 8300000, guid: 53017d31e04b5a34fb39bd405a4e4f90, type: 3}
     soundType: 15
-    volume: 0.5
+    volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -2615,6 +2543,14 @@ MonoBehaviour:
   allCards:
   - {fileID: 11400000, guid: 648ee25c51574a74983929772bcecb4d, type: 2}
   - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
+  allBlessingCards:
+  - {fileID: 11400000, guid: 399ab0c3893650b4fb8e869e59460b14, type: 2}
+  - {fileID: 11400000, guid: de0416f2bef18f642a8bbc0858a7e2d6, type: 2}
+  - {fileID: 11400000, guid: 8554b25f83b65ab4c9c022f6d2b6f75b, type: 2}
+  - {fileID: 11400000, guid: 5662113a872574f43a0b1cc1c79e940b, type: 2}
+  - {fileID: 11400000, guid: e2c276357616c254e96e270581a12319, type: 2}
+  - {fileID: 11400000, guid: e77a6c8c0e793d246becf25ea63b598e, type: 2}
+  - {fileID: 11400000, guid: 787ad1f16e80e34499c6a5732f3c0f22, type: 2}
 --- !u!61 &555152581
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6138,12 +6074,14 @@ MonoBehaviour:
       enrageStacks: 0
       shieldWallStacks: 0
       fanOfKnivesStacks: 0
+      divineFavourStacks: 0
       phoenixFormStacks: 0
       poisonousStacks: 0
       venomousStacks: 0
       overloadStacks: 0
       fusionStacks: 0
       meleeAttackReductionStacks: 0
+      encouragingAuraStacks: 0
       wrathStacks: 0
       weakenedStacks: 0
       vulnerableStacks: 0

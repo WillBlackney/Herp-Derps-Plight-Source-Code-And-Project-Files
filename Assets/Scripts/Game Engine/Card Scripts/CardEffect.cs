@@ -68,6 +68,10 @@ public class CardEffect
     [LabelWidth(200)]
     public int copiesAdded;
 
+    [ShowIf("cardEffectType", CardEffectType.AddRandomBlessingsToHand)]
+    [LabelWidth(200)]
+    public int blessingsGained;
+
     public List<AnimationEventData> visualEventsOnStart;
     public List<AnimationEventData> visualEventsOnFinish;
 

@@ -43,6 +43,7 @@ public enum CardEffectType
 {
     None = 0,
     AddCardsToHand = 1,
+    AddRandomBlessingsToHand = 21,
     ApplyPassiveToSelf = 2,
     ApplyPassiveToTarget = 3,
     ApplyPassiveToAllEnemies = 4,
@@ -61,8 +62,6 @@ public enum CardEffectType
     RemoveAllOverloadFromSelf = 20,
     TauntTarget = 17,
     TauntAllEnemies = 18,
-
-
 
 }
 [Serializable]

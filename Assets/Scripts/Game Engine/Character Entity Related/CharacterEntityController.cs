@@ -579,6 +579,15 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
                 }                
             }
 
+            // Divine Favour
+            if (character.pManager.divineFavourStacks > 0)
+            {
+                for (int i = 0; i < character.pManager.divineFavourStacks; i++)
+                {
+                    CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetRandomBlessingCard());
+                }
+            }
+
             // Phoenix Form
             if (character.pManager.phoenixFormStacks > 0)
             {
@@ -682,6 +691,22 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         if (entity.pManager.vulnerableStacks > 0)
         {
             PassiveController.Instance.ModifyVulnerable(entity.pManager, - 1, true, 0.5f);
+        }
+
+        // Buff Passive Triggers
+        if (entity.pManager.encouragingAuraStacks > 0)
+        {
+            List<CharacterEntityModel> allAllies = GetAllAlliesOfCharacter(entity, false);
+            CharacterEntityModel chosenAlly = allAllies[RandomGenerator.NumberBetween(0, allAllies.Count - 1)];
+
+            if (chosenAlly != null)
+            {
+                // Notification event
+                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Encouraging Aura!"), QueuePosition.Back, 0, 0.5f);
+
+                // Random ally gains energy
+                ModifyEnergy(chosenAlly, entity.pManager.encouragingAuraStacks, true);
+            }
         }
 
         // DoTs
@@ -1888,7 +1913,6 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
                 listReturned.Add(entity);
             }
         }
-
 
         return listReturned;
     }

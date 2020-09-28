@@ -32,6 +32,7 @@ public class CardDataEditor : OdinMenuEditorWindow
         createNewCardData = new CreateNewCardData();
         tree.Add("Create New", new CreateNewCardData());
         tree.AddAllAssetsAtPath("Card Data", "Assets/SO Assets/Cards", typeof(CardDataSO));
+        tree.SortMenuItemsByName();
         return tree;
     }
 

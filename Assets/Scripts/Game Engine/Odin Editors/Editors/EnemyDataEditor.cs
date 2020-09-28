@@ -33,6 +33,7 @@ public class EnemyDataEditor : OdinMenuEditorWindow
         createNewEnemyData = new CreateNewEnemyData();
         tree.Add("Create New", new CreateNewEnemyData());
         tree.AddAllAssetsAtPath("Enemy Data", "Assets/SO Assets/Enemies", typeof (EnemyDataSO));
+        tree.SortMenuItemsByName();
         return tree;
     }
 

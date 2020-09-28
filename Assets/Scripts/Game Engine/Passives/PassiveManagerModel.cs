@@ -22,6 +22,7 @@ public class PassiveManagerModel
     public int enrageStacks;
     public int shieldWallStacks;
     public int fanOfKnivesStacks;
+    public int divineFavourStacks;
     public int phoenixFormStacks;
     public int poisonousStacks;
     public int venomousStacks;
@@ -29,6 +30,8 @@ public class PassiveManagerModel
     public int fusionStacks;
     public int meleeAttackReductionStacks;
 
+    // Aura passives
+    public int encouragingAuraStacks;
 
     // Core Damage % Modifier Passives
     public int wrathStacks;

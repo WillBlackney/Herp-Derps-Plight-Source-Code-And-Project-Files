@@ -59,6 +59,9 @@ public class SerializedPassiveManagerModel
     public int fanOfKnivesStacks;
     [BoxGroup("Buff Passives")]
     [LabelWidth(200)]
+    public int divineFavourStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
     public int phoenixFormStacks;
     [BoxGroup("Buff Passives")]
     [LabelWidth(200)]
@@ -75,6 +78,11 @@ public class SerializedPassiveManagerModel
     [BoxGroup("Buff Passives")]
     [LabelWidth(200)]
     public int meleeAttackReductionStacks;
+
+    // Aura Passives
+    [BoxGroup("Aura Passives", centerLabel: true)]
+    [LabelWidth(200)]
+    public int encouragingAuraStacks;
 
     // Buff Passives
     [BoxGroup("Core Damage % Modifier Passives", centerLabel: true)]

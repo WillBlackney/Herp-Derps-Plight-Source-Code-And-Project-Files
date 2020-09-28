@@ -210,21 +210,27 @@ namespace CustomOdinGUI
 
                 case ManagerState.enemies:
                     tree.AddAllAssetsAtPath("Enemy Data", enemyPath, typeof(EnemyDataSO));
+                    tree.SortMenuItemsByName();
                     break;
                 case ManagerState.items:
                     tree.AddAllAssetsAtPath("Item Data", itemsPath, typeof(ItemDataSO));
+                    tree.SortMenuItemsByName();
                     break;
                 case ManagerState.cards:
                     tree.AddAllAssetsAtPath("Card Data", cardPath, typeof(CardDataSO));
+                    tree.SortMenuItemsByName();
                     break;
                 case ManagerState.passives:
                     tree.AddAllAssetsAtPath("Passive Icon Data", passivesPath, typeof(PassiveIconDataSO));
+                    tree.SortMenuItemsByName();
                     break;
                 case ManagerState.combatEncounters:
                     tree.AddAllAssetsAtPath("Combat Encounters", encountersPath, typeof(EnemyWaveSO));
+                    tree.SortMenuItemsByName();
                     break;
                 case ManagerState.characterTemplates:
                     tree.AddAllAssetsAtPath("Character Templates", characterTemplatesPath, typeof(CharacterTemplateSO));
+                    tree.SortMenuItemsByName();
                     break;
 
             }

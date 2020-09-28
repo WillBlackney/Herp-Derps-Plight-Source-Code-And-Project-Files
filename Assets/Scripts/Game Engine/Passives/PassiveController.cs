@@ -103,6 +103,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyFanOfKnives(newClone, originalData.fanOfKnivesStacks, false);
         }
+        if (originalData.divineFavourStacks != 0)
+        {
+            ModifyDivineFavour(newClone, originalData.divineFavourStacks, false);
+        }
         if (originalData.phoenixFormStacks != 0)
         {
             ModifyPhoenixForm(newClone, originalData.phoenixFormStacks, false);
@@ -126,6 +130,14 @@ public class PassiveController : Singleton<PassiveController>
         if (originalData.meleeAttackReductionStacks != 0)
         {
             ModifyMeleeAttackReduction(newClone, originalData.meleeAttackReductionStacks, false);
+        }
+        #endregion
+
+        // Aura Passives
+        #region
+        if (originalData.encouragingAuraStacks != 0)
+        {
+            ModifyEncouragingAura(newClone, originalData.encouragingAuraStacks, false);
         }
         #endregion
 
@@ -187,12 +199,15 @@ public class PassiveController : Singleton<PassiveController>
         pManager.enrageStacks = original.enrageStacks;
         pManager.shieldWallStacks = original.shieldWallStacks;
         pManager.fanOfKnivesStacks = original.fanOfKnivesStacks;
+        pManager.divineFavourStacks = original.divineFavourStacks;
         pManager.phoenixFormStacks = original.phoenixFormStacks;       
         pManager.poisonousStacks = original.poisonousStacks;
         pManager.venomousStacks = original.venomousStacks;
         pManager.overloadStacks = original.overloadStacks;
         pManager.fusionStacks = original.fusionStacks;
         pManager.meleeAttackReductionStacks = original.meleeAttackReductionStacks;
+
+        pManager.encouragingAuraStacks = original.encouragingAuraStacks;
 
         pManager.wrathStacks = original.wrathStacks;
         pManager.gritStacks = original.gritStacks;
@@ -467,6 +482,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyFanOfKnives(pManager, stacks, showVFX, vfxDelay);
         }
+        else if (originalData == "Divine Favour")
+        {
+            ModifyDivineFavour(pManager, stacks, showVFX, vfxDelay);
+        }
         else if (originalData == "Phoenix Form")
         {
             ModifyPhoenixForm(pManager, stacks, showVFX, vfxDelay);
@@ -490,6 +509,14 @@ public class PassiveController : Singleton<PassiveController>
         else if (originalData == "Melee Attack Reduction")
         {
             ModifyMeleeAttackReduction(pManager, stacks, showVFX, vfxDelay);
+        }
+        #endregion
+
+        // Aura Passives
+        #region
+        else if (originalData == "Encouraging Aura")
+        {
+            ModifyEncouragingAura(pManager, stacks, showVFX, vfxDelay);
         }
         #endregion
 
@@ -1219,6 +1246,57 @@ public class PassiveController : Singleton<PassiveController>
 
 
     }
+    public void ModifyDivineFavour(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyDivineFavour() called...");
+
+        // Setup + Cache refs
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Divine Favour");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Increment stacks
+        pManager.divineFavourStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Divine Favour");
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Divine Favour Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+
+
+    }
     public void ModifyPhoenixForm(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
     {
         Debug.Log("PassiveController.ModifyPhoenixForm() called...");
@@ -1547,6 +1625,61 @@ public class PassiveController : Singleton<PassiveController>
     }
     #endregion
 
+    // Aura Passives
+    #region
+    public void ModifyEncouragingAura(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyEncouragingAura() called...");
+
+        // Setup + Cache refs
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Encouraging Aura");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Increment stacks
+        pManager.encouragingAuraStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Encouraging Aura");
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Encouraging Aura Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+
+
+    }
+    #endregion
+
     // Core % Modifier Passives
     #region
     public void ModifyWrath(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
@@ -1772,7 +1905,7 @@ public class PassiveController : Singleton<PassiveController>
                 if (entity.controller == Controller.AI &&
                    entity.myNextAction != null &&
                    entity.currentActionTarget == pManager.myCharacter &&
-                   pManager.myCharacter.myNextAction.actionType == ActionType.AttackTarget)
+                   entity.myNextAction.actionType == ActionType.AttackTarget)
                 {
                     CharacterEntityController.Instance.UpdateEnemyIntentGUI(entity);
                 }

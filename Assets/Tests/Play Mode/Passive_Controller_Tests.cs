@@ -45,12 +45,16 @@ namespace Tests
         private const string ENRAGE_NAME = "Enrage";
         private const string SHIELD_WALL_NAME = "Shield Wall";
         private const string FAN_OF_KNIVES_NAME = "Fan Of Knives";
+        private const string DIVINE_FAVOUR_NAME = "Divine Favour";
         private const string PHOENIX_FORM_NAME = "Phoenix Form";
         private const string POISONOUS_NAME = "Poisonous";
         private const string VENOMOUS_NAME = "Venomous";
         private const string OVERLOAD_NAME = "Overload";
         private const string FUSION_NAME = "Fusion";
         private const string MELEE_ATTACK_REDUCTION_NAME = "Melee Attack Reduction";
+
+        // Aura Passives
+        private const string ENCOURAGING_AURA_NAME = "Encouraging Aura";
 
         // Core % Modifer Stats
         private const string WRATH_NAME = "Wrath";
@@ -145,12 +149,16 @@ namespace Tests
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, ENRAGE_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, SHIELD_WALL_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, FAN_OF_KNIVES_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, DIVINE_FAVOUR_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, PHOENIX_FORM_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, POISONOUS_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, VENOMOUS_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, OVERLOAD_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, FUSION_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, MELEE_ATTACK_REDUCTION_NAME, stacks);
+
+            // Aura Passives
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, ENCOURAGING_AURA_NAME, stacks);
 
             // Core % Modifer Stats
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, WEAKENED_NAME, stacks);
@@ -180,12 +188,15 @@ namespace Tests
                 model.pManager.enrageStacks == 1 &&
                 model.pManager.shieldWallStacks == 1 &&
                 model.pManager.fanOfKnivesStacks == 1 &&
+                model.pManager.divineFavourStacks == 1 &&
                 model.pManager.phoenixFormStacks == 1 &&
                 model.pManager.poisonousStacks == 1 &&
                 model.pManager.venomousStacks == 1 &&
                 model.pManager.overloadStacks == 1 &&
                 model.pManager.fusionStacks == 1 &&
                 model.pManager.meleeAttackReductionStacks == 1 &&
+
+                model.pManager.encouragingAuraStacks == 1 &&
 
                 model.pManager.weakenedStacks == 1 &&
                 model.pManager.wrathStacks == 1 &&

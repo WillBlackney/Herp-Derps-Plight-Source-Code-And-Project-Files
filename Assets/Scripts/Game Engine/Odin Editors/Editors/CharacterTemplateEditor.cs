@@ -32,6 +32,7 @@ public class CharacterTemplateEditor : OdinMenuEditorWindow
         createNewCharacterTemplate = new CreateNewCharacterTemplate();
         tree.Add("Create New", new CreateNewCharacterTemplate());
         tree.AddAllAssetsAtPath("Character Template", "Assets/SO Assets/Character Templates", typeof(CharacterTemplateSO));
+        tree.SortMenuItemsByName();
         return tree;
     }
 

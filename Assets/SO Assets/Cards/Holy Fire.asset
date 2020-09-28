@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
+  m_Name: Holy Fire
+  m_EditorClassIdentifier: 
+  cardName: Holy Fire
+  cardDescription: "Deal 4 Fire damage. \nAdd a random Blessing to your hand."
+  cardSprite: {fileID: 21300000, guid: 9c30675e6fbcb3649924896adc6c6cb0, type: 3}
+  cardEnergyCost: 1
+  cardType: 3
+  targettingType: 3
+  talentSchool: 10
+  rarity: 1
+  expend: 0
+  opener: 0
+  fleeting: 0
+  unplayable: 0
+  cardEffects:
+  - cardEffectType: 6
+    weaponRequirement: 0
+    drawStacksFromOverload: 0
+    blockGainValue: 0
+    baseDamageValue: 4
+    drawBaseDamageFromCurrentBlock: 0
+    drawBaseDamageFromTargetPoisoned: 0
+    damageType: 4
+    healthLost: 0
+    energyGained: 0
+    cardsDrawn: 0
+    extraDrawEffect: 0
+    cardEnergyReduction: 0
+    passivePairing:
+      passiveData: {fileID: 0}
+      passiveStacks: 0
+    cardAdded: {fileID: 0}
+    copiesAdded: 0
+    blessingsGained: 0
+    visualEventsOnStart:
+    - eventType: 2
+      particleEffect: 0
+      cameraShake: 0
+      movementAnimation: 0
+      soundEffect: 0
+      characterAnimation: 3
+      delayDuration: 0
+      projectileFired: 8
+      onCharacter: 0
+    - eventType: 3
+      particleEffect: 4
+      cameraShake: 0
+      movementAnimation: 0
+      soundEffect: 0
+      characterAnimation: 0
+      delayDuration: 0
+      projectileFired: 0
+      onCharacter: 2
+    - eventType: 4
+      particleEffect: 0
+      cameraShake: 1
+      movementAnimation: 0
+      soundEffect: 0
+      characterAnimation: 0
+      delayDuration: 0
+      projectileFired: 0
+      onCharacter: 0
+    visualEventsOnFinish: []
+  - cardEffectType: 21
+    weaponRequirement: 0
+    drawStacksFromOverload: 0
+    blockGainValue: 0
+    baseDamageValue: 0
+    drawBaseDamageFromCurrentBlock: 0
+    drawBaseDamageFromTargetPoisoned: 0
+    damageType: 0
+    healthLost: 0
+    energyGained: 0
+    cardsDrawn: 0
+    extraDrawEffect: 0
+    cardEnergyReduction: 0
+    passivePairing:
+      passiveData: {fileID: 0}
+      passiveStacks: 0
+    cardAdded: {fileID: 0}
+    copiesAdded: 0
+    blessingsGained: 1
+    visualEventsOnStart: []
+    visualEventsOnFinish: []
+  cardEventListeners: []

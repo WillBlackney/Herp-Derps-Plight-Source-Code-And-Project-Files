@@ -33,6 +33,7 @@ public class ItemDataEditor : OdinMenuEditorWindow
         createNewItemData = new CreateItemData();
         tree.Add("Create New", new CreateItemData());
         tree.AddAllAssetsAtPath("Item Data", "Assets/SO Assets/Items", typeof(ItemDataSO));
+        tree.SortMenuItemsByName();
         return tree;
     }
 
