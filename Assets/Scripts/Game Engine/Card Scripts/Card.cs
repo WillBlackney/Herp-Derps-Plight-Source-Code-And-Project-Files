@@ -28,5 +28,6 @@ public class Card
     public bool opener;
     public bool fleeting;
     public bool unplayable;
-    
+    public bool blessing;
+
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Fire Ball Bonus Damage
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: 40872208cd054a149a514a515ef039d6, type: 3}
+  passiveSprite: {fileID: 21300000, guid: 2476965c2d002fd4cb2c673a276b14f6, type: 3}
   passiveName: Fire Ball Bonus Damage
   showStackCount: 1
   hiddenOnPassivePanel: 1

@@ -1032,6 +1032,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7b7b1835b0ce0b14da1a887a1653b86c, type: 2}
   - {fileID: 11400000, guid: 3276c6384a7df8f48a004957ea667c8d, type: 2}
   - {fileID: 11400000, guid: de12560e8a47cd540afc4af2727701ec, type: 2}
+  - {fileID: 11400000, guid: d04c670110fdb014b89a8da5c8ee56d1, type: 2}
 --- !u!1 &200055974
 GameObject:
   m_ObjectHideFlags: 0
@@ -6055,9 +6056,9 @@ MonoBehaviour:
   runMockScene: 1
   testingEnemyWave: {fileID: 11400000, guid: 196d21c94a6e94b42ab0250cb4bedcdd, type: 2}
   characterTemplates:
-  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
-  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
-  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
+  - {fileID: 11400000, guid: df45f035351862c40b14da86f7b00d71, type: 2}
+  - {fileID: 11400000, guid: df45f035351862c40b14da86f7b00d71, type: 2}
+  - {fileID: 11400000, guid: df45f035351862c40b14da86f7b00d71, type: 2}
   characterDataSample:
     myName: Test
     serializedPassiveManager:
@@ -6081,6 +6082,7 @@ MonoBehaviour:
       overloadStacks: 0
       fusionStacks: 0
       meleeAttackReductionStacks: 0
+      consecrationStacks: 0
       encouragingAuraStacks: 0
       wrathStacks: 0
       weakenedStacks: 0
@@ -7346,16 +7348,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
   neutralColor: {r: 0.509434, g: 0.509434, b: 0.509434, a: 0.39215687}
-  warfareColor: {r: 0, g: 0, b: 0, a: 0}
+  warfareColor: {r: 1, g: 0, b: 0, a: 0.39215687}
   guardianColor: {r: 0, g: 0, b: 0, a: 0.39215687}
   pyromaniaColor: {r: 1, g: 0.45144096, b: 0.15566039, a: 0.39215687}
   manipulationColor: {r: 0, g: 0.029119492, b: 1, a: 0.39215687}
   rangerColor: {r: 0.15265143, g: 1, b: 0, a: 0.39215687}
   shadowcraftColor: {r: 0.72697544, g: 0, b: 1, a: 0.39215687}
-  divinityColor: {r: 1, g: 0.9665771, b: 0, a: 0.39215687}
+  divinityColor: {r: 0.92753625, g: 1, b: 0, a: 0.39215687}
   naturalismColor: {r: 0, g: 0.94952226, b: 1, a: 0.39215687}
   corruptionColor: {r: 0, g: 0.3490566, b: 0.07531744, a: 0.39215687}
-  scoundrelColor: {r: 0, g: 0, b: 0, a: 0}
+  scoundrelColor: {r: 0, g: 0, b: 0, a: 0.39215687}
   commonColor: {r: 1, g: 1, b: 1, a: 1}
   rareColor: {r: 0.41960785, g: 1, b: 0.8862745, a: 1}
   epicColor: {r: 0.8188959, g: 0.3066038, b: 1, a: 1}

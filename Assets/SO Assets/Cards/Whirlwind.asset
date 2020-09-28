@@ -24,12 +24,13 @@ MonoBehaviour:
   opener: 0
   fleeting: 0
   unplayable: 0
+  blessing: 0
   cardEffects:
   - cardEffectType: 8
     weaponRequirement: 0
     drawStacksFromOverload: 0
     blockGainValue: 0
-    baseDamageValue: 3
+    baseDamageValue: 5
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     damageType: 1
@@ -43,6 +44,7 @@ MonoBehaviour:
       passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
+    blessingsGained: 0
     visualEventsOnStart:
     - eventType: 1
       particleEffect: 0
@@ -108,6 +110,7 @@ MonoBehaviour:
       passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
+    blessingsGained: 0
     visualEventsOnStart: []
     visualEventsOnFinish: []
   cardEventListeners: []

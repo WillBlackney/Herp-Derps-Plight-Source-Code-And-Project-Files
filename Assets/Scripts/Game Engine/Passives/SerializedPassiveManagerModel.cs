@@ -78,6 +78,9 @@ public class SerializedPassiveManagerModel
     [BoxGroup("Buff Passives")]
     [LabelWidth(200)]
     public int meleeAttackReductionStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
+    public int consecrationStacks;
 
     // Aura Passives
     [BoxGroup("Aura Passives", centerLabel: true)]

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Prayer
+  m_Name: Consecration
   m_EditorClassIdentifier: 
-  cardName: Prayer
-  cardDescription: 'Add 2 random Blessings to your hand. '
-  cardSprite: {fileID: 21300000, guid: 550483f39b545b04887d5dbc4fb1a5f1, type: 3}
-  cardEnergyCost: 1
-  cardType: 1
+  cardName: Consecration
+  cardDescription: Whenever you play a Blessing, deal 2 Fire damage to all enemies.
+  cardSprite: {fileID: 21300000, guid: 3b48778928cf54048a13df3e7066937a, type: 3}
+  cardEnergyCost: 2
+  cardType: 4
   targettingType: 0
   talentSchool: 10
   rarity: 1
@@ -24,8 +24,9 @@ MonoBehaviour:
   opener: 0
   fleeting: 0
   unplayable: 0
+  blessing: 0
   cardEffects:
-  - cardEffectType: 21
+  - cardEffectType: 2
     weaponRequirement: 0
     drawStacksFromOverload: 0
     blockGainValue: 0
@@ -39,11 +40,11 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: {fileID: 0}
-      passiveStacks: 0
+      passiveData: {fileID: 11400000, guid: d04c670110fdb014b89a8da5c8ee56d1, type: 2}
+      passiveStacks: 2
     cardAdded: {fileID: 0}
     copiesAdded: 0
-    blessingsGained: 2
+    blessingsGained: 0
     visualEventsOnStart: []
     visualEventsOnFinish: []
   cardEventListeners: []

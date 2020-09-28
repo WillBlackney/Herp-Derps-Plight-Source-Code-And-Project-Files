@@ -39765,7 +39765,7 @@ Transform:
   m_GameObject: {fileID: 5829404452351274991}
   m_LocalRotation: {x: -0, y: -0, z: 0.055663496, w: 0.9984497}
   m_LocalPosition: {x: 2.79, y: -0.37, z: -0.001}
-  m_LocalScale: {x: 1.3, y: 1.1, z: 1}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1}
   m_Children: []
   m_Father: {fileID: 4444844490635806}
   m_RootOrder: 8
@@ -39834,7 +39834,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView: []
+  itemsWithMyView:
+  - {fileID: 11400000, guid: f2e579d4bb84b82479f2d0b3183c07d4, type: 2}
   connectedElements: []
 --- !u!1 &5863801854333320187
 GameObject:
@@ -41376,7 +41377,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView: []
+  itemsWithMyView:
+  - {fileID: 11400000, guid: b533dcedf0849e047ac0af6f1d50afe0, type: 2}
   connectedElements: []
 --- !u!1 &6214136032241353679
 GameObject:

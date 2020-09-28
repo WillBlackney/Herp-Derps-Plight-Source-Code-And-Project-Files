@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Blessing Of Wisdom
   cardDescription: 'Give a target 1 Draw. '
-  cardSprite: {fileID: 21300000, guid: 9c30675e6fbcb3649924896adc6c6cb0, type: 3}
+  cardSprite: {fileID: 21300000, guid: 343eb5ad76e340a468f06c6511a5db81, type: 3}
   cardEnergyCost: 0
   cardType: 1
   targettingType: 2

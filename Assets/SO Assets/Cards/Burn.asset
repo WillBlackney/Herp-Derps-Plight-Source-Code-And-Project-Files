@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Burn
   cardDescription: "On activation end, apply 2 Burning to self. \nUnplayable."
-  cardSprite: {fileID: 21300000, guid: 6ba3aba52078e4f4aa3fa9fbdc76a444, type: 3}
+  cardSprite: {fileID: 21300000, guid: 741c2c4a28c8ae544a4918701bfea295, type: 3}
   cardEnergyCost: 0
   cardType: 1
   targettingType: 0
@@ -24,6 +24,7 @@ MonoBehaviour:
   opener: 0
   fleeting: 0
   unplayable: 1
+  blessing: 0
   cardEffects: []
   cardEventListeners:
   - cardEventListenerType: 3

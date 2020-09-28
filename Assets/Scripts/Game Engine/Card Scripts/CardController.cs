@@ -94,6 +94,7 @@ public class CardController : Singleton<CardController>
         card.fleeting = data.fleeting;
         card.opener = data.opener;
         card.unplayable = data.unplayable;
+        card.blessing = data.blessing;
 
         // lists
         card.cardEventListeners.AddRange(data.cardEventListeners);
@@ -481,7 +482,7 @@ public class CardController : Singleton<CardController>
 
         return boolReturned;
     }
-   
+
     #endregion
 
     // Playing Cards Logic
@@ -514,6 +515,36 @@ public class CardController : Singleton<CardController>
                 }
             }
             */
+        }
+
+
+        // Consecration
+        if (card.owner.pManager.consecrationStacks > 0)
+        {
+            VisualEvent batchedEvent = VisualEventManager.Instance.InsertTimeDelayInQueue(0f);
+
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+            {
+                VisualEffectManager.Instance.CreateHolyNova(owner.characterEntityView.WorldPosition);
+                VisualEffectManager.Instance.CreateStatusEffect(owner.characterEntityView.WorldPosition, "Consecration!");
+            }, QueuePosition.BatchedEvent, 0f, 0f, EventDetail.None, batchedEvent);
+
+            foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
+            {
+                // Calculate damage
+                DamageType damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(owner);
+                int baseDamage = card.owner.pManager.consecrationStacks;
+
+                // Calculate the end damage value
+                int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, enemy, damageType, false, baseDamage);
+
+                // Create fiery explosion on target
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateApplyBurningEffect(enemy.characterEntityView.WorldPosition), QueuePosition.BatchedEvent, 0f, 0f, EventDetail.None, batchedEvent);
+
+                // Start damage sequence
+                CombatLogic.Instance.HandleDamage(finalDamageValue, owner, enemy, damageType, null, null, false, QueuePosition.BatchedEvent, batchedEvent);
+            }
         }
 
         // Where should this card be sent to?
@@ -695,7 +726,6 @@ public class CardController : Singleton<CardController>
         // Deal Damage All Enemies
         else if (cardEffect.cardEffectType == CardEffectType.DamageAllEnemies)
         {
-
             VisualEvent batchedEvent = VisualEventManager.Instance.InsertTimeDelayInQueue(0f);
 
             foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
@@ -808,6 +838,23 @@ public class CardController : Singleton<CardController>
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, cardEffect.passivePairing.passiveData.passiveName, stacks, true, 0.5f);
         }
 
+        // Apply passive to all allies
+        else if (cardEffect.cardEffectType == CardEffectType.ApplyPassiveToAllAllies)
+        {
+            int stacks = cardEffect.passivePairing.passiveStacks;
+            if (cardEffect.drawStacksFromOverload)
+            {
+                stacks = owner.pManager.overloadStacks;
+            }
+
+            foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllAlliesOfCharacter(owner))
+            {
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemy.pManager, cardEffect.passivePairing.passiveData.passiveName, stacks, true);
+            }
+
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+        }
+
         // Apply passive to all enemies
         else if (cardEffect.cardEffectType == CardEffectType.ApplyPassiveToAllEnemies)
         {
@@ -819,9 +866,10 @@ public class CardController : Singleton<CardController>
 
             foreach(CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
             {
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemy.pManager, cardEffect.passivePairing.passiveData.passiveName, stacks, true);
-                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-            }           
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemy.pManager, cardEffect.passivePairing.passiveData.passiveName, stacks, true);                
+            }
+
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
         }
 
         // Apply passive to all allies

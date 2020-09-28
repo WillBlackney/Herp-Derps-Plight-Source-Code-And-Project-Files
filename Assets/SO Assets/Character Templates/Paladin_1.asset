@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2410c6608dbef744a9643f0571333299, type: 3}
-  m_Name: Testing Character
+  m_Name: Paladin_1
   m_EditorClassIdentifier: 
-  myName: Testing Character
+  myName: Paladin
   health: 30
   maxHealth: 30
   power: 0
   dexterity: 0
   stamina: 3
   draw: 5
-  initiative: 50
+  initiative: 3
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0
@@ -38,7 +38,7 @@ MonoBehaviour:
     temporaryBonusStaminaStacks: 0
     temporaryBonusInitiativeStacks: 0
     temporaryBonusDrawStacks: 0
-    enrageStacks: 2
+    enrageStacks: 0
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
     divineFavourStacks: 0
@@ -58,25 +58,26 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 5662113a872574f43a0b1cc1c79e940b, type: 2}
-  - {fileID: 11400000, guid: 5662113a872574f43a0b1cc1c79e940b, type: 2}
-  - {fileID: 11400000, guid: 5662113a872574f43a0b1cc1c79e940b, type: 2}
-  - {fileID: 11400000, guid: 5662113a872574f43a0b1cc1c79e940b, type: 2}
+  - {fileID: 11400000, guid: 9a485b795a8ea7d4fbab8525e8284e7d, type: 2}
+  - {fileID: 11400000, guid: 9a485b795a8ea7d4fbab8525e8284e7d, type: 2}
+  - {fileID: 11400000, guid: ef2b9ffdee54c0a48adddcc159a622a3, type: 2}
+  - {fileID: 11400000, guid: ef2b9ffdee54c0a48adddcc159a622a3, type: 2}
+  - {fileID: 11400000, guid: 3587b8c7f77c41d4eafbc12793734665, type: 2}
+  - {fileID: 11400000, guid: 3587b8c7f77c41d4eafbc12793734665, type: 2}
+  - {fileID: 11400000, guid: 25f889ca097d2c742a862cb5f2097476, type: 2}
+  - {fileID: 11400000, guid: 25f889ca097d2c742a862cb5f2097476, type: 2}
+  - {fileID: 11400000, guid: 238bc2ffb3d01884abc4765af2cb53b2, type: 2}
   - {fileID: 11400000, guid: 3dd793e1ab9b62e47aed32f5c45e8618, type: 2}
   modelParts:
-  - Orc_Head_1
-  - Orc_Face_1
-  - Orc_Chest
-  - Orc_Right_Arm
-  - Orc_Right_Hand
-  - Orc_Left_Arm
-  - Orc_Left_Hand
-  - Orc_Right_Leg
-  - Orc_Left_Leg
-  - Shaman_Chest_Wear
-  - Left_Hand_Simple_Battle_Axe
-  - Shaman_Right_Leg_Wear
-  - Shaman_Mask_Head_Wear
+  - Human_Chest
+  - Human_Face_1
+  - Human_Head_1
+  - Human_Right_Arm
+  - Human_Right_Hand
+  - Human_Right_Leg
+  - Paladin_Head_Wear
+  - Paladin_Chest_Wear
+  - Paladin_Right_Leg_Wear
   itemManager:
-    mainHandItem: {fileID: 11400000, guid: 8487b0bcf8b350246ad6ff676ec686f4, type: 2}
+    mainHandItem: {fileID: 11400000, guid: f2e579d4bb84b82479f2d0b3183c07d4, type: 2}
     offHandItem: {fileID: 0}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Divine Favour
   cardDescription: 'On activation start, add a random Blessing to your hand. '
-  cardSprite: {fileID: 21300000, guid: 9c30675e6fbcb3649924896adc6c6cb0, type: 3}
+  cardSprite: {fileID: 21300000, guid: 178a45ecd9b7ede49a65f3e13d374fd4, type: 3}
   cardEnergyCost: 2
   cardType: 4
   targettingType: 0

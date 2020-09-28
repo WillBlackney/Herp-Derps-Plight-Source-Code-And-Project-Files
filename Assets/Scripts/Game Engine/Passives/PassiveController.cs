@@ -131,6 +131,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyMeleeAttackReduction(newClone, originalData.meleeAttackReductionStacks, false);
         }
+        if (originalData.consecrationStacks != 0)
+        {
+            ModifyConsecration(newClone, originalData.consecrationStacks, false);
+        }
         #endregion
 
         // Aura Passives
@@ -206,6 +210,7 @@ public class PassiveController : Singleton<PassiveController>
         pManager.overloadStacks = original.overloadStacks;
         pManager.fusionStacks = original.fusionStacks;
         pManager.meleeAttackReductionStacks = original.meleeAttackReductionStacks;
+        pManager.consecrationStacks = original.consecrationStacks;
 
         pManager.encouragingAuraStacks = original.encouragingAuraStacks;
 
@@ -510,6 +515,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyMeleeAttackReduction(pManager, stacks, showVFX, vfxDelay);
         }
+        else if (originalData == "Consecration")
+        {
+            ModifyConsecration(pManager, stacks, showVFX, vfxDelay);
+        }
         #endregion
 
         // Aura Passives
@@ -595,9 +604,9 @@ public class PassiveController : Singleton<PassiveController>
                 // VFX visual events
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Strength +" + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Power +" + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
                
             }
 
@@ -605,9 +614,9 @@ public class PassiveController : Singleton<PassiveController>
             {
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Strength " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Power " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                });
             }
 
             // Update intent GUI, if enemy and attacking
@@ -860,7 +869,7 @@ public class PassiveController : Singleton<PassiveController>
                 // VFX visual events
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Strength +" + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Power +" + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
                 });
 
@@ -870,7 +879,7 @@ public class PassiveController : Singleton<PassiveController>
             {
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Strength " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Power " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
                 }, QueuePosition.Back, 0, 0.5f);
             }
@@ -1387,6 +1396,57 @@ public class PassiveController : Singleton<PassiveController>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Poisonous Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+
+
+    }
+    public void ModifyConsecration(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyConsecration() called...");
+
+        // Setup + Cache refs
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Consecration");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Increment stacks
+        pManager.consecrationStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Consecration");
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Consecration Removed");
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
                 });
             }

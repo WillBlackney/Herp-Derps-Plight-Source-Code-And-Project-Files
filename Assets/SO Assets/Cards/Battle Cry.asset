@@ -18,12 +18,13 @@ MonoBehaviour:
   cardEnergyCost: 1
   cardType: 1
   targettingType: 0
-  talentSchool: 14
+  talentSchool: 2
   rarity: 1
   expend: 0
   opener: 0
   fleeting: 0
   unplayable: 0
+  blessing: 0
   cardEffects:
   - cardEffectType: 5
     weaponRequirement: 0
@@ -43,6 +44,7 @@ MonoBehaviour:
       passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0
+    blessingsGained: 0
     visualEventsOnStart:
     - eventType: 2
       particleEffect: 0

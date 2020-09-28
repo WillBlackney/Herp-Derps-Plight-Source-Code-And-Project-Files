@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Holy Fire
+  m_Name: Smite
   m_EditorClassIdentifier: 
-  cardName: Holy Fire
-  cardDescription: "Deal 4 Fire damage. \nAdd a random Blessing to your hand."
-  cardSprite: {fileID: 21300000, guid: 2c3febda8c61a7341b4b1e17ca3fe484, type: 3}
+  cardName: Smite
+  cardDescription: 'Deal 4 Physical damage.
+
+    Add a random Blessing to your hand. '
+  cardSprite: {fileID: 21300000, guid: 251bc4af2751f3841bb2e13adb9d7d6b, type: 3}
   cardEnergyCost: 1
-  cardType: 3
+  cardType: 2
   targettingType: 3
   talentSchool: 10
   rarity: 1
@@ -32,7 +34,7 @@ MonoBehaviour:
     baseDamageValue: 4
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
-    damageType: 4
+    damageType: 1
     healthLost: 0
     energyGained: 0
     cardsDrawn: 0
@@ -45,24 +47,24 @@ MonoBehaviour:
     copiesAdded: 0
     blessingsGained: 0
     visualEventsOnStart:
+    - eventType: 1
+      particleEffect: 0
+      cameraShake: 0
+      movementAnimation: 1
+      soundEffect: 0
+      characterAnimation: 0
+      delayDuration: 0
+      projectileFired: 0
+      onCharacter: 0
     - eventType: 2
       particleEffect: 0
       cameraShake: 0
       movementAnimation: 0
       soundEffect: 0
-      characterAnimation: 3
-      delayDuration: 0
-      projectileFired: 8
-      onCharacter: 0
-    - eventType: 3
-      particleEffect: 4
-      cameraShake: 0
-      movementAnimation: 0
-      soundEffect: 0
-      characterAnimation: 0
+      characterAnimation: 1
       delayDuration: 0
       projectileFired: 0
-      onCharacter: 2
+      onCharacter: 0
     - eventType: 4
       particleEffect: 0
       cameraShake: 1
@@ -72,6 +74,15 @@ MonoBehaviour:
       delayDuration: 0
       projectileFired: 0
       onCharacter: 0
+    - eventType: 3
+      particleEffect: 13
+      cameraShake: 0
+      movementAnimation: 0
+      soundEffect: 0
+      characterAnimation: 0
+      delayDuration: 0
+      projectileFired: 0
+      onCharacter: 2
     visualEventsOnFinish: []
   - cardEffectType: 21
     weaponRequirement: 0

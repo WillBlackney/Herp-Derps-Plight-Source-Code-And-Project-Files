@@ -63,6 +63,10 @@ public class CardDataSO : ScriptableObject
     [LabelWidth(100)]
     [GUIColor("Green")]
     public bool unplayable;
+    [BoxGroup("Key Words")]
+    [LabelWidth(100)]
+    [GUIColor("Green")]
+    public bool blessing;
 
 
     [VerticalGroup("List Groups")]
