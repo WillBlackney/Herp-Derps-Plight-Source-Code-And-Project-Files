@@ -7,6 +7,7 @@ public class Card
     // General Properties
     public CharacterEntityModel owner;
     public CardViewModel cardVM;
+    public CardDataSO myCardDataSO;
     public string cardName;
     public Sprite cardSprite;
     public string cardDescription;

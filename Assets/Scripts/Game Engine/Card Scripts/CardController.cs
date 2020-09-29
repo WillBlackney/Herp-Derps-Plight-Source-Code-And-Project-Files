@@ -33,6 +33,9 @@ public class CardController : Singleton<CardController>
         private set { allBlessingCards = value; }
     }
 
+    [Header("Misc Properties")]
+    private CardEffect currentDiscoveryEffect;
+
     private void Start()
     {
         /*
@@ -242,6 +245,9 @@ public class CardController : Singleton<CardController>
         Debug.Log("CardController.BuildCardFromCardData() called...");
 
         Card card = new Card();
+
+        // Data links
+        card.myCardDataSO = data;
 
         // Core data
         card.owner = owner;
@@ -479,8 +485,9 @@ public class CardController : Singleton<CardController>
 
     // Gain card not from deck logic
     #region
-    public void CreateAndAddNewCardToCharacterHand(CharacterEntityModel defender, CardDataSO data)
+    public Card CreateAndAddNewCardToCharacterHand(CharacterEntityModel defender, CardDataSO data)
     {
+        Card cardReturned = null;
         if (!IsHandFull(defender))
         {
             // Get card and remove from deck
@@ -491,7 +498,12 @@ public class CardController : Singleton<CardController>
 
             // Create and queue card drawn visual event
             VisualEventManager.Instance.CreateVisualEvent(() => CreateAndAddNewCardToCharacterHandVisualEvent(newCard, defender), QueuePosition.Back, 0, 0.2f, EventDetail.CardDraw);
+
+            // cache card
+            cardReturned = newCard;
         }
+
+        return cardReturned;
     }
     #endregion
 
@@ -558,7 +570,6 @@ public class CardController : Singleton<CardController>
         // does the card have a cardVM linked to it?
         if (cvm)
         {
-            // VisualEventManager.Instance.CreateVisualEvent(() => ExpendCardVisualEvent(cvm, owner), QueuePosition.Front);
             ExpendCardVisualEvent(cvm, owner);
         }
 
@@ -988,14 +999,18 @@ public class CardController : Singleton<CardController>
             for(int draws = 0; draws < cardEffect.cardsDrawn; draws++)
             {
                 Card cardDrawn = DrawACardFromDrawPile(owner);
-                if(cardEffect.extraDrawEffect == ExtraDrawEffect.ReduceEnergyCostThisCombat)
+                if(cardDrawn != null)
                 {
-                    ReduceCardEnergyCostThisCombat(cardDrawn, cardEffect.cardEnergyReduction);
+                    if (cardEffect.extraDrawEffect == ExtraDrawEffect.ReduceEnergyCostThisCombat)
+                    {
+                        ReduceCardEnergyCostThisCombat(cardDrawn, cardEffect.cardEnergyReduction);
+                    }
+                    else if (cardEffect.extraDrawEffect == ExtraDrawEffect.SetEnergyCostToZeroThisCombat)
+                    {
+                        ReduceCardEnergyCostThisCombat(cardDrawn, cardDrawn.cardBaseEnergyCost);
+                    }
                 }
-                else if (cardEffect.extraDrawEffect == ExtraDrawEffect.SetEnergyCostToZeroThisCombat)
-                {
-                    ReduceCardEnergyCostThisCombat(cardDrawn, cardDrawn.cardBaseEnergyCost);
-                }
+               
             }           
         }
 
@@ -1195,7 +1210,15 @@ public class CardController : Singleton<CardController>
         // Re-shuffle the draw pile
         defender.drawPile.Shuffle();
         //ShuffleCards(defender.drawPile);
+    }
 
+    private void MoveCardFromDiscardPileToHand(Card card)
+    {
+        // TO DO: we shouldnt just shuffle the card into the draw pile then draw it...
+        // find a better way...
+        RemoveCardFromDiscardPile(card.owner, card);
+        AddCardToDrawPile(card.owner, card);
+        DrawACardFromDrawPile(card.owner, card.owner.drawPile.IndexOf(card));
     }
     private void AddCardToDrawPile(CharacterEntityModel defender, Card card)
     {
@@ -1354,8 +1377,26 @@ public class CardController : Singleton<CardController>
         {
             VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(cvm));
             VisualEventManager.Instance.CreateVisualEvent(() => SetCardViewModelEnergyText(card, cvm, newCostTextValue.ToString()));
+        }       
+    }
+    private void SetCardEnergyCostThisCombat(Card card, int newEnergyCost)
+    {
+        // Setup
+        CardViewModel cvm = card.cardVM;
+
+        // get difference
+        int reductionAmount = card.cardBaseEnergyCost - newEnergyCost;
+
+        // Reduce cost this combat
+        card.energyReductionThisCombatOnly += reductionAmount;
+
+        // Update card vm energy text, if not null
+        int newCostTextValue = GetCardEnergyCost(card);
+        if (cvm)
+        {
+            VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(cvm));
+            VisualEventManager.Instance.CreateVisualEvent(() => SetCardViewModelEnergyText(card, cvm, newCostTextValue.ToString()));
         }
-       
     }
     #endregion
 
@@ -1381,6 +1422,7 @@ public class CardController : Singleton<CardController>
     {
         // Enable discovery screen
         ShowDiscoveryScreen();
+        currentDiscoveryEffect = ce;
 
         // Discover cards from card data so library
         if(ce.discoveryLocation == CardCollection.CardLibrary)
@@ -1408,6 +1450,9 @@ public class CardController : Singleton<CardController>
                 {
                     // Get discovery card
                     DiscoveryCardViewModel dcvm = discoveryCards[i];
+
+                    // cache ref to data
+                    dcvm.myDataRef = discoverableCards[i];
 
                     // enable view
                     dcvm.gameObject.SetActive(true);
@@ -1473,6 +1518,9 @@ public class CardController : Singleton<CardController>
                     // Get discovery card
                     DiscoveryCardViewModel dcvm = discoveryCards[i];
 
+                    // cache ref to card
+                    dcvm.myCardRef = discoverableCards[i];
+
                     // enable view
                     dcvm.gameObject.SetActive(true);
 
@@ -1487,9 +1535,125 @@ public class CardController : Singleton<CardController>
     {
         discoveryScreenVisualParent.SetActive(true);
     }
+    private void HideDiscoveryScreen()
+    {
+        discoveryScreenVisualParent.SetActive(false);
+    }
     public void OnDiscoveryCardClicked(DiscoveryCardViewModel dcvm)
     {
+        if(dcvm.myCardRef != null)
+        {
+            ResolveDiscoveryCardClicked(dcvm, dcvm.myCardRef);
+        }
+        else if(dcvm.myDataRef != null)
+        {
+            ResolveDiscoveryCardClicked(dcvm, dcvm.myDataRef);
+        }
 
+        // disable screen
+        HideDiscoveryScreen();
+
+        // reset dcvm's
+        foreach (DiscoveryCardViewModel dCard in discoveryCards)
+        {
+            dCard.ResetSelfOnEventComplete();
+        }
+        
+    }
+    private void ResolveDiscoveryCardClicked(DiscoveryCardViewModel dcvm, Card cardRef)
+    {
+        List<Card> cards = new List<Card>();
+
+        // TO DO: should probably make a better way to find which player started the discovery process
+        CharacterEntityModel owner = ActivationManager.Instance.EntityActivated;
+
+        foreach (OnDiscoveryChoiceMadeEffect effect in currentDiscoveryEffect.onDiscoveryChoiceMadeEffects)
+        {
+            // Add to hand
+            if (effect.discoveryEffect == OnDiscoveryChoiceMadeEffectType.AddToHand)
+            {
+                // From draw pile
+                if(currentDiscoveryEffect.discoveryLocation == CardCollection.DrawPile)
+                {
+                    DrawACardFromDrawPile(owner, owner.drawPile.IndexOf(cardRef));
+                    cards.Add(cardRef);
+                }
+
+                // From discard pile
+                else if (currentDiscoveryEffect.discoveryLocation == CardCollection.DiscardPile)
+                {
+                    MoveCardFromDiscardPileToHand(cardRef);
+                    cards.Add(cardRef);
+                }
+            }
+
+            // Create copies and add to hand
+            else if (effect.discoveryEffect == OnDiscoveryChoiceMadeEffectType.AddCopyToHand)
+            {
+                for (int i = 0; i < effect.copiesAdded; i++)
+                {
+                    Card newCard = CreateAndAddNewCardToCharacterHand(owner, cardRef.myCardDataSO);
+                    cards.Add(newCard);
+                }
+            }
+
+            // reduce cost of new cards
+            else if (effect.discoveryEffect == OnDiscoveryChoiceMadeEffectType.ReduceEnergyCost)
+            {
+                foreach (Card card in cards)
+                {
+                    ReduceCardEnergyCostThisCombat(card, effect.energyReduction);
+                }
+            }
+
+            // set cost of new cards
+            else if (effect.discoveryEffect == OnDiscoveryChoiceMadeEffectType.SetEnergyCost)
+            {
+                foreach (Card card in cards)
+                {
+                    SetCardEnergyCostThisCombat(card, effect.newEnergyCost);
+                }
+            }
+        }
+    }
+    private void ResolveDiscoveryCardClicked(DiscoveryCardViewModel dcvm, CardDataSO dataRef)
+    {
+        List<Card> cards = new List<Card>();
+
+        // TO DO: should probably make a better way to find which player started the discovery process
+        CharacterEntityModel owner = ActivationManager.Instance.EntityActivated;
+
+        foreach (OnDiscoveryChoiceMadeEffect effect in currentDiscoveryEffect.onDiscoveryChoiceMadeEffects)
+        {
+            // Add copies to hand
+            if (effect.discoveryEffect == OnDiscoveryChoiceMadeEffectType.AddCopyToHand ||
+                effect.discoveryEffect == OnDiscoveryChoiceMadeEffectType.AddToHand)
+            {
+                for (int i = 0; i < effect.copiesAdded; i++)
+                {
+                    Card newCard = CreateAndAddNewCardToCharacterHand(owner, dataRef);
+                    cards.Add(newCard);
+                }
+            }
+
+            // reduce cost of new cards
+            else if (effect.discoveryEffect == OnDiscoveryChoiceMadeEffectType.ReduceEnergyCost)
+            {
+                foreach(Card card in cards)
+                {
+                    ReduceCardEnergyCostThisCombat(card, effect.energyReduction);
+                }
+            }
+
+            // set cost of new cards
+            else if (effect.discoveryEffect == OnDiscoveryChoiceMadeEffectType.SetEnergyCost)
+            {
+                foreach (Card card in cards)
+                {
+                    SetCardEnergyCostThisCombat(card, effect.newEnergyCost);
+                }
+            }
+        }
     }
     #endregion
 

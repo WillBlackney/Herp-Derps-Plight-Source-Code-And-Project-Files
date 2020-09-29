@@ -14,21 +14,30 @@ public class DiscoveryCardViewModel : MonoBehaviour, IPointerEnterHandler, IPoin
     [SerializeField] float endScale;
     [SerializeField] float scaleSpeed;
 
+    [Header("Card References")]
+    public CardDataSO myDataRef;
+    public Card myCardRef;
+
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.LogWarning("OnPointerEnter");
         cardViewModel.movementParent.DOScale(endScale, scaleSpeed).SetEase(Ease.OutQuint);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.LogWarning("OnPointerExit");
         cardViewModel.movementParent.DOScale(originalScale, scaleSpeed).SetEase(Ease.OutQuint);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.LogWarning("OnPointerClick");
         CardController.Instance.OnDiscoveryCardClicked(this);
+    }
+
+    public void ResetSelfOnEventComplete()
+    {
+        myCardRef = null;
+        myDataRef = null;
+        cardViewModel.movementParent.localScale = new Vector3(originalScale, originalScale, 1f);
+        gameObject.SetActive(false);
     }
 }

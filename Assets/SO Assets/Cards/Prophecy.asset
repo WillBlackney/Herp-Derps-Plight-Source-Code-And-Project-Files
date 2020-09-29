@@ -10,17 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Vision
+  m_Name: Prophecy
   m_EditorClassIdentifier: 
-  cardName: Vision
-  cardDescription: "Discover a common card. \nAdd it to your hand. "
-  cardSprite: {fileID: 21300000, guid: f9fdd0da3def73742830be3993f4ec33, type: 3}
-  cardEnergyCost: 1
+  cardName: Prophecy
+  cardDescription: 'Discover a Blessing.
+
+    Add 2 copies of it to your hand.
+
+    Expend. '
+  cardSprite: {fileID: 21300000, guid: 9c30675e6fbcb3649924896adc6c6cb0, type: 3}
+  cardEnergyCost: 0
   cardType: 1
   targettingType: 0
-  talentSchool: 9
-  rarity: 1
-  expend: 0
+  talentSchool: 10
+  rarity: 2
+  expend: 1
   opener: 0
   fleeting: 0
   unplayable: 0
@@ -30,16 +34,12 @@ MonoBehaviour:
     cardEffectType: 22
     discoveryLocation: 5
     talentSchoolFilter: 0
-    rarityFilter: 1
-    blessing: 0
+    rarityFilter: 0
+    blessing: 1
     onDiscoveryChoiceMadeEffects:
     - discoveryEffect: 2
-      copiesAdded: 3
+      copiesAdded: 2
       energyReduction: 0
-      newEnergyCost: 0
-    - discoveryEffect: 3
-      copiesAdded: 0
-      energyReduction: 1
       newEnergyCost: 0
     drawStacksFromOverload: 0
     blockGainValue: 0

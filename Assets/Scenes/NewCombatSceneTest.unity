@@ -7299,9 +7299,9 @@ MonoBehaviour:
   runMockScene: 1
   testingEnemyWave: {fileID: 11400000, guid: 196d21c94a6e94b42ab0250cb4bedcdd, type: 2}
   characterTemplates:
-  - {fileID: 11400000, guid: 52b82b5c29e34814cacd91cfb9439876, type: 2}
-  - {fileID: 11400000, guid: 8d4ecf2085d9be843b2d44cb7360b5d7, type: 2}
-  - {fileID: 11400000, guid: 11330c0f179f1fb49b8fc2aac3fe768b, type: 2}
+  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
+  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
+  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
   characterDataSample:
     myName: Test
     serializedPassiveManager:
