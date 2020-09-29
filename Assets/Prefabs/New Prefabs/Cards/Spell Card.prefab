@@ -231,6 +231,11 @@ PrefabInstance:
       propertyPath: isPreviewCard
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 434137997889915102, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
+        type: 3}
+      propertyPath: movementParent
+      value: 
+      objectReference: {fileID: 4000010542784886}
     - target: {fileID: 8719755639736460736, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
         type: 3}
       propertyPath: m_Name
@@ -408,6 +413,11 @@ PrefabInstance:
       propertyPath: myPreviewCard
       value: 
       objectReference: {fileID: 849891265671426017}
+    - target: {fileID: 434137997889915102, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
+        type: 3}
+      propertyPath: movementParent
+      value: 
+      objectReference: {fileID: 4000014166665006}
     - target: {fileID: 8719755639736460736, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
         type: 3}
       propertyPath: m_Name
@@ -526,12 +536,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 8719327387176222624}
   m_PrefabAsset: {fileID: 0}
---- !u!223 &223000012273110020 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 8798071437363213220, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
-    type: 3}
-  m_PrefabInstance: {fileID: 8719327387176222624}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &9153311408048535422 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 434137997889915102, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
@@ -544,6 +548,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dce8cdaa7a33aad42b6bb02910bcc52b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!223 &223000012273110020 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 8798071437363213220, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
+    type: 3}
+  m_PrefabInstance: {fileID: 8719327387176222624}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1000011828542842 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8719755642194526938, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,

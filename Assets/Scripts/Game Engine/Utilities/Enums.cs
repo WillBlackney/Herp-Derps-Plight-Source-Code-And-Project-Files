@@ -37,6 +37,8 @@ public enum CardCollection
     DrawPile = 1,
     DiscardPile = 2,
     PermanentDeck = 3,
+    ExpendPile = 4,
+    CardLibrary = 5,
 }
 [Serializable]
 public enum CardEffectType
@@ -48,10 +50,12 @@ public enum CardEffectType
     ApplyPassiveToTarget = 3,
     ApplyPassiveToAllEnemies = 4,
     ApplyPassiveToAllAllies = 5,
+    ChooseCardsInLocation = 23,
     DamageTarget = 6,
     DamageSelf = 7,
     DamageAllEnemies = 8,
     DrawCards = 9,
+    DiscoverCards = 22,
     GainBlockSelf = 10,
     GainBlockTarget = 19,
     GainBlockAllAllies = 12,

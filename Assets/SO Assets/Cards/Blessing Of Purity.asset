@@ -18,15 +18,21 @@ MonoBehaviour:
   cardEnergyCost: 0
   cardType: 1
   targettingType: 2
-  talentSchool: 10
-  rarity: 1
+  talentSchool: 0
+  rarity: 0
   expend: 0
   opener: 0
   fleeting: 0
   unplayable: 0
+  blessing: 1
   cardEffects:
-  - cardEffectType: 3
-    weaponRequirement: 0
+  - weaponRequirement: 0
+    cardEffectType: 3
+    discoveryLocation: 0
+    talentSchoolFilter: 0
+    rarityFilter: 0
+    blessing: 0
+    onDiscoveryChoiceMadeEffects: []
     drawStacksFromOverload: 0
     blockGainValue: 0
     baseDamageValue: 0

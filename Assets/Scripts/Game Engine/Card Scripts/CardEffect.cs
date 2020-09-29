@@ -8,9 +8,32 @@ using Sirenix.OdinInspector;
 public class CardEffect
 {
     [LabelWidth(200)]
-    public CardEffectType cardEffectType;
-    [LabelWidth(200)]
     public CardWeaponRequirement weaponRequirement;
+    [LabelWidth(200)]
+    public CardEffectType cardEffectType;   
+
+    [ShowIf("ShowDiscoveryLocation")]
+    [LabelWidth(200)]
+    public CardCollection discoveryLocation;
+
+    [VerticalGroup("Search Filters")]
+    [ShowIf("ShowCardLibraryFilter")]
+    [LabelWidth(200)]
+    public TalentSchool talentSchoolFilter;
+
+    [ShowIf("ShowCardLibraryFilter")]
+    [VerticalGroup("Search Filters")]
+    [LabelWidth(200)]
+    public Rarity rarityFilter;
+
+    [ShowIf("ShowCardLibraryFilter")]
+    [VerticalGroup("Search Filters")]
+    [LabelWidth(200)]
+    public bool blessing;
+
+    [ShowIf("ShowOnDiscoveryChoiceMadeEffects")]
+    [LabelWidth(200)]
+    public List<OnDiscoveryChoiceMadeEffect> onDiscoveryChoiceMadeEffects;
 
     [ShowIf("ShowDrawStacksFromOverload")]
     [LabelWidth(200)]
@@ -165,7 +188,74 @@ public class CardEffect
             return false;
         }
     }
+    public bool ShowDiscoveryLocation()
+    {
+        return cardEffectType == CardEffectType.DiscoverCards;
+    }
+    public bool ShowOnDiscoveryChoiceMadeEffects()
+    {
+        return cardEffectType == CardEffectType.DiscoverCards;
+    }
+    public bool ShowCardLibraryFilter()
+    {
+        if(discoveryLocation == CardCollection.CardLibrary &&
+            cardEffectType == CardEffectType.DiscoverCards)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
 
+[Serializable]
+public class OnDiscoveryChoiceMadeEffect
+{
+    [LabelWidth(200)]
+    public OnDiscoveryChoiceMadeEffectType discoveryEffect;
+
+    [ShowIf("ShowCopiesAdded")]
+    [LabelWidth(200)]
+    public int copiesAdded;
+    [ShowIf("ShowEnergyReduction")]
+    [LabelWidth(200)]
+    public int energyReduction;
+    [ShowIf("ShowNewEnergyCost")]
+    [LabelWidth(200)]
+    public int newEnergyCost;
+
+    public bool ShowCopiesAdded()
+    {
+        if(discoveryEffect == OnDiscoveryChoiceMadeEffectType.AddToHand ||
+           discoveryEffect == OnDiscoveryChoiceMadeEffectType.AddCopyToHand)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowEnergyReduction()
+    {
+        return discoveryEffect == OnDiscoveryChoiceMadeEffectType.ReduceEnergyCost;
+    }
+    public bool ShowNewEnergyCost()
+    {
+        return discoveryEffect == OnDiscoveryChoiceMadeEffectType.SetEnergyCost;
+    }
+
+}
+
+public enum OnDiscoveryChoiceMadeEffectType
+{
+    None = 0,
+    AddToHand = 1,
+    AddCopyToHand = 2,
+    ReduceEnergyCost = 3,
+    SetEnergyCost = 4,
 }
 
 

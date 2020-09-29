@@ -139,7 +139,7 @@ public class DragSpellOnTarget : DraggingActions {
             // Move this card back to its slot position
             HandVisual PlayerHand = cardVM.card.owner.characterEntityView.handVisual;
             Vector3 oldCardPos = PlayerHand.slots.Children[locationTracker.Slot].transform.localPosition;
-            cardVM.mainParent.DOLocalMove(oldCardPos, 0.25f);
+            cardVM.movementParent.DOLocalMove(oldCardPos, 0.25f);
         }
         else
         {

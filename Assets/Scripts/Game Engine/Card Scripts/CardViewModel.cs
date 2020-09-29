@@ -12,7 +12,7 @@ public class CardViewModel : MonoBehaviour
     public Card card;
 
     [Header("General Components")]
-    public Transform mainParent;
+    public Transform movementParent;
     public CardViewModel myPreviewCard;
     public bool isPreviewCard;
 

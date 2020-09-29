@@ -55,7 +55,7 @@ public class DragSpellNoTarget: DraggingActions{
             // Move this card back to its slot position
             HandVisual PlayerHand = cardVM.card.owner.characterEntityView.handVisual;
             Vector3 oldCardPos = PlayerHand.slots.Children[savedHandSlot].transform.localPosition;
-            cardVM.mainParent.transform.DOLocalMove(oldCardPos, 0.25f);            
+            cardVM.movementParent.transform.DOLocalMove(oldCardPos, 0.25f);            
         } 
     }
 

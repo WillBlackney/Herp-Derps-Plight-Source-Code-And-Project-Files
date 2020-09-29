@@ -4,6 +4,8 @@ using UnityEngine;
 using DG.Tweening;
 using System;
 using UnityEngine.UI;
+using System.Linq;
+using System.Security.Cryptography;
 
 public class CardController : Singleton<CardController>
 {
@@ -11,12 +13,15 @@ public class CardController : Singleton<CardController>
     #region
     [Header("Card Properties")]
     [SerializeField] private float cardTransistionSpeed;
-    [SerializeField] private BoxCollider2D tableCollider;
     [SerializeField] private bool mouseIsOverTable;
 
     [Header("Card Library Properties")]
     [SerializeField] private List<CardDataSO> allCards;
     [SerializeField] private List<CardDataSO> allBlessingCards;
+
+    [Header("Discovery Screen Components")]
+    public List<DiscoveryCardViewModel> discoveryCards;
+    public GameObject discoveryScreenVisualParent;
     public List<CardDataSO> AllCards
     {
         get { return allCards; }
@@ -26,6 +31,24 @@ public class CardController : Singleton<CardController>
     {
         get { return allBlessingCards; }
         private set { allBlessingCards = value; }
+    }
+
+    private void Start()
+    {
+        /*
+        GetCardsQuery(AllCards, TalentSchool.Corruption);
+        GetCardsQuery(AllCards, TalentSchool.Divinity);
+        GetCardsQuery(AllCards, TalentSchool.Guardian);
+        GetCardsQuery(AllCards, TalentSchool.Manipulation);
+        GetCardsQuery(AllCards, TalentSchool.Naturalism);
+        GetCardsQuery(AllCards, TalentSchool.Neutral);
+        GetCardsQuery(AllCards, TalentSchool.Pyromania);
+        GetCardsQuery(AllCards, TalentSchool.Ranger);
+        GetCardsQuery(AllCards, TalentSchool.Scoundrel);
+        GetCardsQuery(AllCards, TalentSchool.Shadowcraft);
+        GetCardsQuery(AllCards, TalentSchool.Warfare);
+        */
+
     }
     #endregion
 
@@ -55,6 +78,147 @@ public class CardController : Singleton<CardController>
     {
         return AllBlessingCards[RandomGenerator.NumberBetween(0, AllBlessingCards.Count - 1)];
     }
+    public List<CardDataSO> GetCardsQuery(List<CardDataSO> queriedCollection, 
+        TalentSchool ts = TalentSchool.None, 
+        Rarity r = Rarity.None,
+        bool blessing = false)
+    {
+        Debug.LogWarning("GetCardsQuery() called, query params --- TalentSchool = " + ts.ToString()
+            + ", Rarity = " + r.ToString() + ", Blessing = " + blessing.ToString());
+
+        List <CardDataSO> cardsReturned = new List<CardDataSO>();
+        cardsReturned.AddRange(queriedCollection);
+
+        if (ts != TalentSchool.None)
+        {
+            cardsReturned = QueryByTalentSchool(cardsReturned, ts);
+        }
+
+        if (r != Rarity.None)
+        {
+            cardsReturned = QueryByRarity(cardsReturned, r);
+        }
+
+        // Filter blessings
+        cardsReturned = QueryByBlessing(cardsReturned, blessing);
+
+        Debug.LogWarning("GetCardsQuery() found " + cardsReturned.Count.ToString() + " results...");
+        return cardsReturned;
+    }
+
+    public List<Card> GetCardsQuery(List<Card> queriedCollection,
+        TalentSchool ts = TalentSchool.None,
+        Rarity r = Rarity.None,
+        bool blessing = false)
+    {
+        Debug.LogWarning("GetCardsQuery() called, query params --- TalentSchool = " + ts.ToString()
+            + ", Rarity = " + r.ToString() + ", Blessing = " + blessing.ToString());
+
+        List<Card> cardsReturned = new List<Card>();
+        cardsReturned.AddRange(queriedCollection);
+
+        if (ts != TalentSchool.None)
+        {
+            cardsReturned = QueryByTalentSchool(cardsReturned, ts);
+        }
+
+        if (r != Rarity.None)
+        {
+            cardsReturned = QueryByRarity(cardsReturned, r);
+        }
+
+        // Filter blessings
+        cardsReturned = QueryByBlessing(cardsReturned, blessing);
+
+        Debug.LogWarning("GetCardsQuery() found " + cardsReturned.Count.ToString() + " results...");
+        return cardsReturned;
+    }
+
+    // Queries
+    private List<CardDataSO> QueryByTalentSchool(List<CardDataSO> collectionQueried, TalentSchool ts)
+    {
+       // Debug.Log("QueryByTalentSchool() called, querying for talent school: " + ts.ToString());
+
+        List<CardDataSO> cardsReturned = new List<CardDataSO>();
+
+        var query =
+           from cardData in collectionQueried
+           where cardData.talentSchool == ts
+           select cardData;
+
+        cardsReturned.AddRange(query);
+
+       // Debug.Log("QueryByTalentSchool() found " + cardsReturned.Count.ToString() + " results...");
+
+        return cardsReturned;
+    }
+    private List<Card> QueryByTalentSchool(List<Card> collectionQueried, TalentSchool ts)
+    {
+        List<Card> cardsReturned = new List<Card>();
+
+        var query =
+           from cardData in collectionQueried
+           where cardData.talentSchool == ts
+           select cardData;
+
+        cardsReturned.AddRange(query);
+
+        return cardsReturned;
+    }
+    private List<CardDataSO> QueryByRarity(List<CardDataSO> collectionQueried, Rarity r)
+    {
+        List<CardDataSO> cardsReturned = new List<CardDataSO>();
+
+        var query =
+           from cardData in collectionQueried
+           where cardData.rarity == r
+           select cardData;
+
+        cardsReturned.AddRange(query);
+
+       // Debug.Log("QueryByRarity() found " + cardsReturned.Count.ToString() + " results...");
+
+        return cardsReturned;
+    }
+    private List<Card> QueryByRarity(List<Card> collectionQueried, Rarity r)
+    {
+        List<Card> cardsReturned = new List<Card>();
+        var query =
+           from cardData in collectionQueried
+           where cardData.rarity == r
+           select cardData;
+
+        cardsReturned.AddRange(query);
+        return cardsReturned;
+    }
+    private List<CardDataSO> QueryByBlessing(List<CardDataSO> collectionQueried, bool blessing)
+    {
+        //Debug.Log("QueryByTalentSchool() called, querying for rarity: " + r.ToString());
+
+        List<CardDataSO> cardsReturned = new List<CardDataSO>();
+
+        var query =
+           from cardData in collectionQueried
+           where cardData.blessing == blessing
+           select cardData;
+
+        cardsReturned.AddRange(query);
+
+        // Debug.Log("QueryByRarity() found " + cardsReturned.Count.ToString() + " results...");
+
+        return cardsReturned;
+    }
+    private List<Card> QueryByBlessing(List<Card> collectionQueried, bool blessing)
+    {
+        List<Card> cardsReturned = new List<Card>();
+        var query =
+           from cardData in collectionQueried
+           where cardData.blessing == blessing
+           select cardData;
+
+        cardsReturned.AddRange(query);
+        return cardsReturned;
+    }
     #endregion
 
     // Build Cards, Decks, View Models and Data
@@ -70,7 +234,8 @@ public class CardController : Singleton<CardController>
         }
 
         // Shuffle the characters draw pile
-        ShuffleCards(defender.drawPile);
+        defender.drawPile.Shuffle();
+       // ShuffleCards(defender.drawPile);
     }
     private Card BuildCardFromCardData(CardDataSO data, CharacterEntityModel owner)
     {
@@ -116,12 +281,15 @@ public class CardController : Singleton<CardController>
             cardVM = Instantiate(PrefabHolder.Instance.targetCard, position, Quaternion.identity).GetComponentInChildren<CardViewModel>();
         }
 
-        // Set main parent 
-        cardVM.mainParent = cardVM.transform.parent.transform;
-
         // Cache references
         ConnectCardWithCardViewModel(card, cardVM);
 
+        // Set up appearance, texts and sprites
+        SetUpCardViewModelAppearanceFromCard(cardVM, card);
+        return cardVM;
+    }
+    public void SetUpCardViewModelAppearanceFromCard(CardViewModel cardVM, Card card)
+    {
         // Set texts and images
         SetCardViewModelNameText(cardVM, card.cardName);
         SetCardViewModelDescriptionText(cardVM, card.cardDescription);
@@ -131,6 +299,21 @@ public class CardController : Singleton<CardController>
         ApplyCardViewModelTalentColoring(cardVM, ColorLibrary.Instance.GetTalentColor(card.talentSchool));
         ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(card.rarity));
         SetCardViewModelCardTypeImage(cardVM, SpriteLibrary.Instance.GetCardTypeImageFromTypeEnumData(card.cardType));
+    }
+    public CardViewModel BuildCardViewModelFromCardDataSO(CardDataSO card, CardViewModel cardVM)
+    {
+        Debug.Log("CardController.BuildCardViewModelFromCardDataSO() called...");
+        
+        // Set texts and images
+        SetCardViewModelNameText(cardVM, card.cardName);
+        SetCardViewModelDescriptionText(cardVM, card.cardDescription);
+        SetCardViewModelEnergyText(null, cardVM, card.cardEnergyCost.ToString());
+        SetCardViewModelGraphicImage(cardVM, card.cardSprite);
+        SetCardViewModelTalentSchoolImage(cardVM, SpriteLibrary.Instance.GetTalentSchoolSpriteFromEnumData(card.talentSchool));
+        ApplyCardViewModelTalentColoring(cardVM, ColorLibrary.Instance.GetTalentColor(card.talentSchool));
+        ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(card.rarity));
+        SetCardViewModelCardTypeImage(cardVM, SpriteLibrary.Instance.GetCardTypeImageFromTypeEnumData(card.cardType));
+
         return cardVM;
     }
     private void ConnectCardWithCardViewModel(Card card, CardViewModel cardVM)
@@ -386,7 +569,7 @@ public class CardController : Singleton<CardController>
         Debug.Log("CardController.DestroyCardViewModel() called...");
 
         // Destoy script + GO
-        Destroy(cvm.mainParent.gameObject);
+        Destroy(cvm.movementParent.gameObject);
     }
     #endregion
 
@@ -816,6 +999,12 @@ public class CardController : Singleton<CardController>
             }           
         }
 
+        // Discover cards
+        else if (cardEffect.cardEffectType == CardEffectType.DiscoverCards)
+        {
+            StartNewDiscoveryEvent(cardEffect, owner);
+        }
+
         // Apply passive to self
         else if (cardEffect.cardEffectType == CardEffectType.ApplyPassiveToSelf)
         {
@@ -987,6 +1176,7 @@ public class CardController : Singleton<CardController>
             cards[n] = value;
         }
     }
+
     private void MoveAllCardsFromDiscardPileToDrawPile(CharacterEntityModel defender)
     {
         Debug.Log("CardController.MoveAllCardsFromDiscardPileToDrawPile() called for character: " + defender.myName);
@@ -1003,7 +1193,8 @@ public class CardController : Singleton<CardController>
         }
 
         // Re-shuffle the draw pile
-        ShuffleCards(defender.drawPile);
+        defender.drawPile.Shuffle();
+        //ShuffleCards(defender.drawPile);
 
     }
     private void AddCardToDrawPile(CharacterEntityModel defender, Card card)
@@ -1184,6 +1375,124 @@ public class CardController : Singleton<CardController>
     }
     #endregion
 
+    // Discovery Logic
+    #region
+    private void StartNewDiscoveryEvent(CardEffect ce, CharacterEntityModel owner)
+    {
+        // Enable discovery screen
+        ShowDiscoveryScreen();
+
+        // Discover cards from card data so library
+        if(ce.discoveryLocation == CardCollection.CardLibrary)
+        {
+            List<CardDataSO> discoverableCards = new List<CardDataSO>();
+            discoverableCards = GetCardsQuery(AllCards, ce.talentSchoolFilter, ce.rarityFilter, ce.blessing);
+
+            // randomize cards
+            discoverableCards.Shuffle();
+
+            // how valid cards were found?
+            int discoverChoicesToCreate = discoverableCards.Count;
+
+            // limit choices to 3 or less
+            if (discoverChoicesToCreate > 3)
+            {
+                discoverChoicesToCreate = 3;
+            }
+
+            // End if no valid discoverable cards were found
+            if (discoverableCards.Count > 0)
+            {
+                // Build the a discovery card view for each card found
+                for (int i = 0; i < discoverChoicesToCreate; i++)
+                {
+                    // Get discovery card
+                    DiscoveryCardViewModel dcvm = discoveryCards[i];
+
+                    // enable view
+                    dcvm.gameObject.SetActive(true);
+
+                    // build view model
+                    BuildCardViewModelFromCardDataSO(discoverableCards[i], dcvm.cardViewModel);
+                }
+            }
+
+        }
+
+        // Discover cards from a player collection of card objects
+        else
+        {
+            List<Card> discoverableCards = new List<Card>();
+
+            // Which collection should we discover from?
+            List<Card> collectionReference = null;
+            if(ce.discoveryLocation == CardCollection.DiscardPile)
+            {
+                collectionReference = owner.discardPile;
+            }
+            else if (ce.discoveryLocation == CardCollection.DrawPile)
+            {
+                collectionReference = owner.drawPile;
+            }
+            else if (ce.discoveryLocation == CardCollection.Hand)
+            {
+                collectionReference = owner.hand;
+            }
+            else if (ce.discoveryLocation == CardCollection.ExpendPile)
+            {
+                collectionReference = owner.expendPile;
+            }
+
+            if(collectionReference == null)
+            {
+                Debug.LogWarning("StartNewDiscoveryEvent() was given a null collection to discover cards from: you probably" +
+                    " forgot to assign a card collection to search in via the inspector!!");
+            }
+
+            // Get cards from the chosen collection
+            discoverableCards = GetCardsQuery(collectionReference, ce.talentSchoolFilter, ce.rarityFilter, ce.blessing);
+
+            // randomize cards
+            discoverableCards.Shuffle();
+
+            // how valid cards were found?
+            int discoverChoicesToCreate = discoverableCards.Count;
+
+            // limit choices to 3 or less
+            if (discoverChoicesToCreate > 3)
+            {
+                discoverChoicesToCreate = 3;
+            }
+
+            // End if no valid discoverable cards were found
+            if (discoverableCards.Count > 0)
+            {
+                // Build the a discovery card view for each card found
+                for (int i = 0; i < discoverChoicesToCreate; i++)
+                {
+                    // Get discovery card
+                    DiscoveryCardViewModel dcvm = discoveryCards[i];
+
+                    // enable view
+                    dcvm.gameObject.SetActive(true);
+
+                    // build view model
+                    SetUpCardViewModelAppearanceFromCard(dcvm.cardViewModel, discoverableCards[i]);
+                }
+            }
+        }        
+
+    }
+    private void ShowDiscoveryScreen()
+    {
+        discoveryScreenVisualParent.SetActive(true);
+    }
+    public void OnDiscoveryCardClicked(DiscoveryCardViewModel dcvm)
+    {
+
+    }
+    #endregion
+
 
     // Visual Events
     #region
@@ -1196,7 +1505,7 @@ public class CardController : Singleton<CardController>
         cvm = BuildCardViewModelFromCard(card, characterView.handVisual.NonDeckCardCreationTransform.position);
 
         // pass this card to HandVisual class
-        characterView.handVisual.AddCard(cvm.mainParent.gameObject);
+        characterView.handVisual.AddCard(cvm.movementParent.gameObject);
 
         // Bring card to front while it travels from draw spot to hand
         CardLocationTracker clt = cvm.locationTracker;
@@ -1210,17 +1519,17 @@ public class CardController : Singleton<CardController>
         // Shrink card, then scale up as it moves to hand
         // Get starting scale
         Vector3 originalScale = new Vector3
-            (cvm.mainParent.transform.localScale.x, cvm.mainParent.transform.localScale.y, cvm.mainParent.transform.localScale.z);
+            (cvm.movementParent.transform.localScale.x, cvm.movementParent.transform.localScale.y, cvm.movementParent.transform.localScale.z);
 
         // Shrink card
-        cvm.mainParent.transform.localScale = new Vector3(0.1f, 0.1f, cvm.mainParent.transform.localScale.z);
+        cvm.movementParent.transform.localScale = new Vector3(0.1f, 0.1f, cvm.movementParent.transform.localScale.z);
 
         // Scale up
         ScaleCardViewModel(cvm, originalScale.x, cardTransistionSpeed);
         //cvm.mainParent.DOScale(originalScale, cardTransistionSpeed).SetEase(Ease.OutQuint);
 
         // move card to the hand;
-        MoveTransformToLocation(cvm.mainParent, characterView.handVisual.slots.Children[0].transform.localPosition, cardTransistionSpeed, true, () => clt.SetHandSortingOrder());
+        MoveTransformToLocation(cvm.movementParent, characterView.handVisual.slots.Children[0].transform.localPosition, cardTransistionSpeed, true, () => clt.SetHandSortingOrder());
 
         /*
         Sequence s = DOTween.Sequence();
@@ -1240,7 +1549,7 @@ public class CardController : Singleton<CardController>
         cvm = BuildCardViewModelFromCard(card, characterView.handVisual.DeckTransform.position);
 
         // pass this card to HandVisual class
-        characterView.handVisual.AddCard(cvm.mainParent.gameObject);
+        characterView.handVisual.AddCard(cvm.movementParent.gameObject);
 
         // Bring card to front while it travels from draw spot to hand
         CardLocationTracker clt = cvm.locationTracker;
@@ -1253,16 +1562,16 @@ public class CardController : Singleton<CardController>
 
         // Get starting scale
         Vector3 originalScale = new Vector3
-            (cvm.mainParent.transform.localScale.x, cvm.mainParent.transform.localScale.y, cvm.mainParent.transform.localScale.z);
+            (cvm.movementParent.transform.localScale.x, cvm.movementParent.transform.localScale.y, cvm.movementParent.transform.localScale.z);
 
         // Shrink card
-        cvm.mainParent.transform.localScale = new Vector3(0.1f, 0.1f, cvm.mainParent.transform.localScale.z);
+        cvm.movementParent.transform.localScale = new Vector3(0.1f, 0.1f, cvm.movementParent.transform.localScale.z);
 
         // Scale up
         ScaleCardViewModel(cvm, originalScale.x, cardTransistionSpeed);
 
         // Move to hand slot
-        MoveTransformToLocation(cvm.mainParent, characterView.handVisual.slots.Children[0].transform.localPosition, cardTransistionSpeed, true, () => clt.SetHandSortingOrder());
+        MoveTransformToLocation(cvm.movementParent, characterView.handVisual.slots.Children[0].transform.localPosition, cardTransistionSpeed, true, () => clt.SetHandSortingOrder());
 
         // move card to the hand;
         /*
@@ -1284,13 +1593,13 @@ public class CardController : Singleton<CardController>
         CharacterEntityView view = character.characterEntityView;
 
         // remove from hand visual
-        character.characterEntityView.handVisual.RemoveCard(cvm.mainParent.gameObject);
+        character.characterEntityView.handVisual.RemoveCard(cvm.movementParent.gameObject);
 
         // SFX
         AudioManager.Instance.PlaySound(Sound.Card_Discarded);
 
         // Create Glow Trail
-        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGlowTrailEffect(cvm.mainParent.position);
+        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGlowTrailEffect(cvm.movementParent.position);
 
         // Shrink card
         ScaleCardViewModel(cvm, 0.1f, 0.5f);
@@ -1299,30 +1608,17 @@ public class CardController : Singleton<CardController>
         RotateCardVisualEvent(cvm, 180, 0.5f);
 
         // Move card + glow outline to quick lerp spot
-        MoveTransformToQuickLerpPosition(cvm.mainParent, 0.25f);
+        MoveTransformToQuickLerpPosition(cvm.movementParent, 0.25f);
         MoveTransformToQuickLerpPosition(glowTrail.transform, 0.25f);
         yield return new WaitForSeconds(0.25f);
 
         // Move card
-        MoveTransformToLocation(cvm.mainParent, view.handVisual.DiscardPileTransform.position, 0.5f, false, () => DestroyCardViewModel(cvm));
+        MoveTransformToLocation(cvm.movementParent, view.handVisual.DiscardPileTransform.position, 0.5f, false, () => DestroyCardViewModel(cvm));
         MoveTransformToLocation(glowTrail.transform, view.handVisual.DiscardPileTransform.position, 0.5f, false, () =>
         {
             glowTrail.StopAllEmissions();
             Destroy(glowTrail, 3);
         });
-
-        // float startScale = cvm.mainParent.localScale.x;
-        // float endScale = 0.5f;
-        // float animSpeed = 0.5f;
-        // cvm.mainParent.DOScale(endScale, animSpeed).SetEase(Ease.OutQuint);
-
-        // move card to the discard pile
-        // MoveTransformToLocation
-        //   (cvm.mainParent, character.characterEntityView.handVisual.DiscardPileTransform.position, 0.5f, false, () => DestroyCardViewModel(cvm));
-        // Sequence s = MoveCardVmFromHandToDiscardPile(cvm, character.characterEntityView.handVisual.DiscardPileTransform);
-
-        // Once the anim is finished, destroy the CVM 
-        // s.OnComplete(() => DestroyCardViewModel(cvm));
     }
     private Sequence MoveCardVmFromHandToDiscardPile(CardViewModel cvm, Transform discardPileLocation)
     {
@@ -1331,14 +1627,14 @@ public class CardController : Singleton<CardController>
         // move card to the hand;
         Sequence s = DOTween.Sequence();
         // displace the card so that we can select it in the scene easier.
-        s.Append(cvm.mainParent.DOMove(discardPileLocation.position, 0.5f));
+        s.Append(cvm.movementParent.DOMove(discardPileLocation.position, 0.5f));
 
         return s;
     }   
     private void ExpendCardVisualEvent(CardViewModel cvm, CharacterEntityModel character)
     {
         // remove from hand visual
-        character.characterEntityView.handVisual.RemoveCard(cvm.mainParent.gameObject);
+        character.characterEntityView.handVisual.RemoveCard(cvm.movementParent.gameObject);
 
         // SFX
         AudioManager.Instance.PlaySound(Sound.Explosion_Fire_1);
@@ -1347,7 +1643,7 @@ public class CardController : Singleton<CardController>
         FadeOutCardViewModel(cvm, null, ()=> DestroyCardViewModel(cvm));
 
         // Create smokey effect
-        VisualEffectManager.Instance.CreateExpendEffect(cvm.mainParent.transform.position);
+        VisualEffectManager.Instance.CreateExpendEffect(cvm.movementParent.transform.position);
     }
     private void FadeOutCardViewModel(CardViewModel cvm, CoroutineData cData, Action onCompleteCallBack = null)
     {
@@ -1376,7 +1672,7 @@ public class CardController : Singleton<CardController>
     }
     public void MoveCardVMToPlayPreviewSpot(CardViewModel cvm)
     {
-        MoveTransformToLocation(cvm.mainParent, cvm.card.owner.characterEntityView.handVisual.PlayPreviewSpot.position, 0.25f);
+        MoveTransformToLocation(cvm.movementParent, cvm.card.owner.characterEntityView.handVisual.PlayPreviewSpot.position, 0.25f);
         //Transform location = cvm.card.owner.characterEntityView.handVisual.PlayPreviewSpot;
         //Sequence s = DOTween.Sequence();
        // s.Append(cvm.mainParent.DOMove(location.position, 0.25f));
@@ -1389,13 +1685,13 @@ public class CardController : Singleton<CardController>
     {
         if(cvm != null)
         {
-            float currentScale = cvm.mainParent.localScale.x;
+            float currentScale = cvm.movementParent.localScale.x;
             float endScale = currentScale * 1.5f;
             float animSpeed = 0.25f;
 
-            cvm.mainParent.DOScale(endScale, animSpeed).SetEase(Ease.OutQuint);
+            cvm.movementParent.DOScale(endScale, animSpeed).SetEase(Ease.OutQuint);
             yield return new WaitForSeconds(animSpeed);
-            cvm.mainParent.DOScale(currentScale, animSpeed).SetEase(Ease.OutQuint);
+            cvm.movementParent.DOScale(currentScale, animSpeed).SetEase(Ease.OutQuint);
         }
         
     }
@@ -1408,14 +1704,14 @@ public class CardController : Singleton<CardController>
     {
         // Set state and remove from hand visual
         cvm.locationTracker.VisualState = VisualStates.Transition;
-        view.handVisual.RemoveCard(cvm.mainParent.gameObject);
-        cvm.mainParent.SetParent(null);
+        view.handVisual.RemoveCard(cvm.movementParent.gameObject);
+        cvm.movementParent.SetParent(null);
 
         // SFX
         AudioManager.Instance.PlaySound(Sound.Card_Discarded);
 
         // Create Glow Trail
-        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGlowTrailEffect(cvm.mainParent.position);
+        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGlowTrailEffect(cvm.movementParent.position);
 
         // Shrink card
         ScaleCardViewModel(cvm, 0.1f, 0.5f);
@@ -1424,12 +1720,12 @@ public class CardController : Singleton<CardController>
         RotateCardVisualEvent(cvm, 180, 0.5f);
 
         // Move card + glow outline to quick lerp spot
-        MoveTransformToQuickLerpPosition(cvm.mainParent, 0.25f);
+        MoveTransformToQuickLerpPosition(cvm.movementParent, 0.25f);
         MoveTransformToQuickLerpPosition(glowTrail.transform, 0.25f);
         yield return new WaitForSeconds(0.25f);
 
         // Move card
-        MoveTransformToLocation(cvm.mainParent, view.handVisual.DiscardPileTransform.position, 0.5f, false, ()=> DestroyCardViewModel(cvm));
+        MoveTransformToLocation(cvm.movementParent, view.handVisual.DiscardPileTransform.position, 0.5f, false, ()=> DestroyCardViewModel(cvm));
         MoveTransformToLocation(glowTrail.transform, view.handVisual.DiscardPileTransform.position, 0.5f, false, () =>
         {
             glowTrail.StopAllEmissions();
@@ -1465,16 +1761,16 @@ public class CardController : Singleton<CardController>
     {
         // Rotate card upside down
         Vector3 endRotation = new Vector3(0, 0, endDegrees);
-        cvm.mainParent.DORotate(endRotation, rotationSpeed);
+        cvm.movementParent.DORotate(endRotation, rotationSpeed);
     }
     private void MoveTransformToQuickLerpPosition(Transform t, float speed)
     {
         Vector3 quickLerpSpot = new Vector3(t.position.x - 1, t.position.y + 1, t.position.z);
         t.DOMove(quickLerpSpot, speed);
     }
-    private void ScaleCardViewModel(CardViewModel cvm, float endScale, float shrinkSpeed)
+    private void ScaleCardViewModel(CardViewModel cvm, float endScale, float scaleSpeed)
     {
-        cvm.mainParent.DOScale(endScale, shrinkSpeed).SetEase(Ease.OutQuint);
+        cvm.movementParent.DOScale(endScale, scaleSpeed).SetEase(Ease.OutQuint);
     }
     #endregion
 
@@ -1498,4 +1794,24 @@ public class CardController : Singleton<CardController>
 
     #endregion
 
+}
+
+static class MyExtensions
+{
+    public static void Shuffle<T>(this IList<T> list)
+    {
+        RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();
+        int n = list.Count;
+        while (n > 1)
+        {
+            byte[] box = new byte[1];
+            do provider.GetBytes(box);
+            while (!(box[0] < n * (Byte.MaxValue / n)));
+            int k = (box[0] % n);
+            n--;
+            T value = list[k];
+            list[k] = list[n];
+            list[n] = value;
+        }
+    }
 }

@@ -74,8 +74,8 @@ public class TargettingArrow : Singleton<TargettingArrow>
 
         // const float centerX = 0.0f;
         //const float centerY = -4.0f;
-        float centerX = cvm.mainParent.position.x;
-        float centerY = cvm.mainParent.position.y;
+        float centerX = cvm.movementParent.position.x;
+        float centerY = cvm.movementParent.position.y;
 
         var controlAx = centerX - (mouseX - centerX) * 0.3f;
         var controlAy = centerY + (mouseY - centerY) * 0.8f;
