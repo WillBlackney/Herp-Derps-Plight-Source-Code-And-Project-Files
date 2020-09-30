@@ -19,7 +19,9 @@ public class CardLocationTracker : MonoBehaviour {
     [SerializeField] private Canvas canvas;
 
     // a value for canvas sorting order when we want to show this object above everything
-    private int TopSortingOrder = 500;
+    private int TopSortingOrder = 1100;
+
+    [SerializeField] private int baseHandSortingOrder;
 
     // PROPERTIES
     private int slot = -1;
@@ -59,7 +61,7 @@ public class CardLocationTracker : MonoBehaviour {
     public void BringToFront()
     {
         canvas.sortingOrder = TopSortingOrder;
-        canvas.sortingLayerName = "AboveEverything";
+        //canvas.sortingLayerName = "AboveEverything";
     }
 
     // not setting sorting order inside of VisualStaes property because when the card is drawn, 
@@ -68,12 +70,13 @@ public class CardLocationTracker : MonoBehaviour {
     {
         if (slot != -1)
             canvas.sortingOrder = HandSortingOrder(slot);
-        canvas.sortingLayerName = "Cards";
+        //canvas.sortingLayerName = "Cards";
+        canvas.overrideSorting = true;
     }
 
     private int HandSortingOrder(int placeInHand)
     {
-        return (-(placeInHand + 1) * 10); 
+        return baseHandSortingOrder + (-(placeInHand + 1) * 10); 
     }
 
 

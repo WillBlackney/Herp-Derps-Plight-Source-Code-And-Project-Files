@@ -10,30 +10,48 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Blessing Of Wisdom
+  m_Name: Cauterize
   m_EditorClassIdentifier: 
-  cardName: Blessing Of Wisdom
-  cardDescription: Give a target 1 Draw next activation.
-  cardSprite: {fileID: 21300000, guid: 343eb5ad76e340a468f06c6511a5db81, type: 3}
-  cardEnergyCost: 0
+  cardName: Cauterize
+  cardDescription: 'Choose a card in hand.
+
+    Expend it.
+
+    Gain 1 Power.'
+  cardSprite: {fileID: 21300000, guid: 6ba3aba52078e4f4aa3fa9fbdc76a444, type: 3}
+  cardEnergyCost: 1
   cardType: 1
-  targettingType: 2
-  talentSchool: 0
-  rarity: 0
+  targettingType: 0
+  talentSchool: 6
+  rarity: 1
   expend: 0
   opener: 0
   fleeting: 0
   unplayable: 0
-  blessing: 1
+  blessing: 0
   cardEffects:
   - weaponRequirement: 0
-    cardEffectType: 3
+    cardEffectType: 23
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
     blessing: 0
     onDiscoveryChoiceMadeEffects: []
-    onChooseCardInHandChoiceMadeEffects: []
+    onChooseCardInHandChoiceMadeEffects:
+    - choiceEffect: 4
+      copiesAdded: 0
+      energyReduction: 0
+      newEnergyCost: 0
+      passivePairing:
+        passiveData: {fileID: 0}
+        passiveStacks: 0
+    - choiceEffect: 5
+      copiesAdded: 0
+      energyReduction: 0
+      newEnergyCost: 0
+      passivePairing:
+        passiveData: {fileID: 11400000, guid: 6d216e783d4ba3a49a8dd267aa727fd3, type: 2}
+        passiveStacks: 1
     drawStacksFromOverload: 0
     blockGainValue: 0
     baseDamageValue: 0
@@ -46,8 +64,8 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: {fileID: 11400000, guid: 5487f69127a574849ade6f4d4d58f3d2, type: 2}
-      passiveStacks: 1
+      passiveData: {fileID: 0}
+      passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

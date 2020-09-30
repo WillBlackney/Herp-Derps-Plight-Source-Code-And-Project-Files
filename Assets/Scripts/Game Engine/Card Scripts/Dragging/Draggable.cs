@@ -35,16 +35,25 @@ public class Draggable : MonoBehaviour {
     {
         Debug.Log("Draggable.OnMouseDown() called...");
 
+        // prevent clicking through an active UI screen
+        if (CardController.Instance.DiscoveryScreenIsActive)
+        {
+            return;
+        }
+
+        if (CardController.Instance.ChooseCardScreenIsActive)
+        {
+            CardController.Instance.HandleChooseScreenCardSelection(da.CardVM().card);
+        }
+
         if (da!=null && da.CanDrag)
         {
-            Debug.Log("Draggable.OnMouseDown() detected dragging is possible...");
             dragging = true;
             // when we are dragging something, all previews should be off
             HoverPreview.PreviewsAllowed = false;
             _draggingThis = this;
             da.OnStartDrag();
             zDisplacement = -CameraManager.Instance.MainCamera.transform.position.z + transform.position.z;
-            //-Camera.main.transform.position.z + transform.position.z;
             pointerDisplacement = -transform.position + MouseInWorldCoords();
         }
     }
@@ -63,6 +72,13 @@ public class Draggable : MonoBehaviour {
     void OnMouseUp()
     {
         Debug.Log("Draggable.OnMouseUp() called...");
+
+        // prevent clicking through an active UI screen
+        if (CardController.Instance.DiscoveryScreenIsActive || CardController.Instance.ChooseCardScreenIsActive)
+        {
+            return;
+        }
+
         if (dragging)
         {
             dragging = false;

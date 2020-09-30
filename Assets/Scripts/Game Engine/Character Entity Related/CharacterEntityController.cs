@@ -1026,7 +1026,6 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     #region
     public void SetCharacterColor(CharacterEntityView view, Color newColor)
     {
-        Debug.Log("Setting Entity Color....");
         // Prevent this function from interrupting death anim fade out
         if (view.character.livingState == LivingState.Dead)
         {
@@ -1170,6 +1169,12 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     {
         Debug.Log("CharacterEntityController.OnCharacterMouseOver() called...");
 
+        // prevent clicking through an active UI screen
+        if (CardController.Instance.DiscoveryScreenIsActive || CardController.Instance.ChooseCardScreenIsActive)
+        {
+            return;
+        }
+
         // Mouse over SFX
         AudioManager.Instance.PlaySound(Sound.GUI_Button_Mouse_Over);
 
@@ -1211,6 +1216,12 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     public void OnCharacterMouseExit(CharacterEntityView view)
     {
         Debug.Log("CharacterEntityController.OnCharacterMouseExit() called...");
+
+        // prevent clicking through an active UI screen
+        if (CardController.Instance.DiscoveryScreenIsActive || CardController.Instance.ChooseCardScreenIsActive)
+        {
+            return;
+        }
 
         // Cancel this if character is dead
         if (view.character.livingState == LivingState.Dead)

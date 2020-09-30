@@ -126,12 +126,19 @@ public class DragSpellOnTarget : DraggingActions {
             {
                 targetValid = true;
             }
+
+            // check the target isnt already dying
+            if(target.livingState == LivingState.Dead)
+            {
+                targetValid = false;
+            }
         }
+
+       
 
         // Did we hit a valid target?
         if (!targetValid)
         {
-            Debug.LogWarning("Didnt hit a valid target");
             // not a valid target, return
             locationTracker.VisualState = tempVisualState;
             locationTracker.SetHandSortingOrder();

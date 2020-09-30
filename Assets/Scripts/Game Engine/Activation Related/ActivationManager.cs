@@ -228,7 +228,8 @@ public class ActivationManager : Singleton<ActivationManager>
         // wait until all card draw visual events have completed
         // prevent function if game over sequence triggered
         if (VisualEventManager.Instance.PendingCardDrawEvent() == false &&
-            CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive)
+            CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive &&
+            CardController.Instance.DiscoveryScreenIsActive == false)
         {
             // Mouse click SFX
             AudioManager.Instance.PlaySound(Sound.GUI_Button_Clicked);
@@ -250,6 +251,7 @@ public class ActivationManager : Singleton<ActivationManager>
     {
         Debug.Log("Activating entity: " + entity.myName);
         EntityActivated = entity;
+        CharacterEntityModel cachedEntityRef = entity;
         entity.hasActivatedThisTurn = true;
 
         // Player controlled characters
@@ -266,7 +268,7 @@ public class ActivationManager : Singleton<ActivationManager>
         }
 
         // Move arrow to point at activated enemy
-        VisualEventManager.Instance.CreateVisualEvent(() => MoveActivationArrowTowardsEntityWindow(entity), QueuePosition.Back);
+        VisualEventManager.Instance.CreateVisualEvent(() => MoveActivationArrowTowardsEntityWindow(cachedEntityRef), QueuePosition.Back);
 
         // Start character activation
         CharacterEntityController.Instance.CharacterOnActivationStart(entity);
@@ -564,9 +566,14 @@ public class ActivationManager : Singleton<ActivationManager>
         Debug.Log("PANEL SLOTS COUNT: " + panelSlots.Count);
         Debug.Log("ACTIVATION ORDER COUNT: " + activationOrder.Count);
 
-        GameObject panelSlot = panelSlots[activationOrder.IndexOf(character)];
+        GameObject panelSlot = null;
 
-        if (panelSlot)
+        if (activationOrder.Contains(character))
+        {
+            panelSlot = panelSlots[activationOrder.IndexOf(character)];
+        }        
+
+        if (panelSlot != null)
         {
             // Activate arrow view
             SetPanelArrowViewState(true);
@@ -574,6 +581,12 @@ public class ActivationManager : Singleton<ActivationManager>
             // move the arrow
             Sequence s = DOTween.Sequence();
             s.Append(panelArrow.transform.DOMoveX(panelSlot.transform.position.x, 0.2f));
+        }
+        else
+        {
+            Debug.LogWarning("ActivationManager.MoveActivationArrowTowardsEntityWindow()" +
+                " did not find the character " + character.myName + " in activation order, " +
+                "cancelling activation arrow position update");
         }
 
     }

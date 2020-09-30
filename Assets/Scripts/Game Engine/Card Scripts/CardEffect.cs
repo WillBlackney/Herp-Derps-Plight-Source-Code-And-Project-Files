@@ -35,6 +35,10 @@ public class CardEffect
     [LabelWidth(200)]
     public List<OnDiscoveryChoiceMadeEffect> onDiscoveryChoiceMadeEffects;
 
+    [ShowIf("ShowChooseCardInHandChoiceMadeEffects")]
+    [LabelWidth(200)]
+    public List<OnCardInHandChoiceMadeEffect> onChooseCardInHandChoiceMadeEffects;
+
     [ShowIf("ShowDrawStacksFromOverload")]
     [LabelWidth(200)]
     public bool drawStacksFromOverload;
@@ -196,6 +200,10 @@ public class CardEffect
     {
         return cardEffectType == CardEffectType.DiscoverCards;
     }
+    public bool ShowChooseCardInHandChoiceMadeEffects()
+    {
+        return cardEffectType == CardEffectType.ChooseCardInHand;
+    }
     public bool ShowCardLibraryFilter()
     {
         if(discoveryLocation == CardCollection.CardLibrary &&
@@ -256,6 +264,62 @@ public enum OnDiscoveryChoiceMadeEffectType
     AddCopyToHand = 2,
     ReduceEnergyCost = 3,
     SetEnergyCost = 4,
+}
+
+
+[Serializable]
+public class OnCardInHandChoiceMadeEffect
+{
+    [LabelWidth(200)]
+    public OnCardInHandChoiceMadeEffectType choiceEffect;
+
+    [ShowIf("ShowCopiesAdded")]
+    [LabelWidth(200)]
+    public int copiesAdded;
+    [ShowIf("ShowEnergyReduction")]
+    [LabelWidth(200)]
+    public int energyReduction;
+    [ShowIf("ShowNewEnergyCost")]
+    [LabelWidth(200)]
+    public int newEnergyCost;
+    [ShowIf("ShowPassivePairing")]
+    [LabelWidth(200)]
+    public PassivePairingData passivePairing;
+
+    public bool ShowCopiesAdded()
+    {
+        if (choiceEffect == OnCardInHandChoiceMadeEffectType.AddCopyToHand)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowEnergyReduction()
+    {
+        return choiceEffect == OnCardInHandChoiceMadeEffectType.ReduceEnergyCost;
+    }
+    public bool ShowNewEnergyCost()
+    {
+        return choiceEffect == OnCardInHandChoiceMadeEffectType.SetEnergyCost;
+    }
+    public bool ShowPassivePairing()
+    {
+        return choiceEffect == OnCardInHandChoiceMadeEffectType.GainPassive;
+    }
+
+}
+
+public enum OnCardInHandChoiceMadeEffectType
+{
+    None = 0,
+    AddCopyToHand = 1,
+    ReduceEnergyCost = 2,
+    SetEnergyCost = 3,
+    ExpendIt = 4,
+    GainPassive = 5,
 }
 
 

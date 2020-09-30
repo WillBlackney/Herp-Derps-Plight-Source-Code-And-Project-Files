@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Blessing Of Vigor
   m_EditorClassIdentifier: 
   cardName: Blessing Of Vigor
-  cardDescription: 'Give a target 1 Dexterity. '
+  cardDescription: Give a target 1 Dexterity next activation.
   cardSprite: {fileID: 21300000, guid: 343eb5ad76e340a468f06c6511a5db81, type: 3}
   cardEnergyCost: 0
   cardType: 1
@@ -33,6 +33,7 @@ MonoBehaviour:
     rarityFilter: 0
     blessing: 0
     onDiscoveryChoiceMadeEffects: []
+    onChooseCardInHandChoiceMadeEffects: []
     drawStacksFromOverload: 0
     blockGainValue: 0
     baseDamageValue: 0
@@ -45,7 +46,7 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: {fileID: 11400000, guid: 2d4338dcb8cb3b042bb822f2c24a4d8e, type: 2}
+      passiveData: {fileID: 11400000, guid: 54148caa35f4b8c459ceda527526b16d, type: 2}
       passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0

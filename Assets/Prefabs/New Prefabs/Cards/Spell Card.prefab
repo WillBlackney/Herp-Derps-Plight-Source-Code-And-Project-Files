@@ -85,6 +85,7 @@ MonoBehaviour:
   TargetScale: 1.35
   previewGameObject: {fileID: 1000011778162530}
   ActivateInAwake: 1
+  mainCardVM: {fileID: 9153311408048535422}
 --- !u!114 &114000012503704844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,6 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverPreview: {fileID: 114000010004094300}
   canvas: {fileID: 223000012273110020}
+  baseHandSortingOrder: 900
   state: 0
 --- !u!1 &1000011778162530
 GameObject:
@@ -422,6 +424,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Card View Model
+      objectReference: {fileID: 0}
+    - target: {fileID: 8798071437363213220, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 900
+      objectReference: {fileID: 0}
+    - target: {fileID: 8798071437363213220, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8798495303511279662, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
         type: 3}

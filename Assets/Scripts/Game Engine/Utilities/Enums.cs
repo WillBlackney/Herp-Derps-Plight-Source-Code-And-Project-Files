@@ -50,7 +50,7 @@ public enum CardEffectType
     ApplyPassiveToTarget = 3,
     ApplyPassiveToAllEnemies = 4,
     ApplyPassiveToAllAllies = 5,
-    ChooseCardsInLocation = 23,
+    ChooseCardInHand = 23,
     DamageTarget = 6,
     DamageSelf = 7,
     DamageAllEnemies = 8,

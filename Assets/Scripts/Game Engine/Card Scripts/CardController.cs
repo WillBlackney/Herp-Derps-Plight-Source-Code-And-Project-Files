@@ -6,6 +6,7 @@ using System;
 using UnityEngine.UI;
 using System.Linq;
 using System.Security.Cryptography;
+using TMPro;
 
 public class CardController : Singleton<CardController>
 {
@@ -20,8 +21,33 @@ public class CardController : Singleton<CardController>
     [SerializeField] private List<CardDataSO> allBlessingCards;
 
     [Header("Discovery Screen Components")]
-    public List<DiscoveryCardViewModel> discoveryCards;
-    public GameObject discoveryScreenVisualParent;
+    [SerializeField] private List<DiscoveryCardViewModel> discoveryCards;
+    [SerializeField] private List<Transform> discoveryCardSlots;
+    [SerializeField] private GameObject discoveryScreenVisualParent;
+    [SerializeField] private CanvasGroup discoveryScreenOverlayCg;
+
+    [Header("Discovery Screen Properties")]
+    private CardEffect currentDiscoveryEffect;
+    private bool discoveryScreenIsActive;
+
+    [Header("Choose Card In Hand Screen Components")]
+    [SerializeField] private Transform chooseCardScreenSelectionSpot;
+    [SerializeField] private GameObject chooseCardScreenVisualParent;
+    [SerializeField] private CanvasGroup chooseCardScreenOverlayCg;
+    [SerializeField] private TextMeshProUGUI chooseCardScreenBannerText;
+    [SerializeField] private Button chooseCardScreenConfirmButton;
+
+    [Header("Choose Card In Hand Screen Properties")]
+    private CardEffect chooseCardScreenEffectReference;
+    private Card currentChooseCardScreenSelection;
+    private bool chooseCardScreenIsActive;
+
+    [Header("Button Sprites")]
+    [SerializeField] private Sprite activeButtonSprite;
+    [SerializeField] private Sprite inactiveButtonSprite;
+
+    // Getters
+    #region
     public List<CardDataSO> AllCards
     {
         get { return allCards; }
@@ -31,28 +57,24 @@ public class CardController : Singleton<CardController>
     {
         get { return allBlessingCards; }
         private set { allBlessingCards = value; }
-    }
-
-    [Header("Misc Properties")]
-    private CardEffect currentDiscoveryEffect;
-
-    private void Start()
+    }  
+    public bool DiscoveryScreenIsActive
     {
-        /*
-        GetCardsQuery(AllCards, TalentSchool.Corruption);
-        GetCardsQuery(AllCards, TalentSchool.Divinity);
-        GetCardsQuery(AllCards, TalentSchool.Guardian);
-        GetCardsQuery(AllCards, TalentSchool.Manipulation);
-        GetCardsQuery(AllCards, TalentSchool.Naturalism);
-        GetCardsQuery(AllCards, TalentSchool.Neutral);
-        GetCardsQuery(AllCards, TalentSchool.Pyromania);
-        GetCardsQuery(AllCards, TalentSchool.Ranger);
-        GetCardsQuery(AllCards, TalentSchool.Scoundrel);
-        GetCardsQuery(AllCards, TalentSchool.Shadowcraft);
-        GetCardsQuery(AllCards, TalentSchool.Warfare);
-        */
-
+        get{ return discoveryScreenIsActive; }
+        private set { discoveryScreenIsActive = value; }
     }
+    public bool ChooseCardScreenIsActive
+    {
+        get { return chooseCardScreenIsActive; }
+        private set { chooseCardScreenIsActive = value; }
+    }
+    public Card CurrentChooseCardScreenSelection
+    {
+        get { return currentChooseCardScreenSelection; }
+        private set { currentChooseCardScreenSelection = value; }
+    }
+    #endregion
+
     #endregion
 
     // Card Library Logic
@@ -81,12 +103,9 @@ public class CardController : Singleton<CardController>
     {
         return AllBlessingCards[RandomGenerator.NumberBetween(0, AllBlessingCards.Count - 1)];
     }
-    public List<CardDataSO> GetCardsQuery(List<CardDataSO> queriedCollection, 
-        TalentSchool ts = TalentSchool.None, 
-        Rarity r = Rarity.None,
-        bool blessing = false)
+    public List<CardDataSO> GetCardsQuery(List<CardDataSO> queriedCollection, TalentSchool ts = TalentSchool.None, Rarity r = Rarity.None, bool blessing = false)
     {
-        Debug.LogWarning("GetCardsQuery() called, query params --- TalentSchool = " + ts.ToString()
+        Debug.Log("GetCardsQuery() called, query params --- TalentSchool = " + ts.ToString()
             + ", Rarity = " + r.ToString() + ", Blessing = " + blessing.ToString());
 
         List <CardDataSO> cardsReturned = new List<CardDataSO>();
@@ -105,14 +124,9 @@ public class CardController : Singleton<CardController>
         // Filter blessings
         cardsReturned = QueryByBlessing(cardsReturned, blessing);
 
-        Debug.LogWarning("GetCardsQuery() found " + cardsReturned.Count.ToString() + " results...");
         return cardsReturned;
     }
-
-    public List<Card> GetCardsQuery(List<Card> queriedCollection,
-        TalentSchool ts = TalentSchool.None,
-        Rarity r = Rarity.None,
-        bool blessing = false)
+    public List<Card> GetCardsQuery(List<Card> queriedCollection, TalentSchool ts = TalentSchool.None, Rarity r = Rarity.None, bool blessing = false)
     {
         Debug.LogWarning("GetCardsQuery() called, query params --- TalentSchool = " + ts.ToString()
             + ", Rarity = " + r.ToString() + ", Blessing = " + blessing.ToString());
@@ -133,7 +147,6 @@ public class CardController : Singleton<CardController>
         // Filter blessings
         cardsReturned = QueryByBlessing(cardsReturned, blessing);
 
-        Debug.LogWarning("GetCardsQuery() found " + cardsReturned.Count.ToString() + " results...");
         return cardsReturned;
     }
 
@@ -238,7 +251,6 @@ public class CardController : Singleton<CardController>
 
         // Shuffle the characters draw pile
         defender.drawPile.Shuffle();
-       // ShuffleCards(defender.drawPile);
     }
     private Card BuildCardFromCardData(CardDataSO data, CharacterEntityModel owner)
     {
@@ -286,6 +298,8 @@ public class CardController : Singleton<CardController>
         {
             cardVM = Instantiate(PrefabHolder.Instance.targetCard, position, Quaternion.identity).GetComponentInChildren<CardViewModel>();
         }
+
+        //cardVM.canvas.overrideSorting = true;
 
         // Cache references
         ConnectCardWithCardViewModel(card, cardVM);
@@ -438,11 +452,6 @@ public class CardController : Singleton<CardController>
         }
     }
 
-    public void SetUpCardViewModelPreviewCanvas(CardViewModel cvm)
-    {
-        cvm.canvas.overrideSorting = true;
-        cvm.canvas.sortingOrder = 1000;
-    }
     #endregion
 
     // Card draw Logic
@@ -1020,6 +1029,12 @@ public class CardController : Singleton<CardController>
             StartNewDiscoveryEvent(cardEffect, owner);
         }
 
+        // Choose card in hand
+        else if (cardEffect.cardEffectType == CardEffectType.ChooseCardInHand)
+        {
+            StartNewChooseCardInHandEvent(cardEffect, owner);
+        }
+
         // Apply passive to self
         else if (cardEffect.cardEffectType == CardEffectType.ApplyPassiveToSelf)
         {
@@ -1176,20 +1191,6 @@ public class CardController : Singleton<CardController>
         listReturned.AddRange(model.discardPile);
 
         return listReturned;
-    }
-    private void ShuffleCards(List<Card> cards)
-    {
-        System.Random rng = new System.Random();
-
-        int n = cards.Count;
-        while (n > 1)
-        {
-            n--;
-            int k = rng.Next(n + 1);
-            Card value = cards[k];
-            cards[k] = cards[n];
-            cards[n] = value;
-        }
     }
 
     private void MoveAllCardsFromDiscardPileToDrawPile(CharacterEntityModel defender)
@@ -1416,6 +1417,198 @@ public class CardController : Singleton<CardController>
     }
     #endregion
 
+    // Choose card in hand Logic 
+    #region
+    private void StartNewChooseCardInHandEvent(CardEffect ce, CharacterEntityModel owner)
+    {
+        // cancel if player doesnt have any cards to choose
+        if(owner.hand.Count == 0)
+        {
+            return;
+        }
+        ResetChooseCardScreenProperties();
+        CurrentChooseCardScreenSelection = null;
+        chooseCardScreenEffectReference = ce;
+        ChooseCardScreenIsActive = true;
+        ShowChooseCardInHandScreen();
+        SetChooseCardScreenBannerText(ce);
+
+
+    }
+    public void HandleChooseScreenCardSelection(Card card)
+    {
+        // move to choice slot
+        if(CurrentChooseCardScreenSelection == null)
+        {
+            CurrentChooseCardScreenSelection = card;
+            MoveTransformToLocation(card.cardVM.movementParent, chooseCardScreenSelectionSpot.position, 0.25f);
+
+        }
+        else if(CurrentChooseCardScreenSelection != null)
+        {
+            // move the previous selection back to its slot
+            MoveTransformToLocation(CurrentChooseCardScreenSelection.cardVM.movementParent, 
+                card.owner.characterEntityView.handVisual.slots.Children[CurrentChooseCardScreenSelection.cardVM.locationTracker.Slot].gameObject.transform.position,
+                0.25f);
+
+            CurrentChooseCardScreenSelection = card;
+            MoveTransformToLocation(card.cardVM.movementParent, chooseCardScreenSelectionSpot.position, 0.25f);
+        }
+
+        UpdateConfirmChoiceButton();
+
+    }
+    private void ResolveChooseCardChoiceEffects()
+    {
+        // in future we may want to perform extra effects on the cards we create (reduce energy cost, etc)
+        // so we can stash them here for now
+        List<Card> newCards = new List<Card>();
+        bool returnSelctionToHand = true;
+
+        foreach(OnCardInHandChoiceMadeEffect choiceEffect in chooseCardScreenEffectReference.onChooseCardInHandChoiceMadeEffects)
+        {
+            if(choiceEffect.choiceEffect == OnCardInHandChoiceMadeEffectType.AddCopyToHand)
+            {
+                for(int i = 0; i < choiceEffect.copiesAdded; i++)
+                {
+                    Card newCard =  CreateAndAddNewCardToCharacterHand(ActivationManager.Instance.EntityActivated, CurrentChooseCardScreenSelection.myCardDataSO);
+                    newCards.Add(newCard);
+                }
+            }
+            else if (choiceEffect.choiceEffect == OnCardInHandChoiceMadeEffectType.ExpendIt)
+            {
+                ExpendCard(CurrentChooseCardScreenSelection);
+                returnSelctionToHand = false;
+            }
+
+            else if (choiceEffect.choiceEffect == OnCardInHandChoiceMadeEffectType.GainPassive)
+            {
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity
+                    (ActivationManager.Instance.EntityActivated.pManager, choiceEffect.passivePairing.passiveData.passiveName, choiceEffect.passivePairing.passiveStacks, true, 0.5f);
+            }
+
+            // reduce cost of new cards
+            else if (choiceEffect.choiceEffect == OnCardInHandChoiceMadeEffectType.ReduceEnergyCost)
+            {
+                foreach (Card card in newCards)
+                {
+                    ReduceCardEnergyCostThisCombat(card, choiceEffect.energyReduction);
+                }
+            }
+
+            // set cost of new cards
+            else if (choiceEffect.choiceEffect == OnCardInHandChoiceMadeEffectType.SetEnergyCost)
+            {
+                foreach (Card card in newCards)
+                {
+                    SetCardEnergyCostThisCombat(card, choiceEffect.newEnergyCost);
+                }
+            }
+        }
+
+        // Move the card selection back to hand
+        if (returnSelctionToHand)
+        {
+            MoveTransformToLocation(CurrentChooseCardScreenSelection.cardVM.movementParent,
+          CurrentChooseCardScreenSelection.owner.characterEntityView.handVisual.slots.Children[CurrentChooseCardScreenSelection.cardVM.locationTracker.Slot].gameObject.transform.position,
+          0.25f);
+        }  
+
+        // disable screen
+        FadeOutChoiceScreenOverlay(() => HideChooseCardInHandScreen());
+
+        // clear propeties and reset for next time
+        ResetChooseCardScreenProperties();
+    }
+    private void ResetChooseCardScreenProperties()
+    {
+        CurrentChooseCardScreenSelection = null;
+        chooseCardScreenEffectReference = null;
+        ChooseCardScreenIsActive = false;
+    }
+    #endregion
+
+    // Choose Card In hand GUI Logic
+    #region
+    private void ShowChooseCardInHandScreen()
+    {
+        FadeInChoiceScreenOverlay();
+        chooseCardScreenVisualParent.SetActive(true);
+        UpdateConfirmChoiceButton();
+    }
+    private void HideChooseCardInHandScreen()
+    {
+        chooseCardScreenVisualParent.SetActive(false);
+    }
+    private void UpdateConfirmChoiceButton()
+    {
+        if(CurrentChooseCardScreenSelection == null)
+        {
+            chooseCardScreenConfirmButton.image.sprite = inactiveButtonSprite;
+        }
+        else
+        {
+            chooseCardScreenConfirmButton.image.sprite = activeButtonSprite;
+        }
+    }
+    private void SetChooseCardScreenBannerText(CardEffect ce)
+    {
+        OnCardInHandChoiceMadeEffect data = ce.onChooseCardInHandChoiceMadeEffects[0];
+        string newText = "";
+
+        if(data.choiceEffect == OnCardInHandChoiceMadeEffectType.AddCopyToHand)
+        {
+            newText = "Choose a Card to Copy";
+        }
+        else if (data.choiceEffect == OnCardInHandChoiceMadeEffectType.ExpendIt)
+        {
+            newText = "Choose a Card to Expend";
+        }
+        else if (data.choiceEffect == OnCardInHandChoiceMadeEffectType.ReduceEnergyCost)
+        {
+            newText = "Choose a Card to Reduce Energy Cost";
+        }
+        else if (data.choiceEffect == OnCardInHandChoiceMadeEffectType.SetEnergyCost)
+        {
+            newText = "Choose a Card to Set New Energy Cost";
+        }
+
+        chooseCardScreenBannerText.text = newText;
+    }
+    public void OnConfirmChoiceButtonClicked()
+    {
+        if(CurrentChooseCardScreenSelection != null)
+        {
+            ResolveChooseCardChoiceEffects();
+        }        
+    }
+    private void FadeInChoiceScreenOverlay(Action onCompleteCallBack = null)
+    {
+        chooseCardScreenOverlayCg.alpha = 0f;
+
+        Sequence s = DOTween.Sequence();
+        s.Append(chooseCardScreenOverlayCg.DOFade(1f, 0.5f));
+
+        if (onCompleteCallBack != null)
+        {
+            s.OnComplete(() => onCompleteCallBack.Invoke());
+        }
+    }
+    private void FadeOutChoiceScreenOverlay(Action onCompleteCallBack = null)
+    {
+        chooseCardScreenOverlayCg.alpha = 1f;
+
+        Sequence s = DOTween.Sequence();
+        s.Append(chooseCardScreenOverlayCg.DOFade(0f, 0.5f));
+
+        if (onCompleteCallBack != null)
+        {
+            s.OnComplete(() => onCompleteCallBack.Invoke());
+        }
+
+    }
+    #endregion
+
     // Discovery Logic
     #region
     private void StartNewDiscoveryEvent(CardEffect ce, CharacterEntityModel owner)
@@ -1429,6 +1622,15 @@ public class CardController : Singleton<CardController>
         {
             List<CardDataSO> discoverableCards = new List<CardDataSO>();
             discoverableCards = GetCardsQuery(AllCards, ce.talentSchoolFilter, ce.rarityFilter, ce.blessing);
+
+            // cancel there are discoverable cards to pick
+            if (discoverableCards.Count == 0)
+            {
+                currentDiscoveryEffect = null;
+                discoveryScreenVisualParent.SetActive(false);
+                HideDiscoveryScreen();
+                return;
+            }
 
             // randomize cards
             discoverableCards.Shuffle();
@@ -1454,11 +1656,17 @@ public class CardController : Singleton<CardController>
                     // cache ref to data
                     dcvm.myDataRef = discoverableCards[i];
 
+                    // enable slot
+                    discoveryCardSlots[i].gameObject.SetActive(true);
+
                     // enable view
                     dcvm.gameObject.SetActive(true);
 
                     // build view model
                     BuildCardViewModelFromCardDataSO(discoverableCards[i], dcvm.cardViewModel);
+
+                    // move card to slot
+                    dcvm.gameObject.transform.DOMove(discoveryCardSlots[i].position, 0.3f);
                 }
             }
 
@@ -1497,6 +1705,15 @@ public class CardController : Singleton<CardController>
             // Get cards from the chosen collection
             discoverableCards = GetCardsQuery(collectionReference, ce.talentSchoolFilter, ce.rarityFilter, ce.blessing);
 
+            // cancel there are discoverable cards to pick
+            if (discoverableCards.Count == 0)
+            {
+                currentDiscoveryEffect = null;
+                discoveryScreenVisualParent.SetActive(false);
+                HideDiscoveryScreen();
+                return;
+            }
+
             // randomize cards
             discoverableCards.Shuffle();
 
@@ -1521,24 +1738,22 @@ public class CardController : Singleton<CardController>
                     // cache ref to card
                     dcvm.myCardRef = discoverableCards[i];
 
+                    // enable slot
+                    discoveryCardSlots[i].gameObject.SetActive(true);
+
                     // enable view
                     dcvm.gameObject.SetActive(true);
 
                     // build view model
                     SetUpCardViewModelAppearanceFromCard(dcvm.cardViewModel, discoverableCards[i]);
+
+                    // move card to slot
+                    dcvm.gameObject.transform.DOMove(discoveryCardSlots[i].position, 0.3f);
                 }
             }
         }        
 
-    }
-    private void ShowDiscoveryScreen()
-    {
-        discoveryScreenVisualParent.SetActive(true);
-    }
-    private void HideDiscoveryScreen()
-    {
-        discoveryScreenVisualParent.SetActive(false);
-    }
+    }   
     public void OnDiscoveryCardClicked(DiscoveryCardViewModel dcvm)
     {
         if(dcvm.myCardRef != null)
@@ -1552,6 +1767,9 @@ public class CardController : Singleton<CardController>
 
         // disable screen
         HideDiscoveryScreen();
+
+        // clear current d event effect
+        currentDiscoveryEffect = null;
 
         // reset dcvm's
         foreach (DiscoveryCardViewModel dCard in discoveryCards)
@@ -1639,7 +1857,7 @@ public class CardController : Singleton<CardController>
             // reduce cost of new cards
             else if (effect.discoveryEffect == OnDiscoveryChoiceMadeEffectType.ReduceEnergyCost)
             {
-                foreach(Card card in cards)
+                foreach (Card card in cards)
                 {
                     ReduceCardEnergyCostThisCombat(card, effect.energyReduction);
                 }
@@ -1655,8 +1873,70 @@ public class CardController : Singleton<CardController>
             }
         }
     }
-    #endregion
+    #endregion   
 
+    // Discovery Screen GUI Logic
+    #region
+    private void ShowDiscoveryScreen()
+    {
+        DiscoveryScreenIsActive = true;
+        discoveryScreenVisualParent.SetActive(true);
+        MoveDiscoverySlotsToStartPosition();
+        FadeInDiscoveryScreenOverlay();      
+    }
+    private void HideDiscoveryScreen()
+    {
+        DiscoveryScreenIsActive = false;
+        FadeOutDiscoveryScreenOverlay(() => 
+        {
+            MoveDiscoverySlotsToStartPosition();
+            MoveDiscoveryCardsToStartPosition();
+            discoveryScreenVisualParent.SetActive(false);
+        });
+
+       
+    }
+    private void FadeInDiscoveryScreenOverlay(Action onCompleteCallBack = null)
+    {
+        discoveryScreenOverlayCg.alpha = 0f;
+
+        Sequence s = DOTween.Sequence();
+        s.Append(discoveryScreenOverlayCg.DOFade(1f, 0.5f));
+
+        if (onCompleteCallBack != null)
+        {
+            s.OnComplete(() => onCompleteCallBack.Invoke());
+        }
+    }
+    private void FadeOutDiscoveryScreenOverlay(Action onCompleteCallBack = null)
+    {
+        discoveryScreenOverlayCg.alpha = 1f;
+
+        Sequence s = DOTween.Sequence();        
+        s.Append(discoveryScreenOverlayCg.DOFade(0f, 0.5f));
+
+        if(onCompleteCallBack != null)
+        {
+            s.OnComplete(() => onCompleteCallBack.Invoke());
+        }
+       
+    }
+    private void MoveDiscoveryCardsToStartPosition()
+    {
+        foreach(DiscoveryCardViewModel dcvm in discoveryCards)
+        {
+            dcvm.transform.position = dcvm.transform.parent.transform.position;
+        }
+    }
+    private void MoveDiscoverySlotsToStartPosition()
+    {
+        // Disable slots
+        foreach(Transform t in discoveryCardSlots)
+        {
+            t.gameObject.SetActive(false);
+        }
+    }
+    #endregion
 
     // Visual Events
     #region

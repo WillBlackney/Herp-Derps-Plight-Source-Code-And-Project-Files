@@ -41,12 +41,15 @@ MonoBehaviour:
     enrageStacks: 0
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
+    divineFavourStacks: 0
     phoenixFormStacks: 0
     poisonousStacks: 0
     venomousStacks: 0
     overloadStacks: 0
     fusionStacks: 0
     meleeAttackReductionStacks: 0
+    consecrationStacks: 0
+    encouragingAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -55,16 +58,16 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
+  - {fileID: 11400000, guid: f01c8951834bf2544a119c693e4f94dd, type: 2}
+  - {fileID: 11400000, guid: f01c8951834bf2544a119c693e4f94dd, type: 2}
+  - {fileID: 11400000, guid: dc39bf1b28a8c70409116fe98c26c586, type: 2}
+  - {fileID: 11400000, guid: dc39bf1b28a8c70409116fe98c26c586, type: 2}
+  - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
+  - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
   - {fileID: 11400000, guid: f3cc4d0c8e5770b4095da504e370933b, type: 2}
-  - {fileID: 11400000, guid: ad02d279b5d5514408afc73144555af3, type: 2}
-  - {fileID: 11400000, guid: dc39bf1b28a8c70409116fe98c26c586, type: 2}
-  - {fileID: 11400000, guid: dc39bf1b28a8c70409116fe98c26c586, type: 2}
-  - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
-  - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
-  - {fileID: 11400000, guid: 0163cb54b6898bf46aab115bc74d0350, type: 2}
   - {fileID: 11400000, guid: 0163cb54b6898bf46aab115bc74d0350, type: 2}
   - {fileID: 11400000, guid: db18175c7f3366747b53efcc374bf697, type: 2}
-  - {fileID: 11400000, guid: db18175c7f3366747b53efcc374bf697, type: 2}
+  - {fileID: 11400000, guid: c29964ec64c216a41ac3fd20a356a5f5, type: 2}
   modelParts:
   - Human_Chest
   - Elf_Face_4

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Blessing Of Might
   m_EditorClassIdentifier: 
   cardName: Blessing Of Might
-  cardDescription: 'Give a target 1 Power. '
+  cardDescription: Give a target 1 Power next activation.
   cardSprite: {fileID: 21300000, guid: 343eb5ad76e340a468f06c6511a5db81, type: 3}
   cardEnergyCost: 0
   cardType: 1
@@ -33,6 +33,7 @@ MonoBehaviour:
     rarityFilter: 0
     blessing: 0
     onDiscoveryChoiceMadeEffects: []
+    onChooseCardInHandChoiceMadeEffects: []
     drawStacksFromOverload: 0
     blockGainValue: 0
     baseDamageValue: 0
@@ -45,7 +46,7 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: {fileID: 11400000, guid: 6d216e783d4ba3a49a8dd267aa727fd3, type: 2}
+      passiveData: {fileID: 11400000, guid: 119e3f50316b01946a133876a337f517, type: 2}
       passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0

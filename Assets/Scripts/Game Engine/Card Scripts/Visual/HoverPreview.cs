@@ -10,6 +10,7 @@ public class HoverPreview: MonoBehaviour
     public float TargetScale;
     public GameObject previewGameObject;
     public bool ActivateInAwake = false;
+    [SerializeField] private CardViewModel mainCardVM;
 
     // PRIVATE FIELDS
     private static HoverPreview currentlyViewing = null;
@@ -54,7 +55,9 @@ public class HoverPreview: MonoBehaviour
     {
         Debug.Log("HoverPreview.OnMousEnter() called...");
         OverCollider = true;
-        if (PreviewsAllowed)
+        // prevent clicking through an active UI screen
+        if (PreviewsAllowed && !CardController.Instance.DiscoveryScreenIsActive &&
+            CardController.Instance.CurrentChooseCardScreenSelection != mainCardVM.card)
             PreviewThisObject();
     }
         

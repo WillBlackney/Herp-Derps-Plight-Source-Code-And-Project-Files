@@ -46,7 +46,8 @@ public class CardViewModel : MonoBehaviour
     {
         if (isPreviewCard)
         {
-            CardController.Instance.SetUpCardViewModelPreviewCanvas(this);
+            canvas.overrideSorting = true;
+            canvas.sortingOrder = 1000;
         }
     }
 }
