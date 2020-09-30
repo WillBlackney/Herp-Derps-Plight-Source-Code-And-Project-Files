@@ -546,7 +546,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         ModifyEnergy(character, EntityLogic.GetTotalStamina(character));        
 
         // Modify relevant passives
-        if(character.pManager.temporaryBonusStaminaStacks > 0)
+        if(character.pManager.temporaryBonusStaminaStacks != 0)
         {
             PassiveController.Instance.ModifyTemporaryStamina(character.pManager, -character.pManager.temporaryBonusStaminaStacks, true, 0.5f);
         }
@@ -603,7 +603,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             CardController.Instance.DrawCardsOnActivationStart(character);
 
             // Remove temp draw
-            if (character.pManager.temporaryBonusDrawStacks > 0)
+            if (character.pManager.temporaryBonusDrawStacks != 0)
             {
                 PassiveController.Instance.ModifyTemporaryDraw(character.pManager, -character.pManager.temporaryBonusDrawStacks, true, 0.5f);
             }
@@ -618,11 +618,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
             // Star enemy activation process
             StartEnemyActivation(character);
-        }      
-        
-        
-
-
+        }                  
     }
     public void CharacterOnActivationEnd(CharacterEntityModel entity)
     {
@@ -634,6 +630,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
         // Disable end turn button clickability
         UIManager.Instance.DisableEndTurnButtonInteractions();
+
+        // reset misc properties
+        entity.meleeAttacksPlayedThisActivation = 0;
 
         // Stop if combat has ended
         if (CombatLogic.Instance.CurrentCombatState != CombatGameState.CombatActive)
@@ -668,11 +667,11 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         }
 
         // Temp core stats
-        if (entity.pManager.temporaryBonusPowerStacks > 0)
+        if (entity.pManager.temporaryBonusPowerStacks != 0)
         {
             PassiveController.Instance.ModifyTemporaryPower(entity.pManager, -1, true, 0.5f);
         }
-        if (entity.pManager.temporaryBonusDexterityStacks > 0)
+        if (entity.pManager.temporaryBonusDexterityStacks != 0)
         {
             PassiveController.Instance.ModifyTemporaryDexterity(entity.pManager, -1, true, 0.5f);
         }

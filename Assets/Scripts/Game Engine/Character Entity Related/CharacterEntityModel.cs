@@ -48,6 +48,7 @@ public class CharacterEntityModel
     [HideInInspector] public bool hasActivatedThisTurn;
     [HideInInspector] public int nextActivationCount = 1;
     [HideInInspector] public bool hasMovedOffStartingNode = false;
+    [HideInInspector] public int meleeAttacksPlayedThisActivation = 0;
 
     [Header("Enemy Specific Properties")]
     [HideInInspector] public CharacterEntityModel currentActionTarget;

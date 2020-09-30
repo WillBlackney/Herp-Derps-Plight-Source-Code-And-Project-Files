@@ -10,21 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Drain
+  m_Name: Ambush
   m_EditorClassIdentifier: 
-  cardName: Drain
-  cardDescription: 'Deal Posion damage equal to target''s Poisoned amount.
+  cardName: Ambush
+  cardDescription: 'Deal 3 Physical damage.
 
-    Remove
-    Poisoned from target. '
-  cardSprite: {fileID: 21300000, guid: 438a8f773ab17c044aa0bc6637dc6a01, type: 3}
-  cardEnergyCost: 1
-  cardType: 1
+    Innate.'
+  cardSprite: {fileID: 21300000, guid: 0736fb0288d9a6f4596d67a3edffcd0e, type: 3}
+  cardEnergyCost: 0
+  cardType: 2
   targettingType: 3
-  talentSchool: 12
+  talentSchool: 3
   rarity: 1
   expend: 0
-  innate: 0
+  innate: 1
   fleeting: 0
   unplayable: 0
   blessing: 0
@@ -39,12 +38,10 @@ MonoBehaviour:
     onChooseCardInHandChoiceMadeEffects: []
     drawStacksFromOverload: 0
     blockGainValue: 0
-    baseDamageValue: 0
+    baseDamageValue: 3
     drawBaseDamageFromCurrentBlock: 0
-    drawBaseDamageFromTargetPoisoned: 1
-    drawBaseDamageFromMeleeAttacksPlayed: 0
-    baseDamageMultiplier: 1
-    damageType: 2
+    drawBaseDamageFromTargetPoisoned: 0
+    damageType: 1
     healthLost: 0
     energyGained: 0
     cardsDrawn: 0
@@ -57,43 +54,41 @@ MonoBehaviour:
     copiesAdded: 0
     blessingsGained: 0
     visualEventsOnStart:
+    - eventType: 1
+      particleEffect: 0
+      cameraShake: 0
+      movementAnimation: 1
+      soundEffect: 0
+      characterAnimation: 0
+      delayDuration: 0
+      projectileFired: 0
+      onCharacter: 0
     - eventType: 2
       particleEffect: 0
       cameraShake: 0
       movementAnimation: 0
       soundEffect: 0
-      characterAnimation: 3
+      characterAnimation: 1
       delayDuration: 0
-      projectileFired: 3
+      projectileFired: 0
       onCharacter: 0
-    visualEventsOnFinish: []
-  - weaponRequirement: 0
-    cardEffectType: 16
-    discoveryLocation: 0
-    talentSchoolFilter: 0
-    rarityFilter: 0
-    blessing: 0
-    onDiscoveryChoiceMadeEffects: []
-    onChooseCardInHandChoiceMadeEffects: []
-    drawStacksFromOverload: 0
-    blockGainValue: 0
-    baseDamageValue: 0
-    drawBaseDamageFromCurrentBlock: 0
-    drawBaseDamageFromTargetPoisoned: 0
-    drawBaseDamageFromMeleeAttacksPlayed: 0
-    baseDamageMultiplier: 0
-    damageType: 0
-    healthLost: 0
-    energyGained: 0
-    cardsDrawn: 0
-    extraDrawEffect: 0
-    cardEnergyReduction: 0
-    passivePairing:
-      passiveData: {fileID: 0}
-      passiveStacks: 0
-    cardAdded: {fileID: 0}
-    copiesAdded: 0
-    blessingsGained: 0
-    visualEventsOnStart: []
+    - eventType: 4
+      particleEffect: 0
+      cameraShake: 1
+      movementAnimation: 0
+      soundEffect: 0
+      characterAnimation: 0
+      delayDuration: 0
+      projectileFired: 0
+      onCharacter: 0
+    - eventType: 5
+      particleEffect: 0
+      cameraShake: 0
+      movementAnimation: 0
+      soundEffect: 16
+      characterAnimation: 0
+      delayDuration: 0
+      projectileFired: 0
+      onCharacter: 0
     visualEventsOnFinish: []
   cardEventListeners: []

@@ -21,17 +21,26 @@ MonoBehaviour:
   talentSchool: 5
   rarity: 1
   expend: 0
-  opener: 0
+  innate: 0
   fleeting: 0
   unplayable: 0
+  blessing: 0
   cardEffects:
-  - cardEffectType: 6
-    weaponRequirement: 0
+  - weaponRequirement: 0
+    cardEffectType: 6
+    discoveryLocation: 0
+    talentSchoolFilter: 0
+    rarityFilter: 0
+    blessing: 0
+    onDiscoveryChoiceMadeEffects: []
+    onChooseCardInHandChoiceMadeEffects: []
     drawStacksFromOverload: 0
     blockGainValue: 0
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 1
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromMeleeAttacksPlayed: 0
+    baseDamageMultiplier: 1
     damageType: 1
     healthLost: 0
     energyGained: 0
@@ -43,6 +52,7 @@ MonoBehaviour:
       passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
+    blessingsGained: 0
     visualEventsOnStart:
     - eventType: 1
       particleEffect: 0

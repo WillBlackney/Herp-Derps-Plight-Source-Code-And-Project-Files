@@ -819,7 +819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
-  innateSetting: 0
+  innateSetting: 1
   onPowerCardPlayedSetting: 0
   initiativeSetting: 0
 --- !u!4 &107419229 stripped
@@ -7435,9 +7435,8 @@ MonoBehaviour:
   runMockScene: 1
   testingEnemyWave: {fileID: 11400000, guid: 196d21c94a6e94b42ab0250cb4bedcdd, type: 2}
   characterTemplates:
-  - {fileID: 11400000, guid: df45f035351862c40b14da86f7b00d71, type: 2}
-  - {fileID: 11400000, guid: b032cf78d33b0f2459c4af64779ad485, type: 2}
-  - {fileID: 11400000, guid: 8d4ecf2085d9be843b2d44cb7360b5d7, type: 2}
+  - {fileID: 11400000, guid: 99709e3ddb4d83148b72b16f935299e5, type: 2}
+  - {fileID: 11400000, guid: 99709e3ddb4d83148b72b16f935299e5, type: 2}
   characterDataSample:
     myName: Test
     serializedPassiveManager:

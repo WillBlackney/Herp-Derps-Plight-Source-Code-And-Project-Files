@@ -142,7 +142,7 @@ public class ActivationManager : Singleton<ActivationManager>
         // Remove temp initiative
         foreach (CharacterEntityModel entity in CharacterEntityController.Instance.AllCharacters)
         {
-            if (entity.pManager.temporaryBonusInitiativeStacks > 0)
+            if (entity.pManager.temporaryBonusInitiativeStacks != 0)
             {
                 PassiveController.Instance.ModifyTemporaryInitiative(entity.pManager, -entity.pManager.temporaryBonusInitiativeStacks, true);
             }

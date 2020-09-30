@@ -41,9 +41,15 @@ MonoBehaviour:
     enrageStacks: 0
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
+    divineFavourStacks: 0
     phoenixFormStacks: 0
     poisonousStacks: 0
     venomousStacks: 0
+    overloadStacks: 0
+    fusionStacks: 0
+    meleeAttackReductionStacks: 0
+    consecrationStacks: 0
+    encouragingAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -65,12 +71,13 @@ MonoBehaviour:
   modelParts:
   - Human_Chest
   - Human_Face_1
-  - Human_Head_1
+  - Human_Head_4
   - Human_Right_Arm
   - Human_Right_Hand
   - Human_Right_Leg
   - Red_Face_Mask_Head_Wear
-  - Black_Leather_Chest_Wear
+  - Shadow_Blade_Chest_Wear
+  - Shadow_Blade_Right_Leg_Wear
   itemManager:
-    mainHandItem: {fileID: 11400000, guid: b441e018b9d907a49b6f8e74e5b0e065, type: 2}
-    offHandItem: {fileID: 11400000, guid: b441e018b9d907a49b6f8e74e5b0e065, type: 2}
+    mainHandItem: {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}
+    offHandItem: {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}

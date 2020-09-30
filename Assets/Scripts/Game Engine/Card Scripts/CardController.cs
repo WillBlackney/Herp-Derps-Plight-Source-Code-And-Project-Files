@@ -813,10 +813,15 @@ public class CardController : Singleton<CardController>
 
         // check for specific on card play effects 
         // Remove Melee Attack reduction passive
-        if (card.cardType == CardType.MeleeAttack &&
-            owner.pManager.meleeAttackReductionStacks > 0)
+        if (card.cardType == CardType.MeleeAttack)
         {
-            PassiveController.Instance.ModifyMeleeAttackReduction(owner.pManager, -owner.pManager.meleeAttackReductionStacks, false);
+            card.owner.meleeAttacksPlayedThisActivation++;
+
+            if (owner.pManager.meleeAttackReductionStacks > 0)
+            {
+                PassiveController.Instance.ModifyMeleeAttackReduction(owner.pManager, -owner.pManager.meleeAttackReductionStacks, false);
+            }
+            
         }
 
         // Infuriated 
@@ -832,6 +837,7 @@ public class CardController : Singleton<CardController>
             }
             */
         }
+
 
         // Consecration
         if (card.owner.pManager.consecrationStacks > 0 && card.blessing)
@@ -937,18 +943,6 @@ public class CardController : Singleton<CardController>
             {
                 TriggerEffectFromCard(card, effect, target);
             }
-
-            // Move back to home node early if declarded to do so
-            /*
-            if (owner.hasMovedOffStartingNode && owner.livingState == LivingState.Alive &&
-                effect.animationEventData.returnToMyNodeOnCardEffectResolved)
-            {
-                owner.hasMovedOffStartingNode = false;
-                CoroutineData cData = new CoroutineData();
-                LevelNode node = owner.levelNode;
-                VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.MoveEntityToNodeCentre(owner, node, cData), cData, QueuePosition.Back, 0.3f, 0);
-            }
-            */
         }
 
         // If character moved off node, move back after all card effects resolved
@@ -1019,19 +1013,27 @@ public class CardController : Singleton<CardController>
             // Do normal base damage, or draw base damage from another source?
             if (cardEffect.drawBaseDamageFromCurrentBlock) 
             {
-                baseDamage = owner.block;
+                baseDamage = owner.block * cardEffect.baseDamageMultiplier;
             }
             else if (cardEffect.drawBaseDamageFromTargetPoisoned)
             {
-                baseDamage = target.pManager.poisonedStacks;
+                baseDamage = target.pManager.poisonedStacks * cardEffect.baseDamageMultiplier;
+            }
+            else if (cardEffect.drawBaseDamageFromMeleeAttacksPlayed)
+            {
+                baseDamage = target.meleeAttacksPlayedThisActivation * cardEffect.baseDamageMultiplier;
             }
             else
             {
                 baseDamage = cardEffect.baseDamageValue;
-            }        
+            }
+
+            Debug.LogWarning("Base Damage: " + baseDamage.ToString());
                             
             // Calculate the end damage value
             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, target, damageType, false, baseDamage, card, cardEffect);
+
+            Debug.LogWarning("Final Damage: " + baseDamage.ToString());
 
             // Start damage sequence
             CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, damageType, card);
@@ -1051,11 +1053,15 @@ public class CardController : Singleton<CardController>
                 // Do normal base damage, or draw base damage from another source?
                 if (cardEffect.drawBaseDamageFromCurrentBlock)
                 {
-                    baseDamage = owner.block;
+                    baseDamage = owner.block * cardEffect.baseDamageMultiplier;
                 }
                 else if (cardEffect.drawBaseDamageFromTargetPoisoned)
                 {
-                    baseDamage = target.pManager.poisonedStacks;
+                    baseDamage = target.pManager.poisonedStacks * cardEffect.baseDamageMultiplier;
+                }
+                else if (cardEffect.drawBaseDamageFromMeleeAttacksPlayed)
+                {
+                    baseDamage = target.meleeAttacksPlayedThisActivation * cardEffect.baseDamageMultiplier;
                 }
                 else
                 {
@@ -1080,11 +1086,15 @@ public class CardController : Singleton<CardController>
             // Do normal base damage, or draw base damage from another source?
             if (cardEffect.drawBaseDamageFromCurrentBlock)
             {
-                baseDamage = owner.block;
+                baseDamage = owner.block * cardEffect.baseDamageMultiplier;
             }
             else if (cardEffect.drawBaseDamageFromTargetPoisoned)
             {
-                baseDamage = target.pManager.poisonedStacks;
+                baseDamage = target.pManager.poisonedStacks * cardEffect.baseDamageMultiplier;
+            }
+            else if (cardEffect.drawBaseDamageFromMeleeAttacksPlayed)
+            {
+                baseDamage = target.meleeAttacksPlayedThisActivation * cardEffect.baseDamageMultiplier;
             }
             else
             {

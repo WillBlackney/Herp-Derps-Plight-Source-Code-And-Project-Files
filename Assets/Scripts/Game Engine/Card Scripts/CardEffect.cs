@@ -59,6 +59,14 @@ public class CardEffect
     [LabelWidth(250)]
     public bool drawBaseDamageFromTargetPoisoned;
 
+    [ShowIf("ShowDrawDamageFromMeleeAttacksPlayed")]
+    [LabelWidth(250)]
+    public bool drawBaseDamageFromMeleeAttacksPlayed;
+
+    [ShowIf("ShowDamageMultiplier")]
+    [LabelWidth(250)]
+    public int baseDamageMultiplier;
+
     [ShowIf("ShowDamageType")]
     [LabelWidth(200)]
     public DamageType damageType;
@@ -146,7 +154,7 @@ public class CardEffect
     public bool ShowDrawDamageFromBlock()
     {
         if ((cardEffectType == CardEffectType.DamageTarget || cardEffectType == CardEffectType.DamageSelf || cardEffectType == CardEffectType.DamageAllEnemies)  &&
-            drawBaseDamageFromTargetPoisoned == false)
+            (drawBaseDamageFromTargetPoisoned == false && drawBaseDamageFromMeleeAttacksPlayed == false))
         {
             return true;
         }
@@ -158,7 +166,31 @@ public class CardEffect
     public bool ShowDrawDamageFromTargetPoisoned()
     {
         if ((cardEffectType == CardEffectType.DamageTarget || cardEffectType == CardEffectType.DamageSelf || cardEffectType == CardEffectType.DamageAllEnemies) &&
-            drawBaseDamageFromCurrentBlock == false)
+            (drawBaseDamageFromCurrentBlock == false && drawBaseDamageFromMeleeAttacksPlayed == false))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowDrawDamageFromMeleeAttacksPlayed()
+    {
+        if ((cardEffectType == CardEffectType.DamageTarget || cardEffectType == CardEffectType.DamageSelf || cardEffectType == CardEffectType.DamageAllEnemies) &&
+           (drawBaseDamageFromCurrentBlock == false && drawBaseDamageFromTargetPoisoned == false))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowDamageMultiplier()
+    {
+        if ((cardEffectType == CardEffectType.DamageTarget || cardEffectType == CardEffectType.DamageSelf || cardEffectType == CardEffectType.DamageAllEnemies) &&
+            (drawBaseDamageFromCurrentBlock == true || drawBaseDamageFromTargetPoisoned == true || drawBaseDamageFromMeleeAttacksPlayed == true))
         {
             return true;
         }

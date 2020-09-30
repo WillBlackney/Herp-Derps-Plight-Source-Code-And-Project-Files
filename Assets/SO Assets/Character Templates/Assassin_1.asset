@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2410c6608dbef744a9643f0571333299, type: 3}
-  m_Name: Testing Character
+  m_Name: Assassin_1
   m_EditorClassIdentifier: 
-  myName: Testing Character
+  myName: Assassin
   health: 30
   maxHealth: 30
   power: 0
   dexterity: 0
   stamina: 3
   draw: 5
-  initiative: 50
+  initiative: 3
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0
@@ -38,7 +38,7 @@ MonoBehaviour:
     temporaryBonusStaminaStacks: 0
     temporaryBonusInitiativeStacks: 0
     temporaryBonusDrawStacks: 0
-    enrageStacks: 2
+    enrageStacks: 0
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
     divineFavourStacks: 0
@@ -58,25 +58,21 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 58ad3605f0bb1844dac2124cd71174c1, type: 2}
-  - {fileID: 11400000, guid: c725ced37bae68e4ea02c145e66668d9, type: 2}
-  - {fileID: 11400000, guid: c725ced37bae68e4ea02c145e66668d9, type: 2}
-  - {fileID: 11400000, guid: c725ced37bae68e4ea02c145e66668d9, type: 2}
-  - {fileID: 11400000, guid: 58ad3605f0bb1844dac2124cd71174c1, type: 2}
+  - {fileID: 11400000, guid: 4f7008c09af197b43b9e5ee443274691, type: 2}
+  - {fileID: 11400000, guid: 4f7008c09af197b43b9e5ee443274691, type: 2}
+  - {fileID: 11400000, guid: 4806fd31c9152b74c92ce0c4d1cfdcf9, type: 2}
+  - {fileID: 11400000, guid: 4806fd31c9152b74c92ce0c4d1cfdcf9, type: 2}
+  - {fileID: 11400000, guid: 7d08155ea258c934384bd8975db95349, type: 2}
   modelParts:
-  - Orc_Head_1
+  - Goblin_Chest
   - Orc_Face_1
-  - Orc_Chest
-  - Orc_Right_Arm
-  - Orc_Right_Hand
-  - Orc_Left_Arm
-  - Orc_Left_Hand
-  - Orc_Right_Leg
-  - Orc_Left_Leg
-  - Shaman_Chest_Wear
-  - Left_Hand_Simple_Battle_Axe
-  - Shaman_Right_Leg_Wear
-  - Shaman_Mask_Head_Wear
+  - Goblin_Head_1
+  - Goblin_Right_Arm
+  - Goblin_Right_Hand
+  - Goblin_Right_Leg
+  - Shadow_Blade_Head_Wear
+  - Black_Leather_Chest_Wear
+  - Black_Necromancer_Right_Leg_Wear
   itemManager:
-    mainHandItem: {fileID: 11400000, guid: 8487b0bcf8b350246ad6ff676ec686f4, type: 2}
-    offHandItem: {fileID: 0}
+    mainHandItem: {fileID: 11400000, guid: b441e018b9d907a49b6f8e74e5b0e065, type: 2}
+    offHandItem: {fileID: 11400000, guid: b441e018b9d907a49b6f8e74e5b0e065, type: 2}
