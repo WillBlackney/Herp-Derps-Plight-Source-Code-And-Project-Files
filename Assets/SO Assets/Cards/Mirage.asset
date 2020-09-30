@@ -35,7 +35,7 @@ MonoBehaviour:
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects:
     - choiceEffect: 1
-      copiesAdded: 2
+      copiesAdded: 1
       energyReduction: 0
       newEnergyCost: 0
       passivePairing:

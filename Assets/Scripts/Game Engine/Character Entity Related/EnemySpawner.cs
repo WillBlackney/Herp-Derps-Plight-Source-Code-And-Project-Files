@@ -11,11 +11,11 @@ public class EnemySpawner : Singleton<EnemySpawner>
     public EnemyWaveSO testingWave;
 
     [Header("Enemy Encounter Lists")]
-    public List<EnemyWaveSO> basicEnemyWavesActOneHalfOne;
-    public List<EnemyWaveSO> basicEnemyWavesActOneHalfTwo;
-    public List<EnemyWaveSO> eliteEnemyWaves;
-    public List<EnemyWaveSO> bossEnemyWaves;
-    public List<EnemyWaveSO> storyEventEnemyWaves;
+    public EnemyWaveSO[] basicEnemyWavesActOneHalfOne;
+    public EnemyWaveSO[] basicEnemyWavesActOneHalfTwo;
+    public EnemyWaveSO[] eliteEnemyWaves;
+    public EnemyWaveSO[] bossEnemyWaves;
+    public EnemyWaveSO[] storyEventEnemyWaves;
 
     [Header("Current Viable Encounters Lists")]
     [HideInInspector] public List<EnemyWaveSO> viableBasicEnemyActOneHalfOneWaves;
@@ -104,7 +104,7 @@ public class EnemySpawner : Singleton<EnemySpawner>
         }
 
     }
-    public void PopulateWaveList(List <EnemyWaveSO> waveListToPopulate, List<EnemyWaveSO> wavesCopiedIn)
+    public void PopulateWaveList(List <EnemyWaveSO> waveListToPopulate, IEnumerable<EnemyWaveSO> wavesCopiedIn)
     {
         waveListToPopulate.AddRange(wavesCopiedIn);
     }    

@@ -775,6 +775,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87689083}
   m_CullTransparentMesh: 0
+--- !u!1 &104518538
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 104518539}
+  - component: {fileID: 104518540}
+  m_Layer: 0
+  m_Name: Global Settings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &104518539
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104518538}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1008993741}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &104518540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104518538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6445de7fcde5574eb3e399ad5e526e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
+  innateSetting: 0
+  onPowerCardPlayedSetting: 0
+  initiativeSetting: 0
 --- !u!4 &107419229 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 435618, guid: a9bb5993776894d459f46527006acc6b,
@@ -2943,14 +2990,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e2c276357616c254e96e270581a12319, type: 2}
   - {fileID: 11400000, guid: 787ad1f16e80e34499c6a5732f3c0f22, type: 2}
   - {fileID: 11400000, guid: e77a6c8c0e793d246becf25ea63b598e, type: 2}
-  allBlessingCards:
-  - {fileID: 11400000, guid: 399ab0c3893650b4fb8e869e59460b14, type: 2}
-  - {fileID: 11400000, guid: de0416f2bef18f642a8bbc0858a7e2d6, type: 2}
-  - {fileID: 11400000, guid: 8554b25f83b65ab4c9c022f6d2b6f75b, type: 2}
-  - {fileID: 11400000, guid: 5662113a872574f43a0b1cc1c79e940b, type: 2}
-  - {fileID: 11400000, guid: e2c276357616c254e96e270581a12319, type: 2}
-  - {fileID: 11400000, guid: e77a6c8c0e793d246becf25ea63b598e, type: 2}
-  - {fileID: 11400000, guid: 787ad1f16e80e34499c6a5732f3c0f22, type: 2}
   discoveryCards:
   - {fileID: 150008041}
   - {fileID: 1265796404}
@@ -6478,6 +6517,7 @@ Transform:
   m_Children:
   - {fileID: 716301267}
   - {fileID: 561285564}
+  - {fileID: 104518539}
   m_Father: {fileID: 937172827}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6665,10 +6705,6 @@ MonoBehaviour:
   DamageEffectPrefab: {fileID: 4231728771203878851, guid: 41e0b29e8e16a2d43b3dbfde09abfee8,
     type: 3}
   StatusEffectPrefab: {fileID: 5797780097810648835, guid: 6830b51eb051664429c60f70a0a2b6d9,
-    type: 3}
-  ImpactEffectPrefab: {fileID: 5459196617035357197, guid: c6ab9898cb4507945b5b2cb47eca12dc,
-    type: 3}
-  MeleeAttackEffectPrefab: {fileID: 7111592337171538870, guid: fc78381c0368c204b8e96b6e2017502b,
     type: 3}
   GainBlockEffectPrefab: {fileID: 4262080138937027028, guid: 1e8e3a96e5f60e348973f7d2127afc01,
     type: 3}
@@ -7399,9 +7435,9 @@ MonoBehaviour:
   runMockScene: 1
   testingEnemyWave: {fileID: 11400000, guid: 196d21c94a6e94b42ab0250cb4bedcdd, type: 2}
   characterTemplates:
-  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
-  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
-  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
+  - {fileID: 11400000, guid: df45f035351862c40b14da86f7b00d71, type: 2}
+  - {fileID: 11400000, guid: b032cf78d33b0f2459c4af64779ad485, type: 2}
+  - {fileID: 11400000, guid: 8d4ecf2085d9be843b2d44cb7360b5d7, type: 2}
   characterDataSample:
     myName: Test
     serializedPassiveManager:

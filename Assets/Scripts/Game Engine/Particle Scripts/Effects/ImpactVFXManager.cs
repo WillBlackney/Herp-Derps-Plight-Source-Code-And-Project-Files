@@ -6,7 +6,7 @@ public class ImpactVFXManager : MonoBehaviour
 {
     [Header("Component + Prefab References")]
     public GameObject impactPrefabOne;
-    public List<Sprite> randomImpactSprites;
+    public Sprite[] randomImpactSprites;
 
     public static ImpactVFXManager Instance;
     private void Awake()

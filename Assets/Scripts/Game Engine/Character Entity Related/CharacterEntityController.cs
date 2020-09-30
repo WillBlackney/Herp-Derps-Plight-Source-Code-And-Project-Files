@@ -584,7 +584,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             {
                 for (int i = 0; i < character.pManager.divineFavourStacks; i++)
                 {
-                    CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetRandomBlessingCard());
+                    List<CardDataSO> blessings = CardController.Instance.QueryByBlessing(CardController.Instance.AllCards, true);
+                    CardDataSO randomBlessing = blessings[RandomGenerator.NumberBetween(0, blessings.Count - 1)];
+                    CardController.Instance.CreateAndAddNewCardToCharacterHand(character, randomBlessing);
                 }
             }
 
@@ -696,8 +698,8 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Buff Passive Triggers
         if (entity.pManager.encouragingAuraStacks > 0)
         {
-            List<CharacterEntityModel> allAllies = GetAllAlliesOfCharacter(entity, false);
-            CharacterEntityModel chosenAlly = allAllies[RandomGenerator.NumberBetween(0, allAllies.Count - 1)];
+            CharacterEntityModel[] allAllies = GetAllAlliesOfCharacter(entity, false).ToArray();
+            CharacterEntityModel chosenAlly = allAllies[RandomGenerator.NumberBetween(0, allAllies.Length - 1)];
 
             if (chosenAlly != null)
             {
@@ -740,8 +742,8 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Overload!"), QueuePosition.Back, 0, 0.5f);
 
             // Get random enemy
-            List<CharacterEntityModel> enemies = GetAllEnemiesOfCharacter(entity);
-            CharacterEntityModel randomEnemy = enemies[Random.Range(0, enemies.Count)];
+            CharacterEntityModel[] enemies = GetAllEnemiesOfCharacter(entity).ToArray();
+            CharacterEntityModel randomEnemy = enemies[Random.Range(0, enemies.Length)];
             CharacterEntityView randomEnemyView = randomEnemy.characterEntityView;
 
             // Create lightning ball missle
@@ -803,7 +805,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         }
 
         // Disable targeting path lines from all nodes
-        foreach (LevelNode node in LevelManager.Instance.allLevelNodes)
+        foreach (LevelNode node in LevelManager.Instance.AllLevelNodes)
         {
             LevelManager.Instance.DisableAllExtraViews(node);
         }
@@ -1230,7 +1232,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             DisableAllDefenderTargetIndicators();
 
             // Disable all node mouse stats
-            foreach(LevelNode node in LevelManager.Instance.allLevelNodes)
+            foreach(LevelNode node in LevelManager.Instance.AllLevelNodes)
             {
                 LevelManager.Instance.SetMouseOverViewState(node, false);
             }
@@ -1496,13 +1498,13 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
         else if (action.actionType == ActionType.AttackTarget || action.actionType == ActionType.DebuffTarget)
         {
-            List<CharacterEntityModel> enemies = GetAllEnemiesOfCharacter(enemy);
+            CharacterEntityModel[] enemies = GetAllEnemiesOfCharacter(enemy).ToArray();
 
-            if(enemies.Count > 1)
+            if(enemies.Length > 1)
             {
-                targetReturned = enemies[Random.Range(0, enemies.Count)];
+                targetReturned = enemies[Random.Range(0, enemies.Length)];
             }
-            else if(enemies.Count == 1)
+            else if(enemies.Length == 1)
             {
                 targetReturned = enemies[0];
             }
@@ -1512,18 +1514,18 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
                  action.actionType == ActionType.BuffTarget)
         {
             // Get a valid target
-            List<CharacterEntityModel> allies = GetAllAlliesOfCharacter(enemy, false);
+            CharacterEntityModel[] allies = GetAllAlliesOfCharacter(enemy, false).ToArray();
 
             // if no valid allies, target self
-            if(allies.Count == 0)
+            if(allies.Length == 0)
             {
                 targetReturned = enemy;
             }
 
             // randomly chose enemy from remaining valid choices
-            else if (allies.Count > 0)
+            else if (allies.Length > 0)
             {
-                targetReturned = allies[Random.Range(0, allies.Count)];
+                targetReturned = allies[Random.Range(0, allies.Length)];
             }
             else
             {

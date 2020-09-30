@@ -34,8 +34,8 @@ public class CardViewModel : MonoBehaviour
     public GameObject talentSchoolParent;
 
     [Header("Colouring References")]
-    public List<Image> talentRenderers;
-    public List<Image> rarityRenderers;
+    public Image[] talentRenderers;
+    public Image[] rarityRenderers;
 
     [Header("Canvas References")]
     public Canvas canvas;

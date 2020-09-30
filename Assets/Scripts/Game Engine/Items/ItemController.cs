@@ -7,7 +7,7 @@ public class ItemController : Singleton<ItemController>
     // Variables + Properties
     #region
     [Header("Item Library Properties")]
-    public List<ItemDataSO> allItems;
+    public ItemDataSO[] allItems;
     #endregion
 
     // Library Logic

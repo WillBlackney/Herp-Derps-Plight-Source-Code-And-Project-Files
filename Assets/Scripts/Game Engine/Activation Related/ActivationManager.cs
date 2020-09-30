@@ -117,8 +117,8 @@ public class ActivationManager : Singleton<ActivationManager>
         // Move windows to start positions if combat has only just started
         if (CurrentTurn == 0)
         {
-            List<CharacterEntityModel> characters = new List<CharacterEntityModel>();
-            characters.AddRange(activationOrder);
+            //CharacterEntityModel[] characters = new List<CharacterEntityModel>();
+            CharacterEntityModel[] characters = activationOrder.ToArray();
             VisualEventManager.Instance.CreateVisualEvent(() => MoveAllWindowsToStartPositions(characters), QueuePosition.Back, 0f, 0.5f);
         }
 
@@ -132,8 +132,12 @@ public class ActivationManager : Singleton<ActivationManager>
         }       
 
         // Characters roll for initiative
-        GenerateInitiativeRolls();
-        SetActivationOrderBasedOnCurrentInitiativeRolls();
+        if(GlobalSettings.Instance.initiativeSetting == InitiativeSettings.RerollInitiativeEveryTurn ||
+           (GlobalSettings.Instance.initiativeSetting == InitiativeSettings.RollInitiativeOnceOnCombatStart && CurrentTurn == 1))
+        {
+            GenerateInitiativeRolls();
+            SetActivationOrderBasedOnCurrentInitiativeRolls();
+        }       
 
         // Remove temp initiative
         foreach (CharacterEntityModel entity in CharacterEntityController.Instance.AllCharacters)
@@ -142,21 +146,26 @@ public class ActivationManager : Singleton<ActivationManager>
             {
                 PassiveController.Instance.ModifyTemporaryInitiative(entity.pManager, -entity.pManager.temporaryBonusInitiativeStacks, true);
             }
-        }            
+        }
 
-        // Play roll animation sequence
-        CoroutineData rollsCoroutine = new CoroutineData();
-        VisualEventManager.Instance.CreateVisualEvent(() => PlayActivationRollSequence(rollsCoroutine), rollsCoroutine, QueuePosition.Back, 0, 0);
+        // Initiative roll visual events
+        if (GlobalSettings.Instance.initiativeSetting == InitiativeSettings.RerollInitiativeEveryTurn ||
+          (GlobalSettings.Instance.initiativeSetting == InitiativeSettings.RollInitiativeOnceOnCombatStart && CurrentTurn == 1))
+        {
+            // Play roll animation sequence
+            CoroutineData rollsCoroutine = new CoroutineData();
+            VisualEventManager.Instance.CreateVisualEvent(() => PlayActivationRollSequence(rollsCoroutine), rollsCoroutine, QueuePosition.Back, 0, 0);
 
-        // Move windows to new positions
-        VisualEventManager.Instance.CreateVisualEvent(() => UpdateWindowPositions(), QueuePosition.Back, 0, 1);
+            // Move windows to new positions
+            VisualEventManager.Instance.CreateVisualEvent(() => UpdateWindowPositions(), QueuePosition.Back, 0, 1);           
+        }
 
         // Play turn change notification
         CoroutineData turnNotificationCoroutine = new CoroutineData();
         VisualEventManager.Instance.CreateVisualEvent(() => DisplayTurnChangeNotification(turnNotificationCoroutine), turnNotificationCoroutine, QueuePosition.Back, 0, 0);
 
         // Set all enemy intent images if turn 1
-        if(CurrentTurn == 1)
+        if (CurrentTurn == 1)
         {
             CharacterEntityController.Instance.SetAllEnemyIntents(); 
         }
@@ -542,9 +551,9 @@ public class ActivationManager : Singleton<ActivationManager>
             s.Append(window.transform.DOMoveX(panelSlot.transform.position.x, 0.3f));
         }
     }
-    private void MoveAllWindowsToStartPositions(List<CharacterEntityModel> characters)
+    private void MoveAllWindowsToStartPositions(CharacterEntityModel[] characters)
     {
-        for(int i = 0; i < characters.Count; i++)
+        for(int i = 0; i < characters.Length; i++)
         {
             // move the window
             Sequence s = DOTween.Sequence();

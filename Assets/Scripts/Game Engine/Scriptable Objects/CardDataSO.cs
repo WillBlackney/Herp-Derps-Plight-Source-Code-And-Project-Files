@@ -54,7 +54,7 @@ public class CardDataSO : ScriptableObject
     [BoxGroup("Key Words")]
     [LabelWidth(100)]
     [GUIColor("Green")]
-    public bool opener;
+    public bool innate;
     [BoxGroup("Key Words")]
     [LabelWidth(100)]
     [GUIColor("Green")]

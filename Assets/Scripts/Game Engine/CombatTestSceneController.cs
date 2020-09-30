@@ -7,7 +7,7 @@ public class CombatTestSceneController : Singleton<CombatTestSceneController>
 {
     public bool runMockScene;
     public EnemyWaveSO testingEnemyWave;
-    public List<CharacterTemplateSO> characterTemplates;
+    public CharacterTemplateSO[] characterTemplates;
     public CharacterData characterDataSample;    
 
     private void Start()

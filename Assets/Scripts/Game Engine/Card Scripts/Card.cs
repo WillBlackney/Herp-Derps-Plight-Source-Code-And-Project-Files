@@ -26,7 +26,7 @@ public class Card
 
     // Key words
     public bool expend;
-    public bool opener;
+    public bool innate;
     public bool fleeting;
     public bool unplayable;
     public bool blessing;

@@ -8,7 +8,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
 
     // Mock Data + Testing Stuff
     #region
-    public void BuildAllCharactersFromCharacterTemplateList(List<CharacterTemplateSO> characters)
+    public void BuildAllCharactersFromCharacterTemplateList(IEnumerable<CharacterTemplateSO> characters)
     {
         foreach(CharacterTemplateSO template in characters)
         {

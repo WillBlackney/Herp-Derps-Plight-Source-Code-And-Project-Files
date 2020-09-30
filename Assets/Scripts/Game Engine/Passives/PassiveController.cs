@@ -7,7 +7,7 @@ public class PassiveController : Singleton<PassiveController>
     // Properties + Component References
     #region
     [Header("Passive Library Properties")]
-    public List<PassiveIconDataSO> allIcons;
+    public PassiveIconDataSO[] allIcons;
     #endregion
 
     // Library Logic

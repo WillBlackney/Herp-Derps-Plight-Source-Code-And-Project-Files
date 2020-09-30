@@ -9,27 +9,22 @@ public static class CharacterModelController
     #region
     private static void SetModelScale(UniversalCharacterModel model, float newScale)
     {
-        Debug.Log("CharacterModelController.SetModelScale() called...");
         model.transform.localScale = new Vector3(newScale, newScale, newScale);
     }
     public static void SetModelNormalScale(UniversalCharacterModel model)
     {
-        Debug.Log("CharacterModelController.SetModelNormalScale() called...");
         SetModelScale(model, model.normalSizeScale);
     }
     public static void SetModelLargeScale(UniversalCharacterModel model)
     {
-        Debug.Log("CharacterModelController.SetModelLargeScale() called...");
         SetModelScale(model, model.largeSizeScale);
     }
     public static void SetModelSmallScale(UniversalCharacterModel model)
     {
-        Debug.Log("CharacterModelController.SetModelSmallScale() called...");
         SetModelScale(model, model.smallSizeScale);
     }
     public static void AutoSetModelScaleFromRace(UniversalCharacterModel model)
     {
-        Debug.Log("CharacterModelController.AutoSetModelScaleFromRace() called...");
         if (model.myModelRace == CharacterRace.Gnoll ||
             model.myModelRace == CharacterRace.Goblin)
         {
@@ -61,8 +56,6 @@ public static class CharacterModelController
     }
     public static void BuildModelFromModelClone(UniversalCharacterModel modelToBuild, UniversalCharacterModel modelClonedFrom)
     {
-        Debug.Log("CharacterModelController.BuildModelFromModelClone() called...");
-
         if(modelClonedFrom == null)
         {
             Debug.Log("CharacterModelController.BuildModelFromModelClone() was given a null UCM to clone from, returning...");
@@ -100,8 +93,6 @@ public static class CharacterModelController
             {
                 if (ucme.itemsWithMyView.Contains(iManager.mainHandItem))
                 {
-                    Debug.Log("CharacterModelController.ApplyItemManagerDataToCharacterModelView() found model element GO with matching name of " +
-                        iManager.mainHandItem.itemName + ", enabling GO...");
                     EnableAndSetElementOnModel(model, ucme);
                     break;
                 }
@@ -115,76 +106,14 @@ public static class CharacterModelController
             {
                 if (ucme.itemsWithMyView.Contains(iManager.offHandItem))
                 {
-                    Debug.Log("CharacterModelController.ApplyItemManagerDataToCharacterModelView() found model element GO with matching name of " +
-                        iManager.mainHandItem.itemName + ", enabling GO...");
                     EnableAndSetElementOnModel(model, ucme);
                     break;
                 }
             }
         }
-    }
-    
-
-    /*
-    public static void BuildModelFromCharacterPresetData(UniversalCharacterModel model, CharacterPresetData data)
-    {
-        Debug.Log("CharacterModelController.BuildModelFromCharacterPresetData() called...");
-
-        // clear previous views
-        DisableAllActiveModelElementViews(model);
-        ClearAllActiveModelElementsReferences(model);
-
-        // set race
-        model.myModelRace = data.modelRace;
-
-        // Body Parts + Clothing
-        foreach (ModelElementData elementData in data.activeModelElements)
-        {
-            foreach(UniversalCharacterModelElement element in model.allModelElements)
-            {
-                if(elementData.elementName == element.gameObject.name)
-                {
-                    Debug.Log("CharacterModelController.BuildModelFromCharacterPresetData() found model element GO with matching name of " +
-                        elementData.elementName + ", enabling GO...");
-                    EnableAndSetElementOnModel(model, element);
-                    break;
-                }
-            }
-        }
-
-        // set MH weapon model view
-        foreach (UniversalCharacterModelElement ucme in model.allMainHandWeapons)
-        {
-            if (ucme.itemsWithMyView.Contains(data.mhWeapon))
-            {
-                Debug.Log("CharacterModelController.BuildModelFromCharacterPresetData() found model element GO with matching name of " +
-                        data.mhWeapon.Name + ", enabling GO...");
-                EnableAndSetElementOnModel(model, ucme);
-                break;
-            }
-        }
-
-        // Set OH weapon model view
-        if (data.ohWeapon != null)
-        {
-            foreach (UniversalCharacterModelElement ucme in model.allOffHandWeapons)
-            {
-                if (ucme.itemsWithMyView.Contains(data.ohWeapon))
-                {
-                    Debug.Log("CharacterModelController.BuildModelFromCharacterPresetData() found model element GO with matching name of " +
-                        data.ohWeapon.Name + ", enabling GO...");
-                    EnableAndSetElementOnModel(model, ucme);
-                    break;
-                }
-            }
-        }
-    }
-    */
-
+    }    
     public static void CompletelyDisableAllViews(UniversalCharacterModel model)
     {
-        Debug.Log("CharacterModelController.CompletelyDisableAllViews() called...");
-
         foreach(UniversalCharacterModelElement element in model.allModelElements)
         {
             element.gameObject.SetActive(false);
@@ -197,8 +126,6 @@ public static class CharacterModelController
     }
     public static void ClearAllActiveBodyPartReferences(UniversalCharacterModel model)
     {
-        Debug.Log("CharacterModelController.ClearAllActiveBodyPartReferences() called...");
-
         // Body Parts
         model.activeHead = null;
         model.activeFace = null;
@@ -228,11 +155,6 @@ public static class CharacterModelController
     }
     public static void DisableAllActiveModelElementViews(UniversalCharacterModel model)
     {
-        Debug.Log("CharacterModelController.DisableAllActiveBodyPartViews() called...");
-
-        // TO DO: remove in future, find a more performant place to put this
-       // CompletelyDisableAllViews(model);
-
         // Body Parts
         if (model.activeHead)
         {
@@ -326,8 +248,6 @@ public static class CharacterModelController
     }    
     public static void AutoSetHeadMaskOrderInLayer(UniversalCharacterModel model)
     {
-        Debug.Log("CharacterModelController.AutoSetHeadMaskOrderInLayer() called...");
-
         int headSortOrder = model.GetComponent<EntityRenderer>().SortingOrder + 10;
 
         foreach(SpriteMask mask in model.allHeadWearSpriteMasks)
@@ -336,98 +256,6 @@ public static class CharacterModelController
             mask.backSortingOrder = headSortOrder - 1;
         }
     }
-    /*
-    public static void ApplyItemDataAppearanceToModel(ItemDataSO item, UniversalCharacterModel model, CharacterItemSlot.SlotType slotType = CharacterItemSlot.SlotType.None)
-    {
-        Debug.Log("CharacterModelController.ApplyItemDataAppearanceToModel() called, applying look of item '" +
-            item.Name + "' to model");
-
-        if (!model)
-        {
-            Debug.Log("CharacterModelController.ApplyItemDataAppearanceToModel() was given a null value UC model, returning...");
-            return;
-        }
-
-        UniversalCharacterModelElement elementToActivate = null;
-
-        // search specifically for weapons (make sure to correctly enable the weapon view in the correct hand)
-        if(slotType == CharacterItemSlot.SlotType.MainHand || slotType == CharacterItemSlot.SlotType.OffHand)
-        {
-            // check main hand weapons
-            if(slotType == CharacterItemSlot.SlotType.MainHand)
-            {
-                List<UniversalCharacterModelElement> mainHandElements = new List<UniversalCharacterModelElement>();
-                foreach(UniversalCharacterModelElement element in model.allModelElements)
-                {
-                    if(element.bodyPartType == UniversalCharacterModelElement.BodyPartType.MainHandWeapon)
-                    {
-                        mainHandElements.Add(element);
-                    }
-                }
-
-                foreach(UniversalCharacterModelElement mainHandElement in mainHandElements)
-                {
-                    if (mainHandElement.itemsWithMyView.Contains(item))
-                    {
-                        // Found an element that's view matches the items view
-                        elementToActivate = mainHandElement;
-                        break;
-                    }
-                }
-            }
-
-            // check off hand weapons
-            else if (slotType == CharacterItemSlot.SlotType.OffHand)
-            {
-                List<UniversalCharacterModelElement> offHandElements = new List<UniversalCharacterModelElement>();
-                foreach (UniversalCharacterModelElement element in model.allModelElements)
-                {
-                    if (element.bodyPartType == UniversalCharacterModelElement.BodyPartType.OffHandWeapon)
-                    {
-                        offHandElements.Add(element);
-                    }
-                }
-
-                foreach (UniversalCharacterModelElement offHandElement in offHandElements)
-                {
-                    if (offHandElement.itemsWithMyView.Contains(item))
-                    {
-                        // Found an element that's view matches the items view
-                        elementToActivate = offHandElement;
-                        break;
-                    }
-                }
-            }
-        }
-
-        // check non weapon model elements
-        else
-        {
-            // Search through every element on the model, find the element that matches the item
-            foreach (UniversalCharacterModelElement element in model.allModelElements)
-            {
-                if (element.itemsWithMyView.Contains(item))
-                {
-                    // Found an element that's view matches the items view
-                    elementToActivate = element;
-                    break;
-                }
-            }
-        }
-        
-
-        if(elementToActivate != null)
-        {
-            Debug.Log("CharacterModelController.ApplyItemDataAppearanceToModel() found a matching UCM element for item " + item.Name +
-                ", enabling UCM element: " + elementToActivate.gameObject.name.ToString());
-            EnableAndSetElementOnModel(model, elementToActivate);
-        }
-        else
-        {
-            Debug.Log("CharacterModelController.ApplyItemDataAppearanceToModel() did not find a UCM element that matches the item " + item.Name);
-        }
-    }
-    */
     #endregion
 
     // Build Presets
@@ -978,9 +806,6 @@ public static class CharacterModelController
     #region
     public static void EnableAndSetElementOnModel(UniversalCharacterModel model, UniversalCharacterModelElement element)
     {
-        Debug.Log("CharacterModelController.EnableAndSetElementOnModel() called, enabling " +
-            element.gameObject.name + " GO");
-
         // Set Active Body Part Reference
         if (element.bodyPartType == BodyPartType.Chest)
         {
@@ -1156,9 +981,6 @@ public static class CharacterModelController
     }
     public static void EnableAndSetElementOnModel(UniversalCharacterModel model, string elementName)
     {
-        Debug.Log("CharacterModelController.EnableAndSetElementOnModel() called, enabling " +
-            elementName + " GO");
-
         UniversalCharacterModelElement element = null;
 
         // find element first
@@ -1353,9 +1175,6 @@ public static class CharacterModelController
     }
     public static void DisableAndClearElementOnModel(UniversalCharacterModel model, UniversalCharacterModelElement element)
     {
-        Debug.Log("CharacterModelController.DisableAndClearElementOnModel() called, enabling " +
-            element.gameObject.name + " GO");
-
         // disable view
         element.gameObject.SetActive(false);
 
@@ -1452,8 +1271,6 @@ public static class CharacterModelController
     #region
     public static UniversalCharacterModelElement GetNextElementInList(List<UniversalCharacterModelElement> list)
     {
-        Debug.Log("CharacterModelController.GetNextElementInList() called...");
-
         // Set up
         UniversalCharacterModelElement elementReturned = null;
         int currentIndex = 0;
@@ -1499,8 +1316,6 @@ public static class CharacterModelController
     }
     public static UniversalCharacterModelElement GetPreviousElementInList(List<UniversalCharacterModelElement> list)
     {
-        Debug.Log("CharacterModelController.GetNextElementInList() called...");
-
         // Set up
         UniversalCharacterModelElement elementReturned = null;
         int currentIndex = 0;

@@ -15,8 +15,6 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
     [Header("VFX Prefab References")]
     public GameObject DamageEffectPrefab;
     public GameObject StatusEffectPrefab;
-    public GameObject ImpactEffectPrefab;
-    public GameObject MeleeAttackEffectPrefab;
     public GameObject GainBlockEffectPrefab;
     public GameObject LoseBlockEffectPrefab;
     public GameObject BuffEffectPrefab;
@@ -121,7 +119,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
     public IEnumerator CreateHealEffect(Vector3 location, int healAmount)
     {
         GameObject damageEffect = Instantiate(DamageEffectPrefab, location, Quaternion.identity);
-        damageEffect.GetComponent<DamEffect.DamageEffect>().InitializeSetup(healAmount, true, false);        
+        damageEffect.GetComponent<DamageEffect>().InitializeSetup(healAmount, true, false);        
         GameObject newHealVFX = Instantiate(HealEffectPrefab, location, Quaternion.identity);
         newHealVFX.GetComponent<BuffEffect>().InitializeSetup(location);
         yield return null;
@@ -1209,7 +1207,7 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
     public void CreateDamageEffect(Vector3 location, int damageAmount, bool heal = false, bool healthLost = true)
     {
         GameObject damageEffect = Instantiate(DamageEffectPrefab, location, Quaternion.identity);
-        damageEffect.GetComponent<DamEffect.DamageEffect>().InitializeSetup(damageAmount, heal, healthLost);
+        damageEffect.GetComponent<DamageEffect>().InitializeSetup(damageAmount, heal, healthLost);
     }
 
     // Status Text Effect

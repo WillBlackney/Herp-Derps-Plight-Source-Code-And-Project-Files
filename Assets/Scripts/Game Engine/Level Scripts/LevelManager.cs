@@ -10,8 +10,13 @@ public class LevelManager : Singleton<LevelManager>
     #region
     [Header("Component References")]
     [SerializeField] private Transform centrePos;
-    public List<LevelNode> allLevelNodes;   
+    [SerializeField] private LevelNode[] allLevelNodes;
 
+    public LevelNode[] AllLevelNodes
+    {
+        get { return allLevelNodes; }
+        private set { allLevelNodes = value; }
+    }
     public Transform CentrePos
     {
         get { return centrePos; }
@@ -25,7 +30,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         LevelNode nodeReturned = null;
 
-        List<LevelNode> orderNodes = allLevelNodes.OrderBy(o => o.nodePriority).ToList();
+        LevelNode[] orderNodes = AllLevelNodes.OrderBy(o => o.nodePriority).ToArray();
 
         foreach(LevelNode node in orderNodes)
         {
@@ -42,7 +47,7 @@ public class LevelManager : Singleton<LevelManager>
     {
         LevelNode nodeReturned = null;
 
-        List<LevelNode> orderNodes = allLevelNodes.OrderBy(o => o.nodePriority).ToList();
+        LevelNode[] orderNodes = AllLevelNodes.OrderBy(o => o.nodePriority).ToArray();
 
         foreach (LevelNode node in orderNodes)
         {

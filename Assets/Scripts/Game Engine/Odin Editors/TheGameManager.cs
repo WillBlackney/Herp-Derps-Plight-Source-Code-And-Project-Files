@@ -33,6 +33,7 @@ namespace CustomOdinGUI
         private DrawColorLibrary drawColorLibrary = new DrawColorLibrary();
         private DrawVisualEffects drawVisualEffects = new DrawVisualEffects();
         private DrawAudioManager drawAudioManager = new DrawAudioManager();
+        private DrawGlobalSettings drawGlobalSettings = new DrawGlobalSettings();
 
         // Hard coded file directory paths to specific SO's
         private string enemyPath = "Assets/SO Assets/Enemies";
@@ -72,6 +73,7 @@ namespace CustomOdinGUI
             drawColorLibrary.FindMyObject();
             drawVisualEffects.FindMyObject();
             drawAudioManager.FindMyObject();
+            drawGlobalSettings.FindMyObject();
         }
         protected override void OnGUI()
         {
@@ -149,6 +151,10 @@ namespace CustomOdinGUI
                     DrawEditor(enumIndex);
                     break;
 
+                case ManagerState.globalSettings:
+                    DrawEditor(enumIndex);
+                    break;
+
             }
 
             // Which editor window should be drawn?
@@ -178,6 +184,7 @@ namespace CustomOdinGUI
             targets.Add(drawColorLibrary);
             targets.Add(drawVisualEffects);
             targets.Add(drawAudioManager);
+            targets.Add(drawGlobalSettings);
 
             targets.Add(base.GetTarget());
 
@@ -250,6 +257,7 @@ namespace CustomOdinGUI
             colorLibrary,
             visualEffects,
             audioManager,
+            globalSettings,
         };
 
 
@@ -260,6 +268,10 @@ namespace CustomOdinGUI
 
     }
     public class DrawAudioManager : DrawSceneObject<AudioManager>
+    {
+
+    }
+    public class DrawGlobalSettings : DrawSceneObject<GlobalSettings>
     {
 
     }
