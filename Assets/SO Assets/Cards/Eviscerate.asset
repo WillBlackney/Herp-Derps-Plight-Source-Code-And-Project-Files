@@ -16,7 +16,7 @@ MonoBehaviour:
   cardDescription: Deal 3 Physical damage for each Melee Attack card played this
     activation.
   cardSprite: {fileID: 21300000, guid: f269be13cfabd6b4bbd1b0c29204bcab, type: 3}
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 2
   targettingType: 3
   talentSchool: 3

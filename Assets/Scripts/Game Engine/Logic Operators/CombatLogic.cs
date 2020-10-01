@@ -401,17 +401,7 @@ public class CombatLogic : Singleton<CombatLogic>
             ignoreBlock = true;
         }
         */
-
-        // play impact VFX        
-        // TO DO: implement logic that makes enemies also consider if their attack is a melee attack
-        /*
-        if (card != null &&
-            card.cardType == CardType.MeleeAttack)
-        {
-            VisualEventManager.Instance.CreateVisualEvent(()=> VisualEffectManager.Instance.CreateSmallMeleeImpact(victim.characterEntityView.transform.position), queuePosition, 0, 0, EventDetail.None, batchedEvent);
-        }
-        */
-        
+                
 
         // Check for no block
         if (victim.block == 0)
@@ -449,30 +439,15 @@ public class CombatLogic : Singleton<CombatLogic>
         }
 
         // Check for damage immunity passives
-        /*
-        if (victim.myPassiveManager.barrier || victim.myPassiveManager.transcendence)
+        
+        if (victim.pManager.barrierStacks > 0 &&
+            healthAfter < victim.health)
         {
-            // Check for transcendence
-            if (victim.myPassiveManager.transcendence)
-            {
-                //yield return new WaitForSeconds(0.5f);
-                VisualEffectManager.Instance.CreateStatusEffect(victim.transform.position, "Transcendence!");
-                adjustedDamageValue = 0;
-                healthAfter = victim.currentHealth;
-            }
-
-            // Check for barrier
-            else if (victim.myPassiveManager.barrier && healthAfter < victim.currentHealth)
-            {
-                //yield return new WaitForSeconds(0.5f);
-                VisualEffectManager.Instance.CreateStatusEffect(victim.transform.position, "Barrier!");
-                adjustedDamageValue = 0;
-                healthAfter = victim.currentHealth;
-                victim.myPassiveManager.ModifyBarrier(-1);
-            }
-
+            PassiveController.Instance.ModifyBarrier(victim.pManager, -1, true);
+            adjustedDamageValue = 0;
+            healthAfter = victim.health;
         }
-        */
+        
 
         // Finished calculating the final damage, health lost and armor lost: p
         totalLifeLost = victim.health - healthAfter;
@@ -521,7 +496,8 @@ public class CombatLogic : Singleton<CombatLogic>
         {
             Debug.Log(victim.myName + " 'Enrage' triggered, gaining " + victim.pManager.enrageStacks.ToString() + " bonus power");
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(victim.pManager, "Power", victim.pManager.enrageStacks, true);
+            //PassiveController.Instance.ModifyPassiveOnCharacterEntity(victim.pManager, "Power", victim.pManager.enrageStacks, true);
+            PassiveController.Instance.ModifyBonusPower(victim.pManager, victim.pManager.enrageStacks, true);
         }
 
         // Poisonous 

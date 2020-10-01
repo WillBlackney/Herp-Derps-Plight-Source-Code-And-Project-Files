@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2410c6608dbef744a9643f0571333299, type: 3}
-  m_Name: Assassin_1
+  m_Name: Battle_Mage_1
   m_EditorClassIdentifier: 
-  myName: Assassin
+  myName: Battle_Mage_1
   health: 30
   maxHealth: 30
   power: 0
@@ -60,26 +60,26 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 4f7008c09af197b43b9e5ee443274691, type: 2}
-  - {fileID: 11400000, guid: 4f7008c09af197b43b9e5ee443274691, type: 2}
-  - {fileID: 11400000, guid: 4806fd31c9152b74c92ce0c4d1cfdcf9, type: 2}
-  - {fileID: 11400000, guid: 4806fd31c9152b74c92ce0c4d1cfdcf9, type: 2}
-  - {fileID: 11400000, guid: 49e27db1fd5449d449e4fdfdb4cb512f, type: 2}
-  - {fileID: 11400000, guid: 49e27db1fd5449d449e4fdfdb4cb512f, type: 2}
-  - {fileID: 11400000, guid: 708f5f31c10f4d14e9f8a91cc822a47b, type: 2}
-  - {fileID: 11400000, guid: 708f5f31c10f4d14e9f8a91cc822a47b, type: 2}
-  - {fileID: 11400000, guid: 7d08155ea258c934384bd8975db95349, type: 2}
-  - {fileID: 11400000, guid: b283ece60e43e904594443b098ac381b, type: 2}
+  - {fileID: 11400000, guid: ef2b9ffdee54c0a48adddcc159a622a3, type: 2}
+  - {fileID: 11400000, guid: ef2b9ffdee54c0a48adddcc159a622a3, type: 2}
+  - {fileID: 11400000, guid: ad02d279b5d5514408afc73144555af3, type: 2}
+  - {fileID: 11400000, guid: ad02d279b5d5514408afc73144555af3, type: 2}
+  - {fileID: 11400000, guid: c06d99a9268bd124c80720801c12d236, type: 2}
+  - {fileID: 11400000, guid: c06d99a9268bd124c80720801c12d236, type: 2}
+  - {fileID: 11400000, guid: 25f889ca097d2c742a862cb5f2097476, type: 2}
+  - {fileID: 11400000, guid: 25f889ca097d2c742a862cb5f2097476, type: 2}
+  - {fileID: 11400000, guid: 3587b8c7f77c41d4eafbc12793734665, type: 2}
+  - {fileID: 11400000, guid: c62cea059d102884a8aabb11de5b070c, type: 2}
   modelParts:
-  - Goblin_Chest
-  - Orc_Face_1
-  - Goblin_Head_1
-  - Goblin_Right_Arm
-  - Goblin_Right_Hand
-  - Goblin_Right_Leg
-  - Shadow_Blade_Head_Wear
-  - Black_Leather_Chest_Wear
-  - Black_Necromancer_Right_Leg_Wear
+  - Human_Chest
+  - Human_Face_5
+  - Human_Head_5
+  - Human_Right_Arm
+  - Human_Right_Hand
+  - Human_Right_Leg
+  - Arcanist_Head_Wear
+  - Battle_Mage_Chest_Wear
+  - Battle_Mage_Right_Leg_Wear
   itemManager:
-    mainHandItem: {fileID: 11400000, guid: b441e018b9d907a49b6f8e74e5b0e065, type: 2}
-    offHandItem: {fileID: 11400000, guid: b441e018b9d907a49b6f8e74e5b0e065, type: 2}
+    mainHandItem: {fileID: 11400000, guid: f2e579d4bb84b82479f2d0b3183c07d4, type: 2}
+    offHandItem: {fileID: 0}

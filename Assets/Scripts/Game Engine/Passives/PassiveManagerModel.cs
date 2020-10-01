@@ -18,6 +18,10 @@ public class PassiveManagerModel
     public int temporaryBonusInitiativeStacks;
     public int temporaryBonusDrawStacks;
 
+    // Special Defensive Passives
+    public int runeStacks;
+    public int barrierStacks;
+
     // Buff Passive bonuses
     public int enrageStacks;
     public int shieldWallStacks;

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Whirlwind
   m_EditorClassIdentifier: 
   cardName: Whirlwind
-  cardDescription: "Deal 5 Physical Damage to all enemies. \n2H: Draw 1 card. "
+  cardDescription: "Deal 4 Physical Damage to all enemies. \n2H: Draw 1 card. "
   cardSprite: {fileID: 21300000, guid: ad8fbb614fb12194f9c879d370c80a91, type: 3}
   cardEnergyCost: 2
   cardType: 2
@@ -21,18 +21,26 @@ MonoBehaviour:
   talentSchool: 2
   rarity: 1
   expend: 0
-  opener: 0
+  innate: 0
   fleeting: 0
   unplayable: 0
   blessing: 0
   cardEffects:
-  - cardEffectType: 8
-    weaponRequirement: 0
+  - weaponRequirement: 0
+    cardEffectType: 8
+    discoveryLocation: 0
+    talentSchoolFilter: 0
+    rarityFilter: 0
+    blessing: 0
+    onDiscoveryChoiceMadeEffects: []
+    onChooseCardInHandChoiceMadeEffects: []
     drawStacksFromOverload: 0
     blockGainValue: 0
-    baseDamageValue: 5
+    baseDamageValue: 4
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromMeleeAttacksPlayed: 0
+    baseDamageMultiplier: 0
     damageType: 1
     healthLost: 0
     energyGained: 0
@@ -92,13 +100,21 @@ MonoBehaviour:
       projectileFired: 0
       onCharacter: 0
     visualEventsOnFinish: []
-  - cardEffectType: 9
-    weaponRequirement: 2
+  - weaponRequirement: 2
+    cardEffectType: 9
+    discoveryLocation: 0
+    talentSchoolFilter: 0
+    rarityFilter: 0
+    blessing: 0
+    onDiscoveryChoiceMadeEffects: []
+    onChooseCardInHandChoiceMadeEffects: []
     drawStacksFromOverload: 0
     blockGainValue: 0
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromMeleeAttacksPlayed: 0
+    baseDamageMultiplier: 0
     damageType: 0
     healthLost: 0
     energyGained: 0

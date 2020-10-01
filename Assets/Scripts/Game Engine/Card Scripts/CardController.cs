@@ -1021,19 +1021,14 @@ public class CardController : Singleton<CardController>
             }
             else if (cardEffect.drawBaseDamageFromMeleeAttacksPlayed)
             {
-                baseDamage = target.meleeAttacksPlayedThisActivation * cardEffect.baseDamageMultiplier;
+                baseDamage = owner.meleeAttacksPlayedThisActivation * cardEffect.baseDamageMultiplier;
             }
             else
             {
                 baseDamage = cardEffect.baseDamageValue;
-            }
-
-            Debug.LogWarning("Base Damage: " + baseDamage.ToString());
-                            
+            }             
             // Calculate the end damage value
             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, target, damageType, false, baseDamage, card, cardEffect);
-
-            Debug.LogWarning("Final Damage: " + baseDamage.ToString());
 
             // Start damage sequence
             CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, damageType, card);
@@ -1061,7 +1056,7 @@ public class CardController : Singleton<CardController>
                 }
                 else if (cardEffect.drawBaseDamageFromMeleeAttacksPlayed)
                 {
-                    baseDamage = target.meleeAttacksPlayedThisActivation * cardEffect.baseDamageMultiplier;
+                    baseDamage = owner.meleeAttacksPlayedThisActivation * cardEffect.baseDamageMultiplier;
                 }
                 else
                 {
@@ -1094,7 +1089,7 @@ public class CardController : Singleton<CardController>
             }
             else if (cardEffect.drawBaseDamageFromMeleeAttacksPlayed)
             {
-                baseDamage = target.meleeAttacksPlayedThisActivation * cardEffect.baseDamageMultiplier;
+                baseDamage = owner.meleeAttacksPlayedThisActivation * cardEffect.baseDamageMultiplier;
             }
             else
             {

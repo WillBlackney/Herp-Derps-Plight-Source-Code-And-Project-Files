@@ -53,6 +53,9 @@ namespace Tests
         private const string FUSION_NAME = "Fusion";
         private const string MELEE_ATTACK_REDUCTION_NAME = "Melee Attack Reduction";
 
+        // Special Defensive Passives
+        private const string RUNE_NAME = "Rune";
+        private const string BARRIER_NAME = "Barrier";
         // Aura Passives
         private const string ENCOURAGING_AURA_NAME = "Encouraging Aura";
 
@@ -157,6 +160,10 @@ namespace Tests
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, FUSION_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, MELEE_ATTACK_REDUCTION_NAME, stacks);
 
+            // Special Defensive Passives
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, RUNE_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, BARRIER_NAME, stacks);
+
             // Aura Passives
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, ENCOURAGING_AURA_NAME, stacks);
 
@@ -195,6 +202,9 @@ namespace Tests
                 model.pManager.overloadStacks == 1 &&
                 model.pManager.fusionStacks == 1 &&
                 model.pManager.meleeAttackReductionStacks == 1 &&
+
+                model.pManager.runeStacks == 1 &&
+                model.pManager.barrierStacks == 1 &&
 
                 model.pManager.encouragingAuraStacks == 1 &&
 

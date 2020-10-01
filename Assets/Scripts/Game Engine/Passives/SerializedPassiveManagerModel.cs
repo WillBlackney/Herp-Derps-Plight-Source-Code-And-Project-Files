@@ -47,6 +47,14 @@ public class SerializedPassiveManagerModel
     [LabelWidth(200)]
     public int temporaryBonusDrawStacks;
 
+
+    [BoxGroup("Special Defensive Passives", centerLabel: true)]
+    [LabelWidth(200)]
+    public int runeStacks;
+    [BoxGroup("Special Defensive Passives")]
+    [LabelWidth(200)]
+    public int barrierStacks;
+
     // Buff Passives
     [BoxGroup("Buff Passives", centerLabel: true)]
     [LabelWidth(200)]

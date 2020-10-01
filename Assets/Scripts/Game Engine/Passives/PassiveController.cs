@@ -137,6 +137,18 @@ public class PassiveController : Singleton<PassiveController>
         }
         #endregion
 
+        // Special Defensive Passives
+        #region
+        if (originalData.runeStacks != 0)
+        {
+            ModifyRune(newClone, originalData.runeStacks, false);
+        }
+        if (originalData.barrierStacks != 0)
+        {
+            ModifyBarrier(newClone, originalData.barrierStacks, false);
+        }
+        #endregion
+
         // Aura Passives
         #region
         if (originalData.encouragingAuraStacks != 0)
@@ -211,6 +223,9 @@ public class PassiveController : Singleton<PassiveController>
         pManager.fusionStacks = original.fusionStacks;
         pManager.meleeAttackReductionStacks = original.meleeAttackReductionStacks;
         pManager.consecrationStacks = original.consecrationStacks;
+
+        pManager.runeStacks = original.runeStacks;
+        pManager.barrierStacks = original.barrierStacks;
 
         pManager.encouragingAuraStacks = original.encouragingAuraStacks;
 
@@ -518,6 +533,18 @@ public class PassiveController : Singleton<PassiveController>
         else if (originalData == "Consecration")
         {
             ModifyConsecration(pManager, stacks, showVFX, vfxDelay);
+        }
+        #endregion
+
+        // Special Defensive Passives
+        #region
+        else if (originalData == "Barrier")
+        {
+            ModifyBarrier(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Rune")
+        {
+            ModifyRune(pManager, stacks, showVFX, vfxDelay);
         }
         #endregion
 
@@ -1682,6 +1709,108 @@ public class PassiveController : Singleton<PassiveController>
         }
 
 
+    }
+    #endregion
+
+    // Special Defensive Passives
+    #region
+    public void ModifyRune(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyRune() called...");
+
+        // Setup + Cache refs
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Rune");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Increment stacks
+        pManager.runeStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Rune +" + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Rune " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+    }
+    public void ModifyBarrier(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyBarrier() called...");
+
+        // Setup + Cache refs
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Barrier");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Increment stacks
+        pManager.barrierStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Barrier +" + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Barrier " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
     }
     #endregion
 
