@@ -1154,10 +1154,20 @@ public class CardController : Singleton<CardController>
         // Apply passive to self
         else if (cardEffect.cardEffectType == CardEffectType.ApplyPassiveToSelf)
         {
+            // draw from overload
             int stacks = cardEffect.passivePairing.passiveStacks;
             if (cardEffect.drawStacksFromOverload)
             {
                 stacks = owner.pManager.overloadStacks;
+            }
+
+            // draw from weakened on all enemies
+            else if (cardEffect.drawStacksFromWeakenedOnEnemies)
+            {
+                foreach(CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
+                {
+                    stacks += enemy.pManager.weakenedStacks;
+                }                
             }
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(owner.pManager, cardEffect.passivePairing.passiveData.passiveName, stacks, true, 0.5f);
         }
@@ -1170,6 +1180,15 @@ public class CardController : Singleton<CardController>
             {
                 stacks = owner.pManager.overloadStacks;
             }
+
+            // draw from weakened on all enemies
+            else if (cardEffect.drawStacksFromWeakenedOnEnemies)
+            {
+                foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
+                {
+                    stacks += enemy.pManager.weakenedStacks;
+                }
+            }
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, cardEffect.passivePairing.passiveData.passiveName, stacks, true, 0.5f);
         }
 
@@ -1180,6 +1199,15 @@ public class CardController : Singleton<CardController>
             if (cardEffect.drawStacksFromOverload)
             {
                 stacks = owner.pManager.overloadStacks;
+            }
+
+            // draw from weakened on all enemies
+            else if (cardEffect.drawStacksFromWeakenedOnEnemies)
+            {
+                foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
+                {
+                    stacks += enemy.pManager.weakenedStacks;
+                }
             }
 
             foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllAlliesOfCharacter(owner))
@@ -1198,8 +1226,16 @@ public class CardController : Singleton<CardController>
             {
                 stacks = owner.pManager.overloadStacks;
             }
+            // draw from weakened on all enemies
+            else if (cardEffect.drawStacksFromWeakenedOnEnemies)
+            {
+                foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
+                {
+                    stacks += enemy.pManager.weakenedStacks;
+                }
+            }
 
-            foreach(CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
+            foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
             {
                 PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemy.pManager, cardEffect.passivePairing.passiveData.passiveName, stacks, true);                
             }
@@ -1214,6 +1250,15 @@ public class CardController : Singleton<CardController>
             if (cardEffect.drawStacksFromOverload)
             {
                 stacks = owner.pManager.overloadStacks;
+            }
+
+            // draw from weakened on all enemies
+            else if (cardEffect.drawStacksFromWeakenedOnEnemies)
+            {
+                foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
+                {
+                    stacks += enemy.pManager.weakenedStacks;
+                }
             }
 
             foreach (CharacterEntityModel ally in CharacterEntityController.Instance.GetAllAlliesOfCharacter(owner))

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Sword And Board
+  m_Name: Chaos Nova
   m_EditorClassIdentifier: 
-  cardName: Sword And Board
-  cardDescription: "Deal 4 Physical damage. \nShielded: Gain 4 Block."
-  cardSprite: {fileID: 21300000, guid: 781c073379810db44b755b77d2d99ee4, type: 3}
-  cardEnergyCost: 1
-  cardType: 2
-  targettingType: 3
-  talentSchool: 5
+  cardName: Chaos Nova
+  cardDescription: Deal 3 Shadow damage and apply 1 Weakened to all enemies.
+  cardSprite: {fileID: 21300000, guid: c64db2a8fd1eb1e4fb1c702ac0ddc3be, type: 3}
+  cardEnergyCost: 2
+  cardType: 1
+  targettingType: 0
+  talentSchool: 11
   rarity: 1
   expend: 0
   innate: 0
@@ -27,7 +27,7 @@ MonoBehaviour:
   blessing: 0
   cardEffects:
   - weaponRequirement: 0
-    cardEffectType: 6
+    cardEffectType: 8
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
@@ -37,12 +37,12 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 4
+    baseDamageValue: 3
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     baseDamageMultiplier: 0
-    damageType: 1
+    damageType: 5
     healthLost: 0
     energyGained: 0
     cardsDrawn: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
     - eventType: 1
       particleEffect: 0
       cameraShake: 0
-      movementAnimation: 1
+      movementAnimation: 2
       soundEffect: 0
       characterAnimation: 0
       delayDuration: 0
@@ -69,24 +69,33 @@ MonoBehaviour:
       cameraShake: 0
       movementAnimation: 0
       soundEffect: 0
-      characterAnimation: 1
+      characterAnimation: 4
       delayDuration: 0
       projectileFired: 0
       onCharacter: 0
-    - eventType: 4
-      particleEffect: 0
-      cameraShake: 1
+    - eventType: 3
+      particleEffect: 10
+      cameraShake: 0
       movementAnimation: 0
       soundEffect: 0
       characterAnimation: 0
       delayDuration: 0
       projectileFired: 0
-      onCharacter: 0
-    - eventType: 5
-      particleEffect: 0
+      onCharacter: 1
+    - eventType: 3
+      particleEffect: 6
       cameraShake: 0
       movementAnimation: 0
-      soundEffect: 16
+      soundEffect: 0
+      characterAnimation: 0
+      delayDuration: 0
+      projectileFired: 0
+      onCharacter: 5
+    - eventType: 4
+      particleEffect: 0
+      cameraShake: 1
+      movementAnimation: 0
+      soundEffect: 0
       characterAnimation: 0
       delayDuration: 0
       projectileFired: 0
@@ -101,8 +110,8 @@ MonoBehaviour:
       delayDuration: 0.5
       projectileFired: 0
       onCharacter: 0
-  - weaponRequirement: 1
-    cardEffectType: 10
+  - weaponRequirement: 0
+    cardEffectType: 4
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
@@ -111,7 +120,7 @@ MonoBehaviour:
     onChooseCardInHandChoiceMadeEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 4
+    blockGainValue: 0
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
@@ -124,8 +133,8 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: {fileID: 0}
-      passiveStacks: 0
+      passiveData: {fileID: 11400000, guid: 6f53a59075648034ab7c521f182140e3, type: 2}
+      passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

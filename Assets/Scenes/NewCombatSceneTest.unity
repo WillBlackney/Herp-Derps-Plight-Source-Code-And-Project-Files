@@ -1330,6 +1330,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: de12560e8a47cd540afc4af2727701ec, type: 2}
   - {fileID: 11400000, guid: d04c670110fdb014b89a8da5c8ee56d1, type: 2}
   - {fileID: 11400000, guid: aa003ba9957dfdd41b2b9b41f826d939, type: 2}
+  - {fileID: 11400000, guid: 07fef585ec236d44b84af5944136f185, type: 2}
 --- !u!1 &200055974
 GameObject:
   m_ObjectHideFlags: 0
@@ -1929,7 +1930,7 @@ MonoBehaviour:
   allPassiveSFX:
   - audioClip: {fileID: 8300000, guid: abbbb648ec3f4cc43a048c4c6b7cfbff, type: 3}
     soundType: 5
-    volume: 0.5
+    volume: 0.3
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -7437,8 +7438,9 @@ MonoBehaviour:
   runMockScene: 1
   testingEnemyWave: {fileID: 11400000, guid: 196d21c94a6e94b42ab0250cb4bedcdd, type: 2}
   characterTemplates:
-  - {fileID: 11400000, guid: 7a42828b49c2ca147bff9fbe284f2eb5, type: 2}
-  - {fileID: 11400000, guid: 7a42828b49c2ca147bff9fbe284f2eb5, type: 2}
+  - {fileID: 11400000, guid: fe1c3014ca448f44998168a4a6ff6b51, type: 2}
+  - {fileID: 11400000, guid: fe1c3014ca448f44998168a4a6ff6b51, type: 2}
+  - {fileID: 11400000, guid: fe1c3014ca448f44998168a4a6ff6b51, type: 2}
   characterDataSample:
     myName: Test
     serializedPassiveManager:
@@ -7466,6 +7468,7 @@ MonoBehaviour:
       meleeAttackReductionStacks: 0
       consecrationStacks: 0
       encouragingAuraStacks: 0
+      shadowAuraStacks: 0
       wrathStacks: 0
       weakenedStacks: 0
       vulnerableStacks: 0

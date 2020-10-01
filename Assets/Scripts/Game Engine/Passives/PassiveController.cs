@@ -155,6 +155,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyEncouragingAura(newClone, originalData.encouragingAuraStacks, false);
         }
+        if (originalData.shadowAuraStacks != 0)
+        {
+            ModifyShadowAura(newClone, originalData.shadowAuraStacks, false);
+        }
         #endregion
 
         // Dot Passives
@@ -228,6 +232,7 @@ public class PassiveController : Singleton<PassiveController>
         pManager.barrierStacks = original.barrierStacks;
 
         pManager.encouragingAuraStacks = original.encouragingAuraStacks;
+        pManager.shadowAuraStacks = original.shadowAuraStacks;
 
         pManager.wrathStacks = original.wrathStacks;
         pManager.gritStacks = original.gritStacks;
@@ -553,6 +558,10 @@ public class PassiveController : Singleton<PassiveController>
         else if (originalData == "Encouraging Aura")
         {
             ModifyEncouragingAura(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Shadow Aura")
+        {
+            ModifyShadowAura(pManager, stacks, showVFX, vfxDelay);
         }
         #endregion
 
@@ -1855,6 +1864,57 @@ public class PassiveController : Singleton<PassiveController>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Encouraging Aura Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+
+
+    }
+    public void ModifyShadowAura(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyShadowAura() called...");
+
+        // Setup + Cache refs
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Shadow Aura");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Increment stacks
+        pManager.shadowAuraStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Shadow Aura");
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Shadow Aura Removed");
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
                 });
             }

@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2410c6608dbef744a9643f0571333299, type: 3}
-  m_Name: Testing Character
+  m_Name: Blood_Mage_1
   m_EditorClassIdentifier: 
-  myName: Testing Character
+  myName: Blood_Mage_1
   health: 30
   maxHealth: 30
   power: 0
   dexterity: 0
-  stamina: 10
-  draw: 10
-  initiative: 50
+  stamina: 3
+  draw: 5
+  initiative: 3
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0
@@ -40,7 +40,7 @@ MonoBehaviour:
     temporaryBonusDrawStacks: 0
     runeStacks: 0
     barrierStacks: 0
-    enrageStacks: 2
+    enrageStacks: 0
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
     divineFavourStacks: 0
@@ -61,28 +61,24 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 2c7de9e75fc411541ba6f9c3c6dc9da3, type: 2}
-  - {fileID: 11400000, guid: 288b40d7816b3334396e676e3d8500f4, type: 2}
+  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
+  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
+  - {fileID: 11400000, guid: b31f4356f84f2bd48add48495139e0e5, type: 2}
+  - {fileID: 11400000, guid: b31f4356f84f2bd48add48495139e0e5, type: 2}
+  - {fileID: 11400000, guid: 906a542ac4dbed2429e34de4a75c3c40, type: 2}
   - {fileID: 11400000, guid: 906a542ac4dbed2429e34de4a75c3c40, type: 2}
   - {fileID: 11400000, guid: 3515e3b8e92620548af756ddbf500130, type: 2}
-  - {fileID: 11400000, guid: 186eaded8ce25764581f9036feb58e61, type: 2}
+  - {fileID: 11400000, guid: 3515e3b8e92620548af756ddbf500130, type: 2}
   - {fileID: 11400000, guid: 1aa5ba9a69a1e014883cdff8719c8e91, type: 2}
-  - {fileID: 11400000, guid: 12e01ae28d25a4042a23a910d9c32a1d, type: 2}
-  - {fileID: 11400000, guid: f6e3850c009fce847b7ce96497469eb5, type: 2}
+  - {fileID: 11400000, guid: 37325f26ba4983840af841104c1c1b26, type: 2}
   modelParts:
-  - Orc_Head_1
-  - Orc_Face_1
-  - Orc_Chest
-  - Orc_Right_Arm
-  - Orc_Right_Hand
-  - Orc_Left_Arm
-  - Orc_Left_Hand
-  - Orc_Right_Leg
-  - Orc_Left_Leg
-  - Shaman_Chest_Wear
-  - Left_Hand_Simple_Battle_Axe
-  - Shaman_Right_Leg_Wear
-  - Shaman_Mask_Head_Wear
+  - Elf_Chest
+  - Elf_Face_1
+  - Elf_Head_5
+  - Dark_Elf_Right_Hand
+  - Dark_Elf_Right_Leg
+  - Red_Hood_Head_Wear
+  - Red_Regal_Chest_Wear
   itemManager:
-    mainHandItem: {fileID: 11400000, guid: 8487b0bcf8b350246ad6ff676ec686f4, type: 2}
+    mainHandItem: {fileID: 11400000, guid: bfbdb5e21e389ab4c9aae5b49350a1d0, type: 2}
     offHandItem: {fileID: 0}

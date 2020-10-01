@@ -94,6 +94,9 @@ public class SerializedPassiveManagerModel
     [BoxGroup("Aura Passives", centerLabel: true)]
     [LabelWidth(200)]
     public int encouragingAuraStacks;
+    [BoxGroup("Aura Passives")]
+    [LabelWidth(200)]
+    public int shadowAuraStacks;
 
     // Buff Passives
     [BoxGroup("Core Damage % Modifier Passives", centerLabel: true)]

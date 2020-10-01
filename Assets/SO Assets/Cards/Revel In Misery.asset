@@ -10,15 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Shield Wall
+  m_Name: Revel In Misery
   m_EditorClassIdentifier: 
-  cardName: Shield Wall
-  cardDescription: On activation end, gain 3 Block.
-  cardSprite: {fileID: 21300000, guid: 08e4ee218e42dd247a5ac64821640f76, type: 3}
-  cardEnergyCost: 2
-  cardType: 4
+  cardName: Revel In Misery
+  cardDescription: 'Gain 1 Power for each stack of Weakened on all enemies.
+
+    Expend. '
+  cardSprite: {fileID: 21300000, guid: b4d07df941ddce346b043c628f6bb30d, type: 3}
+  cardEnergyCost: 1
+  cardType: 1
   targettingType: 0
-  talentSchool: 5
+  talentSchool: 11
   rarity: 1
   expend: 0
   innate: 0
@@ -35,7 +37,7 @@ MonoBehaviour:
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     drawStacksFromOverload: 0
-    drawStacksFromWeakenedOnEnemies: 0
+    drawStacksFromWeakenedOnEnemies: 1
     blockGainValue: 0
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
@@ -49,8 +51,8 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: {fileID: 11400000, guid: e08bcb48758dcfd43a52ffed8c7e1556, type: 2}
-      passiveStacks: 3
+      passiveData: {fileID: 11400000, guid: 6d216e783d4ba3a49a8dd267aa727fd3, type: 2}
+      passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

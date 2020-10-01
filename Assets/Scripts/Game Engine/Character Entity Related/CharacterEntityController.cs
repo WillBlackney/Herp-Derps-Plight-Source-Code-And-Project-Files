@@ -415,7 +415,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
         if (finalBlockGainValue > 0)
         {
-            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateGainBlockEffect(character.characterEntityView.transform.position, finalBlockGainValue), QueuePosition.Back, 0, 0);
+            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateGainBlockEffect(character.characterEntityView.WorldPosition, finalBlockGainValue), QueuePosition.Back, 0, 0);
         }
 
         // Update GUI
@@ -551,15 +551,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             PassiveController.Instance.ModifyTemporaryStamina(character.pManager, -character.pManager.temporaryBonusStaminaStacks, true, 0.5f);
         }
 
-        if (character.pManager.shieldWallStacks > 0)
-        {
-            // Notication vfx
-            VisualEventManager.Instance.CreateVisualEvent(()=>       
-                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Shield Wall"));
-            
-            // Apply block gain
-            ModifyBlock(character, CombatLogic.Instance.CalculateBlockGainedByEffect(character.pManager.shieldWallStacks, character, character));
-        }
+        
 
         // is the character player controller?
         if (character.controller == Controller.Player)
@@ -695,6 +687,16 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         }
 
         // Buff Passive Triggers
+        if (entity.pManager.shieldWallStacks > 0)
+        {
+            // Notication vfx
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(entity.characterEntityView.transform.position, "Shield Wall"));
+
+            // Apply block gain
+            ModifyBlock(entity, CombatLogic.Instance.CalculateBlockGainedByEffect(entity.pManager.shieldWallStacks, entity, entity));
+        }
+
         if (entity.pManager.encouragingAuraStacks > 0)
         {
             CharacterEntityModel[] allAllies = GetAllAlliesOfCharacter(entity, false).ToArray();
@@ -703,10 +705,27 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             if (chosenAlly != null)
             {
                 // Notification event
-                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Encouraging Aura!"), QueuePosition.Back, 0, 0.5f);
+                VisualEventManager.Instance.CreateVisualEvent(() => 
+                VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Encouraging Aura!"), QueuePosition.Back, 0, 0.5f);
 
                 // Random ally gains energy
                 ModifyEnergy(chosenAlly, entity.pManager.encouragingAuraStacks, true);
+            }
+        }
+
+        if (entity.pManager.shadowAuraStacks > 0)
+        {
+            CharacterEntityModel[] allEnemies = GetAllEnemiesOfCharacter(entity).ToArray();
+            CharacterEntityModel chosenEnemy = allEnemies[RandomGenerator.NumberBetween(0, allEnemies.Length - 1)];
+
+            if (chosenEnemy != null)
+            {
+                // Notification event
+                VisualEventManager.Instance.CreateVisualEvent(() => 
+                VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Shadow Aura!"), QueuePosition.Back, 0, 0.5f);
+
+                // Random ally gains energy
+                PassiveController.Instance.ModifyWeakened(chosenEnemy.pManager, entity.pManager.shadowAuraStacks, true);
             }
         }
 

@@ -617,6 +617,7 @@ MonoBehaviour:
   - {fileID: 8742994095287241702}
   - {fileID: 8833128047477338048}
   - {fileID: 5045279045778805966}
+  - {fileID: 8546364917908256433}
   allHeadWearSpriteMasks:
   - {fileID: 8306676681743101029}
   - {fileID: 7369302363670662616}
@@ -6745,7 +6746,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 14
   bodyPartType: 19
-  itemsWithMyView: []
+  itemsWithMyView:
+  - {fileID: 11400000, guid: ef6ffb4463b38054d8b9a7ae0f010477, type: 2}
   connectedElements: []
 --- !u!1 &685861473386308047
 GameObject:

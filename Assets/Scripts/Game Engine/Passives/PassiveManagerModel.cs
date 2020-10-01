@@ -37,6 +37,7 @@ public class PassiveManagerModel
 
     // Aura passives
     public int encouragingAuraStacks;
+    public int shadowAuraStacks;
 
     // Core Damage % Modifier Passives
     public int wrathStacks;

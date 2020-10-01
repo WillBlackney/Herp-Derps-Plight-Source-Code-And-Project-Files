@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Shield Wall
+  m_Name: Shadow Aura
   m_EditorClassIdentifier: 
-  cardName: Shield Wall
-  cardDescription: On activation end, gain 3 Block.
-  cardSprite: {fileID: 21300000, guid: 08e4ee218e42dd247a5ac64821640f76, type: 3}
+  cardName: Shadow Aura
+  cardDescription: On activation end, apply 2 Weakened to a random enemy.
+  cardSprite: {fileID: 21300000, guid: cf4dd85248c749d4d8877f797bfb072d, type: 3}
   cardEnergyCost: 2
   cardType: 4
   targettingType: 0
-  talentSchool: 5
+  talentSchool: 11
   rarity: 1
   expend: 0
   innate: 0
@@ -49,8 +49,8 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: {fileID: 11400000, guid: e08bcb48758dcfd43a52ffed8c7e1556, type: 2}
-      passiveStacks: 3
+      passiveData: {fileID: 11400000, guid: 07fef585ec236d44b84af5944136f185, type: 2}
+      passiveStacks: 2
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

@@ -43,6 +43,10 @@ public class CardEffect
     [LabelWidth(200)]
     public bool drawStacksFromOverload;
 
+    [ShowIf("ShowDrawStacksFromWeakenedOnEnemies")]
+    [LabelWidth(200)]
+    public bool drawStacksFromWeakenedOnEnemies;
+
     [ShowIf("ShowBlockGainValue")]
     [LabelWidth(200)]
     public int blockGainValue;
@@ -212,10 +216,26 @@ public class CardEffect
     }
     public bool ShowDrawStacksFromOverload()
     {
-        if (cardEffectType == CardEffectType.ApplyPassiveToAllAllies ||
+        if ((cardEffectType == CardEffectType.ApplyPassiveToAllAllies ||
             cardEffectType == CardEffectType.ApplyPassiveToAllEnemies || 
             cardEffectType == CardEffectType.ApplyPassiveToSelf ||
-            cardEffectType == CardEffectType.ApplyPassiveToTarget)
+            cardEffectType == CardEffectType.ApplyPassiveToTarget) &&
+            drawStacksFromWeakenedOnEnemies == false)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowDrawStacksFromWeakenedOnEnemies()
+    {
+        if ((cardEffectType == CardEffectType.ApplyPassiveToAllAllies ||
+            cardEffectType == CardEffectType.ApplyPassiveToAllEnemies ||
+            cardEffectType == CardEffectType.ApplyPassiveToSelf ||
+            cardEffectType == CardEffectType.ApplyPassiveToTarget) &&
+            drawStacksFromOverload == false)
         {
             return true;
         }
