@@ -238,7 +238,8 @@ public class ActivationManager : Singleton<ActivationManager>
         // prevent function if game over sequence triggered
         if (VisualEventManager.Instance.PendingCardDrawEvent() == false &&
             CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive &&
-            CardController.Instance.DiscoveryScreenIsActive == false)
+            CardController.Instance.DiscoveryScreenIsActive == false &&
+            CardController.Instance.ChooseCardScreenIsActive == false)
         {
             // Mouse click SFX
             AudioManager.Instance.PlaySound(Sound.GUI_Button_Clicked);
@@ -305,20 +306,6 @@ public class ActivationManager : Singleton<ActivationManager>
         }
         else
         {
-            // check each entity to see if they should activate, start search from front of activation order list
-            /*
-            for (int index = 0; index < activationOrder.Count; index++)
-            {
-                // check if the character is alive, and not yet activated this turn cycle
-                if (activationOrder[index].livingState == LivingState.Alive &&
-                    activationOrder[index].hasActivatedThisTurn == false )
-                {
-                    nextEntityToActivate = activationOrder[index];
-                    break;
-                }
-            }
-            */
-
             foreach(CharacterEntityModel entity in activationOrder)
             {
                 // check if the character is alive, and not yet activated this turn cycle

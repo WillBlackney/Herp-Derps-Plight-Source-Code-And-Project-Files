@@ -35,11 +35,13 @@ MonoBehaviour:
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     drawStacksFromOverload: 0
+    drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
+    drawBaseDamageFromOverloadOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 0
     healthLost: 0
@@ -53,7 +55,34 @@ MonoBehaviour:
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
-    visualEventsOnStart: []
+    visualEventsOnStart:
+    - eventType: 2
+      particleEffect: 0
+      cameraShake: 0
+      movementAnimation: 0
+      soundEffect: 0
+      characterAnimation: 4
+      delayDuration: 0
+      projectileFired: 0
+      onCharacter: 0
+    - eventType: 3
+      particleEffect: 22
+      cameraShake: 0
+      movementAnimation: 0
+      soundEffect: 0
+      characterAnimation: 0
+      delayDuration: 0
+      projectileFired: 0
+      onCharacter: 2
+    - eventType: 5
+      particleEffect: 0
+      cameraShake: 0
+      movementAnimation: 0
+      soundEffect: 30
+      characterAnimation: 0
+      delayDuration: 0
+      projectileFired: 0
+      onCharacter: 0
     visualEventsOnFinish: []
   - weaponRequirement: 0
     cardEffectType: 10
@@ -64,11 +93,13 @@ MonoBehaviour:
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     drawStacksFromOverload: 0
+    drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 4
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
+    drawBaseDamageFromOverloadOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 0
     healthLost: 0

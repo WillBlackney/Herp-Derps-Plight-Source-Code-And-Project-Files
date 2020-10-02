@@ -43,6 +43,7 @@ MonoBehaviour:
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
+    drawBaseDamageFromOverloadOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 5
     healthLost: 0
@@ -75,6 +76,15 @@ MonoBehaviour:
       delayDuration: 0
       projectileFired: 0
       onCharacter: 0
+    - eventType: 3
+      particleEffect: 6
+      cameraShake: 0
+      movementAnimation: 0
+      soundEffect: 0
+      characterAnimation: 0
+      delayDuration: 0
+      projectileFired: 0
+      onCharacter: 0
     visualEventsOnFinish:
     - eventType: 6
       particleEffect: 0
@@ -100,6 +110,7 @@ MonoBehaviour:
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
+    drawBaseDamageFromOverloadOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 0
     healthLost: 0

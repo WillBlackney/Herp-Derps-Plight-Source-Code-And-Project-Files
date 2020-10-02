@@ -11,9 +11,11 @@ public class HoverPreview: MonoBehaviour
     public GameObject previewGameObject;
     public bool ActivateInAwake = false;
     [SerializeField] private CardViewModel mainCardVM;
+    [HideInInspector] public bool inChooseScreenTransistion;
 
     // PRIVATE FIELDS
     private static HoverPreview currentlyViewing = null;
+
 
     // PROPERTIES WITH UNDERLYING PRIVATE FIELDS
     private static bool _PreviewsAllowed = true;
@@ -57,7 +59,8 @@ public class HoverPreview: MonoBehaviour
         OverCollider = true;
         // prevent clicking through an active UI screen
         if (PreviewsAllowed && !CardController.Instance.DiscoveryScreenIsActive &&
-            CardController.Instance.CurrentChooseCardScreenSelection != mainCardVM.card)
+            CardController.Instance.CurrentChooseCardScreenSelection != mainCardVM.card &&
+            !inChooseScreenTransistion)
             PreviewThisObject();
     }
         
@@ -71,6 +74,11 @@ public class HoverPreview: MonoBehaviour
     }
 
     // OTHER METHODS
+
+    public void SetChooseCardScreenTransistionState(bool newState)
+    {
+        inChooseScreenTransistion = newState;
+    }
     void PreviewThisObject()
     {
         Debug.Log("HoverPreview.PreviewThisObject() called...");

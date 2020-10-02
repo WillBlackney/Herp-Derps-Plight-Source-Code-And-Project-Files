@@ -57,6 +57,10 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
     public GameObject toonGainCoreStatPrefab;
     public GameObject toonGainCamoflagePrefab;
 
+    [Header("TOON Ritual Circle Prefab References")]
+    public GameObject ritualCircleYellow;
+    public GameObject ritualCirclePurple;
+
     [Header("TOON Debuff Prefab References")]
     public GameObject redPillarBuff;
     public GameObject yellowPillarBuff;
@@ -74,6 +78,8 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
     public GameObject smallLightningExplosion;
     public GameObject smallFireExplosion;
     public GameObject smallShadowExplosion;
+    public GameObject ghostExplosionPurple;
+    public GameObject confettiExplosionRainbow;
 
     [Header("TOON Melee Impact Prefab References")]
     public GameObject smallMeleeImpact;
@@ -1087,29 +1093,43 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
         }        
 
         // Explosions
-        else if (effect == ParticleEffect.LightningExplosion1)
+        else if (effect == ParticleEffect.LightningExplosion)
         {
             CreateLightningExplosion(location);
         }
-        else if (effect == ParticleEffect.FireExplosion1)
+        else if (effect == ParticleEffect.FireExplosion)
         {
             CreateFireExplosion(location);
         }
-        else if (effect == ParticleEffect.FrostExplosion1)
+        else if (effect == ParticleEffect.FrostExplosion)
         {
             CreateFrostExplosion(location);
         }
-        else if (effect == ParticleEffect.PoisonExplosion1)
+        else if (effect == ParticleEffect.PoisonExplosion)
         {
             CreatePoisonExplosion(location);
         }
-        else if (effect == ParticleEffect.ShadowExplosion1)
+        else if (effect == ParticleEffect.ShadowExplosion)
         {
             CreateShadowExplosion(location);
         }
-        else if (effect == ParticleEffect.BloodExplosion1)
+        else if (effect == ParticleEffect.BloodExplosion)
         {
             CreateBloodExplosion(location);
+        }
+        else if (effect == ParticleEffect.GhostExplosionPurple)
+        {
+            CreateGhostExplosionPurple(location);
+        }
+        else if (effect == ParticleEffect.ConfettiExplosionRainbow)
+        {
+            CreateConfettiExplosionRainbow(location);
+        }
+
+        // Impacts
+        else if (effect == ParticleEffect.SmallMeleeImpact)
+        {
+            CreateSmallMeleeImpact(location);
         }
 
         // Novas
@@ -1136,6 +1156,16 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
         else if (effect == ParticleEffect.LightningNova)
         {
             CreateLightningNova(location);
+        }
+
+        // Ritual Circle
+        else if (effect == ParticleEffect.RitualCirclePurple)
+        {
+            CreateRitualCirclePurple(location);
+        }
+        else if (effect == ParticleEffect.RitualCircleYellow)
+        {
+            CreateRitualCircleYellow(location);
         }
 
         // Misc
@@ -1200,6 +1230,7 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
         AudioManager.Instance.PlaySound(Sound.Explosion_Fire_1);
     }
     #endregion
+
     // GENERAL FX
     #region
 
@@ -1208,6 +1239,11 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
     {
         GameObject damageEffect = Instantiate(DamageEffectPrefab, location, Quaternion.identity);
         damageEffect.GetComponent<DamageEffect>().InitializeSetup(damageAmount, heal, healthLost);
+    }
+    public void CreateBlockGainedTextEffect(Vector3 location, int blockGained)
+    {
+        GameObject damageEffect = Instantiate(DamageEffectPrefab, location, Quaternion.identity);
+        damageEffect.GetComponent<DamageEffect>().InitializeSetup(blockGained);
     }
 
     // Status Text Effect
@@ -1245,8 +1281,12 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
     {
         GameObject newImpactVFX = Instantiate(GainBlockEffectPrefab, location, Quaternion.identity);
         newImpactVFX.GetComponent<GainArmorEffect>().InitializeSetup(location, blockGained);
+        CreateBlockGainedTextEffect(location, blockGained);
         AudioManager.Instance.PlaySound(Sound.Ability_Gain_Block);
     }
+
+    // Gain Block Text Effect
+
 
     // Lose Block Effect
     public void CreateLoseBlockEffect(Vector3 location, int blockLost)
@@ -1701,6 +1741,22 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
         AudioManager.Instance.PlaySound(Sound.Explosion_Shadow_1);
     }
+    // Ghost Explosion Purple
+    public void CreateGhostExplosionPurple(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(ghostExplosionPurple, location, ghostExplosionPurple.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+        AudioManager.Instance.PlaySound(Sound.Passive_General_Debuff);
+    }
+    // Confetti Explosion Rainbow
+    public void CreateConfettiExplosionRainbow(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(confettiExplosionRainbow, location, confettiExplosionRainbow.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+        //AudioManager.Instance.PlaySound(Sound.Passive_General_Debuff);
+    }
     #endregion
 
     // NOVAS
@@ -1749,6 +1805,22 @@ private IEnumerator CreateBigMeleeImpactCoroutine(Vector3 location, OldCoroutine
     public void CreateHolyNova(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
     {
         GameObject hn = Instantiate(toonHolyNova, location, toonHolyNova.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+    }
+    #endregion
+
+    // RITUAL CIRCLES
+    #region
+    public void CreateRitualCircleYellow(Vector3 location, int sortingOrderBonus = 5, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(ritualCircleYellow, location, ritualCircleYellow.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+    }
+    public void CreateRitualCirclePurple(Vector3 location, int sortingOrderBonus = 5, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(ritualCirclePurple, location, ritualCirclePurple.transform.rotation);
         ToonEffect teScript = hn.GetComponent<ToonEffect>();
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
     }

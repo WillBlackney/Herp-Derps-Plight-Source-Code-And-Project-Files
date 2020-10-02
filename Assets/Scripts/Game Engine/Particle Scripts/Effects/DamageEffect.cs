@@ -18,6 +18,7 @@ public class DamageEffect : MonoBehaviour
     public void InitializeSetup(int damageAmount, bool heal = false, bool healthModified = true)
     {
         transform.position = new Vector2(transform.position.x - 0.2f, transform.position.y);
+
         if (healthModified)
         {
             heartImage.gameObject.SetActive(true);
@@ -40,6 +41,18 @@ public class DamageEffect : MonoBehaviour
 
         ChooseRandomDirection();
 
+    }
+    // Second overload used for gain block text effect
+    public void InitializeSetup(int blockGained)
+    {
+        transform.position = new Vector2(transform.position.x - 0.2f, transform.position.y);
+
+        heartImage.gameObject.SetActive(false);
+        shieldImage.gameObject.SetActive(true);
+
+        amountText.text = "+" + blockGained.ToString();
+
+        ChooseRandomDirection();
     }
     #endregion
 

@@ -97,39 +97,8 @@ public class VisualEventManager : Singleton<VisualEventManager>
     {
         eventQueue.Add(ve);
     }
-    private void AddEventAfterNextCoroutine(VisualEvent ve)
-    {
-        int index = 0;
-
-        for(int i  = 0; i < eventQueue.Count; i++)
-        {
-            if(eventQueue[i].cData != null)
-            {
-                index = i;
-                break;
-            }
-        }
-
-        Debug.LogWarning("Inserting event at index: " + (index + 1).ToString());
-
-        eventQueue.Insert(index + 1, ve);
-    }
     private void AddEventAfterBatchedEvent(VisualEvent ve, VisualEvent batchedEvent)
     {
-        /*
-        int index = 0;
-
-        for (int i = 0; i < eventQueue.Count; i++)
-        {
-            if (eventQueue[i] == batchedEvent)
-            {
-                index = i;
-                break;
-            }
-        }
-
-        eventQueue.Insert(index + 1, ve);
-        */
         int index = eventQueue.IndexOf(batchedEvent) + 1;
         eventQueue.Insert(index, ve);
     }
@@ -145,9 +114,6 @@ public class VisualEventManager : Singleton<VisualEventManager>
         // if a visual event has no coroutine and resolves instantly when played from the queue,
         // it should be called using the overload function below this function
 
-
-        //Debug.Log("VisualEventManager.CreateVisualEvent() called, current queue count = " + (eventQueue.Count + 1).ToString());
-
         VisualEvent vEvent = new VisualEvent(eventFunction, cData, startDelay, endDelay, eventDetail);
 
         if(position == QueuePosition.Back)
@@ -158,10 +124,6 @@ public class VisualEventManager : Singleton<VisualEventManager>
         {
             AddEventToFrontOfQueue(vEvent);
         }
-        else if (position == QueuePosition.AfterNextCoroutine)
-        {
-            AddEventAfterNextCoroutine(vEvent);
-        }
         else if (position == QueuePosition.BatchedEvent)
         {
             AddEventAfterBatchedEvent(vEvent, batchedEvent);
@@ -171,8 +133,6 @@ public class VisualEventManager : Singleton<VisualEventManager>
     }
     public VisualEvent CreateVisualEvent(Action eventFunction, QueuePosition position = QueuePosition.Back, float startDelay = 0f, float endDelay = 0f, EventDetail eventDetail = EventDetail.None, VisualEvent batchedEvent = null)
     {
-        //Debug.Log("VisualEventManager.CreateVisualEvent() called, current queue count = " + (eventQueue.Count + 1).ToString());
-
         VisualEvent vEvent = new VisualEvent(eventFunction, null, startDelay, endDelay, eventDetail);
 
         if (position == QueuePosition.Back)
@@ -182,10 +142,6 @@ public class VisualEventManager : Singleton<VisualEventManager>
         else if (position == QueuePosition.Front)
         {
             AddEventToFrontOfQueue(vEvent);
-        }
-        else if (position == QueuePosition.AfterNextCoroutine)
-        {
-            AddEventAfterNextCoroutine(vEvent);
         }
         else if (position == QueuePosition.BatchedEvent)
         {

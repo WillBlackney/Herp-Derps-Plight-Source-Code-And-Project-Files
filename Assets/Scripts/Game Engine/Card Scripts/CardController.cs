@@ -24,10 +24,12 @@ public class CardController : Singleton<CardController>
     [SerializeField] private Transform[] discoveryCardSlots;
     [SerializeField] private GameObject discoveryScreenVisualParent;
     [SerializeField] private CanvasGroup discoveryScreenOverlayCg;
+    [SerializeField] private Transform[] confettiTransforms;
 
     [Header("Discovery Screen Properties")]
     private CardEffect currentDiscoveryEffect;
     private bool discoveryScreenIsActive;
+   
 
     [Header("Choose Card In Hand Screen Components")]
     [SerializeField] private Transform chooseCardScreenSelectionSpot;
@@ -853,18 +855,18 @@ public class CardController : Singleton<CardController>
             foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
             {
                 // Calculate damage
-                DamageType damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(owner);
+                DamageType damageType = CombatLogic.Instance.GetFinalFinalDamageTypeOfAttack(owner);
                 int baseDamage = card.owner.pManager.consecrationStacks;
 
                 // Calculate the end damage value
-                int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, enemy, damageType, false, baseDamage);
+                int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, enemy, damageType, baseDamage);
 
                 // Create fiery explosion on target
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 VisualEffectManager.Instance.CreateApplyBurningEffect(enemy.characterEntityView.WorldPosition), QueuePosition.BatchedEvent, 0f, 0f, EventDetail.None, batchedEvent);
 
                 // Start damage sequence
-                CombatLogic.Instance.HandleDamage(finalDamageValue, owner, enemy, damageType, null, null, false, QueuePosition.BatchedEvent, batchedEvent);
+                CombatLogic.Instance.HandleDamage(finalDamageValue, owner, enemy, damageType, batchedEvent);
             }
         }
 
@@ -882,6 +884,21 @@ public class CardController : Singleton<CardController>
             if (owner.hand.Contains(card))
             {
                 RemoveCardFromHand(owner, card);
+            }
+
+            if (cardVM)
+            {
+                PlayACardFromHandVisualEvent(cardVM, owner.characterEntityView);
+            }
+        }
+        else if (card.cardType == CardType.Power && GlobalSettings.Instance.onPowerCardPlayedSetting == OnPowerCardPlayedSettings.MoveToDiscardPile)
+        {
+            // Do normal 'play from hand' stuff
+            CardViewModel cardVM = card.cardVM;
+            if (owner.hand.Contains(card))
+            {
+                RemoveCardFromHand(owner, card);
+                AddCardToDiscardPile(owner, card);
             }
 
             if (cardVM)
@@ -1016,7 +1033,7 @@ public class CardController : Singleton<CardController>
         else if (cardEffect.cardEffectType == CardEffectType.DamageTarget)
         {
             // Calculate damage
-            DamageType damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(owner, cardEffect, card);
+            DamageType damageType = CombatLogic.Instance.GetFinalFinalDamageTypeOfAttack(owner, cardEffect, card);
             int baseDamage;
 
             // Do normal base damage, or draw base damage from another source?
@@ -1043,10 +1060,10 @@ public class CardController : Singleton<CardController>
                 baseDamage = cardEffect.baseDamageValue;
             }             
             // Calculate the end damage value
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, target, damageType, false, baseDamage, card, cardEffect);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, target, damageType, baseDamage, card, cardEffect);
 
             // Start damage sequence
-            CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, damageType, card);
+            CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, card, damageType);
         }
 
         // Deal Damage All Enemies
@@ -1057,7 +1074,7 @@ public class CardController : Singleton<CardController>
             foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
             {
                 // Calculate damage
-                DamageType damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(owner, cardEffect, card);
+                DamageType damageType = CombatLogic.Instance.GetFinalFinalDamageTypeOfAttack(owner, cardEffect, card);
                 int baseDamage;
 
                 // Do normal base damage, or draw base damage from another source?
@@ -1083,10 +1100,11 @@ public class CardController : Singleton<CardController>
                 }
 
                 // Calculate the end damage value
-                int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, enemy, damageType, false, baseDamage, card, cardEffect);
+                int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, enemy, damageType, baseDamage, card, cardEffect);
 
                 // Start damage sequence
-                CombatLogic.Instance.HandleDamage(finalDamageValue, owner, enemy, damageType, card, null, false, QueuePosition.BatchedEvent, batchedEvent);
+                //CombatLogic.Instance.ExecuteHandleDamage(finalDamageValue, owner, enemy, damageType, card, null, false, QueuePosition.BatchedEvent, batchedEvent);
+                CombatLogic.Instance.HandleDamage(finalDamageValue, owner, enemy, card, damageType, batchedEvent);
             }            
         }
 
@@ -1094,7 +1112,7 @@ public class CardController : Singleton<CardController>
         else if (cardEffect.cardEffectType == CardEffectType.DamageSelf)
         {
             // Calculate damage
-            DamageType damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(owner, cardEffect, card);
+            DamageType damageType = CombatLogic.Instance.GetFinalFinalDamageTypeOfAttack(owner, cardEffect, card);
             int baseDamage;
 
             // Do normal base damage, or draw base damage from another source?
@@ -1120,18 +1138,17 @@ public class CardController : Singleton<CardController>
             }
 
             // Calculate the end damage value
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, target, damageType, false, baseDamage, card, cardEffect);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, target, damageType, baseDamage, card, cardEffect);
 
             // Start damage sequence
-            CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, damageType, card);
+            CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, card, damageType);
         }
 
         // Lose Health
         else if (cardEffect.cardEffectType == CardEffectType.LoseHP)
         {    
-
             // Start self damage sequence
-            CombatLogic.Instance.HandleDamage(cardEffect.healthLost, owner, owner, DamageType.None, card, null, true);
+            CombatLogic.Instance.HandleDamage(cardEffect.healthLost, owner, owner, card, DamageType.None, true);
         }
 
         // Gain Energy
@@ -1620,24 +1637,33 @@ public class CardController : Singleton<CardController>
 
 
     }
-    public void HandleChooseScreenCardSelection(Card card)
+    public void HandleChooseScreenCardSelection(Card selectedCard)
     {
+        AudioManager.Instance.PlaySound(Sound.Card_Discarded);
+
         // move to choice slot
-        if(CurrentChooseCardScreenSelection == null)
+        if (CurrentChooseCardScreenSelection == null)
         {
-            CurrentChooseCardScreenSelection = card;
-            MoveTransformToLocation(card.cardVM.movementParent, chooseCardScreenSelectionSpot.position, 0.25f);
+            CurrentChooseCardScreenSelection = selectedCard;
+            selectedCard.cardVM.hoverPreview.SetChooseCardScreenTransistionState(true);
+            MoveTransformToLocation(selectedCard.cardVM.movementParent, chooseCardScreenSelectionSpot.position, 0.25f, false, ()=> selectedCard.cardVM.hoverPreview.SetChooseCardScreenTransistionState(false));
 
         }
         else if(CurrentChooseCardScreenSelection != null)
         {
-            // move the previous selection back to its slot
-            MoveTransformToLocation(CurrentChooseCardScreenSelection.cardVM.movementParent, 
-                card.owner.characterEntityView.handVisual.slots.Children[CurrentChooseCardScreenSelection.cardVM.locationTracker.Slot].gameObject.transform.position,
-                0.25f);
+            // Set transistion state on both cards
+            Card previousCard = CurrentChooseCardScreenSelection;
+            previousCard.cardVM.hoverPreview.SetChooseCardScreenTransistionState(true);
+            selectedCard.cardVM.hoverPreview.SetChooseCardScreenTransistionState(true);
 
-            CurrentChooseCardScreenSelection = card;
-            MoveTransformToLocation(card.cardVM.movementParent, chooseCardScreenSelectionSpot.position, 0.25f);
+            // move old card back to hand
+            MoveTransformToLocation(previousCard.cardVM.movementParent, 
+                selectedCard.owner.characterEntityView.handVisual.slots.Children[previousCard.cardVM.locationTracker.Slot].gameObject.transform.position,
+                0.25f, false, () => previousCard.cardVM.hoverPreview.SetChooseCardScreenTransistionState(false));
+
+            // move new card to centre spot
+            CurrentChooseCardScreenSelection = selectedCard;
+            MoveTransformToLocation(selectedCard.cardVM.movementParent, chooseCardScreenSelectionSpot.position, 0.25f, false, () => selectedCard.cardVM.hoverPreview.SetChooseCardScreenTransistionState(false));
         }
 
         UpdateConfirmChoiceButton();
@@ -1817,6 +1843,9 @@ public class CardController : Singleton<CardController>
                 return;
             }
 
+            // confetti explosion VFX
+            CreateConfettiExplosionsOnDiscovery();
+
             // randomize cards
             discoverableCards.Shuffle();
 
@@ -1899,6 +1928,9 @@ public class CardController : Singleton<CardController>
                 return;
             }
 
+            // confetti explosion VFX
+            CreateConfettiExplosionsOnDiscovery();
+
             // randomize cards
             discoverableCards.Shuffle();
 
@@ -1943,10 +1975,12 @@ public class CardController : Singleton<CardController>
     {
         if(dcvm.myCardRef != null)
         {
+            AudioManager.Instance.PlaySound(Sound.GUI_Button_Clicked);
             ResolveDiscoveryCardClicked(dcvm, dcvm.myCardRef);
         }
         else if(dcvm.myDataRef != null)
         {
+            AudioManager.Instance.PlaySound(Sound.GUI_Button_Clicked);
             ResolveDiscoveryCardClicked(dcvm, dcvm.myDataRef);
         }
 
@@ -2077,9 +2111,14 @@ public class CardController : Singleton<CardController>
             MoveDiscoverySlotsToStartPosition();
             MoveDiscoveryCardsToStartPosition();
             discoveryScreenVisualParent.SetActive(false);
-        });
-
-       
+        });       
+    }
+    private void CreateConfettiExplosionsOnDiscovery()
+    {
+        foreach(Transform t in confettiTransforms)
+        {
+            VisualEffectManager.Instance.CreateConfettiExplosionRainbow(CameraManager.Instance.MainCamera.ScreenToWorldPoint(t.position), 10000);
+        }
     }
     private void FadeInDiscoveryScreenOverlay(Action onCompleteCallBack = null)
     {

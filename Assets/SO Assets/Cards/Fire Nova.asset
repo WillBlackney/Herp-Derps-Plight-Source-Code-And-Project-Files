@@ -35,11 +35,13 @@ MonoBehaviour:
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     drawStacksFromOverload: 0
+    drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
     baseDamageValue: 5
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
+    drawBaseDamageFromOverloadOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 4
     healthLost: 0
@@ -82,7 +84,7 @@ MonoBehaviour:
       projectileFired: 0
       onCharacter: 1
     - eventType: 3
-      particleEffect: 4
+      particleEffect: 16
       cameraShake: 0
       movementAnimation: 0
       soundEffect: 0

@@ -736,10 +736,10 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Poisoned!"), QueuePosition.Back, 0, 0.5f);
 
             // Calculate and deal Poison damage
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Poison, false, entity.pManager.poisonedStacks, null, null);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Poison, entity.pManager.poisonedStacks, null, null);
             VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
-            CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Poison, null, null, true);
-            VisualEventManager.Instance.CreateVisualEvent(()=> VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.PoisonExplosion1, view.WorldPosition));
+            CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Poison, true);
+            VisualEventManager.Instance.CreateVisualEvent(()=> VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.PoisonExplosion, view.WorldPosition));
         }
         if (entity.pManager.burningStacks > 0)
         {
@@ -747,10 +747,10 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Burning!"), QueuePosition.Back, 0, 0.5f);
 
             // Calculate and deal Poison damage
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Fire, false, entity.pManager.burningStacks, null, null);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Fire, entity.pManager.burningStacks, null, null);
             VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
-            CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Fire, null, null, true);
-            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.FireExplosion1, view.WorldPosition));
+            CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Fire, true);
+            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.FireExplosion, view.WorldPosition));
         }
 
         // Overload
@@ -771,8 +771,8 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
 
             // Deal air damage
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(entity, randomEnemy, DamageType.Air, false, entity.pManager.overloadStacks, null, null);
-            CombatLogic.Instance.HandleDamage(finalDamageValue, entity, randomEnemy, DamageType.Air, null, null, true);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(entity, randomEnemy, DamageType.Air, entity.pManager.overloadStacks, null, null);
+            CombatLogic.Instance.HandleDamage(finalDamageValue, entity, randomEnemy, DamageType.Air, true);
 
             // Brief pause here
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
@@ -904,9 +904,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             CharacterEntityModel target = enemy.currentActionTarget;
 
             // Calculate damage to display
-            DamageType damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(enemy, null, null, effect);
+            DamageType damageType = CombatLogic.Instance.GetFinalFinalDamageTypeOfAttack(enemy, null, null, effect);
             
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, target, damageType, false, effect.baseDamage, null, null, effect);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, target, damageType, effect.baseDamage, effect);
 
             if (enemy.myNextAction.actionLoops > 1)
             {
@@ -1580,18 +1580,6 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
                 foreach (EnemyActionEffect effect in nextAction.actionEffects)
                 {
                     TriggerEnemyActionEffect(enemy, effect);
-
-                    // Move back to home node early if declarded to do so
-                    /*
-                    if (enemy.hasMovedOffStartingNode && enemy.livingState == LivingState.Alive &&
-                        effect.animationEventData.returnToMyNodeOnCardEffectResolved)
-                    {
-                        enemy.hasMovedOffStartingNode = false;
-                        CoroutineData cData = new CoroutineData();
-                        LevelNode node = enemy.levelNode;
-                        VisualEventManager.Instance.CreateVisualEvent(() => MoveEntityToNodeCentre(enemy, node, cData), cData, QueuePosition.Back, 0.3f, 0);
-                    }
-                    */
                 }
             }
         }
@@ -1616,8 +1604,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     {
         Debug.Log("CharacterEntityController.TriggerEnemyActionEffect() called on enemy " + enemy.myName);
 
+
         // Cache refs for visual events
-        CharacterEntityModel target = enemy.currentActionTarget;
+        CharacterEntityModel target = enemy.currentActionTarget;        
 
         // if invalid targetting issues occured before triggering event, return
         // TO DO: we should probably perform this validation process before calling 'TriggerEnemyActionEffect'
@@ -1661,11 +1650,11 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
                  target.livingState == LivingState.Alive)
             {
                 // Calculate damage
-                DamageType damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(enemy, null, null, effect);
-                int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, target, damageType, false, effect.baseDamage, null, null, effect);
+                DamageType damageType = CombatLogic.Instance.GetFinalFinalDamageTypeOfAttack(enemy, null, null, effect);
+                int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, target, damageType, effect.baseDamage, effect);
 
                 // Start damage sequence
-                CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, target, damageType, null, effect);
+                CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, target, effect, damageType);
             }
         }
 
@@ -1680,11 +1669,11 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
                  enemyCharacter.livingState == LivingState.Alive)
                 {
                     // Calculate damage
-                    DamageType damageType = CombatLogic.Instance.CalculateFinalDamageTypeOfAttack(enemy, null, null, effect);
-                    int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, enemyCharacter, damageType, false, effect.baseDamage, null, null, effect);
+                    DamageType damageType = CombatLogic.Instance.GetFinalFinalDamageTypeOfAttack(enemy, null, null, effect);
+                    int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, enemyCharacter, damageType, effect.baseDamage, effect);
 
                     // Start damage sequence
-                    CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, enemyCharacter, damageType, null, effect, false, QueuePosition.BatchedEvent, batchedEvent);
+                    CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, enemyCharacter, effect, damageType, batchedEvent);
                 }
             }                
         }

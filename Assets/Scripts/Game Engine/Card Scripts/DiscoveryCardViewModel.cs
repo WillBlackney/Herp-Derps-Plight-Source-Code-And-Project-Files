@@ -21,6 +21,7 @@ public class DiscoveryCardViewModel : MonoBehaviour, IPointerEnterHandler, IPoin
     public void OnPointerEnter(PointerEventData eventData)
     {
         cardViewModel.movementParent.DOScale(endScale, scaleSpeed).SetEase(Ease.OutQuint);
+        AudioManager.Instance.PlaySound(Sound.Card_Discarded);
     }
 
     public void OnPointerExit(PointerEventData eventData)

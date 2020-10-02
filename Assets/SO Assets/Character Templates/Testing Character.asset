@@ -61,14 +61,13 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 2c7de9e75fc411541ba6f9c3c6dc9da3, type: 2}
-  - {fileID: 11400000, guid: 288b40d7816b3334396e676e3d8500f4, type: 2}
-  - {fileID: 11400000, guid: 906a542ac4dbed2429e34de4a75c3c40, type: 2}
-  - {fileID: 11400000, guid: 3515e3b8e92620548af756ddbf500130, type: 2}
-  - {fileID: 11400000, guid: 186eaded8ce25764581f9036feb58e61, type: 2}
-  - {fileID: 11400000, guid: 1aa5ba9a69a1e014883cdff8719c8e91, type: 2}
-  - {fileID: 11400000, guid: 12e01ae28d25a4042a23a910d9c32a1d, type: 2}
-  - {fileID: 11400000, guid: f6e3850c009fce847b7ce96497469eb5, type: 2}
+  - {fileID: 11400000, guid: 1e37fdb28f5aaf1479687d1b2b6cd4ed, type: 2}
+  - {fileID: 11400000, guid: 1e37fdb28f5aaf1479687d1b2b6cd4ed, type: 2}
+  - {fileID: 11400000, guid: c29964ec64c216a41ac3fd20a356a5f5, type: 2}
+  - {fileID: 11400000, guid: c29964ec64c216a41ac3fd20a356a5f5, type: 2}
+  - {fileID: 11400000, guid: 93ea27f7466c19747a14d4532b1148e7, type: 2}
+  - {fileID: 11400000, guid: 93ea27f7466c19747a14d4532b1148e7, type: 2}
+  - {fileID: 11400000, guid: 93ea27f7466c19747a14d4532b1148e7, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1

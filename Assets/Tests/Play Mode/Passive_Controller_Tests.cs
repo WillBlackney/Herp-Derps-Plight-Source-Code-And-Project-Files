@@ -506,7 +506,7 @@ namespace Tests
             Assert.AreEqual(expectedTotal, EntityLogic.GetTotalPower(model));
         }
         [Test]
-        public void Shield_Wall_Does_Grant_Block_On_Activation_Start()
+        public void Shield_Wall_Does_Grant_Block_On_Activation_End()
         {
             // Arange
             CharacterEntityModel model;
@@ -518,6 +518,7 @@ namespace Tests
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
             ActivationManager.Instance.OnNewCombatEventStarted();
+            CharacterEntityController.Instance.CharacterOnActivationEnd(model);
 
             // Assert
             Assert.AreEqual(expected, model.block);
@@ -766,7 +767,6 @@ namespace Tests
 
             string passiveName = PassiveController.Instance.GetPassiveIconDataByName(MELEE_ATTACK_REDUCTION_NAME).passiveName;
             int stacks = 1;
-            int expected = 1;
             bool didReduce = false;
             bool didIncrease = false;
             bool passed = false;
@@ -838,7 +838,7 @@ namespace Tests
 
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(attacker.pManager, passiveName, 1);
 
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(attacker, target, DamageType.Physical, false, cardEffect.baseDamageValue, card, cardEffect);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(attacker, target, DamageType.Physical, cardEffect.baseDamageValue, card, cardEffect);
 
             // Assert
             Assert.AreEqual(expectedTotal, finalDamageValue);
@@ -881,7 +881,7 @@ namespace Tests
 
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(attacker.pManager, passiveName, 1);
 
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(attacker, target, DamageType.Physical, false, cardEffect.baseDamageValue, card, cardEffect);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(attacker, target, DamageType.Physical, cardEffect.baseDamageValue, card, cardEffect);
 
             // Assert
             Assert.AreEqual(expectedTotal, finalDamageValue);
@@ -924,7 +924,7 @@ namespace Tests
 
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, passiveName, 1);
 
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(attacker, target, DamageType.Physical, false, cardEffect.baseDamageValue, card, cardEffect);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(attacker, target, DamageType.Physical, cardEffect.baseDamageValue, card, cardEffect);
 
             // Assert
             Assert.AreEqual(expectedTotal, finalDamageValue);
@@ -967,7 +967,7 @@ namespace Tests
 
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, passiveName, 1);
 
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(attacker, target, DamageType.Physical, false, cardEffect.baseDamageValue, card, cardEffect);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(attacker, target, DamageType.Physical, cardEffect.baseDamageValue, card, cardEffect);
 
             // Assert
             Assert.AreEqual(expectedTotal, finalDamageValue);
@@ -1076,7 +1076,7 @@ namespace Tests
 
             ActivationManager.Instance.OnNewCombatEventStarted();
             CharacterEntityController.Instance.HandleTaunt(playerModelOne, enemyModel);
-            CombatLogic.Instance.HandleDamage(1000, null, playerModelOne, DamageType.Physical, null);
+            CombatLogic.Instance.HandleDamage(1000, null, playerModelOne, DamageType.Physical);
 
             // Assert
             Assert.AreEqual(expectedTarget, enemyModel.pManager.myTaunter);
@@ -1105,7 +1105,7 @@ namespace Tests
 
             ActivationManager.Instance.OnNewCombatEventStarted();
             CharacterEntityController.Instance.HandleTaunt(playerModelOne, enemyModel);
-            CombatLogic.Instance.HandleDamage(1000, null, playerModelOne, DamageType.Physical, null);
+            CombatLogic.Instance.HandleDamage(1000, null, playerModelOne, DamageType.Physical);
 
             // Assert
             Assert.AreEqual(expectedTarget, enemyModel.currentActionTarget);
@@ -1164,11 +1164,11 @@ namespace Tests
             CharacterEntityModel model;
             string passiveName = PassiveController.Instance.GetPassiveIconDataByName(BURNING_NAME).passiveName;
             int stacks = 10;
-            int expected;
+            int expected = 20;
 
             // Act 
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
-            expected = model.health - stacks;
+            model.health = 30;
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
             ActivationManager.Instance.OnNewCombatEventStarted();
             CharacterEntityController.Instance.CharacterOnActivationEnd(model);
@@ -1194,11 +1194,6 @@ namespace Tests
             Assert.IsTrue(model.livingState == LivingState.Dead);
         }
         [Test]
-        public void Burning_Damage_Is_Affected_By_Fire_Resistance()
-        {
-            // TO DO: write this test when damage type resistance logic is written
-        }
-        [Test]
         public void Overload_Does_Deal_Damage_To_Random_Enemy_On_Character_Activation_End()
         {
             // Arange
@@ -1221,7 +1216,62 @@ namespace Tests
             // Assert
             Assert.AreEqual(expected, enemy.health);
         }
-        
+
+        #endregion
+
+        // Special Defensive Passive Tests
+        #region
+        [Test]
+        public void Barrier_Does_Prevent_Damage()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(BARRIER_NAME).passiveName;
+            int stacks = 1;
+            int expectedTotal = 30;
+
+            // Act
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
+            CombatLogic.Instance.HandleDamage(10, null, model, DamageType.Physical);
+
+            // Assert
+            Assert.AreEqual(expectedTotal, model.health);
+        }
+        [Test]
+        public void Barrier_Is_Removed_When_Damaged()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(BARRIER_NAME).passiveName;
+            int stacks = 1;
+            int expectedTotal = 0;
+
+            // Act
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
+            CombatLogic.Instance.HandleDamage(10, null, model, DamageType.Physical);
+
+            // Assert
+            Assert.AreEqual(expectedTotal, model.pManager.barrierStacks);
+        }
+        [Test]
+        public void Barrier_Is_Not_Removed_When_Damage_Is_Zero()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(BARRIER_NAME).passiveName;
+            int stacks = 1;
+            int expectedTotal = 1;
+
+            // Act
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
+            CombatLogic.Instance.HandleDamage(0, null, model, DamageType.Physical);
+
+            // Assert
+            Assert.AreEqual(expectedTotal, model.pManager.barrierStacks);
+        }
         #endregion
 
 

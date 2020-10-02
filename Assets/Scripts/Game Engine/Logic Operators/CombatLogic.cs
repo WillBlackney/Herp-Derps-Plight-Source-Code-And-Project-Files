@@ -17,6 +17,78 @@ public class CombatLogic : Singleton<CombatLogic>
 
     // Damage, Damage Type and Resistance Calculators
     #region
+
+    // Entry point for card specific calculations
+    public int GetFinalDamageValueAfterAllCalculations(CharacterEntityModel attacker, CharacterEntityModel target, DamageType damageType, int baseDamage, Card card, CardEffect cardEffect)
+    {
+        return ExecuteGetFinalDamageValueAfterAllCalculations(attacker, target, damageType, baseDamage, card, cardEffect);
+    }
+
+    // Entry point for enemy action specific calculations
+    public int GetFinalDamageValueAfterAllCalculations(CharacterEntityModel attacker, CharacterEntityModel target, DamageType damageType, int baseDamage, EnemyActionEffect enemyAction)
+    {
+        return ExecuteGetFinalDamageValueAfterAllCalculations(attacker, target, damageType, baseDamage, null, null, enemyAction);
+    }
+
+    // Entry point for non card + enemy action specific calculations
+    public int GetFinalDamageValueAfterAllCalculations(CharacterEntityModel attacker, CharacterEntityModel target, DamageType damageType, int baseDamage)
+    {
+        return ExecuteGetFinalDamageValueAfterAllCalculations(attacker, target, damageType, baseDamage, null, null, null);
+    }
+
+    // Main calculator
+    private int ExecuteGetFinalDamageValueAfterAllCalculations(CharacterEntityModel attacker, CharacterEntityModel target, DamageType damageType, int baseDamage = 0, Card card = null, CardEffect cardEffect = null, EnemyActionEffect enemyAction = null)
+    {
+        Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() called...");
+        int finalDamageValueReturned = 0;
+
+        if (enemyAction == null)
+        {
+           // Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() was given a null EnemyAction argument...");
+        }
+        else if (enemyAction != null)
+        {
+            //Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() was NOT given a null EnemyAction argument...");
+        }
+
+        // calculate base damage
+        finalDamageValueReturned = GetBaseDamageValue(attacker, baseDamage, damageType, card, cardEffect, enemyAction);
+       // Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned value after base calculations: " + finalDamageValueReturned.ToString());
+
+        // calculate damage after standard modifiers
+        finalDamageValueReturned = GetDamageValueAfterNonResistanceModifiers(finalDamageValueReturned, attacker, target, damageType, card, cardEffect, enemyAction);
+       // Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned value after non resistance modifier calculations: " + finalDamageValueReturned.ToString());
+
+        // calculate damage after resistances
+        finalDamageValueReturned = GetDamageValueAfterResistances(finalDamageValueReturned, damageType, target);
+       // Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned value after resitance type calculations: " + finalDamageValueReturned.ToString());
+
+        // return final value
+       // Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned final value returned: " + finalDamageValueReturned.ToString());
+        return finalDamageValueReturned;
+
+    }
+    public DamageType GetFinalFinalDamageTypeOfAttack(CharacterEntityModel entity, CardEffect cardEffect = null, Card card = null, EnemyActionEffect enemyAction = null)
+    {
+        Debug.Log("CombatLogic.CalculateFinalDamageTypeOfAttack() called...");
+
+        DamageType damageTypeReturned = DamageType.None;
+
+        // First, draw damage type from ability
+        if (cardEffect != null)
+        {
+            damageTypeReturned = cardEffect.damageType;
+        }
+
+        // draw from enemyAction if enemy
+        if (enemyAction != null)
+        {
+            damageTypeReturned = enemyAction.damageType;
+        }
+
+        Debug.Log("CombatLogic.CalculateFinalDamageTypeOfAttack() final damage type returned: " + damageTypeReturned);
+        return damageTypeReturned;
+    }
     private int GetBaseDamageValue(CharacterEntityModel entity, int baseDamage, DamageType damageType, Card card = null, CardEffect cardEffect = null, EnemyActionEffect enemyAction = null)
     {
         Debug.Log("CombatLogic.GetBaseDamageValue() called...");
@@ -198,130 +270,7 @@ public class CombatLogic : Singleton<CombatLogic>
         return damageValueReturned;
 
     }
-    public int GetFinalDamageValueAfterAllCalculations(CharacterEntityModel attacker, CharacterEntityModel target, DamageType damageType, bool critical, int baseDamage = 0, Card card = null, CardEffect cardEffect = null, EnemyActionEffect enemyAction = null)
-    {
-        Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() called...");
-        int finalDamageValueReturned = 0;
-
-        if (enemyAction == null)
-        {
-            Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() was given a null EnemyAction argument...");
-        }
-        else if (enemyAction != null)
-        {
-            Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() was NOT given a null EnemyAction argument...");
-        }
-
-        // calculate base damage
-        finalDamageValueReturned = GetBaseDamageValue(attacker, baseDamage, damageType, card, cardEffect, enemyAction);
-        Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned value after base calculations: " + finalDamageValueReturned.ToString());
-
-        // calculate damage after standard modifiers
-        finalDamageValueReturned = GetDamageValueAfterNonResistanceModifiers(finalDamageValueReturned, attacker, target, damageType, card, cardEffect, enemyAction);
-        Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned value after non resistance modifier calculations: " + finalDamageValueReturned.ToString());
-
-        // calculate damage after resistances
-        finalDamageValueReturned = GetDamageValueAfterResistances(finalDamageValueReturned, damageType, target);
-        Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned value after resitance type calculations: " + finalDamageValueReturned.ToString());
-
-        // return final value
-        Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned final value returned: " + finalDamageValueReturned.ToString());
-        return finalDamageValueReturned;
-
-    }
-    public DamageType CalculateFinalDamageTypeOfAttack(CharacterEntityModel entity, CardEffect cardEffect = null, Card card = null, EnemyActionEffect enemyAction = null)
-    {
-        Debug.Log("CombatLogic.CalculateFinalDamageTypeOfAttack() called...");
-
-        DamageType damageTypeReturned = DamageType.None;
-
-        // First, draw damage type from ability
-        if (cardEffect != null)
-        {
-            damageTypeReturned = cardEffect.damageType;
-        }
-
-        // draw from enemyAction if enemy
-        if (enemyAction != null)
-        {
-            damageTypeReturned = enemyAction.damageType;
-        }
-
-        // Third, if character has a 'permanent' imbuement, get damage type from that passive
-        /*
-        if (
-            (cardEffect != null && card != null && (card.cardType == CardType.MeleeAttack || card.cardType == CardType.RangedAttack)) ||
-             entity.enemy
-            )
-        {
-            Debug.Log("CombatLogic.CalculateFinalDamageTypeOfAttack() checking for damage type imbuements...");
-            if (entity.myPassiveManager.airImbuement)
-            {
-                Debug.Log(entity.name + " has Air Imbuement!");
-                damageTypeReturned = "Air";
-            }
-            else if (entity.myPassiveManager.fireImbuement)
-            {
-                Debug.Log(entity.name + " has Fire Imbuement!");
-                damageTypeReturned = "Fire";
-            }
-            else if (entity.myPassiveManager.poisonImbuement)
-            {
-                Debug.Log(entity.name + " has Poison Imbuement!");
-                damageTypeReturned = "Poison";
-            }
-            else if (entity.myPassiveManager.frostImbuement)
-            {
-                Debug.Log(entity.name + " has Frost Imbuement!");
-                damageTypeReturned = "Frost";
-            }
-            else if (entity.myPassiveManager.shadowImbuement)
-            {
-                Debug.Log(entity.name + " has Shadow Imbuement!");
-                damageTypeReturned = "Shadow";
-            }
-        }
-        */
-        /*
-        // Fourth, if character has a temporary imbuement, get damage type from that (override permanent imbuement)
-        if (
-            (cardEffect != null && card != null && (card.cardType == CardType.MeleeAttack || card.cardType == CardType.RangedAttack)) ||
-             entity.enemy
-            )
-        {
-            Debug.Log("CombatLogic.CalculateFinalDamageTypeOfAttack() checking for TEMPORARY damage type imbuements...");
-
-            if (entity.myPassiveManager.temporaryAirImbuement)
-            {
-                Debug.Log(entity.name + " has Temporary Air Imbuement!");
-                damageTypeReturned = "Air";
-            }
-            else if (entity.myPassiveManager.temporaryFireImbuement)
-            {
-                Debug.Log(entity.name + " has Temporary Fire Imbuement!");
-                damageTypeReturned = "Fire";
-            }
-            else if (entity.myPassiveManager.temporaryPoisonImbuement)
-            {
-                Debug.Log(entity.name + " has Temporary Poison Imbuement!");
-                damageTypeReturned = "Poison";
-            }
-            else if (entity.myPassiveManager.temporaryFrostImbuement)
-            {
-                Debug.Log(entity.name + " has Temporary Frost Imbuement!");
-                damageTypeReturned = "Frost";
-            }
-            else if (entity.myPassiveManager.temporaryShadowImbuement)
-            {
-                Debug.Log(entity.name + " has Temporary Shadow Imbuement!");
-                damageTypeReturned = "Shadow";
-            }
-        }
-        */
-
-        Debug.Log("CombatLogic.CalculateFinalDamageTypeOfAttack() final damage type returned: " + damageTypeReturned);
-        return damageTypeReturned;
-    }
+   
     #endregion
 
     // Calculate Block Gain
@@ -351,7 +300,40 @@ public class CombatLogic : Singleton<CombatLogic>
 
     // Handle damage + death
     #region   
-    public void HandleDamage(int damageAmount, CharacterEntityModel attacker, CharacterEntityModel victim, DamageType damageType, Card card = null, EnemyActionEffect enemyEffect = null, bool ignoreBlock = false, QueuePosition queuePosition = QueuePosition.Back, VisualEvent batchedEvent = null)
+
+    // Handle damage from card entry points
+    public void HandleDamage(int damageAmount, CharacterEntityModel attacker, CharacterEntityModel victim, Card card, DamageType damageType, bool ignoreBlock = false)
+    {
+        ExecuteHandleDamage(damageAmount, attacker, victim, damageType, card, null, ignoreBlock);
+    }
+    public void HandleDamage(int damageAmount, CharacterEntityModel attacker, CharacterEntityModel victim, Card card, DamageType damageType, VisualEvent batchedEvent, bool ignoreBlock = false)
+    {
+        ExecuteHandleDamage(damageAmount, attacker, victim, damageType, card, null, ignoreBlock, batchedEvent);
+    }
+
+    // Handle damage from enemy action entry points
+    public void HandleDamage(int damageAmount, CharacterEntityModel attacker, CharacterEntityModel victim, EnemyActionEffect enemyEffect, DamageType damageType, bool ignoreBlock = false)
+    {
+        ExecuteHandleDamage(damageAmount, attacker, victim, damageType, null, enemyEffect, ignoreBlock);
+    }
+    public void HandleDamage(int damageAmount, CharacterEntityModel attacker, CharacterEntityModel victim, EnemyActionEffect enemyEffect, DamageType damageType, VisualEvent batchedEvent, bool ignoreBlock = false)
+    {
+        ExecuteHandleDamage(damageAmount, attacker, victim, damageType, null, enemyEffect, ignoreBlock, batchedEvent);
+    }
+
+    // Cardless + Enemy action less damage entry points
+    public void HandleDamage(int damageAmount, CharacterEntityModel attacker, CharacterEntityModel victim, DamageType damageType, bool ignoreBlock = false)
+    {
+        ExecuteHandleDamage(damageAmount, attacker, victim, damageType, null, null, ignoreBlock);
+    }
+    public void HandleDamage(int damageAmount, CharacterEntityModel attacker, CharacterEntityModel victim, DamageType damageType, VisualEvent batchedEvent, bool ignoreBlock = false)
+    {
+        ExecuteHandleDamage(damageAmount, attacker, victim, damageType, null, null, ignoreBlock, batchedEvent);
+    }
+
+
+    private void ExecuteHandleDamage(int damageAmount, CharacterEntityModel attacker, CharacterEntityModel victim, 
+        DamageType damageType, Card card = null, EnemyActionEffect enemyEffect = null, bool ignoreBlock = false, VisualEvent batchedEvent = null)
     { 
         // Debug setup
         string cardNameString = "None";
@@ -461,7 +443,7 @@ public class CombatLogic : Singleton<CombatLogic>
             {
                 // Create Lose Armor Effect
                 VisualEventManager.Instance.CreateVisualEvent(() => 
-                VisualEffectManager.Instance.CreateLoseBlockEffect(victim.characterEntityView.transform.position, adjustedDamageValue), queuePosition, 0, 0, EventDetail.None, batchedEvent);
+                VisualEffectManager.Instance.CreateLoseBlockEffect(victim.characterEntityView.transform.position, adjustedDamageValue), QueuePosition.Back, 0, 0, EventDetail.None, batchedEvent);
                 
             }
             else if (totalLifeLost > 0)
@@ -470,15 +452,15 @@ public class CombatLogic : Singleton<CombatLogic>
                 if (victim.health > 0 && totalLifeLost > 0)
                 {
                     VisualEventManager.Instance.CreateVisualEvent(()=> 
-                    CharacterEntityController.Instance.PlayHurtAnimation(victim.characterEntityView), queuePosition, 0, 0, EventDetail.None, batchedEvent);
+                    CharacterEntityController.Instance.PlayHurtAnimation(victim.characterEntityView), QueuePosition.Back, 0, 0, EventDetail.None, batchedEvent);
                 }
 
                 // Create Lose hp / damage effect
                 VisualEventManager.Instance.CreateVisualEvent(() => 
-                VisualEffectManager.Instance.CreateDamageEffect(victim.characterEntityView.transform.position, totalLifeLost), queuePosition, 0, 0, EventDetail.None, batchedEvent);
+                VisualEffectManager.Instance.CreateDamageEffect(victim.characterEntityView.transform.position, totalLifeLost), QueuePosition.Back, 0, 0, EventDetail.None, batchedEvent);
 
                 VisualEventManager.Instance.CreateVisualEvent(() => 
-                AudioManager.Instance.PlaySound(Sound.Ability_Damaged_Health_Lost), queuePosition, 0, 0, EventDetail.None, batchedEvent);
+                AudioManager.Instance.PlaySound(Sound.Ability_Damaged_Health_Lost), QueuePosition.Back, 0, 0, EventDetail.None, batchedEvent);
                 
             }
         }
@@ -720,6 +702,8 @@ public class CombatLogic : Singleton<CombatLogic>
         //yield return new WaitForSeconds(0.5f);
         //action.coroutineCompleted = true;
     }
+
+
     private void HandleDeath(CharacterEntityModel entity)
     {
         Debug.Log("CombatLogic.HandleDeath() started for " + entity.myName);

@@ -69,7 +69,7 @@ namespace Tests
 
             // Act
             enemyCharacter = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, enemyNode);
-            CombatLogic.Instance.HandleDamage(1000, null, enemyCharacter, DamageType.Physical, null);
+            CombatLogic.Instance.HandleDamage(1000, null, enemyCharacter, DamageType.Physical);
 
             // Assert
             Assert.AreEqual(expected, enemyNode.occupied);
@@ -83,7 +83,7 @@ namespace Tests
 
             // Act
             enemyCharacter = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, enemyNode);
-            CombatLogic.Instance.HandleDamage(1000, null, enemyCharacter, DamageType.Physical, null);
+            CombatLogic.Instance.HandleDamage(1000, null, enemyCharacter, DamageType.Physical);
 
             // Assert
             Assert.AreEqual(expected, enemyNode.myEntity);

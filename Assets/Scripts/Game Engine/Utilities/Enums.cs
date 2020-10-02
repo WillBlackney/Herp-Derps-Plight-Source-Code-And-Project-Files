@@ -266,7 +266,6 @@ public enum QueuePosition
 {
     Front = 0,
     Back = 1,
-    AfterNextCoroutine = 2,
     BatchedEvent = 3,
 }
 #endregion
@@ -345,12 +344,15 @@ public enum ParticleEffect
     ApplyBurning = 16,
     ApplyPoisoned = 17,
     GainOverload = 18,
-    LightningExplosion1 = 1,
-    FireExplosion1 = 4,
-    PoisonExplosion1 = 5,
-    ShadowExplosion1 = 6,
-    FrostExplosion1 = 7,
-    BloodExplosion1 = 2,
+    LightningExplosion = 1,
+    FireExplosion = 4,
+    PoisonExplosion = 5,
+    ShadowExplosion = 6,
+    FrostExplosion = 7,
+    BloodExplosion = 2,
+    GhostExplosionPurple = 22,
+    ConfettiExplosionRainbow = 23,
+    SmallMeleeImpact = 21,
     AoeMeleeArc = 3,
     FireNova = 8,
     PoisonNova = 9,
@@ -358,6 +360,8 @@ public enum ParticleEffect
     LightningNova = 11,
     FrostNova = 12,
     HolyNova = 13,
+    RitualCircleYellow = 19,
+    RitualCirclePurple = 20,
 
 }
 public enum ProjectileFired
