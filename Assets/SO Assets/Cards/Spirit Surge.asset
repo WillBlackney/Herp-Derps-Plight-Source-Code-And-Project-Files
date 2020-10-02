@@ -10,66 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Lightning Barrier
+  m_Name: Spirit Surge
   m_EditorClassIdentifier: 
-  cardName: Lightning Barrier
-  cardDescription: 'Gain 4 Block.
+  cardName: Spirit Surge
+  cardDescription: 'Give a target 2 Draw next activation.
 
-    Gain 1 Overload.'
-  cardSprite: {fileID: 21300000, guid: 60eb5d5085e402348ae8b821e07250d2, type: 3}
+    Expend. '
+  cardSprite: {fileID: 21300000, guid: fe144c5f7e367da40bc8548c50f0e6a1, type: 3}
   cardEnergyCost: 1
   cardType: 1
-  targettingType: 0
+  targettingType: 2
   talentSchool: 13
   rarity: 1
-  expend: 0
+  expend: 1
   innate: 0
   fleeting: 0
   unplayable: 0
   blessing: 0
   cardEffects:
   - weaponRequirement: 0
-    cardEffectType: 10
-    discoveryLocation: 0
-    talentSchoolFilter: 0
-    rarityFilter: 0
-    blessing: 0
-    onDiscoveryChoiceMadeEffects: []
-    onChooseCardInHandChoiceMadeEffects: []
-    drawStacksFromOverload: 0
-    drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 4
-    baseDamageValue: 0
-    drawBaseDamageFromCurrentBlock: 0
-    drawBaseDamageFromTargetPoisoned: 0
-    drawBaseDamageFromMeleeAttacksPlayed: 0
-    drawBaseDamageFromOverloadOnSelf: 0
-    baseDamageMultiplier: 0
-    damageType: 0
-    healthLost: 0
-    energyGained: 0
-    cardsDrawn: 0
-    extraDrawEffect: 0
-    cardEnergyReduction: 0
-    passivePairing:
-      passiveData: {fileID: 0}
-      passiveStacks: 0
-    cardAdded: {fileID: 0}
-    copiesAdded: 0
-    blessingsGained: 0
-    visualEventsOnStart:
-    - eventType: 2
-      particleEffect: 0
-      cameraShake: 0
-      movementAnimation: 0
-      soundEffect: 0
-      characterAnimation: 4
-      delayDuration: 0
-      projectileFired: 0
-      onCharacter: 0
-    visualEventsOnFinish: []
-  - weaponRequirement: 0
-    cardEffectType: 2
+    cardEffectType: 3
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
@@ -92,11 +52,29 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: {fileID: 11400000, guid: dcdd2890a1d32f04b83aff87ff075399, type: 2}
-      passiveStacks: 1
+      passiveData: {fileID: 11400000, guid: 5487f69127a574849ade6f4d4d58f3d2, type: 2}
+      passiveStacks: 2
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
-    visualEventsOnStart: []
+    visualEventsOnStart:
+    - eventType: 2
+      particleEffect: 0
+      cameraShake: 0
+      movementAnimation: 0
+      soundEffect: 0
+      characterAnimation: 4
+      delayDuration: 0
+      projectileFired: 0
+      onCharacter: 0
+    - eventType: 3
+      particleEffect: 18
+      cameraShake: 0
+      movementAnimation: 0
+      soundEffect: 0
+      characterAnimation: 0
+      delayDuration: 0
+      projectileFired: 0
+      onCharacter: 2
     visualEventsOnFinish: []
   cardEventListeners: []

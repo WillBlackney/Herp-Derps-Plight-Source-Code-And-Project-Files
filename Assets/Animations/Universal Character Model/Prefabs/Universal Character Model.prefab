@@ -618,6 +618,12 @@ MonoBehaviour:
   - {fileID: 8833128047477338048}
   - {fileID: 5045279045778805966}
   - {fileID: 8546364917908256433}
+  - {fileID: 6210825448654994132}
+  - {fileID: 7389743923507104749}
+  - {fileID: 2101715625656455675}
+  - {fileID: 2120339220609073863}
+  - {fileID: 4972299207384857939}
+  - {fileID: 7431976084012412014}
   allHeadWearSpriteMasks:
   - {fileID: 8306676681743101029}
   - {fileID: 7369302363670662616}
@@ -786,6 +792,7 @@ MonoBehaviour:
   activeMainHandWeapon: {fileID: 0}
   activeOffHandWeapon: {fileID: 0}
   allHeadWear:
+  - {fileID: 6210825448654994132}
   - {fileID: 8093223913732533379}
   - {fileID: 2317854931937220289}
   - {fileID: 3047016691889896365}
@@ -826,6 +833,7 @@ MonoBehaviour:
   - {fileID: 4267414968877010960}
   - {fileID: 4216307956131959384}
   allChestWear:
+  - {fileID: 2120339220609073863}
   - {fileID: 5412187533087100986}
   - {fileID: 584945620634909038}
   - {fileID: 5396751251460249519}
@@ -24353,7 +24361,7 @@ GameObject:
   - component: {fileID: 4506100092916498084}
   - component: {fileID: 6210825448654994132}
   m_Layer: 0
-  m_Name: Blue_Mage_ Head_Wear
+  m_Name: Blue_Mage_Head_Wear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Thunder Strike
+  m_Name: Lightning Bolt
   m_EditorClassIdentifier: 
-  cardName: Thunder Strike
-  cardDescription: "Deal 4 Air damage. \nGain 2 Overload."
-  cardSprite: {fileID: 21300000, guid: 1742843d0d172bf438fbb3013d5dbcdc, type: 3}
+  cardName: Lightning Bolt
+  cardDescription: Deal 4 Air damage. Gain 1 Overload.
+  cardSprite: {fileID: 21300000, guid: c77c39b719f391d4382b7a303c86b271, type: 3}
   cardEnergyCost: 1
-  cardType: 2
+  cardType: 3
   targettingType: 3
   talentSchool: 13
   rarity: 1
@@ -42,7 +42,7 @@ MonoBehaviour:
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     baseDamageMultiplier: 0
-    damageType: 1
+    damageType: 6
     healthLost: 0
     energyGained: 0
     cardsDrawn: 0
@@ -55,23 +55,14 @@ MonoBehaviour:
     copiesAdded: 0
     blessingsGained: 0
     visualEventsOnStart:
-    - eventType: 1
-      particleEffect: 0
-      cameraShake: 0
-      movementAnimation: 1
-      soundEffect: 0
-      characterAnimation: 0
-      delayDuration: 0
-      projectileFired: 0
-      onCharacter: 0
     - eventType: 2
       particleEffect: 0
       cameraShake: 0
       movementAnimation: 0
       soundEffect: 0
-      characterAnimation: 1
+      characterAnimation: 3
       delayDuration: 0
-      projectileFired: 0
+      projectileFired: 7
       onCharacter: 0
     - eventType: 4
       particleEffect: 0
@@ -82,25 +73,16 @@ MonoBehaviour:
       delayDuration: 0
       projectileFired: 0
       onCharacter: 0
-    - eventType: 3
-      particleEffect: 1
+    visualEventsOnFinish:
+    - eventType: 6
+      particleEffect: 0
       cameraShake: 0
       movementAnimation: 0
       soundEffect: 0
       characterAnimation: 0
-      delayDuration: 0
-      projectileFired: 0
-      onCharacter: 2
-    - eventType: 5
-      particleEffect: 0
-      cameraShake: 0
-      movementAnimation: 0
-      soundEffect: 15
-      characterAnimation: 0
-      delayDuration: 0
+      delayDuration: 0.5
       projectileFired: 0
       onCharacter: 0
-    visualEventsOnFinish: []
   - weaponRequirement: 0
     cardEffectType: 2
     discoveryLocation: 0

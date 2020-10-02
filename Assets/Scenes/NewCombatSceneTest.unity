@@ -7436,11 +7436,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
   runMockScene: 1
-  testingEnemyWave: {fileID: 11400000, guid: 196d21c94a6e94b42ab0250cb4bedcdd, type: 2}
+  testingEnemyWave: {fileID: 11400000, guid: a925a91cb3c75e64cadf1f518e9a621e, type: 2}
   characterTemplates:
-  - {fileID: 11400000, guid: fe1c3014ca448f44998168a4a6ff6b51, type: 2}
-  - {fileID: 11400000, guid: fe1c3014ca448f44998168a4a6ff6b51, type: 2}
-  - {fileID: 11400000, guid: fe1c3014ca448f44998168a4a6ff6b51, type: 2}
+  - {fileID: 11400000, guid: 3df049d74f077c74fa92fb78bb4fa6a8, type: 2}
+  - {fileID: 11400000, guid: 3df049d74f077c74fa92fb78bb4fa6a8, type: 2}
+  - {fileID: 11400000, guid: 3df049d74f077c74fa92fb78bb4fa6a8, type: 2}
   characterDataSample:
     myName: Test
     serializedPassiveManager:

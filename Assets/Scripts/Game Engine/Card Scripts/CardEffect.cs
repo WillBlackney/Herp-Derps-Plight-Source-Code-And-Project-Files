@@ -67,6 +67,10 @@ public class CardEffect
     [LabelWidth(250)]
     public bool drawBaseDamageFromMeleeAttacksPlayed;
 
+    [ShowIf("ShowDrawDamageFromOverloadOnSelf")]
+    [LabelWidth(250)]
+    public bool drawBaseDamageFromOverloadOnSelf;
+
     [ShowIf("ShowDamageMultiplier")]
     [LabelWidth(250)]
     public int baseDamageMultiplier;
@@ -158,7 +162,7 @@ public class CardEffect
     public bool ShowDrawDamageFromBlock()
     {
         if ((cardEffectType == CardEffectType.DamageTarget || cardEffectType == CardEffectType.DamageSelf || cardEffectType == CardEffectType.DamageAllEnemies)  &&
-            (drawBaseDamageFromTargetPoisoned == false && drawBaseDamageFromMeleeAttacksPlayed == false))
+            (drawBaseDamageFromTargetPoisoned == false && drawBaseDamageFromMeleeAttacksPlayed == false && drawBaseDamageFromOverloadOnSelf == false))
         {
             return true;
         }
@@ -170,7 +174,19 @@ public class CardEffect
     public bool ShowDrawDamageFromTargetPoisoned()
     {
         if ((cardEffectType == CardEffectType.DamageTarget || cardEffectType == CardEffectType.DamageSelf || cardEffectType == CardEffectType.DamageAllEnemies) &&
-            (drawBaseDamageFromCurrentBlock == false && drawBaseDamageFromMeleeAttacksPlayed == false))
+            (drawBaseDamageFromCurrentBlock == false && drawBaseDamageFromMeleeAttacksPlayed == false && drawBaseDamageFromOverloadOnSelf == false))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowDrawDamageFromOverloadOnSelf()
+    {
+        if ((cardEffectType == CardEffectType.DamageTarget || cardEffectType == CardEffectType.DamageSelf || cardEffectType == CardEffectType.DamageAllEnemies) &&
+            (drawBaseDamageFromCurrentBlock == false && drawBaseDamageFromMeleeAttacksPlayed == false && drawBaseDamageFromTargetPoisoned == false))
         {
             return true;
         }
@@ -182,7 +198,7 @@ public class CardEffect
     public bool ShowDrawDamageFromMeleeAttacksPlayed()
     {
         if ((cardEffectType == CardEffectType.DamageTarget || cardEffectType == CardEffectType.DamageSelf || cardEffectType == CardEffectType.DamageAllEnemies) &&
-           (drawBaseDamageFromCurrentBlock == false && drawBaseDamageFromTargetPoisoned == false))
+           (drawBaseDamageFromCurrentBlock == false && drawBaseDamageFromTargetPoisoned == false && drawBaseDamageFromOverloadOnSelf == false))
         {
             return true;
         }
@@ -194,7 +210,7 @@ public class CardEffect
     public bool ShowDamageMultiplier()
     {
         if ((cardEffectType == CardEffectType.DamageTarget || cardEffectType == CardEffectType.DamageSelf || cardEffectType == CardEffectType.DamageAllEnemies) &&
-            (drawBaseDamageFromCurrentBlock == true || drawBaseDamageFromTargetPoisoned == true || drawBaseDamageFromMeleeAttacksPlayed == true))
+            (drawBaseDamageFromCurrentBlock == true || drawBaseDamageFromTargetPoisoned == true || drawBaseDamageFromMeleeAttacksPlayed == true || drawBaseDamageFromOverloadOnSelf == true))
         {
             return true;
         }

@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2410c6608dbef744a9643f0571333299, type: 3}
+  m_Name: Elementalist_1
+  m_EditorClassIdentifier: 
+  myName: Elementalist_1
+  health: 30
+  maxHealth: 30
+  power: 0
+  dexterity: 0
+  stamina: 3
+  draw: 5
+  initiative: 3
+  startingBlock: 0
+  physicalResistance: 0
+  fireResistance: 0
+  frostResistance: 0
+  shadowResistance: 0
+  poisonResistance: 0
+  airResistance: 0
+  serializedPassiveManager:
+    bonusPowerStacks: 0
+    bonusDexterityStacks: 0
+    bonusStaminaStacks: 0
+    bonusInitiativeStacks: 0
+    bonusDrawStacks: 0
+    temporaryBonusPowerStacks: 0
+    temporaryBonusDexterityStacks: 0
+    temporaryBonusStaminaStacks: 0
+    temporaryBonusInitiativeStacks: 0
+    temporaryBonusDrawStacks: 0
+    runeStacks: 0
+    barrierStacks: 0
+    enrageStacks: 0
+    shieldWallStacks: 0
+    fanOfKnivesStacks: 0
+    divineFavourStacks: 0
+    phoenixFormStacks: 0
+    poisonousStacks: 0
+    venomousStacks: 0
+    overloadStacks: 0
+    fusionStacks: 0
+    meleeAttackReductionStacks: 0
+    consecrationStacks: 0
+    encouragingAuraStacks: 0
+    shadowAuraStacks: 0
+    wrathStacks: 0
+    weakenedStacks: 0
+    vulnerableStacks: 0
+    gritStacks: 0
+    poisonedStacks: 0
+    burningStacks: 0
+    fireBallBonusDamageStacks: 0
+  deck:
+  - {fileID: 11400000, guid: 114d0de462d6fe24996e5c9119dcd62f, type: 2}
+  - {fileID: 11400000, guid: 114d0de462d6fe24996e5c9119dcd62f, type: 2}
+  - {fileID: 11400000, guid: ce34207cf8b731844ae587386ce47fc9, type: 2}
+  - {fileID: 11400000, guid: ce34207cf8b731844ae587386ce47fc9, type: 2}
+  - {fileID: 11400000, guid: 951ec72a027a5a14b9f19c1e1aea6ba1, type: 2}
+  - {fileID: 11400000, guid: 951ec72a027a5a14b9f19c1e1aea6ba1, type: 2}
+  - {fileID: 11400000, guid: fb05e945d4002694aafbe7ddd90ad6ec, type: 2}
+  - {fileID: 11400000, guid: fb05e945d4002694aafbe7ddd90ad6ec, type: 2}
+  - {fileID: 11400000, guid: 386cabf0808997f40956801b2f8662d8, type: 2}
+  - {fileID: 11400000, guid: 625a726a38536fe408db2acde5d23915, type: 2}
+  modelParts:
+  - Orc_Head_1
+  - Orc_Face_1
+  - Orc_Chest
+  - Orc_Right_Arm
+  - Orc_Right_Hand
+  - Orc_Left_Arm
+  - Orc_Left_Hand
+  - Orc_Right_Leg
+  - Orc_Left_Leg
+  - Blue_Mage_Chest_Wear
+  - Blue_Mage_Right_Leg_Wear
+  - Blue_Mage_Head_Wear
+  itemManager:
+    mainHandItem: {fileID: 11400000, guid: bfbdb5e21e389ab4c9aae5b49350a1d0, type: 2}
+    offHandItem: {fileID: 0}

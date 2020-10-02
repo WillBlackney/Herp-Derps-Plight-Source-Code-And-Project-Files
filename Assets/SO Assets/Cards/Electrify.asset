@@ -10,13 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Lightning Barrier
+  m_Name: Electrify
   m_EditorClassIdentifier: 
-  cardName: Lightning Barrier
-  cardDescription: 'Gain 4 Block.
-
-    Gain 1 Overload.'
-  cardSprite: {fileID: 21300000, guid: 60eb5d5085e402348ae8b821e07250d2, type: 3}
+  cardName: Electrify
+  cardDescription: Gain 2 Overload.
+  cardSprite: {fileID: 21300000, guid: 98364f62c3c81c540bb44c1434aaadc5, type: 3}
   cardEnergyCost: 1
   cardType: 1
   targettingType: 0
@@ -28,46 +26,6 @@ MonoBehaviour:
   unplayable: 0
   blessing: 0
   cardEffects:
-  - weaponRequirement: 0
-    cardEffectType: 10
-    discoveryLocation: 0
-    talentSchoolFilter: 0
-    rarityFilter: 0
-    blessing: 0
-    onDiscoveryChoiceMadeEffects: []
-    onChooseCardInHandChoiceMadeEffects: []
-    drawStacksFromOverload: 0
-    drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 4
-    baseDamageValue: 0
-    drawBaseDamageFromCurrentBlock: 0
-    drawBaseDamageFromTargetPoisoned: 0
-    drawBaseDamageFromMeleeAttacksPlayed: 0
-    drawBaseDamageFromOverloadOnSelf: 0
-    baseDamageMultiplier: 0
-    damageType: 0
-    healthLost: 0
-    energyGained: 0
-    cardsDrawn: 0
-    extraDrawEffect: 0
-    cardEnergyReduction: 0
-    passivePairing:
-      passiveData: {fileID: 0}
-      passiveStacks: 0
-    cardAdded: {fileID: 0}
-    copiesAdded: 0
-    blessingsGained: 0
-    visualEventsOnStart:
-    - eventType: 2
-      particleEffect: 0
-      cameraShake: 0
-      movementAnimation: 0
-      soundEffect: 0
-      characterAnimation: 4
-      delayDuration: 0
-      projectileFired: 0
-      onCharacter: 0
-    visualEventsOnFinish: []
   - weaponRequirement: 0
     cardEffectType: 2
     discoveryLocation: 0
@@ -83,7 +41,6 @@ MonoBehaviour:
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
-    drawBaseDamageFromOverloadOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 0
     healthLost: 0
@@ -93,10 +50,19 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: {fileID: 11400000, guid: dcdd2890a1d32f04b83aff87ff075399, type: 2}
-      passiveStacks: 1
+      passiveStacks: 2
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
-    visualEventsOnStart: []
+    visualEventsOnStart:
+    - eventType: 2
+      particleEffect: 0
+      cameraShake: 0
+      movementAnimation: 0
+      soundEffect: 0
+      characterAnimation: 4
+      delayDuration: 0
+      projectileFired: 0
+      onCharacter: 0
     visualEventsOnFinish: []
   cardEventListeners: []

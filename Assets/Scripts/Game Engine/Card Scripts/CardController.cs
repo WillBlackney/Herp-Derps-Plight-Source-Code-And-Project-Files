@@ -963,10 +963,19 @@ public class CardController : Singleton<CardController>
     }
     private void TriggerEffectFromCard(Card card, CardEffect cardEffect, CharacterEntityModel target)
     {
-        // Stop and return if target of effect is dying        
-        if(target != null && target.livingState == LivingState.Dead)
+        // Stop and return if effect requires a target and that target is dying/dead/no longer valid      
+        if(
+            (target == null || target.livingState == LivingState.Dead) &&
+            (
+            cardEffect.cardEffectType == CardEffectType.DamageTarget ||
+            cardEffect.cardEffectType == CardEffectType.ApplyPassiveToTarget ||
+            cardEffect.cardEffectType == CardEffectType.GainBlockTarget ||
+            cardEffect.cardEffectType == CardEffectType.RemoveAllPoisonedFromTarget ||
+            cardEffect.cardEffectType == CardEffectType.TauntTarget 
+            )
+            )
         {
-            Debug.Log("CardController.TriggerEffectFromCardCoroutine() cancelling: target is dying");
+            Debug.Log("CardController.TriggerEffectFromCardCoroutine() cancelling: target is no longer valid");
             return;
         }        
 
@@ -1023,6 +1032,12 @@ public class CardController : Singleton<CardController>
             {
                 baseDamage = owner.meleeAttacksPlayedThisActivation * cardEffect.baseDamageMultiplier;
             }
+            else if (cardEffect.drawBaseDamageFromOverloadOnSelf)
+            {
+                baseDamage = owner.pManager.overloadStacks * cardEffect.baseDamageMultiplier;
+            }
+
+            
             else
             {
                 baseDamage = cardEffect.baseDamageValue;
@@ -1058,6 +1073,10 @@ public class CardController : Singleton<CardController>
                 {
                     baseDamage = owner.meleeAttacksPlayedThisActivation * cardEffect.baseDamageMultiplier;
                 }
+                else if (cardEffect.drawBaseDamageFromOverloadOnSelf)
+                {
+                    baseDamage = owner.pManager.overloadStacks * cardEffect.baseDamageMultiplier;
+                }
                 else
                 {
                     baseDamage = cardEffect.baseDamageValue;
@@ -1090,6 +1109,10 @@ public class CardController : Singleton<CardController>
             else if (cardEffect.drawBaseDamageFromMeleeAttacksPlayed)
             {
                 baseDamage = owner.meleeAttacksPlayedThisActivation * cardEffect.baseDamageMultiplier;
+            }
+            else if (cardEffect.drawBaseDamageFromOverloadOnSelf)
+            {
+                baseDamage = owner.pManager.overloadStacks * cardEffect.baseDamageMultiplier;
             }
             else
             {
