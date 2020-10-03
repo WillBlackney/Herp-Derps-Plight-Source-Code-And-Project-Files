@@ -819,9 +819,9 @@ public class CardController : Singleton<CardController>
         {
             card.owner.meleeAttacksPlayedThisActivation++;
 
-            if (owner.pManager.meleeAttackReductionStacks > 0)
+            if (owner.pManager.plantedFeetStacks > 0)
             {
-                PassiveController.Instance.ModifyMeleeAttackReduction(owner.pManager, -owner.pManager.meleeAttackReductionStacks, false);
+                PassiveController.Instance.ModifyPlantedFeet(owner.pManager, -owner.pManager.plantedFeetStacks, false);
             }
             
         }
@@ -884,21 +884,6 @@ public class CardController : Singleton<CardController>
             if (owner.hand.Contains(card))
             {
                 RemoveCardFromHand(owner, card);
-            }
-
-            if (cardVM)
-            {
-                PlayACardFromHandVisualEvent(cardVM, owner.characterEntityView);
-            }
-        }
-        else if (card.cardType == CardType.Power && GlobalSettings.Instance.onPowerCardPlayedSetting == OnPowerCardPlayedSettings.MoveToDiscardPile)
-        {
-            // Do normal 'play from hand' stuff
-            CardViewModel cardVM = card.cardVM;
-            if (owner.hand.Contains(card))
-            {
-                RemoveCardFromHand(owner, card);
-                AddCardToDiscardPile(owner, card);
             }
 
             if (cardVM)
@@ -1528,7 +1513,7 @@ public class CardController : Singleton<CardController>
                     VisualEventManager.Instance.CreateVisualEvent(() => SetCardViewModelEnergyText(card, cvm, newCostTextValue.ToString()));
 
                     // only play breath if cost of card is reduced, not increased
-                    if (model.pManager.meleeAttackReductionStacks > 0)
+                    if (model.pManager.plantedFeetStacks > 0)
                     {
                         VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(cvm));
                     }
@@ -1553,9 +1538,9 @@ public class CardController : Singleton<CardController>
         
         if(card.owner.pManager != null && 
             card.cardType == CardType.MeleeAttack &&
-            card.owner.pManager.meleeAttackReductionStacks > 0)
+            card.owner.pManager.plantedFeetStacks > 0)
         {
-            costReturned -= card.owner.pManager.meleeAttackReductionStacks;
+            costReturned -= card.owner.pManager.plantedFeetStacks;
         }
 
         // Prevent cost going negative

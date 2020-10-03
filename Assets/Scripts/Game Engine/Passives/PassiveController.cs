@@ -7,7 +7,14 @@ public class PassiveController : Singleton<PassiveController>
     // Properties + Component References
     #region
     [Header("Passive Library Properties")]
-    public PassiveIconDataSO[] allIcons;
+    [SerializeField] private PassiveIconDataSO[] allIcons;
+
+    // Getters
+    public PassiveIconDataSO[] AllIcons
+    {
+        get { return allIcons; }
+        private set { allIcons = value; }
+    }
     #endregion
 
     // Library Logic
@@ -16,7 +23,7 @@ public class PassiveController : Singleton<PassiveController>
     {
         PassiveIconDataSO iconReturned = null;
 
-        foreach (PassiveIconDataSO icon in allIcons)
+        foreach (PassiveIconDataSO icon in AllIcons)
         {
             if (icon.passiveName == name)
             {
@@ -127,9 +134,9 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyFusion(newClone, originalData.fusionStacks, false);
         }
-        if (originalData.meleeAttackReductionStacks != 0)
+        if (originalData.plantedFeetStacks != 0)
         {
-            ModifyMeleeAttackReduction(newClone, originalData.meleeAttackReductionStacks, false);
+            ModifyPlantedFeet(newClone, originalData.plantedFeetStacks, false);
         }
         if (originalData.consecrationStacks != 0)
         {
@@ -225,7 +232,7 @@ public class PassiveController : Singleton<PassiveController>
         pManager.venomousStacks = original.venomousStacks;
         pManager.overloadStacks = original.overloadStacks;
         pManager.fusionStacks = original.fusionStacks;
-        pManager.meleeAttackReductionStacks = original.meleeAttackReductionStacks;
+        pManager.plantedFeetStacks = original.plantedFeetStacks;
         pManager.consecrationStacks = original.consecrationStacks;
 
         pManager.runeStacks = original.runeStacks;
@@ -437,6 +444,18 @@ public class PassiveController : Singleton<PassiveController>
 
         return boolReturned;
     }
+    private bool ShouldRuneBlockThisPassiveApplication(PassiveManagerModel pManager, PassiveIconDataSO iconData, int stacks)
+    {
+        if (pManager.runeStacks > 0 &&
+            ((iconData.runeBlocksIncrease && stacks > 0) || (iconData.runeBlocksDecrease && stacks < 0)))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     #endregion
 
     // Apply Passive To Character Entities
@@ -531,9 +550,9 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyFusion(pManager, stacks, showVFX, vfxDelay);
         }
-        else if (originalData == "Melee Attack Reduction")
+        else if (originalData == "Planted Feet")
         {
-            ModifyMeleeAttackReduction(pManager, stacks, showVFX, vfxDelay);
+            ModifyPlantedFeet(pManager, stacks, showVFX, vfxDelay);
         }
         else if (originalData == "Consecration")
         {
@@ -620,6 +639,14 @@ public class PassiveController : Singleton<PassiveController>
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Power");
         CharacterEntityModel character = pManager.myCharacter;
 
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
         // Increment stacks
         pManager.bonusPowerStacks += stacks;
 
@@ -679,7 +706,14 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Dexterity");
         CharacterEntityModel character = pManager.myCharacter;
-        //CharacterData data = pManager.myCharacterData;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
 
         // Increment stacks
         pManager.bonusDexterityStacks += stacks;
@@ -729,7 +763,14 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Initiative");
         CharacterEntityModel character = pManager.myCharacter;
-        //CharacterData data = pManager.myCharacterData;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
 
         // Increment stacks
         pManager.bonusInitiativeStacks += stacks;
@@ -779,7 +820,14 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Stamina");
         CharacterEntityModel character = pManager.myCharacter;
-        //CharacterData data = pManager.myCharacterData;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
 
         // Increment stacks
         pManager.bonusStaminaStacks += stacks;
@@ -829,7 +877,14 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Draw");
         CharacterEntityModel character = pManager.myCharacter;
-        //CharacterData data = pManager.myCharacterData;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
 
         // Increment stacks
         pManager.bonusDrawStacks += stacks;
@@ -883,7 +938,14 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Temporary Power");
         CharacterEntityModel character = pManager.myCharacter;
-        //CharacterData data = pManager.myCharacterData;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
 
         // Increment stacks
         pManager.temporaryBonusPowerStacks += stacks;
@@ -943,7 +1005,14 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Temporary Dexterity");
         CharacterEntityModel character = pManager.myCharacter;
-        //CharacterData data = pManager.myCharacterData;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
 
         // Increment stacks
         pManager.temporaryBonusDexterityStacks += stacks;
@@ -992,7 +1061,14 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Temporary Initiative");
         CharacterEntityModel character = pManager.myCharacter;
-        //CharacterData data = pManager.myCharacterData;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
 
         // Increment stacks
         pManager.temporaryBonusInitiativeStacks += stacks;
@@ -1042,7 +1118,14 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Temporary Stamina");
         CharacterEntityModel character = pManager.myCharacter;
-        //CharacterData data = pManager.myCharacterData;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
 
         // Increment stacks
         pManager.temporaryBonusStaminaStacks += stacks;
@@ -1092,6 +1175,14 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Temporary Draw");
         CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
 
         // Increment stacks
         pManager.temporaryBonusDrawStacks += stacks;
@@ -1146,6 +1237,14 @@ public class PassiveController : Singleton<PassiveController>
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Enrage");
         CharacterEntityModel character = pManager.myCharacter;
 
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
         // Increment stacks
         pManager.enrageStacks += stacks;
 
@@ -1196,6 +1295,14 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Shield Wall");
         CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
 
         // Increment stacks
         pManager.shieldWallStacks += stacks;
@@ -1248,6 +1355,14 @@ public class PassiveController : Singleton<PassiveController>
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Fan Of Knives");
         CharacterEntityModel character = pManager.myCharacter;
 
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
         // Increment stacks
         pManager.fanOfKnivesStacks += stacks;
 
@@ -1298,6 +1413,14 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Divine Favour");
         CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
 
         // Increment stacks
         pManager.divineFavourStacks += stacks;
@@ -1350,6 +1473,14 @@ public class PassiveController : Singleton<PassiveController>
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Phoenix Form");
         CharacterEntityModel character = pManager.myCharacter;
 
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
         // Increment stacks
         pManager.phoenixFormStacks += stacks;
 
@@ -1400,6 +1531,14 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Poisonous");
         CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
 
         // Increment stacks
         pManager.poisonousStacks += stacks;
@@ -1452,6 +1591,14 @@ public class PassiveController : Singleton<PassiveController>
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Consecration");
         CharacterEntityModel character = pManager.myCharacter;
 
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
         // Increment stacks
         pManager.consecrationStacks += stacks;
 
@@ -1503,6 +1650,14 @@ public class PassiveController : Singleton<PassiveController>
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Venomous");
         CharacterEntityModel character = pManager.myCharacter;
 
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
         // Increment stacks
         pManager.venomousStacks += stacks;
 
@@ -1553,6 +1708,14 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Overload");
         CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
 
         // Increment stacks
         pManager.overloadStacks += stacks;
@@ -1619,6 +1782,14 @@ public class PassiveController : Singleton<PassiveController>
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Fusion");
         CharacterEntityModel character = pManager.myCharacter;
 
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
         // Increment stacks
         pManager.fusionStacks += stacks;
 
@@ -1662,16 +1833,24 @@ public class PassiveController : Singleton<PassiveController>
 
 
     }
-    public void ModifyMeleeAttackReduction(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    public void ModifyPlantedFeet(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
     {
-        Debug.Log("PassiveController.ModifyMeleeAttackReduction() called...");
+        Debug.Log("PassiveController.ModifyPlantedFeet() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Melee Attack Reduction");
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Planted Feet");
         CharacterEntityModel character = pManager.myCharacter;
 
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
         // Increment stacks
-        pManager.meleeAttackReductionStacks += stacks;
+        pManager.plantedFeetStacks += stacks;
 
         if (character != null)
         {
@@ -1690,7 +1869,7 @@ public class PassiveController : Singleton<PassiveController>
                 // VFX visual events
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Melee Attack Reduction!" + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Planted Feet!" + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
                 });
 
@@ -1700,7 +1879,7 @@ public class PassiveController : Singleton<PassiveController>
             {
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Melee Attack Reduction Removed");
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Planted Feet Removed");
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
                 });
             }
@@ -1730,7 +1909,7 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Rune");
         CharacterEntityModel character = pManager.myCharacter;
-
+        
         // Increment stacks
         pManager.runeStacks += stacks;
 
@@ -1779,6 +1958,14 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Barrier");
         CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
 
         // Increment stacks
         pManager.barrierStacks += stacks;
@@ -1833,6 +2020,14 @@ public class PassiveController : Singleton<PassiveController>
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Encouraging Aura");
         CharacterEntityModel character = pManager.myCharacter;
 
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
         // Increment stacks
         pManager.encouragingAuraStacks += stacks;
 
@@ -1883,6 +2078,14 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Shadow Aura");
         CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
 
         // Increment stacks
         pManager.shadowAuraStacks += stacks;
@@ -1938,6 +2141,14 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Wrath");
         CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
 
         // Increment stacks
         pManager.wrathStacks += stacks;
@@ -1996,6 +2207,14 @@ public class PassiveController : Singleton<PassiveController>
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Weakened");
         CharacterEntityModel character = pManager.myCharacter;
 
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
         // Increment stacks
         pManager.weakenedStacks += stacks;
 
@@ -2052,6 +2271,14 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Vulnerable");
         CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
 
         // Increment stacks
         pManager.vulnerableStacks += stacks;
@@ -2112,6 +2339,14 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Grit");
         CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
 
         // Increment stacks
         pManager.gritStacks += stacks;
@@ -2177,11 +2412,27 @@ public class PassiveController : Singleton<PassiveController>
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Poisoned");
         CharacterEntityModel character = pManager.myCharacter;
 
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
         // Add venomous bonus from applier
         if (applier != null &&
             applier.pManager.venomousStacks > 0)
         {
             stacks += applier.pManager.venomousStacks;
+        }
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
         }
 
         // Increment stacks
@@ -2230,6 +2481,14 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Burning");
         CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
 
         // Increment stacks
         pManager.burningStacks += stacks;
@@ -2281,6 +2540,14 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Taunted");
         CharacterEntityModel character = targetPManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(targetPManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(targetPManager, -1, showVFX, vfxDelay);
+            return;
+        }
 
         // Increment stacks and cache taunter
         targetPManager.tauntStacks += stacks;
@@ -2336,6 +2603,14 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconDataSO iconData = GetPassiveIconDataByName("Fire Ball Bonus Damage");
         CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
 
         // Increment stacks
         pManager.fireBallBonusDamageStacks += stacks;

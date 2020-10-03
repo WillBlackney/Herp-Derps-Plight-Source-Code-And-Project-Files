@@ -17,6 +17,31 @@ public class AnimationEventData
     [LabelWidth(250)]
     public AnimationEventType eventType;
 
+    [VerticalGroup("General Properties")]
+    [LabelWidth(250)]
+    [ShowIf("ShowScreenOverlay")]
+    public ScreenOverlayType screenOverlayType;
+
+    [VerticalGroup("General Properties")]
+    [LabelWidth(250)]
+    [ShowIf("ShowScreenOverlay")]
+    public ScreenOverlayColor overlayColor;
+
+    [VerticalGroup("General Properties")]
+    [LabelWidth(250)]
+    [ShowIf("ShowScreenOverlay")]
+    public float overlayFadeInTime;
+
+    [VerticalGroup("General Properties")]
+    [LabelWidth(250)]
+    [ShowIf("ShowScreenOverlay")]
+    public float overlayDuration;
+
+    [VerticalGroup("General Properties")]
+    [LabelWidth(250)]
+    [ShowIf("ShowScreenOverlay")]
+    public float overlayFadeOutTime;
+
 
     [VerticalGroup("General Properties")]
     [LabelWidth(250)]
@@ -60,6 +85,11 @@ public class AnimationEventData
 
     [VerticalGroup("General Properties")]
     [LabelWidth(250)]
+    [ShowIf("ShowProjectileStartPosition")]
+    public ProjectileStartPosition projectileStartPosition;
+
+    [VerticalGroup("General Properties")]
+    [LabelWidth(250)]
     [ShowIf("ShowOnCharacter")]
     public CreateOnCharacter onCharacter;
 
@@ -93,11 +123,26 @@ public class AnimationEventData
     {
         return characterAnimation == CharacterAnimation.ShootProjectile;
     }
+    public bool ShowProjectileStartPosition()
+    {
+        if(characterAnimation == CharacterAnimation.ShootProjectile &&
+            projectileFired != ProjectileFired.Arrow)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     public bool ShowOnCharacter()
     {
         return eventType == AnimationEventType.ParticleEffect;
     }
-
+    public bool ShowScreenOverlay()
+    {
+        return eventType == AnimationEventType.ScreenOverlay;
+    }
 
 }
 

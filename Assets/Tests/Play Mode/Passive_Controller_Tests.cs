@@ -51,7 +51,7 @@ namespace Tests
         private const string VENOMOUS_NAME = "Venomous";
         private const string OVERLOAD_NAME = "Overload";
         private const string FUSION_NAME = "Fusion";
-        private const string MELEE_ATTACK_REDUCTION_NAME = "Melee Attack Reduction";
+        private const string PLANTED_FEET_NAME = "Planted Feet";
 
         // Special Defensive Passives
         private const string RUNE_NAME = "Rune";
@@ -79,7 +79,8 @@ namespace Tests
             // Load Scene, wait until completed
             AsyncOperation loading = SceneManager.LoadSceneAsync(SCENE_NAME);
             yield return new WaitUntil(() => loading.isDone);
-            GameObject.FindObjectOfType<CombatTestSceneController>().runMockScene = false;
+            //GameObject.FindObjectOfType<CombatTestSceneController>().runMockScene = false;
+            GameObject.FindObjectOfType<GlobalSettings>().gameMode = StartingSceneSetting.IntegrationTesting;
 
             // Create mock character data
             characterData = new CharacterData
@@ -158,10 +159,9 @@ namespace Tests
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, VENOMOUS_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, OVERLOAD_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, FUSION_NAME, stacks);
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, MELEE_ATTACK_REDUCTION_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, PLANTED_FEET_NAME, stacks);
 
             // Special Defensive Passives
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, RUNE_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, BARRIER_NAME, stacks);
 
             // Aura Passives
@@ -201,9 +201,8 @@ namespace Tests
                 model.pManager.venomousStacks == 1 &&
                 model.pManager.overloadStacks == 1 &&
                 model.pManager.fusionStacks == 1 &&
-                model.pManager.meleeAttackReductionStacks == 1 &&
+                model.pManager.plantedFeetStacks == 1 &&
 
-                model.pManager.runeStacks == 1 &&
                 model.pManager.barrierStacks == 1 &&
 
                 model.pManager.encouragingAuraStacks == 1 &&
@@ -731,7 +730,7 @@ namespace Tests
             CharacterEntityModel playerModel;
             CharacterEntityModel enemyModel;
 
-            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(MELEE_ATTACK_REDUCTION_NAME).passiveName;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(PLANTED_FEET_NAME).passiveName;
             int stacks = 1;
             int expected = 0;
 
@@ -765,7 +764,7 @@ namespace Tests
             CharacterEntityModel playerModel;
             CharacterEntityModel enemyModel;
 
-            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(MELEE_ATTACK_REDUCTION_NAME).passiveName;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(PLANTED_FEET_NAME).passiveName;
             int stacks = 1;
             bool didReduce = false;
             bool didIncrease = false;
@@ -1271,6 +1270,76 @@ namespace Tests
 
             // Assert
             Assert.AreEqual(expectedTotal, model.pManager.barrierStacks);
+        }
+        [Test]
+        public void Rune_Blocks_Passive_On_Increase_If_Marked_To_Do_So()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string runeName = PassiveController.Instance.GetPassiveIconDataByName(RUNE_NAME).passiveName;
+            string poisonedName = PassiveController.Instance.GetPassiveIconDataByName(POISONED_NAME).passiveName;
+            int runeStacks = 1;
+            int poisonedStacks = 2;
+            int expectedTotal = 0;
+
+            // Act
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+
+            // apply rune
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, runeName, runeStacks);
+
+            // apply poisoned
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, poisonedName, poisonedStacks);
+
+            // Assert
+            Assert.AreEqual(expectedTotal, model.pManager.poisonedStacks);
+        }
+        [Test]
+        public void Rune_Blocks_Passive_On_Decrease_If_Marked_To_Do_So()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string runeName = PassiveController.Instance.GetPassiveIconDataByName(RUNE_NAME).passiveName;
+            string powerName = PassiveController.Instance.GetPassiveIconDataByName(POISONED_NAME).passiveName;
+            int runeStacks = 1;
+            int powerStacks = -2;
+            int expectedTotal = 0;
+
+            // Act
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+
+            // apply rune
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, runeName, runeStacks);
+
+            // apply power decrease debuff
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, powerName, powerStacks);
+
+            // Assert
+            Assert.AreEqual(expectedTotal, model.pManager.bonusPowerStacks);
+        }
+        [Test]
+        public void Rune_Is_Removed_After_Blocking_Harmful_Passive()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string runeName = PassiveController.Instance.GetPassiveIconDataByName(RUNE_NAME).passiveName;
+            string poisonedName = PassiveController.Instance.GetPassiveIconDataByName(POISONED_NAME).passiveName;
+            int runeStacks = 2;
+            int poisonedStacks = 2;
+            int expectedTotal = 0;
+
+            // Act
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+
+            // apply rune
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, runeName, runeStacks);
+
+            // try apply poisoned twice, just to be sure
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, poisonedName, poisonedStacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, poisonedName, poisonedStacks);
+
+            // Assert
+            Assert.AreEqual(expectedTotal, model.pManager.poisonedStacks);
         }
         #endregion
 

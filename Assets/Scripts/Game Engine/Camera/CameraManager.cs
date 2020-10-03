@@ -4,6 +4,8 @@ using UnityEngine;
 using EZCameraShake;
 public class CameraManager : Singleton<CameraManager>
 {
+    // Properties + Component References
+    #region
     [Header("Component References")]
     [SerializeField] private Camera mainCamera;
 
@@ -17,6 +19,14 @@ public class CameraManager : Singleton<CameraManager>
     public float mRoughness;
     public float mDuration;
 
+    [Header("Large Shake Properties")]
+    public float lMagnitude;
+    public float lRoughness;
+    public float lDuration;
+    #endregion
+
+    // Misc Functions
+    #region
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -27,7 +37,12 @@ public class CameraManager : Singleton<CameraManager>
         {
             CreateMediumCameraShake();
         }
-    }   
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            CreateLargeCameraShake();
+        }
+    }
+    #endregion
 
     // Property Accessors
     #region
@@ -50,16 +65,22 @@ public class CameraManager : Singleton<CameraManager>
         {
             CreateMediumCameraShake();
         }
+        else if (shakeType == CameraShakeType.Large)
+        {
+            CreateLargeCameraShake();
+        }
     }
-    public void CreateSmallCameraShake()
+    private void CreateSmallCameraShake()
     {
-        Debug.Log("Shaking camera...");
         CameraShaker.Instance.ShakeOnce(sMagnitude, sRoughness, 0.1f, sDuration);
     }
-    public void CreateMediumCameraShake()
+    private void CreateMediumCameraShake()
     {
-        Debug.Log("Shaking camera...");
         CameraShaker.Instance.ShakeOnce(mMagnitude, mRoughness, 0.1f, mDuration);
+    }
+    private void CreateLargeCameraShake()
+    {
+        CameraShaker.Instance.ShakeOnce(lMagnitude, lRoughness, 0.1f, lDuration);
     }
     #endregion
 }

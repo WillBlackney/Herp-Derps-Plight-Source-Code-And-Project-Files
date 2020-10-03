@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Melee Attack Reduction
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: 4057ff219be9f5548af7018d00aa897c, type: 3}
-  passiveName: Melee Attack Reduction
+  passiveSprite: {fileID: 21300000, guid: 5d6fbea75ac268748915fffd80691ac5, type: 3}
+  passiveName: Planted Feet
   showStackCount: 1
   hiddenOnPassivePanel: 0
+  runeBlocksIncrease: 0
+  runeBlocksDecrease: 0

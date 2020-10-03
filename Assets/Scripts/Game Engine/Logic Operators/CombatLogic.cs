@@ -330,8 +330,8 @@ public class CombatLogic : Singleton<CombatLogic>
     {
         ExecuteHandleDamage(damageAmount, attacker, victim, damageType, null, null, ignoreBlock, batchedEvent);
     }
-
-
+    
+    // Main Damage Handler
     private void ExecuteHandleDamage(int damageAmount, CharacterEntityModel attacker, CharacterEntityModel victim, 
         DamageType damageType, Card card = null, EnemyActionEffect enemyEffect = null, bool ignoreBlock = false, VisualEvent batchedEvent = null)
     { 
@@ -455,9 +455,13 @@ public class CombatLogic : Singleton<CombatLogic>
                     CharacterEntityController.Instance.PlayHurtAnimation(victim.characterEntityView), QueuePosition.Back, 0, 0, EventDetail.None, batchedEvent);
                 }
 
-                // Create Lose hp / damage effect
+                // Create damage text effect
                 VisualEventManager.Instance.CreateVisualEvent(() => 
                 VisualEffectManager.Instance.CreateDamageEffect(victim.characterEntityView.transform.position, totalLifeLost), QueuePosition.Back, 0, 0, EventDetail.None, batchedEvent);
+
+                // Create impact effect
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+               VisualEffectManager.Instance.CreateSmallMeleeImpact(victim.characterEntityView.transform.position, totalLifeLost), QueuePosition.Back, 0, 0, EventDetail.None, batchedEvent);
 
                 VisualEventManager.Instance.CreateVisualEvent(() => 
                 AudioManager.Instance.PlaySound(Sound.Ability_Damaged_Health_Lost), QueuePosition.Back, 0, 0, EventDetail.None, batchedEvent);

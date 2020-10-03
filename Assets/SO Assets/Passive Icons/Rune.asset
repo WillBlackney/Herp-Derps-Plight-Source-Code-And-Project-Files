@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
-  m_Name: Encouraging Aura
+  m_Name: Rune
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: eb6b339787f3c8247a6df2ddeab2ee33, type: 3}
-  passiveName: Encouraging Aura
+  passiveSprite: {fileID: 21300000, guid: 2c3febda8c61a7341b4b1e17ca3fe484, type: 3}
+  passiveName: Rune
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0
-  runeBlocksDecrease: 1
+  runeBlocksDecrease: 0

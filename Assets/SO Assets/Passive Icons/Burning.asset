@@ -16,3 +16,5 @@ MonoBehaviour:
   passiveName: Burning
   showStackCount: 1
   hiddenOnPassivePanel: 0
+  runeBlocksIncrease: 1
+  runeBlocksDecrease: 0

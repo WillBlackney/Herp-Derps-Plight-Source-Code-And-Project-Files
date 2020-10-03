@@ -312,13 +312,24 @@ public enum BodyPartType
 #region
 public enum AnimationEventType
 {
-    None,
-    Movement,
-    CharacterAnimation,
-    ParticleEffect,
-    CameraShake,
-    SoundEffect,
-    Delay,
+    None = 0,
+    Movement = 1,
+    CharacterAnimation = 2,
+    ParticleEffect = 3,
+    CameraShake = 4,
+    SoundEffect = 5,
+    ScreenOverlay = 7,
+    Delay = 6,
+}
+public enum ScreenOverlayType
+{
+    None = 0,
+    EdgeOverlay = 1,
+}
+public enum ScreenOverlayColor
+{
+    White = 0,
+    Fire = 1,
 }
 public enum MovementAnimEvent
 {
@@ -374,7 +385,14 @@ public enum ProjectileFired
     FrostBall1 = 6,
     LightningBall1 = 7,
     HolyBall1 = 8,
+    FireMeteor = 9,
 
+}
+public enum ProjectileStartPosition
+{
+    Shooter = 0,
+    SkyCentreOffScreen = 1,
+    AboveTargetOffScreen
 }
 public enum CameraShakeType
 {

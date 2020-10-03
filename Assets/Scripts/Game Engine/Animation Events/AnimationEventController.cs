@@ -32,9 +32,15 @@ public class AnimationEventController : Singleton<AnimationEventController>
         {
             ResolveMovement(vEvent, user, target);
         }
+
         else if (vEvent.eventType == AnimationEventType.SoundEffect)
         {
             VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(vEvent.soundEffect));
+        }
+
+        else if (vEvent.eventType == AnimationEventType.ScreenOverlay)
+        {
+            ResolveScreenOverlay(vEvent);
         }
     }
     #endregion
@@ -85,10 +91,25 @@ public class AnimationEventController : Singleton<AnimationEventController>
             // Play character shoot anim
             VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.TriggerShootProjectileAnimation(user.characterEntityView));
 
+            // Where does the projectile start from?
+            Vector3 projectileStartPos = new Vector3(0,0,0);
+            if(vEvent.projectileStartPosition == ProjectileStartPosition.Shooter)
+            {
+                projectileStartPos = user.characterEntityView.WorldPosition;
+            }
+            else if (vEvent.projectileStartPosition == ProjectileStartPosition.AboveTargetOffScreen)
+            {
+                projectileStartPos = new Vector3(target.characterEntityView.WorldPosition.x, target.characterEntityView.WorldPosition.y + 10, target.characterEntityView.WorldPosition.z);
+            }
+            else if (vEvent.projectileStartPosition == ProjectileStartPosition.SkyCentreOffScreen)
+            {
+                projectileStartPos = new Vector3(0, 8, 0);
+            }
+
             // Create projectile
             CoroutineData cData = new CoroutineData();
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.ShootProjectileAtLocation
-            (vEvent.projectileFired, user.characterEntityView.WorldPosition, target.characterEntityView.WorldPosition, cData), cData);
+            (vEvent.projectileFired, projectileStartPos, target.characterEntityView.WorldPosition, cData), cData);
         }
     }
     private void ResolveParticleEffect(AnimationEventData vEvent, CharacterEntityModel user, CharacterEntityModel target = null)
@@ -151,6 +172,11 @@ public class AnimationEventController : Singleton<AnimationEventController>
             LevelNode node = user.levelNode;
             VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.MoveEntityToNodeCentre(user, node, cData), cData, QueuePosition.Back, 0.3f, 0);
         }
+    }
+    private void ResolveScreenOverlay(AnimationEventData vEvent)
+    {
+        VisualEventManager.Instance.CreateVisualEvent(()=> VisualEffectManager.Instance.DoScreenOverlayEffect
+            (vEvent.screenOverlayType, vEvent.overlayColor, vEvent.overlayDuration, vEvent.overlayFadeInTime, vEvent.overlayFadeOutTime));
     }
 
     #endregion

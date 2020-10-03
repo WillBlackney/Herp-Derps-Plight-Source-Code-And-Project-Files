@@ -27,7 +27,6 @@ namespace CustomOdinGUI
         private DrawSelected<CharacterTemplateSO> drawCharacterTemplates = new DrawSelected<CharacterTemplateSO>();
 
         // Create field for each type of manager object in project to be drawn
-        private DrawTestSceneManager drawTestSceneManager = new DrawTestSceneManager();
         private DrawSpriteLibrary drawSpriteLibrary = new DrawSpriteLibrary();
         private DrawPrefabHolder drawPrefabHolder = new DrawPrefabHolder();
         private DrawColorLibrary drawColorLibrary = new DrawColorLibrary();
@@ -68,7 +67,7 @@ namespace CustomOdinGUI
 
             // Find manager objects
             drawSpriteLibrary.FindMyObject();
-            drawTestSceneManager.FindMyObject();
+            //drawTestSceneManager.FindMyObject();
             drawPrefabHolder.FindMyObject();
             drawColorLibrary.FindMyObject();
             drawVisualEffects.FindMyObject();
@@ -115,7 +114,7 @@ namespace CustomOdinGUI
             //
             switch (managerState)
             {
-                case ManagerState.testTab:
+                case ManagerState.globalSettings:
                     DrawEditor(enumIndex);
                     break;
 
@@ -151,9 +150,7 @@ namespace CustomOdinGUI
                     DrawEditor(enumIndex);
                     break;
 
-                case ManagerState.globalSettings:
-                    DrawEditor(enumIndex);
-                    break;
+                
 
             }
 
@@ -172,7 +169,7 @@ namespace CustomOdinGUI
 
             // Only draw for layouts that need to display scriptable objects
             // Otherwise, just add a null for managers    
-            targets.Add(drawTestSceneManager);
+            targets.Add(drawGlobalSettings);
             targets.Add(drawEnemies);
             targets.Add(drawItems);
             targets.Add(drawCards);
@@ -184,7 +181,7 @@ namespace CustomOdinGUI
             targets.Add(drawColorLibrary);
             targets.Add(drawVisualEffects);
             targets.Add(drawAudioManager);
-            targets.Add(drawGlobalSettings);
+            
 
             targets.Add(base.GetTarget());
 
@@ -245,7 +242,7 @@ namespace CustomOdinGUI
         }
         public enum ManagerState
         {
-            testTab,
+            globalSettings,
             enemies,
             items,
             cards,
@@ -257,12 +254,13 @@ namespace CustomOdinGUI
             colorLibrary,
             visualEffects,
             audioManager,
-            globalSettings,
         };
 
 
     }
 
+    // Draw Manager Classes
+    #region
     public class DrawVisualEffects : DrawSceneObject<VisualEffectManager>
     {
 
@@ -275,6 +273,17 @@ namespace CustomOdinGUI
     {
 
     }
+    public class DrawColorLibrary : DrawSceneObject<ColorLibrary>
+    {
+    }
+    public class DrawSpriteLibrary : DrawSceneObject<SpriteLibrary>
+    {
+
+    }
+    public class DrawPrefabHolder : DrawSceneObject<PrefabHolder>
+    {
+    }
+    #endregion
 }
 
 

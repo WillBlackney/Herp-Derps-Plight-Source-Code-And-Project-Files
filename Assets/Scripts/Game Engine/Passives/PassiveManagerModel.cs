@@ -32,7 +32,7 @@ public class PassiveManagerModel
     public int venomousStacks;
     public int overloadStacks;
     public int fusionStacks;
-    public int meleeAttackReductionStacks;
+    public int plantedFeetStacks;
     public int consecrationStacks;
 
     // Aura passives

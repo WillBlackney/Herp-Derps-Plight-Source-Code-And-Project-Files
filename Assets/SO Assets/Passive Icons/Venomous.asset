@@ -16,3 +16,5 @@ MonoBehaviour:
   passiveName: Venomous
   showStackCount: 1
   hiddenOnPassivePanel: 0
+  runeBlocksIncrease: 0
+  runeBlocksDecrease: 1

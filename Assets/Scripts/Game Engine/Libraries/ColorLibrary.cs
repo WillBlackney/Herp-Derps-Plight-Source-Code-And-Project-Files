@@ -60,6 +60,16 @@ public class ColorLibrary : Singleton<ColorLibrary>
     public Color legendaryColor;
     #endregion
 
+    // Rarity Colors
+    #region
+    [ColorFoldoutGroup("Screen Overlay Colors")]
+    public Color whiteOverlayColour;
+
+    [ColorFoldoutGroup("Screen Overlay Colors")]
+    public Color fireOverlayColour;
+
+    #endregion
+
     // Logic
     #region
     public Color GetTalentColor(TalentSchool talent)
@@ -133,6 +143,21 @@ public class ColorLibrary : Singleton<ColorLibrary>
         }
 
 
+
+        return colorReturned;
+    }
+    public Color GetOverlayColor(ScreenOverlayColor overlay)
+    {
+        Color colorReturned = whiteOverlayColour;
+
+        if (overlay == ScreenOverlayColor.Fire)
+        {
+            colorReturned = fireOverlayColour;
+        }
+        else if (overlay == ScreenOverlayColor.White)
+        {
+            colorReturned = whiteOverlayColour;
+        }
 
         return colorReturned;
     }

@@ -36,15 +36,21 @@ MonoBehaviour:
     temporaryBonusStaminaStacks: 0
     temporaryBonusInitiativeStacks: 0
     temporaryBonusDrawStacks: 0
+    runeStacks: 0
+    barrierStacks: 0
     enrageStacks: 0
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
+    divineFavourStacks: 0
     phoenixFormStacks: 0
     poisonousStacks: 0
     venomousStacks: 0
     overloadStacks: 0
     fusionStacks: 0
-    meleeAttackReductionStacks: 0
+    plantedFeetStacks: 0
+    consecrationStacks: 0
+    encouragingAuraStacks: 0
+    shadowAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -64,6 +70,11 @@ MonoBehaviour:
     actionEffects:
     - visualEventsOnStart:
       - eventType: 2
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
         particleEffect: 0
         cameraShake: 0
         movementAnimation: 0
@@ -71,8 +82,14 @@ MonoBehaviour:
         characterAnimation: 4
         delayDuration: 0
         projectileFired: 0
+        projectileStartPosition: 0
         onCharacter: 0
       - eventType: 3
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
         particleEffect: 14
         cameraShake: 0
         movementAnimation: 0
@@ -80,6 +97,7 @@ MonoBehaviour:
         characterAnimation: 0
         delayDuration: 0
         projectileFired: 0
+        projectileStartPosition: 0
         onCharacter: 1
       visualEventsOnFinish: []
       actionType: 11
@@ -109,7 +127,27 @@ MonoBehaviour:
       statusStacksRequired: 0
     actionEffects:
     - visualEventsOnStart:
+      - eventType: 7
+        screenOverlayType: 1
+        overlayColor: 1
+        overlayFadeInTime: 0.75
+        overlayDuration: 1
+        overlayFadeOutTime: 0.75
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
       - eventType: 2
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
         particleEffect: 0
         cameraShake: 0
         movementAnimation: 0
@@ -117,8 +155,14 @@ MonoBehaviour:
         characterAnimation: 3
         delayDuration: 0
         projectileFired: 1
+        projectileStartPosition: 0
         onCharacter: 0
       - eventType: 3
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
         particleEffect: 8
         cameraShake: 0
         movementAnimation: 0
@@ -126,6 +170,7 @@ MonoBehaviour:
         characterAnimation: 0
         delayDuration: 0
         projectileFired: 0
+        projectileStartPosition: 0
         onCharacter: 2
       visualEventsOnFinish: []
       actionType: 0

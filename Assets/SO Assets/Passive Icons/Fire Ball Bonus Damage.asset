@@ -15,4 +15,6 @@ MonoBehaviour:
   passiveSprite: {fileID: 21300000, guid: 2476965c2d002fd4cb2c673a276b14f6, type: 3}
   passiveName: Fire Ball Bonus Damage
   showStackCount: 1
-  hiddenOnPassivePanel: 1
+  hiddenOnPassivePanel: 0
+  runeBlocksIncrease: 0
+  runeBlocksDecrease: 1

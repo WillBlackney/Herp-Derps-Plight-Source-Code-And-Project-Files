@@ -16,7 +16,7 @@ MonoBehaviour:
   maxHealth: 30
   power: 0
   dexterity: 0
-  initiative: 1
+  initiative: 111
   startingHealth: 30
   startingBlock: 0
   physicalResistance: 0
@@ -36,7 +36,7 @@ MonoBehaviour:
     temporaryBonusStaminaStacks: 0
     temporaryBonusInitiativeStacks: 0
     temporaryBonusDrawStacks: 0
-    runeStacks: 0
+    runeStacks: 2
     barrierStacks: 0
     enrageStacks: 0
     shieldWallStacks: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
     venomousStacks: 0
     overloadStacks: 0
     fusionStacks: 0
-    meleeAttackReductionStacks: 0
+    plantedFeetStacks: 0
     consecrationStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
@@ -59,77 +59,68 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   allEnemyActions:
-  - actionName: Howl
+  - actionName: Meteor
     actionType: 0
     intentImage: 0
     actionLoops: 1
-    doThisOnFirstActivation: 1
-    canBeConsecutive: 1
+    doThisOnFirstActivation: 0
+    canBeConsecutive: 0
     prioritiseWhenRequirementsMet: 0
     actionRequirements: []
     actionEffects:
     - visualEventsOnStart:
-      - eventType: 1
+      - eventType: 7
+        screenOverlayType: 1
+        overlayColor: 1
+        overlayFadeInTime: 1
+        overlayDuration: 1
+        overlayFadeOutTime: 1
         particleEffect: 0
         cameraShake: 0
-        movementAnimation: 2
+        movementAnimation: 0
         soundEffect: 0
         characterAnimation: 0
         delayDuration: 0
         projectileFired: 0
+        projectileStartPosition: 0
         onCharacter: 0
       - eventType: 2
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
         particleEffect: 0
         cameraShake: 0
         movementAnimation: 0
         soundEffect: 0
-        characterAnimation: 5
+        characterAnimation: 3
         delayDuration: 0
-        projectileFired: 0
+        projectileFired: 9
+        projectileStartPosition: 1
         onCharacter: 0
-      - eventType: 3
-        particleEffect: 3
-        cameraShake: 0
-        movementAnimation: 0
-        soundEffect: 0
-        characterAnimation: 0
-        delayDuration: 0
-        projectileFired: 0
-        onCharacter: 1
       - eventType: 4
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
         particleEffect: 0
-        cameraShake: 1
+        cameraShake: 3
         movementAnimation: 0
         soundEffect: 0
         characterAnimation: 0
         delayDuration: 0
         projectileFired: 0
+        projectileStartPosition: 0
         onCharacter: 0
-      - eventType: 5
-        particleEffect: 0
-        cameraShake: 0
-        movementAnimation: 0
-        soundEffect: 16
-        characterAnimation: 0
-        delayDuration: 0
-        projectileFired: 0
-        onCharacter: 0
-      - eventType: 3
-        particleEffect: 2
-        cameraShake: 0
-        movementAnimation: 0
-        soundEffect: 0
-        characterAnimation: 0
-        delayDuration: 0
-        projectileFired: 0
-        onCharacter: 5
       visualEventsOnFinish: []
-      actionType: 1
+      actionType: 0
       baseDamage: 5
-      damageType: 1
-      passiveApplied: {fileID: 11400000, guid: 6d216e783d4ba3a49a8dd267aa727fd3, type: 2}
-      passiveStacks: 2
-      blockGained: 5
+      damageType: 4
+      passiveApplied: {fileID: 0}
+      passiveStacks: 0
+      blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0
@@ -148,6 +139,7 @@ MonoBehaviour:
   - Shadow_Blade_Right_Arm_Wear
   - Shadow_Blade_Left_Arm_Wear
   - Shadow_Blade_Chest_Wear
+  - Human_Chest
   - Human_Chest
   - Human_Chest
   - Human_Chest

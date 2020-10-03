@@ -16,3 +16,5 @@ MonoBehaviour:
   passiveName: Taunted
   showStackCount: 0
   hiddenOnPassivePanel: 0
+  runeBlocksIncrease: 0
+  runeBlocksDecrease: 1

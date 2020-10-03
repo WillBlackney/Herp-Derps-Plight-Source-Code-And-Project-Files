@@ -19,4 +19,11 @@ public class PassiveIconDataSO : ScriptableObject
     [VerticalGroup("Core Data/Properties")]
     [LabelWidth(200)]
     public bool hiddenOnPassivePanel;
+    [Header("Rune Interactions")]
+    [VerticalGroup("Rune Interactions")]
+    [LabelWidth(200)]
+    public bool runeBlocksIncrease;
+    [VerticalGroup("Rune Interactions")]
+    [LabelWidth(200)]
+    public bool runeBlocksDecrease;
 }

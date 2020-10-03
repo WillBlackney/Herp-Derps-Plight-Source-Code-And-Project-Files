@@ -85,7 +85,7 @@ public class SerializedPassiveManagerModel
     public int fusionStacks;
     [BoxGroup("Buff Passives")]
     [LabelWidth(200)]
-    public int meleeAttackReductionStacks;
+    public int plantedFeetStacks;
     [BoxGroup("Buff Passives")]
     [LabelWidth(200)]
     public int consecrationStacks;
