@@ -4,6 +4,8 @@ using DG.Tweening;
 
 public class HoverPreview: MonoBehaviour
 {
+    // Properties + Componet References
+    #region
     // PUBLIC FIELDS
     public GameObject TurnThisOffWhenPreviewing;  // if this is null, will not turn off anything 
     public Vector3 TargetPosition;
@@ -15,7 +17,6 @@ public class HoverPreview: MonoBehaviour
 
     // PRIVATE FIELDS
     private static HoverPreview currentlyViewing = null;
-
 
     // PROPERTIES WITH UNDERLYING PRIVATE FIELDS
     private static bool _PreviewsAllowed = true;
@@ -46,35 +47,105 @@ public class HoverPreview: MonoBehaviour
     }
 
     public bool OverCollider { get; set;}
- 
-    // MONOBEHVIOUR METHODS
+
+    private bool touchFingerIsOverMe = false;
+    #endregion
+
+    // Life cycle
+    #region
     void Awake()
     {
         ThisPreviewEnabled = ActivateInAwake;
     }
-            
+    #endregion
+
+    // Input Hooks
+    #region
+    private void OnMouseOver()
+    {
+        // is mobile user touching screen
+        if(GlobalSettings.Instance.deviceMode == DeviceMode.Mobile)
+        {
+            if(Input.touchCount > 0)
+            {
+                Touch touch = Input.GetTouch(0);
+
+                // did player take finger off the screen?
+                if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+                {
+                    // they did cancel the preview
+                    OverCollider = false;
+                    if (!PreviewingSomeCard())
+                    {
+                        touchFingerIsOverMe = false;
+                        StopAllPreviews();
+                    }
+                       
+
+                }
+
+                // prevent clicking through an active UI screen
+                else if (touchFingerIsOverMe == false &&
+                    PreviewsAllowed && 
+                    !CardController.Instance.DiscoveryScreenIsActive &&
+                    CardController.Instance.CurrentChooseCardScreenSelection != mainCardVM.card &&
+                    !inChooseScreenTransistion)
+                {
+                    touchFingerIsOverMe = true;
+                    PreviewThisObject();
+                }
+            }
+          
+        }
+    }
+
     void OnMouseEnter()
     {
         Debug.Log("HoverPreview.OnMousEnter() called...");
-        OverCollider = true;
-        // prevent clicking through an active UI screen
-        if (PreviewsAllowed && !CardController.Instance.DiscoveryScreenIsActive &&
-            CardController.Instance.CurrentChooseCardScreenSelection != mainCardVM.card &&
-            !inChooseScreenTransistion)
-            PreviewThisObject();
+
+        if (GlobalSettings.Instance.deviceMode == DeviceMode.Desktop)
+        {
+            OverCollider = true;
+
+            // prevent clicking through an active UI screen
+            if (PreviewsAllowed && !CardController.Instance.DiscoveryScreenIsActive &&
+                CardController.Instance.CurrentChooseCardScreenSelection != mainCardVM.card &&
+                !inChooseScreenTransistion)
+            {
+                PreviewThisObject();
+            }              
+        }        
+
     }
         
     void OnMouseExit()
     {
         Debug.Log("HoverPreview.OnMouseExit() called...");
-        OverCollider = false;
 
-        if (!PreviewingSomeCard())
-            StopAllPreviews();
+        if (GlobalSettings.Instance.deviceMode == DeviceMode.Desktop)
+        {
+            OverCollider = false;
+            if (!PreviewingSomeCard())
+                StopAllPreviews();
+        }
+
+        else if (GlobalSettings.Instance.deviceMode == DeviceMode.Mobile)
+        {
+            OverCollider = false;
+            if (!PreviewingSomeCard())
+            {
+                touchFingerIsOverMe = false;
+                StopAllPreviews();
+            }
+               
+        }
+
+
     }
+    #endregion
 
-    // OTHER METHODS
-
+    // Misc Logic
+    #region
     public void SetChooseCardScreenTransistionState(bool newState)
     {
         inChooseScreenTransistion = newState;
@@ -101,7 +172,6 @@ public class HoverPreview: MonoBehaviour
         previewGameObject.transform.DOLocalMove(TargetPosition, 0.5f).SetEase(Ease.OutQuint);
         previewGameObject.transform.DOScale(TargetScale, 0.5f).SetEase(Ease.OutQuint);
     }
-
     void StopThisPreview()
     {
         Debug.Log("HoverPreview.StopThisPreview() called...");
@@ -125,7 +195,6 @@ public class HoverPreview: MonoBehaviour
         }
          
     }
-
     private static bool PreviewingSomeCard()
     {
         if (!PreviewsAllowed)
@@ -141,6 +210,6 @@ public class HoverPreview: MonoBehaviour
 
         return false;
     }
+    #endregion
 
-   
 }

@@ -54,6 +54,17 @@ public class GlobalSettings : Singleton<GlobalSettings>
     public CharacterTemplateSO[] characterTemplates;
 
     // General Info
+    [Header("Input/Device Settings")]
+    [LabelWidth(200)]
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
+    public DeviceMode deviceMode;
+
+    [LabelWidth(200)]
+    [ShowIf("deviceMode", DeviceMode.Mobile)]
+    public float mouseDragSensitivity;
+
+
+    // General Info
     [Header("Card Settings")]
     [LabelWidth(200)]
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
@@ -78,6 +89,11 @@ public enum InnateSettings
 {
     DrawInnateCardsExtra = 0,
     PrioritiseInnate = 1,
+}
+public enum DeviceMode
+{
+    Desktop = 0,
+    Mobile = 1,
 }
 public enum InitiativeSettings
 {

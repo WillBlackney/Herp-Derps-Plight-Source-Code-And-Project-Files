@@ -61,7 +61,6 @@ public class CardLocationTracker : MonoBehaviour {
     public void BringToFront()
     {
         canvas.sortingOrder = TopSortingOrder;
-        //canvas.sortingLayerName = "AboveEverything";
     }
 
     // not setting sorting order inside of VisualStaes property because when the card is drawn, 
@@ -72,11 +71,17 @@ public class CardLocationTracker : MonoBehaviour {
             canvas.sortingOrder = HandSortingOrder(slot);
         //canvas.sortingLayerName = "Cards";
         canvas.overrideSorting = true;
+
+       // SetHandRotation(slot);
     }
 
     private int HandSortingOrder(int placeInHand)
     {
         return baseHandSortingOrder + (-(placeInHand + 1) * 10); 
+    }
+    private void SetHandRotation(int placeInHand)
+    {
+
     }
 
 

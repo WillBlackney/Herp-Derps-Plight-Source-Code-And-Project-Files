@@ -51,6 +51,7 @@ public class DragSpellNoTarget: DraggingActions{
             // Set old sorting order 
             locationTracker.Slot = savedHandSlot;
             locationTracker.VisualState = VisualStates.Hand;
+            locationTracker.SetHandSortingOrder();
 
             // Move this card back to its slot position
             HandVisual PlayerHand = cardVM.card.owner.characterEntityView.handVisual;
