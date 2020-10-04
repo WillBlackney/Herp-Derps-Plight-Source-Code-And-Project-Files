@@ -822,11 +822,13 @@ MonoBehaviour:
   gameMode: 1
   testingEnemyWave: {fileID: 11400000, guid: 196d21c94a6e94b42ab0250cb4bedcdd, type: 2}
   characterTemplates:
-  - {fileID: 11400000, guid: e0ea2e09629a8004fa6a714088467137, type: 2}
   - {fileID: 11400000, guid: 11330c0f179f1fb49b8fc2aac3fe768b, type: 2}
-  - {fileID: 11400000, guid: 1d0339b9767137d4a8b3c1e5af99a706, type: 2}
+  - {fileID: 11400000, guid: 8d4ecf2085d9be843b2d44cb7360b5d7, type: 2}
+  - {fileID: 11400000, guid: e0ea2e09629a8004fa6a714088467137, type: 2}
   deviceMode: 1
-  mouseDragSensitivity: 0.35
+  mouseDragSensitivity: 0.25
+  hoverMovePosition: {x: 0, y: 2, z: 0}
+  hoverScaleAmount: 1.5
   innateSetting: 1
   onPowerCardPlayedSetting: 0
   initiativeSetting: 0
@@ -23045,75 +23047,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5148551054778598763}
   m_CullTransparentMesh: 0
---- !u!1001 &5679010324933416837
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6307250361857153717, guid: 2f24371d4f3159248abcc897e6190bbf,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 8.313633
-      objectReference: {fileID: 0}
-    - target: {fileID: 6307250361857153717, guid: 2f24371d4f3159248abcc897e6190bbf,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.892903
-      objectReference: {fileID: 0}
-    - target: {fileID: 6307250361857153717, guid: 2f24371d4f3159248abcc897e6190bbf,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -13.319157
-      objectReference: {fileID: 0}
-    - target: {fileID: 6307250361857153717, guid: 2f24371d4f3159248abcc897e6190bbf,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6307250361857153717, guid: 2f24371d4f3159248abcc897e6190bbf,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6307250361857153717, guid: 2f24371d4f3159248abcc897e6190bbf,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6307250361857153717, guid: 2f24371d4f3159248abcc897e6190bbf,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6307250361857153717, guid: 2f24371d4f3159248abcc897e6190bbf,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6307250361857153717, guid: 2f24371d4f3159248abcc897e6190bbf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6307250361857153717, guid: 2f24371d4f3159248abcc897e6190bbf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6307250361857153717, guid: 2f24371d4f3159248abcc897e6190bbf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6307250361857215953, guid: 2f24371d4f3159248abcc897e6190bbf,
-        type: 3}
-      propertyPath: m_Name
-      value: Fire Meteor
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2f24371d4f3159248abcc897e6190bbf, type: 3}
 --- !u!224 &6482901068604249170
 RectTransform:
   m_ObjectHideFlags: 0

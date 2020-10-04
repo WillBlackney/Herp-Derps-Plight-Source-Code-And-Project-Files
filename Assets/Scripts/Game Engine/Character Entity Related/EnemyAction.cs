@@ -1,10 +1,7 @@
-﻿using System.Collections;
+﻿
 using System.Collections.Generic;
-using UnityEngine;
 using System;
 using Sirenix.OdinInspector;
-using Sirenix.Utilities.Editor;
-using Sirenix.OdinInspector.Editor;
 
 [Serializable]
 public class EnemyAction
@@ -49,8 +46,6 @@ public class EnemyAction
   
 
 }
-
-
 
 [Serializable]
 public class ActionRequirement
@@ -206,6 +201,8 @@ public class EnemyActionEffect
     }
 
 }
+
+/*
 public class AddBoxToDrawer<T> : OdinValueDrawer<T>
 {
     protected override void DrawPropertyLayout(GUIContent label)
@@ -215,3 +212,5 @@ public class AddBoxToDrawer<T> : OdinValueDrawer<T>
         SirenixEditorGUI.EndBox();
     }
 }
+*/
+

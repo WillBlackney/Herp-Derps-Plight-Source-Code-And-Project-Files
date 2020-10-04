@@ -8,7 +8,7 @@ public class Draggable : MonoBehaviour
     #region
     // a flag to know if we are currently dragging this GameObject
     private bool dragging = false;
-    private bool touchFingerIsOverMe = false;
+   
 
     // distance from the center of this Game Object to the point where we clicked to start dragging 
     private Vector3 pointerDisplacement;
@@ -27,7 +27,9 @@ public class Draggable : MonoBehaviour
     }
 
     // Mobile properties
-    private Vector3 previousTouchPosition;
+    private bool initialTouchSet = false;
+    private Vector3 initialTouchPos;
+    private bool touchFingerIsOverMe = false;
     #endregion
 
     // Follow Mouse Logic
@@ -72,21 +74,6 @@ public class Draggable : MonoBehaviour
                 zDisplacement = -CameraManager.Instance.MainCamera.transform.position.z + transform.position.z;
                 pointerDisplacement = -transform.position + MouseInWorldCoords();
             }
-            /*
-            else if (GlobalSettings.Instance.deviceMode == DeviceMode.Mobile &&
-                mobileTouching == false)
-            {
-                mobileTouching = true;
-                dragging = true;
-                // when we are dragging something, all previews should be off
-                HoverPreview.PreviewsAllowed = false;
-                _draggingThis = this;
-                da.OnStartDrag();
-                zDisplacement = -CameraManager.Instance.MainCamera.transform.position.z + transform.position.z;
-                pointerDisplacement = -transform.position + MouseInWorldCoords();
-            }
-            */
-
         }
     }   
 	
@@ -111,11 +98,11 @@ public class Draggable : MonoBehaviour
                 da.OnEndDrag();
             }
         }
-        else if (GlobalSettings.Instance.deviceMode == DeviceMode.Mobile &&
-            touchFingerIsOverMe == true)
+        else if (GlobalSettings.Instance.deviceMode == DeviceMode.Mobile)
         {
             if (dragging)
             {
+                initialTouchSet = false;
                 touchFingerIsOverMe = false;
                 dragging = false;
                 // turn all previews back on
@@ -129,13 +116,24 @@ public class Draggable : MonoBehaviour
 
     void OnMouseOver()
     {
-        if(GlobalSettings.Instance.deviceMode == DeviceMode.Mobile)
+        if(GlobalSettings.Instance.deviceMode == DeviceMode.Mobile &&
+            Input.touchCount > 0)
         {
-            Vector3 currentTouchPos = MouseInWorldCoords();
-            float deltaY = currentTouchPos.y - previousTouchPosition.y;
             touchFingerIsOverMe = true;
 
-            if (deltaY > GlobalSettings.Instance.mouseDragSensitivity && 
+            if (initialTouchSet == false)
+            {
+                initialTouchSet = true;
+                initialTouchPos = TouchInWorldCoords();
+                Debug.LogWarning("Setting Initial Touch Pos: " + initialTouchPos.x.ToString() + ", " + initialTouchPos.y + ", ");
+
+            }       
+            
+            Vector3 currentTouchPos = TouchInWorldCoords();
+            float deltaY = currentTouchPos.y - initialTouchPos.y;
+            Debug.LogWarning("Delta Y: " + deltaY.ToString());
+
+            if (deltaY >= GlobalSettings.Instance.mouseDragSensitivity && 
                 dragging == false && 
                 _draggingThis == null)
             {
@@ -148,29 +146,33 @@ public class Draggable : MonoBehaviour
                 pointerDisplacement = -transform.position + MouseInWorldCoords();
             }
 
-            // get mobile input data
-            if(Input.touchCount > 0)
+            Touch touch = Input.GetTouch(0);
+
+            // did player lift the finger off the screen?
+            if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
             {
-                Touch touch = Input.GetTouch(0);
-
-                // did player lift the finger off the screen?
-                if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+                // they did, start handling drag/drop logic
+                if (dragging)
                 {
-                    // they did, start handling drag/drop logic
-                    if (dragging)
-                    {
-                        dragging = false;
-                        touchFingerIsOverMe = false;
-                        // turn all previews back on
-                        HoverPreview.PreviewsAllowed = true;
-                        _draggingThis = null;
-                        da.OnEndDrag();
-                    }
+                    initialTouchSet = false;
+                    dragging = false;
+                    touchFingerIsOverMe = false;
+                    // turn all previews back on
+                    HoverPreview.PreviewsAllowed = true;
+                    _draggingThis = null;
+                    da.OnEndDrag();
                 }
-            }          
+            }
             
+        }
+    }
 
-            previousTouchPosition = currentTouchPos;
+    private void OnMouseExit()
+    {
+        if (GlobalSettings.Instance.deviceMode == DeviceMode.Mobile)
+        {
+            initialTouchSet = false;
+            touchFingerIsOverMe = false;
         }
     }
     #endregion
@@ -182,6 +184,13 @@ public class Draggable : MonoBehaviour
         var screenMousePos = Input.mousePosition;
         screenMousePos.z = zDisplacement;
         return CameraManager.Instance.MainCamera.ScreenToWorldPoint(screenMousePos);
+    }
+    private Vector3 TouchInWorldCoords()
+    {
+        Vector3 screenMousePos = Input.GetTouch(0).position;
+        screenMousePos.z = zDisplacement;
+        return CameraManager.Instance.MainCamera.ScreenToWorldPoint(screenMousePos);
+
     }
     #endregion
 

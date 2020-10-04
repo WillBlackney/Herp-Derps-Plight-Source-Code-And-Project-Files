@@ -1,9 +1,7 @@
-﻿using UnityEngine;
-using UnityEditor;
-using Sirenix.OdinInspector;
-using Sirenix.OdinInspector.Editor;
+﻿#if UNITY_EDITOR
+using UnityEngine;
 using Sirenix.Utilities.Editor;
-using System.Collections.Generic;
+using Sirenix.OdinInspector.Editor;
 
 namespace CustomOdinGUI
 {
@@ -41,3 +39,5 @@ namespace CustomOdinGUI
         }
     }
 }
+
+#endif

@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System;
 using Sirenix.OdinInspector;
-using Sirenix.Utilities.Editor;
 
 [CreateAssetMenu(fileName = "New CardDataSO", menuName = "CardDataSO", order = 52)]
 [Serializable]

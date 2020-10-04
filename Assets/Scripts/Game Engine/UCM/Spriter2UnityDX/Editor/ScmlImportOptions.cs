@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 using System.Collections;
 
@@ -39,3 +40,4 @@ namespace Spriter2UnityDX.Importing
         public float pixelsPerUnit = 100f;
     }
 }
+#endif

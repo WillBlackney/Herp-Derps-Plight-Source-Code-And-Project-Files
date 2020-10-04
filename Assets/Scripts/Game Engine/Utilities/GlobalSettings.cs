@@ -11,6 +11,9 @@ public class GlobalSettings : Singleton<GlobalSettings>
     {
         Debug.Log("CombatTestSceneController.Start() called...");
         StartCoroutine(RunCombatSceneStartup());
+
+        // this prevents mobiles from sleeping due to inactivity
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
     private IEnumerator RunCombatSceneStartup()
     {
@@ -63,6 +66,14 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [ShowIf("deviceMode", DeviceMode.Mobile)]
     public float mouseDragSensitivity;
 
+    [LabelWidth(200)]
+    [ShowIf("deviceMode", DeviceMode.Mobile)]
+    public Vector3 hoverMovePosition;
+
+    [LabelWidth(200)]
+    [ShowIf("deviceMode", DeviceMode.Mobile)]
+    public float hoverScaleAmount;
+
 
     // General Info
     [Header("Card Settings")]
@@ -83,6 +94,7 @@ public class GlobalSettings : Singleton<GlobalSettings>
     {
         return gameMode == StartingSceneSetting.CombatSceneTesting;
     }
+
 }
 
 public enum InnateSettings

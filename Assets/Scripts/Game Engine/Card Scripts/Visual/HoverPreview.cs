@@ -64,38 +64,33 @@ public class HoverPreview: MonoBehaviour
     private void OnMouseOver()
     {
         // is mobile user touching screen
-        if(GlobalSettings.Instance.deviceMode == DeviceMode.Mobile)
+        if(GlobalSettings.Instance.deviceMode == DeviceMode.Mobile &&
+            Input.touchCount > 0)
         {
-            if(Input.touchCount > 0)
+            Touch touch = Input.GetTouch(0);
+
+            // did player take finger off the screen?
+            if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
             {
-                Touch touch = Input.GetTouch(0);
-
-                // did player take finger off the screen?
-                if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+                // they did cancel the preview
+                OverCollider = false;
+                if (!PreviewingSomeCard())
                 {
-                    // they did cancel the preview
-                    OverCollider = false;
-                    if (!PreviewingSomeCard())
-                    {
-                        touchFingerIsOverMe = false;
-                        StopAllPreviews();
-                    }
-                       
-
-                }
-
-                // prevent clicking through an active UI screen
-                else if (touchFingerIsOverMe == false &&
-                    PreviewsAllowed && 
-                    !CardController.Instance.DiscoveryScreenIsActive &&
-                    CardController.Instance.CurrentChooseCardScreenSelection != mainCardVM.card &&
-                    !inChooseScreenTransistion)
-                {
-                    touchFingerIsOverMe = true;
-                    PreviewThisObject();
+                    touchFingerIsOverMe = false;
+                    StopAllPreviews();
                 }
             }
-          
+
+            // prevent clicking through an active UI screen
+            else if (touchFingerIsOverMe == false &&
+                PreviewsAllowed &&
+                !CardController.Instance.DiscoveryScreenIsActive &&
+                CardController.Instance.CurrentChooseCardScreenSelection != mainCardVM.card &&
+                !inChooseScreenTransistion)
+            {
+                touchFingerIsOverMe = true;
+                PreviewThisObject();
+            }
         }
     }
 
@@ -169,8 +164,17 @@ public class HoverPreview: MonoBehaviour
         previewGameObject.transform.localPosition = Vector3.zero;
         previewGameObject.transform.localScale = Vector3.one;
 
-        previewGameObject.transform.DOLocalMove(TargetPosition, 0.5f).SetEase(Ease.OutQuint);
-        previewGameObject.transform.DOScale(TargetScale, 0.5f).SetEase(Ease.OutQuint);
+        Vector3 movePos = TargetPosition;
+        float scaleAmount = TargetScale;
+
+        if(GlobalSettings.Instance.deviceMode == DeviceMode.Mobile)
+        {
+            movePos = GlobalSettings.Instance.hoverMovePosition;
+            scaleAmount = GlobalSettings.Instance.hoverScaleAmount;
+        }
+
+        previewGameObject.transform.DOLocalMove(movePos, 0.5f).SetEase(Ease.OutQuint);
+        previewGameObject.transform.DOScale(scaleAmount, 0.5f).SetEase(Ease.OutQuint);
     }
     void StopThisPreview()
     {

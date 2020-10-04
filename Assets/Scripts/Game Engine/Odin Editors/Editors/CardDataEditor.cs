@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 using Sirenix.OdinInspector;
-using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities.Editor;
+using Sirenix.OdinInspector.Editor;
 
 public class CardDataEditor : OdinMenuEditorWindow
 {
@@ -81,3 +80,4 @@ public class CardDataEditor : OdinMenuEditorWindow
     }
 
 }
+#endif

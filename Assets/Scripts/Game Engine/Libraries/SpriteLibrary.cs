@@ -1,12 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
+﻿using UnityEngine;
 using Sirenix.OdinInspector;
+
+#if UNITY_EDITOR
 using Sirenix.Utilities.Editor;
 using Sirenix.OdinInspector.Editor;
+#endif
 
-    public class SpriteLibrary : MonoBehaviour
+public class SpriteLibrary : MonoBehaviour
     {
         // Singleton Pattern
         #region
@@ -26,113 +26,67 @@ using Sirenix.OdinInspector.Editor;
 
         // Talent School Badges
         #region
-    [ColorFoldoutGroup("Talent School Badges", 0f, 1f, 0f)]
+    [Header("Talent School Badges")]
     [PreviewField(75)]
     public Sprite warfareBadge;
-
-        [ColorFoldoutGroup("Talent School Badges")]
         [PreviewField(75)]
         public Sprite guardianBadge;
-
-        [ColorFoldoutGroup("Talent School Badges")]
         [PreviewField(75)]
         public Sprite scoundrelBadge;
-
-        [ColorFoldoutGroup("Talent School Badges")]
         [PreviewField(75)]
         public Sprite rangerBadge;
-
-        [ColorFoldoutGroup("Talent School Badges")]
         [PreviewField(75)]
         public Sprite pyromaniaBadge;
-
-        [ColorFoldoutGroup("Talent School Badges")]
         [PreviewField(75)]
         public Sprite divinityBadge;
-
-        [ColorFoldoutGroup("Talent School Badges")]
         [PreviewField(75)]
         public Sprite shadowCraftBadge;
-
-        [ColorFoldoutGroup("Talent School Badges")]
         [PreviewField(75)]
         public Sprite corruptionBadge;
-
-        [ColorFoldoutGroup("Talent School Badges")]
         [PreviewField(75)]
         public Sprite naturalismBadge;
-
-        [ColorFoldoutGroup("Talent School Badges")]
         [PreviewField(75)]
         public Sprite manipulationBadge;
         #endregion
 
         // Intent Images
         #region
-        [ColorFoldoutGroup("Intent Images", 1f, 0f, 0f)]
+        [Header("Intent Images")]
         [PreviewField(75)]
         public Sprite attack;
-
-        [ColorFoldoutGroup("Intent Images")]
         [PreviewField(75)]
         public Sprite attackAll;
-
-        [ColorFoldoutGroup("Intent Images")]
         [PreviewField(75)]
         public Sprite attackDefend;
-
-        [ColorFoldoutGroup("Intent Images")]
         [PreviewField(75)]
         public Sprite attackBuff;
-
-        [ColorFoldoutGroup("Intent Images")]
         [PreviewField(75)]
         public Sprite attackDebuff;
-
-        [ColorFoldoutGroup("Intent Images")]
         [PreviewField(75)]
         public Sprite defend;
-
-        [ColorFoldoutGroup("Intent Images")]
         [PreviewField(75)]
         public Sprite buff;
-
-        [ColorFoldoutGroup("Intent Images")]
         [PreviewField(75)]
         public Sprite defendBuff;
-
-        [ColorFoldoutGroup("Intent Images")]
         [PreviewField(75)]
         public Sprite greenDebuff;
-
-        [ColorFoldoutGroup("Intent Images")]
         [PreviewField(75)]
         public Sprite purpleDebuff;
-
-        [ColorFoldoutGroup("Intent Images")]
         [PreviewField(75)]
         public Sprite unknown;
-
-        [ColorFoldoutGroup("Intent Images")]
         [PreviewField(75)]
         public Sprite flee;
     #endregion
 
         // Card Type Images
         #region
-    [ColorFoldoutGroup("Card Type Images", 1f, 0f, 0f)]
+    [Header("Card Type Images")]
     [PreviewField(75)]
     public Sprite meleeAttack;
-
-    [ColorFoldoutGroup("Card Type Images")]
     [PreviewField(75)]
     public Sprite rangedAttack;
-
-    [ColorFoldoutGroup("Card Type Images")]
     [PreviewField(75)]
     public Sprite skill;
-
-    [ColorFoldoutGroup("Card Type Images")]
     [PreviewField(75)]
     public Sprite power;
     #endregion
@@ -264,8 +218,8 @@ using Sirenix.OdinInspector.Editor;
 
 }
 
-
-    public class ColorFoldoutGroupAttribute : PropertyGroupAttribute
+#if UNITY_EDITOR
+public class ColorFoldoutGroupAttribute : PropertyGroupAttribute
     {
         public float R, G, B, A;
 
@@ -294,7 +248,7 @@ using Sirenix.OdinInspector.Editor;
 
     }
 
-    public class ColorFoldoutGroupAttributeDrawer : OdinGroupDrawer<ColorFoldoutGroupAttribute>
+public class ColorFoldoutGroupAttributeDrawer : OdinGroupDrawer<ColorFoldoutGroupAttribute>
     {
         private LocalPersistentContext<bool> isExpanded;
 
@@ -328,6 +282,4 @@ using Sirenix.OdinInspector.Editor;
         }
     }
 
-
-
-
+#endif

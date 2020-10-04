@@ -3,7 +3,7 @@
 //If you have any improvements to the code itself, please visit
 //https://github.com/Dharengo/Spriter2UnityDX and share your suggestions by creating a fork
 //-Dengar/Dharengo
-
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.Animations;
@@ -92,3 +92,5 @@ namespace Spriter2UnityDX {
 		}
 	}
 }
+
+#endif

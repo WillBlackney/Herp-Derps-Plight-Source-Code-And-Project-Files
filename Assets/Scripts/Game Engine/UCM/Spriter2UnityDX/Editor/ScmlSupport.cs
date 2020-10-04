@@ -4,6 +4,7 @@
 //https://github.com/Dharengo/Spriter2UnityDX and share your suggestions by creating a fork
 //-Dengar/Dharengo
 
+#if UNITY_EDITOR
 using UnityEngine;
 using System;
 using System.Xml.Serialization;
@@ -215,3 +216,5 @@ namespace Spriter2UnityDX.Importing {
 		[XmlAttribute] public int id { get; set; }
 	}
 }
+
+#endif

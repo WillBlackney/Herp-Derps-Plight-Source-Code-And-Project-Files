@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
 using System.Reflection;
-using System.Collections;
 
 namespace Spriter2UnityDX.Editors {
 	[CustomEditor (typeof(EntityRenderer)), CanEditMultipleObjects]
@@ -46,3 +46,4 @@ namespace Spriter2UnityDX.Editors {
 		}
 	}
 }
+#endif

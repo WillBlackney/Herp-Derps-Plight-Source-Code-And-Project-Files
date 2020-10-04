@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿#if UNITY_EDITOR
+using UnityEngine;
 using UnityEditor;
 using Sirenix.OdinInspector;
 
@@ -46,3 +47,5 @@ namespace CustomOdinGUI
         
     }
 }
+
+#endif
