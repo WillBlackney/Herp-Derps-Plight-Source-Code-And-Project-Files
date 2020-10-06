@@ -684,13 +684,13 @@ public class CombatLogic : Singleton<CombatLogic>
         // Check if the game over event should be triggered
         if (CharacterEntityController.Instance.AllDefenders.Count == 0)
         {
-            StartGameOverDefeatProcess();
+            StartCombatOverDefeatProcess();
         }
 
         if (CharacterEntityController.Instance.AllEnemies.Count == 0 &&
             currentCombatState == CombatGameState.CombatActive)
         {
-            StartGameOverVictoryProcess();
+            StartCombatOverVictoryProcess();
         }
     }
     #endregion
@@ -719,17 +719,34 @@ public class CombatLogic : Singleton<CombatLogic>
 
     // Game Over Logic
     #region
-    private void StartGameOverDefeatProcess()
+    private void StartCombatOverDefeatProcess()
     {
-        Debug.Log("CombatLogic.StartGameOverDefeatProcess() called...");
+        Debug.Log("CombatLogic.StartCombatOverDefeatProcess() called...");
         currentCombatState = CombatGameState.DefeatTriggered;
-        UIManager.Instance.defeatPopup.SetActive(true);
+        VisualEventManager.Instance.CreateVisualEvent(() => {
+            UIManager.Instance.defeatPopup.SetActive(true);
+        });
     }
-    private void StartGameOverVictoryProcess()
+    private void StartCombatOverVictoryProcess()
     {
-        Debug.Log("CombatLogic.StartGameOverVictoryProcess() called...");
+        Debug.Log("CombatLogic.StartCombatOverVictoryProcess() called...");
         currentCombatState = CombatGameState.VictoryTriggered;
-        UIManager.Instance.victoryPopup.SetActive(true);
+        VisualEventManager.Instance.CreateVisualEvent(() => {
+            UIManager.Instance.victoryPopup.SetActive(true);
+            UIManager.Instance.continueToNextEncounterButtonParent.SetActive(true);
+        });
+
+        // to do: should update the save file with new character health values
+        // and also create/save a loot result file to save
+        
+    }
+    #endregion
+
+    // Next Encounter Button Clicked
+    #region
+    public void OnContinueToNextEncounterButtonClicked()
+    {
+
     }
     #endregion
 }

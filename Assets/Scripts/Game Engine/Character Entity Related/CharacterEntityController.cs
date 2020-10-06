@@ -82,6 +82,17 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             CreatePlayerCharacter(data, LevelManager.Instance.GetNextAvailableDefenderNode());
         }
     }
+    public void DestroyAllCombatCharacters()
+    {
+        foreach(CharacterEntityModel character in AllCharacters)
+        {
+            Destroy(character.characterEntityView.gameObject);
+        }
+
+        AllCharacters.Clear();
+        AllDefenders.Clear();
+        AllEnemies.Clear();
+    }
     public CharacterEntityModel CreatePlayerCharacter(CharacterData data, LevelNode position)
     {
         // Create GO + View
@@ -288,6 +299,12 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
         // Set health after calculation
         character.health = finalHealthValue;
+
+        // relay changes to character data
+        if(character.characterData != null)
+        {
+            CharacterDataController.Instance.SetCharacterHealth(character.characterData, character.health);
+        }
 
         VisualEventManager.Instance.CreateVisualEvent(()=> UpdateHealthGUIElements(character, finalHealthValue, character.maxHealth),QueuePosition.Back, 0, 0);
     }

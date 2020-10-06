@@ -75,6 +75,14 @@ public class LevelManager : Singleton<LevelManager>
         node.myEntity = null;
         entity.levelNode = null;
     }
+    public void ClearAllNodes()
+    {
+        foreach(LevelNode node in AllLevelNodes)
+        {
+            node.occupied = false;
+            node.myEntity = null;
+        }
+    }
     #endregion
 
     // Level Node View Logic

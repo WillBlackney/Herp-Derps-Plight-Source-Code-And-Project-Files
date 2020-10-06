@@ -186,22 +186,41 @@ public class ActivationManager : Singleton<ActivationManager>
 
         ActivateEntity(activationOrder[0]);
     }
-    public void ClearAllWindowsFromActivationPanel()
+    public void DestroyAllActivationWindows()
     {
+        Debug.LogWarning("DestroyAllActivationWindows() called, activation order count = " + activationOrder.Count.ToString());
+
         foreach(CharacterEntityModel entity in activationOrder)
-        {
+        {           
             if(entity.characterEntityView.myActivationWindow != null)
             {
                 // NOTE: maybe this should be a scheduled visual event?
                 DestroyActivationWindow(entity.characterEntityView.myActivationWindow);
             }
+            else
+            {
+                Debug.LogWarning("DestroyAllActivationWindows() was given a null activation window reference");
+            }
             
         }
 
+        // Destroy Panel Slots
+        Debug.LogWarning("Panel slots count = " + panelSlots.Count.ToString());
+
+        if (panelSlots.Count > 1)
+        {
+            for (int i = panelSlots.Count - 1; i >= 0; i--)
+            {
+                Destroy(panelSlots[i]);
+            }
+        }
+        else if(panelSlots.Count == 1)
+        {
+            Destroy(panelSlots[0]);
+        }       
+
         activationOrder.Clear();
-        panelSlots.Clear();
-        //Destroy(activationSlotContentParent);
-       // Destroy(activationWindowContentParent);        
+        panelSlots.Clear();       
         
     }
     #endregion

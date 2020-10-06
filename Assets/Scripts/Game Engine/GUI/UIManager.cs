@@ -21,10 +21,11 @@ public class UIManager : Singleton<UIManager>
     [Header("Testing Game Over Component References")]
     public GameObject victoryPopup;
     public GameObject defeatPopup;
+    public GameObject continueToNextEncounterButtonParent;
 
     #endregion
 
-    // Visibility + View Logic
+    // End Turn Button Logic
     #region
     public void DisableEndTurnButtonInteractions()
     {
@@ -73,11 +74,7 @@ public class UIManager : Singleton<UIManager>
     public void SetEndTurnButtonText(string newText)
     {
         EndTurnButtonText.text = newText;
-    }    
-    #endregion
-
-    // New Logic
-    #region
+    }
     public void SetPlayerTurnButtonState()
     {
         Debug.Log("UIManager.SetPlayerTurnButtonState() called...");
@@ -91,6 +88,14 @@ public class UIManager : Singleton<UIManager>
         DisableEndTurnButtonInteractions();
         VisualEventManager.Instance.CreateVisualEvent(() => SetEndTurnButtonText("Enemy Activation..."));
         VisualEventManager.Instance.CreateVisualEvent(() => SetEndTurnButtonSprite(EndTurnButtonDisabledSprite));
+    }
+    #endregion
+
+    // New Logic
+    #region
+    public void OnContinueToNextEncounterButtonClicked()
+    {
+        EventSequenceController.Instance.HandleLoadNextEncounter();
     }
     #endregion
 }

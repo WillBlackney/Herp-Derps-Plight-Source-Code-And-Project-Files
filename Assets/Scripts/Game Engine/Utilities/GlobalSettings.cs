@@ -18,7 +18,7 @@ public class GlobalSettings : Singleton<GlobalSettings>
 
     [LabelWidth(200)]
     [ShowIf("ShowTestSceneProperties")]
-    public CharacterTemplateSO[] characterTemplates;
+    public CharacterTemplateSO[] testingCharacterTemplates;
 
     // General Info
     [Header("Input/Device Settings")]
@@ -57,36 +57,7 @@ public class GlobalSettings : Singleton<GlobalSettings>
     {
         return gameMode == StartingSceneSetting.CombatSceneSingle;
     }
-    #endregion
-
-    // Game Start + Application Entry Points
-    #region
-    private void Start()
-    {
-        RunApplication();
-    }
-    private void RunApplication()
-    {
-        Debug.Log("CombatTestSceneController.Start() called...");
-
-        // Establish settings
-
-        // this prevents mobiles from sleeping due to inactivity
-        Screen.sleepTimeout = SleepTimeout.NeverSleep;
-
-        // Start application type
-        if (gameMode == StartingSceneSetting.CombatSceneSingle)
-        {
-            StartCoroutine(RunCombatSceneStartup());
-        }
-        else if (gameMode == StartingSceneSetting.Standard)
-        {
-            StartCoroutine(RunStandardGameModeSetup());
-        }
-
-
-    }
-    #endregion
+    #endregion   
 
     // Standard game logic
     #region
@@ -108,7 +79,7 @@ public class GlobalSettings : Singleton<GlobalSettings>
         AudioManager.Instance.PlaySound(Sound.Music_Battle_Theme_1);
 
         // Build character data
-        CharacterDataController.Instance.BuildAllCharactersFromCharacterTemplateList(characterTemplates);
+        CharacterDataController.Instance.BuildAllCharactersFromCharacterTemplateList(testingCharacterTemplates);
 
         // Create player characters in scene
         CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
@@ -120,13 +91,6 @@ public class GlobalSettings : Singleton<GlobalSettings>
         // Start a new combat event
         ActivationManager.Instance.OnNewCombatEventStarted();
 
-    }
-    private void CreateTestingPlayerCharacters()
-    {
-        foreach (CharacterData data in CharacterDataController.Instance.allPlayerCharacters)
-        {
-            CharacterEntityController.Instance.CreatePlayerCharacter(data, LevelManager.Instance.GetNextAvailableDefenderNode());
-        }
     }
     #endregion
     

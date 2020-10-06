@@ -412,4 +412,15 @@ public enum CreateOnCharacter
 }
 #endregion
 
+// Journey + Encounter Enums
+#region
+public enum EncounterType
+{
+    None = 0,
+    BasicEnemy = 1,
+    EliteEnemy = 2,
+    BossEnemy = 3,
+}
+#endregion
+
 

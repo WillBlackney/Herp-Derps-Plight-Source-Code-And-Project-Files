@@ -15,7 +15,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
             allPlayerCharacters.Add(ConverCharacterTemplateToCharacterData(template));
         }
     }
-    public void BuildAllCharactersFromSaveFile(SaveGameData saveFile)
+    public void BuildAllDataFromSaveFile(SaveGameData saveFile)
     {
         foreach (CharacterData characterData in saveFile.characters)
         {
@@ -61,5 +61,16 @@ public class CharacterDataController : Singleton<CharacterDataController>
         return newCharacter;
     }
 
+    #endregion
+
+    // Modify Character Stats
+    #region
+    public void SetCharacterHealth(CharacterData data, int newValue)
+    {
+        Debug.Log("CharacterDataController.SetCharacterHealth() called for '" +
+            data.myName + "', new health value = " + newValue.ToString());
+
+        data.health = newValue;
+    }
     #endregion
 }

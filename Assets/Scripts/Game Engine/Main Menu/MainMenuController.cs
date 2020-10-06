@@ -72,7 +72,7 @@ public class MainMenuController : Singleton<MainMenuController>
     #region
     public void OnStartGameButtonClicked()
     {
-        HandleStartNewGameEvent();
+        EventSequenceController.Instance.HandleStartNewGameFromMainMenuEvent();
     }
     public void OnMainMenuButtonClicked()
     {
@@ -83,15 +83,6 @@ public class MainMenuController : Singleton<MainMenuController>
 
     // Misc
     #region
-    private void HandleStartNewGameEvent()
-    {
-        // TO DO: should put a validation check here before running the game
-
-        HideNewGameScreen();
-        HideFrontScreen();
-        PersistencyManager.Instance.BuildNewSaveFileOnNewGameStarted(GetChosenTemplatesFromChooseCharacterWindows());
-        PersistencyManager.Instance.SetupFreshGameFromSaveFile(PersistencyManager.Instance.CurrentSaveFile);
-    }
     public List<CharacterTemplateSO> GetChosenTemplatesFromChooseCharacterWindows()
     {
         List<CharacterTemplateSO> chosenCharacters = new List<CharacterTemplateSO>();

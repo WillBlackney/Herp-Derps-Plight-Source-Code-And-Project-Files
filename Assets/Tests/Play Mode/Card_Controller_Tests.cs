@@ -84,12 +84,15 @@ namespace Tests
         {
             // Arange
             CharacterEntityModel model;
-            deckData.Add(mockExpendCard);
-            bool expected;
+            bool expected;            
 
             // Act 
+            CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockExpendCard, characterData);
+            characterData.deck.Add(newCard);
+
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             Card card = model.drawPile[0];
+
             ActivationManager.Instance.OnNewCombatEventStarted();
             CardController.Instance.PlayCardFromHand(card);
 
@@ -112,12 +115,15 @@ namespace Tests
         {
             // Arange
             CharacterEntityModel model;
-            deckData.Add(mockExpendCard);
             bool expected;
 
             // Act 
+            CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockExpendCard, characterData);
+            characterData.deck.Add(newCard);
+
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             Card card = model.drawPile[0];
+
             ActivationManager.Instance.OnNewCombatEventStarted();
             CardController.Instance.PlayCardFromHand(card);
 
@@ -142,11 +148,13 @@ namespace Tests
         {
             // Arange
             CharacterEntityModel model;
-            deckData.Add(mockPowerCard);
             bool expected;
             GlobalSettings.Instance.onPowerCardPlayedSetting = OnPowerCardPlayedSettings.RemoveFromPlay;
 
             // Act 
+            CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockPowerCard, characterData);
+            characterData.deck.Add(newCard);
+
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             Card card = model.drawPile[0];
             ActivationManager.Instance.OnNewCombatEventStarted();
@@ -171,11 +179,13 @@ namespace Tests
         {
             // Arange
             CharacterEntityModel model;
-            deckData.Add(mockPowerCard);
             bool expected;
             GlobalSettings.Instance.onPowerCardPlayedSetting = OnPowerCardPlayedSettings.Expend;
 
             // Act 
+            CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockPowerCard, characterData);
+            characterData.deck.Add(newCard);
+
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             Card card = model.drawPile[0];
             ActivationManager.Instance.OnNewCombatEventStarted();
@@ -203,9 +213,11 @@ namespace Tests
             CharacterEntityModel model;
             GlobalSettings.Instance.onPowerCardPlayedSetting = OnPowerCardPlayedSettings.MoveToDiscardPile;
             deckData.Clear();
-            deckData.Add(mockPowerCard);
 
             // Act 
+            CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockPowerCard, characterData);
+            characterData.deck.Add(newCard);
+
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             Card theCard = model.drawPile[0];
             model.draw = 1;
@@ -229,11 +241,11 @@ namespace Tests
         {
             // Arange
             CharacterEntityModel model;
-            deckData.Clear();
 
             for(int i = 0; i < 10; i++)
             {
-                deckData.Add(mockPowerCard);
+                CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockPowerCard, characterData);
+                characterData.deck.Add(newCard);
             }
 
             GlobalSettings.Instance.innateSetting = InnateSettings.PrioritiseInnate;
@@ -258,7 +270,8 @@ namespace Tests
             CharacterEntityModel model;
             for (int i = 0; i < 10; i++)
             {
-                deckData.Add(mockPowerCard);
+                CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockPowerCard, characterData);
+                characterData.deck.Add(newCard);
             }
             
             int expectedHandCount = 8;

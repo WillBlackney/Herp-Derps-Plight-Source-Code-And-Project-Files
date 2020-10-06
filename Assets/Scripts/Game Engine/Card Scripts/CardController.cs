@@ -288,7 +288,6 @@ public class CardController : Singleton<CardController>
     {
         card.myCharacterDeckCard = deckDataCard;
     }
-
     public void BuildCharacterEntityCombatDeckFromDeckData(CharacterEntityModel defender, List<CardData> deckData)
     {
         Debug.Log("CardController.BuildDefenderDeckFromDeckData() called...");
