@@ -13,14 +13,14 @@ using System;
 // scripts try to serialize each other. When we unserialize this,
 // we can remove the script SerializedPassiveManagerModel from this class.
 
-[Serializable]
+//[Serializable]
 public class CharacterData 
 {
     [Header("Story Properties")]
     public string myName;
 
     [Header("Passive Properties")]
-    public PassiveManagerModel passiveManager;
+    public PassiveManagerModel passiveManager = new PassiveManagerModel();
 
     // TO DO WAAAAY DOWN THE TRACK
     // Remove this: we only need this for starting the game
@@ -42,7 +42,7 @@ public class CharacterData
     public int power;
 
     [Header("Deck Properties")]
-    public List<CardDataSO> deck;
+    [HideInInspector] public List<CardData> deck;
 
     [Header("Model Properties")]
     public List<string> modelParts;

@@ -340,6 +340,13 @@ public class CombatLogic : Singleton<CombatLogic>
         string attackerName = "No Attacker";
         string victimName = "No Victim";
 
+        // batched event set up
+        QueuePosition queuePosition = QueuePosition.Back;
+        if(batchedEvent != null)
+        {
+            queuePosition = QueuePosition.BatchedEvent;
+        }
+
         if (attacker != null)
         {
             attackerName = attacker.myName;
@@ -417,7 +424,6 @@ public class CombatLogic : Singleton<CombatLogic>
                 Debug.Log("block after = " + blockAfter);
                 healthAfter = victim.health - adjustedDamageValue;
             }
-
         }
 
         // Check for damage immunity passives
@@ -443,7 +449,7 @@ public class CombatLogic : Singleton<CombatLogic>
             {
                 // Create Lose Armor Effect
                 VisualEventManager.Instance.CreateVisualEvent(() => 
-                VisualEffectManager.Instance.CreateLoseBlockEffect(victim.characterEntityView.transform.position, adjustedDamageValue), QueuePosition.Back, 0, 0, EventDetail.None, batchedEvent);
+                VisualEffectManager.Instance.CreateLoseBlockEffect(victim.characterEntityView.transform.position, adjustedDamageValue), queuePosition, 0, 0, EventDetail.None, batchedEvent);
                 
             }
             else if (totalLifeLost > 0)
@@ -452,19 +458,19 @@ public class CombatLogic : Singleton<CombatLogic>
                 if (victim.health > 0 && totalLifeLost > 0)
                 {
                     VisualEventManager.Instance.CreateVisualEvent(()=> 
-                    CharacterEntityController.Instance.PlayHurtAnimation(victim.characterEntityView), QueuePosition.Back, 0, 0, EventDetail.None, batchedEvent);
+                    CharacterEntityController.Instance.PlayHurtAnimation(victim.characterEntityView), queuePosition, 0, 0, EventDetail.None, batchedEvent);
                 }
 
                 // Create damage text effect
                 VisualEventManager.Instance.CreateVisualEvent(() => 
-                VisualEffectManager.Instance.CreateDamageEffect(victim.characterEntityView.transform.position, totalLifeLost), QueuePosition.Back, 0, 0, EventDetail.None, batchedEvent);
+                VisualEffectManager.Instance.CreateDamageEffect(victim.characterEntityView.transform.position, totalLifeLost), queuePosition, 0, 0, EventDetail.None, batchedEvent);
 
                 // Create impact effect
                 VisualEventManager.Instance.CreateVisualEvent(() =>
-               VisualEffectManager.Instance.CreateSmallMeleeImpact(victim.characterEntityView.transform.position, totalLifeLost), QueuePosition.Back, 0, 0, EventDetail.None, batchedEvent);
+               VisualEffectManager.Instance.CreateSmallMeleeImpact(victim.characterEntityView.transform.position, totalLifeLost), queuePosition, 0, 0, EventDetail.None, batchedEvent);
 
                 VisualEventManager.Instance.CreateVisualEvent(() => 
-                AudioManager.Instance.PlaySound(Sound.Ability_Damaged_Health_Lost), QueuePosition.Back, 0, 0, EventDetail.None, batchedEvent);
+                AudioManager.Instance.PlaySound(Sound.Ability_Damaged_Health_Lost), queuePosition, 0, 0, EventDetail.None, batchedEvent);
                 
             }
         }
@@ -482,7 +488,6 @@ public class CombatLogic : Singleton<CombatLogic>
         {
             Debug.Log(victim.myName + " 'Enrage' triggered, gaining " + victim.pManager.enrageStacks.ToString() + " bonus power");
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-            //PassiveController.Instance.ModifyPassiveOnCharacterEntity(victim.pManager, "Power", victim.pManager.enrageStacks, true);
             PassiveController.Instance.ModifyBonusPower(victim.pManager, victim.pManager.enrageStacks, true);
         }
 
@@ -506,112 +511,7 @@ public class CombatLogic : Singleton<CombatLogic>
             }
         }
         
-
-
-        // Update character data if victim is a defender
-        /*
-        if (victim.defender != null && totalLifeLost > 0)
-        {
-            victim.defender.myCharacterData.ModifyCurrentHealth(-totalLifeLost);
-
-            // flick bool for scoring
-            EventManager.Instance.damageTakenThisEncounter = true;
-        }
-        */
-
-        // PASSIVE STUFF
-        /*
-        // Remove camoflage from victim if damage was taken
-        if (victim.myPassiveManager.camoflage)
-        {
-            //yield return new WaitForSeconds(0.5f);
-            victim.myPassiveManager.ModifyCamoflage(-1);
-        }
-
-        // Life steal
-        if (attacker != null &&
-            attacker.myPassiveManager.lifeSteal && totalLifeLost > 0 &&
-            abilityUsed != null &&
-            abilityUsed.abilityType == AbilityDataSO.AbilityType.MeleeAttack)
-        {
-            //yield return new WaitForSeconds(0.5f);
-            Debug.Log(attacker.name + " has 'Life Steal', healing for " + totalLifeLost.ToString() + " damage");
-            attacker.ModifyCurrentHealth(totalLifeLost);
-        }
-
-        // Poisonous trait
-        if (attacker != null &&
-            attacker.myPassiveManager.poisonous && totalLifeLost > 0 &&
-            abilityUsed != null &&
-            (abilityUsed.abilityType == AbilityDataSO.AbilityType.MeleeAttack ||
-            abilityUsed.abilityType == AbilityDataSO.AbilityType.RangedAttack))
-        {
-            Debug.Log(attacker.name + " has 'Poisonous', applying " + attacker.myPassiveManager.poisonousStacks.ToString() + " 'Poisoned'");
-            //yield return new WaitForSeconds(0.5f);
-            victim.myPassiveManager.ModifyPoisoned(attacker.myPassiveManager.poisonousStacks, attacker);
-        }
-
-        // Immolation trait
-        if (attacker != null &&
-            attacker.myPassiveManager.immolation && totalLifeLost > 0 &&
-            abilityUsed != null &&
-            abilityUsed.abilityType == AbilityDataSO.AbilityType.MeleeAttack)
-        {
-            Debug.Log(attacker.name + " has 'Immolation', applying " + attacker.myPassiveManager.immolationStacks.ToString() + " 'Burning'");
-            //yield return new WaitForSeconds(0.5f);
-            victim.myPassiveManager.ModifyBurning(attacker.myPassiveManager.immolationStacks, attacker);
-        }
-
-        // Remove sleeping
-        if (victim.myPassiveManager.sleep && totalLifeLost > 0)
-        {
-            Debug.Log(victim.name + " took damage and is sleeping, removing sleep");
-            //yield return new WaitForSeconds(0.5f);
-            victim.myPassiveManager.ModifySleep(-victim.myPassiveManager.sleepStacks);
-        }
-
-        // Enrage
-        if (victim.myPassiveManager.enrage && totalLifeLost > 0)
-        {
-            Debug.Log(victim.name + " 'Enrage' triggered, gaining " + victim.myPassiveManager.enrage.ToString() + " bonus strength");
-            //yield return new WaitForSeconds(0.5f);
-            victim.myPassiveManager.ModifyBonusStrength(victim.myPassiveManager.enrageStacks);
-        }
-
-        // Tenacious
-        if (victim.myPassiveManager.tenacious && totalLifeLost > 0)
-        {
-            Debug.Log(victim.name + " 'Tenacious' triggered, gaining" + (CalculateBlockGainedByEffect(victim.myPassiveManager.tenaciousStacks, victim).ToString() + " block"));
-            //yield return new WaitForSeconds(0.5f);
-            VisualEffectManager.Instance.CreateStatusEffect(victim.transform.position, "Tenacious!");
-            //yield return new WaitForSeconds(0.5f);
-            victim.ModifyCurrentBlock(CalculateBlockGainedByEffect(victim.myPassiveManager.tenaciousStacks, victim));
-        }
-
-        // Thorns
-        if (victim.myPassiveManager.thorns && attacker != null)
-        {
-            if (abilityUsed != null &&
-                abilityUsed.abilityType == AbilityDataSO.AbilityType.MeleeAttack)
-            {
-                //yield return new WaitForSeconds(0.5f);
-                VisualEffectManager.Instance.CreateStatusEffect(victim.transform.position, "Thorns");
-                Debug.Log(victim.name + " has thorns and was struck by a melee attack, returning damage...");
-                int finalThornsDamageValue = GetFinalDamageValueAfterAllCalculations(victim, attacker, null, "Physical", false, victim.myPassiveManager.thornsStacks);
-                OldCoroutineData thornsDamage = HandleDamage(finalThornsDamageValue, victim, attacker, "Physical");
-               // yield return new WaitUntil(() => thornsDamage.ActionResolved() == true);
-            }
-        }
-        */
-
-        // Increment times attack counter
-        /*
-        if (abilityUsed != null &&
-           abilityUsed.abilityType == AbilityDataSO.AbilityType.MeleeAttack)
-        {
-            victim.timesMeleeAttackedThisTurnCycle++;
-        }
-        */
+        // DEATH?!
 
         // Check if the victim was killed by the damage
         if (victim.health <= 0 && victim.livingState == LivingState.Alive)
@@ -702,9 +602,6 @@ public class CombatLogic : Singleton<CombatLogic>
             */
 
         }
-
-        //yield return new WaitForSeconds(0.5f);
-        //action.coroutineCompleted = true;
     }
 
 

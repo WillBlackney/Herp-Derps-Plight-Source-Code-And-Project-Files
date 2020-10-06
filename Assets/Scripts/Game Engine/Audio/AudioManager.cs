@@ -66,7 +66,7 @@ public class AudioManager : Singleton<AudioManager>
             a.source.loop = a.loop;
         }
 
-        PlaySound(Sound.Music_Battle_Theme_1);
+        //PlaySound(Sound.Music_Battle_Theme_1);
     }
     #endregion
 

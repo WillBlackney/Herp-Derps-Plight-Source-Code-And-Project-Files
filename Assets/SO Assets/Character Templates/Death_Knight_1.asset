@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2410c6608dbef744a9643f0571333299, type: 3}
   m_Name: Death_Knight_1
   m_EditorClassIdentifier: 
-  myName: Death_Knight_1
+  myName: Death Knight
   health: 30
   maxHealth: 30
   power: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
     venomousStacks: 0
     overloadStacks: 0
     fusionStacks: 0
-    meleeAttackReductionStacks: 0
+    plantedFeetStacks: 0
     consecrationStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0

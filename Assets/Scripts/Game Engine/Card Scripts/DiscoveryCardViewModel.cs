@@ -15,7 +15,7 @@ public class DiscoveryCardViewModel : MonoBehaviour, IPointerEnterHandler, IPoin
     [SerializeField] float scaleSpeed;
 
     [Header("Card References")]
-    public CardDataSO myDataRef;
+    public CardData myDataRef;
     public Card myCardRef;
 
     public void OnPointerEnter(PointerEventData eventData)

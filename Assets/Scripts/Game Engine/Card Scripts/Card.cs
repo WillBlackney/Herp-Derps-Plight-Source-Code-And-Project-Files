@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Card
 {
-    // General Properties
+    // Data references
     public CharacterEntityModel owner;
-    public CardViewModel cardVM;
     public CardDataSO myCardDataSO;
+    public CardData myCharacterDeckCard;    
+
+    // General Properties
+    public CardViewModel cardVM;
     public string cardName;
     public Sprite cardSprite;
     public string cardDescription;
@@ -30,5 +34,11 @@ public class Card
     public bool fleeting;
     public bool unplayable;
     public bool blessing;
+
+    // misc getters
+    public CharacterData myCharacterData()
+    {
+        return owner.characterData;
+    }
 
 }

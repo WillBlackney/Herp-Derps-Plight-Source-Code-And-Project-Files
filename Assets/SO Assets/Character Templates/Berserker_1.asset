@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2410c6608dbef744a9643f0571333299, type: 3}
   m_Name: Berserker_1
   m_EditorClassIdentifier: 
-  myName: Berserker Template 1
+  myName: Berserker
   health: 30
   maxHealth: 30
   power: 0
@@ -38,15 +38,21 @@ MonoBehaviour:
     temporaryBonusStaminaStacks: 0
     temporaryBonusInitiativeStacks: 0
     temporaryBonusDrawStacks: 0
+    runeStacks: 0
+    barrierStacks: 0
     enrageStacks: 0
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
+    divineFavourStacks: 0
     phoenixFormStacks: 0
     poisonousStacks: 0
     venomousStacks: 0
     overloadStacks: 0
     fusionStacks: 0
-    meleeAttackReductionStacks: 0
+    plantedFeetStacks: 0
+    consecrationStacks: 0
+    encouragingAuraStacks: 0
+    shadowAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0

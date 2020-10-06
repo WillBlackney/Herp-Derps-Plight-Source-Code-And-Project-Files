@@ -17,7 +17,8 @@ public class CardController : Singleton<CardController>
     [SerializeField] private bool mouseIsOverTable;
 
     [Header("Card Library Properties")]
-    [SerializeField] private CardDataSO[] allCards;
+    [SerializeField] private CardDataSO[] allCardScriptableObjects;
+    private CardData[] allCards;
 
     [Header("Discovery Screen Components")]
     [SerializeField] private DiscoveryCardViewModel[] discoveryCards;
@@ -49,7 +50,7 @@ public class CardController : Singleton<CardController>
 
     // Getters
     #region
-    public CardDataSO[] AllCards
+    public CardData[] AllCards
     {
         get { return allCards; }
         private set { allCards = value; }
@@ -75,11 +76,33 @@ public class CardController : Singleton<CardController>
 
     // Card Library Logic
     #region
-    public CardDataSO GetCardFromLibraryByName(string name)
+    // Initialization + Build Library
+    private void Start()
     {
-        CardDataSO cardReturned = null;
+        BuildCardLibrary();
+    }
+    private void BuildCardLibrary()
+    {
+        Debug.LogWarning("CardController.BuildCardLibrary() called...");
 
-        foreach(CardDataSO card in AllCards)
+        // AllCards = new CardData[allCardDataSOs.Length];
+        List<CardData> tempList = new List<CardData>();
+
+        foreach(CardDataSO dataSO in allCardScriptableObjects)
+        {
+            tempList.Add(BuildCardDataFromScriptableObjectData(dataSO));
+        }
+
+        AllCards = tempList.ToArray();
+        Debug.LogWarning("Cards in library after build: " + AllCards.Length.ToString());
+    }
+
+    // Getters
+    public CardData GetCardFromLibraryByName(string name)
+    {
+        CardData cardReturned = null;
+
+        foreach(CardData card in AllCards)
         {
             if(card.cardName == name)
             {
@@ -95,12 +118,14 @@ public class CardController : Singleton<CardController>
         }
         return cardReturned;
     }
-    public List<CardDataSO> GetCardsQuery(IEnumerable<CardDataSO> queriedCollection, TalentSchool ts = TalentSchool.None, Rarity r = Rarity.None, bool blessing = false)
+
+    // Core Queires
+    public List<CardData> GetCardsQuery(IEnumerable<CardData> queriedCollection, TalentSchool ts = TalentSchool.None, Rarity r = Rarity.None, bool blessing = false)
     {
         Debug.Log("GetCardsQuery() called, query params --- TalentSchool = " + ts.ToString()
             + ", Rarity = " + r.ToString() + ", Blessing = " + blessing.ToString());
 
-        List <CardDataSO> cardsReturned = new List<CardDataSO>();
+        List <CardData> cardsReturned = new List<CardData>();
         cardsReturned.AddRange(queriedCollection);
 
         if (ts != TalentSchool.None)
@@ -142,10 +167,10 @@ public class CardController : Singleton<CardController>
         return cardsReturned;
     }
 
-    // Queries
-    private List<CardDataSO> QueryByTalentSchool(IEnumerable<CardDataSO> collectionQueried, TalentSchool ts)
+    // Specific Queries
+    private List<CardData> QueryByTalentSchool(IEnumerable<CardData> collectionQueried, TalentSchool ts)
     {
-        List<CardDataSO> cardsReturned = new List<CardDataSO>();
+        List<CardData> cardsReturned = new List<CardData>();
 
         var query =
            from cardData in collectionQueried
@@ -168,9 +193,9 @@ public class CardController : Singleton<CardController>
 
         return cardsReturned;
     }
-    private List<CardDataSO> QueryByRarity(IEnumerable<CardDataSO> collectionQueried, Rarity r)
+    private List<CardData> QueryByRarity(IEnumerable<CardData> collectionQueried, Rarity r)
     {
-        List<CardDataSO> cardsReturned = new List<CardDataSO>();
+        List<CardData> cardsReturned = new List<CardData>();
 
         var query =
            from cardData in collectionQueried
@@ -191,9 +216,9 @@ public class CardController : Singleton<CardController>
         cardsReturned.AddRange(query);
         return cardsReturned;
     }
-    public List<CardDataSO> QueryByBlessing(IEnumerable<CardDataSO> collectionQueried, bool blessing)
+    public List<CardData> QueryByBlessing(IEnumerable<CardData> collectionQueried, bool blessing)
     {
-        List<CardDataSO> cardsReturned = new List<CardDataSO>();
+        List<CardData> cardsReturned = new List<CardData>();
 
         var query =
            from cardData in collectionQueried
@@ -218,20 +243,68 @@ public class CardController : Singleton<CardController>
 
     // Build Cards, Decks, View Models and Data
     #region
-    public void BuildCharacterEntityDeckFromDeckData(CharacterEntityModel defender, List<CardDataSO> deckData)
+    public CardData BuildCardDataFromScriptableObjectData(CardDataSO d, CharacterData owner = null)
+    {
+        CardData c = new CardData();
+
+        // Core data
+        c.myCardDataSO = d;
+        c.myCharacterDataOwner = owner;
+        c.cardName = d.cardName;
+        c.cardDescription = d.cardDescription;
+        c.cardSprite = d.cardSprite;
+        c.cardBaseEnergyCost = d.cardEnergyCost;
+
+        // Types
+        c.cardType = d.cardType;
+        c.targettingType = d.targettingType;
+        c.talentSchool = d.talentSchool;
+        c.rarity = d.rarity;
+
+        // Key words
+        c.expend = d.expend;
+        c.innate = d.innate;
+        c.fleeting = d.fleeting;
+        c.unplayable = d.unplayable;
+        c.blessing = d.blessing;
+
+        // Card effects
+        c.cardEffects = new List<CardEffect>();
+        foreach (CardEffect ce in d.cardEffects)
+        {
+            c.cardEffects.Add(ObjectCloner.CloneJSON(ce));
+        }
+
+        // Card event listeners
+        c.cardEventListeners = new List<CardEventListener>();
+        foreach (CardEventListener cel in d.cardEventListeners)
+        {
+            c.cardEventListeners.Add(ObjectCloner.CloneJSON(cel));
+        }
+
+        return c;
+    }
+    private void ConnectCombatCardWithCardInCharacterDataDeck(Card card, CardData deckDataCard)
+    {
+        card.myCharacterDeckCard = deckDataCard;
+    }
+
+    public void BuildCharacterEntityCombatDeckFromDeckData(CharacterEntityModel defender, List<CardData> deckData)
     {
         Debug.Log("CardController.BuildDefenderDeckFromDeckData() called...");
 
         // Convert each cardDataSO into a card object
-        foreach (CardDataSO cardData in deckData)
+        foreach (CardData cardData in deckData)
         {
-            AddCardToDrawPile(defender, BuildCardFromCardData(cardData, defender));
+            Card newCard = BuildCardFromCardData(cardData, defender);
+            AddCardToDrawPile(defender, newCard);
+            ConnectCombatCardWithCardInCharacterDataDeck(newCard, cardData);
         }
 
         // Shuffle the characters draw pile
         defender.drawPile.Shuffle();
     }
-    private Card BuildCardFromCardData(CardDataSO data, CharacterEntityModel owner)
+    private Card BuildCardFromCardDataSO(CardDataSO data, CharacterEntityModel owner)
     {
         Debug.Log("CardController.BuildCardFromCardData() called...");
 
@@ -264,10 +337,8 @@ public class CardController : Singleton<CardController>
 
         return card;
     }
-    private Card BuildCardFromCardData(Card data, CharacterEntityModel owner)
+    private Card BuildCardFromCardData(CardData data, CharacterEntityModel owner)
     {
-        // OVER LOAD: inseatd of building from scriptable object, clones
-        // an existing card and builds from that
         Debug.Log("CardController.BuildCardFromCardData() called...");
 
         Card card = new Card();
@@ -278,18 +349,13 @@ public class CardController : Singleton<CardController>
         // Core data
         card.owner = owner;
         card.cardName = data.cardName;
-        card.cardDescription = data.cardDescription;        
+        card.cardDescription = data.cardDescription;
+        card.cardBaseEnergyCost = data.cardBaseEnergyCost;
         card.cardSprite = data.cardSprite;
         card.cardType = data.cardType;
         card.rarity = data.rarity;
         card.targettingType = data.targettingType;
         card.talentSchool = data.talentSchool;
-
-        // Energy related
-        card.cardBaseEnergyCost = data.cardBaseEnergyCost;
-        card.energyReductionUntilPlayed = data.energyReductionUntilPlayed;
-        card.energyReductionThisCombatOnly = data.energyReductionThisCombatOnly;
-        card.energyReductionPermanent = data.energyReductionPermanent;
 
         // key words
         card.expend = data.expend;
@@ -303,6 +369,66 @@ public class CardController : Singleton<CardController>
         card.cardEffects.AddRange(data.cardEffects);
 
         return card;
+    }
+    private Card BuildCardFromCard(Card original, CharacterEntityModel owner)
+    {
+        // OVER LOAD: inseatd of building from scriptable object, clones
+        // an existing card and builds from that
+        Debug.Log("CardController.BuildCardFromCard() called...");
+
+        /*
+        Card card = ObjectCloner.CloneJSON(original);
+        card.owner = owner;
+        return card;
+        */              
+
+        Card card = new Card();
+
+        // Data links
+        card.myCardDataSO = original.myCardDataSO;
+
+        // Core data
+        card.owner = owner;
+        card.cardName = original.cardName;
+        card.cardDescription = original.cardDescription;        
+        card.cardSprite = original.cardSprite;
+        card.cardType = original.cardType;
+        card.rarity = original.rarity;
+        card.targettingType = original.targettingType;
+        card.talentSchool = original.talentSchool;
+
+        // Energy related
+        card.cardBaseEnergyCost = original.cardBaseEnergyCost;
+        card.energyReductionUntilPlayed = original.energyReductionUntilPlayed;
+        card.energyReductionThisCombatOnly = original.energyReductionThisCombatOnly;
+        card.energyReductionPermanent = original.energyReductionPermanent;
+
+        // key words
+        card.expend = original.expend;
+        card.fleeting = original.fleeting;
+        card.innate = original.innate;
+        card.unplayable = original.unplayable;
+        card.blessing = original.blessing;
+
+        card.cardEffects = new List<CardEffect>();
+        foreach (CardEffect ce in original.cardEffects)
+        {
+            card.cardEffects.Add(ObjectCloner.CloneJSON(ce));
+        }
+
+        // Card event listeners
+        card.cardEventListeners = new List<CardEventListener>();
+        foreach (CardEventListener cel in original.cardEventListeners)
+        {
+            card.cardEventListeners.Add(ObjectCloner.CloneJSON(cel));
+        }
+
+        // lists
+        //card.cardEventListeners.AddRange(original.cardEventListeners);
+        //card.cardEffects.AddRange(original.cardEffects);
+
+        return card;
+        
     }
     public CardViewModel BuildCardViewModelFromCard(Card card, Vector3 position)
     {
@@ -339,14 +465,14 @@ public class CardController : Singleton<CardController>
         ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(card.rarity));
         SetCardViewModelCardTypeImage(cardVM, SpriteLibrary.Instance.GetCardTypeImageFromTypeEnumData(card.cardType));
     }
-    public CardViewModel BuildCardViewModelFromCardDataSO(CardDataSO card, CardViewModel cardVM)
+    public CardViewModel BuildCardViewModelFromCardDataSO(CardData card, CardViewModel cardVM)
     {
         Debug.Log("CardController.BuildCardViewModelFromCardDataSO() called...");
         
         // Set texts and images
         SetCardViewModelNameText(cardVM, card.cardName);
         SetCardViewModelDescriptionText(cardVM, card.cardDescription);
-        SetCardViewModelEnergyText(null, cardVM, card.cardEnergyCost.ToString());
+        SetCardViewModelEnergyText(null, cardVM, card.cardBaseEnergyCost.ToString());
         SetCardViewModelGraphicImage(cardVM, card.cardSprite);
         SetCardViewModelTalentSchoolImage(cardVM, SpriteLibrary.Instance.GetTalentSchoolSpriteFromEnumData(card.talentSchool));
         ApplyCardViewModelTalentColoring(cardVM, ColorLibrary.Instance.GetTalentColor(card.talentSchool));
@@ -596,6 +722,26 @@ public class CardController : Singleton<CardController>
         if (!IsHandFull(defender))
         {
             // Get card and remove from deck
+            Card newCard = BuildCardFromCardDataSO(data, defender);
+
+            // Add card to hand
+            AddCardToHand(defender, newCard);
+
+            // Create and queue card drawn visual event
+            VisualEventManager.Instance.CreateVisualEvent(() => CreateAndAddNewCardToCharacterHandVisualEvent(newCard, defender), QueuePosition.Back, 0, 0.2f, EventDetail.CardDraw);
+
+            // cache card
+            cardReturned = newCard;
+        }
+
+        return cardReturned;
+    }
+    public Card CreateAndAddNewCardToCharacterHand(CharacterEntityModel defender, CardData data)
+    {
+        Card cardReturned = null;
+        if (!IsHandFull(defender))
+        {
+            // Get card and remove from deck
             Card newCard = BuildCardFromCardData(data, defender);
 
             // Add card to hand
@@ -616,7 +762,7 @@ public class CardController : Singleton<CardController>
         if (!IsHandFull(defender))
         {
             // Get card and remove from deck
-            Card newCard = BuildCardFromCardData(data, defender);
+            Card newCard = BuildCardFromCard(data, defender);
 
             // Add card to hand
             AddCardToHand(defender, newCard);
@@ -1342,8 +1488,8 @@ public class CardController : Singleton<CardController>
         {
             for (int i = 0; i < cardEffect.blessingsGained; i++)
             {               
-                List<CardDataSO> blessings = QueryByBlessing(AllCards, true);
-                CardDataSO randomBlessing = blessings[RandomGenerator.NumberBetween(0, blessings.Count - 1)];
+                List<CardData> blessings = QueryByBlessing(AllCards, true);
+                CardData randomBlessing = blessings[RandomGenerator.NumberBetween(0, blessings.Count - 1)];
                 CreateAndAddNewCardToCharacterHand(owner, randomBlessing);
             }
         }
@@ -1816,7 +1962,7 @@ public class CardController : Singleton<CardController>
         // Discover cards from card data so library
         if(ce.discoveryLocation == CardCollection.CardLibrary)
         {
-            List<CardDataSO> discoverableCards = new List<CardDataSO>();
+            List<CardData> discoverableCards = new List<CardData>();
             discoverableCards = GetCardsQuery(AllCards, ce.talentSchoolFilter, ce.rarityFilter, ce.blessing);
 
             // cancel there are discoverable cards to pick
@@ -1854,6 +2000,7 @@ public class CardController : Singleton<CardController>
 
                     // cache ref to data
                     dcvm.myDataRef = discoverableCards[i];
+                    Debug.LogWarning("Discoverable card new data ref = " + dcvm.myDataRef.cardName);
 
                     // enable slot
                     discoveryCardSlots[i].gameObject.SetActive(true);
@@ -1939,6 +2086,7 @@ public class CardController : Singleton<CardController>
 
                     // cache ref to card
                     dcvm.myCardRef = discoverableCards[i];
+                    Debug.LogWarning("Discoverable card new card ref = " + dcvm.myCardRef.cardName);
 
                     // enable slot
                     discoveryCardSlots[i].gameObject.SetActive(true);
@@ -2038,7 +2186,7 @@ public class CardController : Singleton<CardController>
             }
         }
     }
-    private void ResolveDiscoveryCardClicked(DiscoveryCardViewModel dcvm, CardDataSO dataRef)
+    private void ResolveDiscoveryCardClicked(DiscoveryCardViewModel dcvm, CardData dataRef)
     {
         List<Card> cards = new List<Card>();
 
@@ -2183,15 +2331,6 @@ public class CardController : Singleton<CardController>
 
         // move card to the hand;
         MoveTransformToLocation(cvm.movementParent, characterView.handVisual.slots.Children[0].transform.localPosition, cardTransistionSpeed, true, () => clt.SetHandSortingOrder());
-
-        /*
-        Sequence s = DOTween.Sequence();
-
-        // displace the card so that we can select it in the scene easier.
-        s.Append(cvm.mainParent.DOLocalMove(characterView.handVisual.slots.Children[0].transform.localPosition, cardTransistionSpeed));
-
-        s.OnComplete(() => clt.SetHandSortingOrder());
-        */
     }
     private void DrawCardFromDeckVisualEvent(Card card, CharacterEntityModel character)
     {
@@ -2225,16 +2364,7 @@ public class CardController : Singleton<CardController>
 
         // Move to hand slot
         MoveTransformToLocation(cvm.movementParent, characterView.handVisual.slots.Children[0].transform.localPosition, cardTransistionSpeed, true, () => clt.SetHandSortingOrder());
-
-        // move card to the hand;
-        /*
-        Sequence s = DOTween.Sequence();
-
-        // displace the card so that we can select it in the scene easier.
-        s.Append(cvm.mainParent.DOLocalMove(characterView.handVisual.slots.Children[0].transform.localPosition, cardTransistionSpeed));
-
-        s.OnComplete(() => clt.SetHandSortingOrder());
-        */
+      
     }
     private void DiscardCardFromHandVisualEvent(CardViewModel cvm, CharacterEntityModel character)
     {
@@ -2273,17 +2403,6 @@ public class CardController : Singleton<CardController>
             Destroy(glowTrail, 3);
         });
     }
-    private Sequence MoveCardVmFromHandToDiscardPile(CardViewModel cvm, Transform discardPileLocation)
-    {
-        Debug.Log("CardController.MoveCardVmFromHandToDiscardPile() called...");
-
-        // move card to the hand;
-        Sequence s = DOTween.Sequence();
-        // displace the card so that we can select it in the scene easier.
-        s.Append(cvm.movementParent.DOMove(discardPileLocation.position, 0.5f));
-
-        return s;
-    }   
     private void ExpendCardVisualEvent(CardViewModel cvm, CharacterEntityModel character)
     {
         // remove from hand visual
@@ -2326,9 +2445,6 @@ public class CardController : Singleton<CardController>
     public void MoveCardVMToPlayPreviewSpot(CardViewModel cvm)
     {
         MoveTransformToLocation(cvm.movementParent, cvm.card.owner.characterEntityView.handVisual.PlayPreviewSpot.position, 0.25f);
-        //Transform location = cvm.card.owner.characterEntityView.handVisual.PlayPreviewSpot;
-        //Sequence s = DOTween.Sequence();
-       // s.Append(cvm.mainParent.DOMove(location.position, 0.25f));
     }
     private void PlayCardBreathAnimationVisualEvent(CardViewModel cvm)
     {

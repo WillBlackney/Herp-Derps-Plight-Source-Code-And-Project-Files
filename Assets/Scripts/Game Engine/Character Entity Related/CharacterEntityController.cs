@@ -75,6 +75,13 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Disable main UI canvas + card UI stuff
         view.uiCanvasParent.SetActive(false);
     }
+    public void CreateAllPlayerCombatCharacters()
+    {
+        foreach (CharacterData data in CharacterDataController.Instance.allPlayerCharacters)
+        {
+            CreatePlayerCharacter(data, LevelManager.Instance.GetNextAvailableDefenderNode());
+        }
+    }
     public CharacterEntityModel CreatePlayerCharacter(CharacterData data, LevelNode position)
     {
         // Create GO + View
@@ -107,7 +114,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         SetupCharacterFromCharacterData(model, model.characterData);
 
         // Build deck
-        CardController.Instance.BuildCharacterEntityDeckFromDeckData(model, data.deck);
+        CardController.Instance.BuildCharacterEntityCombatDeckFromDeckData(model, data.deck);
 
         // Add to persistency
         AddDefenderToPersistency(model);
@@ -576,8 +583,8 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             {
                 for (int i = 0; i < character.pManager.divineFavourStacks; i++)
                 {
-                    List<CardDataSO> blessings = CardController.Instance.QueryByBlessing(CardController.Instance.AllCards, true);
-                    CardDataSO randomBlessing = blessings[RandomGenerator.NumberBetween(0, blessings.Count - 1)];
+                    List<CardData> blessings = CardController.Instance.QueryByBlessing(CardController.Instance.AllCards, true);
+                    CardData randomBlessing = blessings[RandomGenerator.NumberBetween(0, blessings.Count - 1)];
                     CardController.Instance.CreateAndAddNewCardToCharacterHand(character, randomBlessing);
                 }
             }

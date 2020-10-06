@@ -5,46 +5,10 @@ using Sirenix.OdinInspector;
 
 public class GlobalSettings : Singleton<GlobalSettings>
 {
-    // Void Combat Test Scene Logic
+    // Properties
     #region
-    private void Start()
-    {
-        Debug.Log("CombatTestSceneController.Start() called...");
-        StartCoroutine(RunCombatSceneStartup());
-
-        // this prevents mobiles from sleeping due to inactivity
-        Screen.sleepTimeout = SleepTimeout.NeverSleep;
-    }
-    private IEnumerator RunCombatSceneStartup()
-    {
-        yield return null;
-
-        if (gameMode == StartingSceneSetting.CombatSceneTesting)
-        {
-            // Build character data
-            CharacterDataController.Instance.BuildAllCharactersFromCharacterTemplateList(characterTemplates);
-
-            // Create player characters in scene
-            CreateTestingPlayerCharacters();
-
-            // Spawn enemies
-            EnemySpawner.Instance.SpawnEnemyWave("Basic", testingEnemyWave);
-
-            // Start a new combat event
-            ActivationManager.Instance.OnNewCombatEventStarted();
-        }
-
-    }
-    private void CreateTestingPlayerCharacters()
-    {
-        foreach (CharacterData data in CharacterDataController.Instance.allPlayerCharacters)
-        {
-            CharacterEntityController.Instance.CreatePlayerCharacter(data, LevelManager.Instance.GetNextAvailableDefenderNode());
-        }
-
-    }
-    #endregion
     [Header("Game Mode Settings")]
+    [LabelWidth(200)]
     public StartingSceneSetting gameMode;
 
     [Header("Combat Test Scene Settings")]
@@ -74,7 +38,6 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [ShowIf("deviceMode", DeviceMode.Mobile)]
     public float hoverScaleAmount;
 
-
     // General Info
     [Header("Card Settings")]
     [LabelWidth(200)]
@@ -92,9 +55,81 @@ public class GlobalSettings : Singleton<GlobalSettings>
     // Odin bools
     public bool ShowTestSceneProperties()
     {
-        return gameMode == StartingSceneSetting.CombatSceneTesting;
+        return gameMode == StartingSceneSetting.CombatSceneSingle;
     }
+    #endregion
 
+    // Game Start + Application Entry Points
+    #region
+    private void Start()
+    {
+        RunApplication();
+    }
+    private void RunApplication()
+    {
+        Debug.Log("CombatTestSceneController.Start() called...");
+
+        // Establish settings
+
+        // this prevents mobiles from sleeping due to inactivity
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+
+        // Start application type
+        if (gameMode == StartingSceneSetting.CombatSceneSingle)
+        {
+            StartCoroutine(RunCombatSceneStartup());
+        }
+        else if (gameMode == StartingSceneSetting.Standard)
+        {
+            StartCoroutine(RunStandardGameModeSetup());
+        }
+
+
+    }
+    #endregion
+
+    // Standard game logic
+    #region
+    private IEnumerator RunStandardGameModeSetup()
+    {
+        yield return null;
+
+        MainMenuController.Instance.ShowFrontScreen();
+    }
+    #endregion
+
+    // Combat testing scene logic
+    #region
+    private IEnumerator RunCombatSceneStartup()
+    {
+        yield return null;
+
+        // Play battle theme music
+        AudioManager.Instance.PlaySound(Sound.Music_Battle_Theme_1);
+
+        // Build character data
+        CharacterDataController.Instance.BuildAllCharactersFromCharacterTemplateList(characterTemplates);
+
+        // Create player characters in scene
+        CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
+        //CreateTestingPlayerCharacters();
+
+        // Spawn enemies
+        EnemySpawner.Instance.SpawnEnemyWave("Basic", testingEnemyWave);
+
+        // Start a new combat event
+        ActivationManager.Instance.OnNewCombatEventStarted();
+
+    }
+    private void CreateTestingPlayerCharacters()
+    {
+        foreach (CharacterData data in CharacterDataController.Instance.allPlayerCharacters)
+        {
+            CharacterEntityController.Instance.CreatePlayerCharacter(data, LevelManager.Instance.GetNextAvailableDefenderNode());
+        }
+    }
+    #endregion
+    
 }
 
 public enum InnateSettings
@@ -121,7 +156,8 @@ public enum OnPowerCardPlayedSettings
 public enum StartingSceneSetting
 {
     Standard = 0,
-    CombatSceneTesting = 1,
+    CombatSceneSingle = 1,
+    CombatSceneWithProgression,
     IntegrationTesting = 2,
 
 }

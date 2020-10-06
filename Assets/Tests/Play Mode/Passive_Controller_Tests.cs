@@ -18,7 +18,6 @@ namespace Tests
         // Mock data
         CharacterData characterData;
         EnemyDataSO enemyData;
-        List<CardDataSO> deckData;
         LevelNode defenderNode;
         LevelNode enemyNode;
 
@@ -93,12 +92,8 @@ namespace Tests
                 draw = 5,
                 dexterity = 0,
                 power = 0,
+                deck = new List<CardData>(),
             };
-
-            // Create mock deck data
-            deckData = new List<CardDataSO>();
-            characterData.deck = deckData;
-            deckData.Add(AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/SO Assets/Cards/Strike.asset"));
 
             // Create mock cards
             mockMeleeAttackCard = AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/Tests/Mock Data Files/Mock Melee Attack Card.asset");
@@ -583,10 +578,12 @@ namespace Tests
             CharacterEntityModel playerModel;
             CharacterEntityModel enemyModel;
             Card card;
-           
-            deckData = new List<CardDataSO>();
-            characterData.deck = deckData;
-            deckData.Add(mockMeleeAttackCard);
+
+            //deckData = new List<CardDataSO>();
+            //characterData.initialDeckData = deckData;
+            //deckData.Add(mockMeleeAttackCard);
+            characterData.deck = new List<CardData>();
+            characterData.deck.Add(CardController.Instance.BuildCardDataFromScriptableObjectData(mockMeleeAttackCard));
 
             string passiveName = PassiveController.Instance.GetPassiveIconDataByName(POISONOUS_NAME).passiveName;
             int stacks = 2;
@@ -614,9 +611,12 @@ namespace Tests
             CharacterEntityModel enemyModel;
             Card card;
 
-            deckData = new List<CardDataSO>();
-            characterData.deck = deckData;
-            deckData.Add(mockRangedAttackCard);
+            //deckData = new List<CardDataSO>();
+           // characterData.initialDeckData = deckData;
+           // deckData.Add(mockRangedAttackCard);
+
+            characterData.deck = new List<CardData>();
+            characterData.deck.Add(CardController.Instance.BuildCardDataFromScriptableObjectData(mockRangedAttackCard));
 
             string passiveName = PassiveController.Instance.GetPassiveIconDataByName(POISONOUS_NAME).passiveName;
             int stacks = 2;
@@ -644,9 +644,12 @@ namespace Tests
             CharacterEntityModel enemyModel;
             Card card;
 
-            deckData = new List<CardDataSO>();
-            characterData.deck = deckData;
-            deckData.Add(mockSkillDamagingCard);
+            //deckData = new List<CardDataSO>();
+            //characterData.initialDeckData = deckData;
+           // deckData.Add(mockSkillDamagingCard);
+
+            characterData.deck = new List<CardData>();
+            characterData.deck.Add(CardController.Instance.BuildCardDataFromScriptableObjectData(mockSkillDamagingCard));
 
             string passiveName = PassiveController.Instance.GetPassiveIconDataByName(POISONOUS_NAME).passiveName;
             int stacks = 2;

@@ -48,11 +48,12 @@ namespace Tests
                 draw = 5,
                 dexterity = 0,
                 power = 0,
+                deck = new List<CardData>(),
             };
 
             // Create mock deck data
             deckData = new List<CardDataSO>();
-            characterData.deck = deckData;
+            //characterData.initialDeckData = deckData;
 
             // Create mock cards
             mockExpendCard = AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/Tests/Mock Data Files/Mock Exhaust Card.asset");

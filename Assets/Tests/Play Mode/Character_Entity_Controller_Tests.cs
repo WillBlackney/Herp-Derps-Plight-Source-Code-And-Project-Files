@@ -40,12 +40,13 @@ namespace Tests
                 draw = 5,
                 dexterity = 0,
                 power = 0,
+                deck = new List<CardData>(),
             };
 
             // Create mock deck data
-            deckData = new List<CardDataSO>();
-            characterData.deck = deckData;
-            deckData.Add(AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/SO Assets/Cards/Strike.asset"));
+            //deckData = new List<CardDataSO>();
+            //characterData.initialDeckData = deckData;
+            //deckData.Add(AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/SO Assets/Cards/Strike.asset"));
 
             // Create mock model data
             characterData.modelParts = new List<string>();
