@@ -1758,7 +1758,8 @@ public class PassiveController : Singleton<PassiveController>
             }
 
             // Handle extra draw from fusion passive, if it is a player character and it is their activation
-            if (pManager.fusionStacks > 0 &&
+            if (stacks > 0 &&
+                pManager.fusionStacks > 0 &&
                 pManager.myCharacter != null &&
                 pManager.myCharacter.controller == Controller.Player &&
                 ActivationManager.Instance.EntityActivated == pManager.myCharacter

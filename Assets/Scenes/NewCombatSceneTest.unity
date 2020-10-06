@@ -821,7 +821,10 @@ MonoBehaviour:
   dontDestroyOnLoad: 0
   gameMode: 0
   testingEnemyWave: {fileID: 11400000, guid: 196d21c94a6e94b42ab0250cb4bedcdd, type: 2}
-  testingCharacterTemplates: []
+  testingCharacterTemplates:
+  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
+  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
+  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
   deviceMode: 0
   mouseDragSensitivity: 0.25
   hoverMovePosition: {x: 0, y: 2, z: 0}
@@ -8707,7 +8710,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &960646290
 RectTransform:
   m_ObjectHideFlags: 0

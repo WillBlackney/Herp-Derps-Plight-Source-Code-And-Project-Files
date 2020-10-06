@@ -135,7 +135,9 @@ public class Draggable : MonoBehaviour
 
             if (deltaY >= GlobalSettings.Instance.mouseDragSensitivity && 
                 dragging == false && 
-                _draggingThis == null)
+                _draggingThis == null &&
+                da != null && 
+                da.CanDrag)
             {
                 dragging = true;
                 // when we are dragging something, all previews should be off

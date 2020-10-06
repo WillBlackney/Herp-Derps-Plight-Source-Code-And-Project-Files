@@ -559,7 +559,13 @@ public class ActivationManager : Singleton<ActivationManager>
     }
     private void MoveAllWindowsToStartPositions(CharacterEntityModel[] characters)
     {
-        for(int i = 0; i < characters.Length; i++)
+        StartCoroutine(MoveAllWindowsToStartPositionsCoroutine(characters));
+    }
+    private IEnumerator MoveAllWindowsToStartPositionsCoroutine(CharacterEntityModel[] characters)
+    {
+        yield return null;
+
+        for (int i = 0; i < characters.Length; i++)
         {
             // move the window
             Sequence s = DOTween.Sequence();
