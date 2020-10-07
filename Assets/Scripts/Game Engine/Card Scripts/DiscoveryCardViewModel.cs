@@ -8,6 +8,7 @@ public class DiscoveryCardViewModel : MonoBehaviour, IPointerEnterHandler, IPoin
 {
     [Header("Component References")]
     public CardViewModel cardViewModel;
+    public Transform scalingParent;
 
     [Header("Scaling Properties")]
     [SerializeField] float originalScale;
@@ -20,17 +21,29 @@ public class DiscoveryCardViewModel : MonoBehaviour, IPointerEnterHandler, IPoin
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (!CardController.Instance.DiscoveryScreenIsActive)
+        {
+            return;
+        }
         cardViewModel.movementParent.DOScale(endScale, scaleSpeed).SetEase(Ease.OutQuint);
         AudioManager.Instance.PlaySound(Sound.Card_Discarded);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (!CardController.Instance.DiscoveryScreenIsActive)
+        {
+            return;
+        }
         cardViewModel.movementParent.DOScale(originalScale, scaleSpeed).SetEase(Ease.OutQuint);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (!CardController.Instance.DiscoveryScreenIsActive)
+        {
+            return;
+        }
         CardController.Instance.OnDiscoveryCardClicked(this);
     }
 

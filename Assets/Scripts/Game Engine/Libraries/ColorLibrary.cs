@@ -33,6 +33,7 @@ public class ColorLibrary : Singleton<ColorLibrary>
     [Header("Screen Overlay Colors")]
     public Color whiteOverlayColour;
     public Color fireOverlayColour;
+    public Color purpleOverlayColour;
 
     #endregion
 
@@ -123,6 +124,10 @@ public class ColorLibrary : Singleton<ColorLibrary>
         else if (overlay == ScreenOverlayColor.White)
         {
             colorReturned = whiteOverlayColour;
+        }
+        else if (overlay == ScreenOverlayColor.Purple)
+        {
+            colorReturned = purpleOverlayColour;
         }
 
         return colorReturned;

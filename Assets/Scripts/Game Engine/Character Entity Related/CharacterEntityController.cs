@@ -666,6 +666,10 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             // Run events on cards with 'OnActivationEnd' listener
             CardController.Instance.HandleOnCharacterActivationEndCardListeners(entity);
 
+            // Expend fleeting cards
+            CardController.Instance.ExpendFleetingCardsOnActivationEnd(entity);
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+
             // Discard Hand
             CardController.Instance.DiscardHandOnActivationEnd(entity);
 
@@ -710,6 +714,12 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             PassiveController.Instance.ModifyVulnerable(entity.pManager, - 1, true, 0.5f);
         }
 
+        // Disabling Debuff Expiries
+        if (entity.pManager.disarmedStacks > 0)
+        {
+            PassiveController.Instance.ModifyDisarmed(entity.pManager, -1, true, 0.5f);
+        }
+
         // Buff Passive Triggers
         if (entity.pManager.shieldWallStacks > 0)
         {
@@ -719,6 +729,16 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
             // Apply block gain
             ModifyBlock(entity, CombatLogic.Instance.CalculateBlockGainedByEffect(entity.pManager.shieldWallStacks, entity, entity));
+        }
+
+        if (entity.pManager.growingStacks > 0)
+        {
+            // Notication vfx
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(entity.characterEntityView.transform.position, "Growing!"), QueuePosition.Back, 0, 0.5f);
+
+            // Gain power
+            PassiveController.Instance.ModifyBonusPower(entity.pManager, entity.pManager.growingStacks, true, 0.5f);
         }
 
         if (entity.pManager.encouragingAuraStacks > 0)
@@ -1538,7 +1558,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             targetReturned = enemy.pManager.myTaunter;
         }
 
-        else if (action.actionType == ActionType.AttackTarget || action.actionType == ActionType.DebuffTarget)
+        else if (action.actionType == ActionType.AttackTarget || 
+            action.actionType == ActionType.DebuffTarget || 
+            action.actionType == ActionType.AddCardToTargetCardCollection)
         {
             CharacterEntityModel[] enemies = GetAllEnemiesOfCharacter(enemy).ToArray();
 
@@ -1628,7 +1650,6 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     {
         Debug.Log("CharacterEntityController.TriggerEnemyActionEffect() called on enemy " + enemy.myName);
 
-
         // Cache refs for visual events
         CharacterEntityModel target = enemy.currentActionTarget;        
 
@@ -1636,7 +1657,8 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // TO DO: we should probably perform this validation process before calling 'TriggerEnemyActionEffect'
         if ((target != null && target.livingState == LivingState.Dead) ||
             ((effect.actionType == ActionType.AttackTarget ||
-            effect.actionType == ActionType.DebuffTarget)  && target == enemy))
+            effect.actionType == ActionType.DebuffTarget ||
+            effect.actionType == ActionType.AddCardToTargetCardCollection)  && target == enemy))
         {
             return;
         }
@@ -1644,7 +1666,8 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // TO DO: we should probably remove this and find a better way to prevent enemies targetting themselves
         // with harmful effects
         if ((effect.actionType == ActionType.AttackTarget ||
-            effect.actionType == ActionType.DebuffTarget) &&
+            effect.actionType == ActionType.DebuffTarget ||
+            effect.actionType == ActionType.AddCardToTargetCardCollection) &&
             target == null)
         {
             return;
@@ -1757,18 +1780,22 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         }
 
         // Add Card
-        else if (effect.actionType == ActionType.AddCard)
+        else if (effect.actionType == ActionType.AddCardToTargetCardCollection)
         {
+            List<Card> cardsAdded = new List<Card>();
             for (int i = 0; i < effect.copiesAdded; i++)
             {
                 if (effect.collection == CardCollection.DiscardPile)
                 {
                     // TO DO: Make a new method in CardController for this and future similar effects, like CreateCardAndAddToDiscardPile
 
-                    //Card card = CardController.Instance.BuildCardFromCardData(effect.cardAdded, enemy.currentActionTarget.defender);
-                    //CardController.Instance.AddCardToDiscardPile(enemy.currentActionTarget.defender, card);
+                    Card card = CardController.Instance.CreateAndAddNewCardToCharacterDiscardPile(enemy.currentActionTarget, effect.cardAdded);
+                    cardsAdded.Add(card);
                 }
             }
+
+            CardController.Instance.StartNewShuffleCardsScreenVisualEvent(cardsAdded);
+
         }
 
         // CONCLUDING VISUAL EVENTS!

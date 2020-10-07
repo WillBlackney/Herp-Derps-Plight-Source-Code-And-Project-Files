@@ -75,12 +75,15 @@ public class LevelManager : Singleton<LevelManager>
         node.myEntity = null;
         entity.levelNode = null;
     }
-    public void ClearAllNodes()
+    public void ClearAndResetAllNodes()
     {
         foreach(LevelNode node in AllLevelNodes)
         {
             node.occupied = false;
             node.myEntity = null;
+            SetActivatedViewState(node, false);
+            SetMouseOverViewState(node, false);
+            SetLineViewState(node, false);
         }
     }
     #endregion

@@ -206,7 +206,7 @@ public enum ActionType
     DefendAllAllies = 9,
     Sleep = 10,
     PassTurn = 11,
-    AddCard = 12,
+    AddCardToTargetCardCollection = 12,
 }
 public enum ActionRequirementType
 {
@@ -330,6 +330,7 @@ public enum ScreenOverlayColor
 {
     White = 0,
     Fire = 1,
+    Purple = 2,
 }
 public enum MovementAnimEvent
 {

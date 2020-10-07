@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 272d402ffa0a347429dfe06011e3d167, type: 3}
-  m_Name: Sentry
+  m_Name: Skeleton Berserker (Mad Gremlin)
   m_EditorClassIdentifier: 
-  enemyName: Sentry
-  maxHealth: 42
+  enemyName: Skeleton Berserker
+  maxHealth: 24
   power: 0
   dexterity: 0
-  initiative: 3
-  startingHealth: 42
+  initiative: 0
+  startingHealth: 24
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0
@@ -36,9 +36,9 @@ MonoBehaviour:
     temporaryBonusStaminaStacks: 0
     temporaryBonusInitiativeStacks: 0
     temporaryBonusDrawStacks: 0
-    runeStacks: 1
+    runeStacks: 0
     barrierStacks: 0
-    enrageStacks: 0
+    enrageStacks: 2
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
     divineFavourStacks: 0
@@ -49,29 +49,41 @@ MonoBehaviour:
     fusionStacks: 0
     plantedFeetStacks: 0
     consecrationStacks: 0
-    growingStacks: 0
-    cautiousStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
     gritStacks: 0
-    disarmedStacks: 0
     poisonedStacks: 0
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   allEnemyActions:
-  - actionName: Beam
+  - actionName: Strike
     actionType: 0
     intentImage: 0
     actionLoops: 1
     doThisOnFirstActivation: 0
-    canBeConsecutive: 0
+    canBeConsecutive: 1
     prioritiseWhenRequirementsMet: 0
     actionRequirements: []
     actionEffects:
     - visualEventsOnStart:
+      - eventType: 1
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 1
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
       - eventType: 2
         screenOverlayType: 0
         overlayColor: 0
@@ -82,9 +94,9 @@ MonoBehaviour:
         cameraShake: 0
         movementAnimation: 0
         soundEffect: 0
-        characterAnimation: 3
+        characterAnimation: 1
         delayDuration: 0
-        projectileFired: 2
+        projectileFired: 0
         projectileStartPosition: 0
         onCharacter: 0
       - eventType: 4
@@ -102,96 +114,16 @@ MonoBehaviour:
         projectileFired: 0
         projectileStartPosition: 0
         onCharacter: 0
-      - eventType: 3
-        screenOverlayType: 0
-        overlayColor: 0
-        overlayFadeInTime: 0
-        overlayDuration: 0
-        overlayFadeOutTime: 0
-        particleEffect: 10
-        cameraShake: 0
-        movementAnimation: 0
-        soundEffect: 0
-        characterAnimation: 0
-        delayDuration: 0
-        projectileFired: 0
-        projectileStartPosition: 0
-        onCharacter: 2
       visualEventsOnFinish: []
       actionType: 0
-      baseDamage: 9
-      damageType: 5
+      baseDamage: 8
+      damageType: 1
       passiveApplied: {fileID: 0}
       passiveStacks: 0
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0
-  - actionName: Confuse
-    actionType: 12
-    intentImage: 7
-    actionLoops: 1
-    doThisOnFirstActivation: 1
-    canBeConsecutive: 0
-    prioritiseWhenRequirementsMet: 0
-    actionRequirements: []
-    actionEffects:
-    - visualEventsOnStart:
-      - eventType: 2
-        screenOverlayType: 0
-        overlayColor: 0
-        overlayFadeInTime: 0
-        overlayDuration: 0
-        overlayFadeOutTime: 0
-        particleEffect: 0
-        cameraShake: 0
-        movementAnimation: 0
-        soundEffect: 0
-        characterAnimation: 4
-        delayDuration: 0
-        projectileFired: 0
-        projectileStartPosition: 0
-        onCharacter: 0
-      - eventType: 7
-        screenOverlayType: 1
-        overlayColor: 2
-        overlayFadeInTime: 0.5
-        overlayDuration: 1
-        overlayFadeOutTime: 0.5
-        particleEffect: 0
-        cameraShake: 0
-        movementAnimation: 0
-        soundEffect: 0
-        characterAnimation: 0
-        delayDuration: 0
-        projectileFired: 0
-        projectileStartPosition: 0
-        onCharacter: 0
-      - eventType: 3
-        screenOverlayType: 0
-        overlayColor: 0
-        overlayFadeInTime: 0
-        overlayDuration: 0
-        overlayFadeOutTime: 0
-        particleEffect: 22
-        cameraShake: 0
-        movementAnimation: 0
-        soundEffect: 0
-        characterAnimation: 0
-        delayDuration: 0
-        projectileFired: 0
-        projectileStartPosition: 0
-        onCharacter: 2
-      visualEventsOnFinish: []
-      actionType: 12
-      baseDamage: 0
-      damageType: 0
-      passiveApplied: {fileID: 0}
-      passiveStacks: 0
-      blockGained: 0
-      cardAdded: {fileID: 11400000, guid: 6c6298096331b0c40b77130a25f22b6c, type: 2}
-      copiesAdded: 3
-      collection: 2
   allBodyParts:
   - Undead_Head_1
   - Undead_Face_1
@@ -202,6 +134,5 @@ MonoBehaviour:
   - Undead_Left_Hand
   - Undead_Right_Leg
   - Undead_Left_Leg
-  - Arcanist_Head_Wear
-  - Left_Hand_Simple_Staff
-  - Arcanist_Chest_Wear
+  - Left_Hand_Simple_Battle_Axe
+  - Berserker_Mask_Head_Wear

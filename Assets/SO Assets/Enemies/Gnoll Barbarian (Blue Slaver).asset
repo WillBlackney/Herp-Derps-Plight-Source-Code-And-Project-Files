@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 272d402ffa0a347429dfe06011e3d167, type: 3}
-  m_Name: Skeleton Mage
+  m_Name: Gnoll Barbarian (Blue Slaver)
   m_EditorClassIdentifier: 
-  enemyName: Skeleton Mage
-  maxHealth: 25
+  enemyName: Gnoll Barbarian
+  maxHealth: 46
   power: 0
   dexterity: 0
   initiative: 3
-  startingHealth: 25
+  startingHealth: 46
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0
@@ -49,26 +49,43 @@ MonoBehaviour:
     fusionStacks: 0
     plantedFeetStacks: 0
     consecrationStacks: 0
+    growingStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
     gritStacks: 0
+    disarmedStacks: 0
     poisonedStacks: 0
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   allEnemyActions:
-  - actionName: Charging
-    actionType: 11
-    intentImage: 9
+  - actionName: Strike
+    actionType: 0
+    intentImage: 0
     actionLoops: 1
-    doThisOnFirstActivation: 1
+    doThisOnFirstActivation: 0
     canBeConsecutive: 1
     prioritiseWhenRequirementsMet: 0
     actionRequirements: []
     actionEffects:
     - visualEventsOnStart:
+      - eventType: 1
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 1
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
       - eventType: 2
         screenOverlayType: 0
         overlayColor: 0
@@ -79,63 +96,55 @@ MonoBehaviour:
         cameraShake: 0
         movementAnimation: 0
         soundEffect: 0
-        characterAnimation: 4
+        characterAnimation: 1
         delayDuration: 0
         projectileFired: 0
         projectileStartPosition: 0
         onCharacter: 0
-      - eventType: 3
+      - eventType: 4
         screenOverlayType: 0
         overlayColor: 0
         overlayFadeInTime: 0
         overlayDuration: 0
         overlayFadeOutTime: 0
-        particleEffect: 14
-        cameraShake: 0
+        particleEffect: 0
+        cameraShake: 1
         movementAnimation: 0
         soundEffect: 0
         characterAnimation: 0
         delayDuration: 0
         projectileFired: 0
         projectileStartPosition: 0
-        onCharacter: 1
+        onCharacter: 0
       visualEventsOnFinish: []
-      actionType: 11
-      baseDamage: 0
-      damageType: 0
+      actionType: 0
+      baseDamage: 12
+      damageType: 1
       passiveApplied: {fileID: 0}
       passiveStacks: 0
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0
-  - actionName: Meteor
+  - actionName: Rake
     actionType: 0
-    intentImage: 0
+    intentImage: 2
     actionLoops: 1
     doThisOnFirstActivation: 0
-    canBeConsecutive: 0
-    prioritiseWhenRequirementsMet: 1
-    actionRequirements:
-    - requirementType: 7
-      requirementTypeValue: 2
-      passiveRequired: {fileID: 0}
-      statusStacksRequired: 0
-    - requirementType: 8
-      requirementTypeValue: 2
-      passiveRequired: {fileID: 0}
-      statusStacksRequired: 0
+    canBeConsecutive: 1
+    prioritiseWhenRequirementsMet: 0
+    actionRequirements: []
     actionEffects:
     - visualEventsOnStart:
-      - eventType: 7
-        screenOverlayType: 1
-        overlayColor: 1
-        overlayFadeInTime: 0.75
-        overlayDuration: 1
-        overlayFadeOutTime: 0.75
+      - eventType: 1
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
         particleEffect: 0
         cameraShake: 0
-        movementAnimation: 0
+        movementAnimation: 1
         soundEffect: 0
         characterAnimation: 0
         delayDuration: 0
@@ -152,46 +161,71 @@ MonoBehaviour:
         cameraShake: 0
         movementAnimation: 0
         soundEffect: 0
-        characterAnimation: 3
+        characterAnimation: 1
         delayDuration: 0
-        projectileFired: 1
+        projectileFired: 0
         projectileStartPosition: 0
         onCharacter: 0
-      - eventType: 3
+      - eventType: 4
         screenOverlayType: 0
         overlayColor: 0
         overlayFadeInTime: 0
         overlayDuration: 0
         overlayFadeOutTime: 0
-        particleEffect: 8
-        cameraShake: 0
+        particleEffect: 0
+        cameraShake: 1
         movementAnimation: 0
         soundEffect: 0
         characterAnimation: 0
         delayDuration: 0
         projectileFired: 0
         projectileStartPosition: 0
-        onCharacter: 2
-      visualEventsOnFinish: []
+        onCharacter: 0
+      visualEventsOnFinish:
+      - eventType: 6
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0.5
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
       actionType: 0
-      baseDamage: 25
-      damageType: 4
+      baseDamage: 7
+      damageType: 1
       passiveApplied: {fileID: 0}
       passiveStacks: 0
+      blockGained: 0
+      cardAdded: {fileID: 0}
+      copiesAdded: 0
+      collection: 0
+    - visualEventsOnStart: []
+      visualEventsOnFinish: []
+      actionType: 5
+      baseDamage: 0
+      damageType: 0
+      passiveApplied: {fileID: 11400000, guid: 6f53a59075648034ab7c521f182140e3, type: 2}
+      passiveStacks: 2
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0
   allBodyParts:
-  - Undead_Head_1
-  - Undead_Face_1
-  - Undead_Chest
-  - Undead_Right_Arm
-  - Undead_Right_Hand
-  - Undead_Left_Arm
-  - Undead_Left_Hand
-  - Undead_Right_Leg
-  - Undead_Left_Leg
-  - Arcanist_Head_Wear
-  - Left_Hand_Simple_Staff
-  - Arcanist_Chest_Wear
+  - Gnoll_Head_1
+  - Gnoll_Face_1
+  - Gnoll_Chest
+  - Gnoll_Right_Arm
+  - Gnoll_Right_Hand
+  - Gnoll_Left_Arm
+  - Gnoll_Left_Hand
+  - Gnoll_Right_Leg
+  - Gnoll_Left_Leg
+  - Barbarian_Chest_Wear
+  - Left_Hand_Simple_Battle_Axe

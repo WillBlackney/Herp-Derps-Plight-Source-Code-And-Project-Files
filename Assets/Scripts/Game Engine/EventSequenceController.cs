@@ -147,16 +147,15 @@ public class EventSequenceController : Singleton<EventSequenceController>
     }
     #endregion
 
-    // Handle Teardown of Current encounter on transistion to next
+    // Handle Teardown Encounters
     #region
     public void HandleCombatSceneTearDown()
     {
         CharacterEntityController.Instance.DestroyAllCombatCharacters();
         ActivationManager.Instance.DestroyAllActivationWindows();
-        LevelManager.Instance.ClearAllNodes();
+        LevelManager.Instance.ClearAndResetAllNodes();
         UIManager.Instance.continueToNextEncounterButtonParent.SetActive(false);
         UIManager.Instance.victoryPopup.SetActive(false);
-       // UIManager.Instance.defeatPopup.SetActive(false);
     }
     #endregion
 }

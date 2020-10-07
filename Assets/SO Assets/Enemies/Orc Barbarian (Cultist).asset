@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 272d402ffa0a347429dfe06011e3d167, type: 3}
-  m_Name: Skeleton Guardian
+  m_Name: Orc Barbarian (Cultist)
   m_EditorClassIdentifier: 
-  enemyName: Skeleton Guardian
-  maxHealth: 15
+  enemyName: Orc Barbarian
+  maxHealth: 54
   power: 0
   dexterity: 0
-  initiative: 0
-  startingHealth: 15
+  initiative: 3
+  startingHealth: 54
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0
@@ -36,38 +36,52 @@ MonoBehaviour:
     temporaryBonusStaminaStacks: 0
     temporaryBonusInitiativeStacks: 0
     temporaryBonusDrawStacks: 0
+    runeStacks: 0
+    barrierStacks: 0
     enrageStacks: 0
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
+    divineFavourStacks: 0
     phoenixFormStacks: 0
     poisonousStacks: 0
     venomousStacks: 0
     overloadStacks: 0
     fusionStacks: 0
-    meleeAttackReductionStacks: 0
+    plantedFeetStacks: 0
+    consecrationStacks: 0
+    growingStacks: 0
+    cautiousStacks: 0
+    encouragingAuraStacks: 0
+    shadowAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
     gritStacks: 0
+    disarmedStacks: 0
     poisonedStacks: 0
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   allEnemyActions:
-  - actionName: Protect
-    actionType: 8
-    intentImage: 6
+  - actionName: Incantation
+    actionType: 2
+    intentImage: 4
     actionLoops: 1
-    doThisOnFirstActivation: 0
-    canBeConsecutive: 1
+    doThisOnFirstActivation: 1
+    canBeConsecutive: 0
     prioritiseWhenRequirementsMet: 1
     actionRequirements:
-    - requirementType: 6
-      requirementTypeValue: 2
+    - requirementType: 9
+      requirementTypeValue: 0
       passiveRequired: {fileID: 0}
       statusStacksRequired: 0
     actionEffects:
     - visualEventsOnStart:
       - eventType: 2
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
         particleEffect: 0
         cameraShake: 0
         movementAnimation: 0
@@ -75,18 +89,34 @@ MonoBehaviour:
         characterAnimation: 4
         delayDuration: 0
         projectileFired: 0
+        projectileStartPosition: 0
         onCharacter: 0
-      visualEventsOnFinish: []
-      actionType: 8
+      visualEventsOnFinish:
+      - eventType: 6
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0.5
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
+      actionType: 2
       baseDamage: 0
       damageType: 0
-      passiveApplied: {fileID: 0}
-      passiveStacks: 0
-      blockGained: 7
+      passiveApplied: {fileID: 11400000, guid: 404e8865747302a4380f96d3e7ea3f43, type: 2}
+      passiveStacks: 3
+      blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0
-  - actionName: Shield Bash
+  - actionName: Strike
     actionType: 0
     intentImage: 0
     actionLoops: 1
@@ -97,6 +127,11 @@ MonoBehaviour:
     actionEffects:
     - visualEventsOnStart:
       - eventType: 1
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
         particleEffect: 0
         cameraShake: 0
         movementAnimation: 1
@@ -104,8 +139,14 @@ MonoBehaviour:
         characterAnimation: 0
         delayDuration: 0
         projectileFired: 0
+        projectileStartPosition: 0
         onCharacter: 0
       - eventType: 2
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
         particleEffect: 0
         cameraShake: 0
         movementAnimation: 0
@@ -113,8 +154,14 @@ MonoBehaviour:
         characterAnimation: 1
         delayDuration: 0
         projectileFired: 0
+        projectileStartPosition: 0
         onCharacter: 0
       - eventType: 4
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
         particleEffect: 0
         cameraShake: 1
         movementAnimation: 0
@@ -122,6 +169,22 @@ MonoBehaviour:
         characterAnimation: 0
         delayDuration: 0
         projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
+      - eventType: 5
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 15
+        characterAnimation: 0
+        delayDuration: 0
+        projectileFired: 0
+        projectileStartPosition: 0
         onCharacter: 0
       visualEventsOnFinish: []
       actionType: 0
@@ -134,15 +197,14 @@ MonoBehaviour:
       copiesAdded: 0
       collection: 0
   allBodyParts:
-  - Undead_Head_1
-  - Undead_Face_1
-  - Undead_Chest
-  - Undead_Right_Arm
-  - Undead_Right_Hand
-  - Undead_Left_Arm
-  - Undead_Left_Hand
-  - Undead_Right_Leg
-  - Undead_Left_Leg
-  - Right_Hand_Death_Knight_Shield
-  - Left_Hand_Simple_Sword
-  - Death_Knight_Head_Wear
+  - Orc_Head_1
+  - Orc_Face_1
+  - Orc_Chest
+  - Orc_Right_Arm
+  - Orc_Right_Hand
+  - Orc_Left_Arm
+  - Orc_Left_Hand
+  - Orc_Right_Leg
+  - Orc_Left_Leg
+  - Barbarian_Chest_Wear
+  - Left_Hand_Simple_Battle_Axe

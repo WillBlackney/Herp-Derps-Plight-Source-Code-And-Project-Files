@@ -479,9 +479,22 @@ public class CombatLogic : Singleton<CombatLogic>
         if(totalLifeLost > 0 && victim.controller == Controller.Player)
         {
             CardController.Instance.HandleOnCharacterDamagedCardListeners(victim);
-        }       
+        }
 
         // EVALUATE DAMAGE RELATED PASSIVE EFFECTS
+
+        // Cautious
+        if (victim.pManager.cautiousStacks > 0 && totalLifeLost > 0)
+        {
+            Debug.Log(victim.myName + " 'Cautious' triggered, gaining " + victim.pManager.enrageStacks.ToString() + " Block");
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+
+            // Calculate and apply block gain
+            CharacterEntityController.Instance.ModifyBlock(victim, CalculateBlockGainedByEffect(victim.pManager.cautiousStacks, victim, victim));
+
+            // Remove cautious
+            PassiveController.Instance.ModifyCautious(victim.pManager, -victim.pManager.cautiousStacks, true);
+        }
 
         // Enrage
         if (victim.pManager.enrageStacks > 0 && totalLifeLost > 0)

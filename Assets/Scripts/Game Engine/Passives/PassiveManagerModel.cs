@@ -34,6 +34,8 @@ public class PassiveManagerModel
     public int fusionStacks;
     public int plantedFeetStacks;
     public int consecrationStacks;
+    public int growingStacks;
+    public int cautiousStacks;
 
     // Aura passives
     public int encouragingAuraStacks;
@@ -44,6 +46,9 @@ public class PassiveManagerModel
     public int vulnerableStacks;
     public int weakenedStacks;
     public int gritStacks;
+
+    // Disabling Debuffs
+    public int disarmedStacks;
     
 
     // Misc passives

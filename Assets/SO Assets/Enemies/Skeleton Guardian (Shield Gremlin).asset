@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 272d402ffa0a347429dfe06011e3d167, type: 3}
-  m_Name: Skeleton Berserker
+  m_Name: Skeleton Guardian (Shield Gremlin)
   m_EditorClassIdentifier: 
-  enemyName: Skeleton Berserker
-  maxHealth: 24
+  enemyName: Skeleton Guardian
+  maxHealth: 15
   power: 0
   dexterity: 0
   initiative: 0
-  startingHealth: 24
+  startingHealth: 15
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0
@@ -36,15 +36,21 @@ MonoBehaviour:
     temporaryBonusStaminaStacks: 0
     temporaryBonusInitiativeStacks: 0
     temporaryBonusDrawStacks: 0
-    enrageStacks: 2
+    runeStacks: 0
+    barrierStacks: 0
+    enrageStacks: 0
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
+    divineFavourStacks: 0
     phoenixFormStacks: 0
     poisonousStacks: 0
     venomousStacks: 0
     overloadStacks: 0
     fusionStacks: 0
-    meleeAttackReductionStacks: 0
+    plantedFeetStacks: 0
+    consecrationStacks: 0
+    encouragingAuraStacks: 0
+    shadowAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -53,7 +59,46 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   allEnemyActions:
-  - actionName: Strike
+  - actionName: Protect
+    actionType: 8
+    intentImage: 6
+    actionLoops: 1
+    doThisOnFirstActivation: 0
+    canBeConsecutive: 1
+    prioritiseWhenRequirementsMet: 1
+    actionRequirements:
+    - requirementType: 6
+      requirementTypeValue: 2
+      passiveRequired: {fileID: 0}
+      statusStacksRequired: 0
+    actionEffects:
+    - visualEventsOnStart:
+      - eventType: 2
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 4
+        delayDuration: 0
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
+      visualEventsOnFinish: []
+      actionType: 8
+      baseDamage: 0
+      damageType: 0
+      passiveApplied: {fileID: 0}
+      passiveStacks: 0
+      blockGained: 7
+      cardAdded: {fileID: 0}
+      copiesAdded: 0
+      collection: 0
+  - actionName: Shield Bash
     actionType: 0
     intentImage: 0
     actionLoops: 1
@@ -64,6 +109,11 @@ MonoBehaviour:
     actionEffects:
     - visualEventsOnStart:
       - eventType: 1
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
         particleEffect: 0
         cameraShake: 0
         movementAnimation: 1
@@ -71,8 +121,14 @@ MonoBehaviour:
         characterAnimation: 0
         delayDuration: 0
         projectileFired: 0
+        projectileStartPosition: 0
         onCharacter: 0
       - eventType: 2
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
         particleEffect: 0
         cameraShake: 0
         movementAnimation: 0
@@ -80,8 +136,14 @@ MonoBehaviour:
         characterAnimation: 1
         delayDuration: 0
         projectileFired: 0
+        projectileStartPosition: 0
         onCharacter: 0
       - eventType: 4
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
         particleEffect: 0
         cameraShake: 1
         movementAnimation: 0
@@ -89,10 +151,11 @@ MonoBehaviour:
         characterAnimation: 0
         delayDuration: 0
         projectileFired: 0
+        projectileStartPosition: 0
         onCharacter: 0
       visualEventsOnFinish: []
       actionType: 0
-      baseDamage: 8
+      baseDamage: 6
       damageType: 1
       passiveApplied: {fileID: 0}
       passiveStacks: 0
@@ -110,5 +173,6 @@ MonoBehaviour:
   - Undead_Left_Hand
   - Undead_Right_Leg
   - Undead_Left_Leg
-  - Left_Hand_Simple_Battle_Axe
-  - Berserker_Mask_Head_Wear
+  - Right_Hand_Death_Knight_Shield
+  - Left_Hand_Simple_Sword
+  - Death_Knight_Head_Wear

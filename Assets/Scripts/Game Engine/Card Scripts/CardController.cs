@@ -29,8 +29,7 @@ public class CardController : Singleton<CardController>
 
     [Header("Discovery Screen Properties")]
     private CardEffect currentDiscoveryEffect;
-    private bool discoveryScreenIsActive;
-   
+    private bool discoveryScreenIsActive;   
 
     [Header("Choose Card In Hand Screen Components")]
     [SerializeField] private Transform chooseCardScreenSelectionSpot;
@@ -43,6 +42,11 @@ public class CardController : Singleton<CardController>
     private CardEffect chooseCardScreenEffectReference;
     private Card currentChooseCardScreenSelection;
     private bool chooseCardScreenIsActive;
+
+    [Header("Shuffle New Cards Screen Components")]
+    [SerializeField] private DiscoveryCardViewModel[] shuffleCards;
+    [SerializeField] private Transform[] shuffleCardSlots;
+    [SerializeField] private GameObject shuffleCardsScreenVisualParent;
 
     [Header("Button Sprites")]
     [SerializeField] private Sprite activeButtonSprite;
@@ -464,14 +468,30 @@ public class CardController : Singleton<CardController>
         ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(card.rarity));
         SetCardViewModelCardTypeImage(cardVM, SpriteLibrary.Instance.GetCardTypeImageFromTypeEnumData(card.cardType));
     }
-    public CardViewModel BuildCardViewModelFromCardDataSO(CardData card, CardViewModel cardVM)
+    public CardViewModel BuildCardViewModelFromCardData(CardData card, CardViewModel cardVM)
     {
-        Debug.Log("CardController.BuildCardViewModelFromCardDataSO() called...");
+        Debug.Log("CardController.BuildCardViewModelFromCardData() called...");
         
         // Set texts and images
         SetCardViewModelNameText(cardVM, card.cardName);
         SetCardViewModelDescriptionText(cardVM, card.cardDescription);
         SetCardViewModelEnergyText(null, cardVM, card.cardBaseEnergyCost.ToString());
+        SetCardViewModelGraphicImage(cardVM, card.cardSprite);
+        SetCardViewModelTalentSchoolImage(cardVM, SpriteLibrary.Instance.GetTalentSchoolSpriteFromEnumData(card.talentSchool));
+        ApplyCardViewModelTalentColoring(cardVM, ColorLibrary.Instance.GetTalentColor(card.talentSchool));
+        ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(card.rarity));
+        SetCardViewModelCardTypeImage(cardVM, SpriteLibrary.Instance.GetCardTypeImageFromTypeEnumData(card.cardType));
+
+        return cardVM;
+    }
+    public CardViewModel BuildCardViewModelFromCardDataSO(CardDataSO card, CardViewModel cardVM)
+    {
+        Debug.Log("CardController.BuildCardViewModelFromCardDataSO() called...");
+
+        // Set texts and images
+        SetCardViewModelNameText(cardVM, card.cardName);
+        SetCardViewModelDescriptionText(cardVM, card.cardDescription);
+        SetCardViewModelEnergyText(null, cardVM, card.cardEnergyCost.ToString());
         SetCardViewModelGraphicImage(cardVM, card.cardSprite);
         SetCardViewModelTalentSchoolImage(cardVM, SpriteLibrary.Instance.GetTalentSchoolSpriteFromEnumData(card.talentSchool));
         ApplyCardViewModelTalentColoring(cardVM, ColorLibrary.Instance.GetTalentColor(card.talentSchool));
@@ -735,6 +755,21 @@ public class CardController : Singleton<CardController>
 
         return cardReturned;
     }
+    public Card CreateAndAddNewCardToCharacterDiscardPile(CharacterEntityModel defender, CardDataSO data)
+    {
+        Card cardReturned = null;
+
+        // Get card and remove from deck
+        Card newCard = BuildCardFromCardDataSO(data, defender);
+
+        // Add card to hand
+        AddCardToDiscardPile(defender, newCard);
+
+        // cache card
+        cardReturned = newCard;
+
+        return cardReturned;
+    }
     public Card CreateAndAddNewCardToCharacterHand(CharacterEntityModel defender, CardData data)
     {
         Card cardReturned = null;
@@ -779,6 +814,19 @@ public class CardController : Singleton<CardController>
 
     // Card Discard + Removal Logic
     #region
+    public void ExpendFleetingCardsOnActivationEnd(CharacterEntityModel defender)
+    {
+        Card[] cardsToDiscard = defender.hand.ToArray();
+
+        foreach (Card card in cardsToDiscard)
+        {
+            if (card.fleeting)
+            {
+                ExpendCard(card, true);
+            }
+            
+        }
+    }
     public void DiscardHandOnActivationEnd(CharacterEntityModel defender)
     {
         Debug.Log("CardController.DiscardHandOnActivationEnd() called, hand size = " + defender.hand.Count.ToString());
@@ -811,7 +859,7 @@ public class CardController : Singleton<CardController>
         }                         
 
     }
-    private void ExpendCard(Card card)
+    private void ExpendCard(Card card, bool fleeting = false)
     {
         Debug.Log("CardController.ExpendCard() called...");
 
@@ -839,7 +887,17 @@ public class CardController : Singleton<CardController>
         // does the card have a cardVM linked to it?
         if (cvm)
         {
-            ExpendCardVisualEvent(cvm, owner);
+            if(fleeting == false)
+            {
+                ExpendCardVisualEvent(cvm, owner);
+            }
+
+            else
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => ExpendCardVisualEvent(cvm, owner), QueuePosition.Back,0, 0.5f);
+                //VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+            }
+            
         }
 
         OnCardExpended(card);
@@ -879,10 +937,8 @@ public class CardController : Singleton<CardController>
 
         if(HasEnoughEnergyToPlayCard(card, owner) &&
             CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive &&
-            card.unplayable == false)
-
-           // TO DO: here we check for specifics on card type 
-           // (e.g. M attack cards not playable when disarmed)
+            card.unplayable == false &&
+            IsCardPlayBlockedByDisarmed(card, owner))
         {
             boolReturned = true;
         }
@@ -899,6 +955,18 @@ public class CardController : Singleton<CardController>
         }     
 
         return boolReturned;
+    }
+    public bool IsCardPlayBlockedByDisarmed(Card card, CharacterEntityModel owner)
+    {
+        if(card.cardType == CardType.MeleeAttack &&
+            owner.pManager.disarmedStacks > 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
     private bool HasEnoughEnergyToPlayCard(Card card, CharacterEntityModel owner)
     {
@@ -2008,7 +2076,7 @@ public class CardController : Singleton<CardController>
                     dcvm.gameObject.SetActive(true);
 
                     // build view model
-                    BuildCardViewModelFromCardDataSO(discoverableCards[i], dcvm.cardViewModel);
+                    BuildCardViewModelFromCardData(discoverableCards[i], dcvm.cardViewModel);
 
                     // move card to slot
                     dcvm.gameObject.transform.DOMove(discoveryCardSlots[i].position, 0.3f);
@@ -2294,6 +2362,137 @@ public class CardController : Singleton<CardController>
     }
     #endregion
 
+    // Shuffle Cards Screen Logic
+    #region
+    public void StartNewShuffleCardsScreenVisualEvent(List<Card> cards)
+    {
+        // cache cards for visual events
+        List<Card> cachedCards = new List<Card>();
+        cachedCards.AddRange(cards);
+        List<DiscoveryCardViewModel> activeCards = new List<DiscoveryCardViewModel>();
+
+        for(int i = 0; i < cards.Count; i++)
+        {
+            activeCards.Add(shuffleCards[i]);
+        }
+
+        // Get owner / destination
+        CharacterEntityView view = cachedCards[0].owner.characterEntityView;
+
+        // Set up main screen V event
+        CoroutineData cData = new CoroutineData()
+;       VisualEventManager.Instance.CreateVisualEvent(() => SetUpShuffleCardScreen(cachedCards, cData), cData);
+
+        // brief pause so player can view cards
+        VisualEventManager.Instance.InsertTimeDelayInQueue(1, QueuePosition.Back);
+
+        // Move each card towards character v Event
+        foreach(DiscoveryCardViewModel dcvm in activeCards)
+        {
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                    MoveShuffleCardTowardsCharacterEntityView(dcvm, view), QueuePosition.Back, 0, 0.2f);
+        }
+
+        // Reset Slot Positions
+        VisualEventManager.Instance.CreateVisualEvent(() => MoveShuffleSlotsToStartPosition());
+    }
+    private void SetUpShuffleCardScreen(List<Card> cachedCards, CoroutineData cData)
+    {
+        StartCoroutine(SetUpShuffleCardScreenCoroutine(cachedCards, cData));
+    }
+    private IEnumerator SetUpShuffleCardScreenCoroutine(List<Card> cachedCards, CoroutineData cData)
+    {
+        shuffleCardsScreenVisualParent.SetActive(true);
+        MoveShuffleSlotsToStartPosition();
+        //yield return null;
+        MoveShuffleCardsToStartPosition();
+
+        for (int i = 0; i < cachedCards.Count; i++)
+        {
+            SetUpCardViewModelAppearanceFromCard(shuffleCards[i].cardViewModel, cachedCards[i]);
+            shuffleCards[i].gameObject.SetActive(true);
+            shuffleCardSlots[i].gameObject.SetActive(true);
+
+            // shrink cards down
+            shuffleCards[i].scalingParent.localScale = new Vector3(0.1f, 0.1f);
+        }
+
+        yield return null;
+
+        for (int i = 0; i < cachedCards.Count; i++)
+        {
+            // move card to slot     
+            shuffleCards[i].scalingParent.DOScale(1, 0.3f);
+            shuffleCards[i].transform.gameObject.transform.DOMove(shuffleCardSlots[i].position, 0.3f);
+        }
+
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+    }
+    private void MoveShuffleCardTowardsCharacterEntityView(DiscoveryCardViewModel card, CharacterEntityView character)
+    {
+        // Setup
+        Transform movementParent = card.transform;
+        CardViewModel cvm = card.cardViewModel;
+
+        Vector3 cardDestination = CameraManager.Instance.MainCamera.WorldToScreenPoint(character.WorldPosition);
+        Vector3 glowDestination = character.WorldPosition;
+
+        // SFX
+        AudioManager.Instance.PlaySound(Sound.Card_Discarded);
+
+        // Create Glow Trail
+        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGlowTrailEffect
+            (CameraManager.Instance.MainCamera.ScreenToWorldPoint(movementParent.position));
+
+        // Shrink card
+        ScaleCardViewModel(cvm, 0.1f, 0.5f);
+
+        // Rotate card upside down
+        RotateCardVisualEvent(cvm, 180, 0.5f);
+
+        // Move card + glow outline to quick lerp spot
+
+        // Move card
+        MoveTransformToLocation(cvm.movementParent, cardDestination, 0.5f, false, () => 
+        {
+            card.gameObject.SetActive(false);
+        });
+        MoveTransformToLocation(glowTrail.transform, glowDestination, 0.5f, false, () =>
+        {
+            glowTrail.StopAllEmissions();
+            Destroy(glowTrail, 3);
+        });
+    }
+    private void MoveShuffleSlotsToStartPosition()
+    {
+        // Disable slots
+        foreach (Transform t in shuffleCardSlots)
+        {
+            //t.gameObject.SetActive(false);
+            t.gameObject.SetActive(true);
+            t.gameObject.SetActive(false);
+        }
+    }
+    private void MoveShuffleCardsToStartPosition()
+    {
+        foreach (DiscoveryCardViewModel dcvm in shuffleCards)
+        {
+            // reset card view propeties
+            dcvm.gameObject.SetActive(true);
+            dcvm.transform.localPosition = new Vector3(0, 0, 0);
+            //dcvm.transform.position 
+            dcvm.scalingParent.localPosition = new Vector3(0, 0, 0);
+            dcvm.scalingParent.localScale = new Vector3(1, 1, 1);
+            dcvm.scalingParent.localRotation = Quaternion.identity;
+            dcvm.gameObject.SetActive(false);
+
+        }
+    }
+    #endregion
+
     // Visual Events
     #region
     private void CreateAndAddNewCardToCharacterHandVisualEvent(Card card, CharacterEntityModel character)
@@ -2404,8 +2603,14 @@ public class CardController : Singleton<CardController>
     }
     private void ExpendCardVisualEvent(CardViewModel cvm, CharacterEntityModel character)
     {
+        if(cvm == null)
+        {
+            Debug.LogWarning("ExpendCardVisualEvent() was given a null card view model...");
+        }
+
         // remove from hand visual
         character.characterEntityView.handVisual.RemoveCard(cvm.movementParent.gameObject);
+        cvm.movementParent.SetParent(null);
 
         // SFX
         AudioManager.Instance.PlaySound(Sound.Explosion_Fire_1);

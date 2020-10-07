@@ -190,7 +190,7 @@ public class EnemyActionEffect
     }
     public bool ShowCard()
     {
-        if (actionType == ActionType.AddCard)
+        if (actionType == ActionType.AddCardToTargetCardCollection)
         {
             return true;
         }

@@ -13,10 +13,19 @@ MonoBehaviour:
   m_Name: Dazed
   m_EditorClassIdentifier: 
   cardName: Dazed
-  cardDescription: 
+  cardDescription: 'Unplayable.
+
+    Fleeting.'
   cardSprite: {fileID: 21300000, guid: 22b782f5bd0a85b4e95be5b8ab719535, type: 3}
-  cardEnergyCost: 0
+  cardEnergyCost: 1
   cardType: 1
   targettingType: 0
-  talentSchool: 1
+  talentSchool: 0
+  rarity: 0
+  expend: 0
+  innate: 0
+  fleeting: 1
+  unplayable: 1
+  blessing: 0
   cardEffects: []
+  cardEventListeners: []
