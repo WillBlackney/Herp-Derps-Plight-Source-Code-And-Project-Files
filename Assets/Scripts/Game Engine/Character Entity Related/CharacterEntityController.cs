@@ -839,7 +839,12 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         VisualEventManager.Instance.CreateVisualEvent(() => LevelManager.Instance.SetActivatedViewState(veNode, false));
 
         // Activate next character
-        ActivationManager.Instance.ActivateNextEntity();
+        if(entity != null &&
+           entity.livingState == LivingState.Alive)
+        {
+            ActivationManager.Instance.ActivateNextEntity();
+        }
+       
 
     }
     #endregion
@@ -1188,8 +1193,12 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     }
     public void PlaySkillAnimation(CharacterEntityView view)
     {
-        view.ucmAnimator.SetTrigger("Skill Two");
-        AudioManager.Instance.StopSound(Sound.Character_Footsteps);
+        if (view)
+        {
+            view.ucmAnimator.SetTrigger("Skill Two");
+            AudioManager.Instance.StopSound(Sound.Character_Footsteps);
+        }
+       
     }    
     public void PlayMoveAnimation(CharacterEntityView view)
     {

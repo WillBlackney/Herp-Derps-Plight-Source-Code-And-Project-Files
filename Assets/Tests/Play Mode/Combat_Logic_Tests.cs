@@ -136,5 +136,94 @@ namespace Tests
             Assert.AreEqual(expected, CombatLogic.Instance.CurrentCombatState);
 
         }
+        [Test]
+        public void Enemy_Character_Death_During_Activation_End_Sequence_Does_Activate_Next_Character()
+        {
+            // ARRANGE
+            CharacterEntityModel playerOne;
+            CharacterEntityModel enemyOne;
+            CharacterEntityModel enemyTwo;
+            CharacterEntityModel expected;
+
+            // Create characters
+            playerOne = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, LevelManager.Instance.GetNextAvailableDefenderNode());
+            enemyOne = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, LevelManager.Instance.GetNextAvailableEnemyNode());
+            enemyTwo = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, LevelManager.Instance.GetNextAvailableDefenderNode());
+            expected = playerOne;
+
+            // Setup death for activation end sequence
+            PassiveController.Instance.ModifyPoisoned(null, enemyOne.pManager, 1000);
+
+            // Rig and fix activation order
+            enemyOne.initiative = 200;
+            playerOne.initiative = 150;
+            enemyTwo.initiative = 100;
+
+            // ACT
+            ActivationManager.Instance.OnNewCombatEventStarted();
+
+            // ASSERT
+            Assert.AreEqual(expected, ActivationManager.Instance.EntityActivated);
+
+        }
+        [Test]
+        public void Player_Character_Death_During_Activation_End_Sequence_Does_Activate_Next_Character()
+        {
+            // ARRANGE
+            CharacterEntityModel playerOne;
+            CharacterEntityModel enemyOne;
+            CharacterEntityModel playerTwo;
+            CharacterEntityModel expected;
+
+            // Create characters
+            playerOne = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, LevelManager.Instance.GetNextAvailableDefenderNode());
+            enemyOne = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, LevelManager.Instance.GetNextAvailableEnemyNode());
+            playerTwo = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, LevelManager.Instance.GetNextAvailableDefenderNode());
+            expected = playerTwo;
+
+            // Setup death for activation end sequence
+            PassiveController.Instance.ModifyPoisoned(null, playerOne.pManager, 1000);
+
+            // Rig and fix activation order
+            playerOne.initiative = 200;
+            playerTwo.initiative = 150;
+            enemyOne.initiative = 100;
+
+            // ACT
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CharacterEntityController.Instance.CharacterOnActivationEnd(playerOne);
+
+            // ASSERT
+            Assert.AreEqual(expected, ActivationManager.Instance.EntityActivated);
+
+        }       
+        [Test]
+        public void Player_Character_Death_During_Turn_Does_Activate_Next_Character()
+        {
+            // ARRANGE
+            CharacterEntityModel playerOne;
+            CharacterEntityModel enemyOne;
+            CharacterEntityModel playerTwo;
+            CharacterEntityModel expected;
+
+            // Create characters
+            playerOne = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, LevelManager.Instance.GetNextAvailableDefenderNode());
+            enemyOne = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, LevelManager.Instance.GetNextAvailableEnemyNode());
+            playerTwo = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, LevelManager.Instance.GetNextAvailableDefenderNode());
+            expected = playerTwo;
+
+            // Rig and fix activation order
+            playerOne.initiative = 200;
+            playerTwo.initiative = 150;
+            enemyOne.initiative = 100;
+
+            // ACT
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CombatLogic.Instance.HandleDamage(1000, null, playerOne, DamageType.Physical);
+
+            // ASSERT
+            Assert.AreEqual(expected, ActivationManager.Instance.EntityActivated);
+
+        }
     }
 }

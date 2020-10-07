@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Testudo
   m_EditorClassIdentifier: 
   cardName: Testudo
-  cardDescription: 'Give a target 3 Block.
+  cardDescription: 'Give 2 Block to self or ally.
 
     Shielded: Draw 1 card.'
   cardSprite: {fileID: 21300000, guid: d3de1c39883d72b46b319c8a5cef9a9b, type: 3}
@@ -38,7 +38,7 @@ MonoBehaviour:
     onChooseCardInHandChoiceMadeEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 3
+    blockGainValue: 2
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
@@ -59,6 +59,11 @@ MonoBehaviour:
     blessingsGained: 0
     visualEventsOnStart:
     - eventType: 2
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
       particleEffect: 0
       cameraShake: 0
       movementAnimation: 0
@@ -66,6 +71,7 @@ MonoBehaviour:
       characterAnimation: 4
       delayDuration: 0
       projectileFired: 0
+      projectileStartPosition: 0
       onCharacter: 0
     visualEventsOnFinish: []
   - weaponRequirement: 1
@@ -99,6 +105,11 @@ MonoBehaviour:
     blessingsGained: 0
     visualEventsOnStart:
     - eventType: 3
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
       particleEffect: 14
       cameraShake: 0
       movementAnimation: 0
@@ -106,6 +117,7 @@ MonoBehaviour:
       characterAnimation: 0
       delayDuration: 0
       projectileFired: 0
+      projectileStartPosition: 0
       onCharacter: 1
     visualEventsOnFinish: []
   cardEventListeners: []

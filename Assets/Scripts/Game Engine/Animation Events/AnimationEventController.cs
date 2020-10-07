@@ -114,7 +114,19 @@ public class AnimationEventController : Singleton<AnimationEventController>
     }
     private void ResolveParticleEffect(AnimationEventData vEvent, CharacterEntityModel user, CharacterEntityModel target = null)
     {
-        if(vEvent.onCharacter == CreateOnCharacter.Self)
+        if(vEvent == null)
+        {
+            Debug.LogWarning("ResolveParticleEffect() was given a null AnimationEventData, returning...");
+            return;
+        }
+
+        if (user == null)
+        {
+            Debug.LogWarning("ResolveParticleEffect() was given a null CharacterEntityModel, returning...");
+            return;
+        }
+
+        if (vEvent.onCharacter == CreateOnCharacter.Self)
         {
             VisualEventManager.Instance.CreateVisualEvent(() =>
             VisualEffectManager.Instance.CreateEffectAtLocation(vEvent.particleEffect, user.characterEntityView.WorldPosition));

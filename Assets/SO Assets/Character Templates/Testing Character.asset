@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Testing Character
   m_EditorClassIdentifier: 
   myName: Testing Character
-  health: 100
+  health: 1
   maxHealth: 100
   power: 0
   dexterity: 0
   stamina: 10
   draw: 10
-  initiative: 1
+  initiative: 55
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0
@@ -53,6 +53,7 @@ MonoBehaviour:
     consecrationStacks: 0
     growingStacks: 0
     cautiousStacks: 0
+    infuriatedStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     wrathStacks: 0
@@ -64,9 +65,9 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 648ee25c51574a74983929772bcecb4d, type: 2}
-  - {fileID: 11400000, guid: 648ee25c51574a74983929772bcecb4d, type: 2}
-  - {fileID: 11400000, guid: 648ee25c51574a74983929772bcecb4d, type: 2}
+  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
+  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
+  - {fileID: 11400000, guid: 00b73be375fd9ce4e9735d3cba2ca025, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1

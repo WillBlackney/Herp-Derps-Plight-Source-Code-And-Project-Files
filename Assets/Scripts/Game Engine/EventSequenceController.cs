@@ -103,6 +103,10 @@ public class EventSequenceController : Singleton<EventSequenceController>
         {
             HandleLoadBasicCombatEncounter(encounter);
         }
+        else if (encounter.encounterType == EncounterType.EliteEnemy)
+        {
+            HandleLoadEliteCombatEncounter(encounter);
+        }
     }
     public void HandleLoadNextEncounter()
     {
@@ -117,7 +121,8 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Destroy all characters and activation windows if the previous 
         // encounter was a combat event
-        if(previousEncounter.encounterType == EncounterType.BasicEnemy)
+        if(previousEncounter.encounterType == EncounterType.BasicEnemy ||
+            previousEncounter.encounterType == EncounterType.EliteEnemy)
         {
             HandleCombatSceneTearDown();
         }
@@ -133,14 +138,27 @@ public class EventSequenceController : Singleton<EventSequenceController>
         CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
 
         // Setup enemy wave data
-        EnemyWaveSO eData = null;
-        if(encounter.enemyEncounterData != null)
-        {
-            eData = encounter.enemyEncounterData;
-        }
+        EnemyWaveSO eData = JourneyManager.Instance.GetRandomEnemyWaveFromEncounterData(encounter);
 
         // Spawn enemies
-        EnemySpawner.Instance.SpawnEnemyWave("Basic", eData);
+        EnemySpawner.Instance.SpawnEnemyWave(eData.combatDifficulty.ToString(), eData);
+
+        // Start a new combat event
+        ActivationManager.Instance.OnNewCombatEventStarted();
+    }
+    private void HandleLoadEliteCombatEncounter(EncounterData encounter)
+    {
+        // Play battle theme music
+        AudioManager.Instance.PlaySound(Sound.Music_Battle_Theme_1);
+
+        // Create player characters in scene
+        CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
+
+        // Setup enemy wave data
+        EnemyWaveSO eData = JourneyManager.Instance.GetRandomEnemyWaveFromEncounterData(encounter);
+
+        // Spawn enemies
+        EnemySpawner.Instance.SpawnEnemyWave(eData.combatDifficulty.ToString(), eData);
 
         // Start a new combat event
         ActivationManager.Instance.OnNewCombatEventStarted();

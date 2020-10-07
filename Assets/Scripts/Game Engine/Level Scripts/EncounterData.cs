@@ -11,12 +11,8 @@ public class EncounterData
     public EncounterType encounterType;
 
     [LabelWidth(200)]
-    [ShowIf("ShowRandomEncounterBool")]
-    public bool randomEncounter = false;
-
-    [LabelWidth(200)]
     [ShowIf("ShowEnemyEncounterData")]
-    public EnemyWaveSO enemyEncounterData;
+    public List<EnemyWaveSO> possibleEnemyEncounters;
 
     public bool ShowRandomEncounterBool()
     {
@@ -35,7 +31,7 @@ public class EncounterData
     {
         if ((encounterType == EncounterType.BasicEnemy ||
             encounterType == EncounterType.EliteEnemy ||
-            encounterType == EncounterType.BossEnemy) && randomEncounter == false)
+            encounterType == EncounterType.BossEnemy))
         {
             return true;
         }

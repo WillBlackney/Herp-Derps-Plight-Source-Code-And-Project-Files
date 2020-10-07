@@ -694,17 +694,26 @@ public class CombatLogic : Singleton<CombatLogic>
             }
         }
 
-        // Check if the game over event should be triggered
+        // Check if the game over defeat event should be triggered
         if (CharacterEntityController.Instance.AllDefenders.Count == 0)
         {
             StartCombatOverDefeatProcess();
         }
 
+        // Check if the combat victory event should be triggered
         if (CharacterEntityController.Instance.AllEnemies.Count == 0 &&
             currentCombatState == CombatGameState.CombatActive)
         {
             StartCombatOverVictoryProcess();
         }
+
+        // If this character died during their turn (but no during end turn phase), 
+        // resolve the transition to next character activation
+        if(entity == ActivationManager.Instance.EntityActivated)
+        {
+            ActivationManager.Instance.ActivateNextEntity();
+        }
+        
     }
     #endregion
 

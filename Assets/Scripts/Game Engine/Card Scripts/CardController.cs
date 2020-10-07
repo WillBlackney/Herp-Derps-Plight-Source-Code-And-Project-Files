@@ -1042,15 +1042,18 @@ public class CardController : Singleton<CardController>
         // Infuriated 
         if (card.cardType == CardType.Skill)
         {
-            /*
-            foreach (Enemy enemy in EnemyManager.Instance.allEnemies)
+            foreach(CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
             {
-                if (enemy.myPassiveManager.infuriated)
+                if(enemy.pManager.infuriatedStacks > 0)
                 {
-                    StatusController.Instance.ApplyStatusToLivingEntity(enemy, StatusIconLibrary.Instance.GetStatusIconByName("Bonus Strength"), enemy.myPassiveManager.infuriatedStacks);
+                    // Status notif
+                    VisualEventManager.Instance.CreateVisualEvent
+                        (()=> VisualEffectManager.Instance.CreateStatusEffect(enemy.characterEntityView.WorldPosition, "Infuriated!"), QueuePosition.Back, 0, 0.5f);
+
+                    // Gain power
+                    PassiveController.Instance.ModifyBonusPower(enemy.pManager, enemy.pManager.infuriatedStacks, true, 0.5f);
                 }
             }
-            */
         }
 
 
@@ -1199,6 +1202,18 @@ public class CardController : Singleton<CardController>
 
         CharacterEntityModel owner = card.owner;
 
+        // Stop and return if owner of the card is dead or null  
+        if (owner == null)
+        {
+            Debug.LogWarning("TriggerEffectFromCard() detected the Character owner of the card was null, cancelling");
+            return;
+        }
+        else if (owner.livingState == LivingState.Dead)
+        {
+            Debug.LogWarning("TriggerEffectFromCard() detected the Character owner of the card is dead, cancelling");
+            return;
+        }
+
         // Queue starting anims and particles
         foreach (AnimationEventData vEvent in cardEffect.visualEventsOnStart)
         {
@@ -1250,9 +1265,7 @@ public class CardController : Singleton<CardController>
             else if (cardEffect.drawBaseDamageFromOverloadOnSelf)
             {
                 baseDamage = owner.pManager.overloadStacks * cardEffect.baseDamageMultiplier;
-            }
-
-            
+            }            
             else
             {
                 baseDamage = cardEffect.baseDamageValue;

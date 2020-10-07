@@ -150,6 +150,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyCautious(newClone, originalData.cautiousStacks, false);
         }
+        if (originalData.infuriatedStacks != 0)
+        {
+            ModifyInfuriated(newClone, originalData.infuriatedStacks, false);
+        }
         #endregion
 
         // Special Defensive Passives
@@ -253,6 +257,7 @@ public class PassiveController : Singleton<PassiveController>
         pManager.consecrationStacks = original.consecrationStacks;
         pManager.growingStacks = original.growingStacks;
         pManager.cautiousStacks = original.cautiousStacks;
+        pManager.infuriatedStacks = original.infuriatedStacks;
 
         pManager.runeStacks = original.runeStacks;
         pManager.barrierStacks = original.barrierStacks;
@@ -586,6 +591,10 @@ public class PassiveController : Singleton<PassiveController>
         else if (originalData == "Cautious")
         {
             ModifyCautious(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Infuriated")
+        {
+            ModifyInfuriated(pManager, stacks, showVFX, vfxDelay);
         }
         #endregion
 
@@ -1314,6 +1323,65 @@ public class PassiveController : Singleton<PassiveController>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Enrage " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+
+
+    }
+    public void ModifyInfuriated(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyInfuriated() called...");
+
+        // Setup + Cache refs
+        PassiveIconDataSO iconData = GetPassiveIconDataByName("Infuriated");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.infuriatedStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Infuriated!");
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Infuriated Removed");
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
                 });
             }

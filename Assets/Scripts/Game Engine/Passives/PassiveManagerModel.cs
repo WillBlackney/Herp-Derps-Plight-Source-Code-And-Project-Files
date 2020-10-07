@@ -36,6 +36,7 @@ public class PassiveManagerModel
     public int consecrationStacks;
     public int growingStacks;
     public int cautiousStacks;
+    public int infuriatedStacks;
 
     // Aura passives
     public int encouragingAuraStacks;
