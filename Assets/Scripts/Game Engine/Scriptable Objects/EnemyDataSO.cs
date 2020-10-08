@@ -5,7 +5,6 @@ using System;
 using Sirenix.OdinInspector;
 
 [CreateAssetMenu(fileName = "New EnemyDataSO", menuName = "EnemyDataSO", order = 52)]
-[Serializable]
 public class EnemyDataSO : ScriptableObject
 {
     // General Info

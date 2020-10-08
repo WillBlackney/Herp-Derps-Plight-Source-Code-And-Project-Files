@@ -76,7 +76,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         PersistencyManager.Instance.BuildNewSaveFileOnNewGameStarted(MainMenuController.Instance.GetChosenTemplatesFromChooseCharacterWindows());
 
         // Build and prepare all session data
-        PersistencyManager.Instance.SetUpGameSessionDataFromSaveFile(PersistencyManager.Instance.CurrentSaveFile);
+        PersistencyManager.Instance.SetUpGameSessionDataFromSaveFile();
 
         // Start the first encounter set up sequence
         HandleLoadEncounter(JourneyManager.Instance.Encounters[0]);
@@ -88,7 +88,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         MainMenuController.Instance.HideFrontScreen();
 
         // Build and prepare all session data
-        PersistencyManager.Instance.SetUpGameSessionDataFromSaveFile(PersistencyManager.Instance.CurrentSaveFile);
+        //PersistencyManager.Instance.SetUpGameSessionDataFromSaveFile(PersistencyManager.Instance.CurrentSaveFile);
 
         // Start the first encounter set up sequence
         HandleLoadEncounter(JourneyManager.Instance.Encounters[JourneyManager.Instance.CurrentJourneyPosition]);

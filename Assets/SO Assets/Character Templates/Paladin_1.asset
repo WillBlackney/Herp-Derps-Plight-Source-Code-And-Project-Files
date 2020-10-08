@@ -38,6 +38,8 @@ MonoBehaviour:
     temporaryBonusStaminaStacks: 0
     temporaryBonusInitiativeStacks: 0
     temporaryBonusDrawStacks: 0
+    runeStacks: 0
+    barrierStacks: 0
     enrageStacks: 0
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
@@ -47,13 +49,19 @@ MonoBehaviour:
     venomousStacks: 0
     overloadStacks: 0
     fusionStacks: 0
-    meleeAttackReductionStacks: 0
+    plantedFeetStacks: 0
     consecrationStacks: 0
+    growingStacks: 0
+    cautiousStacks: 0
+    infuriatedStacks: 0
     encouragingAuraStacks: 0
+    shadowAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
     gritStacks: 0
+    disarmedStacks: 0
+    sleepStacks: 0
     poisonedStacks: 0
     burningStacks: 0
     fireBallBonusDamageStacks: 0
@@ -78,6 +86,6 @@ MonoBehaviour:
   - Paladin_Head_Wear
   - Paladin_Chest_Wear
   - Paladin_Right_Leg_Wear
-  itemManager:
+  serializedItemManager:
     mainHandItem: {fileID: 11400000, guid: f2e579d4bb84b82479f2d0b3183c07d4, type: 2}
     offHandItem: {fileID: 0}

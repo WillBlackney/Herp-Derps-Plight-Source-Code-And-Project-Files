@@ -91,11 +91,21 @@ public static class CharacterModelController
         {
             foreach (UniversalCharacterModelElement ucme in model.allMainHandWeapons)
             {
+                foreach(ItemDataSO itemData in ucme.itemsWithMyView)
+                {
+                    if (itemData.itemName == iManager.mainHandItem.itemName)
+                    {
+                        EnableAndSetElementOnModel(model, ucme);
+                        break;
+                    }
+                }
+                /*
                 if (ucme.itemsWithMyView.Contains(iManager.mainHandItem))
                 {
                     EnableAndSetElementOnModel(model, ucme);
                     break;
                 }
+                */
             }
         }
 
@@ -104,12 +114,32 @@ public static class CharacterModelController
         {
             foreach (UniversalCharacterModelElement ucme in model.allOffHandWeapons)
             {
+                foreach (ItemDataSO itemData in ucme.itemsWithMyView)
+                {
+                    if (itemData.itemName == iManager.offHandItem.itemName)
+                    {
+                        EnableAndSetElementOnModel(model, ucme);
+                        break;
+                    }
+                }
+                /*
+                if (ucme.itemsWithMyView.Contains(iManager.mainHandItem))
+                {
+                    EnableAndSetElementOnModel(model, ucme);
+                    break;
+                }
+                */
+            }
+            /*
+            foreach (UniversalCharacterModelElement ucme in model.allOffHandWeapons)
+            {
                 if (ucme.itemsWithMyView.Contains(iManager.offHandItem))
                 {
                     EnableAndSetElementOnModel(model, ucme);
                     break;
                 }
             }
+            */
         }
     }    
     public static void CompletelyDisableAllViews(UniversalCharacterModel model)

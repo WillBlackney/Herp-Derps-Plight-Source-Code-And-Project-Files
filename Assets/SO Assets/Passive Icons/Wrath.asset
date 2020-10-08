@@ -15,3 +15,6 @@ MonoBehaviour:
   passiveSprite: {fileID: 21300000, guid: 8f0c1809320bad14899e5530b31c726f, type: 3}
   passiveName: Wrath
   showStackCount: 1
+  hiddenOnPassivePanel: 0
+  runeBlocksIncrease: 0
+  runeBlocksDecrease: 0

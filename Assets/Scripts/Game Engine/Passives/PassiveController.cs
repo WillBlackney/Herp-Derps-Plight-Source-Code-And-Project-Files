@@ -7,23 +7,55 @@ public class PassiveController : Singleton<PassiveController>
     // Properties + Component References
     #region
     [Header("Passive Library Properties")]
-    [SerializeField] private PassiveIconDataSO[] allIcons;
+    [SerializeField] private PassiveIconDataSO[] allIconScriptableObjects;
+    private PassiveIconData[] allIcons;
 
     // Getters
-    public PassiveIconDataSO[] AllIcons
+    public PassiveIconData[] AllIcons
     {
         get { return allIcons; }
         private set { allIcons = value; }
+    }
+    public PassiveIconDataSO[] AllIconScriptableObjects
+    {
+        get { return allIconScriptableObjects; }
     }
     #endregion
 
     // Library Logic
     #region
-    public PassiveIconDataSO GetPassiveIconDataByName(string name)
+    private void Start()
     {
-        PassiveIconDataSO iconReturned = null;
+        BuildIconLibrary();
+    }
+    public void BuildIconLibrary()
+    {
+        List<PassiveIconData> tempList = new List<PassiveIconData>();
 
-        foreach (PassiveIconDataSO icon in AllIcons)
+        foreach (PassiveIconDataSO dataSO in allIconScriptableObjects)
+        {
+            tempList.Add(BuildIconDataFromScriptableObjectData(dataSO));
+        }
+
+        AllIcons = tempList.ToArray();
+    }
+    public PassiveIconData BuildIconDataFromScriptableObjectData(PassiveIconDataSO data)
+    {
+        PassiveIconData p = new PassiveIconData();       
+        p.passiveName = data.passiveName;
+        p.passiveSprite = GetPassiveSpriteByName(data.passiveName);
+        p.showStackCount = data.showStackCount;
+        p.hiddenOnPassivePanel = data.hiddenOnPassivePanel;
+        p.runeBlocksDecrease = data.runeBlocksDecrease;
+        p.runeBlocksIncrease = data.runeBlocksIncrease;
+
+        return p;
+    }
+    public PassiveIconData GetPassiveIconDataByName(string name)
+    {
+        PassiveIconData iconReturned = null;
+
+        foreach (PassiveIconData icon in AllIcons)
         {
             if (icon.passiveName == name)
             {
@@ -39,6 +71,22 @@ public class PassiveController : Singleton<PassiveController>
         }
 
         return iconReturned;
+    }
+    public Sprite GetPassiveSpriteByName(string passiveName)
+    {
+        //Debug.LogWarning("PassiveController.GetPassiveSpriteByName() called, search term: " + passiveName);
+        Sprite sprite = null;
+
+        foreach (PassiveIconDataSO data in AllIconScriptableObjects)
+        {
+            if (data.passiveName == passiveName)
+            {
+                sprite = data.passiveSprite;
+                break;
+            }
+        }
+
+        return sprite;
     }
     #endregion
 
@@ -311,12 +359,12 @@ public class PassiveController : Singleton<PassiveController>
 
     // Update Passive Icons and Panel View
     #region
-    private void BuildPassiveIconViewFromData(PassiveIconView icon, PassiveIconDataSO iconData)
+    private void BuildPassiveIconViewFromData(PassiveIconView icon, PassiveIconData iconData)
     {
         Debug.Log("PassiveController.BuildPassiveIconViewFromData() called...");
 
         icon.myIconData = iconData;
-        icon.passiveImage.sprite = iconData.passiveSprite;
+        icon.passiveImage.sprite = GetPassiveSpriteByName(iconData.passiveName);
 
         icon.statusName = iconData.passiveName;
         if (iconData.showStackCount)
@@ -342,7 +390,7 @@ public class PassiveController : Singleton<PassiveController>
             icon.statusStacksText.gameObject.SetActive(false);
         }
     }
-    private void StartAddPassiveToPanelProcess(CharacterEntityView view, PassiveIconDataSO iconData, int stacksGainedOrLost)
+    private void StartAddPassiveToPanelProcess(CharacterEntityView view, PassiveIconData iconData, int stacksGainedOrLost)
     {
         Debug.Log("PassiveController.StartAddPassiveToPanelProcess() called...");
 
@@ -361,29 +409,19 @@ public class PassiveController : Singleton<PassiveController>
                     matchFound = true;
                     break;
                 }
-
-                else
-                {
-                    //si = iconData;
-                    //stacks = stacksGainedOrLost;
-                }
             }
 
             if (matchFound == false)
             {
-                //AddNewPassiveIconToPanel(view, si, stacks);
                 AddNewPassiveIconToPanel(view, iconData, stacksGainedOrLost);
             }
-
         }
         else
         {
             AddNewPassiveIconToPanel(view, iconData, stacksGainedOrLost);
         }
-
-
     }
-    private void AddNewPassiveIconToPanel(CharacterEntityView view, PassiveIconDataSO iconData, int stacksGained)
+    private void AddNewPassiveIconToPanel(CharacterEntityView view, PassiveIconData iconData, int stacksGained)
     {
         Debug.Log("PassiveController.AddNewPassiveIconToPanel() called...");
 
@@ -484,7 +522,7 @@ public class PassiveController : Singleton<PassiveController>
 
         return boolReturned;
     }
-    private bool ShouldRuneBlockThisPassiveApplication(PassiveManagerModel pManager, PassiveIconDataSO iconData, int stacks)
+    private bool ShouldRuneBlockThisPassiveApplication(PassiveManagerModel pManager, PassiveIconData iconData, int stacks)
     {
         if (pManager.runeStacks > 0 &&
             ((iconData.runeBlocksIncrease && stacks > 0) || (iconData.runeBlocksDecrease && stacks < 0)))
@@ -701,7 +739,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyBonusStrength() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Power");
+        PassiveIconData iconData = GetPassiveIconDataByName("Power");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -769,7 +807,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyBonusDexterity() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Dexterity");
+        PassiveIconData iconData = GetPassiveIconDataByName("Dexterity");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -826,7 +864,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyBonusInitiative() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Initiative");
+        PassiveIconData iconData = GetPassiveIconDataByName("Initiative");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -883,7 +921,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyBonusStamina() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Stamina");
+        PassiveIconData iconData = GetPassiveIconDataByName("Stamina");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -940,7 +978,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyBonusDraw() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Draw");
+        PassiveIconData iconData = GetPassiveIconDataByName("Draw");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -1001,7 +1039,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyTemporaryStrength() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Temporary Power");
+        PassiveIconData iconData = GetPassiveIconDataByName("Temporary Power");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -1068,7 +1106,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyTemporaryDexterity() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Temporary Dexterity");
+        PassiveIconData iconData = GetPassiveIconDataByName("Temporary Dexterity");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -1124,7 +1162,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyTemporaryInitiative() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Temporary Initiative");
+        PassiveIconData iconData = GetPassiveIconDataByName("Temporary Initiative");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -1181,7 +1219,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyTemporaryStamina() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Temporary Stamina");
+        PassiveIconData iconData = GetPassiveIconDataByName("Temporary Stamina");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -1238,7 +1276,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyTemporaryDraw() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Temporary Draw");
+        PassiveIconData iconData = GetPassiveIconDataByName("Temporary Draw");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -1299,7 +1337,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyEnrage() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Enrage");
+        PassiveIconData iconData = GetPassiveIconDataByName("Enrage");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -1358,7 +1396,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyInfuriated() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Infuriated");
+        PassiveIconData iconData = GetPassiveIconDataByName("Infuriated");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -1417,7 +1455,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyShieldWall() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Shield Wall");
+        PassiveIconData iconData = GetPassiveIconDataByName("Shield Wall");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -1476,7 +1514,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyGrowing() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Growing");
+        PassiveIconData iconData = GetPassiveIconDataByName("Growing");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -1535,7 +1573,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyFanOfKnives() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Fan Of Knives");
+        PassiveIconData iconData = GetPassiveIconDataByName("Fan Of Knives");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -1594,7 +1632,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyDivineFavour() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Divine Favour");
+        PassiveIconData iconData = GetPassiveIconDataByName("Divine Favour");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -1653,7 +1691,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyPhoenixForm() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Phoenix Form");
+        PassiveIconData iconData = GetPassiveIconDataByName("Phoenix Form");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -1712,7 +1750,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyPoisonous() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Poisonous");
+        PassiveIconData iconData = GetPassiveIconDataByName("Poisonous");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -1771,7 +1809,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyConsecration() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Consecration");
+        PassiveIconData iconData = GetPassiveIconDataByName("Consecration");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -1830,7 +1868,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyVenomous() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Venomous");
+        PassiveIconData iconData = GetPassiveIconDataByName("Venomous");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -1889,7 +1927,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyOverload() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Overload");
+        PassiveIconData iconData = GetPassiveIconDataByName("Overload");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -1963,7 +2001,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyFusion() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Fusion");
+        PassiveIconData iconData = GetPassiveIconDataByName("Fusion");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -2022,7 +2060,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyPlantedFeet() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Planted Feet");
+        PassiveIconData iconData = GetPassiveIconDataByName("Planted Feet");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -2091,7 +2129,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyRune() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Rune");
+        PassiveIconData iconData = GetPassiveIconDataByName("Rune");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Increment stacks
@@ -2140,7 +2178,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyBarrier() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Barrier");
+        PassiveIconData iconData = GetPassiveIconDataByName("Barrier");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -2201,7 +2239,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyEncouragingAura() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Encouraging Aura");
+        PassiveIconData iconData = GetPassiveIconDataByName("Encouraging Aura");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -2260,7 +2298,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyShadowAura() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Shadow Aura");
+        PassiveIconData iconData = GetPassiveIconDataByName("Shadow Aura");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -2312,13 +2350,12 @@ public class PassiveController : Singleton<PassiveController>
             }
         }
     }
-
     public void ModifyCautious(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
     {
         Debug.Log("PassiveController.ModifyCautious() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Cautious");
+        PassiveIconData iconData = GetPassiveIconDataByName("Cautious");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -2381,7 +2418,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyWrath() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Wrath");
+        PassiveIconData iconData = GetPassiveIconDataByName("Wrath");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -2446,7 +2483,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyWeakened() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Weakened");
+        PassiveIconData iconData = GetPassiveIconDataByName("Weakened");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -2511,7 +2548,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyVulnerable() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Vulnerable");
+        PassiveIconData iconData = GetPassiveIconDataByName("Vulnerable");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -2579,7 +2616,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyGrit() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Grit");
+        PassiveIconData iconData = GetPassiveIconDataByName("Grit");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -2651,7 +2688,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyDisarmed() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Disarmed");
+        PassiveIconData iconData = GetPassiveIconDataByName("Disarmed");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -2708,7 +2745,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifySleep() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Sleep");
+        PassiveIconData iconData = GetPassiveIconDataByName("Sleep");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -2781,7 +2818,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyPoisoned() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Poisoned");
+        PassiveIconData iconData = GetPassiveIconDataByName("Poisoned");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -2851,7 +2888,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyBurning() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Burning");
+        PassiveIconData iconData = GetPassiveIconDataByName("Burning");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune
@@ -2910,7 +2947,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyTaunted() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Taunted");
+        PassiveIconData iconData = GetPassiveIconDataByName("Taunted");
         CharacterEntityModel character = targetPManager.myCharacter;
 
         // Check for rune
@@ -2973,7 +3010,7 @@ public class PassiveController : Singleton<PassiveController>
         Debug.Log("PassiveController.ModifyBonusFireBallDamage() called...");
 
         // Setup + Cache refs
-        PassiveIconDataSO iconData = GetPassiveIconDataByName("Fire Ball Bonus Damage");
+        PassiveIconData iconData = GetPassiveIconDataByName("Fire Ball Bonus Damage");
         CharacterEntityModel character = pManager.myCharacter;
 
         // Check for rune

@@ -59,6 +59,10 @@ public class CardController : Singleton<CardController>
         get { return allCards; }
         private set { allCards = value; }
     }
+    public CardDataSO[] AllCardScriptableObjects
+    {
+        get { return allCardScriptableObjects; }
+    }
     public bool DiscoveryScreenIsActive
     {
         get{ return discoveryScreenIsActive; }
@@ -89,7 +93,6 @@ public class CardController : Singleton<CardController>
     {
         Debug.LogWarning("CardController.BuildCardLibrary() called...");
 
-        // AllCards = new CardData[allCardDataSOs.Length];
         List<CardData> tempList = new List<CardData>();
 
         foreach(CardDataSO dataSO in allCardScriptableObjects)
@@ -121,6 +124,23 @@ public class CardController : Singleton<CardController>
                 "with a matching name of " + name + ", returning null...");
         }
         return cardReturned;
+    }
+    public Sprite GetCardSpriteByName(string cardName)
+    {
+       // Debug.LogWarning("CardController.GetCardSpriteByName() called, search term: " + cardName);
+
+        Sprite sprite = null;
+
+        foreach(CardDataSO data in AllCardScriptableObjects)
+        {
+            if(data.cardName == cardName)
+            {
+                sprite = data.cardSprite;
+                break;
+            }
+        }
+
+        return sprite;
     }
 
     // Core Queires
@@ -252,11 +272,11 @@ public class CardController : Singleton<CardController>
         CardData c = new CardData();
 
         // Core data
-        c.myCardDataSO = d;
-        c.myCharacterDataOwner = owner;
+       // c.myCardDataSO = d;
+        //c.myCharacterDataOwner = owner;
         c.cardName = d.cardName;
         c.cardDescription = d.cardDescription;
-        c.cardSprite = d.cardSprite;
+        c.cardSprite = GetCardSpriteByName(d.cardName);
         c.cardBaseEnergyCost = d.cardEnergyCost;
 
         // Types
@@ -314,14 +334,15 @@ public class CardController : Singleton<CardController>
         Card card = new Card();
 
         // Data links
-        card.myCardDataSO = data;
+        //card.myCardDataSO = data;
 
         // Core data
         card.owner = owner;
         card.cardName = data.cardName;
         card.cardDescription = data.cardDescription;
         card.cardBaseEnergyCost = data.cardEnergyCost;
-        card.cardSprite = data.cardSprite;
+        //card.cardSprite = data.cardSprite;
+        card.cardSprite = GetCardSpriteByName(data.cardName);
         card.cardType = data.cardType;
         card.rarity = data.rarity;
         card.targettingType = data.targettingType;
@@ -347,15 +368,16 @@ public class CardController : Singleton<CardController>
         Card card = new Card();
 
         // Data links
-        card.myCardDataSO = data.myCardDataSO;
+        //card.myCardDataSO = data.myCardDataSO;
 
         // Core data
         card.owner = owner;
         card.cardName = data.cardName;
         card.cardDescription = data.cardDescription;
         card.cardBaseEnergyCost = data.cardBaseEnergyCost;
-        card.cardSprite = data.cardSprite;
-        card.cardType = data.cardType;
+        //card.cardSprite = data.cardSprite;
+        card.cardSprite = GetCardSpriteByName(data.cardName);
+        card.cardType = data.cardType; 
         card.rarity = data.rarity;
         card.targettingType = data.targettingType;
         card.talentSchool = data.talentSchool;
@@ -388,13 +410,14 @@ public class CardController : Singleton<CardController>
         Card card = new Card();
 
         // Data links
-        card.myCardDataSO = original.myCardDataSO;
+        //card.myCardDataSO = original.myCardDataSO;
 
         // Core data
         card.owner = owner;
         card.cardName = original.cardName;
-        card.cardDescription = original.cardDescription;        
-        card.cardSprite = original.cardSprite;
+        card.cardDescription = original.cardDescription;
+        //card.cardSprite = original.cardSprite;
+        card.cardSprite = GetCardSpriteByName(original.cardName);
         card.cardType = original.cardType;
         card.rarity = original.rarity;
         card.targettingType = original.targettingType;
@@ -462,7 +485,7 @@ public class CardController : Singleton<CardController>
         SetCardViewModelNameText(cardVM, card.cardName);
         SetCardViewModelDescriptionText(cardVM, card.cardDescription);
         SetCardViewModelEnergyText(card, cardVM, GetCardEnergyCost(card).ToString());
-        SetCardViewModelGraphicImage(cardVM, card.cardSprite);
+        SetCardViewModelGraphicImage(cardVM, GetCardSpriteByName(card.cardName));
         SetCardViewModelTalentSchoolImage(cardVM, SpriteLibrary.Instance.GetTalentSchoolSpriteFromEnumData(card.talentSchool));
         ApplyCardViewModelTalentColoring(cardVM, ColorLibrary.Instance.GetTalentColor(card.talentSchool));
         ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(card.rarity));
@@ -476,7 +499,7 @@ public class CardController : Singleton<CardController>
         SetCardViewModelNameText(cardVM, card.cardName);
         SetCardViewModelDescriptionText(cardVM, card.cardDescription);
         SetCardViewModelEnergyText(null, cardVM, card.cardBaseEnergyCost.ToString());
-        SetCardViewModelGraphicImage(cardVM, card.cardSprite);
+        SetCardViewModelGraphicImage(cardVM, GetCardSpriteByName(card.cardName));
         SetCardViewModelTalentSchoolImage(cardVM, SpriteLibrary.Instance.GetTalentSchoolSpriteFromEnumData(card.talentSchool));
         ApplyCardViewModelTalentColoring(cardVM, ColorLibrary.Instance.GetTalentColor(card.talentSchool));
         ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(card.rarity));

@@ -60,6 +60,11 @@ MonoBehaviour:
     blessingsGained: 0
     visualEventsOnStart:
     - eventType: 2
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
       particleEffect: 0
       cameraShake: 0
       movementAnimation: 0
@@ -70,6 +75,11 @@ MonoBehaviour:
       projectileStartPosition: 0
       onCharacter: 0
     - eventType: 4
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
       particleEffect: 0
       cameraShake: 1
       movementAnimation: 0
@@ -111,6 +121,11 @@ MonoBehaviour:
     blessingsGained: 0
     visualEventsOnStart:
     - eventType: 3
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
       particleEffect: 14
       cameraShake: 0
       movementAnimation: 0

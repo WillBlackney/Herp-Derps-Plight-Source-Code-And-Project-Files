@@ -5,7 +5,6 @@ using System;
 using Sirenix.OdinInspector;
 
 [CreateAssetMenu(fileName = "New ItemDataSO", menuName = "ItemDataSO", order = 52)]
-[Serializable]
 public class ItemDataSO : ScriptableObject
 {
     [HorizontalGroup("General Info", 75)]

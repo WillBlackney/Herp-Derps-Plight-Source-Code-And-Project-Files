@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[Serializable]
+//[Serializable]
 public class CardData 
 {
     // General Properties
-    public CardDataSO myCardDataSO;
-    public CharacterData myCharacterDataOwner;
+   // public CardDataSO myCardDataSO;
+   // public CharacterData myCharacterDataOwner;
     public string cardName;
     public Sprite cardSprite;
     public string cardDescription;
@@ -26,4 +26,5 @@ public class CardData
     public bool fleeting;
     public bool unplayable;
     public bool blessing;
+
 }

@@ -51,12 +51,17 @@ MonoBehaviour:
     fusionStacks: 0
     plantedFeetStacks: 0
     consecrationStacks: 0
+    growingStacks: 0
+    cautiousStacks: 0
+    infuriatedStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
     gritStacks: 0
+    disarmedStacks: 0
+    sleepStacks: 0
     poisonedStacks: 0
     burningStacks: 0
     fireBallBonusDamageStacks: 0
@@ -80,6 +85,6 @@ MonoBehaviour:
   - Human_Right_Leg
   - Knight_Head_Wear
   - Knight_Chest_Wear
-  itemManager:
+  serializedItemManager:
     mainHandItem: {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}
     offHandItem: {fileID: 11400000, guid: a49466273aff6954d8e0303879ded604, type: 2}

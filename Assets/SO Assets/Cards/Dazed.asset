@@ -16,7 +16,7 @@ MonoBehaviour:
   cardDescription: 'Unplayable.
 
     Fleeting.'
-  cardSprite: {fileID: 21300000, guid: 22b782f5bd0a85b4e95be5b8ab719535, type: 3}
+  cardSprite: {fileID: 21300000, guid: ac5ab77777b77ab4aad7a18394483f99, type: 3}
   cardEnergyCost: 1
   cardType: 1
   targettingType: 0

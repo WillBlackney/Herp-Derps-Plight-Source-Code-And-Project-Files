@@ -17,10 +17,12 @@ public class CharacterDataController : Singleton<CharacterDataController>
     }
     public void BuildAllDataFromSaveFile(SaveGameData saveFile)
     {
+        allPlayerCharacters.Clear();
+        
         foreach (CharacterData characterData in saveFile.characters)
         {
-            allPlayerCharacters.Add(ObjectCloner.CloneJSON(characterData));
-            //allPlayerCharacters.Add(characterData);
+            //allPlayerCharacters.Add(ObjectCloner.CloneJSON(characterData));
+            allPlayerCharacters.Add(characterData);
         }
     }
     #endregion
@@ -55,8 +57,9 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.passiveManager = new PassiveManagerModel();
         PassiveController.Instance.BuildPassiveManagerFromSerializedPassiveManager(newCharacter.passiveManager, template.serializedPassiveManager);
 
-        newCharacter.itemManager = new ItemManagerModel();
-        ItemController.Instance.CopyItemManagerDataIntoOtherItemManager(template.itemManager, newCharacter.itemManager);
+        newCharacter.itemManager = new ItemManagerModel();      
+        ItemController.Instance.CopySerializedItemManagerIntoStandardItemManager(template.serializedItemManager, newCharacter.itemManager);
+        //ItemController.Instance.CopyItemManagerDataIntoOtherItemManager(template.itemManager, newCharacter.itemManager);
 
         return newCharacter;
     }

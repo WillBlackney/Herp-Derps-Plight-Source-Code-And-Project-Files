@@ -7,7 +7,6 @@ public class Card
 {
     // Data references
     public CharacterEntityModel owner;
-    public CardDataSO myCardDataSO;
     public CardData myCharacterDeckCard;    
 
     // General Properties

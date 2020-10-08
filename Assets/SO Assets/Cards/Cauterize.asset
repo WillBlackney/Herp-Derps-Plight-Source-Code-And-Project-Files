@@ -25,7 +25,7 @@ MonoBehaviour:
   talentSchool: 6
   rarity: 1
   expend: 0
-  opener: 0
+  innate: 0
   fleeting: 0
   unplayable: 0
   blessing: 0
@@ -53,10 +53,14 @@ MonoBehaviour:
         passiveData: {fileID: 11400000, guid: 6d216e783d4ba3a49a8dd267aa727fd3, type: 2}
         passiveStacks: 1
     drawStacksFromOverload: 0
+    drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromMeleeAttacksPlayed: 0
+    drawBaseDamageFromOverloadOnSelf: 0
+    baseDamageMultiplier: 0
     damageType: 0
     healthLost: 0
     energyGained: 0

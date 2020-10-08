@@ -7,16 +7,54 @@ public class ItemController : Singleton<ItemController>
     // Variables + Properties
     #region
     [Header("Item Library Properties")]
-    public ItemDataSO[] allItems;
+    [SerializeField] private ItemDataSO[] allItemScriptableObjects;
+    private ItemData[] allItems;
+    #endregion
+
+    // Getters
+    #region
+    public ItemData[] AllItems
+    {
+        get { return allItems; }
+        private set { allItems = value; }
+    }
     #endregion
 
     // Library Logic
     #region
-    public ItemDataSO GetItemDataByName(string name)
+    private void Start()
     {
-        ItemDataSO itemReturned = null;
+        BuildItemLibrary();
+    }
+    private void BuildItemLibrary()
+    {
+        Debug.LogWarning("ItemController.BuildItemLibrary() called...");
 
-        foreach (ItemDataSO icon in allItems)
+        List<ItemData> tempList = new List<ItemData>();
+
+        foreach (ItemDataSO dataSO in allItemScriptableObjects)
+        {
+            tempList.Add(BuildItemDataFromScriptableObjectData(dataSO));
+        }
+
+        AllItems = tempList.ToArray();
+    }
+    public ItemData BuildItemDataFromScriptableObjectData(ItemDataSO data)
+    {
+        ItemData i = new ItemData();
+        i.itemSprite = data.itemSprite;
+        i.itemName = data.itemName;
+        i.itemType = data.itemType;
+        i.itemRarity = data.itemRarity;
+        i.passivePairings = data.passivePairings;
+
+        return i;
+    }
+    public ItemData GetItemDataByName(string name)
+    {
+        ItemData itemReturned = null;
+
+        foreach (ItemData icon in AllItems)
         {
             if (icon.itemName == name)
             {
@@ -98,11 +136,11 @@ public class ItemController : Singleton<ItemController>
         CopyItemManagerDataIntoOtherItemManager(iManagerData, character.iManager);
         CharacterModelController.ApplyItemManagerDataToCharacterModelView(character.iManager, character.characterEntityView.ucm);
 
-        if (character.iManager.mainHandItem)
+        if (character.iManager.mainHandItem != null)
         {
             ApplyItemEffectsToCharacterEntity(character, character.iManager.mainHandItem);
         }
-        if (character.iManager.offHandItem)
+        if (character.iManager.offHandItem != null)
         {
             ApplyItemEffectsToCharacterEntity(character, character.iManager.offHandItem);
         }
@@ -122,12 +160,25 @@ public class ItemController : Singleton<ItemController>
         clone.mainHandItem = originalData.mainHandItem;
         clone.offHandItem = originalData.offHandItem;
     }   
-    private void ApplyItemEffectsToCharacterEntity(CharacterEntityModel character, ItemDataSO item)
+    private void ApplyItemEffectsToCharacterEntity(CharacterEntityModel character, ItemData item)
     {
         foreach(PassivePairingData passive in item.passivePairings)
         {
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(character.pManager, passive.passiveData.passiveName, passive.passiveStacks, false);
         }
+    }
+    public void CopySerializedItemManagerIntoStandardItemManager(SerializedItemManagerModel data, ItemManagerModel iManager)
+    {
+        if(data.mainHandItem != null)
+        {
+            iManager.mainHandItem = GetItemDataByName(data.mainHandItem.itemName);
+        }
+      
+        if (data.offHandItem != null)
+        {
+            iManager.offHandItem = GetItemDataByName(data.offHandItem.itemName);
+        }
+      
     }
     #endregion
 }

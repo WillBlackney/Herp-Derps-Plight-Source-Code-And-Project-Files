@@ -16,14 +16,14 @@ MonoBehaviour:
   cardDescription: 'Choose a card in hand.
 
     Fill your hand with copies of it. '
-  cardSprite: {fileID: 21300000, guid: d2cb2f0ad41e88b41b28b297f163a6de, type: 3}
+  cardSprite: {fileID: 0}
   cardEnergyCost: 1
   cardType: 1
   targettingType: 0
   talentSchool: 0
   rarity: 4
   expend: 0
-  opener: 0
+  innate: 0
   fleeting: 0
   unplayable: 0
   blessing: 0
@@ -44,10 +44,14 @@ MonoBehaviour:
         passiveData: {fileID: 0}
         passiveStacks: 0
     drawStacksFromOverload: 0
+    drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromMeleeAttacksPlayed: 0
+    drawBaseDamageFromOverloadOnSelf: 0
+    baseDamageMultiplier: 0
     damageType: 0
     healthLost: 0
     energyGained: 0

@@ -23,17 +23,28 @@ MonoBehaviour:
   talentSchool: 12
   rarity: 1
   expend: 0
-  opener: 0
+  innate: 0
   fleeting: 0
   unplayable: 0
+  blessing: 0
   cardEffects:
-  - cardEffectType: 6
-    weaponRequirement: 0
+  - weaponRequirement: 0
+    cardEffectType: 6
+    discoveryLocation: 0
+    talentSchoolFilter: 0
+    rarityFilter: 0
+    blessing: 0
+    onDiscoveryChoiceMadeEffects: []
+    onChooseCardInHandChoiceMadeEffects: []
     drawStacksFromOverload: 0
+    drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
     baseDamageValue: 4
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromMeleeAttacksPlayed: 0
+    drawBaseDamageFromOverloadOnSelf: 0
+    baseDamageMultiplier: 0
     damageType: 2
     healthLost: 0
     energyGained: 0
@@ -45,8 +56,14 @@ MonoBehaviour:
       passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
+    blessingsGained: 0
     visualEventsOnStart:
     - eventType: 1
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
       particleEffect: 0
       cameraShake: 0
       movementAnimation: 1
@@ -54,8 +71,14 @@ MonoBehaviour:
       characterAnimation: 0
       delayDuration: 0
       projectileFired: 0
+      projectileStartPosition: 0
       onCharacter: 0
     - eventType: 2
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
       particleEffect: 0
       cameraShake: 0
       movementAnimation: 0
@@ -63,8 +86,14 @@ MonoBehaviour:
       characterAnimation: 1
       delayDuration: 0
       projectileFired: 0
+      projectileStartPosition: 0
       onCharacter: 0
     - eventType: 4
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
       particleEffect: 0
       cameraShake: 1
       movementAnimation: 0
@@ -72,8 +101,14 @@ MonoBehaviour:
       characterAnimation: 0
       delayDuration: 0
       projectileFired: 0
+      projectileStartPosition: 0
       onCharacter: 0
     - eventType: 3
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
       particleEffect: 5
       cameraShake: 0
       movementAnimation: 0
@@ -81,8 +116,14 @@ MonoBehaviour:
       characterAnimation: 0
       delayDuration: 0
       projectileFired: 0
+      projectileStartPosition: 0
       onCharacter: 2
     - eventType: 5
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
       particleEffect: 0
       cameraShake: 0
       movementAnimation: 0
@@ -90,15 +131,26 @@ MonoBehaviour:
       characterAnimation: 0
       delayDuration: 0
       projectileFired: 0
+      projectileStartPosition: 0
       onCharacter: 0
     visualEventsOnFinish: []
-  - cardEffectType: 3
-    weaponRequirement: 0
+  - weaponRequirement: 0
+    cardEffectType: 3
+    discoveryLocation: 0
+    talentSchoolFilter: 0
+    rarityFilter: 0
+    blessing: 0
+    onDiscoveryChoiceMadeEffects: []
+    onChooseCardInHandChoiceMadeEffects: []
     drawStacksFromOverload: 0
+    drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromMeleeAttacksPlayed: 0
+    drawBaseDamageFromOverloadOnSelf: 0
+    baseDamageMultiplier: 0
     damageType: 0
     healthLost: 0
     energyGained: 0
@@ -110,6 +162,7 @@ MonoBehaviour:
       passiveStacks: 2
     cardAdded: {fileID: 0}
     copiesAdded: 0
+    blessingsGained: 0
     visualEventsOnStart: []
     visualEventsOnFinish: []
   cardEventListeners: []

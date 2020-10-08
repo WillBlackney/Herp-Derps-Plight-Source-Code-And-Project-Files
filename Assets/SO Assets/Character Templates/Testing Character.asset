@@ -66,10 +66,9 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
-  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
-  - {fileID: 11400000, guid: 00b73be375fd9ce4e9735d3cba2ca025, type: 2}
-  - {fileID: 11400000, guid: 0e73c280fb28d9b4d9e4fc59eab30e44, type: 2}
+  - {fileID: 11400000, guid: 0aa74ca6548051f42aecea063a3f3ef0, type: 2}
+  - {fileID: 11400000, guid: ce34207cf8b731844ae587386ce47fc9, type: 2}
+  - {fileID: 11400000, guid: 114d0de462d6fe24996e5c9119dcd62f, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1
@@ -84,6 +83,6 @@ MonoBehaviour:
   - Left_Hand_Simple_Battle_Axe
   - Shaman_Right_Leg_Wear
   - Shaman_Mask_Head_Wear
-  itemManager:
+  serializedItemManager:
     mainHandItem: {fileID: 11400000, guid: 8487b0bcf8b350246ad6ff676ec686f4, type: 2}
     offHandItem: {fileID: 0}

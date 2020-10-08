@@ -49,7 +49,7 @@ public class Draggable : MonoBehaviour
     #region
     void OnMouseDown()
     {
-        Debug.LogWarning("Draggable.OnMouseDown() called...");
+       // Debug.LogWarning("Draggable.OnMouseDown() called...");
 
         // prevent clicking through an active UI screen
         if (CardController.Instance.DiscoveryScreenIsActive)
@@ -79,7 +79,7 @@ public class Draggable : MonoBehaviour
 	
     void OnMouseUp()
     {
-        Debug.Log("Draggable.OnMouseUp() called...");
+       // Debug.Log("Draggable.OnMouseUp() called...");
         
         // prevent clicking through an active UI screen
         if (CardController.Instance.DiscoveryScreenIsActive || CardController.Instance.ChooseCardScreenIsActive)
@@ -125,13 +125,13 @@ public class Draggable : MonoBehaviour
             {
                 initialTouchSet = true;
                 initialTouchPos = TouchInWorldCoords();
-                Debug.LogWarning("Setting Initial Touch Pos: " + initialTouchPos.x.ToString() + ", " + initialTouchPos.y + ", ");
+               // Debug.LogWarning("Setting Initial Touch Pos: " + initialTouchPos.x.ToString() + ", " + initialTouchPos.y + ", ");
 
             }       
             
             Vector3 currentTouchPos = TouchInWorldCoords();
             float deltaY = currentTouchPos.y - initialTouchPos.y;
-            Debug.LogWarning("Delta Y: " + deltaY.ToString());
+           // Debug.LogWarning("Delta Y: " + deltaY.ToString());
 
             if (deltaY >= GlobalSettings.Instance.mouseDragSensitivity && 
                 dragging == false && 
@@ -164,8 +164,7 @@ public class Draggable : MonoBehaviour
                     _draggingThis = null;
                     da.OnEndDrag();
                 }
-            }
-            
+            }            
         }
     }
 

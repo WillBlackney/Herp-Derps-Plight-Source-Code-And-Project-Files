@@ -35,11 +35,13 @@ MonoBehaviour:
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     drawStacksFromOverload: 0
+    drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
     baseDamageValue: 5
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
+    drawBaseDamageFromOverloadOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 1
     healthLost: 0
@@ -55,6 +57,11 @@ MonoBehaviour:
     blessingsGained: 0
     visualEventsOnStart:
     - eventType: 1
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
       particleEffect: 0
       cameraShake: 0
       movementAnimation: 1
@@ -62,8 +69,14 @@ MonoBehaviour:
       characterAnimation: 0
       delayDuration: 0
       projectileFired: 0
+      projectileStartPosition: 0
       onCharacter: 0
     - eventType: 2
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
       particleEffect: 0
       cameraShake: 0
       movementAnimation: 0
@@ -71,8 +84,14 @@ MonoBehaviour:
       characterAnimation: 1
       delayDuration: 0
       projectileFired: 0
+      projectileStartPosition: 0
       onCharacter: 0
     - eventType: 4
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
       particleEffect: 0
       cameraShake: 1
       movementAnimation: 0
@@ -80,8 +99,14 @@ MonoBehaviour:
       characterAnimation: 0
       delayDuration: 0
       projectileFired: 0
+      projectileStartPosition: 0
       onCharacter: 0
     - eventType: 3
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
       particleEffect: 2
       cameraShake: 0
       movementAnimation: 0
@@ -89,6 +114,7 @@ MonoBehaviour:
       characterAnimation: 0
       delayDuration: 0
       projectileFired: 0
+      projectileStartPosition: 0
       onCharacter: 2
     visualEventsOnFinish: []
   - weaponRequirement: 0
@@ -100,11 +126,13 @@ MonoBehaviour:
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     drawStacksFromOverload: 0
+    drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
+    drawBaseDamageFromOverloadOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 0
     healthLost: 0

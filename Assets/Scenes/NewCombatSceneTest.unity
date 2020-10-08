@@ -819,11 +819,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
-  gameMode: 1
+  gameMode: 0
   testingEnemyWave: {fileID: 11400000, guid: 348a9df258208b047980282d144d1c8f, type: 2}
   testingCharacterTemplates:
   - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
-  deviceMode: 0
+  deviceMode: 1
   mouseDragSensitivity: 0.25
   hoverMovePosition: {x: 0, y: 2, z: 0}
   hoverScaleAmount: 1.5
@@ -1677,11 +1677,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
-  allIcons:
+  allIconScriptableObjects:
   - {fileID: 11400000, guid: aa003ba9957dfdd41b2b9b41f826d939, type: 2}
   - {fileID: 11400000, guid: f7130d8a7fb3f8841afdbd08d39aa132, type: 2}
+  - {fileID: 11400000, guid: bd75c8c5dfc669e41967bd2b13b343fa, type: 2}
   - {fileID: 11400000, guid: d04c670110fdb014b89a8da5c8ee56d1, type: 2}
   - {fileID: 11400000, guid: 2d4338dcb8cb3b042bb822f2c24a4d8e, type: 2}
+  - {fileID: 11400000, guid: fee46413281a2d7449fbfe00e0c8f1bc, type: 2}
   - {fileID: 11400000, guid: 3276c6384a7df8f48a004957ea667c8d, type: 2}
   - {fileID: 11400000, guid: 1beb7d906f5402046b3049105d7b2f0a, type: 2}
   - {fileID: 11400000, guid: de12560e8a47cd540afc4af2727701ec, type: 2}
@@ -1690,6 +1692,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d8fad9c5a5824f544a127076c5d15d22, type: 2}
   - {fileID: 11400000, guid: 3db93fc554f34374883814a43acff411, type: 2}
   - {fileID: 11400000, guid: 39fd7f98d316c4341b444096a833d84c, type: 2}
+  - {fileID: 11400000, guid: 404e8865747302a4380f96d3e7ea3f43, type: 2}
+  - {fileID: 11400000, guid: 6bddf25bee1edf34080e99a97d8abee1, type: 2}
   - {fileID: 11400000, guid: 64d7d1177028707459739dd30fd8e4bd, type: 2}
   - {fileID: 11400000, guid: 7b7b1835b0ce0b14da1a887a1653b86c, type: 2}
   - {fileID: 11400000, guid: dcdd2890a1d32f04b83aff87ff075399, type: 2}
@@ -1700,6 +1704,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b3f95df9ea9e0d14eaf12c358b8130e8, type: 2}
   - {fileID: 11400000, guid: 07fef585ec236d44b84af5944136f185, type: 2}
   - {fileID: 11400000, guid: e08bcb48758dcfd43a52ffed8c7e1556, type: 2}
+  - {fileID: 11400000, guid: 028361ca478c33f40b292e0b996261f3, type: 2}
   - {fileID: 11400000, guid: 67fcfa203564a5f4d99b664088a8e5da, type: 2}
   - {fileID: 11400000, guid: 30ab842a7e54aab4290645cb4610b843, type: 2}
   - {fileID: 11400000, guid: 54148caa35f4b8c459ceda527526b16d, type: 2}
@@ -1711,11 +1716,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f4d581b9181795e48b68007fcfeec3d2, type: 2}
   - {fileID: 11400000, guid: 6f53a59075648034ab7c521f182140e3, type: 2}
   - {fileID: 11400000, guid: 44285bb48a164794e908c6325bd4f19f, type: 2}
-  - {fileID: 11400000, guid: 404e8865747302a4380f96d3e7ea3f43, type: 2}
-  - {fileID: 11400000, guid: fee46413281a2d7449fbfe00e0c8f1bc, type: 2}
-  - {fileID: 11400000, guid: bd75c8c5dfc669e41967bd2b13b343fa, type: 2}
-  - {fileID: 11400000, guid: 6bddf25bee1edf34080e99a97d8abee1, type: 2}
-  - {fileID: 11400000, guid: 028361ca478c33f40b292e0b996261f3, type: 2}
 --- !u!1 &200055974
 GameObject:
   m_ObjectHideFlags: 0
@@ -6045,9 +6045,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
-  allItems:
+  allItemScriptableObjects:
+  - {fileID: 11400000, guid: ef6ffb4463b38054d8b9a7ae0f010477, type: 2}
   - {fileID: 11400000, guid: 8487b0bcf8b350246ad6ff676ec686f4, type: 2}
+  - {fileID: 11400000, guid: f2e579d4bb84b82479f2d0b3183c07d4, type: 2}
+  - {fileID: 11400000, guid: b533dcedf0849e047ac0af6f1d50afe0, type: 2}
+  - {fileID: 11400000, guid: b441e018b9d907a49b6f8e74e5b0e065, type: 2}
   - {fileID: 11400000, guid: a49466273aff6954d8e0303879ded604, type: 2}
+  - {fileID: 11400000, guid: bfbdb5e21e389ab4c9aae5b49350a1d0, type: 2}
   - {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}
 --- !u!1 &647229819
 GameObject:
@@ -18267,8 +18272,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
   selectableCharacterTemplates:
+  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
   - {fileID: 11400000, guid: 99709e3ddb4d83148b72b16f935299e5, type: 2}
-  - {fileID: 11400000, guid: 7a42828b49c2ca147bff9fbe284f2eb5, type: 2}
   - {fileID: 11400000, guid: 52b82b5c29e34814cacd91cfb9439876, type: 2}
   - {fileID: 11400000, guid: fe1c3014ca448f44998168a4a6ff6b51, type: 2}
   - {fileID: 11400000, guid: e0ea2e09629a8004fa6a714088467137, type: 2}
@@ -18279,6 +18284,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3651cb59323c3a84791a348607f0dd2f, type: 2}
   - {fileID: 11400000, guid: 1d0339b9767137d4a8b3c1e5af99a706, type: 2}
   - {fileID: 11400000, guid: 11330c0f179f1fb49b8fc2aac3fe768b, type: 2}
+  - {fileID: 11400000, guid: 7a42828b49c2ca147bff9fbe284f2eb5, type: 2}
   frontScreenParent: {fileID: 689268532}
   newGameScreenVisualParent: {fileID: 1148923935}
   chooseCharacterWindows:

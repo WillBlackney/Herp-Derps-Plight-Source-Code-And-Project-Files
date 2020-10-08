@@ -9,7 +9,7 @@ public class PassiveIconView : MonoBehaviour
     // Properties + Component References
     #region
     [Header("Properties")]
-    [HideInInspector] public PassiveIconDataSO myIconData;
+    [HideInInspector] public PassiveIconData myIconData;
     [HideInInspector] public string statusName;
     [HideInInspector] public int statusStacks;
 

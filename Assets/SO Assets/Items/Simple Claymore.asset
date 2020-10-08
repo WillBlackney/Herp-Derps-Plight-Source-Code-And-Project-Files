@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a6346e66fdb7e47bd30f751d29c6a7, type: 3}
   m_Name: Simple Claymore
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: 4a2073dce68051140aceccf09639661c, type: 3}
+  itemSprite: {fileID: 21300000, guid: 576a27d7d2a27624abe2bdcc57d5e45c, type: 3}
   itemName: Simple Claymore
   itemType: 2
   itemRarity: 1

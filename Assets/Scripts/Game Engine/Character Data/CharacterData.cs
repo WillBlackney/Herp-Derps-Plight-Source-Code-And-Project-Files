@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 
 // TO DO WAAAAY DOWN THE TRACK
@@ -13,7 +12,6 @@ using System;
 // scripts try to serialize each other. When we unserialize this,
 // we can remove the script SerializedPassiveManagerModel from this class.
 
-//[Serializable]
 public class CharacterData 
 {
     [Header("Story Properties")]

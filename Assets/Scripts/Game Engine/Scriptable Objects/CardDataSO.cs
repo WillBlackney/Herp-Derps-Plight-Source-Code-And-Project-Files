@@ -4,7 +4,6 @@ using System;
 using Sirenix.OdinInspector;
 
 [CreateAssetMenu(fileName = "New CardDataSO", menuName = "CardDataSO", order = 52)]
-[Serializable]
 public class CardDataSO : ScriptableObject
 {
     [BoxGroup("General Info", true, true)]

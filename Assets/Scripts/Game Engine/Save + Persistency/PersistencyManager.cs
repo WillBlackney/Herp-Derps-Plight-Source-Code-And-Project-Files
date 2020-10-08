@@ -1,5 +1,9 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json;
+using Sirenix.Serialization;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 public class PersistencyManager : Singleton<PersistencyManager>
@@ -7,66 +11,86 @@ public class PersistencyManager : Singleton<PersistencyManager>
 
     // Properties + Getters
     #region
-    public const string SAVE_DIRECTORY = "Save Folder/SaveFile.sf";
-
-    private SaveGameData currentSaveFile;
-    public SaveGameData CurrentSaveFile
+    public const string SAVE_DIRECTORY = "/Save Folder/SaveFile.json";
+    public string GetSaveDirectory()
     {
-        get { return currentSaveFile; }
-        private set { currentSaveFile = value; }
+        return Application.dataPath + SAVE_DIRECTORY;
     }
     #endregion
 
-    public void BuildNewSaveFileOnNewGameStarted2(List<CharacterTemplateSO> characters)
+    public void BuildNewSaveFileOnNewGameStarted(List<CharacterTemplateSO> characters)
     {
-        CurrentSaveFile = new SaveGameData();
+        //Debug.LogWarning("PersistencyManager.BuildNewSaveFileOnNewGameStarted() called...");
 
+        // Setup empty save file
+        SaveGameData newSave = new SaveGameData();
+        newSave.characters = new List<CharacterData>();
+
+        // BUILD SAVE FILE!
         // Build characters
-        CurrentSaveFile.characters = new List<CharacterData>();
-        foreach(CharacterTemplateSO data in characters)
-        {
-            CurrentSaveFile.characters.Add(CharacterDataController.Instance.ConverCharacterTemplateToCharacterData(data));
-        }
-
-        // Set journey start position
-        CurrentSaveFile.currentJourneyPosition = 0;
-    }
-    public void BuildNewSaveFileOnNewGameStarted2(List<CharacterTemplateSO> characters)
-    {
-        Debug.LogWarning("PersistencyManager.BuildNewSaveFileOnNewGameStarted() called...");
-
-        CurrentSaveFile = new SaveGameData();
-
-        // Build characters
-        CurrentSaveFile.characters = new List<CharacterData>();
         foreach (CharacterTemplateSO data in characters)
         {
-            CurrentSaveFile.characters.Add(CharacterDataController.Instance.ConverCharacterTemplateToCharacterData(data));
-        }
+            newSave.characters.Add(CharacterDataController.Instance.ConverCharacterTemplateToCharacterData(data));
+        }             
 
         // Set journey start position
-        CurrentSaveFile.currentJourneyPosition = 0;
+        newSave.currentJourneyPosition = 0;
 
-        SaveGame(CurrentSaveFile);
-        CurrentSaveFile = null;
-        CurrentSaveFile = LoadGame();
+        // START SAVE!        
+        SaveGameToDisk(newSave);
 
-        Debug.LogWarning(CurrentSaveFile.currentJourneyPosition.ToString());
-
-        PrintCharacterData(CurrentSaveFile.character);
     }
-    public void SetUpGameSessionDataFromSaveFile(SaveGameData saveData)
+    public void SetUpGameSessionDataFromSaveFile()
     {
-        // From here, we should set up all the values and data for 
-        // the various controllers and managers
+       // Debug.LogWarning("PersistencyManager.SetUpGameSessionDataFromSaveFile() called...");
+
+        SaveGameData newLoad = LoadGameFromDisk();
+
+        // Debug.LogWarning("SaveGameData file properties after load: ");
+        // Debug.LogWarning("currentJourneyPosition: " + newLoad.currentJourneyPosition);
+        // Debug.LogWarning("total characters: " + newLoad.characters.Count.ToString());
+        // Debug.LogWarning("Character 1, card 1 description: " + newLoad.characters[0].deck[0].cardDescription);
 
         // Build character data
-        CharacterDataController.Instance.BuildAllDataFromSaveFile(CurrentSaveFile);
+        CharacterDataController.Instance.BuildAllDataFromSaveFile(newLoad);
 
         // Set journey data
-        JourneyManager.Instance.BuildDataFromSaveFile(CurrentSaveFile);
-
+        JourneyManager.Instance.BuildDataFromSaveFile(newLoad);
     }
+
+    // Save + Load From Disk/Text File
+    #region
+    private void SaveGameToDiskAsJsonTextFile(string saveStringJson)
+    {
+       // Debug.LogWarning("PersistencyManager.SaveGameToDiskAsJsonTextFile() called...");
+        File.WriteAllText(GetSaveDirectory(), saveStringJson);
+    }
+    private SaveGameData LoadGameFromDisk()
+    {
+       // Debug.LogWarning("PersistencyManager.LoadGameFromDisk() called...");
+
+        SaveGameData newLoad;
+
+        byte[] bytes = File.ReadAllBytes(GetSaveDirectory());
+        newLoad = SerializationUtility.DeserializeValue<SaveGameData>(bytes, DataFormat.Binary);
+        return newLoad;
+
+        //return File.ReadAllText(GetSaveDirectory());
+    }
+    #endregion
+
+    // Save File Conversion
+    #region
+    private void SaveGameToDisk(SaveGameData saveFile)
+    {
+        //Debug.LogWarning("PersistencyManager.SaveGameToDisk() called...");
+
+        byte[] bytes = SerializationUtility.SerializeValue(saveFile, DataFormat.Binary);
+        File.WriteAllBytes(GetSaveDirectory(), bytes);
+
+        //return JsonConvert.SerializeObject(saveFile);
+    }
+    #endregion
 
 
 }

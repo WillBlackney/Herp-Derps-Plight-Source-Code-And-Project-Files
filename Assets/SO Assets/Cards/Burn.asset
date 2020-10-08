@@ -21,7 +21,7 @@ MonoBehaviour:
   talentSchool: 0
   rarity: 0
   expend: 0
-  opener: 0
+  innate: 0
   fleeting: 0
   unplayable: 1
   blessing: 0

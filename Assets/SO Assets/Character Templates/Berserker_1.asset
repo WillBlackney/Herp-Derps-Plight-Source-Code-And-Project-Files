@@ -51,12 +51,17 @@ MonoBehaviour:
     fusionStacks: 0
     plantedFeetStacks: 0
     consecrationStacks: 0
+    growingStacks: 0
+    cautiousStacks: 0
+    infuriatedStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
     gritStacks: 0
+    disarmedStacks: 0
+    sleepStacks: 0
     poisonedStacks: 0
     burningStacks: 0
     fireBallBonusDamageStacks: 0
@@ -78,6 +83,6 @@ MonoBehaviour:
   - Human_Right_Arm
   - Human_Right_Hand
   - Human_Right_Leg
-  itemManager:
+  serializedItemManager:
     mainHandItem: {fileID: 11400000, guid: 8487b0bcf8b350246ad6ff676ec686f4, type: 2}
     offHandItem: {fileID: 0}

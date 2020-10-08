@@ -15,14 +15,14 @@ MonoBehaviour:
   cardName: Clairvoyance
   cardDescription: "Discover a card in your draw pile.\nAdd it to your hand.It costs
     0 this combat. \nInnate."
-  cardSprite: {fileID: 21300000, guid: 9c30675e6fbcb3649924896adc6c6cb0, type: 3}
+  cardSprite: {fileID: 21300000, guid: 343eb5ad76e340a468f06c6511a5db81, type: 3}
   cardEnergyCost: 1
   cardType: 1
   targettingType: 0
   talentSchool: 10
   rarity: 3
   expend: 0
-  opener: 0
+  innate: 0
   fleeting: 0
   unplayable: 0
   blessing: 0
@@ -42,11 +42,16 @@ MonoBehaviour:
       copiesAdded: 0
       energyReduction: 0
       newEnergyCost: 0
+    onChooseCardInHandChoiceMadeEffects: []
     drawStacksFromOverload: 0
+    drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromMeleeAttacksPlayed: 0
+    drawBaseDamageFromOverloadOnSelf: 0
+    baseDamageMultiplier: 0
     damageType: 0
     healthLost: 0
     energyGained: 0

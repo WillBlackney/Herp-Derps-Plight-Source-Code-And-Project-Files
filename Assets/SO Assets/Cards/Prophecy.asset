@@ -18,14 +18,14 @@ MonoBehaviour:
     Add 2 copies of it to your hand.
 
     Expend. '
-  cardSprite: {fileID: 21300000, guid: 9c30675e6fbcb3649924896adc6c6cb0, type: 3}
+  cardSprite: {fileID: 21300000, guid: 550483f39b545b04887d5dbc4fb1a5f1, type: 3}
   cardEnergyCost: 0
   cardType: 1
   targettingType: 0
   talentSchool: 10
   rarity: 2
   expend: 1
-  opener: 0
+  innate: 0
   fleeting: 0
   unplayable: 0
   blessing: 0
@@ -41,11 +41,16 @@ MonoBehaviour:
       copiesAdded: 2
       energyReduction: 0
       newEnergyCost: 0
+    onChooseCardInHandChoiceMadeEffects: []
     drawStacksFromOverload: 0
+    drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromMeleeAttacksPlayed: 0
+    drawBaseDamageFromOverloadOnSelf: 0
+    baseDamageMultiplier: 0
     damageType: 0
     healthLost: 0
     energyGained: 0

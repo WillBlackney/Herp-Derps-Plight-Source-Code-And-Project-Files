@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Mirage
   cardDescription: "Choose a card in hand. \nAdd a copy of it to your hand."
-  cardSprite: {fileID: 21300000, guid: 1f80492aeab94fd45b39bf7bbb13797d, type: 3}
+  cardSprite: {fileID: 21300000, guid: 4486a751c8140c144b7bb592b8d68f17, type: 3}
   cardEnergyCost: 1
   cardType: 1
   targettingType: 0
   talentSchool: 9
   rarity: 1
   expend: 0
-  opener: 0
+  innate: 0
   fleeting: 0
   unplayable: 0
   blessing: 0
@@ -42,10 +42,14 @@ MonoBehaviour:
         passiveData: {fileID: 0}
         passiveStacks: 0
     drawStacksFromOverload: 0
+    drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromMeleeAttacksPlayed: 0
+    drawBaseDamageFromOverloadOnSelf: 0
+    baseDamageMultiplier: 0
     damageType: 0
     healthLost: 0
     energyGained: 0

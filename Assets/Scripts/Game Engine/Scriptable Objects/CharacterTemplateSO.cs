@@ -5,7 +5,6 @@ using System;
 using Sirenix.OdinInspector;
 
 [CreateAssetMenu(fileName = "New CharacterTemplateSO", menuName = "CharacterTemplateSO", order = 52)]
-[Serializable]
 public class CharacterTemplateSO : ScriptableObject
 {
     // General Info
@@ -86,5 +85,5 @@ public class CharacterTemplateSO : ScriptableObject
     public List<string> modelParts;
 
     [Header("Item Properties")]
-    public ItemManagerModel itemManager;
+    public SerializedItemManagerModel serializedItemManager;
 }
