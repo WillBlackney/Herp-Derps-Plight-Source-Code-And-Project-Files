@@ -11,10 +11,10 @@ public class PersistencyManager : Singleton<PersistencyManager>
 
     // Properties + Getters
     #region
-    public const string SAVE_DIRECTORY = "/Save Folder/SaveFile.json";
+    public const string SAVE_DIRECTORY = "/SaveFile.json";
     public string GetSaveDirectory()
     {
-        return Application.dataPath + SAVE_DIRECTORY;
+        return Application.persistentDataPath + SAVE_DIRECTORY;
     }
     #endregion
 
@@ -42,14 +42,8 @@ public class PersistencyManager : Singleton<PersistencyManager>
     }
     public void SetUpGameSessionDataFromSaveFile()
     {
-       // Debug.LogWarning("PersistencyManager.SetUpGameSessionDataFromSaveFile() called...");
-
+        // Build save file from persistency
         SaveGameData newLoad = LoadGameFromDisk();
-
-        // Debug.LogWarning("SaveGameData file properties after load: ");
-        // Debug.LogWarning("currentJourneyPosition: " + newLoad.currentJourneyPosition);
-        // Debug.LogWarning("total characters: " + newLoad.characters.Count.ToString());
-        // Debug.LogWarning("Character 1, card 1 description: " + newLoad.characters[0].deck[0].cardDescription);
 
         // Build character data
         CharacterDataController.Instance.BuildAllDataFromSaveFile(newLoad);
@@ -60,22 +54,13 @@ public class PersistencyManager : Singleton<PersistencyManager>
 
     // Save + Load From Disk/Text File
     #region
-    private void SaveGameToDiskAsJsonTextFile(string saveStringJson)
-    {
-       // Debug.LogWarning("PersistencyManager.SaveGameToDiskAsJsonTextFile() called...");
-        File.WriteAllText(GetSaveDirectory(), saveStringJson);
-    }
     private SaveGameData LoadGameFromDisk()
     {
-       // Debug.LogWarning("PersistencyManager.LoadGameFromDisk() called...");
-
         SaveGameData newLoad;
 
         byte[] bytes = File.ReadAllBytes(GetSaveDirectory());
         newLoad = SerializationUtility.DeserializeValue<SaveGameData>(bytes, DataFormat.Binary);
         return newLoad;
-
-        //return File.ReadAllText(GetSaveDirectory());
     }
     #endregion
 
@@ -83,12 +68,8 @@ public class PersistencyManager : Singleton<PersistencyManager>
     #region
     private void SaveGameToDisk(SaveGameData saveFile)
     {
-        //Debug.LogWarning("PersistencyManager.SaveGameToDisk() called...");
-
         byte[] bytes = SerializationUtility.SerializeValue(saveFile, DataFormat.Binary);
         File.WriteAllBytes(GetSaveDirectory(), bytes);
-
-        //return JsonConvert.SerializeObject(saveFile);
     }
     #endregion
 
