@@ -16,17 +16,12 @@ namespace Tests
 
         // Mock data
         CharacterData characterData;
-        EnemyDataSO enemyData;
         List<CardDataSO> deckData;
         LevelNode defenderNode;
-        LevelNode enemyNode;
 
         // Mock card data SO's
         CardDataSO mockExpendCard;
         CardDataSO mockPowerCard;
-        CardDataSO mockMeleeAttackCard;
-        CardDataSO mockRangedAttackCard;
-        CardDataSO mockInnateCard;
 
         [UnitySetUp]
         public IEnumerator Setup()
@@ -34,7 +29,6 @@ namespace Tests
             // Load Scene, wait until completed
             AsyncOperation loading = SceneManager.LoadSceneAsync(SCENE_NAME);
             yield return new WaitUntil(() => loading.isDone);
-            //GameObject.FindObjectOfType<CombatTestSceneController>().runMockScene = false;
             GameObject.FindObjectOfType<GlobalSettings>().gameMode = StartingSceneSetting.IntegrationTesting;
 
             // Create mock character data
@@ -58,9 +52,6 @@ namespace Tests
             // Create mock cards
             mockExpendCard = AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/Tests/Mock Data Files/Mock Exhaust Card.asset");
             mockPowerCard = AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/Tests/Mock Data Files/Mock Power Card.asset");
-            mockMeleeAttackCard = AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/Tests/Mock Data Files/Mock Melee Attack Card.asset");
-            mockRangedAttackCard = AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/Tests/Mock Data Files/Mock Ranged Attack Card.asset");
-            mockInnateCard = AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/Tests/Mock Data Files/Mock Innate Card.asset");
 
             // Create mock model data
             characterData.modelParts = new List<string>();
@@ -70,10 +61,6 @@ namespace Tests
 
             // Create mock level node
             defenderNode = LevelManager.Instance.GetNextAvailableDefenderNode();
-            enemyNode = LevelManager.Instance.GetNextAvailableEnemyNode();
-
-            // Create mock enemy data
-            enemyData = AssetDatabase.LoadAssetAtPath<EnemyDataSO>("Assets/SO Assets/Enemies/Test Enemy.asset");
         }
 
 
@@ -84,7 +71,7 @@ namespace Tests
         {
             // Arange
             CharacterEntityModel model;
-            bool expected;            
+            bool expected;
 
             // Act 
             CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockExpendCard, characterData);
@@ -96,7 +83,7 @@ namespace Tests
             ActivationManager.Instance.OnNewCombatEventStarted();
             CardController.Instance.PlayCardFromHand(card);
 
-            if(model.hand.Contains(card) ||
+            if (model.hand.Contains(card) ||
                model.drawPile.Contains(card) ||
                model.discardPile.Contains(card))
             {
@@ -193,7 +180,7 @@ namespace Tests
 
             if (model.hand.Contains(card) ||
                model.drawPile.Contains(card) ||
-               model.discardPile.Contains(card) || 
+               model.discardPile.Contains(card) ||
                model.expendPile.Contains(card) == false)
             {
                 expected = false;
@@ -222,9 +209,9 @@ namespace Tests
             Card theCard = model.drawPile[0];
             model.draw = 1;
 
-           // Card card = new Card();
-           // card.cardType = CardType.Power;
-           // model.drawPile.Add(card);
+            // Card card = new Card();
+            // card.cardType = CardType.Power;
+            // model.drawPile.Add(card);
 
             ActivationManager.Instance.OnNewCombatEventStarted();
             CardController.Instance.PlayCardFromHand(model.hand[0]);
@@ -242,7 +229,7 @@ namespace Tests
             // Arange
             CharacterEntityModel model;
 
-            for(int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
                 CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockPowerCard, characterData);
                 characterData.deck.Add(newCard);
@@ -273,13 +260,13 @@ namespace Tests
                 CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockPowerCard, characterData);
                 characterData.deck.Add(newCard);
             }
-            
+
             int expectedHandCount = 8;
             GlobalSettings.Instance.innateSetting = InnateSettings.DrawInnateCardsExtra;
 
             // Act 
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
-            for(int i = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
                 Card newCard = new Card();
                 newCard.innate = true;

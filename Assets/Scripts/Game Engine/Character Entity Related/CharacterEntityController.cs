@@ -5,7 +5,7 @@ using System.Linq;
 using DG.Tweening;
 
 
-public class CharacterEntityController: Singleton<CharacterEntityController>
+public class CharacterEntityController : Singleton<CharacterEntityController>
 {
     // Properties + Component References
     #region
@@ -84,7 +84,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     }
     public void DestroyAllCombatCharacters()
     {
-        foreach(CharacterEntityModel character in AllCharacters)
+        foreach (CharacterEntityModel character in AllCharacters)
         {
             Destroy(character.characterEntityView.gameObject);
         }
@@ -183,7 +183,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Set up health
         ModifyMaxHealth(character, data.maxHealth);
         ModifyHealth(character, data.health);
-        
+
         // TO DO IN FUTURE: We need a better way to track character data's body 
         // parts: strings references are not scaleable
         // Build UCM
@@ -201,7 +201,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     private void SetupCharacterFromEnemyData(CharacterEntityModel character, EnemyDataSO data)
     {
         // Set general info
-        character.myName = data.enemyName;       
+        character.myName = data.enemyName;
 
         // Setup Core Stats
         ModifyInitiative(character, data.initiative);
@@ -211,7 +211,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Set up health + Block
         ModifyMaxHealth(character, data.maxHealth);
         ModifyHealth(character, data.startingHealth);
-        ModifyBlock(character, data.startingBlock);
+        ModifyBlock(character, data.startingBlock, false);
 
         // Build UCM
         CharacterModelController.BuildModelFromStringReferences(character.characterEntityView.ucm, data.allBodyParts);
@@ -294,19 +294,19 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
         if (finalHealthValue > originalHealth)
         {
-           // StartCoroutine(VisualEffectManager.Instance.CreateHealEffect(character.characterEntityView.transform.position, healthGainedOrLost));
+            // StartCoroutine(VisualEffectManager.Instance.CreateHealEffect(character.characterEntityView.transform.position, healthGainedOrLost));
         }
 
         // Set health after calculation
         character.health = finalHealthValue;
 
         // relay changes to character data
-        if(character.characterData != null)
+        if (character.characterData != null)
         {
             CharacterDataController.Instance.SetCharacterHealth(character.characterData, character.health);
         }
 
-        VisualEventManager.Instance.CreateVisualEvent(()=> UpdateHealthGUIElements(character, finalHealthValue, character.maxHealth),QueuePosition.Back, 0, 0);
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateHealthGUIElements(character, finalHealthValue, character.maxHealth), QueuePosition.Back, 0, 0);
     }
     public void ModifyMaxHealth(CharacterEntityModel character, int maxHealthGainedOrLost)
     {
@@ -314,7 +314,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
         character.maxHealth += maxHealthGainedOrLost;
 
-        if(character.health > character.maxHealth)
+        if (character.health > character.maxHealth)
         {
             ModifyHealth(character, (character.maxHealth - character.health));
         }
@@ -421,7 +421,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
     // Modify Block
     #region
-    public void ModifyBlock(CharacterEntityModel character, int blockGainedOrLost)
+    public void ModifyBlock(CharacterEntityModel character, int blockGainedOrLost, bool showVFX = true)
     {
         Debug.Log("CharacterEntityController.ModifyBlock() called for " + character.myName);
 
@@ -429,22 +429,29 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         int characterFinalBlockValue = 0;
 
         // prevent block going negative
-        if(finalBlockGainValue < 0)
+        if (finalBlockGainValue < 0)
         {
             finalBlockGainValue = 0;
         }
 
         // Apply block gain
         character.block += finalBlockGainValue;
+        characterFinalBlockValue = character.block;
 
-        if (finalBlockGainValue > 0)
+        if (finalBlockGainValue > 0 && showVFX)
         {
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateGainBlockEffect(character.characterEntityView.WorldPosition, finalBlockGainValue), QueuePosition.Back, 0, 0);
         }
 
-        // Update GUI
-        characterFinalBlockValue = character.block;
-        VisualEventManager.Instance.CreateVisualEvent(() => UpdateBlockGUI(character, characterFinalBlockValue), QueuePosition.Back, 0, 0);
+        if (showVFX)
+        {
+            VisualEventManager.Instance.CreateVisualEvent(() => UpdateBlockGUI(character, characterFinalBlockValue), QueuePosition.Back, 0, 0);
+        }
+        else
+        {
+            UpdateBlockGUI(character, characterFinalBlockValue);
+        }
+
     }
     public void SetBlock(CharacterEntityModel character, int newBlockValue)
     {
@@ -456,36 +463,10 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Update GUI
         VisualEventManager.Instance.CreateVisualEvent(() => UpdateBlockGUI(character, newBlockValue), QueuePosition.Back, 0, 0);
     }
-    public void ModifyBlockOnActivationStart(CharacterEntityModel character)
-    {
-        Debug.Log("CharacterEntityController.ModifyBlockOnActivationStart() called for " + character.myName);
-
-        // Remove all block
-        ModifyBlock(character, -character.block);
-
-        /*
-        if (myPassiveManager.unwavering)
-        {
-            Debug.Log(myName + " has 'Unwavering' passive, not removing block");
-            return;
-        }
-        else if (defender && StateManager.Instance.DoesPlayerAlreadyHaveState("Polished Armour"))
-        {
-            Debug.Log(myName + " has 'Polished Armour' state buff, not removing block");
-            return;
-        }
-        else
-        {
-            // Remove all block
-            ModifyCurrentBlock(-currentBlock);
-        }
-        */
-
-    }
     public void UpdateBlockGUI(CharacterEntityModel character, int newBlockValue)
     {
         character.characterEntityView.blockText.text = newBlockValue.ToString();
-        if(newBlockValue > 0)
+        if (newBlockValue > 0)
         {
             character.characterEntityView.blockIcon.SetActive(true);
         }
@@ -567,32 +548,32 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         VisualEventManager.Instance.CreateVisualEvent(() => LevelManager.Instance.SetActivatedViewState(charNode, true), QueuePosition.Back);
 
         // Gain Energy
-        ModifyEnergy(character, EntityLogic.GetTotalStamina(character));        
+        ModifyEnergy(character, EntityLogic.GetTotalStamina(character));
 
         // Modify relevant passives
-        if(character.pManager.temporaryBonusStaminaStacks != 0)
+        if (character.pManager.temporaryBonusStaminaStacks != 0)
         {
             PassiveController.Instance.ModifyTemporaryStamina(character.pManager, -character.pManager.temporaryBonusStaminaStacks, true, 0.5f);
         }
 
-        
+
 
         // is the character player controller?
         if (character.controller == Controller.Player)
         {
             // Activate main UI canvas view
             CoroutineData cData = new CoroutineData();
-            VisualEventManager.Instance.CreateVisualEvent(()=> FadeInCharacterUICanvas(character.characterEntityView, cData), cData, QueuePosition.Back);
+            VisualEventManager.Instance.CreateVisualEvent(() => FadeInCharacterUICanvas(character.characterEntityView, cData), cData, QueuePosition.Back);
 
             // Before normal card draw, add cards to hand from passive effects (e.g. Fan Of Knives)
 
             // Fan of Knives
-            if(character.pManager.fanOfKnivesStacks > 0)
+            if (character.pManager.fanOfKnivesStacks > 0)
             {
-                for(int i = 0; i < character.pManager.fanOfKnivesStacks; i++)
+                for (int i = 0; i < character.pManager.fanOfKnivesStacks; i++)
                 {
                     CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetCardFromLibraryByName("Shank"));
-                }                
+                }
             }
 
             // Divine Favour
@@ -634,7 +615,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
             // Star enemy activation process
             StartEnemyActivation(character);
-        }                  
+        }
     }
     public void CharacterOnActivationEnd(CharacterEntityModel entity)
     {
@@ -703,21 +684,25 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         }
         if (entity.pManager.weakenedStacks > 0)
         {
-            PassiveController.Instance.ModifyWeakened(entity.pManager, - 1, true, 0.5f);
+            PassiveController.Instance.ModifyWeakened(entity.pManager, -1, true, 0.5f);
         }
         if (entity.pManager.gritStacks > 0)
         {
-            PassiveController.Instance.ModifyGrit(entity.pManager, - 1, true, 0.5f);
+            PassiveController.Instance.ModifyGrit(entity.pManager, -1, true, 0.5f);
         }
         if (entity.pManager.vulnerableStacks > 0)
         {
-            PassiveController.Instance.ModifyVulnerable(entity.pManager, - 1, true, 0.5f);
+            PassiveController.Instance.ModifyVulnerable(entity.pManager, -1, true, 0.5f);
         }
 
         // Disabling Debuff Expiries
         if (entity.pManager.disarmedStacks > 0)
         {
             PassiveController.Instance.ModifyDisarmed(entity.pManager, -1, true, 0.5f);
+        }
+        if (entity.pManager.sleepStacks > 0)
+        {
+            PassiveController.Instance.ModifySleep(entity.pManager, -1, true, 0.5f);
         }
 
         // Buff Passive Triggers
@@ -749,7 +734,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             if (chosenAlly != null)
             {
                 // Notification event
-                VisualEventManager.Instance.CreateVisualEvent(() => 
+                VisualEventManager.Instance.CreateVisualEvent(() =>
                 VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Encouraging Aura!"), QueuePosition.Back, 0, 0.5f);
 
                 // Random ally gains energy
@@ -765,7 +750,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             if (chosenEnemy != null)
             {
                 // Notification event
-                VisualEventManager.Instance.CreateVisualEvent(() => 
+                VisualEventManager.Instance.CreateVisualEvent(() =>
                 VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Shadow Aura!"), QueuePosition.Back, 0, 0.5f);
 
                 // Random ally gains energy
@@ -783,7 +768,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Poison, entity.pManager.poisonedStacks, null, null);
             VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
             CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Poison, true);
-            VisualEventManager.Instance.CreateVisualEvent(()=> VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.PoisonExplosion, view.WorldPosition));
+            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.PoisonExplosion, view.WorldPosition));
         }
         if (entity.pManager.burningStacks > 0)
         {
@@ -839,12 +824,12 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         VisualEventManager.Instance.CreateVisualEvent(() => LevelManager.Instance.SetActivatedViewState(veNode, false));
 
         // Activate next character
-        if(entity != null &&
+        if (entity != null &&
            entity.livingState == LivingState.Alive)
         {
             ActivationManager.Instance.ActivateNextEntity();
         }
-       
+
 
     }
     #endregion
@@ -854,10 +839,10 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     private void EnableDefenderTargetIndicator(CharacterEntityView view)
     {
         Debug.Log("CharacterEntityController.EnableDefenderTargetIndicator() called...");
-        if(view != null)
+        if (view != null)
         {
             view.myTargetIndicator.EnableView();
-        }      
+        }
     }
     private void DisableDefenderTargetIndicator(CharacterEntityView view)
     {
@@ -889,16 +874,15 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             StartAutoSetEnemyIntentProcess(enemy);
         }
     }
-    private void StartAutoSetEnemyIntentProcess(CharacterEntityModel enemy)
+    public void StartAutoSetEnemyIntentProcess(CharacterEntityModel enemy)
     {
         Debug.Log("CharacterEntityController.StartSetEnemyIntentProcess() called...");
-        if(CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive)
+        if (CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive)
         {
             SetEnemyNextAction(enemy, DetermineNextEnemyAction(enemy));
             SetEnemyTarget(enemy, DetermineTargetOfNextEnemyAction(enemy, enemy.myNextAction));
             UpdateEnemyIntentGUI(enemy);
         }
-      
     }
     public void AutoAquireNewTargetOfCurrentAction(CharacterEntityModel enemy)
     {
@@ -908,7 +892,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // this should only be called when the previous target for the action
         // is killed, and the enemy needs to find a new target
         if (enemy.currentActionTarget == null ||
-            enemy.currentActionTarget.livingState == LivingState.Dead)            
+            enemy.currentActionTarget.livingState == LivingState.Dead)
         {
             Debug.Log("CharacterEntityController.AutoAquireNewTargetOfCurrentAction() detected character needs a new target, searching...");
             SetEnemyTarget(enemy, DetermineTargetOfNextEnemyAction(enemy, enemy.myNextAction));
@@ -921,7 +905,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
         // cancel if target of enemy is null, and there are no valid targets left
         // for example, all characters are dead.
-        if(enemy.currentActionTarget == null &&
+        if (enemy.currentActionTarget == null &&
             (enemy.myNextAction.actionType == ActionType.AttackTarget ||
              enemy.myNextAction.actionType == ActionType.DebuffTarget ||
              enemy.myNextAction.actionType == ActionType.DefendTarget ||
@@ -940,9 +924,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         {
             // Find the attack action effect in the actions lists of effects
             EnemyActionEffect effect = null;
-            foreach(EnemyActionEffect effectt in enemy.myNextAction.actionEffects)
+            foreach (EnemyActionEffect effectt in enemy.myNextAction.actionEffects)
             {
-                if(effectt.actionType == ActionType.AttackTarget ||
+                if (effectt.actionType == ActionType.AttackTarget ||
                     effectt.actionType == ActionType.AttackAllEnemies)
                 {
                     effect = effectt;
@@ -954,7 +938,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
             // Calculate damage to display
             DamageType damageType = CombatLogic.Instance.GetFinalFinalDamageTypeOfAttack(enemy, null, null, effect);
-            
+
             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, target, damageType, effect.baseDamage, effect);
 
             if (enemy.myNextAction.actionLoops > 1)
@@ -1017,7 +1001,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         {
             cData.MarkAsCompleted();
         }
-        
+
     }
     public void FadeOutCharacterUICanvas(CharacterEntityView view, CoroutineData cData)
     {
@@ -1042,7 +1026,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         {
             cData.MarkAsCompleted();
         }
-        
+
     }
     public void FadeOutCharacterWorldCanvas(CharacterEntityView view, CoroutineData cData)
     {
@@ -1067,7 +1051,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         {
             cData.MarkAsCompleted();
         }
-        
+
     }
     private void UpdateEnemyIntentGUIVisualEvent(IntentViewModel intentView, Sprite intentSprite, string attackDamageString)
     {
@@ -1100,7 +1084,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         {
             return;
         }
-        
+
         if (view.entityRenderer != null)
         {
             view.entityRenderer.Color = new Color(newColor.r, newColor.g, newColor.b, view.entityRenderer.Color.a);
@@ -1155,7 +1139,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         CharacterEntityModel model = view.character;
         if (model != null)
         {
-            if(model.allegiance == Allegiance.Player)
+            if (model.allegiance == Allegiance.Player)
             {
                 forwardPos = view.WorldPosition.x + distance;
             }
@@ -1198,8 +1182,8 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             view.ucmAnimator.SetTrigger("Skill Two");
             AudioManager.Instance.StopSound(Sound.Character_Footsteps);
         }
-       
-    }    
+
+    }
     public void PlayMoveAnimation(CharacterEntityView view)
     {
         AudioManager.Instance.PlaySound(Sound.Character_Footsteps);
@@ -1252,7 +1236,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         AudioManager.Instance.PlaySound(Sound.GUI_Button_Mouse_Over);
 
         // Cancel this if character is dead
-        if(view.character == null ||
+        if (view.character == null ||
             view.character.livingState == LivingState.Dead)
         {
             // Prevents GUI bugs when mousing over an enemy that is dying
@@ -1303,11 +1287,11 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             DisableAllDefenderTargetIndicators();
 
             // Disable all node mouse stats
-            foreach(LevelNode node in LevelManager.Instance.AllLevelNodes)
+            foreach (LevelNode node in LevelManager.Instance.AllLevelNodes)
             {
                 LevelManager.Instance.SetMouseOverViewState(node, false);
             }
-           
+
             return;
         }
         // Enable activation window glow
@@ -1382,29 +1366,29 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             // Check havent used abilty for X turns
             if (ar.requirementType == ActionRequirementType.HaventUsedActionInXTurns)
             {
-                if (enemy.myPreviousActionLog.Count == 0)
+                if (enemy.myPreviousActionLog.Count < ar.requirementTypeValue)
                 {
-                    Debug.Log(enemyAction.actionName + " passed 'HaventUsedActionInXTurns' requirement");
-                    checkResults.Add(true);
+                    Debug.Log(enemyAction.actionName + " failed 'HaventUsedActionInXTurns' requirement");
+                    checkResults.Add(false);
                 }
                 else
                 {
-                    int loops = 0;
-                    for (int index = enemy.myPreviousActionLog.Count - 1; loops < ar.requirementTypeValue; index--)
+                    int loops = ar.requirementTypeValue;
+                    int index = enemy.myPreviousActionLog.Count - 1;
+
+                    while (loops > 0)
                     {
-                        if (index >= 0 &&
-                           index < enemy.myPreviousActionLog.Count &&
-                           enemy.myPreviousActionLog[index] == enemyAction)
+                        if (enemy.myPreviousActionLog[index].actionName == enemyAction.actionName)
                         {
                             Debug.Log(enemyAction.actionName + " failed 'HaventUsedActionInXTurns' requirement");
                             checkResults.Add(false);
+                            break;
                         }
 
-                        loops++;
+                        index--;
+                        loops--;
                     }
-
                 }
-
             }
 
             // Check is more than turn
@@ -1430,7 +1414,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
                 Debug.Log(enemyAction.actionName + " failed 'ActivatedXTimesOrMore' requirement");
                 checkResults.Add(false);
             }
-            
+
             // Check HasPassive
             if (ar.requirementType == ActionRequirementType.HasPassiveTrait &&
                 PassiveController.Instance.IsEntityAffectedByPassive(enemy.pManager, ar.passiveRequired.passiveName) == false)
@@ -1438,7 +1422,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
                 Debug.Log(enemyAction.actionName + " failed 'HasPassive' requirement");
                 checkResults.Add(false);
             }
-            
+
         }
 
         if (checkResults.Contains(false))
@@ -1461,7 +1445,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         bool foundForcedAction = false;
 
         // if enemy only knows 1 action, just set that
-        if(enemy.enemyData.allEnemyActions.Count == 1)
+        if (enemy.enemyData.allEnemyActions.Count == 1)
         {
             actionReturned = enemy.enemyData.allEnemyActions[0];
             Debug.Log("EnemyController.DetermineNextEnemyAction() returning " + actionReturned.actionName);
@@ -1469,7 +1453,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         }
 
         // Check if an action is forced on activation one
-        foreach(EnemyAction ea in enemy.enemyData.allEnemyActions)
+        foreach (EnemyAction ea in enemy.enemyData.allEnemyActions)
         {
             if (ea.doThisOnFirstActivation &&
                 enemy.myPreviousActionLog.Count == 0)
@@ -1539,14 +1523,14 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         // Randomly decide which next action to take
         if (actionReturned == null && foundForcedAction == false)
         {
-            if(viableNextMoves.Count == 1)
+            if (viableNextMoves.Count == 1)
             {
                 actionReturned = viableNextMoves[0];
             }
             else
             {
                 actionReturned = viableNextMoves[Random.Range(0, viableNextMoves.Count)];
-            }           
+            }
         }
 
         Debug.Log("EnemyController.DetermineNextEnemyAction() returning " + actionReturned.actionName);
@@ -1559,7 +1543,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         CharacterEntityModel targetReturned = null;
 
         // Check taunt first
-        if(enemy.pManager.tauntStacks > 0 && 
+        if (enemy.pManager.tauntStacks > 0 &&
             enemy.pManager.myTaunter != null &&
             enemy.pManager.myTaunter.livingState == LivingState.Alive &&
             action.actionType == ActionType.AttackTarget)
@@ -1567,30 +1551,30 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             targetReturned = enemy.pManager.myTaunter;
         }
 
-        else if (action.actionType == ActionType.AttackTarget || 
-            action.actionType == ActionType.DebuffTarget || 
+        else if (action.actionType == ActionType.AttackTarget ||
+            action.actionType == ActionType.DebuffTarget ||
             action.actionType == ActionType.AddCardToTargetCardCollection)
         {
             CharacterEntityModel[] enemies = GetAllEnemiesOfCharacter(enemy).ToArray();
 
-            if(enemies.Length > 1)
+            if (enemies.Length > 1)
             {
                 targetReturned = enemies[Random.Range(0, enemies.Length)];
             }
-            else if(enemies.Length == 1)
+            else if (enemies.Length == 1)
             {
                 targetReturned = enemies[0];
             }
-            
+
         }
-        else if (action.actionType == ActionType.DefendTarget || 
+        else if (action.actionType == ActionType.DefendTarget ||
                  action.actionType == ActionType.BuffTarget)
         {
             // Get a valid target
             CharacterEntityModel[] allies = GetAllAlliesOfCharacter(enemy, false).ToArray();
 
             // if no valid allies, target self
-            if(allies.Length == 0)
+            if (allies.Length == 0)
             {
                 targetReturned = enemy;
             }
@@ -1607,11 +1591,11 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             }
         }
 
-        if(targetReturned != null)
+        if (targetReturned != null)
         {
             Debug.Log("CharacterEntityController.DetermineTargetOfNextEnemyAction() setting "
            + targetReturned + " as the target of action " + action.actionName + " by " + enemy.myName);
-        }       
+        }
 
         return targetReturned;
     }
@@ -1624,7 +1608,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         string notificationName = enemy.myNextAction.actionName;
 
         // Status Notification
-        VisualEventManager.Instance.CreateVisualEvent(()=>
+        VisualEventManager.Instance.CreateVisualEvent(() =>
         VisualEffectManager.Instance.CreateStatusEffect(enemy.characterEntityView.WorldPosition, notificationName), QueuePosition.Back, 0, 1f);
 
         // Trigger and resolve all effects of the action        
@@ -1660,18 +1644,18 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         Debug.Log("CharacterEntityController.TriggerEnemyActionEffect() called on enemy " + enemy.myName);
 
         // Cache refs for visual events
-        CharacterEntityModel target = enemy.currentActionTarget;        
+        CharacterEntityModel target = enemy.currentActionTarget;
 
         // if invalid targetting issues occured before triggering event, return
         // TO DO: we should probably perform this validation process before calling 'TriggerEnemyActionEffect'
         if ((target != null && target.livingState == LivingState.Dead) ||
             ((effect.actionType == ActionType.AttackTarget ||
             effect.actionType == ActionType.DebuffTarget ||
-            effect.actionType == ActionType.AddCardToTargetCardCollection)  && target == enemy))
+            effect.actionType == ActionType.AddCardToTargetCardCollection) && target == enemy))
         {
             return;
         }
-        
+
         // TO DO: we should probably remove this and find a better way to prevent enemies targetting themselves
         // with harmful effects
         if ((effect.actionType == ActionType.AttackTarget ||
@@ -1691,7 +1675,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         }
 
         // trigger starting visual events
-        foreach(AnimationEventData vEvent in effect.visualEventsOnStart)
+        foreach (AnimationEventData vEvent in effect.visualEventsOnStart)
         {
             AnimationEventController.Instance.PlayAnimationEvent(vEvent, enemy, target);
         }
@@ -1731,7 +1715,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
                     // Start damage sequence
                     CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, enemyCharacter, effect, damageType, batchedEvent);
                 }
-            }                
+            }
         }
 
         // Defend self + Defend target
@@ -1826,7 +1810,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
     }
     private void StartEnemyActivation(CharacterEntityModel enemy)
     {
-        Debug.Log("CharacterEntityController.StartEnemyActivation() called ");   
+        Debug.Log("CharacterEntityController.StartEnemyActivation() called ");
         ExecuteEnemyNextAction(enemy);
         CharacterOnActivationEnd(enemy);
     }
@@ -1930,7 +1914,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         Debug.Log("CharacterEntityController.MoveAttackerToTargetNodeAttackPosition() called...");
         StartCoroutine(MoveAttackerToCentrePositionCoroutine(attacker, cData));
     }
-    private IEnumerator MoveAttackerToCentrePositionCoroutine(CharacterEntityModel attacker,  CoroutineData cData)
+    private IEnumerator MoveAttackerToCentrePositionCoroutine(CharacterEntityModel attacker, CoroutineData cData)
     {
         // Set up
         bool reachedDestination = false;
@@ -1939,7 +1923,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
         float moveSpeed = 10;
 
         // Face direction of centre pos
-        if(attacker.allegiance == Allegiance.Player)
+        if (attacker.allegiance == Allegiance.Player)
         {
             LevelManager.Instance.SetDirection(attacker.characterEntityView, FacingDirection.Right);
         }
@@ -1986,9 +1970,9 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
 
         List<CharacterEntityModel> listReturned = new List<CharacterEntityModel>();
 
-        foreach(CharacterEntityModel entity in AllCharacters)
+        foreach (CharacterEntityModel entity in AllCharacters)
         {
-            if(!IsTargetFriendly(character, entity))
+            if (!IsTargetFriendly(character, entity))
             {
                 listReturned.Add(entity);
             }
@@ -2010,7 +1994,7 @@ public class CharacterEntityController: Singleton<CharacterEntityController>
             }
         }
 
-        if(includeSelfInSearch == false &&
+        if (includeSelfInSearch == false &&
             listReturned.Contains(character))
         {
             listReturned.Remove(character);

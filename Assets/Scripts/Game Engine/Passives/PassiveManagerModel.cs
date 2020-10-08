@@ -50,7 +50,8 @@ public class PassiveManagerModel
 
     // Disabling Debuffs
     public int disarmedStacks;
-    
+    public int sleepStacks;
+
 
     // Misc passives
     [HideInInspector] public int tauntStacks;

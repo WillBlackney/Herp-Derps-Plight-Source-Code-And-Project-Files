@@ -51,18 +51,25 @@ namespace Tests
         private const string OVERLOAD_NAME = "Overload";
         private const string FUSION_NAME = "Fusion";
         private const string PLANTED_FEET_NAME = "Planted Feet";
+        private const string CAUTIOUS_NAME = "Cautious";
+        private const string GROWING_NAME = "Growing";
+        private const string INFURIATED_NAME = "Infuriated";
 
         // Special Defensive Passives
         private const string RUNE_NAME = "Rune";
         private const string BARRIER_NAME = "Barrier";
+
         // Aura Passives
         private const string ENCOURAGING_AURA_NAME = "Encouraging Aura";
+
+        // Disabling Debuff Passives
+        private const string DISARMED_NAME = "Disarmed";
 
         // Core % Modifer Stats
         private const string WRATH_NAME = "Wrath";
         private const string WEAKENED_NAME = "Weakened";
         private const string GRIT_NAME = "Grit";
-        private const string VULNERABLE_NAME = "Vulnerable";      
+        private const string VULNERABLE_NAME = "Vulnerable";
 
         // Misc passives
         private const string TAUNTED_NAME = "Taunted";
@@ -155,12 +162,18 @@ namespace Tests
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, OVERLOAD_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, FUSION_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, PLANTED_FEET_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, CAUTIOUS_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, GROWING_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, INFURIATED_NAME, stacks);
 
             // Special Defensive Passives
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, BARRIER_NAME, stacks);
 
             // Aura Passives
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, ENCOURAGING_AURA_NAME, stacks);
+
+            // Disabling Debuff Passives
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, DISARMED_NAME, stacks);
 
             // Core % Modifer Stats
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, WEAKENED_NAME, stacks);
@@ -197,10 +210,15 @@ namespace Tests
                 model.pManager.overloadStacks == 1 &&
                 model.pManager.fusionStacks == 1 &&
                 model.pManager.plantedFeetStacks == 1 &&
+                model.pManager.growingStacks == 1 &&
+                model.pManager.infuriatedStacks == 1 &&
+                model.pManager.cautiousStacks == 1 &&
 
                 model.pManager.barrierStacks == 1 &&
 
                 model.pManager.encouragingAuraStacks == 1 &&
+
+                model.pManager.disarmedStacks == 1 &&
 
                 model.pManager.weakenedStacks == 1 &&
                 model.pManager.wrathStacks == 1 &&
@@ -210,7 +228,7 @@ namespace Tests
                 model.pManager.poisonedStacks == 1 &&
                 model.pManager.burningStacks == 1 &&
 
-                model.pManager.fireBallBonusDamageStacks == 1 
+                model.pManager.fireBallBonusDamageStacks == 1
                 )
             {
                 expected = true;
@@ -482,7 +500,7 @@ namespace Tests
 
         // Buff Passive Tests
         #region
-        [Test]        
+        [Test]
         public void Enrage_Triggers_Power_Gain_In_Handle_Damage_Method()
         {
             // Arange
@@ -533,9 +551,9 @@ namespace Tests
 
             // how many shanks in hand?
             int shanksInHand = 0;
-            foreach(Card card in model.hand)
+            foreach (Card card in model.hand)
             {
-                if(card.cardName == "Shank")
+                if (card.cardName == "Shank")
                 {
                     shanksInHand++;
                 }
@@ -595,8 +613,8 @@ namespace Tests
             playerModel.initiative = 1000;
             card = playerModel.drawPile[0];
 
-            enemyModel = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, defenderNode);            
-            
+            enemyModel = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, defenderNode);
+
             ActivationManager.Instance.OnNewCombatEventStarted();
             CardController.Instance.PlayCardFromHand(card, enemyModel);
 
@@ -612,8 +630,8 @@ namespace Tests
             Card card;
 
             //deckData = new List<CardDataSO>();
-           // characterData.initialDeckData = deckData;
-           // deckData.Add(mockRangedAttackCard);
+            // characterData.initialDeckData = deckData;
+            // deckData.Add(mockRangedAttackCard);
 
             characterData.deck = new List<CardData>();
             characterData.deck.Add(CardController.Instance.BuildCardDataFromScriptableObjectData(mockRangedAttackCard));
@@ -646,7 +664,7 @@ namespace Tests
 
             //deckData = new List<CardDataSO>();
             //characterData.initialDeckData = deckData;
-           // deckData.Add(mockSkillDamagingCard);
+            // deckData.Add(mockSkillDamagingCard);
 
             characterData.deck = new List<CardData>();
             characterData.deck.Add(CardController.Instance.BuildCardDataFromScriptableObjectData(mockSkillDamagingCard));
@@ -681,7 +699,7 @@ namespace Tests
             int expected = 2;
 
             // Act
-            playerModel = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);            
+            playerModel = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             enemyModel = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, defenderNode);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemyModel.pManager, passiveName, stacks);
             enemyModel.initiative = 1000;
@@ -689,7 +707,7 @@ namespace Tests
             ActivationManager.Instance.OnNewCombatEventStarted();
 
             // Assert 
-            Assert.AreEqual(expected, playerModel.pManager.poisonedStacks);            
+            Assert.AreEqual(expected, playerModel.pManager.poisonedStacks);
         }
         [Test]
         public void Fusion_Does_Draw_Card_On_Character_Gain_Overload()
@@ -779,7 +797,7 @@ namespace Tests
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(playerModel.pManager, passiveName, stacks);
             playerModel.initiative = 1000;
             playerModel.draw = 5;
-            
+
 
             // add some m attack cards to deck
             // add cards to deck 
@@ -795,7 +813,7 @@ namespace Tests
             ActivationManager.Instance.OnNewCombatEventStarted();
 
             // did passive reduce MA card cost?
-            if(CardController.Instance.GetCardEnergyCost(playerModel.hand[0]) == 0)
+            if (CardController.Instance.GetCardEnergyCost(playerModel.hand[0]) == 0)
             {
                 didReduce = true;
             }
@@ -808,13 +826,177 @@ namespace Tests
                 didIncrease = true;
             }
 
-            if(didIncrease && didReduce)
+            if (didIncrease && didReduce)
             {
                 passed = true;
             }
 
             // Assert 
             Assert.IsTrue(passed);
+        }
+
+        [Test]
+        public void Growing_Does_Increase_Power_On_Activation_End()
+        {
+            // ARRANGE
+            CharacterEntityModel playerOne;
+            CharacterEntityModel enemyOne;
+            CharacterEntityModel playerTwo;
+            int expected = 3;
+            int stacks = 3;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(GROWING_NAME).passiveName;
+
+
+            // Create characters
+            playerOne = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, LevelManager.Instance.GetNextAvailableDefenderNode());
+            enemyOne = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, LevelManager.Instance.GetNextAvailableEnemyNode());
+            playerTwo = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, LevelManager.Instance.GetNextAvailableDefenderNode());
+
+            // Apply growing
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(playerOne.pManager, passiveName, stacks);
+
+            // Rig and fix activation order
+            playerOne.initiative = 200;
+            playerTwo.initiative = 150;
+            enemyOne.initiative = 100;
+
+            // ACT
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CharacterEntityController.Instance.CharacterOnActivationEnd(playerOne);
+
+            // ASSERT
+            Assert.AreEqual(expected, EntityLogic.GetTotalPower(playerOne));
+        }
+        [Test]
+        public void Cautious_Does_Grant_Block_When_Health_Lost()
+        {
+            // ARRANGE
+            CharacterEntityModel playerOne;
+            CharacterEntityModel enemyOne;
+            int expected = 5;
+            int stacks = 5;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(CAUTIOUS_NAME).passiveName;
+
+
+            // Create characters
+            playerOne = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, LevelManager.Instance.GetNextAvailableDefenderNode());
+            enemyOne = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, LevelManager.Instance.GetNextAvailableEnemyNode());
+
+            // Apply growing
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(playerOne.pManager, passiveName, stacks);
+
+            // Rig and fix activation order
+            playerOne.initiative = 200;
+            enemyOne.initiative = 100;
+
+            // ACT
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CombatLogic.Instance.HandleDamage(1, null, playerOne, DamageType.Physical);
+
+            // ASSERT
+            Assert.AreEqual(expected, playerOne.block);
+        }
+        [Test]
+        public void Cautious_Is_Removed_When_Damage_Is_Taken()
+        {
+            // ARRANGE
+            CharacterEntityModel playerOne;
+            CharacterEntityModel enemyOne;
+            int expected = 0;
+            int stacks = 5;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(CAUTIOUS_NAME).passiveName;
+
+
+            // Create characters
+            playerOne = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, LevelManager.Instance.GetNextAvailableDefenderNode());
+            enemyOne = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, LevelManager.Instance.GetNextAvailableEnemyNode());
+
+            // Apply growing
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(playerOne.pManager, passiveName, stacks);
+
+            // Rig and fix activation order
+            playerOne.initiative = 200;
+            enemyOne.initiative = 100;
+
+            // ACT
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CombatLogic.Instance.HandleDamage(1, null, playerOne, DamageType.Physical);
+
+            // ASSERT
+            Assert.AreEqual(expected, playerOne.pManager.cautiousStacks);
+        }
+        [Test]
+        public void Infuriated_Does_Increase_Power_When_Skill_Is_Played()
+        {
+            // ARRANGE
+            CharacterEntityModel playerOne;
+            CharacterEntityModel enemyOne;
+            int expected = 2;
+            int stacks = 2;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(INFURIATED_NAME).passiveName;
+
+            // ACT 
+            // Setup card
+            CardDataSO mockExpendCard = AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/Tests/Mock Data Files/Mock Exhaust Card.asset");
+            CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockExpendCard, characterData);
+            characterData.deck.Add(newCard);
+
+            // Create characters
+            playerOne = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, LevelManager.Instance.GetNextAvailableDefenderNode());
+            enemyOne = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, LevelManager.Instance.GetNextAvailableEnemyNode());
+
+            // Set card as a skill card
+            playerOne.drawPile[0].cardType = CardType.Skill;
+
+            // Rig and fix activation order
+            playerOne.initiative = 200;
+            enemyOne.initiative = 100;
+
+            // Apply infuraited
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemyOne.pManager, passiveName, stacks);
+
+            // Start main ACT
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CardController.Instance.PlayCardFromHand(playerOne.hand[0]);
+
+            // ASSERT
+            Assert.AreEqual(expected, EntityLogic.GetTotalPower(enemyOne));
+        }
+        [Test]
+        public void Disarmed_Prevents_Melee_Attack_Card_From_Being_Played()
+        {
+            // ARRANGE
+            CharacterEntityModel playerOne;
+            CharacterEntityModel enemyOne;
+            bool expected = false;
+            int stacks = 2;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(DISARMED_NAME).passiveName;
+
+            // ACT 
+            // Setup card
+            CardDataSO mockExpendCard = AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/Tests/Mock Data Files/Mock Exhaust Card.asset");
+            CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockExpendCard, characterData);
+            characterData.deck.Add(newCard);
+
+            // Create characters
+            playerOne = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, LevelManager.Instance.GetNextAvailableDefenderNode());
+            enemyOne = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, LevelManager.Instance.GetNextAvailableEnemyNode());
+
+            // Set card as a melee attack card
+            playerOne.drawPile[0].cardType = CardType.MeleeAttack;
+
+            // Rig and fix activation order
+            playerOne.initiative = 200;
+            enemyOne.initiative = 100;
+
+            // Apply disarmed
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(playerOne.pManager, passiveName, stacks);
+
+            // Start main ACT
+            ActivationManager.Instance.OnNewCombatEventStarted();
+
+            // ASSERT
+            Assert.AreEqual(expected, CardController.Instance.IsCardPlayable(playerOne.hand[0], playerOne));
         }
         #endregion
 
@@ -827,7 +1009,7 @@ namespace Tests
             CharacterEntityModel attacker;
             CharacterEntityModel target;
             string passiveName = PassiveController.Instance.GetPassiveIconDataByName(WRATH_NAME).passiveName;
-            int expectedTotal = 13;          
+            int expectedTotal = 13;
 
             // Act
             attacker = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
@@ -1012,12 +1194,12 @@ namespace Tests
             // Act 
             playerModel = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
             enemyModel = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, enemyNode);
-            
+
             ActivationManager.Instance.OnNewCombatEventStarted();
             CharacterEntityController.Instance.HandleTaunt(playerModel, enemyModel);
             CharacterEntityController.Instance.CharacterOnActivationEnd(enemyModel);
 
-            if (enemyModel.pManager.tauntStacks == 0 && 
+            if (enemyModel.pManager.tauntStacks == 0 &&
                 enemyModel.pManager.myTaunter == null)
             {
                 expected = true;
@@ -1037,7 +1219,7 @@ namespace Tests
 
             // Act 
             playerModelOne = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
-            playerModelTwo = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, LevelManager.Instance.GetNextAvailableDefenderNode());            
+            playerModelTwo = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, LevelManager.Instance.GetNextAvailableDefenderNode());
             enemyModel = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, enemyNode);
             enemyModel.initiative = 0;
             expectedTarget = playerModelTwo;

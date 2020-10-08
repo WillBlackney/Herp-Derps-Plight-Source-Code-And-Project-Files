@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Testing Character
   m_EditorClassIdentifier: 
   myName: Testing Character
-  health: 1
+  health: 100
   maxHealth: 100
   power: 0
   dexterity: 0
@@ -61,6 +61,7 @@ MonoBehaviour:
     vulnerableStacks: 0
     gritStacks: 0
     disarmedStacks: 0
+    sleepStacks: 0
     poisonedStacks: 0
     burningStacks: 0
     fireBallBonusDamageStacks: 0
@@ -68,6 +69,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
   - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
   - {fileID: 11400000, guid: 00b73be375fd9ce4e9735d3cba2ca025, type: 2}
+  - {fileID: 11400000, guid: 0e73c280fb28d9b4d9e4fc59eab30e44, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1

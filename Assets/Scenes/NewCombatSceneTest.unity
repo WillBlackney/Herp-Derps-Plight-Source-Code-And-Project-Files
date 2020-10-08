@@ -820,9 +820,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
   gameMode: 1
-  testingEnemyWave: {fileID: 11400000, guid: 35fa6ecd355d95b468f2f1fd8f15f801, type: 2}
+  testingEnemyWave: {fileID: 11400000, guid: 348a9df258208b047980282d144d1c8f, type: 2}
   testingCharacterTemplates:
-  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
   - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
   deviceMode: 0
   mouseDragSensitivity: 0.25
@@ -1347,6 +1346,7 @@ MonoBehaviour:
     possibleEnemyEncounters:
     - {fileID: 11400000, guid: 4c4b9beb582900346b98688c2f8fc3e8, type: 2}
     - {fileID: 11400000, guid: 35fa6ecd355d95b468f2f1fd8f15f801, type: 2}
+    - {fileID: 11400000, guid: 348a9df258208b047980282d144d1c8f, type: 2}
   - encounterType: 1
     possibleEnemyEncounters:
     - {fileID: 11400000, guid: 91cb23c368b78514682dd0c46000510b, type: 2}
@@ -1366,6 +1366,7 @@ MonoBehaviour:
     possibleEnemyEncounters:
     - {fileID: 11400000, guid: 4c4b9beb582900346b98688c2f8fc3e8, type: 2}
     - {fileID: 11400000, guid: 35fa6ecd355d95b468f2f1fd8f15f801, type: 2}
+    - {fileID: 11400000, guid: 348a9df258208b047980282d144d1c8f, type: 2}
 --- !u!1 &171274609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1714,6 +1715,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fee46413281a2d7449fbfe00e0c8f1bc, type: 2}
   - {fileID: 11400000, guid: bd75c8c5dfc669e41967bd2b13b343fa, type: 2}
   - {fileID: 11400000, guid: 6bddf25bee1edf34080e99a97d8abee1, type: 2}
+  - {fileID: 11400000, guid: 028361ca478c33f40b292e0b996261f3, type: 2}
 --- !u!1 &200055974
 GameObject:
   m_ObjectHideFlags: 0

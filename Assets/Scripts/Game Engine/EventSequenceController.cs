@@ -38,7 +38,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         yield return null;
 
         MainMenuController.Instance.ShowFrontScreen();
-    }    
+    }
     private IEnumerator RunCombatSceneStartup()
     {
         yield return null;
@@ -86,7 +86,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Hide Main Menu
         MainMenuController.Instance.HideNewGameScreen();
         MainMenuController.Instance.HideFrontScreen();
-        
+
         // Build and prepare all session data
         PersistencyManager.Instance.SetUpGameSessionDataFromSaveFile(PersistencyManager.Instance.CurrentSaveFile);
 
@@ -99,7 +99,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
     #region
     public void HandleLoadEncounter(EncounterData encounter)
     {
-        if(encounter.encounterType == EncounterType.BasicEnemy)
+        if (encounter.encounterType == EncounterType.BasicEnemy)
         {
             HandleLoadBasicCombatEncounter(encounter);
         }
@@ -121,7 +121,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Destroy all characters and activation windows if the previous 
         // encounter was a combat event
-        if(previousEncounter.encounterType == EncounterType.BasicEnemy ||
+        if (previousEncounter.encounterType == EncounterType.BasicEnemy ||
             previousEncounter.encounterType == EncounterType.EliteEnemy)
         {
             HandleCombatSceneTearDown();
@@ -140,6 +140,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Setup enemy wave data
         EnemyWaveSO eData = JourneyManager.Instance.GetRandomEnemyWaveFromEncounterData(encounter);
 
+        // Mark wave as seen
+        JourneyManager.Instance.AddEnemyWaveToAlreadyEncounteredList(eData);
+
         // Spawn enemies
         EnemySpawner.Instance.SpawnEnemyWave(eData.combatDifficulty.ToString(), eData);
 
@@ -156,6 +159,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Setup enemy wave data
         EnemyWaveSO eData = JourneyManager.Instance.GetRandomEnemyWaveFromEncounterData(encounter);
+
+        // Mark wave as seen
+        JourneyManager.Instance.AddEnemyWaveToAlreadyEncounteredList(eData);
 
         // Spawn enemies
         EnemySpawner.Instance.SpawnEnemyWave(eData.combatDifficulty.ToString(), eData);

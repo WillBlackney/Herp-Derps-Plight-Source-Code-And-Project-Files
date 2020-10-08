@@ -71,7 +71,7 @@ public class JourneyManager : Singleton<JourneyManager>
 
         if (allowSameEnemyWaveMultipleTimes)
         {
-            if(encounter.possibleEnemyEncounters.Count == 1)
+            if (encounter.possibleEnemyEncounters.Count == 1)
             {
                 waveReturned = encounter.possibleEnemyEncounters[0];
             }
@@ -85,7 +85,7 @@ public class JourneyManager : Singleton<JourneyManager>
             bool foundUnique = false;
             int loops = 0;
 
-            while(foundUnique == false && loops < 20)
+            while (foundUnique == false && loops < 20)
             {
                 if (encounter.possibleEnemyEncounters.Count == 1)
                 {
@@ -95,8 +95,8 @@ public class JourneyManager : Singleton<JourneyManager>
                 {
                     waveReturned = encounter.possibleEnemyEncounters[RandomGenerator.NumberBetween(0, encounter.possibleEnemyEncounters.Count - 1)];
                 }
-                
-                if(enemyWavesAlreadyEncountered.Contains(waveReturned) == false)
+
+                if (enemyWavesAlreadyEncountered.Contains(waveReturned) == false)
                 {
                     foundUnique = true;
                 }
@@ -107,6 +107,10 @@ public class JourneyManager : Singleton<JourneyManager>
         }
 
         return waveReturned;
+    }
+    public void AddEnemyWaveToAlreadyEncounteredList(EnemyWaveSO wave)
+    {
+        enemyWavesAlreadyEncountered.Add(wave);
     }
     #endregion
 }

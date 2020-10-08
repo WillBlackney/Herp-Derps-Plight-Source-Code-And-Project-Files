@@ -44,7 +44,7 @@ public class CombatLogic : Singleton<CombatLogic>
 
         if (enemyAction == null)
         {
-           // Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() was given a null EnemyAction argument...");
+            // Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() was given a null EnemyAction argument...");
         }
         else if (enemyAction != null)
         {
@@ -53,18 +53,18 @@ public class CombatLogic : Singleton<CombatLogic>
 
         // calculate base damage
         finalDamageValueReturned = GetBaseDamageValue(attacker, baseDamage, damageType, card, cardEffect, enemyAction);
-       // Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned value after base calculations: " + finalDamageValueReturned.ToString());
+        // Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned value after base calculations: " + finalDamageValueReturned.ToString());
 
         // calculate damage after standard modifiers
         finalDamageValueReturned = GetDamageValueAfterNonResistanceModifiers(finalDamageValueReturned, attacker, target, damageType, card, cardEffect, enemyAction);
-       // Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned value after non resistance modifier calculations: " + finalDamageValueReturned.ToString());
+        // Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned value after non resistance modifier calculations: " + finalDamageValueReturned.ToString());
 
         // calculate damage after resistances
         finalDamageValueReturned = GetDamageValueAfterResistances(finalDamageValueReturned, damageType, target);
-       // Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned value after resitance type calculations: " + finalDamageValueReturned.ToString());
+        // Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned value after resitance type calculations: " + finalDamageValueReturned.ToString());
 
         // return final value
-       // Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned final value returned: " + finalDamageValueReturned.ToString());
+        // Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned final value returned: " + finalDamageValueReturned.ToString());
         return finalDamageValueReturned;
 
     }
@@ -105,7 +105,7 @@ public class CombatLogic : Singleton<CombatLogic>
 
         // Add flat bonus damage from misc passives
         // Bonus fire ball damage
-        if (card != null && 
+        if (card != null &&
             card.cardName == "Fire Ball")
         {
             baseDamageValueReturned += entity.pManager.fireBallBonusDamageStacks;
@@ -194,7 +194,7 @@ public class CombatLogic : Singleton<CombatLogic>
                 Debug.Log("Damage percentage modifier after 'weakened' reduction: " + damageModifier.ToString());
             }
         }
-        
+
 
         // TO DO: Damage modifiers related to increasing magical damage by percentage should be moved to a new method (make some like CalculateMagicDamageModifiers())
 
@@ -270,7 +270,7 @@ public class CombatLogic : Singleton<CombatLogic>
         return damageValueReturned;
 
     }
-   
+
     #endregion
 
     // Calculate Block Gain
@@ -291,7 +291,7 @@ public class CombatLogic : Singleton<CombatLogic>
             valueReturned += EntityLogic.GetTotalDexterity(caster);
             Debug.Log("Block gain value after dexterity added: " + valueReturned);
         }
-      
+
 
         Debug.Log("Final block gain value calculated: " + valueReturned);
         return valueReturned;
@@ -330,11 +330,11 @@ public class CombatLogic : Singleton<CombatLogic>
     {
         ExecuteHandleDamage(damageAmount, attacker, victim, damageType, null, null, ignoreBlock, batchedEvent);
     }
-    
+
     // Main Damage Handler
-    private void ExecuteHandleDamage(int damageAmount, CharacterEntityModel attacker, CharacterEntityModel victim, 
+    private void ExecuteHandleDamage(int damageAmount, CharacterEntityModel attacker, CharacterEntityModel victim,
         DamageType damageType, Card card = null, EnemyActionEffect enemyEffect = null, bool ignoreBlock = false, VisualEvent batchedEvent = null)
-    { 
+    {
         // Debug setup
         string cardNameString = "None";
         string attackerName = "No Attacker";
@@ -342,7 +342,7 @@ public class CombatLogic : Singleton<CombatLogic>
 
         // batched event set up
         QueuePosition queuePosition = QueuePosition.Back;
-        if(batchedEvent != null)
+        if (batchedEvent != null)
         {
             queuePosition = QueuePosition.BatchedEvent;
         }
@@ -361,7 +361,7 @@ public class CombatLogic : Singleton<CombatLogic>
         }
 
         Debug.Log("CombatLogic.HandleDamage() started: damageAmount (" + damageAmount.ToString() + "), attacker (" + attackerName +
-            "), victim (" + victimName +"), damageType (" + damageType.ToString() + "), card (" + cardNameString + "), ignoreBlock (" + ignoreBlock.ToString()
+            "), victim (" + victimName + "), damageType (" + damageType.ToString() + "), card (" + cardNameString + "), ignoreBlock (" + ignoreBlock.ToString()
             );
 
         // Cancel this if character is already in death process
@@ -390,7 +390,7 @@ public class CombatLogic : Singleton<CombatLogic>
             ignoreBlock = true;
         }
         */
-                
+
 
         // Check for no block
         if (victim.block == 0)
@@ -427,7 +427,7 @@ public class CombatLogic : Singleton<CombatLogic>
         }
 
         // Check for damage immunity passives
-        
+
         if (victim.pManager.barrierStacks > 0 &&
             healthAfter < victim.health)
         {
@@ -435,7 +435,7 @@ public class CombatLogic : Singleton<CombatLogic>
             adjustedDamageValue = 0;
             healthAfter = victim.health;
         }
-        
+
 
         // Finished calculating the final damage, health lost and armor lost: p
         totalLifeLost = victim.health - healthAfter;
@@ -448,40 +448,47 @@ public class CombatLogic : Singleton<CombatLogic>
             if (totalLifeLost == 0 && blockAfter < startingBlock)
             {
                 // Create Lose Armor Effect
-                VisualEventManager.Instance.CreateVisualEvent(() => 
+                VisualEventManager.Instance.CreateVisualEvent(() =>
                 VisualEffectManager.Instance.CreateLoseBlockEffect(victim.characterEntityView.transform.position, adjustedDamageValue), queuePosition, 0, 0, EventDetail.None, batchedEvent);
-                
+
             }
             else if (totalLifeLost > 0)
-            {  
+            {
                 // Play hurt animation
                 if (victim.health > 0 && totalLifeLost > 0)
                 {
-                    VisualEventManager.Instance.CreateVisualEvent(()=> 
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
                     CharacterEntityController.Instance.PlayHurtAnimation(victim.characterEntityView), queuePosition, 0, 0, EventDetail.None, batchedEvent);
                 }
 
                 // Create damage text effect
-                VisualEventManager.Instance.CreateVisualEvent(() => 
+                VisualEventManager.Instance.CreateVisualEvent(() =>
                 VisualEffectManager.Instance.CreateDamageEffect(victim.characterEntityView.transform.position, totalLifeLost), queuePosition, 0, 0, EventDetail.None, batchedEvent);
 
                 // Create impact effect
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                VisualEffectManager.Instance.CreateSmallMeleeImpact(victim.characterEntityView.transform.position, totalLifeLost), queuePosition, 0, 0, EventDetail.None, batchedEvent);
 
-                VisualEventManager.Instance.CreateVisualEvent(() => 
+                VisualEventManager.Instance.CreateVisualEvent(() =>
                 AudioManager.Instance.PlaySound(Sound.Ability_Damaged_Health_Lost), queuePosition, 0, 0, EventDetail.None, batchedEvent);
-                
+
             }
         }
 
         // Card 'on damaged' event
-        if(totalLifeLost > 0 && victim.controller == Controller.Player)
+        if (totalLifeLost > 0 && victim.controller == Controller.Player)
         {
             CardController.Instance.HandleOnCharacterDamagedCardListeners(victim);
         }
 
         // EVALUATE DAMAGE RELATED PASSIVE EFFECTS
+
+        // Sleep
+        if (victim.pManager.sleepStacks > 0 && totalLifeLost > 0)
+        {
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+            PassiveController.Instance.ModifySleep(victim.pManager, -victim.pManager.sleepStacks, true);
+        }
 
         // Cautious
         if (victim.pManager.cautiousStacks > 0 && totalLifeLost > 0)
@@ -508,14 +515,14 @@ public class CombatLogic : Singleton<CombatLogic>
         if (attacker != null &&
             attacker.pManager.poisonousStacks > 0)
         {
-            if (card != null && 
+            if (card != null &&
                (card.cardType == CardType.MeleeAttack || card.cardType == CardType.RangedAttack))
             {
                 VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
                 PassiveController.Instance.ModifyPoisoned(attacker, victim.pManager, attacker.pManager.poisonousStacks, true, 0.5f);
             }
-            else if (enemyEffect != null && 
-               (enemyEffect.actionType == ActionType.AttackTarget || 
+            else if (enemyEffect != null &&
+               (enemyEffect.actionType == ActionType.AttackTarget ||
                 enemyEffect.actionType == ActionType.AttackAllEnemies)
                 )
             {
@@ -523,7 +530,7 @@ public class CombatLogic : Singleton<CombatLogic>
                 PassiveController.Instance.ModifyPoisoned(attacker, victim.pManager, attacker.pManager.poisonousStacks, true, 0.5f);
             }
         }
-        
+
         // DEATH?!
 
         // Check if the victim was killed by the damage
@@ -675,7 +682,7 @@ public class CombatLogic : Singleton<CombatLogic>
         VisualEventManager.Instance.CreateVisualEvent(() => ActivationManager.Instance.OnCharacterKilledVisualEvent(window, currentlyActivatedEntity, null), QueuePosition.Back, 0, 1f);
 
         // Break references
-        LevelManager.Instance.DisconnectEntityFromNode(entity, node);       
+        LevelManager.Instance.DisconnectEntityFromNode(entity, node);
 
         // Destroy view and break references
         VisualEventManager.Instance.CreateVisualEvent(() =>
@@ -709,11 +716,11 @@ public class CombatLogic : Singleton<CombatLogic>
 
         // If this character died during their turn (but no during end turn phase), 
         // resolve the transition to next character activation
-        if(entity == ActivationManager.Instance.EntityActivated)
+        if (entity == ActivationManager.Instance.EntityActivated)
         {
             ActivationManager.Instance.ActivateNextEntity();
         }
-        
+
     }
     #endregion
 
@@ -760,7 +767,7 @@ public class CombatLogic : Singleton<CombatLogic>
 
         // to do: should update the save file with new character health values
         // and also create/save a loot result file to save
-        
+
     }
     #endregion
 
