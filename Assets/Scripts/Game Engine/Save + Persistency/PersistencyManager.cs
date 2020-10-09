@@ -12,66 +12,125 @@ public class PersistencyManager : Singleton<PersistencyManager>
     // Properties + Getters
     #region
     public const string SAVE_DIRECTORY = "/SaveFile.json";
-    public string GetSaveDirectory()
+    public string GetSaveFileDirectory()
     {
         return Application.persistentDataPath + SAVE_DIRECTORY;
     }
     #endregion
 
+    // Conditionals + Checks
+    #region
+    public bool DoesSaveFileExist()
+    {
+        if (File.Exists(GetSaveFileDirectory()))
+        {
+            Debug.LogWarning("PersistencyManager.DoesSaveFileExist() confirmed save file exists, returning true");
+            return true;
+        }
+        else
+        {
+            Debug.LogWarning("PersistencyManager.DoesSaveFileExist() could not find the save file, returning false");
+            return false;
+        }
+    }
+    #endregion
+
+    // Build Save Files Data
+    #region
     public void BuildNewSaveFileOnNewGameStarted(List<CharacterTemplateSO> characters)
     {
-        //Debug.LogWarning("PersistencyManager.BuildNewSaveFileOnNewGameStarted() called...");
-
         // Setup empty save file
         SaveGameData newSave = new SaveGameData();
-        newSave.characters = new List<CharacterData>();
+        //newSave.characters = new List<CharacterData>();
+
+        EncounterData ed = JourneyManager.Instance.Encounters[0];      
+
+        // Set save check point
+        // TO DO: in future, this should be changed to kings blessing event
+        if(ed.encounterType == EncounterType.BasicEnemy)
+        {
+            newSave.saveCheckPoint = SaveCheckPoint.CombatStart;
+            newSave.currentEncounter = ed;
+            newSave.currentEnemyWave = JourneyManager.Instance.GetRandomEnemyWaveFromEncounterData(ed).encounterName;
+        }
+
+        // Set journey start position
+        newSave.currentJourneyPosition = 0;
 
         // BUILD SAVE FILE!
         // Build characters
         foreach (CharacterTemplateSO data in characters)
         {
             newSave.characters.Add(CharacterDataController.Instance.ConverCharacterTemplateToCharacterData(data));
-        }             
-
-        // Set journey start position
-        newSave.currentJourneyPosition = 0;
+        }         
 
         // START SAVE!        
         SaveGameToDisk(newSave);
-
     }
+    public void AutoUpdateSaveFile(SaveCheckPoint checkPointType)
+    {
+        Debug.LogWarning("PersistencyManager.AutoUpdateSaveFile() called, new check point: " + checkPointType.ToString());
+
+        // Setup empty save file
+        SaveGameData newSave = new SaveGameData();
+        newSave.characters = new List<CharacterData>();
+
+        // Set checkpoint info
+        newSave.saveCheckPoint = checkPointType;
+
+        // Save character data
+        CharacterDataController.Instance.SaveMyDataToSaveFile(newSave);
+
+        // Save journey data
+        JourneyManager.Instance.SaveMyDataToSaveFile(newSave);
+
+        // START SAVE!        
+        SaveGameToDisk(newSave);
+    }
+
+    #endregion
+
+    // Build Session Data
+    #region
     public void SetUpGameSessionDataFromSaveFile()
     {
         // Build save file from persistency
-        SaveGameData newLoad = LoadGameFromDisk();
+        SaveGameData newLoad = LoadGameFromDisk();        
 
         // Build character data
-        CharacterDataController.Instance.BuildAllDataFromSaveFile(newLoad);
+        CharacterDataController.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // Set journey data
-        JourneyManager.Instance.BuildDataFromSaveFile(newLoad);
-    }
-
-    // Save + Load From Disk/Text File
-    #region
-    private SaveGameData LoadGameFromDisk()
-    {
-        SaveGameData newLoad;
-
-        byte[] bytes = File.ReadAllBytes(GetSaveDirectory());
-        newLoad = SerializationUtility.DeserializeValue<SaveGameData>(bytes, DataFormat.Binary);
-        return newLoad;
+        JourneyManager.Instance.BuildMyDataFromSaveFile(newLoad);
     }
     #endregion
 
-    // Save File Conversion
+    // Save, Load and Delete From Disk 
     #region
     private void SaveGameToDisk(SaveGameData saveFile)
     {
         byte[] bytes = SerializationUtility.SerializeValue(saveFile, DataFormat.Binary);
-        File.WriteAllBytes(GetSaveDirectory(), bytes);
+        File.WriteAllBytes(GetSaveFileDirectory(), bytes);
+    }
+    private SaveGameData LoadGameFromDisk()
+    {
+        SaveGameData newLoad;
+
+        byte[] bytes = File.ReadAllBytes(GetSaveFileDirectory());
+        newLoad = SerializationUtility.DeserializeValue<SaveGameData>(bytes, DataFormat.Binary);
+        return newLoad;
+    }
+    private void DeleteSaveFileOnDisk()
+    {
+        Debug.LogWarning("PersistencyManager.DeleteSaveFileOnDisk() called");
+
+        if (DoesSaveFileExist())
+        {
+            File.Delete(GetSaveFileDirectory());
+        }
     }
     #endregion
+
 
 
 }

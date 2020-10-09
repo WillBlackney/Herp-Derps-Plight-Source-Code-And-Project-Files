@@ -13,10 +13,27 @@ public class JourneyManager : Singleton<JourneyManager>
     [SerializeField] private List<EncounterData> encounters;
     private List<EnemyWaveSO> enemyWavesAlreadyEncountered = new List<EnemyWaveSO>();
 
-    [Header("Player Position Properties")]
+    [Header("Current Player Position + Encounter Properties")]
     private int currentJourneyPosition = 0;
+    private EncounterData currentEncounter;
+    private EnemyWaveSO currentEnemyWave;
+    public SaveCheckPoint CheckPointType;
+
+    public EncounterData CurrentEncounter
+    {
+        get { return currentEncounter; }
+        set { currentEncounter = value; }
+    }
+    public EnemyWaveSO CurrentEnemyWave
+    {
+        get { return currentEnemyWave; }
+        set { currentEnemyWave = value; }
+    }
+
+    #endregion
 
     // Getters
+    #region
     public List<EncounterData> Encounters
     {
         get { return encounters; }
@@ -34,11 +51,28 @@ public class JourneyManager : Singleton<JourneyManager>
     }
     #endregion
 
-    // Initialization
+    // Initialization + Save/Load Logic
     #region
-    public void BuildDataFromSaveFile(SaveGameData saveData)
+    public void BuildMyDataFromSaveFile(SaveGameData saveData)
     {
         CurrentJourneyPosition = saveData.currentJourneyPosition;
+        CurrentEncounter = Encounters[CurrentJourneyPosition];
+        CheckPointType = saveData.saveCheckPoint;
+
+        foreach (EnemyWaveSO eWave in CurrentEncounter.possibleEnemyEncounters)
+        {
+            if(eWave.encounterName == saveData.currentEnemyWave)
+            {
+                currentEnemyWave = eWave;
+            }
+        }
+    }
+    public void SaveMyDataToSaveFile(SaveGameData saveFile)
+    {
+        saveFile.currentJourneyPosition = currentJourneyPosition;
+        saveFile.currentEncounter = CurrentEncounter;
+        saveFile.currentEnemyWave = currentEnemyWave.encounterName;
+        saveFile.saveCheckPoint = CheckPointType;
     }
 
     #endregion
@@ -53,7 +87,7 @@ public class JourneyManager : Singleton<JourneyManager>
 
     // Get Encounters
     #region
-    public EncounterData GetCurrentEncounter()
+    public EncounterData GetCurrentEncounterFromJourneyPositionValue()
     {
         return Encounters[CurrentJourneyPosition];
     }

@@ -6,7 +6,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
 {
     [HideInInspector] public List<CharacterData> allPlayerCharacters = new List<CharacterData>();
 
-    // Build Characters From Data
+    // Build Characters From Data + Save/Load Logic
     #region
     public void BuildAllCharactersFromCharacterTemplateList(IEnumerable<CharacterTemplateSO> characters)
     {
@@ -15,14 +15,20 @@ public class CharacterDataController : Singleton<CharacterDataController>
             allPlayerCharacters.Add(ConverCharacterTemplateToCharacterData(template));
         }
     }
-    public void BuildAllDataFromSaveFile(SaveGameData saveFile)
+    public void BuildMyDataFromSaveFile(SaveGameData saveFile)
     {
         allPlayerCharacters.Clear();
         
         foreach (CharacterData characterData in saveFile.characters)
         {
-            //allPlayerCharacters.Add(ObjectCloner.CloneJSON(characterData));
             allPlayerCharacters.Add(characterData);
+        }
+    }
+    public void SaveMyDataToSaveFile(SaveGameData saveFile)
+    {
+        foreach(CharacterData character in allPlayerCharacters)
+        {
+            saveFile.characters.Add(character);
         }
     }
     #endregion

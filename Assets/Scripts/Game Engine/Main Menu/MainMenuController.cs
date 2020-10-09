@@ -5,41 +5,80 @@ using UnityEngine.EventSystems;
 
 public class MainMenuController : Singleton<MainMenuController>
 {
+    // Properties + Component References
+    #region
     [Header("Character Template Data")]
     public List<CharacterTemplateSO> selectableCharacterTemplates;
 
     [Header("Front Screen Components")]
     public GameObject frontScreenParent;
+    public GameObject continueButtonParent;
 
     [Header("New Game Screen Components")]
     public GameObject newGameScreenVisualParent;
     public ChooseCharacterWindow[] chooseCharacterWindows;
 
+    [Header("In Game Menu Components")]
+    public GameObject inGameMenuScreenParent;
+    #endregion
 
-    // On Menu Buttons Clicked
+    // Initialization 
     #region
-    public void OnNewGameButtonClicked()
+    private void Start()
+    {
+        AutoSetContinueButtonViewState();
+    }
+    #endregion
+
+    // On Buttons Clicked
+    #region
+    // Front menu screen
+    public void OnMenuNewGameButtonClicked()
     {
         // disable button highlight
         EventSystem.current.SetSelectedGameObject(null);
         ShowNewGameScreen();
         HideFrontScreen();
     }
-    public void OnContinueButtonClicked()
+    public void OnMenuContinueButtonClicked()
+    {
+        // disable button highlight
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSequenceController.Instance.HandleLoadSavedGameFromMainMenuEvent();
+    }
+    public void OnMenuSettingsButtonClicked()
     {
         // disable button highlight
         EventSystem.current.SetSelectedGameObject(null);
     }
-    public void OnSettingsButtonClicked()
-    {
-        // disable button highlight
-        EventSystem.current.SetSelectedGameObject(null);
-    }
-    public void OnQuitButtonClicked()
+    public void OnMenuQuitButtonClicked()
     {
         Application.Quit();
     }
+
+    // In Game menu screen
+    public void OnInGameBackToGameButtonClicked()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        HideInGameMenuView();
+    }
+    public void OnInGameSettingsButtonClicked()
+    {
+
+    }
+    public void OnInGameSaveAndQuitClicked()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSequenceController.Instance.HandleQuitToMainMenuFromInGame();
+    }
     #endregion
+
+    // Top Bar
+    public void OnTopBarSettingsButtonClicked()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        ShowInGameMenuView();
+    }
 
     // Front Screen Logic
     #region
@@ -50,6 +89,29 @@ public class MainMenuController : Singleton<MainMenuController>
     public void HideFrontScreen()
     {
         frontScreenParent.SetActive(false);
+    }
+    private bool ShouldShowContinueButton()
+    {
+        return PersistencyManager.Instance.DoesSaveFileExist();        
+    }
+    private void AutoSetContinueButtonViewState()
+    {
+        if (ShouldShowContinueButton())
+        {
+            ShowContinueButton();
+        }
+        else
+        {
+            HideContinueButton();
+        }
+    }
+    private void ShowContinueButton()
+    {
+        continueButtonParent.SetActive(true);
+    }
+    private void HideContinueButton()
+    {
+        continueButtonParent.SetActive(false);
     }
     #endregion
 
@@ -97,4 +159,17 @@ public class MainMenuController : Singleton<MainMenuController>
     #endregion
 
     #endregion
+
+    // In Game Menu Logic
+    #region
+    private void ShowInGameMenuView()
+    {
+        inGameMenuScreenParent.SetActive(true);
+    }
+    public void HideInGameMenuView()
+    {
+        inGameMenuScreenParent.SetActive(false);
+    }
+    #endregion
+
 }

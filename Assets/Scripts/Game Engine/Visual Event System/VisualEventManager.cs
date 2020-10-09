@@ -80,7 +80,11 @@ public class VisualEventManager : Singleton<VisualEventManager>
     #region
     private void RemoveEventFromQueue(VisualEvent ve)
     {
-        eventQueue.Remove(ve);
+        if (eventQueue.Contains(ve))
+        {
+            eventQueue.Remove(ve);
+        }
+     
     }
     private void AddEventToFrontOfQueue(VisualEvent ve)
     {
@@ -101,6 +105,41 @@ public class VisualEventManager : Singleton<VisualEventManager>
     {
         int index = eventQueue.IndexOf(batchedEvent) + 1;
         eventQueue.Insert(index, ve);
+    }
+    public void ClearEventQueue()
+    {
+        eventQueue.Clear();
+    }
+    public VisualEvent HandleEventQueueTearDown()
+    {
+        // this function is used to make sure no null ref errors
+        // occur when we transistion from game scene to menu scene.
+        // errors can occur if we destroy the scene while coroutines
+        // are still actively running and operating on scene objects.
+        // this function allows the game to safely clear the event
+        // queue, wait for the current event to finish, then tear down
+        // the game scene.
+
+        // TO DO: just realized a problem: not all corutines running from
+        // visual events have a coroutine data tracker. They start their coroutine 
+        // and get removed from the queue straight away. If an event like this is playing
+        // when we tear down the scene, the logic wont know to wait for it to finish
+        // since it isnt being tracked, and we will probably get errors!! This could sort
+        // of be fixed by waiting for a second or two when we fade the screen out, since most
+        // coroutines that arent tracked dont last longer then 2 seconds.
+
+        VisualEvent handleReturned = null;
+
+        PauseQueue();
+        if(eventQueue.Count > 0 && currentEventPlaying == true)
+        {
+            handleReturned = eventQueue[0];
+        }
+
+        ClearEventQueue();
+        EnableQueue();
+
+        return handleReturned;
     }
     #endregion
 
