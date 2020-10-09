@@ -24,12 +24,12 @@ public class PersistencyManager : Singleton<PersistencyManager>
     {
         if (File.Exists(GetSaveFileDirectory()))
         {
-            Debug.LogWarning("PersistencyManager.DoesSaveFileExist() confirmed save file exists, returning true");
+            Debug.Log("PersistencyManager.DoesSaveFileExist() confirmed save file exists, returning true");
             return true;
         }
         else
         {
-            Debug.LogWarning("PersistencyManager.DoesSaveFileExist() could not find the save file, returning false");
+            Debug.Log("PersistencyManager.DoesSaveFileExist() could not find the save file, returning false");
             return false;
         }
     }
@@ -41,13 +41,11 @@ public class PersistencyManager : Singleton<PersistencyManager>
     {
         // Setup empty save file
         SaveGameData newSave = new SaveGameData();
-        //newSave.characters = new List<CharacterData>();
 
-        EncounterData ed = JourneyManager.Instance.Encounters[0];      
+        // Set starting journey state
+        EncounterData ed = JourneyManager.Instance.Encounters[0];
 
-        // Set save check point
-        // TO DO: in future, this should be changed to kings blessing event
-        if(ed.encounterType == EncounterType.BasicEnemy)
+        if (ed.encounterType == EncounterType.BasicEnemy)
         {
             newSave.saveCheckPoint = SaveCheckPoint.CombatStart;
             newSave.currentEncounter = ed;
@@ -57,19 +55,18 @@ public class PersistencyManager : Singleton<PersistencyManager>
         // Set journey start position
         newSave.currentJourneyPosition = 0;
 
-        // BUILD SAVE FILE!
         // Build characters
         foreach (CharacterTemplateSO data in characters)
         {
             newSave.characters.Add(CharacterDataController.Instance.ConverCharacterTemplateToCharacterData(data));
-        }         
+        }
 
         // START SAVE!        
         SaveGameToDisk(newSave);
     }
     public void AutoUpdateSaveFile(SaveCheckPoint checkPointType)
     {
-        Debug.LogWarning("PersistencyManager.AutoUpdateSaveFile() called, new check point: " + checkPointType.ToString());
+        Debug.Log("PersistencyManager.AutoUpdateSaveFile() called, new check point: " + checkPointType.ToString());
 
         // Setup empty save file
         SaveGameData newSave = new SaveGameData();
@@ -115,14 +112,13 @@ public class PersistencyManager : Singleton<PersistencyManager>
     private SaveGameData LoadGameFromDisk()
     {
         SaveGameData newLoad;
-
         byte[] bytes = File.ReadAllBytes(GetSaveFileDirectory());
         newLoad = SerializationUtility.DeserializeValue<SaveGameData>(bytes, DataFormat.Binary);
         return newLoad;
     }
     private void DeleteSaveFileOnDisk()
     {
-        Debug.LogWarning("PersistencyManager.DeleteSaveFileOnDisk() called");
+        Debug.Log("PersistencyManager.DeleteSaveFileOnDisk() called");
 
         if (DoesSaveFileExist())
         {

@@ -68,6 +68,20 @@ public class CharacterEntityView : MonoBehaviour
         Debug.Log("CharacterEntityView.OnMouseExit called...");
         CharacterEntityController.Instance.OnCharacterMouseExit(this);
     }
+    private void OnMouseOver()
+    {
+        if(GlobalSettings.Instance.deviceMode == DeviceMode.Desktop &&
+            Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            // did player lift the finger off the screen?
+            if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+            {
+                CharacterEntityController.Instance.OnCharacterMouseExit(this);
+            }
+        }
+    }
 
     // Getters
     #region

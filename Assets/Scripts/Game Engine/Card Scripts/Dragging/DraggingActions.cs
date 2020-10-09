@@ -25,7 +25,8 @@ public abstract class DraggingActions : MonoBehaviour
             if (cardVM.card != null && 
                 cardVM.card.owner != null && 
                 !CardController.Instance.DiscoveryScreenIsActive &&
-                !CardController.Instance.ChooseCardScreenIsActive)               
+                !CardController.Instance.ChooseCardScreenIsActive &&
+                !MainMenuController.Instance.AnyMenuScreenIsActive())               
             {
                 return CardController.Instance.IsCardPlayable(cardVM.card, cardVM.card.owner);
             }

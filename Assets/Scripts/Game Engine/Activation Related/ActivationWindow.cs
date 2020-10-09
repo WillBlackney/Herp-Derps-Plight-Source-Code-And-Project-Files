@@ -33,6 +33,7 @@ public class ActivationWindow : MonoBehaviour, IPointerEnterHandler, IPointerExi
         Debug.Log("ActivationWindow.OnMouseExit called...");
         CharacterEntityController.Instance.OnCharacterMouseExit(myCharacter.characterEntityView);
     }
+    
     #endregion
 
 }

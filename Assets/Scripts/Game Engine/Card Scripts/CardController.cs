@@ -84,6 +84,7 @@ public class CardController : Singleton<CardController>
 
     // Card Library Logic
     #region
+
     // Initialization + Build Library
     private void Start()
     {
@@ -91,8 +92,6 @@ public class CardController : Singleton<CardController>
     }
     private void BuildCardLibrary()
     {
-        Debug.LogWarning("CardController.BuildCardLibrary() called...");
-
         List<CardData> tempList = new List<CardData>();
 
         foreach(CardDataSO dataSO in allCardScriptableObjects)
@@ -101,7 +100,6 @@ public class CardController : Singleton<CardController>
         }
 
         AllCards = tempList.ToArray();
-        Debug.LogWarning("Cards in library after build: " + AllCards.Length.ToString());
     }
 
     // Getters
@@ -127,8 +125,6 @@ public class CardController : Singleton<CardController>
     }
     public Sprite GetCardSpriteByName(string cardName)
     {
-       // Debug.LogWarning("CardController.GetCardSpriteByName() called, search term: " + cardName);
-
         Sprite sprite = null;
 
         foreach(CardDataSO data in AllCardScriptableObjects)
@@ -169,8 +165,8 @@ public class CardController : Singleton<CardController>
     }
     public List<Card> GetCardsQuery(IEnumerable<Card> queriedCollection, TalentSchool ts = TalentSchool.None, Rarity r = Rarity.None, bool blessing = false)
     {
-        Debug.LogWarning("GetCardsQuery() called, query params --- TalentSchool = " + ts.ToString()
-            + ", Rarity = " + r.ToString() + ", Blessing = " + blessing.ToString());
+      //  Debug.LogWarning("GetCardsQuery() called, query params --- TalentSchool = " + ts.ToString()
+        //    + ", Rarity = " + r.ToString() + ", Blessing = " + blessing.ToString());
 
         List<Card> cardsReturned = new List<Card>();
         cardsReturned.AddRange(queriedCollection);
@@ -1226,14 +1222,8 @@ public class CardController : Singleton<CardController>
         CharacterEntityModel owner = card.owner;
 
         // Stop and return if owner of the card is dead or null  
-        if (owner == null)
+        if (owner == null || owner.livingState == LivingState.Dead)
         {
-            Debug.LogWarning("TriggerEffectFromCard() detected the Character owner of the card was null, cancelling");
-            return;
-        }
-        else if (owner.livingState == LivingState.Dead)
-        {
-            Debug.LogWarning("TriggerEffectFromCard() detected the Character owner of the card is dead, cancelling");
             return;
         }
 
@@ -1416,7 +1406,7 @@ public class CardController : Singleton<CardController>
         // Discover cards
         else if (cardEffect.cardEffectType == CardEffectType.DiscoverCards)
         {
-            StartNewDiscoveryEvent(cardEffect, owner);
+            StartCoroutine(StartNewDiscoveryEvent(cardEffect, owner));
         }
 
         // Choose card in hand
@@ -2056,14 +2046,35 @@ public class CardController : Singleton<CardController>
 
     // Discovery Logic
     #region
-    private void StartNewDiscoveryEvent(CardEffect ce, CharacterEntityModel owner)
+    private IEnumerator StartNewDiscoveryEvent(CardEffect ce, CharacterEntityModel owner)
     {
         // Enable discovery screen
         ShowDiscoveryScreen();
         currentDiscoveryEffect = ce;
 
+        // set up slot positions magic
+        
+        foreach (Transform t in discoveryCardSlots)
+        {
+            t.gameObject.SetActive(false);
+        }
+
+        foreach (Transform t in discoveryCardSlots)
+        {
+            t.gameObject.SetActive(true);
+        }
+
+        foreach (Transform t in discoveryCardSlots)
+        {
+            t.gameObject.SetActive(false);
+        }
+
+        List<Transform> slotsEnabled = new List<Transform>();
+        List<DiscoveryCardViewModel> cardsEnabled = new List<DiscoveryCardViewModel>();
+        
+
         // Discover cards from card data so library
-        if(ce.discoveryLocation == CardCollection.CardLibrary)
+        if (ce.discoveryLocation == CardCollection.CardLibrary)
         {
             List<CardData> discoverableCards = new List<CardData>();
             discoverableCards = GetCardsQuery(AllCards, ce.talentSchoolFilter, ce.rarityFilter, ce.blessing);
@@ -2074,7 +2085,7 @@ public class CardController : Singleton<CardController>
                 currentDiscoveryEffect = null;
                 discoveryScreenVisualParent.SetActive(false);
                 HideDiscoveryScreen();
-                return;
+                yield break;
             }
 
             // confetti explosion VFX
@@ -2103,22 +2114,18 @@ public class CardController : Singleton<CardController>
 
                     // cache ref to data
                     dcvm.myDataRef = discoverableCards[i];
-                    Debug.LogWarning("Discoverable card new data ref = " + dcvm.myDataRef.cardName);
+                    //Debug.LogWarning("Discoverable card new data ref = " + dcvm.myDataRef.cardName);
 
-                    // enable slot
-                    discoveryCardSlots[i].gameObject.SetActive(true);
+                    // mark slot for enabling
+                    slotsEnabled.Add(discoveryCardSlots[i]);
 
-                    // enable view
-                    dcvm.gameObject.SetActive(true);
+                    // mark card for enabling
+                    cardsEnabled.Add(dcvm);
 
                     // build view model
                     BuildCardViewModelFromCardData(discoverableCards[i], dcvm.cardViewModel);
-
-                    // move card to slot
-                    dcvm.gameObject.transform.DOMove(discoveryCardSlots[i].position, 0.3f);
                 }
             }
-
         }
 
         // Discover cards from a player collection of card objects
@@ -2160,7 +2167,7 @@ public class CardController : Singleton<CardController>
                 currentDiscoveryEffect = null;
                 discoveryScreenVisualParent.SetActive(false);
                 HideDiscoveryScreen();
-                return;
+                yield break;
             }
 
             // confetti explosion VFX
@@ -2189,22 +2196,39 @@ public class CardController : Singleton<CardController>
 
                     // cache ref to card
                     dcvm.myCardRef = discoverableCards[i];
-                    Debug.LogWarning("Discoverable card new card ref = " + dcvm.myCardRef.cardName);
 
-                    // enable slot
-                    discoveryCardSlots[i].gameObject.SetActive(true);
+                    // mark slot for enabling
+                    slotsEnabled.Add(discoveryCardSlots[i]);
 
-                    // enable view
-                    dcvm.gameObject.SetActive(true);
+                    // mark card for enabling
+                    cardsEnabled.Add(dcvm);
 
                     // build view model
                     SetUpCardViewModelAppearanceFromCard(dcvm.cardViewModel, discoverableCards[i]);
 
-                    // move card to slot
-                    dcvm.gameObject.transform.DOMove(discoveryCardSlots[i].position, 0.3f);
                 }
             }
         }        
+
+        // Enable slots
+        foreach (Transform t in slotsEnabled)
+        {
+            t.gameObject.SetActive(true);
+        }
+
+        // brief yield to allow the horizontal fitter to correctly 
+        // position the slots before moving the cards
+        yield return new WaitForEndOfFrame();
+
+        // move the cards
+        for(int i = 0; i < cardsEnabled.Count; i++)
+        {
+            // enable GO
+            cardsEnabled[i].gameObject.SetActive(true);
+
+            // Move towards slots
+            cardsEnabled[i].transform.DOMove(slotsEnabled[i].position, 0.3f);
+        }
 
     }   
     public void OnDiscoveryCardClicked(DiscoveryCardViewModel dcvm)

@@ -2599,6 +2599,7 @@ public class PassiveController : Singleton<PassiveController>
             {
                 if (entity.controller == Controller.AI &&
                    entity.myNextAction != null &&
+                   entity.currentActionTarget != null &&
                    entity.currentActionTarget == pManager.myCharacter &&
                     pManager.myCharacter.myNextAction.actionType == ActionType.AttackTarget)
                 {

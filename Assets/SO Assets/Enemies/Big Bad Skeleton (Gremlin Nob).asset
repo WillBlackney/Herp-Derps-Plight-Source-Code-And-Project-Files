@@ -16,7 +16,7 @@ MonoBehaviour:
   maxHealth: 86
   power: 0
   dexterity: 0
-  initiative: 3
+  initiative: 4
   startingHealth: 86
   startingBlock: 0
   physicalResistance: 0
@@ -59,6 +59,7 @@ MonoBehaviour:
     vulnerableStacks: 0
     gritStacks: 0
     disarmedStacks: 0
+    sleepStacks: 0
     poisonedStacks: 0
     burningStacks: 0
     fireBallBonusDamageStacks: 0
@@ -127,7 +128,7 @@ MonoBehaviour:
       baseDamage: 0
       damageType: 0
       passiveApplied: {fileID: 11400000, guid: 6bddf25bee1edf34080e99a97d8abee1, type: 2}
-      passiveStacks: 2
+      passiveStacks: 1
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
@@ -213,7 +214,7 @@ MonoBehaviour:
       copiesAdded: 0
       collection: 0
   - actionName: Rush
-    actionType: 0
+    actionType: 1
     intentImage: 2
     actionLoops: 1
     doThisOnFirstActivation: 0
@@ -230,7 +231,7 @@ MonoBehaviour:
         overlayFadeOutTime: 0
         particleEffect: 0
         cameraShake: 0
-        movementAnimation: 1
+        movementAnimation: 2
         soundEffect: 0
         characterAnimation: 0
         delayDuration: 0
@@ -258,7 +259,7 @@ MonoBehaviour:
         overlayFadeInTime: 0
         overlayDuration: 0
         overlayFadeOutTime: 0
-        particleEffect: 2
+        particleEffect: 3
         cameraShake: 0
         movementAnimation: 0
         soundEffect: 0
@@ -266,7 +267,7 @@ MonoBehaviour:
         delayDuration: 0
         projectileFired: 0
         projectileStartPosition: 0
-        onCharacter: 2
+        onCharacter: 1
       - eventType: 4
         screenOverlayType: 0
         overlayColor: 0
@@ -282,6 +283,21 @@ MonoBehaviour:
         projectileFired: 0
         projectileStartPosition: 0
         onCharacter: 0
+      - eventType: 3
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 2
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 5
       visualEventsOnFinish:
       - eventType: 6
         screenOverlayType: 0
@@ -298,7 +314,7 @@ MonoBehaviour:
         projectileFired: 0
         projectileStartPosition: 0
         onCharacter: 0
-      actionType: 0
+      actionType: 1
       baseDamage: 6
       damageType: 1
       passiveApplied: {fileID: 0}
@@ -309,11 +325,11 @@ MonoBehaviour:
       collection: 0
     - visualEventsOnStart: []
       visualEventsOnFinish: []
-      actionType: 5
+      actionType: 6
       baseDamage: 0
       damageType: 0
       passiveApplied: {fileID: 11400000, guid: f4d581b9181795e48b68007fcfeec3d2, type: 2}
-      passiveStacks: 3
+      passiveStacks: 2
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0

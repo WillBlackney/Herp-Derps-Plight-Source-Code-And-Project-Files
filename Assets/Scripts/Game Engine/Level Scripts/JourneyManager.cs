@@ -15,20 +15,10 @@ public class JourneyManager : Singleton<JourneyManager>
 
     [Header("Current Player Position + Encounter Properties")]
     private int currentJourneyPosition = 0;
-    private EncounterData currentEncounter;
-    private EnemyWaveSO currentEnemyWave;
-    public SaveCheckPoint CheckPointType;
 
-    public EncounterData CurrentEncounter
-    {
-        get { return currentEncounter; }
-        set { currentEncounter = value; }
-    }
-    public EnemyWaveSO CurrentEnemyWave
-    {
-        get { return currentEnemyWave; }
-        set { currentEnemyWave = value; }
-    }
+    public EncounterData CurrentEncounter { get; private set; }
+    public EnemyWaveSO CurrentEnemyWave { get; private set; }
+    public SaveCheckPoint CheckPointType { get; private set; }
 
     #endregion
 
@@ -56,22 +46,23 @@ public class JourneyManager : Singleton<JourneyManager>
     public void BuildMyDataFromSaveFile(SaveGameData saveData)
     {
         CurrentJourneyPosition = saveData.currentJourneyPosition;
-        CurrentEncounter = Encounters[CurrentJourneyPosition];
+        // CurrentEncounter = Encounters[CurrentJourneyPosition];
+        CurrentEncounter = saveData.currentEncounter;
         CheckPointType = saveData.saveCheckPoint;
 
         foreach (EnemyWaveSO eWave in CurrentEncounter.possibleEnemyEncounters)
         {
             if(eWave.encounterName == saveData.currentEnemyWave)
             {
-                currentEnemyWave = eWave;
+                CurrentEnemyWave = eWave;
             }
         }
     }
     public void SaveMyDataToSaveFile(SaveGameData saveFile)
     {
-        saveFile.currentJourneyPosition = currentJourneyPosition;
+        saveFile.currentJourneyPosition = CurrentJourneyPosition;
         saveFile.currentEncounter = CurrentEncounter;
-        saveFile.currentEnemyWave = currentEnemyWave.encounterName;
+        saveFile.currentEnemyWave = CurrentEnemyWave.encounterName;
         saveFile.saveCheckPoint = CheckPointType;
     }
 
@@ -79,31 +70,24 @@ public class JourneyManager : Singleton<JourneyManager>
 
     // Modify Player position
     #region
-    public void SetJourneyPosition(int newPosition)
+    public void SetNextEncounterAsCurrentLocation()
     {
-        CurrentJourneyPosition = newPosition;
+        CurrentJourneyPosition++;
+        CurrentEncounter = Encounters[CurrentJourneyPosition];
     }
     #endregion
-
-    // Get Encounters
+    
+    // Get + Set Enemy Waves
     #region
-    public EncounterData GetCurrentEncounterFromJourneyPositionValue()
+    public void SetCurrentEnemyWaveData(EnemyWaveSO wave)
     {
-        return Encounters[CurrentJourneyPosition];
+        CurrentEnemyWave = wave;
     }
-    public EncounterData GetNextEncounter()
-    {
-        return Encounters[CurrentJourneyPosition + 1];
-    }
-    #endregion
-
-    // Get Enemy Waves
-    #region
     public EnemyWaveSO GetRandomEnemyWaveFromEncounterData(EncounterData encounter)
     {
         EnemyWaveSO waveReturned = null;
 
-        if (allowSameEnemyWaveMultipleTimes)
+        if (AllowSameEnemyWaveMultipleTimes)
         {
             if (encounter.possibleEnemyEncounters.Count == 1)
             {

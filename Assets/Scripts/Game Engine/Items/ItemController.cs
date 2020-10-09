@@ -28,8 +28,6 @@ public class ItemController : Singleton<ItemController>
     }
     private void BuildItemLibrary()
     {
-        Debug.LogWarning("ItemController.BuildItemLibrary() called...");
-
         List<ItemData> tempList = new List<ItemData>();
 
         foreach (ItemDataSO dataSO in allItemScriptableObjects)

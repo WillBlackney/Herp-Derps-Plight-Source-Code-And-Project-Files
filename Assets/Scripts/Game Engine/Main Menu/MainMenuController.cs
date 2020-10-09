@@ -74,11 +74,22 @@ public class MainMenuController : Singleton<MainMenuController>
     #endregion
 
     // Top Bar
+    #region
     public void OnTopBarSettingsButtonClicked()
     {
         EventSystem.current.SetSelectedGameObject(null);
-        ShowInGameMenuView();
+
+        if (inGameMenuScreenParent.activeSelf)
+        {
+            HideInGameMenuView();
+        }
+        else
+        {
+            ShowInGameMenuView();
+        }
+       
     }
+    #endregion
 
     // Front Screen Logic
     #region
@@ -169,6 +180,21 @@ public class MainMenuController : Singleton<MainMenuController>
     public void HideInGameMenuView()
     {
         inGameMenuScreenParent.SetActive(false);
+    }
+    #endregion
+
+    // Misc
+    #region
+    public bool AnyMenuScreenIsActive()
+    {
+        if(inGameMenuScreenParent.activeSelf == true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
     #endregion
 

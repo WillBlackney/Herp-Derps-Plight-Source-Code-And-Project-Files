@@ -188,24 +188,14 @@ public class ActivationManager : Singleton<ActivationManager>
     }
     public void DestroyAllActivationWindows()
     {
-        Debug.LogWarning("DestroyAllActivationWindows() called, activation order count = " + activationOrder.Count.ToString());
-
         foreach(CharacterEntityModel entity in activationOrder)
         {           
             if(entity.characterEntityView.myActivationWindow != null)
             {
                 // NOTE: maybe this should be a scheduled visual event?
                 DestroyActivationWindow(entity.characterEntityView.myActivationWindow);
-            }
-            else
-            {
-                Debug.LogWarning("DestroyAllActivationWindows() was given a null activation window reference");
-            }
-            
+            }            
         }
-
-        // Destroy Panel Slots
-        Debug.LogWarning("Panel slots count = " + panelSlots.Count.ToString());
 
         if (panelSlots.Count > 1)
         {
@@ -258,7 +248,8 @@ public class ActivationManager : Singleton<ActivationManager>
         if (VisualEventManager.Instance.PendingCardDrawEvent() == false &&
             CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive &&
             CardController.Instance.DiscoveryScreenIsActive == false &&
-            CardController.Instance.ChooseCardScreenIsActive == false)
+            CardController.Instance.ChooseCardScreenIsActive == false &&
+             MainMenuController.Instance.AnyMenuScreenIsActive() == false)
         {
             // Mouse click SFX
             AudioManager.Instance.PlaySound(Sound.GUI_Button_Clicked);

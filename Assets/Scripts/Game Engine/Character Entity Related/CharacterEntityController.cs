@@ -1227,7 +1227,9 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         Debug.Log("CharacterEntityController.OnCharacterMouseOver() called...");
 
         // prevent clicking through an active UI screen
-        if (CardController.Instance.DiscoveryScreenIsActive || CardController.Instance.ChooseCardScreenIsActive)
+        if (CardController.Instance.DiscoveryScreenIsActive || 
+            CardController.Instance.ChooseCardScreenIsActive ||
+            MainMenuController.Instance.AnyMenuScreenIsActive())
         {
             return;
         }
@@ -1275,7 +1277,9 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         Debug.Log("CharacterEntityController.OnCharacterMouseExit() called...");
 
         // prevent clicking through an active UI screen
-        if (CardController.Instance.DiscoveryScreenIsActive || CardController.Instance.ChooseCardScreenIsActive)
+        if (CardController.Instance.DiscoveryScreenIsActive || 
+            CardController.Instance.ChooseCardScreenIsActive ||
+             MainMenuController.Instance.AnyMenuScreenIsActive())
         {
             return;
         }
@@ -1349,7 +1353,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
             // Check is turn requirement
             if (ar.requirementType == ActionRequirementType.IsTurn &&
-                enemy.nextActivationCount != ar.requirementTypeValue)
+                ActivationManager.Instance.CurrentTurn == ar.requirementTypeValue)
             {
                 Debug.Log(enemyAction.actionName + " failed 'IsTurn' requirement");
                 checkResults.Add(false);

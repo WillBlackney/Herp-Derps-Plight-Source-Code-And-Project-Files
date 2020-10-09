@@ -84,6 +84,7 @@ public class HoverPreview: MonoBehaviour
             // prevent clicking through an active UI screen
             else if (touchFingerIsOverMe == false &&
                 PreviewsAllowed &&
+                !MainMenuController.Instance.AnyMenuScreenIsActive() &&
                 !CardController.Instance.DiscoveryScreenIsActive &&
                 CardController.Instance.CurrentChooseCardScreenSelection != mainCardVM.card &&
                 !inChooseScreenTransistion)
@@ -103,7 +104,9 @@ public class HoverPreview: MonoBehaviour
             OverCollider = true;
 
             // prevent clicking through an active UI screen
-            if (PreviewsAllowed && !CardController.Instance.DiscoveryScreenIsActive &&
+            if (PreviewsAllowed &&
+                !MainMenuController.Instance.AnyMenuScreenIsActive() &&
+                !CardController.Instance.DiscoveryScreenIsActive &&
                 CardController.Instance.CurrentChooseCardScreenSelection != mainCardVM.card &&
                 !inChooseScreenTransistion)
             {

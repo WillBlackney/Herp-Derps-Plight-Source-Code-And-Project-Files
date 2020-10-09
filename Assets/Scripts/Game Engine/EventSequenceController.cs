@@ -62,7 +62,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
     }
     #endregion
 
-    // Setup from save files + Transitions
+    // Setup from save file
     #region
     public void HandleStartNewGameFromMainMenuEvent()
     {
@@ -92,8 +92,12 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Load the encounter the player saved at
         HandleLoadEncounter(JourneyManager.Instance.CurrentEncounter);
-        Debug.LogWarning("Journey position after loading save: " + JourneyManager.Instance.CurrentJourneyPosition.ToString());
     }
+
+    #endregion
+
+    // Scene Transitions
+    #region
     public void HandleQuitToMainMenuFromInGame()
     {
         StartCoroutine(HandleQuitToMainMenuFromInGameCoroutine());
@@ -108,7 +112,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Wait for the current visual event to finish playing
         VisualEvent handle = VisualEventManager.Instance.HandleEventQueueTearDown();
-        if(handle != null && handle.cData != null)
+        if (handle != null && handle.cData != null)
         {
             yield return new WaitUntil(() => handle.cData.CoroutineCompleted() == true);
         }
@@ -129,7 +133,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
     }
     #endregion
 
-    // Handle Specific Events
+    // Load Encounters Logic
     #region
     public void HandleLoadEncounter(EncounterData encounter)
     {
@@ -147,60 +151,40 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // and to (e.g. screen fade outs, moving characters off screen, etc).
         // The logic to decide which transisition will occur will go here.
 
-        // cache previous encounter we just defeated
+
+
+        // Cache previous encounter data 
         EncounterData previousEncounter = JourneyManager.Instance.CurrentEncounter;
+        EnemyWaveSO previousEnemyWave = JourneyManager.Instance.CurrentEnemyWave;
 
-        // increment world position
-        JourneyManager.Instance.SetJourneyPosition(JourneyManager.Instance.CurrentJourneyPosition + 1);
+        // Increment world position
+        JourneyManager.Instance.SetNextEncounterAsCurrentLocation();
 
-        // get + set next encounter
-        JourneyManager.Instance.CurrentEncounter = JourneyManager.Instance.GetCurrentEncounterFromJourneyPositionValue(); 
-
-        // Destroy all characters and activation windows if the previous 
-        // encounter was a combat event
+        // Destroy all characters and activation windows if the 
+        // previous encounter was a combat event
         if (previousEncounter.encounterType == EncounterType.BasicEnemy ||
             previousEncounter.encounterType == EncounterType.EliteEnemy)
         {
             // Mark wave as seen
-            JourneyManager.Instance.AddEnemyWaveToAlreadyEncounteredList(JourneyManager.Instance.CurrentEnemyWave);
+            JourneyManager.Instance.AddEnemyWaveToAlreadyEncounteredList(previousEnemyWave);
 
             // Tear down scene
             HandleCombatSceneTearDown();
         }
 
-        // If next event is a combat, get + set enemywave before saving to disk
+        // If next event is a combat, get + set enemy wave before saving to disk
         if(JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.BasicEnemy ||
-            JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.BasicEnemy)
+            JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.EliteEnemy)
         {
             // Calculate and cache the next enemy wave group
-            JourneyManager.Instance.CurrentEnemyWave =
-            JourneyManager.Instance.GetRandomEnemyWaveFromEncounterData(JourneyManager.Instance.CurrentEncounter);
+            JourneyManager.Instance.SetCurrentEnemyWaveData 
+                (JourneyManager.Instance.GetRandomEnemyWaveFromEncounterData(JourneyManager.Instance.CurrentEncounter));
 
             // Auto save
             PersistencyManager.Instance.AutoUpdateSaveFile(SaveCheckPoint.CombatStart);
 
             HandleLoadCombatEncounter(JourneyManager.Instance.CurrentEnemyWave);
         }
-    }
-    private void HandleLoadBasicCombatEncounter(EncounterData encounter)
-    {
-        // Play battle theme music
-        AudioManager.Instance.PlaySound(Sound.Music_Battle_Theme_1);
-
-        // Create player characters in scene
-        CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
-
-        // Setup enemy wave data
-        EnemyWaveSO eData = JourneyManager.Instance.GetRandomEnemyWaveFromEncounterData(encounter);
-
-        // Mark wave as seen
-        JourneyManager.Instance.AddEnemyWaveToAlreadyEncounteredList(eData);
-
-        // Spawn enemies
-        EnemySpawner.Instance.SpawnEnemyWave(eData.combatDifficulty.ToString(), eData);
-
-        // Start a new combat event
-        ActivationManager.Instance.OnNewCombatEventStarted();
     }
     private void HandleLoadCombatEncounter(EnemyWaveSO enemyWave)
     {

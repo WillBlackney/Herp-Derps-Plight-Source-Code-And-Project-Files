@@ -114,15 +114,8 @@ public class AnimationEventController : Singleton<AnimationEventController>
     }
     private void ResolveParticleEffect(AnimationEventData vEvent, CharacterEntityModel user, CharacterEntityModel target = null)
     {
-        if(vEvent == null)
+        if(vEvent == null || user == null)
         {
-            Debug.LogWarning("ResolveParticleEffect() was given a null AnimationEventData, returning...");
-            return;
-        }
-
-        if (user == null)
-        {
-            Debug.LogWarning("ResolveParticleEffect() was given a null CharacterEntityModel, returning...");
             return;
         }
 

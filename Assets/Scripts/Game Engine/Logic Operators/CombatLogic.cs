@@ -42,29 +42,16 @@ public class CombatLogic : Singleton<CombatLogic>
         Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() called...");
         int finalDamageValueReturned = 0;
 
-        if (enemyAction == null)
-        {
-            // Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() was given a null EnemyAction argument...");
-        }
-        else if (enemyAction != null)
-        {
-            //Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() was NOT given a null EnemyAction argument...");
-        }
-
         // calculate base damage
         finalDamageValueReturned = GetBaseDamageValue(attacker, baseDamage, damageType, card, cardEffect, enemyAction);
-        // Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned value after base calculations: " + finalDamageValueReturned.ToString());
 
         // calculate damage after standard modifiers
         finalDamageValueReturned = GetDamageValueAfterNonResistanceModifiers(finalDamageValueReturned, attacker, target, damageType, card, cardEffect, enemyAction);
-        // Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned value after non resistance modifier calculations: " + finalDamageValueReturned.ToString());
 
         // calculate damage after resistances
         finalDamageValueReturned = GetDamageValueAfterResistances(finalDamageValueReturned, damageType, target);
-        // Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned value after resitance type calculations: " + finalDamageValueReturned.ToString());
 
         // return final value
-        // Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() finalDamageValueReturned final value returned: " + finalDamageValueReturned.ToString());
         return finalDamageValueReturned;
 
     }
@@ -754,7 +741,7 @@ public class CombatLogic : Singleton<CombatLogic>
         currentCombatState = CombatGameState.DefeatTriggered;
         VisualEventManager.Instance.CreateVisualEvent(() => {
             UIManager.Instance.defeatPopup.SetActive(true);
-        });
+        }, QueuePosition.Back, 0.5f);
     }
     private void StartCombatOverVictoryProcess()
     {
@@ -763,7 +750,7 @@ public class CombatLogic : Singleton<CombatLogic>
         VisualEventManager.Instance.CreateVisualEvent(() => {
             UIManager.Instance.victoryPopup.SetActive(true);
             UIManager.Instance.continueToNextEncounterButtonParent.SetActive(true);
-        });
+        }, QueuePosition.Back, 0.5f);
 
         // to do: should update the save file with new character health values
         // and also create/save a loot result file to save

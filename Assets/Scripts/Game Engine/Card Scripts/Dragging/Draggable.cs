@@ -52,7 +52,8 @@ public class Draggable : MonoBehaviour
        // Debug.LogWarning("Draggable.OnMouseDown() called...");
 
         // prevent clicking through an active UI screen
-        if (CardController.Instance.DiscoveryScreenIsActive)
+        if (CardController.Instance.DiscoveryScreenIsActive ||
+            MainMenuController.Instance.AnyMenuScreenIsActive())
         {
             return;
         }
@@ -79,10 +80,10 @@ public class Draggable : MonoBehaviour
 	
     void OnMouseUp()
     {
-       // Debug.Log("Draggable.OnMouseUp() called...");
-        
         // prevent clicking through an active UI screen
-        if (CardController.Instance.DiscoveryScreenIsActive || CardController.Instance.ChooseCardScreenIsActive)
+        if (CardController.Instance.DiscoveryScreenIsActive || 
+            CardController.Instance.ChooseCardScreenIsActive ||
+            MainMenuController.Instance.AnyMenuScreenIsActive())
         {
             return;
         }
@@ -105,13 +106,13 @@ public class Draggable : MonoBehaviour
                 initialTouchSet = false;
                 touchFingerIsOverMe = false;
                 dragging = false;
+
                 // turn all previews back on
                 HoverPreview.PreviewsAllowed = true;
                 _draggingThis = null;
                 da.OnEndDrag();
             }
         }
-
     }   
 
     void OnMouseOver()
@@ -125,13 +126,10 @@ public class Draggable : MonoBehaviour
             {
                 initialTouchSet = true;
                 initialTouchPos = TouchInWorldCoords();
-               // Debug.LogWarning("Setting Initial Touch Pos: " + initialTouchPos.x.ToString() + ", " + initialTouchPos.y + ", ");
-
             }       
             
             Vector3 currentTouchPos = TouchInWorldCoords();
             float deltaY = currentTouchPos.y - initialTouchPos.y;
-           // Debug.LogWarning("Delta Y: " + deltaY.ToString());
 
             if (deltaY >= GlobalSettings.Instance.mouseDragSensitivity && 
                 dragging == false && 
@@ -140,6 +138,7 @@ public class Draggable : MonoBehaviour
                 da.CanDrag)
             {
                 dragging = true;
+
                 // when we are dragging something, all previews should be off
                 HoverPreview.PreviewsAllowed = false;
                 _draggingThis = this;
@@ -159,6 +158,7 @@ public class Draggable : MonoBehaviour
                     initialTouchSet = false;
                     dragging = false;
                     touchFingerIsOverMe = false;
+
                     // turn all previews back on
                     HoverPreview.PreviewsAllowed = true;
                     _draggingThis = null;

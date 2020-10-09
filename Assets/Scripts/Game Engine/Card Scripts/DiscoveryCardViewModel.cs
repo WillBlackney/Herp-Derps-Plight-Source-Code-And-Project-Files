@@ -21,7 +21,8 @@ public class DiscoveryCardViewModel : MonoBehaviour, IPointerEnterHandler, IPoin
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (!CardController.Instance.DiscoveryScreenIsActive)
+        if (!CardController.Instance.DiscoveryScreenIsActive ||
+             MainMenuController.Instance.AnyMenuScreenIsActive())
         {
             return;
         }
@@ -31,7 +32,8 @@ public class DiscoveryCardViewModel : MonoBehaviour, IPointerEnterHandler, IPoin
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        if (!CardController.Instance.DiscoveryScreenIsActive)
+        if (!CardController.Instance.DiscoveryScreenIsActive ||
+             MainMenuController.Instance.AnyMenuScreenIsActive())
         {
             return;
         }
@@ -40,7 +42,8 @@ public class DiscoveryCardViewModel : MonoBehaviour, IPointerEnterHandler, IPoin
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (!CardController.Instance.DiscoveryScreenIsActive)
+        if (!CardController.Instance.DiscoveryScreenIsActive ||
+             MainMenuController.Instance.AnyMenuScreenIsActive())
         {
             return;
         }

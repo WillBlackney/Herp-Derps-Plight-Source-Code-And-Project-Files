@@ -79,10 +79,6 @@ public class AudioManager : Singleton<AudioManager>
         {
             a.source.Play();
         }
-        else
-        {
-            Debug.LogWarning("AudioManager.PlaySound() did not find an audio model with the name " + name);
-        }
     }
     public void StopSound(Sound s)
     {
