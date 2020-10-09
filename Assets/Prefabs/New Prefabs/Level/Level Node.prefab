@@ -120,9 +120,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81ed1f9820cf36a4d8746ad7e2932117, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  occupied: 0
   nodePriority: 5
   allowedEntity: 2
-  occupied: 0
   mouseOverParent: {fileID: 5037005589569911983}
   activatedParent: {fileID: 5017707447933946209}
   myLr: {fileID: 3559256182334344383}
@@ -146,7 +146,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &772585995128285610
 RectTransform:
   m_ObjectHideFlags: 0
@@ -627,6 +627,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1773087317325495522}
+  - component: {fileID: 5298236671203002216}
   m_Layer: 0
   m_Name: Activated Parent
   m_TagString: Untagged
@@ -655,6 +656,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &5298236671203002216
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5017707447933946209}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 1
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 1
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: -9
+  m_TargetDisplay: 0
 --- !u!1 &5037005589569911983
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,6 +686,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4284610404535521937}
+  - component: {fileID: 6454991397609186974}
   m_Layer: 0
   m_Name: Mouse Over Parent
   m_TagString: Untagged
@@ -692,6 +715,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &6454991397609186974
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5037005589569911983}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 1
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 1
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: -9
+  m_TargetDisplay: 0
 --- !u!1 &5496249652446167681
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,7 +880,7 @@ LineRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -8
   m_Positions:
   - {x: 6.5, y: -2.15, z: 1}
   - {x: 6, y: -2.15, z: 1}
@@ -848,8 +892,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 0.51938057
+        time: 0.010391235
+        value: 0.3023224
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -863,23 +907,23 @@ LineRenderer:
       serializedVersion: 2
       key0: {r: 1, g: 0.16470589, b: 0, a: 1}
       key1: {r: 1, g: 0.16470589, b: 0, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
-      key4: {r: 0, g: 0, b: 0, a: 0}
+      key2: {r: 0.48235294, g: 0, b: 0.015686275, a: 1}
+      key3: {r: 0.48235294, g: 0, b: 0.015686275, a: 0}
+      key4: {r: 0.48235294, g: 0, b: 0.015686275, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
       ctime1: 65535
-      ctime2: 0
-      ctime3: 0
-      ctime4: 0
+      ctime2: 63993
+      ctime3: 63993
+      ctime4: 63993
       ctime5: 0
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 65535
-      atime2: 0
+      atime1: 964
+      atime2: 65535
       atime3: 0
       atime4: 0
       atime5: 0
@@ -887,12 +931,12 @@ LineRenderer:
       atime7: 0
       m_Mode: 0
       m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
+      m_NumAlphaKeys: 3
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
     textureMode: 0
-    shadowBias: 0.5
+    shadowBias: 1
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0

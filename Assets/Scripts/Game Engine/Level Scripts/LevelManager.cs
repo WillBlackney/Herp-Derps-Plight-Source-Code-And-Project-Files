@@ -106,6 +106,7 @@ public class LevelManager : Singleton<LevelManager>
     }
     public void SetLineViewState(LevelNode node, bool onOrOff)
     {
+        DottedLine.Instance.DestroyAllPaths();
         node.myLrVisualParent.SetActive(onOrOff);
     }
     public void DisableAllExtraViews(LevelNode node)
@@ -118,19 +119,29 @@ public class LevelManager : Singleton<LevelManager>
         if (Draggable.DraggingThis == null)
         {
             // Activate view
-            SetLineViewState(startNode, true);
+            //SetLineViewState(startNode, true);
+            DottedLine.Instance.DestroyAllPaths();
+             DottedLine.Instance.DrawDottedLine(startNode.nose.position, targetNode.nose.position);
+            //DottedLine.Instance.DrawDottedLine(startNode.nose.position, targetNode.attackPos.position);
+            //DottedLine.Instance.DrawDottedLine(targetNode.attackPos.position, targetNode.nose.position);
+           // DottedLine.Instance.DrawDottedLine(startNode.attackPos.position, targetNode.attackPos.position);
         }
 
         // Clear previous path
         startNode.myLr.positionCount = 0;
 
         // Set new line renderer vertex points
-        startNode.myLr.positionCount = 4;
-
+        // startNode.myLr.positionCount = 4;
+        /*
+        startNode.myLr.positionCount = 3;
         startNode.myLr.SetPosition(0, new Vector3(startNode.nose.position.x, startNode.nose.position.y, 1));
         startNode.myLr.SetPosition(1, new Vector3(startNode.attackPos.position.x, startNode.attackPos.position.y, 1));
-        startNode.myLr.SetPosition(2, new Vector3(targetNode.attackPos.position.x, targetNode.attackPos.position.y, 1));
-        startNode.myLr.SetPosition(3, new Vector3(targetNode.nose.position.x, targetNode.nose.position.y, 1));
+        startNode.myLr.SetPosition(2, new Vector3(targetNode.nose.position.x, targetNode.nose.position.y, 1));
+        */
+        // startNode.myLr.SetPosition(0, new Vector3(startNode.nose.position.x, startNode.nose.position.y, 1));
+        // startNode.myLr.SetPosition(1, new Vector3(startNode.attackPos.position.x, startNode.attackPos.position.y, 1));
+        // startNode.myLr.SetPosition(2, new Vector3(targetNode.attackPos.position.x, targetNode.attackPos.position.y, 1));
+        // startNode.myLr.SetPosition(3, new Vector3(targetNode.nose.position.x, targetNode.nose.position.y, 1));
 
 
     }
