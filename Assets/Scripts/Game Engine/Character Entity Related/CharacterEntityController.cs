@@ -836,6 +836,10 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
     // Defender Targetting View Logic
     #region
+    private void SetEnemyTargettingPathReadyState(CharacterEntityModel enemy, TargettingPathReadyState newState)
+    {
+        enemy.targettingPathReadyState = newState;
+    }
     private void EnableDefenderTargetIndicator(CharacterEntityView view)
     {
         Debug.Log("CharacterEntityController.EnableDefenderTargetIndicator() called...");
@@ -951,7 +955,10 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             }
         }
 
-        // Create Visual event
+        // Enable targetting path visibility
+        VisualEventManager.Instance.CreateVisualEvent(() => SetEnemyTargettingPathReadyState(enemy, TargettingPathReadyState.Ready));
+
+        // Create Visual event        
         VisualEventManager.Instance.CreateVisualEvent(() => UpdateEnemyIntentGUIVisualEvent(enemy.characterEntityView.myIntentViewModel, intentSprite, attackDamageString));
 
     }
@@ -1054,7 +1061,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
     }
     private void UpdateEnemyIntentGUIVisualEvent(IntentViewModel intentView, Sprite intentSprite, string attackDamageString)
-    {
+    {        
         // Disable text view
         intentView.valueText.gameObject.SetActive(false);
 
@@ -1261,7 +1268,9 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
             DisableAllDefenderTargetIndicators();
 
-            if (enemy.currentActionTarget != null && enemy.currentActionTarget.allegiance == Allegiance.Player)
+            if (enemy.currentActionTarget != null && 
+                enemy.currentActionTarget.allegiance == Allegiance.Player &&
+                enemy.targettingPathReadyState == TargettingPathReadyState.Ready)
             {
                 EnableDefenderTargetIndicator(enemy.currentActionTarget.characterEntityView);
                 if (enemy.levelNode != null && enemy.livingState == LivingState.Alive)
@@ -1610,6 +1619,9 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         // Setup
         EnemyAction nextAction = enemy.myNextAction;
         string notificationName = enemy.myNextAction.actionName;
+
+        // Disable targetting path visibility
+        VisualEventManager.Instance.CreateVisualEvent(() => SetEnemyTargettingPathReadyState(enemy, TargettingPathReadyState.NotReady));
 
         // Status Notification
         VisualEventManager.Instance.CreateVisualEvent(() =>

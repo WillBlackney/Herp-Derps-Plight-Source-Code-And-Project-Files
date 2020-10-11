@@ -53,7 +53,14 @@ public class CharacterEntityModel
     [Header("Enemy Specific Properties")]
     [HideInInspector] public CharacterEntityModel currentActionTarget;
     [HideInInspector] public EnemyAction myNextAction;
-    [HideInInspector] public List<EnemyAction> myPreviousActionLog = new List<EnemyAction>();    
+    [HideInInspector] public List<EnemyAction> myPreviousActionLog = new List<EnemyAction>();
+    [HideInInspector] public TargettingPathReadyState targettingPathReadyState;
     
+}
+
+public enum TargettingPathReadyState
+{
+    NotReady = 0,
+    Ready = 1,
 }
 

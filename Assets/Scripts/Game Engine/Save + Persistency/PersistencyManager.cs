@@ -116,7 +116,7 @@ public class PersistencyManager : Singleton<PersistencyManager>
         newLoad = SerializationUtility.DeserializeValue<SaveGameData>(bytes, DataFormat.Binary);
         return newLoad;
     }
-    private void DeleteSaveFileOnDisk()
+    public void DeleteSaveFileOnDisk()
     {
         Debug.Log("PersistencyManager.DeleteSaveFileOnDisk() called");
 

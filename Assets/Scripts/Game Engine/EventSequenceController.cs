@@ -104,7 +104,6 @@ public class EventSequenceController : Singleton<EventSequenceController>
     }
     private IEnumerator HandleQuitToMainMenuFromInGameCoroutine()
     {
-
         // Do black screen fade out
 
         // Hide menus
@@ -123,11 +122,12 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Stop battle music
         AudioManager.Instance.StopSound(Sound.Music_Battle_Theme_1);
 
-        // when black screen is totally fade out, wait for 2 seconds 
+        // when black screen is totally faded out, wait for 2 seconds 
         // for untracked visual event coroutines to finish
 
         // Show menu screen
         MainMenuController.Instance.ShowFrontScreen();
+        MainMenuController.Instance.RenderMenuButtons();
 
         // Do black screen fade in
     }

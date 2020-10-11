@@ -13,6 +13,8 @@ public class MainMenuController : Singleton<MainMenuController>
     [Header("Front Screen Components")]
     public GameObject frontScreenParent;
     public GameObject continueButtonParent;
+    public GameObject abandonRunButtonParent;
+    public GameObject abandonRunPopupParent;
 
     [Header("New Game Screen Components")]
     public GameObject newGameScreenVisualParent;
@@ -26,7 +28,7 @@ public class MainMenuController : Singleton<MainMenuController>
     #region
     private void Start()
     {
-        AutoSetContinueButtonViewState();
+        RenderMenuButtons();
     }
     #endregion
 
@@ -54,6 +56,20 @@ public class MainMenuController : Singleton<MainMenuController>
     public void OnMenuQuitButtonClicked()
     {
         Application.Quit();
+    }
+    public void OnMenuAbandonRunButtonClicked()
+    {
+        ShowAbandonRunPopup();
+    }
+    public void OnAbandonPopupAbandonRunButtonClicked()
+    {
+        PersistencyManager.Instance.DeleteSaveFileOnDisk();
+        RenderMenuButtons();
+        HideAbandonRunPopup();
+    }
+    public void OnAbandonPopupCancelButtonClicked()
+    {
+        HideAbandonRunPopup();
     }
 
     // In Game menu screen
@@ -93,6 +109,11 @@ public class MainMenuController : Singleton<MainMenuController>
 
     // Front Screen Logic
     #region
+    public void RenderMenuButtons()
+    {
+        AutoSetAbandonRunButtonViewState();
+        AutoSetContinueButtonViewState();
+    }
     public void ShowFrontScreen()
     {
         frontScreenParent.SetActive(true);
@@ -116,6 +137,17 @@ public class MainMenuController : Singleton<MainMenuController>
             HideContinueButton();
         }
     }
+    private void AutoSetAbandonRunButtonViewState()
+    {
+        if (ShouldShowContinueButton())
+        {
+            ShowAbandonRunButton();
+        }
+        else
+        {
+            HideAbandonRunButton();
+        }
+    }
     private void ShowContinueButton()
     {
         continueButtonParent.SetActive(true);
@@ -123,6 +155,22 @@ public class MainMenuController : Singleton<MainMenuController>
     private void HideContinueButton()
     {
         continueButtonParent.SetActive(false);
+    }
+    private void ShowAbandonRunButton()
+    {
+        abandonRunButtonParent.SetActive(true);
+    }
+    private void HideAbandonRunButton()
+    {
+        abandonRunButtonParent.SetActive(false);
+    }
+    private void ShowAbandonRunPopup()
+    {
+        abandonRunPopupParent.SetActive(true);
+    }
+    private void HideAbandonRunPopup()
+    {
+        abandonRunPopupParent.SetActive(false);
     }
     #endregion
 

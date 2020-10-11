@@ -1103,6 +1103,9 @@ public class CardController : Singleton<CardController>
                 // Start damage sequence
                 CombatLogic.Instance.HandleDamage(finalDamageValue, owner, enemy, damageType, batchedEvent);
             }
+
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+
         }
 
         // Where should this card be sent to?

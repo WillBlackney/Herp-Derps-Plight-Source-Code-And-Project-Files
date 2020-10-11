@@ -2460,7 +2460,7 @@ public class PassiveController : Singleton<PassiveController>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Wrath " + stacks.ToString());
-                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                    //VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
                 });
             }
 
@@ -2525,17 +2525,17 @@ public class PassiveController : Singleton<PassiveController>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Weakened " + stacks.ToString());
-                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                    //VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
                 });
             }
 
             // Update intent GUI, if enemy and attacking
-            if (pManager.myCharacter.controller == Controller.AI &&
-                pManager.myCharacter.myNextAction != null &&
-                 (pManager.myCharacter.myNextAction.actionType == ActionType.AttackTarget ||
-                 pManager.myCharacter.myNextAction.actionType == ActionType.AttackAllEnemies))
+            if (character.controller == Controller.AI &&
+                character.myNextAction != null &&
+                 (character.myNextAction.actionType == ActionType.AttackTarget ||
+                 character.myNextAction.actionType == ActionType.AttackAllEnemies))
             {
-                CharacterEntityController.Instance.UpdateEnemyIntentGUI(pManager.myCharacter);
+                CharacterEntityController.Instance.UpdateEnemyIntentGUI(character);
             }
             if (showVFX)
             {
@@ -2590,20 +2590,20 @@ public class PassiveController : Singleton<PassiveController>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Vulnerable " + stacks.ToString());
-                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                    //VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
                 });
             }
 
             // Update intent GUI of ai's targetting this character
-            foreach (CharacterEntityModel entity in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(pManager.myCharacter))
-            {
-                if (entity.controller == Controller.AI &&
-                   entity.myNextAction != null &&
-                   entity.currentActionTarget != null &&
-                   entity.currentActionTarget == pManager.myCharacter &&
-                    pManager.myCharacter.myNextAction.actionType == ActionType.AttackTarget)
+            foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(character))
+            {                
+                if (enemy.controller == Controller.AI &&
+                   enemy.myNextAction != null &&
+                   enemy.currentActionTarget != null &&
+                   enemy.currentActionTarget == character &&
+                   enemy.myNextAction.actionType == ActionType.AttackTarget)
                 {
-                    CharacterEntityController.Instance.UpdateEnemyIntentGUI(entity);
+                    CharacterEntityController.Instance.UpdateEnemyIntentGUI(enemy);
                 }
             }
             if (showVFX)
@@ -2659,7 +2659,7 @@ public class PassiveController : Singleton<PassiveController>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Grit " + stacks.ToString());
-                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                    //VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
                 });
             }
 
