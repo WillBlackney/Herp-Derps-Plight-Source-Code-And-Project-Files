@@ -103,7 +103,7 @@ public class CardController : Singleton<CardController>
     }
 
     // Getters
-    public CardData GetCardFromLibraryByName(string name)
+    public CardData GetCardDataFromLibraryByName(string name)
     {
         CardData cardReturned = null;
 
@@ -117,6 +117,26 @@ public class CardController : Singleton<CardController>
         }
 
         if(cardReturned == null)
+        {
+            Debug.Log("WARNING! CardController.GetCardFromLibraryByName() could not find a card " +
+                "with a matching name of " + name + ", returning null...");
+        }
+        return cardReturned;
+    }
+    public CardDataSO GetCardDataSOFromLibraryByName(string name)
+    {
+        CardDataSO cardReturned = null;
+
+        foreach (CardDataSO card in AllCardScriptableObjects)
+        {
+            if (card.cardName == name)
+            {
+                cardReturned = card;
+                break;
+            }
+        }
+
+        if (cardReturned == null)
         {
             Debug.Log("WARNING! CardController.GetCardFromLibraryByName() could not find a card " +
                 "with a matching name of " + name + ", returning null...");

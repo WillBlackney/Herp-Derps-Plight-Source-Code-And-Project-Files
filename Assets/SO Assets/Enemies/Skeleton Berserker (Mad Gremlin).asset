@@ -16,7 +16,7 @@ MonoBehaviour:
   maxHealth: 24
   power: 0
   dexterity: 0
-  initiative: 3
+  initiative: 2
   startingHealth: 24
   startingBlock: 0
   physicalResistance: 0
@@ -38,7 +38,7 @@ MonoBehaviour:
     temporaryBonusDrawStacks: 0
     runeStacks: 0
     barrierStacks: 0
-    enrageStacks: 2
+    enrageStacks: 1
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
     divineFavourStacks: 0

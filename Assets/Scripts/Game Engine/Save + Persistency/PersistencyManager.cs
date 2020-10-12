@@ -37,7 +37,7 @@ public class PersistencyManager : Singleton<PersistencyManager>
 
     // Build Save Files Data
     #region
-    public void BuildNewSaveFileOnNewGameStarted(List<CharacterTemplateSO> characters)
+    public void BuildNewSaveFileOnNewGameStarted()
     {
         // Setup empty save file
         SaveGameData newSave = new SaveGameData();
@@ -56,9 +56,73 @@ public class PersistencyManager : Singleton<PersistencyManager>
         newSave.currentJourneyPosition = 0;
 
         // Build characters
-        foreach (CharacterTemplateSO data in characters)
+        List<CharacterTemplateSO> chosenCharacters = new List<CharacterTemplateSO>();
+
+        // should randomize characters?
+        if (MainMenuController.Instance.randomizeCharacters)
+        {
+            chosenCharacters.AddRange(MainMenuController.Instance.GetThreeRandomAndDifferentTemplates());
+        }
+
+        // else, just use player selected templates
+        else
+        {
+            chosenCharacters.AddRange(MainMenuController.Instance.GetChosenTemplatesFromChooseCharacterWindows());
+        }
+        
+        // build each character data object
+        foreach (CharacterTemplateSO data in chosenCharacters)
         {
             newSave.characters.Add(CharacterDataController.Instance.ConverCharacterTemplateToCharacterData(data));
+        }
+
+        // DECK MODIFIER SETUP
+
+        // Randomize decks
+        if (MainMenuController.Instance.randomizeDecks)
+        {
+            foreach(CharacterData character in newSave.characters)
+            {
+                // empty deck
+                character.deck.Clear();
+
+                // Get viable random cards
+                List<CardDataSO> viableCards = new List<CardDataSO>();
+                foreach(CardDataSO cardData in CardController.Instance.AllCardScriptableObjects)
+                {
+                    if(cardData.rarity != Rarity.None && cardData.talentSchool != TalentSchool.None)
+                    {
+                        viableCards.Add(cardData);
+                    }
+                }
+
+                // Choose 10 random cards rom viable cards lists
+                for(int i = 0; i < 10; i++)
+                {
+                    int randomIndex = RandomGenerator.NumberBetween(0, viableCards.Count - 1);
+                    CardData randomCard = CardController.Instance.BuildCardDataFromScriptableObjectData(viableCards[randomIndex]);
+                    character.deck.Add(randomCard);
+                }
+            }
+        }
+
+        // Improvise decks
+        else if (MainMenuController.Instance.improviseDecks)
+        {
+            foreach (CharacterData character in newSave.characters)
+            {
+                // empty deck
+                character.deck.Clear();
+
+                // Get improvise card
+                CardDataSO improviseCardData = CardController.Instance.GetCardDataSOFromLibraryByName("Improvise");
+
+                // Fill deck with 10 improvise cards
+                for (int i = 0; i < 10; i++)
+                {
+                    character.deck.Add(CardController.Instance.BuildCardDataFromScriptableObjectData(improviseCardData));
+                }
+            }
         }
 
         // START SAVE!        

@@ -22,6 +22,15 @@ public class MainMenuController : Singleton<MainMenuController>
 
     [Header("In Game Menu Components")]
     public GameObject inGameMenuScreenParent;
+
+    [Header("Run Modifier Menu Components")]
+    public GameObject runModifierScreenParent;
+    public RunModifierButton randomizeCharactersButton;
+    public RunModifierButton randomizeDecksButton;
+    public RunModifierButton improviseDecksButton;
+    public bool randomizeCharacters = false;
+    public bool randomizeDecks = false;
+    public bool improviseDecks = false;
     #endregion
 
     // Initialization 
@@ -29,6 +38,7 @@ public class MainMenuController : Singleton<MainMenuController>
     private void Start()
     {
         RenderMenuButtons();
+        SetRunModifiersToDefaults();
     }
     #endregion
 
@@ -70,6 +80,57 @@ public class MainMenuController : Singleton<MainMenuController>
     public void OnAbandonPopupCancelButtonClicked()
     {
         HideAbandonRunPopup();
+    }
+    public void OnRunModifiersButtonClicked()
+    {
+        runModifierScreenParent.SetActive(true);
+    }
+    public void OnRunModifiersBackButtonClicked()
+    {
+        runModifierScreenParent.SetActive(false);
+    }
+    public void OnRandomizeCharactersButtonClicked()
+    {
+        if (randomizeCharacters)
+        {
+            randomizeCharacters = false;
+            randomizeCharactersButton.CrossMe();
+        }
+        else if (!randomizeCharacters)
+        {
+            randomizeCharacters = true;
+            randomizeCharactersButton.TickMe();
+        }
+    }
+    public void OnRandomizeDecksButtonClicked()
+    {
+        if (randomizeDecks)
+        {
+            randomizeDecks = false;
+            randomizeDecksButton.CrossMe();
+        }
+        else if (!randomizeDecks)
+        {
+            randomizeDecks = true;
+            improviseDecks = false;
+            randomizeDecksButton.TickMe();
+            improviseDecksButton.CrossMe();
+        }
+    }
+    public void OnImproviseDecksButtonClicked()
+    {
+        if (improviseDecks)
+        {
+            improviseDecks = false;
+            improviseDecksButton.CrossMe();
+        }
+        else if (!improviseDecks)
+        {
+            improviseDecks = true;
+            randomizeDecks = false;
+            randomizeDecksButton.CrossMe();
+            improviseDecksButton.TickMe();
+        }
     }
 
     // In Game menu screen
@@ -182,6 +243,7 @@ public class MainMenuController : Singleton<MainMenuController>
     public void ShowNewGameScreen()
     {
         newGameScreenVisualParent.SetActive(true);
+        SetRunModifiersToDefaults();
     }
     public void HideNewGameScreen()
     {
@@ -243,6 +305,35 @@ public class MainMenuController : Singleton<MainMenuController>
         {
             return false;
         }
+    }
+    #endregion
+
+    // Apply Run Modifiers Logic
+    #region
+    public void SetRunModifiersToDefaults()
+    {
+        randomizeCharacters = false;
+        randomizeDecks = false;
+        improviseDecks = false;
+        randomizeCharactersButton.CrossMe();
+        randomizeDecksButton.CrossMe();
+        improviseDecksButton.CrossMe();
+    }
+    public List<CharacterTemplateSO> GetThreeRandomAndDifferentTemplates()
+    {
+        List<CharacterTemplateSO> possibleTemplates = new List<CharacterTemplateSO>();
+        List<CharacterTemplateSO> listReturned = new List<CharacterTemplateSO>();
+        possibleTemplates.AddRange(selectableCharacterTemplates);
+
+        for(int i = 0; i < 3; i++)
+        {
+            int randomIndex = RandomGenerator.NumberBetween(0, possibleTemplates.Count - 1);
+            listReturned.Add(possibleTemplates[randomIndex]);
+            possibleTemplates.RemoveAt(randomIndex);
+        }
+
+        return listReturned;
+
     }
     #endregion
 

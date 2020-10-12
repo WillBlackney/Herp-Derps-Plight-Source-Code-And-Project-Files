@@ -16,7 +16,7 @@ MonoBehaviour:
   cardDescription: 'Choose a card in hand.
 
     Fill your hand with copies of it. '
-  cardSprite: {fileID: 0}
+  cardSprite: {fileID: 21300000, guid: 3549ceb8b43a55c41896e48b5a9b04a2, type: 3}
   cardEnergyCost: 1
   cardType: 1
   targettingType: 0

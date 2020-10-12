@@ -572,7 +572,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             {
                 for (int i = 0; i < character.pManager.fanOfKnivesStacks; i++)
                 {
-                    CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetCardFromLibraryByName("Shank"));
+                    CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetCardDataFromLibraryByName("Shank"));
                 }
             }
 
@@ -592,7 +592,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             {
                 for (int i = 0; i < character.pManager.phoenixFormStacks; i++)
                 {
-                    CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetCardFromLibraryByName("Fire Ball"));
+                    CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetCardDataFromLibraryByName("Fire Ball"));
                 }
             }
 

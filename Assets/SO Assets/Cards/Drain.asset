@@ -15,15 +15,14 @@ MonoBehaviour:
   cardName: Drain
   cardDescription: 'Deal Posion damage equal to target''s Poisoned amount.
 
-    Remove
-    Poisoned from target. '
+    Expend.'
   cardSprite: {fileID: 21300000, guid: 438a8f773ab17c044aa0bc6637dc6a01, type: 3}
   cardEnergyCost: 1
   cardType: 1
   targettingType: 3
   talentSchool: 12
   rarity: 1
-  expend: 0
+  expend: 1
   innate: 0
   fleeting: 0
   unplayable: 0
@@ -74,36 +73,5 @@ MonoBehaviour:
       projectileFired: 3
       projectileStartPosition: 0
       onCharacter: 0
-    visualEventsOnFinish: []
-  - weaponRequirement: 0
-    cardEffectType: 16
-    discoveryLocation: 0
-    talentSchoolFilter: 0
-    rarityFilter: 0
-    blessing: 0
-    onDiscoveryChoiceMadeEffects: []
-    onChooseCardInHandChoiceMadeEffects: []
-    drawStacksFromOverload: 0
-    drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 0
-    baseDamageValue: 0
-    drawBaseDamageFromCurrentBlock: 0
-    drawBaseDamageFromTargetPoisoned: 0
-    drawBaseDamageFromMeleeAttacksPlayed: 0
-    drawBaseDamageFromOverloadOnSelf: 0
-    baseDamageMultiplier: 0
-    damageType: 0
-    healthLost: 0
-    energyGained: 0
-    cardsDrawn: 0
-    extraDrawEffect: 0
-    cardEnergyReduction: 0
-    passivePairing:
-      passiveData: {fileID: 0}
-      passiveStacks: 0
-    cardAdded: {fileID: 0}
-    copiesAdded: 0
-    blessingsGained: 0
-    visualEventsOnStart: []
     visualEventsOnFinish: []
   cardEventListeners: []

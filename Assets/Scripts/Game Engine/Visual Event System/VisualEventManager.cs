@@ -11,6 +11,11 @@ public class VisualEventManager : Singleton<VisualEventManager>
     [SerializeField] private float endDelayExtra;
     private bool paused;
     private bool currentEventPlaying;
+    public List<VisualEvent> EventQueue
+    {
+        get { return eventQueue; }
+        private set { eventQueue = value; }
+    }
     #endregion
 
     // Misc Logic
@@ -30,12 +35,12 @@ public class VisualEventManager : Singleton<VisualEventManager>
     }
     private void PlayNextEventFromQueue()
     {
-        if (eventQueue.Count > 0 &&
-            eventQueue[0].isPlaying == false &&
+        if (EventQueue.Count > 0 &&
+            EventQueue[0].isPlaying == false &&
             paused == false &&
             currentEventPlaying == false)
         {
-            PlayEventFromQueue(eventQueue[0]);
+            PlayEventFromQueue(EventQueue[0]);
         }
     }
     private IEnumerator PlayEventFromQueueCoroutine(VisualEvent ve)
@@ -80,35 +85,35 @@ public class VisualEventManager : Singleton<VisualEventManager>
     #region
     private void RemoveEventFromQueue(VisualEvent ve)
     {
-        if (eventQueue.Contains(ve))
+        if (EventQueue.Contains(ve))
         {
-            eventQueue.Remove(ve);
+            EventQueue.Remove(ve);
         }
      
     }
     private void AddEventToFrontOfQueue(VisualEvent ve)
     {
-        if(eventQueue.Count > 0)
+        if(EventQueue.Count > 0)
         {
-            eventQueue.Insert(1, ve);
+            EventQueue.Insert(1, ve);
         }
         else
         {
-            eventQueue.Insert(0, ve);
+            EventQueue.Insert(0, ve);
         }        
     }
     private void AddEventToBackOfQueue(VisualEvent ve)
     {
-        eventQueue.Add(ve);
+        EventQueue.Add(ve);
     }
     private void AddEventAfterBatchedEvent(VisualEvent ve, VisualEvent batchedEvent)
     {
-        int index = eventQueue.IndexOf(batchedEvent) + 1;
-        eventQueue.Insert(index, ve);
+        int index = EventQueue.IndexOf(batchedEvent) + 1;
+        EventQueue.Insert(index, ve);
     }
     public void ClearEventQueue()
     {
-        eventQueue.Clear();
+        EventQueue.Clear();
     }
     public VisualEvent HandleEventQueueTearDown()
     {
@@ -131,9 +136,9 @@ public class VisualEventManager : Singleton<VisualEventManager>
         VisualEvent handleReturned = null;
 
         PauseQueue();
-        if(eventQueue.Count > 0 && currentEventPlaying == true)
+        if(EventQueue.Count > 0 && currentEventPlaying == true)
         {
-            handleReturned = eventQueue[0];
+            handleReturned = EventQueue[0];
         }
 
         ClearEventQueue();
@@ -216,7 +221,7 @@ public class VisualEventManager : Singleton<VisualEventManager>
     public bool PendingCardDrawEvent()
     {
         bool boolReturned = false;
-        foreach(VisualEvent ve in eventQueue)
+        foreach(VisualEvent ve in EventQueue)
         {
             if (ve.eventDetail == EventDetail.CardDraw)
             {
@@ -230,7 +235,7 @@ public class VisualEventManager : Singleton<VisualEventManager>
     public bool PendingDefeatEvent()
     {
         bool boolReturned = false;
-        foreach (VisualEvent ve in eventQueue)
+        foreach (VisualEvent ve in EventQueue)
         {
             if (ve.eventDetail == EventDetail.GameOverDefeat)
             {
@@ -245,7 +250,7 @@ public class VisualEventManager : Singleton<VisualEventManager>
     public bool PendingVictoryEvent()
     {
         bool boolReturned = false;
-        foreach (VisualEvent ve in eventQueue)
+        foreach (VisualEvent ve in EventQueue)
         {
             if (ve.eventDetail == EventDetail.GameOverVictory)
             {

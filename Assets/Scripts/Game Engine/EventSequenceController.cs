@@ -72,8 +72,10 @@ public class EventSequenceController : Singleton<EventSequenceController>
         MainMenuController.Instance.HideNewGameScreen();
         MainMenuController.Instance.HideFrontScreen();
 
-        // Create new save file
-        PersistencyManager.Instance.BuildNewSaveFileOnNewGameStarted(MainMenuController.Instance.GetChosenTemplatesFromChooseCharacterWindows());
+        // CREATE NEW SAVE FILE
+
+        // Set up characters
+        PersistencyManager.Instance.BuildNewSaveFileOnNewGameStarted();
 
         // Build and prepare all session data
         PersistencyManager.Instance.SetUpGameSessionDataFromSaveFile();

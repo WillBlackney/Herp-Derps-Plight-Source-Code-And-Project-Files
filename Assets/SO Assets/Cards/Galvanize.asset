@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Galvanize
   cardDescription: "Give target Power equal to your Overload. \nRemove all Overload."
   cardSprite: {fileID: 21300000, guid: 9cc853756a5c2ef4abf5f0a2c6dcac1c, type: 3}
-  cardEnergyCost: 2
+  cardEnergyCost: 1
   cardType: 1
   targettingType: 2
   talentSchool: 13

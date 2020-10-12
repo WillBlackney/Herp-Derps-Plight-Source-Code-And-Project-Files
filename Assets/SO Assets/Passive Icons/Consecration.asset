@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Consecration
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: 3b48778928cf54048a13df3e7066937a, type: 3}
+  passiveSprite: {fileID: 21300000, guid: 5d3c0dca53bede34c91bcb26e69c96c1, type: 3}
   passiveName: Consecration
   showStackCount: 1
   hiddenOnPassivePanel: 0

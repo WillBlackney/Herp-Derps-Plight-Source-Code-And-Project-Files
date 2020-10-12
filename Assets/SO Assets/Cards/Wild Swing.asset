@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
   m_Name: Wild Swing
   m_EditorClassIdentifier: 
-  cardName: Wild Swing
-  cardDescription: "Deal 10 Physical Damage. \nCosts 1 less Energy each time you
-    lose health."
+  cardName: Execute
+  cardDescription: "Deal 8 Physical Damage. \nCosts 1 less Energy each time you lose
+    health."
   cardSprite: {fileID: 21300000, guid: b6b5740261191e440819c52465f74164, type: 3}
   cardEnergyCost: 4
   cardType: 2
@@ -38,7 +38,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 10
+    baseDamageValue: 8
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0

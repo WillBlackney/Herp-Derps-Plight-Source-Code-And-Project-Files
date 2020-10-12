@@ -13,12 +13,10 @@ MonoBehaviour:
   m_Name: Human Mugger
   m_EditorClassIdentifier: 
   enemyName: Human Mugger
-  description: 
   maxHealth: 48
-  strength: 0
-  wisdom: 0
+  power: 0
   dexterity: 0
-  initiative: 3
+  initiative: 2
   startingHealth: 48
   startingBlock: 0
   physicalResistance: 0
@@ -27,25 +25,52 @@ MonoBehaviour:
   shadowResistance: 0
   poisonResistance: 0
   airResistance: 0
-  allPassives: []
+  serializedPassiveManager:
+    bonusPowerStacks: 0
+    bonusDexterityStacks: 0
+    bonusStaminaStacks: 0
+    bonusInitiativeStacks: 0
+    bonusDrawStacks: 0
+    temporaryBonusPowerStacks: 0
+    temporaryBonusDexterityStacks: 0
+    temporaryBonusStaminaStacks: 0
+    temporaryBonusInitiativeStacks: 0
+    temporaryBonusDrawStacks: 0
+    runeStacks: 0
+    barrierStacks: 0
+    enrageStacks: 0
+    shieldWallStacks: 0
+    fanOfKnivesStacks: 0
+    divineFavourStacks: 0
+    phoenixFormStacks: 0
+    poisonousStacks: 0
+    venomousStacks: 0
+    overloadStacks: 0
+    fusionStacks: 0
+    plantedFeetStacks: 0
+    consecrationStacks: 0
+    growingStacks: 0
+    cautiousStacks: 0
+    infuriatedStacks: 0
+    encouragingAuraStacks: 0
+    shadowAuraStacks: 0
+    wrathStacks: 0
+    weakenedStacks: 0
+    vulnerableStacks: 0
+    gritStacks: 0
+    disarmedStacks: 0
+    sleepStacks: 0
+    poisonedStacks: 0
+    burningStacks: 0
+    fireBallBonusDamageStacks: 0
   allEnemyActions:
   - actionName: Strike
     actionType: 0
     intentImage: 0
-    actionValue: 10
     actionLoops: 1
-    damageType: 1
-    statusApplied:
-      statusData: {fileID: 0}
-      statusStacks: 0
-    secondEffect: 0
-    secondActionType: 0
-    secondActionValue: 0
-    secondActionLoops: 0
-    secondStatusApplied:
-      statusData: {fileID: 0}
-      statusStacks: 0
+    doThisOnFirstActivation: 0
     canBeConsecutive: 1
     prioritiseWhenRequirementsMet: 0
     actionRequirements: []
+    actionEffects: []
   allBodyParts: []

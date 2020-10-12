@@ -28,6 +28,8 @@ public class SpriteLibrary : MonoBehaviour
         #region
     [Header("Talent School Badges")]
     [PreviewField(75)]
+    public Sprite neutralBadge;
+    [PreviewField(75)]
     public Sprite warfareBadge;
         [PreviewField(75)]
         public Sprite guardianBadge;
@@ -132,6 +134,10 @@ public class SpriteLibrary : MonoBehaviour
             else if (data == TalentSchool.Shadowcraft)
             {
                 spriteReturned = shadowCraftBadge;
+            }
+            else if (data == TalentSchool.Neutral)
+            {
+                spriteReturned = neutralBadge;
             }
 
             return spriteReturned;

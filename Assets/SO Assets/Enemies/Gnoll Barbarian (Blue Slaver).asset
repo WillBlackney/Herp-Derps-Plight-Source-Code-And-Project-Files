@@ -16,7 +16,7 @@ MonoBehaviour:
   maxHealth: 46
   power: 0
   dexterity: 0
-  initiative: 3
+  initiative: 2
   startingHealth: 46
   startingBlock: 0
   physicalResistance: 0
@@ -50,6 +50,8 @@ MonoBehaviour:
     plantedFeetStacks: 0
     consecrationStacks: 0
     growingStacks: 0
+    cautiousStacks: 0
+    infuriatedStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     wrathStacks: 0
@@ -57,6 +59,7 @@ MonoBehaviour:
     vulnerableStacks: 0
     gritStacks: 0
     disarmedStacks: 0
+    sleepStacks: 0
     poisonedStacks: 0
     burningStacks: 0
     fireBallBonusDamageStacks: 0
