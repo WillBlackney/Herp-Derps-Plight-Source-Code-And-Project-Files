@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Skeleton Mage (Gremlin Wizard)
   m_EditorClassIdentifier: 
   enemyName: Skeleton Mage
-  maxHealth: 25
+  maxHealth: 32
   power: 0
   dexterity: 0
   initiative: 2
-  startingHealth: 25
+  startingHealth: 32
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0

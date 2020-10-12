@@ -443,7 +443,7 @@ public class CardController : Singleton<CardController>
         card.cardBaseEnergyCost = original.cardBaseEnergyCost;
         card.energyReductionUntilPlayed = original.energyReductionUntilPlayed;
         card.energyReductionThisCombatOnly = original.energyReductionThisCombatOnly;
-        card.energyReductionPermanent = original.energyReductionPermanent;
+        card.energyReductionThisActivationOnly = original.energyReductionThisActivationOnly;
 
         // key words
         card.expend = original.expend;
@@ -1075,6 +1075,8 @@ public class CardController : Singleton<CardController>
             {
                 PassiveController.Instance.ModifyPlantedFeet(owner.pManager, -owner.pManager.plantedFeetStacks, false);
             }
+
+            HandleOnMeleeAttackCardPlayedListeners(owner);
             
         }
 
@@ -1456,7 +1458,7 @@ public class CardController : Singleton<CardController>
                     stacks += enemy.pManager.weakenedStacks;
                 }                
             }
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(owner.pManager, cardEffect.passivePairing.passiveData.passiveName, stacks, true, 0.5f);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(owner.pManager, cardEffect.passivePairing.ToString(), stacks, true, 0.5f);
         }
 
         // Apply passive to target
@@ -1476,7 +1478,7 @@ public class CardController : Singleton<CardController>
                     stacks += enemy.pManager.weakenedStacks;
                 }
             }
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, cardEffect.passivePairing.passiveData.passiveName, stacks, true, 0.5f);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, cardEffect.passivePairing.ToString(), stacks, true, 0.5f);
         }
 
         // Apply passive to all allies
@@ -1499,7 +1501,7 @@ public class CardController : Singleton<CardController>
 
             foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllAlliesOfCharacter(owner))
             {
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemy.pManager, cardEffect.passivePairing.passiveData.passiveName, stacks, true);
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemy.pManager, cardEffect.passivePairing.ToString(), stacks, true);
             }
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
@@ -1524,7 +1526,7 @@ public class CardController : Singleton<CardController>
 
             foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
             {
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemy.pManager, cardEffect.passivePairing.passiveData.passiveName, stacks, true);                
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemy.pManager, cardEffect.passivePairing.ToString(), stacks, true);                
             }
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
@@ -1550,7 +1552,7 @@ public class CardController : Singleton<CardController>
 
             foreach (CharacterEntityModel ally in CharacterEntityController.Instance.GetAllAlliesOfCharacter(owner))
             {
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(ally.pManager, cardEffect.passivePairing.passiveData.passiveName, stacks, true);
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(ally.pManager, cardEffect.passivePairing.ToString(), stacks, true);
                 VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
             }
         }
@@ -1725,11 +1727,33 @@ public class CardController : Singleton<CardController>
             ReduceCardEnergyCostThisCombat(card, e.energyReductionAmount);
         }
 
+        // Reduce energy cost of card this activation only
+        else if (e.cardEventListenerFunction == CardEventListenerFunction.ReduceCardEnergyCostThisActivation)
+        {
+            // Reduce cost this combat
+            ReduceCardEnergyCostThisActivation(card, e.energyReductionAmount);
+        }
+
         // Apply passive
         else if (e.cardEventListenerFunction == CardEventListenerFunction.ApplyPassiveToSelf)
         {
             VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(card.cardVM));
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(card.owner.pManager, e.passivePairing.passiveData.passiveName, e.passivePairing.passiveStacks, true, 0.5f);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(card.owner.pManager, e.passivePairing.ToString(), e.passivePairing.passiveStacks, true, 0.5f);
+        }
+    }
+    public void HandleOnMeleeAttackCardPlayedListeners(CharacterEntityModel character)
+    {
+        Debug.Log("CardController.HandleOnMeleeAttackCardPlayedListeners() called...");
+
+        foreach (Card card in GetAllCharacterCardsInHandDrawAndDiscard(character))
+        {
+            foreach (CardEventListener e in card.cardEventListeners)
+            {
+                if (e.cardEventListenerType == CardEventListenerType.OnMeleeAttackCardPlayed)
+                {
+                    RunCardEventListenerFunction(card, e);
+                }
+            }
         }
     }
     public void HandleOnCharacterDamagedCardListeners(CharacterEntityModel character)
@@ -1793,7 +1817,7 @@ public class CardController : Singleton<CardController>
 
         int costReturned = card.cardBaseEnergyCost;
 
-        costReturned -= card.energyReductionPermanent;
+        costReturned -= card.energyReductionThisActivationOnly;
         costReturned -= card.energyReductionThisCombatOnly;
         costReturned -= card.energyReductionUntilPlayed;
 
@@ -1812,6 +1836,28 @@ public class CardController : Singleton<CardController>
         }
 
         return costReturned;
+    }
+    private void ReduceCardEnergyCostThisActivation(Card card, int reductionAmount)
+    {
+        // Setup
+        CardViewModel cvm = card.cardVM;
+
+        // Reduce cost this combat
+        card.energyReductionThisActivationOnly += reductionAmount;
+
+        // Update card vm energy text, if not null
+        int newCostTextValue = GetCardEnergyCost(card);
+        if (cvm)
+        {
+            // TO DO: make logic to stop card breathing on reduction when its played
+
+            // only do breath anim when card gets a cost reduction
+            if (card.energyReductionThisActivationOnly > 0)
+            {
+                //VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(cvm));
+            }                
+            VisualEventManager.Instance.CreateVisualEvent(() => SetCardViewModelEnergyText(card, cvm, newCostTextValue.ToString()));
+        }
     }
     private void ReduceCardEnergyCostThisCombat(Card card, int reductionAmount)
     {
@@ -1846,6 +1892,15 @@ public class CardController : Singleton<CardController>
         {
             VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(cvm));
             VisualEventManager.Instance.CreateVisualEvent(() => SetCardViewModelEnergyText(card, cvm, newCostTextValue.ToString()));
+        }
+    }
+    public void ResetAllCardEnergyCostsOnActivationEnd(CharacterEntityModel character)
+    {
+        List<Card> allCharacterCards = GetAllCharacterCardsInHandDrawAndDiscard(character);
+
+        foreach(Card card in allCharacterCards)
+        {
+            ReduceCardEnergyCostThisActivation(card, -card.energyReductionThisActivationOnly);
         }
     }
     #endregion
@@ -1942,7 +1997,7 @@ public class CardController : Singleton<CardController>
             else if (choiceEffect.choiceEffect == OnCardInHandChoiceMadeEffectType.GainPassive)
             {
                 PassiveController.Instance.ModifyPassiveOnCharacterEntity
-                    (ActivationManager.Instance.EntityActivated.pManager, choiceEffect.passivePairing.passiveData.passiveName, choiceEffect.passivePairing.passiveStacks, true, 0.5f);
+                    (ActivationManager.Instance.EntityActivated.pManager, choiceEffect.passivePairing.ToString(), choiceEffect.passivePairing.passiveStacks, true, 0.5f);
             }
 
             // reduce cost of new cards

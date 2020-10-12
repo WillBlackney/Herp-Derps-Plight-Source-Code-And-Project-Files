@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Skeleton Guardian (Shield Gremlin)
   m_EditorClassIdentifier: 
   enemyName: Skeleton Guardian
-  maxHealth: 15
+  maxHealth: 20
   power: 0
   dexterity: 0
   initiative: 2
-  startingHealth: 15
+  startingHealth: 20
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0

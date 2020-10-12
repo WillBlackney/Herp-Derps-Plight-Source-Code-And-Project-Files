@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Assassin_1
   m_EditorClassIdentifier: 
   myName: Assassin
-  health: 30
-  maxHealth: 30
+  health: 40
+  maxHealth: 40
   power: 0
   dexterity: 0
   stamina: 3
@@ -70,11 +70,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4f7008c09af197b43b9e5ee443274691, type: 2}
   - {fileID: 11400000, guid: 4806fd31c9152b74c92ce0c4d1cfdcf9, type: 2}
   - {fileID: 11400000, guid: 4806fd31c9152b74c92ce0c4d1cfdcf9, type: 2}
-  - {fileID: 11400000, guid: 49e27db1fd5449d449e4fdfdb4cb512f, type: 2}
-  - {fileID: 11400000, guid: 49e27db1fd5449d449e4fdfdb4cb512f, type: 2}
   - {fileID: 11400000, guid: 708f5f31c10f4d14e9f8a91cc822a47b, type: 2}
   - {fileID: 11400000, guid: 708f5f31c10f4d14e9f8a91cc822a47b, type: 2}
-  - {fileID: 11400000, guid: 7d08155ea258c934384bd8975db95349, type: 2}
+  - {fileID: 11400000, guid: f196a97a8b7eeeb4e84b98114e8ae768, type: 2}
+  - {fileID: 11400000, guid: f196a97a8b7eeeb4e84b98114e8ae768, type: 2}
+  - {fileID: 11400000, guid: 82398fcb72827b547af04198c592e6cc, type: 2}
   - {fileID: 11400000, guid: b283ece60e43e904594443b098ac381b, type: 2}
   modelParts:
   - Goblin_Chest

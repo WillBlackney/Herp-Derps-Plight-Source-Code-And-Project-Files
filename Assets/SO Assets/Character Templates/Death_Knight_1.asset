@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Death_Knight_1
   m_EditorClassIdentifier: 
   myName: Death Knight
-  health: 30
-  maxHealth: 30
+  health: 40
+  maxHealth: 40
   power: 0
   dexterity: 0
   stamina: 3
@@ -72,9 +72,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c725ced37bae68e4ea02c145e66668d9, type: 2}
   - {fileID: 11400000, guid: 12e01ae28d25a4042a23a910d9c32a1d, type: 2}
   - {fileID: 11400000, guid: 12e01ae28d25a4042a23a910d9c32a1d, type: 2}
-  - {fileID: 11400000, guid: 58ad3605f0bb1844dac2124cd71174c1, type: 2}
   - {fileID: 11400000, guid: 3515e3b8e92620548af756ddbf500130, type: 2}
-  - {fileID: 11400000, guid: 1aa5ba9a69a1e014883cdff8719c8e91, type: 2}
+  - {fileID: 11400000, guid: 3515e3b8e92620548af756ddbf500130, type: 2}
+  - {fileID: 11400000, guid: 58ad3605f0bb1844dac2124cd71174c1, type: 2}
   - {fileID: 11400000, guid: f6e3850c009fce847b7ce96497469eb5, type: 2}
   modelParts:
   - Undead_Chest

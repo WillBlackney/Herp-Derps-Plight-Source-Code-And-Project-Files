@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Big Bad Skeleton (Gremlin Nob)
   m_EditorClassIdentifier: 
   enemyName: Big Bad Skeleton
-  maxHealth: 86
+  maxHealth: 106
   power: 0
   dexterity: 0
   initiative: 4
-  startingHealth: 86
+  startingHealth: 106
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0

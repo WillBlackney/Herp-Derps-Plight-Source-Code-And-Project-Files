@@ -10,7 +10,7 @@ public class CardEventListener
     public CardEventListenerType cardEventListenerType;
     public CardEventListenerFunction cardEventListenerFunction;
 
-    [ShowIf("cardEventListenerFunction", CardEventListenerFunction.ReduceCardEnergyCost)]
+    [ShowIf("ShowEnergyReduction")]
     public int energyReductionAmount;
 
     [ShowIf("ShowPassivePairing")]
@@ -19,6 +19,18 @@ public class CardEventListener
     public bool ShowPassivePairing()
     {
         if (cardEventListenerFunction == CardEventListenerFunction.ApplyPassiveToSelf)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowEnergyReduction()
+    {
+        if (cardEventListenerFunction == CardEventListenerFunction.ReduceCardEnergyCost ||
+            cardEventListenerFunction == CardEventListenerFunction.ReduceCardEnergyCostThisActivation)
         {
             return true;
         }

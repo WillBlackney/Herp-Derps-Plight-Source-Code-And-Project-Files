@@ -79,7 +79,11 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
     {
         foreach (CharacterData data in CharacterDataController.Instance.allPlayerCharacters)
         {
-            CreatePlayerCharacter(data, LevelManager.Instance.GetNextAvailableDefenderNode());
+            // Dont spawn dead characters
+            if (data.health > 0)
+            {
+                CreatePlayerCharacter(data, LevelManager.Instance.GetNextAvailableDefenderNode());
+            }          
         }
     }
     public void DestroyAllCombatCharacters()
@@ -94,7 +98,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         AllEnemies.Clear();
     }
     public CharacterEntityModel CreatePlayerCharacter(CharacterData data, LevelNode position)
-    {
+    {       
         // Create GO + View
         CharacterEntityView vm = CreateCharacterEntityView().GetComponent<CharacterEntityView>();
 
@@ -631,6 +635,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         // reset misc properties
         entity.meleeAttacksPlayedThisActivation = 0;
 
+    
+
         // Stop if combat has ended
         if (CombatLogic.Instance.CurrentCombatState != CombatGameState.CombatActive)
         {
@@ -643,6 +649,9 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         {
             // Lose unused energy, discard hand
             ModifyEnergy(entity, -entity.energy);
+
+            // reset activation only energy values on cards
+            CardController.Instance.ResetAllCardEnergyCostsOnActivationEnd(entity);
 
             // Run events on cards with 'OnActivationEnd' listener
             CardController.Instance.HandleOnCharacterActivationEndCardListeners(entity);
@@ -1737,6 +1746,11 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         // Defend self + Defend target
         else if (effect.actionType == ActionType.DefendSelf || effect.actionType == ActionType.DefendTarget)
         {
+            if(target == null)
+            {
+                target = enemy;
+            }
+
             ModifyBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy, target, effect, null));
         }
 

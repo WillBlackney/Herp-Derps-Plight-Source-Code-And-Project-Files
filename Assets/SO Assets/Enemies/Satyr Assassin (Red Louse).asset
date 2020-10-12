@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Satyr Assassin (Red Louse)
   m_EditorClassIdentifier: 
   enemyName: Satyr Assassin
-  maxHealth: 15
+  maxHealth: 21
   power: 0
   dexterity: 0
   initiative: 2
-  startingHealth: 15
+  startingHealth: 21
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0

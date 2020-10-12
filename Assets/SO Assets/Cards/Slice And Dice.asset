@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Wild Swing
+  m_Name: Slice And Dice
   m_EditorClassIdentifier: 
-  cardName: Execute
-  cardDescription: "Deal 8 Physical Damage. \nCosts 1 less Energy each time you lose
-    health."
-  cardSprite: {fileID: 21300000, guid: b6b5740261191e440819c52465f74164, type: 3}
-  cardEnergyCost: 4
+  cardName: Slice And Dice
+  cardDescription: 'Deal 5 Physical Damage.
+
+    Cost 1 Energy less for each Melee
+    Attack played this activation.'
+  cardSprite: {fileID: 21300000, guid: 4fc94d7538c9aaa418942d34c99d1f7d, type: 3}
+  cardEnergyCost: 3
   cardType: 2
   targettingType: 3
-  talentSchool: 2
+  talentSchool: 3
   rarity: 1
   expend: 0
   innate: 0
@@ -38,7 +40,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 8
+    baseDamageValue: 5
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
@@ -51,7 +53,7 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: {fileID: 0}
+      passiveData: 0
       passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
@@ -87,21 +89,6 @@ MonoBehaviour:
       projectileFired: 0
       projectileStartPosition: 0
       onCharacter: 0
-    - eventType: 4
-      screenOverlayType: 0
-      overlayColor: 0
-      overlayFadeInTime: 0
-      overlayDuration: 0
-      overlayFadeOutTime: 0
-      particleEffect: 0
-      cameraShake: 1
-      movementAnimation: 0
-      soundEffect: 0
-      characterAnimation: 0
-      delayDuration: 0
-      projectileFired: 0
-      projectileStartPosition: 0
-      onCharacter: 0
     - eventType: 3
       screenOverlayType: 0
       overlayColor: 0
@@ -117,6 +104,21 @@ MonoBehaviour:
       projectileFired: 0
       projectileStartPosition: 0
       onCharacter: 2
+    - eventType: 4
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
+      particleEffect: 0
+      cameraShake: 1
+      movementAnimation: 0
+      soundEffect: 0
+      characterAnimation: 0
+      delayDuration: 0
+      projectileFired: 0
+      projectileStartPosition: 0
+      onCharacter: 0
     - eventType: 5
       screenOverlayType: 0
       overlayColor: 0
@@ -126,7 +128,7 @@ MonoBehaviour:
       particleEffect: 0
       cameraShake: 0
       movementAnimation: 0
-      soundEffect: 15
+      soundEffect: 16
       characterAnimation: 0
       delayDuration: 0
       projectileFired: 0
@@ -134,9 +136,9 @@ MonoBehaviour:
       onCharacter: 0
     visualEventsOnFinish: []
   cardEventListeners:
-  - cardEventListenerType: 1
-    cardEventListenerFunction: 1
+  - cardEventListenerType: 4
+    cardEventListenerFunction: 3
     energyReductionAmount: 1
     passivePairing:
-      passiveData: {fileID: 0}
+      passiveData: 0
       passiveStacks: 0

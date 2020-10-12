@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Thunder Strike
   m_EditorClassIdentifier: 
   cardName: Thunder Strike
-  cardDescription: "Deal 4 Air damage. \nGain 2 Overload."
+  cardDescription: "Deal 4 Air damage. \nGain 1 Overload."
   cardSprite: {fileID: 21300000, guid: 1742843d0d172bf438fbb3013d5dbcdc, type: 3}
   cardEnergyCost: 1
   cardType: 2
@@ -50,7 +50,7 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: {fileID: 0}
+      passiveData: 0
       passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
@@ -156,7 +156,7 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: {fileID: 11400000, guid: dcdd2890a1d32f04b83aff87ff075399, type: 2}
+      passiveData: 18
       passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0

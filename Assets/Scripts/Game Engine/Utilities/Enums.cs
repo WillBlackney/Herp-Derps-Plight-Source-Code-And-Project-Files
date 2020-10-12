@@ -78,18 +78,20 @@ public enum ExtraDrawEffect
 [Serializable]
 public enum CardEventListenerType
 {
-    None,
-    OnLoseHealth,
-    OnDraw,
-    OnActivationEnd,
+    None = 0,
+    OnLoseHealth = 1,
+    OnDraw = 2,
+    OnActivationEnd = 3,
+    OnMeleeAttackCardPlayed = 4,
 }
 
 [Serializable]
 public enum CardEventListenerFunction
 {
-    None,
-    ReduceCardEnergyCost,
-    ApplyPassiveToSelf
+    None = 0,
+    ReduceCardEnergyCost = 1,
+    ReduceCardEnergyCostThisActivation = 3,
+    ApplyPassiveToSelf = 2,
 }
 #endregion
 
@@ -139,6 +141,49 @@ public enum CharacterRace
     Goblin = 5, 
     Satyr = 6,
     Gnoll = 7,
+};
+[Serializable]
+public enum Passive
+{
+    None = 0,
+    Barrier = 1,
+    Burning = 2,
+    Cautious = 3,
+    Consecration = 4,
+    Dexterity = 5,
+    Disarmed = 6,
+    DivineFavour = 7,
+    Draw = 8,
+    EncouragingAura = 9,
+    Enrage = 10,
+    FanOfKnives = 11,
+    FireBallBonusDamage = 12,
+    Fusion = 13,
+    Grit = 14,
+    Growing = 15,
+    Infuriated = 16,
+    Initiative = 17,
+    Overload = 18,
+    PhoenixForm = 19,
+    PlantedFeet = 20,
+    Poisoned = 21,
+    Poisonous = 22,
+    Power = 23,
+    Rune = 24,
+    ShadowAura = 25,
+    ShieldWall = 26,
+    Sleep = 27,
+    Stamina = 28,
+    Taunted = 29,
+    TemporaryDexterity = 30,
+    TemporaryDraw = 31,
+    TemporaryInitiative = 32,
+    TemporaryPower = 33,
+    TemporaryStamina = 34,
+    Venomous = 35,
+    Vulnerable = 36,
+    Weakened = 37,
+    Wrath = 38,
 };
 #endregion
 

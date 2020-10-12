@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Berserker_1
   m_EditorClassIdentifier: 
   myName: Berserker
-  health: 30
-  maxHealth: 30
+  health: 40
+  maxHealth: 40
   power: 0
   dexterity: 0
   stamina: 3
@@ -66,16 +66,16 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: faa0782b525bcec47bd22d3f1fa5b415, type: 2}
+  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
+  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
+  - {fileID: 11400000, guid: 00b73be375fd9ce4e9735d3cba2ca025, type: 2}
   - {fileID: 11400000, guid: 00b73be375fd9ce4e9735d3cba2ca025, type: 2}
   - {fileID: 11400000, guid: b31f4356f84f2bd48add48495139e0e5, type: 2}
+  - {fileID: 11400000, guid: b31f4356f84f2bd48add48495139e0e5, type: 2}
+  - {fileID: 11400000, guid: 0e73c280fb28d9b4d9e4fc59eab30e44, type: 2}
+  - {fileID: 11400000, guid: 0e73c280fb28d9b4d9e4fc59eab30e44, type: 2}
   - {fileID: 11400000, guid: 37325f26ba4983840af841104c1c1b26, type: 2}
-  - {fileID: 11400000, guid: 0e73c280fb28d9b4d9e4fc59eab30e44, type: 2}
-  - {fileID: 11400000, guid: 00b73be375fd9ce4e9735d3cba2ca025, type: 2}
-  - {fileID: 11400000, guid: 0e73c280fb28d9b4d9e4fc59eab30e44, type: 2}
-  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
-  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
-  - {fileID: 11400000, guid: b31f4356f84f2bd48add48495139e0e5, type: 2}
+  - {fileID: 11400000, guid: faa0782b525bcec47bd22d3f1fa5b415, type: 2}
   modelParts:
   - Human_Chest
   - Human_Face_2

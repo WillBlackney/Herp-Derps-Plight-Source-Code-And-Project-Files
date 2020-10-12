@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Lagaluvin
   m_EditorClassIdentifier: 
   enemyName: Lagaluvin
-  maxHealth: 111
+  maxHealth: 130
   power: 0
   dexterity: 0
   initiative: 4
-  startingHealth: 111
+  startingHealth: 130
   startingBlock: 8
   physicalResistance: 0
   fireResistance: 0

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Orc Barbarian (Cultist)
   m_EditorClassIdentifier: 
   enemyName: Orc Barbarian
-  maxHealth: 54
+  maxHealth: 64
   power: 0
   dexterity: 0
   initiative: 3
-  startingHealth: 54
+  startingHealth: 64
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0

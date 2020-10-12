@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Shaman_1
   m_EditorClassIdentifier: 
   myName: Shaman
-  health: 30
-  maxHealth: 30
+  health: 40
+  maxHealth: 40
   power: 0
   dexterity: 0
   stamina: 3

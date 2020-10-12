@@ -50,7 +50,7 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: {fileID: 11400000, guid: 4776b8f65583265428f52c0c1c2a79c1, type: 2}
+      passiveData: 10
       passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0

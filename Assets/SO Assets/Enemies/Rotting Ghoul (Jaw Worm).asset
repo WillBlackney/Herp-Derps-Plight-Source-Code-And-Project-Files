@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Rotting Ghoul (Jaw Worm)
   m_EditorClassIdentifier: 
   enemyName: Rotting Ghoul
-  maxHealth: 44
+  maxHealth: 54
   power: 0
   dexterity: 0
   initiative: 2
-  startingHealth: 44
+  startingHealth: 54
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0

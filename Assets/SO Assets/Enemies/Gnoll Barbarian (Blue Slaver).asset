@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Gnoll Barbarian (Blue Slaver)
   m_EditorClassIdentifier: 
   enemyName: Gnoll Barbarian
-  maxHealth: 46
+  maxHealth: 56
   power: 0
   dexterity: 0
   initiative: 2
-  startingHealth: 46
+  startingHealth: 56
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0

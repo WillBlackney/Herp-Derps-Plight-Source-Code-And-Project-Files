@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Satyr Ranger (Green Louse)
   m_EditorClassIdentifier: 
   enemyName: Satyr Ranger
-  maxHealth: 17
+  maxHealth: 24
   power: 0
   dexterity: 0
   initiative: 2
-  startingHealth: 17
+  startingHealth: 24
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0

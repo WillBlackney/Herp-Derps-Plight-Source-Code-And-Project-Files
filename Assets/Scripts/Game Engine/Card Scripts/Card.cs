@@ -24,8 +24,8 @@ public class Card
 
     // Energy reduction propeties
     public int energyReductionUntilPlayed;
-    public int energyReductionPermanent;
     public int energyReductionThisCombatOnly;
+    public int energyReductionThisActivationOnly;
 
     // Key words
     public bool expend;

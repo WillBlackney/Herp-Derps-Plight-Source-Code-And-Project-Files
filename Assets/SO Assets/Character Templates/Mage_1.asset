@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Mage_1
   m_EditorClassIdentifier: 
   myName: Mage
-  health: 30
-  maxHealth: 30
+  health: 40
+  maxHealth: 40
   power: 0
   dexterity: 0
   stamina: 3
@@ -72,7 +72,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dc39bf1b28a8c70409116fe98c26c586, type: 2}
   - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
   - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
-  - {fileID: 11400000, guid: f3cc4d0c8e5770b4095da504e370933b, type: 2}
+  - {fileID: 11400000, guid: 0163cb54b6898bf46aab115bc74d0350, type: 2}
   - {fileID: 11400000, guid: 0163cb54b6898bf46aab115bc74d0350, type: 2}
   - {fileID: 11400000, guid: db18175c7f3366747b53efcc374bf697, type: 2}
   - {fileID: 11400000, guid: c29964ec64c216a41ac3fd20a356a5f5, type: 2}

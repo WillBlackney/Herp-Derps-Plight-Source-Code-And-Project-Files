@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Juggernaut_1
   m_EditorClassIdentifier: 
   myName: Juggernaut
-  health: 30
-  maxHealth: 30
+  health: 40
+  maxHealth: 40
   power: 0
   dexterity: 0
   stamina: 3
@@ -83,8 +83,9 @@ MonoBehaviour:
   - Human_Right_Arm
   - Human_Right_Hand
   - Human_Right_Leg
-  - Knight_Head_Wear
-  - Knight_Chest_Wear
+  - Bulwark_Head_Wear
+  - Black_Gold_Plate_Chest_Wear
+  - Black_Gold_Plate_Right_Leg_Wear
   serializedItemManager:
     mainHandItem: {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}
     offHandItem: {fileID: 11400000, guid: a49466273aff6954d8e0303879ded604, type: 2}

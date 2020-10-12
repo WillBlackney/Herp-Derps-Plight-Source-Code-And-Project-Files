@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Skeleton Berserker (Mad Gremlin)
   m_EditorClassIdentifier: 
   enemyName: Skeleton Berserker
-  maxHealth: 24
+  maxHealth: 29
   power: 0
   dexterity: 0
   initiative: 2
-  startingHealth: 24
+  startingHealth: 29
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0

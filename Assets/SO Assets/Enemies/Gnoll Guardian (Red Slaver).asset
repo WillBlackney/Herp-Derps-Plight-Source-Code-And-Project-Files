@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Gnoll Guardian (Red Slaver)
   m_EditorClassIdentifier: 
   enemyName: Gnoll Guardian
-  maxHealth: 50
+  maxHealth: 60
   power: 0
   dexterity: 0
   initiative: 2
-  startingHealth: 50
+  startingHealth: 60
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0

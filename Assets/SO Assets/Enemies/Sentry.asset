@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Sentry
   m_EditorClassIdentifier: 
   enemyName: Sentry
-  maxHealth: 42
+  maxHealth: 52
   power: 0
   dexterity: 0
   initiative: 2
-  startingHealth: 42
+  startingHealth: 52
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0
