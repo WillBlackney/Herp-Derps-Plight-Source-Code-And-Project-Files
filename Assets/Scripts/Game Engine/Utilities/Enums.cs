@@ -174,6 +174,7 @@ public enum Passive
     ShieldWall = 26,
     Sleep = 27,
     Stamina = 28,
+    TakenAim = 39,
     Taunted = 29,
     TemporaryDexterity = 30,
     TemporaryDraw = 31,

@@ -436,7 +436,7 @@ public class CombatLogic : Singleton<CombatLogic>
             {
                 // Create Lose Armor Effect
                 VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateLoseBlockEffect(victim.characterEntityView.transform.position, adjustedDamageValue), queuePosition, 0, 0, EventDetail.None, batchedEvent);
+                VisualEffectManager.Instance.CreateLoseBlockEffect(victim.characterEntityView.WorldPosition, adjustedDamageValue), queuePosition, 0, 0, EventDetail.None, batchedEvent);
 
             }
             else if (totalLifeLost > 0)
@@ -450,11 +450,11 @@ public class CombatLogic : Singleton<CombatLogic>
 
                 // Create damage text effect
                 VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateDamageEffect(victim.characterEntityView.transform.position, totalLifeLost), queuePosition, 0, 0, EventDetail.None, batchedEvent);
+                VisualEffectManager.Instance.CreateDamageEffect(victim.characterEntityView.WorldPosition, totalLifeLost), queuePosition, 0, 0, EventDetail.None, batchedEvent);
 
                 // Create impact effect
                 VisualEventManager.Instance.CreateVisualEvent(() =>
-               VisualEffectManager.Instance.CreateSmallMeleeImpact(victim.characterEntityView.transform.position, totalLifeLost), queuePosition, 0, 0, EventDetail.None, batchedEvent);
+               VisualEffectManager.Instance.CreateSmallMeleeImpact(victim.characterEntityView.WorldPosition, totalLifeLost), queuePosition, 0, 0, EventDetail.None, batchedEvent);
 
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 AudioManager.Instance.PlaySound(Sound.Ability_Damaged_Health_Lost), queuePosition, 0, 0, EventDetail.None, batchedEvent);

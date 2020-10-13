@@ -186,6 +186,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyPlantedFeet(newClone, originalData.plantedFeetStacks, false);
         }
+        if (originalData.takenAimStacks != 0)
+        {
+            ModifyTakenAim(newClone, originalData.takenAimStacks, false);
+        }
         if (originalData.consecrationStacks != 0)
         {
             ModifyConsecration(newClone, originalData.consecrationStacks, false);
@@ -307,6 +311,7 @@ public class PassiveController : Singleton<PassiveController>
         pManager.overloadStacks = original.overloadStacks;
         pManager.fusionStacks = original.fusionStacks;
         pManager.plantedFeetStacks = original.plantedFeetStacks;
+        pManager.takenAimStacks = original.takenAimStacks;
         pManager.consecrationStacks = original.consecrationStacks;
         pManager.growingStacks = original.growingStacks;
         pManager.cautiousStacks = original.cautiousStacks;
@@ -631,6 +636,10 @@ public class PassiveController : Singleton<PassiveController>
         else if (originalData == "Planted Feet")
         {
             ModifyPlantedFeet(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Taken Aim")
+        {
+            ModifyTakenAim(pManager, stacks, showVFX, vfxDelay);
         }
         else if (originalData == "Consecration")
         {
@@ -2110,6 +2119,70 @@ public class PassiveController : Singleton<PassiveController>
             if (pManager.myCharacter != null)
             {
                 CardController.Instance.OnMeleeAttackReductionModified(pManager.myCharacter);
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+
+
+    }
+    public void ModifyTakenAim(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyTakenAim() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Taken Aim");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.takenAimStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Taken Aim!");
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Taken Aim Removed");
+                });
+            }
+
+            // Update cost of cards in hand
+            if (pManager.myCharacter != null)
+            {
+                CardController.Instance.OnRangedAttackReductionModified(pManager.myCharacter);
             }
 
             if (showVFX)

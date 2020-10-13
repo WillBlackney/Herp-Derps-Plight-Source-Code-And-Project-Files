@@ -1080,6 +1080,15 @@ public class CardController : Singleton<CardController>
             
         }
 
+        // Remove Ranged Attack reduction passive
+        if (card.cardType == CardType.RangedAttack)
+        {
+            if (owner.pManager.takenAimStacks > 0)
+            {
+                PassiveController.Instance.ModifyTakenAim(owner.pManager, -owner.pManager.takenAimStacks, false);
+            }
+        }
+
         // Infuriated 
         if (card.cardType == CardType.Skill)
         {
@@ -1807,6 +1816,29 @@ public class CardController : Singleton<CardController>
             }
         }
     }
+    public void OnRangedAttackReductionModified(CharacterEntityModel model)
+    {
+        foreach (Card card in model.hand)
+        {
+            if (card.cardType == CardType.RangedAttack)
+            {
+                // Update card vm energy text, if not null
+                CardViewModel cvm = card.cardVM;
+                int newCostTextValue = GetCardEnergyCost(card);
+                if (cvm)
+                {
+                    // Update energy cost text
+                    VisualEventManager.Instance.CreateVisualEvent(() => SetCardViewModelEnergyText(card, cvm, newCostTextValue.ToString()));
+
+                    // only play breath if cost of card is reduced, not increased
+                    if (model.pManager.takenAimStacks > 0)
+                    {
+                        VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(cvm));
+                    }
+                }
+            }
+        }
+    }
     #endregion
 
     // Misc + Calculators + Events
@@ -1829,8 +1861,15 @@ public class CardController : Singleton<CardController>
             costReturned -= card.owner.pManager.plantedFeetStacks;
         }
 
+        if (card.owner.pManager != null &&
+            card.cardType == CardType.RangedAttack &&
+            card.owner.pManager.takenAimStacks > 0)
+        {
+            costReturned -= card.owner.pManager.takenAimStacks;
+        }
+
         // Prevent cost going negative
-        if(costReturned < 0)
+        if (costReturned < 0)
         {
             costReturned = 0;
         }

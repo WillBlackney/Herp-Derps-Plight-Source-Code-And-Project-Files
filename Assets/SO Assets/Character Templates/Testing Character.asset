@@ -19,7 +19,7 @@ MonoBehaviour:
   dexterity: 0
   stamina: 10
   draw: 5
-  initiative: 22
+  initiative: 100
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0
@@ -50,6 +50,7 @@ MonoBehaviour:
     overloadStacks: 0
     fusionStacks: 0
     plantedFeetStacks: 0
+    takenAimStacks: 0
     consecrationStacks: 0
     growingStacks: 0
     cautiousStacks: 0
@@ -66,8 +67,8 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: c62cea059d102884a8aabb11de5b070c, type: 2}
-  - {fileID: 11400000, guid: c62cea059d102884a8aabb11de5b070c, type: 2}
+  - {fileID: 11400000, guid: 4fa47f450ff530d47884c246293bb23a, type: 2}
+  - {fileID: 11400000, guid: 4fa47f450ff530d47884c246293bb23a, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1
@@ -83,5 +84,5 @@ MonoBehaviour:
   - Shaman_Right_Leg_Wear
   - Shaman_Mask_Head_Wear
   serializedItemManager:
-    mainHandItem: {fileID: 11400000, guid: 8487b0bcf8b350246ad6ff676ec686f4, type: 2}
+    mainHandItem: {fileID: 11400000, guid: dfeeccc8c225a66488eb3e4eb76d6c3b, type: 2}
     offHandItem: {fileID: 0}

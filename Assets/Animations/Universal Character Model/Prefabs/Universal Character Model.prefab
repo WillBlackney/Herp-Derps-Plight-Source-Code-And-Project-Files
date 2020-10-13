@@ -45008,7 +45008,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingOrderBonus: 2
   bodyPartType: 18
-  itemsWithMyView: []
+  itemsWithMyView:
+  - {fileID: 11400000, guid: dfeeccc8c225a66488eb3e4eb76d6c3b, type: 2}
   connectedElements: []
 --- !u!1 &6744930200259100646
 GameObject:

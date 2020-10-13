@@ -74,8 +74,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b31f4356f84f2bd48add48495139e0e5, type: 2}
   - {fileID: 11400000, guid: 0e73c280fb28d9b4d9e4fc59eab30e44, type: 2}
   - {fileID: 11400000, guid: 0e73c280fb28d9b4d9e4fc59eab30e44, type: 2}
-  - {fileID: 11400000, guid: 37325f26ba4983840af841104c1c1b26, type: 2}
-  - {fileID: 11400000, guid: faa0782b525bcec47bd22d3f1fa5b415, type: 2}
+  - {fileID: 11400000, guid: 983b96f46c4ba014287f9bce96277457, type: 2}
+  - {fileID: 11400000, guid: 983b96f46c4ba014287f9bce96277457, type: 2}
   modelParts:
   - Human_Chest
   - Human_Face_2

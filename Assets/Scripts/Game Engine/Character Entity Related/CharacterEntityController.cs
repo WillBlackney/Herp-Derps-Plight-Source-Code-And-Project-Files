@@ -635,7 +635,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         // reset misc properties
         entity.meleeAttacksPlayedThisActivation = 0;
 
-    
+        // Disable level node activation ring view        
+        VisualEventManager.Instance.CreateVisualEvent(() => LevelManager.Instance.SetActivatedViewState(veNode, false));
 
         // Stop if combat has ended
         if (CombatLogic.Instance.CurrentCombatState != CombatGameState.CombatActive)
@@ -776,8 +777,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             // Calculate and deal Poison damage
             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Poison, entity.pManager.poisonedStacks, null, null);
             VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
-            CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Poison, true);
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.PoisonExplosion, view.WorldPosition));
+            CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Poison, true);           
         }
         if (entity.pManager.burningStacks > 0)
         {
@@ -787,8 +788,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             // Calculate and deal Poison damage
             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Fire, entity.pManager.burningStacks, null, null);
             VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
-            CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Fire, true);
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.FireExplosion, view.WorldPosition));
+            CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Fire, true);           
         }
 
         // Overload
@@ -830,7 +831,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }
 
         // Disable level node activation ring view        
-        VisualEventManager.Instance.CreateVisualEvent(() => LevelManager.Instance.SetActivatedViewState(veNode, false));
+        //VisualEventManager.Instance.CreateVisualEvent(() => LevelManager.Instance.SetActivatedViewState(veNode, false));
 
         // Activate next character
         if (entity != null &&

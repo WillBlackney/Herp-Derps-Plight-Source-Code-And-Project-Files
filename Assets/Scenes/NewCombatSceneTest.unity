@@ -854,10 +854,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
   gameMode: 0
-  testingEnemyWave: {fileID: 11400000, guid: a8b3f1fe304e6f443b18d8c64e68abe4, type: 2}
+  testingEnemyWave: {fileID: 11400000, guid: a925a91cb3c75e64cadf1f518e9a621e, type: 2}
   testingCharacterTemplates:
-  - {fileID: 11400000, guid: 7a42828b49c2ca147bff9fbe284f2eb5, type: 2}
-  - {fileID: 11400000, guid: b032cf78d33b0f2459c4af64779ad485, type: 2}
+  - {fileID: 11400000, guid: 9995c546aa0445c4bb2c702643fc3502, type: 2}
+  - {fileID: 11400000, guid: 9995c546aa0445c4bb2c702643fc3502, type: 2}
   deviceMode: 1
   mouseDragSensitivity: 0.25
   hoverMovePosition: {x: 0, y: 2, z: 0}
@@ -1899,6 +1899,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f4d581b9181795e48b68007fcfeec3d2, type: 2}
   - {fileID: 11400000, guid: 6f53a59075648034ab7c521f182140e3, type: 2}
   - {fileID: 11400000, guid: 44285bb48a164794e908c6325bd4f19f, type: 2}
+  - {fileID: 11400000, guid: 7487ea62dcbf3ab409e91f14d4c43076, type: 2}
 --- !u!1 &200055974
 GameObject:
   m_ObjectHideFlags: 0
@@ -4761,6 +4762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6068b8fb8d74d634e82d53a8b30598a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
   neutralBadge: {fileID: 21300000, guid: ab9ba4208e0b0294b9afb7267568cfb4, type: 3}
   warfareBadge: {fileID: 21300000, guid: d79d7c807a1112f4e9a4f165f5df7283, type: 3}
   guardianBadge: {fileID: 21300000, guid: ea193ae409b689c4f8233c186670edf7, type: 3}
@@ -5813,7 +5815,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3dd793e1ab9b62e47aed32f5c45e8618, type: 2}
   - {fileID: 11400000, guid: f6e3850c009fce847b7ce96497469eb5, type: 2}
   - {fileID: 11400000, guid: 6c6298096331b0c40b77130a25f22b6c, type: 2}
-  - {fileID: 11400000, guid: e8cf3eb85b3ff604ba8c5f8f1fc762c5, type: 2}
   - {fileID: 11400000, guid: 238bc2ffb3d01884abc4765af2cb53b2, type: 2}
   - {fileID: 11400000, guid: 6d505df908c7b6a439997f3f699133ca, type: 2}
   - {fileID: 11400000, guid: 034d9e585e633514e8512b0f077e96fb, type: 2}
@@ -5861,7 +5862,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 625a726a38536fe408db2acde5d23915, type: 2}
   - {fileID: 11400000, guid: b283ece60e43e904594443b098ac381b, type: 2}
   - {fileID: 11400000, guid: 82398fcb72827b547af04198c592e6cc, type: 2}
-  - {fileID: 11400000, guid: 840a53b3157c62944862a5ca6193dc45, type: 2}
   - {fileID: 11400000, guid: 63b57dcf22d80b749bf6fdcebe2b66cb, type: 2}
   - {fileID: 11400000, guid: c725ced37bae68e4ea02c145e66668d9, type: 2}
   - {fileID: 11400000, guid: 0aa74ca6548051f42aecea063a3f3ef0, type: 2}
@@ -5873,6 +5873,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0e73c280fb28d9b4d9e4fc59eab30e44, type: 2}
   - {fileID: 11400000, guid: a04f1cf564ccd074788f842ae5448c54, type: 2}
   - {fileID: 11400000, guid: f196a97a8b7eeeb4e84b98114e8ae768, type: 2}
+  - {fileID: 11400000, guid: 983b96f46c4ba014287f9bce96277457, type: 2}
+  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
+  - {fileID: 11400000, guid: cee9929222ec7e34bbb1593ae7ad23b5, type: 2}
+  - {fileID: 11400000, guid: 7c0947162266e2144a22faa67d2338a4, type: 2}
+  - {fileID: 11400000, guid: 87754b7748bb31947acb4178c8beb7c3, type: 2}
+  - {fileID: 11400000, guid: e74b37417c31bac4f853047f01e6be3d, type: 2}
+  - {fileID: 11400000, guid: 4fa47f450ff530d47884c246293bb23a, type: 2}
   discoveryCards:
   - {fileID: 150008041}
   - {fileID: 1265796404}
@@ -6946,6 +6953,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a49466273aff6954d8e0303879ded604, type: 2}
   - {fileID: 11400000, guid: bfbdb5e21e389ab4c9aae5b49350a1d0, type: 2}
   - {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}
+  - {fileID: 11400000, guid: dfeeccc8c225a66488eb3e4eb76d6c3b, type: 2}
 --- !u!1 &654930787
 GameObject:
   m_ObjectHideFlags: 0
@@ -16465,17 +16473,19 @@ MonoBehaviour:
   dontDestroyOnLoad: 0
   selectableCharacterTemplates:
   - {fileID: 11400000, guid: 99709e3ddb4d83148b72b16f935299e5, type: 2}
+  - {fileID: 11400000, guid: 7a42828b49c2ca147bff9fbe284f2eb5, type: 2}
   - {fileID: 11400000, guid: 52b82b5c29e34814cacd91cfb9439876, type: 2}
   - {fileID: 11400000, guid: fe1c3014ca448f44998168a4a6ff6b51, type: 2}
+  - {fileID: 11400000, guid: 8f0c3387ff25ccf44944a1a44f335dc4, type: 2}
   - {fileID: 11400000, guid: e0ea2e09629a8004fa6a714088467137, type: 2}
   - {fileID: 11400000, guid: 3df049d74f077c74fa92fb78bb4fa6a8, type: 2}
   - {fileID: 11400000, guid: b032cf78d33b0f2459c4af64779ad485, type: 2}
   - {fileID: 11400000, guid: 8d4ecf2085d9be843b2d44cb7360b5d7, type: 2}
+  - {fileID: 11400000, guid: 9995c546aa0445c4bb2c702643fc3502, type: 2}
   - {fileID: 11400000, guid: df45f035351862c40b14da86f7b00d71, type: 2}
   - {fileID: 11400000, guid: 3651cb59323c3a84791a348607f0dd2f, type: 2}
   - {fileID: 11400000, guid: 1d0339b9767137d4a8b3c1e5af99a706, type: 2}
   - {fileID: 11400000, guid: 11330c0f179f1fb49b8fc2aac3fe768b, type: 2}
-  - {fileID: 11400000, guid: 7a42828b49c2ca147bff9fbe284f2eb5, type: 2}
   frontScreenParent: {fileID: 689268532}
   continueButtonParent: {fileID: 1022193794}
   abandonRunButtonParent: {fileID: 508173533}

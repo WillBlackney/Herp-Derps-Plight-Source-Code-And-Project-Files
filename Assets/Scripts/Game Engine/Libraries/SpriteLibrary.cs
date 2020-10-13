@@ -6,82 +6,66 @@ using Sirenix.Utilities.Editor;
 using Sirenix.OdinInspector.Editor;
 #endif
 
-public class SpriteLibrary : MonoBehaviour
-    {
-        // Singleton Pattern
-        #region
-        public static SpriteLibrary Instance;
-        private void Awake()
-        {
-            if (!Instance)
-            {
-                Instance = this;
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-        }
-    #endregion
-
-        // Talent School Badges
-        #region
+public class SpriteLibrary : Singleton<SpriteLibrary>
+{
+    // Talent School Badges
+    #region
     [Header("Talent School Badges")]
     [PreviewField(75)]
     public Sprite neutralBadge;
     [PreviewField(75)]
     public Sprite warfareBadge;
-        [PreviewField(75)]
-        public Sprite guardianBadge;
-        [PreviewField(75)]
-        public Sprite scoundrelBadge;
-        [PreviewField(75)]
-        public Sprite rangerBadge;
-        [PreviewField(75)]
-        public Sprite pyromaniaBadge;
-        [PreviewField(75)]
-        public Sprite divinityBadge;
-        [PreviewField(75)]
-        public Sprite shadowCraftBadge;
-        [PreviewField(75)]
-        public Sprite corruptionBadge;
-        [PreviewField(75)]
-        public Sprite naturalismBadge;
-        [PreviewField(75)]
-        public Sprite manipulationBadge;
-        #endregion
-
-        // Intent Images
-        #region
-        [Header("Intent Images")]
-        [PreviewField(75)]
-        public Sprite attack;
-        [PreviewField(75)]
-        public Sprite attackAll;
-        [PreviewField(75)]
-        public Sprite attackDefend;
-        [PreviewField(75)]
-        public Sprite attackBuff;
-        [PreviewField(75)]
-        public Sprite attackDebuff;
-        [PreviewField(75)]
-        public Sprite defend;
-        [PreviewField(75)]
-        public Sprite buff;
-        [PreviewField(75)]
-        public Sprite defendBuff;
-        [PreviewField(75)]
-        public Sprite greenDebuff;
-        [PreviewField(75)]
-        public Sprite purpleDebuff;
-        [PreviewField(75)]
-        public Sprite unknown;
-        [PreviewField(75)]
-        public Sprite flee;
+    [PreviewField(75)]
+    public Sprite guardianBadge;
+    [PreviewField(75)]
+    public Sprite scoundrelBadge;
+    [PreviewField(75)]
+    public Sprite rangerBadge;
+    [PreviewField(75)]
+    public Sprite pyromaniaBadge;
+    [PreviewField(75)]
+    public Sprite divinityBadge;
+    [PreviewField(75)]
+    public Sprite shadowCraftBadge;
+    [PreviewField(75)]
+    public Sprite corruptionBadge;
+    [PreviewField(75)]
+    public Sprite naturalismBadge;
+    [PreviewField(75)]
+    public Sprite manipulationBadge;
     #endregion
 
-        // Card Type Images
-        #region
+    // Intent Images
+    #region
+    [Header("Intent Images")]
+    [PreviewField(75)]
+    public Sprite attack;
+    [PreviewField(75)]
+    public Sprite attackAll;
+    [PreviewField(75)]
+    public Sprite attackDefend;
+    [PreviewField(75)]
+    public Sprite attackBuff;
+    [PreviewField(75)]
+    public Sprite attackDebuff;
+    [PreviewField(75)]
+    public Sprite defend;
+    [PreviewField(75)]
+    public Sprite buff;
+    [PreviewField(75)]
+    public Sprite defendBuff;
+    [PreviewField(75)]
+    public Sprite greenDebuff;
+    [PreviewField(75)]
+    public Sprite purpleDebuff;
+    [PreviewField(75)]
+    public Sprite unknown;
+    [PreviewField(75)]
+    public Sprite flee;
+    #endregion
+
+    // Card Type Images
+    #region
     [Header("Card Type Images")]
     [PreviewField(75)]
     public Sprite meleeAttack;
@@ -93,110 +77,114 @@ public class SpriteLibrary : MonoBehaviour
     public Sprite power;
     #endregion
 
-        // Logic 
-        #region
+    // Logic 
+    #region
     public Sprite GetTalentSchoolSpriteFromEnumData(TalentSchool data)
+    {
+        Sprite spriteReturned = null;
+
+        if (data == TalentSchool.Scoundrel)
         {
-            Sprite spriteReturned = null;
-
-            if (data == TalentSchool.Scoundrel)
-            {
-                spriteReturned = scoundrelBadge;
-            }
-            else if (data == TalentSchool.Warfare)
-            {
-                spriteReturned = warfareBadge;
-            }
-            else if (data == TalentSchool.Corruption)
-            {
-                spriteReturned = corruptionBadge;
-            }
-            else if (data == TalentSchool.Divinity)
-            {
-                spriteReturned = divinityBadge;
-            }
-            else if (data == TalentSchool.Guardian)
-            {
-                spriteReturned = guardianBadge;
-            }
-            else if (data == TalentSchool.Manipulation)
-            {
-                spriteReturned = manipulationBadge;
-            }
-            else if (data == TalentSchool.Naturalism)
-            {
-                spriteReturned = naturalismBadge;
-            }
-            else if (data == TalentSchool.Pyromania)
-            {
-                spriteReturned = pyromaniaBadge;
-            }
-            else if (data == TalentSchool.Shadowcraft)
-            {
-                spriteReturned = shadowCraftBadge;
-            }
-            else if (data == TalentSchool.Neutral)
-            {
-                spriteReturned = neutralBadge;
-            }
-
-            return spriteReturned;
+            spriteReturned = scoundrelBadge;
         }
+        else if (data == TalentSchool.Warfare)
+        {
+            spriteReturned = warfareBadge;
+        }
+        else if (data == TalentSchool.Ranger)
+        {
+            spriteReturned = rangerBadge;
+        }
+        else if (data == TalentSchool.Corruption)
+        {
+            spriteReturned = corruptionBadge;
+        }
+        else if (data == TalentSchool.Divinity)
+        {
+            spriteReturned = divinityBadge;
+        }
+        else if (data == TalentSchool.Guardian)
+        {
+            spriteReturned = guardianBadge;
+        }
+        else if (data == TalentSchool.Manipulation)
+        {
+            spriteReturned = manipulationBadge;
+        }
+        else if (data == TalentSchool.Naturalism)
+        {
+            spriteReturned = naturalismBadge;
+        }
+        else if (data == TalentSchool.Pyromania)
+        {
+            spriteReturned = pyromaniaBadge;
+        }
+        else if (data == TalentSchool.Shadowcraft)
+        {
+            spriteReturned = shadowCraftBadge;
+        }
+        else if (data == TalentSchool.Neutral)
+        {
+            spriteReturned = neutralBadge;
+        }
+
+        return spriteReturned;
+    }
     public Sprite GetIntentSpriteFromIntentEnumData(IntentImage data)
+    {
+        Sprite spriteReturned = null;
+
+        if (data == IntentImage.Attack)
         {
-            Sprite spriteReturned = null;
-
-            if (data == IntentImage.Attack)
-            {
-                spriteReturned = attack;
-            }
-            else if (data == IntentImage.AttackAll)
-            {
-                spriteReturned = attackAll;
-            }
-            else if (data == IntentImage.AttackBuff)
-            {
-                spriteReturned = attackBuff;
-            }
-            else if (data == IntentImage.AttackDebuff)
-            {
-                spriteReturned = attackDebuff;
-            }
-            else if (data == IntentImage.AttackDefend)
-            {
-                spriteReturned = attackDefend;
-            }
-            else if (data == IntentImage.Buff)
-            {
-                spriteReturned = buff;
-            }
-            else if (data == IntentImage.Defend)
-            {
-                spriteReturned = defend;
-            }
-            else if (data == IntentImage.DefendBuff)
-            {
-                spriteReturned = defendBuff;
-            }
-            else if (data == IntentImage.GreenDebuff)
-            {
-                spriteReturned = greenDebuff;
-            }
-            else if (data == IntentImage.PurpleDebuff)
-            {
-                spriteReturned = purpleDebuff;
-            }
-            else if (data == IntentImage.Unknown)
-            {
-                spriteReturned = unknown;
-            }
-            else if (data == IntentImage.Flee)
-            {
-                spriteReturned = flee;
-            }
-
-            return spriteReturned;
+            spriteReturned = attack;
         }
+        else if (data == IntentImage.AttackAll)
+        {
+            spriteReturned = attackAll;
+        }
+        else if (data == IntentImage.AttackBuff)
+        {
+            spriteReturned = attackBuff;
+        }
+        else if (data == IntentImage.AttackDebuff)
+        {
+            spriteReturned = attackDebuff;
+        }
+        else if (data == IntentImage.AttackDefend)
+        {
+            spriteReturned = attackDefend;
+        }
+        else if (data == IntentImage.Buff)
+        {
+            spriteReturned = buff;
+        }
+        else if (data == IntentImage.Defend)
+        {
+            spriteReturned = defend;
+        }
+        else if (data == IntentImage.DefendBuff)
+        {
+            spriteReturned = defendBuff;
+        }
+        else if (data == IntentImage.GreenDebuff)
+        {
+            spriteReturned = greenDebuff;
+        }
+        else if (data == IntentImage.PurpleDebuff)
+        {
+            spriteReturned = purpleDebuff;
+        }
+        else if (data == IntentImage.Unknown)
+        {
+            spriteReturned = unknown;
+        }
+        else if (data == IntentImage.Flee)
+        {
+            spriteReturned = flee;
+        }
+
+        return spriteReturned;
+    }
     public Sprite GetCardTypeImageFromTypeEnumData(CardType data)
     {
         Sprite spriteReturned = null;
@@ -216,7 +204,7 @@ public class SpriteLibrary : MonoBehaviour
         else if (data == CardType.Skill)
         {
             spriteReturned = skill;
-        }        
+        }
 
         return spriteReturned;
     }

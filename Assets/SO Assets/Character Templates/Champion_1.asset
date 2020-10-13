@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2410c6608dbef744a9643f0571333299, type: 3}
-  m_Name: Priest_1
+  m_Name: Champion_1
   m_EditorClassIdentifier: 
-  myName: Priest
+  myName: Champion
   health: 40
   maxHealth: 40
   power: 0
@@ -66,26 +66,25 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 04b3ac38b9732134c9076aed80c85796, type: 2}
-  - {fileID: 11400000, guid: 04b3ac38b9732134c9076aed80c85796, type: 2}
-  - {fileID: 11400000, guid: 87514d0403c7e7f4abb87ab0dbfe26f2, type: 2}
-  - {fileID: 11400000, guid: 87514d0403c7e7f4abb87ab0dbfe26f2, type: 2}
-  - {fileID: 11400000, guid: 8a792469010762040a300d827b71549d, type: 2}
-  - {fileID: 11400000, guid: 8a792469010762040a300d827b71549d, type: 2}
-  - {fileID: 11400000, guid: b3e413a43d44ba24fbc2af972a7d4562, type: 2}
-  - {fileID: 11400000, guid: b3e413a43d44ba24fbc2af972a7d4562, type: 2}
-  - {fileID: 11400000, guid: 5105852492770134e9c9d344ea979348, type: 2}
-  - {fileID: 11400000, guid: 5105852492770134e9c9d344ea979348, type: 2}
+  - {fileID: 11400000, guid: ef2b9ffdee54c0a48adddcc159a622a3, type: 2}
+  - {fileID: 11400000, guid: ef2b9ffdee54c0a48adddcc159a622a3, type: 2}
+  - {fileID: 11400000, guid: c62cea059d102884a8aabb11de5b070c, type: 2}
+  - {fileID: 11400000, guid: c62cea059d102884a8aabb11de5b070c, type: 2}
+  - {fileID: 11400000, guid: 25f889ca097d2c742a862cb5f2097476, type: 2}
+  - {fileID: 11400000, guid: 25f889ca097d2c742a862cb5f2097476, type: 2}
+  - {fileID: 11400000, guid: 3587b8c7f77c41d4eafbc12793734665, type: 2}
+  - {fileID: 11400000, guid: 3587b8c7f77c41d4eafbc12793734665, type: 2}
+  - {fileID: 11400000, guid: 983b96f46c4ba014287f9bce96277457, type: 2}
+  - {fileID: 11400000, guid: 983b96f46c4ba014287f9bce96277457, type: 2}
   modelParts:
   - Human_Chest
-  - Human_Face_3
-  - Human_Head_3
+  - Human_Face_1
+  - Human_Head_1
   - Human_Right_Arm
   - Human_Right_Hand
   - Human_Right_Leg
-  - White_Head_Band_Head_Wear
-  - Priest_Chest_Wear
-  - Priest_Right_Leg_Wear
+  - Knight_Head_Wear
+  - Knight_Chest_Wear
   serializedItemManager:
-    mainHandItem: {fileID: 11400000, guid: bfbdb5e21e389ab4c9aae5b49350a1d0, type: 2}
+    mainHandItem: {fileID: 11400000, guid: b533dcedf0849e047ac0af6f1d50afe0, type: 2}
     offHandItem: {fileID: 0}

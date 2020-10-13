@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Rush
+  m_Name: Parry
   m_EditorClassIdentifier: 
-  cardName: Rush
-  cardDescription: "Deal 6 Physical damage. \nGain 2 Draw next activation. "
-  cardSprite: {fileID: 21300000, guid: 128be30d4ea408d4a9e78f7f908fbf4d, type: 3}
+  cardName: Parry
+  cardDescription: 'Gain 3 Block.
+
+    Next activation, gain 1 Draw. '
+  cardSprite: {fileID: 21300000, guid: 99fb5d32cca34a74bbd985be88a1c0d9, type: 3}
   cardEnergyCost: 1
-  cardType: 2
-  targettingType: 3
+  cardType: 1
+  targettingType: 0
   talentSchool: 2
-  rarity: 2
+  rarity: 1
   expend: 0
   innate: 0
   fleeting: 0
@@ -27,7 +29,7 @@ MonoBehaviour:
   blessing: 0
   cardEffects:
   - weaponRequirement: 0
-    cardEffectType: 6
+    cardEffectType: 10
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
@@ -36,14 +38,14 @@ MonoBehaviour:
     onChooseCardInHandChoiceMadeEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 0
-    baseDamageValue: 6
+    blockGainValue: 3
+    baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     baseDamageMultiplier: 0
-    damageType: 1
+    damageType: 0
     healthLost: 0
     energyGained: 0
     cardsDrawn: 0
@@ -56,21 +58,6 @@ MonoBehaviour:
     copiesAdded: 0
     blessingsGained: 0
     visualEventsOnStart:
-    - eventType: 1
-      screenOverlayType: 0
-      overlayColor: 0
-      overlayFadeInTime: 0
-      overlayDuration: 0
-      overlayFadeOutTime: 0
-      particleEffect: 0
-      cameraShake: 0
-      movementAnimation: 1
-      soundEffect: 0
-      characterAnimation: 0
-      delayDuration: 0
-      projectileFired: 0
-      projectileStartPosition: 0
-      onCharacter: 0
     - eventType: 2
       screenOverlayType: 0
       overlayColor: 0
@@ -81,42 +68,27 @@ MonoBehaviour:
       cameraShake: 0
       movementAnimation: 0
       soundEffect: 0
-      characterAnimation: 1
+      characterAnimation: 4
       delayDuration: 0
       projectileFired: 0
       projectileStartPosition: 0
       onCharacter: 0
-    - eventType: 4
+    visualEventsOnFinish:
+    - eventType: 6
       screenOverlayType: 0
       overlayColor: 0
       overlayFadeInTime: 0
       overlayDuration: 0
       overlayFadeOutTime: 0
       particleEffect: 0
-      cameraShake: 1
-      movementAnimation: 0
-      soundEffect: 0
-      characterAnimation: 0
-      delayDuration: 0
-      projectileFired: 0
-      projectileStartPosition: 0
-      onCharacter: 0
-    - eventType: 3
-      screenOverlayType: 0
-      overlayColor: 0
-      overlayFadeInTime: 0
-      overlayDuration: 0
-      overlayFadeOutTime: 0
-      particleEffect: 2
       cameraShake: 0
       movementAnimation: 0
       soundEffect: 0
       characterAnimation: 0
-      delayDuration: 0
+      delayDuration: 0.5
       projectileFired: 0
       projectileStartPosition: 0
-      onCharacter: 2
-    visualEventsOnFinish: []
+      onCharacter: 0
   - weaponRequirement: 0
     cardEffectType: 2
     discoveryLocation: 0
@@ -142,7 +114,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 31
-      passiveStacks: 2
+      passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

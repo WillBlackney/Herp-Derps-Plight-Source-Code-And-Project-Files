@@ -33,6 +33,7 @@ public class PassiveManagerModel
     public int overloadStacks;
     public int fusionStacks;
     public int plantedFeetStacks;
+    public int takenAimStacks;
     public int consecrationStacks;
     public int growingStacks;
     public int cautiousStacks;

@@ -50,6 +50,7 @@ MonoBehaviour:
     overloadStacks: 0
     fusionStacks: 0
     plantedFeetStacks: 0
+    takenAimStacks: 0
     consecrationStacks: 0
     growingStacks: 0
     cautiousStacks: 0
@@ -68,24 +69,27 @@ MonoBehaviour:
   deck:
   - {fileID: 11400000, guid: 4f7008c09af197b43b9e5ee443274691, type: 2}
   - {fileID: 11400000, guid: 4f7008c09af197b43b9e5ee443274691, type: 2}
-  - {fileID: 11400000, guid: 4806fd31c9152b74c92ce0c4d1cfdcf9, type: 2}
-  - {fileID: 11400000, guid: 4806fd31c9152b74c92ce0c4d1cfdcf9, type: 2}
   - {fileID: 11400000, guid: 708f5f31c10f4d14e9f8a91cc822a47b, type: 2}
   - {fileID: 11400000, guid: 708f5f31c10f4d14e9f8a91cc822a47b, type: 2}
   - {fileID: 11400000, guid: f196a97a8b7eeeb4e84b98114e8ae768, type: 2}
   - {fileID: 11400000, guid: f196a97a8b7eeeb4e84b98114e8ae768, type: 2}
   - {fileID: 11400000, guid: 82398fcb72827b547af04198c592e6cc, type: 2}
+  - {fileID: 11400000, guid: 82398fcb72827b547af04198c592e6cc, type: 2}
+  - {fileID: 11400000, guid: b888a78f01d9d114e94eb71e20cda519, type: 2}
   - {fileID: 11400000, guid: b283ece60e43e904594443b098ac381b, type: 2}
   modelParts:
-  - Goblin_Chest
-  - Orc_Face_1
-  - Goblin_Head_1
-  - Goblin_Right_Arm
-  - Goblin_Right_Hand
-  - Goblin_Right_Leg
-  - Shadow_Blade_Head_Wear
-  - Black_Leather_Chest_Wear
-  - Black_Necromancer_Right_Leg_Wear
+  - Satyr_Head_3
+  - Satyr_Face_2
+  - Satyr_Right_Hand
+  - Satyr_Right_Arm
+  - Satyr_Left_Hand
+  - Satyr_Left_Arm
+  - Satyr_Chest
+  - Satyr_Right_Leg
+  - Satyr_Left_Leg
+  - Left_Hand_Recurve_Bow_1
+  - Marksman_Right_Arm_Wear
+  - Marksman_Chest_Wear
   serializedItemManager:
     mainHandItem: {fileID: 11400000, guid: b441e018b9d907a49b6f8e74e5b0e065, type: 2}
     offHandItem: {fileID: 11400000, guid: b441e018b9d907a49b6f8e74e5b0e065, type: 2}

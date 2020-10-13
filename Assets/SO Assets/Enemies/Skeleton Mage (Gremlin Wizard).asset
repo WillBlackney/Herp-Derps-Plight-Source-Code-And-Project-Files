@@ -160,7 +160,7 @@ MonoBehaviour:
         characterAnimation: 3
         delayDuration: 0
         projectileFired: 1
-        projectileStartPosition: 0
+        projectileStartPosition: 1
         onCharacter: 0
       - eventType: 3
         screenOverlayType: 0

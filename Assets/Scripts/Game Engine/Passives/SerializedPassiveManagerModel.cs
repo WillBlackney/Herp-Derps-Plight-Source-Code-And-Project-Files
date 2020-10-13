@@ -85,6 +85,9 @@ public class SerializedPassiveManagerModel
     public int plantedFeetStacks;
     [BoxGroup("Buff Passives")]
     [LabelWidth(200)]
+    public int takenAimStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
     public int consecrationStacks;
     [BoxGroup("Buff Passives")]
     [LabelWidth(200)]
