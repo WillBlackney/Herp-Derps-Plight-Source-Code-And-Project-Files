@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2410c6608dbef744a9643f0571333299, type: 3}
-  m_Name: Juggernaut_1
+  m_Name: Warrior_1
   m_EditorClassIdentifier: 
-  myName: Juggernaut
+  myName: Warrior
   health: 40
   maxHealth: 40
   power: 0
@@ -67,26 +67,28 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 1e3cea44d9e2f904698519977bd5198c, type: 2}
+  - {fileID: 11400000, guid: 3d57eb73a05e9a04b96c08944c441410, type: 2}
   - {fileID: 11400000, guid: 3d57eb73a05e9a04b96c08944c441410, type: 2}
   - {fileID: 11400000, guid: 63b57dcf22d80b749bf6fdcebe2b66cb, type: 2}
   - {fileID: 11400000, guid: 63b57dcf22d80b749bf6fdcebe2b66cb, type: 2}
-  - {fileID: 11400000, guid: c725ced37bae68e4ea02c145e66668d9, type: 2}
-  - {fileID: 11400000, guid: c725ced37bae68e4ea02c145e66668d9, type: 2}
-  - {fileID: 11400000, guid: 58ad3605f0bb1844dac2124cd71174c1, type: 2}
-  - {fileID: 11400000, guid: 58ad3605f0bb1844dac2124cd71174c1, type: 2}
-  - {fileID: 11400000, guid: fdcce8d7a9e4a0748bf221b25c761b09, type: 2}
+  - {fileID: 11400000, guid: 00b73be375fd9ce4e9735d3cba2ca025, type: 2}
+  - {fileID: 11400000, guid: 00b73be375fd9ce4e9735d3cba2ca025, type: 2}
+  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
+  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
+  - {fileID: 11400000, guid: b31f4356f84f2bd48add48495139e0e5, type: 2}
   - {fileID: 11400000, guid: fdcce8d7a9e4a0748bf221b25c761b09, type: 2}
   modelParts:
-  - Human_Chest
-  - Human_Face_1
-  - Human_Head_1
-  - Human_Right_Arm
-  - Human_Right_Hand
-  - Human_Right_Leg
-  - Black_Silver_Helmet_Head_Wear
-  - Black_Gold_Plate_Chest_Wear
-  - Black_Gold_Plate_Right_Leg_Wear
+  - Orc_Head_1
+  - Orc_Face_7
+  - Orc_Chest
+  - Orc_Right_Arm
+  - Orc_Right_Hand
+  - Orc_Left_Arm
+  - Orc_Left_Hand
+  - Orc_Right_Leg
+  - Orc_Left_Leg
+  - Barbarian_Chest_Wear
+  - Silver_Red_Helmet_Head_Wear
   serializedItemManager:
-    mainHandItem: {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}
+    mainHandItem: {fileID: 11400000, guid: e561792383921474c9710a3ebc1add23, type: 2}
     offHandItem: {fileID: 11400000, guid: a49466273aff6954d8e0303879ded604, type: 2}

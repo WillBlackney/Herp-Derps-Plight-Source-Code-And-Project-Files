@@ -1744,8 +1744,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             }
         }
 
-        // Defend self + Defend target
-        else if (effect.actionType == ActionType.DefendSelf || effect.actionType == ActionType.DefendTarget)
+        // Defend target
+        else if (effect.actionType == ActionType.DefendTarget)
         {
             if(target == null)
             {
@@ -1753,6 +1753,12 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             }
 
             ModifyBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy, target, effect, null));
+        }
+
+        // Defend self
+        else if (effect.actionType == ActionType.DefendSelf)
+        {
+            ModifyBlock(enemy, CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy, enemy, effect, null));
         }
 
         // Defend All

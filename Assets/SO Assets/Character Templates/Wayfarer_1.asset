@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2410c6608dbef744a9643f0571333299, type: 3}
-  m_Name: Juggernaut_1
+  m_Name: Wayfarer_1
   m_EditorClassIdentifier: 
-  myName: Juggernaut
+  myName: Wayfarer
   health: 40
   maxHealth: 40
   power: 0
@@ -67,26 +67,24 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 1e3cea44d9e2f904698519977bd5198c, type: 2}
-  - {fileID: 11400000, guid: 3d57eb73a05e9a04b96c08944c441410, type: 2}
-  - {fileID: 11400000, guid: 63b57dcf22d80b749bf6fdcebe2b66cb, type: 2}
-  - {fileID: 11400000, guid: 63b57dcf22d80b749bf6fdcebe2b66cb, type: 2}
-  - {fileID: 11400000, guid: c725ced37bae68e4ea02c145e66668d9, type: 2}
-  - {fileID: 11400000, guid: c725ced37bae68e4ea02c145e66668d9, type: 2}
-  - {fileID: 11400000, guid: 58ad3605f0bb1844dac2124cd71174c1, type: 2}
-  - {fileID: 11400000, guid: 58ad3605f0bb1844dac2124cd71174c1, type: 2}
-  - {fileID: 11400000, guid: fdcce8d7a9e4a0748bf221b25c761b09, type: 2}
-  - {fileID: 11400000, guid: fdcce8d7a9e4a0748bf221b25c761b09, type: 2}
+  - {fileID: 11400000, guid: 188b3c6d82a60d5458c4dd3fe81e3123, type: 2}
+  - {fileID: 11400000, guid: 188b3c6d82a60d5458c4dd3fe81e3123, type: 2}
+  - {fileID: 11400000, guid: e74b37417c31bac4f853047f01e6be3d, type: 2}
+  - {fileID: 11400000, guid: e74b37417c31bac4f853047f01e6be3d, type: 2}
+  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
+  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
+  - {fileID: 11400000, guid: b3e413a43d44ba24fbc2af972a7d4562, type: 2}
+  - {fileID: 11400000, guid: b3e413a43d44ba24fbc2af972a7d4562, type: 2}
+  - {fileID: 11400000, guid: 8a792469010762040a300d827b71549d, type: 2}
+  - {fileID: 11400000, guid: 8a792469010762040a300d827b71549d, type: 2}
   modelParts:
   - Human_Chest
-  - Human_Face_1
-  - Human_Head_1
+  - Elf_Face_7
+  - Elf_Head_4
   - Human_Right_Arm
   - Human_Right_Hand
   - Human_Right_Leg
-  - Black_Silver_Helmet_Head_Wear
-  - Black_Gold_Plate_Chest_Wear
-  - Black_Gold_Plate_Right_Leg_Wear
+  - Green_Camo_Robe_Chest_Wear
   serializedItemManager:
-    mainHandItem: {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}
-    offHandItem: {fileID: 11400000, guid: a49466273aff6954d8e0303879ded604, type: 2}
+    mainHandItem: {fileID: 11400000, guid: dfeeccc8c225a66488eb3e4eb76d6c3b, type: 2}
+    offHandItem: {fileID: 0}

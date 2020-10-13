@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Skeleton Assassin (Sneaky Gremlin)
   m_EditorClassIdentifier: 
   enemyName: Skeleton Assassin
-  maxHealth: 24
+  maxHealth: 22
   power: 0
   dexterity: 0
   initiative: 2
-  startingHealth: 24
+  startingHealth: 22
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0
@@ -48,6 +48,7 @@ MonoBehaviour:
     overloadStacks: 0
     fusionStacks: 0
     plantedFeetStacks: 0
+    takenAimStacks: 0
     consecrationStacks: 0
     growingStacks: 0
     cautiousStacks: 0

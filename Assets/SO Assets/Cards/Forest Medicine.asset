@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Noble Sacrifice
+  m_Name: Forest Medicine
   m_EditorClassIdentifier: 
-  cardName: Noble Sacrifice
-  cardDescription: 'Lose 1 HP.
+  cardName: Forest Medicine
+  cardDescription: 'Give a target 4 Block and 1 Rune.
 
-    Give an ally 6 Block.'
-  cardSprite: {fileID: 21300000, guid: d3fa4b58ab6511c4b971e20ea9733474, type: 3}
-  cardEnergyCost: 1
+    Expend. '
+  cardSprite: {fileID: 21300000, guid: 00386c18b4c21384f8ddfa5f093541d2, type: 3}
+  cardEnergyCost: 2
   cardType: 1
-  targettingType: 1
-  talentSchool: 5
+  targettingType: 2
+  talentSchool: 8
   rarity: 1
-  expend: 0
+  expend: 1
   innate: 0
   fleeting: 0
   unplayable: 0
   blessing: 0
   cardEffects:
   - weaponRequirement: 0
-    cardEffectType: 14
+    cardEffectType: 19
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
@@ -38,7 +38,7 @@ MonoBehaviour:
     onChooseCardInHandChoiceMadeEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 8
+    blockGainValue: 4
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
     drawBaseDamageFromOverloadOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 0
-    healthLost: 1
+    healthLost: 0
     energyGained: 0
     cardsDrawn: 0
     extraDrawEffect: 0
@@ -58,36 +58,21 @@ MonoBehaviour:
     copiesAdded: 0
     blessingsGained: 0
     visualEventsOnStart:
-    - eventType: 4
+    - eventType: 2
       screenOverlayType: 0
       overlayColor: 0
       overlayFadeInTime: 0
       overlayDuration: 0
       overlayFadeOutTime: 0
       particleEffect: 0
-      cameraShake: 1
+      cameraShake: 0
       movementAnimation: 0
       soundEffect: 0
-      characterAnimation: 0
+      characterAnimation: 4
       delayDuration: 0
       projectileFired: 0
       projectileStartPosition: 0
       onCharacter: 0
-    - eventType: 3
-      screenOverlayType: 0
-      overlayColor: 0
-      overlayFadeInTime: 0
-      overlayDuration: 0
-      overlayFadeOutTime: 0
-      particleEffect: 2
-      cameraShake: 0
-      movementAnimation: 0
-      soundEffect: 0
-      characterAnimation: 0
-      delayDuration: 0
-      projectileFired: 0
-      projectileStartPosition: 0
-      onCharacter: 1
     visualEventsOnFinish:
     - eventType: 6
       screenOverlayType: 0
@@ -105,7 +90,7 @@ MonoBehaviour:
       projectileStartPosition: 0
       onCharacter: 0
   - weaponRequirement: 0
-    cardEffectType: 19
+    cardEffectType: 3
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
@@ -114,7 +99,7 @@ MonoBehaviour:
     onChooseCardInHandChoiceMadeEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 6
+    blockGainValue: 0
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
@@ -122,14 +107,14 @@ MonoBehaviour:
     drawBaseDamageFromOverloadOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 0
-    healthLost: 2
+    healthLost: 0
     energyGained: 0
     cardsDrawn: 0
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: 0
-      passiveStacks: 0
+      passiveData: 24
+      passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

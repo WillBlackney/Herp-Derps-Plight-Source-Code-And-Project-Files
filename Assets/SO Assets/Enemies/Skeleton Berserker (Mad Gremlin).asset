@@ -48,6 +48,7 @@ MonoBehaviour:
     overloadStacks: 0
     fusionStacks: 0
     plantedFeetStacks: 0
+    takenAimStacks: 0
     consecrationStacks: 0
     growingStacks: 0
     cautiousStacks: 0
@@ -121,7 +122,7 @@ MonoBehaviour:
         onCharacter: 0
       visualEventsOnFinish: []
       actionType: 0
-      baseDamage: 8
+      baseDamage: 5
       damageType: 1
       passiveApplied: {fileID: 0}
       passiveStacks: 0

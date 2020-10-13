@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Masochism
   m_EditorClassIdentifier: 
   cardName: Masochism
-  cardDescription: "Lose 2 HP. \nGain 1 Energy."
+  cardDescription: "Lose 1 HP. \nGain 1 Energy."
   cardSprite: {fileID: 21300000, guid: 405df69491a6b9d4699a016c27832444, type: 3}
   cardEnergyCost: 0
   cardType: 1
@@ -44,13 +44,13 @@ MonoBehaviour:
     drawBaseDamageFromOverloadOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 0
-    healthLost: 2
+    healthLost: 1
     energyGained: 0
     cardsDrawn: 0
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: {fileID: 0}
+      passiveData: 0
       passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
@@ -126,7 +126,7 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: {fileID: 0}
+      passiveData: 0
       passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
