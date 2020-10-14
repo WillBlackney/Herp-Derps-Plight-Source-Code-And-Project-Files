@@ -10,7 +10,14 @@ public class CardEffect
     [LabelWidth(200)]
     public CardWeaponRequirement weaponRequirement;
     [LabelWidth(200)]
-    public CardEffectType cardEffectType;   
+    public CardEffectType cardEffectType;
+
+    [LabelWidth(200)]
+    public bool splitTargetEffect = false;
+
+    [ShowIf("ShowSplitTargetType")]
+    [LabelWidth(200)]
+    public TargettingType splitTargetType;
 
     [ShowIf("ShowDiscoveryLocation")]
     [LabelWidth(200)]
@@ -118,6 +125,10 @@ public class CardEffect
     public List<AnimationEventData> visualEventsOnStart;
     public List<AnimationEventData> visualEventsOnFinish;
 
+    public bool ShowSplitTargetType()
+    {
+        return splitTargetEffect;
+    }
     public bool ShowPassivePairing()
     {
         if(cardEffectType == CardEffectType.ApplyPassiveToAllAllies ||

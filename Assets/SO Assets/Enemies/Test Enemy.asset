@@ -16,7 +16,7 @@ MonoBehaviour:
   maxHealth: 30
   power: 0
   dexterity: 0
-  initiative: 3
+  initiative: 111
   startingHealth: 30
   startingBlock: 0
   physicalResistance: 0
@@ -65,67 +65,42 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   allEnemyActions:
-  - actionName: Meteor
-    actionType: 0
-    intentImage: 0
+  - actionName: AoE Attack
+    actionType: 1
+    intentImage: 11
     actionLoops: 1
     doThisOnFirstActivation: 0
-    canBeConsecutive: 1
+    canBeConsecutive: 0
     prioritiseWhenRequirementsMet: 0
     actionRequirements: []
     actionEffects:
-    - visualEventsOnStart:
-      - eventType: 7
-        screenOverlayType: 1
-        overlayColor: 1
-        overlayFadeInTime: 1
-        overlayDuration: 1
-        overlayFadeOutTime: 1
-        particleEffect: 0
-        cameraShake: 0
-        movementAnimation: 0
-        soundEffect: 0
-        characterAnimation: 0
-        delayDuration: 0
-        projectileFired: 0
-        projectileStartPosition: 0
-        onCharacter: 0
-      - eventType: 2
-        screenOverlayType: 0
-        overlayColor: 0
-        overlayFadeInTime: 0
-        overlayDuration: 0
-        overlayFadeOutTime: 0
-        particleEffect: 0
-        cameraShake: 0
-        movementAnimation: 0
-        soundEffect: 0
-        characterAnimation: 3
-        delayDuration: 0
-        projectileFired: 9
-        projectileStartPosition: 1
-        onCharacter: 0
-      - eventType: 4
-        screenOverlayType: 0
-        overlayColor: 0
-        overlayFadeInTime: 0
-        overlayDuration: 0
-        overlayFadeOutTime: 0
-        particleEffect: 0
-        cameraShake: 3
-        movementAnimation: 0
-        soundEffect: 0
-        characterAnimation: 0
-        delayDuration: 0
-        projectileFired: 0
-        projectileStartPosition: 0
-        onCharacter: 0
+    - visualEventsOnStart: []
       visualEventsOnFinish: []
-      actionType: 0
+      actionType: 1
       baseDamage: 5
-      damageType: 4
+      damageType: 1
       passiveApplied: {fileID: 0}
       passiveStacks: 0
+      blockGained: 0
+      cardAdded: {fileID: 0}
+      copiesAdded: 0
+      collection: 0
+  - actionName: AoE Debuff
+    actionType: 6
+    intentImage: 8
+    actionLoops: 1
+    doThisOnFirstActivation: 0
+    canBeConsecutive: 0
+    prioritiseWhenRequirementsMet: 0
+    actionRequirements: []
+    actionEffects:
+    - visualEventsOnStart: []
+      visualEventsOnFinish: []
+      actionType: 6
+      baseDamage: 0
+      damageType: 0
+      passiveApplied: {fileID: 11400000, guid: 9f37b15771fd5ba4ab2b6e6dcc1927f6, type: 2}
+      passiveStacks: 3
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0

@@ -1234,6 +1234,33 @@ public class CardController : Singleton<CardController>
     }
     private void TriggerEffectFromCard(Card card, CardEffect cardEffect, CharacterEntityModel target)
     {
+        // Handle split card effect
+        if (cardEffect.splitTargetEffect)
+        {
+            // check ally only targetting validity
+            if(cardEffect.splitTargetType == TargettingType.Ally &&
+                (card.owner.allegiance != target.allegiance || card.owner == target))
+            {
+                Debug.LogWarning("TriggerEffectFromCard() cancelling card effect: target is not an ally");
+                return;
+            }
+
+            else if (cardEffect.splitTargetType == TargettingType.AllyOrSelf &&
+                card.owner.allegiance != target.allegiance)
+            {
+                Debug.LogWarning("TriggerEffectFromCard() cancelling card effect: target is not self or ally");
+                return;
+            }
+
+            else if (cardEffect.splitTargetType == TargettingType.Enemy &&
+               card.owner.allegiance == target.allegiance)
+            {
+                Debug.LogWarning("TriggerEffectFromCard() cancelling card effect: target is not an enemy");
+                return;
+            }
+
+        }
+
         // Stop and return if effect requires a target and that target is dying/dead/no longer valid      
         if(
             (target == null || target.livingState == LivingState.Dead) &&

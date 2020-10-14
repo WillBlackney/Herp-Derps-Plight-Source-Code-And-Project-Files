@@ -50,6 +50,7 @@ MonoBehaviour:
     overloadStacks: 0
     fusionStacks: 0
     plantedFeetStacks: 0
+    takenAimStacks: 0
     consecrationStacks: 0
     growingStacks: 0
     cautiousStacks: 0
@@ -70,11 +71,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9a485b795a8ea7d4fbab8525e8284e7d, type: 2}
   - {fileID: 11400000, guid: ef2b9ffdee54c0a48adddcc159a622a3, type: 2}
   - {fileID: 11400000, guid: ef2b9ffdee54c0a48adddcc159a622a3, type: 2}
-  - {fileID: 11400000, guid: 3587b8c7f77c41d4eafbc12793734665, type: 2}
-  - {fileID: 11400000, guid: 3587b8c7f77c41d4eafbc12793734665, type: 2}
   - {fileID: 11400000, guid: 25f889ca097d2c742a862cb5f2097476, type: 2}
   - {fileID: 11400000, guid: 25f889ca097d2c742a862cb5f2097476, type: 2}
-  - {fileID: 11400000, guid: 238bc2ffb3d01884abc4765af2cb53b2, type: 2}
+  - {fileID: 11400000, guid: 04b3ac38b9732134c9076aed80c85796, type: 2}
+  - {fileID: 11400000, guid: 04b3ac38b9732134c9076aed80c85796, type: 2}
+  - {fileID: 11400000, guid: 87514d0403c7e7f4abb87ab0dbfe26f2, type: 2}
   - {fileID: 11400000, guid: 3dd793e1ab9b62e47aed32f5c45e8618, type: 2}
   modelParts:
   - Human_Chest

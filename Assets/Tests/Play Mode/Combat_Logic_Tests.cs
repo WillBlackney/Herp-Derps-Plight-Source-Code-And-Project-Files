@@ -57,23 +57,6 @@ namespace Tests
             enemyData = AssetDatabase.LoadAssetAtPath<EnemyDataSO>("Assets/SO Assets/Enemies/Test Enemy.asset");
         }
 
-
-        // test to run
-        // test pierce doesnt remove block and does reduce health
-        // test handle death gets called if handle damage kills them
-        // test game over defeat event is triggered if all allies die
-        // test game over victory event is triggered if all enemies die
-        // test if node position becomes available after death
-        // test next character activates correctly if character is killed during their own turn
-        // check that game over defeat is triggered if the last enemy and ally die at the same time
-
-        // TESTS TO WRITE
-        /*
-         * If character dies during turn and is last defender, game over event does trigger
-         * If character dies during turn and is last enemy, victory event does trigger 
-         * 
-         */
-
         [Test]
         public void Handle_Damage_Correctly_Sets_Death_State_When_Health_Reaches_0()
         {
@@ -148,7 +131,7 @@ namespace Tests
             // Create characters
             playerOne = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, LevelManager.Instance.GetNextAvailableDefenderNode());
             enemyOne = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, LevelManager.Instance.GetNextAvailableEnemyNode());
-            enemyTwo = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, LevelManager.Instance.GetNextAvailableDefenderNode());
+            enemyTwo = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, LevelManager.Instance.GetNextAvailableEnemyNode());
             expected = playerOne;
 
             // Setup death for activation end sequence

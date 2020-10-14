@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Holy Fire
   m_EditorClassIdentifier: 
   cardName: Holy Fire
-  cardDescription: "Deal 4 Fire damage. \nAdd a random Blessing to your hand."
+  cardDescription: Deal 3 Fire damage to an enemy, or grant 3 Block to self or ally.
   cardSprite: {fileID: 21300000, guid: 2c3febda8c61a7341b4b1e17ca3fe484, type: 3}
   cardEnergyCost: 1
-  cardType: 3
-  targettingType: 3
+  cardType: 1
+  targettingType: 4
   talentSchool: 10
   rarity: 1
   expend: 0
@@ -28,6 +28,8 @@ MonoBehaviour:
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 6
+    splitTargetEffect: 1
+    splitTargetType: 3
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
@@ -37,7 +39,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 4
+    baseDamageValue: 3
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
@@ -50,7 +52,7 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: {fileID: 0}
+      passiveData: 0
       passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
@@ -103,7 +105,9 @@ MonoBehaviour:
       onCharacter: 0
     visualEventsOnFinish: []
   - weaponRequirement: 0
-    cardEffectType: 21
+    cardEffectType: 19
+    splitTargetEffect: 1
+    splitTargetType: 2
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
@@ -112,7 +116,7 @@ MonoBehaviour:
     onChooseCardInHandChoiceMadeEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 0
+    blockGainValue: 3
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
@@ -126,11 +130,41 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: {fileID: 0}
+      passiveData: 0
       passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
-    blessingsGained: 1
-    visualEventsOnStart: []
+    blessingsGained: 0
+    visualEventsOnStart:
+    - eventType: 2
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
+      particleEffect: 0
+      cameraShake: 0
+      movementAnimation: 0
+      soundEffect: 0
+      characterAnimation: 4
+      delayDuration: 0
+      projectileFired: 0
+      projectileStartPosition: 0
+      onCharacter: 0
+    - eventType: 3
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
+      particleEffect: 13
+      cameraShake: 0
+      movementAnimation: 0
+      soundEffect: 0
+      characterAnimation: 0
+      delayDuration: 0
+      projectileFired: 0
+      projectileStartPosition: 0
+      onCharacter: 2
     visualEventsOnFinish: []
   cardEventListeners: []

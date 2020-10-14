@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2410c6608dbef744a9643f0571333299, type: 3}
-  m_Name: Mage_1
+  m_Name: Arcanist_1
   m_EditorClassIdentifier: 
-  myName: Mage
+  myName: Arcanist
   health: 40
   maxHealth: 40
   power: 0
@@ -50,6 +50,7 @@ MonoBehaviour:
     overloadStacks: 0
     fusionStacks: 0
     plantedFeetStacks: 0
+    takenAimStacks: 0
     consecrationStacks: 0
     growingStacks: 0
     cautiousStacks: 0

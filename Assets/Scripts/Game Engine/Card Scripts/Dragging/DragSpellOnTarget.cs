@@ -29,8 +29,6 @@ public class DragSpellOnTarget : DraggingActions {
         Debug.Log("DragSpellOnTarget.OnStartDrag() called...");
         tempVisualState = locationTracker.VisualState;
         locationTracker.VisualState = VisualStates.Dragging;
-       // sr.enabled = true;
-      //  lr.enabled = true;
 
         // enable targetting arrow
         TargettingArrow.Instance.EnableArrow(cardVM);
@@ -84,28 +82,22 @@ public class DragSpellOnTarget : DraggingActions {
         Card card = cardVM.card;
 
         // Raycast from cam to mouse
-        Ray ray = CameraManager.Instance.MainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit[] hits;
         hits = Physics.RaycastAll(CameraManager.Instance.MainCamera.ScreenPointToRay(Input.mousePosition), 1000.0f);
 
         // Get Character views from raycast hits
         foreach (RaycastHit h in hits)
         {
-            Debug.Log("Ray cast hit object called: " + h.transform.gameObject.name);
             if (h.transform.gameObject.GetComponent<CharacterEntityView>())
             {              
                 target = h.transform.gameObject.GetComponent<CharacterEntityView>().character;
-                Debug.Log("Hit a living entity called: " + target.myName);
             }
         }
-
-        Debug.Log("Total targets hit with raycast = " + hits.Length.ToString());
         
         // Check for target validity
         bool targetValid = false;
         if (target != null)
         {     
-
             if(card.targettingType == TargettingType.AllCharacters)
             {
                 targetValid = true;
@@ -133,7 +125,6 @@ public class DragSpellOnTarget : DraggingActions {
                 targetValid = false;
             }
         }
-
        
 
         // Did we hit a valid target?
@@ -157,15 +148,8 @@ public class DragSpellOnTarget : DraggingActions {
         TargettingArrow.Instance.DisableArrow();
 
         // return target and arrow to original position
-        // this position is special for spell cards to show the arrow on top
-       
+        // this position is special for spell cards to show the arrow on top       
         transform.localPosition = new Vector3(0f, 0f, -0.1f);
-        /*
-       sr.enabled = false;
-       lr.enabled = false;
-       triangleSR.enabled = false;
-       */
-
     }
 
     // NOT USED IN THIS SCRIPT

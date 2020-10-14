@@ -1276,17 +1276,39 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         {
             CharacterEntityModel enemy = view.character;
 
+            // Clear previous pathing and targetting views
             DisableAllDefenderTargetIndicators();
+            DottedLine.Instance.DestroyAllPaths();
 
+            // Single target effect
             if (enemy.currentActionTarget != null && 
                 enemy.currentActionTarget.allegiance == Allegiance.Player &&
-                enemy.targettingPathReadyState == TargettingPathReadyState.Ready)
+                enemy.targettingPathReadyState == TargettingPathReadyState.Ready &&
+                enemy.levelNode != null && 
+                enemy.livingState == LivingState.Alive)
             {
+                // Enable targetting square over character
                 EnableDefenderTargetIndicator(enemy.currentActionTarget.characterEntityView);
-                if (enemy.levelNode != null && enemy.livingState == LivingState.Alive)
+
+                // Draw targetting path between character
+                LevelManager.Instance.ConnectTargetPathToTargetNode(enemy.levelNode, enemy.currentActionTarget.levelNode);
+            }
+
+            // AoE target effect
+            else if (enemy.targettingPathReadyState == TargettingPathReadyState.Ready &&
+                (enemy.myNextAction.actionType == ActionType.AttackAllEnemies || enemy.myNextAction.actionType == ActionType.DebuffAllEnemies) &&
+                enemy.levelNode != null && 
+                enemy.livingState == LivingState.Alive)
+            {
+                // get all enemies of enemy
+                foreach(CharacterEntityModel enemyCharacter in GetAllEnemiesOfCharacter(enemy))
                 {
-                    LevelManager.Instance.ConnectTargetPathToTargetNode(enemy.levelNode, enemy.currentActionTarget.levelNode);
-                }
+                    // Enable targetting square over character
+                    EnableDefenderTargetIndicator(enemyCharacter.characterEntityView);
+
+                    // Draw targetting path between character
+                    LevelManager.Instance.ConnectTargetPathToTargetNode(enemy.levelNode, enemyCharacter.levelNode);
+                }                
             }
         }
 

@@ -118,8 +118,7 @@ public class LevelManager : Singleton<LevelManager>
         // Dont show path if player is dragging a card over the enemy
         if (Draggable.DraggingThis == null)
         {
-            // Activate view
-            DottedLine.Instance.DestroyAllPaths();
+            // Activate view         
             DottedLine.Instance.DrawDottedLine(startNode.nose.position, targetNode.nose.position);
         }
     }

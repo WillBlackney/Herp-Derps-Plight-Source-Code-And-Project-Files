@@ -853,11 +853,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
-  gameMode: 0
+  gameMode: 1
   testingEnemyWave: {fileID: 11400000, guid: a925a91cb3c75e64cadf1f518e9a621e, type: 2}
   testingCharacterTemplates:
-  - {fileID: 11400000, guid: b032cf78d33b0f2459c4af64779ad485, type: 2}
-  - {fileID: 11400000, guid: b032cf78d33b0f2459c4af64779ad485, type: 2}
+  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
+  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
+  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
+  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
+  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
   deviceMode: 0
   mouseDragSensitivity: 0.25
   hoverMovePosition: {x: 0, y: 2, z: 0}
@@ -16475,6 +16478,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
   selectableCharacterTemplates:
+  - {fileID: 11400000, guid: 8d4ecf2085d9be843b2d44cb7360b5d7, type: 2}
   - {fileID: 11400000, guid: 99709e3ddb4d83148b72b16f935299e5, type: 2}
   - {fileID: 11400000, guid: 7a42828b49c2ca147bff9fbe284f2eb5, type: 2}
   - {fileID: 11400000, guid: 52b82b5c29e34814cacd91cfb9439876, type: 2}
@@ -16483,7 +16487,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e0ea2e09629a8004fa6a714088467137, type: 2}
   - {fileID: 11400000, guid: 3df049d74f077c74fa92fb78bb4fa6a8, type: 2}
   - {fileID: 11400000, guid: b032cf78d33b0f2459c4af64779ad485, type: 2}
-  - {fileID: 11400000, guid: 8d4ecf2085d9be843b2d44cb7360b5d7, type: 2}
   - {fileID: 11400000, guid: 9995c546aa0445c4bb2c702643fc3502, type: 2}
   - {fileID: 11400000, guid: df45f035351862c40b14da86f7b00d71, type: 2}
   - {fileID: 11400000, guid: 3651cb59323c3a84791a348607f0dd2f, type: 2}
