@@ -297,7 +297,8 @@ public class MainMenuController : Singleton<MainMenuController>
     #region
     public bool AnyMenuScreenIsActive()
     {
-        if(inGameMenuScreenParent.activeSelf == true)
+        if(inGameMenuScreenParent.activeSelf == true ||
+            CardController.Instance.GridCardScreenIsActive())
         {
             return true;
         }

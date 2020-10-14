@@ -57,7 +57,17 @@ public class CharacterEntityView : MonoBehaviour
     public GameObject passiveIconsVisualParent;
     [HideInInspector] public List<PassiveIconView> passiveIcons;
 
+    // Getters
+    #region
+    public Vector3 WorldPosition
+    {
+        get { return ucmMovementParent.transform.position; }
+    }
+
+    #endregion
+
     // Mouse + Input Logic
+    #region
     private void OnMouseEnter()
     {
         Debug.Log("CharacterEntityView.OnMouseEnter called...");
@@ -70,7 +80,7 @@ public class CharacterEntityView : MonoBehaviour
     }
     private void OnMouseOver()
     {
-        if(GlobalSettings.Instance.deviceMode == DeviceMode.Desktop &&
+        if (GlobalSettings.Instance.deviceMode == DeviceMode.Desktop &&
             Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -82,13 +92,27 @@ public class CharacterEntityView : MonoBehaviour
             }
         }
     }
-
-    // Getters
-    #region
-    public Vector3 WorldPosition
-    {
-        get { return ucmMovementParent.transform.position; }
-    }
-
     #endregion
+
+    // On Button Clicked
+    #region
+    public void OnDiscardPileButtonClicked()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+
+        if (character != null)
+        {
+            CardController.Instance.CreateNewShowDiscardPilePopup(character.discardPile);
+        }
+    }
+    public void OnDrawPileButtonClicked()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        if (character != null)
+        {
+            CardController.Instance.CreateNewShowDrawPilePopup(character.drawPile);
+        }
+    }
+    #endregion
+
 }

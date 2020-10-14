@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using System.Linq;
 using System.Security.Cryptography;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class CardController : Singleton<CardController>
 {
@@ -48,6 +49,13 @@ public class CardController : Singleton<CardController>
     [SerializeField] private Transform[] shuffleCardSlots;
     [SerializeField] private GameObject shuffleCardsScreenVisualParent;
 
+    [Header("Cards Grid Screen Components")]
+    [SerializeField] private GameObject cardGridVisualParent;
+    [SerializeField] private CanvasGroup cardGridCg;
+    [SerializeField] private TextMeshProUGUI cardGridRibbonText;
+    [SerializeField] private GridCardViewModel[] allGridCards;
+
+
     [Header("Button Sprites")]
     [SerializeField] private Sprite activeButtonSprite;
     [SerializeField] private Sprite inactiveButtonSprite;
@@ -77,6 +85,10 @@ public class CardController : Singleton<CardController>
     {
         get { return currentChooseCardScreenSelection; }
         private set { currentChooseCardScreenSelection = value; }
+    }
+    public bool GridCardScreenIsActive()
+    {
+        return cardGridVisualParent.activeSelf;
     }
     #endregion
 
@@ -507,7 +519,7 @@ public class CardController : Singleton<CardController>
         ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(card.rarity));
         SetCardViewModelCardTypeImage(cardVM, SpriteLibrary.Instance.GetCardTypeImageFromTypeEnumData(card.cardType));
     }
-    public CardViewModel BuildCardViewModelFromCardData(CardData card, CardViewModel cardVM)
+    public void BuildCardViewModelFromCardData(CardData card, CardViewModel cardVM)
     {
         Debug.Log("CardController.BuildCardViewModelFromCardData() called...");
         
@@ -521,7 +533,7 @@ public class CardController : Singleton<CardController>
         ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(card.rarity));
         SetCardViewModelCardTypeImage(cardVM, SpriteLibrary.Instance.GetCardTypeImageFromTypeEnumData(card.cardType));
 
-        return cardVM;
+        //return cardVM;
     }
     public CardViewModel BuildCardViewModelFromCardDataSO(CardDataSO card, CardViewModel cardVM)
     {
@@ -2694,6 +2706,70 @@ public class CardController : Singleton<CardController>
             dcvm.gameObject.SetActive(false);
 
         }
+    }
+    #endregion
+
+    // Card Grid Screen Logic
+    #region
+    public void OnCloseGridScreenButtonClicked()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        HideCardGridScreen();
+    }
+    public void CreateNewShowDiscardPilePopup(List<Card> cards)
+    {
+        // enable screen
+        ShowCardGridScreen();
+
+        // set text
+        cardGridRibbonText.text = "Discard Pile";
+
+        // Build Cards
+        BuildGridScreenCards(cards);
+    }
+    public void CreateNewShowDrawPilePopup(List<Card> cards)
+    {
+        // enable screen
+        ShowCardGridScreen();
+
+        // set text
+        cardGridRibbonText.text = "Draw Pile";
+
+        // Build Cards
+        BuildGridScreenCards(cards);
+    }
+
+    private void BuildGridScreenCards(List<Card> cards)
+    {
+        // Disable all grid cards
+        foreach (GridCardViewModel g in allGridCards)
+        {
+            g.gameObject.SetActive(false);
+        }
+
+        // Build new grid cards and views
+        for (int i = 0; i < cards.Count; i++)
+        {
+            Card card = cards[i];
+            GridCardViewModel gc = allGridCards[i];
+            gc.gameObject.SetActive(true);
+            SetUpCardViewModelAppearanceFromCard(gc.cardVM, card);
+        }
+    }
+    private void ShowCardGridScreen()
+    {
+        cardGridCg.alpha = 0f;
+        cardGridVisualParent.SetActive(true);
+
+        Sequence s = DOTween.Sequence();
+        s.Append(cardGridCg.DOFade(1f, 0.25f));
+    }
+    private void HideCardGridScreen()
+    {
+        cardGridCg.alpha = 1f;
+        Sequence s = DOTween.Sequence();
+        s.Append(cardGridCg.DOFade(0f, 0.25f));
+        s.OnComplete(() => cardGridVisualParent.SetActive(false));
     }
     #endregion
 
