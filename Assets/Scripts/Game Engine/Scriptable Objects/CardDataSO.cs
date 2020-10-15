@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using System;
 using Sirenix.OdinInspector;
 
 [CreateAssetMenu(fileName = "New CardDataSO", menuName = "CardDataSO", order = 52)]
@@ -72,6 +71,9 @@ public class CardDataSO : ScriptableObject
     [VerticalGroup("List Groups")]
     [LabelWidth(200)]
     public List<CardEventListener> cardEventListeners;
+    [VerticalGroup("List Groups")]
+    [LabelWidth(200)]
+    public List<KeyWordModel> keyWordModels;
 
     private Color Blue() { return Color.cyan; }
     private Color Green() { return Color.green; }

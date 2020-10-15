@@ -78,6 +78,9 @@ public class HoverPreview: MonoBehaviour
                 {
                     touchFingerIsOverMe = false;
                     StopAllPreviews();
+
+                    // Close key word pop ups
+                    KeyWordLayoutController.Instance.FadeOutMainView();
                 }
             }
 
@@ -124,7 +127,12 @@ public class HoverPreview: MonoBehaviour
         {
             OverCollider = false;
             if (!PreviewingSomeCard())
+            {
                 StopAllPreviews();
+
+                // Close key word pop ups
+                KeyWordLayoutController.Instance.FadeOutMainView();
+            }
         }
 
         else if (GlobalSettings.Instance.deviceMode == DeviceMode.Mobile)
@@ -134,6 +142,8 @@ public class HoverPreview: MonoBehaviour
             {
                 touchFingerIsOverMe = false;
                 StopAllPreviews();
+                // Close key word pop ups
+                KeyWordLayoutController.Instance.FadeOutMainView();
             }
                
         }
@@ -178,10 +188,23 @@ public class HoverPreview: MonoBehaviour
 
         previewGameObject.transform.DOLocalMove(movePos, 0.5f).SetEase(Ease.OutQuint);
         previewGameObject.transform.DOScale(scaleAmount, 0.5f).SetEase(Ease.OutQuint);
+
+        // Key word pop logic should go here:
+        if(mainCardVM != null &&
+            mainCardVM.card != null)
+        {
+            KeyWordLayoutController.Instance.BuildAllViewsFromKeyWordModels(mainCardVM.card.keyWordModels);
+        }
+       
     }
     void StopThisPreview()
     {
         Debug.Log("HoverPreview.StopThisPreview() called...");
+
+        // Close key word pop ups
+       // KeyWordLayoutController.Instance.FadeOutMainView();
+
+        // Close preview
         previewGameObject.SetActive(false);
         previewGameObject.transform.localScale = Vector3.one;
         previewGameObject.transform.localPosition = Vector3.zero;
@@ -192,6 +215,9 @@ public class HoverPreview: MonoBehaviour
     // STATIC METHODS
     private static void StopAllPreviews()
     {
+        // Close key word pop ups
+       // KeyWordLayoutController.Instance.FadeOutMainView();
+
         if (currentlyViewing != null)
         {
             currentlyViewing.previewGameObject.SetActive(false);

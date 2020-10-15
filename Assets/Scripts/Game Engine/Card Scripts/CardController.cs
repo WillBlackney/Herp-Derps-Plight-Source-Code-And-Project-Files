@@ -334,27 +334,15 @@ public class CardController : Singleton<CardController>
             c.cardEventListeners.Add(ObjectCloner.CloneJSON(cel));
         }
 
-        return c;
-    }
-    private void ConnectCombatCardWithCardInCharacterDataDeck(Card card, CardData deckDataCard)
-    {
-        card.myCharacterDeckCard = deckDataCard;
-    }
-    public void BuildCharacterEntityCombatDeckFromDeckData(CharacterEntityModel defender, List<CardData> deckData)
-    {
-        Debug.Log("CardController.BuildDefenderDeckFromDeckData() called...");
-
-        // Convert each cardDataSO into a card object
-        foreach (CardData cardData in deckData)
+        // Keyword Model Data
+        c.keyWordModels = new List<KeyWordModel>();
+        foreach (KeyWordModel kwdm in d.keyWordModels)
         {
-            Card newCard = BuildCardFromCardData(cardData, defender);
-            AddCardToDrawPile(defender, newCard);
-            ConnectCombatCardWithCardInCharacterDataDeck(newCard, cardData);
+            c.keyWordModels.Add(ObjectCloner.CloneJSON(kwdm));
         }
 
-        // Shuffle the characters draw pile
-        defender.drawPile.Shuffle();
-    }
+        return c;
+    }    
     private Card BuildCardFromCardDataSO(CardDataSO data, CharacterEntityModel owner)
     {
         Debug.Log("CardController.BuildCardFromCardData() called...");
@@ -386,6 +374,7 @@ public class CardController : Singleton<CardController>
         // lists
         card.cardEventListeners.AddRange(data.cardEventListeners);
         card.cardEffects.AddRange(data.cardEffects);
+        card.keyWordModels.AddRange(data.keyWordModels);
 
         return card;
     }
@@ -420,6 +409,7 @@ public class CardController : Singleton<CardController>
         // lists
         card.cardEventListeners.AddRange(data.cardEventListeners);
         card.cardEffects.AddRange(data.cardEffects);
+        card.keyWordModels.AddRange(data.keyWordModels);
 
         return card;
     }
@@ -477,6 +467,13 @@ public class CardController : Singleton<CardController>
             card.cardEventListeners.Add(ObjectCloner.CloneJSON(cel));
         }
 
+        // Key word models
+        card.keyWordModels = new List<KeyWordModel>();
+        foreach (KeyWordModel kwdm in original.keyWordModels)
+        {
+            card.keyWordModels.Add(ObjectCloner.CloneJSON(kwdm));
+        }
+
         // lists
         //card.cardEventListeners.AddRange(original.cardEventListeners);
         //card.cardEffects.AddRange(original.cardEffects);
@@ -507,6 +504,37 @@ public class CardController : Singleton<CardController>
         SetUpCardViewModelAppearanceFromCard(cardVM, card);
         return cardVM;
     }
+    public CardViewModel BuildCardViewModelFromCardDataSO(CardDataSO card, CardViewModel cardVM)
+    {
+        Debug.Log("CardController.BuildCardViewModelFromCardDataSO() called...");
+
+        // Set texts and images
+        SetCardViewModelNameText(cardVM, card.cardName);
+        SetCardViewModelDescriptionText(cardVM, card.cardDescription);
+        SetCardViewModelEnergyText(null, cardVM, card.cardEnergyCost.ToString());
+        SetCardViewModelGraphicImage(cardVM, card.cardSprite);
+        SetCardViewModelTalentSchoolImage(cardVM, SpriteLibrary.Instance.GetTalentSchoolSpriteFromEnumData(card.talentSchool));
+        ApplyCardViewModelTalentColoring(cardVM, ColorLibrary.Instance.GetTalentColor(card.talentSchool));
+        ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(card.rarity));
+        SetCardViewModelCardTypeImage(cardVM, SpriteLibrary.Instance.GetCardTypeImageFromTypeEnumData(card.cardType));
+
+        return cardVM;
+    }
+    public void BuildCharacterEntityCombatDeckFromDeckData(CharacterEntityModel defender, List<CardData> deckData)
+    {
+        Debug.Log("CardController.BuildDefenderDeckFromDeckData() called...");
+
+        // Convert each cardDataSO into a card object
+        foreach (CardData cardData in deckData)
+        {
+            Card newCard = BuildCardFromCardData(cardData, defender);
+            AddCardToDrawPile(defender, newCard);
+            ConnectCombatCardWithCardInCharacterDataDeck(newCard, cardData);
+        }
+
+        // Shuffle the characters draw pile
+        defender.drawPile.Shuffle();
+    }
     public void SetUpCardViewModelAppearanceFromCard(CardViewModel cardVM, Card card)
     {
         // Set texts and images
@@ -535,21 +563,9 @@ public class CardController : Singleton<CardController>
 
         //return cardVM;
     }
-    public CardViewModel BuildCardViewModelFromCardDataSO(CardDataSO card, CardViewModel cardVM)
+    private void ConnectCombatCardWithCardInCharacterDataDeck(Card card, CardData deckDataCard)
     {
-        Debug.Log("CardController.BuildCardViewModelFromCardDataSO() called...");
-
-        // Set texts and images
-        SetCardViewModelNameText(cardVM, card.cardName);
-        SetCardViewModelDescriptionText(cardVM, card.cardDescription);
-        SetCardViewModelEnergyText(null, cardVM, card.cardEnergyCost.ToString());
-        SetCardViewModelGraphicImage(cardVM, card.cardSprite);
-        SetCardViewModelTalentSchoolImage(cardVM, SpriteLibrary.Instance.GetTalentSchoolSpriteFromEnumData(card.talentSchool));
-        ApplyCardViewModelTalentColoring(cardVM, ColorLibrary.Instance.GetTalentColor(card.talentSchool));
-        ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(card.rarity));
-        SetCardViewModelCardTypeImage(cardVM, SpriteLibrary.Instance.GetCardTypeImageFromTypeEnumData(card.cardType));
-
-        return cardVM;
+        card.myCharacterDeckCard = deckDataCard;
     }
     private void ConnectCardWithCardViewModel(Card card, CardViewModel cardVM)
     {
@@ -1041,7 +1057,7 @@ public class CardController : Singleton<CardController>
         {
             boolReturned = true;
         }
-        else if(ce.weaponRequirement == CardWeaponRequirement.DW &&
+        else if(ce.weaponRequirement == CardWeaponRequirement.DualWield &&
             ItemController.Instance.IsDualWielding(owner.iManager))
         {
             boolReturned = true;

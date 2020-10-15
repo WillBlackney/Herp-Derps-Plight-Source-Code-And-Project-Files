@@ -21,6 +21,7 @@ public class Card
     public TalentSchool talentSchool;
     public List<CardEffect> cardEffects = new List<CardEffect>();
     public List<CardEventListener> cardEventListeners = new List<CardEventListener>();
+    public List<KeyWordModel> keyWordModels = new List<KeyWordModel>();
 
     // Energy reduction propeties
     public int energyReductionUntilPlayed;

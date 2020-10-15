@@ -67,10 +67,6 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 04b3ac38b9732134c9076aed80c85796, type: 2}
-  - {fileID: 11400000, guid: 04b3ac38b9732134c9076aed80c85796, type: 2}
-  - {fileID: 11400000, guid: 04b3ac38b9732134c9076aed80c85796, type: 2}
-  - {fileID: 11400000, guid: 04b3ac38b9732134c9076aed80c85796, type: 2}
   - {fileID: 11400000, guid: 708f5f31c10f4d14e9f8a91cc822a47b, type: 2}
   - {fileID: 11400000, guid: 708f5f31c10f4d14e9f8a91cc822a47b, type: 2}
   - {fileID: 11400000, guid: 708f5f31c10f4d14e9f8a91cc822a47b, type: 2}

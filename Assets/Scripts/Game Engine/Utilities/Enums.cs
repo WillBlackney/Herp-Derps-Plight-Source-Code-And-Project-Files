@@ -28,7 +28,7 @@ public enum CardWeaponRequirement
     None = 0,
     Shielded = 1,
     TwoHanded = 2,
-    DW = 3,
+    DualWield = 3,
     Ranged = 4,
 }
 public enum CardCollection

@@ -32,6 +32,7 @@ namespace CustomOdinGUI
         private DrawSpriteLibrary drawSpriteLibrary = new DrawSpriteLibrary();
         private DrawPrefabHolder drawPrefabHolder = new DrawPrefabHolder();
         private DrawColorLibrary drawColorLibrary = new DrawColorLibrary();
+        private DrawKeyWordLibrary drawKeyWordLibrary = new DrawKeyWordLibrary();
         private DrawVisualEffects drawVisualEffects = new DrawVisualEffects();
         private DrawAudioManager drawAudioManager = new DrawAudioManager();
         private DrawGlobalSettings drawGlobalSettings = new DrawGlobalSettings();
@@ -77,6 +78,7 @@ namespace CustomOdinGUI
             drawAudioManager.FindMyObject();
             drawGlobalSettings.FindMyObject();
             drawJourneyManager.FindMyObject();
+            drawKeyWordLibrary.FindMyObject();
         }
         protected override void OnGUI()
         {
@@ -190,6 +192,7 @@ namespace CustomOdinGUI
             targets.Add(drawVisualEffects);
             targets.Add(drawAudioManager);
             targets.Add(drawJourneyManager);
+            targets.Add(drawKeyWordLibrary);
 
 
             targets.Add(base.GetTarget());
@@ -264,6 +267,7 @@ namespace CustomOdinGUI
             visualEffects,
             audioManager,
             journeyManager,
+            keyWordLibrary,
         };
 
 
@@ -287,6 +291,10 @@ namespace CustomOdinGUI
     {
     }
     public class DrawSpriteLibrary : DrawSceneObject<SpriteLibrary>
+    {
+
+    }
+    public class DrawKeyWordLibrary : DrawSceneObject<KeywordLibrary>
     {
 
     }

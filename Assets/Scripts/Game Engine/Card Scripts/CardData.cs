@@ -19,6 +19,7 @@ public class CardData
     public TalentSchool talentSchool;
     public List<CardEffect> cardEffects = new List<CardEffect>();
     public List<CardEventListener> cardEventListeners = new List<CardEventListener>();
+    public List<KeyWordModel> keyWordModels = new List<KeyWordModel>();
 
     // Key words
     public bool expend;
