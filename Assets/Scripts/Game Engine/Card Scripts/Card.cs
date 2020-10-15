@@ -22,6 +22,7 @@ public class Card
     public List<CardEffect> cardEffects = new List<CardEffect>();
     public List<CardEventListener> cardEventListeners = new List<CardEventListener>();
     public List<KeyWordModel> keyWordModels = new List<KeyWordModel>();
+    public List<CustomString> cardDescriptionTwo = new List<CustomString>();
 
     // Energy reduction propeties
     public int energyReductionUntilPlayed;

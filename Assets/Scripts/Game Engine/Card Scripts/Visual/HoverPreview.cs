@@ -193,6 +193,7 @@ public class HoverPreview: MonoBehaviour
         if(mainCardVM != null &&
             mainCardVM.card != null)
         {
+            CardController.Instance.AutoUpdateCardDescriptionText(mainCardVM.card);
             KeyWordLayoutController.Instance.BuildAllViewsFromKeyWordModels(mainCardVM.card.keyWordModels);
         }
        
@@ -200,9 +201,6 @@ public class HoverPreview: MonoBehaviour
     void StopThisPreview()
     {
         Debug.Log("HoverPreview.StopThisPreview() called...");
-
-        // Close key word pop ups
-       // KeyWordLayoutController.Instance.FadeOutMainView();
 
         // Close preview
         previewGameObject.SetActive(false);
@@ -215,9 +213,6 @@ public class HoverPreview: MonoBehaviour
     // STATIC METHODS
     private static void StopAllPreviews()
     {
-        // Close key word pop ups
-       // KeyWordLayoutController.Instance.FadeOutMainView();
-
         if (currentlyViewing != null)
         {
             currentlyViewing.previewGameObject.SetActive(false);

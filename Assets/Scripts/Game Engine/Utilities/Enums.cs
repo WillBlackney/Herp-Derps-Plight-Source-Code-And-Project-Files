@@ -296,6 +296,18 @@ public enum CombatGameState
     DefeatTriggered = 2,
     CombatActive = 3,
 }
+public enum TextColor
+{
+    None = 0,
+    White = 1,
+    BlueNumber = 2,
+    KeyWordYellow = 3,
+    PhysicalBrown = 4,
+    FireRed = 5,
+    ShadowPurple = 6,
+    AirBlue = 7,
+    PoisonGreen = 8
+}
 
 #endregion
 

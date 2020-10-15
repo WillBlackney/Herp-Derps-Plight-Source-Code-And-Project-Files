@@ -341,6 +341,13 @@ public class CardController : Singleton<CardController>
             c.keyWordModels.Add(ObjectCloner.CloneJSON(kwdm));
         }
 
+        // Custom string Data
+        c.cardDescriptionTwo = new List<CustomString>();
+        foreach (CustomString cs in d.cardDescriptionTwo)
+        {
+            c.cardDescriptionTwo.Add(ObjectCloner.CloneJSON(cs));
+        }
+
         return c;
     }    
     private Card BuildCardFromCardDataSO(CardDataSO data, CharacterEntityModel owner)
@@ -375,6 +382,7 @@ public class CardController : Singleton<CardController>
         card.cardEventListeners.AddRange(data.cardEventListeners);
         card.cardEffects.AddRange(data.cardEffects);
         card.keyWordModels.AddRange(data.keyWordModels);
+        card.cardDescriptionTwo.AddRange(data.cardDescriptionTwo);       
 
         return card;
     }
@@ -410,6 +418,7 @@ public class CardController : Singleton<CardController>
         card.cardEventListeners.AddRange(data.cardEventListeners);
         card.cardEffects.AddRange(data.cardEffects);
         card.keyWordModels.AddRange(data.keyWordModels);
+        card.cardDescriptionTwo.AddRange(data.cardDescriptionTwo);
 
         return card;
     }
@@ -539,7 +548,7 @@ public class CardController : Singleton<CardController>
     {
         // Set texts and images
         SetCardViewModelNameText(cardVM, card.cardName);
-        SetCardViewModelDescriptionText(cardVM, card.cardDescription);
+        SetCardViewModelDescriptionText(cardVM, TextLogic.ConvertCustomStringListToString(card.cardDescriptionTwo));
         SetCardViewModelEnergyText(card, cardVM, GetCardEnergyCost(card).ToString());
         SetCardViewModelGraphicImage(cardVM, GetCardSpriteByName(card.cardName));
         SetCardViewModelTalentSchoolImage(cardVM, SpriteLibrary.Instance.GetTalentSchoolSpriteFromEnumData(card.talentSchool));
@@ -553,7 +562,7 @@ public class CardController : Singleton<CardController>
         
         // Set texts and images
         SetCardViewModelNameText(cardVM, card.cardName);
-        SetCardViewModelDescriptionText(cardVM, card.cardDescription);
+        SetCardViewModelDescriptionText(cardVM, TextLogic.ConvertCustomStringListToString(card.cardDescriptionTwo));
         SetCardViewModelEnergyText(null, cardVM, card.cardBaseEnergyCost.ToString());
         SetCardViewModelGraphicImage(cardVM, GetCardSpriteByName(card.cardName));
         SetCardViewModelTalentSchoolImage(cardVM, SpriteLibrary.Instance.GetTalentSchoolSpriteFromEnumData(card.talentSchool));
@@ -588,6 +597,63 @@ public class CardController : Singleton<CardController>
 
     // Card View Model Specific Logic
     #region
+    public void AutoUpdateCardDescriptionText(Card card, CharacterEntityModel target = null)
+    {
+        // Damage card logic
+        foreach(CustomString cs in card.cardDescriptionTwo)
+        {
+            if (cs.getPhraseFromCardValue)
+            {
+                CardEffect matchingEffect = null;
+
+                foreach (CardEffect ce in card.cardEffects)
+                {
+                    if(ce.cardEffectType == cs.cardEffectType)
+                    {
+                        // found a match, cache it
+                        matchingEffect = ce;
+                        break;
+                    }
+                }
+
+                // which type of value should be inserted into the custom string phrase?
+                if(cs.cardEffectType == CardEffectType.DamageTarget)
+                {                   
+                    int damageValue = 0;
+
+                    if(target != null)
+                    {
+                        Debug.LogWarning("AutoUpdate target is NOT null...");
+                        damageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(card.owner, target, matchingEffect.damageType, matchingEffect.baseDamageValue, card, matchingEffect);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("AutoUpdate target is null...");
+                        damageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(card.owner, null, matchingEffect.damageType, matchingEffect.baseDamageValue, card, matchingEffect);
+                    }
+
+                    cs.phrase = damageValue.ToString();
+                }
+
+                else if (cs.cardEffectType == CardEffectType.GainBlockTarget && target != null)
+                {
+                    int blockGainValue = CombatLogic.Instance.CalculateBlockGainedByEffect(matchingEffect.blockGainValue, card.owner, target, null, matchingEffect);
+                    cs.phrase = blockGainValue.ToString();
+                }
+
+                else if (cs.cardEffectType == CardEffectType.GainBlockSelf)
+                {
+                    int blockGainValue = CombatLogic.Instance.CalculateBlockGainedByEffect(matchingEffect.blockGainValue, card.owner, card.owner, null, matchingEffect);
+                    cs.phrase = blockGainValue.ToString();
+                }
+
+
+            }
+        }
+
+        // finally set next text value 
+        SetCardViewModelDescriptionText(card.cardVM, TextLogic.ConvertCustomStringListToString(card.cardDescriptionTwo));
+    }
     public void SetCardViewModelNameText(CardViewModel cvm, string name)
     {
         cvm.nameText.text = name;
@@ -1522,7 +1588,9 @@ public class CardController : Singleton<CardController>
                     stacks += enemy.pManager.weakenedStacks;
                 }                
             }
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(owner.pManager, cardEffect.passivePairing.ToString(), stacks, true, 0.5f);
+
+            string passiveName = TextLogic.SplitByCapitals(cardEffect.passivePairing.passiveData.ToString());
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(owner.pManager, passiveName, stacks, true, 0.5f);
         }
 
         // Apply passive to target
@@ -1542,7 +1610,8 @@ public class CardController : Singleton<CardController>
                     stacks += enemy.pManager.weakenedStacks;
                 }
             }
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, cardEffect.passivePairing.ToString(), stacks, true, 0.5f);
+            string passiveName = TextLogic.SplitByCapitals(cardEffect.passivePairing.passiveData.ToString());
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, passiveName, stacks, true, 0.5f);
         }
 
         // Apply passive to all allies
@@ -1565,7 +1634,8 @@ public class CardController : Singleton<CardController>
 
             foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllAlliesOfCharacter(owner))
             {
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemy.pManager, cardEffect.passivePairing.ToString(), stacks, true);
+                string passiveName = TextLogic.SplitByCapitals(cardEffect.passivePairing.passiveData.ToString());
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemy.pManager, passiveName, stacks, true);
             }
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
@@ -1590,7 +1660,8 @@ public class CardController : Singleton<CardController>
 
             foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
             {
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemy.pManager, cardEffect.passivePairing.ToString(), stacks, true);                
+                string passiveName = TextLogic.SplitByCapitals(cardEffect.passivePairing.passiveData.ToString());
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemy.pManager, passiveName, stacks, true);                
             }
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
@@ -1616,7 +1687,8 @@ public class CardController : Singleton<CardController>
 
             foreach (CharacterEntityModel ally in CharacterEntityController.Instance.GetAllAlliesOfCharacter(owner))
             {
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(ally.pManager, cardEffect.passivePairing.ToString(), stacks, true);
+                string passiveName = TextLogic.SplitByCapitals(cardEffect.passivePairing.passiveData.ToString());
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(ally.pManager, passiveName, stacks, true);
                 VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
             }
         }
@@ -1801,8 +1873,9 @@ public class CardController : Singleton<CardController>
         // Apply passive
         else if (e.cardEventListenerFunction == CardEventListenerFunction.ApplyPassiveToSelf)
         {
+            string passiveName = TextLogic.SplitByCapitals(e.passivePairing.passiveData.ToString());
             VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(card.cardVM));
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(card.owner.pManager, e.passivePairing.ToString(), e.passivePairing.passiveStacks, true, 0.5f);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(card.owner.pManager, passiveName, e.passivePairing.passiveStacks, true, 0.5f);
         }
     }
     public void HandleOnMeleeAttackCardPlayedListeners(CharacterEntityModel character)
@@ -2090,8 +2163,10 @@ public class CardController : Singleton<CardController>
 
             else if (choiceEffect.choiceEffect == OnCardInHandChoiceMadeEffectType.GainPassive)
             {
+                string passiveName = TextLogic.SplitByCapitals(choiceEffect.passivePairing.passiveData.ToString());
+
                 PassiveController.Instance.ModifyPassiveOnCharacterEntity
-                    (ActivationManager.Instance.EntityActivated.pManager, choiceEffect.passivePairing.ToString(), choiceEffect.passivePairing.passiveStacks, true, 0.5f);
+                    (ActivationManager.Instance.EntityActivated.pManager, passiveName, choiceEffect.passivePairing.passiveStacks, true, 0.5f);
             }
 
             // reduce cost of new cards

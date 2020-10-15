@@ -162,7 +162,9 @@ public class ItemController : Singleton<ItemController>
     {
         foreach(PassivePairingData passive in item.passivePairings)
         {
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(character.pManager, passive.ToString(), passive.passiveStacks, false);
+            string passiveName = TextLogic.SplitByCapitals(passive.passiveData.ToString());
+
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(character.pManager, passiveName, passive.passiveStacks, false);
         }
     }
     public void CopySerializedItemManagerIntoStandardItemManager(SerializedItemManagerModel data, ItemManagerModel iManager)

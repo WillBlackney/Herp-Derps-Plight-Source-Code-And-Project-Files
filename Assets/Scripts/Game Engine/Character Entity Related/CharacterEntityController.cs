@@ -1264,12 +1264,21 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             return;
         }
 
-        // Enable activation window glow
+        // Enable activation window glow + node glow
         view.myActivationWindow.myGlowOutline.SetActive(true);
         LevelManager.Instance.SetMouseOverViewState(view.character.levelNode, true);
 
         // Set character highlight color
         SetCharacterColor(view, highlightColour);
+
+        // Update card being dragged text
+        if (Draggable.DraggingThis != null &&
+            Draggable.DraggingThis.Da is DragSpellOnTarget && 
+            view.character != null)
+        {
+            Debug.LogWarning("Ready to go, updating card description text");
+            CardController.Instance.AutoUpdateCardDescriptionText(Draggable.DraggingThis.Da.CardVM().card, view.character);
+        }
 
         // AI + Enemy exclusive logic
         if (view.character.controller == Controller.AI)
@@ -1339,8 +1348,17 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
             return;
         }
+
         // Enable activation window glow
         view.myActivationWindow.myGlowOutline.SetActive(false);
+
+        // Update card being dragged text, reset to targetless calculation
+        if (Draggable.DraggingThis != null &&
+            Draggable.DraggingThis.Da is DragSpellOnTarget)
+        {
+            Debug.LogWarning("Ready to go, updating card description text");
+            CardController.Instance.AutoUpdateCardDescriptionText(Draggable.DraggingThis.Da.CardVM().card, null);
+        }
 
         // Do character vm stuff
         if (view.character != null)

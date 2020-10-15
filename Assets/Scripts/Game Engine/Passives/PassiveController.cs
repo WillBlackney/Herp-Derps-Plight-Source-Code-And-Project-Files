@@ -43,6 +43,7 @@ public class PassiveController : Singleton<PassiveController>
     {
         PassiveIconData p = new PassiveIconData();       
         p.passiveName = data.passiveName;
+        p.passiveDescription = data.passiveDescription;
         p.passiveSprite = GetPassiveSpriteByName(data.passiveName);
         p.showStackCount = data.showStackCount;
         p.hiddenOnPassivePanel = data.hiddenOnPassivePanel;

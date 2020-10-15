@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passiveSprite: {fileID: 21300000, guid: 2476965c2d002fd4cb2c673a276b14f6, type: 3}
   passiveName: Fire Ball Bonus Damage
+  passiveDescription: Increases the damage of Fire Ball cards by X
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0

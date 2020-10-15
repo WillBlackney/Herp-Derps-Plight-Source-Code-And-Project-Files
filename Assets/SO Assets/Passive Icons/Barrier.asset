@@ -14,6 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passiveSprite: {fileID: 21300000, guid: f58d689ac5a78fa4499368a65274fe3e, type: 3}
   passiveName: Barrier
+  passiveDescription:
+  - color: 1
+    phrase: 'The next '
+  - color: 2
+    phrase: 'X '
+  - color: 1
+    phrase: times this character loses health, ignore it.
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0

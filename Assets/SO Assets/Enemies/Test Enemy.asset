@@ -57,7 +57,7 @@ MonoBehaviour:
     shadowAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
-    vulnerableStacks: 0
+    vulnerableStacks: 2
     gritStacks: 0
     disarmedStacks: 0
     sleepStacks: 0

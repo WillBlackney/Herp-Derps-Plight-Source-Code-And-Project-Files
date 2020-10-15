@@ -10,6 +10,7 @@ public class PassivePairingData
     public Passive passiveData;
     public int passiveStacks;
 
+    /*
     public override string ToString()
     {
         string stringReturned = passiveData.ToString();
@@ -25,4 +26,5 @@ public class PassivePairingData
 
         return stringReturned;
     }
+    */
 }

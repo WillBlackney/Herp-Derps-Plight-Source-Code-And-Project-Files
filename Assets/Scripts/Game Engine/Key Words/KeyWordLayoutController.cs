@@ -24,8 +24,9 @@ public class KeyWordLayoutController : Singleton<KeyWordLayoutController>
     #region
     public void BuildAllViewsFromKeyWordModels(List<KeyWordModel> keyWords)
     {
-        // Enable main view
-        EnableMainView();
+        // Enable + reset main view
+        ResetAllKeyWordPanels();
+        EnableMainView();      
         FadeInMainView();
 
         // build each panel
@@ -34,20 +35,51 @@ public class KeyWordLayoutController : Singleton<KeyWordLayoutController>
             KeyWordPanel panel = allKeyWordPanels[i];
             KeyWordModel data = keyWords[i];
 
+            panel.panelImageParent.SetActive(false);
             panel.gameObject.SetActive(true);
             BuildKeywordPanelFromModel(panel, data);
             panel.RebuildLayout();
         }
 
         RebuildEntireLayout();
+    }
+    public void BuildAllViewsFromPassiveString(string passiveName)
+    {
+        // Enable main view
+        ResetAllKeyWordPanels();
+        EnableMainView();
+        FadeInMainView();
 
-    }  
+        PassiveIconData data = PassiveController.Instance.GetPassiveIconDataByName(passiveName);
+
+        KeyWordPanel panel = allKeyWordPanels[0];
+        panel.gameObject.SetActive(true);
+        BuildKeywordPanelFromPassiveData(panel, data);
+        panel.RebuildLayout();
+
+        RebuildEntireLayout();
+    }
+    private void ResetAllKeyWordPanels()
+    {
+        foreach(KeyWordPanel panel in allKeyWordPanels)
+        {
+            panel.gameObject.SetActive(false);
+        }
+    }
     private void BuildKeywordPanelFromModel(KeyWordPanel panel, KeyWordModel model)
     {
         KeyWordData data = GetMatchingKeyWordData(model);
 
         panel.nameText.text = GetKeyWordNameString(data);
         panel.descriptionText.text = GetKeyWordDescriptionString(data);
+    }
+    private void BuildKeywordPanelFromPassiveData(KeyWordPanel panel, PassiveIconData data)
+    {
+        panel.nameText.text = data.passiveName;
+        panel.descriptionText.text = TextLogic.ConvertCustomStringListToString(data.passiveDescription);
+
+        panel.panelImageParent.SetActive(true);
+        panel.panelImage.sprite = data.passiveSprite;
     }
     private void RebuildEntireLayout()
     {
@@ -120,7 +152,7 @@ public class KeyWordLayoutController : Singleton<KeyWordLayoutController>
         }
         else if (data.kewWordType == KeyWordType.WeaponRequirement)
         {
-            stringReturned = data.weaponRequirement.ToString();
+            stringReturned = TextLogic.SplitByCapitals(data.weaponRequirement.ToString());
         }
         else
         {
@@ -143,19 +175,11 @@ public class KeyWordLayoutController : Singleton<KeyWordLayoutController>
     }
     private void FadeInMainView()
     {
-        //mainCg.alpha = 0f;
-
         Sequence s = DOTween.Sequence();
         s.Append(mainCg.DOFade(1f, 0.25f));
     }
     public void FadeOutMainView()
     {
-        Debug.LogWarning("FadeOutMainView() called...");
-
-        //Sequence s = DOTween.Sequence();
-        //s.Append(mainCg.DOFade(0f, 0.25f));
-        // s.OnComplete(() => DisableMainView());
-
         DisableMainView();
         mainCg.alpha = 0f;
 

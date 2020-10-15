@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 2707663784949240260}
   - component: {fileID: 3744645893696898369}
   - component: {fileID: 2535889571458701801}
+  - component: {fileID: 3447786686879030101}
   m_Layer: 5
   m_Name: Passive Icon View
   m_TagString: Untagged
@@ -307,7 +308,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bb24e4d40f95ee4aa494542ae76435c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myIconData: {fileID: 0}
   statusName: 
   statusStacks: 0
   statusStacksText: {fileID: 7529515455699795526}
@@ -358,6 +358,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 55
+--- !u!65 &3447786686879030101
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6840615612475838204}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0.2, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8991712210028877339
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,6 +20,7 @@ public class CardData
     public List<CardEffect> cardEffects = new List<CardEffect>();
     public List<CardEventListener> cardEventListeners = new List<CardEventListener>();
     public List<KeyWordModel> keyWordModels = new List<KeyWordModel>();
+    public List<CustomString> cardDescriptionTwo = new List<CustomString>();
 
     // Key words
     public bool expend;

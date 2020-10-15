@@ -16,6 +16,18 @@ public class PassiveIconView : MonoBehaviour
     [Header("Component References")]
     public TextMeshProUGUI statusStacksText;
     public Image passiveImage;
-    #endregion   
+    #endregion
+
+    // Input 
+    #region
+    public void OnMouseEnter()
+    {
+        KeyWordLayoutController.Instance.BuildAllViewsFromPassiveString(myIconData.passiveName);
+    }
+    public void OnMouseExit()
+    {
+        KeyWordLayoutController.Instance.FadeOutMainView();
+    }
+    #endregion
 
 }

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passiveSprite: {fileID: 21300000, guid: e53886736829f244f811db73091d28c4, type: 3}
   passiveName: Infuriated
+  passiveDescription: Whenever a Skill card is played, this character gains X Power.
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0

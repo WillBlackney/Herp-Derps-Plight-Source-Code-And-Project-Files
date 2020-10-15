@@ -6,6 +6,7 @@ public class PassiveIconData
 {
     public Sprite passiveSprite;
     public string passiveName;
+    public List<CustomString> passiveDescription;
     public bool showStackCount;
     public bool hiddenOnPassivePanel;
     public bool runeBlocksIncrease;

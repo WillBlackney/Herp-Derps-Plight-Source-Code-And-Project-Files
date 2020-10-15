@@ -26,6 +26,12 @@ public class Draggable : MonoBehaviour
         get{ return _draggingThis;}
     }
 
+    public DraggingActions Da
+    {
+        get { return da; }
+        private set { da = value; }
+    }
+
     // Mobile properties
     private bool initialTouchSet = false;
     private Vector3 initialTouchPos;

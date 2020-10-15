@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passiveSprite: {fileID: 21300000, guid: 178a45ecd9b7ede49a65f3e13d374fd4, type: 3}
   passiveName: Divine Favour
+  passiveDescription: On activation start, add X random Blessing cards to your hand.
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0

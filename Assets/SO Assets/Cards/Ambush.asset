@@ -132,3 +132,24 @@ MonoBehaviour:
   - kewWordType: 7
     weaponRequirement: 1
     passiveType: 0
+  cardDescriptionTwo:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Deal '
+  - color: 2
+    getPhraseFromCardValue: 1
+    cardEffectType: 6
+    phrase: '3 '
+  - color: 4
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Physical '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: "damage. \n"
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Innate.

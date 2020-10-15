@@ -74,6 +74,9 @@ public class CardDataSO : ScriptableObject
     [VerticalGroup("List Groups")]
     [LabelWidth(200)]
     public List<KeyWordModel> keyWordModels;
+    [VerticalGroup("List Groups")]
+    [LabelWidth(200)]
+    public List<CustomString> cardDescriptionTwo;
 
     private Color Blue() { return Color.cyan; }
     private Color Green() { return Color.green; }
