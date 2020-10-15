@@ -56,4 +56,10 @@ MonoBehaviour:
     passivePairing:
       passiveData: 2
       passiveStacks: 1
-  keyWordModels: []
+  keyWordModels:
+  - kewWordType: 8
+    weaponRequirement: 0
+    passiveType: 2
+  - kewWordType: 4
+    weaponRequirement: 0
+    passiveType: 0

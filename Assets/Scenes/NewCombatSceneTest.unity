@@ -1744,14 +1744,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
-  gameMode: 1
+  gameMode: 0
   testingEnemyWave: {fileID: 11400000, guid: a925a91cb3c75e64cadf1f518e9a621e, type: 2}
   testingCharacterTemplates:
-  - {fileID: 11400000, guid: df45f035351862c40b14da86f7b00d71, type: 2}
-  - {fileID: 11400000, guid: 3651cb59323c3a84791a348607f0dd2f, type: 2}
-  - {fileID: 11400000, guid: 1d0339b9767137d4a8b3c1e5af99a706, type: 2}
-  - {fileID: 11400000, guid: 11330c0f179f1fb49b8fc2aac3fe768b, type: 2}
-  - {fileID: 11400000, guid: bca7893ea05bbd644a8a2b65c311eb1b, type: 2}
+  - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
   deviceMode: 0
   mouseDragSensitivity: 0.25
   hoverMovePosition: {x: 0, y: 2, z: 0}
@@ -9966,6 +9962,10 @@ MonoBehaviour:
     weaponRequirement: 0
     passiveType: 0
     keyWordDescription: A random, cheap, targetted buff card.
+  - kewWordType: 11
+    weaponRequirement: 0
+    passiveType: 0
+    keyWordDescription: An unplayable status card that damages its owner.
   - kewWordType: 6
     weaponRequirement: 0
     passiveType: 0
@@ -9990,6 +9990,14 @@ MonoBehaviour:
     passiveType: 0
     keyWordDescription: An additional effect that is triggered if the character has
       a ranged weapon equipted.
+  - kewWordType: 9
+    weaponRequirement: 0
+    passiveType: 0
+    keyWordDescription: Absorbs all incoming damage in place of a character's health.
+  - kewWordType: 10
+    weaponRequirement: 0
+    passiveType: 0
+    keyWordDescription: The core resource used by characters to play cards.
 --- !u!1001 &445347380
 PrefabInstance:
   m_ObjectHideFlags: 0

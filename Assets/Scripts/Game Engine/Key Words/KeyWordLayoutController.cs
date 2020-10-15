@@ -37,7 +37,17 @@ public class KeyWordLayoutController : Singleton<KeyWordLayoutController>
 
             panel.panelImageParent.SetActive(false);
             panel.gameObject.SetActive(true);
-            BuildKeywordPanelFromModel(panel, data);
+
+            if(data.kewWordType == KeyWordType.Passive)
+            {
+                BuildKeywordPanelFromPassiveData
+                    (panel, PassiveController.Instance.GetPassiveIconDataByName(TextLogic.SplitByCapitals(data.passiveType.ToString())));
+            }
+            else
+            {
+                BuildKeywordPanelFromModel(panel, data);
+            }
+            
             panel.RebuildLayout();
         }
 

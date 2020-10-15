@@ -142,4 +142,13 @@ MonoBehaviour:
       onCharacter: 0
     visualEventsOnFinish: []
   cardEventListeners: []
-  keyWordModels: []
+  keyWordModels:
+  - kewWordType: 8
+    weaponRequirement: 0
+    passiveType: 23
+  - kewWordType: 8
+    weaponRequirement: 0
+    passiveType: 37
+  - kewWordType: 1
+    weaponRequirement: 0
+    passiveType: 0

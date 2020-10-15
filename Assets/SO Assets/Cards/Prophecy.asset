@@ -99,4 +99,10 @@ MonoBehaviour:
     visualEventsOnStart: []
     visualEventsOnFinish: []
   cardEventListeners: []
-  keyWordModels: []
+  keyWordModels:
+  - kewWordType: 5
+    weaponRequirement: 0
+    passiveType: 0
+  - kewWordType: 1
+    weaponRequirement: 0
+    passiveType: 0

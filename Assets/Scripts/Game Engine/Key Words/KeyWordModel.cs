@@ -31,6 +31,7 @@ public enum KeyWordType
     Unplayable = 4,
     Blessing = 5,
     Shank = 6,
+    Burn = 11,
     WeaponRequirement = 7,
     Passive = 8,
     Block = 9,
