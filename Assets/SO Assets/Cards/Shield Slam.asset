@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shield Slam
   m_EditorClassIdentifier: 
   cardName: Shield Slam
-  cardDescription: Deal Physical damage equal to your current block.
+  cardDescription: Deal Physical damage equal to your current Block.
   cardSprite: {fileID: 21300000, guid: 12b45abbd6b1e544f9262fd95e0712e7, type: 3}
   cardEnergyCost: 2
   cardType: 2
@@ -25,9 +25,32 @@ MonoBehaviour:
   fleeting: 0
   unplayable: 0
   blessing: 0
+  customDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Deal '
+  - color: 4
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Physical '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'damage equal to your current '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Block
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 6
+    splitTargetEffect: 0
+    splitTargetType: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
@@ -50,7 +73,7 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: {fileID: 0}
+      passiveData: 0
       passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
@@ -133,3 +156,4 @@ MonoBehaviour:
       onCharacter: 0
     visualEventsOnFinish: []
   cardEventListeners: []
+  keyWordModels: []

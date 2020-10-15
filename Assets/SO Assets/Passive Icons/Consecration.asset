@@ -14,8 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passiveSprite: {fileID: 21300000, guid: 5d3c0dca53bede34c91bcb26e69c96c1, type: 3}
   passiveName: Consecration
-  passiveDescription: Whenever you play a Blessing card, deal X Fire damage to all
-    enemies.
+  passiveDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Whenever this character plays a '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Blessing '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'card, it deals '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'X '
+  - color: 5
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Fire '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: damage to all enemies.
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0

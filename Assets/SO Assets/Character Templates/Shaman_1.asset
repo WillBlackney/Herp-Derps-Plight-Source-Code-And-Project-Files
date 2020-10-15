@@ -50,6 +50,7 @@ MonoBehaviour:
     overloadStacks: 0
     fusionStacks: 0
     plantedFeetStacks: 0
+    takenAimStacks: 0
     consecrationStacks: 0
     growingStacks: 0
     cautiousStacks: 0

@@ -25,9 +25,40 @@ MonoBehaviour:
   fleeting: 0
   unplayable: 0
   blessing: 0
+  customDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Deal '
+  - color: 2
+    getPhraseFromCardValue: 1
+    cardEffectType: 8
+    phrase: '3 '
+  - color: 6
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: ' Shadow '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'damage and apply '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '1 '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Weakened '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: to all enemies.
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 8
+    splitTargetEffect: 0
+    splitTargetType: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
@@ -149,6 +180,8 @@ MonoBehaviour:
       onCharacter: 0
   - weaponRequirement: 0
     cardEffectType: 4
+    splitTargetEffect: 0
+    splitTargetType: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
@@ -179,3 +212,4 @@ MonoBehaviour:
     visualEventsOnStart: []
     visualEventsOnFinish: []
   cardEventListeners: []
+  keyWordModels: []

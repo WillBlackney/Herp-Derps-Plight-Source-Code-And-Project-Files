@@ -25,9 +25,46 @@ MonoBehaviour:
   fleeting: 0
   unplayable: 0
   blessing: 0
+  customDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Give a target '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Power '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'equal to your '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Overload
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '.
+
+'
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Remove all '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Overload
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 3
+    splitTargetEffect: 0
+    splitTargetType: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
@@ -89,6 +126,8 @@ MonoBehaviour:
     visualEventsOnFinish: []
   - weaponRequirement: 0
     cardEffectType: 20
+    splitTargetEffect: 0
+    splitTargetType: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
@@ -119,3 +158,4 @@ MonoBehaviour:
     visualEventsOnStart: []
     visualEventsOnFinish: []
   cardEventListeners: []
+  keyWordModels: []

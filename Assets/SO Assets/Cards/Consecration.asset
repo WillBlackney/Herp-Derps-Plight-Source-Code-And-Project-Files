@@ -25,9 +25,36 @@ MonoBehaviour:
   fleeting: 0
   unplayable: 0
   blessing: 0
+  customDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Whenever you play a '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Blessing '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'card, deal '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '2 '
+  - color: 5
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Fire '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: damage to all enemies.
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 2
+    splitTargetEffect: 0
+    splitTargetType: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
@@ -58,3 +85,4 @@ MonoBehaviour:
     visualEventsOnStart: []
     visualEventsOnFinish: []
   cardEventListeners: []
+  keyWordModels: []

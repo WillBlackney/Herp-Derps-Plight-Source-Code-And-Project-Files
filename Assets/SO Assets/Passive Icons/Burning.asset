@@ -16,15 +16,29 @@ MonoBehaviour:
   passiveName: Burning
   passiveDescription:
   - color: 1
-    phrase: 'On activation end, this character takes '
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'On activation end,  take '
   - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
     phrase: 'X '
   - color: 5
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
     phrase: 'Fire  '
   - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
     phrase: 'damage. The damage ignores '
   - color: 3
-    phrase: Block.
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Block
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 1

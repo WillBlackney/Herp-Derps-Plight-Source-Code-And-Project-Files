@@ -27,9 +27,34 @@ MonoBehaviour:
   fleeting: 0
   unplayable: 0
   blessing: 0
+  customDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Draw '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '2 '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'cards.
+
+      Next activation, draw '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '2 '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: less cards.
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 2
+    splitTargetEffect: 0
+    splitTargetType: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
@@ -61,6 +86,8 @@ MonoBehaviour:
     visualEventsOnFinish: []
   - weaponRequirement: 0
     cardEffectType: 9
+    splitTargetEffect: 0
+    splitTargetType: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
@@ -91,3 +118,4 @@ MonoBehaviour:
     visualEventsOnStart: []
     visualEventsOnFinish: []
   cardEventListeners: []
+  keyWordModels: []

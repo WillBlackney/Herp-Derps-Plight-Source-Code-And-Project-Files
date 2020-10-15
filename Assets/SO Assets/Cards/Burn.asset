@@ -25,6 +25,29 @@ MonoBehaviour:
   fleeting: 0
   unplayable: 1
   blessing: 0
+  customDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'On activation end, apply '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '1 '
+  - color: 5
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Burning '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'to self.
+
+'
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Unplayable.
   cardEffects: []
   cardEventListeners:
   - cardEventListenerType: 3
@@ -33,3 +56,4 @@ MonoBehaviour:
     passivePairing:
       passiveData: 2
       passiveStacks: 1
+  keyWordModels: []

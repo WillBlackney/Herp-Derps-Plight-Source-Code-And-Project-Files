@@ -14,7 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passiveSprite: {fileID: 21300000, guid: f85e8eff4db0af044a6fccda014bc234, type: 3}
   passiveName: Enrage
-  passiveDescription: Whenever this character loses health, it gains X Power.
+  passiveDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Whenever this character loses health, it gains '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'X '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Power
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0

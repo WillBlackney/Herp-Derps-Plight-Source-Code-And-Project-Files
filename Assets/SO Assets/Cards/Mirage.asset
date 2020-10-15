@@ -25,9 +25,16 @@ MonoBehaviour:
   fleeting: 0
   unplayable: 0
   blessing: 0
+  customDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: "Choose a card in hand. \nAdd a copy of it to your hand."
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 23
+    splitTargetEffect: 0
+    splitTargetType: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
@@ -39,7 +46,7 @@ MonoBehaviour:
       energyReduction: 0
       newEnergyCost: 0
       passivePairing:
-        passiveData: {fileID: 0}
+        passiveData: 0
         passiveStacks: 0
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
@@ -57,7 +64,7 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: {fileID: 0}
+      passiveData: 0
       passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
@@ -65,3 +72,4 @@ MonoBehaviour:
     visualEventsOnStart: []
     visualEventsOnFinish: []
   cardEventListeners: []
+  keyWordModels: []

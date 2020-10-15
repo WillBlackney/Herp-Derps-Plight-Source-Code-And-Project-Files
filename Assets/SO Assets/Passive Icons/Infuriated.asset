@@ -14,7 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passiveSprite: {fileID: 21300000, guid: e53886736829f244f811db73091d28c4, type: 3}
   passiveName: Infuriated
-  passiveDescription: Whenever a Skill card is played, this character gains X Power.
+  passiveDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Whenever a '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Skill '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'card is played, this character gains  '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'X '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Power
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0

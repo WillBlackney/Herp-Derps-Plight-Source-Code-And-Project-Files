@@ -14,6 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passiveSprite: {fileID: 21300000, guid: 999f1b501821f28429afa92479fd231f, type: 3}
   passiveName: Weakened
+  passiveDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Reduces all damage dealt by '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 30%
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '. Expires in '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'X '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: activations.
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 1

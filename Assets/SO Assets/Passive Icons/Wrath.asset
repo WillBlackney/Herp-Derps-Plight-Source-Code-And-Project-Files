@@ -14,6 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passiveSprite: {fileID: 21300000, guid: 8f0c1809320bad14899e5530b31c726f, type: 3}
   passiveName: Wrath
+  passiveDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Increases all damage dealt by '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 30%
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '. Expires in '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'X '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: activations.
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0

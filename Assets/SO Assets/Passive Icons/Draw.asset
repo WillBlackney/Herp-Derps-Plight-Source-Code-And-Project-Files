@@ -14,7 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passiveSprite: {fileID: 21300000, guid: 9461b7af2d35c2b4c8243e5be345c6b2, type: 3}
   passiveName: Draw
-  passiveDescription: Modifies the amount of cards drawn on activation start by X
+  passiveDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'On activation start, draw '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'X '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: extra cards.
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0

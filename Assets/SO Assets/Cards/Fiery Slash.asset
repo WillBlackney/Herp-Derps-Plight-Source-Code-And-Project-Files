@@ -25,9 +25,42 @@ MonoBehaviour:
   fleeting: 0
   unplayable: 0
   blessing: 0
+  customDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Deal '
+  - color: 2
+    getPhraseFromCardValue: 1
+    cardEffectType: 6
+    phrase: '7 '
+  - color: 5
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: ' Fire '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'damage.
+
+'
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Add a '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Burn '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: card to your hand.
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 6
+    splitTargetEffect: 0
+    splitTargetType: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
@@ -50,7 +83,7 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: {fileID: 0}
+      passiveData: 0
       passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
@@ -134,6 +167,8 @@ MonoBehaviour:
     visualEventsOnFinish: []
   - weaponRequirement: 0
     cardEffectType: 1
+    splitTargetEffect: 0
+    splitTargetType: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
@@ -156,7 +191,7 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: {fileID: 0}
+      passiveData: 0
       passiveStacks: 0
     cardAdded: {fileID: 11400000, guid: e4da3cf9bac315a4586b6ba520cf9a90, type: 2}
     copiesAdded: 1
@@ -179,3 +214,4 @@ MonoBehaviour:
       onCharacter: 1
     visualEventsOnFinish: []
   cardEventListeners: []
+  keyWordModels: []

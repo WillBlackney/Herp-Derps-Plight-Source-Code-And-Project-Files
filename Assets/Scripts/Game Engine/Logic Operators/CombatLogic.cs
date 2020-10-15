@@ -264,8 +264,6 @@ public class CombatLogic : Singleton<CombatLogic>
     #region
     public int CalculateBlockGainedByEffect(int baseBlockGain, CharacterEntityModel caster, CharacterEntityModel target, EnemyActionEffect enemyEffect = null, CardEffect cardEffect = null)
     {
-        Debug.Log("CombatLogic.CalculateBlockGainedByEffect() called for " + caster.myName + " against target: " + target.myName);
-
         int valueReturned = baseBlockGain;
         Debug.Log("Base block gain value: " + valueReturned);
 

@@ -14,7 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passiveSprite: {fileID: 21300000, guid: ee7ca44fbf0859e409e5173da4d4cf5a, type: 3}
   passiveName: Fusion
-  passiveDescription: Whenever this character gains Overload, they draw X cards.
+  passiveDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Whenever this character gains '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Overload
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: ', it draws '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'X '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: cards.
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0

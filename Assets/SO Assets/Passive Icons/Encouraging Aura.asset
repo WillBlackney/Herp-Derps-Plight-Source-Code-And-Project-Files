@@ -14,7 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passiveSprite: {fileID: 21300000, guid: eb6b339787f3c8247a6df2ddeab2ee33, type: 3}
   passiveName: Encouraging Aura
-  passiveDescription: On activation end, give a random ally X Energy.
+  passiveDescription:
+  - color: 0
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'On activation end, give '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'X '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Energy '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: to a random ally.
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0

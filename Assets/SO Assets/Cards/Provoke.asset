@@ -25,9 +25,16 @@ MonoBehaviour:
   fleeting: 0
   unplayable: 0
   blessing: 0
+  customDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Force an enemy to focus its next attack on you.
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 17
+    splitTargetEffect: 0
+    splitTargetType: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
@@ -50,7 +57,7 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: {fileID: 11400000, guid: 30ab842a7e54aab4290645cb4610b843, type: 2}
+      passiveData: 0
       passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0
@@ -103,3 +110,4 @@ MonoBehaviour:
       onCharacter: 2
     visualEventsOnFinish: []
   cardEventListeners: []
+  keyWordModels: []

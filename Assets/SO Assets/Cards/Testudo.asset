@@ -27,9 +27,46 @@ MonoBehaviour:
   fleeting: 0
   unplayable: 0
   blessing: 0
+  customDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Give '
+  - color: 2
+    getPhraseFromCardValue: 1
+    cardEffectType: 19
+    phrase: 2
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: ' Block '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'to self or ally.
+
+'
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Shielded
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: ': Draw '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '1 '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: card.
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 19
+    splitTargetEffect: 0
+    splitTargetType: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
@@ -52,7 +89,7 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: {fileID: 0}
+      passiveData: 0
       passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
@@ -76,6 +113,8 @@ MonoBehaviour:
     visualEventsOnFinish: []
   - weaponRequirement: 1
     cardEffectType: 9
+    splitTargetEffect: 0
+    splitTargetType: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
@@ -98,7 +137,7 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: {fileID: 0}
+      passiveData: 0
       passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
@@ -121,3 +160,4 @@ MonoBehaviour:
       onCharacter: 1
     visualEventsOnFinish: []
   cardEventListeners: []
+  keyWordModels: []

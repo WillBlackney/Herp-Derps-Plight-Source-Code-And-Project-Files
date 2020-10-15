@@ -27,5 +27,25 @@ MonoBehaviour:
   fleeting: 1
   unplayable: 1
   blessing: 0
+  customDescription:
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Unplayable
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '.
+
+'
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Fleeting
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
   cardEffects: []
   cardEventListeners: []
+  keyWordModels: []

@@ -14,7 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passiveSprite: {fileID: 21300000, guid: 72f7afdc8fa41e94c9e2cf4077dd9d34, type: 3}
   passiveName: Fan Of Knives
-  passiveDescription: On activation start, add X Shank cards to your hand.
+  passiveDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'On activation start, this character adds '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'X '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Shank '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: cards to their hand.
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0

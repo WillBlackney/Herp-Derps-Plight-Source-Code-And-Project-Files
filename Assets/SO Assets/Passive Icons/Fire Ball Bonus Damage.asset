@@ -14,7 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   passiveSprite: {fileID: 21300000, guid: 2476965c2d002fd4cb2c673a276b14f6, type: 3}
   passiveName: Fire Ball Bonus Damage
-  passiveDescription: Increases the damage of Fire Ball cards by X
+  passiveDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Increase damage dealt from '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Fire Ball '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'cards by '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: X
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0

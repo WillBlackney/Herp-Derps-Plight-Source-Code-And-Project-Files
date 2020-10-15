@@ -28,7 +28,7 @@ MonoBehaviour:
   poisonResistance: 0
   airResistance: 0
   serializedPassiveManager:
-    bonusPowerStacks: 10
+    bonusPowerStacks: 0
     bonusDexterityStacks: 0
     bonusStaminaStacks: 0
     bonusInitiativeStacks: 0
@@ -64,11 +64,13 @@ MonoBehaviour:
     disarmedStacks: 0
     sleepStacks: 0
     poisonedStacks: 0
-    burningStacks: 4
+    burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
   - {fileID: 11400000, guid: 708f5f31c10f4d14e9f8a91cc822a47b, type: 2}
   - {fileID: 11400000, guid: 708f5f31c10f4d14e9f8a91cc822a47b, type: 2}
+  - {fileID: 11400000, guid: ef2b9ffdee54c0a48adddcc159a622a3, type: 2}
+  - {fileID: 11400000, guid: ad02d279b5d5514408afc73144555af3, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1

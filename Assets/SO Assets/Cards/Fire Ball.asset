@@ -28,9 +28,48 @@ MonoBehaviour:
   fleeting: 1
   unplayable: 0
   blessing: 0
+  customDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Deal '
+  - color: 2
+    getPhraseFromCardValue: 1
+    cardEffectType: 6
+    phrase: '3 '
+  - color: 5
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: ' Fire '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: damage.
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Increase the damage of all '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Fire Ball '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'cards this combat by '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 2
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 6
+    splitTargetEffect: 0
+    splitTargetType: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
@@ -92,6 +131,8 @@ MonoBehaviour:
     visualEventsOnFinish: []
   - weaponRequirement: 0
     cardEffectType: 2
+    splitTargetEffect: 0
+    splitTargetType: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
@@ -137,3 +178,4 @@ MonoBehaviour:
       onCharacter: 1
     visualEventsOnFinish: []
   cardEventListeners: []
+  keyWordModels: []
