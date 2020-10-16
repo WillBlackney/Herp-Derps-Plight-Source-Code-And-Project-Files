@@ -50,6 +50,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardVM: {fileID: 1081100948235466959}
+  originalScale: 0.6
+  endScale: 0.75
+  scaleSpeed: 0.3
 --- !u!1001 &650358520152322065
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57,6 +60,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 650358519490355355}
     m_Modifications:
+    - target: {fileID: 434137997889915102, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
+        type: 3}
+      propertyPath: movementParent
+      value: 
+      objectReference: {fileID: 650358519490355355}
     - target: {fileID: 3921468461960682075, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
         type: 3}
       propertyPath: m_textInfo.characterCount

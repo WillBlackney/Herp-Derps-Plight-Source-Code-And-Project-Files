@@ -419,6 +419,14 @@ public class CombatLogic : Singleton<CombatLogic>
             PassiveController.Instance.ModifyBarrier(victim.pManager, -1, true);
             adjustedDamageValue = 0;
             healthAfter = victim.health;
+
+            // Create impact effect
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+            VisualEffectManager.Instance.CreateSmallMeleeImpact(victim.characterEntityView.WorldPosition, totalLifeLost), queuePosition, 0, 0, EventDetail.None, batchedEvent);
+
+            // Create SFX 
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+            AudioManager.Instance.PlaySound(Sound.Ability_Holy_Buff), queuePosition, 0, 0, EventDetail.None, batchedEvent);
         }
 
 
@@ -452,7 +460,7 @@ public class CombatLogic : Singleton<CombatLogic>
 
                 // Create impact effect
                 VisualEventManager.Instance.CreateVisualEvent(() =>
-               VisualEffectManager.Instance.CreateSmallMeleeImpact(victim.characterEntityView.WorldPosition, totalLifeLost), queuePosition, 0, 0, EventDetail.None, batchedEvent);
+                VisualEffectManager.Instance.CreateSmallMeleeImpact(victim.characterEntityView.WorldPosition, totalLifeLost), queuePosition, 0, 0, EventDetail.None, batchedEvent);
 
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 AudioManager.Instance.PlaySound(Sound.Ability_Damaged_Health_Lost), queuePosition, 0, 0, EventDetail.None, batchedEvent);

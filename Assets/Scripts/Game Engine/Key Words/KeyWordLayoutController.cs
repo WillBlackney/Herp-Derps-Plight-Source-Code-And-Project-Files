@@ -20,7 +20,7 @@ public class KeyWordLayoutController : Singleton<KeyWordLayoutController>
     [SerializeField] private CanvasGroup mainCg;
     #endregion
 
-    // Build Views
+    // Build Keyword Panels
     #region
     public void BuildAllViewsFromKeyWordModels(List<KeyWordModel> keyWords)
     {
@@ -32,73 +32,75 @@ public class KeyWordLayoutController : Singleton<KeyWordLayoutController>
         // build each panel
         for (int i = 0; i < keyWords.Count; i++)
         {
+            // Setup
             KeyWordPanel panel = allKeyWordPanels[i];
             KeyWordModel data = keyWords[i];
 
+            // Disable panel image icon
             panel.panelImageParent.SetActive(false);
+
+            // Enable panel parent
             panel.gameObject.SetActive(true);
 
+            // Is this a passive?
             if(data.kewWordType == KeyWordType.Passive)
             {
                 BuildKeywordPanelFromPassiveData
                     (panel, PassiveController.Instance.GetPassiveIconDataByName(TextLogic.SplitByCapitals(data.passiveType.ToString())));
             }
+
+            // Else build normally
             else
             {
                 BuildKeywordPanelFromModel(panel, data);
             }
             
+            // Rebuild content on panel
             panel.RebuildLayout();
         }
 
+        // Rebuild entire GUI
         RebuildEntireLayout();
     }
     public void BuildAllViewsFromPassiveString(string passiveName)
     {
-        // Enable main view
+        // Enable + Reset main view
         ResetAllKeyWordPanels();
         EnableMainView();
         FadeInMainView();
 
+        // Get passive data
         PassiveIconData data = PassiveController.Instance.GetPassiveIconDataByName(passiveName);
 
+        // Get and enable first panel
         KeyWordPanel panel = allKeyWordPanels[0];
         panel.gameObject.SetActive(true);
-        BuildKeywordPanelFromPassiveData(panel, data);
-        panel.RebuildLayout();
 
+        // Build panel views from data
+        BuildKeywordPanelFromPassiveData(panel, data);
+
+        // Rebuild the panel, then rebuild the entire GUI
+        panel.RebuildLayout();
         RebuildEntireLayout();
-    }
-    private void ResetAllKeyWordPanels()
-    {
-        foreach(KeyWordPanel panel in allKeyWordPanels)
-        {
-            panel.gameObject.SetActive(false);
-        }
     }
     private void BuildKeywordPanelFromModel(KeyWordPanel panel, KeyWordModel model)
     {
+        // Find data
         KeyWordData data = GetMatchingKeyWordData(model);
 
+        // Set text values
         panel.nameText.text = GetKeyWordNameString(data);
         panel.descriptionText.text = GetKeyWordDescriptionString(data);
     }
     private void BuildKeywordPanelFromPassiveData(KeyWordPanel panel, PassiveIconData data)
     {
+        // Set texts
         panel.nameText.text = data.passiveName;
         panel.descriptionText.text = TextLogic.ConvertCustomStringListToString(data.passiveDescription);
 
+        // Enable image component if it has sprite data
         panel.panelImageParent.SetActive(true);
         panel.panelImage.sprite = data.passiveSprite;
-    }
-    private void RebuildEntireLayout()
-    {
-        LayoutRebuilder.ForceRebuildLayoutImmediate(mainGridRect);
-
-        for (int i = 0; i < mainColumnRects.Length; i++)
-        {
-            LayoutRebuilder.ForceRebuildLayoutImmediate(mainColumnRects[i]);
-        }
     }
     #endregion
 
@@ -175,6 +177,22 @@ public class KeyWordLayoutController : Singleton<KeyWordLayoutController>
 
     // View Logic
     #region
+    private void ResetAllKeyWordPanels()
+    {
+        foreach (KeyWordPanel panel in allKeyWordPanels)
+        {
+            panel.gameObject.SetActive(false);
+        }
+    }
+    private void RebuildEntireLayout()
+    {
+        LayoutRebuilder.ForceRebuildLayoutImmediate(mainGridRect);
+
+        for (int i = 0; i < mainColumnRects.Length; i++)
+        {
+            LayoutRebuilder.ForceRebuildLayoutImmediate(mainColumnRects[i]);
+        }
+    }
     private void EnableMainView()
     {
         visualParent.SetActive(true);

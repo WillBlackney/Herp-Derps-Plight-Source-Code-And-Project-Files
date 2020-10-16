@@ -28,6 +28,16 @@ public class DiscoveryCardViewModel : MonoBehaviour, IPointerEnterHandler, IPoin
         }
         cardViewModel.movementParent.DOScale(endScale, scaleSpeed).SetEase(Ease.OutQuint);
         AudioManager.Instance.PlaySound(Sound.Card_Discarded);
+
+        if(myDataRef != null)
+        {
+            KeyWordLayoutController.Instance.BuildAllViewsFromKeyWordModels(myDataRef.keyWordModels);
+        }
+        else if(myCardRef != null)
+        {
+            KeyWordLayoutController.Instance.BuildAllViewsFromKeyWordModels(myCardRef.keyWordModels);
+        }
+       
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -37,7 +47,9 @@ public class DiscoveryCardViewModel : MonoBehaviour, IPointerEnterHandler, IPoin
         {
             return;
         }
+
         cardViewModel.movementParent.DOScale(originalScale, scaleSpeed).SetEase(Ease.OutQuint);
+        KeyWordLayoutController.Instance.FadeOutMainView();
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -47,6 +59,8 @@ public class DiscoveryCardViewModel : MonoBehaviour, IPointerEnterHandler, IPoin
         {
             return;
         }
+
+        KeyWordLayoutController.Instance.FadeOutMainView();
         CardController.Instance.OnDiscoveryCardClicked(this);
     }
 

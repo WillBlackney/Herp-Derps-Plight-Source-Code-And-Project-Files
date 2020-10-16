@@ -5,6 +5,9 @@ using UnityEngine;
 [Serializable]
 public class KeyWordData
 {
+    // Properties
+    #region
+    [Header("Properties")]
     public KeyWordType kewWordType;
 
     [ShowIf("ShowWeaponRequirement")]
@@ -16,7 +19,10 @@ public class KeyWordData
     [ShowIf("ShowDescription")]
     [TextArea]
     public string keyWordDescription;
+    #endregion
 
+    // Odin Show if's
+    #region
     public bool ShowWeaponRequirement()
     {
         return kewWordType == KeyWordType.WeaponRequirement;
@@ -25,7 +31,6 @@ public class KeyWordData
     {
         return kewWordType == KeyWordType.Passive;
     }
-
     public bool ShowDescription()
     {
         if(kewWordType == KeyWordType.Passive)
@@ -37,4 +42,5 @@ public class KeyWordData
             return true;
         }
     }
+    #endregion
 }

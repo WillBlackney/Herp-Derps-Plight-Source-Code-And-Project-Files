@@ -130,7 +130,7 @@ public enum Rarity
     Epic = 3,
     Legendary = 4,
 }
-[Serializable]
+//[Serializable]
 public enum CharacterRace 
 { 
     None = 0,
@@ -142,7 +142,7 @@ public enum CharacterRace
     Satyr = 6,
     Gnoll = 7,
 };
-[Serializable]
+//[Serializable]
 public enum Passive
 {
     None = 0,
@@ -186,6 +186,21 @@ public enum Passive
     Weakened = 37,
     Wrath = 38,
 };
+public enum KeyWordType
+{
+    None = 0,
+    Expend = 1,
+    Innate = 2,
+    Fleeting = 3,
+    Unplayable = 4,
+    Blessing = 5,
+    Shank = 6,
+    Burn = 11,
+    WeaponRequirement = 7,
+    Passive = 8,
+    Block = 9,
+    Energy = 10,
+}
 #endregion
 
 // Item Enums

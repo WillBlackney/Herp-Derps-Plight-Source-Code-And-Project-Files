@@ -25,7 +25,7 @@ MonoBehaviour:
   rarity: 1
   expend: 0
   innate: 0
-  fleeting: 1
+  fleeting: 0
   unplayable: 0
   blessing: 0
   customDescription:

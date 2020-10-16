@@ -18,7 +18,7 @@ MonoBehaviour:
   power: 0
   dexterity: 0
   stamina: 10
-  draw: 5
+  draw: 10
   initiative: 100
   startingBlock: 0
   physicalResistance: 0
@@ -67,7 +67,14 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 3587b8c7f77c41d4eafbc12793734665, type: 2}
+  - {fileID: 11400000, guid: 399ab0c3893650b4fb8e869e59460b14, type: 2}
+  - {fileID: 11400000, guid: c9349889cfe4e9d42b0155a5b3c07535, type: 2}
+  - {fileID: 11400000, guid: de0416f2bef18f642a8bbc0858a7e2d6, type: 2}
+  - {fileID: 11400000, guid: 8554b25f83b65ab4c9c022f6d2b6f75b, type: 2}
+  - {fileID: 11400000, guid: 5662113a872574f43a0b1cc1c79e940b, type: 2}
+  - {fileID: 11400000, guid: e2c276357616c254e96e270581a12319, type: 2}
+  - {fileID: 11400000, guid: e77a6c8c0e793d246becf25ea63b598e, type: 2}
+  - {fileID: 11400000, guid: 787ad1f16e80e34499c6a5732f3c0f22, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1

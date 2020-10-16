@@ -5,7 +5,6 @@ using DG.Tweening;
 using System;
 using UnityEngine.UI;
 using System.Linq;
-using System.Security.Cryptography;
 using TMPro;
 using UnityEngine.EventSystems;
 
@@ -599,24 +598,30 @@ public class CardController : Singleton<CardController>
     #region
     public void AutoUpdateCardDescriptionText(Card card, CharacterEntityModel target = null)
     {
+        // Function is used to automatically update the descriptions
+        // of cards in hand when the values that dictate the damage/block 
+        // they grant are changed by external factors
+
         // Damage card logic
         foreach(CustomString cs in card.cardDescriptionTwo)
         {
+            // Does the custom string even have a dynamic value?
             if (cs.getPhraseFromCardValue)
             {
+                // It does, start searching for a card effect that
+                // matches the effect value of the custom string
                 CardEffect matchingEffect = null;
-
                 foreach (CardEffect ce in card.cardEffects)
                 {
                     if(ce.cardEffectType == cs.cardEffectType)
                     {
-                        // found a match, cache it
+                        // Found a match, cache it and break
                         matchingEffect = ce;
                         break;
                     }
                 }
 
-                // which type of value should be inserted into the custom string phrase?
+                // Which type of value should be inserted into the custom string phrase?
 
                 // Damage Target
                 if(cs.cardEffectType == CardEffectType.DamageTarget)
@@ -692,12 +697,10 @@ public class CardController : Singleton<CardController>
                 {
                     cs.phrase = matchingEffect.cardsDrawn.ToString();
                 }
-
-
             }
         }
 
-        // finally set next text value 
+        // Finally, set the new value on the description text
         SetCardViewModelDescriptionText(card.cardVM, TextLogic.ConvertCustomStringListToString(card.cardDescriptionTwo));
     }
     public void SetCardViewModelNameText(CardViewModel cvm, string name)
@@ -2889,6 +2892,17 @@ public class CardController : Singleton<CardController>
         {
             Card card = cards[i];
             GridCardViewModel gc = allGridCards[i];
+
+            // Get card data
+            if(card.myCharacterDeckCard != null)
+            {
+                gc.myCardData = card.myCharacterDeckCard;
+            }
+            else
+            {
+                gc.myCardData = GetCardDataFromLibraryByName(card.cardName);
+            }
+
             gc.gameObject.SetActive(true);
             SetUpCardViewModelAppearanceFromCard(gc.cardVM, card);
         }
@@ -3186,22 +3200,3 @@ public class CardController : Singleton<CardController>
 
 }
 
-static class MyExtensions
-{
-    public static void Shuffle<T>(this IList<T> list)
-    {
-        RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();
-        int n = list.Count;
-        while (n > 1)
-        {
-            byte[] box = new byte[1];
-            do provider.GetBytes(box);
-            while (!(box[0] < n * (Byte.MaxValue / n)));
-            int k = (box[0] % n);
-            n--;
-            T value = list[k];
-            list[k] = list[n];
-            list[n] = value;
-        }
-    }
-}

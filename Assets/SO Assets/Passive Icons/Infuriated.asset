@@ -26,7 +26,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'card is played, this character gains  '
+    phrase: 'card is played, this character gains '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0

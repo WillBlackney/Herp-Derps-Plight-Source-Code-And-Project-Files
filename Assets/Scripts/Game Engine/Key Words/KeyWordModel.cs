@@ -1,9 +1,13 @@
 ﻿using System;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 [Serializable]
 public class KeyWordModel 
 {
+    // Properties
+    #region
+    [Header("Properties")]
     public KeyWordType kewWordType;
 
     [ShowIf("ShowWeaponRequirement")]
@@ -11,7 +15,10 @@ public class KeyWordModel
 
     [ShowIf("ShowPassiveType")]
     public Passive passiveType;
+    #endregion
 
+    // Odin Show if's
+    #region
     public bool ShowWeaponRequirement()
     {
         return kewWordType == KeyWordType.WeaponRequirement;
@@ -20,22 +27,6 @@ public class KeyWordModel
     {
         return kewWordType == KeyWordType.Passive;
     }
+    #endregion
 }
 
-public enum KeyWordType
-{
-    None = 0,
-    Expend = 1,
-    Innate = 2,
-    Fleeting = 3,
-    Unplayable = 4,
-    Blessing = 5,
-    Shank = 6,
-    Burn = 11,
-    WeaponRequirement = 7,
-    Passive = 8,
-    Block = 9,
-    Energy = 10,
-
-
-}

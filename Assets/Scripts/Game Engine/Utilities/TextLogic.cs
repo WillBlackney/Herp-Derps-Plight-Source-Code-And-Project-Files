@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
 public static class TextLogic 
 {
+    // Properties + Color Codes
+    #region
     [Header("RGBA Colour Codes")]
     public static string white = "<color=#FFFFFF>";
     public static string yellow = "<color=#FFF91C>";
@@ -18,6 +19,7 @@ public static class TextLogic
     public static string shadow = "<color=#CF01BC>";
     public static string air = "<color=#36EDFF>";
     public static string poison = "<color=#00EC4A>";
+    #endregion
 
     // Build stuff
     #region
@@ -31,19 +33,17 @@ public static class TextLogic
 
         return stringReturned;
     }
-    private static string ConvertCustomStringToString(CustomString cs)
-    {
-        return ReturnColoredText(cs.phrase, GetColorCodeFromEnum(cs.color));
-    }
     #endregion
 
     // Get strings, colours and text
     #region
     private static string ReturnColoredText(string text, string color)
     {
+        // Just give it a string and a color reference,
+        // and this function takes care of everything
         return (color + text + white);
     }
-    public static string GetColorCodeFromEnum(TextColor color)
+    private static string GetColorCodeFromEnum(TextColor color)
     {
         string colorCodeReturned = "";
 
@@ -100,6 +100,10 @@ public static class TextLogic
     #region
     public static string SplitByCapitals(string originalString)
     {
+        // Function seperates a string by capitals, 
+        // puts a space at the end of each string, then
+        // recombines them into one string
+
         string stringReturned = originalString;
 
         StringBuilder builder = new StringBuilder();
