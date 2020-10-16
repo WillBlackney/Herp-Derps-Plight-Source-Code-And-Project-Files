@@ -46,6 +46,10 @@ public class CardEffect
     [LabelWidth(200)]
     public List<OnCardInHandChoiceMadeEffect> onChooseCardInHandChoiceMadeEffects;
 
+    [ShowIf("ShowModifyAllCardsInHandEffects")]
+    [LabelWidth(200)]
+    public List<ModifyAllCardsInHandEffect> modifyCardsInHandEffects;
+
     [ShowIf("ShowDrawStacksFromOverload")]
     [LabelWidth(200)]
     public bool drawStacksFromOverload;
@@ -283,6 +287,10 @@ public class CardEffect
     {
         return cardEffectType == CardEffectType.ChooseCardInHand;
     }
+    public bool ShowModifyAllCardsInHandEffects()
+    {
+        return cardEffectType == CardEffectType.ModifyAllCardsInHand;
+    }
     public bool ShowCardLibraryFilter()
     {
         if(discoveryLocation == CardCollection.CardLibrary &&
@@ -399,6 +407,39 @@ public enum OnCardInHandChoiceMadeEffectType
     SetEnergyCost = 3,
     ExpendIt = 4,
     GainPassive = 5,
+}
+
+
+[Serializable]
+public class ModifyAllCardsInHandEffect
+{
+    [LabelWidth(200)]
+    public ModifyAllCardsInHandEffectType modifyEffect;
+
+    [ShowIf("ShowEnergyReduction")]
+    [LabelWidth(200)]
+    public int energyReduction;
+    [ShowIf("ShowNewEnergyCost")]
+    [LabelWidth(200)]
+    public int newEnergyCost;
+
+    public bool ShowEnergyReduction()
+    {
+        return modifyEffect == ModifyAllCardsInHandEffectType.ReduceEnergyCost;
+    }
+    public bool ShowNewEnergyCost()
+    {
+        return modifyEffect == ModifyAllCardsInHandEffectType.SetEnergyCost;
+    }
+
+}
+
+public enum ModifyAllCardsInHandEffectType
+{
+    None = 0,
+    ReduceEnergyCost = 1,
+    SetEnergyCost = 2,
+    ExpendIt = 3,
 }
 
 

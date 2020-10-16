@@ -318,13 +318,20 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
         character.maxHealth += maxHealthGainedOrLost;
 
+        // relay changes to character data
+        if (character.characterData != null)
+        {
+            CharacterDataController.Instance.SetCharacterMaxHealth(character.characterData, character.maxHealth);
+        }      
+
+        int currentHealth = character.health;
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateHealthGUIElements(character, currentHealth, character.maxHealth), QueuePosition.Back, 0, 0);
+
+        // Update health if it now excedes max health
         if (character.health > character.maxHealth)
         {
             ModifyHealth(character, (character.maxHealth - character.health));
         }
-
-        int currentHealth = character.health;
-        VisualEventManager.Instance.CreateVisualEvent(() => UpdateHealthGUIElements(character, currentHealth, character.maxHealth), QueuePosition.Back, 0, 0);
     }
     private void UpdateHealthGUIElements(CharacterEntityModel character, int health, int maxHealth)
     {

@@ -25,6 +25,11 @@ public class CardDataSO : ScriptableObject
     [VerticalGroup("Core Data/Stats")]
     [LabelWidth(100)]
     [GUIColor("Blue")]
+    public bool xEnergyCost = false;
+    [VerticalGroup("Core Data/Stats")]
+    [LabelWidth(100)]
+    [GUIColor("Blue")]
+    [ShowIf("ShowCardEnergyCost")]
     public int cardEnergyCost;
     [VerticalGroup("Core Data/Stats")]
     [LabelWidth(100)]
@@ -81,6 +86,18 @@ public class CardDataSO : ScriptableObject
     private Color Blue() { return Color.cyan; }
     private Color Green() { return Color.green; }
     private Color Yellow() { return Color.yellow; }
+
+    public bool ShowCardEnergyCost()
+    {
+        if (xEnergyCost == false)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
 
 

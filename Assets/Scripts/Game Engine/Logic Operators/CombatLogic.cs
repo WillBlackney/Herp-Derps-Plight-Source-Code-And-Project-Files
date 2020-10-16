@@ -363,19 +363,7 @@ public class CombatLogic : Singleton<CombatLogic>
         int blockAfter = victim.block;
         int healthAfter = victim.health;
 
-        // check for pierce
-        /*
-        if (
-            attacker != null &&
-            abilityUsed != null &&
-            (abilityUsed.abilityType == AbilityDataSO.AbilityType.MeleeAttack || abilityUsed.abilityType == AbilityDataSO.AbilityType.RangedAttack) &&
-            attacker.myPassiveManager.pierce
-            )
-        {
-            ignoreBlock = true;
-        }
-        */
-
+        // TO DO IN FUTURE: check for pierce here
 
         // Check for no block
         if (victim.block == 0)
@@ -473,7 +461,7 @@ public class CombatLogic : Singleton<CombatLogic>
         {
             CardController.Instance.HandleOnCharacterDamagedCardListeners(victim);
         }
-
+        
         // EVALUATE DAMAGE RELATED PASSIVE EFFECTS
 
         // Sleep
@@ -504,6 +492,20 @@ public class CombatLogic : Singleton<CombatLogic>
             PassiveController.Instance.ModifyBonusPower(victim.pManager, victim.pManager.enrageStacks, true);
         }
 
+        // Battle Trance
+        if (victim.pManager.battleTranceStacks > 0 && totalLifeLost > 0)
+        {
+            Debug.Log(victim.myName + " 'Battle Trance' triggered");
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+            PassiveController.Instance.ModifyTemporaryStamina(victim.pManager, victim.pManager.battleTranceStacks, true);
+
+            if (victim.controller == Controller.Player)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+                PassiveController.Instance.ModifyTemporaryDraw(victim.pManager, victim.pManager.battleTranceStacks, true);
+            }
+        }
+
         // Poisonous 
         if (attacker != null &&
             attacker.pManager.poisonousStacks > 0)
@@ -531,89 +533,13 @@ public class CombatLogic : Singleton<CombatLogic>
         {
             Debug.Log(victim.myName + " has lost enough health to be killed by this damage event...");
 
+            // Check if card has events when target is killed
+            if(card != null)
+            {
+                CardController.Instance.HandleOnTargetKilledEventListeners(card);
+            }
+
             HandleDeath(victim);
-
-            // the victim was killed, start death process
-            //OldCoroutineData deathAction = HandleDeath(victim);
-            //yield return new WaitUntil(() => deathAction.ActionResolved() == true);
-            //action.coroutineCompleted = true;
-
-            /*
-            // Check for last stand passive
-            if (victim.myPassiveManager.lastStand)
-            {
-                Debug.Log(victim.name + " has 'Last Stand' passive, preventing death...");
-
-                // VFX Notification
-                //yield return new WaitForSeconds(0.5f);
-                VisualEffectManager.Instance.CreateStatusEffect(victim.transform.position, "Last Stand!");
-                //yield return new WaitForSeconds(0.5f);
-
-                // Set victim at 1hp
-                victim.ModifyCurrentHealth(1);
-
-                // Remove last stand
-                victim.myPassiveManager.ModifyLastStand(-victim.myPassiveManager.lastStandStacks);
-
-                // Gain 5 strength
-                victim.myPassiveManager.ModifyBonusStrength(5);
-                //yield return new WaitForSeconds(0.5f);
-            }
-
-            // Check for Blessing of Undeath 
-            else if (victim.defender && StateManager.Instance.DoesPlayerAlreadyHaveState("Blessing Of Undeath"))
-            {
-                Debug.Log(victim.name + " is protected by 'Blessing Of Undeath' state, preventing death...");
-
-                // VFX Notification
-                //yield return new WaitForSeconds(0.5f);
-                VisualEffectManager.Instance.CreateStatusEffect(victim.transform.position, "Blessing Of Undeath!");
-                //yield return new WaitForSeconds(0.5f);
-
-                // Set victim at 50% HP
-                victim.ModifyCurrentHealth(victim.currentMaxHealth / 2);
-
-                // Reduce blessing of undeath counter, check for removal
-                State blessingOfUndeathState = StateManager.Instance.GetActiveStateByName("Blessing Of Undeath");
-
-                blessingOfUndeathState.ModifyCountdown(-1);
-                //yield return new WaitForSeconds(0.5f);
-
-            }
-
-            else
-            {
-                Debug.Log(victim.name + " has no means to prevent death, starting death process...");
-
-                // check for coup de grace passive on attacker
-                if (attacker != null &&
-                    attacker.myPassiveManager.coupDeGrace)
-                {
-                    Debug.Log(attacker.myName + " killed " + victim.myName +
-                        " and has 'Coup De Grace' passive, gaining max energy...");
-
-                    VisualEffectManager.Instance.CreateStatusEffect(attacker.transform.position, "Coup De Grace!");
-                    attacker.ModifyCurrentEnergy(attacker.currentMaxEnergy);
-                }
-
-                // check for gnollish blood lust passive on attacker
-                else if (attacker != null &&
-                   attacker.myPassiveManager.gnollishBloodLust)
-                {
-                    Debug.Log(attacker.myName + " killed " + victim.myName +
-                        " and has 'Gnollish Blood Lust' passive, gaining 40 energy...");
-
-                    VisualEffectManager.Instance.CreateStatusEffect(attacker.transform.position, "Gnollish Blood Lust!");
-                    attacker.ModifyCurrentEnergy(40);
-                }
-
-                // the victim was killed, start death process
-                OldCoroutineData deathAction = HandleDeath(victim);
-                //yield return new WaitUntil(() => deathAction.ActionResolved() == true);
-                //action.coroutineCompleted = true;
-            }
-            */
-
         }
     }
 

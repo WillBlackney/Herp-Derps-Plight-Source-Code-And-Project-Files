@@ -46,6 +46,7 @@ public enum CardEffectType
     None = 0,
     AddCardsToHand = 1,
     AddRandomBlessingsToHand = 21,
+    ModifyAllCardsInHand = 24,
     ApplyPassiveToSelf = 2,
     ApplyPassiveToTarget = 3,
     ApplyPassiveToAllEnemies = 4,
@@ -83,6 +84,7 @@ public enum CardEventListenerType
     OnDraw = 2,
     OnActivationEnd = 3,
     OnMeleeAttackCardPlayed = 4,
+    OnTargetKilled = 5,
 }
 
 [Serializable]
@@ -92,6 +94,8 @@ public enum CardEventListenerFunction
     ReduceCardEnergyCost = 1,
     ReduceCardEnergyCostThisActivation = 3,
     ApplyPassiveToSelf = 2,
+    DrawThis = 4,
+    ModifyMaxHealth = 5,
 }
 #endregion
 
@@ -147,6 +151,8 @@ public enum Passive
 {
     None = 0,
     Barrier = 1,
+    BattleTrance = 40,
+    BalancedStance = 41,
     Burning = 2,
     Cautious = 3,
     Consecration = 4,
@@ -158,6 +164,7 @@ public enum Passive
     Enrage = 10,
     FanOfKnives = 11,
     FireBallBonusDamage = 12,
+    Flurry = 42,
     Fusion = 13,
     Grit = 14,
     Growing = 15,

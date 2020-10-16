@@ -305,6 +305,7 @@ public class CardController : Singleton<CardController>
         c.cardDescription = d.cardDescription;
         c.cardSprite = GetCardSpriteByName(d.cardName);
         c.cardBaseEnergyCost = d.cardEnergyCost;
+        c.xEnergyCost = d.xEnergyCost;
 
         // Types
         c.cardType = d.cardType;
@@ -363,6 +364,7 @@ public class CardController : Singleton<CardController>
         card.cardName = data.cardName;
         card.cardDescription = data.cardDescription;
         card.cardBaseEnergyCost = data.cardEnergyCost;
+        card.xEnergyCost = data.xEnergyCost;
         //card.cardSprite = data.cardSprite;
         card.cardSprite = GetCardSpriteByName(data.cardName);
         card.cardType = data.cardType;
@@ -399,6 +401,7 @@ public class CardController : Singleton<CardController>
         card.cardName = data.cardName;
         card.cardDescription = data.cardDescription;
         card.cardBaseEnergyCost = data.cardBaseEnergyCost;
+        card.xEnergyCost = data.xEnergyCost;
         //card.cardSprite = data.cardSprite;
         card.cardSprite = GetCardSpriteByName(data.cardName);
         card.cardType = data.cardType; 
@@ -427,12 +430,6 @@ public class CardController : Singleton<CardController>
         // an existing card and builds from that
         Debug.Log("CardController.BuildCardFromCard() called...");
 
-        /*
-        Card card = ObjectCloner.CloneJSON(original);
-        card.owner = owner;
-        return card;
-        */              
-
         Card card = new Card();
 
         // Data links
@@ -442,7 +439,6 @@ public class CardController : Singleton<CardController>
         card.owner = owner;
         card.cardName = original.cardName;
         card.cardDescription = original.cardDescription;
-        //card.cardSprite = original.cardSprite;
         card.cardSprite = GetCardSpriteByName(original.cardName);
         card.cardType = original.cardType;
         card.rarity = original.rarity;
@@ -450,6 +446,7 @@ public class CardController : Singleton<CardController>
         card.talentSchool = original.talentSchool;
 
         // Energy related
+        card.xEnergyCost = original.xEnergyCost;
         card.cardBaseEnergyCost = original.cardBaseEnergyCost;
         card.energyReductionUntilPlayed = original.energyReductionUntilPlayed;
         card.energyReductionThisCombatOnly = original.energyReductionThisCombatOnly;
@@ -728,16 +725,24 @@ public class CardController : Singleton<CardController>
         // color text if cost is more or less then base.
         if(card != null)
         {
-            int currentCost = GetCardEnergyCost(card);
+            if (card.xEnergyCost)
+            {
+                cvm.energyText.text = "X";
+                energyCost = "X";
+            }
+            else
+            {
+                int currentCost = GetCardEnergyCost(card);
 
-            if(currentCost > card.cardBaseEnergyCost)
-            {
-                cvm.energyText.color = Color.red;
-            }
-            else if (currentCost < card.cardBaseEnergyCost)
-            {
-                cvm.energyText.color = Color.green;
-            }
+                if (currentCost > card.cardBaseEnergyCost)
+                {
+                    cvm.energyText.color = Color.red;
+                }
+                else if (currentCost < card.cardBaseEnergyCost)
+                {
+                    cvm.energyText.color = Color.green;
+                }
+            }          
         }
 
         if (cvm.myPreviewCard != null)
@@ -1220,7 +1225,46 @@ public class CardController : Singleton<CardController>
             }
 
             HandleOnMeleeAttackCardPlayedListeners(owner);
-            
+
+            if(owner.pManager.flurryStacks > 0)
+            {
+                VisualEvent batchedEvent = VisualEventManager.Instance.InsertTimeDelayInQueue(0f);
+
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateAoEMeleeArc(owner.characterEntityView.WorldPosition);
+                    VisualEffectManager.Instance.CreateStatusEffect(owner.characterEntityView.WorldPosition, "Flurry!");
+                }, QueuePosition.BatchedEvent, 0f, 0f, EventDetail.None, batchedEvent);
+
+                foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
+                {
+                    // Calculate damage
+                    DamageType damageType = DamageType.Physical;
+                    int baseDamage = card.owner.pManager.flurryStacks;
+
+                    // Calculate the end damage value
+                    int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, enemy, damageType, baseDamage);
+
+                    // Create blood explosion
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateBloodExplosion(enemy.characterEntityView.WorldPosition), QueuePosition.BatchedEvent, 0f, 0f, EventDetail.None, batchedEvent);
+
+                    // Start damage sequence
+                    CombatLogic.Instance.HandleDamage(finalDamageValue, owner, enemy, damageType, batchedEvent);
+                }
+
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+            }
+
+            if (owner.pManager.balancedStanceStacks > 0)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(owner.characterEntityView.WorldPosition, "Balanced Stance!"));
+
+                CharacterEntityController.Instance.ModifyBlock(owner, CombatLogic.Instance.CalculateBlockGainedByEffect(owner.pManager.balancedStanceStacks, owner, owner, null, null));
+
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+            }
+
         }
 
         // Remove Ranged Attack reduction passive
@@ -1264,7 +1308,8 @@ public class CardController : Singleton<CardController>
             foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
             {
                 // Calculate damage
-                DamageType damageType = CombatLogic.Instance.GetFinalFinalDamageTypeOfAttack(owner);
+                // DamageType damageType = CombatLogic.Instance.GetFinalFinalDamageTypeOfAttack(owner);
+                DamageType damageType = DamageType.Fire;
                 int baseDamage = card.owner.pManager.consecrationStacks;
 
                 // Calculate the end damage value
@@ -1343,6 +1388,13 @@ public class CardController : Singleton<CardController>
         // Setup
         CharacterEntityModel owner = card.owner;
         CardViewModel cardVM = card.cardVM;
+        int loops = 1;
+
+        // Do effect X times logic
+        if (card.xEnergyCost)
+        {
+            loops = card.owner.energy;
+        }
 
         // Pay energy cost, remove from hand, etc
         OnCardPlayedStart(card);
@@ -1351,13 +1403,16 @@ public class CardController : Singleton<CardController>
         DisconnectCardAndCardViewModel(card, cardVM);
 
         // Trigger all effects on card
-        foreach (CardEffect effect in card.cardEffects)
+        for(int i = 0; i < loops; i++)
         {
-            if(DoesCardEffectMeetWeaponRequirement(effect, owner))
+            foreach (CardEffect effect in card.cardEffects)
             {
-                TriggerEffectFromCard(card, effect, target);
+                if (DoesCardEffectMeetWeaponRequirement(effect, owner))
+                {
+                    TriggerEffectFromCard(card, effect, target);
+                }
             }
-        }
+        }       
 
         // If character moved off node, move back after all card effects resolved
         if (owner.hasMovedOffStartingNode && owner.livingState == LivingState.Alive)
@@ -1617,6 +1672,12 @@ public class CardController : Singleton<CardController>
         else if (cardEffect.cardEffectType == CardEffectType.ChooseCardInHand)
         {
             StartNewChooseCardInHandEvent(cardEffect, owner);
+        }
+
+        // Modify all cards in hand
+        else if (cardEffect.cardEffectType == CardEffectType.ModifyAllCardsInHand)
+        {
+            //
         }
 
         // Apply passive to self
@@ -1926,6 +1987,22 @@ public class CardController : Singleton<CardController>
             VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(card.cardVM));
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(card.owner.pManager, passiveName, e.passivePairing.passiveStacks, true, 0.5f);
         }
+
+        // Draw this
+        else if (e.cardEventListenerFunction == CardEventListenerFunction.DrawThis)
+        {
+            // Reduce cost this combat
+            if (card.owner.drawPile.Contains(card))
+            {
+                DrawACardFromDrawPile(card.owner, card);
+            }
+        }
+
+        // Modify max health
+        else if (e.cardEventListenerFunction == CardEventListenerFunction.ModifyMaxHealth)
+        {
+            CharacterEntityController.Instance.ModifyMaxHealth(card.owner, e.maxHealthGained);
+        }
     }
     public void HandleOnMeleeAttackCardPlayedListeners(CharacterEntityModel character)
     {
@@ -1967,6 +2044,16 @@ public class CardController : Singleton<CardController>
                 {
                     RunCardEventListenerFunction(card, e);
                 }
+            }
+        }
+    }
+    public void HandleOnTargetKilledEventListeners(Card card)
+    {
+        foreach (CardEventListener cel in card.cardEventListeners)
+        {
+            if(cel.cardEventListenerType == CardEventListenerType.OnTargetKilled)
+            {
+                RunCardEventListenerFunction(card, cel);
             }
         }
     }
@@ -2024,6 +2111,16 @@ public class CardController : Singleton<CardController>
     {
         Debug.Log("CardController.GetCardEnergyCost() called for card: " + card.cardName);
 
+        // Spend X energy logic
+        if (card.xEnergyCost)
+        {
+            if(card.owner != null)
+            {
+                return card.owner.energy;
+            }
+        }
+
+        // Normal logic
         int costReturned = card.cardBaseEnergyCost;
 
         costReturned -= card.energyReductionThisActivationOnly;

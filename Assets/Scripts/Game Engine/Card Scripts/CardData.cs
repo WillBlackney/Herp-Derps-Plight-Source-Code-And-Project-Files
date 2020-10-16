@@ -12,6 +12,7 @@ public class CardData
     public string cardName;
     public Sprite cardSprite;
     public string cardDescription;
+    public bool xEnergyCost;
     public int cardBaseEnergyCost;
     public CardType cardType;
     public Rarity rarity;

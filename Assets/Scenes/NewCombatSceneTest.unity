@@ -1744,11 +1744,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
-  gameMode: 0
+  gameMode: 1
   testingEnemyWave: {fileID: 11400000, guid: a925a91cb3c75e64cadf1f518e9a621e, type: 2}
   testingCharacterTemplates:
   - {fileID: 11400000, guid: b2dbb62fa94866344b36eede3d36e346, type: 2}
-  deviceMode: 1
+  deviceMode: 0
   mouseDragSensitivity: 0.25
   hoverMovePosition: {x: 0, y: 2, z: 0}
   hoverScaleAmount: 1.5
@@ -4557,6 +4557,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6f53a59075648034ab7c521f182140e3, type: 2}
   - {fileID: 11400000, guid: 44285bb48a164794e908c6325bd4f19f, type: 2}
   - {fileID: 11400000, guid: 7487ea62dcbf3ab409e91f14d4c43076, type: 2}
+  - {fileID: 11400000, guid: b4d56a9247a555e4abe7b7be001ef5a9, type: 2}
+  - {fileID: 11400000, guid: ce8c21483aa775641847462954eb04c5, type: 2}
+  - {fileID: 11400000, guid: 646f5aefa1c57f543b5014f4326e8f82, type: 2}
 --- !u!1 &200055974
 GameObject:
   m_ObjectHideFlags: 0
@@ -12355,6 +12358,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e74b37417c31bac4f853047f01e6be3d, type: 2}
   - {fileID: 11400000, guid: 4fa47f450ff530d47884c246293bb23a, type: 2}
   - {fileID: 11400000, guid: 188b3c6d82a60d5458c4dd3fe81e3123, type: 2}
+  - {fileID: 11400000, guid: 4594dd40dab741b4c9e1b551727c1783, type: 2}
+  - {fileID: 11400000, guid: 76fbe4a74d279d541b9b8a890bd8d444, type: 2}
+  - {fileID: 11400000, guid: 212781e4e821e01408fddf9d24d791b3, type: 2}
+  - {fileID: 11400000, guid: 68150bf39613ab545b8d279fc9c0fb0d, type: 2}
+  - {fileID: 11400000, guid: b56757e7896caa54eb6a4207e077fdee, type: 2}
+  - {fileID: 11400000, guid: e301bd3b5dd2cf043a2d16f260baab78, type: 2}
+  - {fileID: 11400000, guid: 8228e3e075736ad49b3bea72edfff688, type: 2}
+  - {fileID: 11400000, guid: 55f13da4aaeb53e4386528cbde27d8c6, type: 2}
+  - {fileID: 11400000, guid: eeb8ff669e60e0a4facc9a5b68004644, type: 2}
   discoveryCards:
   - {fileID: 150008041}
   - {fileID: 1265796404}

@@ -10,12 +10,20 @@ public class CardEventListener
     public CardEventListenerType cardEventListenerType;
     public CardEventListenerFunction cardEventListenerFunction;
 
+    [ShowIf("ShowMaxHealthGained")]
+    public int maxHealthGained;
+
     [ShowIf("ShowEnergyReduction")]
     public int energyReductionAmount;
 
     [ShowIf("ShowPassivePairing")]
     public PassivePairingData passivePairing;
 
+    public bool ShowMaxHealthGained()
+    {
+        return cardEventListenerFunction == CardEventListenerFunction.ModifyMaxHealth;
+      
+    }
     public bool ShowPassivePairing()
     {
         if (cardEventListenerFunction == CardEventListenerFunction.ApplyPassiveToSelf)

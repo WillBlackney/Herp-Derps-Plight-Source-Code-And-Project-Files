@@ -42,8 +42,9 @@ public class CharacterDataController : Singleton<CharacterDataController>
         CharacterData newCharacter = new CharacterData();
 
         newCharacter.myName = template.myName;
-        newCharacter.health = template.health;
-        newCharacter.maxHealth = template.maxHealth;
+        //newCharacter.health = template.health;
+        SetCharacterMaxHealth(newCharacter, template.maxHealth);
+        SetCharacterHealth(newCharacter, template.health);
 
         newCharacter.stamina = template.stamina;
         newCharacter.initiative = template.initiative;
@@ -80,6 +81,13 @@ public class CharacterDataController : Singleton<CharacterDataController>
             data.myName + "', new health value = " + newValue.ToString());
 
         data.health = newValue;
+    }
+    public void SetCharacterMaxHealth(CharacterData data, int newValue)
+    {
+        Debug.Log("CharacterDataController.SetCharacterMaxHealth() called for '" +
+            data.myName + "', new max health value = " + newValue.ToString());
+
+        data.maxHealth = newValue;
     }
     #endregion
 }
