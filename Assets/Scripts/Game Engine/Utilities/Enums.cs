@@ -139,7 +139,6 @@ public enum Rarity
     Epic = 3,
     Legendary = 4,
 }
-//[Serializable]
 public enum CharacterRace 
 { 
     None = 0,
@@ -151,7 +150,6 @@ public enum CharacterRace
     Satyr = 6,
     Gnoll = 7,
 };
-//[Serializable]
 public enum Passive
 {
     None = 0,
@@ -161,31 +159,41 @@ public enum Passive
     Burning = 2,
     Cautious = 3,
     Consecration = 4,
+    CorpseCollector = 49,
     Dexterity = 5,
     Disarmed = 6,
     DivineFavour = 7,
     Draw = 8,
     EncouragingAura = 9,
     Enrage = 10,
+    Evangelize = 47,
     FanOfKnives = 11,
+    FastLearner = 53,
     FireBallBonusDamage = 12,
     Flurry = 42,
     Fusion = 13,
     Grit = 14,
     Growing = 15,
+    GuardianAura = 44,
     Infuriated = 16,
     Initiative = 17,
+    LongDraw = 51,
+    LordOfStorms = 43,
     Overload = 18,
+    Pistolero = 52,
     PhoenixForm = 19,
     PlantedFeet = 20,
     Poisoned = 21,
     Poisonous = 22,
     Power = 23,
     Rune = 24,
+    Ruthless = 46,
+    Sentinel = 45,
     ShadowAura = 25,
     ShieldWall = 26,
     Sleep = 27,
     Stamina = 28,
+    Silenced = 43,
     TakenAim = 39,
     Taunted = 29,
     TemporaryDexterity = 30,
@@ -193,10 +201,13 @@ public enum Passive
     TemporaryInitiative = 32,
     TemporaryPower = 33,
     TemporaryStamina = 34,
+    ToxicAura = 50, 
     Venomous = 35,
     Vulnerable = 36,
     Weakened = 37,
+    WellOfSouls = 48,
     Wrath = 38,
+
 };
 public enum KeyWordType
 {

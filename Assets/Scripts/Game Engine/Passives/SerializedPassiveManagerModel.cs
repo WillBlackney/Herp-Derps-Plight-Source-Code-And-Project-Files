@@ -88,6 +88,9 @@ public class SerializedPassiveManagerModel
     public int takenAimStacks;
     [BoxGroup("Buff Passives")]
     [LabelWidth(200)]
+    public int longDrawStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
     public int consecrationStacks;
     [BoxGroup("Buff Passives")]
     [LabelWidth(200)]
@@ -107,6 +110,30 @@ public class SerializedPassiveManagerModel
     [BoxGroup("Buff Passives")]
     [LabelWidth(200)]
     public int flurryStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
+    public int lordOfStormsStacks;    
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
+    public int sentinelStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
+    public int ruthlessStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
+    public int evangelizeStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
+    public int wellOfSoulsStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
+    public int corpseCollectorStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
+    public int pistoleroStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
+    public int fastLearnerStacks;
 
     // Aura Passives
     [BoxGroup("Aura Passives", centerLabel: true)]
@@ -115,6 +142,12 @@ public class SerializedPassiveManagerModel
     [BoxGroup("Aura Passives")]
     [LabelWidth(200)]
     public int shadowAuraStacks;
+    [BoxGroup("Aura Passives")]
+    [LabelWidth(200)]
+    public int guardianAuraStacks;
+    [BoxGroup("Aura Passives")]
+    [LabelWidth(200)]
+    public int toxicAuraStacks;
 
     // Buff Passives
     [BoxGroup("Core Damage % Modifier Passives", centerLabel: true)]
@@ -137,6 +170,10 @@ public class SerializedPassiveManagerModel
     [BoxGroup("Disabling Debuff Passives", centerLabel: true)]
     [LabelWidth(200)]
     public int disarmedStacks;
+
+    [BoxGroup("Disabling Debuff Passives")]
+    [LabelWidth(200)]
+    public int silencedStacks;
 
     [BoxGroup("Disabling Debuff Passives")]
     [LabelWidth(200)]

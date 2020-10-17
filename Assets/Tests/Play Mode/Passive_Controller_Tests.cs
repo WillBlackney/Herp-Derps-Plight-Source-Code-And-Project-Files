@@ -54,6 +54,7 @@ namespace Tests
         private const string CAUTIOUS_NAME = "Cautious";
         private const string GROWING_NAME = "Growing";
         private const string INFURIATED_NAME = "Infuriated";
+        private const string LORD_OF_STORMS_NAME = "Lord Of Storms";
 
         // Special Defensive Passives
         private const string RUNE_NAME = "Rune";
@@ -61,9 +62,11 @@ namespace Tests
 
         // Aura Passives
         private const string ENCOURAGING_AURA_NAME = "Encouraging Aura";
+        private const string GUARDIAN_AURA_NAME = "Guardian Aura";
 
         // Disabling Debuff Passives
         private const string DISARMED_NAME = "Disarmed";
+        private const string SILENCED_NAME = "Silenced";
 
         // Core % Modifer Stats
         private const string WRATH_NAME = "Wrath";
@@ -165,15 +168,18 @@ namespace Tests
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, CAUTIOUS_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, GROWING_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, INFURIATED_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, LORD_OF_STORMS_NAME, stacks);
 
             // Special Defensive Passives
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, BARRIER_NAME, stacks);
 
             // Aura Passives
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, ENCOURAGING_AURA_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, GUARDIAN_AURA_NAME, stacks);
 
             // Disabling Debuff Passives
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, DISARMED_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, SILENCED_NAME, stacks);
 
             // Core % Modifer Stats
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, WEAKENED_NAME, stacks);
@@ -212,13 +218,16 @@ namespace Tests
                 model.pManager.plantedFeetStacks == 1 &&
                 model.pManager.growingStacks == 1 &&
                 model.pManager.infuriatedStacks == 1 &&
-                model.pManager.cautiousStacks == 1 &&
+                model.pManager.cautiousStacks == 1 && 
+                model.pManager.lordOfStormsStacks == 1 &&
 
                 model.pManager.barrierStacks == 1 &&
 
                 model.pManager.encouragingAuraStacks == 1 &&
+                model.pManager.guardianAuraStacks == 1 &&
 
                 model.pManager.disarmedStacks == 1 &&
+                model.pManager.silencedStacks == 1 &&
 
                 model.pManager.weakenedStacks == 1 &&
                 model.pManager.wrathStacks == 1 &&
@@ -501,6 +510,23 @@ namespace Tests
         // Buff Passive Tests
         #region
         [Test]
+        public void Lord_Of_Storms_Does_Increase_Overload_On_Character_Activation_Start()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(LORD_OF_STORMS_NAME).passiveName;
+            int stacks = 2;
+            int expected = 2;
+
+            // Act 
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
+            ActivationManager.Instance.OnNewCombatEventStarted();
+
+            // Assert
+            Assert.AreEqual(expected, model.pManager.overloadStacks);
+        }
+        [Test]
         public void Enrage_Triggers_Power_Gain_In_Handle_Damage_Method()
         {
             // Arange
@@ -525,6 +551,44 @@ namespace Tests
             string passiveName = PassiveController.Instance.GetPassiveIconDataByName(SHIELD_WALL_NAME).passiveName;
             int stacks = 3;
             int expected = 3;
+
+            // Act 
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CharacterEntityController.Instance.CharacterOnActivationEnd(model);
+
+            // Assert
+            Assert.AreEqual(expected, model.block);
+        }
+        [Test]
+        public void Guardian_Aura_Does_Grant_Block_To_Ally_On_Activation_End()
+        {
+            // Arange
+            CharacterEntityModel model1;
+            CharacterEntityModel model2;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(GUARDIAN_AURA_NAME).passiveName;
+            int stacks = 2;
+            int expected = 2;
+
+            // Act 
+            model1 = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            model2 = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, LevelManager.Instance.GetNextAvailableDefenderNode());
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model1.pManager, passiveName, stacks);
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CharacterEntityController.Instance.CharacterOnActivationEnd(model1);
+
+            // Assert
+            Assert.AreEqual(expected, model2.block);
+        }
+        [Test]
+        public void Guardian_Aura_Does_Not_Grant_Block_To_Self_On_Activation_End()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(GUARDIAN_AURA_NAME).passiveName;
+            int stacks = 2;
+            int expected = 0;
 
             // Act 
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
@@ -984,6 +1048,42 @@ namespace Tests
 
             // Set card as a melee attack card
             playerOne.drawPile[0].cardType = CardType.MeleeAttack;
+
+            // Rig and fix activation order
+            playerOne.initiative = 200;
+            enemyOne.initiative = 100;
+
+            // Apply disarmed
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(playerOne.pManager, passiveName, stacks);
+
+            // Start main ACT
+            ActivationManager.Instance.OnNewCombatEventStarted();
+
+            // ASSERT
+            Assert.AreEqual(expected, CardController.Instance.IsCardPlayable(playerOne.hand[0], playerOne));
+        }
+        [Test]
+        public void Silenced_Prevents_Skill_Card_From_Being_Played()
+        {
+            // ARRANGE
+            CharacterEntityModel playerOne;
+            CharacterEntityModel enemyOne;
+            bool expected = false;
+            int stacks = 2;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(SILENCED_NAME).passiveName;
+
+            // ACT 
+            // Setup card
+            CardDataSO mockExpendCard = AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/Tests/Mock Data Files/Mock Exhaust Card.asset");
+            CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockExpendCard, characterData);
+            characterData.deck.Add(newCard);
+
+            // Create characters
+            playerOne = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, LevelManager.Instance.GetNextAvailableDefenderNode());
+            enemyOne = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, LevelManager.Instance.GetNextAvailableEnemyNode());
+
+            // Set card as a melee attack card
+            playerOne.drawPile[0].cardType = CardType.Skill;
 
             // Rig and fix activation order
             playerOne.initiative = 200;

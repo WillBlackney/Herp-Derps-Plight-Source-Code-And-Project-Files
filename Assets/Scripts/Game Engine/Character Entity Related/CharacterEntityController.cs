@@ -567,8 +567,6 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             PassiveController.Instance.ModifyTemporaryStamina(character.pManager, -character.pManager.temporaryBonusStaminaStacks, true, 0.5f);
         }
 
-
-
         // is the character player controller?
         if (character.controller == Controller.Player)
         {
@@ -605,6 +603,12 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 {
                     CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetCardDataFromLibraryByName("Fire Ball"));
                 }
+            }
+
+            // Lord Of Storms
+            if (character.pManager.lordOfStormsStacks > 0)
+            {
+                PassiveController.Instance.ModifyOverload(character.pManager, character.pManager.lordOfStormsStacks, true, 0.5f);
             }
 
             // Draw cards on turn start
@@ -717,12 +721,18 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         {
             PassiveController.Instance.ModifyDisarmed(entity.pManager, -1, true, 0.5f);
         }
+        if (entity.pManager.silencedStacks > 0)
+        {
+            PassiveController.Instance.ModifySilenced(entity.pManager, -1, true, 0.5f);
+        }
         if (entity.pManager.sleepStacks > 0)
         {
             PassiveController.Instance.ModifySleep(entity.pManager, -1, true, 0.5f);
         }
 
         // Buff Passive Triggers
+
+        // Shield Wall
         if (entity.pManager.shieldWallStacks > 0)
         {
             // Notication vfx
@@ -731,8 +741,9 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
             // Apply block gain
             ModifyBlock(entity, CombatLogic.Instance.CalculateBlockGainedByEffect(entity.pManager.shieldWallStacks, entity, entity));
-        }
+        }       
 
+        // Growing
         if (entity.pManager.growingStacks > 0)
         {
             // Notication vfx
@@ -743,6 +754,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             PassiveController.Instance.ModifyBonusPower(entity.pManager, entity.pManager.growingStacks, true, 0.5f);
         }
 
+        // Encouraging Aura
         if (entity.pManager.encouragingAuraStacks > 0)
         {
             CharacterEntityModel[] allAllies = GetAllAlliesOfCharacter(entity, false).ToArray();
@@ -759,6 +771,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             }
         }
 
+        // Shadow Aura
         if (entity.pManager.shadowAuraStacks > 0)
         {
             CharacterEntityModel[] allEnemies = GetAllEnemiesOfCharacter(entity).ToArray();
@@ -772,6 +785,19 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
                 // Random ally gains energy
                 PassiveController.Instance.ModifyWeakened(chosenEnemy.pManager, entity.pManager.shadowAuraStacks, true);
+            }
+        }
+
+        // Guardian Aura
+        if (entity.pManager.guardianAuraStacks > 0)
+        {
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Guardian Aura!"), QueuePosition.Back, 0, 0.5f);
+
+            // give all allies (but not self) block.
+            foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(entity, false))
+            {
+                ModifyBlock(ally, CombatLogic.Instance.CalculateBlockGainedByEffect(entity.pManager.guardianAuraStacks, entity, ally));
             }
         }
 

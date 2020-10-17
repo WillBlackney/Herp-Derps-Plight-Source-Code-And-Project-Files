@@ -1129,7 +1129,8 @@ public class CardController : Singleton<CardController>
         if(HasEnoughEnergyToPlayCard(card, owner) &&
             CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive &&
             card.unplayable == false &&
-            IsCardPlayBlockedByDisarmed(card, owner))
+            IsCardPlayBlockedByDisarmed(card, owner) &&
+            IsCardPlayBlockedBySilenced(card, owner))
         {
             boolReturned = true;
         }
@@ -1151,6 +1152,18 @@ public class CardController : Singleton<CardController>
     {
         if(card.cardType == CardType.MeleeAttack &&
             owner.pManager.disarmedStacks > 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    public bool IsCardPlayBlockedBySilenced(Card card, CharacterEntityModel owner)
+    {
+        if (card.cardType == CardType.Skill &&
+            owner.pManager.silencedStacks > 0)
         {
             return false;
         }

@@ -34,6 +34,7 @@ public class PassiveManagerModel
     public int fusionStacks;
     public int plantedFeetStacks;
     public int takenAimStacks;
+    public int longDrawStacks;
     public int consecrationStacks;
     public int growingStacks;
     public int cautiousStacks;
@@ -41,10 +42,20 @@ public class PassiveManagerModel
     public int battleTranceStacks;
     public int balancedStanceStacks;
     public int flurryStacks;
+    public int lordOfStormsStacks;  
+    public int sentinelStacks;
+    public int ruthlessStacks;
+    public int evangelizeStacks;
+    public int wellOfSoulsStacks;
+    public int corpseCollectorStacks;
+    public int pistoleroStacks;
+    public int fastLearnerStacks;
 
     // Aura passives
     public int encouragingAuraStacks;
     public int shadowAuraStacks;
+    public int guardianAuraStacks;
+    public int toxicAuraStacks;
 
     // Core Damage % Modifier Passives
     public int wrathStacks;
@@ -54,6 +65,7 @@ public class PassiveManagerModel
 
     // Disabling Debuffs
     public int disarmedStacks;
+    public int silencedStacks;
     public int sleepStacks;
 
 

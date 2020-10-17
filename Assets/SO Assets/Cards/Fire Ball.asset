@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Fire Ball
   m_EditorClassIdentifier: 
   cardName: Fire Ball
-  cardDescription: 'Deal 3 Fire damage.
+  cardDescription: 'Deal 4 Fire damage.
 
     Increase the damage of all Fire Ball
-    cards this combat by 2.'
+    cards this combat by 1.'
   cardSprite: {fileID: 21300000, guid: 2476965c2d002fd4cb2c673a276b14f6, type: 3}
+  xEnergyCost: 0
   cardEnergyCost: 1
   cardType: 3
   targettingType: 3
@@ -27,6 +28,7 @@ MonoBehaviour:
   innate: 0
   fleeting: 0
   unplayable: 0
+  lifeSteal: 0
   blessing: 0
   customDescription:
   - color: 1
@@ -60,7 +62,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 2
+    phrase: 1
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -70,22 +72,33 @@ MonoBehaviour:
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    modifyDeckCardEffect: 0
+    permanentBlockGain: 0
+    permanentDamageGain: 0
+    chooseTargetRandomly: 0
+    passiveApplicationLoops: 0
+    validRandomTargetsType: 0
+    damageLoops: 0
+    drawSpecificType: 0
+    specificTypeDrawn: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
     blessing: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
+    modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 3
+    baseDamageValue: 4
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 4
+    healthRestored: 0
     healthLost: 0
     energyGained: 0
     cardsDrawn: 0
@@ -133,12 +146,22 @@ MonoBehaviour:
     cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
+    modifyDeckCardEffect: 0
+    permanentBlockGain: 0
+    permanentDamageGain: 0
+    chooseTargetRandomly: 0
+    passiveApplicationLoops: 0
+    validRandomTargetsType: 0
+    damageLoops: 0
+    drawSpecificType: 0
+    specificTypeDrawn: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
     blessing: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
+    modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
@@ -149,6 +172,7 @@ MonoBehaviour:
     drawBaseDamageFromOverloadOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 0
+    healthRestored: 0
     healthLost: 0
     energyGained: 0
     cardsDrawn: 0
@@ -156,7 +180,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 12
-      passiveStacks: 2
+      passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
