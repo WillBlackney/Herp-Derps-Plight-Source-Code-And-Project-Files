@@ -461,6 +461,25 @@ public class CombatLogic : Singleton<CombatLogic>
         {
             CardController.Instance.HandleOnCharacterDamagedCardListeners(victim);
         }
+
+        // Card lifesteal effect
+        if(totalLifeLost > 0 && card != null && card.lifeSteal)
+        {
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+            CharacterEntityController.Instance.ModifyHealth(attacker, totalLifeLost);
+
+            // Heal VFX
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateHealEffect(attacker.characterEntityView.WorldPosition, totalLifeLost), queuePosition, 0, 0, EventDetail.None, batchedEvent);
+
+            // Create heal text effect
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+            VisualEffectManager.Instance.CreateDamageEffect(attacker.characterEntityView.WorldPosition, totalLifeLost, true), queuePosition, 0, 0, EventDetail.None, batchedEvent);
+
+            // Create SFX
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                AudioManager.Instance.PlaySound(Sound.Passive_General_Buff), queuePosition, 0, 0, EventDetail.None, batchedEvent);
+        }
         
         // EVALUATE DAMAGE RELATED PASSIVE EFFECTS
 

@@ -21,6 +21,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
     public GameObject StatusEffectPrefab;
     public GameObject GainBlockEffectPrefab;
     public GameObject LoseBlockEffectPrefab;
+    public GameObject HealEffectPrefab;
     public GameObject AoeMeleeAttackEffectPrefab;
 
     [Header("Projectile Prefabs")]
@@ -98,8 +99,11 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
         else if (effect == ParticleEffect.GainOverload)
         {
             CreateGainOverloadEffect(location);
-        }        
-
+        }
+        else if (effect == ParticleEffect.HealEffect)
+        {
+            CreateHealEffect(location);
+        }
         // Explosions
         else if (effect == ParticleEffect.LightningExplosion)
         {
@@ -742,6 +746,14 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
 
     // APPLY BUFF + DEBUFF FX
     #region
+
+    // Heal Effect
+    public void CreateHealEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(HealEffectPrefab, location, HealEffectPrefab.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+    }
 
     // Apply Poisoned Effect
     public void CreateApplyPoisonedEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)

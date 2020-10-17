@@ -1363,7 +1363,6 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         if (Draggable.DraggingThis != null &&
             Draggable.DraggingThis.Da is DragSpellOnTarget)
         {
-            Debug.LogWarning("Ready to go, updating card description text");
             CardController.Instance.AutoUpdateCardDescriptionText(Draggable.DraggingThis.Da.CardVM().card, null);
         }
 

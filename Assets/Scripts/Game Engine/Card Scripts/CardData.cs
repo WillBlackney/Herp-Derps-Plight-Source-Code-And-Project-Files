@@ -28,6 +28,7 @@ public class CardData
     public bool innate;
     public bool fleeting;
     public bool unplayable;
+    public bool lifeSteal;
     public bool blessing;
 
 }

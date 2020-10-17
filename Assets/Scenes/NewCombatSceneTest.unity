@@ -9956,6 +9956,11 @@ MonoBehaviour:
     passiveType: 0
     keyWordDescription: When played, Expend cards are removed from a character's
       deck for the rest of combat.
+  - kewWordType: 12
+    weaponRequirement: 0
+    passiveType: 0
+    keyWordDescription: Whenever a Life Steal card deals unblocked damage, it heals
+      its owner for that amount.
   - kewWordType: 3
     weaponRequirement: 0
     passiveType: 0
@@ -12373,6 +12378,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 810693427afc204499bb21a42d709adf, type: 2}
   - {fileID: 11400000, guid: a3e04c546f7d6d9408101e84ef936180, type: 2}
   - {fileID: 11400000, guid: 0850c317e7fca884a83731f62a1b6c0c, type: 2}
+  - {fileID: 11400000, guid: 3dc2d0d5388ac584a9e7e848660d194c, type: 2}
+  - {fileID: 11400000, guid: 58ae030b067a627458dadaf572e95f17, type: 2}
+  - {fileID: 11400000, guid: 9a8ef12e8ef3b9f458dd032084d57afc, type: 2}
+  - {fileID: 11400000, guid: 21042f6c86c7b7f43b6740bd7898aec9, type: 2}
+  - {fileID: 11400000, guid: c2d73a4aa897d7344b65beba535e0926, type: 2}
+  - {fileID: 11400000, guid: 37ed4f34acf583e4e880541650579ed2, type: 2}
+  - {fileID: 11400000, guid: 99f9201b1ce8bf647afe8afc184729a4, type: 2}
+  - {fileID: 11400000, guid: 778ad8d06827d8e4bb592e08e9332fbf, type: 2}
   discoveryCards:
   - {fileID: 150008041}
   - {fileID: 1265796404}
@@ -24856,6 +24869,8 @@ MonoBehaviour:
   GainBlockEffectPrefab: {fileID: 4262080138937027028, guid: 1e8e3a96e5f60e348973f7d2127afc01,
     type: 3}
   LoseBlockEffectPrefab: {fileID: 4262080138937027028, guid: c9fdf08243d8b5b4a942bfeb792515b4,
+    type: 3}
+  HealEffectPrefab: {fileID: 935435369379916302, guid: 92128a0eb9ca68643b3ee826370e7ec0,
     type: 3}
   AoeMeleeAttackEffectPrefab: {fileID: 4847328283017062249, guid: a7ea972cf2ed11b4281570b74c079667,
     type: 3}

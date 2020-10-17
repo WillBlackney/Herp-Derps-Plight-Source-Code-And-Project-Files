@@ -35,6 +35,7 @@ public class Card
     public bool innate;
     public bool fleeting;
     public bool unplayable;
+    public bool lifeSteal;
     public bool blessing;
 
     // misc getters

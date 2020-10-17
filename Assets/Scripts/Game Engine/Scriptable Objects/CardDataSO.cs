@@ -67,6 +67,10 @@ public class CardDataSO : ScriptableObject
     [BoxGroup("Key Words")]
     [LabelWidth(100)]
     [GUIColor("Green")]
+    public bool lifeSteal;
+    [BoxGroup("Key Words")]
+    [LabelWidth(100)]
+    [GUIColor("Green")]
     public bool blessing;
 
     [VerticalGroup("List Groups")]

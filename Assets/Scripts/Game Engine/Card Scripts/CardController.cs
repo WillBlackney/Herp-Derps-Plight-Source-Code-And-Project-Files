@@ -318,6 +318,7 @@ public class CardController : Singleton<CardController>
         c.innate = d.innate;
         c.fleeting = d.fleeting;
         c.unplayable = d.unplayable;
+        c.lifeSteal = d.lifeSteal;
         c.blessing = d.blessing;
 
         // Card effects
@@ -376,6 +377,7 @@ public class CardController : Singleton<CardController>
         card.expend = data.expend;
         card.fleeting = data.fleeting;
         card.innate = data.innate;
+        card.lifeSteal = data.lifeSteal;
         card.unplayable = data.unplayable;
         card.blessing = data.blessing;
 
@@ -414,6 +416,7 @@ public class CardController : Singleton<CardController>
         card.fleeting = data.fleeting;
         card.innate = data.innate;
         card.unplayable = data.unplayable;
+        card.lifeSteal = data.lifeSteal;
         card.blessing = data.blessing;
 
         // lists
@@ -457,6 +460,7 @@ public class CardController : Singleton<CardController>
         card.fleeting = original.fleeting;
         card.innate = original.innate;
         card.unplayable = original.unplayable;
+        card.lifeSteal = original.lifeSteal;
         card.blessing = original.blessing;
 
         card.cardEffects = new List<CardEffect>();
@@ -1396,6 +1400,24 @@ public class CardController : Singleton<CardController>
             loops = card.owner.energy;
         }
 
+        // Do effect according to loops (e.g. deal damage to a random enemy 3 times type card)
+        if(card.cardEffects.Count> 0)
+        {
+            CardEffect ce = card.cardEffects[0];
+            if (ce != null &&
+                ce.cardEffectType == CardEffectType.DamageTarget &&
+                ce.chooseTargetRandomly)
+            {
+                loops = ce.damageLoops;
+            }
+            else if (ce != null &&
+                ce.cardEffectType == CardEffectType.ApplyPassiveToTarget &&
+                ce.chooseTargetRandomly)
+            {
+                loops = ce.passiveApplicationLoops;
+            }
+        }
+
         // Pay energy cost, remove from hand, etc
         OnCardPlayedStart(card);
 
@@ -1457,6 +1479,101 @@ public class CardController : Singleton<CardController>
                 return;
             }
 
+        }
+
+        // Get random target if marked for a random target
+        if (cardEffect.chooseTargetRandomly)
+        {
+            target = null;
+
+            // Damage random enemy effect
+            if (cardEffect.cardEffectType == CardEffectType.DamageTarget)
+            {
+                List<CharacterEntityModel> viableEnemies = new List<CharacterEntityModel>();
+                foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(card.owner))
+                {
+                    if (target.livingState != LivingState.Dead)
+                    {
+                        viableEnemies.Add(enemy);
+                    }
+                }
+
+                if (viableEnemies.Count == 1)
+                {
+                    target = viableEnemies[0];
+                }
+                else if (viableEnemies.Count > 1)
+                {
+                    target = viableEnemies[RandomGenerator.NumberBetween(0, viableEnemies.Count - 1)];
+                }
+            }
+
+            // Apply passive to random target effect
+            else if (cardEffect.cardEffectType == CardEffectType.ApplyPassiveToTarget)
+            {
+                // Get viable targets
+                List<CharacterEntityModel> validTargets = new List<CharacterEntityModel>();
+
+                // All characters
+                if(cardEffect.validRandomTargetsType == TargettingType.AllCharacters)
+                {
+                    foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.AllCharacters)
+                    {
+                        if (enemy.livingState != LivingState.Dead)
+                        {
+                            validTargets.Add(enemy);
+                        }
+                    }
+                }
+
+                // All enemies
+                else if (cardEffect.validRandomTargetsType == TargettingType.Enemy)
+                {
+                    foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(card.owner))
+                    {
+                        if (enemy.livingState != LivingState.Dead)
+                        {
+                            validTargets.Add(enemy);
+                        }
+                    }
+                }
+
+                // All allies
+                else if (cardEffect.validRandomTargetsType == TargettingType.Ally)
+                {
+                    foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllAlliesOfCharacter(card.owner, false))
+                    {
+                        if (enemy.livingState != LivingState.Dead)
+                        {
+                            validTargets.Add(enemy);
+                        }
+                    }
+                }
+
+                // All allies and self
+                else if (cardEffect.validRandomTargetsType == TargettingType.AllyOrSelf)
+                {
+                    foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllAlliesOfCharacter(card.owner))
+                    {
+                        if (enemy.livingState != LivingState.Dead)
+                        {
+                            validTargets.Add(enemy);
+                        }
+                    }
+                }
+
+                // If only one valid target, choose that
+                if (validTargets.Count == 1)
+                {
+                    target = validTargets[0];
+                }
+
+                // if there is more then 1, choose 1 randomly
+                else if (validTargets.Count > 1)
+                {
+                    target = validTargets[RandomGenerator.NumberBetween(0, validTargets.Count - 1)];
+                }
+            }
         }
 
         // Stop and return if effect requires a target and that target is dying/dead/no longer valid      
@@ -1522,7 +1639,7 @@ public class CardController : Singleton<CardController>
             int baseDamage;
 
             // Do normal base damage, or draw base damage from another source?
-            if (cardEffect.drawBaseDamageFromCurrentBlock) 
+            if (cardEffect.drawBaseDamageFromCurrentBlock)
             {
                 baseDamage = owner.block * cardEffect.baseDamageMultiplier;
             }
@@ -1537,16 +1654,17 @@ public class CardController : Singleton<CardController>
             else if (cardEffect.drawBaseDamageFromOverloadOnSelf)
             {
                 baseDamage = owner.pManager.overloadStacks * cardEffect.baseDamageMultiplier;
-            }            
+            }
             else
             {
                 baseDamage = cardEffect.baseDamageValue;
-            }             
+            }
             // Calculate the end damage value
             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, target, damageType, baseDamage, card, cardEffect);
 
             // Start damage sequence
             CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, card, damageType);
+
         }
 
         // Deal Damage All Enemies
@@ -1586,7 +1704,6 @@ public class CardController : Singleton<CardController>
                 int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, enemy, damageType, baseDamage, card, cardEffect);
 
                 // Start damage sequence
-                //CombatLogic.Instance.ExecuteHandleDamage(finalDamageValue, owner, enemy, damageType, card, null, false, QueuePosition.BatchedEvent, batchedEvent);
                 CombatLogic.Instance.HandleDamage(finalDamageValue, owner, enemy, card, damageType, batchedEvent);
             }            
         }
@@ -1625,6 +1742,64 @@ public class CardController : Singleton<CardController>
 
             // Start damage sequence
             CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, card, damageType);
+        }
+
+        // Heal Self
+        else if(cardEffect.cardEffectType == CardEffectType.HealSelf)
+        {
+            // Modify health
+            CharacterEntityController.Instance.ModifyHealth(owner, cardEffect.healthRestored);
+
+            // Heal VFX
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateHealEffect(owner.characterEntityView.WorldPosition, cardEffect.healthRestored));
+
+            // Create heal text effect
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+            VisualEffectManager.Instance.CreateDamageEffect(owner.characterEntityView.WorldPosition, cardEffect.healthRestored, true));
+
+            // Create SFX
+            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Passive_General_Buff));
+        }
+
+        // Heal Target
+        else if (cardEffect.cardEffectType == CardEffectType.HealTarget)
+        {
+            // Modify health
+            CharacterEntityController.Instance.ModifyHealth(target, cardEffect.healthRestored);
+
+            // Heal VFX
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateHealEffect(target.characterEntityView.WorldPosition, cardEffect.healthRestored));
+
+            // Create heal text effect
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+            VisualEffectManager.Instance.CreateDamageEffect(target.characterEntityView.WorldPosition, cardEffect.healthRestored, true));
+
+            // Create SFX
+            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Passive_General_Buff));
+        }
+
+        // Heal Self And All Allies
+        else if (cardEffect.cardEffectType == CardEffectType.HealSelfAndAllies)
+        {
+            foreach(CharacterEntityModel ally in CharacterEntityController.Instance.GetAllAlliesOfCharacter(owner))
+            {
+                // Modify health
+                CharacterEntityController.Instance.ModifyHealth(target, cardEffect.healthRestored);
+
+                // Heal VFX
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateHealEffect(target.characterEntityView.WorldPosition, cardEffect.healthRestored));
+
+                // Create heal text effect
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateDamageEffect(target.characterEntityView.WorldPosition, cardEffect.healthRestored, true));
+
+                // Create SFX
+                VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Passive_General_Buff));
+            }
+           
         }
 
         // Lose Health
@@ -2002,8 +2177,79 @@ public class CardController : Singleton<CardController>
             }
         }
 
+        // Double targets poisoned
+        else if(cardEffect.cardEffectType == CardEffectType.DoubleTargetsPoisoned)
+        {
+            if(target.pManager.poisonedStacks > 0)
+            {
+                PassiveController.Instance.ModifyPoisoned(owner, target.pManager, target.pManager.poisonedStacks, true);
+            }
+            
+        }
+
+        // Modify permanent deck card
+        else if (cardEffect.cardEffectType == CardEffectType.ModifyMyPermanentDeckCard)
+        {
+            if (card.myCharacterDeckCard == null)
+            {
+                Debug.LogWarning("TriggerEffectFromCard() is trying to modify the cards permanent deck card, but it is null, cancelling effect...");
+            }
+
+            // Increae damage permanently
+            else if (cardEffect.modifyDeckCardEffect == ModifyDeckCardEffectType.IncreaseBaseDamage)
+            {
+                // Find the damage effect on the card
+                CardEffect ce = null;
+
+                foreach(CardEffect cce in card.myCharacterDeckCard.cardEffects)
+                {
+                    if(cce.cardEffectType == CardEffectType.DamageAllEnemies ||
+                        cce.cardEffectType == CardEffectType.DamageTarget)
+                    {
+                        // Found it, now cache it
+                        ce = cce;
+                        break;
+                    }
+                }
+
+                // Did we find the matching effect?
+                if(ce != null)
+                {
+                    // We did, increase its damage permanently
+                    ce.baseDamageValue += cardEffect.permanentDamageGain;
+                }
+            }
+
+            // Increase block gain permanently
+            else if (cardEffect.modifyDeckCardEffect == ModifyDeckCardEffectType.IncreaseBaseBlockGain)
+            {
+                // Find the damage effect on the card
+                CardEffect ce = null;
+
+                foreach (CardEffect cce in card.myCharacterDeckCard.cardEffects)
+                {
+                    if (cce.cardEffectType == CardEffectType.GainBlockAllAllies ||
+                        cce.cardEffectType == CardEffectType.GainBlockSelf ||
+                        cce.cardEffectType == CardEffectType.GainBlockTarget)
+                    {
+                        // Found it, now cache it
+                        ce = cce;
+                        break;
+                    }
+                }
+
+                // Did we find the matching effect?
+                if (ce != null)
+                {
+                    // We did, increase its damage permanently
+                    ce.blockGainValue += cardEffect.permanentBlockGain;
+                }
+            }
+        }
+
+
         // CONCLUDING VISUAL EVENTS!
-        if (CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive &&
+            if (CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive &&
             owner.livingState == LivingState.Alive)
         {
             // cancel if the target was killed

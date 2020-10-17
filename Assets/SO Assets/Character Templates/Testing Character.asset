@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Testing Character
   m_EditorClassIdentifier: 
   myName: Testing Character
-  health: 1000
-  maxHealth: 1000
+  health: 20
+  maxHealth: 50
   power: 0
   dexterity: 0
   stamina: 10
-  draw: 5
+  draw: 6
   initiative: 100
   startingBlock: 0
   physicalResistance: 0
@@ -28,7 +28,7 @@ MonoBehaviour:
   poisonResistance: 0
   airResistance: 0
   serializedPassiveManager:
-    bonusPowerStacks: 0
+    bonusPowerStacks: 4
     bonusDexterityStacks: 0
     bonusStaminaStacks: 0
     bonusInitiativeStacks: 0
@@ -70,16 +70,11 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 0850c317e7fca884a83731f62a1b6c0c, type: 2}
-  - {fileID: 11400000, guid: 0850c317e7fca884a83731f62a1b6c0c, type: 2}
-  - {fileID: 11400000, guid: 0850c317e7fca884a83731f62a1b6c0c, type: 2}
-  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
-  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
-  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
-  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
-  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
-  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
-  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
+  - {fileID: 11400000, guid: 778ad8d06827d8e4bb592e08e9332fbf, type: 2}
+  - {fileID: 11400000, guid: 9ec8eb1ee986e094695b5336904bb4be, type: 2}
+  - {fileID: 11400000, guid: 778ad8d06827d8e4bb592e08e9332fbf, type: 2}
+  - {fileID: 11400000, guid: 9ec8eb1ee986e094695b5336904bb4be, type: 2}
+  - {fileID: 11400000, guid: 9ec8eb1ee986e094695b5336904bb4be, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1
@@ -96,5 +91,5 @@ MonoBehaviour:
   - Shaman_Mask_Head_Wear
   - 
   serializedItemManager:
-    mainHandItem: {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}
-    offHandItem: {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}
+    mainHandItem: {fileID: 11400000, guid: dfeeccc8c225a66488eb3e4eb76d6c3b, type: 2}
+    offHandItem: {fileID: 0}

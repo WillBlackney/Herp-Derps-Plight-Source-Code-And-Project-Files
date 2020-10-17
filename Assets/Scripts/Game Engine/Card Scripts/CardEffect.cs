@@ -19,6 +19,35 @@ public class CardEffect
     [LabelWidth(200)]
     public TargettingType splitTargetType;
 
+    [ShowIf("ShowModifyDeckCardEffect")]
+    [LabelWidth(200)]
+    public ModifyDeckCardEffectType modifyDeckCardEffect;
+
+    [ShowIf("ShowPermanentBlockGain")]
+    [LabelWidth(200)]
+    public int permanentBlockGain;
+
+    [ShowIf("ShowPermanentDamageGain")]
+    [LabelWidth(200)]
+    public int permanentDamageGain;
+   
+    [ShowIf("ShowChooseTargetRandomly")]
+    [LabelWidth(200)]
+    public bool chooseTargetRandomly;
+
+    [ShowIf("ShowPassiveApplicationLoops")]
+    [LabelWidth(200)]
+    public int passiveApplicationLoops;
+
+    [ShowIf("ShowPassiveApplicationLoops")]
+    [LabelWidth(200)]
+    public TargettingType validRandomTargetsType;
+
+    [ShowIf("ShowDamageLoops")]
+    [LabelWidth(200)]
+    public int damageLoops;   
+
+    [ShowIf("ShowDrawSpecifcType")]
     [LabelWidth(200)]
     public bool drawSpecificType;
 
@@ -97,6 +126,10 @@ public class CardEffect
     [LabelWidth(200)]
     public DamageType damageType;
 
+    [ShowIf("ShowHealthRestored")]
+    [LabelWidth(200)]
+    public int healthRestored;       
+
     [ShowIf("cardEffectType", CardEffectType.LoseHP)]
     [LabelWidth(200)]
     public int healthLost;
@@ -136,8 +169,95 @@ public class CardEffect
     public List<AnimationEventData> visualEventsOnStart;
     public List<AnimationEventData> visualEventsOnFinish;
 
-    
+    public bool ShowPermanentDamageGain()
+    {
+        if (cardEffectType == CardEffectType.ModifyMyPermanentDeckCard &&
+            modifyDeckCardEffect == ModifyDeckCardEffectType.IncreaseBaseDamage)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowPermanentBlockGain()
+    {
+        if (cardEffectType == CardEffectType.ModifyMyPermanentDeckCard &&
+            modifyDeckCardEffect == ModifyDeckCardEffectType.IncreaseBaseBlockGain)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowModifyDeckCardEffect()
+    {
+        return cardEffectType == CardEffectType.ModifyMyPermanentDeckCard;
+    }
 
+    public bool ShowHealthRestored()
+    {
+        if (cardEffectType == CardEffectType.HealSelf ||
+            cardEffectType == CardEffectType.HealSelfAndAllies ||
+            cardEffectType == CardEffectType.HealTarget)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowDamageLoops()
+    {
+        if (cardEffectType == CardEffectType.DamageTarget &&
+            chooseTargetRandomly)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowPassiveApplicationLoops()
+    {
+        if (cardEffectType == CardEffectType.ApplyPassiveToTarget &&
+            chooseTargetRandomly)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowChooseTargetRandomly()
+    {
+        if(cardEffectType == CardEffectType.DamageTarget ||
+            cardEffectType == CardEffectType.ApplyPassiveToTarget)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowDrawSpecifcType()
+    {
+        if(cardEffectType == CardEffectType.DrawCards)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     public bool ShowSpecificCardType()
     {
         return drawSpecificType;
@@ -480,6 +600,13 @@ public enum SpecificTypeDrawn
     MeleeAttack = 1,
     RangedAttack = 2,
     ZeroEnergyCost = 3,
+}
+
+public enum ModifyDeckCardEffectType
+{
+    None = 0,
+    IncreaseBaseDamage = 1,
+    IncreaseBaseBlockGain = 2,
 }
 
 
