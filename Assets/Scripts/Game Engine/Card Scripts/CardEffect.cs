@@ -19,6 +19,13 @@ public class CardEffect
     [LabelWidth(200)]
     public TargettingType splitTargetType;
 
+    [LabelWidth(200)]
+    public bool drawSpecificType;
+
+    [LabelWidth(200)]
+    [ShowIf("ShowSpecificCardType")]
+    public SpecificTypeDrawn specificTypeDrawn;
+
     [ShowIf("ShowDiscoveryLocation")]
     [LabelWidth(200)]
     public CardCollection discoveryLocation;
@@ -129,6 +136,12 @@ public class CardEffect
     public List<AnimationEventData> visualEventsOnStart;
     public List<AnimationEventData> visualEventsOnFinish;
 
+    
+
+    public bool ShowSpecificCardType()
+    {
+        return drawSpecificType;
+    }
     public bool ShowSplitTargetType()
     {
         return splitTargetEffect;
@@ -423,6 +436,14 @@ public class ModifyAllCardsInHandEffect
     [LabelWidth(200)]
     public int newEnergyCost;
 
+    [ShowIf("ShowTalentFilter")]
+    [LabelWidth(200)]
+    public TalentSchool talentSchoolFilter;
+
+    [ShowIf("ShowRarityFilter")]
+    [LabelWidth(200)]
+    public Rarity rarityFilter;
+
     public bool ShowEnergyReduction()
     {
         return modifyEffect == ModifyAllCardsInHandEffectType.ReduceEnergyCost;
@@ -430,6 +451,14 @@ public class ModifyAllCardsInHandEffect
     public bool ShowNewEnergyCost()
     {
         return modifyEffect == ModifyAllCardsInHandEffectType.SetEnergyCost;
+    }
+    public bool ShowRarityFilter()
+    {
+        return modifyEffect == ModifyAllCardsInHandEffectType.AddNewCardFromLibraryToHand;
+    }
+    public bool ShowTalentFilter()
+    {
+        return modifyEffect == ModifyAllCardsInHandEffectType.AddNewCardFromLibraryToHand;
     }
 
 }
@@ -440,6 +469,17 @@ public enum ModifyAllCardsInHandEffectType
     ReduceEnergyCost = 1,
     SetEnergyCost = 2,
     ExpendIt = 3,
+    AddNewCardFromLibraryToHand = 4,
+    AddRandomBlessingToHand = 5,
+
+}
+
+public enum SpecificTypeDrawn
+{
+    None = 0,
+    MeleeAttack = 1,
+    RangedAttack = 2,
+    ZeroEnergyCost = 3,
 }
 
 

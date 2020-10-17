@@ -70,9 +70,16 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 55f13da4aaeb53e4386528cbde27d8c6, type: 2}
-  - {fileID: 11400000, guid: 55f13da4aaeb53e4386528cbde27d8c6, type: 2}
-  - {fileID: 11400000, guid: 55f13da4aaeb53e4386528cbde27d8c6, type: 2}
+  - {fileID: 11400000, guid: 0850c317e7fca884a83731f62a1b6c0c, type: 2}
+  - {fileID: 11400000, guid: 0850c317e7fca884a83731f62a1b6c0c, type: 2}
+  - {fileID: 11400000, guid: 0850c317e7fca884a83731f62a1b6c0c, type: 2}
+  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
+  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
+  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
+  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
+  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
+  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
+  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1
@@ -89,5 +96,5 @@ MonoBehaviour:
   - Shaman_Mask_Head_Wear
   - 
   serializedItemManager:
-    mainHandItem: {fileID: 11400000, guid: dfeeccc8c225a66488eb3e4eb76d6c3b, type: 2}
-    offHandItem: {fileID: 0}
+    mainHandItem: {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}
+    offHandItem: {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}

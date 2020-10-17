@@ -1643,11 +1643,74 @@ public class CardController : Singleton<CardController>
         // Draw Cards
         else if (cardEffect.cardEffectType == CardEffectType.DrawCards)
         {
+            Card cardDrawn = null;
+
             // Draw cards
-            for(int draws = 0; draws < cardEffect.cardsDrawn; draws++)
+            for (int draws = 0; draws < cardEffect.cardsDrawn; draws++)
             {
-                Card cardDrawn = DrawACardFromDrawPile(owner);
-                if(cardDrawn != null)
+                // reset cache card variable
+                cardDrawn = null;
+
+                // If not specific card criteria is chosen, just draw the first card from draw pile
+                if (cardEffect.drawSpecificType == false)
+                {
+                    cardDrawn = DrawACardFromDrawPile(owner);
+                }
+
+                // Draw specific cards by criteria
+                else
+                {
+                    // Draw Melee attack or ranged attack
+                    if (cardEffect.specificTypeDrawn == SpecificTypeDrawn.MeleeAttack ||
+                        cardEffect.specificTypeDrawn == SpecificTypeDrawn.RangedAttack)
+                    {
+                        CardType cardType = CardType.None;
+
+                        if(cardEffect.specificTypeDrawn == SpecificTypeDrawn.MeleeAttack)
+                        {
+                            cardType = CardType.MeleeAttack;
+                        }
+                        else if (cardEffect.specificTypeDrawn == SpecificTypeDrawn.RangedAttack)
+                        {
+                            cardType = CardType.RangedAttack;
+                        }
+
+                        // Get the first melee attack from draw pile
+                        foreach(Card cardInDrawPile in owner.drawPile)
+                        {
+                            if (cardInDrawPile.cardType == cardType)
+                            {
+                                // Found one, cache it and break
+                                cardDrawn = cardInDrawPile;
+                                break;
+                            }
+                        }                        
+                    }
+
+                    else if(cardEffect.specificTypeDrawn == SpecificTypeDrawn.ZeroEnergyCost)
+                    {
+                        // Get the first 0 cost card
+                        foreach (Card cardInDrawPile in owner.drawPile)
+                        {
+                            if (GetCardEnergyCost(cardInDrawPile) == 0)
+                            {
+                                // Found one, cache it and break
+                                cardDrawn = cardInDrawPile;
+                                break;
+                            }
+                        }
+                    }
+
+                    // Draw the card, if was found
+                    if (cardDrawn != null)
+                    {
+                        DrawACardFromDrawPile(owner, cardDrawn);                       
+                    }
+
+                }
+
+                // Apply additional effects to card
+                if (cardDrawn != null)
                 {
                     if (cardEffect.extraDrawEffect == ExtraDrawEffect.ReduceEnergyCostThisCombat)
                     {
@@ -1658,7 +1721,8 @@ public class CardController : Singleton<CardController>
                         ReduceCardEnergyCostThisCombat(cardDrawn, cardDrawn.cardBaseEnergyCost);
                     }
                 }
-               
+
+
             }           
         }
 
@@ -1677,7 +1741,87 @@ public class CardController : Singleton<CardController>
         // Modify all cards in hand
         else if (cardEffect.cardEffectType == CardEffectType.ModifyAllCardsInHand)
         {
-            //
+            // need to iterate over a temp list, not the actual cards in hand list,
+            // otherwise expending cards in hand while iterating over them 
+            // will cause an invalid operation exception.
+
+            List<Card> cardsInHand = new List<Card>();
+            cardsInHand.AddRange(owner.hand);
+            int totalCards = cardsInHand.Count;
+             
+            foreach(ModifyAllCardsInHandEffect modEffect in cardEffect.modifyCardsInHandEffects)
+            {
+                foreach(Card c in cardsInHand)
+                {
+                    if(owner.livingState == LivingState.Alive &&
+                        CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive)
+                    {
+                        // Reduce cost
+                        if (modEffect.modifyEffect == ModifyAllCardsInHandEffectType.ReduceEnergyCost)
+                        {
+                            ReduceCardEnergyCostThisCombat(c, modEffect.energyReduction);
+                        }
+
+                        // Set new cost
+                        else if (modEffect.modifyEffect == ModifyAllCardsInHandEffectType.SetEnergyCost)
+                        {
+                            SetCardEnergyCostThisCombat(c, modEffect.newEnergyCost);
+                        }
+
+                        // Expend
+                        else if (modEffect.modifyEffect == ModifyAllCardsInHandEffectType.ExpendIt)
+                        {
+                            ExpendCard(c);
+                        }
+                    }                  
+                }
+
+                // Add new card from library effect
+                if (modEffect.modifyEffect == ModifyAllCardsInHandEffectType.AddNewCardFromLibraryToHand)
+                {
+                    // Get all possible card data
+                    List<CardData> discoverableCards = new List<CardData>();
+                    discoverableCards = GetCardsQuery(AllCards, modEffect.talentSchoolFilter, modEffect.rarityFilter, false);
+
+                    for(int i = 0; i < totalCards; i++)
+                    {
+                        if (discoverableCards.Count > 0 &&
+                            owner.livingState == LivingState.Alive &&
+                            CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive)
+                        {
+                            // Randomize card chosen
+                            //discoverableCards.Shuffle();
+                            int randomIndex = RandomGenerator.NumberBetween(0, discoverableCards.Count - 1);
+
+                            // Add card to hand
+                            CreateAndAddNewCardToCharacterHand(owner, discoverableCards[randomIndex]);
+                        }
+                    }                  
+                }
+
+                // Add random blessing to hand
+                else if (modEffect.modifyEffect == ModifyAllCardsInHandEffectType.AddRandomBlessingToHand)
+                {
+                    List<CardData> blessings = QueryByBlessing(AllCards, true);
+
+                    for (int i = 0; i < totalCards; i++)
+                    {
+                        if (blessings.Count > 0 &&
+                            owner.livingState == LivingState.Alive &&
+                            CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive)
+                        {
+                            // Randomize card chosen
+                            int randomIndex = RandomGenerator.NumberBetween(0, blessings.Count - 1);
+                            //blessings.Shuffle();
+
+                            // Add card to hand
+                            CreateAndAddNewCardToCharacterHand(owner, blessings[randomIndex]);
+                        }
+                    }
+                }
+            }
+
+            
         }
 
         // Apply passive to self
