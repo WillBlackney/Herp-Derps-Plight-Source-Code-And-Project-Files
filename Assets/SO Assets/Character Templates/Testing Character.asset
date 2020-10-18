@@ -82,11 +82,7 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 114d0de462d6fe24996e5c9119dcd62f, type: 2}
-  - {fileID: 11400000, guid: 114d0de462d6fe24996e5c9119dcd62f, type: 2}
-  - {fileID: 11400000, guid: 114d0de462d6fe24996e5c9119dcd62f, type: 2}
-  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
-  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
+  - {fileID: 11400000, guid: 338e725e84eca2840ad8bd56d812b0fe, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1

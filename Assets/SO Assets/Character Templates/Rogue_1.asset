@@ -51,32 +51,47 @@ MonoBehaviour:
     fusionStacks: 0
     plantedFeetStacks: 0
     takenAimStacks: 0
+    longDrawStacks: 0
     consecrationStacks: 0
     growingStacks: 0
     cautiousStacks: 0
     infuriatedStacks: 0
+    battleTranceStacks: 0
+    balancedStanceStacks: 0
+    flurryStacks: 0
+    lordOfStormsStacks: 0
+    sentinelStacks: 0
+    ruthlessStacks: 0
+    evangelizeStacks: 0
+    wellOfSoulsStacks: 0
+    corpseCollectorStacks: 0
+    pistoleroStacks: 0
+    fastLearnerStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
+    guardianAuraStacks: 0
+    toxicAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
     gritStacks: 0
     disarmedStacks: 0
+    silencedStacks: 0
     sleepStacks: 0
     poisonedStacks: 0
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
+  - {fileID: 11400000, guid: 4f7008c09af197b43b9e5ee443274691, type: 2}
+  - {fileID: 11400000, guid: 4f7008c09af197b43b9e5ee443274691, type: 2}
+  - {fileID: 11400000, guid: 82398fcb72827b547af04198c592e6cc, type: 2}
+  - {fileID: 11400000, guid: 82398fcb72827b547af04198c592e6cc, type: 2}
+  - {fileID: 11400000, guid: 9ec8eb1ee986e094695b5336904bb4be, type: 2}
+  - {fileID: 11400000, guid: 9ec8eb1ee986e094695b5336904bb4be, type: 2}
   - {fileID: 11400000, guid: 07576fe85892f0b46a604ce986a50e6e, type: 2}
-  - {fileID: 11400000, guid: b888a78f01d9d114e94eb71e20cda519, type: 2}
-  - {fileID: 11400000, guid: 4f7008c09af197b43b9e5ee443274691, type: 2}
-  - {fileID: 11400000, guid: 4f7008c09af197b43b9e5ee443274691, type: 2}
-  - {fileID: 11400000, guid: 4f7008c09af197b43b9e5ee443274691, type: 2}
-  - {fileID: 11400000, guid: 82398fcb72827b547af04198c592e6cc, type: 2}
-  - {fileID: 11400000, guid: 82398fcb72827b547af04198c592e6cc, type: 2}
+  - {fileID: 11400000, guid: 07576fe85892f0b46a604ce986a50e6e, type: 2}
   - {fileID: 11400000, guid: 034d9e585e633514e8512b0f077e96fb, type: 2}
-  - {fileID: 11400000, guid: 9ec8eb1ee986e094695b5336904bb4be, type: 2}
-  - {fileID: 11400000, guid: 9ec8eb1ee986e094695b5336904bb4be, type: 2}
+  - {fileID: 11400000, guid: b888a78f01d9d114e94eb71e20cda519, type: 2}
   modelParts:
   - Human_Chest
   - Human_Face_1
