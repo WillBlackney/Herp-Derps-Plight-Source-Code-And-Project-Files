@@ -1086,7 +1086,6 @@ public class CardController : Singleton<CardController>
             else
             {
                 VisualEventManager.Instance.CreateVisualEvent(() => ExpendCardVisualEvent(cvm, owner), QueuePosition.Back,0, 0.5f);
-                //VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
             }
             
         }
@@ -1231,6 +1230,7 @@ public class CardController : Singleton<CardController>
         CharacterEntityController.Instance.ModifyEnergy(owner, -GetCardEnergyCost(card));
 
         // check for specific on card play effects 
+
         // Remove Melee Attack reduction passive
         if (card.cardType == CardType.MeleeAttack)
         {
@@ -1311,36 +1311,51 @@ public class CardController : Singleton<CardController>
         }
 
 
-        // Consecration
-        if (card.owner.pManager.consecrationStacks > 0 && card.blessing)
+        // Blessings
+        if (card.blessing)
         {
-            VisualEvent batchedEvent = VisualEventManager.Instance.InsertTimeDelayInQueue(0f);
-
-            VisualEventManager.Instance.CreateVisualEvent(() =>
+            // Consecration
+            if(card.owner.pManager.consecrationStacks > 0)
             {
-                VisualEffectManager.Instance.CreateHolyNova(owner.characterEntityView.WorldPosition);
-                VisualEffectManager.Instance.CreateStatusEffect(owner.characterEntityView.WorldPosition, "Consecration!");
-            }, QueuePosition.BatchedEvent, 0f, 0f, EventDetail.None, batchedEvent);
+                VisualEvent batchedEvent = VisualEventManager.Instance.InsertTimeDelayInQueue(0f);
 
-            foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
-            {
-                // Calculate damage
-                // DamageType damageType = CombatLogic.Instance.GetFinalFinalDamageTypeOfAttack(owner);
-                DamageType damageType = DamageType.Fire;
-                int baseDamage = card.owner.pManager.consecrationStacks;
-
-                // Calculate the end damage value
-                int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, enemy, damageType, baseDamage);
-
-                // Create fiery explosion on target
                 VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateApplyBurningEffect(enemy.characterEntityView.WorldPosition), QueuePosition.BatchedEvent, 0f, 0f, EventDetail.None, batchedEvent);
+                {
+                    VisualEffectManager.Instance.CreateHolyNova(owner.characterEntityView.WorldPosition);
+                    VisualEffectManager.Instance.CreateStatusEffect(owner.characterEntityView.WorldPosition, "Consecration!");
+                }, QueuePosition.BatchedEvent, 0f, 0f, EventDetail.None, batchedEvent);
 
-                // Start damage sequence
-                CombatLogic.Instance.HandleDamage(finalDamageValue, owner, enemy, damageType, batchedEvent);
+                foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
+                {
+                    // Calculate damage
+                    // DamageType damageType = CombatLogic.Instance.GetFinalFinalDamageTypeOfAttack(owner);
+                    DamageType damageType = DamageType.Fire;
+                    int baseDamage = card.owner.pManager.consecrationStacks;
+
+                    // Calculate the end damage value
+                    int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, enemy, damageType, baseDamage);
+
+                    // Create fiery explosion on target
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateApplyBurningEffect(enemy.characterEntityView.WorldPosition), QueuePosition.BatchedEvent, 0f, 0f, EventDetail.None, batchedEvent);
+
+                    // Start damage sequence
+                    CombatLogic.Instance.HandleDamage(finalDamageValue, owner, enemy, damageType, batchedEvent);
+                }
+
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
             }
 
-            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+            // Evangelize
+            if (card.owner.pManager.evangelizeStacks > 0)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => 
+                VisualEffectManager.Instance.CreateStatusEffect(owner.characterEntityView.WorldPosition, "Evangelize!"), QueuePosition.Back, 0f, 0.5f);
+
+                PassiveController.Instance.ModifyBonusDexterity(card.owner.pManager, card.owner.pManager.evangelizeStacks, true);
+            }
+
+
 
         }
 
@@ -1382,14 +1397,17 @@ public class CardController : Singleton<CardController>
             }
            
         }
-        // to do: what happens to power cards???
-
-        // Add to discard pile
-        //AddCardToDiscardPile(owner, card);
     }
     private void OnCardPlayedFinish(Card card)
     {
-        // called at the very end of card play
+        // Remove Long Draw
+        if (card.cardType == CardType.RangedAttack)
+        {
+            if (card.owner.pManager.longDrawStacks > 0)
+            {
+                PassiveController.Instance.ModifyLongDraw(card.owner.pManager, -1, false);
+            }
+        }
     }
     private void OnCardExpended(Card card)
     {
@@ -1397,6 +1415,50 @@ public class CardController : Singleton<CardController>
         // when an expend happens will go here e.g. an item
         // that reads 'whenever you expend a card, gain 5 block',
         // the gain block logic will go here
+
+        CharacterEntityModel owner = card.owner;
+        CharacterEntityView view = card.owner.characterEntityView;
+
+        if(owner == null || 
+            view == null)
+        {
+            return;
+        }
+
+        // Corpse Collector Passive
+        if(owner.pManager.corpseCollectorStacks > 0)
+        {
+            // Notification event
+            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Corpse Collector!"), QueuePosition.Back, 0, 0.5f);
+
+            // Setup
+            List<CharacterEntityModel> validEnemies = new List<CharacterEntityModel>();
+            CharacterEntityModel targetHit = null;
+
+            // Get valid enemies
+            foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
+            {
+                if (enemy.livingState == LivingState.Alive)
+                {
+                    validEnemies.Add(enemy);
+                }
+            }
+
+            // Determine target hit
+            if (validEnemies.Count == 1)
+            {
+                targetHit = validEnemies[0];
+            }
+            else if (validEnemies.Count > 1)
+            {
+                targetHit = validEnemies[RandomGenerator.NumberBetween(0, validEnemies.Count - 1)];
+            }
+
+            if (targetHit != null)
+            {
+                PassiveController.Instance.ModifyWeakened(targetHit.pManager, owner.pManager.corpseCollectorStacks, true);
+            }
+        }
     }
     public void PlayCardFromHand(Card card, CharacterEntityModel target = null)
     {
@@ -2523,6 +2585,15 @@ public class CardController : Singleton<CardController>
             }
         }
 
+        // Pistolero override
+        if(card.cardType == CardType.RangedAttack &&
+            card.owner != null &&
+            card.owner.pManager != null &&
+            card.owner.pManager.pistoleroStacks > 0)
+        {
+            return 0;
+        }
+
         // Normal logic
         int costReturned = card.cardBaseEnergyCost;
 
@@ -2575,7 +2646,7 @@ public class CardController : Singleton<CardController>
             VisualEventManager.Instance.CreateVisualEvent(() => SetCardViewModelEnergyText(card, cvm, newCostTextValue.ToString()));
         }
     }
-    private void ReduceCardEnergyCostThisCombat(Card card, int reductionAmount)
+    public void ReduceCardEnergyCostThisCombat(Card card, int reductionAmount)
     {
         // Setup
         CardViewModel cvm = card.cardVM;

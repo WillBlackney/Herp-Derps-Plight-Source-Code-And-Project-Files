@@ -190,69 +190,79 @@ public class CombatLogic : Singleton<CombatLogic>
             }
         }
 
+        // Card specific modifiers
+        if (card != null && cardEffect != null)
+        {
+            if(attacker.pManager.longDrawStacks > 0)
+            {
+                damageModifier += 1f;
+                Debug.Log("Damage percentage modifier after 'Long Draw' passive: " + damageModifier.ToString());
+            }
+        }
+
 
         // TO DO: Damage modifiers related to increasing magical damage by percentage should be moved to a new method (make some like CalculateMagicDamageModifiers())
 
-        // Air Damage bonuses
-        /*
-        if (damageType == "Air")
-        {
-            if (attacker.myPassiveManager.stormLord)
+            // Air Damage bonuses
+            /*
+            if (damageType == "Air")
             {
-                Debug.Log("Damage has a type of 'Air', and attacker has 'Storm Lord' passive, increasing damage by 30%...");
-                damageModifier += 0.3f;
-            }
-        }
-
-        // Fire Damage bonuses
-        if (damageType == "Fire")
-        {
-            if (attacker.myPassiveManager.demon)
-            {
-                Debug.Log("Damage has a type of 'Fire', and attacker has 'Demon' passive, increasing damage by 30%...");
-                damageModifier += 0.3f;
-            }
-        }
-
-        // Poison Damage bonuses
-        if (damageType == "Poison")
-        {
-            if (attacker.myPassiveManager.toxicity)
-            {
-                Debug.Log("Damage has a type of 'Poison', and attacker has 'Toxicity' passive, increasing damage by 30%...");
-                damageModifier += 0.3f;
-            }
-        }
-
-        // Frost Damage bonuses
-        if (damageType == "Frost")
-        {
-            if (attacker.myPassiveManager.frozenHeart)
-            {
-                Debug.Log("Damage has a type of 'Frost', and attacker has 'Frozen Heart' passive, increasing damage by 30%...");
-                damageModifier += 0.3f;
-            }
-        }
-
-        // Frost Damage bonuses
-        if (damageType == "Shadow")
-        {
-            if (attacker.myPassiveManager.shadowForm)
-            {
-                Debug.Log("Damage has a type of 'Shadow', and attacker has 'Shadow Form' passive, increasing damage by 30%...");
-                damageModifier += 0.3f;
+                if (attacker.myPassiveManager.stormLord)
+                {
+                    Debug.Log("Damage has a type of 'Air', and attacker has 'Storm Lord' passive, increasing damage by 30%...");
+                    damageModifier += 0.3f;
+                }
             }
 
-            if (attacker.myPassiveManager.pureHate)
+            // Fire Damage bonuses
+            if (damageType == "Fire")
             {
-                Debug.Log("Damage has a type of 'Shadow', and attacker has 'Pure Hate' passive, increasing damage by 50%...");
-                damageModifier += 0.5f;
+                if (attacker.myPassiveManager.demon)
+                {
+                    Debug.Log("Damage has a type of 'Fire', and attacker has 'Demon' passive, increasing damage by 30%...");
+                    damageModifier += 0.3f;
+                }
             }
-        } 
-        */
 
-        // prevent modifier from going negative
-        if (damageModifier < 0)
+            // Poison Damage bonuses
+            if (damageType == "Poison")
+            {
+                if (attacker.myPassiveManager.toxicity)
+                {
+                    Debug.Log("Damage has a type of 'Poison', and attacker has 'Toxicity' passive, increasing damage by 30%...");
+                    damageModifier += 0.3f;
+                }
+            }
+
+            // Frost Damage bonuses
+            if (damageType == "Frost")
+            {
+                if (attacker.myPassiveManager.frozenHeart)
+                {
+                    Debug.Log("Damage has a type of 'Frost', and attacker has 'Frozen Heart' passive, increasing damage by 30%...");
+                    damageModifier += 0.3f;
+                }
+            }
+
+            // Frost Damage bonuses
+            if (damageType == "Shadow")
+            {
+                if (attacker.myPassiveManager.shadowForm)
+                {
+                    Debug.Log("Damage has a type of 'Shadow', and attacker has 'Shadow Form' passive, increasing damage by 30%...");
+                    damageModifier += 0.3f;
+                }
+
+                if (attacker.myPassiveManager.pureHate)
+                {
+                    Debug.Log("Damage has a type of 'Shadow', and attacker has 'Pure Hate' passive, increasing damage by 50%...");
+                    damageModifier += 0.5f;
+                }
+            } 
+            */
+
+            // prevent modifier from going negative
+            if (damageModifier < 0)
         {
             Debug.Log("Damage percentage modifier went into negative, setting to 0");
             damageModifier = 0;

@@ -61,7 +61,7 @@ MonoBehaviour:
     flurryStacks: 0
     lordOfStormsStacks: 0
     sentinelStacks: 0
-    ruthlessStacks: 4
+    ruthlessStacks: 0
     evangelizeStacks: 0
     wellOfSoulsStacks: 0
     corpseCollectorStacks: 0
@@ -82,8 +82,11 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 648ee25c51574a74983929772bcecb4d, type: 2}
-  - {fileID: 11400000, guid: 648ee25c51574a74983929772bcecb4d, type: 2}
+  - {fileID: 11400000, guid: 114d0de462d6fe24996e5c9119dcd62f, type: 2}
+  - {fileID: 11400000, guid: 114d0de462d6fe24996e5c9119dcd62f, type: 2}
+  - {fileID: 11400000, guid: 114d0de462d6fe24996e5c9119dcd62f, type: 2}
+  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
+  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1

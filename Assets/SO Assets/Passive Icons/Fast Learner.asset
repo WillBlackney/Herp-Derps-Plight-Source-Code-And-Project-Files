@@ -30,7 +30,11 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '0 '
+    phrase: '1 '
+  - color: 0
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'less '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -38,7 +42,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: until played.
+    phrase: .
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0

@@ -18,7 +18,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: On activation start, this character adds
+    phrase: 'On activation start, this character adds '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -30,7 +30,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: cards to its hand.
+    phrase: cards to it's hand.
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0

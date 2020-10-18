@@ -47,7 +47,6 @@ namespace Tests
 
             // Create mock deck data
             deckData = new List<CardDataSO>();
-            //characterData.initialDeckData = deckData;
 
             // Create mock cards
             mockExpendCard = AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/Tests/Mock Data Files/Mock Exhaust Card.asset");

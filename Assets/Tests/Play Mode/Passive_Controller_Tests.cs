@@ -25,6 +25,7 @@ namespace Tests
         CardDataSO mockMeleeAttackCard;
         CardDataSO mockRangedAttackCard;
         CardDataSO mockSkillDamagingCard;
+        CardDataSO mockExpendCard;
 
         // Pasive name refs;
 
@@ -46,6 +47,7 @@ namespace Tests
         private const string FAN_OF_KNIVES_NAME = "Fan Of Knives";
         private const string DIVINE_FAVOUR_NAME = "Divine Favour";
         private const string PHOENIX_FORM_NAME = "Phoenix Form";
+        private const string WELL_OF_SOULS_NAME = "Well Of Souls";
         private const string POISONOUS_NAME = "Poisonous";
         private const string VENOMOUS_NAME = "Venomous";
         private const string OVERLOAD_NAME = "Overload";
@@ -56,6 +58,8 @@ namespace Tests
         private const string INFURIATED_NAME = "Infuriated";
         private const string LORD_OF_STORMS_NAME = "Lord Of Storms";
         private const string SENTINEL_NAME = "Sentinel";
+        private const string CORPSE_COLLECTOR_NAME = "Corpse Collector";
+        private const string FAST_LEARNER_NAME = "Fast Learner";
 
         // Special Defensive Passives
         private const string RUNE_NAME = "Rune";
@@ -64,6 +68,7 @@ namespace Tests
         // Aura Passives
         private const string ENCOURAGING_AURA_NAME = "Encouraging Aura";
         private const string GUARDIAN_AURA_NAME = "Guardian Aura";
+        private const string TOXIC_AURA_NAME = "Toxic Aura";
 
         // Disabling Debuff Passives
         private const string DISARMED_NAME = "Disarmed";
@@ -110,6 +115,7 @@ namespace Tests
             mockMeleeAttackCard = AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/Tests/Mock Data Files/Mock Melee Attack Card.asset");
             mockRangedAttackCard = AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/Tests/Mock Data Files/Mock Ranged Attack Card.asset");
             mockSkillDamagingCard = AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/Tests/Mock Data Files/Mock Skill Damaging Card.asset");
+            mockExpendCard = AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/Tests/Mock Data Files/Mock Exhaust Card.asset");
 
             // Create mock model data
             characterData.modelParts = new List<string>();
@@ -171,6 +177,9 @@ namespace Tests
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, INFURIATED_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, LORD_OF_STORMS_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, SENTINEL_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, WELL_OF_SOULS_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, CORPSE_COLLECTOR_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, FAST_LEARNER_NAME, stacks);
 
             // Special Defensive Passives
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, BARRIER_NAME, stacks);
@@ -178,6 +187,7 @@ namespace Tests
             // Aura Passives
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, ENCOURAGING_AURA_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, GUARDIAN_AURA_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, TOXIC_AURA_NAME, stacks);
 
             // Disabling Debuff Passives
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, DISARMED_NAME, stacks);
@@ -223,11 +233,14 @@ namespace Tests
                 model.pManager.cautiousStacks == 1 && 
                 model.pManager.lordOfStormsStacks == 1 &&
                 model.pManager.sentinelStacks == 1 &&
+                model.pManager.wellOfSoulsStacks == 1 &&
+                model.pManager.fastLearnerStacks == 1 &&
 
                 model.pManager.barrierStacks == 1 &&
 
                 model.pManager.encouragingAuraStacks == 1 &&
                 model.pManager.guardianAuraStacks == 1 &&
+                model.pManager.toxicAuraStacks == 1 &&
 
                 model.pManager.disarmedStacks == 1 &&
                 model.pManager.silencedStacks == 1 &&
@@ -565,6 +578,82 @@ namespace Tests
             Assert.AreEqual(expected, model.block);
         }
         [Test]
+        public void Corpse_Collector_Does_Apply_Weakened_On_Card_Expended()
+        {
+            // Arange
+            CharacterEntityModel player1;
+            CharacterEntityModel enemy1;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(CORPSE_COLLECTOR_NAME).passiveName;
+            int stacks = 2;
+            int expected = 2;
+            characterData.deck.Add(CardController.Instance.BuildCardDataFromScriptableObjectData(mockExpendCard, characterData));
+
+            // Act 
+            player1 = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            enemy1 = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, enemyNode);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(player1.pManager, passiveName, stacks);
+            player1.initiative = 100;
+            ActivationManager.Instance.OnNewCombatEventStarted();
+
+            CardController.Instance.PlayCardFromHand(player1.hand[0]); 
+
+            // Assert
+            Assert.AreEqual(expected, enemy1.pManager.weakenedStacks);
+        }
+        [Test]
+        public void Toxic_Aura_Does_Apply_Poisoned_On_Activation_End()
+        {
+            // Arange
+            CharacterEntityModel player1;
+            CharacterEntityModel player2;
+            CharacterEntityModel enemy1;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(TOXIC_AURA_NAME).passiveName;
+            int stacks = 2;
+            int expected = 2;
+
+            // Act 
+            player1 = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            player2 = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, LevelManager.Instance.GetNextAvailableDefenderNode());
+            enemy1 = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, enemyNode);
+
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(player1.pManager, passiveName, stacks);
+            player1.initiative = 100;
+            player2.initiative = 50;
+
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CharacterEntityController.Instance.CharacterOnActivationEnd(player1);
+
+            // Assert
+            Assert.AreEqual(expected, enemy1.pManager.poisonedStacks);
+        }
+        [Test]
+        public void Toxic_Aura_Does_Apply_Poisoned_With_Venomous_Bonus_On_Activation_End()
+        {
+            // Arange
+            CharacterEntityModel player1;
+            CharacterEntityModel player2;
+            CharacterEntityModel enemy1;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(TOXIC_AURA_NAME).passiveName;
+            int stacks = 2;
+            int expected = 3;
+
+            // Act 
+            player1 = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            player2 = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, LevelManager.Instance.GetNextAvailableDefenderNode());
+            enemy1 = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, enemyNode);
+
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(player1.pManager, passiveName, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(player1.pManager, "Venomous", 1);
+            player1.initiative = 100;
+            player2.initiative = 50;
+
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CharacterEntityController.Instance.CharacterOnActivationEnd(player1);
+
+            // Assert
+            Assert.AreEqual(expected, enemy1.pManager.poisonedStacks);
+        }
+        [Test]
         public void Guardian_Aura_Does_Grant_Block_To_Ally_On_Activation_End()
         {
             // Arange
@@ -645,6 +734,50 @@ namespace Tests
             foreach (Card card in model.hand)
             {
                 if (card.cardName == "Shank")
+                {
+                    shanksInHand++;
+                }
+            }
+
+            // Assert
+            Assert.AreEqual(expected, shanksInHand);
+        }
+        [Test]
+        public void Fast_Learner_Does_Grant_Random_Common_Cards_On_Activation_Start()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(FAST_LEARNER_NAME).passiveName;
+            int stacks = 3;
+            int expected = 3;
+
+            // Act 
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
+            ActivationManager.Instance.OnNewCombatEventStarted();
+
+            // Assert
+            Assert.AreEqual(expected, model.hand.Count);
+        }
+        [Test]
+        public void Well_Of_Souls_Does_Grant_Haunt_Cards_On_Activation_Start()
+        {
+            // Arange
+            CharacterEntityModel model;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(WELL_OF_SOULS_NAME).passiveName;
+            int stacks = 3;
+            int expected = 3;
+
+            // Act 
+            model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
+            ActivationManager.Instance.OnNewCombatEventStarted();
+
+            // how many shanks in hand?
+            int shanksInHand = 0;
+            foreach (Card card in model.hand)
+            {
+                if (card.cardName == "Haunt")
                 {
                     shanksInHand++;
                 }

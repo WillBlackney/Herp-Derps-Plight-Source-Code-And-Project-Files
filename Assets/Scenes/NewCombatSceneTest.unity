@@ -12399,6 +12399,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 37ed4f34acf583e4e880541650579ed2, type: 2}
   - {fileID: 11400000, guid: 99f9201b1ce8bf647afe8afc184729a4, type: 2}
   - {fileID: 11400000, guid: 778ad8d06827d8e4bb592e08e9332fbf, type: 2}
+  - {fileID: 11400000, guid: b86f9b795dc47ca43bb0110764597503, type: 2}
   discoveryCards:
   - {fileID: 150008041}
   - {fileID: 1265796404}

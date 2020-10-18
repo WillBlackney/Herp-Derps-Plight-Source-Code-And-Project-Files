@@ -647,6 +647,33 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 }
             }
 
+            // Well Of Souls
+            if (character.pManager.wellOfSoulsStacks > 0)
+            {
+                for (int i = 0; i < character.pManager.wellOfSoulsStacks; i++)
+                {
+                    CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetCardDataFromLibraryByName("Haunt"));
+                }
+            }
+
+            // Fast Learner
+            if (character.pManager.fastLearnerStacks > 0)
+            {
+                // Get all common cards
+                List<CardData> viableCards = new List<CardData>();             
+                viableCards.AddRange(CardController.Instance.GetCardsQuery(CardController.Instance.AllCards, TalentSchool.None, Rarity.Common));
+
+                for (int i = 0; i < character.pManager.fastLearnerStacks; i++)
+                {
+                    // Create and add new card to hand
+                    CardData newCard = viableCards[RandomGenerator.NumberBetween(0, viableCards.Count - 1)];
+                    Card card = CardController.Instance.CreateAndAddNewCardToCharacterHand(character, newCard);
+
+                    // Reduce its energy cost by 1
+                    CardController.Instance.ReduceCardEnergyCostThisCombat(card, 1);
+                }
+            }
+
             // Lord Of Storms
             if (character.pManager.lordOfStormsStacks > 0)
             {
@@ -828,6 +855,29 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 // Random ally gains energy
                 PassiveController.Instance.ModifyWeakened(chosenEnemy.pManager, entity.pManager.shadowAuraStacks, true);
             }
+        }
+
+        // Toxic Aura
+        if (entity.pManager.toxicAuraStacks > 0)
+        {
+            // Notification event
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+            VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Toxic Aura!"), QueuePosition.Back, 0, 0.5f);
+
+            // Create poison nova on caster
+            VisualEventManager.Instance.CreateVisualEvent(() => 
+            VisualEffectManager.Instance.CreatePoisonNova(entity.characterEntityView.WorldPosition));
+         
+            // Apply poison to all enemies, and small poison explosion
+            foreach (CharacterEntityModel enemy in GetAllEnemiesOfCharacter(entity))
+            {
+                PassiveController.Instance.ModifyPoisoned(entity, enemy.pManager, entity.pManager.toxicAuraStacks, true);
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreatePoisonExplosion(enemy.characterEntityView.WorldPosition));
+            }
+
+            // Brief delay
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
         }
 
         // Guardian Aura

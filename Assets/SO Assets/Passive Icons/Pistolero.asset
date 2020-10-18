@@ -26,7 +26,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: cards always cost
+    phrase: 'cards always cost '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -38,7 +38,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: ', but is unable to play '
+    phrase: ', but they are unable to play '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
