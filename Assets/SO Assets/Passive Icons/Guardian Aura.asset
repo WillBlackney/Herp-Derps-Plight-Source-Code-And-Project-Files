@@ -12,9 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Guardian Aura
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 0}
+  passiveSprite: {fileID: 21300000, guid: 32eb4e9e33173e24a9f6f9aacedd7fc9, type: 3}
   passiveName: Guardian Aura
-  passiveDescription: []
+  passiveDescription:
+  - color: 0
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'On activation end, this character grants '
+  - color: 0
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'X '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Block '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: to all allies.
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0

@@ -99,6 +99,14 @@ public class CombatLogic : Singleton<CombatLogic>
             Debug.Log("Card base damage after bonus fire ball damage added: " + baseDamageValueReturned.ToString());
         }
 
+        // Shank/Ruthless damage bonus
+        if (card != null &&
+            card.cardName == "Shank")
+        {
+            baseDamageValueReturned += entity.pManager.ruthlessStacks;
+            Debug.Log("Card base damage after bonus Ruthless/Shank damage added: " + baseDamageValueReturned.ToString());
+        }
+
         // return final value
         Debug.Log("Final base damage value of attack returned: " + baseDamageValueReturned.ToString());
         return baseDamageValueReturned;

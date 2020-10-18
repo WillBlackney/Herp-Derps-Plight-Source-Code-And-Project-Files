@@ -12,9 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Toxic Aura
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 0}
+  passiveSprite: {fileID: 21300000, guid: f589a4deb7b158149b1c6c7eaa5e013c, type: 3}
   passiveName: Toxic Aura
-  passiveDescription: []
+  passiveDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'On activation end, this character applies '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'X '
+  - color: 8
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Poisoned '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: to all enemies.
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0

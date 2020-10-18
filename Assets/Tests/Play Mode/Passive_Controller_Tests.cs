@@ -55,6 +55,7 @@ namespace Tests
         private const string GROWING_NAME = "Growing";
         private const string INFURIATED_NAME = "Infuriated";
         private const string LORD_OF_STORMS_NAME = "Lord Of Storms";
+        private const string SENTINEL_NAME = "Sentinel";
 
         // Special Defensive Passives
         private const string RUNE_NAME = "Rune";
@@ -169,6 +170,7 @@ namespace Tests
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, GROWING_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, INFURIATED_NAME, stacks);
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, LORD_OF_STORMS_NAME, stacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, SENTINEL_NAME, stacks);
 
             // Special Defensive Passives
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, BARRIER_NAME, stacks);
@@ -220,6 +222,7 @@ namespace Tests
                 model.pManager.infuriatedStacks == 1 &&
                 model.pManager.cautiousStacks == 1 && 
                 model.pManager.lordOfStormsStacks == 1 &&
+                model.pManager.sentinelStacks == 1 &&
 
                 model.pManager.barrierStacks == 1 &&
 
@@ -598,6 +601,30 @@ namespace Tests
 
             // Assert
             Assert.AreEqual(expected, model.block);
+        }
+        [Test]
+        public void Sentinel_Does_Deal_Damage_On_Block_Gained()
+        {
+            // Arange
+            CharacterEntityModel player1;
+            CharacterEntityModel enemy1;
+            string passiveName = PassiveController.Instance.GetPassiveIconDataByName(SENTINEL_NAME).passiveName;
+            int stacks = 2;
+            int expected = 26;
+
+            // Act 
+            player1 = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            enemy1 = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, enemyNode);
+            enemy1.health = 30;
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(player1.pManager, passiveName, stacks);
+            player1.initiative = 100;
+
+            ActivationManager.Instance.OnNewCombatEventStarted();
+            CharacterEntityController.Instance.ModifyBlock(player1, 5);
+            CharacterEntityController.Instance.ModifyBlock(player1, 5);
+
+            // Assert
+            Assert.AreEqual(expected, enemy1.health);
         }
         [Test]
         public void Fan_Of_Knives_Does_Grant_Shank_Cards_On_Activation_Start()

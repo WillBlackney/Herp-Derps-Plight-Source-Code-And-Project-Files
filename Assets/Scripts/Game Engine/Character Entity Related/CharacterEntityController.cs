@@ -438,6 +438,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
         int finalBlockGainValue = blockGainedOrLost;
         int characterFinalBlockValue = 0;
+        CharacterEntityView view = character.characterEntityView;
 
         // prevent block going negative
         if (finalBlockGainValue < 0)
@@ -451,7 +452,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
         if (finalBlockGainValue > 0 && showVFX)
         {
-            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateGainBlockEffect(character.characterEntityView.WorldPosition, finalBlockGainValue), QueuePosition.Back, 0, 0);
+            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateGainBlockEffect(view.WorldPosition, finalBlockGainValue), QueuePosition.Back, 0, 0);
         }
 
         if (showVFX)
@@ -463,6 +464,47 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             UpdateBlockGUI(character, characterFinalBlockValue);
         }
 
+        // Resolve Sentinel passive effect
+        if(character.pManager != null &&
+           character.pManager.sentinelStacks > 0)
+        {
+            // Notification event
+            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Sentinel!"), QueuePosition.Back, 0, 0.5f);
+
+            // Setup
+            List<CharacterEntityModel> validEnemies = new List<CharacterEntityModel>();
+            CharacterEntityModel targetHit = null;
+
+            // Get valid enemies
+            foreach (CharacterEntityModel enemy in GetAllEnemiesOfCharacter(character))
+            {
+                if(enemy.livingState == LivingState.Alive)
+                {
+                    validEnemies.Add(enemy);
+                }
+            }
+
+            // Determine target hit
+            if (validEnemies.Count == 1)
+            {
+                targetHit = validEnemies[0];
+            }
+            else if (validEnemies.Count > 1)
+            {
+                targetHit = validEnemies[RandomGenerator.NumberBetween(0, validEnemies.Count - 1)];
+            }
+
+            // Did we find a valid target?
+            if(targetHit != null)
+            {
+                // We did, start the damage process
+                VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
+
+                // Calculate and handle damage
+                int sentinelDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(character, targetHit, DamageType.Physical, character.pManager.sentinelStacks, null, null);
+                CombatLogic.Instance.HandleDamage(sentinelDamageValue, character, targetHit, DamageType.Physical, true);
+            }
+        }
     }
     public void SetBlock(CharacterEntityModel character, int newBlockValue)
     {
@@ -1309,7 +1351,6 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             Draggable.DraggingThis.Da is DragSpellOnTarget && 
             view.character != null)
         {
-            Debug.LogWarning("Ready to go, updating card description text");
             CardController.Instance.AutoUpdateCardDescriptionText(Draggable.DraggingThis.Da.CardVM().card, view.character);
         }
 
