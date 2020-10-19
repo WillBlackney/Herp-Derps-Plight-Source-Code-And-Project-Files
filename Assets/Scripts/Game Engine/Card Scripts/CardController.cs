@@ -649,6 +649,29 @@ public class CardController : Singleton<CardController>
                     cs.phrase = damageValue.ToString();
                 }
 
+                // Modify All Cards In Hand >> Damage All Enemies
+                else if (cs.cardEffectType == CardEffectType.ModifyAllCardsInHand)
+                {
+                    // Find the damage all enemies mod effect
+                    ModifyAllCardsInHandEffect damageEffectMod = null;
+                    foreach(ModifyAllCardsInHandEffect modEffect2 in matchingEffect.modifyCardsInHandEffects)
+                    {
+                        if(modEffect2.modifyEffect == ModifyAllCardsInHandEffectType.DamageAllEnemies)
+                        {
+                            damageEffectMod = modEffect2;
+                            break;
+                        }
+                    }
+
+                    if(damageEffectMod != null)
+                    {
+                        int damageValue = 0;
+                        damageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(card.owner, null, damageEffectMod.damageType, damageEffectMod.baseDamage, card, matchingEffect);
+                        cs.phrase = damageValue.ToString();
+                    }
+                   
+                }
+
                 // Lose HP
                 else if (cs.cardEffectType == CardEffectType.LoseHP)
                 {
@@ -1293,6 +1316,12 @@ public class CardController : Singleton<CardController>
             }
         }
 
+        // Fire Ball specific effects
+        if(card.cardName == "Fire Ball")
+        {
+            HandleOnFireBallCardPlayedListeners(owner);
+        }
+
         // Infuriated 
         if (card.cardType == CardType.Skill)
         {
@@ -1767,6 +1796,10 @@ public class CardController : Singleton<CardController>
             {
                 baseDamage = owner.pManager.overloadStacks * cardEffect.baseDamageMultiplier;
             }
+            else if (cardEffect.drawBaseDamageFromBurningOnSelf)
+            {
+                baseDamage = owner.pManager.burningStacks * cardEffect.baseDamageMultiplier;
+            }
             else
             {
                 baseDamage = cardEffect.baseDamageValue;
@@ -1807,6 +1840,10 @@ public class CardController : Singleton<CardController>
                 {
                     baseDamage = owner.pManager.overloadStacks * cardEffect.baseDamageMultiplier;
                 }
+                else if (cardEffect.drawBaseDamageFromBurningOnSelf)
+                {
+                    baseDamage = owner.pManager.burningStacks * cardEffect.baseDamageMultiplier;
+                }
                 else
                 {
                     baseDamage = cardEffect.baseDamageValue;
@@ -1843,6 +1880,10 @@ public class CardController : Singleton<CardController>
             else if (cardEffect.drawBaseDamageFromOverloadOnSelf)
             {
                 baseDamage = owner.pManager.overloadStacks * cardEffect.baseDamageMultiplier;
+            }
+            else if (cardEffect.drawBaseDamageFromBurningOnSelf)
+            {
+                baseDamage = owner.pManager.burningStacks * cardEffect.baseDamageMultiplier;
             }
             else
             {
@@ -2032,10 +2073,32 @@ public class CardController : Singleton<CardController>
             // otherwise expending cards in hand while iterating over them 
             // will cause an invalid operation exception.
 
+
+            // Get all cards in hand
             List<Card> cardsInHand = new List<Card>();
             cardsInHand.AddRange(owner.hand);
             int totalCards = cardsInHand.Count;
-             
+
+            // Or, get specific cards from hand only
+            if(cardEffect.modifyCardsInHandEffects[0].onlySpecificCards &&
+                cardEffect.modifyCardsInHandEffects[0].specificCardType == SpecificCardType.Burn)
+            {
+                Debug.LogWarning("Specific card type detected");
+                cardsInHand.Clear();
+                totalCards = 0;
+                foreach(Card ch in owner.hand)
+                {
+                    if (ch.cardName == "Burn")
+                    {
+                        totalCards++;
+                        cardsInHand.Add(ch);
+                    }
+                }
+
+                Debug.LogWarning("Found " + totalCards.ToString() +" burn cards");
+            }
+            
+            // Normal mod events
             foreach(ModifyAllCardsInHandEffect modEffect in cardEffect.modifyCardsInHandEffects)
             {
                 foreach(Card c in cardsInHand)
@@ -2122,7 +2185,32 @@ public class CardController : Singleton<CardController>
                 }
             }
 
-            
+            // Do damage events seperately
+            foreach (ModifyAllCardsInHandEffect modEffect in cardEffect.modifyCardsInHandEffects)
+            {
+                if(modEffect.modifyEffect == ModifyAllCardsInHandEffectType.DamageAllEnemies)
+                {
+                    for(int i = 0; i < totalCards; i++)
+                    {
+                        VisualEvent batchedEvent = VisualEventManager.Instance.InsertTimeDelayInQueue(0f);
+
+                        foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
+                        {
+                            // Calculate damage
+                            DamageType damageType = modEffect.damageType;
+                            int baseDamage = modEffect.baseDamage;
+
+                            // Calculate the end damage value
+                            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, enemy, damageType, baseDamage, card, cardEffect);
+
+                            // Start damage sequence
+                            CombatLogic.Instance.HandleDamage(finalDamageValue, owner, enemy, card, damageType, batchedEvent);
+                        }
+                    }
+                }
+            }
+
+
         }
 
         // Apply passive to self
@@ -2252,6 +2340,12 @@ public class CardController : Singleton<CardController>
         else if (cardEffect.cardEffectType == CardEffectType.RemoveAllOverloadFromSelf)
         {
             PassiveController.Instance.ModifyOverload(owner.pManager, -owner.pManager.overloadStacks, true);
+        }
+
+        // Remove burning from self
+        else if (cardEffect.cardEffectType == CardEffectType.RemoveAllBurningFromSelf)
+        {
+            PassiveController.Instance.ModifyBurning(owner.pManager, -owner.pManager.burningStacks, true);
         }
 
         // Remove poisoned from self
@@ -2529,6 +2623,21 @@ public class CardController : Singleton<CardController>
             foreach (CardEventListener e in card.cardEventListeners)
             {
                 if (e.cardEventListenerType == CardEventListenerType.OnMeleeAttackCardPlayed)
+                {
+                    RunCardEventListenerFunction(card, e);
+                }
+            }
+        }
+    }
+    public void HandleOnFireBallCardPlayedListeners(CharacterEntityModel character)
+    {
+        Debug.Log("CardController.HandleOnFireBallCardPlayedListeners() called...");
+
+        foreach (Card card in GetAllCharacterCardsInHandDrawAndDiscard(character))
+        {
+            foreach (CardEventListener e in card.cardEventListeners)
+            {
+                if (e.cardEventListenerType == CardEventListenerType.OnFireBallCardPlayed)
                 {
                     RunCardEventListenerFunction(card, e);
                 }

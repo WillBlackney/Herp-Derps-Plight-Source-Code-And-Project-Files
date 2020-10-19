@@ -71,6 +71,7 @@ public enum CardEffectType
     RemoveAllPoisonedFromSelf = 15,
     RemoveAllPoisonedFromTarget = 16,
     RemoveAllOverloadFromSelf = 20,
+    RemoveAllBurningFromSelf = 31,
     TauntTarget = 17,
     TauntAllEnemies = 18,
 
@@ -90,6 +91,7 @@ public enum CardEventListenerType
     OnDraw = 2,
     OnActivationEnd = 3,
     OnMeleeAttackCardPlayed = 4,
+    OnFireBallCardPlayed = 6,
     OnTargetKilled = 5,
 }
 
@@ -161,6 +163,7 @@ public enum Passive
     Cautious = 3,
     Consecration = 4,
     CorpseCollector = 49,
+    DemonForm = 54,
     Dexterity = 5,
     Disarmed = 6,
     DivineFavour = 7,

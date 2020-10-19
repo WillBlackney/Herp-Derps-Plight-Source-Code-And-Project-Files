@@ -16,9 +16,9 @@ MonoBehaviour:
   maxHealth: 30
   power: 0
   dexterity: 0
-  initiative: 1
+  initiative: 3
   startingHealth: 30
-  startingBlock: 10
+  startingBlock: 0
   physicalResistance: 0
   fireResistance: 0
   frostResistance: 0
@@ -66,13 +66,14 @@ MonoBehaviour:
     corpseCollectorStacks: 0
     pistoleroStacks: 0
     fastLearnerStacks: 0
+    demonFormStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
     toxicAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
-    vulnerableStacks: 2
+    vulnerableStacks: 0
     gritStacks: 0
     disarmedStacks: 0
     silencedStacks: 0
@@ -139,7 +140,7 @@ MonoBehaviour:
       visualEventsOnFinish: []
       actionType: 0
       baseDamage: 5
-      damageType: 0
+      damageType: 1
       passiveApplied: {fileID: 0}
       passiveStacks: 0
       blockGained: 0

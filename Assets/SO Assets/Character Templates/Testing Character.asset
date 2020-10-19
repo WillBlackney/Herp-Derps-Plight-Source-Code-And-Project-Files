@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Testing Character
   m_EditorClassIdentifier: 
   myName: Testing Character
-  health: 20
-  maxHealth: 50
+  health: 30
+  maxHealth: 30
   power: 0
   dexterity: 0
-  stamina: 10
+  stamina: 3
   draw: 5
-  initiative: 100
+  initiative: 3
   startingBlock: 0
   physicalResistance: 0
   fireResistance: 0
@@ -29,7 +29,7 @@ MonoBehaviour:
   airResistance: 0
   serializedPassiveManager:
     bonusPowerStacks: 0
-    bonusDexterityStacks: 2
+    bonusDexterityStacks: 0
     bonusStaminaStacks: 0
     bonusInitiativeStacks: 0
     bonusDrawStacks: 0
@@ -68,6 +68,7 @@ MonoBehaviour:
     corpseCollectorStacks: 0
     pistoleroStacks: 0
     fastLearnerStacks: 0
+    demonFormStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -83,11 +84,11 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 225fef661e8ad1f498736a011811887a, type: 2}
-  - {fileID: 11400000, guid: 225fef661e8ad1f498736a011811887a, type: 2}
-  - {fileID: 11400000, guid: 7a98d2d0352f7ad43b88e030842fd8a2, type: 2}
-  - {fileID: 11400000, guid: c725ced37bae68e4ea02c145e66668d9, type: 2}
-  - {fileID: 11400000, guid: c725ced37bae68e4ea02c145e66668d9, type: 2}
+  - {fileID: 11400000, guid: 7d21f55d489709140852c192ae39096f, type: 2}
+  - {fileID: 11400000, guid: 7d21f55d489709140852c192ae39096f, type: 2}
+  - {fileID: 11400000, guid: 6d186080c3689714ba2481c1ac9dc229, type: 2}
+  - {fileID: 11400000, guid: e4da3cf9bac315a4586b6ba520cf9a90, type: 2}
+  - {fileID: 11400000, guid: ef2b9ffdee54c0a48adddcc159a622a3, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1

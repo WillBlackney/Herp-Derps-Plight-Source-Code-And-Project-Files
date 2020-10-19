@@ -909,14 +909,29 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }
         if (entity.pManager.burningStacks > 0)
         {
-            // Notification event
-            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Burning!"), QueuePosition.Back, 0, 0.5f);
+            // Check demon form passive first
+            if(entity.pManager.demonFormStacks > 0)
+            {
+                // Notification event
+                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Demon Form!"), QueuePosition.Back, 0, 0.5f);
 
-            // Calculate and deal Poison damage
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Fire, entity.pManager.burningStacks, null, null);
-            VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
-            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.FireExplosion, view.WorldPosition));
-            CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Fire, true);           
+                // Apply block gain
+                ModifyBlock(entity, CombatLogic.Instance.CalculateBlockGainedByEffect(entity.pManager.burningStacks, entity, entity));
+            }
+
+            // Otherwise, just handle burning damage normally
+            else
+            {
+                // Notification event
+                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Burning!"), QueuePosition.Back, 0, 0.5f);
+
+                // Calculate and deal Poison damage
+                int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Fire, entity.pManager.burningStacks, null, null);
+                VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
+                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.FireExplosion, view.WorldPosition));
+                CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Fire, true);
+            }
+                   
         }
 
         // Overload

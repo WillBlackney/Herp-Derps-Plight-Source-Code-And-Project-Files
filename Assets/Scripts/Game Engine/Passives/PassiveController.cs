@@ -218,7 +218,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyFlurry(newClone, originalData.flurryStacks, false);
         }
-
+        if (originalData.demonFormStacks != 0)
+        {
+            ModifyDemonForm(newClone, originalData.demonFormStacks, false);
+        }
         if (originalData.lordOfStormsStacks != 0)
         {
             ModifyLordOfStorms(newClone, originalData.lordOfStormsStacks, false);
@@ -393,6 +396,7 @@ public class PassiveController : Singleton<PassiveController>
         pManager.corpseCollectorStacks = original.corpseCollectorStacks;        
         pManager.pistoleroStacks = original.pistoleroStacks;
         pManager.fastLearnerStacks = original.fastLearnerStacks;
+        pManager.demonFormStacks = original.demonFormStacks;
 
         pManager.runeStacks = original.runeStacks;
         pManager.barrierStacks = original.barrierStacks;
@@ -788,6 +792,10 @@ public class PassiveController : Singleton<PassiveController>
         else if (originalData == "Fast Learner")
         {
             ModifyFastLearner(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Demon Form")
+        {
+            ModifyDemonForm(pManager, stacks, showVFX, vfxDelay);
         }
         #endregion
 
@@ -2413,6 +2421,65 @@ public class PassiveController : Singleton<PassiveController>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Fan Of Knives Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+
+
+    }
+    public void ModifyDemonForm(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyDemonForm() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Demon Form");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.demonFormStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Demon Form");
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Demon Form Removed");
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
                 });
             }
@@ -4084,7 +4151,7 @@ public class PassiveController : Singleton<PassiveController>
             {
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Burning " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Burning " + stacks.ToString());
                 });
             }
             if (showVFX)

@@ -51,6 +51,7 @@ public class PassiveManagerModel
     public int corpseCollectorStacks;
     public int pistoleroStacks;
     public int fastLearnerStacks;
+    public int demonFormStacks;
 
     // Aura passives
     public int encouragingAuraStacks;
