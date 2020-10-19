@@ -143,13 +143,13 @@ public class CardEffect
     [LabelWidth(200)]
     public int healthLost;
 
-    [ShowIf("cardEffectType", CardEffectType.GainEnergy)]
+    [ShowIf("ShowEnergyGained")]
     [LabelWidth(200)]
-    public int energyGained;
+    public int energyGained;  
 
-    [ShowIf("cardEffectType", CardEffectType.DrawCards)]
+    [ShowIf("ShowCardsDrawn")]
     [LabelWidth(200)]
-    public int cardsDrawn;
+    public int cardsDrawn;   
 
     [ShowIf("cardEffectType", CardEffectType.DrawCards)]
     [LabelWidth(200)]
@@ -178,6 +178,31 @@ public class CardEffect
     public List<AnimationEventData> visualEventsOnStart;
     public List<AnimationEventData> visualEventsOnFinish;
 
+
+    public bool ShowCardsDrawn()
+    {
+        if (cardEffectType == CardEffectType.DrawCards &&
+            drawStacksFromOverload == false)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowEnergyGained()
+    {
+        if (cardEffectType == CardEffectType.GainEnergy &&
+            drawStacksFromOverload == false)
+        {
+            return true;
+        }
+        else 
+        { 
+            return false;
+        }
+    }
     public bool ShowRemoveBlockFrom()
     {
         return cardEffectType == CardEffectType.RemoveAllBlock;
@@ -411,7 +436,9 @@ public class CardEffect
         if ((cardEffectType == CardEffectType.ApplyPassiveToAllAllies ||
             cardEffectType == CardEffectType.ApplyPassiveToAllEnemies || 
             cardEffectType == CardEffectType.ApplyPassiveToSelf ||
-            cardEffectType == CardEffectType.ApplyPassiveToTarget) &&
+            cardEffectType == CardEffectType.ApplyPassiveToTarget ||
+            cardEffectType == CardEffectType.GainEnergy ||
+            cardEffectType == CardEffectType.DrawCards) &&
             drawStacksFromWeakenedOnEnemies == false)
         {
             return true;

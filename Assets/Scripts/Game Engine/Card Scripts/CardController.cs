@@ -1965,16 +1965,31 @@ public class CardController : Singleton<CardController>
         // Gain Energy
         else if (cardEffect.cardEffectType == CardEffectType.GainEnergy)
         {
-            CharacterEntityController.Instance.ModifyEnergy(owner, cardEffect.energyGained, true);
+            if (cardEffect.drawStacksFromOverload)
+            {
+                CharacterEntityController.Instance.ModifyEnergy(owner, owner.pManager.overloadStacks, true);
+            }
+            else
+            {
+                CharacterEntityController.Instance.ModifyEnergy(owner, cardEffect.energyGained, true);
+            }
+        
         }
 
         // Draw Cards
         else if (cardEffect.cardEffectType == CardEffectType.DrawCards)
         {
             Card cardDrawn = null;
+            int totalDraws = cardEffect.cardsDrawn;
+
+            // Set cards drawn equal to overload?
+            if (cardEffect.drawStacksFromOverload)
+            {
+                totalDraws = owner.pManager.overloadStacks;
+            }
 
             // Draw cards
-            for (int draws = 0; draws < cardEffect.cardsDrawn; draws++)
+            for (int draws = 0; draws < totalDraws; draws++)
             {
                 // reset cache card variable
                 cardDrawn = null;
