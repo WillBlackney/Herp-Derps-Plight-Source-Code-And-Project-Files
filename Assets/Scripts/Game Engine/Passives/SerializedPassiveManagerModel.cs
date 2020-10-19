@@ -91,6 +91,9 @@ public class SerializedPassiveManagerModel
     public int longDrawStacks;
     [BoxGroup("Buff Passives")]
     [LabelWidth(200)]
+    public int sharpenBladeStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
     public int consecrationStacks;
     [BoxGroup("Buff Passives")]
     [LabelWidth(200)]

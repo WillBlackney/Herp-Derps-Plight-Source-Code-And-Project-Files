@@ -247,6 +247,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyLongDraw(newClone, originalData.longDrawStacks, false);
         }
+        if (originalData.sharpenBladeStacks != 0)
+        {
+            ModifySharpenBlade(newClone, originalData.sharpenBladeStacks, false);
+        }
         if (originalData.pistoleroStacks != 0)
         {
             ModifyPistolero(newClone, originalData.pistoleroStacks, false);
@@ -373,6 +377,7 @@ public class PassiveController : Singleton<PassiveController>
         pManager.plantedFeetStacks = original.plantedFeetStacks;
         pManager.takenAimStacks = original.takenAimStacks;
         pManager.longDrawStacks = original.longDrawStacks;
+        pManager.sharpenBladeStacks = original.sharpenBladeStacks;
         pManager.consecrationStacks = original.consecrationStacks;
         pManager.growingStacks = original.growingStacks;
         pManager.cautiousStacks = original.cautiousStacks;
@@ -719,6 +724,10 @@ public class PassiveController : Singleton<PassiveController>
         else if (originalData == "Long Draw")
         {
             ModifyLongDraw(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Sharpen Blade")
+        {
+            ModifySharpenBlade(pManager, stacks, showVFX, vfxDelay);
         }
         else if (originalData == "Consecration")
         {
@@ -1639,7 +1648,66 @@ public class PassiveController : Singleton<PassiveController>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Long Draw Removed");
-                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                    //VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+
+
+    }
+    public void ModifySharpenBlade(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifySharpenBlade() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Sharpen Blade");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.sharpenBladeStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Sharpen Blade!");
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Sharpen Blade Removed");
+                   // VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
                 });
             }
 

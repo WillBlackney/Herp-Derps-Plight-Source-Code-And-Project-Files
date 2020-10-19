@@ -35,6 +35,7 @@ public class PassiveManagerModel
     public int plantedFeetStacks;
     public int takenAimStacks;
     public int longDrawStacks;
+    public int sharpenBladeStacks;
     public int consecrationStacks;
     public int growingStacks;
     public int cautiousStacks;

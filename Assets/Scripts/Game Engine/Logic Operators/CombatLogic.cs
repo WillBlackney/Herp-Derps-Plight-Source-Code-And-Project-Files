@@ -191,7 +191,9 @@ public class CombatLogic : Singleton<CombatLogic>
         }
 
         // Card specific modifiers
-        if (card != null && cardEffect != null)
+
+        // Long Draw
+        if (card != null && cardEffect != null && card.cardType == CardType.RangedAttack)
         {
             if(attacker.pManager.longDrawStacks > 0)
             {
@@ -200,69 +202,79 @@ public class CombatLogic : Singleton<CombatLogic>
             }
         }
 
+        // Sharpen Blade
+        if (card != null && cardEffect != null && card.cardType == CardType.MeleeAttack)
+        {
+            if (attacker.pManager.sharpenBladeStacks > 0)
+            {
+                damageModifier += 1f;
+                Debug.Log("Damage percentage modifier after 'Sharpen Blade' passive: " + damageModifier.ToString());
+            }
+        }
+
 
         // TO DO: Damage modifiers related to increasing magical damage by percentage should be moved to a new method (make some like CalculateMagicDamageModifiers())
 
-            // Air Damage bonuses
-            /*
-            if (damageType == "Air")
+        // Air Damage bonuses
+        /*
+        if (damageType == "Air")
+        {
+            if (attacker.myPassiveManager.stormLord)
             {
-                if (attacker.myPassiveManager.stormLord)
-                {
-                    Debug.Log("Damage has a type of 'Air', and attacker has 'Storm Lord' passive, increasing damage by 30%...");
-                    damageModifier += 0.3f;
-                }
+                Debug.Log("Damage has a type of 'Air', and attacker has 'Storm Lord' passive, increasing damage by 30%...");
+                damageModifier += 0.3f;
+            }
+        }
+
+        // Fire Damage bonuses
+        if (damageType == "Fire")
+        {
+            if (attacker.myPassiveManager.demon)
+            {
+                Debug.Log("Damage has a type of 'Fire', and attacker has 'Demon' passive, increasing damage by 30%...");
+                damageModifier += 0.3f;
+            }
+        }
+
+        // Poison Damage bonuses
+        if (damageType == "Poison")
+        {
+            if (attacker.myPassiveManager.toxicity)
+            {
+                Debug.Log("Damage has a type of 'Poison', and attacker has 'Toxicity' passive, increasing damage by 30%...");
+                damageModifier += 0.3f;
+            }
+        }
+
+        // Frost Damage bonuses
+        if (damageType == "Frost")
+        {
+            if (attacker.myPassiveManager.frozenHeart)
+            {
+                Debug.Log("Damage has a type of 'Frost', and attacker has 'Frozen Heart' passive, increasing damage by 30%...");
+                damageModifier += 0.3f;
+            }
+        }
+
+        // Frost Damage bonuses
+        if (damageType == "Shadow")
+        {
+            if (attacker.myPassiveManager.shadowForm)
+            {
+                Debug.Log("Damage has a type of 'Shadow', and attacker has 'Shadow Form' passive, increasing damage by 30%...");
+                damageModifier += 0.3f;
             }
 
-            // Fire Damage bonuses
-            if (damageType == "Fire")
+            if (attacker.myPassiveManager.pureHate)
             {
-                if (attacker.myPassiveManager.demon)
-                {
-                    Debug.Log("Damage has a type of 'Fire', and attacker has 'Demon' passive, increasing damage by 30%...");
-                    damageModifier += 0.3f;
-                }
+                Debug.Log("Damage has a type of 'Shadow', and attacker has 'Pure Hate' passive, increasing damage by 50%...");
+                damageModifier += 0.5f;
             }
+        } 
+        */
 
-            // Poison Damage bonuses
-            if (damageType == "Poison")
-            {
-                if (attacker.myPassiveManager.toxicity)
-                {
-                    Debug.Log("Damage has a type of 'Poison', and attacker has 'Toxicity' passive, increasing damage by 30%...");
-                    damageModifier += 0.3f;
-                }
-            }
-
-            // Frost Damage bonuses
-            if (damageType == "Frost")
-            {
-                if (attacker.myPassiveManager.frozenHeart)
-                {
-                    Debug.Log("Damage has a type of 'Frost', and attacker has 'Frozen Heart' passive, increasing damage by 30%...");
-                    damageModifier += 0.3f;
-                }
-            }
-
-            // Frost Damage bonuses
-            if (damageType == "Shadow")
-            {
-                if (attacker.myPassiveManager.shadowForm)
-                {
-                    Debug.Log("Damage has a type of 'Shadow', and attacker has 'Shadow Form' passive, increasing damage by 30%...");
-                    damageModifier += 0.3f;
-                }
-
-                if (attacker.myPassiveManager.pureHate)
-                {
-                    Debug.Log("Damage has a type of 'Shadow', and attacker has 'Pure Hate' passive, increasing damage by 50%...");
-                    damageModifier += 0.5f;
-                }
-            } 
-            */
-
-            // prevent modifier from going negative
-            if (damageModifier < 0)
+        // prevent modifier from going negative
+        if (damageModifier < 0)
         {
             Debug.Log("Damage percentage modifier went into negative, setting to 0");
             damageModifier = 0;
@@ -288,8 +300,8 @@ public class CombatLogic : Singleton<CombatLogic>
         // Dexterity bonus only applies when playing a card,
         // or from enemy abilities (passives like 'Shield Wall' dont 
         // get the dexterity bonus
-        if (cardEffect != null ||
-            enemyEffect != null)
+        if ((cardEffect != null ||
+            enemyEffect != null) && valueReturned > 0)
         {
             valueReturned += EntityLogic.GetTotalDexterity(caster);
             Debug.Log("Block gain value after dexterity added: " + valueReturned);
@@ -446,7 +458,7 @@ public class CombatLogic : Singleton<CombatLogic>
         {
             if (totalLifeLost == 0 && blockAfter < startingBlock)
             {
-                // Create Lose Armor Effect
+                // Create Lose Block Effect
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 VisualEffectManager.Instance.CreateLoseBlockEffect(victim.characterEntityView.WorldPosition, adjustedDamageValue), queuePosition, 0, 0, EventDetail.None, batchedEvent);
 

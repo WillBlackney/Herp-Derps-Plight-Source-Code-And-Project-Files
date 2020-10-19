@@ -10,19 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Flurry
+  m_Name: Sharpen Blade
   m_EditorClassIdentifier: 
-  cardName: Flurry
-  cardDescription: Whenever you play a Melee Attack card, deal 1 Physical damage
-    to all enemies.
-  cardSprite: {fileID: 21300000, guid: 41d65e1d228d8d64e82a1ec0d6905c83, type: 3}
+  cardName: Sharpen Blade
+  cardDescription: 'Your next Melee Attack card deals double damage. Expend. '
+  cardSprite: {fileID: 21300000, guid: dc229cc261927a14f931ad07ffd8f950, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
-  cardType: 4
+  cardType: 1
   targettingType: 0
   talentSchool: 3
-  rarity: 3
-  expend: 0
+  rarity: 2
+  expend: 1
   innate: 0
   fleeting: 0
   unplayable: 0
@@ -32,7 +31,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Whenever you play a '
+    phrase: 'Your next '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -40,19 +39,17 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'card, deal '
-  - color: 2
+    phrase: 'card deals double damage.
+
+'
+  - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '1 '
-  - color: 4
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'Physical '
+    phrase: Expend
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: damage to all enemies.
+    phrase: .
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 2
@@ -92,7 +89,7 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: 42
+      passiveData: 54
       passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0
@@ -113,6 +110,24 @@ MonoBehaviour:
       projectileFired: 0
       projectileStartPosition: 0
       onCharacter: 0
+    - eventType: 5
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
+      particleEffect: 0
+      cameraShake: 0
+      movementAnimation: 0
+      soundEffect: 16
+      characterAnimation: 0
+      delayDuration: 0
+      projectileFired: 0
+      projectileStartPosition: 0
+      onCharacter: 0
     visualEventsOnFinish: []
   cardEventListeners: []
-  keyWordModels: []
+  keyWordModels:
+  - kewWordType: 1
+    weaponRequirement: 0
+    passiveType: 0

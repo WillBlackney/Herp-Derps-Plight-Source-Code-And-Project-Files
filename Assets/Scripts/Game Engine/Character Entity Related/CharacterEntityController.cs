@@ -441,10 +441,11 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         CharacterEntityView view = character.characterEntityView;
 
         // prevent block going negative
+        
         if (finalBlockGainValue < 0)
         {
             finalBlockGainValue = 0;
-        }
+        }        
 
         // Apply block gain
         character.block += finalBlockGainValue;
@@ -466,7 +467,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
         // Resolve Sentinel passive effect
         if(character.pManager != null &&
-           character.pManager.sentinelStacks > 0)
+           character.pManager.sentinelStacks > 0 &&
+           finalBlockGainValue > 0)
         {
             // Notification event
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Sentinel!"), QueuePosition.Back, 0, 0.5f);

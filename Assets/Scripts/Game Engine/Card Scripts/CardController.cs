@@ -1405,7 +1405,16 @@ public class CardController : Singleton<CardController>
         {
             if (card.owner.pManager.longDrawStacks > 0)
             {
-                PassiveController.Instance.ModifyLongDraw(card.owner.pManager, -1, false);
+                PassiveController.Instance.ModifyLongDraw(card.owner.pManager, -1);
+            }
+        }
+
+        // Remove Sharpen Blade
+        if (card.cardType == CardType.MeleeAttack)
+        {
+            if (card.owner.pManager.sharpenBladeStacks > 0)
+            {
+                PassiveController.Instance.ModifySharpenBlade(card.owner.pManager, -1);
             }
         }
     }
@@ -1695,7 +1704,7 @@ public class CardController : Singleton<CardController>
         else if (cardEffect.cardEffectType == CardEffectType.GainBlockTarget)
         {
             CharacterEntityController.Instance.ModifyBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, target, null, cardEffect));
-        }
+        }       
 
         // Gain Block All Allies
         else if (cardEffect.cardEffectType == CardEffectType.GainBlockAllAllies)
@@ -1704,6 +1713,34 @@ public class CardController : Singleton<CardController>
             {
                 CharacterEntityController.Instance.ModifyBlock(ally, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, ally, null, cardEffect));
             }            
+        }
+
+        // Remove All Block
+        else if (cardEffect.cardEffectType == CardEffectType.RemoveAllBlock)
+        {
+            if (cardEffect.removeBlockFrom == RemoveBlockFrom.Self && 
+                owner.block > 0)
+            {
+                // VFX
+                int vfxValue = owner.block;
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateLoseBlockEffect(owner.characterEntityView.WorldPosition, vfxValue));
+
+                // Remove Block
+                CharacterEntityController.Instance.SetBlock(owner, 0);
+            }
+            else if (cardEffect.removeBlockFrom == RemoveBlockFrom.Target &&
+                target.block > 0)
+            {
+                // VFX
+                int vfxValue = target.block;
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateLoseBlockEffect(target.characterEntityView.WorldPosition, vfxValue));
+
+                // Remove Block
+                CharacterEntityController.Instance.SetBlock(target, 0);
+            }
+
         }
 
         // Deal Damage Target
@@ -2047,6 +2084,20 @@ public class CardController : Singleton<CardController>
                             CreateAndAddNewCardToCharacterHand(owner, discoverableCards[randomIndex]);
                         }
                     }                  
+                }
+
+                // Add specific card to hand
+                else if (modEffect.modifyEffect == ModifyAllCardsInHandEffectType.AddSpecificCardToHand)
+                {
+                    for (int i = 0; i < totalCards; i++)
+                    {
+                        if (owner.livingState == LivingState.Alive &&
+                            CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive)
+                        {
+                            // Add card to hand
+                            CreateAndAddNewCardToCharacterHand(owner, modEffect.cardAdded);
+                        }
+                    }
                 }
 
                 // Add random blessing to hand

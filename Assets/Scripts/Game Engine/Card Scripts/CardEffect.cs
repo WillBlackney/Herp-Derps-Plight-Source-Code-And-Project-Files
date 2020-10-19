@@ -19,6 +19,10 @@ public class CardEffect
     [LabelWidth(200)]
     public TargettingType splitTargetType;
 
+    [ShowIf("ShowRemoveBlockFrom")]
+    [LabelWidth(200)]
+    public RemoveBlockFrom removeBlockFrom;    
+
     [ShowIf("ShowModifyDeckCardEffect")]
     [LabelWidth(200)]
     public ModifyDeckCardEffectType modifyDeckCardEffect;
@@ -73,6 +77,7 @@ public class CardEffect
     [VerticalGroup("Search Filters")]
     [LabelWidth(200)]
     public bool blessing;
+
 
     [ShowIf("ShowOnDiscoveryChoiceMadeEffects")]
     [LabelWidth(200)]
@@ -169,6 +174,10 @@ public class CardEffect
     public List<AnimationEventData> visualEventsOnStart;
     public List<AnimationEventData> visualEventsOnFinish;
 
+    public bool ShowRemoveBlockFrom()
+    {
+        return cardEffectType == CardEffectType.RemoveAllBlock;
+    }
     public bool ShowPermanentDamageGain()
     {
         if (cardEffectType == CardEffectType.ModifyMyPermanentDeckCard &&
@@ -556,6 +565,10 @@ public class ModifyAllCardsInHandEffect
     [LabelWidth(200)]
     public int newEnergyCost;
 
+    [ShowIf("ShowCardAdded")]
+    [LabelWidth(200)]
+    public CardDataSO cardAdded;
+
     [ShowIf("ShowTalentFilter")]
     [LabelWidth(200)]
     public TalentSchool talentSchoolFilter;
@@ -564,6 +577,10 @@ public class ModifyAllCardsInHandEffect
     [LabelWidth(200)]
     public Rarity rarityFilter;
 
+    public bool ShowCardAdded()
+    {
+        return modifyEffect == ModifyAllCardsInHandEffectType.AddSpecificCardToHand;
+    }
     public bool ShowEnergyReduction()
     {
         return modifyEffect == ModifyAllCardsInHandEffectType.ReduceEnergyCost;
@@ -591,6 +608,7 @@ public enum ModifyAllCardsInHandEffectType
     ExpendIt = 3,
     AddNewCardFromLibraryToHand = 4,
     AddRandomBlessingToHand = 5,
+    AddSpecificCardToHand = 6,
 
 }
 
@@ -607,6 +625,13 @@ public enum ModifyDeckCardEffectType
     None = 0,
     IncreaseBaseDamage = 1,
     IncreaseBaseBlockGain = 2,
+}
+
+public enum RemoveBlockFrom
+{
+    None = 0,
+    Self =1,
+    Target =2,
 }
 
 

@@ -4573,6 +4573,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 574d1eaf998ef6d42ab1c2b66e2ada64, type: 2}
   - {fileID: 11400000, guid: 42e72c3affbc13a41950f8a37d39e682, type: 2}
   - {fileID: 11400000, guid: ce991d8c2aa404d47a976a0885ada2ee, type: 2}
+  - {fileID: 11400000, guid: e5b9e03cb9729e047a4565f8604d7522, type: 2}
 --- !u!1 &200055974
 GameObject:
   m_ObjectHideFlags: 0
@@ -12381,7 +12382,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 212781e4e821e01408fddf9d24d791b3, type: 2}
   - {fileID: 11400000, guid: b56757e7896caa54eb6a4207e077fdee, type: 2}
   - {fileID: 11400000, guid: e301bd3b5dd2cf043a2d16f260baab78, type: 2}
-  - {fileID: 11400000, guid: 8228e3e075736ad49b3bea72edfff688, type: 2}
   - {fileID: 11400000, guid: 55f13da4aaeb53e4386528cbde27d8c6, type: 2}
   - {fileID: 11400000, guid: eeb8ff669e60e0a4facc9a5b68004644, type: 2}
   - {fileID: 11400000, guid: 6d186080c3689714ba2481c1ac9dc229, type: 2}
@@ -12405,6 +12405,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 98cb9a68b91c90746bcb423468b50c08, type: 2}
   - {fileID: 11400000, guid: 68150bf39613ab545b8d279fc9c0fb0d, type: 2}
   - {fileID: 11400000, guid: 338e725e84eca2840ad8bd56d812b0fe, type: 2}
+  - {fileID: 11400000, guid: bf9511d72ce2b66498983bf692a8d3d7, type: 2}
+  - {fileID: 11400000, guid: 7babdf809aee0c94ba0fea23f56b05b1, type: 2}
+  - {fileID: 11400000, guid: 73a86f4aa6bef0b4692313a9cb171b41, type: 2}
+  - {fileID: 11400000, guid: c4f7ecc4462d2b043be537269ed73e73, type: 2}
+  - {fileID: 11400000, guid: 8228e3e075736ad49b3bea72edfff688, type: 2}
+  - {fileID: 11400000, guid: afbb5c795110fb04dbb3aa5fd1b15ea6, type: 2}
+  - {fileID: 11400000, guid: 0b21f1d40a211cb4482a37b734d7e64d, type: 2}
   discoveryCards:
   - {fileID: 150008041}
   - {fileID: 1265796404}

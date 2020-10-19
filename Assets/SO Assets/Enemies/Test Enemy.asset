@@ -18,7 +18,7 @@ MonoBehaviour:
   dexterity: 0
   initiative: 1
   startingHealth: 30
-  startingBlock: 0
+  startingBlock: 10
   physicalResistance: 0
   fireResistance: 0
   frostResistance: 0
@@ -49,6 +49,7 @@ MonoBehaviour:
     fusionStacks: 0
     plantedFeetStacks: 0
     takenAimStacks: 0
+    longDrawStacks: 0
     consecrationStacks: 0
     growingStacks: 0
     cautiousStacks: 0
@@ -56,13 +57,24 @@ MonoBehaviour:
     battleTranceStacks: 0
     balancedStanceStacks: 0
     flurryStacks: 0
+    lordOfStormsStacks: 0
+    sentinelStacks: 0
+    ruthlessStacks: 0
+    evangelizeStacks: 0
+    wellOfSoulsStacks: 0
+    corpseCollectorStacks: 0
+    pistoleroStacks: 0
+    fastLearnerStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
+    guardianAuraStacks: 0
+    toxicAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 2
     gritStacks: 0
     disarmedStacks: 0
+    silencedStacks: 0
     sleepStacks: 0
     poisonedStacks: 0
     burningStacks: 0
