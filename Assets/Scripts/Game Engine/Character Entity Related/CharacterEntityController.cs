@@ -504,7 +504,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
                 // Calculate and handle damage
                 int sentinelDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(character, targetHit, DamageType.Physical, character.pManager.sentinelStacks, null, null);
-                CombatLogic.Instance.HandleDamage(sentinelDamageValue, character, targetHit, DamageType.Physical, true);
+                CombatLogic.Instance.HandleDamage(sentinelDamageValue, character, targetHit, DamageType.Physical);
             }
         }
     }
@@ -938,7 +938,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
             // Deal air damage
             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(entity, randomEnemy, DamageType.Air, entity.pManager.overloadStacks, null, null);
-            CombatLogic.Instance.HandleDamage(finalDamageValue, entity, randomEnemy, DamageType.Air, true);
+            CombatLogic.Instance.HandleDamage(finalDamageValue, entity, randomEnemy, DamageType.Air);
 
             // Brief pause here
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);

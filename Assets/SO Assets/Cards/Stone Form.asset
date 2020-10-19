@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Sabotage
+  m_Name: Stone Form
   m_EditorClassIdentifier: 
-  cardName: Sabotage
-  cardDescription: Remove all Block from target. Deal 5 Physical damage. Expend.
-  cardSprite: {fileID: 21300000, guid: 08e4ee218e42dd247a5ac64821640f76, type: 3}
+  cardName: Stone Form
+  cardDescription: 'Gain 3 Dexterity and 3 Grit. Expend. '
+  cardSprite: {fileID: 21300000, guid: 5229541aede19c046846612fd45d9166, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 2
-  cardType: 2
-  targettingType: 3
-  talentSchool: 3
-  rarity: 2
+  cardEnergyCost: 3
+  cardType: 4
+  targettingType: 0
+  talentSchool: 5
+  rarity: 3
   expend: 1
   innate: 0
   fleeting: 0
@@ -31,35 +31,47 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Remove all '
-  - color: 3
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'Block '
-  - color: 1
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'from target.
-
-      Deal '
+    phrase: 'Gain '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '5 '
-  - color: 4
+    phrase: '3 '
+  - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Physical '
+    phrase: Dexterity
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: damage.
+    phrase: 'and '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '3 '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Grit
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '.
+
+'
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Expend
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
   cardEffects:
   - weaponRequirement: 0
-    cardEffectType: 30
+    cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
-    removeBlockFrom: 2
+    removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
     permanentDamageGain: 0
@@ -84,7 +96,7 @@ MonoBehaviour:
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
-    baseDamageMultiplier: 0
+    baseDamageMultiplier: 1
     damageType: 0
     healthRestored: 0
     healthLost: 0
@@ -93,8 +105,8 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: 0
-      passiveStacks: 0
+      passiveData: 5
+      passiveStacks: 3
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
@@ -107,7 +119,7 @@ MonoBehaviour:
       overlayFadeOutTime: 0
       particleEffect: 0
       cameraShake: 0
-      movementAnimation: 1
+      movementAnimation: 0
       soundEffect: 0
       characterAnimation: 4
       delayDuration: 0
@@ -131,7 +143,7 @@ MonoBehaviour:
       projectileStartPosition: 0
       onCharacter: 0
   - weaponRequirement: 0
-    cardEffectType: 6
+    cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
     removeBlockFrom: 0
@@ -154,13 +166,13 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 5
+    baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
-    baseDamageMultiplier: 0
-    damageType: 1
+    baseDamageMultiplier: 1
+    damageType: 0
     healthRestored: 0
     healthLost: 0
     energyGained: 0
@@ -168,78 +180,21 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: 0
-      passiveStacks: 0
+      passiveData: 14
+      passiveStacks: 3
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
-    visualEventsOnStart:
-    - eventType: 1
-      screenOverlayType: 0
-      overlayColor: 0
-      overlayFadeInTime: 0
-      overlayDuration: 0
-      overlayFadeOutTime: 0
-      particleEffect: 0
-      cameraShake: 0
-      movementAnimation: 1
-      soundEffect: 0
-      characterAnimation: 0
-      delayDuration: 0
-      projectileFired: 0
-      projectileStartPosition: 0
-      onCharacter: 0
-    - eventType: 2
-      screenOverlayType: 0
-      overlayColor: 0
-      overlayFadeInTime: 0
-      overlayDuration: 0
-      overlayFadeOutTime: 0
-      particleEffect: 0
-      cameraShake: 0
-      movementAnimation: 0
-      soundEffect: 0
-      characterAnimation: 1
-      delayDuration: 0
-      projectileFired: 0
-      projectileStartPosition: 0
-      onCharacter: 0
-    - eventType: 4
-      screenOverlayType: 0
-      overlayColor: 0
-      overlayFadeInTime: 0
-      overlayDuration: 0
-      overlayFadeOutTime: 0
-      particleEffect: 0
-      cameraShake: 1
-      movementAnimation: 0
-      soundEffect: 0
-      characterAnimation: 0
-      delayDuration: 0
-      projectileFired: 0
-      projectileStartPosition: 0
-      onCharacter: 0
-    - eventType: 3
-      screenOverlayType: 0
-      overlayColor: 0
-      overlayFadeInTime: 0
-      overlayDuration: 0
-      overlayFadeOutTime: 0
-      particleEffect: 2
-      cameraShake: 0
-      movementAnimation: 0
-      soundEffect: 0
-      characterAnimation: 0
-      delayDuration: 0
-      projectileFired: 0
-      projectileStartPosition: 0
-      onCharacter: 2
+    visualEventsOnStart: []
     visualEventsOnFinish: []
   cardEventListeners: []
   keyWordModels:
-  - kewWordType: 9
+  - kewWordType: 8
     weaponRequirement: 0
-    passiveType: 0
+    passiveType: 5
+  - kewWordType: 8
+    weaponRequirement: 0
+    passiveType: 14
   - kewWordType: 1
     weaponRequirement: 0
     passiveType: 0

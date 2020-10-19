@@ -29,7 +29,7 @@ MonoBehaviour:
   airResistance: 0
   serializedPassiveManager:
     bonusPowerStacks: 0
-    bonusDexterityStacks: 0
+    bonusDexterityStacks: 2
     bonusStaminaStacks: 0
     bonusInitiativeStacks: 0
     bonusDrawStacks: 0
@@ -83,16 +83,11 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 0b21f1d40a211cb4482a37b734d7e64d, type: 2}
-  - {fileID: 11400000, guid: 0b21f1d40a211cb4482a37b734d7e64d, type: 2}
-  - {fileID: 11400000, guid: 0b21f1d40a211cb4482a37b734d7e64d, type: 2}
-  - {fileID: 11400000, guid: c4f7ecc4462d2b043be537269ed73e73, type: 2}
-  - {fileID: 11400000, guid: 8228e3e075736ad49b3bea72edfff688, type: 2}
-  - {fileID: 11400000, guid: 8228e3e075736ad49b3bea72edfff688, type: 2}
-  - {fileID: 11400000, guid: afbb5c795110fb04dbb3aa5fd1b15ea6, type: 2}
-  - {fileID: 11400000, guid: afbb5c795110fb04dbb3aa5fd1b15ea6, type: 2}
-  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
-  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
+  - {fileID: 11400000, guid: 225fef661e8ad1f498736a011811887a, type: 2}
+  - {fileID: 11400000, guid: 225fef661e8ad1f498736a011811887a, type: 2}
+  - {fileID: 11400000, guid: 7a98d2d0352f7ad43b88e030842fd8a2, type: 2}
+  - {fileID: 11400000, guid: c725ced37bae68e4ea02c145e66668d9, type: 2}
+  - {fileID: 11400000, guid: c725ced37bae68e4ea02c145e66668d9, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1

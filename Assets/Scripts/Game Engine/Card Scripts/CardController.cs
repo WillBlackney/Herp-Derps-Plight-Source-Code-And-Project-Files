@@ -1576,7 +1576,7 @@ public class CardController : Singleton<CardController>
                 List<CharacterEntityModel> viableEnemies = new List<CharacterEntityModel>();
                 foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(card.owner))
                 {
-                    if (target.livingState != LivingState.Dead)
+                    if (enemy.livingState != LivingState.Dead)
                     {
                         viableEnemies.Add(enemy);
                     }

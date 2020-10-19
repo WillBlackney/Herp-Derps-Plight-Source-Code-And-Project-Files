@@ -125,7 +125,7 @@ public class CardEffect
 
     [ShowIf("ShowDamageMultiplier")]
     [LabelWidth(250)]
-    public int baseDamageMultiplier;
+    public int baseDamageMultiplier = 1;
 
     [ShowIf("ShowDamageType")]
     [LabelWidth(200)]
