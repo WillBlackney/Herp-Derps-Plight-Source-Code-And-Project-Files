@@ -1381,7 +1381,7 @@ public class CardController : Singleton<CardController>
                 VisualEventManager.Instance.CreateVisualEvent(() => 
                 VisualEffectManager.Instance.CreateStatusEffect(owner.characterEntityView.WorldPosition, "Evangelize!"), QueuePosition.Back, 0f, 0.5f);
 
-                PassiveController.Instance.ModifyBonusDexterity(card.owner.pManager, card.owner.pManager.evangelizeStacks, true);
+                PassiveController.Instance.ModifyBonusDexterity(card.owner.pManager, card.owner.pManager.evangelizeStacks, true, 0.5f);
             }
 
 

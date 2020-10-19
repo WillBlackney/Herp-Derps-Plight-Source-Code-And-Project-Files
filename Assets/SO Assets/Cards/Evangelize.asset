@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Lord Of Storms
+  m_Name: Evangelize
   m_EditorClassIdentifier: 
-  cardName: Lord Of Storms
-  cardDescription: 'On activation start, gain 2 Overload. '
-  cardSprite: {fileID: 21300000, guid: 37eb653e92d98f2409e97628611417aa, type: 3}
+  cardName: Evangelize
+  cardDescription: 'Whenever you play a blessing, Gain 1 Dexterity. '
+  cardSprite: {fileID: 21300000, guid: c78be537f83b96d4e959c09032b9646b, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
   cardType: 4
   targettingType: 0
-  talentSchool: 13
+  talentSchool: 10
   rarity: 3
   expend: 0
   innate: 0
@@ -31,15 +31,23 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'On activation start, gain '
+    phrase: 'Whenever you play a '
+  - color: 0
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Blessing '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: ', gain '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '2 '
+    phrase: '1 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: Overload
+    phrase: Dexterity
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -84,8 +92,8 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: 18
-      passiveStacks: 2
+      passiveData: 47
+      passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
@@ -111,22 +119,7 @@ MonoBehaviour:
       overlayFadeInTime: 0
       overlayDuration: 0
       overlayFadeOutTime: 0
-      particleEffect: 1
-      cameraShake: 0
-      movementAnimation: 0
-      soundEffect: 0
-      characterAnimation: 0
-      delayDuration: 0
-      projectileFired: 0
-      projectileStartPosition: 0
-      onCharacter: 1
-    - eventType: 3
-      screenOverlayType: 0
-      overlayColor: 0
-      overlayFadeInTime: 0
-      overlayDuration: 0
-      overlayFadeOutTime: 0
-      particleEffect: 18
+      particleEffect: 19
       cameraShake: 0
       movementAnimation: 0
       soundEffect: 0
@@ -138,6 +131,9 @@ MonoBehaviour:
     visualEventsOnFinish: []
   cardEventListeners: []
   keyWordModels:
+  - kewWordType: 5
+    weaponRequirement: 0
+    passiveType: 0
   - kewWordType: 8
     weaponRequirement: 0
-    passiveType: 18
+    passiveType: 5
