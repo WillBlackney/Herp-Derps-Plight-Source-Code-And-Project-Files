@@ -2543,6 +2543,14 @@ public class CardController : Singleton<CardController>
         AddCardToDrawPile(card.owner, card);
         DrawACardFromDrawPile(card.owner, card.owner.drawPile.IndexOf(card));
     }
+    private void MoveCardFromExpendPileToHand(Card card)
+    {
+        // TO DO: we shouldnt just shuffle the card into the draw pile then draw it...
+        // find a better way...
+        RemoveCardFromExpendPile(card.owner, card);
+        AddCardToDrawPile(card.owner, card);
+        DrawACardFromDrawPile(card.owner, card.owner.drawPile.IndexOf(card));
+    }
     private void AddCardToDrawPile(CharacterEntityModel defender, Card card)
     {
         defender.drawPile.Add(card);
@@ -2578,6 +2586,10 @@ public class CardController : Singleton<CardController>
     private void AddCardToExpendPile(CharacterEntityModel defender, Card card)
     {
         defender.expendPile.Add(card);
+    }
+    private void RemoveCardFromExpendPile(CharacterEntityModel defender, Card card)
+    {
+        defender.expendPile.Remove(card);
     }
     #endregion
 
@@ -2720,6 +2732,26 @@ public class CardController : Singleton<CardController>
             }
         }
     }
+    public void OnDarkBargainModified(CharacterEntityModel model)
+    {
+        foreach (Card card in model.hand)
+        {
+            // Update card vm energy text, if not null
+            CardViewModel cvm = card.cardVM;
+            int newCostTextValue = GetCardEnergyCost(card);
+            if (cvm)
+            {
+                // Update energy cost text
+                VisualEventManager.Instance.CreateVisualEvent(() => SetCardViewModelEnergyText(card, cvm, newCostTextValue.ToString()));
+
+                // only play breath if cost of card is reduced, not increased
+                if (model.pManager.darkBargainStacks > 0)
+                {
+                    VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(cvm));
+                }
+            }
+        }
+    }
     public void OnRangedAttackReductionModified(CharacterEntityModel model)
     {
         foreach (Card card in model.hand)
@@ -2765,6 +2797,14 @@ public class CardController : Singleton<CardController>
             card.owner != null &&
             card.owner.pManager != null &&
             card.owner.pManager.pistoleroStacks > 0)
+        {
+            return 0;
+        }
+
+        // Dark Bargain override
+        if (card.owner != null &&
+            card.owner.pManager != null &&
+            card.owner.pManager.darkBargainStacks > 0)
         {
             return 0;
         }
@@ -3322,6 +3362,13 @@ public class CardController : Singleton<CardController>
                 else if (currentDiscoveryEffect.discoveryLocation == CardCollection.DiscardPile)
                 {
                     MoveCardFromDiscardPileToHand(cardRef);
+                    cards.Add(cardRef);
+                }
+
+                // From expend pile
+                else if (currentDiscoveryEffect.discoveryLocation == CardCollection.ExpendPile)
+                {
+                    MoveCardFromExpendPileToHand(cardRef);
                     cards.Add(cardRef);
                 }
             }

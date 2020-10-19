@@ -262,6 +262,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyFastLearner(newClone, originalData.fastLearnerStacks, false);
         }
+        if (originalData.darkBargainStacks != 0)
+        {
+            ModifyDarkBargain(newClone, originalData.darkBargainStacks, false);
+        }
         #endregion
 
         // Special Defensive Passives
@@ -397,6 +401,7 @@ public class PassiveController : Singleton<PassiveController>
         pManager.pistoleroStacks = original.pistoleroStacks;
         pManager.fastLearnerStacks = original.fastLearnerStacks;
         pManager.demonFormStacks = original.demonFormStacks;
+        pManager.darkBargainStacks = original.darkBargainStacks;
 
         pManager.runeStacks = original.runeStacks;
         pManager.barrierStacks = original.barrierStacks;
@@ -796,6 +801,10 @@ public class PassiveController : Singleton<PassiveController>
         else if (originalData == "Demon Form")
         {
             ModifyDemonForm(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Dark Bargain")
+        {
+            ModifyDarkBargain(pManager, stacks, showVFX, vfxDelay);
         }
         #endregion
 
@@ -1835,6 +1844,70 @@ public class PassiveController : Singleton<PassiveController>
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Well Of Souls " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
                 });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+
+
+    }
+    public void ModifyDarkBargain(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyDarkBargain() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Dark Bargain");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.darkBargainStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Dark Bargain");
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Dark Bargain Removed");
+                });
+            }
+
+            // Update cost of cards in hand
+            if (pManager.myCharacter != null)
+            {
+                CardController.Instance.OnDarkBargainModified(pManager.myCharacter);
             }
 
             if (showVFX)

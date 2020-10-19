@@ -18,7 +18,7 @@ MonoBehaviour:
   dexterity: 0
   initiative: 3
   startingHealth: 30
-  startingBlock: 0
+  startingBlock: 5
   physicalResistance: 0
   fireResistance: 0
   frostResistance: 0
@@ -67,6 +67,7 @@ MonoBehaviour:
     pistoleroStacks: 0
     fastLearnerStacks: 0
     demonFormStacks: 0
+    darkBargainStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0

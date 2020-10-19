@@ -730,6 +730,12 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         // Do player character exclusive logic
         if (entity.controller == Controller.Player)
         {
+            // Remove Dark Bargain
+            if (entity.pManager.darkBargainStacks > 0)
+            {
+                PassiveController.Instance.ModifyDarkBargain(entity.pManager, -entity.pManager.darkBargainStacks, true, 0.5f);
+            }
+
             // Lose unused energy, discard hand
             ModifyEnergy(entity, -entity.energy);
 
@@ -757,16 +763,16 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         if (entity.pManager.tauntStacks > 0)
         {
             PassiveController.Instance.ModifyTaunted(null, entity.pManager, -entity.pManager.tauntStacks, true, 0.5f);
-        }
+        }        
 
         // Temp core stats
         if (entity.pManager.temporaryBonusPowerStacks != 0)
         {
-            PassiveController.Instance.ModifyTemporaryPower(entity.pManager, -1, true, 0.5f);
+            PassiveController.Instance.ModifyTemporaryPower(entity.pManager, -entity.pManager.temporaryBonusPowerStacks, true, 0.5f);
         }
         if (entity.pManager.temporaryBonusDexterityStacks != 0)
         {
-            PassiveController.Instance.ModifyTemporaryDexterity(entity.pManager, -1, true, 0.5f);
+            PassiveController.Instance.ModifyTemporaryDexterity(entity.pManager, -entity.pManager.temporaryBonusDexterityStacks, true, 0.5f);
         }
 
         // Percentage modifiers

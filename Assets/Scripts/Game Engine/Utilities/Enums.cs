@@ -163,6 +163,7 @@ public enum Passive
     Cautious = 3,
     Consecration = 4,
     CorpseCollector = 49,
+    DarkBargain = 55,
     DemonForm = 54,
     Dexterity = 5,
     Disarmed = 6,
