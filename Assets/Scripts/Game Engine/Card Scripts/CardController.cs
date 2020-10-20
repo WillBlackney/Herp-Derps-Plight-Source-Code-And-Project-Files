@@ -1830,7 +1830,7 @@ public class CardController : Singleton<CardController>
                 }
                 else if (cardEffect.drawBaseDamageFromTargetPoisoned)
                 {
-                    baseDamage = target.pManager.poisonedStacks * cardEffect.baseDamageMultiplier;
+                    baseDamage = enemy.pManager.poisonedStacks * cardEffect.baseDamageMultiplier;
                 }
                 else if (cardEffect.drawBaseDamageFromMeleeAttacksPlayed)
                 {
