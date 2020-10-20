@@ -1966,7 +1966,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 target = enemy;
             }
 
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, effect.passiveApplied.passiveName, effect.passiveStacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0f, enemy);
         }
 
         // Buff All
@@ -1974,7 +1974,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         {
             foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(enemy))
             {
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(ally.pManager, effect.passiveApplied.passiveName, effect.passiveStacks);
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(ally.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0, enemy);
             }
 
         }
@@ -1982,7 +1982,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         // Debuff Target
         else if (effect.actionType == ActionType.DebuffTarget)
         {
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, effect.passiveApplied.passiveName, effect.passiveStacks);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0f, enemy);
         }
 
         // Debuff All
@@ -1990,7 +1990,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         {
             foreach (CharacterEntityModel enemyy in GetAllEnemiesOfCharacter(enemy))
             {
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemyy.pManager, effect.passiveApplied.passiveName, effect.passiveStacks);
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemyy.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0f, enemy);
             }
 
         }

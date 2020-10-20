@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
+  m_Name: Poison Arrows
+  m_EditorClassIdentifier: 
+  cardName: Poison Arrows
+  cardDescription: 'Unplayable. While in hand, your Ranged Attacks apply 1 Poisoned. '
+  cardSprite: {fileID: 21300000, guid: e8b16a9bb2b78634b83dd1fd5fc77114, type: 3}
+  xEnergyCost: 0
+  cardEnergyCost: 0
+  cardType: 1
+  targettingType: 0
+  talentSchool: 8
+  rarity: 2
+  expend: 0
+  innate: 0
+  fleeting: 0
+  unplayable: 1
+  lifeSteal: 0
+  blessing: 0
+  customDescription:
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Unplayable
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '.
+
+      While in hand, your '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Ranged Attack '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'cards apply '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '1 '
+  - color: 8
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Poisoned
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
+  cardEffects: []
+  cardEventListeners:
+  - cardEventListenerType: 4
+    cardEventListenerFunction: 0
+    maxHealthGained: 0
+    energyReductionAmount: 0
+    passivePairing:
+      passiveData: 0
+      passiveStacks: 0
+  keyWordModels: []

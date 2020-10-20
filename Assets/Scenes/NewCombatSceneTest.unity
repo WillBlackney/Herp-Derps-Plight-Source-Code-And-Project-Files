@@ -12458,6 +12458,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 41bb0bde51cf5754b84bea9fed7d54c1, type: 2}
   - {fileID: 11400000, guid: 6dc940754341ed84b92010f9ecdcb7fc, type: 2}
   - {fileID: 11400000, guid: bc61dd9c50af116469cff7017f3f6cf7, type: 2}
+  - {fileID: 11400000, guid: a0b0c2586647ae94d946d6124d6c824f, type: 2}
+  - {fileID: 11400000, guid: bfbc9e5954b8d164fa2382f0a0777d77, type: 2}
+  - {fileID: 11400000, guid: 2ba1ed82578d2c54cbfb94afb9b5017a, type: 2}
+  - {fileID: 11400000, guid: f2dec37ca62bac941af3d64b45e253c7, type: 2}
   discoveryCards:
   - {fileID: 150008041}
   - {fileID: 1265796404}

@@ -575,6 +575,29 @@ public class CombatLogic : Singleton<CombatLogic>
             }
         }
 
+        // Poison Arrows
+        if(attacker != null &&
+            card != null)
+        {
+            int poisonApplied = 0;
+
+            // Find poison arrow cards
+            foreach(Card c in attacker.hand)
+            {
+                if(c.cardName == "Poison Arrows")
+                {
+                    poisonApplied += 1;
+                }
+            }
+
+            // Apply poison to target
+            if(poisonApplied > 0)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+                PassiveController.Instance.ModifyPoisoned(attacker, victim.pManager, poisonApplied, true, 0.5f);
+            }
+        }
+
         // DEATH?!
 
         // Check if the victim was killed by the damage

@@ -18,7 +18,7 @@ MonoBehaviour:
   power: 0
   dexterity: 0
   stamina: 10
-  draw: 8
+  draw: 10
   initiative: 111
   startingBlock: 0
   physicalResistance: 0
@@ -39,14 +39,14 @@ MonoBehaviour:
     temporaryBonusInitiativeStacks: 0
     temporaryBonusDrawStacks: 0
     runeStacks: 0
-    barrierStacks: 1
+    barrierStacks: 0
     enrageStacks: 0
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
     divineFavourStacks: 0
     phoenixFormStacks: 0
     poisonousStacks: 0
-    venomousStacks: 0
+    venomousStacks: 2
     overloadStacks: 0
     fusionStacks: 0
     plantedFeetStacks: 0
@@ -85,14 +85,14 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: bc61dd9c50af116469cff7017f3f6cf7, type: 2}
-  - {fileID: 11400000, guid: bc61dd9c50af116469cff7017f3f6cf7, type: 2}
-  - {fileID: 11400000, guid: 6dc940754341ed84b92010f9ecdcb7fc, type: 2}
-  - {fileID: 11400000, guid: 6dc940754341ed84b92010f9ecdcb7fc, type: 2}
-  - {fileID: 11400000, guid: 6dc940754341ed84b92010f9ecdcb7fc, type: 2}
-  - {fileID: 11400000, guid: 6dc940754341ed84b92010f9ecdcb7fc, type: 2}
-  - {fileID: 11400000, guid: 6dc940754341ed84b92010f9ecdcb7fc, type: 2}
-  - {fileID: 11400000, guid: 6dc940754341ed84b92010f9ecdcb7fc, type: 2}
+  - {fileID: 11400000, guid: f2dec37ca62bac941af3d64b45e253c7, type: 2}
+  - {fileID: 11400000, guid: f2dec37ca62bac941af3d64b45e253c7, type: 2}
+  - {fileID: 11400000, guid: 7c0947162266e2144a22faa67d2338a4, type: 2}
+  - {fileID: 11400000, guid: 7c0947162266e2144a22faa67d2338a4, type: 2}
+  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
+  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
+  - {fileID: 11400000, guid: 87754b7748bb31947acb4178c8beb7c3, type: 2}
+  - {fileID: 11400000, guid: 87754b7748bb31947acb4178c8beb7c3, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1
@@ -109,5 +109,5 @@ MonoBehaviour:
   - Shaman_Mask_Head_Wear
   - 
   serializedItemManager:
-    mainHandItem: {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}
-    offHandItem: {fileID: 11400000, guid: a49466273aff6954d8e0303879ded604, type: 2}
+    mainHandItem: {fileID: 11400000, guid: dfeeccc8c225a66488eb3e4eb76d6c3b, type: 2}
+    offHandItem: {fileID: 0}

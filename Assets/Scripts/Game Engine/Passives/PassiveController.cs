@@ -451,6 +451,275 @@ public class PassiveController : Singleton<PassiveController>
 
     #endregion
 
+    // Apply Passive To Character Entities
+    #region
+    public void ModifyPassiveOnCharacterEntity(PassiveManagerModel pManager, string originalData, int stacks, bool showVFX = true, float vfxDelay = 0f, CharacterEntityModel applier = null)
+    {
+        Debug.Log("PassiveController.ModifyPassiveOnCharacterEntity() called...");
+
+        // Core stat bonuses
+        #region
+        if (originalData == "Power")
+        {
+            ModifyBonusPower(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Dexterity")
+        {
+            ModifyBonusDexterity(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Draw")
+        {
+            ModifyBonusDraw(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Initiative")
+        {
+            ModifyBonusInitiative(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Stamina")
+        {
+            ModifyBonusStamina(pManager, stacks, showVFX, vfxDelay);
+        }
+        #endregion
+
+        // Temp Core stat bonuses
+        #region
+        else if (originalData == "Temporary Power")
+        {
+            ModifyTemporaryPower(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Temporary Dexterity")
+        {
+            ModifyTemporaryDexterity(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Temporary Draw")
+        {
+            ModifyTemporaryDraw(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Temporary Initiative")
+        {
+            ModifyTemporaryInitiative(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Temporary Stamina")
+        {
+            ModifyTemporaryStamina(pManager, stacks, showVFX, vfxDelay);
+        }
+        #endregion
+
+        // Buff passives
+        #region
+        else if (originalData == "Enrage")
+        {
+            ModifyEnrage(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Shield Wall")
+        {
+            ModifyShieldWall(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Fan Of Knives")
+        {
+            ModifyFanOfKnives(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Divine Favour")
+        {
+            ModifyDivineFavour(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Phoenix Form")
+        {
+            ModifyPhoenixForm(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Poisonous")
+        {
+            ModifyPoisonous(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Venomous")
+        {
+            ModifyVenomous(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Overload")
+        {
+            ModifyOverload(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Fusion")
+        {
+            ModifyFusion(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Planted Feet")
+        {
+            ModifyPlantedFeet(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Taken Aim")
+        {
+            ModifyTakenAim(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Long Draw")
+        {
+            ModifyLongDraw(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Sharpen Blade")
+        {
+            ModifySharpenBlade(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Consecration")
+        {
+            ModifyConsecration(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Growing")
+        {
+            ModifyGrowing(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Cautious")
+        {
+            ModifyCautious(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Infuriated")
+        {
+            ModifyInfuriated(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Battle Trance")
+        {
+            ModifyBattleTrance(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Balanced Stance")
+        {
+            ModifyBalancedStance(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Flurry")
+        {
+            ModifyFlurry(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Lord Of Storms")
+        {
+            ModifyLordOfStorms(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Sentinel")
+        {
+            ModifySentinel(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Ruthless")
+        {
+            ModifyRuthless(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Evangelize")
+        {
+            ModifyEvangelize(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Well Of Souls")
+        {
+            ModifyWellOfSouls(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Corpse Collector")
+        {
+            ModifyCorpseCollector(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Pistolero")
+        {
+            ModifyPistolero(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Fast Learner")
+        {
+            ModifyFastLearner(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Demon Form")
+        {
+            ModifyDemonForm(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Dark Bargain")
+        {
+            ModifyDarkBargain(pManager, stacks, showVFX, vfxDelay);
+        }
+        #endregion
+
+        // Special Defensive Passives
+        #region
+        else if (originalData == "Barrier")
+        {
+            ModifyBarrier(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Rune")
+        {
+            ModifyRune(pManager, stacks, showVFX, vfxDelay);
+        }
+        #endregion
+
+        // Aura Passives
+        #region
+        else if (originalData == "Encouraging Aura")
+        {
+            ModifyEncouragingAura(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Shadow Aura")
+        {
+            ModifyShadowAura(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Toxic Aura")
+        {
+            ModifyToxicAura(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Guardian Aura")
+        {
+            ModifyGuardianAura(pManager, stacks, showVFX, vfxDelay);
+        }
+        #endregion
+
+        // DoT passives
+        #region
+        else if (originalData == "Poisoned")
+        {
+            ModifyPoisoned(applier, pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Burning")
+        {
+            ModifyBurning(pManager, stacks, showVFX, vfxDelay);
+        }
+        #endregion
+
+        // Core % Modifier passives
+        #region
+        else if (originalData == "Wrath")
+        {
+            ModifyWrath(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Weakened")
+        {
+            ModifyWeakened(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Grit")
+        {
+            ModifyGrit(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Vulnerable")
+        {
+            ModifyVulnerable(pManager, stacks, showVFX, vfxDelay);
+        }
+        #endregion
+
+        // Disabling Debuff Passives
+        #region
+        else if (originalData == "Disarmed")
+        {
+            ModifyDisarmed(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Sleep")
+        {
+            ModifySleep(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Silenced")
+        {
+            ModifySilenced(pManager, stacks, showVFX, vfxDelay);
+        }
+
+        #endregion
+
+        // Misc Stats
+        #region
+        else if (originalData == "Fire Ball Bonus Damage")
+        {
+            ModifyFireBallBonusDamage(pManager, stacks, showVFX, vfxDelay);
+        }
+        #endregion
+    }
+    #endregion
+
     // Update Passive Icons and Panel View
     #region
     private void BuildPassiveIconViewFromData(PassiveIconView icon, PassiveIconData iconData)
@@ -629,276 +898,7 @@ public class PassiveController : Singleton<PassiveController>
         }
     }
     #endregion
-
-    // Apply Passive To Character Entities
-    #region
-    public void ModifyPassiveOnCharacterEntity(PassiveManagerModel pManager, string originalData, int stacks, bool showVFX = true, float vfxDelay = 0f)
-    {
-        Debug.Log("PassiveController.ModifyPassiveOnCharacterEntity() called...");
-
-        // Core stat bonuses
-        #region
-        if (originalData == "Power")
-        {
-            ModifyBonusPower(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Dexterity")
-        {
-            ModifyBonusDexterity(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Draw")
-        {
-            ModifyBonusDraw(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Initiative")
-        {
-            ModifyBonusInitiative(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Stamina")
-        {
-            ModifyBonusStamina(pManager, stacks, showVFX, vfxDelay);
-        }
-        #endregion
-
-        // Temp Core stat bonuses
-        #region
-        else if (originalData == "Temporary Power")
-        {
-            ModifyTemporaryPower(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Temporary Dexterity")
-        {
-            ModifyTemporaryDexterity(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Temporary Draw")
-        {
-            ModifyTemporaryDraw(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Temporary Initiative")
-        {
-            ModifyTemporaryInitiative(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Temporary Stamina")
-        {
-            ModifyTemporaryStamina(pManager, stacks, showVFX, vfxDelay);
-        }
-        #endregion
-
-        // Buff passives
-        #region
-        else if (originalData == "Enrage")
-        {
-            ModifyEnrage(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Shield Wall")
-        {
-            ModifyShieldWall(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Fan Of Knives")
-        {
-            ModifyFanOfKnives(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Divine Favour")
-        {
-            ModifyDivineFavour(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Phoenix Form")
-        {
-            ModifyPhoenixForm(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Poisonous")
-        {
-            ModifyPoisonous(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Venomous")
-        {
-            ModifyVenomous(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Overload")
-        {
-            ModifyOverload(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Fusion")
-        {
-            ModifyFusion(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Planted Feet")
-        {
-            ModifyPlantedFeet(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Taken Aim")
-        {
-            ModifyTakenAim(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Long Draw")
-        {
-            ModifyLongDraw(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Sharpen Blade")
-        {
-            ModifySharpenBlade(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Consecration")
-        {
-            ModifyConsecration(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Growing")
-        {
-            ModifyGrowing(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Cautious")
-        {
-            ModifyCautious(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Infuriated")
-        {
-            ModifyInfuriated(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Battle Trance")
-        {
-            ModifyBattleTrance(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Balanced Stance")
-        {
-            ModifyBalancedStance(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Flurry")
-        {
-            ModifyFlurry(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Lord Of Storms")
-        {
-            ModifyLordOfStorms(pManager, stacks, showVFX, vfxDelay);
-        }         
-        else if (originalData == "Sentinel")
-        {
-            ModifySentinel(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Ruthless")
-        {
-            ModifyRuthless(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Evangelize")
-        {
-            ModifyEvangelize(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Well Of Souls")
-        {
-            ModifyWellOfSouls(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Corpse Collector")
-        {
-            ModifyCorpseCollector(pManager, stacks, showVFX, vfxDelay);
-        }   
-        else if (originalData == "Pistolero")
-        {
-            ModifyPistolero(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Fast Learner")
-        {
-            ModifyFastLearner(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Demon Form")
-        {
-            ModifyDemonForm(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Dark Bargain")
-        {
-            ModifyDarkBargain(pManager, stacks, showVFX, vfxDelay);
-        }
-        #endregion
-
-        // Special Defensive Passives
-        #region
-        else if (originalData == "Barrier")
-        {
-            ModifyBarrier(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Rune")
-        {
-            ModifyRune(pManager, stacks, showVFX, vfxDelay);
-        }
-        #endregion
-
-        // Aura Passives
-        #region
-        else if (originalData == "Encouraging Aura")
-        {
-            ModifyEncouragingAura(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Shadow Aura")
-        {
-            ModifyShadowAura(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Toxic Aura")
-        {
-            ModifyToxicAura(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Guardian Aura")
-        {
-            ModifyGuardianAura(pManager, stacks, showVFX, vfxDelay);
-        }
-        #endregion
-
-        // DoT passives
-        #region
-        else if (originalData == "Poisoned")
-        {
-            ModifyPoisoned(null, pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Burning")
-        {
-            ModifyBurning(pManager, stacks, showVFX, vfxDelay);
-        }
-        #endregion
-
-        // Core % Modifier passives
-        #region
-        else if (originalData == "Wrath")
-        {
-            ModifyWrath(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Weakened")
-        {
-            ModifyWeakened(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Grit")
-        {
-            ModifyGrit(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Vulnerable")
-        {
-            ModifyVulnerable(pManager, stacks, showVFX, vfxDelay);
-        }
-        #endregion
-
-        // Disabling Debuff Passives
-        #region
-        else if (originalData == "Disarmed")
-        {
-            ModifyDisarmed(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Sleep")
-        {
-            ModifySleep(pManager, stacks, showVFX, vfxDelay);
-        }
-        else if (originalData == "Silenced")
-        {
-            ModifySilenced(pManager, stacks, showVFX, vfxDelay);
-        }
-
-        #endregion
-
-        // Misc Stats
-        #region
-        else if (originalData == "Fire Ball Bonus Damage")
-        {
-            ModifyFireBallBonusDamage(pManager, stacks, showVFX, vfxDelay);
-        }
-        #endregion
-    }
-    #endregion
-
+   
     // Modify Specific Passives
     #region
 
@@ -1609,6 +1609,13 @@ public class PassiveController : Singleton<PassiveController>
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
                 });
             }
+
+            // Update cost of cards in hand
+            if (pManager.myCharacter != null)
+            {
+                CardController.Instance.OnPistoleroModified(pManager.myCharacter);
+            }
+
 
             if (showVFX)
             {

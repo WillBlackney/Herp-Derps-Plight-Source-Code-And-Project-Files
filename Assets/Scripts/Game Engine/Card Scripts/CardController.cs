@@ -1151,8 +1151,9 @@ public class CardController : Singleton<CardController>
         if(HasEnoughEnergyToPlayCard(card, owner) &&
             CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive &&
             card.unplayable == false &&
-            IsCardPlayBlockedByDisarmed(card, owner) &&
-            IsCardPlayBlockedBySilenced(card, owner))
+            !IsCardPlayBlockedByDisarmed(card, owner) &&
+            !IsCardPlayBlockedBySilenced(card, owner) &&
+            !IsCardBlockedByPistolero(card,owner))
         {
             boolReturned = true;
         }
@@ -1175,11 +1176,11 @@ public class CardController : Singleton<CardController>
         if(card.cardType == CardType.MeleeAttack &&
             owner.pManager.disarmedStacks > 0)
         {
-            return false;
+            return true;
         }
         else
         {
-            return true;
+            return false;
         }
     }
     public bool IsCardPlayBlockedBySilenced(Card card, CharacterEntityModel owner)
@@ -1187,11 +1188,23 @@ public class CardController : Singleton<CardController>
         if (card.cardType == CardType.Skill &&
             owner.pManager.silencedStacks > 0)
         {
-            return false;
+            return true;
         }
         else
         {
+            return false;
+        }
+    }
+    public bool IsCardBlockedByPistolero(Card card, CharacterEntityModel owner)
+    {
+        if (card.cardType != CardType.RangedAttack &&
+            owner.pManager.pistoleroStacks > 0)
+        {
             return true;
+        }
+        else
+        {
+            return false;
         }
     }
     private bool HasEnoughEnergyToPlayCard(Card card, CharacterEntityModel owner)
@@ -2248,7 +2261,7 @@ public class CardController : Singleton<CardController>
             }
 
             string passiveName = TextLogic.SplitByCapitals(cardEffect.passivePairing.passiveData.ToString());
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(owner.pManager, passiveName, stacks, true, 0.5f);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(owner.pManager, passiveName, stacks, true, 0.5f, owner);
         }
 
         // Apply passive to target
@@ -2269,7 +2282,7 @@ public class CardController : Singleton<CardController>
                 }
             }
             string passiveName = TextLogic.SplitByCapitals(cardEffect.passivePairing.passiveData.ToString());
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, passiveName, stacks, true, 0.5f);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, passiveName, stacks, true, 0.5f, owner);
         }
 
         // Apply passive to all allies
@@ -2293,7 +2306,7 @@ public class CardController : Singleton<CardController>
             foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllAlliesOfCharacter(owner))
             {
                 string passiveName = TextLogic.SplitByCapitals(cardEffect.passivePairing.passiveData.ToString());
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemy.pManager, passiveName, stacks, true);
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemy.pManager, passiveName, stacks, true, 0f, owner);
             }
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
@@ -2319,7 +2332,7 @@ public class CardController : Singleton<CardController>
             foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
             {
                 string passiveName = TextLogic.SplitByCapitals(cardEffect.passivePairing.passiveData.ToString());
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemy.pManager, passiveName, stacks, true);                
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemy.pManager, passiveName, stacks, true, 0f, owner);                
             }
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
@@ -2346,7 +2359,7 @@ public class CardController : Singleton<CardController>
             foreach (CharacterEntityModel ally in CharacterEntityController.Instance.GetAllAlliesOfCharacter(owner))
             {
                 string passiveName = TextLogic.SplitByCapitals(cardEffect.passivePairing.passiveData.ToString());
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(ally.pManager, passiveName, stacks, true);
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(ally.pManager, passiveName, stacks, true, 0f, owner);
                 VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
             }
         }
@@ -2622,7 +2635,7 @@ public class CardController : Singleton<CardController>
         {
             string passiveName = TextLogic.SplitByCapitals(e.passivePairing.passiveData.ToString());
             VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(card.cardVM));
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(card.owner.pManager, passiveName, e.passivePairing.passiveStacks, true, 0.5f);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(card.owner.pManager, passiveName, e.passivePairing.passiveStacks, true, 0.5f, card.owner);
         }
 
         // Draw this
@@ -2750,6 +2763,30 @@ public class CardController : Singleton<CardController>
                     VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(cvm));
                 }
             }
+        }
+    }
+    public void OnPistoleroModified(CharacterEntityModel model)
+    {
+        foreach (Card card in model.hand)
+        {
+            // Update card vm energy text, if not null
+            if(card.cardType == CardType.RangedAttack)
+            {
+                CardViewModel cvm = card.cardVM;
+                int newCostTextValue = GetCardEnergyCost(card);
+                if (cvm)
+                {
+                    // Update energy cost text
+                    VisualEventManager.Instance.CreateVisualEvent(() => SetCardViewModelEnergyText(card, cvm, newCostTextValue.ToString()));
+
+                    // only play breath if cost of card is reduced, not increased
+                    if (model.pManager.pistoleroStacks > 0)
+                    {
+                        VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(cvm));
+                    }
+                }
+            }
+            
         }
     }
     public void OnRangedAttackReductionModified(CharacterEntityModel model)
@@ -3001,7 +3038,7 @@ public class CardController : Singleton<CardController>
                 string passiveName = TextLogic.SplitByCapitals(choiceEffect.passivePairing.passiveData.ToString());
 
                 PassiveController.Instance.ModifyPassiveOnCharacterEntity
-                    (ActivationManager.Instance.EntityActivated.pManager, passiveName, choiceEffect.passivePairing.passiveStacks, true, 0.5f);
+                    (ActivationManager.Instance.EntityActivated.pManager, passiveName, choiceEffect.passivePairing.passiveStacks, true, 0.5f, ActivationManager.Instance.EntityActivated);
             }
 
             // reduce cost of new cards
