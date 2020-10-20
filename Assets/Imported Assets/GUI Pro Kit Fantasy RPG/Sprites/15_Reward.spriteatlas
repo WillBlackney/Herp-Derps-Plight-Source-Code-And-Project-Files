@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 15_Reward
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Standalone
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 80
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: c4277a7d4247d47458c5b84fffb80d91, type: 3}
+    totalSpriteSurfaceArea: 382421
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 962fd2a24611844028f52af3d6b0f4c5, type: 3}
+  - {fileID: 21300000, guid: dfdad863d6fb5442e8c069b803d60b39, type: 3}
+  - {fileID: 21300000, guid: 18d88f6406c8d4b99a82431dfe372a4f, type: 3}
+  - {fileID: 21300000, guid: 49c766d4ed4844dcabe3575dfc7d1c25, type: 3}
+  - {fileID: 21300000, guid: 74a11865d22624599b40fa26af9393f7, type: 3}
+  - {fileID: 21300000, guid: bdcd31a5cbf474fef9bba13f5c2ba48b, type: 3}
+  - {fileID: 2892199561383125117, guid: a7686126ae01e41219403057c51ba96b, type: 3}
+  - {fileID: -4377399898526497731, guid: d05a1926b98714a19bab175db8e628b5, type: 3}
+  - {fileID: 3258075279582541567, guid: 62ed953618225496fa7eff376e1cf690, type: 3}
+  - {fileID: 21300000, guid: 91a19e368168f45d1938a1ec76085d53, type: 3}
+  - {fileID: 21300000, guid: cdd7a2b685893481798ef172576a9c1c, type: 3}
+  - {fileID: 21300000, guid: a642057723f31420da7f53ab699529ce, type: 3}
+  - {fileID: 21300000, guid: a25d5768867294077bfb6ba08566549d, type: 3}
+  - {fileID: 1762948959597860299, guid: 316942e88f292480497787707c56e0ed, type: 3}
+  - {fileID: 1432737512487158623, guid: 86797499aa92e4aa7aa401d4e653b815, type: 3}
+  - {fileID: 21300000, guid: 0e014b8a87a4e464381e6928339f60bd, type: 3}
+  - {fileID: 21300000, guid: 9e8fe43b59f934156a26ebf2cbc4df9c, type: 3}
+  - {fileID: 21300000, guid: 8f0b673c5a37642dc899ed7d25b0ab49, type: 3}
+  - {fileID: -8979699398723062431, guid: 9a87219c06a9d420eab4b48d1f2d5728, type: 3}
+  - {fileID: 4671197727572742525, guid: 9a87219c06a9d420eab4b48d1f2d5728, type: 3}
+  - {fileID: 5021745114731706041, guid: 9a87219c06a9d420eab4b48d1f2d5728, type: 3}
+  - {fileID: 21300000, guid: ccda1e9d0a91445b08abb3958530382a, type: 3}
+  - {fileID: 2175991728322642986, guid: 39e03e0e554bb466893a4c162426a005, type: 3}
+  - {fileID: 21300000, guid: dcf36c5e46c914b91a4ea7b439231ff7, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - reward_week_icon_check
+  - reward_week_img_gift
+  - reward_daily_mg_gold
+  - reward_daily_img_ticket
+  - reward_week_img_boss
+  - reward_daily_img_gem
+  - reward_week_frame_default_0
+  - reward_week_frame_complete_0
+  - reward_daily_frame_focus_bg_0
+  - reward_daily_img_key_gold
+  - reward_week_img_key_silver
+  - reward_week_img_gem
+  - reward_daily_img_key_silver
+  - reward_daily_frame_complete_0
+  - reward_week_frame_focus_0
+  - reward_daily_icon_check
+  - reward_week_img_key_gold
+  - reward_week_img_gold
+  - reward_week_frame_focus_bg_1
+  - reward_week_frame_focus_bg_0
+  - reward_week_frame_focus_bg_2
+  - reward_daily_frame_focus
+  - reward_daily_frame_default_0
+  - reward_daily_img_key_bronze
+  m_Tag: 15_Reward
+  m_IsVariant: 0

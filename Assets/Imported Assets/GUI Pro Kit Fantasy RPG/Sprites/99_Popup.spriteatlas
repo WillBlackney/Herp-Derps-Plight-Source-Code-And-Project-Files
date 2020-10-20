@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 99_Popup
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Standalone
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 80
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 2286518b3b63a40878d0baea2f5a8f21, type: 3}
+    totalSpriteSurfaceArea: 287791
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 41f18770ca6a24345ae9f7fdf677ea74, type: 3}
+  - {fileID: 5103189783574893730, guid: cf5d08316c75345e6870151f3cfdf1f2, type: 3}
+  - {fileID: -2192968532387711199, guid: f78d6eb19e5b44152a71d2d3be9af0c8, type: 3}
+  - {fileID: -2674228114714111768, guid: 32bb0732790d04579bdd8ac91a39195c, type: 3}
+  - {fileID: 21300000, guid: 69040842f70554dba9a1f1a4afc09d52, type: 3}
+  - {fileID: -1683935558572651298, guid: 46f35a44ee00d430fbc7b08fbceb13f0, type: 3}
+  - {fileID: 4965702589195753682, guid: 435f2db4d17224ffeb9d28d98b001822, type: 3}
+  - {fileID: 6114881062073981623, guid: 1f6ecbb7b97344026b5277644ad2ca95, type: 3}
+  - {fileID: 21300000, guid: 2448f5684ba27485e98c9e49e5d35e81, type: 3}
+  - {fileID: 21300000, guid: 8ddb9369782c54cdc814044ad3dddcf1, type: 3}
+  - {fileID: -7033240994483071447, guid: a47b971a0fb5347429a6dacfdbea0858, type: 3}
+  - {fileID: 9068793679979327954, guid: a47b971a0fb5347429a6dacfdbea0858, type: 3}
+  - {fileID: -2949534788114607370, guid: 6081214c284bd4e268035d87bd66e234, type: 3}
+  - {fileID: 8571792575702481624, guid: 31f9fa4c3be1f487f859e8bb44b1a23c, type: 3}
+  - {fileID: 21300000, guid: f6f9cf0dd2159410b872e490ba7f21cc, type: 3}
+  - {fileID: 21300000, guid: 74f81b5d8ffac42749ba4c0d9650dc59, type: 3}
+  - {fileID: 21300000, guid: 7b5fcb9d384fe426bb012077a2a3339b, type: 3}
+  - {fileID: 21300000, guid: b5a7bdde1a53e4302b8a9adc31426485, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - icon_offline_gem
+  - offline_info_bg_0
+  - textfield_activity_0
+  - offline_prg_bar_0
+  - textfield_required_circle
+  - common_popup_title_0
+  - textfield_disable_0
+  - common_popup_0
+  - popup_title_ribbon_offline
+  - textfield_icon_error
+  - textfield_error_0
+  - textfield_error_1
+  - popup_title_ribbon_0
+  - offline_prg_bg_0
+  - icon_offline_gold
+  - textfield_icon_lock
+  - textfield_icon_user
+  - textfield_icon_mail
+  m_Tag: 99_Popup
+  m_IsVariant: 0

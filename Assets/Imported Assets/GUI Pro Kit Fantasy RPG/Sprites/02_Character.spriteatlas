@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 02_Character
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Standalone
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 80
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 27349c6cdab2f4313bad7acef478561a, type: 3}
+    totalSpriteSurfaceArea: 1047479
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 7c590330b56f5478fa08eebb283dff0c, type: 3}
+  - {fileID: -2050047349350161718, guid: b956cef0f2ee740a7bc267c660084346, type: 3}
+  - {fileID: 21300000, guid: c5cde321110314fd7bfa6b1fd5810597, type: 3}
+  - {fileID: 21300000, guid: cf6a0ec11fde941d18c8e0157fdeb7c7, type: 3}
+  - {fileID: 21300000, guid: 2055fd42ce4d8486295b232b0f3db096, type: 3}
+  - {fileID: 21300000, guid: 8a247aa270b8b49a692ad2f1643312d0, type: 3}
+  - {fileID: 21300000, guid: 583c01d24df1343aca31ca5352044c6a, type: 3}
+  - {fileID: 21300000, guid: 92885073c980349c2a786888bd70f710, type: 3}
+  - {fileID: 21300000, guid: 6c313154b24174e74a18a2c64be8e231, type: 3}
+  - {fileID: 21300000, guid: 265b64f419c62421c8ddf6370b040c87, type: 3}
+  - {fileID: 21300000, guid: 6028e705cc7ce4c059a95dab800a0ca6, type: 3}
+  - {fileID: 21300000, guid: 95a059d51336a4f5d82a2a5f41dcda8c, type: 3}
+  - {fileID: 1341689996052309981, guid: a608a667a3aa8497fa8193b9e62cecb7, type: 3}
+  - {fileID: 21300000, guid: 39ef3ee733c904f08a85268391803a80, type: 3}
+  - {fileID: 21300000, guid: a5fc30f71fb854fbdb6fa55c19d87d2b, type: 3}
+  - {fileID: 21300000, guid: 372545287556442819fd21f8bc208cc2, type: 3}
+  - {fileID: 21300000, guid: 2efbd0a92768b42a39bb21ff79b68985, type: 3}
+  - {fileID: 8658495916543082047, guid: 4322b1e9c761d40848260d8472122644, type: 3}
+  - {fileID: 4148461407120095042, guid: 1823cde9029dd4ee39af05464f6fade6, type: 3}
+  - {fileID: 21300000, guid: 0dbbe90afce394cafa20a59206482e43, type: 3}
+  - {fileID: 21300000, guid: 19ca1c1ac14f8450ba19001288580c8d, type: 3}
+  - {fileID: 21300000, guid: 3f68888abeb08438b9dd0f391633ee7b, type: 3}
+  - {fileID: 21300000, guid: 10ec237bb64be470a8f248eaac60045a, type: 3}
+  - {fileID: 21300000, guid: d0eb0a9b0830b4c0bbc18dfa164f2492, type: 3}
+  - {fileID: 21300000, guid: 6a6cbdcbec3aa47e3b87f676c39a8df0, type: 3}
+  - {fileID: 21300000, guid: d7e46c7d742f5489891d6e506f211ede, type: 3}
+  - {fileID: 21300000, guid: bf02f3cd276c44efdb7ae751d6b9b6f9, type: 3}
+  - {fileID: 21300000, guid: 9ce9348e10573411d9996e107ecd5155, type: 3}
+  - {fileID: 21300000, guid: e3c6fd8e5adf541adb992f6a1f75e2b9, type: 3}
+  - {fileID: 21300000, guid: 812fa4aed413b4eefbc23a3e243622ff, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - role_icon_sorcerer
+  - character_stat_info_line_0
+  - chareacter_grade_star
+  - role_icon_frame_focus
+  - role_icon_darkmage
+  - role_icon_wizard
+  - character_roleicon_frame
+  - role_icon_assassin
+  - role_icon_warrior
+  - chareacter_stat_info_icon_3
+  - character_back_glow
+  - chareacter_stat_info_icon_1
+  - chareacter_stat_prg_bar_color_0
+  - role_icon_archer
+  - chareacter_power_icon
+  - role_icon_gladiator
+  - chareacter_stat_info_icon_4
+  - character_info_lv_bg_0
+  - chareacter_stat_prg_bg_0
+  - chareacter_stat_info_icon_2
+  - role_icon_ranger
+  - chareacter_stat_prg_bar_mask
+  - chareacter_info_line
+  - role_icon_paladin
+  - chareacter_stat_info_icon_0
+  - character_sample
+  - character_info_lv_bar
+  - character_bottom_bg
+  - role_icon_priest
+  - role_icon_frame
+  m_Tag: 02_Character
+  m_IsVariant: 0

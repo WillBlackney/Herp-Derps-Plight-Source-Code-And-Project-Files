@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 16_Roulette
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Standalone
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 80
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: e63461c88a526421db507fd54b53aad9, type: 3}
+    totalSpriteSurfaceArea: 3749794
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 2396a10008e8a4e3b82d1c1ff2550071, type: 3}
+  - {fileID: 21300000, guid: 98b8f3607047f498fb874a9ca76c1718, type: 3}
+  - {fileID: 21300000, guid: 892ca8f0e4fec49c799d994a8b4147f3, type: 3}
+  - {fileID: 21300000, guid: 7c38c7d15aadb4e56bbb037a9285528f, type: 3}
+  - {fileID: 21300000, guid: 3120e1e16db2e49bf9d46c26d5afec7b, type: 3}
+  - {fileID: 21300000, guid: 1cce6b725575d4e9985582bdf4631ce5, type: 3}
+  - {fileID: 21300000, guid: 09840eb250de44abe9fff6f1b437f925, type: 3}
+  - {fileID: 21300000, guid: df3348d2fa5a44f2da5dea047a7efc0e, type: 3}
+  - {fileID: 21300000, guid: fd6a8db56773045d3b7c40f63709a2b7, type: 3}
+  - {fileID: 21300000, guid: 1e107667df25b4c4aa54ffe645f6fceb, type: 3}
+  - {fileID: 21300000, guid: 804548f70ec1745f1bf08d7ef7b6115b, type: 3}
+  - {fileID: 21300000, guid: 34eca069755cb482d942b23dea41ae44, type: 3}
+  - {fileID: 21300000, guid: 2f457c6c133a045fe813dfee2045501b, type: 3}
+  - {fileID: 21300000, guid: 586d640ef220a42399699efce01595b0, type: 3}
+  - {fileID: 21300000, guid: 86bfd05e9420e44b88cd4091106c5801, type: 3}
+  - {fileID: 21300000, guid: 19e3c39ec447d4d0aa7c5afd811c84d4, type: 3}
+  - {fileID: 21300000, guid: 5003cb5fd71d64023a0d61e1534f56c3, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - roulette_icon_gem
+  - roulette_focus_line
+  - roulette_one
+  - roulette_icon_ticket
+  - roulette_icon_key_bronze
+  - roulette_circle
+  - roulette_back
+  - roulette_arrow
+  - roulette_bg
+  - roulette_icon_gift
+  - roulette_focus_bg
+  - roulette_icon_gold
+  - roulette_glow
+  - roulette_frame_back_line
+  - roulette_btn_spin
+  - roulette_icon_key_silver
+  - roulette_illust_bg
+  m_Tag: 16_Roulette
+  m_IsVariant: 0

@@ -1,0 +1,134 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 00_EquipmentIcons_256x256
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Standalone
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 80
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: f605e1600848845c88426f4d70399223, type: 3}
+    totalSpriteSurfaceArea: 2293760
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 7e88fb1030760496d8b62c897735ec9f, type: 3}
+  - {fileID: 21300000, guid: f260ba702fde94584ae55b8a0a0aba71, type: 3}
+  - {fileID: 21300000, guid: 16b02bd138efe4da6a28376d94ff0aba, type: 3}
+  - {fileID: 21300000, guid: edca82f17baac4bb0b9cad14af6642e7, type: 3}
+  - {fileID: 21300000, guid: 9bdb8602b3f414df796d1a82f7a2b095, type: 3}
+  - {fileID: 21300000, guid: b31f17128444749cab38c9312cd57104, type: 3}
+  - {fileID: 21300000, guid: f01dac528fbfe4e2e808c3db571d5549, type: 3}
+  - {fileID: 21300000, guid: c7cebbe25f6d7492684e566407927678, type: 3}
+  - {fileID: 21300000, guid: 1f931163846544ed1bd7306c60213719, type: 3}
+  - {fileID: 21300000, guid: 85c001b31b94d4dfd8c731f11f1f0127, type: 3}
+  - {fileID: 21300000, guid: e02ff7b3b495048668586f30b98cd689, type: 3}
+  - {fileID: 21300000, guid: aa43e53437e774082948e9ccd71f97cd, type: 3}
+  - {fileID: 21300000, guid: db5c2ee45aafe438aaf650e706cca766, type: 3}
+  - {fileID: 21300000, guid: dd800995aeab3473cb85c56260b53425, type: 3}
+  - {fileID: 21300000, guid: 672f62a5c22684c5fb717c024cae1904, type: 3}
+  - {fileID: 21300000, guid: 6c4fbb760e7174d798ea947395bbee8c, type: 3}
+  - {fileID: 21300000, guid: 35d4e75732e41441a8a280b1f9fb5cd0, type: 3}
+  - {fileID: 21300000, guid: 5846e4684219e4f0888eac702223eb68, type: 3}
+  - {fileID: 21300000, guid: 8d061968dfe2447208a3d9388d74968d, type: 3}
+  - {fileID: 21300000, guid: ba1942b87e0c24146b4e1ab0bed3d2d2, type: 3}
+  - {fileID: 21300000, guid: 28986319a16d4446eaaa00e9e3f36938, type: 3}
+  - {fileID: 21300000, guid: b988a9e931fd24f8ab3208d970db060a, type: 3}
+  - {fileID: 21300000, guid: f29eb22baace24be28d0752a22503e6d, type: 3}
+  - {fileID: 21300000, guid: 410d3e9b96e0a468fbeb12b935956217, type: 3}
+  - {fileID: 21300000, guid: e4ba42abb72b4496f934f1a517f64fea, type: 3}
+  - {fileID: 21300000, guid: dac941ec02f4c44ef8e37ffbec333f6e, type: 3}
+  - {fileID: 21300000, guid: af1843ece1389437d881c21c677c7d03, type: 3}
+  - {fileID: 21300000, guid: 1bd60a2d5a7af4d0b9b543d97dce64a6, type: 3}
+  - {fileID: 21300000, guid: 1b635d2d21dd94762b55185fc149e99c, type: 3}
+  - {fileID: 21300000, guid: 2c5a503d5499244239e786124cfef218, type: 3}
+  - {fileID: 21300000, guid: 5416d83d6d98d443ca7d7159535247b5, type: 3}
+  - {fileID: 21300000, guid: 415bf3ed0fe604b39b622d949713cb24, type: 3}
+  - {fileID: 21300000, guid: 4f7b6ffe7b0e2488c8e98abcd0a85dea, type: 3}
+  - {fileID: 21300000, guid: 657e0b0f1412c4ec4a339d66a863db27, type: 3}
+  - {fileID: 21300000, guid: 4bc8e2ffa0111432298bb6bf0297feb0, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - equip_potion_red_2
+  - equip_potion_blue_2
+  - equip_shield_blue
+  - equip_hammer_2
+  - equip_potion_blue_0
+  - equip_bracelet
+  - equip_hammer_3
+  - equip_axe_4
+  - equip_potion_red_4
+  - equip_potion_red_3
+  - equip_hammer_1
+  - equip_fish
+  - equip_potion_blue_1
+  - equip_ring_gold
+  - equip_stone
+  - equip_axe_2
+  - equip_potion_blue_4
+  - equip_ring_blue
+  - equip_shield_wood
+  - equip_cyristal
+  - equip_axe_1
+  - equip_hammer_4
+  - equip_gem_red
+  - equip_axe_3
+  - equip_posion_tooth
+  - equip_hammer_0
+  - equip_dragon_tooth
+  - equip_leaf
+  - equip_tooth_red
+  - equip_potion_red_1
+  - equip_hard_tooth
+  - equip_axe_0
+  - equip_eye_blue
+  - equip_potion_red_0
+  - equip_potion_blue_3
+  m_Tag: 00_EquipmentIcons_256x256
+  m_IsVariant: 0

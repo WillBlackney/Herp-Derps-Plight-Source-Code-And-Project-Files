@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 00_Title
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Standalone
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 80
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 1a0f5ca9cbad9451797e5d784e37192b, type: 3}
+    totalSpriteSurfaceArea: 309004
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 739942377642242406, guid: 28511980fceaa45919d85eb355821f8c, type: 3}
+  - {fileID: 21300000, guid: b8613e90d39bd4854ac0b159c9c87ae3, type: 3}
+  - {fileID: -8092616183726542678, guid: 6b587243587f44a9f9a2b44d4bfa5560, type: 3}
+  - {fileID: 21300000, guid: 562883b7af8c54a8ba7f75c84b4a5403, type: 3}
+  - {fileID: 7215417044586324935, guid: bf57e448623ed4a3a9d59a29a1fdd039, type: 3}
+  - {fileID: 21300000, guid: a7c1a10972d01412490661187bb39a13, type: 3}
+  - {fileID: 21300000, guid: 4fba695a6c48f4a1c8ecdcdd51e481dc, type: 3}
+  - {fileID: 21300000, guid: aeeffecb2752e43c99769ab08816b26b, type: 3}
+  - {fileID: 21300000, guid: ca51e3dcb41444a068afc7f32c9d0214, type: 3}
+  - {fileID: -7123045402493324315, guid: 215d9dff07115427c805c2bc477a4e81, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - title_bottom_dim_0
+  - title_signin_icon_fb
+  - title_btn_start_0
+  - title_text_2
+  - title_ribbon_bg_0
+  - title_signin_icon_apple
+  - title_signin_icon_google
+  - title_text_1
+  - title_btn_blue
+  - title_btn_white_0
+  m_Tag: 00_Title
+  m_IsVariant: 0

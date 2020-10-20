@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 18_PowerSave
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Standalone
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 80
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: d0fbcc82ad63748d8acac39678432c90, type: 3}
+    totalSpriteSurfaceArea: 373268
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 810ea780260a94c9f92dc28492a6275a, type: 3}
+  - {fileID: 21300000, guid: dac6c751569ad432b81eedd8ac757683, type: 3}
+  - {fileID: 21300000, guid: 026718b10431942e5b25a93655d1db28, type: 3}
+  - {fileID: 21300000, guid: 4160460295a684119ac3aa1532de3f3e, type: 3}
+  - {fileID: 21300000, guid: 52a59ea2342d94e02be3dbaef87780cc, type: 3}
+  - {fileID: 21300000, guid: 8dc7ee63ce61e4a8fa46714fd967768a, type: 3}
+  - {fileID: -3320296975419565563, guid: 6073f4b34f7c04e8e9e6aea5fae7c14f, type: 3}
+  - {fileID: 21300000, guid: 40c21da5532e8485ead40069821f3946, type: 3}
+  - {fileID: 21300000, guid: 68c154b503dcb432e8b427d73df33e5d, type: 3}
+  - {fileID: 21300000, guid: ffbe85a92706b437cada65ace0743ea4, type: 3}
+  - {fileID: 7043681963484618954, guid: 9d571c1a2762d44a4a817d060d3141c9, type: 3}
+  - {fileID: 21300000, guid: 6512266a72b004805bfb8a021f341f70, type: 3}
+  - {fileID: 21300000, guid: 6cfb0c3b81b0e495aa0a16202d3b85f2, type: 3}
+  - {fileID: 21300000, guid: 8f433d6c02b7049e9849c15a59051d7b, type: 3}
+  - {fileID: 21300000, guid: 8c29391de925241cb9a9f4188fc09e00, type: 3}
+  - {fileID: 21300000, guid: ef72862eebb634a24928a4ba7c50e564, type: 3}
+  - {fileID: 21300000, guid: abdc84ff860314ed4b2401cc7a6224ba, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - powersave_icon_battery_1
+  - powersave_icon_wifi
+  - powersave_icon_battery_2
+  - powersave_icon_battery_4
+  - powersave_icon_sword
+  - powersave_icon_battery_3
+  - powersave_line_0
+  - powersave_icon_back_circle
+  - powersave_icon_battery_5
+  - powersave_icon_wing_r
+  - powersave_info_bg_0
+  - powersave_icon_frame
+  - powersave_icon_battery_0
+  - powersave_time_colon
+  - powersave_effect
+  - powersave_particle_circle
+  - powersave_icon_wing_l
+  m_Tag: 18_PowerSave
+  m_IsVariant: 0

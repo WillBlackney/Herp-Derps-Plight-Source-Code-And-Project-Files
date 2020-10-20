@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 03_CharacterSelect
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Standalone
+      m_MaxTextureSize: 4096
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 80
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: fdcb6cb2013bb493c84ad6d5e60dd296, type: 3}
+    totalSpriteSurfaceArea: 1729557
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 3e4bce5241c7642d392b39886c15f562, type: 3}
+  - {fileID: 4328201754111331958, guid: 027723c24b959427091851a72c7ae38b, type: 3}
+  - {fileID: 21300000, guid: 88646043dbe294d8c8dc286f827b98b3, type: 3}
+  - {fileID: 21300000, guid: 71634da4af3bf40fa8fde62868ae36a2, type: 3}
+  - {fileID: 21300000, guid: b73c88e48a62d42958d05b7917daab81, type: 3}
+  - {fileID: 7116584508957926815, guid: 5cd8e706613924731a3f1aaa2243fceb, type: 3}
+  - {fileID: 1851173641229726805, guid: 1002bf77eccd74f87ad0e83f302965d4, type: 3}
+  - {fileID: 21300000, guid: 3f423f18bae754a7dbae893a08d00eef, type: 3}
+  - {fileID: -7485592969822535526, guid: 3f37a929d30164a0b95d09e9315e7c5f, type: 3}
+  - {fileID: 21300000, guid: 4d994859ab9984da1bf99b0192dd6132, type: 3}
+  - {fileID: 21300000, guid: 1d5f231cf509e46ab9a5c5549d6dab69, type: 3}
+  - {fileID: 3478449412840870708, guid: af4bf4bc174f04b2f8a9faa729f26d3d, type: 3}
+  - {fileID: -7970625619994576239, guid: a7c6c35d93d74417f83472a8d506ce1e, type: 3}
+  - {fileID: 21300000, guid: 02d9b56dad6dd4361a8dc916bfbc097a, type: 3}
+  - {fileID: 21300000, guid: 4605842eabbad4f418393fc5812bca96, type: 3}
+  - {fileID: 21300000, guid: 3c7e60ce2d6bb49beba1034b9a9c891c, type: 3}
+  - {fileID: 21300000, guid: 3857131f9bee94db39b627fc870aa7b5, type: 3}
+  - {fileID: 21300000, guid: 032f644fc08324ac4ad77ddac86c7e26, type: 3}
+  - {fileID: -4864940121704646134, guid: 1cfa47af881b64b7ab0d8ee4187a2958, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - tutorial_character_sample_1
+  - character_select_frame_dim_0
+  - character_select_frame_deco_1_dim
+  - tutorial_btn_icon_skip
+  - character_select_frame_deco_0_dim
+  - character_select_frame_bg_default_0
+  - character_select_info_bg_0
+  - tutorial_character_sample
+  - character_select_bg_blue_0
+  - character_select_icon_lock
+  - character_select_icon_add
+  - character_select_frame_bg_dim_0
+  - character_select_frame_0
+  - character_select_frame_deco_1
+  - character_select_role_icon
+  - character_select_frame_deco_0
+  - character_select_sample
+  - btn_icon_small_delete
+  - tutorial_frame_0
+  m_Tag: 03_CharacterSelect
+  m_IsVariant: 0

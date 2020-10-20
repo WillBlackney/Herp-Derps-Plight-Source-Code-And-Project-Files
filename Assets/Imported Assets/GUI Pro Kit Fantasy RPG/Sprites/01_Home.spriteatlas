@@ -1,0 +1,128 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 01_Home
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Standalone
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 80
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 454d6a9e8fea54d4887674af3e799acc, type: 3}
+    totalSpriteSurfaceArea: 279193
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: a85dc3606842848f894379292101f3fe, type: 3}
+  - {fileID: 21300000, guid: ffcd51701d8b94bc3ab284d79ba1cc56, type: 3}
+  - {fileID: 5548292070574288395, guid: 03a507e0a3ea6477fb265eab8b0aa093, type: 3}
+  - {fileID: -6184587674099409298, guid: 0beaeee02658e46829bc62ef06102b24, type: 3}
+  - {fileID: 21300000, guid: 11fdf602c22a84221b741456fd3add49, type: 3}
+  - {fileID: 21300000, guid: c6d3e4b2b6e2f41aeac6a89560ff7f28, type: 3}
+  - {fileID: 21300000, guid: 07c9f3a307404400d887f7776f4cfe46, type: 3}
+  - {fileID: 21300000, guid: 5ba360d43b6004d658b94577fa3ce6a0, type: 3}
+  - {fileID: -3630186977461526580, guid: b01ce6f4cff734d8cb0b335461311e65, type: 3}
+  - {fileID: -8975857106225741371, guid: 8d59a835dfdb543498482459cb7c528c, type: 3}
+  - {fileID: 21300000, guid: 1d16d8b6b9a0d40aa9a78e09ab0b4be1, type: 3}
+  - {fileID: 1602085488016458816, guid: 36f6d527895d64d56918a3385c073cb6, type: 3}
+  - {fileID: -6275191271189760509, guid: 0b29ca37e82c442a58508328c4509fea, type: 3}
+  - {fileID: 21300000, guid: 628fb358393e6492eb92424c9f20a05a, type: 3}
+  - {fileID: 21300000, guid: e0f7a888d4b294e2c86f84cd2dbeec8a, type: 3}
+  - {fileID: 21300000, guid: 7152e3d85e91040eba5e4b50208b2761, type: 3}
+  - {fileID: -365888374976168327, guid: bc977179137164c22a061f571c0ef07e, type: 3}
+  - {fileID: 21300000, guid: 3dcef7993fcff41cda1f895b7cb4b248, type: 3}
+  - {fileID: 21300000, guid: 99a84f1ac346b40418e9c4b49aeb7b94, type: 3}
+  - {fileID: 21300000, guid: df9785ea452cd4306ab69c75b5c69737, type: 3}
+  - {fileID: 1102511138014544295, guid: 4a1cd64bfef544134884a5a0d55d6542, type: 3}
+  - {fileID: 21300000, guid: bd0a3f8b6f28f406dad6db82e03648ef, type: 3}
+  - {fileID: 21300000, guid: 1681cd1c1893a48cb9f2bea5bbb8bece, type: 3}
+  - {fileID: 21300000, guid: 7effad5cd0ddf4f3692773445504dd61, type: 3}
+  - {fileID: 21300000, guid: 85c1297c9e76a4266a651ce28c37efe5, type: 3}
+  - {fileID: 21300000, guid: 9a75923d32717430b834f2afc6328cbd, type: 3}
+  - {fileID: 21300000, guid: 926ae38ddd0f547598d6f56be7384fc5, type: 3}
+  - {fileID: 21300000, guid: 7b63dead1d8dc4b7ea48867b93168795, type: 3}
+  - {fileID: 6663523481116068875, guid: b9bff0ed54b784f74bdf8214858a2948, type: 3}
+  - {fileID: -7205862678162377740, guid: 7c9169de7543a47c7a1a49f13864a321, type: 3}
+  - {fileID: 21300000, guid: e574163f0e2b64395978e4003890b462, type: 3}
+  - {fileID: -7153910212444640112, guid: f9e1fe3f7c5164c8a99bd0fb1329c48a, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - home_menu_inventory
+  - package_icon_piggy
+  - user_level_bar_back_0
+  - package_badge_red_0
+  - home_button_play_icon
+  - home_menu_lock
+  - top_btn_setting
+  - package_icon_free
+  - package_badge_pink_0
+  - home_mission_list_bg_0
+  - shome_sub_icon_commnity
+  - user_level_bar_bg_0
+  - home_button_play_0
+  - home_menu_boss
+  - shome_sub_icon_ranking
+  - package_icon_gem
+  - package_bg_0
+  - shome_sub_icon_calendar
+  - home_menu_heroes
+  - home_menu_guild
+  - home_submenu_bg_0
+  - shome_sub_icon_friend
+  - shome_sub_icon_scroll
+  - home_mission_list_icon
+  - home_menu_store
+  - notification_small_icon
+  - shome_sub_icon_chest
+  - user_level_bg
+  - package_badge_orange_0
+  - home_menu_btn_0
+  - home_menu_upgrade
+  - user_level_bar_blue_0
+  m_Tag: 01_Home
+  m_IsVariant: 0

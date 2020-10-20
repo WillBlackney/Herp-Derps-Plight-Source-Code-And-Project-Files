@@ -1,0 +1,162 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 00_Common
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Standalone
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 80
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 22df7865b275d4e7287490341fcc63b7, type: 3}
+    totalSpriteSurfaceArea: 1003783
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 2969678862317009722, guid: 68b35d2059b8c46e0a98e53628e9b3af, type: 3}
+  - {fileID: 21300000, guid: d1e42930e47b941418a1fc1bfd8345af, type: 3}
+  - {fileID: 21300000, guid: c45f4e805a75b4de4a1c5bf3471587dc, type: 3}
+  - {fileID: 21300000, guid: b8e2a211143e84776bb8ea1730115895, type: 3}
+  - {fileID: 7461551315471710605, guid: b5067f417714c453ea06612b86874d4b, type: 3}
+  - {fileID: 7803171745462721284, guid: 743fc551622034093a11efcbcb9d49fc, type: 3}
+  - {fileID: 8038653950898823980, guid: bf59ce9145cd842ffb1a897977f5200f, type: 3}
+  - {fileID: 21300000, guid: 4ad15db1aebb749f5b1846fbbfa25de7, type: 3}
+  - {fileID: 21300000, guid: bfa01af180f7649b4b44863da178d4c3, type: 3}
+  - {fileID: 21300000, guid: 6dcf33e2b0a1d459888fa4ad13355dc2, type: 3}
+  - {fileID: 21300000, guid: d6285f339f7ee44aaa3a558662d7029d, type: 3}
+  - {fileID: 21300000, guid: 783887b3d02834345a4d58df4ea24d27, type: 3}
+  - {fileID: 21300000, guid: 84dc1a245502346868ad5f59f0eeed49, type: 3}
+  - {fileID: 21300000, guid: b27e8174ec45b4b99ad666846972ca53, type: 3}
+  - {fileID: 21300000, guid: e0d2a8d5dc9894a5bb5b677f368a2715, type: 3}
+  - {fileID: 21300000, guid: 1aa0fb065258042eca1c11dcbdde9a86, type: 3}
+  - {fileID: -1955166092432882607, guid: 403ebae645e904940babfac55dbb3184, type: 3}
+  - {fileID: 21300000, guid: 8bbefee662f294a3fb981da800b631d3, type: 3}
+  - {fileID: 21300000, guid: bbd3a837ade7c4fc0b54dd29d1b0a7a7, type: 3}
+  - {fileID: -4189922956459317181, guid: ae9f8677ca3c24a7c80d7217a941f886, type: 3}
+  - {fileID: 21300000, guid: 7a1e4997e87404174b6dc46f0c096ee4, type: 3}
+  - {fileID: -4898800738492540699, guid: b963cfd777b4847d0b8a628e140a873b, type: 3}
+  - {fileID: 6616375705706489589, guid: 6900647849bf74c2daec9082ae11cc1c, type: 3}
+  - {fileID: 21300000, guid: 91e63ba8a3e074c49914de9bd3c3e995, type: 3}
+  - {fileID: 21300000, guid: e78b69e89cdcd46d28129c02932f1ab1, type: 3}
+  - {fileID: 2665930108083454080, guid: 6a63ef398306547be8cad5f83b8994a3, type: 3}
+  - {fileID: 346016010000759473, guid: 2dd4604925f264cb1990818641361190, type: 3}
+  - {fileID: 6559573953508838307, guid: 8c291789626564f05ab21623737d19dd, type: 3}
+  - {fileID: 21300000, guid: 0031bf89c61434d3b84e98ee565b486b, type: 3}
+  - {fileID: 2071342517933136681, guid: 53103da9ba51c48348bca95936a9750d, type: 3}
+  - {fileID: 21300000, guid: 4c9808e986a184183a63e4b7d925e103, type: 3}
+  - {fileID: 384262645948542492, guid: 38bdd50ae121147ddbc4fb9bc6d728c4, type: 3}
+  - {fileID: 21300000, guid: 86979e3a324dd4ff29e0934322f2d1be, type: 3}
+  - {fileID: -3464876302821893888, guid: 7f5c149ac1a164cbcb6c8452a8c8c699, type: 3}
+  - {fileID: 1480961996498039030, guid: 6f2505aafe1be4eebaef05cf00b2966a, type: 3}
+  - {fileID: 8907393020666943449, guid: 19a745caa897a41759d4b8b5d0b482f2, type: 3}
+  - {fileID: 5570872773714183081, guid: b2791cda845e14da3af29c4f1a475a55, type: 3}
+  - {fileID: 21300000, guid: f23a219b19e49418caf22d273cde08ff, type: 3}
+  - {fileID: 21300000, guid: 43a71eab10fec48d9ba798863d1add5c, type: 3}
+  - {fileID: 21300000, guid: d2b25fbb97c8641cdbe1c030a8b8966f, type: 3}
+  - {fileID: -7821534081011595604, guid: 8fff2a5c4466b486c949fa3a2d45cad6, type: 3}
+  - {fileID: 21300000, guid: f7ac1d1df71c64f99bcd6de611d7e522, type: 3}
+  - {fileID: 21300000, guid: e557639d1acd84734b384b6a04b18720, type: 3}
+  - {fileID: -3734752219666683929, guid: 89ecf39d67fbd48898471e0ece16bc68, type: 3}
+  - {fileID: -1220990825568754350, guid: 6f5cc40e4a1cd458c9901849a7f52a07, type: 3}
+  - {fileID: 21300000, guid: c427d18e4d1b0421fadef6a901e45461, type: 3}
+  - {fileID: 21300000, guid: 65f42b8e2924f4e26adf8ce8fb34fcdf, type: 3}
+  - {fileID: 21300000, guid: a37ec89f5ca17463ea97a831015fd5a1, type: 3}
+  - {fileID: 21300000, guid: 007c6ccf576724e848dbe53ca4d14c88, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - common_btn_bluegray_0
+  - checkbox_off
+  - common_circle_purple
+  - common_effect
+  - switch_off_bg_0
+  - top_status_bg_0
+  - common_btn_dark_0
+  - common_circle_green
+  - top_status_icon_gem
+  - common_title_deco_line
+  - top_btn_close
+  - btn_ad_icon
+  - common_bg_empty
+  - notification_bg_green
+  - top_title_bg
+  - top_status_btn_get
+  - switch_on_bg_0
+  - common_whitebox
+  - switch_on
+  - common_btn_yellow_0
+  - top_btn_home
+  - slider_bg_0
+  - common_btn_blue_0
+  - common_circle_dark
+  - notification_bg_red
+  - common_btn_green_0
+  - common_btn_gray_0
+  - common_btn_purple_0
+  - btn_icon_gem
+  - common_btn_mint_0
+  - switch_off
+  - common_btn_small_bg_0
+  - common_bg_effect_circle
+  - common_screen_dim_bg_0
+  - common_btn_brown_0
+  - common_btn_disable_0
+  - slider_bar_color_0
+  - tab_focus_middle
+  - tab_focus_short
+  - top_status_icon_energy
+  - btn_ad_label_red_0
+  - checkbox_on
+  - top_status_icon_gold
+  - tab_line_color_0
+  - common_btn_red_0
+  - top_btn_back
+  - common_circle_red
+  - common_circle_blue
+  - slider_pointer
+  m_Tag: 00_Common
+  m_IsVariant: 0

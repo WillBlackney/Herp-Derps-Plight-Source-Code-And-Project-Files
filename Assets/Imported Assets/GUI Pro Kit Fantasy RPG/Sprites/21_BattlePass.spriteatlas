@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 21_BattlePass
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Standalone
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 80
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: b29e2e1ff557b4e5c87f5d7cd5fe39c5, type: 3}
+    totalSpriteSurfaceArea: 696203
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: f7ea481122576400daf62fcc67d34876, type: 3}
+  - {fileID: 21300000, guid: 78c34961c022a465a92cf5cc6a3a8635, type: 3}
+  - {fileID: 21300000, guid: 67b77312d4981414296e738015a3fbf0, type: 3}
+  - {fileID: 21300000, guid: fdcc4123b8a854d60bdf1c6f0663bca7, type: 3}
+  - {fileID: 21300000, guid: 58d0d9d3fd49f4e5b97a158cad0bb65a, type: 3}
+  - {fileID: 21300000, guid: bf5e05145823e4949b9cc5032ce89e4c, type: 3}
+  - {fileID: 21300000, guid: 914a6335747d24c24b2e4b0724f75ed9, type: 3}
+  - {fileID: 21300000, guid: 5ab91b45b784645a4b4733038d8cd954, type: 3}
+  - {fileID: 21300000, guid: cc94e4a5757d2423896a58be96cbac7f, type: 3}
+  - {fileID: 21300000, guid: 9d3b67463bf7f4935a3aa15d2fe8453c, type: 3}
+  - {fileID: 21300000, guid: 184af8b640f8d493ca798b757137f254, type: 3}
+  - {fileID: 21300000, guid: 43e31fe6c0cbc48d3b2d7a0a2b478cf3, type: 3}
+  - {fileID: 21300000, guid: 28778547f0c614fb4839df359be936d9, type: 3}
+  - {fileID: 21300000, guid: 6e0ab87746c1144e78ae4286bc7cdf34, type: 3}
+  - {fileID: 21300000, guid: 7ee74e580eb7c49908d093eae6c6b6c8, type: 3}
+  - {fileID: 21300000, guid: 28b66f78b631244a9adbe1baa80c1cb8, type: 3}
+  - {fileID: 21300000, guid: 9981e739b327a4307812c90191cdf426, type: 3}
+  - {fileID: 21300000, guid: a2b73d690767b4761be7543e102d97e6, type: 3}
+  - {fileID: 21300000, guid: 551085aaeb4a544a581ffba25cc47ee6, type: 3}
+  - {fileID: 21300000, guid: 05cfebca96b0e4185ba4e731ce82192d, type: 3}
+  - {fileID: 21300000, guid: c17b711c7dac345118d641ad0a6ce6d5, type: 3}
+  - {fileID: 21300000, guid: 3119547cb411044d1b6dfd454c15aacd, type: 3}
+  - {fileID: 21300000, guid: baa5b59d20b7d492486b24d5bffb0f66, type: 3}
+  - {fileID: 21300000, guid: eb48fd9d6edda4fd4b6b42ac346507d6, type: 3}
+  - {fileID: 21300000, guid: 0bbe4c5fd46914a3f864a975a935c256, type: 3}
+  - {fileID: 21300000, guid: f8c7caaf34089476494f49407ac1c4cf, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - pass_trophy_prg_bg
+  - pass_left_glow
+  - pass_reward_bg_yellow
+  - pass_icon_time
+  - pass_icon_check_02
+  - pass_icon_chest_2
+  - pass_trophy_prg_bar
+  - pass_bg_goldticket
+  - pass_reward_glow
+  - pass_reward_bg_dim
+  - pass_prg_bg
+  - pass_goldticket_frame_2
+  - pass_icon_goldticket
+  - pass_num_lock
+  - pass_icon_blueticket
+  - pass_icon_chest_1
+  - pass_icon_trophy
+  - pass_icon_check_01
+  - pass_goldticket_frame_1
+  - pass_prg_bar
+  - pass_left_bg
+  - pass_num_bg
+  - pass_icon_chest_3
+  - pass_icon_gem
+  - pass_reward_bg_normal
+  - pass_decoline
+  m_Tag: 21_BattlePass
+  m_IsVariant: 0

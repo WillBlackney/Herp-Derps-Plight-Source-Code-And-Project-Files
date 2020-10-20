@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 11_Setting
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Standalone
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    - serializedVersion: 3
+      m_BuildTarget: WebGL
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 4
+      m_TextureCompression: 1
+      m_CompressionQuality: 80
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 3a9e5a93a87764c5f8f1247d0e134dae, type: 3}
+    totalSpriteSurfaceArea: 263884
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 0c25031178dad4c068ed55b9e33212ad, type: 3}
+  - {fileID: 21300000, guid: 0b3d5d31fd3934c659cceeffb9417763, type: 3}
+  - {fileID: 21300000, guid: 56edbad19e7584ef8ad0c3584c586e3c, type: 3}
+  - {fileID: 21300000, guid: ad4afe920127d4a218469358f0c286e0, type: 3}
+  - {fileID: 21300000, guid: bb88c0d3b46b340a38d260d5c455daa9, type: 3}
+  - {fileID: 21300000, guid: 3e488604e2f414c27811990edfa996db, type: 3}
+  - {fileID: 21300000, guid: b0d6ce94f940b4df294c6906e02a50f3, type: 3}
+  - {fileID: 21300000, guid: bf9f52156697f4406a99968ea5442c73, type: 3}
+  - {fileID: 21300000, guid: dbaa39955a99343e2baa41b7b9903e6b, type: 3}
+  - {fileID: 21300000, guid: 515e2e95d557247079331e881dfc3bf4, type: 3}
+  - {fileID: 21300000, guid: 6800b7778032f42ac888843e95310fd8, type: 3}
+  - {fileID: 21300000, guid: 1e196f877529441329c40b374b618754, type: 3}
+  - {fileID: 21300000, guid: 6157da686ab5a453fa43773496521c8d, type: 3}
+  - {fileID: -1463389208295787776, guid: b32f0b1a0b32b42a4ad4e90288cf4b5c, type: 3}
+  - {fileID: 21300000, guid: 0d36d47a534734e84a98ff2d1485e6d0, type: 3}
+  - {fileID: 21300000, guid: e0fdb09a68c454611a07fbbfc4e4f044, type: 3}
+  - {fileID: 21300000, guid: 8ff0221bfa7af412689476c7cde3cf15, type: 3}
+  - {fileID: 21300000, guid: 9d5db93b932984fae867e9c4fa79ed6e, type: 3}
+  - {fileID: 21300000, guid: 3bedf6db6ef294fad95a154ac3c1b775, type: 3}
+  - {fileID: 21300000, guid: b42b0face81ec4a5d878208ea868cf72, type: 3}
+  - {fileID: 21300000, guid: d65a5a5daf92d45ebbb26f106bfebb6f, type: 3}
+  - {fileID: 21300000, guid: 8e2ca54f4d1e24971a83483bbf303a0c, type: 3}
+  - {fileID: 21300000, guid: 0e306a5f3dbec4eb3890156245ee31da, type: 3}
+  - {fileID: 21300000, guid: 58c88aef05a33426c82ea7b18ebc0427, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - setting_icon_sound_mute
+  - setting_icon_gamecenter
+  - setting_icon_facebook
+  - LanguageFlagFra
+  - setting_icon_bgm_mute
+  - setting_icon_vibration
+  - LanguageFlagChn
+  - setting_img_getgold
+  - LanguageFlagInd
+  - LanguageFlagPrt
+  - setting_icon_notification
+  - setting_btn_help
+  - LanguageFlagEng
+  - setting_list_line_0
+  - Language_check
+  - LanguageFlagKor
+  - LanguageFlagRus
+  - LanguageFlagTur
+  - LanguageFlagEsp
+  - LanguageFlagJpn
+  - LanguageFlagDeu
+  - setting_icon_sound
+  - LanguageFlagTwn
+  - setting_icon_bgm
+  m_Tag: 11_Setting
+  m_IsVariant: 0
