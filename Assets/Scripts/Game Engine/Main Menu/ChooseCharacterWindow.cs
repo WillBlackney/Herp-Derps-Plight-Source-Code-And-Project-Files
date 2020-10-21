@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class ChooseCharacterWindow : MonoBehaviour
 {
@@ -9,7 +10,10 @@ public class ChooseCharacterWindow : MonoBehaviour
     #region
     [Header("Component References")]
     [SerializeField] private TextMeshProUGUI nameText;
-    [SerializeField] private TextMeshProUGUI descriptionText;
+    [SerializeField] private TextMeshProUGUI classNameText;
+
+    [Header("Model References")]
+    public UniversalCharacterModel myUCM;
 
     [Header("Properties")]
     private List<CharacterTemplateSO> selectableTemplates = new List<CharacterTemplateSO>();
@@ -38,10 +42,12 @@ public class ChooseCharacterWindow : MonoBehaviour
     #region
     public void OnNextTemplateButtonClicked()
     {
+        EventSystem.current.SetSelectedGameObject(null);
         SetMyTemplate(GetNextTemplate());
     }
     public void OnPreviousTemplateButtonClicked()
     {
+        EventSystem.current.SetSelectedGameObject(null);
         SetMyTemplate(GetPreviousTemplate());
     }
     #endregion
@@ -51,6 +57,9 @@ public class ChooseCharacterWindow : MonoBehaviour
     private void BuildMyViewsFromTemplate(CharacterTemplateSO template)
     {
         nameText.text = template.myName;
+        classNameText.text = "The " + template.myClassName;
+        CharacterModelController.BuildModelFromStringReferences(myUCM, template.modelParts);
+        CharacterModelController.ApplyItemManagerDataToCharacterModelView(template.serializedItemManager, myUCM);
     }
     #endregion
 

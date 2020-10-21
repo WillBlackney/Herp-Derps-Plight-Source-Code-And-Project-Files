@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2410c6608dbef744a9643f0571333299, type: 3}
   m_Name: Rogue_1
   m_EditorClassIdentifier: 
-  myName: Rogue
+  myName: Riff Raff
+  myClassName: Rogue
   health: 40
   maxHealth: 40
   power: 0
@@ -52,6 +53,7 @@ MonoBehaviour:
     plantedFeetStacks: 0
     takenAimStacks: 0
     longDrawStacks: 0
+    sharpenBladeStacks: 0
     consecrationStacks: 0
     growingStacks: 0
     cautiousStacks: 0
@@ -67,6 +69,8 @@ MonoBehaviour:
     corpseCollectorStacks: 0
     pistoleroStacks: 0
     fastLearnerStacks: 0
+    demonFormStacks: 0
+    darkBargainStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0

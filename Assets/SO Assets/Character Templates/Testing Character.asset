@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Testing Character
   m_EditorClassIdentifier: 
   myName: Testing Character
+  myClassName: Testing Character
   health: 30
   maxHealth: 30
   power: 0

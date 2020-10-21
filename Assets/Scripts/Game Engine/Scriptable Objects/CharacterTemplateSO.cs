@@ -11,6 +11,9 @@ public class CharacterTemplateSO : ScriptableObject
     [BoxGroup("General Info", centerLabel: true)]
     [LabelWidth(100)]
     public string myName;
+    [BoxGroup("General Info")]
+    [LabelWidth(100)]
+    public string myClassName;
 
     // Core Stats
     [BoxGroup("Core Stats", centerLabel: true)]

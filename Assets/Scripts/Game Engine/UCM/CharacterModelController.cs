@@ -99,13 +99,6 @@ public static class CharacterModelController
                         break;
                     }
                 }
-                /*
-                if (ucme.itemsWithMyView.Contains(iManager.mainHandItem))
-                {
-                    EnableAndSetElementOnModel(model, ucme);
-                    break;
-                }
-                */
             }
         }
 
@@ -122,26 +115,45 @@ public static class CharacterModelController
                         break;
                     }
                 }
-                /*
-                if (ucme.itemsWithMyView.Contains(iManager.mainHandItem))
+            }            
+        }
+    }
+    public static void ApplyItemManagerDataToCharacterModelView(SerializedItemManagerModel iManager, UniversalCharacterModel model)
+    {
+        // Do weapons first
+
+        // MH
+        if (iManager.mainHandItem != null)
+        {
+            foreach (UniversalCharacterModelElement ucme in model.allMainHandWeapons)
+            {
+                foreach (ItemDataSO itemData in ucme.itemsWithMyView)
                 {
-                    EnableAndSetElementOnModel(model, ucme);
-                    break;
+                    if (itemData.itemName == iManager.mainHandItem.itemName)
+                    {
+                        EnableAndSetElementOnModel(model, ucme);
+                        break;
+                    }
                 }
-                */
             }
-            /*
+        }
+
+        // Off hand
+        if (iManager.offHandItem != null)
+        {
             foreach (UniversalCharacterModelElement ucme in model.allOffHandWeapons)
             {
-                if (ucme.itemsWithMyView.Contains(iManager.offHandItem))
+                foreach (ItemDataSO itemData in ucme.itemsWithMyView)
                 {
-                    EnableAndSetElementOnModel(model, ucme);
-                    break;
+                    if (itemData.itemName == iManager.offHandItem.itemName)
+                    {
+                        EnableAndSetElementOnModel(model, ucme);
+                        break;
+                    }
                 }
             }
-            */
         }
-    }    
+    }
     public static void CompletelyDisableAllViews(UniversalCharacterModel model)
     {
         foreach(UniversalCharacterModelElement element in model.allModelElements)
