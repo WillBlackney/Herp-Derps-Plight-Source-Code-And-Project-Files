@@ -118,7 +118,7 @@ public class PersistencyManager : Singleton<PersistencyManager>
                 CardDataSO improviseCardData = CardController.Instance.GetCardDataSOFromLibraryByName("Improvise");
 
                 // Fill deck with 10 improvise cards
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 5; i++)
                 {
                     character.deck.Add(CardController.Instance.BuildCardDataFromScriptableObjectData(improviseCardData));
                 }

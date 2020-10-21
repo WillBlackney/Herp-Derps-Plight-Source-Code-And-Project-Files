@@ -6440,7 +6440,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 11
+  m_SortingOrder: 12
   m_Sprite: {fileID: 21300000, guid: 006435a1f7cc8d4499ded02aa58cf635, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6464,7 +6464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f198b03aafa7d4645b369971cd5cf6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingOrderBonus: 7
+  sortingOrderBonus: 8
   bodyPartType: 7
   itemsWithMyView: []
   connectedElements:

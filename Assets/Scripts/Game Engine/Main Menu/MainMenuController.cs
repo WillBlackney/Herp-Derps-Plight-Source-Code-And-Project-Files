@@ -83,7 +83,14 @@ public class MainMenuController : Singleton<MainMenuController>
     }
     public void OnRunModifiersButtonClicked()
     {
-        runModifierScreenParent.SetActive(true);
+        if (runModifierScreenParent.activeSelf)
+        {
+            runModifierScreenParent.SetActive(false);
+        }
+        else
+        {
+            runModifierScreenParent.SetActive(true);
+        }
     }
     public void OnRunModifiersBackButtonClicked()
     {

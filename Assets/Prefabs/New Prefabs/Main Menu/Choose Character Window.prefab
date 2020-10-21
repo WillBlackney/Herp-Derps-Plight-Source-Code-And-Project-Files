@@ -193,6 +193,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5794507275410096787}
   - component: {fileID: 9201749134537236879}
+  - component: {fileID: 1331910391305962182}
   m_Layer: 5
   m_Name: Previous Button
   m_TagString: Untagged
@@ -274,6 +275,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1331910391305962182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5794507275410096786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db09d9cca6141a47a3c991340f1f29f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSound: 33
+  clickSound: 34
 --- !u!1 &5794507275609916284
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,6 +581,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5794507276154968103}
   - component: {fileID: 8232798259337373028}
+  - component: {fileID: 1773671035947761228}
   m_Layer: 5
   m_Name: Next Button
   m_TagString: Untagged
@@ -647,6 +663,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1773671035947761228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5794507276154968102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db09d9cca6141a47a3c991340f1f29f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverSound: 33
+  clickSound: 34
 --- !u!1 &5794507276257319794
 GameObject:
   m_ObjectHideFlags: 0
@@ -1731,7 +1761,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4168412347097908, guid: 81e9b41ae9d8afe47a07faf8f67e5bb9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4168412347097908, guid: 81e9b41ae9d8afe47a07faf8f67e5bb9, type: 3}
       propertyPath: m_LocalPosition.y
