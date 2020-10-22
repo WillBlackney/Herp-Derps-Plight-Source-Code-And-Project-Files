@@ -58,17 +58,34 @@ public class CharacterDataController : Singleton<CharacterDataController>
             newCharacter.deck.Add(CardController.Instance.BuildCardDataFromScriptableObjectData(cso, newCharacter));
         }
 
+        // UCM Data
         newCharacter.modelParts = new List<string>();
         newCharacter.modelParts.AddRange(template.modelParts);
 
+        // Passive Data
         newCharacter.passiveManager = new PassiveManagerModel();
         PassiveController.Instance.BuildPassiveManagerFromSerializedPassiveManager(newCharacter.passiveManager, template.serializedPassiveManager);
 
+        // Item Data
         newCharacter.itemManager = new ItemManagerModel();      
         ItemController.Instance.CopySerializedItemManagerIntoStandardItemManager(template.serializedItemManager, newCharacter.itemManager);
-        //ItemController.Instance.CopyItemManagerDataIntoOtherItemManager(template.itemManager, newCharacter.itemManager);
+
+        // Talent Data
+        newCharacter.talentPairings = new List<TalentPairingModel>();
+        foreach(TalentPairingModel tpm in template.talentPairings)
+        {
+            newCharacter.talentPairings.Add(CloneTalentPairingModel(tpm));
+        }
 
         return newCharacter;
+    }
+    private TalentPairingModel CloneTalentPairingModel(TalentPairingModel original)
+    {
+        TalentPairingModel tpm = new TalentPairingModel();
+        tpm.talentLevel = original.talentLevel;
+        tpm.talentSchool = original.talentSchool;
+
+        return tpm;
     }
 
     #endregion

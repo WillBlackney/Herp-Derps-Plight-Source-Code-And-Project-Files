@@ -90,12 +90,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 114d0de462d6fe24996e5c9119dcd62f, type: 2}
   - {fileID: 11400000, guid: ce34207cf8b731844ae587386ce47fc9, type: 2}
   - {fileID: 11400000, guid: ce34207cf8b731844ae587386ce47fc9, type: 2}
-  - {fileID: 11400000, guid: 951ec72a027a5a14b9f19c1e1aea6ba1, type: 2}
-  - {fileID: 11400000, guid: 951ec72a027a5a14b9f19c1e1aea6ba1, type: 2}
   - {fileID: 11400000, guid: fb05e945d4002694aafbe7ddd90ad6ec, type: 2}
   - {fileID: 11400000, guid: fb05e945d4002694aafbe7ddd90ad6ec, type: 2}
   - {fileID: 11400000, guid: 386cabf0808997f40956801b2f8662d8, type: 2}
   - {fileID: 11400000, guid: 625a726a38536fe408db2acde5d23915, type: 2}
+  - {fileID: 11400000, guid: 951ec72a027a5a14b9f19c1e1aea6ba1, type: 2}
+  - {fileID: 11400000, guid: 951ec72a027a5a14b9f19c1e1aea6ba1, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1
@@ -112,3 +112,6 @@ MonoBehaviour:
   serializedItemManager:
     mainHandItem: {fileID: 11400000, guid: bfbdb5e21e389ab4c9aae5b49350a1d0, type: 2}
     offHandItem: {fileID: 0}
+  talentPairings:
+  - talentSchool: 13
+    talentLevel: 2

@@ -48,4 +48,7 @@ public class CharacterData
     [Header("Item Properties")]
     public ItemManagerModel itemManager = new ItemManagerModel();
 
+    [Header("Talent Properties")]
+    public List<TalentPairingModel> talentPairings = new List<TalentPairingModel>();
+
 }

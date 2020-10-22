@@ -86,16 +86,16 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 7c0947162266e2144a22faa67d2338a4, type: 2}
-  - {fileID: 11400000, guid: 7c0947162266e2144a22faa67d2338a4, type: 2}
-  - {fileID: 11400000, guid: 87754b7748bb31947acb4178c8beb7c3, type: 2}
-  - {fileID: 11400000, guid: 87754b7748bb31947acb4178c8beb7c3, type: 2}
-  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
-  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
-  - {fileID: 11400000, guid: e74b37417c31bac4f853047f01e6be3d, type: 2}
-  - {fileID: 11400000, guid: e74b37417c31bac4f853047f01e6be3d, type: 2}
   - {fileID: 11400000, guid: cee9929222ec7e34bbb1593ae7ad23b5, type: 2}
   - {fileID: 11400000, guid: 4fa47f450ff530d47884c246293bb23a, type: 2}
+  - {fileID: 11400000, guid: 7c0947162266e2144a22faa67d2338a4, type: 2}
+  - {fileID: 11400000, guid: 7c0947162266e2144a22faa67d2338a4, type: 2}
+  - {fileID: 11400000, guid: e74b37417c31bac4f853047f01e6be3d, type: 2}
+  - {fileID: 11400000, guid: e74b37417c31bac4f853047f01e6be3d, type: 2}
+  - {fileID: 11400000, guid: 87754b7748bb31947acb4178c8beb7c3, type: 2}
+  - {fileID: 11400000, guid: 87754b7748bb31947acb4178c8beb7c3, type: 2}
+  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
+  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
   modelParts:
   - Satyr_Head_1
   - Satyr_Face_1
@@ -112,3 +112,6 @@ MonoBehaviour:
   serializedItemManager:
     mainHandItem: {fileID: 11400000, guid: dfeeccc8c225a66488eb3e4eb76d6c3b, type: 2}
     offHandItem: {fileID: 0}
+  talentPairings:
+  - talentSchool: 8
+    talentLevel: 2

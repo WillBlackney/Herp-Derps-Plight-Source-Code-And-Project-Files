@@ -166,10 +166,10 @@ SpriteAtlas:
   - common_item_jewel1_blue
   - common_item_energy
   - common_item_gift_special
-  - common_item_sword
+  - Melee_Attack_2
   - common_item_key_silver
   - common_item_lamp
-  - common_item_book_magic
+  - Skill_2
   - common_item_scroll_2
   - common_item_compass
   - common_item_trophy
@@ -188,7 +188,7 @@ SpriteAtlas:
   - common_item_gift
   - common_item_medal_silver
   - common_item_mission
-  - common_item_arrow
+  - Ranged_Attack_2
   - common_item_event
   - common_item_jewel2_red
   - common_item_guild
@@ -230,7 +230,7 @@ SpriteAtlas:
   - common_item_helmet
   - common_item_potionPurple
   - common_item_armor
-  - common_item_hand
+  - Power_2
   - common_item_chest_special
   - common_item_energy_purple
   - common_item_ax

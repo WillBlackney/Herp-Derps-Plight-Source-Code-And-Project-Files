@@ -3,17 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class ChooseCharacterWindow : MonoBehaviour
+public class ChooseCharacterWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     // Properties + Component References
     #region
     [Header("Component References")]
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI classNameText;
+    [SerializeField] private Image bgImage;
 
     [Header("Model References")]
     public UniversalCharacterModel myUCM;
+
+    [Header("Color Properties")]
+    [SerializeField] private Color normalColor;
+    [SerializeField] private Color mouseOverColor;    
 
     [Header("Properties")]
     private List<CharacterTemplateSO> selectableTemplates = new List<CharacterTemplateSO>();
@@ -104,5 +110,20 @@ public class ChooseCharacterWindow : MonoBehaviour
     }
     #endregion
 
-
+    // Input Listeners
+    #region
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        bgImage.color = mouseOverColor;
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        bgImage.color = normalColor;
+    }
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        bgImage.color = normalColor;
+        MainMenuController.Instance.BuildWindowFromCharacterTemplateData(currentTemplateSelection);
+    }
+    #endregion
 }

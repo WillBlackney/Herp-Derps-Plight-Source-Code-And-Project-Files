@@ -89,4 +89,7 @@ public class CharacterTemplateSO : ScriptableObject
 
     [Header("Item Properties")]
     public SerializedItemManagerModel serializedItemManager;
+
+    [Header("Talent Properties")]
+    public List<TalentPairingModel> talentPairings;
 }

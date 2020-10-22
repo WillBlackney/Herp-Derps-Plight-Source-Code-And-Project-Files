@@ -74,6 +74,11 @@ public class AudioManager : Singleton<AudioManager>
     #region
     public void PlaySound(Sound s)
     {
+        if(s == Sound.None)
+        {
+            return;
+        }
+
         AudioModel a = Array.Find(allAudioModels, sound => sound.soundType == s);
         if (a != null)
         {

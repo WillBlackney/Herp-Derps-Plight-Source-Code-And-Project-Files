@@ -109,3 +109,6 @@ MonoBehaviour:
   serializedItemManager:
     mainHandItem: {fileID: 11400000, guid: bfbdb5e21e389ab4c9aae5b49350a1d0, type: 2}
     offHandItem: {fileID: 0}
+  talentPairings:
+  - talentSchool: 10
+    talentLevel: 2

@@ -55,7 +55,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 22df7865b275d4e7287490341fcc63b7, type: 3}
-    totalSpriteSurfaceArea: 1003783
+    totalSpriteSurfaceArea: 1051359
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -84,6 +84,8 @@ SpriteAtlas:
   - {fileID: 6616375705706489589, guid: 6900647849bf74c2daec9082ae11cc1c, type: 3}
   - {fileID: 21300000, guid: 91e63ba8a3e074c49914de9bd3c3e995, type: 3}
   - {fileID: 21300000, guid: e78b69e89cdcd46d28129c02932f1ab1, type: 3}
+  - {fileID: 2739257977840523792, guid: 86fc7af859fb785408c893224577b174, type: 3}
+  - {fileID: -85186940178138031, guid: 6fc60f29cc90bea4e96f6d63e8964144, type: 3}
   - {fileID: 2665930108083454080, guid: 6a63ef398306547be8cad5f83b8994a3, type: 3}
   - {fileID: 346016010000759473, guid: 2dd4604925f264cb1990818641361190, type: 3}
   - {fileID: 6559573953508838307, guid: 8c291789626564f05ab21623737d19dd, type: 3}
@@ -93,6 +95,7 @@ SpriteAtlas:
   - {fileID: 384262645948542492, guid: 38bdd50ae121147ddbc4fb9bc6d728c4, type: 3}
   - {fileID: 21300000, guid: 86979e3a324dd4ff29e0934322f2d1be, type: 3}
   - {fileID: -3464876302821893888, guid: 7f5c149ac1a164cbcb6c8452a8c8c699, type: 3}
+  - {fileID: -1955166092432882607, guid: dc32289a2e3343d46ac1493220da95f8, type: 3}
   - {fileID: 1480961996498039030, guid: 6f2505aafe1be4eebaef05cf00b2966a, type: 3}
   - {fileID: 8907393020666943449, guid: 19a745caa897a41759d4b8b5d0b482f2, type: 3}
   - {fileID: 5570872773714183081, guid: b2791cda845e14da3af29c4f1a475a55, type: 3}
@@ -106,6 +109,7 @@ SpriteAtlas:
   - {fileID: -1220990825568754350, guid: 6f5cc40e4a1cd458c9901849a7f52a07, type: 3}
   - {fileID: 21300000, guid: c427d18e4d1b0421fadef6a901e45461, type: 3}
   - {fileID: 21300000, guid: 65f42b8e2924f4e26adf8ce8fb34fcdf, type: 3}
+  - {fileID: 4037593995099128090, guid: 7d2baf8eab96182449176fe8c6d4297a, type: 3}
   - {fileID: 21300000, guid: a37ec89f5ca17463ea97a831015fd5a1, type: 3}
   - {fileID: 21300000, guid: 007c6ccf576724e848dbe53ca4d14c88, type: 3}
   m_PackedSpriteNamesToIndex:
@@ -134,6 +138,8 @@ SpriteAtlas:
   - common_btn_blue_0
   - common_circle_dark
   - notification_bg_red
+  - top_status_bg_1_0
+  - common_btn_gray_3_0
   - common_btn_green_0
   - common_btn_gray_0
   - common_btn_purple_0
@@ -143,6 +149,7 @@ SpriteAtlas:
   - common_btn_small_bg_0
   - common_bg_effect_circle
   - common_screen_dim_bg_0
+  - switch_on_bg_0
   - common_btn_brown_0
   - common_btn_disable_0
   - slider_bar_color_0
@@ -156,6 +163,7 @@ SpriteAtlas:
   - common_btn_red_0
   - top_btn_back
   - common_circle_red
+  - common_btn_gray_2_0
   - common_circle_blue
   - slider_pointer
   m_Tag: 00_Common

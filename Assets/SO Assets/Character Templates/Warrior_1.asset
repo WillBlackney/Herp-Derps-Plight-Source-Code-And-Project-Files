@@ -86,16 +86,16 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
+  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
+  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
+  - {fileID: 11400000, guid: 00b73be375fd9ce4e9735d3cba2ca025, type: 2}
+  - {fileID: 11400000, guid: 00b73be375fd9ce4e9735d3cba2ca025, type: 2}
   - {fileID: 11400000, guid: 3d57eb73a05e9a04b96c08944c441410, type: 2}
   - {fileID: 11400000, guid: 3d57eb73a05e9a04b96c08944c441410, type: 2}
   - {fileID: 11400000, guid: 63b57dcf22d80b749bf6fdcebe2b66cb, type: 2}
   - {fileID: 11400000, guid: 63b57dcf22d80b749bf6fdcebe2b66cb, type: 2}
-  - {fileID: 11400000, guid: 00b73be375fd9ce4e9735d3cba2ca025, type: 2}
-  - {fileID: 11400000, guid: 00b73be375fd9ce4e9735d3cba2ca025, type: 2}
-  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
-  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
-  - {fileID: 11400000, guid: b31f4356f84f2bd48add48495139e0e5, type: 2}
   - {fileID: 11400000, guid: fdcce8d7a9e4a0748bf221b25c761b09, type: 2}
+  - {fileID: 11400000, guid: b31f4356f84f2bd48add48495139e0e5, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_7
@@ -111,3 +111,8 @@ MonoBehaviour:
   serializedItemManager:
     mainHandItem: {fileID: 11400000, guid: e561792383921474c9710a3ebc1add23, type: 2}
     offHandItem: {fileID: 11400000, guid: a49466273aff6954d8e0303879ded604, type: 2}
+  talentPairings:
+  - talentSchool: 5
+    talentLevel: 1
+  - talentSchool: 2
+    talentLevel: 1

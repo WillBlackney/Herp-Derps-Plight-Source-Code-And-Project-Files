@@ -86,16 +86,16 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: ef2b9ffdee54c0a48adddcc159a622a3, type: 2}
-  - {fileID: 11400000, guid: ef2b9ffdee54c0a48adddcc159a622a3, type: 2}
-  - {fileID: 11400000, guid: c06d99a9268bd124c80720801c12d236, type: 2}
-  - {fileID: 11400000, guid: c06d99a9268bd124c80720801c12d236, type: 2}
   - {fileID: 11400000, guid: 25f889ca097d2c742a862cb5f2097476, type: 2}
   - {fileID: 11400000, guid: 25f889ca097d2c742a862cb5f2097476, type: 2}
+  - {fileID: 11400000, guid: c06d99a9268bd124c80720801c12d236, type: 2}
+  - {fileID: 11400000, guid: c06d99a9268bd124c80720801c12d236, type: 2}
   - {fileID: 11400000, guid: 0163cb54b6898bf46aab115bc74d0350, type: 2}
   - {fileID: 11400000, guid: 0163cb54b6898bf46aab115bc74d0350, type: 2}
-  - {fileID: 11400000, guid: 3587b8c7f77c41d4eafbc12793734665, type: 2}
   - {fileID: 11400000, guid: c29964ec64c216a41ac3fd20a356a5f5, type: 2}
+  - {fileID: 11400000, guid: ef2b9ffdee54c0a48adddcc159a622a3, type: 2}
+  - {fileID: 11400000, guid: ef2b9ffdee54c0a48adddcc159a622a3, type: 2}
+  - {fileID: 11400000, guid: 3587b8c7f77c41d4eafbc12793734665, type: 2}
   modelParts:
   - Human_Chest
   - Human_Face_5
@@ -109,3 +109,8 @@ MonoBehaviour:
   serializedItemManager:
     mainHandItem: {fileID: 11400000, guid: f2e579d4bb84b82479f2d0b3183c07d4, type: 2}
     offHandItem: {fileID: 0}
+  talentPairings:
+  - talentSchool: 6
+    talentLevel: 1
+  - talentSchool: 2
+    talentLevel: 1

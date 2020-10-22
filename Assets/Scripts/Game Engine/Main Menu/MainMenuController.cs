@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
+using System.Linq;
+using System;
+using UnityEngine.UI;
 
 public class MainMenuController : Singleton<MainMenuController>
 {
@@ -11,26 +15,39 @@ public class MainMenuController : Singleton<MainMenuController>
     public List<CharacterTemplateSO> selectableCharacterTemplates;
 
     [Header("Front Screen Components")]
-    public GameObject frontScreenParent;
-    public GameObject continueButtonParent;
-    public GameObject abandonRunButtonParent;
-    public GameObject abandonRunPopupParent;
+    [SerializeField] private GameObject frontScreenParent;
+    [SerializeField] private GameObject continueButtonParent;
+    [SerializeField] private GameObject abandonRunButtonParent;
+    [SerializeField] private GameObject abandonRunPopupParent;
 
     [Header("New Game Screen Components")]
-    public GameObject newGameScreenVisualParent;
-    public ChooseCharacterWindow[] chooseCharacterWindows;
+    [SerializeField] private GameObject newGameScreenVisualParent;
+    [SerializeField] private ChooseCharacterWindow[] chooseCharacterWindows;
 
     [Header("In Game Menu Components")]
-    public GameObject inGameMenuScreenParent;
+    [SerializeField] private GameObject inGameMenuScreenParent;
 
     [Header("Run Modifier Menu Components")]
-    public GameObject runModifierScreenParent;
-    public RunModifierButton randomizeCharactersButton;
-    public RunModifierButton randomizeDecksButton;
-    public RunModifierButton improviseDecksButton;
-    public bool randomizeCharacters = false;
-    public bool randomizeDecks = false;
-    public bool improviseDecks = false;
+    [SerializeField] private GameObject runModifierScreenParent;
+    [SerializeField] private RunModifierButton randomizeCharactersButton;
+    [SerializeField] private RunModifierButton randomizeDecksButton;
+    [SerializeField] private RunModifierButton improviseDecksButton;
+
+    [Header("Run Modifier Properties")]
+    [HideInInspector] public bool randomizeCharacters = false;
+    [HideInInspector] public bool randomizeDecks = false;
+    [HideInInspector] public bool improviseDecks = false;
+
+    [Header("Character Info Popup Components")]
+    [SerializeField] private GameObject characterInfoPopupVisualParent;
+    [SerializeField] private Scrollbar characterInfoPopupScrollBar;
+    [SerializeField] private TextMeshProUGUI characterNameText;
+    [SerializeField] private TextMeshProUGUI characterClassNameText;
+    [SerializeField] private UniversalCharacterModel characterModel;
+    [SerializeField] private CardInfoPanel[] cardInfoPanels;
+    [SerializeField] private TalentInfoPanel[] talentInfoPanels;
+
+
     #endregion
 
     // Initialization 
@@ -344,5 +361,93 @@ public class MainMenuController : Singleton<MainMenuController>
 
     }
     #endregion
+
+    // Character Pop Up Screen Logic
+    #region
+    public void BuildWindowFromCharacterTemplateData(CharacterTemplateSO data)
+    {
+        // Enable window
+        ShowCharacterInfoPopupWindow();
+
+        // Set Texts
+        characterNameText.text = data.myName;
+        characterClassNameText.text = data.myClassName;
+
+        // Build model
+        CharacterModelController.BuildModelFromStringReferences(characterModel, data.modelParts);
+        CharacterModelController.ApplyItemManagerDataToCharacterModelView(data.serializedItemManager, characterModel);
+
+        // Build talent info panels
+        BuildTalentInfoPanels(data);
+
+        // Build card info panels
+        BuildCardInfoPanels(data);
+    }
+    public void OnCharacterInfoPopUpBackButtonClicked()
+    {
+        HideCharacterInfoPopupWindow();
+    }
+    private void HideCharacterInfoPopupWindow()
+    {
+        characterInfoPopupVisualParent.SetActive(false);
+    }
+    public void ShowCharacterInfoPopupWindow()
+    {
+        characterInfoPopupVisualParent.SetActive(true);
+        characterInfoPopupScrollBar.value = 1;
+    }
+    private void BuildCardInfoPanels(CharacterTemplateSO data)
+    {
+        // Disable + Reset all card info panels
+        for(int i = 0; i< cardInfoPanels.Length; i++)
+        {
+            cardInfoPanels[i].gameObject.SetActive(false);
+            cardInfoPanels[i].copiesCount = 0;
+            cardInfoPanels[i].dataRef = null;
+        }
+
+        // Rebuild panels
+        for (int i = 0; i < data.deck.Count; i++)
+        {
+            CardInfoPanel matchingPanel = null;
+            foreach(CardInfoPanel panel in cardInfoPanels)
+            {
+                if(panel.dataRef == data.deck[i])
+                {
+                    matchingPanel = panel;
+                    break;
+                }
+            }
+
+            if(matchingPanel != null)
+            {
+                matchingPanel.copiesCount++;
+                matchingPanel.copiesCountText.text = "x" + matchingPanel.copiesCount.ToString();
+            }
+            else
+            {
+                cardInfoPanels[i].gameObject.SetActive(true);
+                cardInfoPanels[i].BuildCardInfoPanelFromCardDataSO(data.deck[i]);
+            }
+        }
+
+    }
+    private void BuildTalentInfoPanels(CharacterTemplateSO data)
+    {
+        // Disable + Reset all talent info panels
+        for (int i = 0; i < talentInfoPanels.Length; i++)
+        {
+            talentInfoPanels[i].gameObject.SetActive(false);
+        }
+
+        for (int i = 0; i < data.talentPairings.Count; i++)
+        {
+            talentInfoPanels[i].BuildFromTalentPairingModel(data.talentPairings[i]);
+        }
+
+    }
+
+    #endregion
+
 
 }

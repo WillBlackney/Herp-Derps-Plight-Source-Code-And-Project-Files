@@ -86,16 +86,16 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 63b57dcf22d80b749bf6fdcebe2b66cb, type: 2}
-  - {fileID: 11400000, guid: 63b57dcf22d80b749bf6fdcebe2b66cb, type: 2}
   - {fileID: 11400000, guid: c725ced37bae68e4ea02c145e66668d9, type: 2}
   - {fileID: 11400000, guid: c725ced37bae68e4ea02c145e66668d9, type: 2}
+  - {fileID: 11400000, guid: 63b57dcf22d80b749bf6fdcebe2b66cb, type: 2}
+  - {fileID: 11400000, guid: 63b57dcf22d80b749bf6fdcebe2b66cb, type: 2}
+  - {fileID: 11400000, guid: f6e3850c009fce847b7ce96497469eb5, type: 2}
   - {fileID: 11400000, guid: 12e01ae28d25a4042a23a910d9c32a1d, type: 2}
   - {fileID: 11400000, guid: 12e01ae28d25a4042a23a910d9c32a1d, type: 2}
   - {fileID: 11400000, guid: 3515e3b8e92620548af756ddbf500130, type: 2}
   - {fileID: 11400000, guid: 3515e3b8e92620548af756ddbf500130, type: 2}
   - {fileID: 11400000, guid: 58ad3605f0bb1844dac2124cd71174c1, type: 2}
-  - {fileID: 11400000, guid: f6e3850c009fce847b7ce96497469eb5, type: 2}
   modelParts:
   - Undead_Chest
   - Undead_Face_6
@@ -109,3 +109,8 @@ MonoBehaviour:
   serializedItemManager:
     mainHandItem: {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}
     offHandItem: {fileID: 11400000, guid: ef6ffb4463b38054d8b9a7ae0f010477, type: 2}
+  talentPairings:
+  - talentSchool: 5
+    talentLevel: 1
+  - talentSchool: 11
+    talentLevel: 1
