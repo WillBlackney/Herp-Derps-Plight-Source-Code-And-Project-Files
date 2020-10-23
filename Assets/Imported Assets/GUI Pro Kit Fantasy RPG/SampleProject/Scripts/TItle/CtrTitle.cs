@@ -30,6 +30,8 @@ namespace FantasyRPG
 
         IEnumerator Start()
         {
+            Debug.LogWarning("Start() started...");
+
             yield return new WaitForSeconds(1f);
 
             //title animation
@@ -47,6 +49,7 @@ namespace FantasyRPG
 
             //show login panel
             panelLogin.Show(this);
+            Debug.LogWarning("Start() finished...");
         }
 
 

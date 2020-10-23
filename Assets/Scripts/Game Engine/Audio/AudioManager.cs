@@ -65,8 +65,6 @@ public class AudioManager : Singleton<AudioManager>
             a.source.pitch = a.pitch;
             a.source.loop = a.loop;
         }
-
-        //PlaySound(Sound.Music_Battle_Theme_1);
     }
     #endregion
 
@@ -174,6 +172,7 @@ public enum Sound
     Projectile_Shadowball_Fired = 30,
 
     Music_Battle_Theme_1 = 7,
+    Music_Main_Menu_Theme_1 = 36,
 
 
 

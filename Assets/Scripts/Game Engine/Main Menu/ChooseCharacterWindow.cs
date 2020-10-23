@@ -12,6 +12,8 @@ public class ChooseCharacterWindow : MonoBehaviour, IPointerEnterHandler, IPoint
     [Header("Component References")]
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI classNameText;
+    [SerializeField] private TextMeshProUGUI currentIndexText;
+    [SerializeField] private TextMeshProUGUI maxIndexText;
     [SerializeField] private Image bgImage;
 
     [Header("Model References")]
@@ -22,7 +24,6 @@ public class ChooseCharacterWindow : MonoBehaviour, IPointerEnterHandler, IPoint
     [SerializeField] private Color mouseOverColor;    
 
     [Header("Properties")]
-    private List<CharacterTemplateSO> selectableTemplates = new List<CharacterTemplateSO>();
     public CharacterTemplateSO currentTemplateSelection;
     private bool hasRunInitialSetup = false;
     #endregion
@@ -34,12 +35,7 @@ public class ChooseCharacterWindow : MonoBehaviour, IPointerEnterHandler, IPoint
         if(hasRunInitialSetup == false)
         {
             hasRunInitialSetup = true;
-
-            // populate templates list
-            selectableTemplates = MainMenuController.Instance.selectableCharacterTemplates;
-
-            // set starting view state
-            SetMyTemplate(selectableTemplates[0]);
+            maxIndexText.text = MainMenuController.Instance.selectableCharacterTemplates.Count.ToString();
         }
     }
     #endregion
@@ -49,12 +45,12 @@ public class ChooseCharacterWindow : MonoBehaviour, IPointerEnterHandler, IPoint
     public void OnNextTemplateButtonClicked()
     {
         EventSystem.current.SetSelectedGameObject(null);
-        SetMyTemplate(GetNextTemplate());
+        MainMenuController.Instance.GetAndSetNextAvailableTemplate(this);
     }
     public void OnPreviousTemplateButtonClicked()
     {
         EventSystem.current.SetSelectedGameObject(null);
-        SetMyTemplate(GetPreviousTemplate());
+        MainMenuController.Instance.GetAndSetPreviousAvailableTemplate(this);
     }
     #endregion
 
@@ -66,47 +62,16 @@ public class ChooseCharacterWindow : MonoBehaviour, IPointerEnterHandler, IPoint
         classNameText.text = "The " + template.myClassName;
         CharacterModelController.BuildModelFromStringReferences(myUCM, template.modelParts);
         CharacterModelController.ApplyItemManagerDataToCharacterModelView(template.serializedItemManager, myUCM);
+        currentIndexText.text = (MainMenuController.Instance.selectableCharacterTemplates.IndexOf(currentTemplateSelection) + 1).ToString();
     }
     #endregion
 
     // Get + Set Templates
     #region
-    private void SetMyTemplate(CharacterTemplateSO template)
+    public void SetMyTemplate(CharacterTemplateSO template)
     {
         currentTemplateSelection = template;
         BuildMyViewsFromTemplate(template);
-    }
-    private CharacterTemplateSO GetNextTemplate()
-    {
-        CharacterTemplateSO templateReturned = null;
-
-        int currentIndex = selectableTemplates.IndexOf(currentTemplateSelection);
-        if(currentIndex == selectableTemplates.Count - 1)
-        {
-            templateReturned = selectableTemplates[0];
-        }
-        else
-        {
-            templateReturned = selectableTemplates[currentIndex + 1];
-        }
-
-        return templateReturned;
-    }
-    private CharacterTemplateSO GetPreviousTemplate()
-    {
-        CharacterTemplateSO templateReturned = null;
-
-        int currentIndex = selectableTemplates.IndexOf(currentTemplateSelection);
-        if (currentIndex == 0)
-        {
-            templateReturned = selectableTemplates[selectableTemplates.Count - 1];
-        }
-        else
-        {
-            templateReturned = selectableTemplates[currentIndex - 1];
-        }
-
-        return templateReturned;
     }
     #endregion
 

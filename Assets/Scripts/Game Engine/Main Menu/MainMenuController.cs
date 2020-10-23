@@ -4,6 +4,8 @@ using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
+using Spriter2UnityDX;
+using System.Collections;
 
 public class MainMenuController : Singleton<MainMenuController>
 {
@@ -14,6 +16,8 @@ public class MainMenuController : Singleton<MainMenuController>
 
     [Header("Front Screen Components")]
     [SerializeField] private GameObject frontScreenParent;
+    public GameObject frontScreenBgParent;
+    public CanvasGroup frontScreenGuiCg;
     [SerializeField] private GameObject continueButtonParent;
     [SerializeField] private GameObject abandonRunButtonParent;
     [SerializeField] private GameObject abandonRunPopupParent;
@@ -38,6 +42,7 @@ public class MainMenuController : Singleton<MainMenuController>
 
     [Header("Character Info Popup Components")]
     [SerializeField] private GameObject characterInfoPopupVisualParent;
+    [SerializeField] private CanvasGroup characterInfoPopupCg;
     [SerializeField] private Scrollbar characterInfoPopupScrollBar;
     [SerializeField] private TextMeshProUGUI characterNameText;
     [SerializeField] private TextMeshProUGUI characterClassNameText;
@@ -57,6 +62,7 @@ public class MainMenuController : Singleton<MainMenuController>
     {
         RenderMenuButtons();
         SetRunModifiersToDefaults();
+        SetChooseCharacterWindowStartingStates();
     }
     #endregion
 
@@ -67,8 +73,11 @@ public class MainMenuController : Singleton<MainMenuController>
     {
         // disable button highlight
         EventSystem.current.SetSelectedGameObject(null);
-        ShowNewGameScreen();
-        HideFrontScreen();
+        BlackScreenController.Instance.FadeOutAndBackIn(0.5f, 0f, 0.5f, () =>
+        {
+            ShowNewGameScreen();
+            HideFrontScreen();
+        });
     }
     public void OnMenuContinueButtonClicked()
     {
@@ -284,12 +293,15 @@ public class MainMenuController : Singleton<MainMenuController>
     }
     public void OnMainMenuButtonClicked()
     {
-        HideNewGameScreen();
-        ShowFrontScreen();
+        BlackScreenController.Instance.FadeOutAndBackIn(0.5f, 0f, 0.5f, () =>
+        {
+            HideNewGameScreen();
+            ShowFrontScreen();
+        });
     }
     #endregion
 
-    // Misc
+    // Get + Set Character Templates Logic
     #region
     public List<CharacterTemplateSO> GetChosenTemplatesFromChooseCharacterWindows()
     {
@@ -301,6 +313,85 @@ public class MainMenuController : Singleton<MainMenuController>
         }
 
         return chosenCharacters;
+    }
+    public void SetChooseCharacterWindowStartingStates()
+    {
+        // Set each window to a different character
+        for(int i = 0; i < chooseCharacterWindows.Length; i++)
+        {
+            chooseCharacterWindows[i].SetMyTemplate(selectableCharacterTemplates[i]);
+        }
+    }
+    public void GetAndSetNextAvailableTemplate(ChooseCharacterWindow window)
+    {
+        CharacterTemplateSO nextTemplate = GetNextTemplate(window.currentTemplateSelection); 
+
+        while (!IsTemplateAvailable(nextTemplate))
+        {
+            nextTemplate = GetNextTemplate(nextTemplate);
+        }
+
+        window.SetMyTemplate(nextTemplate);
+
+    }
+    public void GetAndSetPreviousAvailableTemplate(ChooseCharacterWindow window)
+    {
+        CharacterTemplateSO nextTemplate = GetPreviousTemplate(window.currentTemplateSelection);
+
+        while (!IsTemplateAvailable(nextTemplate))
+        {
+            nextTemplate = GetPreviousTemplate(nextTemplate);
+        }
+
+        window.SetMyTemplate(nextTemplate);
+
+    }
+    private CharacterTemplateSO GetNextTemplate(CharacterTemplateSO currentTemplate)
+    {
+        CharacterTemplateSO templateReturned = null;
+
+        int currentIndex = selectableCharacterTemplates.IndexOf(currentTemplate);
+        if (currentIndex == selectableCharacterTemplates.Count - 1)
+        {
+            templateReturned = selectableCharacterTemplates[0];
+        }
+        else
+        {
+            templateReturned = selectableCharacterTemplates[currentIndex + 1];
+        }
+
+        return templateReturned;
+    }
+    private CharacterTemplateSO GetPreviousTemplate(CharacterTemplateSO currentTemplate)
+    {
+        CharacterTemplateSO templateReturned = null;
+
+        int currentIndex = selectableCharacterTemplates.IndexOf(currentTemplate);
+        if (currentIndex == 0)
+        {
+            templateReturned = selectableCharacterTemplates[selectableCharacterTemplates.Count - 1];
+        }
+        else
+        {
+            templateReturned = selectableCharacterTemplates[currentIndex - 1];
+        }
+
+        return templateReturned;
+    }
+    private bool IsTemplateAvailable(CharacterTemplateSO template)
+    {
+        bool boolReturned = true;
+
+        foreach(ChooseCharacterWindow c in chooseCharacterWindows)
+        {
+            if(c.currentTemplateSelection == template)
+            {
+                boolReturned = false;
+                break;
+            }
+        }
+
+        return boolReturned;
     }
     #endregion
 
@@ -394,9 +485,22 @@ public class MainMenuController : Singleton<MainMenuController>
     }
     public void ShowCharacterInfoPopupWindow()
     {
+        // Enable and fade in screen
         characterInfoPopupVisualParent.SetActive(true);
+        characterInfoPopupCg.alpha = 0;
+        characterInfoPopupCg.DOFade(1f, 0.35f);
+
+        // Reset scroll window position
         characterInfoPopupScrollBar.value = 1;
+
+        // Set model alpha to 0
+        EntityRenderer er = characterModel.GetComponent<EntityRenderer>();
+        er.Color = new Color(er.Color.r, er.Color.g, er.Color.b, 0f);
+
+        // Fade in model
+        CharacterEntityController.Instance.FadeInEntityRenderer(characterModel.GetComponent<EntityRenderer>(), 3f);
     }
+    
     private void BuildCardInfoPanels(CharacterTemplateSO data)
     {
         // Disable + Reset all card info panels

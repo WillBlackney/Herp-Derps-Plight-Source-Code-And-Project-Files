@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -35,8 +36,22 @@ public class EventSequenceController : Singleton<EventSequenceController>
     #region
     private IEnumerator RunStandardGameModeSetup()
     {
+        // Set starting view state
+        BlackScreenController.Instance.DoInstantFadeOut();
         MainMenuController.Instance.ShowFrontScreen();
-        yield return null;
+        MainMenuController.Instance.frontScreenGuiCg.alpha = 0;
+        MainMenuController.Instance.frontScreenBgParent.transform.DOScale(1.2f, 0f);
+        yield return new WaitForSeconds(1);
+
+        AudioManager.Instance.FadeInSound(Sound.Music_Main_Menu_Theme_1, 3f);
+        BlackScreenController.Instance.FadeInScreen(2f);
+        yield return new WaitForSeconds(2);
+
+        MainMenuController.Instance.frontScreenBgParent.transform.DOKill();
+        MainMenuController.Instance.frontScreenBgParent.transform.DOScale(1f, 1.5f).SetEase(Ease.Linear);
+        yield return new WaitForSeconds(1f);
+
+        MainMenuController.Instance.frontScreenGuiCg.DOFade(1f, 1f).SetEase(Ease.OutCubic);
     }
     private IEnumerator RunCombatSceneStartup()
     {
@@ -120,8 +135,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Destroy game scene
         HandleCombatSceneTearDown();
 
-        // Stop battle music
-        AudioManager.Instance.StopSound(Sound.Music_Battle_Theme_1);
+        // Stop battle music, start menu music
+        AudioManager.Instance.FadeOutSound(Sound.Music_Battle_Theme_1, 1f);
+        AudioManager.Instance.FadeInSound(Sound.Music_Main_Menu_Theme_1, 1f);
 
         // when black screen is totally faded out, wait for 2 seconds 
         // for untracked visual event coroutines to finish
@@ -190,7 +206,8 @@ public class EventSequenceController : Singleton<EventSequenceController>
     private void HandleLoadCombatEncounter(EnemyWaveSO enemyWave)
     {
         // Play battle theme music
-        AudioManager.Instance.PlaySound(Sound.Music_Battle_Theme_1);
+        AudioManager.Instance.FadeOutSound(Sound.Music_Main_Menu_Theme_1, 1f);
+        AudioManager.Instance.FadeInSound(Sound.Music_Battle_Theme_1, 1f);
 
         // Create player characters in scene
         CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();

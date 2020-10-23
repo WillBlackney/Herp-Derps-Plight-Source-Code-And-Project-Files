@@ -86,14 +86,8 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: f2dec37ca62bac941af3d64b45e253c7, type: 2}
-  - {fileID: 11400000, guid: f2dec37ca62bac941af3d64b45e253c7, type: 2}
-  - {fileID: 11400000, guid: 7c0947162266e2144a22faa67d2338a4, type: 2}
-  - {fileID: 11400000, guid: 7c0947162266e2144a22faa67d2338a4, type: 2}
-  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
-  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
-  - {fileID: 11400000, guid: 87754b7748bb31947acb4178c8beb7c3, type: 2}
-  - {fileID: 11400000, guid: 87754b7748bb31947acb4178c8beb7c3, type: 2}
+  - {fileID: 11400000, guid: 212781e4e821e01408fddf9d24d791b3, type: 2}
+  - {fileID: 11400000, guid: 63b57dcf22d80b749bf6fdcebe2b66cb, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1
@@ -112,3 +106,4 @@ MonoBehaviour:
   serializedItemManager:
     mainHandItem: {fileID: 11400000, guid: dfeeccc8c225a66488eb3e4eb76d6c3b, type: 2}
     offHandItem: {fileID: 0}
+  talentPairings: []

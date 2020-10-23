@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using DG.Tweening;
-
+using Spriter2UnityDX;
 
 public class CharacterEntityController : Singleton<CharacterEntityController>
 {
@@ -1270,6 +1270,56 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         {
             view.entityRenderer.Color = new Color(view.entityRenderer.Color.r, view.entityRenderer.Color.g, view.entityRenderer.Color.b, currentAlpha - (fadeSpeed * Time.deltaTime));
             currentAlpha = view.entityRenderer.Color.a;
+            yield return null;
+        }
+
+        // Resolve
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+    }
+
+    // NOTE: Below functions should be in CharacterModelController, but cant
+    // because CMC is a static class and not a mono behaviour, so here they shall go...
+
+    public void FadeOutEntityRenderer(EntityRenderer view, float speed = 5f, CoroutineData cData = null)
+    {
+        Debug.Log("CharacterEntityController.FadeOutEntityRenderer() called...");
+        StartCoroutine(FadeOutEntityRendererCoroutine(view, speed, cData));
+    }
+    private IEnumerator FadeOutEntityRendererCoroutine(EntityRenderer view, float speed, CoroutineData cData)
+    {
+        float currentAlpha = view.Color.a;
+        float fadeSpeed = speed;
+
+        while (currentAlpha > 0)
+        {
+            view.Color = new Color(view.Color.r, view.Color.g, view.Color.b, currentAlpha - (fadeSpeed * Time.deltaTime));
+            currentAlpha = view.Color.a;
+            yield return null;
+        }
+
+        // Resolve
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+    }
+    public void FadeInEntityRenderer(EntityRenderer view, float speed = 5f, CoroutineData cData = null)
+    {
+        Debug.Log("CharacterEntityController.FadeInEntityRenderer() called...");
+        StartCoroutine(FadeInEntityRendererCoroutine(view, speed, cData));
+    }
+    private IEnumerator FadeInEntityRendererCoroutine(EntityRenderer view, float speed, CoroutineData cData)
+    {
+        float currentAlpha = view.Color.a;
+        float fadeSpeed = speed;
+
+        while (currentAlpha < 1)
+        {
+            view.Color = new Color(view.Color.r, view.Color.g, view.Color.b, currentAlpha + (fadeSpeed * Time.deltaTime));
+            currentAlpha = view.Color.a;
             yield return null;
         }
 
