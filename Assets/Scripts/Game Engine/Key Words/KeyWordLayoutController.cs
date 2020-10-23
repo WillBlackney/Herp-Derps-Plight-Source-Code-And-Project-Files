@@ -1,8 +1,7 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 
 public class KeyWordLayoutController : Singleton<KeyWordLayoutController>
 {
@@ -121,7 +120,7 @@ public class KeyWordLayoutController : Singleton<KeyWordLayoutController>
                     dataReturned = data;
                     break;
                 }
-                else
+                else if (model.kewWordType != KeyWordType.WeaponRequirement)
                 {
                     dataReturned = data;
                     break;

@@ -30,7 +30,7 @@ public class CardViewModel : MonoBehaviour
     [Header("Image References")]
     public Image graphicImage;
     public Image talentSchoolImage;
-    public Image cardTypeImage;
+    public Image[] cardTypeImages;
     public GameObject talentSchoolParent;
 
     [Header("Colouring References")]

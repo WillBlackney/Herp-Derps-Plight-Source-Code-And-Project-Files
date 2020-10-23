@@ -57,43 +57,7 @@ public class GlobalSettings : Singleton<GlobalSettings>
     {
         return gameMode == StartingSceneSetting.CombatSceneSingle;
     }
-    #endregion   
-
-    // Standard game logic
-    #region
-    private IEnumerator RunStandardGameModeSetup()
-    {
-        yield return null;
-
-        MainMenuController.Instance.ShowFrontScreen();
-    }
-    #endregion
-
-    // Combat testing scene logic
-    #region
-    private IEnumerator RunCombatSceneStartup()
-    {
-        yield return null;
-
-        // Play battle theme music
-        AudioManager.Instance.PlaySound(Sound.Music_Battle_Theme_1);
-
-        // Build character data
-        CharacterDataController.Instance.BuildAllCharactersFromCharacterTemplateList(testingCharacterTemplates);
-
-        // Create player characters in scene
-        CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
-        //CreateTestingPlayerCharacters();
-
-        // Spawn enemies
-        EnemySpawner.Instance.SpawnEnemyWave("Basic", testingEnemyWave);
-
-        // Start a new combat event
-        ActivationManager.Instance.OnNewCombatEventStarted();
-
-    }
-    #endregion
-    
+    #endregion       
 }
 
 public enum InnateSettings

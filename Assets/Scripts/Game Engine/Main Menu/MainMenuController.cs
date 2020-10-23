@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
-using System.Linq;
-using System;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class MainMenuController : Singleton<MainMenuController>
 {
@@ -46,6 +44,9 @@ public class MainMenuController : Singleton<MainMenuController>
     [SerializeField] private UniversalCharacterModel characterModel;
     [SerializeField] private CardInfoPanel[] cardInfoPanels;
     [SerializeField] private TalentInfoPanel[] talentInfoPanels;
+    [SerializeField] private CanvasGroup previewCardCg;
+    [SerializeField] private CardViewModel previewCardVM;
+
 
 
     #endregion
@@ -445,6 +446,20 @@ public class MainMenuController : Singleton<MainMenuController>
             talentInfoPanels[i].BuildFromTalentPairingModel(data.talentPairings[i]);
         }
 
+    }
+    public void BuildAndShowCardViewModelPopup(CardDataSO data)
+    {
+        previewCardCg.gameObject.SetActive(true);
+        CardData cData = CardController.Instance.GetCardDataFromLibraryByName(data.cardName);
+        //CardController.Instance.BuildCardViewModelFromCardDataSO(data, previewCardVM);
+        CardController.Instance.BuildCardViewModelFromCardData(cData, previewCardVM);
+        previewCardCg.alpha = 0;
+        previewCardCg.DOFade(1f, 0.25f);
+    }
+    public void HidePreviewCard()
+    {
+        previewCardCg.gameObject.SetActive(false);
+        previewCardCg.alpha = 0;
     }
 
     #endregion

@@ -55,7 +55,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 746f6e37f5e1a4d6cb69180ca1394b46, type: 3}
-    totalSpriteSurfaceArea: 370608
+    totalSpriteSurfaceArea: 381424
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -76,6 +76,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 9aca2a7890b784423a0c569215708604, type: 3}
   - {fileID: 21300000, guid: 4a15aad8540d849e7a699a11e3f0913d, type: 3}
   - {fileID: -8870355283827902848, guid: 5859c66bf438f4985920421dd839b962, type: 3}
+  - {fileID: 7428238789365211542, guid: a2ec77aba3d4290419b699c9fa9d6dd2, type: 3}
   - {fileID: 21300000, guid: 395d838cf14e8485da4e9da25716d704, type: 3}
   - {fileID: 473853115452768410, guid: 1c1b0fed464a64d5a96b45f29bb0d99c, type: 3}
   - {fileID: 8423922006103968348, guid: 176df93ebb17d4519b13a59559fa2275, type: 3}
@@ -99,6 +100,7 @@ SpriteAtlas:
   - reward_item_gift
   - reward_item_frame_orange
   - reward_deco_line_right_0
+  - reward_item_frame_focus_white_0
   - result_star_dim
   - result_title_ribbon_0
   - reward_label_orange_0

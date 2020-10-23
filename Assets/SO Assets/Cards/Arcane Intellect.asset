@@ -15,6 +15,7 @@ MonoBehaviour:
   cardName: Arcane Intellect
   cardDescription: "Draw 2 cards. \nReduce their Energy cost by 1 this combat."
   cardSprite: {fileID: 21300000, guid: 3549ceb8b43a55c41896e48b5a9b04a2, type: 3}
+  xEnergyCost: 0
   cardEnergyCost: 2
   cardType: 1
   targettingType: 0
@@ -24,6 +25,7 @@ MonoBehaviour:
   innate: 0
   fleeting: 0
   unplayable: 0
+  lifeSteal: 0
   blessing: 0
   customDescription:
   - color: 1
@@ -37,7 +39,7 @@ MonoBehaviour:
   - color: 0
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'cards.
+    phrase: ' cards.
 
 '
   - color: 1
@@ -61,12 +63,23 @@ MonoBehaviour:
     cardEffectType: 9
     splitTargetEffect: 0
     splitTargetType: 0
+    removeBlockFrom: 0
+    modifyDeckCardEffect: 0
+    permanentBlockGain: 0
+    permanentDamageGain: 0
+    chooseTargetRandomly: 0
+    passiveApplicationLoops: 0
+    validRandomTargetsType: 0
+    damageLoops: 0
+    drawSpecificType: 0
+    specificTypeDrawn: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
     blessing: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
+    modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
@@ -75,8 +88,10 @@ MonoBehaviour:
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
+    drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 0
+    healthRestored: 0
     healthLost: 0
     energyGained: 0
     cardsDrawn: 2

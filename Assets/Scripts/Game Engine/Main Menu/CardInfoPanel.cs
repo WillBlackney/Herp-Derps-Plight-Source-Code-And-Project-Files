@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 
 public class CardInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    // Proeprties + Component References
+    #region
     [Header("Properties")]
     [HideInInspector] public CardDataSO dataRef;  
     [HideInInspector] public int copiesCount = 0;
@@ -23,7 +25,10 @@ public class CardInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [SerializeField] private Image talentOverlay;
     [SerializeField] private Image rarityOverlay;
     [SerializeField] private Image cardTypeImage;
+    #endregion
 
+    // Setup + Initialization
+    #region
     public void BuildCardInfoPanelFromCardDataSO(CardDataSO data)
     {
         dataRef = data;
@@ -41,14 +46,21 @@ public class CardInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         copiesCount++;
         copiesCountText.text = "x" + copiesCount.ToString();
     }
+    #endregion
 
+    // Input listeners
+    #region
     public void OnPointerEnter(PointerEventData eventData)
     {
         talentUnderlay.color = hoverColor;
+        MainMenuController.Instance.BuildAndShowCardViewModelPopup(dataRef);
+        KeyWordLayoutController.Instance.BuildAllViewsFromKeyWordModels(dataRef.keyWordModels);
     }
-
     public void OnPointerExit(PointerEventData eventData)
     {
         talentUnderlay.color = normalColor;
+        MainMenuController.Instance.HidePreviewCard();
+        KeyWordLayoutController.Instance.FadeOutMainView();
     }
+    #endregion
 }

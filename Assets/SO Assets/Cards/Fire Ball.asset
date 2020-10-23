@@ -46,11 +46,13 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: damage.
+    phrase: 'damage.
+
+'
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Increase the damage of all '
+    phrase: 'Subsequent '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -58,20 +60,21 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'cards this combat by '
+    phrase: 'cards deal '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 1
+    phrase: '1 '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: .
+    phrase: extra damage.
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
     permanentDamageGain: 0
@@ -96,6 +99,7 @@ MonoBehaviour:
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
+    drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 4
     healthRestored: 0
@@ -146,6 +150,7 @@ MonoBehaviour:
     cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
+    removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
     permanentDamageGain: 0
@@ -170,6 +175,7 @@ MonoBehaviour:
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
+    drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 0
     healthRestored: 0

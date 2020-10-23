@@ -519,7 +519,7 @@ public class CardController : Singleton<CardController>
 
         // Set texts and images
         SetCardViewModelNameText(cardVM, card.cardName);
-        SetCardViewModelDescriptionText(cardVM, card.cardDescription);
+        SetCardViewModelDescriptionText(cardVM, TextLogic.ConvertCustomStringListToString(card.customDescription));
         SetCardViewModelEnergyText(null, cardVM, card.cardEnergyCost.ToString());
         SetCardViewModelGraphicImage(cardVM, card.cardSprite);
         SetCardViewModelTalentSchoolImage(cardVM, SpriteLibrary.Instance.GetTalentSchoolSpriteFromEnumData(card.talentSchool));
@@ -562,6 +562,7 @@ public class CardController : Singleton<CardController>
         
         // Set texts and images
         SetCardViewModelNameText(cardVM, card.cardName);
+        AutoUpdateCardDescription(card);
         SetCardViewModelDescriptionText(cardVM, TextLogic.ConvertCustomStringListToString(card.cardDescriptionTwo));
         SetCardViewModelEnergyText(null, cardVM, card.cardBaseEnergyCost.ToString());
         SetCardViewModelGraphicImage(cardVM, GetCardSpriteByName(card.cardName));
@@ -599,6 +600,7 @@ public class CardController : Singleton<CardController>
     #region
     public void AutoUpdateCardDescriptionText(Card card, CharacterEntityModel target = null)
     {
+        Debug.LogWarning("AutoUpdateCardDescriptionText");
         // Function is used to automatically update the descriptions
         // of cards in hand when the values that dictate the damage/block 
         // they grant are changed by external factors
@@ -727,6 +729,88 @@ public class CardController : Singleton<CardController>
         // Finally, set the new value on the description text
         SetCardViewModelDescriptionText(card.cardVM, TextLogic.ConvertCustomStringListToString(card.cardDescriptionTwo));
     }
+    public void AutoUpdateCardDescription(CardData card)
+    {
+        Debug.LogWarning("AutoUpdateCardDescriptionText");
+        // Function is used to automatically update the descriptions
+        // of cards in hand when the values that dictate the damage/block 
+        // they grant are changed by external factors
+
+        // Damage card logic
+        foreach (CustomString cs in card.cardDescriptionTwo)
+        {
+            // Does the custom string even have a dynamic value?
+            if (cs.getPhraseFromCardValue)
+            {
+                // It does, start searching for a card effect that
+                // matches the effect value of the custom string
+                CardEffect matchingEffect = null;
+                foreach (CardEffect ce in card.cardEffects)
+                {
+                    if (ce.cardEffectType == cs.cardEffectType)
+                    {
+                        // Found a match, cache it and break
+                        matchingEffect = ce;
+                        break;
+                    }
+                }
+
+                // Which type of value should be inserted into the custom string phrase?
+
+                // Damage enemies 
+                if (cs.cardEffectType == CardEffectType.DamageTarget ||
+                    cs.cardEffectType == CardEffectType.DamageAllEnemies)
+                {
+                    int damageValue = matchingEffect.baseDamageValue;
+                    cs.phrase = damageValue.ToString();
+                }
+
+                // Modify All Cards In Hand >> Damage All Enemies
+                else if (cs.cardEffectType == CardEffectType.ModifyAllCardsInHand)
+                {
+                    // Find the damage all enemies mod effect
+                    ModifyAllCardsInHandEffect damageEffectMod = null;
+                    foreach (ModifyAllCardsInHandEffect modEffect2 in matchingEffect.modifyCardsInHandEffects)
+                    {
+                        if (modEffect2.modifyEffect == ModifyAllCardsInHandEffectType.DamageAllEnemies)
+                        {
+                            damageEffectMod = modEffect2;
+                            break;
+                        }
+                    }
+
+                    if (damageEffectMod != null)
+                    {
+                        int damageValue = damageEffectMod.baseDamage;
+                        cs.phrase = damageValue.ToString();
+                    }
+
+                }
+
+                // Lose HP
+                else if (cs.cardEffectType == CardEffectType.LoseHP)
+                {
+                    int damageValue = matchingEffect.healthLost;
+                    cs.phrase = damageValue.ToString();
+                }
+
+                // Gain Block Target
+                else if (cs.cardEffectType == CardEffectType.GainBlockTarget ||
+                    cs.cardEffectType == CardEffectType.GainBlockSelf ||
+                    cs.cardEffectType == CardEffectType.GainBlockAllAllies)
+                {
+                    int blockGainValue = matchingEffect.blockGainValue;
+                    cs.phrase = blockGainValue.ToString();
+                }
+
+                // Draw cards
+                else if (cs.cardEffectType == CardEffectType.DrawCards)
+                {
+                    cs.phrase = matchingEffect.cardsDrawn.ToString();
+                }
+            }
+        }
+    }
     public void SetCardViewModelNameText(CardViewModel cvm, string name)
     {
         cvm.nameText.text = name;
@@ -821,7 +905,10 @@ public class CardController : Singleton<CardController>
     }
     public void SetCardViewModelCardTypeImage(CardViewModel cvm, Sprite sprite)
     {
-        cvm.cardTypeImage.sprite = sprite;
+        foreach(Image im in cvm.cardTypeImages)
+        {
+            im.sprite = sprite;
+        }
 
         // do for card preview also
         if (cvm.myPreviewCard != null)

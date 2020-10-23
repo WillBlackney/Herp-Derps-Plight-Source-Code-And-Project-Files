@@ -27,13 +27,14 @@ MonoBehaviour:
   innate: 1
   fleeting: 0
   unplayable: 0
+  lifeSteal: 0
   blessing: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'Deal '
-  - color: 0
+  - color: 2
     getPhraseFromCardValue: 1
     cardEffectType: 6
     phrase: '3 '
@@ -56,6 +57,14 @@ MonoBehaviour:
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    removeBlockFrom: 0
+    modifyDeckCardEffect: 0
+    permanentBlockGain: 0
+    permanentDamageGain: 0
+    chooseTargetRandomly: 0
+    passiveApplicationLoops: 0
+    validRandomTargetsType: 0
+    damageLoops: 0
     drawSpecificType: 0
     specificTypeDrawn: 0
     discoveryLocation: 0
@@ -73,8 +82,10 @@ MonoBehaviour:
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
+    drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 1
+    healthRestored: 0
     healthLost: 0
     energyGained: 0
     cardsDrawn: 0

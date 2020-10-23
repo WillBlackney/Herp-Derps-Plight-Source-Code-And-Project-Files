@@ -35,9 +35,8 @@ public class EventSequenceController : Singleton<EventSequenceController>
     #region
     private IEnumerator RunStandardGameModeSetup()
     {
-        yield return null;
-
         MainMenuController.Instance.ShowFrontScreen();
+        yield return null;
     }
     private IEnumerator RunCombatSceneStartup()
     {

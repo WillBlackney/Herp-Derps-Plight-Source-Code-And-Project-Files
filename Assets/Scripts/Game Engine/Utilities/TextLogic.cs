@@ -19,6 +19,11 @@ public static class TextLogic
     public static string shadow = "<color=#CF01BC>";
     public static string air = "<color=#36EDFF>";
     public static string poison = "<color=#00EC4A>";
+
+    public static string commonRarity = "<color=#FFFFFF>";
+    public static string rareRarity = "<color=#6BFFE2>";
+    public static string epicRarity = "<color=#D14EFF>";
+    public static string legendaryRarity = "<color=#FFD440>";
     #endregion
 
     // Build stuff
@@ -114,6 +119,28 @@ public static class TextLogic
         }
 
         stringReturned = builder.ToString();
+
+        return stringReturned;
+    }
+    #endregion
+
+    // Misc Stuff
+    #region
+    public static string GetTalentPanelDescriptionText(TalentPairingModel data)
+    {
+        string stringReturned = "";
+
+        if(data.talentLevel == 1)
+        {
+            stringReturned = "This character can add " + ReturnColoredText("Common", commonRarity) +
+               " cards from the " + ReturnColoredText(data.talentSchool.ToString(), neutralYellow) + " tree to it's deck.";
+        }
+        else if (data.talentLevel == 2)
+        {
+            stringReturned = "This character can add " + ReturnColoredText("Common", commonRarity) + ", " +
+                ReturnColoredText("Rare", rareRarity) + " and " + ReturnColoredText("Epic", epicRarity) +
+                " cards from the " + ReturnColoredText(data.talentSchool.ToString(), neutralYellow) + " tree to it's deck.";
+        }
 
         return stringReturned;
     }
