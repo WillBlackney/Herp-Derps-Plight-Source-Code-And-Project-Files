@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
+using TMPro;
+using DG.Tweening;
 
 public class LootController : Singleton<LootController>
 {
@@ -13,10 +13,19 @@ public class LootController : Singleton<LootController>
 
     [Header("Component References")]
     [SerializeField] private GameObject visualParent;
+    [SerializeField] private CanvasGroup visualParentCg;
     [SerializeField] private GameObject frontPageParent;
+    [SerializeField] private CanvasGroup frontPageCg;
     [SerializeField] private GameObject chooseCardScreenParent;
+    [SerializeField] private CanvasGroup chooseCardScreenCg;
     [SerializeField] private LootTab[] cardLootTabs;
     [SerializeField] private LootScreenCardViewModel[] lootCardViewModels;
+
+    [Header("Character Deck Quick View References")]
+    [SerializeField] private TextMeshProUGUI characterNameText;
+    [SerializeField] private CardInfoPanel[] cardPanels;
+    [SerializeField] private CardViewModel previewCardVM;
+    [SerializeField] private CanvasGroup previewCardCg;
 
     public LootResultModel CurrentLootResultData
     {
@@ -27,6 +36,18 @@ public class LootController : Singleton<LootController>
 
     // Build Views
     #region
+    public void CloseAndResetAllViews()
+    {
+        HideChooseCardScreen();
+        HideFrontPageView();
+        HideMainLootView();
+
+        foreach(LootTab lt in cardLootTabs)
+        {
+            HideCardLootTab(lt);
+        }
+
+    }
     public void BuildLootScreenElementsFromLootResultData()
     {
         // Enable Choose card buttons
@@ -41,8 +62,46 @@ public class LootController : Singleton<LootController>
     {
         for (int i = 0; i < cardData.Count; i++)
         {
+            // Build card views
             CardController.Instance.BuildCardViewModelFromCardData(cardData[i], lootCardViewModels[i].cardViewModel);
+
+            // Cache the card data
+            lootCardViewModels[i].myDataRef = cardData[i];
         }
+    }
+    private void BuildCardInfoPanels(List<CardData> data)
+    {
+        // Disable + Reset all card info panels
+        for (int i = 0; i < cardPanels.Length; i++)
+        {
+            cardPanels[i].gameObject.SetActive(false);
+            cardPanels[i].copiesCount = 0;
+            cardPanels[i].cardDataRef = null;
+        }
+
+        // Rebuild panels
+        for (int i = 0; i < data.Count; i++)
+        {
+            // Build new tab from card data
+            cardPanels[i].gameObject.SetActive(true);
+            cardPanels[i].BuildCardInfoPanelFromCardData(data[i]);
+
+            // Hide text count
+            cardPanels[i].copiesCountText.gameObject.SetActive(false);
+        }
+    }
+    public void BuildAndShowCardViewModelPopup(CardData data)
+    {
+        previewCardCg.gameObject.SetActive(true);
+        CardData cData = CardController.Instance.GetCardDataFromLibraryByName(data.cardName);
+        CardController.Instance.BuildCardViewModelFromCardData(cData, previewCardVM);
+        previewCardCg.alpha = 0;
+        previewCardCg.DOFade(1f, 0.25f);
+    }
+    public void HidePreviewCard()
+    {
+        previewCardCg.gameObject.SetActive(false);
+        previewCardCg.alpha = 0;
     }
     #endregion
 
@@ -50,11 +109,19 @@ public class LootController : Singleton<LootController>
     #region
     public void ShowMainLootView()
     {
+        visualParentCg.alpha = 0;
         visualParent.SetActive(true);
+        visualParentCg.DOFade(1f, 0.35f);
+    }
+    public void HideMainLootView()
+    {
+        visualParent.SetActive(false);
     }
     public void ShowFrontPageView()
     {
+        frontPageCg.alpha = 0;
         frontPageParent.SetActive(true);
+        frontPageCg.DOFade(1f, 0.35f);
     }
     public void HideFrontPageView()
     {
@@ -62,7 +129,9 @@ public class LootController : Singleton<LootController>
     }
     public void ShowChooseCardScreen()
     {
+        chooseCardScreenCg.alpha = 0;
         chooseCardScreenParent.SetActive(true);
+        chooseCardScreenCg.DOFade(1f, 0.35f);
     }
     public void HideChooseCardScreen()
     {
@@ -82,7 +151,7 @@ public class LootController : Singleton<LootController>
     #region
     public void SetAndCacheNewLootResult()
     {
-        currentLootResultData = GenerateNewLootResult();
+        CurrentLootResultData = GenerateNewLootResult();
     }
     public LootResultModel GenerateNewLootResult()
     {
@@ -176,13 +245,15 @@ public class LootController : Singleton<LootController>
             }
 
             // Get the predetermined card loot result for the character
-            List<CardData> cardChoices = currentLootResultData.allCharacterCardChoices[index];
+            List<CardData> cardChoices = CurrentLootResultData.allCharacterCardChoices[index];
 
             // Cache the character, so we know which character to reward a card to if player chooses one
             currentCharacterSelection = CharacterDataController.Instance.allPlayerCharacters[index];
+            characterNameText.text = currentCharacterSelection.myName;
 
             // Build choose card view models
             BuildChooseCardScreenCardsFromData(cardChoices);
+            BuildCardInfoPanels(currentCharacterSelection.deck);
 
             // Hide front screen, show choose card screen
             HideFrontPageView();
@@ -210,6 +281,14 @@ public class LootController : Singleton<LootController>
     {
         HideChooseCardScreen();
         ShowFrontPageView();
+    }
+    public void OnContinueButtonClicked()
+    {
+        if (VisualEventManager.Instance.EventQueue.Count == 0)
+        {
+            CloseAndResetAllViews();
+            EventSequenceController.Instance.HandleLoadNextEncounter();
+        }
     }
    
     #endregion

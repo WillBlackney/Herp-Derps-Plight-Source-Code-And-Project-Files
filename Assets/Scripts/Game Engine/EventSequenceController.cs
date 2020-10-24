@@ -69,7 +69,6 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Create player characters in scene
         CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
-        //CreateTestingPlayerCharacters();
 
         // Spawn enemies
         EnemySpawner.Instance.SpawnEnemyWave("Basic", GlobalSettings.Instance.testingEnemyWave);
@@ -183,8 +182,6 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // will differ depending on the encounters they transisition from
         // and to (e.g. screen fade outs, moving characters off screen, etc).
         // The logic to decide which transisition will occur will go here.
-
-
 
         // Cache previous encounter data 
         EncounterData previousEncounter = JourneyManager.Instance.CurrentEncounter;

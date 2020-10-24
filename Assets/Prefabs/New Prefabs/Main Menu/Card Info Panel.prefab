@@ -774,10 +774,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63026756ba8c76d42809ff49c0588569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataRef: {fileID: 0}
+  dataSoRef: {fileID: 0}
   copiesCount: 0
   normalColor: {r: 0.59607846, g: 0.59607846, b: 0.59607846, a: 1}
   hoverColor: {r: 1, g: 1, b: 1, a: 1}
+  location: 0
   cardNameText: {fileID: 8285723800145329642}
   energyCostText: {fileID: 8285723801192733691}
   copiesCountText: {fileID: 4463098243931018108}
@@ -798,7 +799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverSound: 33
-  clickSound: 8
+  clickSound: 34
   activeOnHover: {fileID: 0}
 --- !u!1 &8285723800145329644
 GameObject:

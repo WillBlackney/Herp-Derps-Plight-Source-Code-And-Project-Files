@@ -508,7 +508,7 @@ public class MainMenuController : Singleton<MainMenuController>
         {
             cardInfoPanels[i].gameObject.SetActive(false);
             cardInfoPanels[i].copiesCount = 0;
-            cardInfoPanels[i].dataRef = null;
+            cardInfoPanels[i].dataSoRef = null;
         }
 
         // Rebuild panels
@@ -517,7 +517,7 @@ public class MainMenuController : Singleton<MainMenuController>
             CardInfoPanel matchingPanel = null;
             foreach(CardInfoPanel panel in cardInfoPanels)
             {
-                if(panel.dataRef == data.deck[i])
+                if(panel.dataSoRef == data.deck[i])
                 {
                     matchingPanel = panel;
                     break;

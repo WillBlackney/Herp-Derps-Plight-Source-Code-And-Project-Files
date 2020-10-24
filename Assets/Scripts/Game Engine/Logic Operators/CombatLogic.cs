@@ -743,18 +743,24 @@ public class CombatLogic : Singleton<CombatLogic>
     {
         Debug.Log("CombatLogic.StartCombatOverDefeatProcess() called...");
         currentCombatState = CombatGameState.DefeatTriggered;
+        /*
         VisualEventManager.Instance.CreateVisualEvent(() => {
             UIManager.Instance.defeatPopup.SetActive(true);
         }, QueuePosition.Back, 0.5f);
+        */
     }
     private void StartCombatOverVictoryProcess()
     {
         Debug.Log("CombatLogic.StartCombatOverVictoryProcess() called...");
         currentCombatState = CombatGameState.VictoryTriggered;
+        EventSequenceController.Instance.StartCombatVictorySequence();
+
+        /*
         VisualEventManager.Instance.CreateVisualEvent(() => {
             UIManager.Instance.victoryPopup.SetActive(true);
             UIManager.Instance.continueToNextEncounterButtonParent.SetActive(true);
         }, QueuePosition.Back, 0.5f);
+        */
 
         // to do: should update the save file with new character health values
         // and also create/save a loot result file to save

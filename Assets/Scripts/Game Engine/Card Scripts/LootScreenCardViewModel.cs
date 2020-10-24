@@ -26,6 +26,10 @@ public class LootScreenCardViewModel : MonoBehaviour, IPointerEnterHandler, IPoi
         {
             KeyWordLayoutController.Instance.BuildAllViewsFromKeyWordModels(myDataRef.keyWordModels);
         }
+        else
+        {
+            Debug.LogWarning("data ref is null");
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -38,12 +42,5 @@ public class LootScreenCardViewModel : MonoBehaviour, IPointerEnterHandler, IPoi
     {
         KeyWordLayoutController.Instance.FadeOutMainView();
         LootController.Instance.OnLootCardViewModelClicked(this);
-    }
-
-    public void ResetSelfOnEventComplete()
-    {
-        myDataRef = null;
-        cardViewModel.movementParent.localScale = new Vector3(originalScale, originalScale, 1f);
-        gameObject.SetActive(false);
     }
 }
