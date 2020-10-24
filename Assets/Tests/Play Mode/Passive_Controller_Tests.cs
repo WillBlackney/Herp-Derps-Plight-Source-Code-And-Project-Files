@@ -586,7 +586,7 @@ namespace Tests
             string passiveName = PassiveController.Instance.GetPassiveIconDataByName(CORPSE_COLLECTOR_NAME).passiveName;
             int stacks = 2;
             int expected = 2;
-            characterData.deck.Add(CardController.Instance.BuildCardDataFromScriptableObjectData(mockExpendCard, characterData));
+            characterData.deck.Add(CardController.Instance.BuildCardDataFromScriptableObjectData(mockExpendCard));
 
             // Act 
             player1 = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
@@ -1162,7 +1162,7 @@ namespace Tests
             // ACT 
             // Setup card
             CardDataSO mockExpendCard = AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/Tests/Mock Data Files/Mock Exhaust Card.asset");
-            CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockExpendCard, characterData);
+            CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockExpendCard);
             characterData.deck.Add(newCard);
 
             // Create characters
@@ -1199,7 +1199,7 @@ namespace Tests
             // ACT 
             // Setup card
             CardDataSO mockExpendCard = AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/Tests/Mock Data Files/Mock Exhaust Card.asset");
-            CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockExpendCard, characterData);
+            CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockExpendCard);
             characterData.deck.Add(newCard);
 
             // Create characters
@@ -1235,7 +1235,7 @@ namespace Tests
             // ACT 
             // Setup card
             CardDataSO mockExpendCard = AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/Tests/Mock Data Files/Mock Exhaust Card.asset");
-            CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockExpendCard, characterData);
+            CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockExpendCard);
             characterData.deck.Add(newCard);
 
             // Create characters

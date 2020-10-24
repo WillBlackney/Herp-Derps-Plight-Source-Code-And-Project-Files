@@ -23,11 +23,15 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Start application type
         if (GlobalSettings.Instance.gameMode == StartingSceneSetting.CombatSceneSingle)
         {
-            StartCoroutine(RunCombatSceneStartup());
+            StartCoroutine(RunCombatSceneSetup());
         }
         else if (GlobalSettings.Instance.gameMode == StartingSceneSetting.Standard)
         {
             StartCoroutine(RunStandardGameModeSetup());
+        }
+        else if (GlobalSettings.Instance.gameMode == StartingSceneSetting.CombatEndLootEvent)
+        {
+            StartCoroutine(RunCombatEndLootEventSetup());
         }
     }
     #endregion
@@ -53,7 +57,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         MainMenuController.Instance.frontScreenGuiCg.DOFade(1f, 1f).SetEase(Ease.OutCubic);
     }
-    private IEnumerator RunCombatSceneStartup()
+    private IEnumerator RunCombatSceneSetup()
     {
         yield return null;
 
@@ -72,7 +76,19 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Start a new combat event
         ActivationManager.Instance.OnNewCombatEventStarted();
+    }
 
+    private IEnumerator RunCombatEndLootEventSetup()
+    {
+        yield return null;
+
+        // Build character data
+        CharacterDataController.Instance.BuildAllCharactersFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
+
+        // Create player characters in scene
+        CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
+        
+        StartCombatVictorySequence();
     }
     #endregion
 
@@ -217,6 +233,34 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Start a new combat event
         ActivationManager.Instance.OnNewCombatEventStarted();
+    }
+    #endregion
+
+    // Handle Post Combat Stuff
+    #region
+    public void StartCombatVictorySequence()
+    {
+        StartCoroutine(StartCombatVictorySequenceCoroutine());
+    }
+    private IEnumerator StartCombatVictorySequenceCoroutine()
+    {
+        // wait until v queue count = 0
+        yield return new WaitUntil(()=> VisualEventManager.Instance.EventQueue.Count == 0);
+
+        AudioManager.Instance.FadeOutSound(Sound.Music_Battle_Theme_1, 1f);
+
+        // fade out combat music
+        // play victory music sfx
+        // create victory pop up + firework particles + xp gain stuff (in future)
+
+        // generate loot result
+        LootController.Instance.SetAndCacheNewLootResult();
+        LootController.Instance.BuildLootScreenElementsFromLootResultData();
+
+        // save game state + cache loot result
+        // fade in loot window
+        LootController.Instance.ShowMainLootView();
+        LootController.Instance.ShowFrontPageView();
     }
     #endregion
 

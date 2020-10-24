@@ -73,7 +73,7 @@ namespace Tests
             bool expected;
 
             // Act 
-            CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockExpendCard, characterData);
+            CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockExpendCard);
             characterData.deck.Add(newCard);
 
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
@@ -104,7 +104,7 @@ namespace Tests
             bool expected;
 
             // Act 
-            CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockExpendCard, characterData);
+            CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockExpendCard);
             characterData.deck.Add(newCard);
 
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
@@ -138,7 +138,7 @@ namespace Tests
             GlobalSettings.Instance.onPowerCardPlayedSetting = OnPowerCardPlayedSettings.RemoveFromPlay;
 
             // Act 
-            CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockPowerCard, characterData);
+            CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockPowerCard);
             characterData.deck.Add(newCard);
 
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
@@ -169,7 +169,7 @@ namespace Tests
             GlobalSettings.Instance.onPowerCardPlayedSetting = OnPowerCardPlayedSettings.Expend;
 
             // Act 
-            CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockPowerCard, characterData);
+            CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockPowerCard);
             characterData.deck.Add(newCard);
 
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
@@ -201,7 +201,7 @@ namespace Tests
             deckData.Clear();
 
             // Act 
-            CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockPowerCard, characterData);
+            CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockPowerCard);
             characterData.deck.Add(newCard);
 
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
@@ -230,7 +230,7 @@ namespace Tests
 
             for (int i = 0; i < 10; i++)
             {
-                CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockPowerCard, characterData);
+                CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockPowerCard);
                 characterData.deck.Add(newCard);
             }
 
@@ -256,7 +256,7 @@ namespace Tests
             CharacterEntityModel model;
             for (int i = 0; i < 10; i++)
             {
-                CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockPowerCard, characterData);
+                CardData newCard = CardController.Instance.BuildCardDataFromScriptableObjectData(mockPowerCard);
                 characterData.deck.Add(newCard);
             }
 

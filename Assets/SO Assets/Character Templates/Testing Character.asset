@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2410c6608dbef744a9643f0571333299, type: 3}
   m_Name: Testing Character
   m_EditorClassIdentifier: 
-  myName: Testing Character
-  myClassName: Testing Character
+  myName: Test Name
+  myClassName: Test Class
   health: 30
   maxHealth: 30
   power: 0
@@ -106,4 +106,8 @@ MonoBehaviour:
   serializedItemManager:
     mainHandItem: {fileID: 11400000, guid: dfeeccc8c225a66488eb3e4eb76d6c3b, type: 2}
     offHandItem: {fileID: 0}
-  talentPairings: []
+  talentPairings:
+  - talentSchool: 2
+    talentLevel: 2
+  - talentSchool: 3
+    talentLevel: 2

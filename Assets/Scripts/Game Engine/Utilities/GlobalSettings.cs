@@ -85,7 +85,7 @@ public enum StartingSceneSetting
 {
     Standard = 0,
     CombatSceneSingle = 1,
-    CombatSceneWithProgression,
+    CombatEndLootEvent = 3,
     IntegrationTesting = 2,
 
 }

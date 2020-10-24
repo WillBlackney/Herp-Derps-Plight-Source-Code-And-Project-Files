@@ -762,11 +762,4 @@ public class CombatLogic : Singleton<CombatLogic>
     }
     #endregion
 
-    // Next Encounter Button Clicked
-    #region
-    public void OnContinueToNextEncounterButtonClicked()
-    {
-
-    }
-    #endregion
 }

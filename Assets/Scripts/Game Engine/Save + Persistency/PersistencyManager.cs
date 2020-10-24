@@ -101,7 +101,8 @@ public class PersistencyManager : Singleton<PersistencyManager>
                 {
                     int randomIndex = RandomGenerator.NumberBetween(0, viableCards.Count - 1);
                     CardData randomCard = CardController.Instance.BuildCardDataFromScriptableObjectData(viableCards[randomIndex]);
-                    character.deck.Add(randomCard);
+                    CharacterDataController.Instance.AddCardToCharacterDeck(character, randomCard);
+                    //character.deck.Add(randomCard);
                 }
             }
         }
@@ -120,7 +121,8 @@ public class PersistencyManager : Singleton<PersistencyManager>
                 // Fill deck with 10 improvise cards
                 for (int i = 0; i < 5; i++)
                 {
-                    character.deck.Add(CardController.Instance.BuildCardDataFromScriptableObjectData(improviseCardData));
+                    CharacterDataController.Instance.AddCardToCharacterDeck(character, CardController.Instance.BuildCardDataFromScriptableObjectData(improviseCardData));
+                    //character.deck.Add(CardController.Instance.BuildCardDataFromScriptableObjectData(improviseCardData));
                 }
             }
         }

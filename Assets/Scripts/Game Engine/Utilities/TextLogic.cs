@@ -42,7 +42,7 @@ public static class TextLogic
 
     // Get strings, colours and text
     #region
-    private static string ReturnColoredText(string text, string color)
+    public static string ReturnColoredText(string text, string color)
     {
         // Just give it a string and a color reference,
         // and this function takes care of everything

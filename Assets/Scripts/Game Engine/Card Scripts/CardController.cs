@@ -294,13 +294,11 @@ public class CardController : Singleton<CardController>
 
     // Build Cards, Decks, View Models and Data
     #region
-    public CardData BuildCardDataFromScriptableObjectData(CardDataSO d, CharacterData owner = null)
+    public CardData BuildCardDataFromScriptableObjectData(CardDataSO d)
     {
         CardData c = new CardData();
 
         // Core data
-       // c.myCardDataSO = d;
-        //c.myCharacterDataOwner = owner;
         c.cardName = d.cardName;
         c.cardDescription = d.cardDescription;
         c.cardSprite = GetCardSpriteByName(d.cardName);
@@ -356,9 +354,6 @@ public class CardController : Singleton<CardController>
         Debug.Log("CardController.BuildCardFromCardData() called...");
 
         Card card = new Card();
-
-        // Data links
-        //card.myCardDataSO = data;
 
         // Core data
         card.owner = owner;
@@ -435,9 +430,6 @@ public class CardController : Singleton<CardController>
 
         Card card = new Card();
 
-        // Data links
-        //card.myCardDataSO = original.myCardDataSO;
-
         // Core data
         card.owner = owner;
         card.cardName = original.cardName;
@@ -482,10 +474,6 @@ public class CardController : Singleton<CardController>
         {
             card.keyWordModels.Add(ObjectCloner.CloneJSON(kwdm));
         }
-
-        // lists
-        //card.cardEventListeners.AddRange(original.cardEventListeners);
-        //card.cardEffects.AddRange(original.cardEffects);
 
         return card;
         

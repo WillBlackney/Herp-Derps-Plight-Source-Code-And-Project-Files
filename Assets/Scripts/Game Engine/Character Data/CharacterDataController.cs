@@ -55,7 +55,8 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.deck = new List<CardData>();
         foreach(CardDataSO cso in template.deck)
         {
-            newCharacter.deck.Add(CardController.Instance.BuildCardDataFromScriptableObjectData(cso, newCharacter));
+            AddCardToCharacterDeck(newCharacter, CardController.Instance.BuildCardDataFromScriptableObjectData(cso));
+            //newCharacter.deck.Add(CardController.Instance.BuildCardDataFromScriptableObjectData(cso, newCharacter));
         }
 
         // UCM Data
@@ -107,4 +108,12 @@ public class CharacterDataController : Singleton<CharacterDataController>
         data.maxHealth = newValue;
     }
     #endregion
+
+    // Modify Character Deck
+    public void AddCardToCharacterDeck(CharacterData character, CardData card)
+    {
+        character.deck.Add(card);
+    }
+
+
 }
