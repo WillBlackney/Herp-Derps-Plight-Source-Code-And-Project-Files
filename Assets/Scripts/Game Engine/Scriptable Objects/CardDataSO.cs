@@ -47,6 +47,15 @@ public class CardDataSO : ScriptableObject
     [LabelWidth(100)]
     [GUIColor("Blue")]
     public Rarity rarity;
+    [VerticalGroup("Core Data/Stats")]
+    [LabelWidth(100)]
+    [GUIColor("Blue")]
+    public bool racialCard;
+    [ShowIf("ShowOriginRace")]
+    [VerticalGroup("Core Data/Stats")]
+    [LabelWidth(100)]
+    [GUIColor("Blue")]
+    public CharacterRace originRace;    
 
     [BoxGroup("Key Words", true, true)]
     [LabelWidth(100)]
@@ -101,6 +110,10 @@ public class CardDataSO : ScriptableObject
         {
             return false;
         }
+    }
+    public bool ShowOriginRace()
+    {
+        return racialCard;
     }
 }
 

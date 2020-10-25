@@ -52,6 +52,24 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     public InitiativeSettings initiativeSetting;
 
+    [Header("Loot Settings")]
+    [LabelWidth(200)]
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
+    [Range(1, 100)]
+    public int rareCardLowerLimitProbability;
+
+    [LabelWidth(200)]
+    [Range(1, 100)]
+    public int rareCardUpperLimitProbability;
+
+    [LabelWidth(200)]
+    [Range(1, 100)]
+    public int epicCardLowerLimitProbability;
+
+    [LabelWidth(200)]
+    [Range(1, 100)]
+    public int epicCardUpperLimitProbability;
+
     // Odin bools
     public bool ShowTestSceneProperties()
     {

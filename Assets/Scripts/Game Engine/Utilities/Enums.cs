@@ -113,6 +113,7 @@ public enum DamageType
 {
     None = 0,
     Physical = 1,
+    Magic = 7,
     Poison = 2,
     Frost = 3,
     Fire = 4,
@@ -348,6 +349,7 @@ public enum TextColor
     BlueNumber = 2,
     KeyWordYellow = 3,
     PhysicalBrown = 4,
+    MagicPurple = 9,
     FireRed = 5,
     ShadowPurple = 6,
     AirBlue = 7,

@@ -42,7 +42,9 @@ public class CharacterDataController : Singleton<CharacterDataController>
         CharacterData newCharacter = new CharacterData();
 
         newCharacter.myName = template.myName;
-        //newCharacter.health = template.health;
+        newCharacter.myClassName = template.myClassName;
+        newCharacter.race = template.race;
+
         SetCharacterMaxHealth(newCharacter, template.maxHealth);
         SetCharacterHealth(newCharacter, template.health);
 

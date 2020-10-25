@@ -169,6 +169,38 @@ public class CardController : Singleton<CardController>
 
         return sprite;
     }
+    public CardDataSO FindRacialCardDataSO(CharacterRace race)
+    {
+        CardDataSO dataReturned = null;
+
+        for(int i = 0; i < allCards.Length; i++)
+        {
+            if(allCardScriptableObjects[i].racialCard &&
+                allCardScriptableObjects[i].originRace == race)
+            {
+                dataReturned = allCardScriptableObjects[i];
+                break;
+            }
+        }
+
+        return dataReturned;
+    }
+    public CardData FindRacialCardData(CharacterRace race)
+    {
+        CardData dataReturned = null;
+
+        for (int i = 0; i < allCards.Length; i++)
+        {
+            if (allCards[i].racialCard &&
+                allCards[i].originRace == race)
+            {
+                dataReturned = allCards[i];
+                break;
+            }
+        }
+
+        return dataReturned;
+    }
 
     // Core Queires
     public List<CardData> GetCardsQuery(IEnumerable<CardData> queriedCollection, TalentSchool ts = TalentSchool.None, Rarity r = Rarity.None, bool blessing = false)
@@ -310,6 +342,8 @@ public class CardController : Singleton<CardController>
         c.targettingType = d.targettingType;
         c.talentSchool = d.talentSchool;
         c.rarity = d.rarity;
+        c.racialCard = d.racialCard;
+        c.originRace = d.originRace;
 
         // Key words
         c.expend = d.expend;
@@ -365,6 +399,8 @@ public class CardController : Singleton<CardController>
         card.cardSprite = GetCardSpriteByName(data.cardName);
         card.cardType = data.cardType;
         card.rarity = data.rarity;
+        card.racialCard = data.racialCard;
+        card.originRace = data.originRace;
         card.targettingType = data.targettingType;
         card.talentSchool = data.talentSchool;
 

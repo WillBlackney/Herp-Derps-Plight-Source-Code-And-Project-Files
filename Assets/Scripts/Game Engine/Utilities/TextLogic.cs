@@ -13,7 +13,8 @@ public static class TextLogic
     public static string blueNumber = "<color=#92E0FF>";
     public static string neutralYellow = "<color=#F8FF00>";
 
-    public static string physical = "<color=#BA8400>";
+    public static string physical = "<color=#D47C00>";
+    public static string magic = "<color=#B23DFF>";
     public static string fire = "<color=#FF6637>";
     public static string frost = "<color=#3687FF>";
     public static string shadow = "<color=#CF01BC>";
@@ -70,6 +71,10 @@ public static class TextLogic
         else if (color == TextColor.PhysicalBrown)
         {
             colorCodeReturned = physical;
+        }
+        else if (color == TextColor.MagicPurple)
+        {
+            colorCodeReturned = magic;
         }
         else if(color == TextColor.FireRed)
         {

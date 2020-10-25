@@ -1463,7 +1463,11 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }
 
         // Enable activation window glow + node glow
-        view.myActivationWindow.myGlowOutline.SetActive(true);
+        if(view.myActivationWindow != null)
+        {
+            view.myActivationWindow.myGlowOutline.SetActive(true);
+        }
+       
         LevelManager.Instance.SetMouseOverViewState(view.character.levelNode, true);
 
         // Set character highlight color
@@ -1546,8 +1550,11 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             return;
         }
 
-        // Enable activation window glow
-        view.myActivationWindow.myGlowOutline.SetActive(false);
+        // Disable activation window glow
+        if (view.myActivationWindow != null)
+        {
+            view.myActivationWindow.myGlowOutline.SetActive(false);
+        }
 
         // Update card being dragged text, reset to targetless calculation
         if (Draggable.DraggingThis != null &&

@@ -414,6 +414,7 @@ public class MainMenuController : Singleton<MainMenuController>
     public bool AnyMenuScreenIsActive()
     {
         if(inGameMenuScreenParent.activeSelf == true ||
+            LootController.Instance.LootScreenIsActive() ||
             CardController.Instance.GridCardScreenIsActive())
         {
             return true;

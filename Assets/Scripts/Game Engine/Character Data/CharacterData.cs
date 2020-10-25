@@ -1,21 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
-// TO DO WAAAAY DOWN THE TRACK
-// We dont need to serialize this class in the future
-// it is only serialized now so that we can create mock
-// character data in the inspector for testing.
-// Because this is serialized, we cannot serialize pmanagerModel class
-// or we will get an endless serialization loop error when the two 
-// scripts try to serialize each other. When we unserialize this,
-// we can remove the script SerializedPassiveManagerModel from this class.
-
 public class CharacterData 
 {
     [Header("Story Properties")]
     public string myName;
+    public string myClassName;
+    public CharacterRace race;
 
     [Header("Passive Properties")]
     public PassiveManagerModel passiveManager = new PassiveManagerModel();

@@ -16,15 +16,17 @@ MonoBehaviour:
   cardDescription: Deal 3 Physical damage for each Melee Attack card played this
     activation.
   cardSprite: {fileID: 21300000, guid: f269be13cfabd6b4bbd1b0c29204bcab, type: 3}
+  xEnergyCost: 0
   cardEnergyCost: 2
   cardType: 2
   targettingType: 3
   talentSchool: 3
-  rarity: 1
+  rarity: 2
   expend: 0
   innate: 0
   fleeting: 0
   unplayable: 0
+  lifeSteal: 0
   blessing: 0
   customDescription:
   - color: 1
@@ -56,12 +58,23 @@ MonoBehaviour:
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    removeBlockFrom: 0
+    modifyDeckCardEffect: 0
+    permanentBlockGain: 0
+    permanentDamageGain: 0
+    chooseTargetRandomly: 0
+    passiveApplicationLoops: 0
+    validRandomTargetsType: 0
+    damageLoops: 0
+    drawSpecificType: 0
+    specificTypeDrawn: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
     blessing: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
+    modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
@@ -70,8 +83,10 @@ MonoBehaviour:
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 1
     drawBaseDamageFromOverloadOnSelf: 0
+    drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 3
     damageType: 1
+    healthRestored: 0
     healthLost: 0
     energyGained: 0
     cardsDrawn: 0

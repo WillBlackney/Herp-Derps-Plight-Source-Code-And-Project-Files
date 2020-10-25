@@ -250,6 +250,23 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // play victory music sfx
         // create victory pop up + firework particles + xp gain stuff (in future)
 
+        // Disable any player characteer gui's if they're still active
+        foreach (CharacterEntityModel model in CharacterEntityController.Instance.AllDefenders)
+        {
+            CharacterEntityController.Instance.FadeOutCharacterWorldCanvas(model.characterEntityView, null);
+            CharacterEntityController.Instance.FadeOutCharacterUICanvas(model.characterEntityView, null);            
+            if (model.characterEntityView.uiCanvasParent.activeSelf == true)
+            {
+                CharacterEntityController.Instance.FadeOutCharacterUICanvas(model.characterEntityView, null);
+            }
+        }
+
+        // Destroy Activation windows
+        ActivationManager.Instance.DestroyAllActivationWindows();
+
+        // Hide end turn button
+        UIManager.Instance.DisableEndTurnButtonView();
+
         // generate loot result
         LootController.Instance.SetAndCacheNewLootResult();
         LootController.Instance.BuildLootScreenElementsFromLootResultData();
@@ -268,8 +285,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
         CharacterEntityController.Instance.DestroyAllCombatCharacters();
         ActivationManager.Instance.DestroyAllActivationWindows();
         LevelManager.Instance.ClearAndResetAllNodes();
-        UIManager.Instance.continueToNextEncounterButtonParent.SetActive(false);
-        UIManager.Instance.victoryPopup.SetActive(false);
+        //UIManager.Instance.continueToNextEncounterButtonParent.SetActive(false);
+        //UIManager.Instance.victoryPopup.SetActive(false);
+        UIManager.Instance.DisableEndTurnButtonView();
     }
     #endregion
 }

@@ -91,19 +91,4 @@ public class UIManager : Singleton<UIManager>
     }
     #endregion
 
-    // New Logic
-    #region
-    public void OnContinueToNextEncounterButtonClicked()
-    {
-        // Wait for all v Events to resolve before moving to next encounter,
-        // otherwise null references will occur if we attempt
-        // to tear down the scene with active v events
-
-        if(VisualEventManager.Instance.EventQueue.Count == 0)
-        {
-            EventSequenceController.Instance.HandleLoadNextEncounter();
-        }
-        
-    }
-    #endregion
 }

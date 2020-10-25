@@ -24,6 +24,8 @@ MonoBehaviour:
   targettingType: 3
   talentSchool: 6
   rarity: 1
+  racialCard: 0
+  originRace: 0
   expend: 0
   innate: 0
   fleeting: 0

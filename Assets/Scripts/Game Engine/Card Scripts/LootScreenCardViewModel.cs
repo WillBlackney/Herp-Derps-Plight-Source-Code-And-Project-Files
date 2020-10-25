@@ -43,4 +43,9 @@ public class LootScreenCardViewModel : MonoBehaviour, IPointerEnterHandler, IPoi
         KeyWordLayoutController.Instance.FadeOutMainView();
         LootController.Instance.OnLootCardViewModelClicked(this);
     }
+    public void ResetSelfOnEventComplete()
+    {
+        myDataRef = null;
+        cardViewModel.movementParent.localScale = new Vector3(originalScale, originalScale, 1f);
+    }
 }

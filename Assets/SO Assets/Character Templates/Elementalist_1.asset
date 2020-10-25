@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myName: Gek Gek
   myClassName: Elementalist
+  race: 2
   health: 40
   maxHealth: 40
   power: 0

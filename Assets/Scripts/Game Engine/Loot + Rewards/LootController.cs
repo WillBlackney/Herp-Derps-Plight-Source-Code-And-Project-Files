@@ -32,6 +32,10 @@ public class LootController : Singleton<LootController>
         get { return currentLootResultData; }
         private set { currentLootResultData = value; }
     }
+    public bool LootScreenIsActive()
+    {
+        return visualParent.activeSelf;
+    }
     #endregion
 
     // Build Views
@@ -136,6 +140,12 @@ public class LootController : Singleton<LootController>
     public void HideChooseCardScreen()
     {
         chooseCardScreenParent.SetActive(false);
+
+        // Reset card scales
+        foreach(LootScreenCardViewModel card in lootCardViewModels)
+        {
+            card.ResetSelfOnEventComplete();
+        }
     }
     public void ShowCardLootTab(LootTab tab)
     {
@@ -156,12 +166,9 @@ public class LootController : Singleton<LootController>
     public LootResultModel GenerateNewLootResult()
     {
         LootResultModel newLoot = new LootResultModel();
-        //newLoot.allCharacterCardChoices = new List<List<CardData>>();
 
         for(int i = 0; i < CharacterDataController.Instance.allPlayerCharacters.Count; i++)
         {
-            Debug.LogWarning("Character count: " + CharacterDataController.Instance.allPlayerCharacters.Count.ToString());
-            Debug.LogWarning("allCharacterCardChoices count: " + newLoot.allCharacterCardChoices.Count.ToString());
             newLoot.allCharacterCardChoices.Add(new List<CardData>());
             newLoot.allCharacterCardChoices[i] = GenerateCharacterCardLootChoices(CharacterDataController.Instance.allPlayerCharacters[i]);
         }
@@ -175,20 +182,60 @@ public class LootController : Singleton<LootController>
     #region
     private List<CardData> GenerateCharacterCardLootChoices(CharacterData character)
     {
+        // Set up + get all valid lootable cards
         List<CardData> listReturned = new List<CardData>();
-        List<CardData> validLootableCards = GetAllValidLootableCardsForCharacter(character);        
+        List<CardData> validLootableCards = GetAllValidLootableCardsForCharacter(character);
+
+        // Seprate common, rare and epic cards
+        List<CardData> commonCards = new List<CardData>();
+        List<CardData> rareCards = new List<CardData>();
+        List<CardData> epicCards = new List<CardData>();
+
+        for(int i = 0; i < validLootableCards.Count; i++)
+        {
+            if(validLootableCards[i].rarity == Rarity.Common)
+            {
+                commonCards.Add(validLootableCards[i]);
+            }
+            else if (validLootableCards[i].rarity == Rarity.Rare)
+            {
+                rareCards.Add(validLootableCards[i]);
+            }
+            else if (validLootableCards[i].rarity == Rarity.Epic)
+            {
+                epicCards.Add(validLootableCards[i]);
+            }
+        }
 
         // Get 3 random + different cards 
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
-            if(validLootableCards.Count == 0)
+            // Roll for rarity (5% Epic, 15% Rare, 80% Common probabilities)
+            int roll = RandomGenerator.NumberBetween(1, 100);
+
+            // Epic
+            if(IsNumberBetweenValues(roll, GlobalSettings.Instance.epicCardLowerLimitProbability, GlobalSettings.Instance.epicCardUpperLimitProbability))
             {
-                Debug.Log("WARNING: GenerateCharacterCardLootChoices() iterating over an empty card list!!");
+                epicCards.Shuffle();
+                listReturned.Add(epicCards[0]);
+                epicCards.Remove(epicCards[0]);
             }
 
-            validLootableCards.Shuffle();
-            listReturned.Add(validLootableCards[0]);
-            validLootableCards.Remove(validLootableCards[0]);
+            // Rare
+            else if (IsNumberBetweenValues(roll, GlobalSettings.Instance.rareCardLowerLimitProbability, GlobalSettings.Instance.rareCardUpperLimitProbability))
+            {
+                rareCards.Shuffle();
+                listReturned.Add(rareCards[0]);
+                rareCards.Remove(rareCards[0]);
+            }
+
+            // Common
+            else
+            {
+                commonCards.Shuffle();
+                listReturned.Add(commonCards[0]);
+                commonCards.Remove(commonCards[0]);
+            }
         }
 
         return listReturned;
@@ -290,6 +337,21 @@ public class LootController : Singleton<LootController>
             EventSequenceController.Instance.HandleLoadNextEncounter();
         }
     }
-   
+
+    #endregion
+
+    // Misc Roll Stuff
+    #region
+    public bool IsNumberBetweenValues(int number, int lowerLimit, int higherLimit)
+    {
+        if(number >= lowerLimit && number <= higherLimit)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     #endregion
 }

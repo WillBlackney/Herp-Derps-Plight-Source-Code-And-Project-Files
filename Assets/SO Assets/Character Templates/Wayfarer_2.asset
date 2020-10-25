@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2410c6608dbef744a9643f0571333299, type: 3}
+  m_Name: Wayfarer_2
+  m_EditorClassIdentifier: 
+  myName: Azura
+  myClassName: Wayfarer
+  race: 4
+  health: 40
+  maxHealth: 40
+  power: 0
+  dexterity: 0
+  stamina: 3
+  draw: 5
+  initiative: 3
+  startingBlock: 0
+  physicalResistance: 0
+  fireResistance: 0
+  frostResistance: 0
+  shadowResistance: 0
+  poisonResistance: 0
+  airResistance: 0
+  serializedPassiveManager:
+    bonusPowerStacks: 0
+    bonusDexterityStacks: 0
+    bonusStaminaStacks: 0
+    bonusInitiativeStacks: 0
+    bonusDrawStacks: 0
+    temporaryBonusPowerStacks: 0
+    temporaryBonusDexterityStacks: 0
+    temporaryBonusStaminaStacks: 0
+    temporaryBonusInitiativeStacks: 0
+    temporaryBonusDrawStacks: 0
+    runeStacks: 0
+    barrierStacks: 0
+    enrageStacks: 0
+    shieldWallStacks: 0
+    fanOfKnivesStacks: 0
+    divineFavourStacks: 0
+    phoenixFormStacks: 0
+    poisonousStacks: 0
+    venomousStacks: 0
+    overloadStacks: 0
+    fusionStacks: 0
+    plantedFeetStacks: 0
+    takenAimStacks: 0
+    longDrawStacks: 0
+    sharpenBladeStacks: 0
+    consecrationStacks: 0
+    growingStacks: 0
+    cautiousStacks: 0
+    infuriatedStacks: 0
+    battleTranceStacks: 0
+    balancedStanceStacks: 0
+    flurryStacks: 0
+    lordOfStormsStacks: 0
+    sentinelStacks: 0
+    ruthlessStacks: 0
+    evangelizeStacks: 0
+    wellOfSoulsStacks: 0
+    corpseCollectorStacks: 0
+    pistoleroStacks: 0
+    fastLearnerStacks: 0
+    demonFormStacks: 0
+    darkBargainStacks: 0
+    encouragingAuraStacks: 0
+    shadowAuraStacks: 0
+    guardianAuraStacks: 0
+    toxicAuraStacks: 0
+    wrathStacks: 0
+    weakenedStacks: 0
+    vulnerableStacks: 0
+    gritStacks: 0
+    disarmedStacks: 0
+    silencedStacks: 0
+    sleepStacks: 0
+    poisonedStacks: 0
+    burningStacks: 0
+    fireBallBonusDamageStacks: 0
+  deck:
+  - {fileID: 11400000, guid: b3e413a43d44ba24fbc2af972a7d4562, type: 2}
+  - {fileID: 11400000, guid: b3e413a43d44ba24fbc2af972a7d4562, type: 2}
+  - {fileID: 11400000, guid: 8a792469010762040a300d827b71549d, type: 2}
+  - {fileID: 11400000, guid: 8a792469010762040a300d827b71549d, type: 2}
+  - {fileID: 11400000, guid: e74b37417c31bac4f853047f01e6be3d, type: 2}
+  - {fileID: 11400000, guid: e74b37417c31bac4f853047f01e6be3d, type: 2}
+  - {fileID: 11400000, guid: 188b3c6d82a60d5458c4dd3fe81e3123, type: 2}
+  - {fileID: 11400000, guid: 188b3c6d82a60d5458c4dd3fe81e3123, type: 2}
+  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
+  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
+  modelParts:
+  - Human_Chest
+  - Elf_Face_7
+  - Elf_Head_4
+  - Human_Right_Arm
+  - Human_Right_Hand
+  - Human_Right_Leg
+  - Green_Camo_Robe_Chest_Wear
+  serializedItemManager:
+    mainHandItem: {fileID: 11400000, guid: dfeeccc8c225a66488eb3e4eb76d6c3b, type: 2}
+    offHandItem: {fileID: 0}
+  talentPairings:
+  - talentSchool: 8
+    talentLevel: 1
+  - talentSchool: 10
+    talentLevel: 1

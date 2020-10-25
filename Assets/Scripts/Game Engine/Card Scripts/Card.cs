@@ -20,6 +20,8 @@ public class Card
     public Rarity rarity;
     public TargettingType targettingType;
     public TalentSchool talentSchool;
+    public bool racialCard;
+    public CharacterRace originRace;
     public List<CardEffect> cardEffects = new List<CardEffect>();
     public List<CardEventListener> cardEventListeners = new List<CardEventListener>();
     public List<KeyWordModel> keyWordModels = new List<KeyWordModel>();
