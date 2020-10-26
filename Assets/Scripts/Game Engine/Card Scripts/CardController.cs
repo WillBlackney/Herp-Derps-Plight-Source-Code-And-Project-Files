@@ -754,7 +754,6 @@ public class CardController : Singleton<CardController>
     }
     public void AutoUpdateCardDescription(CardData card)
     {
-        Debug.LogWarning("AutoUpdateCardDescriptionText");
         // Function is used to automatically update the descriptions
         // of cards in hand when the values that dictate the damage/block 
         // they grant are changed by external factors

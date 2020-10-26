@@ -52,6 +52,9 @@ public class MainMenuController : Singleton<MainMenuController>
     [SerializeField] private CanvasGroup previewCardCg;
     [SerializeField] private CardViewModel previewCardVM;
 
+    [Header("NEW New Game Screen Components/Properties")]
+    public CharacterTemplateSO currentTemplateSelection;
+    [SerializeField] private RectTransform characterInfoRect;
 
 
     #endregion
@@ -62,7 +65,9 @@ public class MainMenuController : Singleton<MainMenuController>
     {
         RenderMenuButtons();
         SetRunModifiersToDefaults();
-        SetChooseCharacterWindowStartingStates();
+        //SetChooseCharacterWindowStartingStates();
+        SetChoosenCharacterStartingState();
+
     }
     #endregion
 
@@ -173,10 +178,6 @@ public class MainMenuController : Singleton<MainMenuController>
         EventSystem.current.SetSelectedGameObject(null);
         HideInGameMenuView();
     }
-    public void OnInGameSettingsButtonClicked()
-    {
-
-    }
     public void OnInGameSaveAndQuitClicked()
     {
         EventSystem.current.SetSelectedGameObject(null);
@@ -277,6 +278,7 @@ public class MainMenuController : Singleton<MainMenuController>
     public void ShowNewGameScreen()
     {
         newGameScreenVisualParent.SetActive(true);
+        SetChoosenCharacterStartingState();
         SetRunModifiersToDefaults();
     }
     public void HideNewGameScreen()
@@ -314,6 +316,10 @@ public class MainMenuController : Singleton<MainMenuController>
 
         return chosenCharacters;
     }
+    public CharacterTemplateSO GetChosenCharacter()
+    {
+        return currentTemplateSelection;
+    }
     public void SetChooseCharacterWindowStartingStates()
     {
         // Set each window to a different character
@@ -321,6 +327,13 @@ public class MainMenuController : Singleton<MainMenuController>
         {
             chooseCharacterWindows[i].SetMyTemplate(selectableCharacterTemplates[i]);
         }
+    }
+    public void SetChoosenCharacterStartingState()
+    {
+        // Set each window to a different character
+        currentTemplateSelection = selectableCharacterTemplates[0];
+        BuildWindowFromCharacterTemplateData(currentTemplateSelection);
+
     }
     public void GetAndSetNextAvailableTemplate(ChooseCharacterWindow window)
     {
@@ -334,7 +347,7 @@ public class MainMenuController : Singleton<MainMenuController>
         window.SetMyTemplate(nextTemplate);
 
     }
-    public void GetAndSetPreviousAvailableTemplate(ChooseCharacterWindow window)
+    public void GetAndSetPreviousAvailableCharacter(ChooseCharacterWindow window)
     {
         CharacterTemplateSO nextTemplate = GetPreviousTemplate(window.currentTemplateSelection);
 
@@ -344,6 +357,17 @@ public class MainMenuController : Singleton<MainMenuController>
         }
 
         window.SetMyTemplate(nextTemplate);
+
+    }
+    public void GetAndSetNextAvailableCharacter()
+    {
+        currentTemplateSelection = GetNextTemplate(currentTemplateSelection);
+        BuildWindowFromCharacterTemplateData(currentTemplateSelection);
+    }
+    public void GetAndSetPreviousAvailableCharacter()
+    {
+        currentTemplateSelection = GetPreviousTemplate(currentTemplateSelection);
+        BuildWindowFromCharacterTemplateData(currentTemplateSelection);
 
     }
     private CharacterTemplateSO GetNextTemplate(CharacterTemplateSO currentTemplate)
@@ -392,6 +416,16 @@ public class MainMenuController : Singleton<MainMenuController>
         }
 
         return boolReturned;
+    }
+    public void OnNextCharacterButtonClicked()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        GetAndSetNextAvailableCharacter();
+    }
+    public void OnPreviousCharacterButtonClicked()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        GetAndSetPreviousAvailableCharacter();
     }
     #endregion
 
@@ -460,11 +494,11 @@ public class MainMenuController : Singleton<MainMenuController>
     public void BuildWindowFromCharacterTemplateData(CharacterTemplateSO data)
     {
         // Enable window
-        ShowCharacterInfoPopupWindow();
+       // ShowCharacterInfoPopupWindow();
 
         // Set Texts
         characterNameText.text = data.myName;
-        characterClassNameText.text = data.myClassName;
+        characterClassNameText.text = "The " + data.myClassName;
 
         // Build model
         CharacterModelController.BuildModelFromStringReferences(characterModel, data.modelParts);
@@ -475,6 +509,9 @@ public class MainMenuController : Singleton<MainMenuController>
 
         // Build card info panels
         BuildCardInfoPanels(data);
+
+        // Rebuild layout
+        LayoutRebuilder.ForceRebuildLayoutImmediate(characterInfoRect);
     }
     public void OnCharacterInfoPopUpBackButtonClicked()
     {
@@ -500,8 +537,7 @@ public class MainMenuController : Singleton<MainMenuController>
 
         // Fade in model
         CharacterEntityController.Instance.FadeInEntityRenderer(characterModel.GetComponent<EntityRenderer>(), 3f);
-    }
-    
+    }    
     private void BuildCardInfoPanels(CharacterTemplateSO data)
     {
         // Disable + Reset all card info panels

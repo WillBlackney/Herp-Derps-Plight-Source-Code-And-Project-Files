@@ -15,8 +15,8 @@ MonoBehaviour:
   myName: Sabrina
   myClassName: Blood Mage
   race: 4
-  health: 40
-  maxHealth: 40
+  health: 50
+  maxHealth: 50
   power: 0
   dexterity: 0
   stamina: 3
@@ -87,14 +87,14 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
+  - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
+  - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
   - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
   - {fileID: 11400000, guid: 906a542ac4dbed2429e34de4a75c3c40, type: 2}
   - {fileID: 11400000, guid: 906a542ac4dbed2429e34de4a75c3c40, type: 2}
-  - {fileID: 11400000, guid: 12e01ae28d25a4042a23a910d9c32a1d, type: 2}
-  - {fileID: 11400000, guid: 12e01ae28d25a4042a23a910d9c32a1d, type: 2}
-  - {fileID: 11400000, guid: 1aa5ba9a69a1e014883cdff8719c8e91, type: 2}
-  - {fileID: 11400000, guid: 3515e3b8e92620548af756ddbf500130, type: 2}
   - {fileID: 11400000, guid: 3515e3b8e92620548af756ddbf500130, type: 2}
   - {fileID: 11400000, guid: b31f4356f84f2bd48add48495139e0e5, type: 2}
   modelParts:

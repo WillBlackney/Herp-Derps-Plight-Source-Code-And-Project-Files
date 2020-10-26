@@ -15,8 +15,8 @@ MonoBehaviour:
   myName: Jaan
   myClassName: Shaman
   race: 2
-  health: 40
-  maxHealth: 40
+  health: 50
+  maxHealth: 50
   power: 0
   dexterity: 0
   stamina: 3
@@ -87,16 +87,16 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 25f889ca097d2c742a862cb5f2097476, type: 2}
-  - {fileID: 11400000, guid: 25f889ca097d2c742a862cb5f2097476, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
   - {fileID: 11400000, guid: ce34207cf8b731844ae587386ce47fc9, type: 2}
   - {fileID: 11400000, guid: ce34207cf8b731844ae587386ce47fc9, type: 2}
   - {fileID: 11400000, guid: 0aa74ca6548051f42aecea063a3f3ef0, type: 2}
   - {fileID: 11400000, guid: 0aa74ca6548051f42aecea063a3f3ef0, type: 2}
-  - {fileID: 11400000, guid: 386cabf0808997f40956801b2f8662d8, type: 2}
-  - {fileID: 11400000, guid: 0931c26abf765534a91d58107719c48d, type: 2}
-  - {fileID: 11400000, guid: ef2b9ffdee54c0a48adddcc159a622a3, type: 2}
-  - {fileID: 11400000, guid: ef2b9ffdee54c0a48adddcc159a622a3, type: 2}
+  - {fileID: 11400000, guid: c62cea059d102884a8aabb11de5b070c, type: 2}
+  - {fileID: 11400000, guid: c62cea059d102884a8aabb11de5b070c, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1

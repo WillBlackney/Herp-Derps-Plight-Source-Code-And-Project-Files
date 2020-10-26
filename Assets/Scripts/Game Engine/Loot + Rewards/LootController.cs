@@ -214,7 +214,7 @@ public class LootController : Singleton<LootController>
             int roll = RandomGenerator.NumberBetween(1, 100);
 
             // Epic
-            if(IsNumberBetweenValues(roll, GlobalSettings.Instance.epicCardLowerLimitProbability, GlobalSettings.Instance.epicCardUpperLimitProbability))
+            if(epicCards.Count > 0 && IsNumberBetweenValues(roll, GlobalSettings.Instance.epicCardLowerLimitProbability, GlobalSettings.Instance.epicCardUpperLimitProbability))
             {
                 epicCards.Shuffle();
                 listReturned.Add(epicCards[0]);
@@ -222,7 +222,7 @@ public class LootController : Singleton<LootController>
             }
 
             // Rare
-            else if (IsNumberBetweenValues(roll, GlobalSettings.Instance.rareCardLowerLimitProbability, GlobalSettings.Instance.rareCardUpperLimitProbability))
+            else if (rareCards.Count > 0 && IsNumberBetweenValues(roll, GlobalSettings.Instance.rareCardLowerLimitProbability, GlobalSettings.Instance.rareCardUpperLimitProbability))
             {
                 rareCards.Shuffle();
                 listReturned.Add(rareCards[0]);

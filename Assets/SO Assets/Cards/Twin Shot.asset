@@ -20,7 +20,9 @@ MonoBehaviour:
   cardType: 3
   targettingType: 3
   talentSchool: 8
-  rarity: 1
+  rarity: 2
+  racialCard: 0
+  originRace: 0
   expend: 0
   innate: 0
   fleeting: 0

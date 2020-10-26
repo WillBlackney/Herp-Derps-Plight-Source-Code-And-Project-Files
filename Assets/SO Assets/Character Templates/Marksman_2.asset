@@ -15,8 +15,8 @@ MonoBehaviour:
   myName: Zed
   myClassName: Marksman
   race: 6
-  health: 40
-  maxHealth: 40
+  health: 50
+  maxHealth: 50
   power: 0
   dexterity: 0
   stamina: 3
@@ -87,16 +87,16 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
+  - {fileID: 11400000, guid: 7e0607c8c06c28a448dc2170bf23c76c, type: 2}
+  - {fileID: 11400000, guid: 7e0607c8c06c28a448dc2170bf23c76c, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
+  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
   - {fileID: 11400000, guid: cee9929222ec7e34bbb1593ae7ad23b5, type: 2}
-  - {fileID: 11400000, guid: 4fa47f450ff530d47884c246293bb23a, type: 2}
-  - {fileID: 11400000, guid: 7c0947162266e2144a22faa67d2338a4, type: 2}
-  - {fileID: 11400000, guid: 7c0947162266e2144a22faa67d2338a4, type: 2}
+  - {fileID: 11400000, guid: cee9929222ec7e34bbb1593ae7ad23b5, type: 2}
   - {fileID: 11400000, guid: e74b37417c31bac4f853047f01e6be3d, type: 2}
   - {fileID: 11400000, guid: e74b37417c31bac4f853047f01e6be3d, type: 2}
-  - {fileID: 11400000, guid: 87754b7748bb31947acb4178c8beb7c3, type: 2}
-  - {fileID: 11400000, guid: 87754b7748bb31947acb4178c8beb7c3, type: 2}
-  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
-  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
   modelParts:
   - Satyr_Head_1
   - Satyr_Face_1

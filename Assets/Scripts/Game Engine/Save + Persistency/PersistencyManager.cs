@@ -58,16 +58,17 @@ public class PersistencyManager : Singleton<PersistencyManager>
         // Build characters
         List<CharacterTemplateSO> chosenCharacters = new List<CharacterTemplateSO>();
 
-        // should randomize characters?
+        // should randomize character?
         if (MainMenuController.Instance.randomizeCharacters)
         {
-            chosenCharacters.AddRange(MainMenuController.Instance.GetThreeRandomAndDifferentTemplates());
+            List<CharacterTemplateSO> randomCharacters = MainMenuController.Instance.GetThreeRandomAndDifferentTemplates();
+            chosenCharacters.Add(randomCharacters[0]);
         }
 
-        // else, just use player selected templates
+        // else, just use player selected template
         else
         {
-            chosenCharacters.AddRange(MainMenuController.Instance.GetChosenTemplatesFromChooseCharacterWindows());
+            chosenCharacters.Add(MainMenuController.Instance.GetChosenCharacter());
         }
         
         // build each character data object

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Stab And Run
   m_EditorClassIdentifier: 
   cardName: Stab And Run
-  cardDescription: 'Gain 3 Block.
+  cardDescription: 'Gain 4 Block.
 
     Add a Shank to your hand.'
   cardSprite: {fileID: 21300000, guid: 213c6380fa786354fbedcd5c93b310b5, type: 3}
@@ -23,6 +23,8 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 3
   rarity: 1
+  racialCard: 0
+  originRace: 0
   expend: 0
   innate: 0
   fleeting: 0
@@ -80,7 +82,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 3
+    blockGainValue: 4
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0

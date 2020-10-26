@@ -73,7 +73,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 61d43c9213e96492da5161e16d57dfc9, type: 3}
   - {fileID: -4210719541318301227, guid: 4e3080a2011004e16b86baf2e6762d5a, type: 3}
   - {fileID: 21300000, guid: c63f6bd29cbfd4a97966b21fb24c2ceb, type: 3}
-  - {fileID: 21300000, guid: 802df1f2527464634b707b1338b09582, type: 3}
+  - {fileID: -7762507520749930771, guid: 802df1f2527464634b707b1338b09582, type: 3}
   - {fileID: 592160136591574225, guid: eefe20034fcda45ef903bd5943cbad5d, type: 3}
   - {fileID: 21300000, guid: c32dc8238fef641d6beb1cf728bebf92, type: 3}
   - {fileID: 21300000, guid: 33ca1083f9bfe45718418a2c27af0a69, type: 3}
@@ -168,7 +168,7 @@ SpriteAtlas:
   - play_wolf2_sample
   - play_user_lv_prg_bg_0
   - play_btn_type0_bg
-  - play_stage_prg_gray_point
+  - play_stage_prg_gray_point_0
   - play_guage_default_bar_0
   - play_user_lv_icon
   - play_position_focus_0

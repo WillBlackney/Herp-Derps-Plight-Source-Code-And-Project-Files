@@ -15,8 +15,8 @@ MonoBehaviour:
   myName: Orion
   myClassName: Death Knight
   race: 3
-  health: 40
-  maxHealth: 40
+  health: 50
+  maxHealth: 50
   power: 0
   dexterity: 0
   stamina: 3
@@ -87,16 +87,16 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: c725ced37bae68e4ea02c145e66668d9, type: 2}
-  - {fileID: 11400000, guid: c725ced37bae68e4ea02c145e66668d9, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: 63b57dcf22d80b749bf6fdcebe2b66cb, type: 2}
   - {fileID: 11400000, guid: 63b57dcf22d80b749bf6fdcebe2b66cb, type: 2}
-  - {fileID: 11400000, guid: f6e3850c009fce847b7ce96497469eb5, type: 2}
   - {fileID: 11400000, guid: 12e01ae28d25a4042a23a910d9c32a1d, type: 2}
   - {fileID: 11400000, guid: 12e01ae28d25a4042a23a910d9c32a1d, type: 2}
-  - {fileID: 11400000, guid: 3515e3b8e92620548af756ddbf500130, type: 2}
-  - {fileID: 11400000, guid: 3515e3b8e92620548af756ddbf500130, type: 2}
   - {fileID: 11400000, guid: 58ad3605f0bb1844dac2124cd71174c1, type: 2}
+  - {fileID: 11400000, guid: f6e3850c009fce847b7ce96497469eb5, type: 2}
   modelParts:
   - Undead_Chest
   - Undead_Face_6

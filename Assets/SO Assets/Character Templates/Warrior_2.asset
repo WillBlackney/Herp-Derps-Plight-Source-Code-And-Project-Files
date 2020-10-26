@@ -15,8 +15,8 @@ MonoBehaviour:
   myName: Udyr
   myClassName: Warrior
   race: 2
-  health: 40
-  maxHealth: 40
+  health: 50
+  maxHealth: 50
   power: 0
   dexterity: 0
   stamina: 3
@@ -87,16 +87,16 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
-  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: 00b73be375fd9ce4e9735d3cba2ca025, type: 2}
   - {fileID: 11400000, guid: 00b73be375fd9ce4e9735d3cba2ca025, type: 2}
-  - {fileID: 11400000, guid: 3d57eb73a05e9a04b96c08944c441410, type: 2}
-  - {fileID: 11400000, guid: 3d57eb73a05e9a04b96c08944c441410, type: 2}
   - {fileID: 11400000, guid: 63b57dcf22d80b749bf6fdcebe2b66cb, type: 2}
   - {fileID: 11400000, guid: 63b57dcf22d80b749bf6fdcebe2b66cb, type: 2}
-  - {fileID: 11400000, guid: fdcce8d7a9e4a0748bf221b25c761b09, type: 2}
   - {fileID: 11400000, guid: b31f4356f84f2bd48add48495139e0e5, type: 2}
+  - {fileID: 11400000, guid: fdcce8d7a9e4a0748bf221b25c761b09, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_7

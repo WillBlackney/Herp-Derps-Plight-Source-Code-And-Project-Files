@@ -15,8 +15,8 @@ MonoBehaviour:
   myName: Tobias
   myClassName: Priest
   race: 1
-  health: 40
-  maxHealth: 40
+  health: 50
+  maxHealth: 50
   power: 0
   dexterity: 0
   stamina: 3
@@ -87,16 +87,16 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
+  - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
   - {fileID: 11400000, guid: 04b3ac38b9732134c9076aed80c85796, type: 2}
   - {fileID: 11400000, guid: 04b3ac38b9732134c9076aed80c85796, type: 2}
-  - {fileID: 11400000, guid: 87514d0403c7e7f4abb87ab0dbfe26f2, type: 2}
-  - {fileID: 11400000, guid: 87514d0403c7e7f4abb87ab0dbfe26f2, type: 2}
-  - {fileID: 11400000, guid: 8a792469010762040a300d827b71549d, type: 2}
-  - {fileID: 11400000, guid: 8a792469010762040a300d827b71549d, type: 2}
   - {fileID: 11400000, guid: b3e413a43d44ba24fbc2af972a7d4562, type: 2}
   - {fileID: 11400000, guid: b3e413a43d44ba24fbc2af972a7d4562, type: 2}
-  - {fileID: 11400000, guid: 5105852492770134e9c9d344ea979348, type: 2}
-  - {fileID: 11400000, guid: 5105852492770134e9c9d344ea979348, type: 2}
+  - {fileID: 11400000, guid: 87514d0403c7e7f4abb87ab0dbfe26f2, type: 2}
+  - {fileID: 11400000, guid: 87514d0403c7e7f4abb87ab0dbfe26f2, type: 2}
   modelParts:
   - Human_Chest
   - Human_Face_3

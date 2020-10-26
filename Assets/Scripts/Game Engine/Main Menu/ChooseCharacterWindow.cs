@@ -42,6 +42,7 @@ public class ChooseCharacterWindow : MonoBehaviour, IPointerEnterHandler, IPoint
 
     // On Button Click Logic
     #region
+        /*
     public void OnNextTemplateButtonClicked()
     {
         EventSystem.current.SetSelectedGameObject(null);
@@ -52,6 +53,7 @@ public class ChooseCharacterWindow : MonoBehaviour, IPointerEnterHandler, IPoint
         EventSystem.current.SetSelectedGameObject(null);
         MainMenuController.Instance.GetAndSetPreviousAvailableTemplate(this);
     }
+    */
     #endregion
 
     // View logic

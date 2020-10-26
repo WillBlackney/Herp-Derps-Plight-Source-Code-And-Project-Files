@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wits Potion
   m_EditorClassIdentifier: 
   cardName: Wits Potion
-  cardDescription: Gain 3 Block. Draw 1 card.
+  cardDescription: Gain 4 Block. Draw 1 card.
   cardSprite: {fileID: 21300000, guid: 92aa9ffa75b901546b947c52bc562b12, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -21,6 +21,8 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 12
   rarity: 1
+  racialCard: 0
+  originRace: 0
   expend: 0
   innate: 0
   fleeting: 0
@@ -78,7 +80,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 3
+    blockGainValue: 4
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
