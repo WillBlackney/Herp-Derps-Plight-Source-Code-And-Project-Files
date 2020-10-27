@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd1bf0b56234af4c808b8522b29dcbf, type: 3}
   m_Name: Big Bad Skeleton x1 (Gremlin Nob x1)
   m_EditorClassIdentifier: 
-  encounterName: Big Bad Skeleton
+  encounterName: Big Bad Skeleton x1
   combatDifficulty: 2
   enemyGroups:
   - possibleEnemies:
-    - {fileID: 11400000, guid: 4ea03a078a15ad24b9f9f71c32b16f01, type: 2}
+    - {fileID: 11400000, guid: 15fc8fe129550df42b538f0419a3165d, type: 2}

@@ -611,6 +611,17 @@ public class CombatLogic : Singleton<CombatLogic>
                 CardController.Instance.HandleOnTargetKilledEventListeners(card);
             }
 
+            // Check Volatile passive
+            if(victim.pManager.volatileStacks > 0)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+
+                foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(victim))
+                {
+                    PassiveController.Instance.ModifyPoisoned(victim, enemy.pManager, victim.pManager.volatileStacks);
+                }
+            }
+
             HandleDeath(victim);
         }
     }

@@ -1630,7 +1630,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
             // Check enough allies alive
             if (ar.requirementType == ActionRequirementType.AtLeastXAlliesAlive &&
-                GetAllAlliesOfCharacter(enemy).Count < ar.requirementTypeValue)
+                GetAllAlliesOfCharacter(enemy, false).Count < ar.requirementTypeValue)
             {
                 Debug.Log(enemyAction.actionName + " failed 'AtLeastXAlliesAlive' requirement");
                 checkResults.Add(false);
