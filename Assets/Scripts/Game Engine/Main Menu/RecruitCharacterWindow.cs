@@ -23,18 +23,18 @@ public class RecruitCharacterWindow : MonoBehaviour, IPointerEnterHandler, IPoin
     [SerializeField] private Color mouseOverColor;
 
     [Header("Properties")]
-    [HideInInspector] public CharacterTemplateSO myTemplateData;
+    [HideInInspector] public CharacterData myTemplateData;
     #endregion
 
     // Logic
     #region
-    public void BuildMyViewsFromTemplate(CharacterTemplateSO template)
+    public void BuildMyViewsFromTemplate(CharacterData template)
     {
         myTemplateData = template;
         nameText.text = template.myName;
         classNameText.text = "The " + template.myClassName;
         CharacterModelController.BuildModelFromStringReferences(myUCM, template.modelParts);
-        CharacterModelController.ApplyItemManagerDataToCharacterModelView(template.serializedItemManager, myUCM);
+        CharacterModelController.ApplyItemManagerDataToCharacterModelView(template.itemManager, myUCM);
     }
     public void DisableGlow()
     {

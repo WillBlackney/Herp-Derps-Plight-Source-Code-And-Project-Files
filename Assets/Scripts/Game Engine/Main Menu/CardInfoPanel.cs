@@ -10,7 +10,6 @@ public class CardInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     // Proeprties + Component References
     #region
     [Header("Properties")]
-    [HideInInspector] public CardDataSO dataSoRef;
     [HideInInspector] public CardData cardDataRef;
     [HideInInspector] public int copiesCount = 0;
     [SerializeField] private Color normalColor;
@@ -31,23 +30,6 @@ public class CardInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     // Setup + Initialization
     #region
-    public void BuildCardInfoPanelFromCardDataSO(CardDataSO data)
-    {
-        dataSoRef = data;
-        cardNameText.text = data.cardName;
-        energyCostText.text = data.cardEnergyCost.ToString();
-
-        talentOverlay.color = ColorLibrary.Instance.GetTalentColor(data.talentSchool);
-        talentOverlay.color = new Color(talentOverlay.color.r, talentOverlay.color.g, talentOverlay.color.b, 0.5f);
-
-        rarityOverlay.color = ColorLibrary.Instance.GetRarityColor(data.rarity);
-        rarityOverlay.color = new Color(rarityOverlay.color.r, rarityOverlay.color.g, rarityOverlay.color.b, 0.5f);
-
-        cardTypeImage.sprite = SpriteLibrary.Instance.GetCardTypeImageFromTypeEnumData(data.cardType);     
-
-        copiesCount++;
-        copiesCountText.text = "x" + copiesCount.ToString();
-    }
     public void BuildCardInfoPanelFromCardData(CardData data)
     {
         cardDataRef = data;
@@ -60,7 +42,7 @@ public class CardInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         rarityOverlay.color = ColorLibrary.Instance.GetRarityColor(data.rarity);
         rarityOverlay.color = new Color(rarityOverlay.color.r, rarityOverlay.color.g, rarityOverlay.color.b, 0.5f);
 
-        cardTypeImage.sprite = SpriteLibrary.Instance.GetCardTypeImageFromTypeEnumData(data.cardType);
+        cardTypeImage.sprite = SpriteLibrary.Instance.GetCardTypeImageFromTypeEnumData(data.cardType);     
 
         copiesCount++;
         copiesCountText.text = "x" + copiesCount.ToString();
@@ -72,30 +54,39 @@ public class CardInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void OnPointerEnter(PointerEventData eventData)
     {
         talentUnderlay.color = hoverColor;
+        KeyWordLayoutController.Instance.BuildAllViewsFromKeyWordModels(cardDataRef.keyWordModels);
+
         if (location == CardPanelLocation.CharacterInfoWindow)
         {
-            MainMenuController.Instance.BuildAndShowCardViewModelPopup(dataSoRef);
-            KeyWordLayoutController.Instance.BuildAllViewsFromKeyWordModels(dataSoRef.keyWordModels);
+            MainMenuController.Instance.BuildAndShowCardViewModelPopup(cardDataRef);
         }
         else if (location == CardPanelLocation.ChooseCardScreen)
         {
             LootController.Instance.BuildAndShowCardViewModelPopup(cardDataRef);
-            KeyWordLayoutController.Instance.BuildAllViewsFromKeyWordModels(cardDataRef.keyWordModels);
+        }
+        else if (location == CardPanelLocation.RecruitCharacterScreen)
+        {
+            RecruitCharacterController.Instance.BuildAndShowCardViewModelPopup(cardDataRef);
         }
     }
     public void OnPointerExit(PointerEventData eventData)
     {
         talentUnderlay.color = normalColor;
+
         if (location == CardPanelLocation.CharacterInfoWindow)
         {
             MainMenuController.Instance.HidePreviewCard();
-            KeyWordLayoutController.Instance.FadeOutMainView();
         }
         else if (location == CardPanelLocation.ChooseCardScreen)
         {
             LootController.Instance.HidePreviewCard();
-            KeyWordLayoutController.Instance.FadeOutMainView();
         }
+        else if (location == CardPanelLocation.RecruitCharacterScreen)
+        {
+            RecruitCharacterController.Instance.HidePreviewCard();
+        }
+
+        KeyWordLayoutController.Instance.FadeOutMainView();
 
     }
     #endregion
@@ -106,4 +97,5 @@ public enum CardPanelLocation
     None = 0,
     CharacterInfoWindow = 1,
     ChooseCardScreen = 2,
+    RecruitCharacterScreen = 3,
 }

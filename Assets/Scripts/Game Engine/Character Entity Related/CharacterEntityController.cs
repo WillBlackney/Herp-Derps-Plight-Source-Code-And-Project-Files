@@ -405,7 +405,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateGeneralBuffEffect(view.WorldPosition));
         }
 
-        VisualEventManager.Instance.CreateVisualEvent(() => UpdateEnergyGUI(view, character.energy), QueuePosition.Back, 0, 0);
+        int energyVfxValue = character.energy;
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateEnergyGUI(view, energyVfxValue), QueuePosition.Back, 0, 0);
     }
     public void ModifyStamina(CharacterEntityModel character, int staminaGainedOrLost)
     {
@@ -418,7 +419,13 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             character.stamina = 0;
         }
 
-        VisualEventManager.Instance.CreateVisualEvent(() => UpdateStaminaGUI(view, EntityLogic.GetTotalStamina(character)), QueuePosition.Back, 0, 0);
+        int staminaVfxValue = character.stamina;
+        if (character.pManager != null)
+        {
+            staminaVfxValue = EntityLogic.GetTotalStamina(character);
+        }
+
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateStaminaGUI(view, staminaVfxValue), QueuePosition.Back, 0, 0);
     }
     private void UpdateEnergyGUI(CharacterEntityView view, int newValue)
     {

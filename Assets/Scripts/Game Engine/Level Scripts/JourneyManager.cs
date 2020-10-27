@@ -19,6 +19,10 @@ public class JourneyManager : Singleton<JourneyManager>
     public EncounterData CurrentEncounter { get; private set; }
     public EnemyWaveSO CurrentEnemyWave { get; private set; }
     public SaveCheckPoint CheckPointType { get; private set; }
+    public void SetCheckPoint(SaveCheckPoint type)
+    {
+        CheckPointType = type;
+    }
 
     #endregion
 

@@ -123,7 +123,6 @@ public class EventSequenceController : Singleton<EventSequenceController>
         PersistencyManager.Instance.SetUpGameSessionDataFromSaveFile();
 
         // Start the first encounter set up sequence
-        // HandleLoadEncounter(JourneyManager.Instance.Encounters[0]);
         HandleLoadEncounter(JourneyManager.Instance.CurrentEncounter);
     }
     public void HandleLoadSavedGameFromMainMenuEvent()
@@ -163,6 +162,12 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Destroy game scene
         HandleCombatSceneTearDown();
 
+        // Hide Recruit character screen
+        RecruitCharacterController.Instance.ResetAllViews();
+
+        // Hide Loot screen elements
+        LootController.Instance.CloseAndResetAllViews();
+
         // Stop battle music, start menu music
         AudioManager.Instance.FadeOutSound(Sound.Music_Battle_Theme_1, 1f);
         AudioManager.Instance.FadeInSound(Sound.Music_Main_Menu_Theme_1, 1f);
@@ -182,15 +187,25 @@ public class EventSequenceController : Singleton<EventSequenceController>
     #region
     public void HandleLoadEncounter(EncounterData encounter)
     {
-        if (encounter.encounterType == EncounterType.BasicEnemy ||
-            encounter.encounterType == EncounterType.EliteEnemy)
+        if ((encounter.encounterType == EncounterType.BasicEnemy ||
+            encounter.encounterType == EncounterType.EliteEnemy) &&
+            JourneyManager.Instance.CheckPointType == SaveCheckPoint.CombatStart
+            )
         {
             HandleLoadCombatEncounter(JourneyManager.Instance.CurrentEnemyWave);
         }
 
-        else if (encounter.encounterType == EncounterType.RecruitCharacter)
+        else if ((encounter.encounterType == EncounterType.BasicEnemy ||
+            encounter.encounterType == EncounterType.EliteEnemy) &&
+            JourneyManager.Instance.CheckPointType == SaveCheckPoint.CombatEnd
+            )
         {
-            HandleLoadCombatEncounter(JourneyManager.Instance.CurrentEnemyWave);
+            StartCombatVictorySequence();
+        }
+
+        else if (JourneyManager.Instance.CheckPointType == SaveCheckPoint.RecruitCharacterStart)
+        {
+            HandleLoadRecruitCharacterEncounter();
         }
     }
     public void HandleLoadNextEncounter()
@@ -220,11 +235,14 @@ public class EventSequenceController : Singleton<EventSequenceController>
             HandleCombatSceneTearDown();
         }
 
+        // Tear down recruit character screen
         else if(previousEncounter.encounterType == EncounterType.RecruitCharacter)
         {
             // Teardown recruit event views
             RecruitCharacterController.Instance.ResetAllViews();
         }
+
+
 
         // If next event is a combat, get + set enemy wave before saving to disk
         if(JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.BasicEnemy ||
@@ -234,8 +252,11 @@ public class EventSequenceController : Singleton<EventSequenceController>
             JourneyManager.Instance.SetCurrentEnemyWaveData 
                 (JourneyManager.Instance.GetRandomEnemyWaveFromEncounterData(JourneyManager.Instance.CurrentEncounter));
 
+            // Set check point
+            JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.CombatStart);
+
             // Auto save
-            PersistencyManager.Instance.AutoUpdateSaveFile(SaveCheckPoint.CombatStart);
+            PersistencyManager.Instance.AutoUpdateSaveFile();
 
             HandleLoadCombatEncounter(JourneyManager.Instance.CurrentEnemyWave);
         }
@@ -243,6 +264,18 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Recruit character event
         else if(JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.RecruitCharacter)
         {
+            // Generate 3 random characters, if we are not loading from save
+            if (RecruitCharacterController.Instance.currentChoices.Count == 0)
+            {
+                RecruitCharacterController.Instance.currentChoices = RecruitCharacterController.Instance.GetThreeValidRecruitableCharacters();
+            }
+
+            // Set check point
+            JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.RecruitCharacterStart);
+
+            // Auto save
+            PersistencyManager.Instance.AutoUpdateSaveFile();
+
             HandleLoadRecruitCharacterEncounter();
         }
     }
@@ -306,11 +339,19 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Hide end turn button
         UIManager.Instance.DisableEndTurnButtonView();
 
-        // generate loot result
-        LootController.Instance.SetAndCacheNewLootResult();
-        LootController.Instance.BuildLootScreenElementsFromLootResultData();
+        // Generate loot result + Auto save
+        if(JourneyManager.Instance.CheckPointType != SaveCheckPoint.CombatEnd)
+        {
+            LootController.Instance.SetAndCacheNewLootResult();
 
-        // save game state + cache loot result
+            // Save and set cechkpoint + cache loot result
+            JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.CombatEnd);
+            PersistencyManager.Instance.AutoUpdateSaveFile();
+        }       
+
+        // Build loot screen views
+        LootController.Instance.BuildLootScreenElementsFromLootResultData();        
+
         // fade in loot window
         LootController.Instance.ShowMainLootView();
         LootController.Instance.ShowFrontPageView();

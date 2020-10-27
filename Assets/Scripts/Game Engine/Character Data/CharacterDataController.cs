@@ -8,13 +8,42 @@ public class CharacterDataController : Singleton<CharacterDataController>
     #region
     [Header("Properties")]
     private List<CharacterData> allPlayerCharacters = new List<CharacterData>();
+
+    [SerializeField] private CharacterTemplateSO[] allCharacterTemplatesSOs;
+    [SerializeField] private CharacterData[] allCharacterTemplates;
+
+
     public List<CharacterData> AllPlayerCharacters
     {
         get { return allPlayerCharacters; }
         private set { allPlayerCharacters = value; }
 
     }
+    public CharacterData[] AllCharacterTemplates
+    {
+        get { return allCharacterTemplates; }
+        private set { allCharacterTemplates = value; }
+    }
     #endregion
+
+    // Initialization
+    private void Start()
+    {
+        BuildTemplateLibrary();
+    }
+    private void BuildTemplateLibrary()
+    {
+        Debug.LogWarning("CharacterDataController.BuildTemplateLibrary() called...");
+
+        List<CharacterData> tempList = new List<CharacterData>();
+
+        foreach (CharacterTemplateSO dataSO in allCharacterTemplatesSOs)
+        {
+            tempList.Add(ConvertCharacterTemplateToCharacterData(dataSO));
+        }
+
+        AllCharacterTemplates = tempList.ToArray();
+    }
 
     // Build, Add and Delete Characters 
     #region
@@ -22,10 +51,10 @@ public class CharacterDataController : Singleton<CharacterDataController>
     {
         foreach(CharacterTemplateSO template in characters)
         {
-            AddNewCharacterToRoster(ConverCharacterTemplateToCharacterData(template));
+            AddNewCharacterToPlayerRoster(ConvertCharacterTemplateToCharacterData(template));
         }
     }
-    public void AddNewCharacterToRoster(CharacterData character)
+    public void AddNewCharacterToPlayerRoster(CharacterData character)
     {
         AllPlayerCharacters.Add(character);
     }
@@ -52,9 +81,57 @@ public class CharacterDataController : Singleton<CharacterDataController>
     }
     #endregion
 
-    // Data Conversion
+    // Data Conversion + Cloning
     #region
-    public CharacterData ConverCharacterTemplateToCharacterData(CharacterTemplateSO template)
+    public CharacterData CloneCharacterData(CharacterData original)
+    {
+        Debug.Log("CharacterDataController.ConverCharacterTemplateToCharacterData() called...");
+
+        CharacterData newCharacter = new CharacterData();
+
+        newCharacter.myName = original.myName;
+        newCharacter.myClassName = original.myClassName;
+        newCharacter.race = original.race;
+
+        SetCharacterMaxHealth(newCharacter, original.maxHealth);
+        SetCharacterHealth(newCharacter, original.health);
+
+        newCharacter.stamina = original.stamina;
+        newCharacter.initiative = original.initiative;
+        newCharacter.dexterity = original.dexterity;
+        newCharacter.draw = original.draw;
+        newCharacter.power = original.power;
+
+        newCharacter.deck = new List<CardData>();
+        foreach (CardData cso in original.deck)
+        {
+            AddCardToCharacterDeck(newCharacter, CardController.Instance.CloneCardDataFromCardData(cso));
+        }
+
+        // UCM Data
+        newCharacter.modelParts = new List<string>();
+        newCharacter.modelParts.AddRange(original.modelParts);
+
+        // Passive Data
+        newCharacter.passiveManager = new PassiveManagerModel();
+        PassiveController.Instance.BuildPassiveManagerFromOtherPassiveManager(original.passiveManager, newCharacter.passiveManager);
+
+        // Item Data
+        newCharacter.itemManager = new ItemManagerModel();
+        ItemController.Instance.CopyItemManagerDataIntoOtherItemManager(original.itemManager, newCharacter.itemManager);
+
+        // Talent Data
+        newCharacter.talentPairings = new List<TalentPairingModel>();
+        foreach (TalentPairingModel tpm in original.talentPairings)
+        {
+            newCharacter.talentPairings.Add(CloneTalentPairingModel(tpm));
+        }
+
+        return newCharacter;
+
+
+    }
+    public CharacterData ConvertCharacterTemplateToCharacterData(CharacterTemplateSO template)
     {
         Debug.Log("CharacterDataController.ConverCharacterTemplateToCharacterData() called...");
 
@@ -77,7 +154,6 @@ public class CharacterDataController : Singleton<CharacterDataController>
         foreach(CardDataSO cso in template.deck)
         {
             AddCardToCharacterDeck(newCharacter, CardController.Instance.BuildCardDataFromScriptableObjectData(cso));
-            //newCharacter.deck.Add(CardController.Instance.BuildCardDataFromScriptableObjectData(cso, newCharacter));
         }
 
         // UCM Data

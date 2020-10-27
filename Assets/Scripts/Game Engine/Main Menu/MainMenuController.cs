@@ -6,14 +6,13 @@ using UnityEngine.UI;
 using DG.Tweening;
 using Spriter2UnityDX;
 using System.Collections;
+using System;
+using System.Linq;
 
 public class MainMenuController : Singleton<MainMenuController>
 {
     // Properties + Component References
     #region
-    [Header("Character Template Data")]
-    public List<CharacterTemplateSO> selectableCharacterTemplates;
-
     [Header("Front Screen Components")]
     [SerializeField] private GameObject frontScreenParent;
     public GameObject frontScreenBgParent;
@@ -48,7 +47,11 @@ public class MainMenuController : Singleton<MainMenuController>
     [SerializeField] private TalentInfoPanel[] talentInfoPanels;
     [SerializeField] private CanvasGroup previewCardCg;
     [SerializeField] private CardViewModel previewCardVM;
-    [HideInInspector] public CharacterTemplateSO currentTemplateSelection;
+    [HideInInspector] public CharacterData currentTemplateSelection;
+
+
+   
+
     #endregion
 
     // Initialization 
@@ -57,7 +60,6 @@ public class MainMenuController : Singleton<MainMenuController>
     {
         RenderMenuButtons();
         SetRunModifiersToDefaults();
-        //SetChooseCharacterWindowStartingStates();
         SetChoosenCharacterStartingState();
 
     }
@@ -277,7 +279,7 @@ public class MainMenuController : Singleton<MainMenuController>
     {
         newGameScreenVisualParent.SetActive(false);
     }
-    public void BuildNewGameWindowFromCharacterTemplateData(CharacterTemplateSO data)
+    public void BuildNewGameWindowFromCharacterTemplateData(CharacterData data)
     {
         // Set Texts
         characterNameText.text = data.myName;
@@ -285,7 +287,7 @@ public class MainMenuController : Singleton<MainMenuController>
 
         // Build model
         CharacterModelController.BuildModelFromStringReferences(characterModel, data.modelParts);
-        CharacterModelController.ApplyItemManagerDataToCharacterModelView(data.serializedItemManager, characterModel);
+        CharacterModelController.ApplyItemManagerDataToCharacterModelView(data.itemManager, characterModel);
 
         // Build talent info panels
         BuildTalentInfoPanels(data);
@@ -296,14 +298,14 @@ public class MainMenuController : Singleton<MainMenuController>
         // Rebuild layout
         LayoutRebuilder.ForceRebuildLayoutImmediate(characterInfoRect);
     }
-    private void BuildCardInfoPanels(CharacterTemplateSO data)
+    private void BuildCardInfoPanels(CharacterData data)
     {
         // Disable + Reset all card info panels
         for (int i = 0; i < cardInfoPanels.Length; i++)
         {
             cardInfoPanels[i].gameObject.SetActive(false);
             cardInfoPanels[i].copiesCount = 0;
-            cardInfoPanels[i].dataSoRef = null;
+            cardInfoPanels[i].cardDataRef = null;
         }
 
         // Rebuild panels
@@ -312,7 +314,7 @@ public class MainMenuController : Singleton<MainMenuController>
             CardInfoPanel matchingPanel = null;
             foreach (CardInfoPanel panel in cardInfoPanels)
             {
-                if (panel.dataSoRef == data.deck[i])
+                if (panel.cardDataRef == data.deck[i])
                 {
                     matchingPanel = panel;
                     break;
@@ -327,12 +329,12 @@ public class MainMenuController : Singleton<MainMenuController>
             else
             {
                 cardInfoPanels[i].gameObject.SetActive(true);
-                cardInfoPanels[i].BuildCardInfoPanelFromCardDataSO(data.deck[i]);
+                cardInfoPanels[i].BuildCardInfoPanelFromCardData(data.deck[i]);
             }
         }
 
     }
-    private void BuildTalentInfoPanels(CharacterTemplateSO data)
+    private void BuildTalentInfoPanels(CharacterData data)
     {
         // Disable + Reset all talent info panels
         for (int i = 0; i < talentInfoPanels.Length; i++)
@@ -346,12 +348,12 @@ public class MainMenuController : Singleton<MainMenuController>
         }
 
     }
-    public void BuildAndShowCardViewModelPopup(CardDataSO data)
+    public void BuildAndShowCardViewModelPopup(CardData data)
     {
         previewCardCg.gameObject.SetActive(true);
-        CardData cData = CardController.Instance.GetCardDataFromLibraryByName(data.cardName);
+        //CardData cData = CardController.Instance.GetCardDataFromLibraryByName(data.cardName);
         //CardController.Instance.BuildCardViewModelFromCardDataSO(data, previewCardVM);
-        CardController.Instance.BuildCardViewModelFromCardData(cData, previewCardVM);
+        CardController.Instance.BuildCardViewModelFromCardData(data, previewCardVM);
         previewCardCg.alpha = 0;
         previewCardCg.DOFade(1f, 0.25f);
     }
@@ -390,14 +392,13 @@ public class MainMenuController : Singleton<MainMenuController>
 
     // Get + Set Character Templates Logic
     #region
-    public CharacterTemplateSO GetChosenCharacter()
+    public CharacterData GetChosenCharacter()
     {
         return currentTemplateSelection;
     }
     public void SetChoosenCharacterStartingState()
     {
-        // Set each window to a different character
-        currentTemplateSelection = selectableCharacterTemplates[0];
+        currentTemplateSelection = CharacterDataController.Instance.AllCharacterTemplates[0];
         BuildNewGameWindowFromCharacterTemplateData(currentTemplateSelection);
 
     }
@@ -412,34 +413,34 @@ public class MainMenuController : Singleton<MainMenuController>
         BuildNewGameWindowFromCharacterTemplateData(currentTemplateSelection);
 
     }
-    private CharacterTemplateSO GetNextTemplate(CharacterTemplateSO currentTemplate)
+    private CharacterData GetNextTemplate(CharacterData currentTemplate)
     {
-        CharacterTemplateSO templateReturned = null;
+        CharacterData templateReturned = null;
+        int currentIndex = Array.IndexOf(CharacterDataController.Instance.AllCharacterTemplates, currentTemplate);
 
-        int currentIndex = selectableCharacterTemplates.IndexOf(currentTemplate);
-        if (currentIndex == selectableCharacterTemplates.Count - 1)
+        if (currentIndex == CharacterDataController.Instance.AllCharacterTemplates.Length - 1)
         {
-            templateReturned = selectableCharacterTemplates[0];
+            templateReturned = CharacterDataController.Instance.AllCharacterTemplates[0];
         }
         else
         {
-            templateReturned = selectableCharacterTemplates[currentIndex + 1];
+            templateReturned = CharacterDataController.Instance.AllCharacterTemplates[currentIndex + 1];
         }
 
         return templateReturned;
     }
-    private CharacterTemplateSO GetPreviousTemplate(CharacterTemplateSO currentTemplate)
+    private CharacterData GetPreviousTemplate(CharacterData currentTemplate)
     {
-        CharacterTemplateSO templateReturned = null;
+        CharacterData templateReturned = null;
+        int currentIndex = Array.IndexOf(CharacterDataController.Instance.AllCharacterTemplates, currentTemplate);
 
-        int currentIndex = selectableCharacterTemplates.IndexOf(currentTemplate);
         if (currentIndex == 0)
         {
-            templateReturned = selectableCharacterTemplates[selectableCharacterTemplates.Count - 1];
+            templateReturned = CharacterDataController.Instance.AllCharacterTemplates[CharacterDataController.Instance.AllCharacterTemplates.Length - 1];
         }
         else
         {
-            templateReturned = selectableCharacterTemplates[currentIndex - 1];
+            templateReturned = CharacterDataController.Instance.AllCharacterTemplates[currentIndex - 1];
         }
 
         return templateReturned;
@@ -489,11 +490,11 @@ public class MainMenuController : Singleton<MainMenuController>
         randomizeDecksButton.CrossMe();
         improviseDecksButton.CrossMe();
     }
-    public List<CharacterTemplateSO> GetThreeRandomAndDifferentTemplates()
+    public List<CharacterData> GetThreeRandomAndDifferentTemplates()
     {
-        List<CharacterTemplateSO> possibleTemplates = new List<CharacterTemplateSO>();
-        List<CharacterTemplateSO> listReturned = new List<CharacterTemplateSO>();
-        possibleTemplates.AddRange(selectableCharacterTemplates);
+        List<CharacterData> possibleTemplates = new List<CharacterData>();
+        List<CharacterData> listReturned = new List<CharacterData>();
+        possibleTemplates.AddRange(CharacterDataController.Instance.AllCharacterTemplates);
 
         for(int i = 0; i < 3; i++)
         {

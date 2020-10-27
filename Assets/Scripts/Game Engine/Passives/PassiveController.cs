@@ -92,7 +92,7 @@ public class PassiveController : Singleton<PassiveController>
 
     // Setup Logic
     #region
-    private void BuildPassiveManagerFromOtherPassiveManager(PassiveManagerModel originalData, PassiveManagerModel newClone)
+    public void BuildPassiveManagerFromOtherPassiveManager(PassiveManagerModel originalData, PassiveManagerModel newClone)
     {
         Debug.Log("PassiveController.BuildPassiveManagerFromOtherPassiveManager() called...");
 

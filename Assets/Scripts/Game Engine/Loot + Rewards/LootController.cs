@@ -312,7 +312,7 @@ public class LootController : Singleton<LootController>
     public void OnLootCardViewModelClicked(LootScreenCardViewModel cardClicked)
     {
         // Add card to character deck
-        CharacterDataController.Instance.AddCardToCharacterDeck(currentCharacterSelection, cardClicked.myDataRef);
+        CharacterDataController.Instance.AddCardToCharacterDeck(currentCharacterSelection, CardController.Instance.CloneCardDataFromCardData(cardClicked.myDataRef));
 
         // Close choose card window,  reopen front screen
         HideChooseCardScreen();
@@ -354,4 +354,14 @@ public class LootController : Singleton<LootController>
         }
     }
     #endregion
+
+    // Save + Load Logic
+    public void SaveMyDataToSaveFile(SaveGameData saveFile)
+    {
+        saveFile.currentLootResult = CurrentLootResultData;
+    }
+    public void BuildMyDataFromSaveFile(SaveGameData saveFile)
+    {
+        CurrentLootResultData = saveFile.currentLootResult;
+    }
 }

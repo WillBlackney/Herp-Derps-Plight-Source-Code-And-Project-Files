@@ -40,28 +40,15 @@ public class PersistencyManager : Singleton<PersistencyManager>
     public void BuildNewSaveFileOnNewGameStarted()
     {
         // Setup empty save file
-        SaveGameData newSave = new SaveGameData();
-
-        // Set starting journey state
-        EncounterData ed = JourneyManager.Instance.Encounters[0];
-
-        if (ed.encounterType == EncounterType.BasicEnemy)
-        {
-            newSave.saveCheckPoint = SaveCheckPoint.CombatStart;
-            newSave.currentEncounter = ed;
-            newSave.currentEnemyWave = JourneyManager.Instance.GetRandomEnemyWaveFromEncounterData(ed).encounterName;
-        }
-
-        // Set journey start position
-        newSave.currentJourneyPosition = 0;
+        SaveGameData newSave = new SaveGameData();  
 
         // Build characters
-        List<CharacterTemplateSO> chosenCharacters = new List<CharacterTemplateSO>();
+        List<CharacterData> chosenCharacters = new List<CharacterData>();
 
         // should randomize character?
         if (MainMenuController.Instance.randomizeCharacters)
         {
-            List<CharacterTemplateSO> randomCharacters = MainMenuController.Instance.GetThreeRandomAndDifferentTemplates();
+            List<CharacterData> randomCharacters = MainMenuController.Instance.GetThreeRandomAndDifferentTemplates();
             chosenCharacters.Add(randomCharacters[0]);
         }
 
@@ -72,9 +59,27 @@ public class PersistencyManager : Singleton<PersistencyManager>
         }
         
         // build each character data object
-        foreach (CharacterTemplateSO data in chosenCharacters)
+        foreach (CharacterData data in chosenCharacters)
         {
-            newSave.characters.Add(CharacterDataController.Instance.ConverCharacterTemplateToCharacterData(data));
+            newSave.characters.Add(CharacterDataController.Instance.CloneCharacterData(data));
+        }
+
+        // Set starting journey state
+        newSave.currentJourneyPosition = 0;
+        EncounterData ed = JourneyManager.Instance.Encounters[0];
+        newSave.currentEncounter = ed;
+
+        if (ed.encounterType == EncounterType.BasicEnemy)
+        {
+            newSave.saveCheckPoint = SaveCheckPoint.CombatStart;
+            EnemyWaveSO firstEnemies = JourneyManager.Instance.GetRandomEnemyWaveFromEncounterData(ed);
+            newSave.currentEnemyWave = firstEnemies.encounterName;
+            JourneyManager.Instance.AddEnemyWaveToAlreadyEncounteredList(firstEnemies);
+        }
+        else if (ed.encounterType == EncounterType.RecruitCharacter)
+        {
+            newSave.saveCheckPoint = SaveCheckPoint.RecruitCharacterStart;
+            newSave.recruitCharacterChoices = RecruitCharacterController.Instance.GetThreeValidRecruitableCharacters();
         }
 
         // DECK MODIFIER SETUP
@@ -103,7 +108,6 @@ public class PersistencyManager : Singleton<PersistencyManager>
                     int randomIndex = RandomGenerator.NumberBetween(0, viableCards.Count - 1);
                     CardData randomCard = CardController.Instance.BuildCardDataFromScriptableObjectData(viableCards[randomIndex]);
                     CharacterDataController.Instance.AddCardToCharacterDeck(character, randomCard);
-                    //character.deck.Add(randomCard);
                 }
             }
         }
@@ -131,22 +135,25 @@ public class PersistencyManager : Singleton<PersistencyManager>
         // START SAVE!        
         SaveGameToDisk(newSave);
     }
-    public void AutoUpdateSaveFile(SaveCheckPoint checkPointType)
+    public void AutoUpdateSaveFile()
     {
-        Debug.Log("PersistencyManager.AutoUpdateSaveFile() called, new check point: " + checkPointType.ToString());
+        Debug.Log("PersistencyManager.AutoUpdateSaveFile() called...");
 
         // Setup empty save file
         SaveGameData newSave = new SaveGameData();
         newSave.characters = new List<CharacterData>();
-
-        // Set checkpoint info
-        newSave.saveCheckPoint = checkPointType;
 
         // Save character data
         CharacterDataController.Instance.SaveMyDataToSaveFile(newSave);
 
         // Save journey data
         JourneyManager.Instance.SaveMyDataToSaveFile(newSave);
+
+        // Save recruit data
+        RecruitCharacterController.Instance.SaveMyDataToSaveFile(newSave);
+
+        // Save combat end loot data
+        LootController.Instance.SaveMyDataToSaveFile(newSave);
 
         // START SAVE!        
         SaveGameToDisk(newSave);
@@ -166,6 +173,12 @@ public class PersistencyManager : Singleton<PersistencyManager>
 
         // Set journey data
         JourneyManager.Instance.BuildMyDataFromSaveFile(newLoad);
+
+        // Set recruit character event 
+        RecruitCharacterController.Instance.BuildMyDataFromSaveFile(newLoad);
+
+        // Set recruit character event 
+        LootController.Instance.BuildMyDataFromSaveFile(newLoad);
     }
     #endregion
 

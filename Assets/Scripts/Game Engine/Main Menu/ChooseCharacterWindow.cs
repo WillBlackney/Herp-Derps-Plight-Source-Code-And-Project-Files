@@ -24,7 +24,7 @@ public class ChooseCharacterWindow : MonoBehaviour, IPointerEnterHandler, IPoint
     [SerializeField] private Color mouseOverColor;    
 
     [Header("Properties")]
-    public CharacterTemplateSO currentTemplateSelection;
+    public CharacterData currentTemplateSelection;
     private bool hasRunInitialSetup = false;
     #endregion
 
@@ -35,7 +35,7 @@ public class ChooseCharacterWindow : MonoBehaviour, IPointerEnterHandler, IPoint
         if(hasRunInitialSetup == false)
         {
             hasRunInitialSetup = true;
-            maxIndexText.text = MainMenuController.Instance.selectableCharacterTemplates.Count.ToString();
+            maxIndexText.text = CharacterDataController.Instance.AllCharacterTemplates.Length.ToString();
         }
     }
     #endregion
@@ -58,19 +58,19 @@ public class ChooseCharacterWindow : MonoBehaviour, IPointerEnterHandler, IPoint
 
     // View logic
     #region
-    private void BuildMyViewsFromTemplate(CharacterTemplateSO template)
+    private void BuildMyViewsFromTemplate(CharacterData template)
     {
         nameText.text = template.myName;
         classNameText.text = "The " + template.myClassName;
         CharacterModelController.BuildModelFromStringReferences(myUCM, template.modelParts);
-        CharacterModelController.ApplyItemManagerDataToCharacterModelView(template.serializedItemManager, myUCM);
-        currentIndexText.text = (MainMenuController.Instance.selectableCharacterTemplates.IndexOf(currentTemplateSelection) + 1).ToString();
+        CharacterModelController.ApplyItemManagerDataToCharacterModelView(template.itemManager, myUCM);
+        //currentIndexText.text = (CharacterDataController.Instance.AllCharacterTemplates.IndexOf(currentTemplateSelection) + 1).ToString();
     }
     #endregion
 
     // Get + Set Templates
     #region
-    public void SetMyTemplate(CharacterTemplateSO template)
+    public void SetMyTemplate(CharacterData template)
     {
         currentTemplateSelection = template;
         BuildMyViewsFromTemplate(template);

@@ -22,12 +22,19 @@ public class ItemController : Singleton<ItemController>
 
     // Library Logic
     #region
+    protected override void Awake()
+    {
+        base.Awake();
+        BuildItemLibrary();
+    }
     private void Start()
     {
-        BuildItemLibrary();
+        //BuildItemLibrary();
     }
     private void BuildItemLibrary()
     {
+        Debug.LogWarning("ItemController.BuildItemLibrary() called...");
+
         List<ItemData> tempList = new List<ItemData>();
 
         foreach (ItemDataSO dataSO in allItemScriptableObjects)
@@ -143,10 +150,19 @@ public class ItemController : Singleton<ItemController>
             ApplyItemEffectsToCharacterEntity(character, character.iManager.offHandItem);
         }
 
+    }    
+    private void ApplyItemEffectsToCharacterEntity(CharacterEntityModel character, ItemData item)
+    {
+        foreach(PassivePairingData passive in item.passivePairings)
+        {
+            string passiveName = TextLogic.SplitByCapitals(passive.passiveData.ToString());
+
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(character.pManager, passiveName, passive.passiveStacks, false);
+        }
     }
     public void CopyItemManagerDataIntoOtherItemManager(ItemManagerModel originalData, ItemManagerModel clone)
     {
-        if(originalData == null)
+        if (originalData == null)
         {
             Debug.Log("CopyItemManagerDataIntoOtherItemManager ORIGINAL IS NULL!");
         }
@@ -157,15 +173,6 @@ public class ItemController : Singleton<ItemController>
 
         clone.mainHandItem = originalData.mainHandItem;
         clone.offHandItem = originalData.offHandItem;
-    }   
-    private void ApplyItemEffectsToCharacterEntity(CharacterEntityModel character, ItemData item)
-    {
-        foreach(PassivePairingData passive in item.passivePairings)
-        {
-            string passiveName = TextLogic.SplitByCapitals(passive.passiveData.ToString());
-
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(character.pManager, passiveName, passive.passiveStacks, false);
-        }
     }
     public void CopySerializedItemManagerIntoStandardItemManager(SerializedItemManagerModel data, ItemManagerModel iManager)
     {

@@ -12,7 +12,8 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
     // Properties + Component References
     #region
     [Header("Properties")]
-    [SerializeField] private CharacterTemplateSO selectedCharacter;
+    [SerializeField] private CharacterData selectedCharacter;
+    [HideInInspector] public List<CharacterData> currentChoices = new List<CharacterData>();
 
     [Header("Core Components")]
     [SerializeField] private GameObject recruitCharacterVisualParent;
@@ -95,7 +96,7 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
 
     // Build Views
     #region
-    private void BuildRecruitCharacterPopupInfoWindow(CharacterTemplateSO data)
+    private void BuildRecruitCharacterPopupInfoWindow(CharacterData data)
     {
         // Enable window
         ShowCharacterInfoPopupWindow();
@@ -106,7 +107,7 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
 
         // Build model
         CharacterModelController.BuildModelFromStringReferences(popUpCharacterModel, data.modelParts);
-        CharacterModelController.ApplyItemManagerDataToCharacterModelView(data.serializedItemManager, popUpCharacterModel);
+        CharacterModelController.ApplyItemManagerDataToCharacterModelView(data.itemManager, popUpCharacterModel);
 
         // Build talent info panels
         BuildTalentInfoPanels(data);
@@ -117,14 +118,14 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
         // Rebuild layout
         LayoutRebuilder.ForceRebuildLayoutImmediate(characterInfoRect);
     }
-    private void BuildCardInfoPanels(CharacterTemplateSO data)
+    private void BuildCardInfoPanels(CharacterData data)
     {
         // Disable + Reset all card info panels
         for (int i = 0; i < cardInfoPanels.Length; i++)
         {
             cardInfoPanels[i].gameObject.SetActive(false);
             cardInfoPanels[i].copiesCount = 0;
-            cardInfoPanels[i].dataSoRef = null;
+            cardInfoPanels[i].cardDataRef = null;
         }
 
         // Rebuild panels
@@ -133,7 +134,7 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
             CardInfoPanel matchingPanel = null;
             foreach (CardInfoPanel panel in cardInfoPanels)
             {
-                if (panel.dataSoRef == data.deck[i])
+                if (panel.cardDataRef == data.deck[i])
                 {
                     matchingPanel = panel;
                     break;
@@ -148,12 +149,12 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
             else
             {
                 cardInfoPanels[i].gameObject.SetActive(true);
-                cardInfoPanels[i].BuildCardInfoPanelFromCardDataSO(data.deck[i]);
+                cardInfoPanels[i].BuildCardInfoPanelFromCardData(data.deck[i]);
             }
         }
 
     }
-    private void BuildTalentInfoPanels(CharacterTemplateSO data)
+    private void BuildTalentInfoPanels(CharacterData data)
     {
         // Disable + Reset all talent info panels
         for (int i = 0; i < talentInfoPanels.Length; i++)
@@ -167,22 +168,30 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
         }
 
     }
-    public void BuildAndShowCardViewModelPopup(CardDataSO data)
+    public void BuildAndShowCardViewModelPopup(CardData data)
     {
         previewCardCg.gameObject.SetActive(true);
-        CardData cData = CardController.Instance.GetCardDataFromLibraryByName(data.cardName);
-        CardController.Instance.BuildCardViewModelFromCardData(cData, previewCardVM);
+        CardController.Instance.BuildCardViewModelFromCardData(data, previewCardVM);
         previewCardCg.alpha = 0;
         previewCardCg.DOFade(1f, 0.25f);
     }
     public void BuildRecruitCharacterWindows()
     {
         // Setup
-        List<CharacterTemplateSO> selectedCharacters = new List<CharacterTemplateSO>();
+        List<CharacterData> selectedCharacters = currentChoices;
 
-        // Find valid recruitable characters
-        List<CharacterTemplateSO> recruitableCharacters = new List<CharacterTemplateSO>();
-        foreach (CharacterTemplateSO charTemplate in MainMenuController.Instance.selectableCharacterTemplates)
+        // Build window views
+        for (int i = 0; i < recruitCharacterWindows.Length; i++)
+        {
+            recruitCharacterWindows[i].BuildMyViewsFromTemplate(selectedCharacters[i]);
+        }
+    }
+    public List<CharacterData> GetThreeValidRecruitableCharacters()
+    {
+        List<CharacterData> recruitableCharacters = new List<CharacterData>();
+        List<CharacterData> charactersReturned = new List<CharacterData>();
+
+        foreach (CharacterData charTemplate in CharacterDataController.Instance.AllCharacterTemplates)
         {
             if (IsCharacterRecruitable(charTemplate))
             {
@@ -194,14 +203,10 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
         recruitableCharacters.Shuffle();
         for (int i = 0; i < 3; i++)
         {
-            selectedCharacters.Add(recruitableCharacters[i]);
+            charactersReturned.Add(recruitableCharacters[i]);
         }
 
-        // Build window views
-        for (int i = 0; i < recruitCharacterWindows.Length; i++)
-        {
-            recruitCharacterWindows[i].BuildMyViewsFromTemplate(selectedCharacters[i]);
-        }
+        return charactersReturned;
     }
     #endregion
 
@@ -221,7 +226,7 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
         // Cache choice
         SetCharacterChoice(window.myTemplateData);
     }
-    public void OnRecruitCharacterWindowViewInfoButtonClicked(CharacterTemplateSO data)
+    public void OnRecruitCharacterWindowViewInfoButtonClicked(CharacterData data)
     {
         BuildRecruitCharacterPopupInfoWindow(data);
     }
@@ -240,7 +245,7 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
     
     // Misc Logic
     #region
-    public bool IsCharacterRecruitable(CharacterTemplateSO character)
+    public bool IsCharacterRecruitable(CharacterData character)
     {
         bool boolReturned = true;
 
@@ -264,10 +269,11 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
     private void HandleCharacterChoiceMade()
     {
         // start recruit character process
-        CharacterDataController.Instance.AddNewCharacterToRoster(CharacterDataController.Instance.ConverCharacterTemplateToCharacterData(selectedCharacter));
+        currentChoices.Clear();
+        CharacterDataController.Instance.AddNewCharacterToPlayerRoster(selectedCharacter);
         EventSequenceController.Instance.HandleLoadNextEncounter();
     }
-    private void SetCharacterChoice(CharacterTemplateSO character)
+    private void SetCharacterChoice(CharacterData character)
     {
         selectedCharacter = character;
         confirmButton.interactable = true;
@@ -276,6 +282,18 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
     {
         selectedCharacter = null;
         confirmButton.interactable = false;
+    }
+    #endregion
+
+    // Save + Load Logic
+    #region
+    public void BuildMyDataFromSaveFile(SaveGameData saveFile)
+    {
+        currentChoices = saveFile.recruitCharacterChoices;
+    }
+    public void SaveMyDataToSaveFile(SaveGameData saveFile)
+    {
+        saveFile.recruitCharacterChoices = currentChoices;
     }
     #endregion
 

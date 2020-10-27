@@ -10,8 +10,16 @@ public class SaveGameData
     public List<CharacterData> characters = new List<CharacterData>();
 
     public SaveCheckPoint saveCheckPoint;
+
+    // Combat event data
     public EncounterData currentEncounter;
     public string currentEnemyWave;
+
+    // Recruit event data
+    public List<CharacterData> recruitCharacterChoices = new List<CharacterData>();
+
+    // Loot data
+    public LootResultModel currentLootResult;
    
 }
 public enum SaveCheckPoint

@@ -97,12 +97,19 @@ public class CardController : Singleton<CardController>
     #region
 
     // Initialization + Build Library
+    protected override void Awake()
+    {
+        base.Awake();
+        BuildCardLibrary();
+    }
     private void Start()
     {
-        BuildCardLibrary();
+        //BuildCardLibrary();
     }
     private void BuildCardLibrary()
     {
+        Debug.LogWarning("CardController.BuildCardLibrary() called...");
+
         List<CardData> tempList = new List<CardData>();
 
         foreach(CardDataSO dataSO in allCardScriptableObjects)
@@ -382,7 +389,64 @@ public class CardController : Singleton<CardController>
         }
 
         return c;
-    }    
+    }
+    public CardData CloneCardDataFromCardData(CardData original)
+    {
+        CardData c = new CardData();
+
+        // Core data
+        c.cardName = original.cardName;
+        c.cardDescription = original.cardDescription;
+        c.cardSprite = GetCardSpriteByName(original.cardName);
+        c.cardBaseEnergyCost = original.cardBaseEnergyCost;
+        c.xEnergyCost = original.xEnergyCost;
+
+        // Types
+        c.cardType = original.cardType;
+        c.targettingType = original.targettingType;
+        c.talentSchool = original.talentSchool;
+        c.rarity = original.rarity;
+        c.racialCard = original.racialCard;
+        c.originRace = original.originRace;
+
+        // Key words
+        c.expend = original.expend;
+        c.innate = original.innate;
+        c.fleeting = original.fleeting;
+        c.unplayable = original.unplayable;
+        c.lifeSteal = original.lifeSteal;
+        c.blessing = original.blessing;
+
+        // Card effects
+        c.cardEffects = new List<CardEffect>();
+        foreach (CardEffect ce in original.cardEffects)
+        {
+            c.cardEffects.Add(ObjectCloner.CloneJSON(ce));
+        }
+
+        // Card event listeners
+        c.cardEventListeners = new List<CardEventListener>();
+        foreach (CardEventListener cel in original.cardEventListeners)
+        {
+            c.cardEventListeners.Add(ObjectCloner.CloneJSON(cel));
+        }
+
+        // Keyword Model Data
+        c.keyWordModels = new List<KeyWordModel>();
+        foreach (KeyWordModel kwdm in original.keyWordModels)
+        {
+            c.keyWordModels.Add(ObjectCloner.CloneJSON(kwdm));
+        }
+
+        // Custom string Data
+        c.cardDescriptionTwo = new List<CustomString>();
+        foreach (CustomString cs in original.cardDescriptionTwo)
+        {
+            c.cardDescriptionTwo.Add(ObjectCloner.CloneJSON(cs));
+        }
+
+        return c;
+    }
     private Card BuildCardFromCardDataSO(CardDataSO data, CharacterEntityModel owner)
     {
         Debug.Log("CardController.BuildCardFromCardData() called...");

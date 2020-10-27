@@ -34,20 +34,6 @@ public abstract class Singleton<T> : MonoBehaviour where T : Singleton<T>
         }
     }
 
-    // FOR TESTING ONLY!! NEVER CALL THIS FUNCTION OUTSIDE OF TESTS!
-    // Reason: awake is not called on monobehaviours unit tests.
-    // It unwise to make the normal Awake() function public, so
-    // the awake function is wrapped in the public RunAwake()
-    // function instead.
-    /*
-    public void RunAwake()
-    {
-        if (!Instance)
-        {
-            Awake();
-        }
-    }
-    */
     #endregion
 
 
