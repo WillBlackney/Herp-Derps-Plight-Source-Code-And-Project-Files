@@ -77,7 +77,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
     }
     public void CreateAllPlayerCombatCharacters()
     {
-        foreach (CharacterData data in CharacterDataController.Instance.allPlayerCharacters)
+        foreach (CharacterData data in CharacterDataController.Instance.AllPlayerCharacters)
         {
             // Dont spawn dead characters
             if (data.health > 0)

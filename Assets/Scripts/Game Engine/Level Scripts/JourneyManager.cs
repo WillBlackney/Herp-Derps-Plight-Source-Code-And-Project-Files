@@ -46,7 +46,6 @@ public class JourneyManager : Singleton<JourneyManager>
     public void BuildMyDataFromSaveFile(SaveGameData saveData)
     {
         CurrentJourneyPosition = saveData.currentJourneyPosition;
-        // CurrentEncounter = Encounters[CurrentJourneyPosition];
         CurrentEncounter = saveData.currentEncounter;
         CheckPointType = saveData.saveCheckPoint;
 

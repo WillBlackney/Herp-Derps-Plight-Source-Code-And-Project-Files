@@ -104,6 +104,7 @@ public enum StartingSceneSetting
     Standard = 0,
     CombatSceneSingle = 1,
     CombatEndLootEvent = 3,
+    RecruitCharacterEvent = 4,
     IntegrationTesting = 2,
 
 }

@@ -527,6 +527,8 @@ public enum EncounterType
     BasicEnemy = 1,
     EliteEnemy = 2,
     BossEnemy = 3,
+    RecruitCharacter = 4,
+
 }
 #endregion
 

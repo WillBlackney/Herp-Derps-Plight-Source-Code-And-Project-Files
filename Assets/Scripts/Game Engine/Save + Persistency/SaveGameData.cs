@@ -19,7 +19,8 @@ public enum SaveCheckPoint
     None = 0,
     CombatStart = 1,
     CombatEnd = 2,
-    KingsBlessingStart =3,
+    KingsBlessingStart = 3,
+    RecruitCharacterStart = 4,
 
 
 }

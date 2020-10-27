@@ -4,29 +4,48 @@ using UnityEngine;
 
 public class CharacterDataController : Singleton<CharacterDataController>
 {
-    [HideInInspector] public List<CharacterData> allPlayerCharacters = new List<CharacterData>();
-
-    // Build Characters From Data + Save/Load Logic
+    // Properties
     #region
-    public void BuildAllCharactersFromCharacterTemplateList(IEnumerable<CharacterTemplateSO> characters)
+    [Header("Properties")]
+    private List<CharacterData> allPlayerCharacters = new List<CharacterData>();
+    public List<CharacterData> AllPlayerCharacters
+    {
+        get { return allPlayerCharacters; }
+        private set { allPlayerCharacters = value; }
+
+    }
+    #endregion
+
+    // Build, Add and Delete Characters 
+    #region
+    public void BuildCharacterRosterFromCharacterTemplateList(IEnumerable<CharacterTemplateSO> characters)
     {
         foreach(CharacterTemplateSO template in characters)
         {
-            allPlayerCharacters.Add(ConverCharacterTemplateToCharacterData(template));
+            AddNewCharacterToRoster(ConverCharacterTemplateToCharacterData(template));
         }
     }
+    public void AddNewCharacterToRoster(CharacterData character)
+    {
+        AllPlayerCharacters.Add(character);
+    }
+
+    #endregion
+
+    // Save + Load Logic
+    #region
     public void BuildMyDataFromSaveFile(SaveGameData saveFile)
     {
-        allPlayerCharacters.Clear();
-        
+        AllPlayerCharacters.Clear();
+
         foreach (CharacterData characterData in saveFile.characters)
         {
-            allPlayerCharacters.Add(characterData);
+            AllPlayerCharacters.Add(characterData);
         }
     }
     public void SaveMyDataToSaveFile(SaveGameData saveFile)
     {
-        foreach(CharacterData character in allPlayerCharacters)
+        foreach (CharacterData character in AllPlayerCharacters)
         {
             saveFile.characters.Add(character);
         }

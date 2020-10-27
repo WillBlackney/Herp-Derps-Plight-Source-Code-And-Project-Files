@@ -33,6 +33,10 @@ public class EventSequenceController : Singleton<EventSequenceController>
         {
             StartCoroutine(RunCombatEndLootEventSetup());
         }
+        else if (GlobalSettings.Instance.gameMode == StartingSceneSetting.RecruitCharacterEvent)
+        {
+            StartCoroutine(RunRecruitCharacterEventSetup());
+        }
     }
     #endregion
 
@@ -65,7 +69,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         AudioManager.Instance.PlaySound(Sound.Music_Battle_Theme_1);
 
         // Build character data
-        CharacterDataController.Instance.BuildAllCharactersFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
+        CharacterDataController.Instance.BuildCharacterRosterFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
 
         // Create player characters in scene
         CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
@@ -76,18 +80,27 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Start a new combat event
         ActivationManager.Instance.OnNewCombatEventStarted();
     }
-
     private IEnumerator RunCombatEndLootEventSetup()
     {
         yield return null;
 
         // Build character data
-        CharacterDataController.Instance.BuildAllCharactersFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
+        CharacterDataController.Instance.BuildCharacterRosterFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
 
         // Create player characters in scene
         CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
         
         StartCombatVictorySequence();
+    }
+    private IEnumerator RunRecruitCharacterEventSetup()
+    {
+        yield return null;
+
+        // Build character data
+        CharacterDataController.Instance.BuildCharacterRosterFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
+
+        HandleLoadRecruitCharacterEncounter();
+
     }
     #endregion
 
@@ -174,6 +187,11 @@ public class EventSequenceController : Singleton<EventSequenceController>
         {
             HandleLoadCombatEncounter(JourneyManager.Instance.CurrentEnemyWave);
         }
+
+        else if (encounter.encounterType == EncounterType.RecruitCharacter)
+        {
+            HandleLoadCombatEncounter(JourneyManager.Instance.CurrentEnemyWave);
+        }
     }
     public void HandleLoadNextEncounter()
     {
@@ -202,6 +220,12 @@ public class EventSequenceController : Singleton<EventSequenceController>
             HandleCombatSceneTearDown();
         }
 
+        else if(previousEncounter.encounterType == EncounterType.RecruitCharacter)
+        {
+            // Teardown recruit event views
+            RecruitCharacterController.Instance.ResetAllViews();
+        }
+
         // If next event is a combat, get + set enemy wave before saving to disk
         if(JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.BasicEnemy ||
             JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.EliteEnemy)
@@ -214,6 +238,12 @@ public class EventSequenceController : Singleton<EventSequenceController>
             PersistencyManager.Instance.AutoUpdateSaveFile(SaveCheckPoint.CombatStart);
 
             HandleLoadCombatEncounter(JourneyManager.Instance.CurrentEnemyWave);
+        }
+
+        // Recruit character event
+        else if(JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.RecruitCharacter)
+        {
+            HandleLoadRecruitCharacterEncounter();
         }
     }
     private void HandleLoadCombatEncounter(EnemyWaveSO enemyWave)
@@ -230,6 +260,15 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Start a new combat event
         ActivationManager.Instance.OnNewCombatEventStarted();
+    }
+    private void HandleLoadRecruitCharacterEncounter()
+    {
+        // get 3 random characters (cant be ones we already have)
+        // build windows from character template data
+
+        RecruitCharacterController.Instance.ResetAllViews();
+        RecruitCharacterController.Instance.ShowRecruitCharacterScreen();
+        RecruitCharacterController.Instance.BuildRecruitCharacterWindows();
     }
     #endregion
 
@@ -285,8 +324,6 @@ public class EventSequenceController : Singleton<EventSequenceController>
         CharacterEntityController.Instance.DestroyAllCombatCharacters();
         ActivationManager.Instance.DestroyAllActivationWindows();
         LevelManager.Instance.ClearAndResetAllNodes();
-        //UIManager.Instance.continueToNextEncounterButtonParent.SetActive(false);
-        //UIManager.Instance.victoryPopup.SetActive(false);
         UIManager.Instance.DisableEndTurnButtonView();
     }
     #endregion

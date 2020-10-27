@@ -22,10 +22,6 @@ public class MainMenuController : Singleton<MainMenuController>
     [SerializeField] private GameObject abandonRunButtonParent;
     [SerializeField] private GameObject abandonRunPopupParent;
 
-    [Header("New Game Screen Components")]
-    [SerializeField] private GameObject newGameScreenVisualParent;
-    [SerializeField] private ChooseCharacterWindow[] chooseCharacterWindows;
-
     [Header("In Game Menu Components")]
     [SerializeField] private GameObject inGameMenuScreenParent;
 
@@ -40,10 +36,11 @@ public class MainMenuController : Singleton<MainMenuController>
     [HideInInspector] public bool randomizeDecks = false;
     [HideInInspector] public bool improviseDecks = false;
 
-    [Header("Character Info Popup Components")]
-    [SerializeField] private GameObject characterInfoPopupVisualParent;
-    [SerializeField] private CanvasGroup characterInfoPopupCg;
-    [SerializeField] private Scrollbar characterInfoPopupScrollBar;
+    [Header("New Game Screen Components/Properties")]
+    [SerializeField] private GameObject newGameScreenVisualParent;
+    [SerializeField] private GameObject newGameScreenCg;
+    [SerializeField] private RectTransform characterInfoRect;
+    [SerializeField] private Scrollbar characterInfoScrollBar;
     [SerializeField] private TextMeshProUGUI characterNameText;
     [SerializeField] private TextMeshProUGUI characterClassNameText;
     [SerializeField] private UniversalCharacterModel characterModel;
@@ -51,12 +48,7 @@ public class MainMenuController : Singleton<MainMenuController>
     [SerializeField] private TalentInfoPanel[] talentInfoPanels;
     [SerializeField] private CanvasGroup previewCardCg;
     [SerializeField] private CardViewModel previewCardVM;
-
-    [Header("NEW New Game Screen Components/Properties")]
-    public CharacterTemplateSO currentTemplateSelection;
-    [SerializeField] private RectTransform characterInfoRect;
-
-
+    [HideInInspector] public CharacterTemplateSO currentTemplateSelection;
     #endregion
 
     // Initialization 
@@ -273,7 +265,7 @@ public class MainMenuController : Singleton<MainMenuController>
     // New Game Screen Logic
     #region
 
-    // View Logic
+    // Build Views Logic
     #region
     public void ShowNewGameScreen()
     {
@@ -285,7 +277,90 @@ public class MainMenuController : Singleton<MainMenuController>
     {
         newGameScreenVisualParent.SetActive(false);
     }
-    #endregion
+    public void BuildNewGameWindowFromCharacterTemplateData(CharacterTemplateSO data)
+    {
+        // Set Texts
+        characterNameText.text = data.myName;
+        characterClassNameText.text = "The " + data.myClassName;
+
+        // Build model
+        CharacterModelController.BuildModelFromStringReferences(characterModel, data.modelParts);
+        CharacterModelController.ApplyItemManagerDataToCharacterModelView(data.serializedItemManager, characterModel);
+
+        // Build talent info panels
+        BuildTalentInfoPanels(data);
+
+        // Build card info panels
+        BuildCardInfoPanels(data);
+
+        // Rebuild layout
+        LayoutRebuilder.ForceRebuildLayoutImmediate(characterInfoRect);
+    }
+    private void BuildCardInfoPanels(CharacterTemplateSO data)
+    {
+        // Disable + Reset all card info panels
+        for (int i = 0; i < cardInfoPanels.Length; i++)
+        {
+            cardInfoPanels[i].gameObject.SetActive(false);
+            cardInfoPanels[i].copiesCount = 0;
+            cardInfoPanels[i].dataSoRef = null;
+        }
+
+        // Rebuild panels
+        for (int i = 0; i < data.deck.Count; i++)
+        {
+            CardInfoPanel matchingPanel = null;
+            foreach (CardInfoPanel panel in cardInfoPanels)
+            {
+                if (panel.dataSoRef == data.deck[i])
+                {
+                    matchingPanel = panel;
+                    break;
+                }
+            }
+
+            if (matchingPanel != null)
+            {
+                matchingPanel.copiesCount++;
+                matchingPanel.copiesCountText.text = "x" + matchingPanel.copiesCount.ToString();
+            }
+            else
+            {
+                cardInfoPanels[i].gameObject.SetActive(true);
+                cardInfoPanels[i].BuildCardInfoPanelFromCardDataSO(data.deck[i]);
+            }
+        }
+
+    }
+    private void BuildTalentInfoPanels(CharacterTemplateSO data)
+    {
+        // Disable + Reset all talent info panels
+        for (int i = 0; i < talentInfoPanels.Length; i++)
+        {
+            talentInfoPanels[i].gameObject.SetActive(false);
+        }
+
+        for (int i = 0; i < data.talentPairings.Count; i++)
+        {
+            talentInfoPanels[i].BuildFromTalentPairingModel(data.talentPairings[i]);
+        }
+
+    }
+    public void BuildAndShowCardViewModelPopup(CardDataSO data)
+    {
+        previewCardCg.gameObject.SetActive(true);
+        CardData cData = CardController.Instance.GetCardDataFromLibraryByName(data.cardName);
+        //CardController.Instance.BuildCardViewModelFromCardDataSO(data, previewCardVM);
+        CardController.Instance.BuildCardViewModelFromCardData(cData, previewCardVM);
+        previewCardCg.alpha = 0;
+        previewCardCg.DOFade(1f, 0.25f);
+    }
+    public void HidePreviewCard()
+    {
+        previewCardCg.gameObject.SetActive(false);
+        previewCardCg.alpha = 0;
+    }
+    #endregion   
 
     // On Button Click Logic
     #region
@@ -301,73 +376,40 @@ public class MainMenuController : Singleton<MainMenuController>
             ShowFrontScreen();
         });
     }
+    public void OnNextCharacterButtonClicked()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        GetAndSetNextAvailableCharacter();
+    }
+    public void OnPreviousCharacterButtonClicked()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        GetAndSetPreviousAvailableCharacter();
+    }
     #endregion
 
     // Get + Set Character Templates Logic
     #region
-    public List<CharacterTemplateSO> GetChosenTemplatesFromChooseCharacterWindows()
-    {
-        List<CharacterTemplateSO> chosenCharacters = new List<CharacterTemplateSO>();
-
-        foreach(ChooseCharacterWindow ccw in chooseCharacterWindows)
-        {
-            chosenCharacters.Add(ccw.currentTemplateSelection);
-        }
-
-        return chosenCharacters;
-    }
     public CharacterTemplateSO GetChosenCharacter()
     {
         return currentTemplateSelection;
-    }
-    public void SetChooseCharacterWindowStartingStates()
-    {
-        // Set each window to a different character
-        for(int i = 0; i < chooseCharacterWindows.Length; i++)
-        {
-            chooseCharacterWindows[i].SetMyTemplate(selectableCharacterTemplates[i]);
-        }
     }
     public void SetChoosenCharacterStartingState()
     {
         // Set each window to a different character
         currentTemplateSelection = selectableCharacterTemplates[0];
-        BuildWindowFromCharacterTemplateData(currentTemplateSelection);
-
-    }
-    public void GetAndSetNextAvailableTemplate(ChooseCharacterWindow window)
-    {
-        CharacterTemplateSO nextTemplate = GetNextTemplate(window.currentTemplateSelection); 
-
-        while (!IsTemplateAvailable(nextTemplate))
-        {
-            nextTemplate = GetNextTemplate(nextTemplate);
-        }
-
-        window.SetMyTemplate(nextTemplate);
-
-    }
-    public void GetAndSetPreviousAvailableCharacter(ChooseCharacterWindow window)
-    {
-        CharacterTemplateSO nextTemplate = GetPreviousTemplate(window.currentTemplateSelection);
-
-        while (!IsTemplateAvailable(nextTemplate))
-        {
-            nextTemplate = GetPreviousTemplate(nextTemplate);
-        }
-
-        window.SetMyTemplate(nextTemplate);
+        BuildNewGameWindowFromCharacterTemplateData(currentTemplateSelection);
 
     }
     public void GetAndSetNextAvailableCharacter()
     {
         currentTemplateSelection = GetNextTemplate(currentTemplateSelection);
-        BuildWindowFromCharacterTemplateData(currentTemplateSelection);
+        BuildNewGameWindowFromCharacterTemplateData(currentTemplateSelection);
     }
     public void GetAndSetPreviousAvailableCharacter()
     {
         currentTemplateSelection = GetPreviousTemplate(currentTemplateSelection);
-        BuildWindowFromCharacterTemplateData(currentTemplateSelection);
+        BuildNewGameWindowFromCharacterTemplateData(currentTemplateSelection);
 
     }
     private CharacterTemplateSO GetNextTemplate(CharacterTemplateSO currentTemplate)
@@ -402,31 +444,7 @@ public class MainMenuController : Singleton<MainMenuController>
 
         return templateReturned;
     }
-    private bool IsTemplateAvailable(CharacterTemplateSO template)
-    {
-        bool boolReturned = true;
-
-        foreach(ChooseCharacterWindow c in chooseCharacterWindows)
-        {
-            if(c.currentTemplateSelection == template)
-            {
-                boolReturned = false;
-                break;
-            }
-        }
-
-        return boolReturned;
-    }
-    public void OnNextCharacterButtonClicked()
-    {
-        EventSystem.current.SetSelectedGameObject(null);
-        GetAndSetNextAvailableCharacter();
-    }
-    public void OnPreviousCharacterButtonClicked()
-    {
-        EventSystem.current.SetSelectedGameObject(null);
-        GetAndSetPreviousAvailableCharacter();
-    }
+    
     #endregion
 
     #endregion
@@ -489,121 +507,7 @@ public class MainMenuController : Singleton<MainMenuController>
     }
     #endregion
 
-    // Character Pop Up Screen Logic
-    #region
-    public void BuildWindowFromCharacterTemplateData(CharacterTemplateSO data)
-    {
-        // Enable window
-       // ShowCharacterInfoPopupWindow();
-
-        // Set Texts
-        characterNameText.text = data.myName;
-        characterClassNameText.text = "The " + data.myClassName;
-
-        // Build model
-        CharacterModelController.BuildModelFromStringReferences(characterModel, data.modelParts);
-        CharacterModelController.ApplyItemManagerDataToCharacterModelView(data.serializedItemManager, characterModel);
-
-        // Build talent info panels
-        BuildTalentInfoPanels(data);
-
-        // Build card info panels
-        BuildCardInfoPanels(data);
-
-        // Rebuild layout
-        LayoutRebuilder.ForceRebuildLayoutImmediate(characterInfoRect);
-    }
-    public void OnCharacterInfoPopUpBackButtonClicked()
-    {
-        HideCharacterInfoPopupWindow();
-    }
-    private void HideCharacterInfoPopupWindow()
-    {
-        characterInfoPopupVisualParent.SetActive(false);
-    }
-    public void ShowCharacterInfoPopupWindow()
-    {
-        // Enable and fade in screen
-        characterInfoPopupVisualParent.SetActive(true);
-        characterInfoPopupCg.alpha = 0;
-        characterInfoPopupCg.DOFade(1f, 0.35f);
-
-        // Reset scroll window position
-        characterInfoPopupScrollBar.value = 1;
-
-        // Set model alpha to 0
-        EntityRenderer er = characterModel.GetComponent<EntityRenderer>();
-        er.Color = new Color(er.Color.r, er.Color.g, er.Color.b, 0f);
-
-        // Fade in model
-        CharacterEntityController.Instance.FadeInEntityRenderer(characterModel.GetComponent<EntityRenderer>(), 3f);
-    }    
-    private void BuildCardInfoPanels(CharacterTemplateSO data)
-    {
-        // Disable + Reset all card info panels
-        for(int i = 0; i< cardInfoPanels.Length; i++)
-        {
-            cardInfoPanels[i].gameObject.SetActive(false);
-            cardInfoPanels[i].copiesCount = 0;
-            cardInfoPanels[i].dataSoRef = null;
-        }
-
-        // Rebuild panels
-        for (int i = 0; i < data.deck.Count; i++)
-        {
-            CardInfoPanel matchingPanel = null;
-            foreach(CardInfoPanel panel in cardInfoPanels)
-            {
-                if(panel.dataSoRef == data.deck[i])
-                {
-                    matchingPanel = panel;
-                    break;
-                }
-            }
-
-            if(matchingPanel != null)
-            {
-                matchingPanel.copiesCount++;
-                matchingPanel.copiesCountText.text = "x" + matchingPanel.copiesCount.ToString();
-            }
-            else
-            {
-                cardInfoPanels[i].gameObject.SetActive(true);
-                cardInfoPanels[i].BuildCardInfoPanelFromCardDataSO(data.deck[i]);
-            }
-        }
-
-    }
-    private void BuildTalentInfoPanels(CharacterTemplateSO data)
-    {
-        // Disable + Reset all talent info panels
-        for (int i = 0; i < talentInfoPanels.Length; i++)
-        {
-            talentInfoPanels[i].gameObject.SetActive(false);
-        }
-
-        for (int i = 0; i < data.talentPairings.Count; i++)
-        {
-            talentInfoPanels[i].BuildFromTalentPairingModel(data.talentPairings[i]);
-        }
-
-    }
-    public void BuildAndShowCardViewModelPopup(CardDataSO data)
-    {
-        previewCardCg.gameObject.SetActive(true);
-        CardData cData = CardController.Instance.GetCardDataFromLibraryByName(data.cardName);
-        //CardController.Instance.BuildCardViewModelFromCardDataSO(data, previewCardVM);
-        CardController.Instance.BuildCardViewModelFromCardData(cData, previewCardVM);
-        previewCardCg.alpha = 0;
-        previewCardCg.DOFade(1f, 0.25f);
-    }
-    public void HidePreviewCard()
-    {
-        previewCardCg.gameObject.SetActive(false);
-        previewCardCg.alpha = 0;
-    }
-
-    #endregion
+   
 
 
 }

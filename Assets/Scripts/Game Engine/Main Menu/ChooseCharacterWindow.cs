@@ -90,7 +90,7 @@ public class ChooseCharacterWindow : MonoBehaviour, IPointerEnterHandler, IPoint
     public void OnPointerClick(PointerEventData eventData)
     {
         bgImage.color = normalColor;
-        MainMenuController.Instance.BuildWindowFromCharacterTemplateData(currentTemplateSelection);
+        MainMenuController.Instance.BuildNewGameWindowFromCharacterTemplateData(currentTemplateSelection);
     }
     #endregion
 }

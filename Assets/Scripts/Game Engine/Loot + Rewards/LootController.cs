@@ -55,11 +55,11 @@ public class LootController : Singleton<LootController>
     public void BuildLootScreenElementsFromLootResultData()
     {
         // Enable Choose card buttons
-        for (int i = 0; i < CharacterDataController.Instance.allPlayerCharacters.Count; i++)
+        for (int i = 0; i < CharacterDataController.Instance.AllPlayerCharacters.Count; i++)
         {
             ShowCardLootTab(cardLootTabs[i]);
             cardLootTabs[i].descriptionText.text = "Gain new card: " + 
-                TextLogic.ReturnColoredText(CharacterDataController.Instance.allPlayerCharacters[i].myName, TextLogic.neutralYellow);
+                TextLogic.ReturnColoredText(CharacterDataController.Instance.AllPlayerCharacters[i].myName, TextLogic.neutralYellow);
         }
     }
     public void BuildChooseCardScreenCardsFromData(List<CardData> cardData)
@@ -167,10 +167,10 @@ public class LootController : Singleton<LootController>
     {
         LootResultModel newLoot = new LootResultModel();
 
-        for(int i = 0; i < CharacterDataController.Instance.allPlayerCharacters.Count; i++)
+        for(int i = 0; i < CharacterDataController.Instance.AllPlayerCharacters.Count; i++)
         {
             newLoot.allCharacterCardChoices.Add(new List<CardData>());
-            newLoot.allCharacterCardChoices[i] = GenerateCharacterCardLootChoices(CharacterDataController.Instance.allPlayerCharacters[i]);
+            newLoot.allCharacterCardChoices[i] = GenerateCharacterCardLootChoices(CharacterDataController.Instance.AllPlayerCharacters[i]);
         }
 
 
@@ -295,7 +295,7 @@ public class LootController : Singleton<LootController>
             List<CardData> cardChoices = CurrentLootResultData.allCharacterCardChoices[index];
 
             // Cache the character, so we know which character to reward a card to if player chooses one
-            currentCharacterSelection = CharacterDataController.Instance.allPlayerCharacters[index];
+            currentCharacterSelection = CharacterDataController.Instance.AllPlayerCharacters[index];
             characterNameText.text = currentCharacterSelection.myName;
 
             // Build choose card view models
@@ -320,7 +320,7 @@ public class LootController : Singleton<LootController>
 
         // TO DO: find a better way to find the matching card tab
         // hide add card to deck button
-        HideCardLootTab(cardLootTabs[CharacterDataController.Instance.allPlayerCharacters.IndexOf(currentCharacterSelection)]);
+        HideCardLootTab(cardLootTabs[CharacterDataController.Instance.AllPlayerCharacters.IndexOf(currentCharacterSelection)]);
 
 
     }
