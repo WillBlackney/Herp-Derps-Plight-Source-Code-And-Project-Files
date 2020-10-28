@@ -16,16 +16,20 @@ MonoBehaviour:
   cardDescription: 'Unplayable.
 
     Fleeting.'
-  cardSprite: {fileID: 21300000, guid: ac5ab77777b77ab4aad7a18394483f99, type: 3}
+  cardSprite: {fileID: 21300000, guid: c451601fe544991478545910c262be2a, type: 3}
+  xEnergyCost: 0
   cardEnergyCost: 1
   cardType: 1
   targettingType: 0
   talentSchool: 0
   rarity: 0
+  racialCard: 0
+  originRace: 0
   expend: 0
   innate: 0
   fleeting: 1
   unplayable: 1
+  lifeSteal: 0
   blessing: 0
   customDescription:
   - color: 3

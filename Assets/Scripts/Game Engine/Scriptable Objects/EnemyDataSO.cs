@@ -15,21 +15,33 @@ public class EnemyDataSO : ScriptableObject
     // Core Stats
     [BoxGroup("Core Stats", centerLabel: true)]
     [LabelWidth(100)]
+    public bool enableFlexibleMaxHealth;
+    [BoxGroup("Core Stats")]
+    [LabelWidth(100)]
+    [ShowIf("ShowMaxHealthFlexAmount")]
+    public int maxHealthFlexAmount;
+    [BoxGroup("Core Stats")]
+    [LabelWidth(100)]
     public int maxHealth;
+    [BoxGroup("Core Stats")]
+    [LabelWidth(100)]
+    public int initiative;
     [BoxGroup("Core Stats")]
     [LabelWidth(100)]
     public int power;
     [BoxGroup("Core Stats")]
     [LabelWidth(100)]
-    public int dexterity;
-    [BoxGroup("Core Stats")]
-    [LabelWidth(100)]
-    public int initiative;
+    public int dexterity;   
 
+    
 
     // Misc Stats
     [BoxGroup("Misc Stats", centerLabel: true)]
     [LabelWidth(100)]
+    public bool overrideStartingHealth;
+    [BoxGroup("Misc Stats")]
+    [LabelWidth(100)]
+    [ShowIf("ShowStartingHealth")]
     public int startingHealth;
     [BoxGroup("Misc Stats")]
     [LabelWidth(100)]
@@ -81,4 +93,15 @@ public class EnemyDataSO : ScriptableObject
     [BoxGroup("Character Model Data", centerLabel: true)]
     [LabelWidth(100)]
     public List<string> allBodyParts;
+
+
+
+    public bool ShowStartingHealth()
+    {
+        return overrideStartingHealth;
+    }
+    public bool ShowMaxHealthFlexAmount()
+    {
+        return enableFlexibleMaxHealth;
+    }
 }

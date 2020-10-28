@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Big Bad Skeleton (Gremlin Nob) 1
   m_EditorClassIdentifier: 
   enemyName: Big Bad Skeleton
-  maxHealth: 65
+  enableFlexibleMaxHealth: 1
+  maxHealthFlexAmount: 4
+  maxHealth: 82
+  initiative: 1
   power: 0
   dexterity: 0
-  initiative: 4
+  overrideStartingHealth: 0
   startingHealth: 65
   startingBlock: 0
   physicalResistance: 0
@@ -147,13 +150,18 @@ MonoBehaviour:
       actionType: 2
       baseDamage: 0
       damageType: 0
+      characterSummoned: {fileID: 0}
+      summonedCreatureStartPosition: 0
+      modelFadeInSpeed: 0
+      uiFadeInSpeed: 0
+      summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 11400000, guid: 6bddf25bee1edf34080e99a97d8abee1, type: 2}
       passiveStacks: 1
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0
-  - actionName: Strike
+  - actionName: Smash
     actionType: 0
     intentImage: 0
     actionLoops: 1
@@ -227,13 +235,18 @@ MonoBehaviour:
       actionType: 0
       baseDamage: 14
       damageType: 1
+      characterSummoned: {fileID: 0}
+      summonedCreatureStartPosition: 0
+      modelFadeInSpeed: 0
+      uiFadeInSpeed: 0
+      summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0
-  - actionName: Rush
+  - actionName: Maul
     actionType: 1
     intentImage: 2
     actionLoops: 1
@@ -337,6 +350,11 @@ MonoBehaviour:
       actionType: 1
       baseDamage: 6
       damageType: 1
+      characterSummoned: {fileID: 0}
+      summonedCreatureStartPosition: 0
+      modelFadeInSpeed: 0
+      uiFadeInSpeed: 0
+      summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
       blockGained: 0
@@ -348,6 +366,11 @@ MonoBehaviour:
       actionType: 6
       baseDamage: 0
       damageType: 0
+      characterSummoned: {fileID: 0}
+      summonedCreatureStartPosition: 0
+      modelFadeInSpeed: 0
+      uiFadeInSpeed: 0
+      summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 11400000, guid: f4d581b9181795e48b68007fcfeec3d2, type: 2}
       passiveStacks: 2
       blockGained: 0

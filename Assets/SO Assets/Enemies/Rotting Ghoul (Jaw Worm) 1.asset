@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Rotting Ghoul (Jaw Worm) 1
   m_EditorClassIdentifier: 
   enemyName: Rotting Ghoul
+  enableFlexibleMaxHealth: 1
+  maxHealthFlexAmount: 2
   maxHealth: 28
+  initiative: 1
   power: 0
   dexterity: 0
-  initiative: 1
+  overrideStartingHealth: 0
   startingHealth: 28
   startingBlock: 0
   physicalResistance: 0
@@ -68,6 +71,7 @@ MonoBehaviour:
     fastLearnerStacks: 0
     demonFormStacks: 0
     darkBargainStacks: 0
+    volatileStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0

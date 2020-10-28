@@ -4,10 +4,7 @@ using UnityEngine.EventSystems;
 using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
-using Spriter2UnityDX;
-using System.Collections;
 using System;
-using System.Linq;
 
 public class MainMenuController : Singleton<MainMenuController>
 {
@@ -43,8 +40,11 @@ public class MainMenuController : Singleton<MainMenuController>
     [SerializeField] private TextMeshProUGUI characterNameText;
     [SerializeField] private TextMeshProUGUI characterClassNameText;
     [SerializeField] private UniversalCharacterModel characterModel;
-    [SerializeField] private CardInfoPanel[] cardInfoPanels;
+    [SerializeField] private CardInfoPanel[] cardInfoPanels;  
     [SerializeField] private TalentInfoPanel[] talentInfoPanels;
+    [SerializeField] private CardInfoPanel racialCardInfoPanel;
+    [SerializeField] private TextMeshProUGUI racialNameText;
+    [SerializeField] private TextMeshProUGUI racialDescriptionText;
     [SerializeField] private CanvasGroup previewCardCg;
     [SerializeField] private CardViewModel previewCardVM;
     [HideInInspector] public CharacterData currentTemplateSelection;
@@ -289,6 +289,9 @@ public class MainMenuController : Singleton<MainMenuController>
         CharacterModelController.BuildModelFromStringReferences(characterModel, data.modelParts);
         CharacterModelController.ApplyItemManagerDataToCharacterModelView(data.itemManager, characterModel);
 
+        // Build race section
+        BuildRacialInfoPanel(data);
+
         // Build talent info panels
         BuildTalentInfoPanels(data);
 
@@ -314,7 +317,14 @@ public class MainMenuController : Singleton<MainMenuController>
             CardInfoPanel matchingPanel = null;
             foreach (CardInfoPanel panel in cardInfoPanels)
             {
+                /*
                 if (panel.cardDataRef == data.deck[i])
+                {
+                    matchingPanel = panel;
+                    break;
+                }
+                */
+                if (panel.cardDataRef != null && panel.cardDataRef.cardName == data.deck[i].cardName)
                 {
                     matchingPanel = panel;
                     break;
@@ -348,11 +358,15 @@ public class MainMenuController : Singleton<MainMenuController>
         }
 
     }
+    private void BuildRacialInfoPanel(CharacterData data)
+    {
+        racialNameText.text = data.race.ToString();
+        racialCardInfoPanel.BuildCardInfoPanelFromCardData(CardController.Instance.FindRacialCardData(data.race));
+        racialDescriptionText.text = KeywordLibrary.Instance.GetRacialData(data.race).raceDescription;
+    }
     public void BuildAndShowCardViewModelPopup(CardData data)
     {
         previewCardCg.gameObject.SetActive(true);
-        //CardData cData = CardController.Instance.GetCardDataFromLibraryByName(data.cardName);
-        //CardController.Instance.BuildCardViewModelFromCardDataSO(data, previewCardVM);
         CardController.Instance.BuildCardViewModelFromCardData(data, previewCardVM);
         previewCardCg.alpha = 0;
         previewCardCg.DOFade(1f, 0.25f);

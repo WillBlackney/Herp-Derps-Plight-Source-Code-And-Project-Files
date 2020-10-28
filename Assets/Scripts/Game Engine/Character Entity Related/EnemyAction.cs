@@ -108,6 +108,28 @@ public class EnemyActionEffect
     [LabelWidth(150)]
     public DamageType damageType;
 
+    // Summon Creature Properties
+    [ShowIf("ShowCharacterSummoned")]
+    [LabelWidth(150)]
+    public EnemyDataSO characterSummoned;
+
+    [ShowIf("ShowCharacterSummoned")]
+    [LabelWidth(150)]
+    public SummonAtLocation summonedCreatureStartPosition;
+
+    [ShowIf("ShowCharacterSummoned")]
+    [LabelWidth(150)]
+    public float modelFadeInSpeed;
+
+    [ShowIf("ShowCharacterSummoned")]
+    [LabelWidth(150)]
+    public float uiFadeInSpeed;
+
+    [ShowIf("ShowCharacterSummoned")]
+    [LabelWidth(150)]
+    public AnimationEventData[] summonedCreatureVisualEvents;
+
+   
 
     // Status properties
     [VerticalGroup("Status Properties")]
@@ -147,6 +169,10 @@ public class EnemyActionEffect
 
 
     // Inspector bools
+    public bool ShowCharacterSummoned()
+    {
+        return actionType == ActionType.SummonCreature;
+    }
     public bool ShowDamage()
     {
         if(actionType == ActionType.AttackAllEnemies ||
@@ -202,15 +228,10 @@ public class EnemyActionEffect
 
 }
 
-/*
-public class AddBoxToDrawer<T> : OdinValueDrawer<T>
+public enum SummonAtLocation
 {
-    protected override void DrawPropertyLayout(GUIContent label)
-    {
-        SirenixEditorGUI.BeginBox();
-        CallNextDrawer(label);
-        SirenixEditorGUI.EndBox();
-    }
+    None = 0,
+    StartNode = 1,
+    OffScreen = 2,
 }
-*/
 

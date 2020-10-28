@@ -94,7 +94,6 @@ namespace Tests
             // Load Scene, wait until completed
             AsyncOperation loading = SceneManager.LoadSceneAsync(SCENE_NAME);
             yield return new WaitUntil(() => loading.isDone);
-            //GameObject.FindObjectOfType<CombatTestSceneController>().runMockScene = false;
             GameObject.FindObjectOfType<GlobalSettings>().gameMode = StartingSceneSetting.IntegrationTesting;
 
             // Create mock character data

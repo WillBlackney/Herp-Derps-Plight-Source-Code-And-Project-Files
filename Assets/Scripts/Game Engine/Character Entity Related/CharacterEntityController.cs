@@ -212,9 +212,29 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         ModifyDexterity(character, data.dexterity);
         ModifyPower(character, data.power);
 
-        // Set up health + Block
-        ModifyMaxHealth(character, data.maxHealth);
-        ModifyHealth(character, data.startingHealth);
+        // Set up health + max health
+        if (data.enableFlexibleMaxHealth)
+        {
+            int lower = data.maxHealth - data.maxHealthFlexAmount;
+            int upper = data.maxHealth + data.maxHealthFlexAmount;
+            int randomMaxHealth = RandomGenerator.NumberBetween(lower, upper);
+            ModifyMaxHealth(character, randomMaxHealth);
+        }
+        else
+        {
+            ModifyMaxHealth(character, data.maxHealth);
+        }
+
+        if (data.overrideStartingHealth)
+        {
+            ModifyHealth(character, data.startingHealth);
+        }
+        else
+        {
+            ModifyHealth(character, character.maxHealth);
+        }
+
+        // Set starting block
         ModifyBlock(character, data.startingBlock, false);
 
         // Build UCM
@@ -1200,14 +1220,26 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }
 
     }
-    public void FadeOutCharacterWorldCanvas(CharacterEntityView view, CoroutineData cData)
+    public void FadeOutCharacterWorldCanvas(CharacterEntityView view, CoroutineData cData, float fadeSpeed = 1f)
     {
-        StartCoroutine(FadeOutCharacterWorldCanvasCoroutine(view, cData));
+        StartCoroutine(FadeOutCharacterWorldCanvasCoroutine(view, cData, fadeSpeed));
     }
-    private IEnumerator FadeOutCharacterWorldCanvasCoroutine(CharacterEntityView view, CoroutineData cData)
+    private IEnumerator FadeOutCharacterWorldCanvasCoroutine(CharacterEntityView view, CoroutineData cData, float fadeSpeed)
     {
         view.worldSpaceCanvasParent.gameObject.SetActive(true);
         view.worldSpaceCG.alpha = 1;
+
+        view.worldSpaceCG.DOFade(0, fadeSpeed);
+
+        yield return new WaitForSeconds(fadeSpeed);
+        view.worldSpaceCanvasParent.gameObject.SetActive(false);
+
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+
+        /*
         float uiFadeSpeed = 20f;
 
         while (view.worldSpaceCG.alpha > 0)
@@ -1217,13 +1249,32 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }
 
         view.worldSpaceCanvasParent.gameObject.SetActive(false);
-
+        
         // Resolve
         if (cData != null)
         {
             cData.MarkAsCompleted();
         }
+        */
 
+    }
+    public void FadeInCharacterWorldCanvas(CharacterEntityView view, CoroutineData cData, float fadeSpeed = 1f)
+    {
+        StartCoroutine(FadeInCharacterWorldCanvasCoroutine(view, cData, fadeSpeed));
+    }
+    private IEnumerator FadeInCharacterWorldCanvasCoroutine(CharacterEntityView view, CoroutineData cData, float fadeSpeed)
+    {
+        view.worldSpaceCanvasParent.gameObject.SetActive(true);
+        view.worldSpaceCG.alpha = 0;
+
+        view.worldSpaceCG.DOFade(1, fadeSpeed);
+
+        yield return new WaitForSeconds(fadeSpeed);
+
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
     }
     private void UpdateEnemyIntentGUIVisualEvent(IntentViewModel intentView, Sprite intentSprite, string attackDamageString)
     {        
@@ -1231,7 +1282,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         intentView.valueText.gameObject.SetActive(false);
 
         // Start fade in effect        
-        intentView.FadeInView();
+        FadeInIntentViewModel(intentView);
 
         // Set intent image
         intentView.SetIntentSprite(intentSprite);
@@ -1242,7 +1293,23 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             intentView.valueText.gameObject.SetActive(true);
             intentView.valueText.text = attackDamageString;
         }
+    }
 
+    public void FadeInIntentViewModel(IntentViewModel ivm)
+    {
+        StartCoroutine(FadeInIntentViewModeloroutine(ivm));
+    }
+    private IEnumerator FadeInIntentViewModeloroutine(IntentViewModel ivm)
+    {
+        ivm.visualParent.SetActive(true);
+        ivm.PlayFloatAnimation();
+        ivm.myCg.alpha = 0;
+
+        while (ivm.myCg.alpha < 1)
+        {
+            ivm.myCg.alpha += 1 * Time.deltaTime;
+            yield return null;
+        }
     }
 
     #endregion
@@ -1298,11 +1365,10 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
     private IEnumerator FadeOutEntityRendererCoroutine(EntityRenderer view, float speed, CoroutineData cData)
     {
         float currentAlpha = view.Color.a;
-        float fadeSpeed = speed;
 
         while (currentAlpha > 0)
         {
-            view.Color = new Color(view.Color.r, view.Color.g, view.Color.b, currentAlpha - (fadeSpeed * Time.deltaTime));
+            view.Color = new Color(view.Color.r, view.Color.g, view.Color.b, currentAlpha - (speed * Time.deltaTime));
             currentAlpha = view.Color.a;
             yield return null;
         }
@@ -1320,12 +1386,14 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
     }
     private IEnumerator FadeInEntityRendererCoroutine(EntityRenderer view, float speed, CoroutineData cData)
     {
+        // Set completely transparent at start
+        view.Color = new Color(view.Color.r, view.Color.g, view.Color.b, 0);
+
         float currentAlpha = view.Color.a;
-        float fadeSpeed = speed;
 
         while (currentAlpha < 1)
         {
-            view.Color = new Color(view.Color.r, view.Color.g, view.Color.b, currentAlpha + (fadeSpeed * Time.deltaTime));
+            view.Color = new Color(view.Color.r, view.Color.g, view.Color.b, currentAlpha + (speed * Time.deltaTime));
             currentAlpha = view.Color.a;
             yield return null;
         }
@@ -1636,6 +1704,14 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 checkResults.Add(false);
             }
 
+            // Check availble summoning spots
+            if (ar.requirementType == ActionRequirementType.AtLeastOneAvailableNode &&
+                LevelManager.Instance.GetNextAvailableEnemyNode() == null)
+            {
+                Debug.Log(enemyAction.actionName + " failed 'AtLeastOneAvailableNode' requirement");
+                checkResults.Add(false);
+            }
+
             // Check havent used abilty for X turns
             if (ar.requirementType == ActionRequirementType.HaventUsedActionInXTurns)
             {
@@ -1942,6 +2018,13 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             return;
         }
 
+        // If summoning, but there is no available nodes, cancel
+        if(effect.actionType == ActionType.SummonCreature && 
+            LevelManager.Instance.GetNextAvailableEnemyNode() == null)
+        {
+            return;
+        }
+
         // If no target, set self as target
         if ((effect.actionType == ActionType.DefendTarget ||
             effect.actionType == ActionType.BuffTarget) &&
@@ -1991,6 +2074,66 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                     // Start damage sequence
                     CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, enemyCharacter, effect, damageType, batchedEvent);
                 }
+            }
+        }
+
+        // Summon Creature
+        if (effect.actionType == ActionType.SummonCreature)
+        {
+            // get next available node
+            LevelNode node = LevelManager.Instance.GetNextAvailableEnemyNode();
+
+            if (!node)
+            {
+                return;
+            }
+
+            // Create enemy GO + data, set intent
+            CharacterEntityModel newEnemy =  CreateEnemyCharacter(effect.characterSummoned, node);
+            StartAutoSetEnemyIntentProcess(newEnemy);
+
+            // Disable activation window until ready
+            CharacterEntityView view = newEnemy.characterEntityView;
+            view.myActivationWindow.gameObject.SetActive(false);
+            ActivationManager.Instance.DisablePanelSlotAtIndex(ActivationManager.Instance.ActivationOrder.IndexOf(newEnemy));
+
+            // Hide GUI
+            FadeOutCharacterWorldCanvas(view, null, 0);
+
+            // Hide model
+            FadeOutEntityRenderer(view.ucm.GetComponent<EntityRenderer>(), 1000, null);
+
+            // Set start position
+            if(effect.summonedCreatureStartPosition == SummonAtLocation.StartNode)
+            {
+
+            }
+            else if (effect.summonedCreatureStartPosition == SummonAtLocation.OffScreen)
+            {
+
+            }
+
+            // Enable activation window
+            int windowIndex = ActivationManager.Instance.ActivationOrder.IndexOf(newEnemy);
+            VisualEventManager.Instance.CreateVisualEvent(() => 
+            {
+                view.myActivationWindow.gameObject.SetActive(true);
+                ActivationManager.Instance.EnablePanelSlotAtIndex(windowIndex);
+            }, QueuePosition.Back, 0f, 0.1f);
+
+            // Update all window slot positions + activation pointer arrow
+            CharacterEntityModel entityActivated = ActivationManager.Instance.EntityActivated;
+            VisualEventManager.Instance.CreateVisualEvent(() => ActivationManager.Instance.UpdateWindowPositions());
+            VisualEventManager.Instance.CreateVisualEvent(() => ActivationManager.Instance.MoveActivationArrowTowardsEntityWindow(entityActivated), QueuePosition.Back);
+
+            // Fade in model + UI
+            VisualEventManager.Instance.CreateVisualEvent(() => FadeInCharacterWorldCanvas(view, null, effect.uiFadeInSpeed));
+            VisualEventManager.Instance.CreateVisualEvent(() => FadeInEntityRenderer(view.ucm.GetComponent<EntityRenderer>(), effect.modelFadeInSpeed));
+
+            // Resolve visual events
+            foreach (AnimationEventData vEvent in effect.summonedCreatureVisualEvents)
+            {
+                AnimationEventController.Instance.PlayAnimationEvent(vEvent, newEnemy, newEnemy);
             }
         }
 

@@ -61,7 +61,8 @@ public enum CardEffectType
     GainBlockSelf = 10,
     GainBlockTarget = 19,
     GainBlockAllAllies = 12,
-    GainEnergy = 13,
+    GainEnergySelf = 13,
+    GainEnergyTarget = 32,
     LoseHP = 14,
     HealSelf = 25,
     HealTarget = 26,
@@ -299,6 +300,7 @@ public enum ActionType
     Sleep = 10,
     PassTurn = 11,
     AddCardToTargetCardCollection = 12,
+    SummonCreature = 13,
 }
 public enum ActionRequirementType
 {
@@ -313,6 +315,7 @@ public enum ActionRequirementType
     ActivatedXTimesOrMore = 8,
     ActivatedXTimesOrLess = 9,
     HasPassiveTrait = 10,
+    AtLeastOneAvailableNode = 11,
 }
 public enum IntentImage
 {
@@ -425,6 +428,7 @@ public enum AnimationEventType
     SoundEffect = 5,
     ScreenOverlay = 7,
     Delay = 6,
+
 }
 public enum ScreenOverlayType
 {

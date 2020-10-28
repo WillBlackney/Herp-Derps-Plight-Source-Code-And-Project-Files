@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Goblin Chieftain
   m_EditorClassIdentifier: 
   enemyName: Goblin Chieftain
-  maxHealth: 16
+  enableFlexibleMaxHealth: 1
+  maxHealthFlexAmount: 1
+  maxHealth: 18
+  initiative: 1
   power: 0
   dexterity: 0
-  initiative: 1
+  overrideStartingHealth: 0
   startingHealth: 16
   startingBlock: 8
   physicalResistance: 0
@@ -68,6 +71,7 @@ MonoBehaviour:
     fastLearnerStacks: 0
     demonFormStacks: 0
     darkBargainStacks: 0
+    volatileStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -234,5 +238,6 @@ MonoBehaviour:
   - Goblin_Chest
   - Goblin_Right_Arm
   - Goblin_Right_Leg
-  - Left_Hand_Green_Staff_1
+  - Left_Hand_Knowledge_Staff
   - Shaman_Mask_Head_Wear
+  - Goblin_Right_Hand

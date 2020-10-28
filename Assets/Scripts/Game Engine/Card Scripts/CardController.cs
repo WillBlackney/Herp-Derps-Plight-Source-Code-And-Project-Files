@@ -102,10 +102,6 @@ public class CardController : Singleton<CardController>
         base.Awake();
         BuildCardLibrary();
     }
-    private void Start()
-    {
-        //BuildCardLibrary();
-    }
     private void BuildCardLibrary()
     {
         Debug.LogWarning("CardController.BuildCardLibrary() called...");
@@ -258,6 +254,30 @@ public class CardController : Singleton<CardController>
     }
 
     // Specific Queries
+    public List<CardData> QueryByRacial(IEnumerable<CardData> collectionQueried)
+    {
+        List<CardData> cardsReturned = new List<CardData>();
+
+        var query =
+           from cardData in collectionQueried
+           where cardData.racialCard == true
+           select cardData;
+
+        cardsReturned.AddRange(query);
+        return cardsReturned;
+    }
+    public List<CardData> QueryByRacialSpecific(IEnumerable<CardData> collectionQueried, CharacterRace race)
+    {
+        List<CardData> cardsReturned = new List<CardData>();
+
+        var query =
+           from cardData in collectionQueried
+           where cardData.originRace == race
+           select cardData;
+
+        cardsReturned.AddRange(query);
+        return cardsReturned;
+    }
     private List<CardData> QueryByTalentSchool(IEnumerable<CardData> collectionQueried, TalentSchool ts)
     {
         List<CardData> cardsReturned = new List<CardData>();
@@ -2148,8 +2168,8 @@ public class CardController : Singleton<CardController>
             CombatLogic.Instance.HandleDamage(cardEffect.healthLost, owner, owner, card, DamageType.None, true);
         }
 
-        // Gain Energy
-        else if (cardEffect.cardEffectType == CardEffectType.GainEnergy)
+        // Gain Energy self
+        else if (cardEffect.cardEffectType == CardEffectType.GainEnergySelf)
         {
             if (cardEffect.drawStacksFromOverload)
             {
@@ -2160,6 +2180,20 @@ public class CardController : Singleton<CardController>
                 CharacterEntityController.Instance.ModifyEnergy(owner, cardEffect.energyGained, true);
             }
         
+        }
+
+        // Gain Energy target
+        else if (cardEffect.cardEffectType == CardEffectType.GainEnergyTarget)
+        {
+            if (cardEffect.drawStacksFromOverload)
+            {
+                CharacterEntityController.Instance.ModifyEnergy(target, owner.pManager.overloadStacks, true);
+            }
+            else
+            {
+                CharacterEntityController.Instance.ModifyEnergy(target, cardEffect.energyGained, true);
+            }
+
         }
 
         // Draw Cards

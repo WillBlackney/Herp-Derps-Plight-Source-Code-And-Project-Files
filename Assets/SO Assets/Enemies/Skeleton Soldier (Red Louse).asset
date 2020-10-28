@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 272d402ffa0a347429dfe06011e3d167, type: 3}
   m_Name: Skeleton Soldier (Red Louse)
   m_EditorClassIdentifier: 
-  enemyName: Satyr Assassin
+  enemyName: Skeleton Soldier
+  enableFlexibleMaxHealth: 1
+  maxHealthFlexAmount: 1
   maxHealth: 18
+  initiative: 1
   power: 0
   dexterity: 0
-  initiative: 1
+  overrideStartingHealth: 0
   startingHealth: 18
   startingBlock: 0
   physicalResistance: 0
@@ -68,6 +71,7 @@ MonoBehaviour:
     fastLearnerStacks: 0
     demonFormStacks: 0
     darkBargainStacks: 0
+    volatileStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -142,6 +146,11 @@ MonoBehaviour:
       actionType: 0
       baseDamage: 5
       damageType: 1
+      characterSummoned: {fileID: 0}
+      summonedCreatureStartPosition: 0
+      modelFadeInSpeed: 0
+      uiFadeInSpeed: 0
+      summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
       blockGained: 0
@@ -177,6 +186,11 @@ MonoBehaviour:
       actionType: 2
       baseDamage: 0
       damageType: 0
+      characterSummoned: {fileID: 0}
+      summonedCreatureStartPosition: 0
+      modelFadeInSpeed: 0
+      uiFadeInSpeed: 0
+      summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 11400000, guid: 6d216e783d4ba3a49a8dd267aa727fd3, type: 2}
       passiveStacks: 2
       blockGained: 0

@@ -193,7 +193,7 @@ public class CardEffect
     }
     public bool ShowEnergyGained()
     {
-        if (cardEffectType == CardEffectType.GainEnergy &&
+        if ((cardEffectType == CardEffectType.GainEnergySelf || cardEffectType == CardEffectType.GainEnergyTarget) &&
             drawStacksFromOverload == false)
         {
             return true;
@@ -437,7 +437,8 @@ public class CardEffect
             cardEffectType == CardEffectType.ApplyPassiveToAllEnemies || 
             cardEffectType == CardEffectType.ApplyPassiveToSelf ||
             cardEffectType == CardEffectType.ApplyPassiveToTarget ||
-            cardEffectType == CardEffectType.GainEnergy ||
+            cardEffectType == CardEffectType.GainEnergySelf ||
+            cardEffectType == CardEffectType.GainEnergyTarget ||
             cardEffectType == CardEffectType.DrawCards) &&
             drawStacksFromWeakenedOnEnemies == false)
         {

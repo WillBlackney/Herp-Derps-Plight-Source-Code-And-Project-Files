@@ -27,7 +27,11 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
     [SerializeField] private TextMeshProUGUI popUpCharacterNameText;
     [SerializeField] private TextMeshProUGUI popUpCharacterClassNameText;
     [SerializeField] private UniversalCharacterModel popUpCharacterModel;
+    [SerializeField] private CardInfoPanel racialCardInfoPanel;
+    [SerializeField] private TextMeshProUGUI racialNameText;
+    [SerializeField] private TextMeshProUGUI racialDescriptionText;
     [SerializeField] private RectTransform characterInfoRect;
+
 
     [Header("Card + Panel Components")]
     [SerializeField] private CardInfoPanel[] cardInfoPanels;
@@ -109,6 +113,9 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
         CharacterModelController.BuildModelFromStringReferences(popUpCharacterModel, data.modelParts);
         CharacterModelController.ApplyItemManagerDataToCharacterModelView(data.itemManager, popUpCharacterModel);
 
+        // Build race section
+        BuildRacialInfoPanel(data);
+
         // Build talent info panels
         BuildTalentInfoPanels(data);
 
@@ -167,6 +174,12 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
             talentInfoPanels[i].BuildFromTalentPairingModel(data.talentPairings[i]);
         }
 
+    }
+    private void BuildRacialInfoPanel(CharacterData data)
+    {
+        racialNameText.text = data.race.ToString();
+        racialCardInfoPanel.BuildCardInfoPanelFromCardData(CardController.Instance.FindRacialCardData(data.race));
+        racialDescriptionText.text = KeywordLibrary.Instance.GetRacialData(data.race).raceDescription;
     }
     public void BuildAndShowCardViewModelPopup(CardData data)
     {

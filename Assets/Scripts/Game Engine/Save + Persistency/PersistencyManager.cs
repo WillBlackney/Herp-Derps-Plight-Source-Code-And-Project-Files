@@ -45,6 +45,9 @@ public class PersistencyManager : Singleton<PersistencyManager>
         // Build characters
         List<CharacterData> chosenCharacters = new List<CharacterData>();
 
+        // Get racial cards
+        CardData[] racialCardData = CardController.Instance.QueryByRacial(CardController.Instance.AllCards).ToArray();
+
         // should randomize character?
         if (MainMenuController.Instance.randomizeCharacters)
         {
@@ -61,7 +64,21 @@ public class PersistencyManager : Singleton<PersistencyManager>
         // build each character data object
         foreach (CharacterData data in chosenCharacters)
         {
-            newSave.characters.Add(CharacterDataController.Instance.CloneCharacterData(data));
+            // Create new character from data
+            CharacterData newCharacter = CharacterDataController.Instance.CloneCharacterData(data);
+            newSave.characters.Add(newCharacter);
+
+            // Add racial card to deck
+            foreach(CardData card in racialCardData)
+            {
+                if(card.originRace == newCharacter.race)
+                {
+                    CardData newRacialCard = CardController.Instance.CloneCardDataFromCardData(card);
+                    CharacterDataController.Instance.AddCardToCharacterDeck(newCharacter, newRacialCard);
+                    break;
+                }
+            }
+
         }
 
         // Set starting journey state
@@ -83,7 +100,6 @@ public class PersistencyManager : Singleton<PersistencyManager>
         }
 
         // DECK MODIFIER SETUP
-
         // Randomize decks
         if (MainMenuController.Instance.randomizeDecks)
         {

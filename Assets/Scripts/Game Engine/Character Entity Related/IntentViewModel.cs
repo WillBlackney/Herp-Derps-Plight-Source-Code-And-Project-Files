@@ -6,31 +6,13 @@ using UnityEngine.UI;
 public class IntentViewModel : MonoBehaviour
 {
     [Header("General Component References")]
-    [SerializeField] private GameObject visualParent;
+    public GameObject visualParent;
     [SerializeField] private Image intentImageHolder;
     [SerializeField] private Animator animator;
-    [SerializeField] private CanvasGroup myCg;
+    public CanvasGroup myCg;
     public TextMeshProUGUI valueText;
 
-
-    public void FadeInView()
-    {
-        StartCoroutine(FadeInViewCoroutine());
-    }
-    private IEnumerator FadeInViewCoroutine()
-    {
-        visualParent.SetActive(true);
-        PlayFloatAnimation();
-        myCg.alpha = 0;
-
-        while (myCg.alpha < 1)
-        {
-            myCg.alpha += 1 * Time.deltaTime;
-            yield return null;
-        }
-    }
-
-    private void PlayFloatAnimation()
+    public void PlayFloatAnimation()
     {
         animator.SetTrigger("Float");
     }

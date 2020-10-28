@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Goblin Grunt
   m_EditorClassIdentifier: 
   enemyName: Goblin Grunt
-  maxHealth: 16
+  enableFlexibleMaxHealth: 1
+  maxHealthFlexAmount: 1
+  maxHealth: 15
+  initiative: 1
   power: 0
   dexterity: 0
-  initiative: 1
+  overrideStartingHealth: 0
   startingHealth: 16
   startingBlock: 0
   physicalResistance: 0
@@ -68,6 +71,7 @@ MonoBehaviour:
     fastLearnerStacks: 0
     demonFormStacks: 0
     darkBargainStacks: 0
+    volatileStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -169,4 +173,5 @@ MonoBehaviour:
   - Goblin_Chest
   - Goblin_Right_Arm
   - Goblin_Right_Leg
+  - Goblin_Right_Hand
   - Left_Hand_Simple_Axe

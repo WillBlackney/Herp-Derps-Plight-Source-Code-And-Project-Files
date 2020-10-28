@@ -51,6 +51,10 @@ public class ActivationManager : Singleton<ActivationManager>
         get { return currentTurn; }
         private set { currentTurn = value; }
     }
+    public List<CharacterEntityModel> ActivationOrder
+    {
+        get { return activationOrder; }
+    }
     public void RemoveEntityFromActivationOrder(CharacterEntityModel entity)
     {
         if (activationOrder.Contains(entity))
@@ -61,6 +65,14 @@ public class ActivationManager : Singleton<ActivationManager>
     public void AddEntityToActivationOrder(CharacterEntityModel entity)
     {
         activationOrder.Add(entity);
+    }
+    public void DisablePanelSlotAtIndex(int index)
+    {
+        panelSlots[index].SetActive(false);
+    }
+    public void EnablePanelSlotAtIndex(int index)
+    {
+        panelSlots[index].SetActive(true);
     }
     #endregion
 
@@ -135,6 +147,7 @@ public class ActivationManager : Singleton<ActivationManager>
         if(GlobalSettings.Instance.initiativeSetting == InitiativeSettings.RerollInitiativeEveryTurn ||
            (GlobalSettings.Instance.initiativeSetting == InitiativeSettings.RollInitiativeOnceOnCombatStart && CurrentTurn == 1))
         {
+            CharacterEntityModel[] characters = activationOrder.ToArray();
             GenerateInitiativeRolls();
             SetActivationOrderBasedOnCurrentInitiativeRolls();
         }       
@@ -153,8 +166,9 @@ public class ActivationManager : Singleton<ActivationManager>
           (GlobalSettings.Instance.initiativeSetting == InitiativeSettings.RollInitiativeOnceOnCombatStart && CurrentTurn == 1))
         {
             // Play roll animation sequence
+            CharacterEntityModel[] characters = activationOrder.ToArray();
             CoroutineData rollsCoroutine = new CoroutineData();
-            VisualEventManager.Instance.CreateVisualEvent(() => PlayActivationRollSequence(rollsCoroutine), rollsCoroutine, QueuePosition.Back, 0, 0);
+            VisualEventManager.Instance.CreateVisualEvent(() => PlayActivationRollSequence(characters, rollsCoroutine), rollsCoroutine, QueuePosition.Back, 0, 0);
 
             // Move windows to new positions
             VisualEventManager.Instance.CreateVisualEvent(() => UpdateWindowPositions(), QueuePosition.Back, 0, 1);           
@@ -359,11 +373,11 @@ public class ActivationManager : Singleton<ActivationManager>
 
     // Number roll sequence visual events
     #region
-    private void PlayActivationRollSequence(CoroutineData cData)
+    private void PlayActivationRollSequence(CharacterEntityModel[] characters, CoroutineData cData)
     {
-        StartCoroutine(PlayActivationRollSequenceCoroutine(cData));
+        StartCoroutine(PlayActivationRollSequenceCoroutine(characters, cData));
     }
-    private IEnumerator PlayActivationRollSequenceCoroutine(CoroutineData cData)
+    private IEnumerator PlayActivationRollSequenceCoroutine(CharacterEntityModel[] characters, CoroutineData cData)
     {
         // Disable arrow to prevtn blocking numbers
         //panelArrow.SetActive(false);
@@ -372,7 +386,7 @@ public class ActivationManager : Singleton<ActivationManager>
         // start number rolling sfx
         AudioManager.Instance.PlaySound(Sound.GUI_Rolling_Bells);
 
-        foreach (CharacterEntityModel entity in activationOrder)
+        foreach (CharacterEntityModel entity in characters)
         {
             // start animating their roll number text
             StartCoroutine(PlayRandomNumberAnim(entity.characterEntityView.myActivationWindow));
@@ -380,7 +394,7 @@ public class ActivationManager : Singleton<ActivationManager>
 
         yield return new WaitForSeconds(1);
 
-        foreach (CharacterEntityModel entity in activationOrder)
+        foreach (CharacterEntityModel entity in characters)
         {
             // cache window
             ActivationWindow window = entity.characterEntityView.myActivationWindow;
@@ -413,7 +427,7 @@ public class ActivationManager : Singleton<ActivationManager>
         yield return new WaitForSeconds(1f);
 
         // Disable roll number text components
-        foreach (CharacterEntityModel entity in activationOrder)
+        foreach (CharacterEntityModel entity in characters)
         {
             entity.characterEntityView.myActivationWindow.rollText.enabled = false;
         }
@@ -523,7 +537,7 @@ public class ActivationManager : Singleton<ActivationManager>
 
     // Update window position visual events
     #region
-    private void UpdateWindowPositions()
+    public void UpdateWindowPositions()
     {
         foreach (CharacterEntityModel character in activationOrder)
         {
@@ -571,7 +585,7 @@ public class ActivationManager : Singleton<ActivationManager>
     {
         panelArrow.SetActive(onOrOff);
     }
-    private void MoveActivationArrowTowardsEntityWindow(CharacterEntityModel character)
+    public void MoveActivationArrowTowardsEntityWindow(CharacterEntityModel character)
     {
         Debug.Log("ActivationManager.MoveActivationArrowTowardsPosition() called...");
 
