@@ -110,6 +110,13 @@ public enum CardEventListenerFunction
 
 // Commonly Shared Enums
 #region
+public enum CharacterModelSize
+{
+    Small = 1,
+    Normal = 0,
+    Large = 2,
+    Massive = 3,
+}
 public enum DamageType
 {
     None = 0,

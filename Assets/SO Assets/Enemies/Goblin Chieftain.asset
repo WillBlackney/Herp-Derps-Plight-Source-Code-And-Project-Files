@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Goblin Chieftain
   m_EditorClassIdentifier: 
   enemyName: Goblin Chieftain
+  enemyModelSize: 1
   enableFlexibleMaxHealth: 1
   maxHealthFlexAmount: 1
   maxHealth: 18
@@ -135,6 +136,11 @@ MonoBehaviour:
       actionType: 4
       baseDamage: 0
       damageType: 0
+      characterSummoned: {fileID: 0}
+      summonedCreatureStartPosition: 0
+      modelFadeInSpeed: 0
+      uiFadeInSpeed: 0
+      summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 11400000, guid: 6d216e783d4ba3a49a8dd267aa727fd3, type: 2}
       passiveStacks: 1
       blockGained: 0
@@ -146,6 +152,11 @@ MonoBehaviour:
       actionType: 9
       baseDamage: 0
       damageType: 0
+      characterSummoned: {fileID: 0}
+      summonedCreatureStartPosition: 0
+      modelFadeInSpeed: 0
+      uiFadeInSpeed: 0
+      summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
       blockGained: 3
@@ -226,6 +237,11 @@ MonoBehaviour:
       actionType: 0
       baseDamage: 5
       damageType: 1
+      characterSummoned: {fileID: 0}
+      summonedCreatureStartPosition: 0
+      modelFadeInSpeed: 0
+      uiFadeInSpeed: 0
+      summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
       blockGained: 0

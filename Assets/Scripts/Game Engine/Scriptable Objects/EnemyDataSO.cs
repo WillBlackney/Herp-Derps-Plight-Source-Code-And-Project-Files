@@ -11,6 +11,9 @@ public class EnemyDataSO : ScriptableObject
     [BoxGroup("General Info", centerLabel: true)]
     [LabelWidth(100)]
     public string enemyName;
+    [BoxGroup("General Info")]
+    [LabelWidth(100)]
+    public CharacterModelSize enemyModelSize;
 
     // Core Stats
     [BoxGroup("Core Stats", centerLabel: true)]

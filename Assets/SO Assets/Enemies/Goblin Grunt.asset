@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Goblin Grunt
   m_EditorClassIdentifier: 
   enemyName: Goblin Grunt
+  enemyModelSize: 1
   enableFlexibleMaxHealth: 1
   maxHealthFlexAmount: 1
   maxHealth: 15
@@ -161,6 +162,11 @@ MonoBehaviour:
       actionType: 0
       baseDamage: 5
       damageType: 1
+      characterSummoned: {fileID: 0}
+      summonedCreatureStartPosition: 0
+      modelFadeInSpeed: 0
+      uiFadeInSpeed: 0
+      summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
       blockGained: 0

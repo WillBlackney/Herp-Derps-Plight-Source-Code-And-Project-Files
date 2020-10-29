@@ -161,6 +161,9 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         model.controller = Controller.AI;
         model.allegiance = Allegiance.Enemy;
 
+        // Set Character Model Size
+        SetCharacterModelSize(vm, data.enemyModelSize);
+
         // Set up view
         SetCharacterViewStartingState(model);
 
@@ -1168,7 +1171,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         enemy.currentActionTarget = target;
     }
 
-    // Visual Events
+    // Visual Events 
     #region
     public void FadeInCharacterUICanvas(CharacterEntityView view, CoroutineData cData)
     {
@@ -1294,7 +1297,6 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             intentView.valueText.text = attackDamageString;
         }
     }
-
     public void FadeInIntentViewModel(IntentViewModel ivm)
     {
         StartCoroutine(FadeInIntentViewModeloroutine(ivm));
@@ -1351,6 +1353,61 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         if (cData != null)
         {
             cData.MarkAsCompleted();
+        }
+    }
+    private void SetCharacterModelSize(CharacterEntityView view, CharacterModelSize size)
+    {
+        if(size == CharacterModelSize.Small)
+        {
+            // Size model
+            view.ucmSizingParent.transform.localScale = new Vector3(0.8f, 0.8f, 1f);
+            view.ucmSizingParent.transform.localPosition = new Vector3(0f, -0.05f, 0f);
+
+            // scale shadow
+            Transform t = view.ucmShadowParent.transform;
+            t.localScale = new Vector3(0.004f, 0.004f, 0.5f);
+
+            // Move intent view model
+            view.myIntentViewModel.sizingParent.transform.localPosition = new Vector3(0, -0.2f, 0);
+        }
+        else if (size == CharacterModelSize.Normal)
+        {
+            // Size model
+            view.ucmSizingParent.transform.localScale = new Vector3(1, 1, 1f);
+            view.ucmSizingParent.transform.localPosition = new Vector3(0f, 0f, 0f);
+
+            // scale shadow
+            Transform t = view.ucmShadowParent.transform;
+            t.localScale = new Vector3(0.005f, 0.005f, 0.5f);
+
+            // Move intent view model
+            view.myIntentViewModel.sizingParent.transform.localPosition = new Vector3(0, 0, 0);
+        }
+        else if (size == CharacterModelSize.Large)
+        {
+            // Size model
+            view.ucmSizingParent.transform.localScale = new Vector3(1.2f, 1.2f, 1f);
+            view.ucmSizingParent.transform.localPosition = new Vector3(0.05f, 0.05f, 0f);
+
+            // scale shadow
+            Transform t = view.ucmShadowParent.transform;
+            t.localScale = new Vector3(0.006f, 0.006f, 0.5f);
+
+            // Move intent view model
+            view.myIntentViewModel.sizingParent.transform.localPosition = new Vector3(0, 0.2f, 0);
+        }
+        else if (size == CharacterModelSize.Massive)
+        {
+            // Size model
+            view.ucmSizingParent.transform.localScale = new Vector3(1.4f, 1.4f, 1f);
+            view.ucmSizingParent.transform.localPosition = new Vector3(0.1f, 0.1f, 0f);
+
+            // scale shadow
+            Transform t = view.ucmShadowParent.transform;
+            t.localScale = new Vector3(0.007f, 0.007f, 0.5f);
+
+            // Move intent view model
+            view.myIntentViewModel.sizingParent.transform.localPosition = new Vector3(0, 0.4f, 0);
         }
     }
 

@@ -44,3 +44,11 @@ public class KeyWordData
     }
     #endregion
 }
+
+[Serializable]
+public class RacialData
+{
+    public CharacterRace race;
+    [TextArea]
+    public string raceDescription;
+}

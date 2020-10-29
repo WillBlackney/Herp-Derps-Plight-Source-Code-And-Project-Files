@@ -99,7 +99,14 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Build character data
         CharacterDataController.Instance.BuildCharacterRosterFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
 
-        HandleLoadRecruitCharacterEncounter();
+        // Set up mock data
+        EncounterData mockData = new EncounterData();
+        mockData.encounterType = EncounterType.RecruitCharacter;
+        RecruitCharacterController.Instance.currentChoices = RecruitCharacterController.Instance.GetThreeValidRecruitableCharacters();
+        JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.RecruitCharacterStart);
+
+        // Load event
+        HandleLoadEncounter(mockData);
 
     }
     #endregion

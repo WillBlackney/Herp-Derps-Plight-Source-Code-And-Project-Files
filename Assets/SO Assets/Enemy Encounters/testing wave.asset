@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: testing wave
   m_EditorClassIdentifier: 
   encounterName: Testing Wave
-  combatDifficulty: 0
+  combatDifficulty: 1
   enemyGroups:
   - possibleEnemies:
-    - {fileID: 11400000, guid: 25b7555cfce719344a7b07809a579023, type: 2}
+    - {fileID: 11400000, guid: ee117549e88209449b334860e887e8d2, type: 2}
+  - possibleEnemies:
+    - {fileID: 11400000, guid: ee117549e88209449b334860e887e8d2, type: 2}

@@ -21,6 +21,8 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 13
   rarity: 3
+  racialCard: 0
+  originRace: 0
   expend: 0
   innate: 0
   fleeting: 0
@@ -84,7 +86,7 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: 18
+      passiveData: 43
       passiveStacks: 2
     cardAdded: {fileID: 0}
     copiesAdded: 0

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Skeleton Peasant
   m_EditorClassIdentifier: 
   enemyName: Skeleton Peasant
+  enemyModelSize: 1
   enableFlexibleMaxHealth: 0
   maxHealthFlexAmount: 1
   maxHealth: 8

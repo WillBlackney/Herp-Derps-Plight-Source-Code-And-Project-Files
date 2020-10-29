@@ -11,6 +11,7 @@ public class IntentViewModel : MonoBehaviour
     [SerializeField] private Animator animator;
     public CanvasGroup myCg;
     public TextMeshProUGUI valueText;
+    public GameObject sizingParent;
 
     public void PlayFloatAnimation()
     {

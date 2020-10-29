@@ -32,10 +32,4 @@ public class KeywordLibrary : Singleton<KeywordLibrary>
 
 }
 
-[Serializable]
-public class RacialData
-{
-    public CharacterRace race;
-    [TextArea]
-    public string raceDescription;
-}
+

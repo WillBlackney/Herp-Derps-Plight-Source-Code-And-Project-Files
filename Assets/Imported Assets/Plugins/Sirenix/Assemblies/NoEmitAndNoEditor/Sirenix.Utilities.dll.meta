@@ -1,4 +1,4 @@
-﻿fileFormatVersion: 2
+fileFormatVersion: 2
 guid: 1e0a9643dc0d4b46bf2321f72c4e503e
 PluginImporter:
   externalObjects: {}
@@ -85,6 +85,11 @@ PluginImporter:
       enabled: 1
       settings: {}
   - first:
+      Standalone: Win64
+    second:
+      enabled: 1
+      settings: {}
+  - first:
       WebGL: WebGL
     second:
       enabled: 1
@@ -113,4 +118,3 @@ PluginImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-

@@ -36,6 +36,8 @@ public class CharacterEntityView : MonoBehaviour
 
     [Header("UCM References")]
     public GameObject ucmVisualParent;
+    public GameObject ucmSizingParent;
+    public GameObject ucmShadowParent;
     public GameObject ucmMovementParent;
     public UniversalCharacterModel ucm;    
     public Animator ucmAnimator;

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Holy Fire
   m_EditorClassIdentifier: 
   cardName: Holy Fire
-  cardDescription: Deal 3 Fire damage to an enemy, or grant 3 Block to self or ally.
+  cardDescription: Deal 4 Fire damage to an enemy, or grant 4 Block to self or ally.
   cardSprite: {fileID: 21300000, guid: 2c3febda8c61a7341b4b1e17ca3fe484, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -21,6 +21,8 @@ MonoBehaviour:
   targettingType: 4
   talentSchool: 10
   rarity: 1
+  racialCard: 0
+  originRace: 0
   expend: 0
   innate: 0
   fleeting: 0
@@ -81,7 +83,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 3
+    baseDamageValue: 4
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
@@ -171,7 +173,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 3
+    blockGainValue: 4
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
@@ -204,6 +206,21 @@ MonoBehaviour:
       movementAnimation: 0
       soundEffect: 0
       characterAnimation: 4
+      delayDuration: 0
+      projectileFired: 0
+      projectileStartPosition: 0
+      onCharacter: 0
+    - eventType: 5
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
+      particleEffect: 0
+      cameraShake: 0
+      movementAnimation: 0
+      soundEffect: 27
+      characterAnimation: 0
       delayDuration: 0
       projectileFired: 0
       projectileStartPosition: 0

@@ -14,6 +14,7 @@ public class MainMenuController : Singleton<MainMenuController>
     [SerializeField] private GameObject frontScreenParent;
     public GameObject frontScreenBgParent;
     public CanvasGroup frontScreenGuiCg;
+    [SerializeField] private GameObject newGameButtonParent;
     [SerializeField] private GameObject continueButtonParent;
     [SerializeField] private GameObject abandonRunButtonParent;
     [SerializeField] private GameObject abandonRunPopupParent;
@@ -203,6 +204,7 @@ public class MainMenuController : Singleton<MainMenuController>
     {
         AutoSetAbandonRunButtonViewState();
         AutoSetContinueButtonViewState();
+        AutoSetNewGameButtonState();
     }
     public void ShowFrontScreen()
     {
@@ -216,6 +218,10 @@ public class MainMenuController : Singleton<MainMenuController>
     {
         return PersistencyManager.Instance.DoesSaveFileExist();        
     }
+    private bool ShouldShowNewGameButton()
+    {
+        return PersistencyManager.Instance.DoesSaveFileExist() == false;
+    }
     private void AutoSetContinueButtonViewState()
     {
         if (ShouldShowContinueButton())
@@ -225,6 +231,17 @@ public class MainMenuController : Singleton<MainMenuController>
         else
         {
             HideContinueButton();
+        }
+    }
+    private void AutoSetNewGameButtonState()
+    {
+        if (ShouldShowNewGameButton())
+        {
+            ShowNewGameButton();
+        }
+        else
+        {
+            HideNewGameButton();
         }
     }
     private void AutoSetAbandonRunButtonViewState()
@@ -237,6 +254,14 @@ public class MainMenuController : Singleton<MainMenuController>
         {
             HideAbandonRunButton();
         }
+    }
+    private void ShowNewGameButton()
+    {
+        newGameButtonParent.SetActive(true);
+    }
+    private void HideNewGameButton()
+    {
+        newGameButtonParent.SetActive(false);
     }
     private void ShowContinueButton()
     {

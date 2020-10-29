@@ -510,96 +510,98 @@ public class CombatLogic : Singleton<CombatLogic>
             VisualEventManager.Instance.CreateVisualEvent(() =>
                 AudioManager.Instance.PlaySound(Sound.Passive_General_Buff), queuePosition, 0, 0, EventDetail.None, batchedEvent);
         }
-        
-        // EVALUATE DAMAGE RELATED PASSIVE EFFECTS
 
-        // Sleep
-        if (victim.pManager.sleepStacks > 0 && totalLifeLost > 0)
+        // EVALUATE DAMAGE RELATED PASSIVE EFFECTS (but only if victim is still alive)
+        if (victim.health > 0 && victim.livingState == LivingState.Alive)
         {
-            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-            PassiveController.Instance.ModifySleep(victim.pManager, -victim.pManager.sleepStacks, true);
-        }
-
-        // Cautious
-        if (victim.pManager.cautiousStacks > 0 && totalLifeLost > 0)
-        {
-            Debug.Log(victim.myName + " 'Cautious' triggered, gaining " + victim.pManager.enrageStacks.ToString() + " Block");
-            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-
-            // Calculate and apply block gain
-            CharacterEntityController.Instance.ModifyBlock(victim, CalculateBlockGainedByEffect(victim.pManager.cautiousStacks, victim, victim));
-
-            // Remove cautious
-            PassiveController.Instance.ModifyCautious(victim.pManager, -victim.pManager.cautiousStacks, true);
-        }
-
-        // Enrage
-        if (victim.pManager.enrageStacks > 0 && totalLifeLost > 0)
-        {
-            Debug.Log(victim.myName + " 'Enrage' triggered, gaining " + victim.pManager.enrageStacks.ToString() + " bonus power");
-            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-            PassiveController.Instance.ModifyBonusPower(victim.pManager, victim.pManager.enrageStacks, true);
-        }
-
-        // Battle Trance
-        if (victim.pManager.battleTranceStacks > 0 && totalLifeLost > 0)
-        {
-            Debug.Log(victim.myName + " 'Battle Trance' triggered");
-            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-            PassiveController.Instance.ModifyTemporaryStamina(victim.pManager, victim.pManager.battleTranceStacks, true);
-
-            if (victim.controller == Controller.Player)
+            // Sleep
+            if (victim.pManager.sleepStacks > 0 && totalLifeLost > 0)
             {
                 VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-                PassiveController.Instance.ModifyTemporaryDraw(victim.pManager, victim.pManager.battleTranceStacks, true);
+                PassiveController.Instance.ModifySleep(victim.pManager, -victim.pManager.sleepStacks, true);
             }
-        }
 
-        // Poisonous 
-        if (attacker != null &&
-            attacker.pManager.poisonousStacks > 0)
-        {
-            if (card != null &&
-               (card.cardType == CardType.MeleeAttack || card.cardType == CardType.RangedAttack))
+            // Cautious
+            if (victim.pManager.cautiousStacks > 0 && totalLifeLost > 0)
             {
+                Debug.Log(victim.myName + " 'Cautious' triggered, gaining " + victim.pManager.enrageStacks.ToString() + " Block");
                 VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-                PassiveController.Instance.ModifyPoisoned(attacker, victim.pManager, attacker.pManager.poisonousStacks, true, 0.5f);
+
+                // Calculate and apply block gain
+                CharacterEntityController.Instance.ModifyBlock(victim, CalculateBlockGainedByEffect(victim.pManager.cautiousStacks, victim, victim));
+
+                // Remove cautious
+                PassiveController.Instance.ModifyCautious(victim.pManager, -victim.pManager.cautiousStacks, true);
             }
-            else if (enemyEffect != null &&
-               (enemyEffect.actionType == ActionType.AttackTarget ||
-                enemyEffect.actionType == ActionType.AttackAllEnemies)
-                )
+
+            // Enrage
+            if (victim.pManager.enrageStacks > 0 && totalLifeLost > 0)
             {
+                Debug.Log(victim.myName + " 'Enrage' triggered, gaining " + victim.pManager.enrageStacks.ToString() + " bonus power");
                 VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-                PassiveController.Instance.ModifyPoisoned(attacker, victim.pManager, attacker.pManager.poisonousStacks, true, 0.5f);
+                PassiveController.Instance.ModifyBonusPower(victim.pManager, victim.pManager.enrageStacks, true);
             }
-        }
 
-        // Poison Arrows
-        if(attacker != null &&
-            card != null)
-        {
-            int poisonApplied = 0;
-
-            // Find poison arrow cards
-            foreach(Card c in attacker.hand)
+            // Battle Trance
+            if (victim.pManager.battleTranceStacks > 0 && totalLifeLost > 0)
             {
-                if(c.cardName == "Poison Arrows")
+                Debug.Log(victim.myName + " 'Battle Trance' triggered");
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+                PassiveController.Instance.ModifyTemporaryStamina(victim.pManager, victim.pManager.battleTranceStacks, true);
+
+                if (victim.controller == Controller.Player)
                 {
-                    poisonApplied += 1;
+                    VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+                    PassiveController.Instance.ModifyTemporaryDraw(victim.pManager, victim.pManager.battleTranceStacks, true);
                 }
             }
 
-            // Apply poison to target
-            if(poisonApplied > 0)
+            // Poisonous 
+            if (attacker != null &&
+                attacker.pManager.poisonousStacks > 0 &&
+                totalLifeLost > 0)
             {
-                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-                PassiveController.Instance.ModifyPoisoned(attacker, victim.pManager, poisonApplied, true, 0.5f);
+                if (card != null &&
+                   (card.cardType == CardType.MeleeAttack || card.cardType == CardType.RangedAttack))
+                {
+                    VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+                    PassiveController.Instance.ModifyPoisoned(attacker, victim.pManager, attacker.pManager.poisonousStacks, true, 0.5f);
+                }
+                else if (enemyEffect != null &&
+                   (enemyEffect.actionType == ActionType.AttackTarget ||
+                    enemyEffect.actionType == ActionType.AttackAllEnemies)
+                    )
+                {
+                    VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+                    PassiveController.Instance.ModifyPoisoned(attacker, victim.pManager, attacker.pManager.poisonousStacks, true, 0.5f);
+                }
             }
-        }
+
+            // Poison Arrows
+            if (attacker != null &&
+                card != null)
+            {
+                int poisonApplied = 0;
+
+                // Find poison arrow cards
+                foreach (Card c in attacker.hand)
+                {
+                    if (c.cardName == "Poison Arrows")
+                    {
+                        poisonApplied += 1;
+                    }
+                }
+
+                // Apply poison to target
+                if (poisonApplied > 0)
+                {
+                    VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+                    PassiveController.Instance.ModifyPoisoned(attacker, victim.pManager, poisonApplied, true, 0.5f);
+                }
+            }
+        }           
 
         // DEATH?!
-
         // Check if the victim was killed by the damage
         if (victim.health <= 0 && victim.livingState == LivingState.Alive)
         {
