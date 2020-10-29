@@ -2,6 +2,7 @@
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
+using System;
 
 public class LootController : Singleton<LootController>
 {
@@ -50,7 +51,6 @@ public class LootController : Singleton<LootController>
         {
             HideCardLootTab(lt);
         }
-
     }
     public void BuildLootScreenElementsFromLootResultData()
     {
@@ -111,11 +111,24 @@ public class LootController : Singleton<LootController>
 
     // Show, Hide And Transisition Screens
     #region
-    public void ShowMainLootView()
+    public void FadeInMainLootView()
     {
         visualParentCg.alpha = 0;
         visualParent.SetActive(true);
         visualParentCg.DOFade(1f, 0.35f);
+    }
+    public void FadeOutMainLootView(Action onCompleteCallback)
+    {
+        visualParentCg.alpha = 1;
+        Sequence s = DOTween.Sequence();
+        s.Append(visualParentCg.DOFade(0f, 0.5f));
+        s.OnComplete(() =>
+        {
+            if (onCompleteCallback != null)
+            {
+                onCompleteCallback.Invoke();
+            }
+        });
     }
     public void HideMainLootView()
     {
@@ -333,7 +346,6 @@ public class LootController : Singleton<LootController>
     {
         if (VisualEventManager.Instance.EventQueue.Count == 0)
         {
-            CloseAndResetAllViews();
             EventSequenceController.Instance.HandleLoadNextEncounter();
         }
     }

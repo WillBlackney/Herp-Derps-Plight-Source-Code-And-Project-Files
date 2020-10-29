@@ -138,6 +138,7 @@ public enum Sound
     Ability_Fire_Buff = 17,
     Ability_Holy_Buff = 18,
     Ability_Shadow_Buff = 20,
+    Ability_Metallic_Ting = 37,
 
     Card_Draw = 0,
     Card_Moused_Over = 1,

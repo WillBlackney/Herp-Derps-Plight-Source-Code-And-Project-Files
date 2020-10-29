@@ -19,9 +19,17 @@ public class ActivationManager : Singleton<ActivationManager>
     [Header("Turn Change Component References")]
     [SerializeField] private TextMeshProUGUI whoseTurnText;
     [SerializeField] private CanvasGroup visualParentCG;
-    [SerializeField] private RectTransform startPos;
-    [SerializeField] private RectTransform endPos;
+    [SerializeField] private RectTransform blackBarImageRect;
     [SerializeField] private RectTransform middlePos;
+
+    [Header("Combat Start Screen Components")]
+    [SerializeField] private GameObject shieldParent;
+    [SerializeField] private Transform leftSwordRect;
+    [SerializeField] private Transform rightSwordRect;
+
+    [SerializeField] private Transform leftSwordStartPos;
+    [SerializeField] private Transform rightSwordStartPos;
+    [SerializeField] private Transform swordEndPos;
 
     [Header("Turn Change Properties")]
     [SerializeField] private float alphaChangeSpeed;
@@ -114,7 +122,7 @@ public class ActivationManager : Singleton<ActivationManager>
     public void OnNewCombatEventStarted()
     {
         CurrentTurn = 0;
-        SetActivationWindowsParentViewState(true);
+        //VisualEventManager.Instance.CreateVisualEvent(() => SetActivationWindowsParentViewState(true));
         CombatLogic.Instance.SetCombatState(CombatGameState.CombatActive);
         StartNewTurnSequence();
     }
@@ -128,8 +136,17 @@ public class ActivationManager : Singleton<ActivationManager>
 
         // Move windows to start positions if combat has only just started
         if (CurrentTurn == 0)
-        {
-            //CharacterEntityModel[] characters = new List<CharacterEntityModel>();
+        {   
+            // Wait for character move on screen animations to finish
+            VisualEventManager.Instance.InsertTimeDelayInQueue(1.5f);
+
+            CoroutineData combatStartNotif = new CoroutineData();
+            VisualEventManager.Instance.CreateVisualEvent(() => DisplayCombatStartNotification(combatStartNotif), combatStartNotif);
+
+            // Enable activation window visibility
+            VisualEventManager.Instance.CreateVisualEvent(() => SetActivationWindowsParentViewState(true));
+
+            // Play window move anims
             CharacterEntityModel[] characters = activationOrder.ToArray();
             VisualEventManager.Instance.CreateVisualEvent(() => MoveAllWindowsToStartPositions(characters), QueuePosition.Back, 0f, 0.5f);
         }
@@ -168,7 +185,7 @@ public class ActivationManager : Singleton<ActivationManager>
             // Play roll animation sequence
             CharacterEntityModel[] characters = activationOrder.ToArray();
             CoroutineData rollsCoroutine = new CoroutineData();
-            VisualEventManager.Instance.CreateVisualEvent(() => PlayActivationRollSequence(characters, rollsCoroutine), rollsCoroutine, QueuePosition.Back, 0, 0);
+            VisualEventManager.Instance.CreateVisualEvent(() => PlayActivationRollSequence(characters, rollsCoroutine), rollsCoroutine);
 
             // Move windows to new positions
             VisualEventManager.Instance.CreateVisualEvent(() => UpdateWindowPositions(), QueuePosition.Back, 0, 1);           
@@ -176,7 +193,7 @@ public class ActivationManager : Singleton<ActivationManager>
 
         // Play turn change notification
         CoroutineData turnNotificationCoroutine = new CoroutineData();
-        VisualEventManager.Instance.CreateVisualEvent(() => DisplayTurnChangeNotification(turnNotificationCoroutine), turnNotificationCoroutine, QueuePosition.Back, 0, 0);
+        VisualEventManager.Instance.CreateVisualEvent(() => DisplayTurnChangeNotification(turnNotificationCoroutine), turnNotificationCoroutine);
 
         // Set all enemy intent images if turn 1
         if (CurrentTurn == 1)
@@ -272,7 +289,7 @@ public class ActivationManager : Singleton<ActivationManager>
             CharacterEntityController.Instance.CharacterOnActivationEnd(EntityActivated);
         }        
     }    
-    public void SetActivationWindowsParentViewState(bool onOrOff)
+    private void SetActivationWindowsParentViewState(bool onOrOff)
     {
         Debug.Log("ActivationManager.SetActivationWindowsParentViewState() called...");
         activationPanelParent.SetActive(onOrOff);
@@ -626,65 +643,95 @@ public class ActivationManager : Singleton<ActivationManager>
     }
     private IEnumerator DisplayTurnChangeNotificationCoroutine(CoroutineData cData)
     {
-        // Get move transform
-        RectTransform parent = visualParentCG.gameObject.GetComponent<RectTransform>();
+        // Get transforms
+        RectTransform mainParent = visualParentCG.gameObject.GetComponent<RectTransform>();
+        RectTransform textParent = whoseTurnText.gameObject.GetComponent<RectTransform>();
 
         // Set starting view state values
+        shieldParent.SetActive(false);
+        leftSwordRect.gameObject.SetActive(false);
+        rightSwordRect.gameObject.SetActive(false);
         visualParentCG.gameObject.SetActive(true);
-        parent.position = startPos.position;
+        mainParent.position = middlePos.position;
+        textParent.localScale = new Vector3(4f, 4f, 1);
+        blackBarImageRect.localScale = new Vector3(1f, 0.1f, 1);
         visualParentCG.alpha = 0;
         whoseTurnText.text = "Turn " + CurrentTurn.ToString();
 
-        // Start SFX
-        AudioManager.Instance.FadeInSound(Sound.Events_Turn_Change_Notification, 0.2f);
+        visualParentCG.DOFade(1f, 0.5f);
+        textParent.DOScale(1.5f, 0.25f);
+        blackBarImageRect.DOScaleY(1, 0.25f);
 
-        // Start fade in
-        StartCoroutine(FadeInTurnChangeNotification());
+        yield return new WaitForSeconds(1.5f);
 
-        // Move to centre
-        Sequence moveToCentre = DOTween.Sequence();
-        moveToCentre.Append(parent.DOMoveX(middlePos.position.x, 0.5f));
-
-        // Pause at centre screen
-        yield return new WaitForSeconds(2);
-
-        // Start fade out
-        StartCoroutine(FadeOutTurnChangeNotification());
-
-        // Move off screen
-        Sequence moveOffScreen = DOTween.Sequence();
-        moveOffScreen.Append(parent.DOMoveX(endPos.position.x, 0.5f));
-
-        // Fade out SFX
-        AudioManager.Instance.FadeOutSound(Sound.Events_Turn_Change_Notification, 1f);
-
-        yield return new WaitForSeconds(1);
-
-        // Hide main view
-        visualParentCG.alpha = 0;
-        visualParentCG.gameObject.SetActive(false);
+        visualParentCG.DOFade(0f, 0.5f);
+        blackBarImageRect.DOScaleY(0.1f, 0.5f);
 
         // Resolve
         if (cData != null)
         {
             cData.MarkAsCompleted();
         }
+    }
+    private void DisplayCombatStartNotification(CoroutineData cData)
+    {
+        StartCoroutine(DisplayCombatStartNotificationCoroutine(cData));
+    }
+    private IEnumerator DisplayCombatStartNotificationCoroutine(CoroutineData cData)
+    {
+        // Get transforms
+        RectTransform mainParent = visualParentCG.gameObject.GetComponent<RectTransform>();
+        RectTransform textParent = whoseTurnText.gameObject.GetComponent<RectTransform>();
 
-    }
-    private IEnumerator FadeInTurnChangeNotification()
-    {
-        while(visualParentCG.alpha < 1)
+        // Set starting view state values
+        shieldParent.SetActive(true);
+        visualParentCG.gameObject.SetActive(true);
+        leftSwordRect.gameObject.SetActive(true);
+        rightSwordRect.gameObject.SetActive(true);
+        mainParent.position = middlePos.position;
+        textParent.localScale = new Vector3(4f, 4f, 1);
+        blackBarImageRect.localScale = new Vector3(1f, 0.1f, 1);
+        visualParentCG.alpha = 0;
+        whoseTurnText.text = "Combat Start!";
+
+        // set sword starting positions + rotations
+        leftSwordRect.position = leftSwordStartPos.position;
+        rightSwordRect.position = rightSwordStartPos.position;
+        leftSwordRect.DORotate(new Vector3(0, 0, 0), 0f);
+        rightSwordRect.DORotate(new Vector3(0, 0, 0), 0f);
+        yield return new WaitForSeconds(0.05f);
+
+        // Fade in text + bg
+        visualParentCG.DOFade(1f, 0.5f);
+        textParent.DOScale(1.5f, 0.25f);
+        blackBarImageRect.DOScaleY(1, 0.25f);
+
+        // move swords
+        leftSwordRect.DOMoveX(swordEndPos.position.x, 0.5f);
+        rightSwordRect.DOMoveX(swordEndPos.position.x, 0.5f);
+
+        // rotate swords    
+        Vector3 rightEndRotation = new Vector3(0, 0, -720);
+        rightSwordRect.DORotate(rightEndRotation, 0.5f);
+        Vector3 leftEndRotation = new Vector3(0, 0, -720);
+        leftSwordRect.DORotate(leftEndRotation, 0.5f);
+
+        // wait for swords to reach centre
+        yield return new WaitForSeconds(0.4f);
+
+        // SFX and camera shake when swords clash
+        AudioManager.Instance.PlaySound(Sound.Ability_Metallic_Ting);
+        CameraManager.Instance.CreateCameraShake(CameraShakeType.Small);
+        yield return new WaitForSeconds(1f);
+
+        visualParentCG.DOFade(0f, 0.5f);
+        blackBarImageRect.DOScaleY(0.1f, 0.5f);
+        yield return new WaitForSeconds(0.55f);
+
+        // Resolve
+        if (cData != null)
         {
-            visualParentCG.alpha += alphaChangeSpeed * Time.deltaTime;
-            yield return null;
-        }
-    }
-    private IEnumerator FadeOutTurnChangeNotification()
-    {
-        while (visualParentCG.alpha > 0)
-        {
-            visualParentCG.alpha -= alphaChangeSpeed * Time.deltaTime;
-            yield return null;
+            cData.MarkAsCompleted();
         }
     }
     #endregion

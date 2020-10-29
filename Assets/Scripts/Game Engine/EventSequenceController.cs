@@ -115,30 +115,51 @@ public class EventSequenceController : Singleton<EventSequenceController>
     #region
     public void HandleStartNewGameFromMainMenuEvent()
     {
-        // TO DO: should put a validation check here before running the game
-
-        // Hide Main Menu
-        MainMenuController.Instance.HideNewGameScreen();
-        MainMenuController.Instance.HideFrontScreen();
-
-        // CREATE NEW SAVE FILE
-
         // Set up characters
         PersistencyManager.Instance.BuildNewSaveFileOnNewGameStarted();
 
         // Build and prepare all session data
         PersistencyManager.Instance.SetUpGameSessionDataFromSaveFile();
 
+        BlackScreenController.Instance.FadeOutAndBackIn(1, 0f, 1f, () =>
+         {
+             // Hide Main Menu
+             MainMenuController.Instance.HideNewGameScreen();
+             MainMenuController.Instance.HideFrontScreen();
+
+             // Start the first encounter set up sequence
+             HandleLoadEncounter(JourneyManager.Instance.CurrentEncounter);
+         });
+
+        // Hide Main Menu
+        //MainMenuController.Instance.HideNewGameScreen();
+       // MainMenuController.Instance.HideFrontScreen();
+
+        // CREATE NEW SAVE FILE
+
+        // Set up characters
+       // PersistencyManager.Instance.BuildNewSaveFileOnNewGameStarted();
+
+        // Build and prepare all session data
+        //PersistencyManager.Instance.SetUpGameSessionDataFromSaveFile();
+
         // Start the first encounter set up sequence
-        HandleLoadEncounter(JourneyManager.Instance.CurrentEncounter);
+        //HandleLoadEncounter(JourneyManager.Instance.CurrentEncounter);
     }
     public void HandleLoadSavedGameFromMainMenuEvent()
     {
-        // Hide Main Menu
-        MainMenuController.Instance.HideFrontScreen();
-
+        StartCoroutine(HandleLoadSavedGameFromMainMenuEventCoroutine());
+    }
+    private IEnumerator HandleLoadSavedGameFromMainMenuEventCoroutine()
+    {
         // Build and prepare all session data
         PersistencyManager.Instance.SetUpGameSessionDataFromSaveFile();
+
+        BlackScreenController.Instance.FadeOutScreen(2f);
+        yield return new WaitForSeconds(1f);
+
+        // Hide Main Menu
+        MainMenuController.Instance.HideFrontScreen();
 
         // Load the encounter the player saved at
         HandleLoadEncounter(JourneyManager.Instance.CurrentEncounter);
@@ -154,13 +175,21 @@ public class EventSequenceController : Singleton<EventSequenceController>
     }
     private IEnumerator HandleQuitToMainMenuFromInGameCoroutine()
     {
-        // Do black screen fade out
-
-        // Hide menus
+        // Hide menus + GUI + misc annoying stuff
         MainMenuController.Instance.HideInGameMenuView();
+        AudioManager.Instance.StopSound(Sound.Character_Footsteps);
+
+        // Fade out battle music
+        AudioManager.Instance.FadeOutSound(Sound.Music_Battle_Theme_1, 2f);
+
+        // Do black screen fade out
+        BlackScreenController.Instance.FadeOutScreen(2f);
 
         // Wait for the current visual event to finish playing
         VisualEvent handle = VisualEventManager.Instance.HandleEventQueueTearDown();
+
+        // Wait till its safe to tearn down event queue and scene
+        yield return new WaitForSeconds(2f);
         if (handle != null && handle.cData != null)
         {
             yield return new WaitUntil(() => handle.cData.CoroutineCompleted() == true);
@@ -175,18 +204,15 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Hide Loot screen elements
         LootController.Instance.CloseAndResetAllViews();
 
-        // Stop battle music, start menu music
-        AudioManager.Instance.FadeOutSound(Sound.Music_Battle_Theme_1, 1f);
+        // Fade in menu music
         AudioManager.Instance.FadeInSound(Sound.Music_Main_Menu_Theme_1, 1f);
-
-        // when black screen is totally faded out, wait for 2 seconds 
-        // for untracked visual event coroutines to finish
 
         // Show menu screen
         MainMenuController.Instance.ShowFrontScreen();
         MainMenuController.Instance.RenderMenuButtons();
 
         // Do black screen fade in
+        BlackScreenController.Instance.FadeInScreen(2f);
     }
     #endregion
 
@@ -217,12 +243,10 @@ public class EventSequenceController : Singleton<EventSequenceController>
     }
     public void HandleLoadNextEncounter()
     {
-        // TO DO: in future, there will be more sophisticated visual 
-        // transistions from ecnounter to encounter, and the transisitions
-        // will differ depending on the encounters they transisition from
-        // and to (e.g. screen fade outs, moving characters off screen, etc).
-        // The logic to decide which transisition will occur will go here.
-
+        StartCoroutine(HandleLoadNextEncounterCoroutine());
+    }
+    public IEnumerator HandleLoadNextEncounterCoroutine()
+    {
         // Cache previous encounter data 
         EncounterData previousEncounter = JourneyManager.Instance.CurrentEncounter;
         EnemyWaveSO previousEnemyWave = JourneyManager.Instance.CurrentEnemyWave;
@@ -238,18 +262,32 @@ public class EventSequenceController : Singleton<EventSequenceController>
             // Mark wave as seen
             JourneyManager.Instance.AddEnemyWaveToAlreadyEncounteredList(previousEnemyWave);
 
-            // Tear down scene
+            // Fade out visual event
+            BlackScreenController.Instance.FadeOutScreen(3f);
+
+            // Fade and close loot screen views
+            LootController.Instance.FadeOutMainLootView(()=> LootController.Instance.HideMainLootView());
+
+            // Move characters off screen
+            CharacterEntityController.Instance.MoveCharactersToOffScreenRight(CharacterEntityController.Instance.AllDefenders, null);
+
+            // Wait for visual events
+            yield return new WaitForSeconds(4f);
+
+            // Tear down combat scene
             HandleCombatSceneTearDown();
         }
 
         // Tear down recruit character screen
         else if(previousEncounter.encounterType == EncounterType.RecruitCharacter)
         {
+            // Fade out visual event
+            BlackScreenController.Instance.FadeOutScreen(1f);
+            yield return new WaitForSeconds(1f);
+
             // Teardown recruit event views
             RecruitCharacterController.Instance.ResetAllViews();
         }
-
-
 
         // If next event is a combat, get + set enemy wave before saving to disk
         if(JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.BasicEnemy ||
@@ -265,6 +303,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
             // Auto save
             PersistencyManager.Instance.AutoUpdateSaveFile();
 
+            // Start Load combat
             HandleLoadCombatEncounter(JourneyManager.Instance.CurrentEnemyWave);
         }
 
@@ -288,6 +327,12 @@ public class EventSequenceController : Singleton<EventSequenceController>
     }
     private void HandleLoadCombatEncounter(EnemyWaveSO enemyWave)
     {
+        // Fade In
+        BlackScreenController.Instance.FadeInScreen(1f);
+
+        // Camera Zoom out effect
+        CameraManager.Instance.DoCameraZoomOut(4, 5, 1);
+
         // Play battle theme music
         AudioManager.Instance.FadeOutSound(Sound.Music_Main_Menu_Theme_1, 1f);
         AudioManager.Instance.FadeInSound(Sound.Music_Battle_Theme_1, 1f);
@@ -298,14 +343,22 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Spawn enemies
         EnemySpawner.Instance.SpawnEnemyWave(enemyWave.combatDifficulty.ToString(), enemyWave);
 
+        // move characters offscreen
+        CharacterEntityController.Instance.MoveAllCharactersToOffScreenPosition();
+
+        // make characters move towards start nodes
+        CoroutineData cData = new CoroutineData();
+        VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.MoveAllCharactersToStartingNodes(cData));       
+
         // Start a new combat event
         ActivationManager.Instance.OnNewCombatEventStarted();
     }
     private void HandleLoadRecruitCharacterEncounter()
     {
-        // get 3 random characters (cant be ones we already have)
-        // build windows from character template data
+        // Fade in
+        BlackScreenController.Instance.FadeInScreen(2f);
 
+        // Build + Show views
         RecruitCharacterController.Instance.ResetAllViews();
         RecruitCharacterController.Instance.ShowRecruitCharacterScreen();
         RecruitCharacterController.Instance.BuildRecruitCharacterWindows();
@@ -360,7 +413,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         LootController.Instance.BuildLootScreenElementsFromLootResultData();        
 
         // fade in loot window
-        LootController.Instance.ShowMainLootView();
+        LootController.Instance.FadeInMainLootView();
         LootController.Instance.ShowFrontPageView();
     }
     #endregion
@@ -369,7 +422,8 @@ public class EventSequenceController : Singleton<EventSequenceController>
     #region
     public void HandleCombatSceneTearDown()
     {
-        CharacterEntityController.Instance.DestroyAllCombatCharacters();
+        CharacterEntityController.Instance.DestroyCharacterViewModelsAndGameObjects(CharacterEntityController.Instance.AllCharacters);
+        CharacterEntityController.Instance.ClearAllCharacterPersistencies();
         ActivationManager.Instance.DestroyAllActivationWindows();
         LevelManager.Instance.ClearAndResetAllNodes();
         UIManager.Instance.DisableEndTurnButtonView();

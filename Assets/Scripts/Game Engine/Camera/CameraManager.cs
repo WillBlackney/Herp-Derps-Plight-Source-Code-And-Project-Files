@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using EZCameraShake;
+using DG.Tweening;
 public class CameraManager : Singleton<CameraManager>
 {
     // Properties + Component References
@@ -24,26 +25,7 @@ public class CameraManager : Singleton<CameraManager>
     public float lRoughness;
     public float lDuration;
     #endregion
-
-    // Misc Functions
-    #region
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            CreateSmallCameraShake();
-        }
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            CreateMediumCameraShake();
-        }
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            CreateLargeCameraShake();
-        }
-    }
-    #endregion
-
+       
     // Property Accessors
     #region
     public Camera MainCamera
@@ -81,6 +63,16 @@ public class CameraManager : Singleton<CameraManager>
     private void CreateLargeCameraShake()
     {
         CameraShaker.Instance.ShakeOnce(lMagnitude, lRoughness, 0.1f, lDuration);
+    }
+    #endregion
+
+    // Camera Zoom
+    #region
+    public void DoCameraZoomOut(float startOrthoSize, float endOrthoSize, float duration)
+    {
+        MainCamera.orthographicSize = startOrthoSize;
+        MainCamera.DOOrthoSize(endOrthoSize, duration);
+
     }
     #endregion
 }

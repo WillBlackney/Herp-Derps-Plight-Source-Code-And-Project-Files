@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class JourneyManager : Singleton<JourneyManager>
 {
     // Properties + Component Refs
     #region
+    [Header("Components")]
+    [SerializeField] private TextMeshProUGUI currentEncounterText;
+    [SerializeField] private TextMeshProUGUI maxEncounterText;
+
     [Header("General Properties")]
     [SerializeField] private bool allowSameEnemyWaveMultipleTimes;
 
@@ -60,6 +65,8 @@ public class JourneyManager : Singleton<JourneyManager>
                 CurrentEnemyWave = eWave;
             }
         }
+
+        UpdateCurrentEncounterText();
     }
     public void SaveMyDataToSaveFile(SaveGameData saveFile)
     {
@@ -77,6 +84,12 @@ public class JourneyManager : Singleton<JourneyManager>
     {
         CurrentJourneyPosition++;
         CurrentEncounter = Encounters[CurrentJourneyPosition];
+        UpdateCurrentEncounterText();
+    }
+    private void UpdateCurrentEncounterText()
+    {
+        currentEncounterText.text = (CurrentJourneyPosition + 1).ToString();
+        maxEncounterText.text = encounters.Count.ToString();
     }
     #endregion
     

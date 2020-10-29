@@ -86,13 +86,15 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             }          
         }
     }
-    public void DestroyAllCombatCharacters()
+    public void DestroyCharacterViewModelsAndGameObjects(List<CharacterEntityModel> charactersDestroyed)
     {
-        foreach (CharacterEntityModel character in AllCharacters)
+        foreach (CharacterEntityModel character in charactersDestroyed)
         {
             Destroy(character.characterEntityView.gameObject);
         }
-
+    }
+    public void ClearAllCharacterPersistencies()
+    {
         AllCharacters.Clear();
         AllDefenders.Clear();
         AllEnemies.Clear();
@@ -2357,6 +2359,15 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         // Brief yield here (incase melee attack anim played and character hasn't returned to attack pos )
         yield return new WaitForSeconds(0.3f);
 
+        if(entity.characterEntityView == null)
+        {
+            Debug.LogWarning("character view is null");
+        }
+        else if (node == null)
+        {
+            Debug.LogWarning("node is null");
+        }
+
         // Face direction of destination node
         LevelManager.Instance.TurnFacingTowardsLocation(entity.characterEntityView, node.transform.position);
 
@@ -2439,6 +2450,62 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             cData.MarkAsCompleted();
         }
 
+    }
+    public void MoveAllCharactersToOffScreenPosition()
+    {
+        foreach(CharacterEntityModel character in AllCharacters)
+        {
+            MoveEntityToOffScreenPosition(character);
+        }
+    }
+    private void MoveEntityToOffScreenPosition(CharacterEntityModel entity)
+    {
+        if (entity.allegiance == Allegiance.Player)
+        {
+            entity.characterEntityView.ucmMovementParent.transform.position = LevelManager.Instance.DefenderOffScreenNode.transform.position;
+        }
+        else if (entity.allegiance == Allegiance.Enemy)
+        {
+            entity.characterEntityView.ucmMovementParent.transform.position = LevelManager.Instance.EnemyOffScreenNode.transform.position;
+        }
+    }
+    public void MoveAllCharactersToStartingNodes(CoroutineData data)
+    {
+        Debug.Log("MoveAllCharactersToStartingNodes.MoveEntityToNodeCentre() called...");
+        StartCoroutine(MoveAllCharactersToStartingNodesCoroutine(data));
+    }
+    private IEnumerator MoveAllCharactersToStartingNodesCoroutine(CoroutineData data)
+    {
+        foreach (CharacterEntityModel character in AllCharacters)
+        {
+            MoveEntityToNodeCentre(character, character.levelNode, null);
+        }
+
+        yield return new WaitForSeconds(3f);
+
+        if (data != null)
+        {
+            data.MarkAsCompleted();
+        }
+    }
+    public void MoveCharactersToOffScreenRight(List<CharacterEntityModel> characters, CoroutineData cData)
+    {
+        StartCoroutine(MoveCharactersToOffScreenRightCoroutine(characters, cData));
+    }
+    private IEnumerator MoveCharactersToOffScreenRightCoroutine(List<CharacterEntityModel> characters, CoroutineData cData)
+    {
+        foreach(CharacterEntityModel character in characters)
+        {
+            MoveEntityToNodeCentre(character, LevelManager.Instance.EnemyOffScreenNode, null);
+            yield return new WaitForSeconds(0.25f);
+        }
+
+        yield return new WaitForSeconds(3f);
+
+        if(cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
     }
     #endregion
 

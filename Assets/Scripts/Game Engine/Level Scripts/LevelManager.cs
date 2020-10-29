@@ -12,6 +12,11 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField] private Transform centrePos;
     [SerializeField] private LevelNode[] allLevelNodes;
 
+    [Header("Off Screen Transform References")]
+    [SerializeField] private LevelNode enemyOffScreenNode;
+    [SerializeField] private LevelNode defenderOffScreenNode;
+
+
     public LevelNode[] AllLevelNodes
     {
         get { return allLevelNodes; }
@@ -21,6 +26,16 @@ public class LevelManager : Singleton<LevelManager>
     {
         get { return centrePos; }
         private set { centrePos = value; }
+    }
+    public LevelNode EnemyOffScreenNode
+    {
+        get { return enemyOffScreenNode; }
+        private set { enemyOffScreenNode = value; }
+    }
+    public LevelNode DefenderOffScreenNode
+    {
+        get { return defenderOffScreenNode; }
+        private set { defenderOffScreenNode = value; }
     }
     #endregion  
 
