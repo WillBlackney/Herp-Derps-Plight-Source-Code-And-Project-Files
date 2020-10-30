@@ -774,15 +774,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63026756ba8c76d42809ff49c0588569, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataSoRef: {fileID: 0}
   copiesCount: 0
-  normalColor: {r: 0.59607846, g: 0.59607846, b: 0.59607846, a: 1}
-  hoverColor: {r: 1, g: 1, b: 1, a: 1}
   location: 0
   cardNameText: {fileID: 8285723800145329642}
   energyCostText: {fileID: 8285723801192733691}
   copiesCountText: {fileID: 4463098243931018108}
-  talentUnderlay: {fileID: 6530789997667540988}
   talentOverlay: {fileID: 4651445089323540442}
   rarityOverlay: {fileID: 6789544723988328177}
   cardTypeImage: {fileID: 8285723800213579889}
@@ -798,9 +794,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db09d9cca6141a47a3c991340f1f29f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverSound: 33
-  clickSound: 34
-  activeOnHover: {fileID: 0}
+  onClickEvents: []
+  mouseEnterEvents:
+  - widgetEvent: 9
+    objectDisabled: {fileID: 0}
+    objectEnabled: {fileID: 0}
+    functionInvoked:
+      m_PersistentCalls:
+        m_Calls: []
+    soundPlayed: 0
+    canvasGroup: {fileID: 0}
+    image: {fileID: 6530789997667540988}
+    text: {fileID: 0}
+    endColour: {r: 1, g: 1, b: 1, a: 1}
+    fadeSpeed: 0.25
+  - widgetEvent: 4
+    objectDisabled: {fileID: 0}
+    objectEnabled: {fileID: 0}
+    functionInvoked:
+      m_PersistentCalls:
+        m_Calls: []
+    soundPlayed: 33
+    canvasGroup: {fileID: 0}
+    image: {fileID: 0}
+    text: {fileID: 0}
+    endColour: {r: 0, g: 0, b: 0, a: 0}
+    fadeSpeed: 0
+  mouseExitEvents:
+  - widgetEvent: 9
+    objectDisabled: {fileID: 0}
+    objectEnabled: {fileID: 0}
+    functionInvoked:
+      m_PersistentCalls:
+        m_Calls: []
+    soundPlayed: 0
+    canvasGroup: {fileID: 0}
+    image: {fileID: 6530789997667540988}
+    text: {fileID: 0}
+    endColour: {r: 0.59607846, g: 0.59607846, b: 0.59607846, a: 1}
+    fadeSpeed: 0.25
 --- !u!1 &8285723800145329644
 GameObject:
   m_ObjectHideFlags: 0

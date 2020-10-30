@@ -6,18 +6,14 @@ using TMPro;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
-public class TalentInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class TalentInfoPanel : MonoBehaviour
 {
     // Properties + Component References
     #region
-    [Header("General Components")]
+    [Header("Components")]
     [SerializeField] private TextMeshProUGUI talentNameText;
     [SerializeField] private Image talentImage;
-
-    [Header("Info Popup Components")]
     [SerializeField] private TextMeshProUGUI infoPopupText;
-    [SerializeField] private GameObject infoPopupParent;
-    [SerializeField] private CanvasGroup infoPopupCG;
     #endregion
 
     // Initialization
@@ -31,17 +27,4 @@ public class TalentInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExit
     }
     #endregion
 
-    // Input Listeners
-    #region
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        infoPopupCG.alpha = 0;
-        infoPopupParent.SetActive(true);
-        infoPopupCG.DOFade(1f, 0.25f);
-    }
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        infoPopupParent.SetActive(false);
-    }
-    #endregion
 }

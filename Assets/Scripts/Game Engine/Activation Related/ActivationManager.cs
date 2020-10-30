@@ -712,9 +712,9 @@ public class ActivationManager : Singleton<ActivationManager>
 
         // rotate swords    
         Vector3 rightEndRotation = new Vector3(0, 0, -720);
-        rightSwordRect.DORotate(rightEndRotation, 0.5f);
+        rightSwordRect.DORotate(rightEndRotation, 0.45f);
         Vector3 leftEndRotation = new Vector3(0, 0, -720);
-        leftSwordRect.DORotate(leftEndRotation, 0.5f);
+        leftSwordRect.DORotate(leftEndRotation, 0.45f);
 
         // wait for swords to reach centre
         yield return new WaitForSeconds(0.4f);

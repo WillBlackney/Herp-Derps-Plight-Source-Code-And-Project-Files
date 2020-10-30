@@ -1,20 +1,9 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
 
-public class RunModifierButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class RunModifierButton : MonoBehaviour
 {
     public GameObject tickParent;
     public GameObject descriptionWindowParent;
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        descriptionWindowParent.SetActive(true);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        descriptionWindowParent.SetActive(false);
-    }
 
     public void TickMe()
     {

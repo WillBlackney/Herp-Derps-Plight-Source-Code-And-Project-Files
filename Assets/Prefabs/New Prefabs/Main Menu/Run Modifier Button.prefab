@@ -621,7 +621,6 @@ GameObject:
   - component: {fileID: 5349963147920055985}
   - component: {fileID: 3550631576996322637}
   - component: {fileID: 1536226087995334514}
-  - component: {fileID: 1026825051660630730}
   m_Layer: 0
   m_Name: Run Modifier Button
   m_TagString: Untagged
@@ -678,52 +677,104 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db09d9cca6141a47a3c991340f1f29f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverSound: 33
-  clickSound: 34
-  activeOnHover: {fileID: 5349963147114491710}
---- !u!114 &1026825051660630730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5349963147920055984}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0, g: 0, b: 0, a: 0}
-    m_SelectedColor: {r: 0, g: 0, b: 0, a: 0}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
+  onClickEvents:
+  - widgetEvent: 3
+    objectDisabled: {fileID: 0}
+    objectEnabled: {fileID: 0}
+    functionInvoked:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_MethodName: 
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: 
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    soundPlayed: 0
+    canvasGroup: {fileID: 0}
+    image: {fileID: 0}
+    text: {fileID: 0}
+    endColour: {r: 0, g: 0, b: 0, a: 0}
+    fadeSpeed: 0
+  - widgetEvent: 4
+    objectDisabled: {fileID: 0}
+    objectEnabled: {fileID: 0}
+    functionInvoked:
+      m_PersistentCalls:
+        m_Calls: []
+    soundPlayed: 34
+    canvasGroup: {fileID: 0}
+    image: {fileID: 0}
+    text: {fileID: 0}
+    endColour: {r: 0, g: 0, b: 0, a: 0}
+    fadeSpeed: 0
+  mouseEnterEvents:
+  - widgetEvent: 5
+    objectDisabled: {fileID: 0}
+    objectEnabled: {fileID: 0}
+    functionInvoked:
+      m_PersistentCalls:
+        m_Calls: []
+    soundPlayed: 0
+    canvasGroup: {fileID: 3101603576056632451}
+    image: {fileID: 0}
+    text: {fileID: 0}
+    endColour: {r: 0, g: 0, b: 0, a: 0}
+    fadeSpeed: 0.2
+  - widgetEvent: 10
+    objectDisabled: {fileID: 0}
+    objectEnabled: {fileID: 0}
+    functionInvoked:
+      m_PersistentCalls:
+        m_Calls: []
+    soundPlayed: 0
+    canvasGroup: {fileID: 0}
+    image: {fileID: 0}
+    text: {fileID: 5349963147127105818}
+    endColour: {r: 1, g: 0.8784314, b: 0, a: 1}
+    fadeSpeed: 0.2
+  - widgetEvent: 4
+    objectDisabled: {fileID: 0}
+    objectEnabled: {fileID: 0}
+    functionInvoked:
+      m_PersistentCalls:
+        m_Calls: []
+    soundPlayed: 33
+    canvasGroup: {fileID: 0}
+    image: {fileID: 0}
+    text: {fileID: 0}
+    endColour: {r: 0, g: 0, b: 0, a: 0}
+    fadeSpeed: 0
+  mouseExitEvents:
+  - widgetEvent: 6
+    objectDisabled: {fileID: 0}
+    objectEnabled: {fileID: 0}
+    functionInvoked:
+      m_PersistentCalls:
+        m_Calls: []
+    soundPlayed: 0
+    canvasGroup: {fileID: 3101603576056632451}
+    image: {fileID: 0}
+    text: {fileID: 0}
+    endColour: {r: 0, g: 0, b: 0, a: 0}
+    fadeSpeed: 0.2
+  - widgetEvent: 10
+    objectDisabled: {fileID: 0}
+    objectEnabled: {fileID: 0}
+    functionInvoked:
+      m_PersistentCalls:
+        m_Calls: []
+    soundPlayed: 0
+    canvasGroup: {fileID: 0}
+    image: {fileID: 0}
+    text: {fileID: 5349963147127105818}
+    endColour: {r: 1, g: 1, b: 1, a: 1}
+    fadeSpeed: 0.2
 --- !u!1 &5349963147992085426
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,13 +896,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5349963148934122843}
+  - component: {fileID: 3101603576056632451}
   m_Layer: 0
   m_Name: Description Window Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5349963148934122843
 RectTransform:
   m_ObjectHideFlags: 0
@@ -874,3 +926,15 @@ RectTransform:
   m_AnchoredPosition: {x: 514, y: 0}
   m_SizeDelta: {x: 500, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &3101603576056632451
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5349963148934122842}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0

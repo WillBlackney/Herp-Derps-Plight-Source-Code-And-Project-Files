@@ -12,8 +12,6 @@ public class CardInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [Header("Properties")]
     [HideInInspector] public CardData cardDataRef;
     [HideInInspector] public int copiesCount = 0;
-    [SerializeField] private Color normalColor;
-    [SerializeField] private Color hoverColor;
     [SerializeField] private CardPanelLocation location;
 
     [Header("Text Components")]
@@ -22,7 +20,6 @@ public class CardInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public TextMeshProUGUI copiesCountText;
 
     [Header("Image Components")]
-    [SerializeField] private Image talentUnderlay;
     [SerializeField] private Image talentOverlay;
     [SerializeField] private Image rarityOverlay;
     [SerializeField] private Image cardTypeImage;
@@ -53,7 +50,6 @@ public class CardInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     #region
     public void OnPointerEnter(PointerEventData eventData)
     {
-        talentUnderlay.color = hoverColor;
         KeyWordLayoutController.Instance.BuildAllViewsFromKeyWordModels(cardDataRef.keyWordModels);
 
         if (location == CardPanelLocation.CharacterInfoWindow)
@@ -71,8 +67,6 @@ public class CardInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        talentUnderlay.color = normalColor;
-
         if (location == CardPanelLocation.CharacterInfoWindow)
         {
             MainMenuController.Instance.HidePreviewCard();

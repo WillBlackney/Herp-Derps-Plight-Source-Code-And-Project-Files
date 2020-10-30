@@ -21,6 +21,7 @@ public class MainMenuController : Singleton<MainMenuController>
 
     [Header("In Game Menu Components")]
     [SerializeField] private GameObject inGameMenuScreenParent;
+    [SerializeField] private CanvasGroup inGameMenuScreenCg;
 
     [Header("Run Modifier Menu Components")]
     [SerializeField] private GameObject runModifierScreenParent;
@@ -110,13 +111,18 @@ public class MainMenuController : Singleton<MainMenuController>
     }
     public void OnRunModifiersButtonClicked()
     {
+        CanvasGroup cg = runModifierScreenParent.GetComponent<CanvasGroup>();
+
         if (runModifierScreenParent.activeSelf)
         {
             runModifierScreenParent.SetActive(false);
+            cg.alpha = 0;
         }
         else
         {
+            cg.alpha = 0;
             runModifierScreenParent.SetActive(true);
+            cg.DOFade(1, 0.2f);
         }
     }
     public void OnRunModifiersBackButtonClicked()
@@ -184,7 +190,7 @@ public class MainMenuController : Singleton<MainMenuController>
     #region
     public void OnTopBarSettingsButtonClicked()
     {
-        EventSystem.current.SetSelectedGameObject(null);
+       // EventSystem.current.SetSelectedGameObject(null);
 
         if (inGameMenuScreenParent.activeSelf)
         {
@@ -493,11 +499,14 @@ public class MainMenuController : Singleton<MainMenuController>
     #region
     private void ShowInGameMenuView()
     {
+        inGameMenuScreenCg.alpha = 0;
         inGameMenuScreenParent.SetActive(true);
+        inGameMenuScreenCg.DOFade(1, 0.25f);
     }
     public void HideInGameMenuView()
     {
         inGameMenuScreenParent.SetActive(false);
+        inGameMenuScreenCg.alpha = 0;
     }
     #endregion
 

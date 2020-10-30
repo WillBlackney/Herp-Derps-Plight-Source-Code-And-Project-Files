@@ -204,8 +204,6 @@ MonoBehaviour:
   talentNameText: {fileID: 1152204747004117082}
   talentImage: {fileID: 180346587761515276}
   infoPopupText: {fileID: 5555843611262339037}
-  infoPopupParent: {fileID: 3969490465033286139}
-  infoPopupCG: {fileID: 8565394979145749440}
 --- !u!114 &2979642991181390150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,9 +216,93 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db09d9cca6141a47a3c991340f1f29f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverSound: 33
-  clickSound: 8
-  activeOnHover: {fileID: 1108205077724460021}
+  onClickEvents: []
+  mouseEnterEvents:
+  - widgetEvent: 4
+    objectDisabled: {fileID: 0}
+    objectEnabled: {fileID: 0}
+    functionInvoked:
+      m_PersistentCalls:
+        m_Calls: []
+    soundPlayed: 33
+    canvasGroup: {fileID: 0}
+    image: {fileID: 0}
+    text: {fileID: 0}
+    endColour: {r: 0, g: 0, b: 0, a: 0}
+    fadeSpeed: 0
+  - widgetEvent: 1
+    objectDisabled: {fileID: 0}
+    objectEnabled: {fileID: 3969490465033286139}
+    functionInvoked:
+      m_PersistentCalls:
+        m_Calls: []
+    soundPlayed: 0
+    canvasGroup: {fileID: 0}
+    image: {fileID: 0}
+    text: {fileID: 0}
+    endColour: {r: 0, g: 0, b: 0, a: 0}
+    fadeSpeed: 0
+  - widgetEvent: 5
+    objectDisabled: {fileID: 0}
+    objectEnabled: {fileID: 0}
+    functionInvoked:
+      m_PersistentCalls:
+        m_Calls: []
+    soundPlayed: 0
+    canvasGroup: {fileID: 8565394979145749440}
+    image: {fileID: 0}
+    text: {fileID: 0}
+    endColour: {r: 0, g: 0, b: 0, a: 0}
+    fadeSpeed: 0.25
+  - widgetEvent: 10
+    objectDisabled: {fileID: 0}
+    objectEnabled: {fileID: 0}
+    functionInvoked:
+      m_PersistentCalls:
+        m_Calls: []
+    soundPlayed: 0
+    canvasGroup: {fileID: 0}
+    image: {fileID: 0}
+    text: {fileID: 1152204747004117082}
+    endColour: {r: 1, g: 0.8784314, b: 0, a: 1}
+    fadeSpeed: 0.25
+  mouseExitEvents:
+  - widgetEvent: 6
+    objectDisabled: {fileID: 0}
+    objectEnabled: {fileID: 0}
+    functionInvoked:
+      m_PersistentCalls:
+        m_Calls: []
+    soundPlayed: 0
+    canvasGroup: {fileID: 8565394979145749440}
+    image: {fileID: 0}
+    text: {fileID: 0}
+    endColour: {r: 0, g: 0, b: 0, a: 0}
+    fadeSpeed: 0
+  - widgetEvent: 2
+    objectDisabled: {fileID: 3969490465033286139}
+    objectEnabled: {fileID: 0}
+    functionInvoked:
+      m_PersistentCalls:
+        m_Calls: []
+    soundPlayed: 0
+    canvasGroup: {fileID: 0}
+    image: {fileID: 0}
+    text: {fileID: 0}
+    endColour: {r: 0, g: 0, b: 0, a: 0}
+    fadeSpeed: 0
+  - widgetEvent: 10
+    objectDisabled: {fileID: 0}
+    objectEnabled: {fileID: 0}
+    functionInvoked:
+      m_PersistentCalls:
+        m_Calls: []
+    soundPlayed: 0
+    canvasGroup: {fileID: 0}
+    image: {fileID: 0}
+    text: {fileID: 1152204747004117082}
+    endColour: {r: 1, g: 1, b: 1, a: 1}
+    fadeSpeed: 0.25
 --- !u!1 &1152204747004117080
 GameObject:
   m_ObjectHideFlags: 0
