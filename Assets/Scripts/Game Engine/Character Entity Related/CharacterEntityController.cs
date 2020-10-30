@@ -432,6 +432,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
         int energyVfxValue = character.energy;
         VisualEventManager.Instance.CreateVisualEvent(() => UpdateEnergyGUI(view, energyVfxValue), QueuePosition.Back, 0, 0);
+
+        CardController.Instance.AutoUpdateCardsInHandGlowOutlines(character);
     }
     public void ModifyStamina(CharacterEntityModel character, int staminaGainedOrLost)
     {

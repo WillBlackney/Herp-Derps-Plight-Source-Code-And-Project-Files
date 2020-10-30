@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: Test Enemy
   m_EditorClassIdentifier: 
   enemyName: Test Enemy
+  enemyModelSize: 0
+  enableFlexibleMaxHealth: 0
+  maxHealthFlexAmount: 0
   maxHealth: 1
+  initiative: 3
   power: 0
   dexterity: 0
-  initiative: 3
+  overrideStartingHealth: 0
   startingHealth: 1
   startingBlock: 0
   physicalResistance: 0
@@ -61,13 +65,14 @@ MonoBehaviour:
     lordOfStormsStacks: 0
     sentinelStacks: 0
     ruthlessStacks: 0
-    evangelizeStacks: 0
-    wellOfSoulsStacks: 0
-    corpseCollectorStacks: 0
-    pistoleroStacks: 0
-    fastLearnerStacks: 0
+    evangelizeStacks: 3
+    wellOfSoulsStacks: 3
+    corpseCollectorStacks: 3
+    pistoleroStacks: 3
+    fastLearnerStacks: 3
     demonFormStacks: 0
     darkBargainStacks: 0
+    volatileStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -142,6 +147,11 @@ MonoBehaviour:
       actionType: 0
       baseDamage: 5
       damageType: 1
+      characterSummoned: {fileID: 0}
+      summonedCreatureStartPosition: 0
+      modelFadeInSpeed: 0
+      uiFadeInSpeed: 0
+      summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
       blockGained: 0

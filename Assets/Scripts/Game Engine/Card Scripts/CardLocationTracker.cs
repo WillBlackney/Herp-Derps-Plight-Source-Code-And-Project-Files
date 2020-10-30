@@ -79,10 +79,5 @@ public class CardLocationTracker : MonoBehaviour {
     {
         return baseHandSortingOrder + (-(placeInHand + 1) * 10); 
     }
-    private void SetHandRotation(int placeInHand)
-    {
-
-    }
-
 
 }

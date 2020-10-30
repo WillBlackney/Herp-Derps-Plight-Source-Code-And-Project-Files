@@ -612,29 +612,17 @@ public class CardController : Singleton<CardController>
             cardVM = Instantiate(PrefabHolder.Instance.targetCard, position, Quaternion.identity).GetComponentInChildren<CardViewModel>();
         }
 
-        //cardVM.canvas.overrideSorting = true;
-
         // Cache references
         ConnectCardWithCardViewModel(card, cardVM);
 
         // Set up appearance, texts and sprites
         SetUpCardViewModelAppearanceFromCard(cardVM, card);
-        return cardVM;
-    }
-    public CardViewModel BuildCardViewModelFromCardDataSO(CardDataSO card, CardViewModel cardVM)
-    {
-        Debug.Log("CardController.BuildCardViewModelFromCardDataSO() called...");
 
-        // Set texts and images
-        SetCardViewModelNameText(cardVM, card.cardName);
-        SetCardViewModelDescriptionText(cardVM, TextLogic.ConvertCustomStringListToString(card.customDescription));
-        SetCardViewModelEnergyText(null, cardVM, card.cardEnergyCost.ToString());
-        SetCardViewModelGraphicImage(cardVM, card.cardSprite);
-        SetCardViewModelTalentSchoolImage(cardVM, SpriteLibrary.Instance.GetTalentSchoolSpriteFromEnumData(card.talentSchool));
-        ApplyCardViewModelTalentColoring(cardVM, ColorLibrary.Instance.GetTalentColor(card.talentSchool));
-        ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(card.rarity));
-        SetCardViewModelCardTypeImage(cardVM, SpriteLibrary.Instance.GetCardTypeImageFromTypeEnumData(card.cardType));
-
+        // Glow
+        if (IsCardPlayable(card, card.owner))
+        {
+            EnableCardViewModelGlowOutline(cardVM);
+        }
         return cardVM;
     }
     public void BuildCharacterEntityCombatDeckFromDeckData(CharacterEntityModel defender, List<CardData> deckData)
@@ -2943,6 +2931,9 @@ public class CardController : Singleton<CardController>
                     // Update energy cost text
                     VisualEventManager.Instance.CreateVisualEvent(() => SetCardViewModelEnergyText(card, cvm, newCostTextValue.ToString()));
 
+                    // Update glow
+                    AutoUpdateCardGlowOutline(card);
+
                     // only play breath if cost of card is reduced, not increased
                     if (model.pManager.plantedFeetStacks > 0)
                     {
@@ -2964,6 +2955,9 @@ public class CardController : Singleton<CardController>
                 // Update energy cost text
                 VisualEventManager.Instance.CreateVisualEvent(() => SetCardViewModelEnergyText(card, cvm, newCostTextValue.ToString()));
 
+                // Update glow
+                AutoUpdateCardGlowOutline(card);
+
                 // only play breath if cost of card is reduced, not increased
                 if (model.pManager.darkBargainStacks > 0)
                 {
@@ -2974,6 +2968,9 @@ public class CardController : Singleton<CardController>
     }
     public void OnPistoleroModified(CharacterEntityModel model)
     {
+        // Update card glows
+        AutoUpdateCardsInHandGlowOutlines(model);
+
         foreach (Card card in model.hand)
         {
             // Update card vm energy text, if not null
@@ -3009,6 +3006,9 @@ public class CardController : Singleton<CardController>
                 {
                     // Update energy cost text
                     VisualEventManager.Instance.CreateVisualEvent(() => SetCardViewModelEnergyText(card, cvm, newCostTextValue.ToString()));
+
+                    // Update glow
+                    AutoUpdateCardGlowOutline(card);
 
                     // only play breath if cost of card is reduced, not increased
                     if (model.pManager.takenAimStacks > 0)
@@ -3095,13 +3095,10 @@ public class CardController : Singleton<CardController>
         int newCostTextValue = GetCardEnergyCost(card);
         if (cvm)
         {
-            // TO DO: make logic to stop card breathing on reduction when its played
+            // Update glow
+            AutoUpdateCardGlowOutline(card);
 
-            // only do breath anim when card gets a cost reduction
-            if (card.energyReductionThisActivationOnly > 0)
-            {
-                //VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(cvm));
-            }                
+            // Update energy cost text
             VisualEventManager.Instance.CreateVisualEvent(() => SetCardViewModelEnergyText(card, cvm, newCostTextValue.ToString()));
         }
     }
@@ -3117,7 +3114,13 @@ public class CardController : Singleton<CardController>
         int newCostTextValue = GetCardEnergyCost(card);
         if (cvm)
         {
+            // Update glow
+            AutoUpdateCardGlowOutline(card);
+
+            // Play breath anim
             VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(cvm));
+
+            // Update energy cost text
             VisualEventManager.Instance.CreateVisualEvent(() => SetCardViewModelEnergyText(card, cvm, newCostTextValue.ToString()));
         }       
     }
@@ -3963,6 +3966,38 @@ public class CardController : Singleton<CardController>
 
     // Visual Events
     #region
+    public void AutoUpdateCardsInHandGlowOutlines(CharacterEntityModel character)
+    {
+        for (int i = 0; i < character.hand.Count; i++)
+        {
+            AutoUpdateCardGlowOutline(character.hand[i]);
+        }
+    }
+    private void AutoUpdateCardGlowOutline(Card card)
+    {
+        if (card.cardVM != null)
+        {
+            if (IsCardPlayable(card, card.owner))
+            {
+                EnableCardViewModelGlowOutline(card.cardVM);
+            }
+            else
+            {
+                DisableCardViewModelGlowOutline(card.cardVM);
+            }
+        }
+    }
+    private void EnableCardViewModelGlowOutline(CardViewModel cvm)
+    {
+        cvm.glowParent.SetActive(true);
+        cvm.glowAnimator.enabled = true;
+        cvm.glowAnimator.SetTrigger("Glow");        
+    }
+    private void DisableCardViewModelGlowOutline(CardViewModel cvm)
+    {
+        cvm.glowParent.SetActive(false);
+        cvm.glowAnimator.enabled = false;
+    }
     private void CreateAndAddNewCardToCharacterHandVisualEvent(Card card, CharacterEntityModel character)
     {
         Debug.Log("CardController.CreateAndAddNewCardToCharacterHandVisualEvent() called...");

@@ -33,6 +33,10 @@ public class CardViewModel : MonoBehaviour
     public Image[] cardTypeImages;
     public GameObject talentSchoolParent;
 
+    [Header("Glow Outline References")]
+    public GameObject glowParent;
+    public Animator glowAnimator;
+
     [Header("Colouring References")]
     public Image[] talentRenderers;
     public Image[] rarityRenderers;
