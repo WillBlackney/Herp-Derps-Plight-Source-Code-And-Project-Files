@@ -7,10 +7,17 @@ public class GUIWidget : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
 
     // Properties + Component References
     #region
+    [Header("Core Properties")]
+    public WidgetInputType inputType;
+
     [Header("Event Data")]
     [SerializeField] GUIWidgetEventData[] onClickEvents;
     [SerializeField] GUIWidgetEventData[] mouseEnterEvents;
-    [SerializeField] GUIWidgetEventData[] mouseExitEvents;    
+    [SerializeField] GUIWidgetEventData[] mouseExitEvents;
+
+    [Header("Input State")]
+    public bool pointerIsOverMe;
+    [HideInInspector] public float timeSinceLastPointerEnter;
 
     public GUIWidgetEventData[] MouseEnterEvents
     {
@@ -33,15 +40,57 @@ public class GUIWidget : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
     #region
     public void OnPointerClick(PointerEventData eventData)
     {
-        GUIWidgetController.Instance.HandleWidgetEvents(OnClickEvents);
+        if (inputType == WidgetInputType.IPointer)
+        {
+            GUIWidgetController.Instance.HandleWidgetEvents(this, OnClickEvents);
+        }
+       
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        GUIWidgetController.Instance.HandleWidgetEvents(MouseEnterEvents);
+        if (inputType == WidgetInputType.IPointer)
+        {
+            pointerIsOverMe = true;
+            timeSinceLastPointerEnter = Time.realtimeSinceStartup;
+            GUIWidgetController.Instance.HandleWidgetEvents(this, MouseEnterEvents);
+        }
+        
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        GUIWidgetController.Instance.HandleWidgetEvents(MouseExitEvents);
+        if(inputType == WidgetInputType.IPointer)
+        {
+            pointerIsOverMe = false;
+            Debug.LogWarning("Time since last pointer exit: " + timeSinceLastPointerEnter.ToString());
+            GUIWidgetController.Instance.HandleWidgetEvents(this, MouseExitEvents);
+        }
+       
+    }
+
+    public void OnMouseEnter()
+    {
+        if (inputType == WidgetInputType.Collider)
+        {
+            pointerIsOverMe = true;
+            timeSinceLastPointerEnter = Time.realtimeSinceStartup;
+            GUIWidgetController.Instance.HandleWidgetEvents(this, MouseEnterEvents);
+        }
+    }
+    public void OnMouseExit()
+    {
+        if (inputType == WidgetInputType.Collider)
+        {
+            pointerIsOverMe = false;
+            Debug.LogWarning("Time since last pointer exit: " + timeSinceLastPointerEnter.ToString());
+            GUIWidgetController.Instance.HandleWidgetEvents(this, MouseExitEvents);
+        }
+    }
+    public void OnMouseDown()
+    {
+        if (inputType == WidgetInputType.Collider)
+        {
+            GUIWidgetController.Instance.HandleWidgetEvents(this, OnClickEvents);
+        }
     }
     #endregion
 }

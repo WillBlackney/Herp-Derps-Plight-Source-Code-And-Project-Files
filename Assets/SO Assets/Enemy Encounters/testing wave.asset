@@ -17,3 +17,9 @@ MonoBehaviour:
   enemyGroups:
   - possibleEnemies:
     - {fileID: 11400000, guid: 55412d63439157142acac8e6cdf31aa1, type: 2}
+  - possibleEnemies:
+    - {fileID: 11400000, guid: 55412d63439157142acac8e6cdf31aa1, type: 2}
+  - possibleEnemies:
+    - {fileID: 11400000, guid: 55412d63439157142acac8e6cdf31aa1, type: 2}
+  - possibleEnemies:
+    - {fileID: 11400000, guid: 55412d63439157142acac8e6cdf31aa1, type: 2}

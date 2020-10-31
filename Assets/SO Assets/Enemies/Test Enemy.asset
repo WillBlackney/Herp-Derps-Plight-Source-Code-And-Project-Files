@@ -16,11 +16,11 @@ MonoBehaviour:
   enemyModelSize: 0
   enableFlexibleMaxHealth: 0
   maxHealthFlexAmount: 0
-  maxHealth: 1
+  maxHealth: 30
   initiative: 3
   power: 0
   dexterity: 0
-  overrideStartingHealth: 0
+  overrideStartingHealth: 1
   startingHealth: 1
   startingBlock: 0
   physicalResistance: 0
@@ -65,11 +65,11 @@ MonoBehaviour:
     lordOfStormsStacks: 0
     sentinelStacks: 0
     ruthlessStacks: 0
-    evangelizeStacks: 3
-    wellOfSoulsStacks: 3
-    corpseCollectorStacks: 3
-    pistoleroStacks: 3
-    fastLearnerStacks: 3
+    evangelizeStacks: 0
+    wellOfSoulsStacks: 0
+    corpseCollectorStacks: 0
+    pistoleroStacks: 0
+    fastLearnerStacks: 0
     demonFormStacks: 0
     darkBargainStacks: 0
     volatileStacks: 0

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Spriter2UnityDX;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -677,9 +678,12 @@ public class CombatLogic : Singleton<CombatLogic>
         // Play death animation
         VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.PlayDeathAnimation(view), QueuePosition.Back, 0f, 1f);
 
+        // Smokey disapear effect
+        VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateExpendEffect(view.WorldPosition, 15, 0.2f, false));
+
         // Fade out UCM
         CoroutineData fadeOutCharacter = new CoroutineData();
-        VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.FadeOutCharacterModel(view, fadeOutCharacter));
+        VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.FadeOutEntityRenderer(view.ucm.GetComponent<EntityRenderer>(), 2.5f, fadeOutCharacter));
 
         // Destroy characters activation window and update other window positions
         CharacterEntityModel currentlyActivatedEntity = ActivationManager.Instance.EntityActivated;

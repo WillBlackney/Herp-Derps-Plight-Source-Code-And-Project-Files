@@ -10,6 +10,7 @@ public class CharacterEntityView : MonoBehaviour
 {
     [Header("Properties")]
     [HideInInspector] public CharacterEntityModel character;
+    [HideInInspector] public bool blockMouseOver = false;
 
     [Header("World Space Canvas References")]   
     public Canvas worldSpaceCanvas;
@@ -38,6 +39,7 @@ public class CharacterEntityView : MonoBehaviour
     public GameObject ucmVisualParent;
     public GameObject ucmSizingParent;
     public GameObject ucmShadowParent;
+    public CanvasGroup ucmShadowCg;
     public GameObject ucmMovementParent;
     public UniversalCharacterModel ucm;    
     public Animator ucmAnimator;

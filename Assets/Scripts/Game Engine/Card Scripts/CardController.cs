@@ -1,12 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using DG.Tweening;
+﻿using DG.Tweening;
 using System;
-using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class CardController : Singleton<CardController>
 {
@@ -54,10 +54,12 @@ public class CardController : Singleton<CardController>
     [SerializeField] private TextMeshProUGUI cardGridRibbonText;
     [SerializeField] private GridCardViewModel[] allGridCards;
 
-
     [Header("Button Sprites")]
     [SerializeField] private Sprite activeButtonSprite;
     [SerializeField] private Sprite inactiveButtonSprite;
+
+    [Header("Card Movement Locations")]
+    [SerializeField] private Transform[] discardToDrawAnimPath;
 
     // Getters
     #region
@@ -2741,6 +2743,9 @@ public class CardController : Singleton<CardController>
 
         // Re-shuffle the draw pile
         defender.drawPile.Shuffle();
+
+        // Play visual event
+        VisualEventManager.Instance.CreateVisualEvent(()=> ShuffleDiscardPileIntoDrawPileVisualEvent(), QueuePosition.Back, 0, 0.35f);
     }
 
     private void MoveCardFromDiscardPileToHand(Card card)
@@ -4207,13 +4212,33 @@ public class CardController : Singleton<CardController>
             glowTrail.StopAllEmissions();
             Destroy(glowTrail, 3);
         });
+    }   
+    private void ShuffleDiscardPileIntoDrawPileVisualEvent()
+    {
+        CharacterEntityView view = ActivationManager.Instance.EntityActivated.characterEntityView;
+
+        // Set path
+        Vector3 pos1 = view.handVisual.PlayPreviewSpot.position;
+        Vector3 pos2 = view.handVisual.DeckTransform.position;
+
+        // Create Glow Trail at discard pile position
+        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGlowTrailEffect(view.handVisual.DiscardPileTransform.position);
+
+        // Move down path
+        MoveTransformToLocation(glowTrail.transform, pos1, 0.35f, false, () =>
+        {
+            MoveTransformToLocation(glowTrail.transform, pos2, 0.35f, false, () =>
+            {
+                glowTrail.StopAllEmissions();
+                Destroy(glowTrail, 3);
+            });
+        });
     }
 
     // Dotween Functions
     #region
     private void MoveTransformToLocation(Transform t, Vector3 location, float speed, bool localMove = false, Action onCompleteCallBack = null)
-    {
-        
+    {        
         Sequence cardSequence = DOTween.Sequence();
 
         if (localMove)
@@ -4223,6 +4248,29 @@ public class CardController : Singleton<CardController>
         else
         {
             cardSequence.Append(t.DOMove(location, speed));
+        }
+
+        cardSequence.OnComplete(() =>
+        {
+            if (onCompleteCallBack != null)
+            {
+                onCompleteCallBack.Invoke();
+            }
+        });
+    }
+    private void MoveTransformDownPath(Transform t, Vector3[] locations, float speed, bool localMove = false, Action onCompleteCallBack = null)
+    {
+        Sequence cardSequence = DOTween.Sequence();
+
+        cardSequence.Append(t.DOPath(locations, speed));
+
+        if (localMove)
+        {
+            cardSequence.Append(t.DOLocalPath(locations, speed, PathType.CatmullRom));
+        }
+        else
+        {
+            cardSequence.Append(t.DOPath(locations, speed));
         }
 
         cardSequence.OnComplete(() =>

@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 using System;
+using UnityEngine.UI;
 
 public class LootController : Singleton<LootController>
 {
@@ -27,6 +28,7 @@ public class LootController : Singleton<LootController>
     [SerializeField] private CardInfoPanel[] cardPanels;
     [SerializeField] private CardViewModel previewCardVM;
     [SerializeField] private CanvasGroup previewCardCg;
+    [SerializeField] private RectTransform[] rectRebuilds;
 
     public LootResultModel CurrentLootResultData
     {
@@ -93,6 +95,7 @@ public class LootController : Singleton<LootController>
             // Hide text count
             cardPanels[i].copiesCountText.gameObject.SetActive(false);
         }
+        
     }
     public void BuildAndShowCardViewModelPopup(CardData data)
     {
@@ -318,6 +321,12 @@ public class LootController : Singleton<LootController>
             // Hide front screen, show choose card screen
             HideFrontPageView();
             ShowChooseCardScreen();
+
+            // Rebuild Deck quick view lay out
+            foreach (RectTransform t in rectRebuilds)
+            {
+                LayoutRebuilder.ForceRebuildLayoutImmediate(t);
+            }
         }
         
 

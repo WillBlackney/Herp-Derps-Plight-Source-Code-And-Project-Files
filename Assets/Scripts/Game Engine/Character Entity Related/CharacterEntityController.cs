@@ -1336,79 +1336,64 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }
 
     }
-    public void FadeOutCharacterModel(CharacterEntityView view, CoroutineData cData)
-    {
-        Debug.Log("CharacterEntityController.FadeOutCharacterModel() called...");
-        StartCoroutine(FadeOutCharacterModelCoroutine(view, cData));
-    }
-    private IEnumerator FadeOutCharacterModelCoroutine(CharacterEntityView view, CoroutineData cData)
-    {
-        float currentAlpha = view.entityRenderer.Color.a;
-        float fadeSpeed = 5f;
-
-        while (currentAlpha > 0)
-        {
-            view.entityRenderer.Color = new Color(view.entityRenderer.Color.r, view.entityRenderer.Color.g, view.entityRenderer.Color.b, currentAlpha - (fadeSpeed * Time.deltaTime));
-            currentAlpha = view.entityRenderer.Color.a;
-            yield return null;
-        }
-
-        // Resolve
-        if (cData != null)
-        {
-            cData.MarkAsCompleted();
-        }
-    }
     private void SetCharacterModelSize(CharacterEntityView view, CharacterModelSize size)
     {
         if(size == CharacterModelSize.Small)
         {
-            // Size model
-            view.ucmSizingParent.transform.localScale = new Vector3(0.8f, 0.8f, 1f);
-            view.ucmSizingParent.transform.localPosition = new Vector3(0f, -0.05f, 0f);
+            // Resize model
+            view.ucmSizingParent.transform.localScale = new Vector3(0.9f, 0.9f, 1f);
+
+            // Re-position model
+            view.ucmSizingParent.transform.localPosition = new Vector3(0f, -0.025f, 0f);
 
             // scale shadow
-            Transform t = view.ucmShadowParent.transform;
-            t.localScale = new Vector3(0.004f, 0.004f, 0.5f);
+            //Transform t = view.ucmShadowParent.transform;
+           // t.localScale = new Vector3(0.0045f, 0.0045f, 0.5f);
 
             // Move intent view model
             view.myIntentViewModel.sizingParent.transform.localPosition = new Vector3(0, -0.2f, 0);
         }
         else if (size == CharacterModelSize.Normal)
         {
-            // Size model
+            // Resize model
             view.ucmSizingParent.transform.localScale = new Vector3(1, 1, 1f);
+
+            // Re-position model
             view.ucmSizingParent.transform.localPosition = new Vector3(0f, 0f, 0f);
 
             // scale shadow
-            Transform t = view.ucmShadowParent.transform;
-            t.localScale = new Vector3(0.005f, 0.005f, 0.5f);
+            //Transform t = view.ucmShadowParent.transform;
+            //t.localScale = new Vector3(0.005f, 0.005f, 0.5f);
 
             // Move intent view model
             view.myIntentViewModel.sizingParent.transform.localPosition = new Vector3(0, 0, 0);
         }
         else if (size == CharacterModelSize.Large)
         {
-            // Size model
+            // Resize model
             view.ucmSizingParent.transform.localScale = new Vector3(1.2f, 1.2f, 1f);
+
+            // Re-position model
             view.ucmSizingParent.transform.localPosition = new Vector3(0.05f, 0.05f, 0f);
 
             // scale shadow
-            Transform t = view.ucmShadowParent.transform;
-            t.localScale = new Vector3(0.006f, 0.006f, 0.5f);
+           // Transform t = view.ucmShadowParent.transform;
+           // t.localScale = new Vector3(0.006f, 0.006f, 0.5f);
 
             // Move intent view model
             view.myIntentViewModel.sizingParent.transform.localPosition = new Vector3(0, 0.2f, 0);
         }
         else if (size == CharacterModelSize.Massive)
         {
-            // Size model
+            // Resize model
             view.ucmSizingParent.transform.localScale = new Vector3(1.4f, 1.4f, 1f);
+
+            // Re-position model
             view.ucmSizingParent.transform.localPosition = new Vector3(0.1f, 0.1f, 0f);
 
             // scale shadow
-            Transform t = view.ucmShadowParent.transform;
-            t.localScale = new Vector3(0.007f, 0.007f, 0.5f);
+           // Transform t = view.ucmShadowParent.transform;
+            //t.localScale = new Vector3(0.007f, 0.007f, 0.5f);
 
             // Move intent view model
             view.myIntentViewModel.sizingParent.transform.localPosition = new Vector3(0, 0.4f, 0);
@@ -1464,6 +1449,22 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         {
             cData.MarkAsCompleted();
         }
+    }
+    public void FadeInCharacterShadow(CharacterEntityView view, float speed, System.Action onCompleteCallBack = null)
+    {
+        view.ucmShadowCg.DOFade(0f, 0f);
+        Sequence s = DOTween.Sequence();
+        s.Append(view.ucmShadowCg.DOFade(1f, speed));
+
+        if(onCompleteCallBack != null)
+        {
+            s.OnComplete(()=> onCompleteCallBack.Invoke());
+        }
+    }
+    public void FadeOutCharacterShadow(CharacterEntityView view, float speed)
+    {
+        view.ucmShadowCg.DOFade(1f, 0f);
+        view.ucmShadowCg.DOFade(0f, speed);
     }
     #endregion
 
@@ -1578,12 +1579,14 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         Debug.Log("CharacterEntityController.OnCharacterMouseOver() called...");
 
         // prevent clicking through an active UI screen
-        if (CardController.Instance.DiscoveryScreenIsActive || 
+        if (CardController.Instance.DiscoveryScreenIsActive ||
             CardController.Instance.ChooseCardScreenIsActive ||
-            MainMenuController.Instance.AnyMenuScreenIsActive())
+            MainMenuController.Instance.AnyMenuScreenIsActive() ||
+            view.blockMouseOver)
         {
             return;
         }
+
 
         // Mouse over SFX
         AudioManager.Instance.PlaySound(Sound.GUI_Button_Mouse_Over);
@@ -1596,7 +1599,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             DisableAllDefenderTargetIndicators();
             LevelManager.Instance.SetMouseOverViewState(view.character.levelNode, false);
             return;
-        }
+        }        
 
         // Enable activation window glow + node glow
         if(view.myActivationWindow != null)
@@ -1666,7 +1669,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         // prevent clicking through an active UI screen
         if (CardController.Instance.DiscoveryScreenIsActive || 
             CardController.Instance.ChooseCardScreenIsActive ||
-             MainMenuController.Instance.AnyMenuScreenIsActive())
+             MainMenuController.Instance.AnyMenuScreenIsActive() ||
+             view.blockMouseOver)
         {
             return;
         }
@@ -2163,6 +2167,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
             // Hide model
             FadeOutEntityRenderer(view.ucm.GetComponent<EntityRenderer>(), 1000, null);
+            FadeOutCharacterShadow(view, 0);
+            view.blockMouseOver = true;
 
             // Set start position
             if(effect.summonedCreatureStartPosition == SummonAtLocation.StartNode)
@@ -2189,7 +2195,11 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
             // Fade in model + UI
             VisualEventManager.Instance.CreateVisualEvent(() => FadeInCharacterWorldCanvas(view, null, effect.uiFadeInSpeed));
-            VisualEventManager.Instance.CreateVisualEvent(() => FadeInEntityRenderer(view.ucm.GetComponent<EntityRenderer>(), effect.modelFadeInSpeed));
+            VisualEventManager.Instance.CreateVisualEvent(() => 
+            { 
+                FadeInEntityRenderer(view.ucm.GetComponent<EntityRenderer>(), effect.modelFadeInSpeed);
+                FadeInCharacterShadow(view, 1f, ()=> view.blockMouseOver = false);
+            });
 
             // Resolve visual events
             foreach (AnimationEventData vEvent in effect.summonedCreatureVisualEvents)
@@ -2489,7 +2499,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         {
             data.MarkAsCompleted();
         }
-    }
+    }    
     public void MoveCharactersToOffScreenRight(List<CharacterEntityModel> characters, CoroutineData cData)
     {
         StartCoroutine(MoveCharactersToOffScreenRightCoroutine(characters, cData));
@@ -2499,7 +2509,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         foreach(CharacterEntityModel character in characters)
         {
             MoveEntityToNodeCentre(character, LevelManager.Instance.EnemyOffScreenNode, null);
-            yield return new WaitForSeconds(0.25f);
+            //yield return new WaitForSeconds(0.25f);
         }
 
         yield return new WaitForSeconds(3f);

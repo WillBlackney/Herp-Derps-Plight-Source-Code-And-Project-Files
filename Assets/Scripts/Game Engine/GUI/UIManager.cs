@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -15,8 +16,8 @@ public class UIManager : Singleton<UIManager>
     public Button EndTurnButton;
     public Image EndTurnButtonBGImage;
     public TextMeshProUGUI EndTurnButtonText;
-    public Sprite EndTurnButtonDisabledSprite;
-    public Sprite EndTurnButtonEnabledSprite;
+    public Color endTurnButtonDisabledColor;
+    public Color endTurnButtonEnabledColor;
 
     [Header("Testing Game Over Component References")]
     public GameObject victoryPopup;
@@ -67,9 +68,9 @@ public class UIManager : Singleton<UIManager>
             yield return new WaitForEndOfFrame();
         }
     }
-    public void SetEndTurnButtonSprite(Sprite newSprite)
+    public void SetEndTurnButtonColor(Color newColor)
     {
-        EndTurnButtonBGImage.sprite = newSprite;
+        EndTurnButtonBGImage.DOColor(newColor, 0.5f);
     }
     public void SetEndTurnButtonText(string newText)
     {
@@ -79,15 +80,19 @@ public class UIManager : Singleton<UIManager>
     {
         Debug.Log("UIManager.SetPlayerTurnButtonState() called...");
         EnableEndTurnButtonInteractions();
-        VisualEventManager.Instance.CreateVisualEvent(() => SetEndTurnButtonText("End Activation"));
-        VisualEventManager.Instance.CreateVisualEvent(() => SetEndTurnButtonSprite(EndTurnButtonEnabledSprite));
+        SetEndTurnButtonText("End Activation");
+        SetEndTurnButtonColor(endTurnButtonEnabledColor);
+        //VisualEventManager.Instance.CreateVisualEvent(() => SetEndTurnButtonText("End Activation"));
+        //VisualEventManager.Instance.CreateVisualEvent(() => SetEndTurnButtonColor(endTurnButtonEnabledColor));
     }
     public void SetEnemyTurnButtonState()
     {
         Debug.Log("UIManager.SetEnemyTurnButtonState() called...");
         DisableEndTurnButtonInteractions();
-        VisualEventManager.Instance.CreateVisualEvent(() => SetEndTurnButtonText("Enemy Activation..."));
-        VisualEventManager.Instance.CreateVisualEvent(() => SetEndTurnButtonSprite(EndTurnButtonDisabledSprite));
+        SetEndTurnButtonText("Enemy Activation...");
+        SetEndTurnButtonColor(endTurnButtonDisabledColor);
+        //VisualEventManager.Instance.CreateVisualEvent(() => SetEndTurnButtonText("Enemy Activation..."));
+       // VisualEventManager.Instance.CreateVisualEvent(() => SetEndTurnButtonColor(endTurnButtonDisabledColor));
     }
     #endregion
 

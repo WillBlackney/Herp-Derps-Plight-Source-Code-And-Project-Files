@@ -205,11 +205,11 @@ public class ActivationManager : Singleton<ActivationManager>
         // otherwise it gets a bit glitchy when it turns on
         if(activationOrder[0].controller == Controller.Player)
         {
-            VisualEventManager.Instance.CreateVisualEvent(() => UIManager.Instance.SetPlayerTurnButtonState());
+           // VisualEventManager.Instance.CreateVisualEvent(() => UIManager.Instance.SetPlayerTurnButtonState());
         }
         else
         {
-            VisualEventManager.Instance.CreateVisualEvent(() => UIManager.Instance.SetEnemyTurnButtonState());
+           // VisualEventManager.Instance.CreateVisualEvent(() => UIManager.Instance.SetEnemyTurnButtonState());
         }
 
         // Enable button visual event
@@ -288,7 +288,14 @@ public class ActivationManager : Singleton<ActivationManager>
             // Trigger character on activation end sequence and events
             CharacterEntityController.Instance.CharacterOnActivationEnd(EntityActivated);
         }        
-    }    
+    }
+    public void OnEndTurnButtonMouseOver()
+    {
+        if(UIManager.Instance.EndTurnButton.interactable == true)
+        {
+            AudioManager.Instance.PlaySound(Sound.GUI_Button_Mouse_Over);
+        }
+    }
     private void SetActivationWindowsParentViewState(bool onOrOff)
     {
         Debug.Log("ActivationManager.SetActivationWindowsParentViewState() called...");

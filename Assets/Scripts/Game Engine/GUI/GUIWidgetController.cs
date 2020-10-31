@@ -10,15 +10,29 @@ using TMPro;
 
 public class GUIWidgetController : Singleton<GUIWidgetController>
 {
-    public void HandleWidgetEvents(GUIWidgetEventData[] wEvents)
+    public void HandleWidgetEvents(GUIWidget widget, GUIWidgetEventData[] wEvents)
     {
         for(int i = 0; i < wEvents.Length; i++)
         {
-            HandleWidgetEvent(wEvents[i]);
+            StartCoroutine(HandleWidgetEvent(widget, wEvents[i]));
         }
     }
-    private void HandleWidgetEvent(GUIWidgetEventData wEvent)
+    private IEnumerator HandleWidgetEvent(GUIWidget widget, GUIWidgetEventData wEvent)
     {
+        // Wait for start delay
+        if (wEvent.enableStartDelay)
+        {
+            yield return new WaitForSeconds(wEvent.startDelay);
+
+            // Cancel if the pointer needs to be held over the
+            // object, and the user has moved their mouse off the widget
+            if(wEvent.onlyIfMouseIsStillOverMe &&
+                (widget.pointerIsOverMe == false || ((Time.realtimeSinceStartup - widget.timeSinceLastPointerEnter) < wEvent.startDelay) ))
+            {
+                yield break;
+            }
+        }        
+
         if(wEvent.widgetEvent == WidgetEvent.EnableGameObject)
         {
             wEvent.objectEnabled.SetActive(true);
@@ -74,6 +88,15 @@ public class GUIWidgetEventData
     [Header("Core Event Properties")]
     public WidgetEvent widgetEvent;
 
+    [ShowIf("ShowDelayProperties")]
+    public bool enableStartDelay;
+
+    [ShowIf("enableStartDelay", true)]
+    public float startDelay;
+
+    [ShowIf("enableStartDelay", true)]
+    public bool onlyIfMouseIsStillOverMe;
+
     [ShowIf("widgetEvent", WidgetEvent.DisableGameObject)]
     public GameObject objectDisabled;
 
@@ -101,7 +124,12 @@ public class GUIWidgetEventData
     [ShowIf("ShowFadeSpeed")]
     public float fadeSpeed;
 
-
+    public bool ShowDelayProperties()
+    {
+        return widgetEvent == WidgetEvent.EnableGameObject || 
+            widgetEvent == WidgetEvent.FadeInCanvasGroup || 
+            widgetEvent == WidgetEvent.FadeInImage;
+    }
     public bool ShowEndColour()
     {
         return widgetEvent == WidgetEvent.TransistionTextColour || widgetEvent == WidgetEvent.TransisitionImageColour;
@@ -139,4 +167,10 @@ public enum WidgetEvent
     FadeOutImage = 8,
     TransisitionImageColour = 9,
     TransistionTextColour = 10,
+}
+
+public enum WidgetInputType
+{
+    IPointer = 0,
+    Collider = 1,
 }

@@ -19,10 +19,10 @@ MonoBehaviour:
   maxHealth: 30
   power: 0
   dexterity: 0
-  stamina: 0
+  stamina: 3
   draw: 5
-  initiative: 0
-  startingBlock: 0
+  initiative: 222
+  startingBlock: 5
   physicalResistance: 0
   fireResistance: 0
   frostResistance: 0
