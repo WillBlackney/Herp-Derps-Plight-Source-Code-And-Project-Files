@@ -23,11 +23,11 @@ MonoBehaviour:
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'Melee Attack '
-  - color: 0
+  - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'or '
-  - color: 0
+  - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'Ranged Attack '

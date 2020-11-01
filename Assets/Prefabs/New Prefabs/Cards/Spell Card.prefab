@@ -80,12 +80,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78b814239ded4b7478555deea6adbc4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TurnThisOffWhenPreviewing: {fileID: 1000011828542842}
+  TurnTheseOffWhenPreviewing:
+  - {fileID: 6348778787847814554}
+  - {fileID: 1000011828542842}
   TargetPosition: {x: 0, y: 1.5, z: 0}
   TargetScale: 1.35
   previewGameObject: {fileID: 1000011778162530}
   ActivateInAwake: 1
   mainCardVM: {fileID: 9153311408048535422}
+  inChooseScreenTransistion: 0
 --- !u!114 &114000012503704844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,6 +566,12 @@ MonoBehaviour:
 --- !u!223 &223000012273110020 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 8798071437363213220, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
+    type: 3}
+  m_PrefabInstance: {fileID: 8719327387176222624}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6348778787847814554 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2385257042023350842, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
     type: 3}
   m_PrefabInstance: {fileID: 8719327387176222624}
   m_PrefabAsset: {fileID: 0}

@@ -61,7 +61,6 @@ public class GUIWidget : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
         if(inputType == WidgetInputType.IPointer)
         {
             pointerIsOverMe = false;
-            Debug.LogWarning("Time since last pointer exit: " + timeSinceLastPointerEnter.ToString());
             GUIWidgetController.Instance.HandleWidgetEvents(this, MouseExitEvents);
         }
        
@@ -81,7 +80,6 @@ public class GUIWidget : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
         if (inputType == WidgetInputType.Collider)
         {
             pointerIsOverMe = false;
-            Debug.LogWarning("Time since last pointer exit: " + timeSinceLastPointerEnter.ToString());
             GUIWidgetController.Instance.HandleWidgetEvents(this, MouseExitEvents);
         }
     }

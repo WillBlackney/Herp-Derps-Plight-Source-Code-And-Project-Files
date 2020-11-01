@@ -17,8 +17,4 @@ public class PanelStage : PanelBase
         navicontrol.Next();
     }
 
-    public void Click_Stage()
-    {
-        PlayManager.Instance.LoadScene(Data.scene_play);
-    }
 }

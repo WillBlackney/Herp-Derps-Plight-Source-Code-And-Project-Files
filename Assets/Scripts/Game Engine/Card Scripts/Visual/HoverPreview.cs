@@ -7,7 +7,7 @@ public class HoverPreview: MonoBehaviour
     // Properties + Componet References
     #region
     // PUBLIC FIELDS
-    public GameObject TurnThisOffWhenPreviewing;  // if this is null, will not turn off anything 
+    public GameObject[] TurnTheseOffWhenPreviewing;  // if this is null, will not turn off anything 
     public Vector3 TargetPosition;
     public float TargetScale;
     public GameObject previewGameObject;
@@ -169,8 +169,9 @@ public class HoverPreview: MonoBehaviour
         // 3) enable Preview game object
         previewGameObject.SetActive(true);
         // 4) disable if we have what to disable
-        if (TurnThisOffWhenPreviewing!=null)
-            TurnThisOffWhenPreviewing.SetActive(false);
+        // if (TurnTheseOffWhenPreviewing!=null)
+        //   TurnTheseOffWhenPreviewing.SetActive(false);
+        DisableNonPreviewObjects();
         // 5) play sfx
         AudioManager.Instance.PlaySound(Sound.Card_Moused_Over);
         // 6) tween to target position
@@ -206,8 +207,11 @@ public class HoverPreview: MonoBehaviour
         previewGameObject.SetActive(false);
         previewGameObject.transform.localScale = Vector3.one;
         previewGameObject.transform.localPosition = Vector3.zero;
-        if (TurnThisOffWhenPreviewing!=null)
-            TurnThisOffWhenPreviewing.SetActive(true); 
+
+        EnableNonPreviewObjects();
+
+       // if (TurnTheseOffWhenPreviewing!=null)
+          //  TurnTheseOffWhenPreviewing.SetActive(true); 
     }
 
     // STATIC METHODS
@@ -218,8 +222,11 @@ public class HoverPreview: MonoBehaviour
             currentlyViewing.previewGameObject.SetActive(false);
             currentlyViewing.previewGameObject.transform.localScale = Vector3.one;
             currentlyViewing.previewGameObject.transform.localPosition = Vector3.zero;
-            if (currentlyViewing.TurnThisOffWhenPreviewing!=null)
-                currentlyViewing.TurnThisOffWhenPreviewing.SetActive(true); 
+
+            currentlyViewing.EnableNonPreviewObjects();
+
+           // if (currentlyViewing.TurnTheseOffWhenPreviewing != null)
+           // currentlyViewing.TurnTheseOffWhenPreviewing.SetActive(true); 
         }
          
     }
@@ -237,6 +244,20 @@ public class HoverPreview: MonoBehaviour
         }
 
         return false;
+    }
+    private void DisableNonPreviewObjects()
+    {
+        for(int i = 0; i < TurnTheseOffWhenPreviewing.Length; i++)
+        {
+            TurnTheseOffWhenPreviewing[i].gameObject.SetActive(false);
+        }
+    }
+    private void EnableNonPreviewObjects()
+    {
+        for (int i = 0; i < TurnTheseOffWhenPreviewing.Length; i++)
+        {
+            TurnTheseOffWhenPreviewing[i].gameObject.SetActive(true);
+        }
     }
     #endregion
 

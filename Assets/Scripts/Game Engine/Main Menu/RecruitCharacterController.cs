@@ -137,11 +137,11 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
 
         // Rebuild panels
         for (int i = 0; i < data.deck.Count; i++)
-        {
+        { 
             CardInfoPanel matchingPanel = null;
             foreach (CardInfoPanel panel in cardInfoPanels)
             {
-                if (panel.cardDataRef == data.deck[i])
+                if (panel.cardDataRef != null && panel.cardDataRef.cardName == data.deck[i].cardName)
                 {
                     matchingPanel = panel;
                     break;

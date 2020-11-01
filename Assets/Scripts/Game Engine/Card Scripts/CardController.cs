@@ -2745,7 +2745,7 @@ public class CardController : Singleton<CardController>
         defender.drawPile.Shuffle();
 
         // Play visual event
-        VisualEventManager.Instance.CreateVisualEvent(()=> ShuffleDiscardPileIntoDrawPileVisualEvent(), QueuePosition.Back, 0, 0.35f);
+        VisualEventManager.Instance.CreateVisualEvent(()=> ShuffleDiscardPileIntoDrawPileVisualEvent());
     }
 
     private void MoveCardFromDiscardPileToHand(Card card)

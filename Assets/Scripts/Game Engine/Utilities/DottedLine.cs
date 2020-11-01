@@ -75,6 +75,12 @@ public class DottedLine : Singleton<DottedLine>
             g.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             dots.Add(g);
         }
+
+        if(dots.Count > 1)
+        {
+            Destroy(dots[0].gameObject);
+        }
+       
     }
 
 }

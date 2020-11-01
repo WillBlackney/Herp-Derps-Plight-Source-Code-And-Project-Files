@@ -18862,7 +18862,7 @@ GameObject:
   - component: {fileID: 5267848370804490249}
   - component: {fileID: 6325953305207238949}
   m_Layer: 0
-  m_Name: Shadow Explosion 1
+  m_Name: Shadow Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23575,7 +23575,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 150aee38b5d848b42b75593618992bb7, type: 2}
+  - {fileID: 2100000, guid: 264d35e03adc527409a61ed22c23c064, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -23634,3 +23634,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myScaleModifier: 0
   mySortingOrder: 0
+  allMyPSystems: []
