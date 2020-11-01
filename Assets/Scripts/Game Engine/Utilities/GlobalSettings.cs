@@ -106,5 +106,6 @@ public enum StartingSceneSetting
     CombatEndLootEvent = 3,
     RecruitCharacterEvent = 4,
     IntegrationTesting = 2,
+    KingsBlessingEvent = 5,
 
 }

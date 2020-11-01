@@ -98,6 +98,10 @@ public class PersistencyManager : Singleton<PersistencyManager>
             newSave.saveCheckPoint = SaveCheckPoint.RecruitCharacterStart;
             newSave.recruitCharacterChoices = RecruitCharacterController.Instance.GetThreeValidRecruitableCharacters();
         }
+        else if (ed.encounterType == EncounterType.KingsBlessingEvent)
+        {
+            newSave.saveCheckPoint = SaveCheckPoint.KingsBlessingStart;
+        }
 
         // DECK MODIFIER SETUP
         // Randomize decks

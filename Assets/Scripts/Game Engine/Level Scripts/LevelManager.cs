@@ -16,6 +16,10 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField] private LevelNode enemyOffScreenNode;
     [SerializeField] private LevelNode defenderOffScreenNode;
 
+    [Header("Level References")]
+    [SerializeField] private GameObject kbcViewParent;
+    [SerializeField] private GameObject dungeonViewParent;
+
 
     public LevelNode[] AllLevelNodes
     {
@@ -201,6 +205,26 @@ public class LevelManager : Singleton<LevelManager>
         {
             SetDirection(entity, FacingDirection.Left);
         }
+    }
+    #endregion
+
+    // Scenery Logic
+    #region
+    public void EnableKingBlessingView()
+    {
+        kbcViewParent.SetActive(true);
+    }
+    public void DisableKingBlessingView()
+    {
+        kbcViewParent.SetActive(false);
+    }
+    public void EnableDungeonView()
+    {
+        dungeonViewParent.SetActive(true);
+    }
+    public void DisableDungeonView()
+    {
+        dungeonViewParent.SetActive(false);
     }
     #endregion
 }

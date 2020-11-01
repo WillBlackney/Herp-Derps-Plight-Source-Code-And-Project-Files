@@ -2,9 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EventSequenceController : Singleton<EventSequenceController>
 {
+    // Properties + Component References
+    #region
+    [SerializeField] private GameObject actNotifVisualParent;
+    [SerializeField] private CanvasGroup actNotifCg;
+    [SerializeField] private CanvasGroup actNotifTextParentCg;
+    [SerializeField] private TextMeshProUGUI actNotifCountText;
+    [SerializeField] private TextMeshProUGUI actNotifNameText;
+    #endregion
     // Game Start + Application Entry Points
     #region
     private void Start()
@@ -36,6 +45,10 @@ public class EventSequenceController : Singleton<EventSequenceController>
         else if (GlobalSettings.Instance.gameMode == StartingSceneSetting.RecruitCharacterEvent)
         {
             StartCoroutine(RunRecruitCharacterEventSetup());
+        }
+        else if (GlobalSettings.Instance.gameMode == StartingSceneSetting.KingsBlessingEvent)
+        {
+            StartCoroutine(RunKingsBlessingTestEventSetup());
         }
     }
     #endregion
@@ -109,6 +122,16 @@ public class EventSequenceController : Singleton<EventSequenceController>
         HandleLoadEncounter(mockData);
 
     }
+    private IEnumerator RunKingsBlessingTestEventSetup()
+    {
+        Debug.Log("EventSequenceController.RunKingsBlessingTestEventSetup()");
+
+        yield return null;
+
+        // Build character data
+        CharacterDataController.Instance.BuildCharacterRosterFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
+        HandleLoadKingsBlessingEncounter(true, true);
+    }
     #endregion
 
     // Setup from save file
@@ -130,21 +153,6 @@ public class EventSequenceController : Singleton<EventSequenceController>
              // Start the first encounter set up sequence
              HandleLoadEncounter(JourneyManager.Instance.CurrentEncounter);
          });
-
-        // Hide Main Menu
-        //MainMenuController.Instance.HideNewGameScreen();
-       // MainMenuController.Instance.HideFrontScreen();
-
-        // CREATE NEW SAVE FILE
-
-        // Set up characters
-       // PersistencyManager.Instance.BuildNewSaveFileOnNewGameStarted();
-
-        // Build and prepare all session data
-        //PersistencyManager.Instance.SetUpGameSessionDataFromSaveFile();
-
-        // Start the first encounter set up sequence
-        //HandleLoadEncounter(JourneyManager.Instance.CurrentEncounter);
     }
     public void HandleLoadSavedGameFromMainMenuEvent()
     {
@@ -220,6 +228,8 @@ public class EventSequenceController : Singleton<EventSequenceController>
     #region
     public void HandleLoadEncounter(EncounterData encounter)
     {
+        Debug.LogWarning("EventSequenceController.HandleLoadEncounter()");
+
         if ((encounter.encounterType == EncounterType.BasicEnemy ||
             encounter.encounterType == EncounterType.EliteEnemy) &&
             JourneyManager.Instance.CheckPointType == SaveCheckPoint.CombatStart
@@ -239,6 +249,11 @@ public class EventSequenceController : Singleton<EventSequenceController>
         else if (JourneyManager.Instance.CheckPointType == SaveCheckPoint.RecruitCharacterStart)
         {
             HandleLoadRecruitCharacterEncounter();
+        }
+
+        else if (JourneyManager.Instance.CheckPointType == SaveCheckPoint.KingsBlessingStart)
+        {
+            HandleLoadKingsBlessingEncounter(true, false);
         }
     }
     public void HandleLoadNextEncounter()
@@ -363,6 +378,46 @@ public class EventSequenceController : Singleton<EventSequenceController>
         RecruitCharacterController.Instance.ShowRecruitCharacterScreen();
         RecruitCharacterController.Instance.BuildRecruitCharacterWindows();
     }
+    private void HandleLoadKingsBlessingEncounter(bool playActNotification, bool doBlackScreenFadeIn)
+    {
+        StartCoroutine(HandleLoadKingsBlessingEncounterCoroutine(playActNotification, doBlackScreenFadeIn));
+    }
+    private IEnumerator HandleLoadKingsBlessingEncounterCoroutine(bool playActNotification, bool doBlackScreenFadeIn)
+    {
+        if (playActNotification)
+        {
+            // Prepare act notif
+            ResetActNotificationViews();
+            actNotifVisualParent.SetActive(true);
+            actNotifCg.alpha = 1;
+        }
+
+        // PREPARE KBC VIEW
+        // Disable dungeon view
+        LevelManager.Instance.DisableDungeonView();
+
+        // Build kbc views
+        LevelManager.Instance.EnableKingBlessingView();
+        KingsBlessingController.Instance.BuildAllViews(CharacterDataController.Instance.AllPlayerCharacters[0]);
+
+        // Fade in screen back in
+        if (doBlackScreenFadeIn)
+        {
+            BlackScreenController.Instance.FadeInScreen(1f);
+        }
+
+        yield return new WaitForSeconds(1f);       
+
+        // Start act 1 fade in sequence
+        if (playActNotification)
+        {
+            PlayActNotificationVisualEvent();
+            yield return new WaitForSeconds(3f);
+        }
+
+       
+      
+    }
     #endregion
 
     // Handle Post Combat Stuff
@@ -427,6 +482,52 @@ public class EventSequenceController : Singleton<EventSequenceController>
         ActivationManager.Instance.DestroyAllActivationWindows();
         LevelManager.Instance.ClearAndResetAllNodes();
         UIManager.Instance.DisableEndTurnButtonView();
+    }
+    #endregion
+
+    // Misc Visual Stuff
+    #region
+    public void PlayActNotificationVisualEvent()
+    {
+        StartCoroutine(PlayActNotificationVisualEventCoroutine());
+    }
+    private IEnumerator PlayActNotificationVisualEventCoroutine()
+    {
+        // Set up
+        ResetActNotificationViews();
+        actNotifCountText.text = "Act One";
+        actNotifNameText.text = "Into The Crypt...";
+        actNotifCg.alpha = 1;
+        actNotifTextParentCg.alpha = 1;
+
+        // Fade in act count text
+        actNotifCountText.gameObject.SetActive(true);
+        actNotifCountText.DOFade(1, 1);
+
+        // Wait for player to read
+        yield return new WaitForSeconds(1.5f);
+
+        // Fade in act NAME text
+        actNotifNameText.gameObject.SetActive(true);
+        actNotifNameText.DOFade(1, 1);
+
+        // Wait for player to read
+        yield return new WaitForSeconds(1.5f);
+
+        // Fade out text quickly
+        actNotifTextParentCg.DOFade(0, 0.5f);
+        yield return new WaitForSeconds(0.5f);
+
+        // Fade out entire view
+        actNotifCg.DOFade(0, 1f);
+    }
+    private void ResetActNotificationViews()
+    {
+        actNotifCountText.DOFade(0, 0);
+        actNotifNameText.DOFade(0, 0);
+        actNotifNameText.gameObject.SetActive(false);
+        actNotifCountText.gameObject.SetActive(false);
+
     }
     #endregion
 }

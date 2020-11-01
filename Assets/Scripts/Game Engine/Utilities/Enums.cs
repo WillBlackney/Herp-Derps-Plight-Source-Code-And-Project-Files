@@ -539,6 +539,8 @@ public enum EncounterType
     EliteEnemy = 2,
     BossEnemy = 3,
     RecruitCharacter = 4,
+    KingsBlessingEvent = 5,
+
 
 }
 #endregion
