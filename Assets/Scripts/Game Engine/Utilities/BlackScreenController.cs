@@ -66,8 +66,14 @@ public class BlackScreenController : Singleton<BlackScreenController>
     public void FadeOutScreen(float duration)
     {
         // Reset alpha / set transparent
+       // cg.alpha = 0;
+      //  cg.DOFade(1, duration);
         cg.alpha = 0;
-        cg.DOFade(1, duration);
+        DisableClickThrough();
+        Sequence s = DOTween.Sequence();
+        s.Append(cg.DOFade(1, duration));
+
+        s.OnComplete(() => EnableClickThrough());
     }
     public void FadeInScreen(float duration)
     {

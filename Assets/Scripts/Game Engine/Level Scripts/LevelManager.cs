@@ -11,6 +11,7 @@ public class LevelManager : Singleton<LevelManager>
     [Header("Component References")]
     [SerializeField] private Transform centrePos;
     [SerializeField] private LevelNode[] allLevelNodes;
+    [SerializeField] private GameObject nodesVisualParent;
 
     [Header("Off Screen Transform References")]
     [SerializeField] private LevelNode enemyOffScreenNode;
@@ -109,6 +110,14 @@ public class LevelManager : Singleton<LevelManager>
 
     // Level Node View Logic
     #region
+    public void HideAllNodeViews()
+    {
+        nodesVisualParent.SetActive(false);
+    }
+    public void ShowAllNodeViews()
+    {
+        nodesVisualParent.SetActive(true);
+    }
     public void SetMouseOverViewState(LevelNode node, bool onOrOff)
     {
         Debug.Log("LevelNode.SetMouseOverViewState() called, setting view state: " + onOrOff.ToString());
@@ -210,19 +219,19 @@ public class LevelManager : Singleton<LevelManager>
 
     // Scenery Logic
     #region
-    public void EnableKingBlessingView()
+    public void EnableGraveyardScenery()
     {
         kbcViewParent.SetActive(true);
     }
-    public void DisableKingBlessingView()
+    public void DisableGraveyardScenery()
     {
         kbcViewParent.SetActive(false);
     }
-    public void EnableDungeonView()
+    public void EnableDungeonScenery()
     {
         dungeonViewParent.SetActive(true);
     }
-    public void DisableDungeonView()
+    public void DisableDungeonScenery()
     {
         dungeonViewParent.SetActive(false);
     }

@@ -51,32 +51,38 @@ public class GUIWidgetController : Singleton<GUIWidgetController>
         }
         else if (wEvent.widgetEvent == WidgetEvent.FadeInCanvasGroup)
         {
+            wEvent.canvasGroup.DOKill();
             wEvent.canvasGroup.alpha = 0;
             wEvent.canvasGroup.DOFade(1, wEvent.fadeSpeed);
         }
         else if (wEvent.widgetEvent == WidgetEvent.FadeOutCanvasGroup)
         {
+            wEvent.canvasGroup.DOKill();
             wEvent.canvasGroup.alpha = 1;
             wEvent.canvasGroup.DOFade(0, wEvent.fadeSpeed);
         }
         else if (wEvent.widgetEvent == WidgetEvent.FadeInImage)
         {
+            wEvent.image.DOKill();
             wEvent.image.DOFade(0, 0);
             wEvent.image.DOFade(1, wEvent.fadeSpeed);
         }
         else if (wEvent.widgetEvent == WidgetEvent.FadeOutImage)
         {
+            wEvent.image.DOKill();
             wEvent.image.DOFade(1, 0);
             wEvent.image.DOFade(0, wEvent.fadeSpeed);
         }
 
         else if (wEvent.widgetEvent == WidgetEvent.TransisitionImageColour)
         {
+            wEvent.image.DOKill();
             wEvent.image.DOColor(wEvent.endColour, wEvent.fadeSpeed);
         }
 
         else if (wEvent.widgetEvent == WidgetEvent.TransistionTextColour)
         {
+            wEvent.text.DOKill();
             wEvent.text.DOColor(wEvent.endColour, wEvent.fadeSpeed);
         }
     }

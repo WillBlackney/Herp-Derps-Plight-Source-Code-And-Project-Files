@@ -20,7 +20,7 @@ MonoBehaviour:
   initiative: 3
   power: 0
   dexterity: 0
-  overrideStartingHealth: 0
+  overrideStartingHealth: 1
   startingHealth: 1
   startingBlock: 0
   physicalResistance: 0

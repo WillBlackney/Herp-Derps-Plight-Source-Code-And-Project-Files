@@ -72,7 +72,10 @@ public class JourneyManager : Singleton<JourneyManager>
     {
         saveFile.currentJourneyPosition = CurrentJourneyPosition;
         saveFile.currentEncounter = CurrentEncounter;
-        saveFile.currentEnemyWave = CurrentEnemyWave.encounterName;
+        if(CurrentEnemyWave != null)
+        {
+            saveFile.currentEnemyWave = CurrentEnemyWave.encounterName;
+        }        
         saveFile.saveCheckPoint = CheckPointType;
     }
 

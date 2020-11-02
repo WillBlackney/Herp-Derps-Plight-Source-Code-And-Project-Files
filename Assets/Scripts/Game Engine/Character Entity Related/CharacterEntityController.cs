@@ -1541,6 +1541,10 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         AudioManager.Instance.PlaySound(Sound.Character_Footsteps);
         view.ucmAnimator.SetTrigger("Move");
     }
+    public void PlayWalkAnimation(CharacterEntityView view)
+    {
+        view.ucmAnimator.SetTrigger("Walk");
+    }
     public void PlayHurtAnimation(CharacterEntityView view)
     {
         AudioManager.Instance.StopSound(Sound.Character_Footsteps);

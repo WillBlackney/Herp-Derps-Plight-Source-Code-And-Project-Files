@@ -130,7 +130,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Build character data
         CharacterDataController.Instance.BuildCharacterRosterFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
-        HandleLoadKingsBlessingEncounter(true, true);
+        HandleLoadKingsBlessingEncounter();
     }
     #endregion
 
@@ -138,21 +138,34 @@ public class EventSequenceController : Singleton<EventSequenceController>
     #region
     public void HandleStartNewGameFromMainMenuEvent()
     {
+        StartCoroutine(HandleStartNewGameFromMainMenuEventCoroutine());
+    }
+    public IEnumerator HandleStartNewGameFromMainMenuEventCoroutine()
+    {
         // Set up characters
         PersistencyManager.Instance.BuildNewSaveFileOnNewGameStarted();
 
         // Build and prepare all session data
         PersistencyManager.Instance.SetUpGameSessionDataFromSaveFile();
 
-        BlackScreenController.Instance.FadeOutAndBackIn(1, 0f, 1f, () =>
-         {
-             // Hide Main Menu
-             MainMenuController.Instance.HideNewGameScreen();
-             MainMenuController.Instance.HideFrontScreen();
+        // Fade out
+        BlackScreenController.Instance.FadeOutScreen(1f);
+        yield return new WaitForSeconds(1f);
 
-             // Start the first encounter set up sequence
-             HandleLoadEncounter(JourneyManager.Instance.CurrentEncounter);
-         });
+        // Reset Camera
+        CameraManager.Instance.ResetMainCameraPositionAndZoom();
+
+        // Hide Main Menu
+        MainMenuController.Instance.HideNewGameScreen();
+        MainMenuController.Instance.HideFrontScreen();
+
+        // Act start visual sequence
+        PlayActNotificationVisualEvent();
+        BlackScreenController.Instance.FadeInScreen(0f);
+        yield return new WaitForSeconds(3.5f);
+
+        // Start the first encounter set up sequence
+        HandleLoadEncounter(JourneyManager.Instance.CurrentEncounter);        
     }
     public void HandleLoadSavedGameFromMainMenuEvent()
     {
@@ -164,7 +177,10 @@ public class EventSequenceController : Singleton<EventSequenceController>
         PersistencyManager.Instance.SetUpGameSessionDataFromSaveFile();
 
         BlackScreenController.Instance.FadeOutScreen(2f);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
+
+        // Reset Camera
+        CameraManager.Instance.ResetMainCameraPositionAndZoom();
 
         // Hide Main Menu
         MainMenuController.Instance.HideFrontScreen();
@@ -212,6 +228,10 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Hide Loot screen elements
         LootController.Instance.CloseAndResetAllViews();
 
+        // Hide Kings Blessing screen elements
+        LevelManager.Instance.DisableGraveyardScenery();
+        KingsBlessingController.Instance.DisableUIView();
+
         // Fade in menu music
         AudioManager.Instance.FadeInSound(Sound.Music_Main_Menu_Theme_1, 1f);
 
@@ -243,6 +263,10 @@ public class EventSequenceController : Singleton<EventSequenceController>
             JourneyManager.Instance.CheckPointType == SaveCheckPoint.CombatEnd
             )
         {
+            BlackScreenController.Instance.FadeInScreen(1f);
+            LevelManager.Instance.EnableDungeonScenery();
+            LevelManager.Instance.ShowAllNodeViews();
+            CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
             StartCombatVictorySequence();
         }
 
@@ -253,7 +277,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         else if (JourneyManager.Instance.CheckPointType == SaveCheckPoint.KingsBlessingStart)
         {
-            HandleLoadKingsBlessingEncounter(true, false);
+            HandleLoadKingsBlessingEncounter();
         }
     }
     public void HandleLoadNextEncounter()
@@ -304,8 +328,20 @@ public class EventSequenceController : Singleton<EventSequenceController>
             RecruitCharacterController.Instance.ResetAllViews();
         }
 
+        // Do kings blessing end sequence + tear down
+        else if (previousEncounter.encounterType == EncounterType.KingsBlessingEvent)
+        {
+            CoroutineData kbcSequence = new CoroutineData();
+            HandleLoadKingsBlessingContinueSequence(kbcSequence);
+            yield return new WaitUntil(() => kbcSequence.CoroutineCompleted());
+            LevelManager.Instance.DisableGraveyardScenery();
+        }
+
+        // Reset Camera
+        CameraManager.Instance.ResetMainCameraPositionAndZoom();
+
         // If next event is a combat, get + set enemy wave before saving to disk
-        if(JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.BasicEnemy ||
+        if (JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.BasicEnemy ||
             JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.EliteEnemy)
         {
             // Calculate and cache the next enemy wave group
@@ -339,14 +375,30 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
             HandleLoadRecruitCharacterEncounter();
         }
+
+        // Kings Blessing
+        else if (JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.KingsBlessingEvent)
+        {
+            // Set check point
+            JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.KingsBlessingStart);
+
+            // Auto save
+            PersistencyManager.Instance.AutoUpdateSaveFile();
+
+            HandleLoadKingsBlessingEncounter();
+        }
     }
     private void HandleLoadCombatEncounter(EnemyWaveSO enemyWave)
     {
+        // Enable world BG view + Node visbility
+        LevelManager.Instance.EnableDungeonScenery();
+        LevelManager.Instance.ShowAllNodeViews();
+
         // Fade In
         BlackScreenController.Instance.FadeInScreen(1f);
 
         // Camera Zoom out effect
-        CameraManager.Instance.DoCameraZoomOut(4, 5, 1);
+        CameraManager.Instance.DoCameraZoom(4, 5, 1);
 
         // Play battle theme music
         AudioManager.Instance.FadeOutSound(Sound.Music_Main_Menu_Theme_1, 1f);
@@ -378,45 +430,72 @@ public class EventSequenceController : Singleton<EventSequenceController>
         RecruitCharacterController.Instance.ShowRecruitCharacterScreen();
         RecruitCharacterController.Instance.BuildRecruitCharacterWindows();
     }
-    private void HandleLoadKingsBlessingEncounter(bool playActNotification, bool doBlackScreenFadeIn)
+    private void HandleLoadKingsBlessingEncounter()
     {
-        StartCoroutine(HandleLoadKingsBlessingEncounterCoroutine(playActNotification, doBlackScreenFadeIn));
+        StartCoroutine(HandleLoadKingsBlessingEncounterCoroutine());
     }
-    private IEnumerator HandleLoadKingsBlessingEncounterCoroutine(bool playActNotification, bool doBlackScreenFadeIn)
+    private IEnumerator HandleLoadKingsBlessingEncounterCoroutine()
     {
-        if (playActNotification)
-        {
-            // Prepare act notif
-            ResetActNotificationViews();
-            actNotifVisualParent.SetActive(true);
-            actNotifCg.alpha = 1;
-        }
+        BlackScreenController.Instance.FadeInScreen(1.5f);
 
         // PREPARE KBC VIEW
         // Disable dungeon view
-        LevelManager.Instance.DisableDungeonView();
+        LevelManager.Instance.DisableDungeonScenery();
 
         // Build kbc views
-        LevelManager.Instance.EnableKingBlessingView();
+        LevelManager.Instance.EnableGraveyardScenery();
         KingsBlessingController.Instance.BuildAllViews(CharacterDataController.Instance.AllPlayerCharacters[0]);
+        KingsBlessingController.Instance.EnableUIView();
 
-        // Fade in screen back in
-        if (doBlackScreenFadeIn)
+        // Set Camera start settings
+        CameraManager.Instance.DoCameraZoom(2, 2, 0f);
+        CameraManager.Instance.DoCameraMove(-5, -3, 0f);
+
+        // Start moving player model + animate king
+        KingsBlessingController.Instance.PlayKingFloatAnim();
+        KingsBlessingController.Instance.DoPlayerModelMoveToMeetingSequence();
+        yield return new WaitForSeconds(0.5f);
+
+        // Move + Zoom out camera
+        CameraManager.Instance.DoCameraZoom(2, 5, 2f);
+        CameraManager.Instance.DoCameraMove(0, 0, 2f);
+
+        // Fade in continue button
+        yield return new WaitForSeconds(1.5f);
+        KingsBlessingController.Instance.FadeContinueButton(1, 1);
+        KingsBlessingController.Instance.SetContinueButtonInteractions(true);
+    }
+    public void HandleLoadKingsBlessingContinueSequence(CoroutineData cData)
+    {
+        StartCoroutine(HandleLoadKingsBlessingContinueSequenceCoroutine(cData));
+    }
+    private IEnumerator HandleLoadKingsBlessingContinueSequenceCoroutine(CoroutineData cData)
+    {
+        yield return null;
+        KingsBlessingController.Instance.FadeContinueButton(0, 0.5f);
+
+        // Open door visual sequence
+        KingsBlessingController.Instance.DoDoorOpeningSequence();
+        yield return new WaitForSeconds(1.25f);
+
+        // start camera zoom + movement here
+        CameraManager.Instance.DoCameraZoom(5, 2, 1.5f);
+        CameraManager.Instance.DoCameraMove(0, 2, 1.5f);
+
+        // Player moves towards door visual sequence
+        KingsBlessingController.Instance.DoPlayerMoveThroughEntranceSequence();
+        yield return new WaitForSeconds(1.5f);
+
+        // Black screen fade out start here
+        BlackScreenController.Instance.FadeOutScreen(1f);
+        yield return new WaitForSeconds(1f);
+
+        KingsBlessingController.Instance.DisableUIView();
+
+        if (cData != null)
         {
-            BlackScreenController.Instance.FadeInScreen(1f);
+            cData.MarkAsCompleted();
         }
-
-        yield return new WaitForSeconds(1f);       
-
-        // Start act 1 fade in sequence
-        if (playActNotification)
-        {
-            PlayActNotificationVisualEvent();
-            yield return new WaitForSeconds(3f);
-        }
-
-       
-      
     }
     #endregion
 
@@ -481,6 +560,8 @@ public class EventSequenceController : Singleton<EventSequenceController>
         CharacterEntityController.Instance.ClearAllCharacterPersistencies();
         ActivationManager.Instance.DestroyAllActivationWindows();
         LevelManager.Instance.ClearAndResetAllNodes();
+        LevelManager.Instance.HideAllNodeViews();
+        LevelManager.Instance.DisableDungeonScenery();
         UIManager.Instance.DisableEndTurnButtonView();
     }
     #endregion
@@ -497,6 +578,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         ResetActNotificationViews();
         actNotifCountText.text = "Act One";
         actNotifNameText.text = "Into The Crypt...";
+        actNotifVisualParent.SetActive(true);
         actNotifCg.alpha = 1;
         actNotifTextParentCg.alpha = 1;
 
@@ -520,6 +602,8 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Fade out entire view
         actNotifCg.DOFade(0, 1f);
+        yield return new WaitForSeconds(1);
+        ResetActNotificationViews();
     }
     private void ResetActNotificationViews()
     {
@@ -527,6 +611,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         actNotifNameText.DOFade(0, 0);
         actNotifNameText.gameObject.SetActive(false);
         actNotifCountText.gameObject.SetActive(false);
+        actNotifVisualParent.SetActive(false);
 
     }
     #endregion

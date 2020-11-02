@@ -35,6 +35,9 @@ public class AudioManager : Singleton<AudioManager>
     [Header("Events SFX")]
     [SerializeField] private AudioModel[] allEventsSFX;
 
+    [Header("Environments SFX")]
+    [SerializeField] private AudioModel[] allEnvironmentsSFX;
+
     // Initialization 
     #region
     private void Start()
@@ -52,6 +55,7 @@ public class AudioManager : Singleton<AudioManager>
         allAudioModelsList.AddRange(allPassiveSFX);
         allAudioModelsList.AddRange(allGuiSFX);
         allAudioModelsList.AddRange(allEventsSFX);
+        allAudioModelsList.AddRange(allEnvironmentsSFX);
 
         // Convert list to array
         allAudioModels = allAudioModelsList.ToArray();
@@ -149,6 +153,7 @@ public enum Sound
     Character_Footsteps = 9,
     Character_Draw_Bow = 10,
 
+    Environment_Gate_Open = 38,
     Events_Turn_Change_Notification = 35,
 
     Explosion_Fire_1 = 21,
