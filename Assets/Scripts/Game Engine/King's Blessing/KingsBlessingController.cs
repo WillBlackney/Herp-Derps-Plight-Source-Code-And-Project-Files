@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 
 public class KingsBlessingController : Singleton<KingsBlessingController>
 {
@@ -24,6 +25,12 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
     [SerializeField] private GameObject gateParent;
     [SerializeField] private Transform gateStartPos;
     [SerializeField] private Transform gateEndPos;
+
+    [Header("Sppech Bubble Components")]
+    [SerializeField] private CanvasGroup bubbleCg;
+    [SerializeField] private TextMeshProUGUI bubbleText;
+    [SerializeField] private string[] bubbleGreetings;
+    [SerializeField] private string[] bubbleFarewells;
 
     public void BuildAllViews(CharacterData startingCharacter)
     {
@@ -98,13 +105,14 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
         s.Append(playerModel.gameObject.transform.DOMove(playerModelEnterDungeonPos.position, 1.5f));
 
         // Trigger footsteps sfx
-        AudioManager.Instance.FadeInSound(Sound.Character_Footsteps, 0.5f);
+        AudioManager.Instance.PlaySound(Sound.Character_Footsteps);
+        AudioManager.Instance.FadeOutSound(Sound.Character_Footsteps, 1.5f);
 
         // On finish, stop footsteps
         s.OnComplete(() =>
         {
             playerModel.GetComponent<Animator>().SetTrigger("Idle");
-            AudioManager.Instance.FadeOutSound(Sound.Character_Footsteps, 1f);
+            //AudioManager.Instance.FadeOutSound(Sound.Character_Footsteps, 1f);
         });
 
     }
@@ -120,6 +128,30 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
     public void EnableUIView()
     {
         uiVisualParent.SetActive(true);
+    }
+    public void DoKingGreeting()
+    {
+        StartCoroutine(DoKingGreetingCoroutine());
+    }
+    private IEnumerator DoKingGreetingCoroutine()
+    {
+        bubbleCg.DOKill();
+        bubbleText.text = bubbleGreetings[RandomGenerator.NumberBetween(0, bubbleGreetings.Length - 1)];
+        bubbleCg.DOFade(1, 0.5f);
+        yield return new WaitForSeconds(2f);
+        bubbleCg.DOFade(0, 0.5f);
+    }
+    public void DoKingFarewell()
+    {
+        StartCoroutine(DoKingFarewellCoroutine());
+    }
+    private IEnumerator DoKingFarewellCoroutine()
+    {
+        bubbleCg.DOKill();
+        bubbleText.text = bubbleFarewells[RandomGenerator.NumberBetween(0, bubbleFarewells.Length - 1)];
+        bubbleCg.DOFade(1, 0.5f);
+        yield return new WaitForSeconds(1.75f);
+        bubbleCg.DOFade(0, 0.5f);
     }
 
 }

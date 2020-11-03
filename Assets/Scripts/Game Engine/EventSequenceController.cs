@@ -14,6 +14,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
     [SerializeField] private TextMeshProUGUI actNotifCountText;
     [SerializeField] private TextMeshProUGUI actNotifNameText;
     #endregion
+
     // Game Start + Application Entry Points
     #region
     private void Start()
@@ -79,13 +80,17 @@ public class EventSequenceController : Singleton<EventSequenceController>
         yield return null;
 
         // Play battle theme music
-        AudioManager.Instance.PlaySound(Sound.Music_Battle_Theme_1);
+        AudioManager.Instance.AutoPlayBasicCombatMusic(1f);
 
         // Build character data
         CharacterDataController.Instance.BuildCharacterRosterFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
 
         // Create player characters in scene
         CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
+
+        // Enable world view
+        LevelManager.Instance.EnableDungeonScenery();
+        LevelManager.Instance.ShowAllNodeViews();
 
         // Spawn enemies
         EnemySpawner.Instance.SpawnEnemyWave("Basic", GlobalSettings.Instance.testingEnemyWave);
@@ -148,9 +153,11 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Build and prepare all session data
         PersistencyManager.Instance.SetUpGameSessionDataFromSaveFile();
 
-        // Fade out
-        BlackScreenController.Instance.FadeOutScreen(1f);
-        yield return new WaitForSeconds(1f);
+        // Fade out screen + audio
+        AudioManager.Instance.PlaySound(Sound.Events_New_Game_Started);
+        AudioManager.Instance.FadeOutSound(Sound.Music_Main_Menu_Theme_1, 2f);
+        BlackScreenController.Instance.FadeOutScreen(2f);
+        yield return new WaitForSeconds(2f);
 
         // Reset Camera
         CameraManager.Instance.ResetMainCameraPositionAndZoom();
@@ -160,6 +167,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
         MainMenuController.Instance.HideFrontScreen();
 
         // Act start visual sequence
+        yield return new WaitForSeconds(0.5f);
+        AudioManager.Instance.FadeInSound(Sound.Ambience_Outdoor_Spooky, 1f);
+        yield return new WaitForSeconds(1f);
         PlayActNotificationVisualEvent();
         BlackScreenController.Instance.FadeInScreen(0f);
         yield return new WaitForSeconds(3.5f);
@@ -176,6 +186,13 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Build and prepare all session data
         PersistencyManager.Instance.SetUpGameSessionDataFromSaveFile();
 
+        // Fade menu music
+        if (AudioManager.Instance.IsSoundPlaying(Sound.Music_Main_Menu_Theme_1))
+        {
+            AudioManager.Instance.FadeOutSound(Sound.Music_Main_Menu_Theme_1, 2f);
+        }
+
+        // Fade out menu scren
         BlackScreenController.Instance.FadeOutScreen(2f);
         yield return new WaitForSeconds(2f);
 
@@ -203,8 +220,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
         MainMenuController.Instance.HideInGameMenuView();
         AudioManager.Instance.StopSound(Sound.Character_Footsteps);
 
-        // Fade out battle music
-        AudioManager.Instance.FadeOutSound(Sound.Music_Battle_Theme_1, 2f);
+        // Fade out battle music + ambience
+        AudioManager.Instance.FadeOutAllCombatMusic(2f);
+        AudioManager.Instance.FadeOutAllAmbience(2f);
 
         // Do black screen fade out
         BlackScreenController.Instance.FadeOutScreen(2f);
@@ -390,6 +408,12 @@ public class EventSequenceController : Singleton<EventSequenceController>
     }
     private void HandleLoadCombatEncounter(EnemyWaveSO enemyWave)
     {
+        // Enable ambience if not playing
+        if (!AudioManager.Instance.IsSoundPlaying(Sound.Ambience_Crypt))
+        {
+            AudioManager.Instance.FadeInSound(Sound.Ambience_Crypt, 1f);
+        }
+
         // Enable world BG view + Node visbility
         LevelManager.Instance.EnableDungeonScenery();
         LevelManager.Instance.ShowAllNodeViews();
@@ -400,9 +424,16 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Camera Zoom out effect
         CameraManager.Instance.DoCameraZoom(4, 5, 1);
 
-        // Play battle theme music
+        // Play battle music
         AudioManager.Instance.FadeOutSound(Sound.Music_Main_Menu_Theme_1, 1f);
-        AudioManager.Instance.FadeInSound(Sound.Music_Battle_Theme_1, 1f);
+        if(enemyWave.combatDifficulty == CombatDifficulty.Basic)
+        {
+            AudioManager.Instance.AutoPlayBasicCombatMusic(1f);
+        }
+        else if (enemyWave.combatDifficulty == CombatDifficulty.Elite)
+        {
+            AudioManager.Instance.AutoPlayEliteCombatMusic(1f);
+        }
 
         // Create player characters in scene
         CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
@@ -422,6 +453,12 @@ public class EventSequenceController : Singleton<EventSequenceController>
     }
     private void HandleLoadRecruitCharacterEncounter()
     {
+        // Enable ambience if not playing
+        if (!AudioManager.Instance.IsSoundPlaying(Sound.Ambience_Crypt))
+        {
+            AudioManager.Instance.FadeInSound(Sound.Ambience_Crypt, 1f);
+        }
+
         // Fade in
         BlackScreenController.Instance.FadeInScreen(2f);
 
@@ -436,6 +473,11 @@ public class EventSequenceController : Singleton<EventSequenceController>
     }
     private IEnumerator HandleLoadKingsBlessingEncounterCoroutine()
     {
+        // Play ambience if not already playing
+        if (!AudioManager.Instance.IsSoundPlaying(Sound.Ambience_Outdoor_Spooky))
+        {
+            AudioManager.Instance.FadeInSound(Sound.Ambience_Outdoor_Spooky, 1f);
+        }
         BlackScreenController.Instance.FadeInScreen(1.5f);
 
         // PREPARE KBC VIEW
@@ -459,9 +501,13 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Move + Zoom out camera
         CameraManager.Instance.DoCameraZoom(2, 5, 2f);
         CameraManager.Instance.DoCameraMove(0, 0, 2f);
-
-        // Fade in continue button
         yield return new WaitForSeconds(1.5f);
+
+        // King greeting
+        KingsBlessingController.Instance.DoKingGreeting();
+        yield return new WaitForSeconds(1.5f);
+
+        // Fade in continue button        
         KingsBlessingController.Instance.FadeContinueButton(1, 1);
         KingsBlessingController.Instance.SetContinueButtonInteractions(true);
     }
@@ -471,12 +517,14 @@ public class EventSequenceController : Singleton<EventSequenceController>
     }
     private IEnumerator HandleLoadKingsBlessingContinueSequenceCoroutine(CoroutineData cData)
     {
-        yield return null;
         KingsBlessingController.Instance.FadeContinueButton(0, 0.5f);
+
+        // King greeting
+        KingsBlessingController.Instance.DoKingFarewell();
 
         // Open door visual sequence
         KingsBlessingController.Instance.DoDoorOpeningSequence();
-        yield return new WaitForSeconds(1.25f);
+        yield return new WaitForSeconds(1.75f);
 
         // start camera zoom + movement here
         CameraManager.Instance.DoCameraZoom(5, 2, 1.5f);
@@ -485,6 +533,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Player moves towards door visual sequence
         KingsBlessingController.Instance.DoPlayerMoveThroughEntranceSequence();
         yield return new WaitForSeconds(1.5f);
+
+        // Fade out outdoor ambience
+        AudioManager.Instance.FadeOutSound(Sound.Ambience_Outdoor_Spooky, 1f);
 
         // Black screen fade out start here
         BlackScreenController.Instance.FadeOutScreen(1f);
@@ -510,7 +561,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // wait until v queue count = 0
         yield return new WaitUntil(()=> VisualEventManager.Instance.EventQueue.Count == 0);
 
-        AudioManager.Instance.FadeOutSound(Sound.Music_Battle_Theme_1, 1f);
+        AudioManager.Instance.FadeOutAllCombatMusic(1f);
 
         // fade out combat music
         // play victory music sfx
@@ -574,6 +625,12 @@ public class EventSequenceController : Singleton<EventSequenceController>
     }
     private IEnumerator PlayActNotificationVisualEventCoroutine()
     {
+        // Enable ambience if not playing
+        if (!AudioManager.Instance.IsSoundPlaying(Sound.Ambience_Outdoor_Spooky))
+        {
+            AudioManager.Instance.FadeInSound(Sound.Ambience_Outdoor_Spooky, 1f);
+        }
+
         // Set up
         ResetActNotificationViews();
         actNotifCountText.text = "Act One";

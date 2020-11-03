@@ -665,6 +665,7 @@ public class ActivationManager : Singleton<ActivationManager>
         visualParentCG.alpha = 0;
         whoseTurnText.text = "Turn " + CurrentTurn.ToString();
 
+        AudioManager.Instance.FadeInSound(Sound.Events_New_Turn_Notification, 0.5f);
         visualParentCG.DOFade(1f, 0.5f);
         textParent.DOScale(1.5f, 0.25f);
         blackBarImageRect.DOScaleY(1, 0.25f);

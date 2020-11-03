@@ -18,6 +18,10 @@ public class AudioModel
 
     [VerticalGroup("General Properties/Stats")]
     [LabelWidth(100)]
+    public CombatMusicCategory combatCategory;
+
+    [VerticalGroup("General Properties/Stats")]
+    [LabelWidth(100)]
     [Range(0f, 1f)]
     public float volume = 0.5f;
 
@@ -39,4 +43,11 @@ public class AudioModel
 
 
 
+}
+public enum CombatMusicCategory
+{
+    None = 0,
+    Basic =1,
+    Elite =2,
+    Boss = 3
 }

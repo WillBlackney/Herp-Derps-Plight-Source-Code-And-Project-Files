@@ -20,6 +20,7 @@ public class LevelManager : Singleton<LevelManager>
     [Header("Level References")]
     [SerializeField] private GameObject kbcViewParent;
     [SerializeField] private GameObject dungeonViewParent;
+    [SerializeField] private GameObject[] allDungeonParents;
 
 
     public LevelNode[] AllLevelNodes
@@ -149,22 +150,6 @@ public class LevelManager : Singleton<LevelManager>
             // Activate view         
             DottedLine.Instance.DrawDottedLine(startNode.nose.position, targetNode.nose.position);
         }
-
-        // if dragging is occuring, update card description with target info
-        /*
-        else
-        {
-            Debug.LogWarning("Mouse over node detected");
-
-            CharacterEntityModel target = startNode.myEntity;
-
-            if(Draggable.DraggingThis.Da is DragSpellOnTarget && target != null)
-            {
-                Debug.LogWarning("Ready to go, updating card description text");
-                CardController.Instance.AutoUpdateCardDescriptionText(Draggable.DraggingThis.Da.CardVM().card, target);
-            }
-        }
-        */
     }
     #endregion
 
@@ -229,11 +214,26 @@ public class LevelManager : Singleton<LevelManager>
     }
     public void EnableDungeonScenery()
     {
+        DisableAllDungeons();
         dungeonViewParent.SetActive(true);
+        EnableRandomDungeon();
     }
     public void DisableDungeonScenery()
     {
+        DisableAllDungeons();
         dungeonViewParent.SetActive(false);
+    }
+    private void DisableAllDungeons()
+    {
+        for(int i = 0; i < allDungeonParents.Length; i++)
+        {
+            allDungeonParents[i].SetActive(false);
+        }
+    }
+    private void EnableRandomDungeon()
+    {
+        allDungeonParents[RandomGenerator.NumberBetween(0, allDungeonParents.Length -1)].SetActive(true);
+
     }
     #endregion
 }

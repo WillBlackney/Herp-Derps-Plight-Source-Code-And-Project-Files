@@ -7,6 +7,7 @@ public class AudioManager : Singleton<AudioManager>
 {
     [Header("Properties")]
     private AudioModel[] allAudioModels;
+    private AudioModel previousCombatTrack = null;
 
     [Header("Music")]
     [SerializeField] private AudioModel[] allMusic;
@@ -38,6 +39,9 @@ public class AudioManager : Singleton<AudioManager>
     [Header("Environments SFX")]
     [SerializeField] private AudioModel[] allEnvironmentsSFX;
 
+    [Header("Ambience SFX")]
+    [SerializeField] private AudioModel[] allAmbienceSFX;
+
     // Initialization 
     #region
     private void Start()
@@ -56,6 +60,7 @@ public class AudioManager : Singleton<AudioManager>
         allAudioModelsList.AddRange(allGuiSFX);
         allAudioModelsList.AddRange(allEventsSFX);
         allAudioModelsList.AddRange(allEnvironmentsSFX);
+        allAudioModelsList.AddRange(allAmbienceSFX);
 
         // Convert list to array
         allAudioModels = allAudioModelsList.ToArray();
@@ -74,6 +79,24 @@ public class AudioManager : Singleton<AudioManager>
 
     // Trigger Sounds
     #region
+    public AudioModel GetAudioModel(Sound s)
+    {
+        AudioModel a = Array.Find(allAudioModels, sound => sound.soundType == s);
+        return a;
+    }
+    public bool IsSoundPlaying(Sound s)
+    {
+        bool bReturned = false;
+
+        AudioModel a = Array.Find(allAudioModels, sound => sound.soundType == s);
+
+        if(a != null && a.source.isPlaying)
+        {
+            bReturned = true;
+        }
+
+        return bReturned;
+    }
     public void PlaySound(Sound s)
     {
         if(s == Sound.None)
@@ -123,6 +146,77 @@ public class AudioManager : Singleton<AudioManager>
             Debug.LogWarning("AudioManager.FadeInSound() did not find an audio model with the name " + name);
         }
     }
+    public void DisableAllAmbience()
+    {
+        StopSound(Sound.Ambience_Outdoor_Spooky);
+        StopSound(Sound.Ambience_Crypt);
+    }
+    public void FadeOutAllAmbience(float fadeDuration)
+    {
+        if (IsSoundPlaying(Sound.Ambience_Outdoor_Spooky))
+        {
+            FadeOutSound(Sound.Ambience_Outdoor_Spooky, fadeDuration);
+        }
+        if (IsSoundPlaying(Sound.Ambience_Crypt))
+        {
+            FadeOutSound(Sound.Ambience_Crypt, fadeDuration);
+        }
+    }
+    public void FadeOutAllCombatMusic(float fadeDuration)
+    {
+        if (IsSoundPlaying(Sound.Music_Basic_1))
+        {
+            FadeOutSound(Sound.Music_Basic_1, fadeDuration);
+        }
+        else if (IsSoundPlaying(Sound.Music_Basic_2))
+        {
+            FadeOutSound(Sound.Music_Basic_2, fadeDuration);
+        }
+        else if (IsSoundPlaying(Sound.Music_Basic_3))
+        {
+            FadeOutSound(Sound.Music_Basic_3, fadeDuration);
+        }
+        else if (IsSoundPlaying(Sound.Music_Elite_1))
+        {
+            FadeOutSound(Sound.Music_Elite_1, fadeDuration);
+        }
+        else if (IsSoundPlaying(Sound.Music_Elite_2))
+        {
+            FadeOutSound(Sound.Music_Elite_2, fadeDuration);
+        }
+        else if (IsSoundPlaying(Sound.Music_Elite_3))
+        {
+            FadeOutSound(Sound.Music_Elite_3, fadeDuration);
+        }
+    }
+    public void AutoPlayBasicCombatMusic(float fadeDuration)
+    {
+        // Find all basic combat music
+        AudioModel[] basicCombatMusic = Array.FindAll(allAudioModels, sound => sound.combatCategory == CombatMusicCategory.Basic && sound != previousCombatTrack);
+
+        // Choose one track randomly
+        AudioModel musicSelected = basicCombatMusic[RandomGenerator.NumberBetween(0, basicCombatMusic.Length - 1)];
+
+        // Start music fade in
+        musicSelected.source.FadeIn(fadeDuration, musicSelected);
+
+        // Cache track so it cant be played twice in a row
+        previousCombatTrack = musicSelected;
+    }
+    public void AutoPlayEliteCombatMusic(float fadeDuration)
+    {
+        // Find all basic combat music
+        AudioModel[] basicCombatMusic = Array.FindAll(allAudioModels, sound => sound.combatCategory == CombatMusicCategory.Elite && sound != previousCombatTrack);
+
+        // Choose one track randomly
+        AudioModel musicSelected = basicCombatMusic[RandomGenerator.NumberBetween(0, basicCombatMusic.Length - 1)];
+
+        // Start music fade in
+        musicSelected.source.FadeIn(fadeDuration, musicSelected);
+
+        // Cache track so it cant be played twice in a row
+        previousCombatTrack = musicSelected;
+    }
     #endregion
 
 }
@@ -144,6 +238,9 @@ public enum Sound
     Ability_Shadow_Buff = 20,
     Ability_Metallic_Ting = 37,
 
+    Ambience_Outdoor_Spooky = 39,
+    Ambience_Crypt = 40,
+
     Card_Draw = 0,
     Card_Moused_Over = 1,
     Card_Dragging = 2,
@@ -154,7 +251,8 @@ public enum Sound
     Character_Draw_Bow = 10,
 
     Environment_Gate_Open = 38,
-    Events_Turn_Change_Notification = 35,
+    Events_New_Game_Started = 35,
+    Events_New_Turn_Notification = 41,
 
     Explosion_Fire_1 = 21,
     Explosion_Shadow_1 = 22,
@@ -177,7 +275,12 @@ public enum Sound
     Projectile_Poison_Fired = 29,
     Projectile_Shadowball_Fired = 30,
 
-    Music_Battle_Theme_1 = 7,
+    Music_Basic_1 = 7,
+    Music_Basic_2 = 42,
+    Music_Basic_3 = 43,
+    Music_Elite_1 = 44,
+    Music_Elite_2 = 45,
+    Music_Elite_3 = 46,
     Music_Main_Menu_Theme_1 = 36,
 
 

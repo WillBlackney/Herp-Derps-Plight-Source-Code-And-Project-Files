@@ -70,20 +70,16 @@ public class CameraManager : Singleton<CameraManager>
     #region
     public void DoCameraZoom(float startOrthoSize, float endOrthoSize, float duration)
     {
-        Debug.LogWarning("DoCameraZoom(), start ortho: " + startOrthoSize.ToString() + ", end ortho: " + endOrthoSize.ToString());
         MainCamera.orthographicSize = startOrthoSize;
         MainCamera.DOOrthoSize(endOrthoSize, duration);
     }
     public void DoCameraMove(float x, float y, float duration)
     {
-        Debug.LogWarning("DoCameraMove(), to x " + x.ToString() + ", to y: " + y.ToString());
         Vector3 destination = new Vector3(x, y, -15);
         MainCamera.transform.DOMove(destination, duration);
     }
     public void ResetMainCameraPositionAndZoom()
     {
-        Debug.LogWarning("ResetMainCameraPositionAndZoom()");
-
         // Reset position
         MainCamera.transform.DOMove(new Vector3(0, 0, -15), 0f);
 
