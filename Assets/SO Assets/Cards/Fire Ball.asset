@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fire Ball
   m_EditorClassIdentifier: 
   cardName: Fire Ball
-  cardDescription: 'Deal 4 Fire damage.
+  cardDescription: 'Deal 5 Fire damage.
 
     Increase the damage of all Fire Ball
     cards this combat by 1.'
@@ -96,7 +96,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 4
+    baseDamageValue: 5
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lightning Barrier
   m_EditorClassIdentifier: 
   cardName: Lightning Barrier
-  cardDescription: 'Gain 4 Block.
+  cardDescription: 'Gain 5 Block.
 
     Gain 1 Overload.'
   cardSprite: {fileID: 21300000, guid: 60eb5d5085e402348ae8b821e07250d2, type: 3}
@@ -90,7 +90,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 4
+    blockGainValue: 5
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0

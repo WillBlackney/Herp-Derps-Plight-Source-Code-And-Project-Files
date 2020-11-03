@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Necromancer
   m_EditorClassIdentifier: 
   enemyName: Necromancer
+  enemyModelSize: 0
   enableFlexibleMaxHealth: 1
   maxHealthFlexAmount: 4
   maxHealth: 68
-  initiative: 2
+  initiative: 3
   power: 0
   dexterity: 0
   overrideStartingHealth: 0

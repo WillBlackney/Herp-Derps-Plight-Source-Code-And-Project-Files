@@ -15,15 +15,19 @@ MonoBehaviour:
   cardName: Fan Of Knives
   cardDescription: On activation start, add a Shank to your hand.
   cardSprite: {fileID: 21300000, guid: 72f7afdc8fa41e94c9e2cf4077dd9d34, type: 3}
-  cardEnergyCost: 1
+  xEnergyCost: 0
+  cardEnergyCost: 2
   cardType: 4
   targettingType: 0
   talentSchool: 3
   rarity: 1
+  racialCard: 0
+  originRace: 0
   expend: 0
   innate: 0
   fleeting: 0
   unplayable: 0
+  lifeSteal: 0
   blessing: 0
   customDescription:
   - color: 1
@@ -43,12 +47,23 @@ MonoBehaviour:
     cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
+    removeBlockFrom: 0
+    modifyDeckCardEffect: 0
+    permanentBlockGain: 0
+    permanentDamageGain: 0
+    chooseTargetRandomly: 0
+    passiveApplicationLoops: 0
+    validRandomTargetsType: 0
+    damageLoops: 0
+    drawSpecificType: 0
+    specificTypeDrawn: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
     blessing: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
+    modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
@@ -57,8 +72,10 @@ MonoBehaviour:
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
+    drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 0
+    healthRestored: 0
     healthLost: 0
     energyGained: 0
     cardsDrawn: 0

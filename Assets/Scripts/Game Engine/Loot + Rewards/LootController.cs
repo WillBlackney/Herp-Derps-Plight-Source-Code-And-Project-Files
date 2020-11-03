@@ -88,14 +88,39 @@ public class LootController : Singleton<LootController>
         // Rebuild panels
         for (int i = 0; i < data.Count; i++)
         {
+            CardInfoPanel matchingPanel = null;
+            foreach (CardInfoPanel panel in cardPanels)
+            {
+                if (panel.cardDataRef != null && panel.cardDataRef.cardName == data[i].cardName)
+                {
+                    matchingPanel = panel;
+                    break;
+                }
+            }
+
+            if (matchingPanel != null)
+            {
+                matchingPanel.copiesCount++;
+                matchingPanel.copiesCountText.text = "x" + matchingPanel.copiesCount.ToString();
+            }
+            else
+            {
+                cardPanels[i].gameObject.SetActive(true);
+                cardPanels[i].BuildCardInfoPanelFromCardData(data[i]);
+            }
+
+
+            /*
             // Build new tab from card data
             cardPanels[i].gameObject.SetActive(true);
             cardPanels[i].BuildCardInfoPanelFromCardData(data[i]);
 
             // Hide text count
             cardPanels[i].copiesCountText.gameObject.SetActive(false);
+            */
         }
-        
+
+
     }
     public void BuildAndShowCardViewModelPopup(CardData data)
     {

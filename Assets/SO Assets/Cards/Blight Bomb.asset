@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Blight Bomb
   m_EditorClassIdentifier: 
   cardName: Blight Bomb
-  cardDescription: Deal 4 Poison damage. Apply 2 poisoned.
+  cardDescription: Deal 5 Poison damage. Apply 2 poisoned.
   cardSprite: {fileID: 21300000, guid: c77c39b719f391d4382b7a303c86b271, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -21,6 +21,8 @@ MonoBehaviour:
   targettingType: 3
   talentSchool: 12
   rarity: 1
+  racialCard: 0
+  originRace: 0
   expend: 0
   innate: 0
   fleeting: 0
@@ -83,7 +85,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 4
+    baseDamageValue: 5
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0

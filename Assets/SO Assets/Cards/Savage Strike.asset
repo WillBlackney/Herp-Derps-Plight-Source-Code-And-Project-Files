@@ -13,17 +13,21 @@ MonoBehaviour:
   m_Name: Savage Strike
   m_EditorClassIdentifier: 
   cardName: Savage Strike
-  cardDescription: "Lose 1HP. \nDeal 7 Physical damage. "
+  cardDescription: "Lose 1HP. \nDeal 8 Physical damage. "
   cardSprite: {fileID: 21300000, guid: d71827c08a0e7984492d5d99d1fc32cc, type: 3}
+  xEnergyCost: 0
   cardEnergyCost: 1
   cardType: 2
   targettingType: 3
   talentSchool: 2
   rarity: 1
+  racialCard: 0
+  originRace: 0
   expend: 0
   innate: 0
   fleeting: 0
   unplayable: 0
+  lifeSteal: 0
   blessing: 0
   customDescription:
   - color: 1
@@ -57,12 +61,23 @@ MonoBehaviour:
     cardEffectType: 14
     splitTargetEffect: 0
     splitTargetType: 0
+    removeBlockFrom: 0
+    modifyDeckCardEffect: 0
+    permanentBlockGain: 0
+    permanentDamageGain: 0
+    chooseTargetRandomly: 0
+    passiveApplicationLoops: 0
+    validRandomTargetsType: 0
+    damageLoops: 0
+    drawSpecificType: 0
+    specificTypeDrawn: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
     blessing: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
+    modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
@@ -71,8 +86,10 @@ MonoBehaviour:
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
+    drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 0
+    healthRestored: 0
     healthLost: 1
     energyGained: 0
     cardsDrawn: 0
@@ -120,22 +137,35 @@ MonoBehaviour:
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    removeBlockFrom: 0
+    modifyDeckCardEffect: 0
+    permanentBlockGain: 0
+    permanentDamageGain: 0
+    chooseTargetRandomly: 0
+    passiveApplicationLoops: 0
+    validRandomTargetsType: 0
+    damageLoops: 0
+    drawSpecificType: 0
+    specificTypeDrawn: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
     blessing: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
+    modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 7
+    baseDamageValue: 8
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
+    drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 1
+    healthRestored: 0
     healthLost: 0
     energyGained: 0
     cardsDrawn: 0

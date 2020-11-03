@@ -216,6 +216,8 @@ public class EventSequenceController : Singleton<EventSequenceController>
     }
     private IEnumerator HandleQuitToMainMenuFromInGameCoroutine()
     {
+        Debug.LogWarning("HandleQuitToMainMenuFromInGameCoroutine");
+
         // Hide menus + GUI + misc annoying stuff
         MainMenuController.Instance.HideInGameMenuView();
         AudioManager.Instance.StopSound(Sound.Character_Footsteps);
@@ -232,6 +234,8 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Wait till its safe to tearn down event queue and scene
         yield return new WaitForSeconds(2f);
+        AudioManager.Instance.ForceStopAllCombatMusic();
+
         if (handle != null && handle.cData != null)
         {
             yield return new WaitUntil(() => handle.cData.CoroutineCompleted() == true);
@@ -327,6 +331,11 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
             // Move characters off screen
             CharacterEntityController.Instance.MoveCharactersToOffScreenRight(CharacterEntityController.Instance.AllDefenders, null);
+            AudioManager.Instance.FadeOutSound(Sound.Character_Footsteps, 3f);
+
+            // Zoom and move camera
+            CameraManager.Instance.DoCameraMove(3, 0, 3f);
+            CameraManager.Instance.DoCameraZoom(5, 3, 3f);
 
             // Wait for visual events
             yield return new WaitForSeconds(4f);

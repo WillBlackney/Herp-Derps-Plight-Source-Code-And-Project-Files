@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Forest Medicine
   m_EditorClassIdentifier: 
   cardName: Forest Medicine
-  cardDescription: 'Give a target 4 Block and 1 Rune.
+  cardDescription: 'Give a target 5 Block and 1 Rune.
 
     Expend. '
   cardSprite: {fileID: 21300000, guid: 00386c18b4c21384f8ddfa5f093541d2, type: 3}
@@ -23,6 +23,8 @@ MonoBehaviour:
   targettingType: 2
   talentSchool: 8
   rarity: 1
+  racialCard: 0
+  originRace: 0
   expend: 1
   innate: 0
   fleeting: 0
@@ -92,7 +94,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 4
+    blockGainValue: 5
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0

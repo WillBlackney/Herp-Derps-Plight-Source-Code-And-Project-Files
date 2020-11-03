@@ -620,11 +620,9 @@ public class CardController : Singleton<CardController>
         // Set up appearance, texts and sprites
         SetUpCardViewModelAppearanceFromCard(cardVM, card);
 
-        // Glow
-        if (IsCardPlayable(card, card.owner))
-        {
-            EnableCardViewModelGlowOutline(cardVM);
-        }
+        // Set glow outline
+        AutoUpdateCardGlowOutline(card);
+
         return cardVM;
     }
     public void BuildCharacterEntityCombatDeckFromDeckData(CharacterEntityModel defender, List<CardData> deckData)
@@ -3994,14 +3992,11 @@ public class CardController : Singleton<CardController>
     }
     private void EnableCardViewModelGlowOutline(CardViewModel cvm)
     {
-        cvm.glowParent.SetActive(true);
-        cvm.glowAnimator.enabled = true;
         cvm.glowAnimator.SetTrigger("Glow");        
     }
     private void DisableCardViewModelGlowOutline(CardViewModel cvm)
     {
-        cvm.glowParent.SetActive(false);
-        cvm.glowAnimator.enabled = false;
+        cvm.glowAnimator.SetTrigger("Off");
     }
     private void CreateAndAddNewCardToCharacterHandVisualEvent(Card card, CharacterEntityModel character)
     {
@@ -4035,6 +4030,9 @@ public class CardController : Singleton<CardController>
         ScaleCardViewModel(cvm, originalScale.x, cardTransistionSpeed);
         //cvm.mainParent.DOScale(originalScale, cardTransistionSpeed).SetEase(Ease.OutQuint);
 
+        // Card glow
+        AutoUpdateCardGlowOutline(card);
+
         // move card to the hand;
         MoveTransformToLocation(cvm.movementParent, characterView.handVisual.slots.Children[0].transform.localPosition, cardTransistionSpeed, true, () => clt.SetHandSortingOrder());
     }
@@ -4054,6 +4052,9 @@ public class CardController : Singleton<CardController>
         clt.BringToFront();
         clt.Slot = 0;
         clt.VisualState = VisualStates.Transition;
+
+        // Glow outline
+        AutoUpdateCardGlowOutline(card);
 
         // Start SFX
         AudioManager.Instance.PlaySound(Sound.Card_Draw);

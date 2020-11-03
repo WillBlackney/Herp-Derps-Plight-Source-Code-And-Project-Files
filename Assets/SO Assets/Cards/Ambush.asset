@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ambush
   m_EditorClassIdentifier: 
   cardName: Ambush
-  cardDescription: 'Deal 3 Physical damage.
+  cardDescription: 'Deal 4 Physical damage.
 
     Innate.'
   cardSprite: {fileID: 21300000, guid: 83ad27e90875c83418e3437795c6e7f2, type: 3}
@@ -23,6 +23,8 @@ MonoBehaviour:
   targettingType: 3
   talentSchool: 3
   rarity: 1
+  racialCard: 0
+  originRace: 0
   expend: 0
   innate: 1
   fleeting: 0
@@ -77,7 +79,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 3
+    baseDamageValue: 4
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0

@@ -15,21 +15,31 @@ MonoBehaviour:
   cardName: Burn
   cardDescription: "On activation end, apply 1 Burning to self. \nUnplayable."
   cardSprite: {fileID: 21300000, guid: 741c2c4a28c8ae544a4918701bfea295, type: 3}
+  xEnergyCost: 0
   cardEnergyCost: 0
   cardType: 1
   targettingType: 0
   talentSchool: 0
   rarity: 0
+  racialCard: 0
+  originRace: 0
   expend: 0
   innate: 0
   fleeting: 0
   unplayable: 1
+  lifeSteal: 0
   blessing: 0
   customDescription:
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Unplayable
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'On activation end, apply '
+    phrase: '.
+
+      On activation end, apply '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -44,14 +54,11 @@ MonoBehaviour:
     phrase: 'to self.
 
 '
-  - color: 3
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: Unplayable.
   cardEffects: []
   cardEventListeners:
   - cardEventListenerType: 3
     cardEventListenerFunction: 2
+    maxHealthGained: 0
     energyReductionAmount: 0
     passivePairing:
       passiveData: 2

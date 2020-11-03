@@ -138,7 +138,7 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
         bubbleCg.DOKill();
         bubbleText.text = bubbleGreetings[RandomGenerator.NumberBetween(0, bubbleGreetings.Length - 1)];
         bubbleCg.DOFade(1, 0.5f);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.5f);
         bubbleCg.DOFade(0, 0.5f);
     }
     public void DoKingFarewell()

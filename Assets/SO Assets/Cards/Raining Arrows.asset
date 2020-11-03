@@ -13,17 +13,21 @@ MonoBehaviour:
   m_Name: Raining Arrows
   m_EditorClassIdentifier: 
   cardName: Raining Arrows
-  cardDescription: 'Deal 4 Physical damage to all enemies. '
+  cardDescription: 'Deal 5 Physical damage to all enemies. '
   cardSprite: {fileID: 21300000, guid: 16659187d3db9c14da18d5cd47b77f8e, type: 3}
+  xEnergyCost: 0
   cardEnergyCost: 2
   cardType: 3
   targettingType: 0
   talentSchool: 8
   rarity: 1
+  racialCard: 0
+  originRace: 0
   expend: 0
   innate: 0
   fleeting: 0
   unplayable: 0
+  lifeSteal: 0
   blessing: 0
   customDescription:
   - color: 1
@@ -47,22 +51,35 @@ MonoBehaviour:
     cardEffectType: 8
     splitTargetEffect: 0
     splitTargetType: 0
+    removeBlockFrom: 0
+    modifyDeckCardEffect: 0
+    permanentBlockGain: 0
+    permanentDamageGain: 0
+    chooseTargetRandomly: 0
+    passiveApplicationLoops: 0
+    validRandomTargetsType: 0
+    damageLoops: 0
+    drawSpecificType: 0
+    specificTypeDrawn: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
     blessing: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
+    modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 4
+    baseDamageValue: 5
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
+    drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 1
+    healthRestored: 0
     healthLost: 0
     energyGained: 0
     cardsDrawn: 0

@@ -2513,7 +2513,6 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         foreach(CharacterEntityModel character in characters)
         {
             MoveEntityToNodeCentre(character, LevelManager.Instance.EnemyOffScreenNode, null);
-            //yield return new WaitForSeconds(0.25f);
         }
 
         yield return new WaitForSeconds(3f);

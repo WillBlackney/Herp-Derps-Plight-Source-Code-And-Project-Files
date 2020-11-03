@@ -34,7 +34,6 @@ public class CardViewModel : MonoBehaviour
     public GameObject talentSchoolParent;
 
     [Header("Glow Outline References")]
-    public GameObject glowParent;
     public Animator glowAnimator;
 
     [Header("Colouring References")]

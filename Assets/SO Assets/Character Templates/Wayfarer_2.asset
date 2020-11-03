@@ -72,6 +72,7 @@ MonoBehaviour:
     fastLearnerStacks: 0
     demonFormStacks: 0
     darkBargainStacks: 0
+    volatileStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -89,14 +90,13 @@ MonoBehaviour:
   deck:
   - {fileID: 11400000, guid: 7e0607c8c06c28a448dc2170bf23c76c, type: 2}
   - {fileID: 11400000, guid: 7e0607c8c06c28a448dc2170bf23c76c, type: 2}
+  - {fileID: 11400000, guid: 7e0607c8c06c28a448dc2170bf23c76c, type: 2}
   - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
-  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
-  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
-  - {fileID: 11400000, guid: 188b3c6d82a60d5458c4dd3fe81e3123, type: 2}
-  - {fileID: 11400000, guid: 188b3c6d82a60d5458c4dd3fe81e3123, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: b3e413a43d44ba24fbc2af972a7d4562, type: 2}
-  - {fileID: 11400000, guid: b3e413a43d44ba24fbc2af972a7d4562, type: 2}
+  - {fileID: 11400000, guid: 188b3c6d82a60d5458c4dd3fe81e3123, type: 2}
+  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
   modelParts:
   - Human_Chest
   - Elf_Face_7

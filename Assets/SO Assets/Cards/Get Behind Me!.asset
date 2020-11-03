@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Get Behind Me!
   m_EditorClassIdentifier: 
   cardName: Get Behind Me!
-  cardDescription: 'Give self and allies 3 Block. '
+  cardDescription: 'Give self and allies 4 Block. '
   cardSprite: {fileID: 21300000, guid: 04fc39377487d0c4aa2636c7d43bf49e, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -21,6 +21,8 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 5
   rarity: 2
+  racialCard: 0
+  originRace: 0
   expend: 0
   innate: 0
   fleeting: 0
@@ -68,12 +70,13 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 3
+    blockGainValue: 4
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
+    drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 1
     damageType: 0
     healthRestored: 0

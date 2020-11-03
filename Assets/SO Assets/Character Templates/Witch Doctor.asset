@@ -90,13 +90,12 @@ MonoBehaviour:
   deck:
   - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
   - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
+  - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: f90e6831907aed0428b7d454302e0639, type: 2}
-  - {fileID: 11400000, guid: f90e6831907aed0428b7d454302e0639, type: 2}
   - {fileID: 11400000, guid: ece4178a38cbca14d853868beeda14ee, type: 2}
-  - {fileID: 11400000, guid: ece4178a38cbca14d853868beeda14ee, type: 2}
-  - {fileID: 11400000, guid: 034d9e585e633514e8512b0f077e96fb, type: 2}
   - {fileID: 11400000, guid: 034d9e585e633514e8512b0f077e96fb, type: 2}
   modelParts:
   - Undead_Chest

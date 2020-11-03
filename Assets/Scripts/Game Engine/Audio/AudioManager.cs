@@ -90,6 +90,11 @@ public class AudioManager : Singleton<AudioManager>
 
         AudioModel a = Array.Find(allAudioModels, sound => sound.soundType == s);
 
+        if(a == null)
+        {
+            Debug.LogWarning("IsSoundPlaying() couln't find the sound...");
+        }
+
         if(a != null && a.source.isPlaying)
         {
             bReturned = true;
@@ -107,6 +112,8 @@ public class AudioManager : Singleton<AudioManager>
         AudioModel a = Array.Find(allAudioModels, sound => sound.soundType == s);
         if (a != null)
         {
+            a.fadingIn = false;
+            a.fadingOut = false;
             a.source.Play();
         }
     }
@@ -115,6 +122,8 @@ public class AudioManager : Singleton<AudioManager>
         AudioModel a = Array.Find(allAudioModels, sound => sound.soundType == s);
         if (a != null)
         {
+            a.fadingIn = false;
+            a.fadingOut = false;
             a.source.Stop();
         }
         else
@@ -164,33 +173,46 @@ public class AudioManager : Singleton<AudioManager>
     }
     public void FadeOutAllCombatMusic(float fadeDuration)
     {
+        Debug.LogWarning("FadeOutAllCombatMusic()");
         if (IsSoundPlaying(Sound.Music_Basic_1))
         {
             FadeOutSound(Sound.Music_Basic_1, fadeDuration);
         }
-        else if (IsSoundPlaying(Sound.Music_Basic_2))
+        if (IsSoundPlaying(Sound.Music_Basic_2))
         {
             FadeOutSound(Sound.Music_Basic_2, fadeDuration);
         }
-        else if (IsSoundPlaying(Sound.Music_Basic_3))
+        if (IsSoundPlaying(Sound.Music_Basic_3))
         {
             FadeOutSound(Sound.Music_Basic_3, fadeDuration);
         }
-        else if (IsSoundPlaying(Sound.Music_Elite_1))
+        if (IsSoundPlaying(Sound.Music_Elite_1))
         {
             FadeOutSound(Sound.Music_Elite_1, fadeDuration);
         }
-        else if (IsSoundPlaying(Sound.Music_Elite_2))
+        if (IsSoundPlaying(Sound.Music_Elite_2))
         {
             FadeOutSound(Sound.Music_Elite_2, fadeDuration);
         }
-        else if (IsSoundPlaying(Sound.Music_Elite_3))
+        if (IsSoundPlaying(Sound.Music_Elite_3))
         {
             FadeOutSound(Sound.Music_Elite_3, fadeDuration);
         }
     }
+    public void ForceStopAllCombatMusic()
+    {
+        Debug.LogWarning("ForceStopAllCombatMusic()");
+        StopSound(Sound.Music_Basic_1);
+        StopSound(Sound.Music_Basic_2);
+        StopSound(Sound.Music_Basic_3);
+        StopSound(Sound.Music_Elite_1);
+        StopSound(Sound.Music_Basic_2);
+        StopSound(Sound.Music_Basic_3);
+    }
     public void AutoPlayBasicCombatMusic(float fadeDuration)
     {
+        Debug.LogWarning("AutoPlayBasicCombatMusic");
+
         // Find all basic combat music
         AudioModel[] basicCombatMusic = Array.FindAll(allAudioModels, sound => sound.combatCategory == CombatMusicCategory.Basic && sound != previousCombatTrack);
 
@@ -205,11 +227,13 @@ public class AudioManager : Singleton<AudioManager>
     }
     public void AutoPlayEliteCombatMusic(float fadeDuration)
     {
+        Debug.LogWarning("AutoPlayEliteCombatMusic");
+
         // Find all basic combat music
-        AudioModel[] basicCombatMusic = Array.FindAll(allAudioModels, sound => sound.combatCategory == CombatMusicCategory.Elite && sound != previousCombatTrack);
+        AudioModel[] eliteCombatMusic = Array.FindAll(allAudioModels, sound => sound.combatCategory == CombatMusicCategory.Elite && sound != previousCombatTrack);
 
         // Choose one track randomly
-        AudioModel musicSelected = basicCombatMusic[RandomGenerator.NumberBetween(0, basicCombatMusic.Length - 1)];
+        AudioModel musicSelected = eliteCombatMusic[RandomGenerator.NumberBetween(0, eliteCombatMusic.Length - 1)];
 
         // Start music fade in
         musicSelected.source.FadeIn(fadeDuration, musicSelected);
