@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Red Reaper
   m_EditorClassIdentifier: 
   enemyName: Red Reaper
+  enemyModelSize: 0
+  audioProfile: 4
   enableFlexibleMaxHealth: 1
   maxHealthFlexAmount: 3
   maxHealth: 38

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Orc King Mummy
   enemyModelSize: 3
+  audioProfile: 3
   enableFlexibleMaxHealth: 1
   maxHealthFlexAmount: 5
   maxHealth: 130

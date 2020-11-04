@@ -14,6 +14,9 @@ public class EnemyDataSO : ScriptableObject
     [BoxGroup("General Info")]
     [LabelWidth(100)]
     public CharacterModelSize enemyModelSize;
+    [BoxGroup("General Info")]
+    [LabelWidth(100)]
+    public AudioProfileType audioProfile;
 
     // Core Stats
     [BoxGroup("Core Stats", centerLabel: true)]

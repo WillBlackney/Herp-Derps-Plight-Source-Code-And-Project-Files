@@ -17,6 +17,9 @@ public class CharacterTemplateSO : ScriptableObject
     [BoxGroup("General Info")]
     [LabelWidth(100)]
     public CharacterRace race;
+    [BoxGroup("General Info")]
+    [LabelWidth(100)]
+    public AudioProfileType audioProfile;
 
     // Core Stats
     [BoxGroup("Core Stats", centerLabel: true)]

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Big Bad Skeleton
   enemyModelSize: 3
+  audioProfile: 4
   enableFlexibleMaxHealth: 1
   maxHealthFlexAmount: 4
   maxHealth: 82

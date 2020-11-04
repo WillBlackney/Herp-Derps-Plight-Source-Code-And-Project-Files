@@ -92,6 +92,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.myName = original.myName;
         newCharacter.myClassName = original.myClassName;
         newCharacter.race = original.race;
+        newCharacter.audioProfile = original.audioProfile;
 
         SetCharacterMaxHealth(newCharacter, original.maxHealth);
         SetCharacterHealth(newCharacter, original.health);
@@ -140,6 +141,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.myName = template.myName;
         newCharacter.myClassName = template.myClassName;
         newCharacter.race = template.race;
+        newCharacter.audioProfile = template.audioProfile;
 
         SetCharacterMaxHealth(newCharacter, template.maxHealth);
         SetCharacterHealth(newCharacter, template.health);

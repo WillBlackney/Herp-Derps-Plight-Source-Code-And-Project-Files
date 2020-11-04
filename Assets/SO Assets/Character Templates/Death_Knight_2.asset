@@ -15,6 +15,7 @@ MonoBehaviour:
   myName: Orion
   myClassName: Death Knight
   race: 3
+  audioProfile: 4
   health: 50
   maxHealth: 50
   power: 0

@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Skeleton Archer (Green Louse)
   m_EditorClassIdentifier: 
   enemyName: Skeleton Ranger
+  enemyModelSize: 0
+  audioProfile: 4
   enableFlexibleMaxHealth: 1
   maxHealthFlexAmount: 1
   maxHealth: 14
@@ -131,6 +133,11 @@ MonoBehaviour:
       actionType: 0
       baseDamage: 5
       damageType: 0
+      characterSummoned: {fileID: 0}
+      summonedCreatureStartPosition: 0
+      modelFadeInSpeed: 0
+      uiFadeInSpeed: 0
+      summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
       blockGained: 0
@@ -166,6 +173,11 @@ MonoBehaviour:
       actionType: 5
       baseDamage: 0
       damageType: 0
+      characterSummoned: {fileID: 0}
+      summonedCreatureStartPosition: 0
+      modelFadeInSpeed: 0
+      uiFadeInSpeed: 0
+      summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 11400000, guid: 6f53a59075648034ab7c521f182140e3, type: 2}
       passiveStacks: 2
       blockGained: 0

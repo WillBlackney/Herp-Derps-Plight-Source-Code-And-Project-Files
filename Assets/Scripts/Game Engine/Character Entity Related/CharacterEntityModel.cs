@@ -6,6 +6,7 @@ public class CharacterEntityModel
 {
     [Header("General Properties")]
     public string myName;
+    public AudioProfileType audioProfile;
     public Allegiance allegiance;
     public Controller controller;
     public LivingState livingState;

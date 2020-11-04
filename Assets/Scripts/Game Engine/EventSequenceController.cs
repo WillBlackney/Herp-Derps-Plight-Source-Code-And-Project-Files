@@ -334,6 +334,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
             AudioManager.Instance.FadeOutSound(Sound.Character_Footsteps, 3f);
 
             // Zoom and move camera
+            yield return new WaitForSeconds(0.5f);
             CameraManager.Instance.DoCameraMove(3, 0, 3f);
             CameraManager.Instance.DoCameraZoom(5, 3, 3f);
 

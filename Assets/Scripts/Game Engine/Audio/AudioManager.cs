@@ -5,9 +5,17 @@ using System;
 
 public class AudioManager : Singleton<AudioManager>
 {
+    [Header("Components + Pooling")]
+    [SerializeField] private GameObject audioPlayerPrefab;
+    [SerializeField] private Transform audioPlayerPoolParent;
+    [SerializeField] private List<AudioPlayer> audioPlayerPool;
+
     [Header("Properties")]
     private AudioModel[] allAudioModels;
     private AudioModel previousCombatTrack = null;
+
+    [Header("Audio Profiles")]
+    [SerializeField] private AudioProfileData[] allProfiles;
 
     [Header("Music")]
     [SerializeField] private AudioModel[] allMusic;
@@ -114,8 +122,75 @@ public class AudioManager : Singleton<AudioManager>
         {
             a.fadingIn = false;
             a.fadingOut = false;
+
+            // Randomize pitch if marked to do so
+            if (a.randomizePitch)
+            {
+                a.source.pitch = RandomGenerator.NumberBetween(a.randomPitchLowerLimit, a.randomPitchUpperLimit);
+            }
+
+            // Randomize volume if marked to do so
+            if (a.randomizeVolume)
+            {
+                a.source.volume = RandomGenerator.NumberBetween(a.randomVolumeLowerLimit, a.randomVolumeUpperLimit);
+            }
+
             a.source.Play();
         }
+    }
+    public void PlaySound(AudioProfileType type, AudioSet set)
+    {
+        // Find the matching profile
+        AudioProfileData apd = Array.Find(allProfiles, a => a.audioProfileType == type);
+
+        // Get the correct sounds
+        List<AudioModel> validSounds = new List<AudioModel>();
+        if(set == AudioSet.Die)
+        {
+            validSounds.AddRange(apd.dieSounds);
+        }
+        else if (set == AudioSet.Hurt)
+        {
+            validSounds.AddRange(apd.hurtSounds);
+        }
+        else if (set == AudioSet.MeleeAttack)
+        {
+            validSounds.AddRange(apd.meleeAttackSounds);
+        }
+        else if (set == AudioSet.Buff)
+        {
+            validSounds.AddRange(apd.buffSounds);
+        }
+
+        // Randomly pick a sound
+        AudioModel soundPlayed = validSounds[RandomGenerator.NumberBetween(0, validSounds.Count - 1)];
+
+        // Set up audio player
+        AudioPlayer player = GetNextAvailableAudioPlayer();
+        BuildAudioPlayerFromAudioModelData(soundPlayed, player);
+
+        // Play the sound!
+        player.source.Play();        
+    }   
+    private void BuildAudioPlayerFromAudioModelData(AudioModel data, AudioPlayer player)
+    {
+        player.source.clip = data.audioClip;
+
+        // Randomize pitch if marked to do so
+        if (data.randomizePitch)
+        {
+            player.source.pitch = RandomGenerator.NumberBetween(data.randomPitchLowerLimit, data.randomPitchUpperLimit);
+        }
+
+        // Randomize volume if marked to do so
+        if (data.randomizeVolume)
+        {
+            player.source.volume = RandomGenerator.NumberBetween(data.randomVolumeLowerLimit, data.randomVolumeUpperLimit);
+        }
+
+        player.source.volume = 1;
+        player.source.pitch = 1;
+
     }
     public void StopSound(Sound s)
     {
@@ -243,6 +318,36 @@ public class AudioManager : Singleton<AudioManager>
     }
     #endregion
 
+    // Audio Player + Pooling Logic
+    #region
+    private AudioPlayer GetNextAvailableAudioPlayer()
+    {
+        AudioPlayer availablePlayer = null;
+
+        // Find an available player
+        foreach (AudioPlayer ap in audioPlayerPool)
+        {
+            if (ap.source.isPlaying == false)
+            {
+                availablePlayer = ap;
+            }
+        }
+
+        // If there arent any available, create new one, add it to pool, then use it
+        if (availablePlayer == null)
+        {
+            availablePlayer = CreateAndAddAudioPlayerToPool();
+        }
+
+        return availablePlayer;
+    }
+    private AudioPlayer CreateAndAddAudioPlayerToPool()
+    {
+        AudioPlayer newAP = Instantiate(audioPlayerPrefab, audioPlayerPoolParent).GetComponent<AudioPlayer>();
+        audioPlayerPool.Add(newAP);
+        return newAP;
+    }
+    #endregion
 }
 
 

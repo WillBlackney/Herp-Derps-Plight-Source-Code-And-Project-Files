@@ -7,17 +7,10 @@ public class CharacterData
     public string myName;
     public string myClassName;
     public CharacterRace race;
+    public AudioProfileType audioProfile;
 
     [Header("Passive Properties")]
     public PassiveManagerModel passiveManager = new PassiveManagerModel();
-
-    // TO DO WAAAAY DOWN THE TRACK
-    // Remove this: we only need this for starting the game
-    // when not in the menu scene. This property is used to
-    // create mock character data in the editor, then build
-    // a character from that. in the future, characters will
-    // be built in the menu scene, and this wont be needed
-    public SerializedPassiveManagerModel serializedPassiveManager;
 
     [Header("Health Properties")]
     public int health;
@@ -41,5 +34,4 @@ public class CharacterData
 
     [Header("Talent Properties")]
     public List<TalentPairingModel> talentPairings = new List<TalentPairingModel>();
-
 }

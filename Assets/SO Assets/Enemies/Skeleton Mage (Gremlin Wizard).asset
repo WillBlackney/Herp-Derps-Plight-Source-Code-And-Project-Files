@@ -13,10 +13,15 @@ MonoBehaviour:
   m_Name: Skeleton Mage (Gremlin Wizard)
   m_EditorClassIdentifier: 
   enemyName: Skeleton Mage
+  enemyModelSize: 0
+  audioProfile: 4
+  enableFlexibleMaxHealth: 0
+  maxHealthFlexAmount: 0
   maxHealth: 24
+  initiative: 2
   power: 0
   dexterity: 0
-  initiative: 2
+  overrideStartingHealth: 0
   startingHealth: 24
   startingBlock: 0
   physicalResistance: 0
@@ -68,6 +73,7 @@ MonoBehaviour:
     fastLearnerStacks: 0
     demonFormStacks: 0
     darkBargainStacks: 0
+    volatileStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -127,6 +133,11 @@ MonoBehaviour:
       actionType: 11
       baseDamage: 0
       damageType: 0
+      characterSummoned: {fileID: 0}
+      summonedCreatureStartPosition: 0
+      modelFadeInSpeed: 0
+      uiFadeInSpeed: 0
+      summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
       blockGained: 0
@@ -200,6 +211,11 @@ MonoBehaviour:
       actionType: 0
       baseDamage: 25
       damageType: 4
+      characterSummoned: {fileID: 0}
+      summonedCreatureStartPosition: 0
+      modelFadeInSpeed: 0
+      uiFadeInSpeed: 0
+      summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
       blockGained: 0

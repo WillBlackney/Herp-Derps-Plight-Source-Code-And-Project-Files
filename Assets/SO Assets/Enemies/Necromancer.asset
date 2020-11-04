@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Necromancer
   enemyModelSize: 0
+  audioProfile: 4
   enableFlexibleMaxHealth: 1
   maxHealthFlexAmount: 4
   maxHealth: 68

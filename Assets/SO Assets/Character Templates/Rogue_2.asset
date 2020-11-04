@@ -15,6 +15,7 @@ MonoBehaviour:
   myName: Riff Raff
   myClassName: Rogue
   race: 1
+  audioProfile: 1
   health: 50
   maxHealth: 50
   power: 0

@@ -15,6 +15,7 @@ MonoBehaviour:
   myName: Azura
   myClassName: Wayfarer
   race: 4
+  audioProfile: 2
   health: 50
   maxHealth: 50
   power: 0

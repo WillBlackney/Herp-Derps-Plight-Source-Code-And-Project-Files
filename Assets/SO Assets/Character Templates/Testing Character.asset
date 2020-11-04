@@ -15,12 +15,13 @@ MonoBehaviour:
   myName: Test Name
   myClassName: Test Class
   race: 0
+  audioProfile: 0
   health: 30
   maxHealth: 30
   power: 0
   dexterity: 0
-  stamina: 1
-  draw: 6
+  stamina: 10
+  draw: 10
   initiative: 50
   startingBlock: 5
   physicalResistance: 0
@@ -88,12 +89,12 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: e4da3cf9bac315a4586b6ba520cf9a90, type: 2}
-  - {fileID: 11400000, guid: e4da3cf9bac315a4586b6ba520cf9a90, type: 2}
-  - {fileID: 11400000, guid: 0163cb54b6898bf46aab115bc74d0350, type: 2}
-  - {fileID: 11400000, guid: 0163cb54b6898bf46aab115bc74d0350, type: 2}
-  - {fileID: 11400000, guid: 25f889ca097d2c742a862cb5f2097476, type: 2}
-  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
+  - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
+  - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
+  - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
+  - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
+  - {fileID: 11400000, guid: ad02d279b5d5514408afc73144555af3, type: 2}
+  - {fileID: 11400000, guid: ad02d279b5d5514408afc73144555af3, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1

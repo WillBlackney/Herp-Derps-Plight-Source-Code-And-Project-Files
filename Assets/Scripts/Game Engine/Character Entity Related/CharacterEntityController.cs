@@ -181,6 +181,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
     {
         // Set general info
         character.myName = data.myName;
+        character.audioProfile = data.audioProfile;
 
         // Setup Core Stats
         ModifyStamina(character, data.stamina);
@@ -211,6 +212,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
     {
         // Set general info
         character.myName = data.enemyName;
+        character.audioProfile = data.audioProfile;
 
         // Setup Core Stats
         ModifyInitiative(character, data.initiative);

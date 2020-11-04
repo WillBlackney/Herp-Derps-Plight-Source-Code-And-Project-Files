@@ -15,6 +15,7 @@ MonoBehaviour:
   myName: Zed
   myClassName: Marksman
   race: 6
+  audioProfile: 7
   health: 50
   maxHealth: 50
   power: 0

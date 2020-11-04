@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Test Enemy
   enemyModelSize: 0
+  audioProfile: 7
   enableFlexibleMaxHealth: 0
   maxHealthFlexAmount: 0
   maxHealth: 30
   initiative: 3
   power: 0
   dexterity: 0
-  overrideStartingHealth: 1
+  overrideStartingHealth: 0
   startingHealth: 1
   startingBlock: 0
   physicalResistance: 0

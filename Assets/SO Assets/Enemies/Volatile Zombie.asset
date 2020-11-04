@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Volatile Zombie
   m_EditorClassIdentifier: 
   enemyName: Volatile Zombie
+  enemyModelSize: 0
+  audioProfile: 4
   enableFlexibleMaxHealth: 1
   maxHealthFlexAmount: 2
   maxHealth: 26
@@ -161,6 +163,11 @@ MonoBehaviour:
       actionType: 0
       baseDamage: 6
       damageType: 1
+      characterSummoned: {fileID: 0}
+      summonedCreatureStartPosition: 0
+      modelFadeInSpeed: 0
+      uiFadeInSpeed: 0
+      summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
       blockGained: 0
@@ -211,6 +218,11 @@ MonoBehaviour:
       actionType: 2
       baseDamage: 0
       damageType: 0
+      characterSummoned: {fileID: 0}
+      summonedCreatureStartPosition: 0
+      modelFadeInSpeed: 0
+      uiFadeInSpeed: 0
+      summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 11400000, guid: 6d216e783d4ba3a49a8dd267aa727fd3, type: 2}
       passiveStacks: 3
       blockGained: 0

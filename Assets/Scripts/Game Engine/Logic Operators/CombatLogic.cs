@@ -484,6 +484,10 @@ public class CombatLogic : Singleton<CombatLogic>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 AudioManager.Instance.PlaySound(Sound.Ability_Damaged_Health_Lost), queuePosition, 0, 0, EventDetail.None, batchedEvent);
 
+                // Create SFX 
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                AudioManager.Instance.PlaySound(victim.audioProfile, AudioSet.Hurt), queuePosition, 0, 0, EventDetail.None, batchedEvent);
+
             }
         }
 
@@ -676,6 +680,7 @@ public class CombatLogic : Singleton<CombatLogic>
         VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.FadeOutCharacterWorldCanvas(view, null));
 
         // Play death animation
+        VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(entity.audioProfile, AudioSet.Die));
         VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.PlayDeathAnimation(view), QueuePosition.Back, 0f, 1f);
 
         // Smokey disapear effect

@@ -15,6 +15,7 @@ MonoBehaviour:
   myName: Udyr
   myClassName: Warrior
   race: 2
+  audioProfile: 3
   health: 50
   maxHealth: 50
   power: 0
@@ -72,6 +73,7 @@ MonoBehaviour:
     fastLearnerStacks: 0
     demonFormStacks: 0
     darkBargainStacks: 0
+    volatileStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
