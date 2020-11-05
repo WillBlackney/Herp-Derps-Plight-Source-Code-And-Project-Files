@@ -1,3 +1,5 @@
 # HoHD-Card-Game-Version-Project
 
-//![Farmers Market Finder Demo](GIF/test.gif)
+![](GIF/characters.gif)
+![](GIF/combat.gif)
+![](GIF/main_menu.gif)
