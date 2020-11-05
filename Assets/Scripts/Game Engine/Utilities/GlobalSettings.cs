@@ -38,6 +38,12 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [ShowIf("deviceMode", DeviceMode.Mobile)]
     public float hoverScaleAmount;
 
+    // Audio Info
+    [Header("Audio Settings")]
+    [LabelWidth(200)]
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
+    public bool preventAudioProfiles = true;
+
     // General Info
     [Header("Card Settings")]
     [LabelWidth(200)]

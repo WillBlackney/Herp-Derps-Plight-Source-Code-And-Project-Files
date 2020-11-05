@@ -338,6 +338,9 @@ public enum IntentImage
     PurpleDebuff = 8,
     Unknown = 9,
     Flee = 10,
+    SummonHelp = 13,
+    Sleep = 12,
+
     
 
 }

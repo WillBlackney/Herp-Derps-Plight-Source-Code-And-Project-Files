@@ -176,7 +176,7 @@ MonoBehaviour:
       collection: 0
   - actionName: Sleep
     actionType: 10
-    intentImage: 9
+    intentImage: 12
     actionLoops: 1
     doThisOnFirstActivation: 0
     canBeConsecutive: 1

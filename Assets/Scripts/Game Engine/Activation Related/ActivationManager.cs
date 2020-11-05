@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using DG.Tweening;
 using TMPro;
+using Sirenix.OdinInspector;
 
 public class ActivationManager : Singleton<ActivationManager>
 {
@@ -14,25 +15,30 @@ public class ActivationManager : Singleton<ActivationManager>
     [SerializeField] private GameObject activationPanelParent;
     [SerializeField] private GameObject panelArrow;
     [SerializeField] private GameObject activationSlotContentParent;
-    [SerializeField] private GameObject activationWindowContentParent; 
+    [SerializeField] private GameObject activationWindowContentParent;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Turn Change Component References")]
     [SerializeField] private TextMeshProUGUI whoseTurnText;
     [SerializeField] private CanvasGroup visualParentCG;
     [SerializeField] private RectTransform blackBarImageRect;
     [SerializeField] private RectTransform middlePos;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Combat Start Screen Components")]
     [SerializeField] private GameObject shieldParent;
     [SerializeField] private Transform leftSwordRect;
     [SerializeField] private Transform rightSwordRect;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [SerializeField] private Transform leftSwordStartPos;
     [SerializeField] private Transform rightSwordStartPos;
     [SerializeField] private Transform swordEndPos;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Turn Change Properties")]
     [SerializeField] private float alphaChangeSpeed;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Variables")]
     private List<CharacterEntityModel> activationOrder = new List<CharacterEntityModel>();

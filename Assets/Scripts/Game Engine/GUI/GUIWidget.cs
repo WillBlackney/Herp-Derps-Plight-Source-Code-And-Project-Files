@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Sirenix.OdinInspector;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -9,15 +10,20 @@ public class GUIWidget : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
     #region
     [Header("Core Properties")]
     public WidgetInputType inputType;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Event Data")]
     [SerializeField] GUIWidgetEventData[] onClickEvents;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     [SerializeField] GUIWidgetEventData[] mouseEnterEvents;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     [SerializeField] GUIWidgetEventData[] mouseExitEvents;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Input State")]
     public bool pointerIsOverMe;
     [HideInInspector] public float timeSinceLastPointerEnter;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     public GUIWidgetEventData[] MouseEnterEvents
     {

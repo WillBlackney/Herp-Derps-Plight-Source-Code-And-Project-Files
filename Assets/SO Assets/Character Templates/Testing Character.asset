@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myName: Test Name
   myClassName: Test Class
-  race: 0
-  audioProfile: 0
+  race: 2
+  audioProfile: 3
   health: 30
   maxHealth: 30
   power: 0

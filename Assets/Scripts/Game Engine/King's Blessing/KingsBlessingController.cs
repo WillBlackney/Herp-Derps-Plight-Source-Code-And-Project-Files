@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
+using Sirenix.OdinInspector;
 
 public class KingsBlessingController : Singleton<KingsBlessingController>
 {
@@ -14,19 +15,23 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
     [SerializeField] private Transform playerModelEnterDungeonPos;
 
     [Header("Component References")]
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     [SerializeField] GameObject uiVisualParent;
     [SerializeField] CanvasGroup continueButtonCg;
 
     [Header("King Model References")]
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     [SerializeField] private Animator kingFloatAnimator;
     [SerializeField] private List<string> kingBodyParts = new List<string>();
 
     [Header("Environment References")]
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     [SerializeField] private GameObject gateParent;
     [SerializeField] private Transform gateStartPos;
     [SerializeField] private Transform gateEndPos;
 
     [Header("Sppech Bubble Components")]
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     [SerializeField] private CanvasGroup bubbleCg;
     [SerializeField] private TextMeshProUGUI bubbleText;
     [SerializeField] private string[] bubbleGreetings;

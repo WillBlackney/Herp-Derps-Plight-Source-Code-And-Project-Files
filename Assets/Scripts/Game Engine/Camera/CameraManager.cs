@@ -3,29 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using EZCameraShake;
 using DG.Tweening;
+using Sirenix.OdinInspector;
+
 public class CameraManager : Singleton<CameraManager>
 {
     // Properties + Component References
     #region
     [Header("Component References")]
     [SerializeField] private Camera mainCamera;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Small Shake Properties")]
     public float sMagnitude;
     public float sRoughness;
     public float sDuration;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Medium Shake Properties")]
     public float mMagnitude;
     public float mRoughness;
     public float mDuration;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Large Shake Properties")]
     public float lMagnitude;
     public float lRoughness;
     public float lDuration;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     #endregion
-       
+
     // Property Accessors
     #region
     public Camera MainCamera

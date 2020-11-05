@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Sirenix.OdinInspector;
 
 [Serializable]
 public class AudioProfileData 
 {
+    [Header("General Properties")]
     public AudioProfileType audioProfileType;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
+    [Header("SFX Buckets")]
     public AudioModel[] meleeAttackSounds;
     public AudioModel[] hurtSounds;
     public AudioModel[] dieSounds;

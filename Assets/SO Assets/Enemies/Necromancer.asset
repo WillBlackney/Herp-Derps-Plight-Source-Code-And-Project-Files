@@ -91,7 +91,7 @@ MonoBehaviour:
   allEnemyActions:
   - actionName: Summon Skeleton
     actionType: 13
-    intentImage: 9
+    intentImage: 11
     actionLoops: 1
     doThisOnFirstActivation: 0
     canBeConsecutive: 1

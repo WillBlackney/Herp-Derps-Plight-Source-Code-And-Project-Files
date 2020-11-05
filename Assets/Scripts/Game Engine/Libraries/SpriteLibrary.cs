@@ -62,6 +62,10 @@ public class SpriteLibrary : Singleton<SpriteLibrary>
     public Sprite unknown;
     [PreviewField(75)]
     public Sprite flee;
+    [PreviewField(75)]
+    public Sprite summonHelp;
+    [PreviewField(75)]
+    public Sprite sleep;
     #endregion
 
     // Card Type Images
@@ -181,6 +185,14 @@ public class SpriteLibrary : Singleton<SpriteLibrary>
         else if (data == IntentImage.Flee)
         {
             spriteReturned = flee;
+        }
+        else if (data == IntentImage.SummonHelp)
+        {
+            spriteReturned = summonHelp;
+        }
+        else if (data == IntentImage.Sleep)
+        {
+            spriteReturned = sleep;
         }
 
         return spriteReturned;

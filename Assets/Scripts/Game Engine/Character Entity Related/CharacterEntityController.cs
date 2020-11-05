@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using DG.Tweening;
 using Spriter2UnityDX;
+using Sirenix.OdinInspector;
 
 public class CharacterEntityController : Singleton<CharacterEntityController>
 {
@@ -17,6 +18,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
     [Header("UCM Colours")]
     public Color normalColour;
     public Color highlightColour;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     #endregion
 
     // Property Accessors
@@ -65,6 +67,12 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
     private void SetCharacterViewStartingState(CharacterEntityModel character)
     {
         CharacterEntityView view = character.characterEntityView;
+
+        // Disable Intent vm for player characters
+        if(character.controller == Controller.Player)
+        {
+            view.myIntentViewModel.gameObject.SetActive(false);
+        }
 
         // Disable block icon
         view.blockIcon.SetActive(false);
@@ -1116,6 +1124,56 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         Sprite intentSprite = SpriteLibrary.Instance.GetIntentSpriteFromIntentEnumData(enemy.myNextAction.intentImage);
         string attackDamageString = "";
 
+        // Update intent description
+        if(enemy.myNextAction.intentImage == IntentImage.Unknown)
+        {
+            enemy.characterEntityView.intentPopUpDescriptionText.text = "This character's intent is unknown!...";
+        }
+        else if (enemy.myNextAction.intentImage == IntentImage.DefendBuff)
+        {
+            enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to gain <color=#F8FF00>Block<color=#FFFFFF> and a buff effect.";
+        }
+        else if(enemy.myNextAction.actionType == ActionType.BuffAllAllies)
+        {
+            enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to apply a buff to it's allies.";
+        }
+        else if (enemy.myNextAction.actionType == ActionType.BuffSelf)
+        {
+            enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to apply a buff to itself.";
+        }
+        else if (enemy.myNextAction.actionType == ActionType.BuffTarget)
+        {
+            enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to apply a buff to <color=#F8FF00>" + enemy.currentActionTarget + "<color=#FFFFFF>.";
+        }
+        else if (enemy.myNextAction.actionType == ActionType.DebuffAllEnemies)
+        {
+            enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to apply a harmful debuff on ALL enemies.";
+        }
+        else if (enemy.myNextAction.actionType == ActionType.DebuffTarget)
+        {
+            enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to apply a harmful debuff to <color=#F8FF00>" + enemy.currentActionTarget + "<color=#FFFFFF>.";
+        }
+        else if (enemy.myNextAction.actionType == ActionType.DefendSelf)
+        {
+            enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to apply <color=#F8FF00>Block<color=#FFFFFF> to itself.";
+        }
+        else if (enemy.myNextAction.actionType == ActionType.DefendAllAllies)
+        {
+            enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to apply <color=#F8FF00>Block<color=#FFFFFF> to ALL its allies.";
+        }
+        else if (enemy.myNextAction.actionType == ActionType.DefendTarget)
+        {
+            enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to apply <color=#F8FF00>Block<color=#FFFFFF> to " + enemy.currentActionTarget + "<color=#FFFFFF>.";
+        }
+        else if (enemy.myNextAction.actionType == ActionType.Sleep)
+        {
+            enemy.characterEntityView.intentPopUpDescriptionText.text = "This character is asleep an unable to take action...";
+        }
+        else if (enemy.myNextAction.actionType == ActionType.SummonCreature)
+        {
+            enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to summon reinforcements";
+        }
+
         // if attacking, calculate + enable + set damage value text
         if (enemy.myNextAction.actionType == ActionType.AttackTarget ||
             enemy.myNextAction.actionType == ActionType.AttackAllEnemies)
@@ -1146,6 +1204,18 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             else
             {
                 attackDamageString = finalDamageValue.ToString();
+            }
+
+            // Update description text
+            if(enemy.myNextAction.actionType == ActionType.AttackTarget)
+            {
+                enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to attack <color=#F8FF00>" + target.myName +
+                    "<color=#FFFFFF> for <color=#92E0FF>" + attackDamageString + "<color=#FFFFFF> damage.";
+            }
+
+            else if (enemy.myNextAction.actionType == ActionType.AttackAllEnemies)
+            {
+                enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to attack ALL enemies for <color=#92E0FF>" + attackDamageString + "<color=#FFFFFF> damage.";
             }
         }
 

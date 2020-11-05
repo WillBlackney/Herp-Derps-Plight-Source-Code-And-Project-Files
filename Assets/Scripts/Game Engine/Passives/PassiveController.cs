@@ -1220,7 +1220,6 @@ public class PassiveController : Singleton<PassiveController>
         // Setup + Cache refs
         PassiveIconData iconData = GetPassiveIconDataByName("Temporary Power");
         CharacterEntityModel character = pManager.myCharacter;
-
         // Check for rune
         if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
         {
@@ -1230,7 +1229,9 @@ public class PassiveController : Singleton<PassiveController>
         }
 
         // Increment stacks
+        int originalStacks = pManager.temporaryBonusPowerStacks;
         pManager.temporaryBonusPowerStacks += stacks;
+        int newStackCount = pManager.temporaryBonusPowerStacks;
 
         if (character != null)
         {
@@ -1247,21 +1248,40 @@ public class PassiveController : Singleton<PassiveController>
             if (stacks > 0 && showVFX)
             {
                 // VFX visual events
-                VisualEventManager.Instance.CreateVisualEvent(() =>
+                if (originalStacks < 0 && newStackCount == 0)
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Power +" + stacks.ToString());
-                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                });
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Power Debuff Removed");
+                    });
+                }
+                else
+                {
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Power +" + stacks.ToString());
+                        VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                    });
+                }
 
             }
 
             else if (stacks < 0 && showVFX)
             {
-                VisualEventManager.Instance.CreateVisualEvent(() =>
+                if(originalStacks > 0 && newStackCount == 0)
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Power Expired");
-                    // VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                }, QueuePosition.Back, 0, 0.5f);
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Power Buff Removed");
+                    }, QueuePosition.Back, 0, 0.5f);
+                }
+                else
+                {
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Power " + stacks.ToString());
+                    }, QueuePosition.Back, 0, 0.5f);
+                }
             }
 
             // Update intent GUI, if enemy and attacking
@@ -1297,7 +1317,9 @@ public class PassiveController : Singleton<PassiveController>
         }
 
         // Increment stacks
+        int originalStacks = pManager.temporaryBonusDexterityStacks;
         pManager.temporaryBonusDexterityStacks += stacks;
+        int newStackCount = pManager.temporaryBonusDexterityStacks;
 
         if (character != null)
         {
@@ -1314,22 +1336,42 @@ public class PassiveController : Singleton<PassiveController>
             if (stacks > 0 && showVFX)
             {
                 // VFX visual events
-                VisualEventManager.Instance.CreateVisualEvent(() =>
+                if (originalStacks < 0 && newStackCount == 0)
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Dexterity +" + stacks.ToString());
-                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                });
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Dexterity Debuff Removed");
+                    });
+                }
+                else
+                {
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Dexterity +" + stacks.ToString());
+                        VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                    });
+                }
 
             }
 
             else if (stacks < 0 && showVFX)
             {
-                VisualEventManager.Instance.CreateVisualEvent(() =>
+                if (originalStacks > 0 && newStackCount == 0)
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Dexterity Expired");
-                    //VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                });
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Dexterity Buff Removed");
+                    }, QueuePosition.Back, 0, 0.5f);
+                }
+                else
+                {
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Dexterity " + stacks.ToString());
+                    }, QueuePosition.Back, 0, 0.5f);
+                }
             }
+
             if (showVFX)
             {
                 VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
@@ -1353,7 +1395,9 @@ public class PassiveController : Singleton<PassiveController>
         }
 
         // Increment stacks
+        int originalStacks = pManager.temporaryBonusInitiativeStacks;
         pManager.temporaryBonusInitiativeStacks += stacks;
+        int newStackCount = pManager.temporaryBonusInitiativeStacks;
 
         if (character != null)
         {
@@ -1370,22 +1414,42 @@ public class PassiveController : Singleton<PassiveController>
             if (stacks > 0 && showVFX)
             {
                 // VFX visual events
-                VisualEventManager.Instance.CreateVisualEvent(() =>
+                if (originalStacks < 0 && newStackCount == 0)
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Initiative +" + stacks.ToString());
-                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                });
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Initiative Debuff Removed");
+                    });
+                }
+                else
+                {
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Initiative +" + stacks.ToString());
+                        VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                    });
+                }
 
             }
 
             else if (stacks < 0 && showVFX)
             {
-                VisualEventManager.Instance.CreateVisualEvent(() =>
+                if (originalStacks > 0 && newStackCount == 0)
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Initiative Expired");
-                    // VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                });
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Initiative Buff Removed");
+                    }, QueuePosition.Back, 0, 0.5f);
+                }
+                else
+                {
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Initiative " + stacks.ToString());
+                    }, QueuePosition.Back, 0, 0.5f);
+                }
             }
+
 
             if (showVFX)
             {
@@ -1410,7 +1474,9 @@ public class PassiveController : Singleton<PassiveController>
         }
 
         // Increment stacks
+        int originalStacks = pManager.temporaryBonusStaminaStacks;
         pManager.temporaryBonusStaminaStacks += stacks;
+        int newStackCount = pManager.temporaryBonusStaminaStacks;
 
         if (character != null)
         {
@@ -1427,21 +1493,40 @@ public class PassiveController : Singleton<PassiveController>
             if (stacks > 0 && showVFX)
             {
                 // VFX visual events
-                VisualEventManager.Instance.CreateVisualEvent(() =>
+                if (originalStacks < 0 && newStackCount == 0)
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Stamina + " + stacks.ToString());
-                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                });
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Stamina Debuff Removed");
+                    });
+                }
+                else
+                {
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Stamina +" + stacks.ToString());
+                        VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                    });
+                }
 
             }
 
             else if (stacks < 0 && showVFX)
             {
-                VisualEventManager.Instance.CreateVisualEvent(() =>
+                if (originalStacks > 0 && newStackCount == 0)
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Stamina Expired");
-                    // VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                });
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Stamina Buff Removed");
+                    }, QueuePosition.Back, 0, 0.5f);
+                }
+                else
+                {
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Stamina " + stacks.ToString());
+                    }, QueuePosition.Back, 0, 0.5f);
+                }
             }
 
             if (showVFX)
@@ -1467,7 +1552,9 @@ public class PassiveController : Singleton<PassiveController>
         }
 
         // Increment stacks
+        int originalStacks = pManager.temporaryBonusDrawStacks;
         pManager.temporaryBonusDrawStacks += stacks;
+        int newStackCount = pManager.temporaryBonusDrawStacks;
 
         if (character != null)
         {
@@ -1484,21 +1571,40 @@ public class PassiveController : Singleton<PassiveController>
             if (stacks > 0 && showVFX)
             {
                 // VFX visual events
-                VisualEventManager.Instance.CreateVisualEvent(() =>
+                if (originalStacks < 0 && newStackCount == 0)
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Draw + " + stacks.ToString());
-                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                });
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Draw Debuff Removed");
+                    });
+                }
+                else
+                {
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Draw +" + stacks.ToString());
+                        VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                    });
+                }
 
             }
 
             else if (stacks < 0 && showVFX)
             {
-                VisualEventManager.Instance.CreateVisualEvent(() =>
+                if (originalStacks > 0 && newStackCount == 0)
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Draw Expired" + stacks.ToString());
-                    //VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                });
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Draw Buff Removed");
+                    }, QueuePosition.Back, 0, 0.5f);
+                }
+                else
+                {
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Draw " + stacks.ToString());
+                    }, QueuePosition.Back, 0, 0.5f);
+                }
             }
 
             if (showVFX)
@@ -3220,7 +3326,7 @@ public class PassiveController : Singleton<PassiveController>
                 // VFX visual events
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Planted Feet!" + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Planted Feet!");
                     VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
                 });
 
@@ -3230,8 +3336,7 @@ public class PassiveController : Singleton<PassiveController>
             {
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Planted Feet Removed");
-                    //VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Planted Feet Expired");
                 });
             }
 
@@ -3295,7 +3400,7 @@ public class PassiveController : Singleton<PassiveController>
             {
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Taken Aim Removed");
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Taken Aim Expired");
                 });
             }
 
@@ -3741,7 +3846,9 @@ public class PassiveController : Singleton<PassiveController>
         }
 
         // Increment stacks
+        int originalStacks = pManager.wrathStacks;
         pManager.wrathStacks += stacks;
+        int newStackCount = pManager.wrathStacks;
 
         if (character != null)
         {
@@ -3755,24 +3862,44 @@ public class PassiveController : Singleton<PassiveController>
                 StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
             }
 
+
             if (stacks > 0 && showVFX)
             {
                 // VFX visual events
-                VisualEventManager.Instance.CreateVisualEvent(() =>
+                if (originalStacks < 0 && newStackCount == 0)
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Wrath +" + stacks.ToString());
-                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                });
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Wrath Expired");
+                    });
+                }
+                else
+                {
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Wrath +" + stacks.ToString());
+                        VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                    });
+                }
 
             }
 
             else if (stacks < 0 && showVFX)
             {
-                VisualEventManager.Instance.CreateVisualEvent(() =>
+                if (originalStacks > 0 && newStackCount == 0)
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Wrath " + stacks.ToString());
-                    //VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                });
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Wrath Expired");
+                    }, QueuePosition.Back, 0, 0.5f);
+                }
+                else
+                {
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Wrath " + stacks.ToString());
+                    }, QueuePosition.Back, 0, 0.5f);
+                }
             }
 
             // Update intent GUI, if enemy and attacking
@@ -3806,7 +3933,9 @@ public class PassiveController : Singleton<PassiveController>
         }
 
         // Increment stacks
+        int originalStacks = pManager.weakenedStacks;
         pManager.weakenedStacks += stacks;
+        int newStackCount = pManager.weakenedStacks;
 
         if (character != null)
         {
@@ -3833,11 +3962,20 @@ public class PassiveController : Singleton<PassiveController>
 
             else if (stacks < 0 && showVFX)
             {
-                VisualEventManager.Instance.CreateVisualEvent(() =>
+                if (originalStacks > 0 && newStackCount == 0)
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Weakened " + stacks.ToString());
-                    //VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                });
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Weakened Expired");
+                    }, QueuePosition.Back, 0, 0.5f);
+                }
+                else
+                {
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Weakened " + stacks.ToString());
+                    }, QueuePosition.Back, 0, 0.5f);
+                }
             }
 
             // Update intent GUI, if enemy and attacking
@@ -3871,7 +4009,10 @@ public class PassiveController : Singleton<PassiveController>
         }
 
         // Increment stacks
+        int originalStacks = pManager.vulnerableStacks;
         pManager.vulnerableStacks += stacks;
+        int newStackCount = pManager.vulnerableStacks;
+
 
         if (character != null)
         {
@@ -3898,11 +4039,20 @@ public class PassiveController : Singleton<PassiveController>
 
             else if (stacks < 0 && showVFX)
             {
-                VisualEventManager.Instance.CreateVisualEvent(() =>
+                if (originalStacks > 0 && newStackCount == 0)
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Vulnerable " + stacks.ToString());
-                    //VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
-                });
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Vulnerable Expired");
+                    }, QueuePosition.Back, 0, 0.5f);
+                }
+                else
+                {
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Vulnerable " + stacks.ToString());
+                    }, QueuePosition.Back, 0, 0.5f);
+                }
             }
 
             // Update intent GUI of ai's targetting this character
@@ -3940,7 +4090,9 @@ public class PassiveController : Singleton<PassiveController>
         }
 
         // Increment stacks
+        int originalStacks = pManager.gritStacks;
         pManager.gritStacks += stacks;
+        int newStackCount = pManager.gritStacks;
 
         if (character != null)
         {
@@ -3967,11 +4119,20 @@ public class PassiveController : Singleton<PassiveController>
 
             else if (stacks < 0 && showVFX)
             {
-                VisualEventManager.Instance.CreateVisualEvent(() =>
+                if (originalStacks > 0 && newStackCount == 0)
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Grit " + stacks.ToString());
-                    //VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
-                });
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Grit Expired");
+                    }, QueuePosition.Back, 0, 0.5f);
+                }
+                else
+                {
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    {
+                        VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Grit " + stacks.ToString());
+                    }, QueuePosition.Back, 0, 0.5f);
+                }
             }
 
             // Update intent GUI of ai's targetting this character

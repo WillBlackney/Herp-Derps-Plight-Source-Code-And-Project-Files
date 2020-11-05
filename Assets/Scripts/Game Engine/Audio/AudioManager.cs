@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Sirenix.OdinInspector;
 
 public class AudioManager : Singleton<AudioManager>
 {
@@ -9,6 +10,7 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] private GameObject audioPlayerPrefab;
     [SerializeField] private Transform audioPlayerPoolParent;
     [SerializeField] private List<AudioPlayer> audioPlayerPool;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Properties")]
     private AudioModel[] allAudioModels;
@@ -16,6 +18,7 @@ public class AudioManager : Singleton<AudioManager>
 
     [Header("Audio Profiles")]
     [SerializeField] private AudioProfileData[] allProfiles;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Music")]
     [SerializeField] private AudioModel[] allMusic;
@@ -140,8 +143,18 @@ public class AudioManager : Singleton<AudioManager>
     }
     public void PlaySound(AudioProfileType type, AudioSet set)
     {
+        if (GlobalSettings.Instance.preventAudioProfiles)
+        {
+            return;
+        }
+
         // Find the matching profile
         AudioProfileData apd = Array.Find(allProfiles, a => a.audioProfileType == type);
+
+        if(apd == null)
+        {
+            Debug.LogWarning("PlaySound() could not find an AudioProfileData that matches the type '" + type.ToString() + "'.");
+        }
 
         // Get the correct sounds
         List<AudioModel> validSounds = new List<AudioModel>();
@@ -160,6 +173,11 @@ public class AudioManager : Singleton<AudioManager>
         else if (set == AudioSet.Buff)
         {
             validSounds.AddRange(apd.buffSounds);
+        }
+
+        if(validSounds.Count == 0)
+        {
+            Debug.LogWarning("PlaySound() did not find any valid sounds within the set '" + set.ToString() + "'.");
         }
 
         // Randomly pick a sound
@@ -187,10 +205,6 @@ public class AudioManager : Singleton<AudioManager>
         {
             player.source.volume = RandomGenerator.NumberBetween(data.randomVolumeLowerLimit, data.randomVolumeUpperLimit);
         }
-
-        player.source.volume = 1;
-        player.source.pitch = 1;
-
     }
     public void StopSound(Sound s)
     {
@@ -329,13 +343,16 @@ public class AudioManager : Singleton<AudioManager>
         {
             if (ap.source.isPlaying == false)
             {
+                Debug.LogWarning("GetNextAvailableAudioPlayer() found an available player");
                 availablePlayer = ap;
+                break;
             }
         }
 
         // If there arent any available, create new one, add it to pool, then use it
         if (availablePlayer == null)
         {
+            Debug.LogWarning("GetNextAvailableAudioPlayer() couldn't find an available player, creating a new one");
             availablePlayer = CreateAndAddAudioPlayerToPool();
         }
 
@@ -343,8 +360,10 @@ public class AudioManager : Singleton<AudioManager>
     }
     private AudioPlayer CreateAndAddAudioPlayerToPool()
     {
+        Debug.LogWarning("CreateAndAddAudioPlayerToPool() called, creating a new audio player and adding it to the pool");
         AudioPlayer newAP = Instantiate(audioPlayerPrefab, audioPlayerPoolParent).GetComponent<AudioPlayer>();
         audioPlayerPool.Add(newAP);
+        Debug.LogWarning("AudioManager total player pool count = " + audioPlayerPool.Count.ToString());
         return newAP;
     }
     #endregion

@@ -1,4 +1,5 @@
-﻿using Spriter2UnityDX;
+﻿using Sirenix.OdinInspector;
+using Spriter2UnityDX;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,24 +17,29 @@ public class CharacterEntityView : MonoBehaviour
     public Canvas worldSpaceCanvas;
     public CanvasGroup worldSpaceCG;
     public Transform worldSpaceCanvasParent;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("GUI Canvas References")]
     public Canvas uiCanvas;
     public GameObject uiCanvasParent;
     public CanvasGroup uiCanvasCg;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Block GUI References")]
     public GameObject blockIcon;
     public TextMeshProUGUI blockText;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Health GUI References")]
     public Slider healthBar;
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI maxHealthText;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Energy GUI References")]
     public TextMeshProUGUI energyText;
     public TextMeshProUGUI staminaText;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("UCM References")]
     public GameObject ucmVisualParent;
@@ -44,22 +50,28 @@ public class CharacterEntityView : MonoBehaviour
     public UniversalCharacterModel ucm;    
     public Animator ucmAnimator;
     public EntityRenderer entityRenderer;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Non Player Components")]
     public IntentViewModel myIntentViewModel;
+    public TextMeshProUGUI intentPopUpDescriptionText;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Custom Components")]
     public TargetIndicator myTargetIndicator;
     [HideInInspector] public ActivationWindow myActivationWindow;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Card Components")]
     public HandVisual handVisual;
     public TextMeshProUGUI drawPileCountText;
     public TextMeshProUGUI discardPileCountText;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Core Component References")]
     public GameObject passiveIconsVisualParent;
     [HideInInspector] public List<PassiveIconView> passiveIcons;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     // Getters
     #region

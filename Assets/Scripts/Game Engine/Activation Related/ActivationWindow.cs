@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
+using Sirenix.OdinInspector;
 
 public class ActivationWindow : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -15,10 +16,12 @@ public class ActivationWindow : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public GameObject myGlowOutline;
     public CanvasGroup myCanvasGroup;
     public UniversalCharacterModel myUCM;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Properties")]
     public CharacterEntityModel myCharacter;
     public bool animateNumberText;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     #endregion
 
     // Mouse + Pointer Events

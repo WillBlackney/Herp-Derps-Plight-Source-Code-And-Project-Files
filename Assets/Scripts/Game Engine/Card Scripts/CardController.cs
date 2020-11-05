@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,10 +16,12 @@ public class CardController : Singleton<CardController>
     [Header("Card Properties")]
     [SerializeField] private float cardTransistionSpeed;
     [SerializeField] private bool mouseIsOverTable;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Card Library Properties")]
     [SerializeField] private CardDataSO[] allCardScriptableObjects;
     private CardData[] allCards;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Discovery Screen Components")]
     [SerializeField] private DiscoveryCardViewModel[] discoveryCards;
@@ -26,6 +29,7 @@ public class CardController : Singleton<CardController>
     [SerializeField] private GameObject discoveryScreenVisualParent;
     [SerializeField] private CanvasGroup discoveryScreenOverlayCg;
     [SerializeField] private Transform[] confettiTransforms;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Discovery Screen Properties")]
     private CardEffect currentDiscoveryEffect;
@@ -37,6 +41,7 @@ public class CardController : Singleton<CardController>
     [SerializeField] private CanvasGroup chooseCardScreenOverlayCg;
     [SerializeField] private TextMeshProUGUI chooseCardScreenBannerText;
     [SerializeField] private Button chooseCardScreenConfirmButton;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Choose Card In Hand Screen Properties")]
     private CardEffect chooseCardScreenEffectReference;
@@ -47,19 +52,23 @@ public class CardController : Singleton<CardController>
     [SerializeField] private DiscoveryCardViewModel[] shuffleCards;
     [SerializeField] private Transform[] shuffleCardSlots;
     [SerializeField] private GameObject shuffleCardsScreenVisualParent;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Cards Grid Screen Components")]
     [SerializeField] private GameObject cardGridVisualParent;
     [SerializeField] private CanvasGroup cardGridCg;
     [SerializeField] private TextMeshProUGUI cardGridRibbonText;
     [SerializeField] private GridCardViewModel[] allGridCards;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Button Sprites")]
     [SerializeField] private Sprite activeButtonSprite;
     [SerializeField] private Sprite inactiveButtonSprite;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Card Movement Locations")]
     [SerializeField] private Transform[] discardToDrawAnimPath;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     // Getters
     #region
