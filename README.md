@@ -1,6 +1,7 @@
 # Herp Derp's Plight
 
-Developed using the Unity Engine, 'Herp Derp's Plight' is a 2D, Roguelike card battling game reminiscent of titles like 'Dungeons And Dragons', 'Slay The Spire' and 'Divinity 2: Original Sin'. The player controls a team a characters, and must successfully navigate a dangerous dungeon, overrun with undead, goblins, and all manner of deplorable beings. 
+Developed using the Unity Engine, 'Herp Derp's Plight' is a 2D, Roguelike card battling game inspired by 'Dungeons And Dragons', 'Slay The Spire' and 'Divinity 2: Original Sin'. The player controls a team a characters, and must successfully navigate a dangerous dungeon, overrun with undead, goblins, and all manner of deplorable beings. 
+
 This project is currently my main focus, and due for early access in March 2021.
 
 ### Create infintely deep, custom characters
