@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class CampSiteCharacter
 {
-    
+    public CharacterData myCharDataRef;
 }

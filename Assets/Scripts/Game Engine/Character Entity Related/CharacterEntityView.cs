@@ -12,6 +12,7 @@ public class CharacterEntityView : MonoBehaviour
     [Header("Properties")]
     [HideInInspector] public CharacterEntityModel character;
     [HideInInspector] public bool blockMouseOver = false;
+    public EventSetting eventSetting = EventSetting.Combat;
 
     [Header("World Space Canvas References")]   
     public Canvas worldSpaceCanvas;
@@ -87,12 +88,18 @@ public class CharacterEntityView : MonoBehaviour
     private void OnMouseEnter()
     {
         Debug.Log("CharacterEntityView.OnMouseEnter called...");
-        CharacterEntityController.Instance.OnCharacterMouseEnter(this);
+        if(eventSetting == EventSetting.Combat)
+        {
+            CharacterEntityController.Instance.OnCharacterMouseEnter(this);
+        }
     }
     private void OnMouseExit()
     {
         Debug.Log("CharacterEntityView.OnMouseExit called...");
-        CharacterEntityController.Instance.OnCharacterMouseExit(this);
+        if (eventSetting == EventSetting.Combat)
+        {
+            CharacterEntityController.Instance.OnCharacterMouseExit(this);
+        }
     }
     private void OnMouseOver()
     {
@@ -104,7 +111,10 @@ public class CharacterEntityView : MonoBehaviour
             // did player lift the finger off the screen?
             if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
             {
-                CharacterEntityController.Instance.OnCharacterMouseExit(this);
+                if (eventSetting == EventSetting.Combat)
+                {
+                    CharacterEntityController.Instance.OnCharacterMouseExit(this);
+                }
             }
         }
     }

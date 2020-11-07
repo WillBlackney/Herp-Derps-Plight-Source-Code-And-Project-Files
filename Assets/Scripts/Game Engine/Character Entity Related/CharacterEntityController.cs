@@ -1654,6 +1654,11 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
     {
         Debug.Log("CharacterEntityController.OnCharacterMouseOver() called...");
 
+        if (view.eventSetting != EventSetting.Combat)
+        {
+            return;
+        }
+
         // prevent clicking through an active UI screen
         if (CardController.Instance.DiscoveryScreenIsActive ||
             CardController.Instance.ChooseCardScreenIsActive ||
@@ -1662,7 +1667,6 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         {
             return;
         }
-
 
         // Mouse over SFX
         AudioManager.Instance.PlaySound(Sound.GUI_Button_Mouse_Over);
@@ -1741,6 +1745,11 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
     public void OnCharacterMouseExit(CharacterEntityView view)
     {
         Debug.Log("CharacterEntityController.OnCharacterMouseExit() called...");
+
+        if(view.eventSetting != EventSetting.Combat)
+        {
+            return;
+        }
 
         // prevent clicking through an active UI screen
         if (CardController.Instance.DiscoveryScreenIsActive || 

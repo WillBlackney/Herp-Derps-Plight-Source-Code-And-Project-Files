@@ -4179,9 +4179,9 @@ public class CardController : Singleton<CardController>
         }
        
     }
-    public void MoveCardVMToPlayPreviewSpot(CardViewModel cvm)
+    public void MoveCardVMToPlayPreviewSpot(CardViewModel cvm, HandVisual hv)
     {
-        MoveTransformToLocation(cvm.movementParent, cvm.card.owner.characterEntityView.handVisual.PlayPreviewSpot.position, 0.25f);
+        MoveTransformToLocation(cvm.movementParent, hv.PlayPreviewSpot.position, 0.25f);
     }
     private void PlayCardBreathAnimationVisualEvent(CardViewModel cvm)
     {
@@ -4306,13 +4306,13 @@ public class CardController : Singleton<CardController>
             }
         });
     }
-    private void RotateCardVisualEvent(CardViewModel cvm, float endDegrees, float rotationSpeed)
+    public void RotateCardVisualEvent(CardViewModel cvm, float endDegrees, float rotationSpeed)
     {
         // Rotate card upside down
         Vector3 endRotation = new Vector3(0, 0, endDegrees);
         cvm.movementParent.DORotate(endRotation, rotationSpeed);
     }
-    private void MoveTransformToQuickLerpPosition(Transform t, float speed)
+    public void MoveTransformToQuickLerpPosition(Transform t, float speed)
     {
         Vector3 quickLerpSpot = new Vector3(t.position.x - 1, t.position.y + 1, t.position.z);
         t.DOMove(quickLerpSpot, speed);

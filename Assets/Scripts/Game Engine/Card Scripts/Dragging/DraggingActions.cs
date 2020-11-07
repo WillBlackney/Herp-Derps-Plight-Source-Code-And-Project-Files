@@ -22,13 +22,19 @@ public abstract class DraggingActions : MonoBehaviour
         {
             // prevent dragging a card that was already dragged and played, but 
             // hasnt been removed from hand yet due to visual event delays
-            if (cardVM.card != null && 
+            if (cardVM.eventSetting == EventSetting.Combat &&
+                cardVM.card != null && 
                 cardVM.card.owner != null && 
                 !CardController.Instance.DiscoveryScreenIsActive &&
                 !CardController.Instance.ChooseCardScreenIsActive &&
                 !MainMenuController.Instance.AnyMenuScreenIsActive())               
             {
                 return CardController.Instance.IsCardPlayable(cardVM.card, cardVM.card.owner);
+            }
+            else if (cardVM.eventSetting == EventSetting.Camping &&
+               cardVM.campCard != null)
+            {
+                return CampSiteController.Instance.IsCampCardPlayable(cardVM.campCard);
             }
             else
             {

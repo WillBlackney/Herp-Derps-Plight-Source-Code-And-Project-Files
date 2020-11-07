@@ -55,8 +55,6 @@ public class Draggable : MonoBehaviour
     #region
     void OnMouseDown()
     {
-       // Debug.LogWarning("Draggable.OnMouseDown() called...");
-
         // prevent clicking through an active UI screen
         if (CardController.Instance.DiscoveryScreenIsActive ||
             MainMenuController.Instance.AnyMenuScreenIsActive())

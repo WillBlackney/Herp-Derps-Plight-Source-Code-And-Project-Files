@@ -63,8 +63,10 @@ public class HoverPreview: MonoBehaviour
     #region
     private void OnMouseOver()
     {
+        Debug.LogWarning("HoverPreview.OnMouseOver() called...");
+
         // is mobile user touching screen
-        if(GlobalSettings.Instance.deviceMode == DeviceMode.Mobile &&
+        if (GlobalSettings.Instance.deviceMode == DeviceMode.Mobile &&
             Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -85,7 +87,8 @@ public class HoverPreview: MonoBehaviour
             }
 
             // prevent clicking through an active UI screen
-            else if (touchFingerIsOverMe == false &&
+            else if (mainCardVM.eventSetting == EventSetting.Combat &&
+                touchFingerIsOverMe == false &&
                 PreviewsAllowed &&
                 !MainMenuController.Instance.AnyMenuScreenIsActive() &&
                 !CardController.Instance.DiscoveryScreenIsActive &&
@@ -95,33 +98,48 @@ public class HoverPreview: MonoBehaviour
                 touchFingerIsOverMe = true;
                 PreviewThisObject();
             }
+
+            // prevent clicking through an active UI screen
+            else if (mainCardVM.eventSetting == EventSetting.Camping &&
+                touchFingerIsOverMe == false &&
+                PreviewsAllowed)
+            {
+                touchFingerIsOverMe = true;
+                PreviewThisObject();
+            }
         }
     }
 
     void OnMouseEnter()
     {
-        Debug.Log("HoverPreview.OnMousEnter() called...");
+        Debug.LogWarning("HoverPreview.OnMouseEnter() called...");
 
         if (GlobalSettings.Instance.deviceMode == DeviceMode.Desktop)
         {
             OverCollider = true;
 
             // prevent clicking through an active UI screen
-            if (PreviewsAllowed &&
+            if (mainCardVM.eventSetting == EventSetting.Combat &&
+                PreviewsAllowed &&
                 !MainMenuController.Instance.AnyMenuScreenIsActive() &&
                 !CardController.Instance.DiscoveryScreenIsActive &&
                 CardController.Instance.CurrentChooseCardScreenSelection != mainCardVM.card &&
                 !inChooseScreenTransistion)
             {
                 PreviewThisObject();
-            }              
+            }
+            else if (mainCardVM.eventSetting == EventSetting.Camping &&
+                PreviewsAllowed)
+            {
+                PreviewThisObject();
+            }
         }        
 
     }
         
     void OnMouseExit()
     {
-        Debug.Log("HoverPreview.OnMouseExit() called...");
+        Debug.LogWarning("HoverPreview.OnMouseExit() called...");
 
         if (GlobalSettings.Instance.deviceMode == DeviceMode.Desktop)
         {
@@ -160,21 +178,24 @@ public class HoverPreview: MonoBehaviour
     }
     void PreviewThisObject()
     {
-        Debug.Log("HoverPreview.PreviewThisObject() called...");
-        // 1) clone this card 
-        // first disable the previous preview if there is one already
+        Debug.LogWarning("HoverPreview.PreviewThisObject() called...");
+
+        // Clone this card + disable previews
         StopAllPreviews();
-        // 2) save this HoverPreview as curent
+
+        // Save this HoverPreview as curent
         currentlyViewing = this;
-        // 3) enable Preview game object
+
+        // Enable Preview game object
         previewGameObject.SetActive(true);
-        // 4) disable if we have what to disable
-        // if (TurnTheseOffWhenPreviewing!=null)
-        //   TurnTheseOffWhenPreviewing.SetActive(false);
+
+        // Disable if we have what to disable
         DisableNonPreviewObjects();
-        // 5) play sfx
+
+        // Play sfx
         AudioManager.Instance.PlaySound(Sound.Card_Moused_Over);
-        // 6) tween to target position
+
+        // Move to target position
         previewGameObject.transform.localPosition = Vector3.zero;
         previewGameObject.transform.localScale = Vector3.one;
 
@@ -209,9 +230,6 @@ public class HoverPreview: MonoBehaviour
         previewGameObject.transform.localPosition = Vector3.zero;
 
         EnableNonPreviewObjects();
-
-       // if (TurnTheseOffWhenPreviewing!=null)
-          //  TurnTheseOffWhenPreviewing.SetActive(true); 
     }
 
     // STATIC METHODS
@@ -224,9 +242,6 @@ public class HoverPreview: MonoBehaviour
             currentlyViewing.previewGameObject.transform.localPosition = Vector3.zero;
 
             currentlyViewing.EnableNonPreviewObjects();
-
-           // if (currentlyViewing.TurnTheseOffWhenPreviewing != null)
-           // currentlyViewing.TurnTheseOffWhenPreviewing.SetActive(true); 
         }
          
     }

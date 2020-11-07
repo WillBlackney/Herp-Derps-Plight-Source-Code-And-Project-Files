@@ -12,6 +12,7 @@ public class CardViewModel : MonoBehaviour
     [Header("General Properties")]
     [HideInInspector] public Card card;
     [HideInInspector] public CampCard campCard;
+    [HideInInspector] public EventSetting eventSetting;
 
     [Header("General Components")]
     public Transform movementParent;
@@ -62,4 +63,10 @@ public class CardViewModel : MonoBehaviour
             canvas.sortingOrder = 1000;
         }
     }
+}
+
+public enum EventSetting
+{
+    Combat = 0,
+    Camping = 1,
 }

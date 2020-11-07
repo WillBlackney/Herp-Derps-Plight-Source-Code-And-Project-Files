@@ -42,6 +42,15 @@ public class CampSiteController : Singleton<CampSiteController>
     [SerializeField] private TextMeshProUGUI campPointText;
     #endregion
 
+    // Getters 
+    #region
+    public HandVisual HandVisual
+    {
+        get { return handVisual; }
+        private set { handVisual = value; }
+    }
+    #endregion
+
     // Library Logic
     #region
     protected override void Awake()
@@ -149,6 +158,7 @@ public class CampSiteController : Singleton<CampSiteController>
         {
             if (data.cardName == cardName)
             {
+                Debug.LogWarning("Found sprite match");
                 sprite = data.cardSprite;
                 break;
             }
@@ -314,13 +324,17 @@ public class CampSiteController : Singleton<CampSiteController>
     {
         foreach(CampCardData cd in campDeck)
         {
-            campDrawPile.Add(BuildCampCardFromCampCardData(cd));
+            AddCardToDrawPile(BuildCampCardFromCampCardData(cd));
         }
     }
     public void GainCampPointsOnNewCampEventStart()
     {
         Debug.LogWarning("CampSiteController.GainCampPointsOnNewCampEventStart() called...");
-        currentCampPoints = campPointRegen;
+        ModifyCurrentCampPoints(campPointRegen);
+    }
+    private void ModifyCurrentCampPoints(int gainedOrLost)
+    {
+        currentCampPoints += gainedOrLost;
         campPointText.text = currentCampPoints.ToString();
     }
     public void DrawCampCardsOnCampEventStart()
@@ -342,6 +356,10 @@ public class CampSiteController : Singleton<CampSiteController>
 
     // Cards
     #region
+    public bool IsCampCardPlayable(CampCard card)
+    {
+        return card.cardEnergyCost <= currentCampPoints;
+    }
     private bool IsCardDrawValid()
     {
         Debug.LogWarning("CampSiteController.IsCardDrawValid() called...");
@@ -353,6 +371,39 @@ public class CampSiteController : Singleton<CampSiteController>
 
         return bReturned;
 
+    }
+    public bool IsTargetValid(CampSiteCharacterView target, CampCard card)
+    {
+        bool bReturned = true;
+
+        foreach(CampCardTargettingCondition condition in card.targetRequirements)
+        {
+            if(!IsTargettingConditionMet(condition, target))
+            {
+                bReturned = false;
+                break;
+            }
+        }
+
+        return bReturned;
+
+    }
+    private bool IsTargettingConditionMet(CampCardTargettingCondition condition, CampSiteCharacterView target)
+    {
+        bool bReturned = false;
+
+        if(condition.targettingConditionType == TargettingConditionType.TargetIsAlive &&
+            target.myCharacterData.health > 0)
+        {
+            bReturned = true;
+        }
+        else if (condition.targettingConditionType == TargettingConditionType.TargetIsDead &&
+            target.myCharacterData.health == 0)
+        {
+            bReturned = true;
+        }
+
+        return bReturned;
     }
     private CampCard DrawACardFromDrawPile(int drawPileIndex = 0)
     {
@@ -382,10 +433,22 @@ public class CampSiteController : Singleton<CampSiteController>
             drawPileCountText.text = drawPileCount; 
         });
     }
+    private void RemoveCardFromHand(CampCard card)
+    {
+        if (campHand.Contains(card))
+        {
+            campHand.Remove(card);
+        }
+    }
     private void AddCardToHand(CampCard card)
     {
         Debug.Log("CampSiteController.AddCardToHand() called...");
         campHand.Add(card);
+    }
+    private void AddCardToDrawPile(CampCard card)
+    {
+        campDrawPile.Add(card);
+        drawPileCountText.text = campDrawPile.Count.ToString();
     }
     private void DrawCardFromDeckVisualEvent(CampCard card)
     {
@@ -452,9 +515,86 @@ public class CampSiteController : Singleton<CampSiteController>
     {
         card.cardVM = cardVM;
         cardVM.campCard = card;
+        cardVM.eventSetting = EventSetting.Camping;
     }
     #endregion
 
+    // Play Camp Cards Logic
+    #region
+    public void PlayCampCardFromHand(CampCard card, CampSiteCharacterView target = null)
+    {
+        // Pay energy cost, remove from hand, etc
+        OnCardPlayedStart(card);
+
+        // Remove references between card and its view
+        //DisconnectCardAndCardViewModel(card, cardVM);
+    }
+
+    private void OnCardPlayedStart(CampCard card)
+    {
+        // Pay Energy Cost
+        ModifyCurrentCampPoints(-card.cardEnergyCost);
+
+        // Where should this card be sent to?
+        if (card.expend)
+        {
+           // ExpendCard(card);
+        }
+
+        else
+        {
+            // Do normal 'play from hand' stuff
+            CardViewModel cardVM = card.cardVM;
+
+            RemoveCardFromHand(card);
+            AddCardToDrawPile(card);
+
+            if (card.cardVM)
+            {
+                PlayACardFromHandVisualEvent(cardVM);
+            }
+
+        }
+    }
+
+    private void PlayACardFromHandVisualEvent(CardViewModel cvm )
+    {
+        Debug.Log("CampSiteController.PlayACardFromHandVisualEvent() called...");
+        StartCoroutine(PlayACardFromHandVisualEventCoroutine(cvm));
+    }
+    private IEnumerator PlayACardFromHandVisualEventCoroutine(CardViewModel cvm)
+    {
+        // Set state and remove from hand visual
+        cvm.locationTracker.VisualState = VisualStates.Transition;
+        HandVisual.RemoveCard(cvm.movementParent.gameObject);
+        cvm.movementParent.SetParent(null);
+
+        // SFX
+        AudioManager.Instance.PlaySound(Sound.Card_Discarded);
+
+        // Create Glow Trail
+        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGlowTrailEffect(cvm.movementParent.position);
+
+        // Shrink card
+        CardController.Instance.ScaleCardViewModel(cvm, 0.1f, 0.5f);
+
+        // Rotate card upside down
+        CardController.Instance.RotateCardVisualEvent(cvm, 180, 0.5f);
+
+        // Move card + glow outline to quick lerp spot
+        CardController.Instance.MoveTransformToQuickLerpPosition(cvm.movementParent, 0.25f);
+        CardController.Instance.MoveTransformToQuickLerpPosition(glowTrail.transform, 0.25f);
+        yield return new WaitForSeconds(0.25f);
+
+        // Move card
+        CardController.Instance.MoveTransformToLocation(cvm.movementParent, HandVisual.DeckTransform.position, 0.5f, false, () => { Destroy(cvm.movementParent.gameObject); });
+        CardController.Instance.MoveTransformToLocation(glowTrail.transform, HandVisual.DeckTransform.position, 0.5f, false, () =>
+        {
+            glowTrail.StopAllEmissions();
+            Destroy(glowTrail, 3);
+        });
+    }
+    #endregion
 
 
 }
