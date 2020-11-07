@@ -2126,7 +2126,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             enemy.hasMovedOffStartingNode = false;
             CoroutineData cData = new CoroutineData();
             LevelNode node = enemy.levelNode;
-            VisualEventManager.Instance.CreateVisualEvent(() => MoveEntityToNodeCentre(enemy, node, cData), cData, QueuePosition.Back, 0.3f, 0);
+            VisualEventManager.Instance.CreateVisualEvent(() => MoveEntityToNodeCentre(enemy.characterEntityView, node, cData), cData, QueuePosition.Back, 0.3f, 0);
         }
 
         // Brief pause at the of all effects
@@ -2432,12 +2432,12 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }
 
     }
-    public void MoveEntityToNodeCentre(CharacterEntityModel entity, LevelNode node, CoroutineData data)
+    public void MoveEntityToNodeCentre(CharacterEntityView view, LevelNode node, CoroutineData data)
     {
         Debug.Log("CharacterEntityController.MoveEntityToNodeCentre() called...");
-        StartCoroutine(MoveEntityToNodeCentreCoroutine(entity, node, data));
+        StartCoroutine(MoveEntityToNodeCentreCoroutine(view, node, data));
     }
-    private IEnumerator MoveEntityToNodeCentreCoroutine(CharacterEntityModel entity, LevelNode node, CoroutineData cData)
+    private IEnumerator MoveEntityToNodeCentreCoroutine(CharacterEntityView view, LevelNode node, CoroutineData cData)
     {
         // Set up
         bool reachedDestination = false;
@@ -2447,7 +2447,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         // Brief yield here (incase melee attack anim played and character hasn't returned to attack pos )
         yield return new WaitForSeconds(0.3f);
 
-        if(entity.characterEntityView == null)
+        if(view == null)
         {
             Debug.LogWarning("character view is null");
         }
@@ -2457,17 +2457,17 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }
 
         // Face direction of destination node
-        LevelManager.Instance.TurnFacingTowardsLocation(entity.characterEntityView, node.transform.position);
+        LevelManager.Instance.TurnFacingTowardsLocation(view, node.transform.position);
 
         // Play movement animation
-        PlayMoveAnimation(entity.characterEntityView);
+        PlayMoveAnimation(view);
 
         // Move
         while (reachedDestination == false)
         {
-            entity.characterEntityView.ucmMovementParent.transform.position = Vector2.MoveTowards(entity.characterEntityView.WorldPosition, destination, moveSpeed * Time.deltaTime);
+            view.ucmMovementParent.transform.position = Vector2.MoveTowards(view.WorldPosition, destination, moveSpeed * Time.deltaTime);
 
-            if (entity.characterEntityView.WorldPosition == destination)
+            if (view.WorldPosition == destination)
             {
                 Debug.Log("CharacterEntityController.MoveEntityToNodeCentreCoroutine() detected destination was reached...");
                 reachedDestination = true;
@@ -2476,24 +2476,26 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }
 
         // Reset facing, depending on living entity type
-        if (entity.allegiance == Allegiance.Player)
+        if(view.character != null)
         {
-            LevelManager.Instance.SetDirection(entity.characterEntityView, FacingDirection.Right);
-        }
-        else if (entity.allegiance == Allegiance.Enemy)
-        {
-            LevelManager.Instance.SetDirection(entity.characterEntityView, FacingDirection.Left);
-        }
+            if (view.character.allegiance == Allegiance.Player)
+            {
+                LevelManager.Instance.SetDirection(view, FacingDirection.Right);
+            }
+            else if (view.character.allegiance == Allegiance.Enemy)
+            {
+                LevelManager.Instance.SetDirection(view, FacingDirection.Left);
+            }
+        }          
 
         // Idle anim
-        PlayIdleAnimation(entity.characterEntityView);
+        PlayIdleAnimation(view);
 
         // Resolve event
         if (cData != null)
         {
             cData.MarkAsCompleted();
         }
-
     }
     public void MoveAttackerToCentrePosition(CharacterEntityModel attacker, CoroutineData cData)
     {
@@ -2566,7 +2568,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
     {
         foreach (CharacterEntityModel character in AllCharacters)
         {
-            MoveEntityToNodeCentre(character, character.levelNode, null);
+            MoveEntityToNodeCentre(character.characterEntityView, character.levelNode, null);
         }
 
         yield return new WaitForSeconds(3f);
@@ -2584,7 +2586,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
     {
         foreach(CharacterEntityModel character in characters)
         {
-            MoveEntityToNodeCentre(character, LevelManager.Instance.EnemyOffScreenNode, null);
+            MoveEntityToNodeCentre(character.characterEntityView, LevelManager.Instance.EnemyOffScreenNode, null);
         }
 
         yield return new WaitForSeconds(3f);

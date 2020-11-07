@@ -27,6 +27,7 @@ namespace CustomOdinGUI
         private DrawSelected<PassiveIconDataSO> drawPassives = new DrawSelected<PassiveIconDataSO>();
         private DrawSelected<ItemDataSO> drawItems = new DrawSelected<ItemDataSO>();
         private DrawSelected<CharacterTemplateSO> drawCharacterTemplates = new DrawSelected<CharacterTemplateSO>();
+        private DrawSelected<CampCardDataSO> drawCampCards = new DrawSelected<CampCardDataSO>();
 
         // Create field for each type of manager object in project to be drawn
         private DrawSpriteLibrary drawSpriteLibrary = new DrawSpriteLibrary();
@@ -41,6 +42,7 @@ namespace CustomOdinGUI
         // Hard coded file directory paths to specific SO's
         private string enemyPath = "Assets/SO Assets/Enemies";
         private string cardPath = "Assets/SO Assets/Cards";
+        private string campCardPath = "Assets/SO Assets/Camp Cards";
         private string encountersPath = "Assets/SO Assets/Enemy Encounters";
         private string passivesPath = "Assets/SO Assets/Passive Icons";
         private string itemsPath = "Assets/SO Assets/Items";
@@ -68,6 +70,7 @@ namespace CustomOdinGUI
             drawPassives.SetPath(passivesPath);
             drawEncounters.SetPath(encountersPath);
             drawCharacterTemplates.SetPath(characterTemplatesPath);
+            drawCampCards.SetPath(campCardPath);
 
             // Find manager objects
             drawSpriteLibrary.FindMyObject();
@@ -193,6 +196,7 @@ namespace CustomOdinGUI
             targets.Add(drawAudioManager);
             targets.Add(drawJourneyManager);
             targets.Add(drawKeyWordLibrary);
+            targets.Add(drawCampCards);
 
 
             targets.Add(base.GetTarget());
@@ -211,6 +215,7 @@ namespace CustomOdinGUI
                 case ManagerState.passives:
                 case ManagerState.combatEncounters:
                 case ManagerState.characterTemplates:
+                case ManagerState.campCards:
                     base.DrawMenu();
                     break;
                 default:
@@ -248,6 +253,10 @@ namespace CustomOdinGUI
                     tree.AddAllAssetsAtPath("Character Templates", characterTemplatesPath, typeof(CharacterTemplateSO));
                     tree.SortMenuItemsByName();
                     break;
+                case ManagerState.campCards:
+                    tree.AddAllAssetsAtPath("Camp Cards", campCardPath, typeof(CampCardDataSO));
+                    tree.SortMenuItemsByName();
+                    break;
 
             }
             return tree;
@@ -268,6 +277,7 @@ namespace CustomOdinGUI
             audioManager,
             journeyManager,
             keyWordLibrary,
+            campCards,
         };
 
 

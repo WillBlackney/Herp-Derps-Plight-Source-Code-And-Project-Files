@@ -23,6 +23,11 @@ public enum TargettingType
     Enemy = 3,
     AllCharacters = 4,
 };
+public enum CampTargettingType
+{
+    NoTarget = 0,
+    Target = 1,
+};
 public enum CardWeaponRequirement
 {
     None = 0,

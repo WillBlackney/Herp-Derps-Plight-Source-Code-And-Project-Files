@@ -177,7 +177,8 @@ public class AudioManager : Singleton<AudioManager>
 
         if(validSounds.Count == 0)
         {
-            Debug.LogWarning("PlaySound() did not find any valid sounds within the set '" + set.ToString() + "'.");
+            Debug.LogWarning("PlaySound() did not find any valid sounds within the set '" + set.ToString() + "', returning...");
+            return;
         }
 
         // Randomly pick a sound
@@ -358,6 +359,7 @@ public class AudioManager : Singleton<AudioManager>
 
         return availablePlayer;
     }
+    
     private AudioPlayer CreateAndAddAudioPlayerToPool()
     {
         Debug.LogWarning("CreateAndAddAudioPlayerToPool() called, creating a new audio player and adding it to the pool");
@@ -366,6 +368,7 @@ public class AudioManager : Singleton<AudioManager>
         Debug.LogWarning("AudioManager total player pool count = " + audioPlayerPool.Count.ToString());
         return newAP;
     }
+    
     #endregion
 }
 

@@ -21,6 +21,8 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField] private GameObject kbcViewParent;
     [SerializeField] private GameObject dungeonViewParent;
     [SerializeField] private GameObject[] allDungeonParents;
+    [SerializeField] private GameObject campsiteViewParent;
+    [SerializeField] private GameObject[] allCampSiteParents;
 
 
     public LevelNode[] AllLevelNodes
@@ -204,6 +206,8 @@ public class LevelManager : Singleton<LevelManager>
 
     // Scenery Logic
     #region
+
+    // Graveyard
     public void EnableGraveyardScenery()
     {
         kbcViewParent.SetActive(true);
@@ -212,6 +216,8 @@ public class LevelManager : Singleton<LevelManager>
     {
         kbcViewParent.SetActive(false);
     }
+
+    // Dungeon
     public void EnableDungeonScenery()
     {
         DisableAllDungeons();
@@ -233,6 +239,31 @@ public class LevelManager : Singleton<LevelManager>
     private void EnableRandomDungeon()
     {
         allDungeonParents[RandomGenerator.NumberBetween(0, allDungeonParents.Length -1)].SetActive(true);
+
+    }
+
+    // Camp Site
+    public void EnableCampSiteScenery()
+    {
+        DisableAllCampSites();
+        campsiteViewParent.SetActive(true);
+        EnableRandomCampSite();
+    }
+    public void DisableCampSiteScenery()
+    {
+        DisableAllCampSites();
+        campsiteViewParent.SetActive(false);
+    }
+    private void DisableAllCampSites()
+    {
+        for (int i = 0; i < allCampSiteParents.Length; i++)
+        {
+            allCampSiteParents[i].SetActive(false);
+        }
+    }
+    private void EnableRandomCampSite()
+    {
+        allCampSiteParents[RandomGenerator.NumberBetween(0, allCampSiteParents.Length - 1)].SetActive(true);
 
     }
     #endregion

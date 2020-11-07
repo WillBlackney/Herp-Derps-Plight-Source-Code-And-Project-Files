@@ -530,7 +530,6 @@ public class CardController : Singleton<CardController>
         card.cardDescription = data.cardDescription;
         card.cardBaseEnergyCost = data.cardBaseEnergyCost;
         card.xEnergyCost = data.xEnergyCost;
-        //card.cardSprite = data.cardSprite;
         card.cardSprite = GetCardSpriteByName(data.cardName);
         card.cardType = data.cardType; 
         card.rarity = data.rarity;
@@ -661,6 +660,14 @@ public class CardController : Singleton<CardController>
         ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(card.rarity));
         SetCardViewModelCardTypeImage(cardVM, SpriteLibrary.Instance.GetCardTypeImageFromTypeEnumData(card.cardType));
     }
+    public void SetUpCardViewModelAppearanceFromCard(CardViewModel cardVM, CampCard card)
+    {
+        // Set texts and images
+        SetCardViewModelNameText(cardVM, card.cardName);
+        SetCardViewModelDescriptionText(cardVM, TextLogic.ConvertCustomStringListToString(card.customDescription));
+        SetCardViewModelEnergyText(cardVM, card, card.cardEnergyCost.ToString());
+        SetCardViewModelGraphicImage(cardVM, CampSiteController.Instance.GetCampCardSpriteByName(card.cardName));
+    }
     public void BuildCardViewModelFromCardData(CardData card, CardViewModel cardVM)
     {
         Debug.Log("CardController.BuildCardViewModelFromCardData() called...");
@@ -675,8 +682,6 @@ public class CardController : Singleton<CardController>
         ApplyCardViewModelTalentColoring(cardVM, ColorLibrary.Instance.GetTalentColor(card.talentSchool));
         ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(card.rarity));
         SetCardViewModelCardTypeImage(cardVM, SpriteLibrary.Instance.GetCardTypeImageFromTypeEnumData(card.cardType));
-
-        //return cardVM;
     }
     private void ConnectCombatCardWithCardInCharacterDataDeck(Card card, CardData deckDataCard)
     {
@@ -962,6 +967,16 @@ public class CardController : Singleton<CardController>
         if (cvm.myPreviewCard != null)
         {
             SetCardViewModelEnergyText(card, cvm.myPreviewCard, energyCost);
+        }
+    }
+    public void SetCardViewModelEnergyText(CardViewModel cvm, CampCard card, string energyCost)
+    {
+        cvm.energyText.text = energyCost;
+        cvm.energyText.color = Color.white;
+
+        if (cvm.myPreviewCard != null)
+        {
+            SetCardViewModelEnergyText(cvm.myPreviewCard, card, energyCost);
         }
     }
     public void SetCardViewModelGraphicImage(CardViewModel cvm, Sprite sprite)
@@ -1758,7 +1773,7 @@ public class CardController : Singleton<CardController>
             owner.hasMovedOffStartingNode = false;
             CoroutineData cData = new CoroutineData();
             LevelNode node = owner.levelNode;
-            VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.MoveEntityToNodeCentre(owner, node, cData), cData, QueuePosition.Back, 0.3f, 0);
+            VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.MoveEntityToNodeCentre(owner.characterEntityView, node, cData), cData, QueuePosition.Back, 0.3f, 0);
         }
 
         // Brief pause at the of all effects
@@ -4247,7 +4262,7 @@ public class CardController : Singleton<CardController>
 
     // Dotween Functions
     #region
-    private void MoveTransformToLocation(Transform t, Vector3 location, float speed, bool localMove = false, Action onCompleteCallBack = null)
+    public void MoveTransformToLocation(Transform t, Vector3 location, float speed, bool localMove = false, Action onCompleteCallBack = null)
     {        
         Sequence cardSequence = DOTween.Sequence();
 
@@ -4302,7 +4317,7 @@ public class CardController : Singleton<CardController>
         Vector3 quickLerpSpot = new Vector3(t.position.x - 1, t.position.y + 1, t.position.z);
         t.DOMove(quickLerpSpot, speed);
     }
-    private void ScaleCardViewModel(CardViewModel cvm, float endScale, float scaleSpeed)
+    public void ScaleCardViewModel(CardViewModel cvm, float endScale, float scaleSpeed)
     {
         cvm.movementParent.DOScale(endScale, scaleSpeed).SetEase(Ease.OutQuint);
     }

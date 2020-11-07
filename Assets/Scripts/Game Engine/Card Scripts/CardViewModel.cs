@@ -10,7 +10,8 @@ public class CardViewModel : MonoBehaviour
     // Properties + Component References
     #region
     [Header("General Properties")]
-    public Card card;
+    [HideInInspector] public Card card;
+    [HideInInspector] public CampCard campCard;
 
     [Header("General Components")]
     public Transform movementParent;

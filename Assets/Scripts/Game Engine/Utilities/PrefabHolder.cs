@@ -12,6 +12,7 @@ public class PrefabHolder : Singleton<PrefabHolder>
 
     [Header("Character Entity Prefabs")]
     public GameObject characterEntityModel;
+    public GameObject campSiteCharacterView;
 
     [Header("Cards Prefabs")]
     public GameObject noTargetCard;

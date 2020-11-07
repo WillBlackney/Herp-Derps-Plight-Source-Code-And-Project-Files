@@ -175,7 +175,7 @@ public class AnimationEventController : Singleton<AnimationEventController>
             user.hasMovedOffStartingNode = false;
             CoroutineData cData = new CoroutineData();
             LevelNode node = user.levelNode;
-            VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.MoveEntityToNodeCentre(user, node, cData), cData, QueuePosition.Back, 0.3f, 0);
+            VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.MoveEntityToNodeCentre(user.characterEntityView, node, cData), cData, QueuePosition.Back, 0.3f, 0);
         }
     }
     private void ResolveScreenOverlay(AnimationEventData vEvent)

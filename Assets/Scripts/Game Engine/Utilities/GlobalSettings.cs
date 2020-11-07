@@ -13,12 +13,24 @@ public class GlobalSettings : Singleton<GlobalSettings>
 
     [Header("Combat Test Scene Settings")]
     [LabelWidth(200)]
-    [ShowIf("ShowTestSceneProperties")]
+    [ShowIf("ShowEnemyWave")]
     public EnemyWaveSO testingEnemyWave;
 
     [LabelWidth(200)]
-    [ShowIf("ShowTestSceneProperties")]
+    [ShowIf("ShowTestCharacterTemplates")]
     public CharacterTemplateSO[] testingCharacterTemplates;
+
+    [LabelWidth(200)]
+    [ShowIf("ShowTestingCampDeck")]
+    public CampCardDataSO[] testingCampDeck;
+
+    [LabelWidth(200)]
+    [ShowIf("ShowTestingCampDeck")]
+    public int testingCampPoints;
+
+    [LabelWidth(200)]
+    [ShowIf("ShowTestingCampDeck")]
+    public int testingCampDraw;
 
     // General Info
     [Header("Input/Device Settings")]
@@ -81,6 +93,18 @@ public class GlobalSettings : Singleton<GlobalSettings>
     {
         return gameMode == StartingSceneSetting.CombatSceneSingle;
     }
+    public bool ShowTestCharacterTemplates()
+    {
+        return gameMode != StartingSceneSetting.KingsBlessingEvent || gameMode != StartingSceneSetting.Standard;
+    }
+    public bool ShowEnemyWave()
+    {
+        return gameMode == StartingSceneSetting.CombatSceneSingle;
+    }
+    public bool ShowTestingCampDeck()
+    {
+        return gameMode == StartingSceneSetting.CampSiteEvent;
+    }
     #endregion       
 }
 
@@ -113,5 +137,6 @@ public enum StartingSceneSetting
     RecruitCharacterEvent = 4,
     IntegrationTesting = 2,
     KingsBlessingEvent = 5,
+    CampSiteEvent = 6,
 
 }
