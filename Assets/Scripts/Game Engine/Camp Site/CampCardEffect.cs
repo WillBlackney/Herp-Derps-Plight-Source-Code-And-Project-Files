@@ -24,6 +24,14 @@ public class CampCardEffect
     [Range(0f, 1f)]
     public float healAmountPercentage;
 
+    // Passive properties
+    [ShowIf("ShowPassivePairing")]
+    [LabelWidth(200)]
+    public PassivePairingData passivePairing;
+
+    // Visual event logic
+    public List<AnimationEventData> visualEventsOnStart;
+
 
     // Healing Show Ifs
     public bool ShowHealingType()
@@ -39,13 +47,20 @@ public class CampCardEffect
         return healingType == HealingType.PercentageOfMaxHealth && cardEffectType == CampCardEffectType.Heal;
     }
 
+
+    
+
+    // Passive Show Ifs
+    public bool ShowPassivePairing()
+    {
+        return cardEffectType == CampCardEffectType.ApplyPassive;
+    }
 }
 public enum CampCardEffectType
 {
     None = 0,
     Heal = 1,
-    Resurrect =2,
-    ApplyPassive = 3,
+    ApplyPassive = 2,
 
 }
 public enum HealingType

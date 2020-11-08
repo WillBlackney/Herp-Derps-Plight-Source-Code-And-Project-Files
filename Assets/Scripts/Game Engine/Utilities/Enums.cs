@@ -548,6 +548,8 @@ public enum EncounterType
     BossEnemy = 3,
     RecruitCharacter = 4,
     KingsBlessingEvent = 5,
+    CampSite = 6,
+
 
 
 }

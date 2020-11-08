@@ -2503,6 +2503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dce8cdaa7a33aad42b6bb02910bcc52b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eventSetting: 0
   movementParent: {fileID: 0}
   myPreviewCard: {fileID: 0}
   isPreviewCard: 0
@@ -2517,6 +2518,7 @@ MonoBehaviour:
   talentSchoolImage: {fileID: 710885873370210249}
   cardTypeImages:
   - {fileID: 243923280991619732}
+  cardTypeParent: {fileID: 6089532835483068177}
   talentSchoolParent: {fileID: 5268349065512352914}
   glowAnimator: {fileID: 1958240855201226750}
   talentRenderers:

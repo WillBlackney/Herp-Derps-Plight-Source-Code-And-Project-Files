@@ -60,7 +60,11 @@ public class PersistencyManager : Singleton<PersistencyManager>
         {
             chosenCharacters.Add(MainMenuController.Instance.GetChosenCharacter());
         }
-        
+
+        // Build Camp site data
+        CampSiteController.Instance.BuildPropertiesFromStandardSettings();
+        CampSiteController.Instance.SaveMyDataToSaveFile(newSave);
+
         // build each character data object
         foreach (CharacterData data in chosenCharacters)
         {
@@ -78,7 +82,6 @@ public class PersistencyManager : Singleton<PersistencyManager>
                     break;
                 }
             }
-
         }
 
         // Set starting journey state
@@ -101,6 +104,10 @@ public class PersistencyManager : Singleton<PersistencyManager>
         else if (ed.encounterType == EncounterType.KingsBlessingEvent)
         {
             newSave.saveCheckPoint = SaveCheckPoint.KingsBlessingStart;
+        }
+        else if (ed.encounterType == EncounterType.CampSite)
+        {
+            newSave.saveCheckPoint = SaveCheckPoint.CampSite;
         }
 
         // DECK MODIFIER SETUP
@@ -175,6 +182,9 @@ public class PersistencyManager : Singleton<PersistencyManager>
         // Save combat end loot data
         LootController.Instance.SaveMyDataToSaveFile(newSave);
 
+        // Save camp properties
+        CampSiteController.Instance.SaveMyDataToSaveFile(newSave);
+
         // START SAVE!        
         SaveGameToDisk(newSave);
     }
@@ -199,6 +209,9 @@ public class PersistencyManager : Singleton<PersistencyManager>
 
         // Set recruit character event 
         LootController.Instance.BuildMyDataFromSaveFile(newLoad);
+
+        // Set up camp site data
+        CampSiteController.Instance.BuildMyDataFromSaveFile(newLoad);
     }
     #endregion
 

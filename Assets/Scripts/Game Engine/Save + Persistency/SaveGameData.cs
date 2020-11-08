@@ -20,6 +20,11 @@ public class SaveGameData
 
     // Loot data
     public LootResultModel currentLootResult;
+
+    // Camp site data
+    public int campPointRegen;
+    public int campCardDraw;
+    public List<CampCardData> campDeck = new List<CampCardData>();
    
 }
 public enum SaveCheckPoint
@@ -29,6 +34,7 @@ public enum SaveCheckPoint
     CombatEnd = 2,
     KingsBlessingStart = 3,
     RecruitCharacterStart = 4,
+    CampSite = 5,
 
 
 }

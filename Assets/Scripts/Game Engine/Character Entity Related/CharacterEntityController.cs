@@ -5,6 +5,7 @@ using System.Linq;
 using DG.Tweening;
 using Spriter2UnityDX;
 using Sirenix.OdinInspector;
+using System;
 
 public class CharacterEntityController : Singleton<CharacterEntityController>
 {
@@ -992,7 +993,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
             // Get random enemy
             CharacterEntityModel[] enemies = GetAllEnemiesOfCharacter(entity).ToArray();
-            CharacterEntityModel randomEnemy = enemies[Random.Range(0, enemies.Length)];
+            CharacterEntityModel randomEnemy = enemies[UnityEngine.Random.Range(0, enemies.Length)];
             CharacterEntityView randomEnemyView = randomEnemy.characterEntityView;
 
             // Create lightning ball missle
@@ -2028,7 +2029,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             }
             else
             {
-                actionReturned = viableNextMoves[Random.Range(0, viableNextMoves.Count)];
+                actionReturned = viableNextMoves[UnityEngine.Random.Range(0, viableNextMoves.Count)];
             }
         }
 
@@ -2058,7 +2059,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
             if (enemies.Length > 1)
             {
-                targetReturned = enemies[Random.Range(0, enemies.Length)];
+                targetReturned = enemies[UnityEngine.Random.Range(0, enemies.Length)];
             }
             else if (enemies.Length == 1)
             {
@@ -2081,7 +2082,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             // randomly chose enemy from remaining valid choices
             else if (allies.Length > 0)
             {
-                targetReturned = allies[Random.Range(0, allies.Length)];
+                targetReturned = allies[UnityEngine.Random.Range(0, allies.Length)];
             }
             else
             {
@@ -2441,12 +2442,12 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }
 
     }
-    public void MoveEntityToNodeCentre(CharacterEntityView view, LevelNode node, CoroutineData data)
+    public void MoveEntityToNodeCentre(CharacterEntityView view, LevelNode node, CoroutineData data, Action onCompleteCallback = null)
     {
         Debug.Log("CharacterEntityController.MoveEntityToNodeCentre() called...");
-        StartCoroutine(MoveEntityToNodeCentreCoroutine(view, node, data));
+        StartCoroutine(MoveEntityToNodeCentreCoroutine(view, node, data, onCompleteCallback));
     }
-    private IEnumerator MoveEntityToNodeCentreCoroutine(CharacterEntityView view, LevelNode node, CoroutineData cData)
+    private IEnumerator MoveEntityToNodeCentreCoroutine(CharacterEntityView view, LevelNode node, CoroutineData cData, Action onCompleteCallback)
     {
         // Set up
         bool reachedDestination = false;
@@ -2504,6 +2505,11 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         if (cData != null)
         {
             cData.MarkAsCompleted();
+        }
+
+        if(onCompleteCallback != null)
+        {
+            onCompleteCallback.Invoke();
         }
     }
     public void MoveAttackerToCentrePosition(CharacterEntityModel attacker, CoroutineData cData)

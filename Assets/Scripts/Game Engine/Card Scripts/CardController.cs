@@ -4154,7 +4154,8 @@ public class CardController : Singleton<CardController>
         // Create smokey effect
         VisualEffectManager.Instance.CreateExpendEffect(cvm.movementParent.transform.position);
     }
-    private void FadeOutCardViewModel(CardViewModel cvm, CoroutineData cData, Action onCompleteCallBack = null)
+  
+    public void FadeOutCardViewModel(CardViewModel cvm, CoroutineData cData, Action onCompleteCallBack = null)
     {
         StartCoroutine(FadeOutCardViewModelCoroutine(cvm, cData, onCompleteCallBack));
     }

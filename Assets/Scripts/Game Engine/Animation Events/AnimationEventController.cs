@@ -43,6 +43,38 @@ public class AnimationEventController : Singleton<AnimationEventController>
             ResolveScreenOverlay(vEvent);
         }
     }
+    public void PlayAnimationEvent(AnimationEventData vEvent, CampSiteCharacterView user = null)
+    {
+        if (vEvent.eventType == AnimationEventType.CameraShake)
+        {
+            ResolveCameraShake(vEvent);
+        }
+
+        else if (vEvent.eventType == AnimationEventType.Delay)
+        {
+            ResolveDelay(vEvent);
+        }
+
+        else if (vEvent.eventType == AnimationEventType.CharacterAnimation)
+        {
+            ResolveCharacterAnimation(vEvent, user);
+        }
+
+        else if (vEvent.eventType == AnimationEventType.ParticleEffect)
+        {
+            ResolveParticleEffect(vEvent, user);
+        }
+
+        else if (vEvent.eventType == AnimationEventType.SoundEffect)
+        {
+            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(vEvent.soundEffect));
+        }
+
+        else if (vEvent.eventType == AnimationEventType.ScreenOverlay)
+        {
+            ResolveScreenOverlay(vEvent);
+        }
+    }
     #endregion
 
     // Handle specific events
@@ -112,6 +144,25 @@ public class AnimationEventController : Singleton<AnimationEventController>
             (vEvent.projectileFired, projectileStartPos, target.characterEntityView.WorldPosition, cData), cData);
         }
     }
+    private void ResolveCharacterAnimation(AnimationEventData vEvent, CampSiteCharacterView user)
+    {
+        // Melee Attack 
+        if (vEvent.characterAnimation == CharacterAnimation.MeleeAttack)
+        {
+            CoroutineData cData = new CoroutineData();
+            VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.TriggerMeleeAttackAnimation(user.characterEntityView, cData), cData);
+        }
+        // AoE Melee Attack 
+        else if (vEvent.characterAnimation == CharacterAnimation.AoeMeleeAttack)
+        {
+            VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.TriggerAoeMeleeAttackAnimation(user.characterEntityView));
+        }
+        // Skill
+        else if (vEvent.characterAnimation == CharacterAnimation.Skill)
+        {
+            VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.PlaySkillAnimation(user.characterEntityView));
+        }
+    }
     private void ResolveParticleEffect(AnimationEventData vEvent, CharacterEntityModel user, CharacterEntityModel target = null)
     {
         if(vEvent == null || user == null)
@@ -151,6 +202,48 @@ public class AnimationEventController : Singleton<AnimationEventController>
             {
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 VisualEffectManager.Instance.CreateEffectAtLocation(vEvent.particleEffect, character.characterEntityView.WorldPosition));
+            }
+        }
+    }
+    private void ResolveParticleEffect(AnimationEventData vEvent, CampSiteCharacterView user)
+    {
+        if (vEvent == null || user == null)
+        {
+            return;
+        }
+
+        if (vEvent.onCharacter == CreateOnCharacter.Self)
+        {
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+            VisualEffectManager.Instance.CreateEffectAtLocation(vEvent.particleEffect, user.characterEntityView.WorldPosition));
+        }
+        else if (vEvent.onCharacter == CreateOnCharacter.Target)
+        {
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+            VisualEffectManager.Instance.CreateEffectAtLocation(vEvent.particleEffect, user.characterEntityView.WorldPosition));
+        }
+        else if (vEvent.onCharacter == CreateOnCharacter.AllAllies)
+        {
+            foreach (CampSiteCharacterView ally in CampSiteController.Instance.AllCampSiteCharacterViews)
+            {
+                // only do for camp characters that are alive
+                if(ally.myCharacterData != null && ally.myCharacterData.health > 0)
+                {
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateEffectAtLocation(vEvent.particleEffect, ally.characterEntityView.WorldPosition));
+                }              
+            }
+        }      
+        else if (vEvent.onCharacter == CreateOnCharacter.All)
+        {
+            foreach (CampSiteCharacterView ally in CampSiteController.Instance.AllCampSiteCharacterViews)
+            {
+                // only do for camp characters that are alive
+                if (ally.myCharacterData != null && ally.myCharacterData.health > 0)
+                {
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateEffectAtLocation(vEvent.particleEffect, ally.characterEntityView.WorldPosition));
+                }
             }
         }
     }

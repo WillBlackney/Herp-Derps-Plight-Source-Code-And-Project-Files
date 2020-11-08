@@ -316,6 +316,11 @@ public class EventSequenceController : Singleton<EventSequenceController>
         {
             HandleLoadKingsBlessingEncounter();
         }
+
+        else if (JourneyManager.Instance.CheckPointType == SaveCheckPoint.CampSite)
+        {
+            HandleLoadCampSiteEvent();
+        }
     }
     public void HandleLoadNextEncounter()
     {
@@ -380,6 +385,36 @@ public class EventSequenceController : Singleton<EventSequenceController>
             LevelManager.Instance.DisableGraveyardScenery();
         }
 
+        // Do camp site end sequence + tear down
+        else if (previousEncounter.encounterType == EncounterType.CampSite)
+        {
+            List<CampSiteCharacterView> ccList = new List<CampSiteCharacterView>();
+            ccList.AddRange(CampSiteController.Instance.AllCampSiteCharacterViews);
+
+            // Fade and disable out GUI + views
+            CampSiteController.Instance.FadeOutNodes();
+            CampSiteController.Instance.FadeOutCampGui();
+            CampSiteController.Instance.FadeOutAllCharacterGUI();
+            yield return new WaitForSeconds(0.5f);
+            CampSiteController.Instance.DisableCampGuiViewParent();
+
+            // Move characters off screen
+            CampSiteController.Instance.MoveCharactersToOffScreenRight(ccList, null);
+            AudioManager.Instance.FadeOutSound(Sound.Character_Footsteps, 3f);
+
+            // Zoom and move camera
+            yield return new WaitForSeconds(0.5f);
+            CameraManager.Instance.DoCameraMove(3, 0, 3f);
+            CameraManager.Instance.DoCameraZoom(5, 3, 3f);
+
+            // Wait for visual events
+            yield return new WaitForSeconds(4f);
+
+            // Disable and close remaining views
+            CampSiteController.Instance.DisableCharacterViewParent();
+            LevelManager.Instance.DisableCampSiteScenery();
+        }
+
         // Reset Camera
         CameraManager.Instance.ResetMainCameraPositionAndZoom();
 
@@ -429,6 +464,18 @@ public class EventSequenceController : Singleton<EventSequenceController>
             PersistencyManager.Instance.AutoUpdateSaveFile();
 
             HandleLoadKingsBlessingEncounter();
+        }
+
+        // Camp site
+        else if (JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.CampSite)
+        {
+            // Set check point
+            JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.CampSite);
+
+            // Auto save
+            PersistencyManager.Instance.AutoUpdateSaveFile();
+
+            HandleLoadCampSiteEvent();
         }
     }
     private void HandleLoadCombatEncounter(EnemyWaveSO enemyWave)
@@ -505,21 +552,28 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // on arrival, fade in character gui (health bars, etc)
         // then fade in card gui, delay a tad, then camp site cards
 
-        LevelManager.Instance.EnableCampSiteScenery();    
+        // Set Properties
+        CampSiteController.Instance.PopulateDrawPile();
+        CampSiteController.Instance.GainCampPointsOnNewCampEventStart();
+
+        // View sequence 1
+        LevelManager.Instance.EnableCampSiteScenery();
+        CampSiteController.Instance.EnableCharacterViewParent();
         CampSiteController.Instance.BuildAllCampSiteCharacterViews(CharacterDataController.Instance.AllPlayerCharacters);
         CampSiteController.Instance.SetAllCampSiteCharacterViewStartStates();
         CampSiteController.Instance.MoveAllCharactersToStartPosition();
 
+        // View sequence 2
         BlackScreenController.Instance.FadeInScreen(1f);
         CampSiteController.Instance.MoveAllCharactersToTheirNodes();
         yield return new WaitForSeconds(1 + (CharacterDataController.Instance.AllPlayerCharacters.Count * 0.5f));
+        CampSiteController.Instance.EnableCampGuiViewParent();
         CampSiteController.Instance.FadeInAllCharacterGUI();
-        CampSiteController.Instance.FadeInNodes();
+        CampSiteController.Instance.FadeInNodes();        
+        CampSiteController.Instance.FadeInCampGui();
         yield return new WaitForSeconds(0.5f);
 
-        // Draw cards + fade in card gui 
-        CampSiteController.Instance.PopulateDrawPile();
-        CampSiteController.Instance.GainCampPointsOnNewCampEventStart();
+        // Draw camp cards
         CampSiteController.Instance.DrawCampCardsOnCampEventStart();
     }
     private void HandleLoadKingsBlessingEncounter()

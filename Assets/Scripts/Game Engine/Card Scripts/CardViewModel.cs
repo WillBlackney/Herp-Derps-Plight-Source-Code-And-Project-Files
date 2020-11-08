@@ -37,6 +37,7 @@ public class CardViewModel : MonoBehaviour
     public Image graphicImage;
     public Image talentSchoolImage;
     public Image[] cardTypeImages;
+    public GameObject cardTypeParent;
     public GameObject talentSchoolParent;
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
