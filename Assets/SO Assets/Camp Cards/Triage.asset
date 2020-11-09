@@ -19,7 +19,7 @@ MonoBehaviour:
   targetRequirements:
   - targettingConditionType: 1
   expend: 0
-  innate: 0
+  innate: 1
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -32,10 +32,29 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: of their maximum health.
+    phrase: 'of their maximum health.
+
+'
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Innate
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
   cardEffects:
   - cardEffectType: 1
     healingType: 2
     flatHealAmount: 0
     healAmountPercentage: 0.5
-  keyWordModels: []
+    passivePairing:
+      passiveData: 0
+      passiveStacks: 0
+    cardsDrawn: 0
+    maxHealthGained: 0
+    visualEventsOnStart: []
+  keyWordModels:
+  - kewWordType: 2
+    weaponRequirement: 0
+    passiveType: 0

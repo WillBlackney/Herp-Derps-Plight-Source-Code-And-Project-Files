@@ -105,6 +105,12 @@ public class AnimationEventController : Singleton<AnimationEventController>
         {
             VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.PlaySkillAnimation(user.characterEntityView));
         }
+        // Resurrect
+        else if (vEvent.characterAnimation == CharacterAnimation.Resurrect)
+        {
+            Debug.LogWarning("RESURRECT");
+            VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.PlayResurrectAnimation(user.characterEntityView));
+        }
         // Shoot Bow 
         else if (vEvent.characterAnimation == CharacterAnimation.ShootBow)
         {
@@ -161,6 +167,12 @@ public class AnimationEventController : Singleton<AnimationEventController>
         else if (vEvent.characterAnimation == CharacterAnimation.Skill)
         {
             VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.PlaySkillAnimation(user.characterEntityView));
+        }
+        // Resurrect
+        else if (vEvent.characterAnimation == CharacterAnimation.Resurrect)
+        {
+            Debug.LogWarning("RESURRECT");
+            VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.PlayResurrectAnimation(user.characterEntityView));
         }
     }
     private void ResolveParticleEffect(AnimationEventData vEvent, CharacterEntityModel user, CharacterEntityModel target = null)

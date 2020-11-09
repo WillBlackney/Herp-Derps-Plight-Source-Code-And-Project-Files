@@ -269,6 +269,11 @@ public class EventSequenceController : Singleton<EventSequenceController>
         LevelManager.Instance.DisableGraveyardScenery();
         KingsBlessingController.Instance.DisableUIView();
 
+        // Hide camp site
+        LevelManager.Instance.DisableCampSiteScenery();
+        CampSiteController.Instance.DisableCharacterViewParent();
+        CampSiteController.Instance.DisableCampGuiViewParent();
+
         // Fade in menu music
         AudioManager.Instance.FadeInSound(Sound.Music_Main_Menu_Theme_1, 1f);
 

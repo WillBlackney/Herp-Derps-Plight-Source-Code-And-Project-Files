@@ -471,6 +471,7 @@ public enum CharacterAnimation
     ShootBow = 2,
     ShootProjectile = 3,
     Skill = 4,
+    Resurrect = 6,
 }
 public enum ParticleEffect
 {

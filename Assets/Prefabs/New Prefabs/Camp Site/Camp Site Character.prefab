@@ -78,6 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2b3ff00a44471479aa9648959aa03c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  campCharacter: {fileID: 7007351823594619826}
   blockMouseOver: 0
   eventSetting: 1
   worldSpaceCanvas: {fileID: 4863571306204645627}
@@ -523,7 +524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7815013410073972654
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1429,6 +1430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterEntityView: {fileID: 7195253088425345115}
+  ucmShadowParent: {fileID: 3579558224534682628}
 --- !u!1 &8418543819947434615
 GameObject:
   m_ObjectHideFlags: 0

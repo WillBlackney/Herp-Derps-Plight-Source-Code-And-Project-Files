@@ -44,7 +44,16 @@ public class DragSpellNoTarget: DraggingActions{
         if (DragSuccessful())
         {
             Debug.Log("DragSpellNoTarget.OnEndDrag() detected succesful drag and drop, playing the card...");
-            CardController.Instance.PlayCardFromHand(cardVM.card);
+
+            if (cardVM.eventSetting == EventSetting.Combat)
+            {
+                CardController.Instance.PlayCardFromHand(cardVM.card);
+            }
+            else if (cardVM.eventSetting == EventSetting.Camping)
+            {
+                CampSiteController.Instance.PlayCampCardFromHand(cardVM.campCard);
+            }
+
         }
         else
         {
@@ -53,10 +62,20 @@ public class DragSpellNoTarget: DraggingActions{
             locationTracker.VisualState = VisualStates.Hand;
             locationTracker.SetHandSortingOrder();
 
-            // Move this card back to its slot position
-            HandVisual PlayerHand = cardVM.card.owner.characterEntityView.handVisual;
-            Vector3 oldCardPos = PlayerHand.slots.Children[savedHandSlot].transform.localPosition;
-            cardVM.movementParent.transform.DOLocalMove(oldCardPos, 0.25f);            
+            if (cardVM.eventSetting == EventSetting.Combat)
+            {
+                // Move this card back to its slot position
+                HandVisual PlayerHand = cardVM.card.owner.characterEntityView.handVisual;
+                Vector3 oldCardPos = PlayerHand.slots.Children[savedHandSlot].transform.localPosition;
+                cardVM.movementParent.transform.DOLocalMove(oldCardPos, 0.25f);
+            }          
+
+            else if (cardVM.eventSetting == EventSetting.Camping)
+            {
+                // Move this card back to its slot position
+                Vector3 oldCardPos = CampSiteController.Instance.HandVisual.slots.Children[locationTracker.Slot].transform.localPosition;
+                cardVM.movementParent.DOLocalMove(oldCardPos, 0.25f);
+            }            
         } 
     }
 

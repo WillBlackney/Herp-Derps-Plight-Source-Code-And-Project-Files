@@ -247,7 +247,10 @@ public class ActivationManager : Singleton<ActivationManager>
         }       
 
         activationOrder.Clear();
-        panelSlots.Clear();       
+        panelSlots.Clear();
+
+        // Hide activation arrow
+        SetPanelArrowViewState(false);
         
     }
     #endregion
@@ -618,9 +621,6 @@ public class ActivationManager : Singleton<ActivationManager>
     public void MoveActivationArrowTowardsEntityWindow(CharacterEntityModel character)
     {
         Debug.Log("ActivationManager.MoveActivationArrowTowardsPosition() called...");
-
-        Debug.Log("PANEL SLOTS COUNT: " + panelSlots.Count);
-        Debug.Log("ACTIVATION ORDER COUNT: " + activationOrder.Count);
 
         GameObject panelSlot = null;
 

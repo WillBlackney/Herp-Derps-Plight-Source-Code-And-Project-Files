@@ -29,6 +29,18 @@ public class CampCardEffect
     [LabelWidth(200)]
     public PassivePairingData passivePairing;
 
+    // Card draw properites
+    // Passive properties
+    [ShowIf("ShowCardsDrawn")]
+    [LabelWidth(200)]
+    public int cardsDrawn;
+
+    // Max health gains
+    [ShowIf("ShowMaxHealthGained")]
+    [LabelWidth(200)]
+    public int maxHealthGained;
+
+
     // Visual event logic
     public List<AnimationEventData> visualEventsOnStart;
 
@@ -36,19 +48,31 @@ public class CampCardEffect
     // Healing Show Ifs
     public bool ShowHealingType()
     {
-        return cardEffectType == CampCardEffectType.Heal;
+        return cardEffectType == CampCardEffectType.Heal ||
+            cardEffectType == CampCardEffectType.HealAllCharacters; 
     }
     public bool ShowFlatHealAmount()
     {
-        return healingType == HealingType.FlatAmount && cardEffectType == CampCardEffectType.Heal;
+        return healingType == HealingType.FlatAmount && (cardEffectType == CampCardEffectType.Heal ||
+            cardEffectType == CampCardEffectType.HealAllCharacters);
     }
     public bool ShowHealAmountPercentage()
     {
-        return healingType == HealingType.PercentageOfMaxHealth && cardEffectType == CampCardEffectType.Heal;
+        return healingType == HealingType.PercentageOfMaxHealth && (cardEffectType == CampCardEffectType.Heal ||
+            cardEffectType == CampCardEffectType.HealAllCharacters);
+    }
+    public bool ShowCardsDrawn()
+    {
+        return cardEffectType == CampCardEffectType.DrawCards;
+    }
+    public bool ShowMaxHealthGained()
+    {
+        return cardEffectType == CampCardEffectType.IncreaseMaxHealth || 
+            cardEffectType == CampCardEffectType.IncreaseMaxHealthAll;
     }
 
 
-    
+
 
     // Passive Show Ifs
     public bool ShowPassivePairing()
@@ -60,7 +84,12 @@ public enum CampCardEffectType
 {
     None = 0,
     Heal = 1,
+    HealAllCharacters = 5,
     ApplyPassive = 2,
+    ShuffleHandIntoDrawPile =3,
+    DrawCards = 4,
+    IncreaseMaxHealth = 8,
+    IncreaseMaxHealthAll = 7,
 
 }
 public enum HealingType

@@ -1600,6 +1600,14 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         view.ucmAnimator.SetTrigger("Idle");
         AudioManager.Instance.StopSound(Sound.Character_Footsteps);
     }
+    public void PlayResurrectAnimation(CharacterEntityView view)
+    {
+        view.ucmAnimator.SetTrigger("Resurrect");
+    }
+    public void PlayLayDeadAnimation(CharacterEntityView view)
+    {
+        view.ucmAnimator.SetTrigger("Lay Dead");
+    }
     public void PlaySkillAnimation(CharacterEntityView view)
     {
         if (view)

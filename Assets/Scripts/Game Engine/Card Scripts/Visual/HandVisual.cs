@@ -46,6 +46,17 @@ public class HandVisual : MonoBehaviour
             UpdatePlacementOfSlots();
         }
     }
+    public void ForceDestroyAllCards()
+    {
+        GameObject[] cards = cardsInHand.ToArray();
+
+        foreach(GameObject card in cards)
+        {
+            Destroy(card);
+        }
+
+        cardsInHand.Clear();
+    }
     #endregion
 
     // Slot Logic
@@ -80,6 +91,8 @@ public class HandVisual : MonoBehaviour
         }
     }
     #endregion
+
+   
 
 
 

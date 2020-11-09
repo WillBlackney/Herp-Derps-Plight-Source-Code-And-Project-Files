@@ -9,8 +9,9 @@ using UnityEngine.UI;
 
 public class CharacterEntityView : MonoBehaviour
 {
-    [Header("Properties")]
+    [Header("Misc Properties")]
     [HideInInspector] public CharacterEntityModel character;
+    public CampSiteCharacterView campCharacter;
     [HideInInspector] public bool blockMouseOver = false;
     public EventSetting eventSetting = EventSetting.Combat;
 
@@ -92,6 +93,10 @@ public class CharacterEntityView : MonoBehaviour
         {
             CharacterEntityController.Instance.OnCharacterMouseEnter(this);
         }
+        else if (eventSetting == EventSetting.Camping)
+        {
+            CampSiteController.Instance.OnCampCharacterMouseEnter(campCharacter);
+        }
     }
     private void OnMouseExit()
     {
@@ -99,6 +104,10 @@ public class CharacterEntityView : MonoBehaviour
         if (eventSetting == EventSetting.Combat)
         {
             CharacterEntityController.Instance.OnCharacterMouseExit(this);
+        }
+        else if (eventSetting == EventSetting.Camping)
+        {
+            CampSiteController.Instance.OnCampCharacterMouseExit(campCharacter);
         }
     }
     private void OnMouseOver()
@@ -114,6 +123,10 @@ public class CharacterEntityView : MonoBehaviour
                 if (eventSetting == EventSetting.Combat)
                 {
                     CharacterEntityController.Instance.OnCharacterMouseExit(this);
+                }
+                else if (eventSetting == EventSetting.Camping)
+                {
+                    CampSiteController.Instance.OnCampCharacterMouseExit(campCharacter);
                 }
             }
         }

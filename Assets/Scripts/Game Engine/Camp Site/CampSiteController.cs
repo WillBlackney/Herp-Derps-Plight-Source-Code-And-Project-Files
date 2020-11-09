@@ -89,6 +89,7 @@ public class CampSiteController : Singleton<CampSiteController>
     public void DisableCampGuiViewParent()
     {
         campGuiViewParent.SetActive(false);
+        ForceDestroyAllCampCardViewModels();
     }
 
     #endregion
@@ -191,6 +192,50 @@ public class CampSiteController : Singleton<CampSiteController>
     }
     #endregion
 
+    // Input Listners + Mouse events
+    #region
+    public void OnCampCharacterMouseEnter(CampSiteCharacterView view)
+    {
+        // Cancel if no character on the node
+        if(view.myCharacterData == null)
+        {
+            return;
+        }
+
+        // Mouse over SFX
+        AudioManager.Instance.PlaySound(Sound.GUI_Button_Mouse_Over);
+
+        // Find + Highlight character's level node
+        for(int i = 0; i < campSiteNodes.Length; i++)
+        {
+            if(view == allCampSiteCharacterViews[i])
+            {
+                LevelManager.Instance.SetMouseOverViewState(campSiteNodes[i].LevelNode, true);
+                break;
+            }
+        }
+
+    }
+    public void OnCampCharacterMouseExit(CampSiteCharacterView view)
+    {
+        // Cancel if no character on the node
+        if (view.myCharacterData == null)
+        {
+            return;
+        }
+
+        // Find + Highlight character's level node
+        for (int i = 0; i < campSiteNodes.Length; i++)
+        {
+            if (view == allCampSiteCharacterViews[i])
+            {
+                LevelManager.Instance.SetMouseOverViewState(campSiteNodes[i].LevelNode, false);
+                break;
+            }
+        }
+    }
+    #endregion
+
     // Set Starting player properites
     #region
     public void BuildStartingCampSiteDeck(CampCardDataSO[] data)
@@ -229,6 +274,7 @@ public class CampSiteController : Singleton<CampSiteController>
     #region
     public CampCardData BuildCampCardDataFromScriptableObjectData(CampCardDataSO d)
     {
+        Debug.LogWarning("CampSiteController.BuildCampCardDataFromScriptableObjectData() called on card data SO: " + d.cardName);
         Debug.LogWarning("CampSiteController.BuildCampCardDataFromScriptableObjectData() called on card data SO: " + d.cardName);
 
         CampCardData c = new CampCardData();
@@ -332,6 +378,9 @@ public class CampSiteController : Singleton<CampSiteController>
         // Connect data to view
         view.myCharacterData = data;
 
+        // Enable shadow
+        view.ucmShadowParent.SetActive(true);
+
         // Set health gui
         UpdateHealthGUIElements(view.characterEntityView, data.health, data.maxHealth);
 
@@ -347,21 +396,23 @@ public class CampSiteController : Singleton<CampSiteController>
     {
         for(int i = 0; i < allCampSiteCharacterViews.Length; i++)
         {
+            CampSiteCharacterView character = allCampSiteCharacterViews[i];
             // Cancel if data ref is null (happens if player has less then 3 characters
-            if(allCampSiteCharacterViews[i].myCharacterData == null)
+            if (character.myCharacterData == null)
             {
                 return;
             }
 
             // Dead characters dont walk on screen, they start at their node
-            if (allCampSiteCharacterViews[i].myCharacterData.health <= 0)
+            if (character.myCharacterData.health <= 0)
             {
-                allCampSiteCharacterViews[i].characterEntityView.ucmMovementParent.transform.position = campSiteNodes[i].transform.position;
+                character.characterEntityView.ucmMovementParent.transform.position = campSiteNodes[i].transform.position;
+                CharacterEntityController.Instance.PlayLayDeadAnimation(character.characterEntityView);
             }
             // Alive characters start off screen, then walk to their node on event start
             else
             {
-                allCampSiteCharacterViews[i].characterEntityView.ucmMovementParent.transform.position = offScreenStartPosition.position;
+                character.characterEntityView.ucmMovementParent.transform.position = offScreenStartPosition.position;
             }
         }
     }
@@ -441,7 +492,9 @@ public class CampSiteController : Singleton<CampSiteController>
     #region
     public void OnContinueButtonClicked()
     {
-        if (continueButtonEnabled)
+        if (continueButtonEnabled && 
+            VisualEventManager.Instance.PendingCardDrawEvent() == false && 
+            !MainMenuController.Instance.AnyMenuScreenIsActive())
         {
             continueButtonEnabled = false;
             HandleContinueButtonClicked();
@@ -470,14 +523,44 @@ public class CampSiteController : Singleton<CampSiteController>
     public void GainCampPointsOnNewCampEventStart()
     {
         Debug.LogWarning("CampSiteController.GainCampPointsOnNewCampEventStart() called...");
+        // Reset camp points
+        currentCampPoints = 0;
+
+        // Regen camp points
         ModifyCurrentCampPoints(currentCampPointRegen);
     }   
     public void DrawCampCardsOnCampEventStart()
     {
         Debug.LogWarning("CampSiteController.DrawCampCardsOnCampEventStart() called...");
+
+        // Shuffle draw pile
+        campDrawPile.Shuffle();
+
         for (int i = 0; i < currentCampDraw; i++)
         {
-            DrawACardFromDrawPile(0);
+            // try find an innate card
+            CampCard cardDrawn = null;
+            foreach (CampCard card in campDrawPile)
+            {
+                if (card.innate)
+                {
+                    cardDrawn = card;
+                    break;
+                }
+            }
+
+            // did we find an innate card?
+            if (cardDrawn != null)
+            {
+                // we did, draw it
+                DrawACardFromDrawPile(cardDrawn);
+            }
+            else
+            {
+                // we didnt, draw the first card from top of draw pile instead
+                DrawACardFromDrawPile(0);
+            }
+
         }
     }
     public void PopulateDrawPile()
@@ -491,6 +574,7 @@ public class CampSiteController : Singleton<CampSiteController>
     {
         currentCampPoints += gainedOrLost;
         campPointText.text = currentCampPoints.ToString();
+        AutoUpdateCardsInHandGlowOutlines();
     }
     #endregion
 
@@ -515,6 +599,11 @@ public class CampSiteController : Singleton<CampSiteController>
     public bool IsTargetValid(CampSiteCharacterView target, CampCard card)
     {
         bool bReturned = true;
+
+        if(target.myCharacterData == null)
+        {
+            return false;
+        }
 
         foreach (CampCardTargettingCondition condition in card.targetRequirements)
         {
@@ -569,6 +658,24 @@ public class CampSiteController : Singleton<CampSiteController>
 
         return cardDrawn;
     }
+    private CampCard DrawACardFromDrawPile(CampCard cardDrawn)
+    {
+        Debug.Log("CampSiteController.DrawACardFromDrawPile() called...");
+
+        if (IsCardDrawValid())
+        {
+            // Get card and remove from deck
+            RemoveCardFromDrawPile(cardDrawn);
+
+            // Add card to hand
+            AddCardToHand(cardDrawn);
+
+            // Create and queue card drawn visual event
+            VisualEventManager.Instance.CreateVisualEvent(() => DrawCardFromDeckVisualEvent(cardDrawn), QueuePosition.Back, 0, 0.2f, EventDetail.CardDraw);
+        }
+
+        return cardDrawn;
+    }
     private void RemoveCardFromDrawPile(CampCard card)
     {
         campDrawPile.Remove(card);
@@ -593,6 +700,11 @@ public class CampSiteController : Singleton<CampSiteController>
     {
         campDrawPile.Add(card);
         drawPileCountText.text = campDrawPile.Count.ToString();
+    }
+    public void ForceDestroyAllCampCardViewModels()
+    {
+        HandVisual.ForceDestroyAllCards();
+        campHand.Clear();
     }
     #endregion
 
@@ -623,7 +735,7 @@ public class CampSiteController : Singleton<CampSiteController>
         CardController.Instance.SetUpCardViewModelAppearanceFromCard(cardVM, card);
 
         // Set glow outline
-        //AutoUpdateCardGlowOutline(card);
+        AutoUpdateCardGlowOutline(card);
 
         return cardVM;
     }
@@ -649,6 +761,25 @@ public class CampSiteController : Singleton<CampSiteController>
 
     // Play Camp Cards Logic
     #region
+    private void DiscardCardFromHandToDrawPile(CampCard card)
+    {
+        Debug.Log("CampSiteController.DiscardCardFromHandToDrawPile() called...");
+
+        // Get handle to the card VM
+        CardViewModel cvm = card.cardVM;
+
+        // remove from hand
+        RemoveCardFromHand(card);
+
+        // place on top of discard pile
+        AddCardToDrawPile(card);
+
+        // does the card have a cardVM linked to it?
+        if (cvm)
+        {
+            VisualEventManager.Instance.CreateVisualEvent(() => PlayACardFromHandVisualEvent(cvm), QueuePosition.Back, 0f, 0.1f, EventDetail.CardDraw);
+        }
+    }
     public void PlayCampCardFromHand(CampCard card, CampSiteCharacterView target = null)
     {
         // Pay energy cost, remove from hand, etc
@@ -664,7 +795,11 @@ public class CampSiteController : Singleton<CampSiteController>
     }
     private void TriggerEffectFromCard(CampCard card, CampCardEffect cardEffect, CampSiteCharacterView view)
     {
-        CharacterData cData = view.myCharacterData;
+        CharacterData cData = null;
+        if(view != null)
+        {
+            cData = view.myCharacterData;
+        }
 
         // Queue starting anims and particles        
         foreach (AnimationEventData vEvent in cardEffect.visualEventsOnStart)
@@ -706,6 +841,97 @@ public class CampSiteController : Singleton<CampSiteController>
             VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Passive_General_Buff));
         }
 
+        // Heal All
+        if (cardEffect.cardEffectType == CampCardEffectType.HealAllCharacters)
+        {
+            foreach(CampSiteCharacterView character in allCampSiteCharacterViews)
+            {
+                cData = character.myCharacterData;
+
+                // does each character meet the healing requirements?
+                if (IsTargetValid(character, card))
+                {
+                    int healAmount = 0;
+
+                    if (cardEffect.healingType == HealingType.PercentageOfMaxHealth)
+                    {
+                        // Calculate heal amount
+                        healAmount = (int)(cData.maxHealth * 0.5f);
+                        Debug.LogWarning("Heal amount = " + healAmount.ToString());
+                    }
+
+                    else if (cardEffect.healingType == HealingType.FlatAmount)
+                    {
+                        // Calculate heal amount
+                        healAmount = cardEffect.flatHealAmount;
+                        Debug.LogWarning("Heal amount = " + healAmount.ToString());
+                    }
+
+                    // Modify health
+                    HandleHealEffect(character, healAmount);
+
+                    // Heal VFX
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                        VisualEffectManager.Instance.CreateHealEffect(character.characterEntityView.WorldPosition));
+
+                    // Create heal text effect
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateDamageEffect(character.characterEntityView.WorldPosition, healAmount, true));
+
+                    // Create SFX
+                    VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Passive_General_Buff));
+                }
+            }
+           
+        }
+
+        // Increase max health target
+        if (cardEffect.cardEffectType == CampCardEffectType.IncreaseMaxHealth)
+        {
+            int maxHpGainAmount = cardEffect.maxHealthGained;
+
+            // Increase character's max health
+            CharacterDataController.Instance.SetCharacterMaxHealth(cData, cData.maxHealth + maxHpGainAmount);
+
+            // Update health GUI visual event
+            VisualEventManager.Instance.CreateVisualEvent(() => UpdateHealthGUIElements(view.characterEntityView, cData.health, cData.maxHealth), QueuePosition.Back, 0, 0);
+
+            // Heal VFX
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateHealEffect(view.characterEntityView.WorldPosition));
+
+            // Create SFX
+            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Passive_General_Buff));
+        }
+
+        // Increase max health all
+        if (cardEffect.cardEffectType == CampCardEffectType.IncreaseMaxHealthAll)
+        {
+            foreach (CampSiteCharacterView character in allCampSiteCharacterViews)
+            {
+                cData = character.myCharacterData;
+
+                // does each character meet the healing requirements?
+                if (IsTargetValid(character, card))
+                {
+                    int maxHpGainAmount = cardEffect.maxHealthGained;
+
+                    // Increase character's max health
+                    CharacterDataController.Instance.SetCharacterMaxHealth(cData, cData.maxHealth + maxHpGainAmount);
+
+                    // Update health GUI visual event
+                    VisualEventManager.Instance.CreateVisualEvent(() => UpdateHealthGUIElements(character.characterEntityView, cData.health, cData.maxHealth), QueuePosition.Back, 0, 0);
+
+                    // Heal VFX
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                        VisualEffectManager.Instance.CreateHealEffect(character.characterEntityView.WorldPosition));
+
+                    // Create SFX
+                    VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Passive_General_Buff));
+                }
+            }
+        }
+
         // Apply passive
         if (cardEffect.cardEffectType == CampCardEffectType.ApplyPassive)
         {
@@ -719,6 +945,34 @@ public class CampSiteController : Singleton<CampSiteController>
             // Visual notification event
             VisualEventManager.Instance.CreateVisualEvent(() => 
             VisualEffectManager.Instance.CreateStatusEffect(view.characterEntityView.WorldPosition, passiveName + " +" +stacks.ToString()));
+        }
+
+        // Shuffle Hand into draw pile
+        if (cardEffect.cardEffectType == CampCardEffectType.ShuffleHandIntoDrawPile)
+        {
+            CampCard[] cardsToDiscard = campHand.ToArray();
+            Debug.LogWarning("Discarding " + cardsToDiscard.Length.ToString() + " cards");
+
+            foreach (CampCard handCard in cardsToDiscard)
+            {
+                DiscardCardFromHandToDrawPile(handCard);
+            }
+
+            // Shuffle draw pile
+            campDrawPile.Shuffle();
+        }
+
+        // Draw cards
+        if (cardEffect.cardEffectType == CampCardEffectType.DrawCards)
+        {
+            int totalDraws = cardEffect.cardsDrawn;
+
+            for(int i = 0; i < totalDraws; i++)
+            {
+                DrawACardFromDrawPile();
+            }
+
+
         }
     }
     public void HandleHealEffect(CampSiteCharacterView character, int healthGainedOrLost)
@@ -804,6 +1058,39 @@ public class CampSiteController : Singleton<CampSiteController>
     }
     #endregion
 
+    // Glow Outline logic
+    #region
+    public void AutoUpdateCardsInHandGlowOutlines()
+    {
+        for (int i = 0; i < campHand.Count; i++)
+        {
+            AutoUpdateCardGlowOutline(campHand[i]);
+        }
+    }
+    private void AutoUpdateCardGlowOutline(CampCard card)
+    {
+        if (card.cardVM != null)
+        {
+            if (IsCampCardPlayable(card))
+            {
+                EnableCardViewModelGlowOutline(card.cardVM);
+            }
+            else
+            {
+                DisableCardViewModelGlowOutline(card.cardVM);
+            }
+        }
+    }
+    private void EnableCardViewModelGlowOutline(CardViewModel cvm)
+    {
+        cvm.glowAnimator.SetTrigger("Glow");
+    }
+    private void DisableCardViewModelGlowOutline(CardViewModel cvm)
+    {
+        cvm.glowAnimator.SetTrigger("Off");
+    }
+    #endregion
+
     // Visual Events
     #region
     private void DrawCardFromDeckVisualEvent(CampCard card)
@@ -823,7 +1110,7 @@ public class CampSiteController : Singleton<CampSiteController>
         clt.VisualState = VisualStates.Transition;
 
         // Glow outline
-        // AutoUpdateCardGlowOutline(card);
+        AutoUpdateCardGlowOutline(card);
 
         // Start SFX
         AudioManager.Instance.PlaySound(Sound.Card_Draw);
@@ -913,5 +1200,9 @@ public class CampSiteController : Singleton<CampSiteController>
 
     }
     #endregion
+       
+
+
+   
 
 }

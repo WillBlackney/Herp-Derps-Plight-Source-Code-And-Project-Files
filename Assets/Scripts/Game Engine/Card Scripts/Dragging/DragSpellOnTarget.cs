@@ -150,7 +150,7 @@ public class DragSpellOnTarget : DraggingActions {
 
             // Check for target validity
             bool targetValid = false;
-            if (target != null)
+            if (target != null && target.myCharacterData != null)
             {
                 targetValid = CampSiteController.Instance.IsTargetValid(target, card);
             }
