@@ -38,6 +38,13 @@ public class CharacterEntityView : MonoBehaviour
     public TextMeshProUGUI maxHealthText;
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
+    [Header("Resistance GUI References")]
+    public GameObject physicalResistanceParent;
+    public TextMeshProUGUI physicalResistanceText;
+    public GameObject magicResistanceParent;
+    public TextMeshProUGUI magicResistanceText;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
+
     [Header("Energy GUI References")]
     public TextMeshProUGUI energyText;
     public TextMeshProUGUI staminaText;

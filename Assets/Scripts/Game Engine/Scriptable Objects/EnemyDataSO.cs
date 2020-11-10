@@ -62,28 +62,8 @@ public class EnemyDataSO : ScriptableObject
     [BoxGroup("Resistances")]
     [LabelWidth(100)]
     [Range(-100, 100)]
-    [GUIColor(1f, 0f, 0f)]
-    public int fireResistance;
-    [BoxGroup("Resistances")]
-    [LabelWidth(100)]
-    [Range(-100, 100)]
-    [GUIColor(0f, 1f, 1f)]
-    public int frostResistance;
-    [BoxGroup("Resistances")]
-    [LabelWidth(100)]
-    [Range(-100, 100)]
     [GUIColor(1f, 0f, 1f)]
-    public int shadowResistance;
-    [BoxGroup("Resistances")]
-    [LabelWidth(100)]
-    [Range(-100, 100)]
-    [GUIColor(0.5f, 1f, 0.5f)]
-    public int poisonResistance;
-    [BoxGroup("Resistances")]
-    [LabelWidth(100)]
-    [Range(-100, 100)]
-    [GUIColor(0.5f, 0.5f, 0.5f)]
-    public int airResistance;
+    public int magicResistance;
 
     // Passive Traits
     [BoxGroup("Passive Data", centerLabel: true)]

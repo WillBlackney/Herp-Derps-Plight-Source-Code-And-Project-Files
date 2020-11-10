@@ -35,7 +35,7 @@ public class CombatLogic : Singleton<CombatLogic>
     public int GetFinalDamageValueAfterAllCalculations(CharacterEntityModel attacker, CharacterEntityModel target, DamageType damageType, int baseDamage)
     {
         return ExecuteGetFinalDamageValueAfterAllCalculations(attacker, target, damageType, baseDamage, null, null, null);
-    }
+    }   
 
     // Main calculator
     private int ExecuteGetFinalDamageValueAfterAllCalculations(CharacterEntityModel attacker, CharacterEntityModel target, DamageType damageType, int baseDamage = 0, Card card = null, CardEffect cardEffect = null, EnemyActionEffect enemyAction = null)
@@ -124,13 +124,13 @@ public class CombatLogic : Singleton<CombatLogic>
         int targetResistance = 0;
         float resistanceMultiplier = 0;
 
-        /*
+        
         //Get total resistance
         if(target != null)
         {
-            targetResistance = EntityLogic.GetTotalResistance(target, attackDamageType);
+            targetResistance = GetTotalResistance(target, damageType);
         }
-        */
+        
 
         // Debug
         Debug.Log("Target has " + targetResistance + " total " + damageType.ToString() + " Resistance...");
@@ -288,7 +288,20 @@ public class CombatLogic : Singleton<CombatLogic>
         return damageValueReturned;
 
     }
+    public int GetTotalResistance(CharacterEntityModel target, DamageType damageType)
+    {
+        int valueReturned = 0;
+        if(damageType == DamageType.Physical)
+        {
+            valueReturned += target.basePhysicalResistance;
+        }
+        else if (damageType == DamageType.Magic)
+        {
+            valueReturned += target.baseMagicResistance;
+        }
 
+        return valueReturned;
+    }
     #endregion
 
     // Calculate Block Gain

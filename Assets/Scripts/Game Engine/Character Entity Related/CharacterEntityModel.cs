@@ -24,6 +24,10 @@ public class CharacterEntityModel
     public int maxHealth;
     public int block;
 
+    [Header("Resistance Properties")]
+    public int basePhysicalResistance;
+    public int baseMagicResistance;
+
     [Header("Model Component References")]
     [HideInInspector] public PassiveManagerModel pManager;
 

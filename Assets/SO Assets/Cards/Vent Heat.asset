@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Vent Heat
   m_EditorClassIdentifier: 
   cardName: Vent Heat
-  cardDescription: Remove all Burning. Deal Fire damage to all enemies equal to the
-    amount removed.
+  cardDescription: Remove all Burning. Deal Magic damage to all enemies equal to
+    the amount removed.
   cardSprite: {fileID: 21300000, guid: 48a07f13ec20d9b4b917fadf9b89829b, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -22,6 +22,8 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 6
   rarity: 2
+  racialCard: 0
+  originRace: 0
   expend: 0
   innate: 0
   fleeting: 0
@@ -43,10 +45,10 @@ MonoBehaviour:
     phrase: '.
 
       Deal '
-  - color: 5
+  - color: 9
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Fire '
+    phrase: 'Magic  '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -83,7 +85,7 @@ MonoBehaviour:
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 1
     baseDamageMultiplier: 1
-    damageType: 4
+    damageType: 2
     healthRestored: 0
     healthLost: 0
     energyGained: 0

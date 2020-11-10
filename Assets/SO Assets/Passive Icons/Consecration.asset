@@ -31,10 +31,10 @@ MonoBehaviour:
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'X '
-  - color: 5
+  - color: 9
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Fire '
+    phrase: 'Magic '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0

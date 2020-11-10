@@ -16,4 +16,4 @@ MonoBehaviour:
   combatDifficulty: 2
   enemyGroups:
   - possibleEnemies:
-    - {fileID: 11400000, guid: 15fc8fe129550df42b538f0419a3165d, type: 2}
+    - {fileID: 11400000, guid: 3fc87550e064f61428c221d09251d675, type: 2}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fire Ball
   m_EditorClassIdentifier: 
   cardName: Fire Ball
-  cardDescription: 'Deal 5 Fire damage.
+  cardDescription: 'Deal 5 Magic damage.
 
     Increase the damage of all Fire Ball
     cards this combat by 1.'
@@ -41,10 +41,10 @@ MonoBehaviour:
     getPhraseFromCardValue: 1
     cardEffectType: 6
     phrase: '3 '
-  - color: 5
+  - color: 9
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: ' Fire '
+    phrase: ' Magic '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
-    damageType: 4
+    damageType: 2
     healthRestored: 0
     healthLost: 0
     energyGained: 0

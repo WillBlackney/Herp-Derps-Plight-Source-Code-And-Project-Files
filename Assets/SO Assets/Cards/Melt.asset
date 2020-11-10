@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Melt
   m_EditorClassIdentifier: 
   cardName: Melt
-  cardDescription: Remove all Block from target. Deal 5 Fire damage. Expend.
+  cardDescription: Remove all Block from target. Deal 5 Magic damage. Expend.
   cardSprite: {fileID: 21300000, guid: 9876430342e8aa84f9e60ccdd8d0c640, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -21,6 +21,8 @@ MonoBehaviour:
   targettingType: 3
   talentSchool: 6
   rarity: 2
+  racialCard: 0
+  originRace: 0
   expend: 1
   innate: 0
   fleeting: 0
@@ -46,10 +48,10 @@ MonoBehaviour:
     getPhraseFromCardValue: 1
     cardEffectType: 6
     phrase: '5 '
-  - color: 5
+  - color: 9
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: ' Fire '
+    phrase: ' Magic '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -177,7 +179,7 @@ MonoBehaviour:
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
-    damageType: 4
+    damageType: 2
     healthRestored: 0
     healthLost: 0
     energyGained: 0

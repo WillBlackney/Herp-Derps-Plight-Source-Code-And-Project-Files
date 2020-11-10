@@ -18,7 +18,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Increases all damage dealt by '
+    phrase: 'Increases all damage dealt from cards and actions by '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0

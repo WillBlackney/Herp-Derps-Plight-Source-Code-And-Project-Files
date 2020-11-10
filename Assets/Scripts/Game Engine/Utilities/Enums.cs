@@ -126,12 +126,7 @@ public enum DamageType
 {
     None = 0,
     Physical = 1,
-    Magic = 7,
-    Poison = 2,
-    Frost = 3,
-    Fire = 4,
-    Shadow = 5,
-    Air = 6,
+    Magic = 2,
 }
 public enum TalentSchool
 {

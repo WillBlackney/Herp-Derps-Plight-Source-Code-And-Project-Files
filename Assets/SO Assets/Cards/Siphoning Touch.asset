@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Siphoning Touch
   m_EditorClassIdentifier: 
   cardName: Siphoning Touch
-  cardDescription: Deal 5 Shadow damage. Lifesteal. Expend.
+  cardDescription: Deal 5 Magic damage. Lifesteal. Expend.
   cardSprite: {fileID: 21300000, guid: 18615b100a8b3e549b140634033c2743, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -21,6 +21,8 @@ MonoBehaviour:
   targettingType: 3
   talentSchool: 1
   rarity: 4
+  racialCard: 0
+  originRace: 0
   expend: 1
   innate: 0
   fleeting: 0
@@ -36,10 +38,10 @@ MonoBehaviour:
     getPhraseFromCardValue: 1
     cardEffectType: 6
     phrase: '5 '
-  - color: 6
+  - color: 9
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: ' Shadow '
+    phrase: ' Magic '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -59,7 +61,13 @@ MonoBehaviour:
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    removeBlockFrom: 0
+    modifyDeckCardEffect: 0
+    permanentBlockGain: 0
+    permanentDamageGain: 0
     chooseTargetRandomly: 0
+    passiveApplicationLoops: 0
+    validRandomTargetsType: 0
     damageLoops: 0
     drawSpecificType: 0
     specificTypeDrawn: 0
@@ -78,8 +86,10 @@ MonoBehaviour:
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
+    drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
-    damageType: 5
+    damageType: 2
+    healthRestored: 0
     healthLost: 0
     energyGained: 0
     cardsDrawn: 0

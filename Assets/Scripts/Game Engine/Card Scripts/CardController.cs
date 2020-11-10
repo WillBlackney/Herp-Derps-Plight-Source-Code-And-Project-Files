@@ -1576,7 +1576,7 @@ public class CardController : Singleton<CardController>
                 {
                     // Calculate damage
                     // DamageType damageType = CombatLogic.Instance.GetFinalFinalDamageTypeOfAttack(owner);
-                    DamageType damageType = DamageType.Fire;
+                    DamageType damageType = DamageType.Magic;
                     int baseDamage = card.owner.pManager.consecrationStacks;
 
                     // Calculate the end damage value

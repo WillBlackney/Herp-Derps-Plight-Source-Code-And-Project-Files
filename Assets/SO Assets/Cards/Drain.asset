@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Drain
   m_EditorClassIdentifier: 
   cardName: Drain
-  cardDescription: 'Deal Posion damage equal to target''s Poisoned amount.
+  cardDescription: 'Deal Magic damage equal to target''s Poisoned amount.
 
     Expend.'
   cardSprite: {fileID: 21300000, guid: ee960fa65d5790d4f8c863de45935676, type: 3}
@@ -23,6 +23,8 @@ MonoBehaviour:
   targettingType: 3
   talentSchool: 12
   rarity: 1
+  racialCard: 0
+  originRace: 0
   expend: 1
   innate: 0
   fleeting: 0
@@ -34,10 +36,10 @@ MonoBehaviour:
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'Deal '
-  - color: 8
+  - color: 9
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Poison '
+    phrase: 'Magic '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lightning Bolt
   m_EditorClassIdentifier: 
   cardName: Lightning Bolt
-  cardDescription: 'Deal 5 Air damage.
+  cardDescription: 'Deal 5 Magic damage.
 
     Gain 1 Overload.'
   cardSprite: {fileID: 21300000, guid: c77c39b719f391d4382b7a303c86b271, type: 3}
@@ -40,10 +40,10 @@ MonoBehaviour:
     getPhraseFromCardValue: 1
     cardEffectType: 6
     phrase: '4 '
-  - color: 7
+  - color: 9
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: ' Air '
+    phrase: ' Magic '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
-    damageType: 6
+    damageType: 2
     healthRestored: 0
     healthLost: 0
     energyGained: 0

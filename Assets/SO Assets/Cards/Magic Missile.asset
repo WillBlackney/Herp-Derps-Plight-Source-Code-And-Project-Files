@@ -78,7 +78,7 @@ MonoBehaviour:
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 1
-    damageType: 7
+    damageType: 2
     healthRestored: 0
     healthLost: 0
     energyGained: 0

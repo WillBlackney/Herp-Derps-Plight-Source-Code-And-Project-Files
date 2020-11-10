@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Chaos Bolt
   m_EditorClassIdentifier: 
   cardName: Chaos Bolt
-  cardDescription: 'Deal 5 Shadow damage.
+  cardDescription: 'Deal 5 Magic damage.
 
     Apply 1 Weakened.'
   cardSprite: {fileID: 21300000, guid: c3fbdd1e1d3a69047902e3e94ef30456, type: 3}
@@ -40,10 +40,10 @@ MonoBehaviour:
     getPhraseFromCardValue: 1
     cardEffectType: 6
     phrase: '4 '
-  - color: 6
+  - color: 9
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: ' Shadow '
+    phrase: ' Magic '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -98,7 +98,7 @@ MonoBehaviour:
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
-    damageType: 5
+    damageType: 2
     healthRestored: 0
     healthLost: 0
     energyGained: 0

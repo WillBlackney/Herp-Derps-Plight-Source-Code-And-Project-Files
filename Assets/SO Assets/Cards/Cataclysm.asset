@@ -22,6 +22,8 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 6
   rarity: 3
+  racialCard: 0
+  originRace: 0
   expend: 0
   innate: 0
   fleeting: 0
@@ -47,10 +49,10 @@ MonoBehaviour:
     getPhraseFromCardValue: 1
     cardEffectType: 24
     phrase: 
-  - color: 5
+  - color: 9
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: ' Fire '
+    phrase: ' Magic '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -96,7 +98,7 @@ MonoBehaviour:
       talentSchoolFilter: 0
       rarityFilter: 0
       baseDamage: 5
-      damageType: 4
+      damageType: 2
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0

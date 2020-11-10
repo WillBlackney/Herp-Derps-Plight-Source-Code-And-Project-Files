@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Chaos Nova
   m_EditorClassIdentifier: 
   cardName: Chaos Nova
-  cardDescription: Deal 4 Shadow damage and apply 1 Weakened to all enemies.
+  cardDescription: Deal 4 Magic damage and apply 1 Weakened to all enemies.
   cardSprite: {fileID: 21300000, guid: c64db2a8fd1eb1e4fb1c702ac0ddc3be, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -38,10 +38,10 @@ MonoBehaviour:
     getPhraseFromCardValue: 1
     cardEffectType: 8
     phrase: '3 '
-  - color: 6
+  - color: 9
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: ' Shadow '
+    phrase: ' Magic '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -90,7 +90,7 @@ MonoBehaviour:
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
-    damageType: 5
+    damageType: 2
     healthRestored: 0
     healthLost: 0
     energyGained: 0

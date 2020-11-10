@@ -18,7 +18,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Reduces all damage dealt by '
+    phrase: 'Reduces all damage dealt with cards and actions by '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0

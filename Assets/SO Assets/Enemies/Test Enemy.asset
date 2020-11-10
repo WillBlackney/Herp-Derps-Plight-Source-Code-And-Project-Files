@@ -21,15 +21,11 @@ MonoBehaviour:
   initiative: 3
   power: 0
   dexterity: 0
-  overrideStartingHealth: 1
-  startingHealth: 1
+  overrideStartingHealth: 0
+  startingHealth: 3
   startingBlock: 0
-  physicalResistance: 0
-  fireResistance: 0
-  frostResistance: 0
-  shadowResistance: 0
-  poisonResistance: 0
-  airResistance: 0
+  physicalResistance: 50
+  magicResistance: -50
   serializedPassiveManager:
     bonusPowerStacks: 0
     bonusDexterityStacks: 0

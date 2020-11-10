@@ -228,6 +228,10 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         ModifyDexterity(character, data.dexterity);
         ModifyPower(character, data.power);
 
+        // Set Resistances
+        ModifyPhysicalResistance(character, data.physicalResistance);
+        ModifyMagicResistance(character, data.magicResistance);
+
         // Set up health + max health
         if (data.enableFlexibleMaxHealth)
         {
@@ -416,6 +420,23 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
     {
         character.dexterity += dexterityGainedOrLost;
     }
+    public void ModifyPhysicalResistance(CharacterEntityModel character, int resistGainedOrLost)
+    {
+        character.basePhysicalResistance += resistGainedOrLost;
+        int newValue = CombatLogic.Instance.GetTotalResistance(character, DamageType.Physical);
+
+        // Update GUI
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdatePhysicalResistanceGUI(character, newValue), QueuePosition.Back, 0, 0);
+    }
+    public void ModifyMagicResistance(CharacterEntityModel character, int resistGainedOrLost)
+    {
+        character.baseMagicResistance += resistGainedOrLost;
+
+        int newValue = CombatLogic.Instance.GetTotalResistance(character, DamageType.Magic);
+
+        // Update GUI
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateMagicResistanceGUI(character, newValue), QueuePosition.Back, 0, 0);
+    }
     #endregion
 
     // Modify Energy
@@ -573,6 +594,50 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         else
         {
             character.characterEntityView.blockIcon.SetActive(false);
+        }
+    }
+    public void UpdatePhysicalResistanceGUI(CharacterEntityModel character, int newPhysicalResistance)
+    {
+        // Enable or Disable view
+        if (newPhysicalResistance != 0)
+        {
+            character.characterEntityView.physicalResistanceParent.SetActive(true);
+        }
+        else
+        {
+            character.characterEntityView.physicalResistanceParent.SetActive(false);
+        }
+
+        // Set Text + Colour
+        if (newPhysicalResistance > 0)
+        {
+            character.characterEntityView.physicalResistanceText.text = "<color=#9BFF28>" + newPhysicalResistance.ToString() +"%";
+        }
+        else if (newPhysicalResistance < 0)
+        {
+            character.characterEntityView.physicalResistanceText.text = "<color=#FF4332>" + newPhysicalResistance.ToString() + "%";
+        }
+    }
+    public void UpdateMagicResistanceGUI(CharacterEntityModel character, int newMagicResistance)
+    {
+        // Enable or Disable view
+        if (newMagicResistance != 0)
+        {
+            character.characterEntityView.magicResistanceParent.SetActive(true);
+        }
+        else
+        {
+            character.characterEntityView.magicResistanceParent.SetActive(false);
+        }
+
+        // Set Text + Colour
+        if (newMagicResistance > 0)
+        {
+            character.characterEntityView.magicResistanceText.text = "<color=#9BFF28>" + newMagicResistance.ToString() + "%";
+        }
+        else if (newMagicResistance < 0)
+        {
+            character.characterEntityView.magicResistanceText.text = "<color=#FF4332>" + newMagicResistance.ToString() + "%";
         }
     }
     #endregion
@@ -953,10 +1018,10 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Poisoned!"), QueuePosition.Back, 0, 0.5f);
 
             // Calculate and deal Poison damage
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Poison, entity.pManager.poisonedStacks, null, null);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Physical, entity.pManager.poisonedStacks, null, null);
             VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.PoisonExplosion, view.WorldPosition));
-            CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Poison, true);           
+            CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Physical, true);           
         }
         if (entity.pManager.burningStacks > 0)
         {
@@ -977,10 +1042,10 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Burning!"), QueuePosition.Back, 0, 0.5f);
 
                 // Calculate and deal Poison damage
-                int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Fire, entity.pManager.burningStacks, null, null);
+                int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Magic, entity.pManager.burningStacks, null, null);
                 VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
                 VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.FireExplosion, view.WorldPosition));
-                CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Fire, true);
+                CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Magic, true);
             }
                    
         }
@@ -1003,8 +1068,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
 
             // Deal air damage
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(entity, randomEnemy, DamageType.Air, entity.pManager.overloadStacks, null, null);
-            CombatLogic.Instance.HandleDamage(finalDamageValue, entity, randomEnemy, DamageType.Air);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(entity, randomEnemy, DamageType.Magic, entity.pManager.overloadStacks, null, null);
+            CombatLogic.Instance.HandleDamage(finalDamageValue, entity, randomEnemy, DamageType.Magic);
 
             // Brief pause here
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
