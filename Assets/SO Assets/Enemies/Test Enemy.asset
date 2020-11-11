@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 272d402ffa0a347429dfe06011e3d167, type: 3}
   m_Name: Test Enemy
   m_EditorClassIdentifier: 
-  enemyName: Test Enemy
+  enemyName: The Harbinger
   enemyModelSize: 0
   audioProfile: 7
   enableFlexibleMaxHealth: 0

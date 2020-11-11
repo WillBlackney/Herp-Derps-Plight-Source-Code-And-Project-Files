@@ -25,11 +25,7 @@ MonoBehaviour:
   startingHealth: 65
   startingBlock: 0
   physicalResistance: 0
-  fireResistance: 0
-  frostResistance: 0
-  shadowResistance: 0
-  poisonResistance: 0
-  airResistance: 0
+  magicResistance: 0
   serializedPassiveManager:
     bonusPowerStacks: 0
     bonusDexterityStacks: 0
@@ -150,6 +146,7 @@ MonoBehaviour:
         onCharacter: 0
       visualEventsOnFinish: []
       actionType: 2
+      effectLoops: 1
       baseDamage: 0
       damageType: 0
       characterSummoned: {fileID: 0}
@@ -235,6 +232,7 @@ MonoBehaviour:
         onCharacter: 0
       visualEventsOnFinish: []
       actionType: 0
+      effectLoops: 1
       baseDamage: 14
       damageType: 1
       characterSummoned: {fileID: 0}
@@ -350,6 +348,7 @@ MonoBehaviour:
         projectileStartPosition: 0
         onCharacter: 0
       actionType: 1
+      effectLoops: 1
       baseDamage: 6
       damageType: 1
       characterSummoned: {fileID: 0}
@@ -366,6 +365,7 @@ MonoBehaviour:
     - visualEventsOnStart: []
       visualEventsOnFinish: []
       actionType: 6
+      effectLoops: 1
       baseDamage: 0
       damageType: 0
       characterSummoned: {fileID: 0}

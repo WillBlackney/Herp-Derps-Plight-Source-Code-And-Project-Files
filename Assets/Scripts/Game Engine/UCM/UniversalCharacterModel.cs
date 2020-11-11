@@ -61,6 +61,9 @@ public class UniversalCharacterModel : MonoBehaviour
     [HideInInspector] public UniversalCharacterModelElement activeMainHandWeapon;
     [HideInInspector] public UniversalCharacterModelElement activeOffHandWeapon;
 
+    [Header("Active Particle References")]
+    [HideInInspector] public UniversalCharacterModelElement activeChestParticles;
+
     [Header("Head Wear References")]
     public List<UniversalCharacterModelElement> allHeadWear;
 

@@ -97,6 +97,11 @@ public class EnemyActionEffect
     [LabelWidth(150)]
     public ActionType actionType;
 
+    [VerticalGroup("General Properties")]
+    [LabelWidth(150)]
+    [ShowIf("ShowDamage")]
+    public int effectLoops = 1;
+
     // damage target
     [VerticalGroup("Damage Properties")]
     [ShowIf("ShowDamage")]

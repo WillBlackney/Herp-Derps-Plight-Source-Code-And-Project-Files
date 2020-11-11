@@ -642,6 +642,17 @@ public class CombatLogic : Singleton<CombatLogic>
                 }
             }
 
+            // Check soul collector passive on allies
+            List<CharacterEntityModel> victimAllies = CharacterEntityController.Instance.GetAllAlliesOfCharacter(victim, false);
+            foreach(CharacterEntityModel ally in victimAllies)
+            {
+                if(ally.pManager.soulCollectorStacks > 0)
+                {
+                    PassiveController.Instance.ModifyBonusPower(ally.pManager, ally.pManager.soulCollectorStacks, true);
+                }
+            }
+
+
             HandleDeath(victim);
         }
     }

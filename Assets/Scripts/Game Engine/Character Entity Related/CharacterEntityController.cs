@@ -928,6 +928,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
             // Apply block gain
             ModifyBlock(entity, CombatLogic.Instance.CalculateBlockGainedByEffect(entity.pManager.shieldWallStacks, entity, entity));
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
         }       
 
         // Growing
@@ -1260,12 +1261,23 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
             // Calculate damage to display
             DamageType damageType = CombatLogic.Instance.GetFinalFinalDamageTypeOfAttack(enemy, null, null, effect);
-
             int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, target, damageType, effect.baseDamage, effect);
 
-            if (enemy.myNextAction.actionLoops > 1)
+            // Find looping effect data (if it exists)
+            EnemyActionEffect eae = null;
+            foreach(EnemyActionEffect e in enemy.myNextAction.actionEffects)
             {
-                attackDamageString = finalDamageValue.ToString() + " x " + enemy.myNextAction.actionLoops.ToString();
+                if(e.actionType == ActionType.AttackAllEnemies ||
+                    e.actionType == ActionType.AttackTarget)
+                {
+                    eae = e;
+                    break;
+                }
+            }
+
+            if (eae != null && eae.effectLoops > 1)
+            {
+                attackDamageString = finalDamageValue.ToString() + " x " + eae.effectLoops.ToString();
             }
             else
             {
@@ -1275,13 +1287,29 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             // Update description text
             if(enemy.myNextAction.actionType == ActionType.AttackTarget)
             {
-                enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to attack <color=#F8FF00>" + target.myName +
-                    "<color=#FFFFFF> for <color=#92E0FF>" + attackDamageString + "<color=#FFFFFF> damage.";
+                if(eae != null && eae.effectLoops > 1)
+                {
+                    enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to attack <color=#F8FF00>" + target.myName +
+                   "<color=#FFFFFF> for <color=#92E0FF>" + attackDamageString + "<color=#FFFFFF> damage <color=#F8FF00>" + eae.effectLoops.ToString() + "<color=#FFFFFF> times";
+                }
+                else
+                {
+                    enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to attack <color=#F8FF00>" + target.myName +
+                   "<color=#FFFFFF> for <color=#92E0FF>" + attackDamageString + "<color=#FFFFFF> damage.";
+                }
             }
 
             else if (enemy.myNextAction.actionType == ActionType.AttackAllEnemies)
             {
-                enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to attack ALL enemies for <color=#92E0FF>" + attackDamageString + "<color=#FFFFFF> damage.";
+                if (eae != null && eae.effectLoops > 1)
+                {
+                    enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to attack ALL enemies for <color=#92E0FF>" + attackDamageString + 
+                        "<color=#FFFFFF> damage <color =#F8FF00>" + eae.effectLoops.ToString() + "<color=#FFFFFF> times";
+                }
+                else
+                {
+                    enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to attack ALL enemies for <color=#92E0FF>" + attackDamageString + "<color=#FFFFFF> damage.";
+                }
             }
         }
 
@@ -1914,7 +1942,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
             // Check is turn requirement
             if (ar.requirementType == ActionRequirementType.IsTurn &&
-                ActivationManager.Instance.CurrentTurn == ar.requirementTypeValue)
+                ActivationManager.Instance.CurrentTurn != ar.requirementTypeValue)
             {
                 Debug.Log(enemyAction.actionName + " failed 'IsTurn' requirement");
                 checkResults.Add(false);
@@ -1929,10 +1957,10 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             }
 
             // Check availble summoning spots
-            if (ar.requirementType == ActionRequirementType.AtLeastOneAvailableNode &&
-                LevelManager.Instance.GetNextAvailableEnemyNode() == null)
+            if (ar.requirementType == ActionRequirementType.AtLeastXAvailableNodes &&
+                LevelManager.Instance.GetAllAvailableEnemyNodes().Count >= ar.requirementTypeValue)
             {
-                Debug.Log(enemyAction.actionName + " failed 'AtLeastOneAvailableNode' requirement");
+                Debug.Log(enemyAction.actionName + " failed 'AtLeastXAvailableNodes' requirement");
                 checkResults.Add(false);
             }
 
@@ -1966,9 +1994,10 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
             // Check is more than turn
             if (ar.requirementType == ActionRequirementType.IsMoreThanTurn &&
-               ar.requirementTypeValue < ActivationManager.Instance.CurrentTurn)
+               ActivationManager.Instance.CurrentTurn <= ar.requirementTypeValue)
             {
-                Debug.Log(enemyAction.actionName + " failed 'IsMoreThanTurn' requirement");
+                Debug.Log(enemyAction.actionName + " failed 'IsMoreThanTurn' requirement, current turn is " + ActivationManager.Instance.CurrentTurn.ToString() +
+                    ", and requirement is " + ar.requirementTypeValue.ToString());
                 checkResults.Add(false);
             }
 
@@ -1976,15 +2005,17 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             if (ar.requirementType == ActionRequirementType.ActivatedXTimesOrMore &&
                enemy.myPreviousActionLog.Count < ar.requirementTypeValue)
             {
-                Debug.Log(enemyAction.actionName + " failed 'ActivatedXTimesOrMore' requirement");
+                Debug.Log(enemyAction.actionName + " failed 'ActivatedXTimesOrMore' requirement, has activated " + enemy.myPreviousActionLog.Count.ToString() +
+                    " times, and requirement is " + ar.requirementTypeValue.ToString());
                 checkResults.Add(false);
             }
 
-            // Check ActivatedXTimesOrMore
+            // Check ActivatedXTimesOrLess
             if (ar.requirementType == ActionRequirementType.ActivatedXTimesOrLess &&
                enemy.myPreviousActionLog.Count > ar.requirementTypeValue)
             {
-                Debug.Log(enemyAction.actionName + " failed 'ActivatedXTimesOrMore' requirement");
+                Debug.Log(enemyAction.actionName + " failed 'ActivatedXTimesOrMore' requirement, has activated " + enemy.myPreviousActionLog.Count.ToString() +
+                    " times, and requirement is " + ar.requirementTypeValue.ToString());
                 checkResults.Add(false);
             }
 
@@ -2219,251 +2250,252 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
     {
         Debug.Log("CharacterEntityController.TriggerEnemyActionEffect() called on enemy " + enemy.myName);
 
-        // Cache refs for visual events
-        CharacterEntityModel target = enemy.currentActionTarget;
-
-        // if invalid targetting issues occured before triggering event, return
-        // TO DO: we should probably perform this validation process before calling 'TriggerEnemyActionEffect'
-        if ((target != null && target.livingState == LivingState.Dead) ||
-            ((effect.actionType == ActionType.AttackTarget ||
-            effect.actionType == ActionType.DebuffTarget ||
-            effect.actionType == ActionType.AddCardToTargetCardCollection) && target == enemy))
+        for (int i = 0; i < effect.effectLoops; i++)
         {
-            return;
-        }
+            // Cache refs for visual events
+            CharacterEntityModel target = enemy.currentActionTarget;
 
-        // TO DO: we should probably remove this and find a better way to prevent enemies targetting themselves
-        // with harmful effects
-        if ((effect.actionType == ActionType.AttackTarget ||
-            effect.actionType == ActionType.DebuffTarget ||
-            effect.actionType == ActionType.AddCardToTargetCardCollection) &&
-            target == null)
-        {
-            return;
-        }
-
-        // If summoning, but there is no available nodes, cancel
-        if(effect.actionType == ActionType.SummonCreature && 
-            LevelManager.Instance.GetNextAvailableEnemyNode() == null)
-        {
-            return;
-        }
-
-        // If no target, set self as target
-        if ((effect.actionType == ActionType.DefendTarget ||
-            effect.actionType == ActionType.BuffTarget) &&
-            target == null)
-        {
-            target = enemy;
-        }
-
-        // trigger starting visual events
-        foreach (AnimationEventData vEvent in effect.visualEventsOnStart)
-        {
-            AnimationEventController.Instance.PlayAnimationEvent(vEvent, enemy, target);
-        }
-
-
-        // RESOLVE EFFECT LOGIC START!
-        // Execute effect based on effect type
-        // Attack Target
-        if (effect.actionType == ActionType.AttackTarget)
-        {
-            if (target != null &&
-                 target.livingState == LivingState.Alive)
+            // if invalid targetting issues occured before triggering event, return
+            if ((target != null && target.livingState == LivingState.Dead) ||
+                ((effect.actionType == ActionType.AttackTarget ||
+                effect.actionType == ActionType.DebuffTarget ||
+                effect.actionType == ActionType.AddCardToTargetCardCollection) && target == enemy))
             {
-                // Calculate damage
-                DamageType damageType = CombatLogic.Instance.GetFinalFinalDamageTypeOfAttack(enemy, null, null, effect);
-                int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, target, damageType, effect.baseDamage, effect);
-
-                // Start damage sequence
-                CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, target, effect, damageType);
+                return;
             }
-        }
 
-        // Attack All Enemies
-        else if (effect.actionType == ActionType.AttackAllEnemies)
-        {
-            VisualEvent batchedEvent = VisualEventManager.Instance.InsertTimeDelayInQueue(0f);
-
-            foreach (CharacterEntityModel enemyCharacter in GetAllEnemiesOfCharacter(enemy))
+            // Prevent targetting self with harmful effects
+            if ((effect.actionType == ActionType.AttackTarget ||
+                effect.actionType == ActionType.DebuffTarget ||
+                effect.actionType == ActionType.AddCardToTargetCardCollection) &&
+                target == null)
             {
-                if (enemyCharacter != null &&
-                 enemyCharacter.livingState == LivingState.Alive)
+                return;
+            }
+
+            // If summoning allies, but there are no available nodes, cancel
+            if (effect.actionType == ActionType.SummonCreature &&
+                LevelManager.Instance.GetNextAvailableEnemyNode() == null)
+            {
+                return;
+            }
+
+            // If no target for buff/defend ally effect, set self as target
+            if ((effect.actionType == ActionType.DefendTarget ||
+                effect.actionType == ActionType.BuffTarget) &&
+                target == null)
+            {
+                target = enemy;
+            }
+
+            // Trigger starting visual events
+            foreach (AnimationEventData vEvent in effect.visualEventsOnStart)
+            {
+                AnimationEventController.Instance.PlayAnimationEvent(vEvent, enemy, target);
+            }
+
+
+            // RESOLVE EFFECT LOGIC START!
+            // Execute effect based on effect type
+            // Attack Target
+            if (effect.actionType == ActionType.AttackTarget)
+            {
+                if (target != null &&
+                     target.livingState == LivingState.Alive)
                 {
                     // Calculate damage
                     DamageType damageType = CombatLogic.Instance.GetFinalFinalDamageTypeOfAttack(enemy, null, null, effect);
-                    int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, enemyCharacter, damageType, effect.baseDamage, effect);
+                    int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, target, damageType, effect.baseDamage, effect);
 
                     // Start damage sequence
-                    CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, enemyCharacter, effect, damageType, batchedEvent);
+                    CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, target, effect, damageType);
                 }
             }
-        }
 
-        // Summon Creature
-        if (effect.actionType == ActionType.SummonCreature)
-        {
-            // get next available node
-            LevelNode node = LevelManager.Instance.GetNextAvailableEnemyNode();
-
-            if (!node)
+            // Attack All Enemies
+            else if (effect.actionType == ActionType.AttackAllEnemies)
             {
-                return;
-            }
+                VisualEvent batchedEvent = VisualEventManager.Instance.InsertTimeDelayInQueue(0f);
 
-            // Create enemy GO + data, set intent
-            CharacterEntityModel newEnemy =  CreateEnemyCharacter(effect.characterSummoned, node);
-            StartAutoSetEnemyIntentProcess(newEnemy);
-
-            // Disable activation window until ready
-            CharacterEntityView view = newEnemy.characterEntityView;
-            view.myActivationWindow.gameObject.SetActive(false);
-            ActivationManager.Instance.DisablePanelSlotAtIndex(ActivationManager.Instance.ActivationOrder.IndexOf(newEnemy));
-
-            // Hide GUI
-            FadeOutCharacterWorldCanvas(view, null, 0);
-
-            // Hide model
-            FadeOutEntityRenderer(view.ucm.GetComponent<EntityRenderer>(), 1000, null);
-            FadeOutCharacterShadow(view, 0);
-            view.blockMouseOver = true;
-
-            // Set start position
-            if(effect.summonedCreatureStartPosition == SummonAtLocation.StartNode)
-            {
-
-            }
-            else if (effect.summonedCreatureStartPosition == SummonAtLocation.OffScreen)
-            {
-
-            }
-
-            // Enable activation window
-            int windowIndex = ActivationManager.Instance.ActivationOrder.IndexOf(newEnemy);
-            VisualEventManager.Instance.CreateVisualEvent(() => 
-            {
-                view.myActivationWindow.gameObject.SetActive(true);
-                ActivationManager.Instance.EnablePanelSlotAtIndex(windowIndex);
-            }, QueuePosition.Back, 0f, 0.1f);
-
-            // Update all window slot positions + activation pointer arrow
-            CharacterEntityModel entityActivated = ActivationManager.Instance.EntityActivated;
-            VisualEventManager.Instance.CreateVisualEvent(() => ActivationManager.Instance.UpdateWindowPositions());
-            VisualEventManager.Instance.CreateVisualEvent(() => ActivationManager.Instance.MoveActivationArrowTowardsEntityWindow(entityActivated), QueuePosition.Back);
-
-            // Fade in model + UI
-            VisualEventManager.Instance.CreateVisualEvent(() => FadeInCharacterWorldCanvas(view, null, effect.uiFadeInSpeed));
-            VisualEventManager.Instance.CreateVisualEvent(() => 
-            { 
-                FadeInEntityRenderer(view.ucm.GetComponent<EntityRenderer>(), effect.modelFadeInSpeed);
-                FadeInCharacterShadow(view, 1f, ()=> view.blockMouseOver = false);
-            });
-
-            // Resolve visual events
-            foreach (AnimationEventData vEvent in effect.summonedCreatureVisualEvents)
-            {
-                AnimationEventController.Instance.PlayAnimationEvent(vEvent, newEnemy, newEnemy);
-            }
-        }
-
-        // Defend target
-        else if (effect.actionType == ActionType.DefendTarget)
-        {
-            if(target == null)
-            {
-                target = enemy;
-            }
-
-            ModifyBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy, target, effect, null));
-        }
-
-        // Defend self
-        else if (effect.actionType == ActionType.DefendSelf)
-        {
-            ModifyBlock(enemy, CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy, enemy, effect, null));
-        }
-
-        // Defend All
-        else if (effect.actionType == ActionType.DefendAllAllies)
-        {
-            foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(enemy))
-            {
-                ModifyBlock(ally, CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy, ally, effect, null));
-            }
-        }
-
-        // Buff Self + Buff Target
-        else if (effect.actionType == ActionType.BuffSelf ||
-                 effect.actionType == ActionType.BuffTarget)
-        {
-            // Set self as target if 'BuffSelf' type
-            if (effect.actionType == ActionType.BuffSelf)
-            {
-                target = enemy;
-            }
-
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0f, enemy);
-        }
-
-        // Buff All
-        else if (effect.actionType == ActionType.BuffAllAllies)
-        {
-            foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(enemy))
-            {
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(ally.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0, enemy);
-            }
-
-        }
-
-        // Debuff Target
-        else if (effect.actionType == ActionType.DebuffTarget)
-        {
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0f, enemy);
-        }
-
-        // Debuff All
-        else if (effect.actionType == ActionType.DebuffAllEnemies)
-        {
-            foreach (CharacterEntityModel enemyy in GetAllEnemiesOfCharacter(enemy))
-            {
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemyy.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0f, enemy);
-            }
-
-        }
-
-        // Add Card
-        else if (effect.actionType == ActionType.AddCardToTargetCardCollection)
-        {
-            List<Card> cardsAdded = new List<Card>();
-            for (int i = 0; i < effect.copiesAdded; i++)
-            {
-                if (effect.collection == CardCollection.DiscardPile)
+                foreach (CharacterEntityModel enemyCharacter in GetAllEnemiesOfCharacter(enemy))
                 {
-                    // TO DO: Make a new method in CardController for this and future similar effects, like CreateCardAndAddToDiscardPile
+                    if (enemyCharacter != null &&
+                     enemyCharacter.livingState == LivingState.Alive)
+                    {
+                        // Calculate damage
+                        DamageType damageType = CombatLogic.Instance.GetFinalFinalDamageTypeOfAttack(enemy, null, null, effect);
+                        int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(enemy, enemyCharacter, damageType, effect.baseDamage, effect);
 
-                    Card card = CardController.Instance.CreateAndAddNewCardToCharacterDiscardPile(enemy.currentActionTarget, effect.cardAdded);
-                    cardsAdded.Add(card);
+                        // Start damage sequence
+                        CombatLogic.Instance.HandleDamage(finalDamageValue, enemy, enemyCharacter, effect, damageType, batchedEvent);
+                    }
                 }
             }
 
-            CardController.Instance.StartNewShuffleCardsScreenVisualEvent(cardsAdded);
-
-        }
-
-        // CONCLUDING VISUAL EVENTS!
-        if (CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive &&
-            enemy.livingState == LivingState.Alive)
-        {
-            // cancel if the target was killed
-            if (target != null && target.livingState == LivingState.Dead)
+            // Summon Creature
+            if (effect.actionType == ActionType.SummonCreature)
             {
-                return;
+                // get next available node
+                LevelNode node = LevelManager.Instance.GetNextAvailableEnemyNode();
+
+                if (!node)
+                {
+                    return;
+                }
+
+                // Create enemy GO + data, set intent
+                CharacterEntityModel newEnemy = CreateEnemyCharacter(effect.characterSummoned, node);
+                StartAutoSetEnemyIntentProcess(newEnemy);
+
+                // Disable activation window until ready
+                CharacterEntityView view = newEnemy.characterEntityView;
+                view.myActivationWindow.gameObject.SetActive(false);
+                ActivationManager.Instance.DisablePanelSlotAtIndex(ActivationManager.Instance.ActivationOrder.IndexOf(newEnemy));
+
+                // Hide GUI
+                FadeOutCharacterWorldCanvas(view, null, 0);
+
+                // Hide model
+                FadeOutEntityRenderer(view.ucm.GetComponent<EntityRenderer>(), 1000, null);
+                FadeOutCharacterShadow(view, 0);
+                view.blockMouseOver = true;
+
+                // Set start position
+                if (effect.summonedCreatureStartPosition == SummonAtLocation.StartNode)
+                {
+
+                }
+                else if (effect.summonedCreatureStartPosition == SummonAtLocation.OffScreen)
+                {
+
+                }
+
+                // Enable activation window
+                int windowIndex = ActivationManager.Instance.ActivationOrder.IndexOf(newEnemy);
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    view.myActivationWindow.gameObject.SetActive(true);
+                    ActivationManager.Instance.EnablePanelSlotAtIndex(windowIndex);
+                }, QueuePosition.Back, 0f, 0.1f);
+
+                // Update all window slot positions + activation pointer arrow
+                CharacterEntityModel entityActivated = ActivationManager.Instance.EntityActivated;
+                VisualEventManager.Instance.CreateVisualEvent(() => ActivationManager.Instance.UpdateWindowPositions());
+                VisualEventManager.Instance.CreateVisualEvent(() => ActivationManager.Instance.MoveActivationArrowTowardsEntityWindow(entityActivated), QueuePosition.Back);
+
+                // Fade in model + UI
+                VisualEventManager.Instance.CreateVisualEvent(() => FadeInCharacterWorldCanvas(view, null, effect.uiFadeInSpeed));
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    FadeInEntityRenderer(view.ucm.GetComponent<EntityRenderer>(), effect.modelFadeInSpeed);
+                    FadeInCharacterShadow(view, 1f, () => view.blockMouseOver = false);
+                });
+
+                // Resolve visual events
+                foreach (AnimationEventData vEvent in effect.summonedCreatureVisualEvents)
+                {
+                    AnimationEventController.Instance.PlayAnimationEvent(vEvent, newEnemy, newEnemy);
+                }
             }
 
-            foreach (AnimationEventData vEvent in effect.visualEventsOnFinish)
+            // Defend target
+            else if (effect.actionType == ActionType.DefendTarget)
             {
-                AnimationEventController.Instance.PlayAnimationEvent(vEvent, enemy, target);
+                if (target == null)
+                {
+                    target = enemy;
+                }
+
+                ModifyBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy, target, effect, null));
+            }
+
+            // Defend self
+            else if (effect.actionType == ActionType.DefendSelf)
+            {
+                ModifyBlock(enemy, CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy, enemy, effect, null));
+            }
+
+            // Defend All
+            else if (effect.actionType == ActionType.DefendAllAllies)
+            {
+                foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(enemy))
+                {
+                    ModifyBlock(ally, CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy, ally, effect, null));
+                }
+            }
+
+            // Buff Self + Buff Target
+            else if (effect.actionType == ActionType.BuffSelf ||
+                     effect.actionType == ActionType.BuffTarget)
+            {
+                // Set self as target if 'BuffSelf' type
+                if (effect.actionType == ActionType.BuffSelf)
+                {
+                    target = enemy;
+                }
+
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0f, enemy);
+            }
+
+            // Buff All
+            else if (effect.actionType == ActionType.BuffAllAllies)
+            {
+                foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(enemy))
+                {
+                    PassiveController.Instance.ModifyPassiveOnCharacterEntity(ally.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0, enemy);
+                }
+
+            }
+
+            // Debuff Target
+            else if (effect.actionType == ActionType.DebuffTarget)
+            {
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0f, enemy);
+            }
+
+            // Debuff All
+            else if (effect.actionType == ActionType.DebuffAllEnemies)
+            {
+                foreach (CharacterEntityModel enemyy in GetAllEnemiesOfCharacter(enemy))
+                {
+                    PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemyy.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0f, enemy);
+                }
+
+            }
+
+            // Add Card
+            else if (effect.actionType == ActionType.AddCardToTargetCardCollection)
+            {
+                List<Card> cardsAdded = new List<Card>();
+                for (int loops = 0; loops < effect.copiesAdded; loops++)
+                {
+                    if (effect.collection == CardCollection.DiscardPile)
+                    {
+                        // TO DO: Make a new method in CardController for this and future similar effects, like CreateCardAndAddToDiscardPile
+
+                        Card card = CardController.Instance.CreateAndAddNewCardToCharacterDiscardPile(enemy.currentActionTarget, effect.cardAdded);
+                        cardsAdded.Add(card);
+                    }
+                }
+
+                CardController.Instance.StartNewShuffleCardsScreenVisualEvent(cardsAdded);
+
+            }
+
+            // CONCLUDING VISUAL EVENTS!
+            if (CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive &&
+                enemy.livingState == LivingState.Alive)
+            {
+                // cancel if the target was killed
+                if (target != null && target.livingState == LivingState.Dead)
+                {
+                    return;
+                }
+
+                foreach (AnimationEventData vEvent in effect.visualEventsOnFinish)
+                {
+                    AnimationEventController.Instance.PlayAnimationEvent(vEvent, enemy, target);
+                }
             }
         }
 

@@ -89,7 +89,7 @@ public class PersistencyManager : Singleton<PersistencyManager>
         EncounterData ed = JourneyManager.Instance.Encounters[0];
         newSave.currentEncounter = ed;
 
-        if (ed.encounterType == EncounterType.BasicEnemy)
+        if (ed.encounterType == EncounterType.BasicEnemy || ed.encounterType == EncounterType.EliteEnemy)
         {
             newSave.saveCheckPoint = SaveCheckPoint.CombatStart;
             EnemyWaveSO firstEnemies = JourneyManager.Instance.GetRandomEnemyWaveFromEncounterData(ed);

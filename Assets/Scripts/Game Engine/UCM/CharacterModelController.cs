@@ -1197,6 +1197,14 @@ public static class CharacterModelController
             }
             model.activeOffHandWeapon = element;
         }
+        else if (element.bodyPartType == BodyPartType.BodyParticles)
+        {
+            if (model.activeChestParticles != null)
+            {
+                DisableAndClearElementOnModel(model, model.activeChestParticles);
+            }
+            model.activeChestParticles = element;
+        }
 
         // Enable GO
         element.gameObject.SetActive(true);
@@ -1298,6 +1306,12 @@ public static class CharacterModelController
         else if (element.bodyPartType == BodyPartType.OffHandWeapon)
         {
             model.activeOffHandWeapon = null;
+        }
+
+        // Particles
+        else if (element.bodyPartType == BodyPartType.BodyParticles)
+        {
+            model.activeChestParticles = null;
         }
 
         // repeat for any connected elements (e.g. active arm/hand sprites that are connected to the chest piece

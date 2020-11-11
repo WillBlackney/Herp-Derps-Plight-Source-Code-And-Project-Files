@@ -25,11 +25,7 @@ MonoBehaviour:
   startingHealth: 0
   startingBlock: 0
   physicalResistance: 0
-  fireResistance: 0
-  frostResistance: 0
-  shadowResistance: 0
-  poisonResistance: 0
-  airResistance: 0
+  magicResistance: 0
   serializedPassiveManager:
     bonusPowerStacks: 0
     bonusDexterityStacks: 0
@@ -91,7 +87,7 @@ MonoBehaviour:
   allEnemyActions:
   - actionName: Summon Skeleton
     actionType: 13
-    intentImage: 11
+    intentImage: 13
     actionLoops: 1
     doThisOnFirstActivation: 0
     canBeConsecutive: 1
@@ -120,6 +116,7 @@ MonoBehaviour:
         onCharacter: 0
       visualEventsOnFinish: []
       actionType: 13
+      effectLoops: 1
       baseDamage: 0
       damageType: 0
       characterSummoned: {fileID: 11400000, guid: df28d18b0c3ea5b47857f9d707a19067,
@@ -206,6 +203,7 @@ MonoBehaviour:
         onCharacter: 2
       visualEventsOnFinish: []
       actionType: 0
+      effectLoops: 1
       baseDamage: 8
       damageType: 5
       characterSummoned: {fileID: 0}

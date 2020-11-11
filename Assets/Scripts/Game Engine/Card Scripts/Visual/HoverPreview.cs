@@ -63,8 +63,6 @@ public class HoverPreview: MonoBehaviour
     #region
     private void OnMouseOver()
     {
-        Debug.LogWarning("HoverPreview.OnMouseOver() called...");
-
         // is mobile user touching screen
         if (GlobalSettings.Instance.deviceMode == DeviceMode.Mobile &&
             Input.touchCount > 0)
@@ -112,8 +110,6 @@ public class HoverPreview: MonoBehaviour
 
     void OnMouseEnter()
     {
-        Debug.LogWarning("HoverPreview.OnMouseEnter() called...");
-
         if (GlobalSettings.Instance.deviceMode == DeviceMode.Desktop)
         {
             OverCollider = true;
@@ -139,8 +135,6 @@ public class HoverPreview: MonoBehaviour
         
     void OnMouseExit()
     {
-        Debug.LogWarning("HoverPreview.OnMouseExit() called...");
-
         if (GlobalSettings.Instance.deviceMode == DeviceMode.Desktop)
         {
             OverCollider = false;

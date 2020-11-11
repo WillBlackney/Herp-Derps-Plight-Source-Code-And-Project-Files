@@ -83,6 +83,20 @@ public class LevelManager : Singleton<LevelManager>
 
         return nodeReturned;
     }
+    public List<LevelNode> GetAllAvailableEnemyNodes()
+    {
+        List<LevelNode> nodes = new List<LevelNode>();
+
+        foreach (LevelNode node in AllLevelNodes)
+        {
+            if (node.allowedEntity == AllowedEntity.Enemy && node.occupied == false)
+            {
+                nodes.Add(node);
+            }
+        }
+
+        return nodes;
+    }
     public void PlaceEntityAtNode(CharacterEntityModel entity, LevelNode node)
     {
         Debug.Log("LevelManager.PlaceEntityAtNode() called...");

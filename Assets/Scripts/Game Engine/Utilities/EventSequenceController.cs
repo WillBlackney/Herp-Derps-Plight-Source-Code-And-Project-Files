@@ -293,7 +293,8 @@ public class EventSequenceController : Singleton<EventSequenceController>
         Debug.LogWarning("EventSequenceController.HandleLoadEncounter()");
 
         if ((encounter.encounterType == EncounterType.BasicEnemy ||
-            encounter.encounterType == EncounterType.EliteEnemy) &&
+            encounter.encounterType == EncounterType.EliteEnemy ||
+            encounter.encounterType == EncounterType.BossEnemy) &&
             JourneyManager.Instance.CheckPointType == SaveCheckPoint.CombatStart
             )
         {
@@ -310,6 +311,15 @@ public class EventSequenceController : Singleton<EventSequenceController>
             LevelManager.Instance.ShowAllNodeViews();
             CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
             StartCombatVictorySequence();
+        }
+
+        // TO DO IN FUTURE: boss loot events are different to basic/enemy, and 
+        // will require different loading logic here
+        else if ((encounter.encounterType == EncounterType.BossEnemy) &&
+            JourneyManager.Instance.CheckPointType == SaveCheckPoint.CombatEnd
+            )
+        {
+           
         }
 
         else if (JourneyManager.Instance.CheckPointType == SaveCheckPoint.RecruitCharacterStart)
@@ -370,8 +380,16 @@ public class EventSequenceController : Singleton<EventSequenceController>
             HandleCombatSceneTearDown();
         }
 
+        // TO DO IN FUTURE: Boss victory means loading the next act, so we need
+        // different loading/continuation logic here. We also need to end the game,
+        // show score, etc, if the boss is last boss (act 3).
+        else if (previousEncounter.encounterType == EncounterType.BossEnemy)
+        {
+
+        }
+
         // Tear down recruit character screen
-        else if(previousEncounter.encounterType == EncounterType.RecruitCharacter)
+                else if(previousEncounter.encounterType == EncounterType.RecruitCharacter)
         {
             // Fade out visual event
             BlackScreenController.Instance.FadeOutScreen(1f);
@@ -425,7 +443,8 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // If next event is a combat, get + set enemy wave before saving to disk
         if (JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.BasicEnemy ||
-            JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.EliteEnemy)
+            JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.EliteEnemy ||
+            JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.BossEnemy)
         {
             // Calculate and cache the next enemy wave group
             JourneyManager.Instance.SetCurrentEnemyWaveData 

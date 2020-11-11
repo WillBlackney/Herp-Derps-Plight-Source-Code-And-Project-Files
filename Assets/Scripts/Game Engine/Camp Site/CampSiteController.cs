@@ -602,6 +602,7 @@ public class CampSiteController : Singleton<CampSiteController>
 
         if(target.myCharacterData == null)
         {
+            Debug.LogWarning("IsTargetValid() detected camp character's character data ref is null, returning false");
             return false;
         }
 
@@ -844,12 +845,17 @@ public class CampSiteController : Singleton<CampSiteController>
         // Heal All
         if (cardEffect.cardEffectType == CampCardEffectType.HealAllCharacters)
         {
-            foreach(CampSiteCharacterView character in allCampSiteCharacterViews)
+            foreach(CampSiteCharacterView campCharacter in allCampSiteCharacterViews)
             {
-                cData = character.myCharacterData;
+                if (campCharacter.myCharacterData == null)
+                {
+                    return;
+                }
+
+                cData = campCharacter.myCharacterData;
 
                 // does each character meet the healing requirements?
-                if (IsTargetValid(character, card))
+                if (IsTargetValid(campCharacter, card))
                 {
                     int healAmount = 0;
 
@@ -868,15 +874,15 @@ public class CampSiteController : Singleton<CampSiteController>
                     }
 
                     // Modify health
-                    HandleHealEffect(character, healAmount);
+                    HandleHealEffect(campCharacter, healAmount);
 
                     // Heal VFX
                     VisualEventManager.Instance.CreateVisualEvent(() =>
-                        VisualEffectManager.Instance.CreateHealEffect(character.characterEntityView.WorldPosition));
+                        VisualEffectManager.Instance.CreateHealEffect(campCharacter.characterEntityView.WorldPosition));
 
                     // Create heal text effect
                     VisualEventManager.Instance.CreateVisualEvent(() =>
-                    VisualEffectManager.Instance.CreateDamageEffect(character.characterEntityView.WorldPosition, healAmount, true));
+                    VisualEffectManager.Instance.CreateDamageEffect(campCharacter.characterEntityView.WorldPosition, healAmount, true));
 
                     // Create SFX
                     VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Passive_General_Buff));
@@ -907,12 +913,17 @@ public class CampSiteController : Singleton<CampSiteController>
         // Increase max health all
         if (cardEffect.cardEffectType == CampCardEffectType.IncreaseMaxHealthAll)
         {
-            foreach (CampSiteCharacterView character in allCampSiteCharacterViews)
+            foreach (CampSiteCharacterView campCharacter in allCampSiteCharacterViews)
             {
-                cData = character.myCharacterData;
+                if(campCharacter.myCharacterData == null)
+                {
+                    return;
+                }
+
+                cData = campCharacter.myCharacterData;
 
                 // does each character meet the healing requirements?
-                if (IsTargetValid(character, card))
+                if (IsTargetValid(campCharacter, card))
                 {
                     int maxHpGainAmount = cardEffect.maxHealthGained;
 
@@ -920,11 +931,11 @@ public class CampSiteController : Singleton<CampSiteController>
                     CharacterDataController.Instance.SetCharacterMaxHealth(cData, cData.maxHealth + maxHpGainAmount);
 
                     // Update health GUI visual event
-                    VisualEventManager.Instance.CreateVisualEvent(() => UpdateHealthGUIElements(character.characterEntityView, cData.health, cData.maxHealth), QueuePosition.Back, 0, 0);
+                    VisualEventManager.Instance.CreateVisualEvent(() => UpdateHealthGUIElements(campCharacter.characterEntityView, cData.health, cData.maxHealth), QueuePosition.Back, 0, 0);
 
                     // Heal VFX
                     VisualEventManager.Instance.CreateVisualEvent(() =>
-                        VisualEffectManager.Instance.CreateHealEffect(character.characterEntityView.WorldPosition));
+                        VisualEffectManager.Instance.CreateHealEffect(campCharacter.characterEntityView.WorldPosition));
 
                     // Create SFX
                     VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Passive_General_Buff));

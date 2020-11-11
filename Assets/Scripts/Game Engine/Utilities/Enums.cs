@@ -209,6 +209,7 @@ public enum Passive
     Sleep = 27,
     Stamina = 28,
     Silenced = 43,
+    SoulCollector = 56,
     TakenAim = 39,
     Taunted = 29,
     TemporaryDexterity = 30,
@@ -222,6 +223,7 @@ public enum Passive
     Weakened = 37,
     WellOfSouls = 48,
     Wrath = 38,
+   
 
 };
 public enum KeyWordType
@@ -322,7 +324,7 @@ public enum ActionRequirementType
     ActivatedXTimesOrMore = 8,
     ActivatedXTimesOrLess = 9,
     HasPassiveTrait = 10,
-    AtLeastOneAvailableNode = 11,
+    AtLeastXAvailableNodes = 11,
 }
 public enum IntentImage
 {
@@ -423,6 +425,7 @@ public enum BodyPartType
     LeftHandWear = 17, 
     MainHandWeapon = 18, 
     OffHandWeapon = 19,
+    BodyParticles = 20,
 };
 #endregion
 

@@ -284,9 +284,13 @@ public class AudioManager : Singleton<AudioManager>
         {
             FadeOutSound(Sound.Music_Elite_2, fadeDuration);
         }
-        if (IsSoundPlaying(Sound.Music_Elite_3))
+        if (IsSoundPlaying(Sound.Music_Boss_1))
         {
-            FadeOutSound(Sound.Music_Elite_3, fadeDuration);
+            FadeOutSound(Sound.Music_Boss_1, fadeDuration);
+        }
+        if (IsSoundPlaying(Sound.Music_Boss_2))
+        {
+            FadeOutSound(Sound.Music_Boss_2, fadeDuration);
         }
     }
     public void ForceStopAllCombatMusic()
@@ -431,7 +435,8 @@ public enum Sound
     Music_Basic_3 = 43,
     Music_Elite_1 = 44,
     Music_Elite_2 = 45,
-    Music_Elite_3 = 46,
+    Music_Boss_1 = 47,
+    Music_Boss_2 = 48,
     Music_Main_Menu_Theme_1 = 36,
 
 
