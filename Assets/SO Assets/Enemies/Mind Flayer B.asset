@@ -70,6 +70,7 @@ MonoBehaviour:
     demonFormStacks: 0
     darkBargainStacks: 0
     volatileStacks: 0
+    soulCollectorStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -142,8 +143,9 @@ MonoBehaviour:
         onCharacter: 2
       visualEventsOnFinish: []
       actionType: 0
+      effectLoops: 1
       baseDamage: 9
-      damageType: 5
+      damageType: 2
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
       modelFadeInSpeed: 0
@@ -212,6 +214,7 @@ MonoBehaviour:
         onCharacter: 2
       visualEventsOnFinish: []
       actionType: 12
+      effectLoops: 1
       baseDamage: 0
       damageType: 0
       characterSummoned: {fileID: 0}

@@ -419,7 +419,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
             CampSiteController.Instance.FadeOutCampGui();
             CampSiteController.Instance.FadeOutAllCharacterGUI();
             yield return new WaitForSeconds(0.5f);
-            CampSiteController.Instance.DisableCampGuiViewParent();
+            CampSiteController.Instance.DisableCampGuiViewParent();            
 
             // Move characters off screen
             CampSiteController.Instance.MoveCharactersToOffScreenRight(ccList, null);
@@ -429,6 +429,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
             yield return new WaitForSeconds(0.5f);
             CameraManager.Instance.DoCameraMove(3, 0, 3f);
             CameraManager.Instance.DoCameraZoom(5, 3, 3f);
+
+            // Fade out Screen
+            BlackScreenController.Instance.FadeOutScreen(3f);
 
             // Wait for visual events
             yield return new WaitForSeconds(4f);
@@ -589,6 +592,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // View sequence 2
         BlackScreenController.Instance.FadeInScreen(1f);
+        CameraManager.Instance.DoCameraMove(-3, 0, 0f);
+        CameraManager.Instance.DoCameraMove(0, 0, 2f);
+        CameraManager.Instance.DoCameraZoom(3, 5, 2f);
         CampSiteController.Instance.MoveAllCharactersToTheirNodes();
         yield return new WaitForSeconds(1 + (CharacterDataController.Instance.AllPlayerCharacters.Count * 0.5f));
         CampSiteController.Instance.EnableCampGuiViewParent();

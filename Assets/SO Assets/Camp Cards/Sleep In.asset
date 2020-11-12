@@ -33,7 +33,9 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: cards.
+    phrase: 'cards.
+
+'
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0

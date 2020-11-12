@@ -704,6 +704,185 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }
         */
     }
+    private void ResolveFirstActivationTalentBonuses(CharacterEntityModel character)
+    {
+        // Double check character data is not null
+        if(character.characterData == null)
+        {
+            Debug.LogWarning("CharacterEntityController.ResolveFirstActivationTalentBonuses() was given null character data, cancelling...");
+            return;
+        }
+
+        // Warfare bonus
+        if(CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Warfare, 2))
+        {
+            // Notication vfx
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Warfare Mastery!"), QueuePosition.Back, 0f, 0.5f);
+
+            // Gain 1 Wrath
+            PassiveController.Instance.ModifyWrath(character.pManager, 1, true, 0.5f);
+        }
+
+        // Guardian bonus
+        if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Guardian, 2))
+        {
+            // Notication vfx
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Guardian Mastery!"), QueuePosition.Back, 0f, 0.5f);
+
+            // Gain 5 Block
+            ModifyBlock(character, CombatLogic.Instance.CalculateBlockGainedByEffect(5, character, character));
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+        }
+
+        // Naturalism bonus
+        if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Naturalism, 2))
+        {
+            // Notication vfx
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Naturalism Mastery!"), QueuePosition.Back, 0f, 0.5f);
+
+            // Gain 2 Overload
+            PassiveController.Instance.ModifyOverload(character.pManager, 2, true, 0.5f);
+        }
+
+        // Scoundrel bonus
+        if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Scoundrel, 2))
+        {
+            // Notication vfx
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Scoundrel Mastery!"));
+
+            // Gain 2 Shank cards
+            for (int i = 0; i < 2; i++)
+            {
+                CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetCardDataFromLibraryByName("Shank"));
+            }
+
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+        }
+
+        // Divinity bonus
+        if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Divinity, 2))
+        {
+            // Notication vfx
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Divinity Mastery!"));
+
+            // Gain 2 Random Blessing cards
+            for (int i = 0; i < 2; i++)
+            {
+                CardController.Instance.CreateAndAddNewRandomBlessingsToCharacterHand(character, 1);
+            }
+
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+        }
+
+        // Toxicology bonus
+        if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Corruption, 2))
+        {
+            // Notication vfx
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Corruption Mastery!"));
+
+            // Apply 1 Poisoned to all enemies
+            foreach (CharacterEntityModel enemy in GetAllEnemiesOfCharacter(character))
+            {
+                PassiveController.Instance.ModifyPoisoned(character, enemy.pManager, 1, true, 0f);
+            }
+
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+        }
+
+        // Shadowcraft bonus
+        if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Shadowcraft, 2))
+        {
+            // Notication vfx
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Shadowcraft Mastery!"));
+
+            // Apply 1 Weakened to all enemies
+            foreach (CharacterEntityModel enemy in GetAllEnemiesOfCharacter(character))
+            {
+                PassiveController.Instance.ModifyWeakened(enemy.pManager, 1, true, 0f);
+            }
+
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+        }
+
+        // Manipulation bonus
+        if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Manipulation, 2))
+        {
+            // Notication vfx
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Manipulation Mastery!"));
+
+            // Draw 2 cards
+            for (int i = 0; i < 2; i++)
+            {
+                CardController.Instance.DrawACardFromDrawPile(character);
+            }
+
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+        }
+
+        // Pyromania bonus
+        if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Pyromania, 2))
+        {
+            // Notication vfx
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Pyromania Mastery!"));
+
+            // Add Fire Ball to hand
+            Card newFbCard = CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetCardDataFromLibraryByName("Fire Ball"));
+
+            // Reduce cost to 0
+            CardController.Instance.ReduceCardEnergyCostThisCombat(newFbCard, newFbCard.cardBaseEnergyCost);
+
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+        }
+
+        // Ranger bonus
+        if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Ranger, 2))
+        {
+            // Notication vfx
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Ranger Mastery!"));
+
+            // Setup
+            Card cardDrawn = null;
+            List<Card> validCards = new List<Card>();
+
+            // Find all valid ranged attack cards
+            foreach(Card card in character.drawPile)
+            {
+                if(card.cardType == CardType.RangedAttack)
+                {
+                    validCards.Add(card);
+                }
+            }
+
+            // Choose a random ranged attack card
+            if(validCards.Count > 0)
+            {
+                validCards.Shuffle();
+                cardDrawn = validCards[0];
+            }
+
+            // Did we actually find a ranged attack card?
+            if(cardDrawn != null)
+            {
+                // We did, draw it.
+                CardController.Instance.DrawACardFromDrawPile(character, cardDrawn);
+
+                // Set cost to 0
+                CardController.Instance.ReduceCardEnergyCostThisCombat(cardDrawn, cardDrawn.cardBaseEnergyCost);
+            }
+
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+        }
+    }
     public void CharacterOnActivationStart(CharacterEntityModel character)
     {
         Debug.Log("CharacterEntityController.CharacterOnActivationStart() called for " + character.myName);
@@ -728,8 +907,13 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             CoroutineData cData = new CoroutineData();
             VisualEventManager.Instance.CreateVisualEvent(() => FadeInCharacterUICanvas(character.characterEntityView, cData), cData, QueuePosition.Back);
 
-            // Before normal card draw, add cards to hand from passive effects (e.g. Fan Of Knives)
+            // Resolve first turn talent bonuses
+            if(ActivationManager.Instance.CurrentTurn == 1)
+            {
+                ResolveFirstActivationTalentBonuses(character);
+            }
 
+            // Before normal card draw, add cards to hand from passive effects (e.g. Fan Of Knives)
             // Fan of Knives
             if (character.pManager.fanOfKnivesStacks > 0)
             {
@@ -1234,7 +1418,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }
         else if (enemy.myNextAction.actionType == ActionType.Sleep)
         {
-            enemy.characterEntityView.intentPopUpDescriptionText.text = "This character is asleep an unable to take action...";
+            enemy.characterEntityView.intentPopUpDescriptionText.text = "This character is asleep and unable to take action...";
         }
         else if (enemy.myNextAction.actionType == ActionType.SummonCreature)
         {
@@ -1958,7 +2142,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
             // Check availble summoning spots
             if (ar.requirementType == ActionRequirementType.AtLeastXAvailableNodes &&
-                LevelManager.Instance.GetAllAvailableEnemyNodes().Count >= ar.requirementTypeValue)
+                LevelManager.Instance.GetAllAvailableEnemyNodes().Count < ar.requirementTypeValue)
             {
                 Debug.Log(enemyAction.actionName + " failed 'AtLeastXAvailableNodes' requirement");
                 checkResults.Add(false);
@@ -2547,12 +2731,12 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }
 
     }
-    public void MoveEntityToNodeCentre(CharacterEntityView view, LevelNode node, CoroutineData data, Action onCompleteCallback = null)
+    public void MoveEntityToNodeCentre(CharacterEntityView view, LevelNode node, CoroutineData data, Action onCompleteCallback = null, float startDelay = 0.3f)
     {
         Debug.Log("CharacterEntityController.MoveEntityToNodeCentre() called...");
-        StartCoroutine(MoveEntityToNodeCentreCoroutine(view, node, data, onCompleteCallback));
+        StartCoroutine(MoveEntityToNodeCentreCoroutine(view, node, data, onCompleteCallback, startDelay));
     }
-    private IEnumerator MoveEntityToNodeCentreCoroutine(CharacterEntityView view, LevelNode node, CoroutineData cData, Action onCompleteCallback)
+    private IEnumerator MoveEntityToNodeCentreCoroutine(CharacterEntityView view, LevelNode node, CoroutineData cData, Action onCompleteCallback, float startDelay)
     {
         // Set up
         bool reachedDestination = false;
@@ -2560,7 +2744,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         float moveSpeed = 10;
 
         // Brief yield here (incase melee attack anim played and character hasn't returned to attack pos )
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(startDelay);
 
         if(view == null)
         {

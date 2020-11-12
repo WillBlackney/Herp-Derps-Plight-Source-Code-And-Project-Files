@@ -131,23 +131,69 @@ public static class TextLogic
 
     // Misc Stuff
     #region
-    public static string GetTalentPanelDescriptionText(TalentPairingModel data)
+    public static string GetTalentPairingTierOneDescriptionText(TalentSchool ts)
     {
-        string stringReturned = "";
-
-        if(data.talentLevel == 1)
-        {
-            stringReturned = "This character can add " + ReturnColoredText("Common", commonRarity) +
-               " cards from the " + ReturnColoredText(data.talentSchool.ToString(), neutralYellow) + " tree to it's deck.";
-        }
-        else if (data.talentLevel == 2)
-        {
-            stringReturned = "This character can add " + ReturnColoredText("Common", commonRarity) + ", " +
+        return "This character can add " + ReturnColoredText("Common", commonRarity) + ", " +
                 ReturnColoredText("Rare", rareRarity) + " and " + ReturnColoredText("Epic", epicRarity) +
-                " cards from the " + ReturnColoredText(data.talentSchool.ToString(), neutralYellow) + " tree to it's deck.";
+                " cards from the " + ReturnColoredText(ts.ToString(), neutralYellow) + " tree to it's deck.";
+    }
+    public static string GetTalentPairingTierTwoDescriptionText(TalentSchool ts)
+    {
+        string sReturned = "";
+        if(ts == TalentSchool.Corruption)
+        {
+            sReturned = "On first activation start, apply " + ReturnColoredText("1 ", blueNumber) +
+                ReturnColoredText("Poisoned", poison) + " to all enemies.";
+        }
+        else if (ts == TalentSchool.Warfare)
+        {
+            sReturned = "On first activation start, gain " + ReturnColoredText("1 ", blueNumber) +
+                ReturnColoredText("Wrath", neutralYellow) + ".";
+        }
+        else if (ts == TalentSchool.Guardian)
+        {
+            sReturned = "On first activation start, gain " + ReturnColoredText("5 ", blueNumber) +
+                ReturnColoredText("Block", neutralYellow) + ".";
+        }
+        else if (ts == TalentSchool.Scoundrel)
+        {
+            sReturned = "On first activation start, add " + ReturnColoredText("2 ", blueNumber) +
+                ReturnColoredText("Shank", neutralYellow) + " cards to your hand.";
+        }
+        else if (ts == TalentSchool.Pyromania)
+        {
+            sReturned = "On first activation start, add a " + 
+                ReturnColoredText("Fire Ball", neutralYellow) + " card to your hand. It costs " +
+                ReturnColoredText("0 ", blueNumber) + ReturnColoredText("Energy", neutralYellow) + ".";
+        }
+        else if (ts == TalentSchool.Naturalism)
+        {
+            sReturned = "On first activation start, " + ReturnColoredText("2 ", blueNumber) +
+                ReturnColoredText("Overload", neutralYellow) + ".";
+        }
+        else if (ts == TalentSchool.Divinity)
+        {
+            sReturned = "On first activation start, add " + ReturnColoredText("2 ", blueNumber) +
+                ReturnColoredText("Blessing", neutralYellow) + " cards to your hand.";
+        }
+        else if (ts == TalentSchool.Shadowcraft)
+        {
+            sReturned = "On first activation start, apply " + ReturnColoredText("1 ", blueNumber) +
+                ReturnColoredText("Weakened", neutralYellow) + " to all enemies.";
+        }
+        else if (ts == TalentSchool.Manipulation)
+        {
+            sReturned = "Draw " + ReturnColoredText("2 ", blueNumber) +
+                " extra cards on your first activation.";
+        }
+        else if (ts == TalentSchool.Ranger)
+        {
+            sReturned = "On first activation start, draw a random " + 
+               ReturnColoredText("Ranged Attack", neutralYellow) + " card. It costs " + ReturnColoredText("0 ", blueNumber) +
+               ReturnColoredText("Energy", neutralYellow) + ".";
         }
 
-        return stringReturned;
+        return sReturned;
     }
     #endregion
 }

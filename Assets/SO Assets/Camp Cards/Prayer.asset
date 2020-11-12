@@ -28,11 +28,13 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 50%
+    phrase: '50% '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: health.
+    phrase: 'health.
+
+'
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0

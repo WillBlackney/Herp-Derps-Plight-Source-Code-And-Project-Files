@@ -4,24 +4,33 @@ using TMPro;
 using DG.Tweening;
 using System;
 using UnityEngine.UI;
+using Sirenix.OdinInspector;
 
 public class LootController : Singleton<LootController>
 {
     // Properties + Component References
     #region
-    [Header("Properties")]
-    [SerializeField] private LootResultModel currentLootResultData;
-    [SerializeField] private CharacterData currentCharacterSelection;
+    [Header("General Properties")]
+    private LootResultModel currentLootResultData;
+    private CharacterData currentCharacterSelection;
 
-    [Header("Component References")]
+    [Header("Current Pity Timer Properties")]
+    private int timeSinceLastEpic = 0;
+    private int timeSinceLastRare = 0;
+
+    [Header("Parent & Canvas Group Components")]
     [SerializeField] private GameObject visualParent;
     [SerializeField] private CanvasGroup visualParentCg;
     [SerializeField] private GameObject frontPageParent;
     [SerializeField] private CanvasGroup frontPageCg;
     [SerializeField] private GameObject chooseCardScreenParent;
     [SerializeField] private CanvasGroup chooseCardScreenCg;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
+
+    [Header("Card & Panel Components")]
     [SerializeField] private LootTab[] cardLootTabs;
     [SerializeField] private LootScreenCardViewModel[] lootCardViewModels;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Character Deck Quick View References")]
     [SerializeField] private TextMeshProUGUI characterNameText;
@@ -29,6 +38,7 @@ public class LootController : Singleton<LootController>
     [SerializeField] private CardViewModel previewCardVM;
     [SerializeField] private CanvasGroup previewCardCg;
     [SerializeField] private RectTransform[] rectRebuilds;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     public LootResultModel CurrentLootResultData
     {
@@ -248,18 +258,42 @@ public class LootController : Singleton<LootController>
             }
         }
 
+        
+
         // Get 3 random + different cards 
         for (int i = 0; i < 3; i++)
         {
             // Roll for rarity (5% Epic, 15% Rare, 80% Common probabilities)
             int roll = RandomGenerator.NumberBetween(1, 100);
 
+            // Check pity timers first
+            if (timeSinceLastEpic >= GlobalSettings.Instance.epicPityTimer && epicCards.Count > 0)
+            {
+                Debug.Log("LootController epic card pity timer exceeded, forcing epic card loot reward!");
+                epicCards.Shuffle();
+                listReturned.Add(epicCards[0]);
+                epicCards.Remove(epicCards[0]);
+                timeSinceLastEpic = 0;
+                timeSinceLastRare++;
+            }
+            else if (timeSinceLastRare >= GlobalSettings.Instance.rarePityTimer && rareCards.Count > 0)
+            {
+                Debug.Log("LootController rare card pity timer exceeded, forcing rare card loot reward!");
+                rareCards.Shuffle();
+                listReturned.Add(rareCards[0]);
+                rareCards.Remove(rareCards[0]);
+                timeSinceLastRare = 0;
+                timeSinceLastEpic++;
+            }
+
             // Epic
-            if(epicCards.Count > 0 && IsNumberBetweenValues(roll, GlobalSettings.Instance.epicCardLowerLimitProbability, GlobalSettings.Instance.epicCardUpperLimitProbability))
+            else if(epicCards.Count > 0 && IsNumberBetweenValues(roll, GlobalSettings.Instance.epicCardLowerLimitProbability, GlobalSettings.Instance.epicCardUpperLimitProbability))
             {
                 epicCards.Shuffle();
                 listReturned.Add(epicCards[0]);
                 epicCards.Remove(epicCards[0]);
+                timeSinceLastEpic = 0;
+                timeSinceLastRare++;
             }
 
             // Rare
@@ -268,6 +302,8 @@ public class LootController : Singleton<LootController>
                 rareCards.Shuffle();
                 listReturned.Add(rareCards[0]);
                 rareCards.Remove(rareCards[0]);
+                timeSinceLastRare = 0;
+                timeSinceLastEpic++;
             }
 
             // Common
@@ -276,6 +312,9 @@ public class LootController : Singleton<LootController>
                 commonCards.Shuffle();
                 listReturned.Add(commonCards[0]);
                 commonCards.Remove(commonCards[0]);
+
+                timeSinceLastRare++;
+                timeSinceLastEpic++;
             }
         }
 
@@ -302,9 +341,18 @@ public class LootController : Singleton<LootController>
 
         foreach(TalentPairingModel tp in character.talentPairings)
         {
+            /*
             // Does the character have the required talent school?
             if((tp.talentSchool == card.talentSchool && card.rarity == Rarity.Common) ||
                 (tp.talentSchool == card.talentSchool && tp.talentLevel == 2 && (card.rarity == Rarity.Rare || card.rarity == Rarity.Epic)))
+            {
+                bReturned = true;
+                break;
+            }
+            */
+
+            // Does the character have the required talent school?
+            if (tp.talentSchool == card.talentSchool)
             {
                 bReturned = true;
                 break;
@@ -405,9 +453,13 @@ public class LootController : Singleton<LootController>
     public void SaveMyDataToSaveFile(SaveGameData saveFile)
     {
         saveFile.currentLootResult = CurrentLootResultData;
+        saveFile.timeSinceLastRare = timeSinceLastRare;
+        saveFile.timeSinceLastEpic = timeSinceLastEpic;
     }
     public void BuildMyDataFromSaveFile(SaveGameData saveFile)
     {
         CurrentLootResultData = saveFile.currentLootResult;
+        timeSinceLastRare = saveFile.timeSinceLastRare;
+        timeSinceLastEpic = saveFile.timeSinceLastEpic;
     }
 }

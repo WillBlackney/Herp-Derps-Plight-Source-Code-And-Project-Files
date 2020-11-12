@@ -65,25 +65,32 @@ public class BlackScreenController : Singleton<BlackScreenController>
     }
     public void FadeOutScreen(float duration)
     {
-        // Reset alpha / set transparent
-       // cg.alpha = 0;
-      //  cg.DOFade(1, duration);
+        fadeInProgess = true;
         cg.alpha = 0;
         DisableClickThrough();
         Sequence s = DOTween.Sequence();
         s.Append(cg.DOFade(1, duration));
 
-        s.OnComplete(() => EnableClickThrough());
+        s.OnComplete(() => 
+        { 
+            EnableClickThrough(); 
+            fadeInProgess = false; 
+        });
     }
     public void FadeInScreen(float duration)
     {
         // Reset alpha / set transparent
+        fadeInProgess = true;
         cg.alpha = 1;
         DisableClickThrough();
         Sequence s = DOTween.Sequence();
         s.Append(cg.DOFade(0, duration));
 
-        s.OnComplete(() => EnableClickThrough());
+        s.OnComplete(() =>
+        {
+            EnableClickThrough();
+            fadeInProgess = false;
+        });
     }
     public void DoInstantFadeOut()
     {

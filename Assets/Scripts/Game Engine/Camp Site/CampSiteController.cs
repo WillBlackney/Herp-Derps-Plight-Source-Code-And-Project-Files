@@ -274,8 +274,8 @@ public class CampSiteController : Singleton<CampSiteController>
     #region
     public CampCardData BuildCampCardDataFromScriptableObjectData(CampCardDataSO d)
     {
-        Debug.LogWarning("CampSiteController.BuildCampCardDataFromScriptableObjectData() called on card data SO: " + d.cardName);
-        Debug.LogWarning("CampSiteController.BuildCampCardDataFromScriptableObjectData() called on card data SO: " + d.cardName);
+        Debug.Log("CampSiteController.BuildCampCardDataFromScriptableObjectData() called on card data SO: " + d.cardName);
+        Debug.Log("CampSiteController.BuildCampCardDataFromScriptableObjectData() called on card data SO: " + d.cardName);
 
         CampCardData c = new CampCardData();
 
@@ -318,7 +318,7 @@ public class CampSiteController : Singleton<CampSiteController>
     }
     public CampCard BuildCampCardFromCampCardData(CampCardData data)
     {
-        Debug.LogWarning("CampSiteController.BuildCampCardFromCampCardData() called on card data: " + data.cardName);
+        Debug.Log("CampSiteController.BuildCampCardFromCampCardData() called on card data: " + data.cardName);
 
         CampCard card = new CampCard();
 
@@ -453,7 +453,7 @@ public class CampSiteController : Singleton<CampSiteController>
                 if (index == 1)
                 {
                     CharacterEntityController.Instance.MoveEntityToNodeCentre(character.characterEntityView, campSiteNodes[1].LevelNode, null, () =>
-                    CharacterEntityController.Instance.MoveEntityToNodeCentre(character.characterEntityView, LevelManager.Instance.EnemyOffScreenNode, null));
+                    CharacterEntityController.Instance.MoveEntityToNodeCentre(character.characterEntityView, LevelManager.Instance.EnemyOffScreenNode, null, null, 0f));
                 }
                 else
                 {
@@ -522,7 +522,7 @@ public class CampSiteController : Singleton<CampSiteController>
     #region    
     public void GainCampPointsOnNewCampEventStart()
     {
-        Debug.LogWarning("CampSiteController.GainCampPointsOnNewCampEventStart() called...");
+        Debug.Log("CampSiteController.GainCampPointsOnNewCampEventStart() called...");
         // Reset camp points
         currentCampPoints = 0;
 
@@ -531,7 +531,7 @@ public class CampSiteController : Singleton<CampSiteController>
     }   
     public void DrawCampCardsOnCampEventStart()
     {
-        Debug.LogWarning("CampSiteController.DrawCampCardsOnCampEventStart() called...");
+        Debug.Log("CampSiteController.DrawCampCardsOnCampEventStart() called...");
 
         // Shuffle draw pile
         campDrawPile.Shuffle();
@@ -586,7 +586,7 @@ public class CampSiteController : Singleton<CampSiteController>
     }
     private bool IsCardDrawValid()
     {
-        Debug.LogWarning("CampSiteController.IsCardDrawValid() called...");
+        Debug.Log("CampSiteController.IsCardDrawValid() called...");
         bool bReturned = false;
         if (campDrawPile.Count > 0)
         {
@@ -602,7 +602,7 @@ public class CampSiteController : Singleton<CampSiteController>
 
         if(target.myCharacterData == null)
         {
-            Debug.LogWarning("IsTargetValid() detected camp character's character data ref is null, returning false");
+            Debug.Log("IsTargetValid() detected camp character's character data ref is null, returning false");
             return false;
         }
 
@@ -863,14 +863,14 @@ public class CampSiteController : Singleton<CampSiteController>
                     {
                         // Calculate heal amount
                         healAmount = (int)(cData.maxHealth * 0.5f);
-                        Debug.LogWarning("Heal amount = " + healAmount.ToString());
+                        Debug.Log("Heal amount = " + healAmount.ToString());
                     }
 
                     else if (cardEffect.healingType == HealingType.FlatAmount)
                     {
                         // Calculate heal amount
                         healAmount = cardEffect.flatHealAmount;
-                        Debug.LogWarning("Heal amount = " + healAmount.ToString());
+                        Debug.Log("Heal amount = " + healAmount.ToString());
                     }
 
                     // Modify health
@@ -962,7 +962,7 @@ public class CampSiteController : Singleton<CampSiteController>
         if (cardEffect.cardEffectType == CampCardEffectType.ShuffleHandIntoDrawPile)
         {
             CampCard[] cardsToDiscard = campHand.ToArray();
-            Debug.LogWarning("Discarding " + cardsToDiscard.Length.ToString() + " cards");
+            Debug.Log("Discarding " + cardsToDiscard.Length.ToString() + " cards");
 
             foreach (CampCard handCard in cardsToDiscard)
             {
@@ -1181,7 +1181,7 @@ public class CampSiteController : Singleton<CampSiteController>
     {
         if (cvm == null)
         {
-            Debug.LogWarning("ExpendCardVisualEvent() was given a null card view model...");
+            Debug.Log("ExpendCardVisualEvent() was given a null card view model...");
         }
 
         // remove from hand visual

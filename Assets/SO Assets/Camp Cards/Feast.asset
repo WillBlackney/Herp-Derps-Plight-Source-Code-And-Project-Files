@@ -32,7 +32,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: health and gain
+    phrase: 'health and gain '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0

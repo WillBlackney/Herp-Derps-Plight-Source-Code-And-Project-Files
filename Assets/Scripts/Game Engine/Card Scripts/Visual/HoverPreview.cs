@@ -172,7 +172,7 @@ public class HoverPreview: MonoBehaviour
     }
     void PreviewThisObject()
     {
-        Debug.LogWarning("HoverPreview.PreviewThisObject() called...");
+        Debug.Log("HoverPreview.PreviewThisObject() called...");
 
         // Clone this card + disable previews
         StopAllPreviews();
@@ -206,11 +206,20 @@ public class HoverPreview: MonoBehaviour
         previewGameObject.transform.DOScale(scaleAmount, 0.5f).SetEase(Ease.OutQuint);
 
         // Key word pop logic should go here:
-        if(mainCardVM != null &&
-            mainCardVM.card != null)
+        if(mainCardVM != null)
         {
-            CardController.Instance.AutoUpdateCardDescriptionText(mainCardVM.card);
-            KeyWordLayoutController.Instance.BuildAllViewsFromKeyWordModels(mainCardVM.card.keyWordModels);
+            // Normal cards
+            if(mainCardVM.card != null)
+            {
+                CardController.Instance.AutoUpdateCardDescriptionText(mainCardVM.card);
+                KeyWordLayoutController.Instance.BuildAllViewsFromKeyWordModels(mainCardVM.card.keyWordModels);
+            }
+
+            // Camp cards
+            if (mainCardVM.campCard != null)
+            {
+                KeyWordLayoutController.Instance.BuildAllViewsFromKeyWordModels(mainCardVM.campCard.keyWordModels);
+            }
         }
        
     }

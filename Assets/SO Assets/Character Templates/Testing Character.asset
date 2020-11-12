@@ -74,6 +74,7 @@ MonoBehaviour:
     demonFormStacks: 0
     darkBargainStacks: 0
     volatileStacks: 0
+    soulCollectorStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -95,6 +96,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
   - {fileID: 11400000, guid: ad02d279b5d5514408afc73144555af3, type: 2}
   - {fileID: 11400000, guid: ad02d279b5d5514408afc73144555af3, type: 2}
+  - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
+  - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
+  - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
+  - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1

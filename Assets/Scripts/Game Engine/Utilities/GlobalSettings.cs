@@ -11,6 +11,7 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [LabelWidth(200)]
     public StartingSceneSetting gameMode;
 
+    // Testing Settings
     [Header("Combat Test Scene Settings")]
     [LabelWidth(200)]
     [ShowIf("ShowEnemyWave")]
@@ -32,7 +33,7 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [ShowIf("ShowTestingCampDeck")]
     public int testingCampDraw;
 
-    // General Info
+    // General Settings
     [Header("Input/Device Settings")]
     [LabelWidth(200)]
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
@@ -50,13 +51,13 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [ShowIf("deviceMode", DeviceMode.Mobile)]
     public float hoverScaleAmount;
 
-    // Audio Info
+    // Audio Settings
     [Header("Audio Settings")]
     [LabelWidth(200)]
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     public bool preventAudioProfiles = true;
 
-    // General Info
+    // Card Settings
     [Header("Card Settings")]
     [LabelWidth(200)]
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
@@ -65,11 +66,13 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [LabelWidth(200)]
     public OnPowerCardPlayedSettings onPowerCardPlayedSetting;
 
+    // Combat Settings
     [Header("Combat Settings")]
     [LabelWidth(200)]
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     public InitiativeSettings initiativeSetting;
 
+    // Loot Settings
     [Header("Loot Settings")]
     [LabelWidth(200)]
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
@@ -87,6 +90,14 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [LabelWidth(200)]
     [Range(1, 100)]
     public int epicCardUpperLimitProbability;
+
+    [LabelWidth(200)]
+    [Range(1, 100)]
+    public int rarePityTimer;
+
+    [LabelWidth(200)]
+    [Range(1, 100)]
+    public int epicPityTimer;
 
     // Odin bools
     public bool ShowTestSceneProperties()

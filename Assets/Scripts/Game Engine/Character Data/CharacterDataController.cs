@@ -209,10 +209,27 @@ public class CharacterDataController : Singleton<CharacterDataController>
     #endregion
 
     // Modify Character Deck
+    #region
     public void AddCardToCharacterDeck(CharacterData character, CardData card)
     {
         character.deck.Add(card);
     }
+    #endregion
 
+    public bool DoesCharacterMeetTalentRequirement(CharacterData character, TalentSchool school, int minimumTier)
+    {
+        bool bReturned = false;
+
+        foreach(TalentPairingModel tpm in character.talentPairings)
+        {
+            if(tpm.talentSchool == school && tpm.talentLevel >= minimumTier)
+            {
+                bReturned = true;
+                break;
+            }
+        }
+
+        return bReturned;
+    }
 
 }

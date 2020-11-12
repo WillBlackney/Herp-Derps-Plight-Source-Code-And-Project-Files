@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Get Behind Me!
   m_EditorClassIdentifier: 
   cardName: Get Behind Me!
-  cardDescription: 'Give self and allies 4 Block. '
+  cardDescription: Give 4 Block to self and allies.
   cardSprite: {fileID: 21300000, guid: 04fc39377487d0c4aa2636c7d43bf49e, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -33,7 +33,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Give self and allies '
+    phrase: 'Give '
   - color: 2
     getPhraseFromCardValue: 1
     cardEffectType: 12
@@ -41,11 +41,11 @@ MonoBehaviour:
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: ' Block'
+    phrase: ' Block '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: .
+    phrase: to self and allies.
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 12

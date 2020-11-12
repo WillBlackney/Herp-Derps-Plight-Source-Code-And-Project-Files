@@ -25,11 +25,7 @@ MonoBehaviour:
   startingHealth: 130
   startingBlock: 8
   physicalResistance: 0
-  fireResistance: 0
-  frostResistance: 0
-  shadowResistance: 0
-  poisonResistance: 0
-  airResistance: 0
+  magicResistance: 0
   serializedPassiveManager:
     bonusPowerStacks: 0
     bonusDexterityStacks: 0
@@ -74,6 +70,7 @@ MonoBehaviour:
     demonFormStacks: 0
     darkBargainStacks: 0
     volatileStacks: 0
+    soulCollectorStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -89,7 +86,7 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   allEnemyActions:
-  - actionName: Strike
+  - actionName: Tomb Strike
     actionType: 0
     intentImage: 0
     actionLoops: 1
@@ -161,7 +158,8 @@ MonoBehaviour:
         onCharacter: 0
       visualEventsOnFinish: []
       actionType: 0
-      baseDamage: 18
+      effectLoops: 1
+      baseDamage: 20
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -191,6 +189,7 @@ MonoBehaviour:
     - visualEventsOnStart: []
       visualEventsOnFinish: []
       actionType: 11
+      effectLoops: 1
       baseDamage: 0
       damageType: 0
       characterSummoned: {fileID: 0}
@@ -299,6 +298,7 @@ MonoBehaviour:
         onCharacter: 5
       visualEventsOnFinish: []
       actionType: 6
+      effectLoops: 1
       baseDamage: 0
       damageType: 0
       characterSummoned: {fileID: 0}
@@ -315,6 +315,7 @@ MonoBehaviour:
     - visualEventsOnStart: []
       visualEventsOnFinish: []
       actionType: 6
+      effectLoops: 1
       baseDamage: 0
       damageType: 0
       characterSummoned: {fileID: 0}

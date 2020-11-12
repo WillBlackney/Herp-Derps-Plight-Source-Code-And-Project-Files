@@ -1635,7 +1635,22 @@ MonoBehaviour:
     text: {fileID: 0}
     endColour: {r: 0, g: 0, b: 0, a: 0}
     fadeSpeed: 0
-  mouseEnterEvents: []
+  mouseEnterEvents:
+  - widgetEvent: 4
+    enableStartDelay: 0
+    startDelay: 0
+    onlyIfMouseIsStillOverMe: 0
+    objectDisabled: {fileID: 0}
+    objectEnabled: {fileID: 0}
+    functionInvoked:
+      m_PersistentCalls:
+        m_Calls: []
+    soundPlayed: 33
+    canvasGroup: {fileID: 0}
+    image: {fileID: 0}
+    text: {fileID: 0}
+    endColour: {r: 0, g: 0, b: 0, a: 0}
+    fadeSpeed: 0
   mouseExitEvents: []
   pointerIsOverMe: 0
   timeSinceLastPointerEnter: 0
@@ -8226,6 +8241,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4674531931067961129, guid: 81e9b41ae9d8afe47a07faf8f67e5bb9,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 7011
+      objectReference: {fileID: 0}
     - target: {fileID: 4677467422914924979, guid: 81e9b41ae9d8afe47a07faf8f67e5bb9,
         type: 3}
       propertyPath: m_Enabled
@@ -13634,7 +13654,7 @@ PrefabInstance:
     - target: {fileID: 8959413140514318582, guid: 81e9b41ae9d8afe47a07faf8f67e5bb9,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 7005
+      value: 7004
       objectReference: {fileID: 0}
     - target: {fileID: 8959413140514318582, guid: 81e9b41ae9d8afe47a07faf8f67e5bb9,
         type: 3}

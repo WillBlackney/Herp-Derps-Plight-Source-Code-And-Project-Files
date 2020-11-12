@@ -1229,6 +1229,27 @@ public class CardController : Singleton<CardController>
 
         return cardReturned;
     }
+    public void CreateAndAddNewRandomBlessingsToCharacterHand(CharacterEntityModel defender, int blessingsAdded)
+    {
+        List<CardData> blessings = QueryByBlessing(AllCards, true);
+
+        for (int i = 0; i < blessingsAdded; i++)
+        {
+            if (blessings.Count > 0 &&
+                defender.livingState == LivingState.Alive &&
+                CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive)
+            {
+                // Randomize card chosen
+                //int randomIndex = RandomGenerator.NumberBetween(0, blessings.Count - 1);
+                blessings.Shuffle();
+                CardData blessingChosen = blessings[0];
+
+                // Add card to hand
+                //CreateAndAddNewCardToCharacterHand(defender, blessings[randomIndex]);
+                CreateAndAddNewCardToCharacterHand(defender, blessingChosen);
+            }
+        }
+    }
     #endregion
 
     // Card Discard + Removal Logic
@@ -2413,22 +2434,7 @@ public class CardController : Singleton<CardController>
                 // Add random blessing to hand
                 else if (modEffect.modifyEffect == ModifyAllCardsInHandEffectType.AddRandomBlessingToHand)
                 {
-                    List<CardData> blessings = QueryByBlessing(AllCards, true);
-
-                    for (int i = 0; i < totalCards; i++)
-                    {
-                        if (blessings.Count > 0 &&
-                            owner.livingState == LivingState.Alive &&
-                            CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive)
-                        {
-                            // Randomize card chosen
-                            int randomIndex = RandomGenerator.NumberBetween(0, blessings.Count - 1);
-                            //blessings.Shuffle();
-
-                            // Add card to hand
-                            CreateAndAddNewCardToCharacterHand(owner, blessings[randomIndex]);
-                        }
-                    }
+                    CreateAndAddNewRandomBlessingsToCharacterHand(owner, 1);
                 }
             }
 

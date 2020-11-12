@@ -20,6 +20,8 @@ public class SaveGameData
 
     // Loot data
     public LootResultModel currentLootResult;
+    public int timeSinceLastEpic;
+    public int timeSinceLastRare;
 
     // Camp site data
     public int campPointRegen;

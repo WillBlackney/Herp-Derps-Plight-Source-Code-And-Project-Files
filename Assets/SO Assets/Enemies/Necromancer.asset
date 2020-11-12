@@ -70,10 +70,11 @@ MonoBehaviour:
     demonFormStacks: 0
     darkBargainStacks: 0
     volatileStacks: 0
+    soulCollectorStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
-    toxicAuraStacks: 0
+    toxicAuraStacks: 1
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -94,7 +95,7 @@ MonoBehaviour:
     prioritiseWhenRequirementsMet: 1
     actionRequirements:
     - requirementType: 11
-      requirementTypeValue: 0
+      requirementTypeValue: 1
       passiveRequired: {fileID: 0}
       statusStacksRequired: 0
     actionEffects:
@@ -205,7 +206,7 @@ MonoBehaviour:
       actionType: 0
       effectLoops: 1
       baseDamage: 8
-      damageType: 5
+      damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
       modelFadeInSpeed: 0
