@@ -23,6 +23,8 @@ MonoBehaviour:
   rarity: 1
   racialCard: 0
   originRace: 0
+  upgradeable: 1
+  upgradeLevel: 0
   expend: 0
   innate: 0
   fleeting: 0
@@ -37,7 +39,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '3 '
+    phrase: '4 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0

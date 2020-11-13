@@ -21,6 +21,10 @@ MonoBehaviour:
   targettingType: 3
   talentSchool: 12
   rarity: 1
+  racialCard: 0
+  originRace: 0
+  upgradeable: 1
+  upgradeLevel: 0
   expend: 1
   innate: 0
   fleeting: 0
@@ -50,6 +54,16 @@ MonoBehaviour:
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: Poisoned
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '.
+
+'
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Expend
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0

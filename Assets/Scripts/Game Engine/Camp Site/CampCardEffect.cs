@@ -24,13 +24,21 @@ public class CampCardEffect
     [Range(0f, 1f)]
     public float healAmountPercentage;
 
+    // Core Attribute properties
+    [ShowIf("ShowAttributeProperties")]
+    [LabelWidth(200)]
+    public CoreAttribute attributeChanged;
+
+    [ShowIf("ShowAttributeProperties")]
+    [LabelWidth(200)]
+    public int attributeAmountGained;
+
     // Passive properties
     [ShowIf("ShowPassivePairing")]
     [LabelWidth(200)]
     public PassivePairingData passivePairing;
 
     // Card draw properites
-    // Passive properties
     [ShowIf("ShowCardsDrawn")]
     [LabelWidth(200)]
     public int cardsDrawn;
@@ -61,6 +69,8 @@ public class CampCardEffect
         return healingType == HealingType.PercentageOfMaxHealth && (cardEffectType == CampCardEffectType.Heal ||
             cardEffectType == CampCardEffectType.HealAllCharacters);
     }
+
+    // Card Show Ifs
     public bool ShowCardsDrawn()
     {
         return cardEffectType == CampCardEffectType.DrawCards;
@@ -71,7 +81,11 @@ public class CampCardEffect
             cardEffectType == CampCardEffectType.IncreaseMaxHealthAll;
     }
 
-
+    // Attrbiute Show Ifs
+    public bool ShowAttributeProperties()
+    {
+        return cardEffectType == CampCardEffectType.ModifyCoreAttribute;
+    }
 
 
     // Passive Show Ifs
@@ -90,6 +104,8 @@ public enum CampCardEffectType
     DrawCards = 4,
     IncreaseMaxHealth = 8,
     IncreaseMaxHealthAll = 7,
+    ModifyCoreAttribute = 9,
+    UpgradeCard = 10,
 
 }
 public enum HealingType
@@ -98,4 +114,13 @@ public enum HealingType
     FlatAmount = 1,
     PercentageOfMaxHealth = 2,
 
+}
+public enum CoreAttribute
+{
+    None = 0,
+    Power = 1,
+    Dexterity = 2,
+    Stamina = 3,
+    Draw = 4,
+    Initiative = 5,
 }

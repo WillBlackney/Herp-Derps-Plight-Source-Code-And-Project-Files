@@ -23,6 +23,8 @@ MonoBehaviour:
   rarity: 2
   racialCard: 0
   originRace: 0
+  upgradeable: 1
+  upgradeLevel: 0
   expend: 1
   innate: 0
   fleeting: 0
@@ -55,7 +57,17 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: damage.
+    phrase: 'damage.
+
+'
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Expend
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 30

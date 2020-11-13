@@ -15,15 +15,21 @@ MonoBehaviour:
   cardName: Galvanize
   cardDescription: "Give target Power equal to your Overload. \nRemove all Overload."
   cardSprite: {fileID: 21300000, guid: 9cc853756a5c2ef4abf5f0a2c6dcac1c, type: 3}
+  xEnergyCost: 0
   cardEnergyCost: 1
   cardType: 1
   targettingType: 2
   talentSchool: 13
   rarity: 0
+  racialCard: 0
+  originRace: 0
+  upgradeable: 1
+  upgradeLevel: 0
   expend: 0
   innate: 0
   fleeting: 0
   unplayable: 0
+  lifeSteal: 0
   blessing: 0
   customDescription:
   - color: 1
@@ -65,12 +71,23 @@ MonoBehaviour:
     cardEffectType: 3
     splitTargetEffect: 0
     splitTargetType: 0
+    removeBlockFrom: 0
+    modifyDeckCardEffect: 0
+    permanentBlockGain: 0
+    permanentDamageGain: 0
+    chooseTargetRandomly: 0
+    passiveApplicationLoops: 0
+    validRandomTargetsType: 0
+    damageLoops: 0
+    drawSpecificType: 0
+    specificTypeDrawn: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
     blessing: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
+    modifyCardsInHandEffects: []
     drawStacksFromOverload: 1
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
@@ -79,8 +96,10 @@ MonoBehaviour:
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
+    drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 0
+    healthRestored: 0
     healthLost: 0
     energyGained: 0
     cardsDrawn: 0
@@ -128,12 +147,23 @@ MonoBehaviour:
     cardEffectType: 20
     splitTargetEffect: 0
     splitTargetType: 0
+    removeBlockFrom: 0
+    modifyDeckCardEffect: 0
+    permanentBlockGain: 0
+    permanentDamageGain: 0
+    chooseTargetRandomly: 0
+    passiveApplicationLoops: 0
+    validRandomTargetsType: 0
+    damageLoops: 0
+    drawSpecificType: 0
+    specificTypeDrawn: 0
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
     blessing: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
+    modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
@@ -142,8 +172,10 @@ MonoBehaviour:
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
+    drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 0
+    healthRestored: 0
     healthLost: 0
     energyGained: 0
     cardsDrawn: 0

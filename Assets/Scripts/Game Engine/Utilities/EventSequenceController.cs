@@ -365,11 +365,12 @@ public class EventSequenceController : Singleton<EventSequenceController>
             LootController.Instance.FadeOutMainLootView(()=> LootController.Instance.HideMainLootView());
 
             // Move characters off screen
-            CharacterEntityController.Instance.MoveCharactersToOffScreenRight(CharacterEntityController.Instance.AllDefenders, null);
-            AudioManager.Instance.FadeOutSound(Sound.Character_Footsteps, 3f);
+            CharacterEntityController.Instance.MoveCharactersToOffScreenRight(CharacterEntityController.Instance.AllDefenders, null);           
+            AudioManager.Instance.FadeOutSound(Sound.Environment_Camp_Fire, 3f);
 
-            // Zoom and move camera
+            // Zoom and move camera & Fade foot steps
             yield return new WaitForSeconds(0.5f);
+            AudioManager.Instance.FadeOutSound(Sound.Character_Footsteps, 2.5f);
             CameraManager.Instance.DoCameraMove(3, 0, 3f);
             CameraManager.Instance.DoCameraZoom(5, 3, 3f);
 
@@ -589,6 +590,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         CampSiteController.Instance.BuildAllCampSiteCharacterViews(CharacterDataController.Instance.AllPlayerCharacters);
         CampSiteController.Instance.SetAllCampSiteCharacterViewStartStates();
         CampSiteController.Instance.MoveAllCharactersToStartPosition();
+        AudioManager.Instance.FadeInSound(Sound.Environment_Camp_Fire, 3f);
 
         // View sequence 2
         BlackScreenController.Instance.FadeInScreen(1f);

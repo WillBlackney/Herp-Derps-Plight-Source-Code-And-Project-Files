@@ -192,7 +192,7 @@ public enum Passive
     Infuriated = 16,
     Initiative = 17,
     LongDraw = 51,
-    LordOfStorms = 43,
+    LordOfStorms = 57,
     Overload = 18,
     Pistolero = 52,
     PhoenixForm = 19,

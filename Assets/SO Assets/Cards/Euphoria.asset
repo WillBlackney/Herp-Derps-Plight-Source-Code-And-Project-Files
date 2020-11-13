@@ -21,10 +21,15 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 1
   rarity: 4
+  racialCard: 0
+  originRace: 0
+  upgradeable: 1
+  upgradeLevel: 0
   expend: 1
   innate: 0
   fleeting: 0
   unplayable: 0
+  lifeSteal: 0
   blessing: 0
   customDescription:
   - color: 1

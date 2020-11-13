@@ -34,10 +34,10 @@ public class CardInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         energyCostText.text = data.cardBaseEnergyCost.ToString();
 
         talentOverlay.color = ColorLibrary.Instance.GetTalentColor(data.talentSchool);
-        talentOverlay.color = new Color(talentOverlay.color.r, talentOverlay.color.g, talentOverlay.color.b, 0.5f);
+        talentOverlay.color = new Color(talentOverlay.color.r, talentOverlay.color.g, talentOverlay.color.b, 1);
 
         rarityOverlay.color = ColorLibrary.Instance.GetRarityColor(data.rarity);
-        rarityOverlay.color = new Color(rarityOverlay.color.r, rarityOverlay.color.g, rarityOverlay.color.b, 0.5f);
+        rarityOverlay.color = new Color(rarityOverlay.color.r, rarityOverlay.color.g, rarityOverlay.color.b, 1);
 
         cardTypeImage.sprite = SpriteLibrary.Instance.GetCardTypeImageFromTypeEnumData(data.cardType);     
 

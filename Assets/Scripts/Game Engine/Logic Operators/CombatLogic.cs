@@ -458,7 +458,10 @@ public class CombatLogic : Singleton<CombatLogic>
 
             // Create SFX 
             VisualEventManager.Instance.CreateVisualEvent(() =>
-            AudioManager.Instance.PlaySound(Sound.Ability_Holy_Buff), queuePosition, 0, 0, EventDetail.None, batchedEvent);
+            {
+                AudioManager.Instance.PlaySound(Sound.Ability_Holy_Buff);
+                AudioManager.Instance.PlaySound(Sound.Ability_Damaged_Health_Lost);
+            }, queuePosition, 0, 0, EventDetail.None, batchedEvent);
         }
 
 

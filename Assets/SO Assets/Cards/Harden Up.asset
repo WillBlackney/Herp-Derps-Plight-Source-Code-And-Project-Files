@@ -21,6 +21,10 @@ MonoBehaviour:
   targettingType: 2
   talentSchool: 5
   rarity: 2
+  racialCard: 0
+  originRace: 0
+  upgradeable: 1
+  upgradeLevel: 0
   expend: 0
   innate: 0
   fleeting: 0
@@ -74,6 +78,7 @@ MonoBehaviour:
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
+    drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 0
     healthRestored: 0

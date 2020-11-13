@@ -1394,7 +1394,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }
         else if (enemy.myNextAction.actionType == ActionType.BuffTarget)
         {
-            enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to apply a buff to <color=#F8FF00>" + enemy.currentActionTarget + "<color=#FFFFFF>.";
+            enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to apply a buff to <color=#F8FF00>" + enemy.currentActionTarget.myName + "<color=#FFFFFF>.";
         }
         else if (enemy.myNextAction.actionType == ActionType.DebuffAllEnemies)
         {
@@ -1402,7 +1402,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }
         else if (enemy.myNextAction.actionType == ActionType.DebuffTarget)
         {
-            enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to apply a harmful debuff to <color=#F8FF00>" + enemy.currentActionTarget + "<color=#FFFFFF>.";
+            enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to apply a harmful debuff to <color=#F8FF00>" + enemy.currentActionTarget.myName + "<color=#FFFFFF>.";
         }
         else if (enemy.myNextAction.actionType == ActionType.DefendSelf)
         {
@@ -1414,7 +1414,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }
         else if (enemy.myNextAction.actionType == ActionType.DefendTarget)
         {
-            enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to apply <color=#F8FF00>Block<color=#FFFFFF> to " + enemy.currentActionTarget + "<color=#FFFFFF>.";
+            enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to apply <color=#F8FF00>Block<color=#FFFFFF> to <color=#F8FF00>" + enemy.currentActionTarget.myName + "<color=#FFFFFF>.";
         }
         else if (enemy.myNextAction.actionType == ActionType.Sleep)
         {

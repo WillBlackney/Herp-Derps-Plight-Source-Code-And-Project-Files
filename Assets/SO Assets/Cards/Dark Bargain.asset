@@ -21,6 +21,10 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 11
   rarity: 3
+  racialCard: 0
+  originRace: 0
+  upgradeable: 1
+  upgradeLevel: 0
   expend: 1
   innate: 0
   fleeting: 0
@@ -188,4 +192,7 @@ MonoBehaviour:
     visualEventsOnStart: []
     visualEventsOnFinish: []
   cardEventListeners: []
-  keyWordModels: []
+  keyWordModels:
+  - kewWordType: 1
+    weaponRequirement: 0
+    passiveType: 0

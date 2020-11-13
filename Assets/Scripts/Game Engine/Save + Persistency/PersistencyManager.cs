@@ -77,6 +77,8 @@ public class PersistencyManager : Singleton<PersistencyManager>
             {
                 if(card.originRace == newCharacter.race)
                 {
+                    Debug.Log("BuildNewSaveFileOnNewGameStarted() found matching racial card, adding " + card.cardName +
+                        " to " + newCharacter.myName + "'s deck");
                     CardData newRacialCard = CardController.Instance.CloneCardDataFromCardData(card);
                     CharacterDataController.Instance.AddCardToCharacterDeck(newCharacter, newRacialCard);
                     break;

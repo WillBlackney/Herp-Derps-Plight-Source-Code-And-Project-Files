@@ -77,5 +77,6 @@ public enum TargettingConditionType
     None = 0,
     TargetIsAlive = 1,
     TargetIsDead = 2,
+    TargetHasUpgradeableCards = 3,
 
 }

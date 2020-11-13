@@ -22,10 +22,15 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 10
   rarity: 2
+  racialCard: 0
+  originRace: 0
+  upgradeable: 1
+  upgradeLevel: 0
   expend: 0
   innate: 0
   fleeting: 0
   unplayable: 0
+  lifeSteal: 0
   blessing: 0
   customDescription:
   - color: 3
@@ -59,6 +64,16 @@ MonoBehaviour:
     cardEffectType: 24
     splitTargetEffect: 0
     splitTargetType: 0
+    removeBlockFrom: 0
+    modifyDeckCardEffect: 0
+    permanentBlockGain: 0
+    permanentDamageGain: 0
+    chooseTargetRandomly: 0
+    passiveApplicationLoops: 0
+    validRandomTargetsType: 0
+    damageLoops: 0
+    drawSpecificType: 0
+    specificTypeDrawn: 0
     discoveryLocation: 5
     talentSchoolFilter: 0
     rarityFilter: 0
@@ -67,15 +82,25 @@ MonoBehaviour:
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects:
     - modifyEffect: 3
+      onlySpecificCards: 0
+      specificCardType: 0
       energyReduction: 0
       newEnergyCost: 0
+      cardAdded: {fileID: 0}
       talentSchoolFilter: 0
       rarityFilter: 0
+      baseDamage: 0
+      damageType: 0
     - modifyEffect: 5
+      onlySpecificCards: 0
+      specificCardType: 0
       energyReduction: 0
       newEnergyCost: 0
+      cardAdded: {fileID: 0}
       talentSchoolFilter: 11
       rarityFilter: 2
+      baseDamage: 0
+      damageType: 0
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
@@ -84,8 +109,10 @@ MonoBehaviour:
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
+    drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 0
+    healthRestored: 0
     healthLost: 0
     energyGained: 0
     cardsDrawn: 0

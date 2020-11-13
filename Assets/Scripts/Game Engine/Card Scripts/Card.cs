@@ -22,6 +22,8 @@ public class Card
     public TalentSchool talentSchool;
     public bool racialCard;
     public CharacterRace originRace;
+    public bool upgradeable;
+    public int upgradeLevel;
     public List<CardEffect> cardEffects = new List<CardEffect>();
     public List<CardEventListener> cardEventListeners = new List<CardEventListener>();
     public List<KeyWordModel> keyWordModels = new List<KeyWordModel>();

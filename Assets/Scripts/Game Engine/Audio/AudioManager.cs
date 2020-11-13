@@ -260,6 +260,10 @@ public class AudioManager : Singleton<AudioManager>
         {
             FadeOutSound(Sound.Ambience_Crypt, fadeDuration);
         }
+        if (IsSoundPlaying(Sound.Environment_Camp_Fire))
+        {
+            FadeOutSound(Sound.Environment_Camp_Fire, fadeDuration);
+        }
     }
     public void FadeOutAllCombatMusic(float fadeDuration)
     {
@@ -406,6 +410,8 @@ public enum Sound
     Character_Draw_Bow = 10,
 
     Environment_Gate_Open = 38,
+    Environment_Camp_Fire = 49,
+
     Events_New_Game_Started = 35,
     Events_New_Turn_Notification = 41,
 

@@ -190,7 +190,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
 
     #endregion
 
-    // Modify Character Stats
+    // Modify Character Stats & Core Attributes
     #region
     public void SetCharacterHealth(CharacterData data, int newValue)
     {
@@ -206,6 +206,26 @@ public class CharacterDataController : Singleton<CharacterDataController>
 
         data.maxHealth = newValue;
     }
+    public void ModifyPower(CharacterData data, int gainedOrLost)
+    {
+        data.power += gainedOrLost;
+    }
+    public void ModifyInitiative(CharacterData data, int gainedOrLost)
+    {
+        data.initiative += gainedOrLost;
+    }
+    public void ModifyDexterity(CharacterData data, int gainedOrLost)
+    {
+        data.dexterity += gainedOrLost;
+    }
+    public void ModifyStamina(CharacterData data, int gainedOrLost)
+    {
+        data.stamina += gainedOrLost;
+    }
+    public void ModifyDraw(CharacterData data, int gainedOrLost)
+    {
+        data.draw += gainedOrLost;
+    }
     #endregion
 
     // Modify Character Deck
@@ -213,6 +233,14 @@ public class CharacterDataController : Singleton<CharacterDataController>
     public void AddCardToCharacterDeck(CharacterData character, CardData card)
     {
         character.deck.Add(card);
+    }
+    public void AddCardToCharacterDeck(CharacterData character, CardData card, int indexInDeck)
+    {
+        character.deck.Insert(indexInDeck, card);
+    }
+    public void RemoveCardFromCharacterDeck(CharacterData character, CardData card)
+    {
+        character.deck.Remove(card);
     }
     #endregion
 

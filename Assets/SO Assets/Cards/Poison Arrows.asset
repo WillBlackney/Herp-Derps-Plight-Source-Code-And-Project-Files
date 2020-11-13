@@ -21,6 +21,10 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 8
   rarity: 2
+  racialCard: 0
+  originRace: 0
+  upgradeable: 0
+  upgradeLevel: 0
   expend: 0
   innate: 0
   fleeting: 0
@@ -59,12 +63,11 @@ MonoBehaviour:
     cardEffectType: 0
     phrase: .
   cardEffects: []
-  cardEventListeners:
-  - cardEventListenerType: 4
-    cardEventListenerFunction: 0
-    maxHealthGained: 0
-    energyReductionAmount: 0
-    passivePairing:
-      passiveData: 0
-      passiveStacks: 0
-  keyWordModels: []
+  cardEventListeners: []
+  keyWordModels:
+  - kewWordType: 4
+    weaponRequirement: 0
+    passiveType: 0
+  - kewWordType: 8
+    weaponRequirement: 0
+    passiveType: 21

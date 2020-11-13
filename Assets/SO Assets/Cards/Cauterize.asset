@@ -13,11 +13,7 @@ MonoBehaviour:
   m_Name: Cauterize
   m_EditorClassIdentifier: 
   cardName: Cauterize
-  cardDescription: 'Choose a card in hand.
-
-    Expend it.
-
-    Gain 2 Power.'
+  cardDescription: Choose a card in hand. Expend it. Gain 2 Power.
   cardSprite: {fileID: 21300000, guid: 6ba3aba52078e4f4aa3fa9fbdc76a444, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -27,6 +23,8 @@ MonoBehaviour:
   rarity: 1
   racialCard: 0
   originRace: 0
+  upgradeable: 1
+  upgradeLevel: 0
   expend: 0
   innate: 0
   fleeting: 0

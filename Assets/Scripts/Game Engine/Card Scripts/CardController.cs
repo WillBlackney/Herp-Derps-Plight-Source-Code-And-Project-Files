@@ -59,6 +59,7 @@ public class CardController : Singleton<CardController>
     [SerializeField] private CanvasGroup cardGridCg;
     [SerializeField] private TextMeshProUGUI cardGridRibbonText;
     [SerializeField] private GridCardViewModel[] allGridCards;
+    [SerializeField] private GameObject cardGridScreenBackButtonParent;
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Button Sprites")]
@@ -374,6 +375,8 @@ public class CardController : Singleton<CardController>
         c.cardSprite = GetCardSpriteByName(d.cardName);
         c.cardBaseEnergyCost = d.cardEnergyCost;
         c.xEnergyCost = d.xEnergyCost;
+        c.upgradeable = d.upgradeable;
+        c.upgradeLevel = d.upgradeLevel;
 
         // Types
         c.cardType = d.cardType;
@@ -431,6 +434,8 @@ public class CardController : Singleton<CardController>
         c.cardSprite = GetCardSpriteByName(original.cardName);
         c.cardBaseEnergyCost = original.cardBaseEnergyCost;
         c.xEnergyCost = original.xEnergyCost;
+        c.upgradeable = original.upgradeable;
+        c.upgradeLevel = original.upgradeLevel;
 
         // Types
         c.cardType = original.cardType;
@@ -521,9 +526,6 @@ public class CardController : Singleton<CardController>
 
         Card card = new Card();
 
-        // Data links
-        //card.myCardDataSO = data.myCardDataSO;
-
         // Core data
         card.owner = owner;
         card.cardName = data.cardName;
@@ -535,6 +537,8 @@ public class CardController : Singleton<CardController>
         card.rarity = data.rarity;
         card.targettingType = data.targettingType;
         card.talentSchool = data.talentSchool;
+        card.upgradeLevel = data.upgradeLevel;
+        card.upgradeable = data.upgradeable;
 
         // key words
         card.expend = data.expend;
@@ -651,7 +655,7 @@ public class CardController : Singleton<CardController>
     public void SetUpCardViewModelAppearanceFromCard(CardViewModel cardVM, Card card)
     {
         // Set texts and images
-        SetCardViewModelNameText(cardVM, card.cardName);
+        SetCardViewModelNameText(cardVM, card.cardName, card.upgradeLevel >= 1);
         SetCardViewModelDescriptionText(cardVM, TextLogic.ConvertCustomStringListToString(card.cardDescriptionTwo));
         SetCardViewModelEnergyText(card, cardVM, GetCardEnergyCost(card).ToString());
         SetCardViewModelGraphicImage(cardVM, GetCardSpriteByName(card.cardName));
@@ -673,7 +677,7 @@ public class CardController : Singleton<CardController>
         Debug.Log("CardController.BuildCardViewModelFromCardData() called...");
         
         // Set texts and images
-        SetCardViewModelNameText(cardVM, card.cardName);
+        SetCardViewModelNameText(cardVM, card.cardName, card.upgradeLevel >= 1);
         AutoUpdateCardDescription(card);
         SetCardViewModelDescriptionText(cardVM, TextLogic.ConvertCustomStringListToString(card.cardDescriptionTwo));
         SetCardViewModelEnergyText(null, cardVM, card.cardBaseEnergyCost.ToString());
@@ -919,13 +923,18 @@ public class CardController : Singleton<CardController>
             }
         }
     }
-    public void SetCardViewModelNameText(CardViewModel cvm, string name)
+    public void SetCardViewModelNameText(CardViewModel cvm, string name, bool upgradeCard = false)
     {
         cvm.nameText.text = name;
+        if (upgradeCard)
+        {
+            cvm.nameText.color = Color.green;
+        }
+
         if (cvm.myPreviewCard != null)
         {
             Debug.Log("SETTING CARD VIEW MODEL PREVIEW NAME!!");
-            SetCardViewModelNameText(cvm.myPreviewCard, name);
+            SetCardViewModelNameText(cvm.myPreviewCard, name, upgradeCard);
         }
     }
     public void SetCardViewModelDescriptionText(CardViewModel cvm, string description)
@@ -3825,6 +3834,35 @@ public class CardController : Singleton<CardController>
         // Reset Slot Positions
         VisualEventManager.Instance.CreateVisualEvent(() => MoveShuffleSlotsToStartPosition());
     }
+    public void StartNewShuffleCardsScreenVisualEvent(CharacterEntityView view, List<CardData> cards)
+    {
+        // cache cards for visual events
+        List<CardData> cachedCards = new List<CardData>();
+        cachedCards.AddRange(cards);
+        List<DiscoveryCardViewModel> activeCards = new List<DiscoveryCardViewModel>();
+
+        for (int i = 0; i < cards.Count; i++)
+        {
+            activeCards.Add(shuffleCards[i]);
+        }
+
+        // Set up main screen V event
+        CoroutineData cData = new CoroutineData(); 
+        VisualEventManager.Instance.CreateVisualEvent(() => SetUpShuffleCardScreen(cachedCards, cData), cData);
+
+        // brief pause so player can view cards
+        VisualEventManager.Instance.InsertTimeDelayInQueue(1, QueuePosition.Back);
+
+        // Move each card towards character v Event
+        foreach (DiscoveryCardViewModel dcvm in activeCards)
+        {
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                    MoveShuffleCardTowardsCharacterEntityView(dcvm, view), QueuePosition.Back, 0, 0.2f);
+        }
+
+        // Reset Slot Positions
+        VisualEventManager.Instance.CreateVisualEvent(() => MoveShuffleSlotsToStartPosition());
+    }
     private void SetUpShuffleCardScreen(List<Card> cachedCards, CoroutineData cData)
     {
         StartCoroutine(SetUpShuffleCardScreenCoroutine(cachedCards, cData));
@@ -3839,6 +3877,40 @@ public class CardController : Singleton<CardController>
         for (int i = 0; i < cachedCards.Count; i++)
         {
             SetUpCardViewModelAppearanceFromCard(shuffleCards[i].cardViewModel, cachedCards[i]);
+            shuffleCards[i].gameObject.SetActive(true);
+            shuffleCardSlots[i].gameObject.SetActive(true);
+
+            // shrink cards down
+            shuffleCards[i].scalingParent.localScale = new Vector3(0.1f, 0.1f);
+        }
+
+        yield return null;
+
+        for (int i = 0; i < cachedCards.Count; i++)
+        {
+            // move card to slot     
+            shuffleCards[i].scalingParent.DOScale(1, 0.3f);
+            shuffleCards[i].transform.gameObject.transform.DOMove(shuffleCardSlots[i].position, 0.3f);
+        }
+
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+    }
+    private void SetUpShuffleCardScreen(List<CardData> cachedCards, CoroutineData cData)
+    {
+        StartCoroutine(SetUpShuffleCardScreenCoroutine(cachedCards, cData));
+    }
+    private IEnumerator SetUpShuffleCardScreenCoroutine(List<CardData> cachedCards, CoroutineData cData)
+    {
+        shuffleCardsScreenVisualParent.SetActive(true);
+        MoveShuffleSlotsToStartPosition();
+        MoveShuffleCardsToStartPosition();
+
+        for (int i = 0; i < cachedCards.Count; i++)
+        {
+            BuildCardViewModelFromCardData(cachedCards[i], shuffleCards[i].cardViewModel);
             shuffleCards[i].gameObject.SetActive(true);
             shuffleCardSlots[i].gameObject.SetActive(true);
 
@@ -3929,10 +4001,24 @@ public class CardController : Singleton<CardController>
         EventSystem.current.SetSelectedGameObject(null);
         HideCardGridScreen();
     }
+    public void CreateNewUpgradeCardInDeckPopup(CharacterData character)
+    {
+        // enable screen
+        ShowCardGridScreen();
+
+        // set text
+        cardGridRibbonText.text = "Upgrade A Card!";
+
+        // Build Cards
+        BuildGridScreenCards(GetUpgradeableCardsFromCollection(character.deck));
+    }
     public void CreateNewShowDiscardPilePopup(List<Card> cards)
     {
         // enable screen
         ShowCardGridScreen();
+
+        // Show back button
+        EnableCardGridScreenBackButton();
 
         // set text
         cardGridRibbonText.text = "Discard Pile";
@@ -3944,6 +4030,9 @@ public class CardController : Singleton<CardController>
     {
         // enable screen
         ShowCardGridScreen();
+
+        // Show back button
+        EnableCardGridScreenBackButton();
 
         // set text
         cardGridRibbonText.text = "Draw Pile";
@@ -3980,7 +4069,26 @@ public class CardController : Singleton<CardController>
             SetUpCardViewModelAppearanceFromCard(gc.cardVM, card);
         }
     }
-    private void ShowCardGridScreen()
+    private void BuildGridScreenCards(List<CardData> cards)
+    {
+        // Disable all grid cards
+        foreach (GridCardViewModel g in allGridCards)
+        {
+            g.gameObject.SetActive(false);
+        }
+
+        // Build new grid cards and views
+        for (int i = 0; i < cards.Count; i++)
+        {
+            CardData card = cards[i];
+            GridCardViewModel gc = allGridCards[i];
+
+            gc.myCardData = card;
+            gc.gameObject.SetActive(true);
+            BuildCardViewModelFromCardData(card, gc.cardVM);
+        }
+    }
+    public void ShowCardGridScreen()
     {
         cardGridCg.alpha = 0f;
         cardGridVisualParent.SetActive(true);
@@ -3988,12 +4096,93 @@ public class CardController : Singleton<CardController>
         Sequence s = DOTween.Sequence();
         s.Append(cardGridCg.DOFade(1f, 0.25f));
     }
-    private void HideCardGridScreen()
+    public void HideCardGridScreen()
     {
         cardGridCg.alpha = 1f;
         Sequence s = DOTween.Sequence();
         s.Append(cardGridCg.DOFade(0f, 0.25f));
         s.OnComplete(() => cardGridVisualParent.SetActive(false));
+    }
+    public void EnableCardGridScreenBackButton()
+    {
+        cardGridScreenBackButtonParent.SetActive(true);
+    }
+    public void DisableCardGridScreenBackButton()
+    {
+        cardGridScreenBackButtonParent.SetActive(false);
+    }
+    #endregion
+
+    // Upgrade Cards Logic
+    #region
+    public CardData FindUpgradedCardData(CardData original)
+    {
+        CardData upgradeCard = null;
+        string searchTerm = original.cardName + " +" + (original.upgradeLevel + 1).ToString();
+
+        Debug.Log("CardController.FindUpgradedCardData() called, searching for upgrade of " + original.cardName +
+            ", search term: "+ searchTerm);
+       
+
+        for(int i = 0; i < AllCards.Length; i++)
+        {
+            if(AllCards[i].cardName == searchTerm)
+            {
+                // Found matching upgrade card
+                upgradeCard = AllCards[i];
+                break;
+            }
+        }
+
+        if(upgradeCard == null)
+        {
+            Debug.LogWarning("CardController.FindUpgradedCardData() called, did not find and upgrade of " + original.cardName +
+                ", returning null...");
+        }
+
+        return upgradeCard;
+    }
+    public bool IsCardUpgradeable(CardData card)
+    {
+        return card.upgradeable;
+    }
+    public List<CardData> GetUpgradeableCardsFromCollection(IEnumerable<CardData> collection)
+    {
+        List<CardData> upgradeableCards = new List<CardData>();
+
+        foreach(CardData card in collection)
+        {
+            if (IsCardUpgradeable(card))
+            {
+                upgradeableCards.Add(card);
+            }
+        }
+
+        return upgradeableCards;
+    }
+    public void HandleUpgradeCardInCharacterDeck(CardData card, CharacterData character)
+    {
+        int index = character.deck.IndexOf(card);
+
+        // Find the upgraded version
+        CardData upgradeCardData = FindUpgradedCardData(card);
+        CardData upgradedCard = null;
+
+        // Clone the data
+        if(upgradeCardData != null)
+        {
+            upgradeCardData = CloneCardDataFromCardData(upgradeCardData);
+        }               
+
+        // Did we succesfully find and clone the data?
+        if(upgradedCard != null)
+        {
+            // Add new upgraded card
+            CharacterDataController.Instance.AddCardToCharacterDeck(character, upgradeCardData, index);
+
+            // Remove old, unupgraded card
+            CharacterDataController.Instance.RemoveCardFromCharacterDeck(character, card);
+        }    
     }
     #endregion
 

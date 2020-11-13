@@ -55,6 +55,8 @@ public class CampSiteController : Singleton<CampSiteController>
 
     [Header("Misc Properties")]
     private bool continueButtonEnabled = false;
+    private bool awaitingCardUpgradeChoice = false;
+    private CampSiteCharacterView selectedCharacterView = null;
     #endregion
 
     // Getters 
@@ -67,6 +69,16 @@ public class CampSiteController : Singleton<CampSiteController>
     public CampSiteCharacterView[] AllCampSiteCharacterViews
     {
         get { return allCampSiteCharacterViews; }
+    }
+    public bool AwaitingCardUpgradeChoice
+    {
+        get { return awaitingCardUpgradeChoice; }
+        private set { awaitingCardUpgradeChoice = value; }
+    }
+    public CampSiteCharacterView SelectedCharacterView
+    {
+        get { return selectedCharacterView; }
+        private set { selectedCharacterView = value; }
     }
 
     #endregion
@@ -632,6 +644,11 @@ public class CampSiteController : Singleton<CampSiteController>
         {
             bReturned = true;
         }
+        else if (condition.targettingConditionType == TargettingConditionType.TargetHasUpgradeableCards &&
+            CardController.Instance.GetUpgradeableCardsFromCollection(target.myCharacterData.deck).Count > 0)
+        {
+            bReturned = true;
+        }
 
         return bReturned;
     }
@@ -958,6 +975,65 @@ public class CampSiteController : Singleton<CampSiteController>
             VisualEffectManager.Instance.CreateStatusEffect(view.characterEntityView.WorldPosition, passiveName + " +" +stacks.ToString()));
         }
 
+        // Modify Core Attribute
+        if (cardEffect.cardEffectType == CampCardEffectType.ModifyCoreAttribute)
+        {
+            // Power
+            if(cardEffect.attributeChanged == CoreAttribute.Power)
+            {
+                CharacterDataController.Instance.ModifyPower(cData, cardEffect.attributeAmountGained);
+
+                // Visual notification event
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(view.characterEntityView.WorldPosition, cardEffect.attributeChanged.ToString() + 
+                " +" + cardEffect.attributeAmountGained.ToString()));
+            }
+
+            // Dexterity
+            else if (cardEffect.attributeChanged == CoreAttribute.Dexterity)
+            {
+                CharacterDataController.Instance.ModifyDexterity(cData, cardEffect.attributeAmountGained);
+
+                // Visual notification event
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(view.characterEntityView.WorldPosition, cardEffect.attributeChanged.ToString() +
+                " +" + cardEffect.attributeAmountGained.ToString()));
+            }
+
+            // Stamina
+            else if (cardEffect.attributeChanged == CoreAttribute.Stamina)
+            {
+                CharacterDataController.Instance.ModifyStamina(cData, cardEffect.attributeAmountGained);
+
+                // Visual notification event
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(view.characterEntityView.WorldPosition, cardEffect.attributeChanged.ToString() +
+                " +" + cardEffect.attributeAmountGained.ToString()));
+            }
+
+            // Initiative
+            else if (cardEffect.attributeChanged == CoreAttribute.Initiative)
+            {
+                CharacterDataController.Instance.ModifyInitiative(cData, cardEffect.attributeAmountGained);
+
+                // Visual notification event
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(view.characterEntityView.WorldPosition, cardEffect.attributeChanged.ToString() +
+                " +" + cardEffect.attributeAmountGained.ToString()));
+            }
+
+            // Draw
+            else if (cardEffect.attributeChanged == CoreAttribute.Draw)
+            {
+                CharacterDataController.Instance.ModifyDraw(cData, cardEffect.attributeAmountGained);
+
+                // Visual notification event
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(view.characterEntityView.WorldPosition, cardEffect.attributeChanged.ToString() +
+                " +" + cardEffect.attributeAmountGained.ToString()));
+            }
+        }
+
         // Shuffle Hand into draw pile
         if (cardEffect.cardEffectType == CampCardEffectType.ShuffleHandIntoDrawPile)
         {
@@ -985,7 +1061,41 @@ public class CampSiteController : Singleton<CampSiteController>
 
 
         }
+
+        // Upgrade Card
+        if (cardEffect.cardEffectType == CampCardEffectType.UpgradeCard)
+        {
+            HandleUpgradeCardStartEvent(view);
+        }
     }
+    private void HandleUpgradeCardStartEvent(CampSiteCharacterView character)
+    {
+        AwaitingCardUpgradeChoice = true;
+        SelectedCharacterView = character;
+        CardController.Instance.CreateNewUpgradeCardInDeckPopup(character.myCharacterData);
+        CardController.Instance.DisableCardGridScreenBackButton();
+    }
+    public void HandleUpgradeCardChoiceMade(CardData card)
+    {
+        // Setup
+        CharacterData character = SelectedCharacterView.myCharacterData;
+        List<CardData> cList = new List<CardData>();
+        cList.Add(CardController.Instance.FindUpgradedCardData(card));
+
+        // Close Grid view Screen
+        CardController.Instance.HideCardGridScreen();
+
+        // Create add card to character visual event
+        CardController.Instance.StartNewShuffleCardsScreenVisualEvent(SelectedCharacterView.characterEntityView, cList);
+
+        // Add new upgraded card to character data deck
+        CardController.Instance.HandleUpgradeCardInCharacterDeck(card, character);
+
+        // Finish
+        AwaitingCardUpgradeChoice = false;
+        SelectedCharacterView = null;
+    }
+
     public void HandleHealEffect(CampSiteCharacterView character, int healthGainedOrLost)
     {
         CharacterData cData = character.myCharacterData;

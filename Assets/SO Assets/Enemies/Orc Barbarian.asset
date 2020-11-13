@@ -16,8 +16,8 @@ MonoBehaviour:
   enemyModelSize: 2
   audioProfile: 3
   enableFlexibleMaxHealth: 1
-  maxHealthFlexAmount: 3
-  maxHealth: 31
+  maxHealthFlexAmount: 2
+  maxHealth: 36
   initiative: 1
   power: 0
   dexterity: 0
@@ -25,11 +25,7 @@ MonoBehaviour:
   startingHealth: 30
   startingBlock: 0
   physicalResistance: 0
-  fireResistance: 0
-  frostResistance: 0
-  shadowResistance: 0
-  poisonResistance: 0
-  airResistance: 0
+  magicResistance: 0
   serializedPassiveManager:
     bonusPowerStacks: 0
     bonusDexterityStacks: 0
@@ -74,6 +70,7 @@ MonoBehaviour:
     demonFormStacks: 0
     darkBargainStacks: 0
     volatileStacks: 0
+    soulCollectorStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -89,7 +86,7 @@ MonoBehaviour:
     burningStacks: 0
     fireBallBonusDamageStacks: 0
   allEnemyActions:
-  - actionName: Incantation
+  - actionName: Orcish War Cry
     actionType: 2
     intentImage: 4
     actionLoops: 1
@@ -135,6 +132,7 @@ MonoBehaviour:
         projectileStartPosition: 0
         onCharacter: 0
       actionType: 2
+      effectLoops: 1
       baseDamage: 0
       damageType: 0
       characterSummoned: {fileID: 0}
@@ -220,6 +218,7 @@ MonoBehaviour:
         onCharacter: 0
       visualEventsOnFinish: []
       actionType: 0
+      effectLoops: 1
       baseDamage: 5
       damageType: 1
       characterSummoned: {fileID: 0}

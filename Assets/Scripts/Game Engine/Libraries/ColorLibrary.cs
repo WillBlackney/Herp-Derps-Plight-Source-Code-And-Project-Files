@@ -35,6 +35,8 @@ public class ColorLibrary : Singleton<ColorLibrary>
     public Color fireOverlayColour;
     public Color purpleOverlayColour;
 
+    [Header("Font Colors")]
+    public Color cardUpgradeFontColor;
     #endregion
 
     // Logic

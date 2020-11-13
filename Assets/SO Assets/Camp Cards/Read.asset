@@ -42,13 +42,17 @@ MonoBehaviour:
     cardEffectType: 0
     phrase: .
   cardEffects:
-  - cardEffectType: 2
+  - cardEffectType: 9
     healingType: 0
     flatHealAmount: 0
     healAmountPercentage: 0
+    attributeChanged: 4
+    attributeAmountGained: 1
     passivePairing:
       passiveData: 8
       passiveStacks: 1
+    cardsDrawn: 0
+    maxHealthGained: 0
     visualEventsOnStart:
     - eventType: 2
       screenOverlayType: 0

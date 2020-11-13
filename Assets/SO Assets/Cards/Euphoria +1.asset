@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
+  m_Name: Euphoria +1
+  m_EditorClassIdentifier: 
+  cardName: Euphoria +1
+  cardDescription: Set the cost of all cards in hand to 0 this combat.
+  cardSprite: {fileID: 21300000, guid: cd140ed9aa8b6ee4fb7e745f55c7b709, type: 3}
+  xEnergyCost: 0
+  cardEnergyCost: 2
+  cardType: 1
+  targettingType: 0
+  talentSchool: 1
+  rarity: 4
+  racialCard: 0
+  originRace: 0
+  upgradeable: 0
+  upgradeLevel: 1
+  expend: 0
+  innate: 0
+  fleeting: 0
+  unplayable: 0
+  lifeSteal: 0
+  blessing: 0
+  customDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Set the '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Energy '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'cost of all cards in hand to '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '0 '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'this combat.
+
+'
+  cardEffects: []
+  cardEventListeners: []
+  keyWordModels:
+  - kewWordType: 10
+    weaponRequirement: 0
+    passiveType: 0

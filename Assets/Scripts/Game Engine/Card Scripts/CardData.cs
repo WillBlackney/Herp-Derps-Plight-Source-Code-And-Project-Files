@@ -16,6 +16,8 @@ public class CardData
     public Rarity rarity;
     public bool racialCard;
     public CharacterRace originRace;
+    public bool upgradeable;    
+    public int upgradeLevel;
     public TargettingType targettingType;
     public TalentSchool talentSchool;
     public List<CardEffect> cardEffects = new List<CardEffect>();

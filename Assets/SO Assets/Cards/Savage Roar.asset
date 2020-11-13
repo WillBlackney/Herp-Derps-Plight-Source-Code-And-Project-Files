@@ -23,6 +23,8 @@ MonoBehaviour:
   rarity: 1
   racialCard: 1
   originRace: 2
+  upgradeable: 1
+  upgradeLevel: 0
   expend: 0
   innate: 1
   fleeting: 0

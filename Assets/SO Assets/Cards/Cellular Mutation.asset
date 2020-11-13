@@ -22,6 +22,10 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 5
   rarity: 4
+  racialCard: 0
+  originRace: 0
+  upgradeable: 1
+  upgradeLevel: 0
   expend: 1
   innate: 0
   fleeting: 0
@@ -68,6 +72,7 @@ MonoBehaviour:
     cardEffectType: 10
     splitTargetEffect: 0
     splitTargetType: 0
+    removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
     permanentDamageGain: 0
@@ -92,6 +97,7 @@ MonoBehaviour:
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
+    drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 1
     healthRestored: 0
@@ -142,6 +148,7 @@ MonoBehaviour:
     cardEffectType: 28
     splitTargetEffect: 0
     splitTargetType: 0
+    removeBlockFrom: 0
     modifyDeckCardEffect: 2
     permanentBlockGain: 2
     permanentDamageGain: 2
@@ -166,6 +173,7 @@ MonoBehaviour:
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
+    drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 0
     healthRestored: 0

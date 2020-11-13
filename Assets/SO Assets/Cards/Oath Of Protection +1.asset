@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
+  m_Name: Oath Of Protection +1
+  m_EditorClassIdentifier: 
+  cardName: Oath Of Protection +1
+  cardDescription: 'Give an ally 15 Block. Innate. Expend. '
+  cardSprite: {fileID: 21300000, guid: 04fc39377487d0c4aa2636c7d43bf49e, type: 3}
+  xEnergyCost: 0
+  cardEnergyCost: 1
+  cardType: 1
+  targettingType: 1
+  talentSchool: 5
+  rarity: 3
+  racialCard: 0
+  originRace: 0
+  upgradeable: 0
+  upgradeLevel: 1
+  expend: 1
+  innate: 0
+  fleeting: 0
+  unplayable: 0
+  lifeSteal: 0
+  blessing: 0
+  customDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Give an ally '
+  - color: 2
+    getPhraseFromCardValue: 1
+    cardEffectType: 19
+    phrase: 12
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: ' Block'
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '.
+
+'
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Innate
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '.
+
+'
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Expend
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
+  cardEffects:
+  - weaponRequirement: 0
+    cardEffectType: 19
+    splitTargetEffect: 0
+    splitTargetType: 0
+    removeBlockFrom: 0
+    modifyDeckCardEffect: 0
+    permanentBlockGain: 0
+    permanentDamageGain: 0
+    chooseTargetRandomly: 0
+    passiveApplicationLoops: 0
+    validRandomTargetsType: 0
+    damageLoops: 0
+    drawSpecificType: 0
+    specificTypeDrawn: 0
+    discoveryLocation: 0
+    talentSchoolFilter: 0
+    rarityFilter: 0
+    blessing: 0
+    onDiscoveryChoiceMadeEffects: []
+    onChooseCardInHandChoiceMadeEffects: []
+    modifyCardsInHandEffects: []
+    drawStacksFromOverload: 0
+    drawStacksFromWeakenedOnEnemies: 0
+    blockGainValue: 15
+    baseDamageValue: 0
+    drawBaseDamageFromCurrentBlock: 0
+    drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromMeleeAttacksPlayed: 0
+    drawBaseDamageFromOverloadOnSelf: 0
+    drawBaseDamageFromBurningOnSelf: 0
+    baseDamageMultiplier: 1
+    damageType: 0
+    healthRestored: 0
+    healthLost: 0
+    energyGained: 0
+    cardsDrawn: 0
+    extraDrawEffect: 0
+    cardEnergyReduction: 0
+    passivePairing:
+      passiveData: 0
+      passiveStacks: 0
+    cardAdded: {fileID: 0}
+    copiesAdded: 0
+    blessingsGained: 0
+    visualEventsOnStart:
+    - eventType: 2
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
+      particleEffect: 0
+      cameraShake: 0
+      movementAnimation: 0
+      soundEffect: 0
+      characterAnimation: 4
+      delayDuration: 0
+      projectileFired: 0
+      projectileStartPosition: 0
+      onCharacter: 0
+    visualEventsOnFinish: []
+  cardEventListeners: []
+  keyWordModels:
+  - kewWordType: 9
+    weaponRequirement: 0
+    passiveType: 0
+  - kewWordType: 2
+    weaponRequirement: 0
+    passiveType: 0
+  - kewWordType: 1
+    weaponRequirement: 0
+    passiveType: 0

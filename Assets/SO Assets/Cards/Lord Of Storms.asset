@@ -23,6 +23,8 @@ MonoBehaviour:
   rarity: 3
   racialCard: 0
   originRace: 0
+  upgradeable: 1
+  upgradeLevel: 0
   expend: 0
   innate: 0
   fleeting: 0
@@ -86,7 +88,7 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: 43
+      passiveData: 57
       passiveStacks: 2
     cardAdded: {fileID: 0}
     copiesAdded: 0

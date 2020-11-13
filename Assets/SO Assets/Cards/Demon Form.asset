@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
   m_Name: Demon Form
   m_EditorClassIdentifier: 
-  cardName: Demon Form
+  cardName: Demon Form +1
   cardDescription: Burning gives you Block instead of damaging you.
   cardSprite: {fileID: 21300000, guid: 5229541aede19c046846612fd45d9166, type: 3}
   xEnergyCost: 0
@@ -21,6 +21,10 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 6
   rarity: 3
+  racialCard: 0
+  originRace: 0
+  upgradeable: 1
+  upgradeLevel: 0
   expend: 0
   innate: 0
   fleeting: 0

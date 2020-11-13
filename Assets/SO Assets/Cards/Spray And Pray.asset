@@ -21,10 +21,15 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 8
   rarity: 3
+  racialCard: 0
+  originRace: 0
+  upgradeable: 1
+  upgradeLevel: 0
   expend: 1
   innate: 0
   fleeting: 0
   unplayable: 0
+  lifeSteal: 0
   blessing: 0
   customDescription:
   - color: 1
@@ -66,7 +71,13 @@ MonoBehaviour:
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    removeBlockFrom: 0
+    modifyDeckCardEffect: 0
+    permanentBlockGain: 0
+    permanentDamageGain: 0
     chooseTargetRandomly: 1
+    passiveApplicationLoops: 0
+    validRandomTargetsType: 0
     damageLoops: 5
     drawSpecificType: 0
     specificTypeDrawn: 0
@@ -85,8 +96,10 @@ MonoBehaviour:
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
+    drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
     damageType: 1
+    healthRestored: 0
     healthLost: 0
     energyGained: 0
     cardsDrawn: 0

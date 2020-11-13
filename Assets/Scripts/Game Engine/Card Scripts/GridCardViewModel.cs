@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
-public class GridCardViewModel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class GridCardViewModel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [Header("Component References")]
     public CardViewModel cardVM;
@@ -27,5 +27,12 @@ public class GridCardViewModel : MonoBehaviour, IPointerEnterHandler, IPointerEx
     {
         cardVM.movementParent.DOScale(originalScale, scaleSpeed).SetEase(Ease.OutQuint);
         KeyWordLayoutController.Instance.FadeOutMainView();
+    }
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (CampSiteController.Instance.AwaitingCardUpgradeChoice)
+        {
+            CampSiteController.Instance.HandleUpgradeCardChoiceMade(myCardData);
+        }
     }
 }

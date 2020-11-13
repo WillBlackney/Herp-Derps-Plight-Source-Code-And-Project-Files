@@ -55,7 +55,17 @@ public class CardDataSO : ScriptableObject
     [VerticalGroup("Core Data/Stats")]
     [LabelWidth(100)]
     [GUIColor("Blue")]
-    public CharacterRace originRace;    
+    public CharacterRace originRace;
+
+    [BoxGroup("Upgrade Settings", true, true)]
+    [LabelWidth(100)]
+    [GUIColor("Blue")]
+    public bool upgradeable;
+
+    [BoxGroup("Upgrade Settings")]
+    [LabelWidth(100)]
+    [GUIColor("Blue")]
+    public int upgradeLevel;
 
     [BoxGroup("Key Words", true, true)]
     [LabelWidth(100)]
