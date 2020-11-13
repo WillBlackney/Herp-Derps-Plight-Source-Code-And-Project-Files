@@ -17,6 +17,7 @@ public class LootController : Singleton<LootController>
     [Header("Current Pity Timer Properties")]
     private int timeSinceLastEpic = 0;
     private int timeSinceLastRare = 0;
+    private int timeSinceLastUpgrade = 0;
 
     [Header("Parent & Canvas Group Components")]
     [SerializeField] private GameObject visualParent;
@@ -242,6 +243,7 @@ public class LootController : Singleton<LootController>
         List<CardData> rareCards = new List<CardData>();
         List<CardData> epicCards = new List<CardData>();
 
+        // Organise cards by rarity into loot buckets
         for(int i = 0; i < validLootableCards.Count; i++)
         {
             if(validLootableCards[i].rarity == Rarity.Common)
@@ -256,23 +258,23 @@ public class LootController : Singleton<LootController>
             {
                 epicCards.Add(validLootableCards[i]);
             }
-        }
-
-        
+        }        
 
         // Get 3 random + different cards 
         for (int i = 0; i < 3; i++)
         {
             // Roll for rarity (5% Epic, 15% Rare, 80% Common probabilities)
             int roll = RandomGenerator.NumberBetween(1, 100);
+            CardData cardSelected = null;
 
             // Check pity timers first
             if (timeSinceLastEpic >= GlobalSettings.Instance.epicPityTimer && epicCards.Count > 0)
             {
                 Debug.Log("LootController epic card pity timer exceeded, forcing epic card loot reward!");
                 epicCards.Shuffle();
-                listReturned.Add(epicCards[0]);
-                epicCards.Remove(epicCards[0]);
+                cardSelected = epicCards[0];
+                listReturned.Add(cardSelected);
+                epicCards.Remove(cardSelected);
                 timeSinceLastEpic = 0;
                 timeSinceLastRare++;
             }
@@ -280,8 +282,9 @@ public class LootController : Singleton<LootController>
             {
                 Debug.Log("LootController rare card pity timer exceeded, forcing rare card loot reward!");
                 rareCards.Shuffle();
-                listReturned.Add(rareCards[0]);
-                rareCards.Remove(rareCards[0]);
+                cardSelected = rareCards[0];
+                listReturned.Add(cardSelected);
+                rareCards.Remove(cardSelected);
                 timeSinceLastRare = 0;
                 timeSinceLastEpic++;
             }
@@ -290,8 +293,9 @@ public class LootController : Singleton<LootController>
             else if(epicCards.Count > 0 && IsNumberBetweenValues(roll, GlobalSettings.Instance.epicCardLowerLimitProbability, GlobalSettings.Instance.epicCardUpperLimitProbability))
             {
                 epicCards.Shuffle();
-                listReturned.Add(epicCards[0]);
-                epicCards.Remove(epicCards[0]);
+                cardSelected = epicCards[0];
+                listReturned.Add(cardSelected);
+                epicCards.Remove(cardSelected);
                 timeSinceLastEpic = 0;
                 timeSinceLastRare++;
             }
@@ -300,8 +304,9 @@ public class LootController : Singleton<LootController>
             else if (rareCards.Count > 0 && IsNumberBetweenValues(roll, GlobalSettings.Instance.rareCardLowerLimitProbability, GlobalSettings.Instance.rareCardUpperLimitProbability))
             {
                 rareCards.Shuffle();
-                listReturned.Add(rareCards[0]);
-                rareCards.Remove(rareCards[0]);
+                cardSelected = rareCards[0];
+                listReturned.Add(cardSelected);
+                rareCards.Remove(cardSelected);
                 timeSinceLastRare = 0;
                 timeSinceLastEpic++;
             }
@@ -310,11 +315,37 @@ public class LootController : Singleton<LootController>
             else
             {
                 commonCards.Shuffle();
-                listReturned.Add(commonCards[0]);
-                commonCards.Remove(commonCards[0]);
+                cardSelected = commonCards[0];
+                listReturned.Add(cardSelected);
+                commonCards.Remove(cardSelected);
 
                 timeSinceLastRare++;
                 timeSinceLastEpic++;
+            }
+
+            // Roll for upgrade + Check pity timer
+            int upgradeRoll = RandomGenerator.NumberBetween(1, 100);
+            if((upgradeRoll >= 1 && upgradeRoll <= 3) ||
+                timeSinceLastUpgrade >= GlobalSettings.Instance.upgradePityTimer)
+            {
+                // Hit a successful roll, upgrade the card
+                CardData upgradedVersion = CardController.Instance.FindUpgradedCardData(cardSelected);
+
+                if(upgradedVersion != null)
+                {
+                    listReturned.Remove(cardSelected);
+                    listReturned.Add(upgradedVersion);
+                    timeSinceLastUpgrade = 0;
+                }
+                else
+                {
+                    timeSinceLastUpgrade++;
+                }
+            }
+
+            else
+            {
+                timeSinceLastUpgrade++;
             }
         }
 
@@ -455,11 +486,13 @@ public class LootController : Singleton<LootController>
         saveFile.currentLootResult = CurrentLootResultData;
         saveFile.timeSinceLastRare = timeSinceLastRare;
         saveFile.timeSinceLastEpic = timeSinceLastEpic;
+        saveFile.timeSinceLastUpgrade = timeSinceLastUpgrade;
     }
     public void BuildMyDataFromSaveFile(SaveGameData saveFile)
     {
         CurrentLootResultData = saveFile.currentLootResult;
         timeSinceLastRare = saveFile.timeSinceLastRare;
         timeSinceLastEpic = saveFile.timeSinceLastEpic;
+        timeSinceLastUpgrade = saveFile.timeSinceLastUpgrade;
     }
 }

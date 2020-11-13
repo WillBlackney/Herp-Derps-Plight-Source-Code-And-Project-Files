@@ -18,6 +18,7 @@ MonoBehaviour:
   targettingType: 1
   targetRequirements:
   - targettingConditionType: 1
+  - targettingConditionType: 3
   expend: 0
   innate: 0
   customDescription:

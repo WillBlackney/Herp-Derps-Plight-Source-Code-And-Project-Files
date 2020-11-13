@@ -31,6 +31,15 @@ public class CardInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     {
         cardDataRef = data;
         cardNameText.text = data.cardName;
+        if(data.upgradeLevel >= 1)
+        {
+            cardNameText.color = ColorLibrary.Instance.cardUpgradeFontColor;
+        }
+        else
+        {
+            cardNameText.color = Color.white;
+        }
+
         energyCostText.text = data.cardBaseEnergyCost.ToString();
 
         talentOverlay.color = ColorLibrary.Instance.GetTalentColor(data.talentSchool);

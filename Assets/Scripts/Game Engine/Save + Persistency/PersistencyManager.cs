@@ -75,7 +75,7 @@ public class PersistencyManager : Singleton<PersistencyManager>
             // Add racial card to deck
             foreach(CardData card in racialCardData)
             {
-                if(card.originRace == newCharacter.race)
+                if(card.originRace == newCharacter.race && card.upgradeLevel == 0)
                 {
                     Debug.Log("BuildNewSaveFileOnNewGameStarted() found matching racial card, adding " + card.cardName +
                         " to " + newCharacter.myName + "'s deck");

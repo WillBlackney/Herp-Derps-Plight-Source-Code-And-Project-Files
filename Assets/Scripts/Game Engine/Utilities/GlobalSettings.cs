@@ -99,6 +99,10 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [Range(1, 100)]
     public int epicPityTimer;
 
+    [LabelWidth(200)]
+    [Range(1, 100)]
+    public int upgradePityTimer;
+
     // Odin bools
     public bool ShowTestSceneProperties()
     {

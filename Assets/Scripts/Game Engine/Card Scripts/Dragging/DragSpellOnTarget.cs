@@ -126,8 +126,6 @@ public class DragSpellOnTarget : DraggingActions {
 
         else if(cardVM.eventSetting == EventSetting.Camping)
         {
-            Debug.LogWarning("Camp Card End Drag!");
-
             // Stop dragging SFX
             AudioManager.Instance.FadeOutSound(Sound.Card_Dragging, 0.2f);
 

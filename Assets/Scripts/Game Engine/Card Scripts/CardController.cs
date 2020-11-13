@@ -184,14 +184,15 @@ public class CardController : Singleton<CardController>
 
         return sprite;
     }
-    public CardDataSO FindRacialCardDataSO(CharacterRace race)
+    public CardDataSO FindBaseRacialCardDataSO(CharacterRace race)
     {
         CardDataSO dataReturned = null;
 
         for(int i = 0; i < allCards.Length; i++)
         {
             if(allCardScriptableObjects[i].racialCard &&
-                allCardScriptableObjects[i].originRace == race)
+                allCardScriptableObjects[i].originRace == race &&
+                allCardScriptableObjects[i].upgradeLevel == 0)
             {
                 dataReturned = allCardScriptableObjects[i];
                 break;
@@ -200,14 +201,15 @@ public class CardController : Singleton<CardController>
 
         return dataReturned;
     }
-    public CardData FindRacialCardData(CharacterRace race)
+    public CardData FindBaseRacialCardData(CharacterRace race)
     {
         CardData dataReturned = null;
 
         for (int i = 0; i < allCards.Length; i++)
         {
             if (allCards[i].racialCard &&
-                allCards[i].originRace == race)
+                allCards[i].originRace == race &&
+                allCards[i].upgradeLevel == 0)
             {
                 dataReturned = allCards[i];
                 break;
@@ -928,7 +930,12 @@ public class CardController : Singleton<CardController>
         cvm.nameText.text = name;
         if (upgradeCard)
         {
-            cvm.nameText.color = Color.green;
+            Debug.Log("CardController.SetCardViewModelNameText() upgrade detected, change font color...");
+            cvm.nameText.color = ColorLibrary.Instance.cardUpgradeFontColor;
+        }
+        else
+        {
+            cvm.nameText.color = Color.white;
         }
 
         if (cvm.myPreviewCard != null)
@@ -4148,7 +4155,9 @@ public class CardController : Singleton<CardController>
     }
     public List<CardData> GetUpgradeableCardsFromCollection(IEnumerable<CardData> collection)
     {
-        List<CardData> upgradeableCards = new List<CardData>();
+        Debug.Log("CardController.GetUpgradeableCardsFromCollection() called...");
+
+        List <CardData> upgradeableCards = new List<CardData>();
 
         foreach(CardData card in collection)
         {
@@ -4158,10 +4167,15 @@ public class CardController : Singleton<CardController>
             }
         }
 
+        Debug.Log("CardController.GetUpgradeableCardsFromCollection() found " + upgradeableCards.Count.ToString() +
+            " upgradeable cards");
         return upgradeableCards;
     }
     public void HandleUpgradeCardInCharacterDeck(CardData card, CharacterData character)
     {
+        Debug.Log("CardController.HandleUpgradeCardInCharacterDeck() called, upgrading " +
+            card.cardName + " for " + character.myName);
+
         int index = character.deck.IndexOf(card);
 
         // Find the upgraded version
@@ -4171,7 +4185,7 @@ public class CardController : Singleton<CardController>
         // Clone the data
         if(upgradeCardData != null)
         {
-            upgradeCardData = CloneCardDataFromCardData(upgradeCardData);
+            upgradedCard = CloneCardDataFromCardData(upgradeCardData);
         }               
 
         // Did we succesfully find and clone the data?

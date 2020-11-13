@@ -356,7 +356,7 @@ public class CampSiteController : Singleton<CampSiteController>
     }
     public Sprite GetCampCardSpriteByName(string cardName)
     {
-        Debug.LogWarning("CampSiteController.GetCampCardSpriteByName() called, search term: " + cardName);
+        Debug.Log("CampSiteController.GetCampCardSpriteByName() called, search term: " + cardName);
 
         Sprite sprite = null;
 
@@ -364,7 +364,6 @@ public class CampSiteController : Singleton<CampSiteController>
         {
             if (data.cardName == cardName)
             {
-                Debug.LogWarning("Found sprite match");
                 sprite = data.cardSprite;
                 break;
             }

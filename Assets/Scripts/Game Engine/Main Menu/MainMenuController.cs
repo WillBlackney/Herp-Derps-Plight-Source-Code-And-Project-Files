@@ -392,7 +392,7 @@ public class MainMenuController : Singleton<MainMenuController>
     private void BuildRacialInfoPanel(CharacterData data)
     {
         racialNameText.text = data.race.ToString();
-        racialCardInfoPanel.BuildCardInfoPanelFromCardData(CardController.Instance.FindRacialCardData(data.race));
+        racialCardInfoPanel.BuildCardInfoPanelFromCardData(CardController.Instance.FindBaseRacialCardData(data.race));
         racialDescriptionText.text = KeywordLibrary.Instance.GetRacialData(data.race).raceDescription;
     }
     public void BuildAndShowCardViewModelPopup(CardData data)

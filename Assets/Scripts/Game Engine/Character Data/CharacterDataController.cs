@@ -232,14 +232,20 @@ public class CharacterDataController : Singleton<CharacterDataController>
     #region
     public void AddCardToCharacterDeck(CharacterData character, CardData card)
     {
+        Debug.Log("CharacterDataController.AddCardToCharacterDeck() called, adding " +
+            card.cardName + " to " + character.myName);
         character.deck.Add(card);
     }
     public void AddCardToCharacterDeck(CharacterData character, CardData card, int indexInDeck)
     {
+        Debug.Log("CharacterDataController.AddCardToCharacterDeck() called, adding " +
+          card.cardName + " to " + character.myName);
         character.deck.Insert(indexInDeck, card);
     }
     public void RemoveCardFromCharacterDeck(CharacterData character, CardData card)
     {
+        Debug.Log("CharacterDataController.RemoveCardFromCharacterDeck() called, removing " +
+            card.cardName + " from " + character.myName);
         character.deck.Remove(card);
     }
     #endregion
