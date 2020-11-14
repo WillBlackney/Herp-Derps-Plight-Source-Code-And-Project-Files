@@ -15,6 +15,8 @@ public class GridCardViewModel : MonoBehaviour, IPointerEnterHandler, IPointerEx
     [SerializeField] float scaleSpeed;
     [HideInInspector] public CardData myCardData;
 
+    [SerializeField] bool blockMouseClicks;
+
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -30,9 +32,15 @@ public class GridCardViewModel : MonoBehaviour, IPointerEnterHandler, IPointerEx
     }
     public void OnPointerClick(PointerEventData eventData)
     {
+        if(blockMouseClicks == true)
+        {
+            return;
+        }
+
         if (CampSiteController.Instance.AwaitingCardUpgradeChoice)
         {
-            CampSiteController.Instance.HandleUpgradeCardChoiceMade(myCardData);
+            CampSiteController.Instance.selectedUpgradeCard = myCardData;
+            CardController.Instance.BuildAndShowCardUpgradePopUp(myCardData);
         }
     }
 }

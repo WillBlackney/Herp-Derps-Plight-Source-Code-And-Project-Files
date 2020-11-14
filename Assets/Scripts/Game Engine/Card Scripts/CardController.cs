@@ -62,6 +62,12 @@ public class CardController : Singleton<CardController>
     [SerializeField] private GameObject cardGridScreenBackButtonParent;
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
+    [Header("Upgrade Pop Up Components")]
+    [SerializeField] private GameObject upgradePopupVisualParent;
+    [SerializeField] private CanvasGroup upgradePopupCg;
+    [SerializeField] private GridCardViewModel originalCardPopup;
+    [SerializeField] private GridCardViewModel upgradedCardPopup;
+
     [Header("Button Sprites")]
     [SerializeField] private Sprite activeButtonSprite;
     [SerializeField] private Sprite inactiveButtonSprite;
@@ -4046,6 +4052,38 @@ public class CardController : Singleton<CardController>
 
         // Build Cards
         BuildGridScreenCards(cards);
+    }
+    public void BuildAndShowCardUpgradePopUp(CardData cardData)
+    {
+        // Enable view
+        upgradePopupVisualParent.SetActive(true);
+
+        // Fade in screen pop up
+        upgradePopupCg.DOKill();
+        upgradePopupCg.alpha = 0;
+        upgradePopupCg.DOFade(1, 0.25f);
+
+        // Build pop up card views
+        CardData upgradeData = FindUpgradedCardData(cardData);
+        originalCardPopup.myCardData = cardData;
+        upgradedCardPopup.myCardData = upgradeData;
+
+        BuildCardViewModelFromCardData(cardData, originalCardPopup.cardVM);
+        BuildCardViewModelFromCardData(upgradeData, upgradedCardPopup.cardVM);
+    }
+    public void HideCardUpgradePopupScreen()
+    {
+        Sequence s = DOTween.Sequence();
+        s.Append(upgradePopupCg.DOFade(0, 0.2f));
+        s.OnComplete(() => { upgradePopupVisualParent.SetActive(false); });
+    }
+    public void OnUpgradeCardPopupConfirmButtonClicked()
+    {
+        CampSiteController.Instance.HandleUpgradeCardChoiceMade(CampSiteController.Instance.selectedUpgradeCard);
+    }
+    public void OnUpgradeCardPopupCancelButtonClicked()
+    {
+        HideCardUpgradePopupScreen();
     }
 
     private void BuildGridScreenCards(List<Card> cards)

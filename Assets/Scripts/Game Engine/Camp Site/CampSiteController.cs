@@ -57,6 +57,7 @@ public class CampSiteController : Singleton<CampSiteController>
     private bool continueButtonEnabled = false;
     private bool awaitingCardUpgradeChoice = false;
     private CampSiteCharacterView selectedCharacterView = null;
+    public CardData selectedUpgradeCard = null;
     #endregion
 
     // Getters 
@@ -1083,6 +1084,7 @@ public class CampSiteController : Singleton<CampSiteController>
 
         // Close Grid view Screen
         CardController.Instance.HideCardGridScreen();
+        CardController.Instance.HideCardUpgradePopupScreen();
 
         // Create add card to character visual event
         CardController.Instance.StartNewShuffleCardsScreenVisualEvent(SelectedCharacterView.characterEntityView, cList);
