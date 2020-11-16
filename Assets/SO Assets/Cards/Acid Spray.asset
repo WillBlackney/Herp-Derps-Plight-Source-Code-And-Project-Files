@@ -21,6 +21,7 @@ MonoBehaviour:
   targettingType: 3
   talentSchool: 12
   rarity: 1
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 1

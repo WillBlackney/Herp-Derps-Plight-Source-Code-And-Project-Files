@@ -318,6 +318,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyBurning(newClone, originalData.burningStacks, false);
         }
+        if (originalData.bleedingStacks != 0)
+        {
+            ModifyBleeding(newClone, originalData.bleedingStacks, false);
+        }
         #endregion
 
         // Disabling Debuff Passives
@@ -432,6 +436,7 @@ public class PassiveController : Singleton<PassiveController>
 
         pManager.poisonedStacks = original.poisonedStacks;
         pManager.burningStacks = original.burningStacks;
+        pManager.bleedingStacks = original.bleedingStacks;
 
         pManager.fireBallBonusDamageStacks = original.fireBallBonusDamageStacks;
 
@@ -688,6 +693,10 @@ public class PassiveController : Singleton<PassiveController>
         else if (originalData == "Burning")
         {
             ModifyBurning(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Bleeding")
+        {
+            ModifyBleeding(pManager, stacks, showVFX, vfxDelay);
         }
         #endregion
 
@@ -4528,6 +4537,61 @@ public class PassiveController : Singleton<PassiveController>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Burning " + stacks.ToString());
+                });
+            }
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+    }
+    public void ModifyBleeding(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyBleeding() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Bleeding");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.bleedingStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Bleeding +" + stacks.ToString());
+                    VisualEffectManager.Instance.CreateBloodExplosion(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Bleeding " + stacks.ToString());
                 });
             }
             if (showVFX)

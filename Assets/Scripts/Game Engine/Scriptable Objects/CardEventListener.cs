@@ -19,10 +19,18 @@ public class CardEventListener
     [ShowIf("ShowPassivePairing")]
     public PassivePairingData passivePairing;
 
+    [ShowIf("ShowEnergyGainedOrLost")]
+    public int energyGainedOrLost;
+
     public bool ShowMaxHealthGained()
     {
         return cardEventListenerFunction == CardEventListenerFunction.ModifyMaxHealth;
       
+    }
+    public bool ShowEnergyGainedOrLost()
+    {
+        return cardEventListenerFunction == CardEventListenerFunction.ModifyEnergy;
+
     }
     public bool ShowPassivePairing()
     {

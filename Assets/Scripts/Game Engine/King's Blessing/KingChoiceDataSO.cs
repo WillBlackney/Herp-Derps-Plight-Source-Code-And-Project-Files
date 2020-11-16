@@ -46,6 +46,12 @@ public class KingChoiceDataSO : ScriptableObject
     [ShowIf("effect", KingChoiceEffectType.ModifyAttribute)]
     public int attributeAmountModified;
 
+    [ShowIf("effect", KingChoiceEffectType.GainPassive)]
+    public List<PassivePairingData> possiblePassives;
+
+    [ShowIf("effect", KingChoiceEffectType.GainRandomAffliction)]
+    public int afflicationsGained;
+
 }
 public enum KingChoiceImpactLevel
 {
@@ -67,7 +73,7 @@ public enum KingChoiceEffectType
     DiscoverCard = 1,
     GainPassive = 2,
     GainRandomCard = 3,
-    GainRandomCurse = 4,
+    GainRandomAffliction = 4,
     ModifyAttribute = 5,
     ModifyHealth = 6,
     ModifyMaxHealth = 7,     

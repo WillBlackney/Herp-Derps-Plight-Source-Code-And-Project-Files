@@ -20,3 +20,9 @@ MonoBehaviour:
   healthGainedOrLost: 0
   randomCardRarity: 0
   discoveryCardRarity: 1
+  randomCardsUpgraded: 0
+  randomCardsTransformed: 0
+  attributeModified: 0
+  attributeAmountModified: 0
+  possiblePassives: []
+  afflicationsGained: 0

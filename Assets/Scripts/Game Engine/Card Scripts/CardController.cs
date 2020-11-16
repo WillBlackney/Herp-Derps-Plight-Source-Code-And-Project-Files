@@ -286,6 +286,18 @@ public class CardController : Singleton<CardController>
         cardsReturned.AddRange(query);
         return cardsReturned;
     }
+    public List<CardData> QueryByAffliction(IEnumerable<CardData> collectionQueried)
+    {
+        List<CardData> cardsReturned = new List<CardData>();
+
+        var query =
+           from cardData in collectionQueried
+           where cardData.affliction == true
+           select cardData;
+
+        cardsReturned.AddRange(query);
+        return cardsReturned;
+    }
     public List<CardData> QueryByRacialSpecific(IEnumerable<CardData> collectionQueried, CharacterRace race)
     {
         List<CardData> cardsReturned = new List<CardData>();
@@ -391,6 +403,7 @@ public class CardController : Singleton<CardController>
         c.targettingType = d.targettingType;
         c.talentSchool = d.talentSchool;
         c.rarity = d.rarity;
+        c.affliction = d.affliction;
         c.racialCard = d.racialCard;
         c.originRace = d.originRace;
 
@@ -449,6 +462,7 @@ public class CardController : Singleton<CardController>
         c.cardType = original.cardType;
         c.targettingType = original.targettingType;
         c.talentSchool = original.talentSchool;
+        c.affliction = original.affliction;
         c.rarity = original.rarity;
         c.racialCard = original.racialCard;
         c.originRace = original.originRace;
@@ -1082,6 +1096,9 @@ public class CardController : Singleton<CardController>
 
             // Create and queue card drawn visual event
             VisualEventManager.Instance.CreateVisualEvent(() => DrawCardFromDeckVisualEvent(cardDrawn, defender), QueuePosition.Back, 0, 0.2f, EventDetail.CardDraw);
+
+            // Resolve on draw events
+            HandleOnThisCardDrawnListenerEvents(cardDrawn);
         }
 
         return cardDrawn;
@@ -1107,6 +1124,9 @@ public class CardController : Singleton<CardController>
 
             // Create and queue card drawn visual event
             VisualEventManager.Instance.CreateVisualEvent(() => DrawCardFromDeckVisualEvent(cardDrawn, defender), QueuePosition.Back, 0, 0.2f, EventDetail.CardDraw);
+
+            // Resolve on draw events
+            HandleOnThisCardDrawnListenerEvents(cardDrawn);
         }
 
         return cardDrawn;
@@ -2903,6 +2923,13 @@ public class CardController : Singleton<CardController>
         {
             CharacterEntityController.Instance.ModifyMaxHealth(card.owner, e.maxHealthGained);
         }
+
+        // Modify Energy
+        else if (e.cardEventListenerFunction == CardEventListenerFunction.ModifyEnergy)
+        {
+            VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(card.cardVM));
+            CharacterEntityController.Instance.ModifyEnergy(card.owner, e.energyGainedOrLost);
+        }
     }
     public void HandleOnMeleeAttackCardPlayedListeners(CharacterEntityModel character)
     {
@@ -2948,6 +2975,19 @@ public class CardController : Singleton<CardController>
                 }
             }
         }
+    }
+    public void HandleOnThisCardDrawnListenerEvents(Card card)
+    {
+        Debug.Log("CardController.HandleOnThisCardDrawnListenerEvents() called...");
+
+        foreach (CardEventListener cel in card.cardEventListeners)
+        {
+            if (cel.cardEventListenerType == CardEventListenerType.OnThisCardDrawn)
+            {
+                RunCardEventListenerFunction(card, cel);
+            }
+        }
+
     }
     public void HandleOnCharacterActivationEndCardListeners(CharacterEntityModel character)
     {

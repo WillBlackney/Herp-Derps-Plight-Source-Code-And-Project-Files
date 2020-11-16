@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
+  m_Name: 'Hemorrhaging '
+  m_EditorClassIdentifier: 
+  cardName: 'Hemorrhaging '
+  cardDescription: 
+  cardSprite: {fileID: 21300000, guid: 405df69491a6b9d4699a016c27832444, type: 3}
+  xEnergyCost: 0
+  cardEnergyCost: 1
+  cardType: 1
+  targettingType: 0
+  talentSchool: 0
+  rarity: 0
+  affliction: 1
+  racialCard: 0
+  originRace: 0
+  upgradeable: 0
+  upgradeLevel: 0
+  expend: 0
+  innate: 0
+  fleeting: 0
+  unplayable: 1
+  lifeSteal: 0
+  blessing: 0
+  customDescription:
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Unplayable
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '.
+
+      On activation end, apply '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '2 '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Bleeding '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'to self.
+
+'
+  cardEffects: []
+  cardEventListeners:
+  - cardEventListenerType: 3
+    cardEventListenerFunction: 2
+    maxHealthGained: 0
+    energyReductionAmount: 0
+    passivePairing:
+      passiveData: 58
+      passiveStacks: 2
+  keyWordModels:
+  - kewWordType: 4
+    weaponRequirement: 0
+    passiveType: 0
+  - kewWordType: 8
+    weaponRequirement: 0
+    passiveType: 58

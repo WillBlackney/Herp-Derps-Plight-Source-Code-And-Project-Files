@@ -1196,7 +1196,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             }
         }
 
-        // DoTs
+        // DOTS
+        // Poisoned
         if (entity.pManager.poisonedStacks > 0)
         {
             // Notification event
@@ -1208,6 +1209,19 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.PoisonExplosion, view.WorldPosition));
             CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Physical, true);           
         }
+        // Bleeding
+        if (entity.pManager.bleedingStacks > 0)
+        {
+            // Notification event
+            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Bleeding!"), QueuePosition.Back, 0, 0.5f);
+
+            // Calculate and deal Poison damage
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Physical, entity.pManager.bleedingStacks, null, null);
+            VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
+            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.BloodExplosion, view.WorldPosition));
+            CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Physical, true);
+        }
+        // Burning
         if (entity.pManager.burningStacks > 0)
         {
             // Check demon form passive first

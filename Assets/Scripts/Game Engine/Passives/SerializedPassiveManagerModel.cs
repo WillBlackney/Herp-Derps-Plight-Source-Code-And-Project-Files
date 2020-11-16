@@ -201,6 +201,9 @@ public class SerializedPassiveManagerModel
     [BoxGroup("DoT Debuff Passives")]
     [LabelWidth(200)]
     public int burningStacks;
+    [BoxGroup("DoT Debuff Passives")]
+    [LabelWidth(200)]
+    public int bleedingStacks;
 
     // Misc Passives
     [BoxGroup("Misc Passives", centerLabel: true)]

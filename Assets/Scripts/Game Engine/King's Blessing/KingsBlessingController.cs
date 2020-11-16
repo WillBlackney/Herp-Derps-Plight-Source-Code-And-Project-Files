@@ -301,9 +301,6 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
 
         // Get 1 of each choice type: low, medium, high and extreme impact
         startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.Low, AllChoices));
-        //startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.Low, AllChoices));
-        //startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.Low, AllChoices));
-        //startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.Low, AllChoices));
         startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.Medium, AllChoices));
         startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.High, AllChoices));
         startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.Extreme, AllChoices));
@@ -341,6 +338,18 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
         if(validConsequences.Count > 0)
         {
             choicePairing.conseqenceData = validConsequences[0];
+
+            int loops = 0;
+
+            // Prevent matching effects between benefit and negetive
+            // e.g. prevent something like this: 'Gain 20 max hp, lose 15 max hp.'
+            while(choicePairing.conseqenceData.effect == choicePairing.benefitData.effect &&
+                loops < 20)
+            {
+                loops++;
+                validConsequences.Shuffle();
+                choicePairing.conseqenceData = validConsequences[0];                
+            }
         }
 
         return choicePairing;
@@ -355,7 +364,7 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
 
         if (button.myPairingData.benefitData.effect == KingChoiceEffectType.ModifyMaxHealth)
         {
-            TriggerKingsChoiceEffect(button.myPairingData.benefitData);
+            TriggerKingsChoiceEffect(button.myPairingData.benefitData);        
             TriggerKingsChoiceEffect(button.myPairingData.conseqenceData);
 
             FadeOutChoiceButtons();
@@ -370,7 +379,24 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
             FadeContinueButton(1, 1);
             SetContinueButtonInteractions(true);
         }
+        else if (button.myPairingData.benefitData.effect == KingChoiceEffectType.GainPassive)
+        {
+            TriggerKingsChoiceEffect(button.myPairingData.benefitData);
+            TriggerKingsChoiceEffect(button.myPairingData.conseqenceData);
+            FadeOutChoiceButtons();
+            FadeContinueButton(1, 1);
+            SetContinueButtonInteractions(true);
+        }
         else if (button.myPairingData.benefitData.effect == KingChoiceEffectType.GainRandomCard)
+        {
+            TriggerKingsChoiceEffect(button.myPairingData.benefitData);
+            TriggerKingsChoiceEffect(button.myPairingData.conseqenceData);
+
+            FadeOutChoiceButtons();
+            FadeContinueButton(1, 1);
+            SetContinueButtonInteractions(true);
+        }
+        else if (button.myPairingData.benefitData.effect == KingChoiceEffectType.GainRandomAffliction)
         {
             TriggerKingsChoiceEffect(button.myPairingData.benefitData);
             TriggerKingsChoiceEffect(button.myPairingData.conseqenceData);
@@ -477,7 +503,7 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
 
             // Notification VFX
             VisualEventManager.Instance.CreateVisualEvent(() =>
-            VisualEffectManager.Instance.CreateDamageEffect(playerModel.transform.position, data.healthGainedOrLost));            
+            VisualEffectManager.Instance.CreateDamageEffect(playerModel.transform.position, Mathf.Abs(data.healthGainedOrLost)));            
         }
 
         // Modify Attribute
@@ -523,7 +549,7 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
                 VisualEffectManager.Instance.CreateGeneralBuffEffect(playerModel.transform.position));
 
             }
-            else if (data.attributeAmountModified > 0)
+            else if (data.attributeAmountModified < 0)
             {
                 notifStacks = data.attributeAmountModified.ToString();
 
@@ -536,6 +562,37 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
             VisualEventManager.Instance.CreateVisualEvent(() =>
             VisualEffectManager.Instance.CreateStatusEffect(playerModel.transform.position, notifMessage + notifStacks));
 
+        }
+
+        // Gain Passive
+        else if (data.effect == KingChoiceEffectType.GainPassive)
+        {
+            // Choose random passive to apply
+            PassivePairingData pData = data.possiblePassives[RandomGenerator.NumberBetween(0, data.possiblePassives.Count - 1)];
+
+            string passiveStringSplit = TextLogic.SplitByCapitals(pData.passiveData.ToString());
+
+            // Apply passive to character data
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(startingCharacter.passiveManager, passiveStringSplit, pData.passiveStacks, false);
+
+            // Set up notification message
+            string notifMessage = pData.passiveData.ToString();
+            if(pData.passiveStacks > 0)
+            {
+                notifMessage += " +" + pData.passiveStacks.ToString();
+            }
+            else if (pData.passiveStacks < 0)
+            {
+                notifMessage += " " + pData.passiveStacks.ToString();
+            }
+
+            // Buff VFX
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+            VisualEffectManager.Instance.CreateGeneralBuffEffect(playerModel.transform.position));
+
+            // Notification VFX
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+            VisualEffectManager.Instance.CreateStatusEffect(playerModel.transform.position, notifMessage));
         }
 
         // Gain random card
@@ -564,6 +621,31 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
             CardController.Instance.StartNewShuffleCardsScreenVisualEvent(playerModel, cardGained);
         }
 
+        // Gain random curse
+        else if (data.effect == KingChoiceEffectType.GainRandomAffliction)
+        {
+            // Get affliction card data
+            List<CardData> afflictionsGained = new List<CardData>();
+            List<CardData> validAfflictions = CardController.Instance.QueryByAffliction(CardController.Instance.AllCards);
+
+            // Randomly choose afflictions added
+            for(int i = 0; i < data.afflicationsGained; i++)
+            {
+                validAfflictions.Shuffle();
+                afflictionsGained.Add(validAfflictions[0]);
+            }
+
+            // Add curses to character
+            foreach(CardData affliction in validAfflictions)
+            {
+                // Add new card to character deck
+                CharacterDataController.Instance.AddCardToCharacterDeck(startingCharacter, affliction);
+            }
+
+            // Create add card to character visual event
+            CardController.Instance.StartNewShuffleCardsScreenVisualEvent(playerModel, afflictionsGained);
+        }
+
         // Upgrade random cards
         else if (data.effect == KingChoiceEffectType.UpgradeRandomCards)
         {
@@ -583,9 +665,12 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
             // choose X random/different cards to upgrade
             for(int i = 0; i < data.randomCardsUpgraded; i++)
             {
-                validUpgradeChoices.Shuffle();
-                chosenUpgradeCards.Add(validUpgradeChoices[0]);
-                validUpgradeChoices.Remove(validUpgradeChoices[0]);
+                if(validUpgradeChoices.Count > 0)
+                {
+                    validUpgradeChoices.Shuffle();
+                    chosenUpgradeCards.Add(validUpgradeChoices[0]);
+                    validUpgradeChoices.Remove(validUpgradeChoices[0]);
+                }               
             }
 
             // Add newly upgraded cards to character deck
@@ -664,6 +749,9 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
 
             StartCoroutine(CardController.Instance.StartNewDiscoveryEvent(validCards));
         }
+
+        // Delay at end of v events, to create time spacing between benefit and consequence v events
+        VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
 
     }
     public void HandleUpgradeCardChoiceMade(CardData card)

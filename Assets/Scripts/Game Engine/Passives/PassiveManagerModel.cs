@@ -82,5 +82,6 @@ public class PassiveManagerModel
     // DoT Debuff Passives
     public int poisonedStacks;
     public int burningStacks;
+    public int bleedingStacks;
 
 }

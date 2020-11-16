@@ -94,11 +94,12 @@ public enum CardEventListenerType
 {
     None = 0,
     OnLoseHealth = 1,
-    OnDraw = 2,
+    OnCardDraw = 2,
     OnActivationEnd = 3,
     OnMeleeAttackCardPlayed = 4,
     OnFireBallCardPlayed = 6,
     OnTargetKilled = 5,
+    OnThisCardDrawn = 7,
 }
 
 [Serializable]
@@ -110,6 +111,7 @@ public enum CardEventListenerFunction
     ApplyPassiveToSelf = 2,
     DrawThis = 4,
     ModifyMaxHealth = 5,
+    ModifyEnergy = 6,
 }
 #endregion
 
@@ -168,6 +170,7 @@ public enum Passive
     Barrier = 1,
     BattleTrance = 40,
     BalancedStance = 41,
+    Bleeding = 58,
     Burning = 2,
     Cautious = 3,
     Consecration = 4,

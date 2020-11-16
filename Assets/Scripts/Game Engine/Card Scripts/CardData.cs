@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-//[Serializable]
 public class CardData 
 {
     // General Properties
@@ -14,6 +11,7 @@ public class CardData
     public int cardBaseEnergyCost;
     public CardType cardType;
     public Rarity rarity;
+    public bool affliction;
     public bool racialCard;
     public CharacterRace originRace;
     public bool upgradeable;    

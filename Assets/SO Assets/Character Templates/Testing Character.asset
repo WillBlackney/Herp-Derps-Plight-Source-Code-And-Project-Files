@@ -88,15 +88,15 @@ MonoBehaviour:
     sleepStacks: 0
     poisonedStacks: 0
     burningStacks: 0
+    bleedingStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 0e7f397e9dc71a2458f5fa147a66f8ee, type: 2}
-  - {fileID: 11400000, guid: 9c7a7aa920e98094c9f0ac852cfef71b, type: 2}
-  - {fileID: 11400000, guid: beca5b93d6fb8e74cbd17aae685b1d99, type: 2}
-  - {fileID: 11400000, guid: 708f5f31c10f4d14e9f8a91cc822a47b, type: 2}
-  - {fileID: 11400000, guid: 76fbe4a74d279d541b9b8a890bd8d444, type: 2}
-  - {fileID: 11400000, guid: db18175c7f3366747b53efcc374bf697, type: 2}
-  - {fileID: 11400000, guid: e301bd3b5dd2cf043a2d16f260baab78, type: 2}
+  - {fileID: 11400000, guid: 8b3fdf26a930db74caf6b232b3f9947d, type: 2}
+  - {fileID: 11400000, guid: e5dcb3a8afb16b04d94dcd0f61803a60, type: 2}
+  - {fileID: 11400000, guid: 95d7541393fd8854b900b1e1228e939b, type: 2}
+  - {fileID: 11400000, guid: 04da682956a3c764f931a5efee0ddf6b, type: 2}
+  - {fileID: 11400000, guid: ec16fdb9667f111428b93d7dd14578d6, type: 2}
+  - {fileID: 11400000, guid: d2702fe837e83e240bb9b7ad516f6741, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1

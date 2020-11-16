@@ -50,6 +50,10 @@ public class CardDataSO : ScriptableObject
     [VerticalGroup("Core Data/Stats")]
     [LabelWidth(100)]
     [GUIColor("Blue")]
+    public bool affliction;
+    [VerticalGroup("Core Data/Stats")]
+    [LabelWidth(100)]
+    [GUIColor("Blue")]
     public bool racialCard;
     [ShowIf("ShowOriginRace")]
     [VerticalGroup("Core Data/Stats")]
