@@ -222,10 +222,18 @@ public enum Passive
     Vulnerable = 36,
     Weakened = 37,
     WellOfSouls = 48,
-    Wrath = 38,
-   
+    Wrath = 38,  
 
 };
+public enum CoreAttribute
+{
+    None = 0,
+    Power = 1,
+    Dexterity = 2,
+    Stamina = 3,
+    Draw = 4,
+    Initiative = 5,
+}
 public enum KeyWordType
 {
     None = 0,

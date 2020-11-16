@@ -42,5 +42,14 @@ public class GridCardViewModel : MonoBehaviour, IPointerEnterHandler, IPointerEx
             CampSiteController.Instance.selectedUpgradeCard = myCardData;
             CardController.Instance.BuildAndShowCardUpgradePopUp(myCardData);
         }
+        else if (KingsBlessingController.Instance.AwaitingCardUpgradeChoice)
+        {
+            KingsBlessingController.Instance.selectedUpgradeCard = myCardData;
+            CardController.Instance.BuildAndShowCardUpgradePopUp(myCardData);
+        }
+        else if (KingsBlessingController.Instance.AwaitingCardTransformChoice)
+        {
+            KingsBlessingController.Instance.HandleTransformCardChoiceMade(myCardData);
+        }
     }
 }

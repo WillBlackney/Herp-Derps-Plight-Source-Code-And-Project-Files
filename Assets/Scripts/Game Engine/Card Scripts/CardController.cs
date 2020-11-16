@@ -3569,7 +3569,6 @@ public class CardController : Singleton<CardController>
                 discoverChoicesToCreate = 3;
             }
 
-            // End if no valid discoverable cards were found
             if (discoverableCards.Count > 0)
             {
                 // Build the a discovery card view for each card found
@@ -3614,31 +3613,152 @@ public class CardController : Singleton<CardController>
             cardsEnabled[i].transform.DOMove(slotsEnabled[i].position, 0.3f);
         }
 
-    }   
+    }
+    public IEnumerator StartNewDiscoveryEvent(List<CardData> discoverChoices)
+    {
+        // NOTE: This overload method is used for kings blessing card discovery choices
+
+        // Enable discovery screen
+        ShowDiscoveryScreen();
+
+        // set up slot positions magic
+        foreach (Transform t in discoveryCardSlots)
+        {
+            t.gameObject.SetActive(false);
+        }
+
+        foreach (Transform t in discoveryCardSlots)
+        {
+            t.gameObject.SetActive(true);
+        }
+
+        foreach (Transform t in discoveryCardSlots)
+        {
+            t.gameObject.SetActive(false);
+        }
+
+        List<Transform> slotsEnabled = new List<Transform>();
+        List<DiscoveryCardViewModel> cardsEnabled = new List<DiscoveryCardViewModel>();
+
+        // cancel there are discoverable cards to pick
+        if (discoverChoices.Count == 0)
+        {
+            currentDiscoveryEffect = null;
+            discoveryScreenVisualParent.SetActive(false);
+            HideDiscoveryScreen();
+            yield break;
+        }
+
+        // confetti explosion VFX
+        CreateConfettiExplosionsOnDiscovery();
+
+        // randomize cards
+        discoverChoices.Shuffle();
+
+        // how valid cards were found?
+        int discoverChoicesToCreate = discoverChoices.Count;
+
+        // limit choices to 3 or less
+        if (discoverChoicesToCreate > 3)
+        {
+            discoverChoicesToCreate = 3;
+        }
+
+        // End if no valid discoverable cards were found
+        if (discoverChoices.Count > 0)
+        {
+            // Build the a discovery card view for each card found
+            for (int i = 0; i < discoverChoicesToCreate; i++)
+            {
+                // Get discovery card
+                DiscoveryCardViewModel dcvm = discoveryCards[i];
+
+                // cache ref to data
+                dcvm.myDataRef = discoverChoices[i];
+                Debug.LogWarning("Discoverable card new data ref = " + dcvm.myDataRef.cardName);
+
+                // mark slot for enabling
+                slotsEnabled.Add(discoveryCardSlots[i]);
+
+                // mark card for enabling
+                cardsEnabled.Add(dcvm);
+
+                // build view model
+                BuildCardViewModelFromCardData(discoverChoices[i], dcvm.cardViewModel);
+            }
+        }
+
+        // Enable slots
+        foreach (Transform t in slotsEnabled)
+        {
+            t.gameObject.SetActive(true);
+        }
+
+        // brief yield to allow the horizontal fitter to correctly 
+        // position the slots before moving the cards
+        yield return new WaitForEndOfFrame();
+
+        // move the cards
+        for (int i = 0; i < cardsEnabled.Count; i++)
+        {
+            // enable GO
+            cardsEnabled[i].gameObject.SetActive(true);
+
+            // Move towards slots
+            cardsEnabled[i].transform.DOMove(slotsEnabled[i].position, 0.3f);
+        }
+
+    }
     public void OnDiscoveryCardClicked(DiscoveryCardViewModel dcvm)
     {
-        if(dcvm.myCardRef != null)
+        if (KingsBlessingController.Instance.AwaitingCardDiscoveryChoice)
         {
+            // Handle KBC logic
+            KingsBlessingController.Instance.HandleDiscoverCardChoiceMade(dcvm.myDataRef);
+
             AudioManager.Instance.PlaySound(Sound.GUI_Button_Clicked);
-            ResolveDiscoveryCardClicked(dcvm, dcvm.myCardRef);
+
+            // disable screen
+            HideDiscoveryScreen();
+
+            // reset dcvm's
+            foreach (DiscoveryCardViewModel dCard in discoveryCards)
+            {
+                dCard.ResetSelfOnEventComplete();
+            }
+
+            if(dcvm.myDataRef == null)
+            {
+                Debug.LogWarning("CARD DATA REF IS NULL!!");
+            }          
+
         }
-        else if(dcvm.myDataRef != null)
+        else
         {
-            AudioManager.Instance.PlaySound(Sound.GUI_Button_Clicked);
-            ResolveDiscoveryCardClicked(dcvm, dcvm.myDataRef);
+            if (dcvm.myCardRef != null)
+            {
+                AudioManager.Instance.PlaySound(Sound.GUI_Button_Clicked);
+                ResolveDiscoveryCardClicked(dcvm, dcvm.myCardRef);
+            }
+            else if (dcvm.myDataRef != null)
+            {
+                AudioManager.Instance.PlaySound(Sound.GUI_Button_Clicked);
+                ResolveDiscoveryCardClicked(dcvm, dcvm.myDataRef);
+            }
+
+            // disable screen
+            HideDiscoveryScreen();
+
+            // clear current d event effect
+            currentDiscoveryEffect = null;
+
+            // reset dcvm's
+            foreach (DiscoveryCardViewModel dCard in discoveryCards)
+            {
+                dCard.ResetSelfOnEventComplete();
+            }
         }
-
-        // disable screen
-        HideDiscoveryScreen();
-
-        // clear current d event effect
-        currentDiscoveryEffect = null;
-
-        // reset dcvm's
-        foreach (DiscoveryCardViewModel dCard in discoveryCards)
-        {
-            dCard.ResetSelfOnEventComplete();
-        }
+        
         
     }
     private void ResolveDiscoveryCardClicked(DiscoveryCardViewModel dcvm, Card cardRef)
@@ -3846,7 +3966,7 @@ public class CardController : Singleton<CardController>
 
         // Reset Slot Positions
         VisualEventManager.Instance.CreateVisualEvent(() => MoveShuffleSlotsToStartPosition());
-    }
+    }   
     public void StartNewShuffleCardsScreenVisualEvent(CharacterEntityView view, List<CardData> cards)
     {
         // cache cards for visual events
@@ -3861,6 +3981,35 @@ public class CardController : Singleton<CardController>
 
         // Set up main screen V event
         CoroutineData cData = new CoroutineData(); 
+        VisualEventManager.Instance.CreateVisualEvent(() => SetUpShuffleCardScreen(cachedCards, cData), cData);
+
+        // brief pause so player can view cards
+        VisualEventManager.Instance.InsertTimeDelayInQueue(1, QueuePosition.Back);
+
+        // Move each card towards character v Event
+        foreach (DiscoveryCardViewModel dcvm in activeCards)
+        {
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                    MoveShuffleCardTowardsCharacterEntityView(dcvm, view), QueuePosition.Back, 0, 0.2f);
+        }
+
+        // Reset Slot Positions
+        VisualEventManager.Instance.CreateVisualEvent(() => MoveShuffleSlotsToStartPosition());
+    }
+    public void StartNewShuffleCardsScreenVisualEvent(UniversalCharacterModel view, List<CardData> cards)
+    {
+        // cache cards for visual events
+        List<CardData> cachedCards = new List<CardData>();
+        cachedCards.AddRange(cards);
+        List<DiscoveryCardViewModel> activeCards = new List<DiscoveryCardViewModel>();
+
+        for (int i = 0; i < cards.Count; i++)
+        {
+            activeCards.Add(shuffleCards[i]);
+        }
+
+        // Set up main screen V event
+        CoroutineData cData = new CoroutineData();
         VisualEventManager.Instance.CreateVisualEvent(() => SetUpShuffleCardScreen(cachedCards, cData), cData);
 
         // brief pause so player can view cards
@@ -3980,6 +4129,41 @@ public class CardController : Singleton<CardController>
             Destroy(glowTrail, 3);
         });
     }
+    private void MoveShuffleCardTowardsCharacterEntityView(DiscoveryCardViewModel card, UniversalCharacterModel character)
+    {
+        // Setup
+        Transform movementParent = card.transform;
+        CardViewModel cvm = card.cardViewModel;
+
+        Vector3 cardDestination = CameraManager.Instance.MainCamera.WorldToScreenPoint(character.transform.position);
+        Vector3 glowDestination = character.transform.position;
+
+        // SFX
+        AudioManager.Instance.PlaySound(Sound.Card_Discarded);
+
+        // Create Glow Trail
+        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGlowTrailEffect
+            (CameraManager.Instance.MainCamera.ScreenToWorldPoint(movementParent.position));
+
+        // Shrink card
+        ScaleCardViewModel(cvm, 0.1f, 0.5f);
+
+        // Rotate card upside down
+        RotateCardVisualEvent(cvm, 180, 0.5f);
+
+        // Move card + glow outline to quick lerp spot
+
+        // Move card
+        MoveTransformToLocation(cvm.movementParent, cardDestination, 0.5f, false, () =>
+        {
+            card.gameObject.SetActive(false);
+        });
+        MoveTransformToLocation(glowTrail.transform, glowDestination, 0.5f, false, () =>
+        {
+            glowTrail.StopAllEmissions();
+            Destroy(glowTrail, 3);
+        });
+    }
     private void MoveShuffleSlotsToStartPosition()
     {
         // Disable slots
@@ -4014,16 +4198,27 @@ public class CardController : Singleton<CardController>
         EventSystem.current.SetSelectedGameObject(null);
         HideCardGridScreen();
     }
-    public void CreateNewUpgradeCardInDeckPopup(CharacterData character)
+    public void CreateNewUpgradeCardInDeckPopup(CharacterData character, string ribbonMessage)
     {
         // enable screen
         ShowCardGridScreen();
 
         // set text
-        cardGridRibbonText.text = "Upgrade A Card!";
+        cardGridRibbonText.text = ribbonMessage;
 
         // Build Cards
         BuildGridScreenCards(GetUpgradeableCardsFromCollection(character.deck));
+    }
+    public void CreateNewTransformCardInDeckPopup(CharacterData character, string ribbonMessage)
+    {
+        // enable screen
+        ShowCardGridScreen();
+
+        // set text
+        cardGridRibbonText.text = ribbonMessage;
+
+        // Build Cards
+        BuildGridScreenCards(character.deck);
     }
     public void CreateNewShowDiscardPilePopup(List<Card> cards)
     {
@@ -4079,7 +4274,15 @@ public class CardController : Singleton<CardController>
     }
     public void OnUpgradeCardPopupConfirmButtonClicked()
     {
-        CampSiteController.Instance.HandleUpgradeCardChoiceMade(CampSiteController.Instance.selectedUpgradeCard);
+        if (CampSiteController.Instance.AwaitingCardUpgradeChoice)
+        {
+            CampSiteController.Instance.HandleUpgradeCardChoiceMade(CampSiteController.Instance.selectedUpgradeCard);
+        }
+        else if (KingsBlessingController.Instance.AwaitingCardUpgradeChoice)
+        {
+            KingsBlessingController.Instance.HandleUpgradeCardChoiceMade(KingsBlessingController.Instance.selectedUpgradeCard);
+        }
+
     }
     public void OnUpgradeCardPopupCancelButtonClicked()
     {
@@ -4209,7 +4412,7 @@ public class CardController : Singleton<CardController>
             " upgradeable cards");
         return upgradeableCards;
     }
-    public void HandleUpgradeCardInCharacterDeck(CardData card, CharacterData character)
+    public CardData HandleUpgradeCardInCharacterDeck(CardData card, CharacterData character)
     {
         Debug.Log("CardController.HandleUpgradeCardInCharacterDeck() called, upgrading " +
             card.cardName + " for " + character.myName);
@@ -4234,7 +4437,53 @@ public class CardController : Singleton<CardController>
 
             // Remove old, unupgraded card
             CharacterDataController.Instance.RemoveCardFromCharacterDeck(character, card);
-        }    
+        }
+
+        return upgradedCard;
+    }
+    public CardData HandleTransformCardInCharacterDeck(CardData originalCard, CharacterData character)
+    {
+        Debug.Log("CardController.HandleTransformCardInCharacterDeck() called, transforming " +
+            originalCard.cardName + " for " + character.myName);
+
+        int index = character.deck.IndexOf(originalCard);
+
+        // Find the upgraded version
+        CardData newTransformedCardData = null;
+        CardData transformedCard = null;
+
+        // Get valid transformable cards
+        List<CardData> validTransforms = new List<CardData>();
+        foreach(CardData c in GetCardsQuery(AllCards))
+        {
+            if(c.upgradeLevel == 0)
+            {
+                validTransforms.Add(c);
+            }
+        }
+
+        // Chose random card to transform into
+        validTransforms.Shuffle();
+        newTransformedCardData = validTransforms[0];
+
+
+        // Clone the data
+        if (newTransformedCardData != null)
+        {
+            transformedCard = CloneCardDataFromCardData(newTransformedCardData);
+        }
+
+        // Did we succesfully find and clone the data?
+        if (transformedCard != null)
+        {
+            // Add new upgraded card
+            CharacterDataController.Instance.AddCardToCharacterDeck(character, transformedCard, index);
+
+            // Remove old, unupgraded card
+            CharacterDataController.Instance.RemoveCardFromCharacterDeck(character, originalCard);
+        }
+
+        return transformedCard;
     }
     #endregion
 

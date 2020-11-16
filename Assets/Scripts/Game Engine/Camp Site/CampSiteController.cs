@@ -1072,7 +1072,7 @@ public class CampSiteController : Singleton<CampSiteController>
     {
         AwaitingCardUpgradeChoice = true;
         SelectedCharacterView = character;
-        CardController.Instance.CreateNewUpgradeCardInDeckPopup(character.myCharacterData);
+        CardController.Instance.CreateNewUpgradeCardInDeckPopup(character.myCharacterData, "Upgrade A Card!");
         CardController.Instance.DisableCardGridScreenBackButton();
     }
     public void HandleUpgradeCardChoiceMade(CardData card)

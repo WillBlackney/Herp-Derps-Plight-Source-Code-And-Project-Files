@@ -22,6 +22,30 @@ public class KingChoiceDataSO : ScriptableObject
     [LabelWidth(100)]
     public KingChoiceImpactLevel impactLevel;
 
+    [ShowIf("effect", KingChoiceEffectType.ModifyMaxHealth)]
+    public int maxHealthGainedOrLost;
+
+    [ShowIf("effect", KingChoiceEffectType.ModifyHealth)]
+    public int healthGainedOrLost;
+
+    [ShowIf("effect", KingChoiceEffectType.GainRandomCard)]
+    public Rarity randomCardRarity;
+
+    [ShowIf("effect", KingChoiceEffectType.DiscoverCard)]
+    public Rarity discoveryCardRarity;
+
+    [ShowIf("effect", KingChoiceEffectType.UpgradeRandomCards)]
+    public int randomCardsUpgraded;
+
+    [ShowIf("effect", KingChoiceEffectType.TransformRandomCard)]
+    public int randomCardsTransformed;
+
+    [ShowIf("effect", KingChoiceEffectType.ModifyAttribute)]
+    public CoreAttribute attributeModified;
+
+    [ShowIf("effect", KingChoiceEffectType.ModifyAttribute)]
+    public int attributeAmountModified;
+
 }
 public enum KingChoiceImpactLevel
 {

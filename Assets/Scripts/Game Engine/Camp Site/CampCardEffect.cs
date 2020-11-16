@@ -113,14 +113,5 @@ public enum HealingType
     None = 0,
     FlatAmount = 1,
     PercentageOfMaxHealth = 2,
+}
 
-}
-public enum CoreAttribute
-{
-    None = 0,
-    Power = 1,
-    Dexterity = 2,
-    Stamina = 3,
-    Draw = 4,
-    Initiative = 5,
-}

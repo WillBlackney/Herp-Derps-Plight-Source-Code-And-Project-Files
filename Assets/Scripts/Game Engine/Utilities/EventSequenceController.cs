@@ -614,6 +614,10 @@ public class EventSequenceController : Singleton<EventSequenceController>
     }
     private IEnumerator HandleLoadKingsBlessingEncounterCoroutine()
     {
+        // Generate random KBC choices
+        KingsBlessingController.Instance.GenerateAndSetCharacterChoices();
+        KingsBlessingController.Instance.BuildAllChoiceButtonViewsFromActiveChoices();
+
         // Play ambience if not already playing
         if (!AudioManager.Instance.IsSoundPlaying(Sound.Ambience_Outdoor_Spooky))
         {
@@ -648,9 +652,12 @@ public class EventSequenceController : Singleton<EventSequenceController>
         KingsBlessingController.Instance.DoKingGreeting();
         yield return new WaitForSeconds(1.5f);
 
-        // Fade in continue button        
-        KingsBlessingController.Instance.FadeContinueButton(1, 1);
-        KingsBlessingController.Instance.SetContinueButtonInteractions(true);
+        // Fade in choice buttons  
+        KingsBlessingController.Instance.FadeInChoiceButtons();
+
+        // Fade in continue button      
+        // KingsBlessingController.Instance.FadeContinueButton(1, 1);
+        // KingsBlessingController.Instance.SetContinueButtonInteractions(true);
     }
     public void HandleLoadKingsBlessingContinueSequence(CoroutineData cData)
     {
@@ -658,7 +665,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
     }
     private IEnumerator HandleLoadKingsBlessingContinueSequenceCoroutine(CoroutineData cData)
     {
-        KingsBlessingController.Instance.FadeContinueButton(0, 0.5f);
+        KingsBlessingController.Instance.FadeContinueButton(0, 0.5f, true);
 
         // King greeting
         KingsBlessingController.Instance.DoKingFarewell();

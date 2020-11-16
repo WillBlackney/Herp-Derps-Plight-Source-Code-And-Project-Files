@@ -351,14 +351,14 @@ public class LootController : Singleton<LootController>
 
         return listReturned;
     }
-    private List<CardData> GetAllValidLootableCardsForCharacter(CharacterData character)
+    public List<CardData> GetAllValidLootableCardsForCharacter(CharacterData character)
     {
         List<CardData> validLootableCards = new List<CardData>();
 
         // Get a list of all possible lootable cards
         foreach (CardData card in CardController.Instance.AllCards)
         {
-            if (IsCardLootableByCharacter(character, card))
+            if (IsCardLootableByCharacter(character, card) && card.upgradeLevel == 0)
             {
                 validLootableCards.Add(card);
             }
@@ -372,16 +372,6 @@ public class LootController : Singleton<LootController>
 
         foreach(TalentPairingModel tp in character.talentPairings)
         {
-            /*
-            // Does the character have the required talent school?
-            if((tp.talentSchool == card.talentSchool && card.rarity == Rarity.Common) ||
-                (tp.talentSchool == card.talentSchool && tp.talentLevel == 2 && (card.rarity == Rarity.Rare || card.rarity == Rarity.Epic)))
-            {
-                bReturned = true;
-                break;
-            }
-            */
-
             // Does the character have the required talent school?
             if (tp.talentSchool == card.talentSchool)
             {
