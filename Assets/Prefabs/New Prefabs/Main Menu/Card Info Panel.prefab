@@ -654,9 +654,9 @@ MonoBehaviour:
         m_Calls: []
     soundPlayed: 0
     canvasGroup: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: 8891093299381872382}
     text: {fileID: 0}
-    endColour: {r: 1, g: 1, b: 1, a: 1}
+    endColour: {r: 1, g: 1, b: 1, a: 0.19607843}
     fadeSpeed: 0.25
   - widgetEvent: 4
     enableStartDelay: 0
@@ -685,9 +685,9 @@ MonoBehaviour:
         m_Calls: []
     soundPlayed: 0
     canvasGroup: {fileID: 0}
-    image: {fileID: 0}
+    image: {fileID: 8891093299381872382}
     text: {fileID: 0}
-    endColour: {r: 0.59607846, g: 0.59607846, b: 0.59607846, a: 1}
+    endColour: {r: 0.6901961, g: 0.6901961, b: 0.6901961, a: 0.19607843}
     fadeSpeed: 0.25
   pointerIsOverMe: 0
   timeSinceLastPointerEnter: 0

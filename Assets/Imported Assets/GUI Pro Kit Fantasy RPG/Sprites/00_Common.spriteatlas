@@ -55,7 +55,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 22df7865b275d4e7287490341fcc63b7, type: 3}
-    totalSpriteSurfaceArea: 1053777
+    totalSpriteSurfaceArea: 1058193
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
@@ -68,6 +68,7 @@ SpriteAtlas:
   - {fileID: 8038653950898823980, guid: bf59ce9145cd842ffb1a897977f5200f, type: 3}
   - {fileID: 21300000, guid: 4ad15db1aebb749f5b1846fbbfa25de7, type: 3}
   - {fileID: 21300000, guid: bfa01af180f7649b4b44863da178d4c3, type: 3}
+  - {fileID: -143908896201355837, guid: 215d7cb28ed6e3e4dbbfbc7915618d1c, type: 3}
   - {fileID: 21300000, guid: 6dcf33e2b0a1d459888fa4ad13355dc2, type: 3}
   - {fileID: 21300000, guid: d6285f339f7ee44aaa3a558662d7029d, type: 3}
   - {fileID: 21300000, guid: 783887b3d02834345a4d58df4ea24d27, type: 3}
@@ -124,6 +125,7 @@ SpriteAtlas:
   - common_btn_dark_0
   - common_circle_green
   - top_status_icon_gem
+  - checkbox_off 1_0
   - common_title_deco_line
   - top_btn_close
   - btn_ad_icon

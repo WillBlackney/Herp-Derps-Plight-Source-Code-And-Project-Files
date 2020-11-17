@@ -73,6 +73,10 @@ public class CardInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             RecruitCharacterController.Instance.BuildAndShowCardViewModelPopup(cardDataRef);
         }
+        else if (location == CardPanelLocation.CharacterRosterScreen)
+        {
+            CharacterRosterViewController.Instance.BuildAndShowCardViewModelPopup(cardDataRef);
+        }
     }
     public void OnPointerExit(PointerEventData eventData)
     {
@@ -88,6 +92,10 @@ public class CardInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             RecruitCharacterController.Instance.HidePreviewCard();
         }
+        else if (location == CardPanelLocation.CharacterRosterScreen)
+        {
+            CharacterRosterViewController.Instance.HidePreviewCard();
+        }
 
         KeyWordLayoutController.Instance.FadeOutMainView();
 
@@ -101,4 +109,5 @@ public enum CardPanelLocation
     CharacterInfoWindow = 1,
     ChooseCardScreen = 2,
     RecruitCharacterScreen = 3,
+    CharacterRosterScreen = 4,
 }

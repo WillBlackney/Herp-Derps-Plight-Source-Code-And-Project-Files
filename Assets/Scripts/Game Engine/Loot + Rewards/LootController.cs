@@ -119,19 +119,7 @@ public class LootController : Singleton<LootController>
                 cardPanels[i].gameObject.SetActive(true);
                 cardPanels[i].BuildCardInfoPanelFromCardData(data[i]);
             }
-
-
-            /*
-            // Build new tab from card data
-            cardPanels[i].gameObject.SetActive(true);
-            cardPanels[i].BuildCardInfoPanelFromCardData(data[i]);
-
-            // Hide text count
-            cardPanels[i].copiesCountText.gameObject.SetActive(false);
-            */
         }
-
-
     }
     public void BuildAndShowCardViewModelPopup(CardData data)
     {
