@@ -105,12 +105,15 @@ public class PersistencyManager : Singleton<PersistencyManager>
         }
         else if (ed.encounterType == EncounterType.KingsBlessingEvent)
         {
-            newSave.saveCheckPoint = SaveCheckPoint.KingsBlessingStart;
+            newSave.saveCheckPoint = SaveCheckPoint.KingsBlessingStart;            
         }
         else if (ed.encounterType == EncounterType.CampSite)
         {
             newSave.saveCheckPoint = SaveCheckPoint.CampSite;
         }
+
+        // Generate KBC choices
+        newSave.kbcChoices = KingsBlessingController.Instance.GenerateFourRandomChoices();
 
         // DECK MODIFIER SETUP
         // Randomize decks
@@ -187,6 +190,9 @@ public class PersistencyManager : Singleton<PersistencyManager>
         // Save camp properties
         CampSiteController.Instance.SaveMyDataToSaveFile(newSave);
 
+        // KBC
+        KingsBlessingController.Instance.SaveMyDataToSaveFile(newSave);
+
         // START SAVE!        
         SaveGameToDisk(newSave);
     }
@@ -214,6 +220,9 @@ public class PersistencyManager : Singleton<PersistencyManager>
 
         // Set up camp site data
         CampSiteController.Instance.BuildMyDataFromSaveFile(newLoad);
+
+        // KBC
+        KingsBlessingController.Instance.BuildMyDataFromSaveFile(newLoad);
     }
     #endregion
 

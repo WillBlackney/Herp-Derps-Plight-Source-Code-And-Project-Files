@@ -4,13 +4,16 @@ using UnityEngine;
 using DG.Tweening;
 using TMPro;
 using Sirenix.OdinInspector;
+using System;
+using UnityEngine.UI;
 
 public class KingsBlessingController : Singleton<KingsBlessingController>
 {
     // Properties + Component References
     #region
     [Header("Choice Data & Properties")]
-    [SerializeField] private KingChoiceDataSO[] allChoices;
+    [SerializeField] private KingChoiceDataSO[] allChoiceScriptableObjects;
+    private List<KingChoiceData> allChoices;
     [SerializeField] private KingsChoiceButton[] choiceButtons;
     [SerializeField] private GameObject choiceButtonsVisualParent;
     private List<KingsChoicePairingModel> currentChoices = new List<KingsChoicePairingModel>();
@@ -52,11 +55,17 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
     [HideInInspector] public CardData selectedUpgradeCard = null;
     private KingsChoicePairingModel cachedPairing = null;
 
+    [Header("Health Bar Components")]
+    [SerializeField] private Slider healthBar;
+    [SerializeField] private TextMeshProUGUI currentHealthText;
+    [SerializeField] private TextMeshProUGUI maxHealthText;
+    [SerializeField] private CanvasGroup healthBarCg;
+    [SerializeField] private GameObject healthBarVisualParent;
     #endregion
 
     // Getters
     #region
-    public KingChoiceDataSO[] AllChoices
+    public List<KingChoiceData> AllChoices
     {
         get { return allChoices; }
         private set { allChoices = value; }
@@ -76,10 +85,29 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
         get { return awaitingCardTransformChoice; }
         private set { awaitingCardTransformChoice = value; }
     }
+    public List<KingsChoicePairingModel> CurrentChoices
+    {
+        get { return currentChoices; }
+        private set { currentChoices = value; }
+    }
     #endregion
 
     // Setup + Teardown
     #region
+    protected override void Awake()
+    {
+        base.Awake();
+        BuildChoicesLibrary();
+    }
+    public void BuildChoicesLibrary()
+    {
+        AllChoices = new List<KingChoiceData>();
+
+        foreach(KingChoiceDataSO dataSO in allChoiceScriptableObjects)
+        {
+            AllChoices.Add(ConvertKingsChoiceSOToStandardData(dataSO));
+        }
+    }
     public void BuildAllViews(CharacterData startingCharacter)
     {
         Debug.LogWarning("KingsBlessingController.BuildAllViews()");
@@ -91,6 +119,9 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
         CharacterModelController.BuildModelFromStringReferences(playerModel, startingCharacter.modelParts);
         CharacterModelController.ApplyItemManagerDataToCharacterModelView(startingCharacter.itemManager, playerModel);
 
+        // Set up health bar
+        UpdateHealthGUIElements(startingCharacter.health, startingCharacter.maxHealth);
+
         // Build skeleton king model
         // CharacterModelController.BuildModelFromStringReferences(kingModel, kingBodyParts);
     }
@@ -98,6 +129,46 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
     {
         playerModel.gameObject.transform.position = playerModelStartPos.position;
         gateParent.transform.position = gateStartPos.position;
+
+        FadeContinueButton(0, 0, true);
+        FadeOutChoiceButtons(0);
+        FadeHealthBar(0, 0, true);
+    }
+    #endregion
+
+    // Save + Load Logic
+    #region
+    public void BuildMyDataFromSaveFile(SaveGameData saveFile)
+    {
+        SetCharacterChoices(saveFile.kbcChoices);
+    }
+    public void SaveMyDataToSaveFile(SaveGameData saveFile)
+    {
+        saveFile.kbcChoices = currentChoices;
+    }
+    #endregion
+
+    // Data Conversion
+    #region
+    private KingChoiceData ConvertKingsChoiceSOToStandardData(KingChoiceDataSO so)
+    {
+        KingChoiceData data = new KingChoiceData();
+
+        data.choiceDescription = so.choiceDescription;
+        data.effect = so.effect;
+        data.category = so.category;
+        data.impactLevel = so.impactLevel;
+        data.maxHealthGainedOrLost = so.maxHealthGainedOrLost;
+        data.healthGainedOrLost = so.healthGainedOrLost;
+        data.randomCardRarity = so.randomCardRarity;
+        data.discoveryCardRarity = so.discoveryCardRarity;
+        data.randomCardsUpgraded = so.randomCardsUpgraded;
+        data.randomCardsTransformed = so.randomCardsTransformed;
+        data.attributeModified = so.attributeModified;
+        data.attributeAmountModified = so.attributeAmountModified;
+        data.possiblePassives = so.possiblePassives;
+        data.afflicationsGained = so.afflicationsGained;
+        return data;
     }
     #endregion
 
@@ -291,11 +362,11 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
             button.descriptionText.text += " <color=#FF4747>" + data.conseqenceData.choiceDescription + "<color=#FFFFFF>";
         }
     }
-    public void GenerateAndSetCharacterChoices()
+    public void SetCharacterChoices(List<KingsChoicePairingModel> choices)
     {
-        currentChoices = GenerateFourRandomChoices();
+        CurrentChoices = choices;
     }
-    private List<KingsChoicePairingModel> GenerateFourRandomChoices()
+    public List<KingsChoicePairingModel> GenerateFourRandomChoices()
     {
         List<KingsChoicePairingModel> startingChoices = new List<KingsChoicePairingModel>();
 
@@ -307,14 +378,14 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
 
         return startingChoices;
     }
-    private KingsChoicePairingModel GenerateChoicePairing(KingChoiceImpactLevel impactLevel, IEnumerable<KingChoiceDataSO> dataSet)
+    private KingsChoicePairingModel GenerateChoicePairing(KingChoiceImpactLevel impactLevel, IEnumerable<KingChoiceData> dataSet)
     {
         KingsChoicePairingModel choicePairing = new KingsChoicePairingModel();
 
-        List<KingChoiceDataSO> validBenefits = new List<KingChoiceDataSO>();
-        List<KingChoiceDataSO> validConsequences = new List<KingChoiceDataSO>();
+        List<KingChoiceData> validBenefits = new List<KingChoiceData>();
+        List<KingChoiceData> validConsequences = new List<KingChoiceData>();
 
-        foreach(KingChoiceDataSO choiceData in dataSet)
+        foreach(KingChoiceData choiceData in dataSet)
         {
             if(choiceData.impactLevel == impactLevel)
             {
@@ -424,21 +495,24 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
         }
         else if (button.myPairingData.benefitData.effect == KingChoiceEffectType.TransformCard)
         {
+            TriggerKingsChoiceEffect(button.myPairingData.conseqenceData);
             TriggerKingsChoiceEffect(button.myPairingData.benefitData);
             FadeOutChoiceButtons(0f);
         }
         else if (button.myPairingData.benefitData.effect == KingChoiceEffectType.UpgradeCard)
         {
+            TriggerKingsChoiceEffect(button.myPairingData.conseqenceData);
             TriggerKingsChoiceEffect(button.myPairingData.benefitData);
             FadeOutChoiceButtons(0f);
         }
         else if (button.myPairingData.benefitData.effect == KingChoiceEffectType.DiscoverCard)
         {
+            TriggerKingsChoiceEffect(button.myPairingData.conseqenceData);
             TriggerKingsChoiceEffect(button.myPairingData.benefitData);
             FadeOutChoiceButtons(0f);
         }
     }
-    private void TriggerKingsChoiceEffect(KingChoiceDataSO data)
+    private void TriggerKingsChoiceEffect(KingChoiceData data)
     {
         if(data == null)
         {
@@ -462,6 +536,13 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
                 // Blood Splatter VFX
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                     VisualEffectManager.Instance.CreateBloodExplosion(playerModel.transform.position));
+
+                // Play hurt animation
+                VisualEventManager.Instance.CreateVisualEvent(() => playerModel.GetComponent<Animator>().SetTrigger("Hurt"));
+
+                // Hurt SFX
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                AudioManager.Instance.PlaySound(Sound.Ability_Damaged_Health_Lost));                
             }
             else if (data.maxHealthGainedOrLost > 0)
             {
@@ -474,6 +555,10 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
                 // Create SFX
                 VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Passive_General_Buff));
             }
+
+            // Update Health GUI
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+              UpdateHealthGUIElements(startingCharacter.health, startingCharacter.maxHealth));
 
             // Notification VFX
             VisualEventManager.Instance.CreateVisualEvent(() =>
@@ -489,21 +574,37 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
             {
                 // Blood Splatter VFX
                 VisualEventManager.Instance.CreateVisualEvent(() =>
-                    VisualEffectManager.Instance.CreateBloodExplosion(playerModel.transform.position));
+                    VisualEffectManager.Instance.CreateBloodExplosion(playerModel.transform.position, 0, 2f));
+
+                // Play hurt animation
+                VisualEventManager.Instance.CreateVisualEvent(() => playerModel.GetComponent<Animator>().SetTrigger("Hurt"));
+
+                // Hurt SFX
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                AudioManager.Instance.PlaySound(Sound.Ability_Damaged_Health_Lost));
+
+                // Damage Text Effect VFX
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateDamageEffect(playerModel.transform.position, Mathf.Abs(data.healthGainedOrLost)));
             }
             else if (data.healthGainedOrLost > 0)
             {
                 // Heal VFX
                 VisualEventManager.Instance.CreateVisualEvent(() =>
-                    VisualEffectManager.Instance.CreateHealEffect(playerModel.transform.position));
+                    VisualEffectManager.Instance.CreateHealEffect(playerModel.transform.position, 15, 2f));
+
+                // Damage Text Effect VFX
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateDamageEffect(playerModel.transform.position, Mathf.Abs(data.healthGainedOrLost), true, false));
 
                 // Create SFX
                 VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Passive_General_Buff));
             }
 
-            // Notification VFX
+            // Update Health GUI
             VisualEventManager.Instance.CreateVisualEvent(() =>
-            VisualEffectManager.Instance.CreateDamageEffect(playerModel.transform.position, Mathf.Abs(data.healthGainedOrLost)));            
+              UpdateHealthGUIElements(startingCharacter.health, startingCharacter.maxHealth));
+
         }
 
         // Modify Attribute
@@ -751,7 +852,7 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
         }
 
         // Delay at end of v events, to create time spacing between benefit and consequence v events
-        VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+        VisualEventManager.Instance.InsertTimeDelayInQueue(1f);
 
     }
     public void HandleUpgradeCardChoiceMade(CardData card)
@@ -772,7 +873,7 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
         CardController.Instance.HandleUpgradeCardInCharacterDeck(card, character);
 
         // Resolve consequence of pairing choice
-        TriggerKingsChoiceEffect(cachedPairing.conseqenceData);
+       // TriggerKingsChoiceEffect(cachedPairing.conseqenceData);
 
         // Finish
         AwaitingCardUpgradeChoice = false;
@@ -798,7 +899,7 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
         CardController.Instance.StartNewShuffleCardsScreenVisualEvent(playerModel, cList);
 
         // Resolve consequence of pairing choice
-        TriggerKingsChoiceEffect(cachedPairing.conseqenceData);
+        //TriggerKingsChoiceEffect(cachedPairing.conseqenceData);
 
         // Finish
         AwaitingCardTransformChoice = false;
@@ -821,7 +922,7 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
         CharacterDataController.Instance.AddCardToCharacterDeck(character, card);
 
         // Resolve consequence of pairing choice
-        TriggerKingsChoiceEffect(cachedPairing.conseqenceData);
+       // TriggerKingsChoiceEffect(cachedPairing.conseqenceData);
 
         // Finish
         AwaitingCardDiscoveryChoice = false;
@@ -829,6 +930,35 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
 
         // Fade in continue button
         FadeContinueButton(1, 0.5f);
+    }
+    #endregion
+
+    // Health Bar Logic
+    #region
+    public void FadeHealthBar(float endAlpha, float duration, bool disableOnComplete = false)
+    {
+        healthBarVisualParent.SetActive(true);
+        Sequence s = DOTween.Sequence();
+        s.Append(healthBarCg.DOFade(endAlpha, duration));
+        s.OnComplete(() =>
+        {
+            if (disableOnComplete)
+            {
+                healthBarVisualParent.SetActive(false);
+            }
+        });
+    }
+    private void UpdateHealthGUIElements(int health, int maxHealth)
+    {
+        // Convert health int values to floats
+        float currentHealthFloat = health;
+        float currentMaxHealthFloat = maxHealth;
+        float healthBarFloat = currentHealthFloat / currentMaxHealthFloat;
+
+        // Modify health bar slider + health texts
+        healthBar.value = healthBarFloat;
+        currentHealthText.text = health.ToString();
+        maxHealthText.text = maxHealth.ToString();
     }
     #endregion
 

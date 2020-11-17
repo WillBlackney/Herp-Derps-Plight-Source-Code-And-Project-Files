@@ -28,6 +28,9 @@ public class SaveGameData
     public int campPointRegen;
     public int campCardDraw;
     public List<CampCardData> campDeck = new List<CampCardData>();
+
+    // KBC Data
+    public List<KingsChoicePairingModel> kbcChoices = new List<KingsChoicePairingModel>();
    
 }
 public enum SaveCheckPoint

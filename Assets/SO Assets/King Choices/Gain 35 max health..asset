@@ -15,7 +15,14 @@ MonoBehaviour:
   choiceDescription: Gain 35 max health.
   effect: 7
   category: 1
-  impactLevel: 3
+  impactLevel: 4
   maxHealthGainedOrLost: 35
   healthGainedOrLost: 0
   randomCardRarity: 0
+  discoveryCardRarity: 0
+  randomCardsUpgraded: 0
+  randomCardsTransformed: 0
+  attributeModified: 0
+  attributeAmountModified: 0
+  possiblePassives: []
+  afflicationsGained: 0

@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class KingsChoicePairingModel
 {
-    public KingChoiceDataSO benefitData;
-    public KingChoiceDataSO conseqenceData;
+    public KingChoiceData benefitData;
+    public KingChoiceData conseqenceData;
 }

@@ -161,18 +161,18 @@ public class EventSequenceController : Singleton<EventSequenceController>
         StartCoroutine(HandleStartNewGameFromMainMenuEventCoroutine());
     }
     public IEnumerator HandleStartNewGameFromMainMenuEventCoroutine()
-    {
-        // Set up characters
-        PersistencyManager.Instance.BuildNewSaveFileOnNewGameStarted();
-
-        // Build and prepare all session data
-        PersistencyManager.Instance.SetUpGameSessionDataFromSaveFile();
-
+    {      
         // Fade out screen + audio
         AudioManager.Instance.PlaySound(Sound.Events_New_Game_Started);
         AudioManager.Instance.FadeOutSound(Sound.Music_Main_Menu_Theme_1, 2f);
         BlackScreenController.Instance.FadeOutScreen(2f);
         yield return new WaitForSeconds(2f);
+
+        // Set up characters
+        PersistencyManager.Instance.BuildNewSaveFileOnNewGameStarted();
+
+        // Build and prepare all session data
+        PersistencyManager.Instance.SetUpGameSessionDataFromSaveFile();
 
         // Reset Camera
         CameraManager.Instance.ResetMainCameraPositionAndZoom();
@@ -614,8 +614,13 @@ public class EventSequenceController : Singleton<EventSequenceController>
     }
     private IEnumerator HandleLoadKingsBlessingEncounterCoroutine()
     {
-        // Generate random KBC choices
-        KingsBlessingController.Instance.GenerateAndSetCharacterChoices();
+        // Generate random KBC choices, if not loading from a save file
+        if(KingsBlessingController.Instance.CurrentChoices.Count == 0)
+        {
+            Debug.LogWarning("EventSequenceController.HandleLoadKingsBlessingEncounter() detected that 4 KBC choices" +
+                " have not already been created and saved to disk, generating new ones now...");
+            KingsBlessingController.Instance.SetCharacterChoices(KingsBlessingController.Instance.GenerateFourRandomChoices());
+        }
         KingsBlessingController.Instance.BuildAllChoiceButtonViewsFromActiveChoices();
 
         // Play ambience if not already playing
@@ -652,12 +657,10 @@ public class EventSequenceController : Singleton<EventSequenceController>
         KingsBlessingController.Instance.DoKingGreeting();
         yield return new WaitForSeconds(1.5f);
 
-        // Fade in choice buttons  
+        // Fade in choice buttons + health bar
         KingsBlessingController.Instance.FadeInChoiceButtons();
+        KingsBlessingController.Instance.FadeHealthBar(1, 1);
 
-        // Fade in continue button      
-        // KingsBlessingController.Instance.FadeContinueButton(1, 1);
-        // KingsBlessingController.Instance.SetContinueButtonInteractions(true);
     }
     public void HandleLoadKingsBlessingContinueSequence(CoroutineData cData)
     {
@@ -665,7 +668,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
     }
     private IEnumerator HandleLoadKingsBlessingContinueSequenceCoroutine(CoroutineData cData)
     {
+        // Fade out continue button + health bar.
         KingsBlessingController.Instance.FadeContinueButton(0, 0.5f, true);
+        KingsBlessingController.Instance.FadeHealthBar(0, 0.5f, true);
 
         // King greeting
         KingsBlessingController.Instance.DoKingFarewell();
