@@ -91,9 +91,9 @@ MonoBehaviour:
     bleedingStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 8b3fdf26a930db74caf6b232b3f9947d, type: 2}
-  - {fileID: 11400000, guid: e5dcb3a8afb16b04d94dcd0f61803a60, type: 2}
-  - {fileID: 11400000, guid: 95d7541393fd8854b900b1e1228e939b, type: 2}
+  - {fileID: 11400000, guid: 4f7008c09af197b43b9e5ee443274691, type: 2}
+  - {fileID: 11400000, guid: 4f7008c09af197b43b9e5ee443274691, type: 2}
+  - {fileID: 11400000, guid: 5d351862106fb4848b497494a25a2a45, type: 2}
   - {fileID: 11400000, guid: 04da682956a3c764f931a5efee0ddf6b, type: 2}
   - {fileID: 11400000, guid: ec16fdb9667f111428b93d7dd14578d6, type: 2}
   - {fileID: 11400000, guid: d2702fe837e83e240bb9b7ad516f6741, type: 2}

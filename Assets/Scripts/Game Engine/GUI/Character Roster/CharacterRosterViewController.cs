@@ -6,16 +6,10 @@ using TMPro;
 
 public class CharacterRosterViewController : Singleton<CharacterRosterViewController>
 {
-
-    /*
-     * Enable/Disable main view
-     * Build ucm
-     * build deck view
-     * 
-     * 
-     * 
-     
-     */
+    // Properties + Component References
+    #region
+    [Header("Core Properites")]
+    private CharacterData currentCharacterViewing;
 
     [Header("Core Components")]
     [SerializeField] private GameObject mainVisualParent;
@@ -31,10 +25,27 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     [SerializeField] private TextMeshProUGUI currentLevelText;
 
     [Header("Character Deck Box Components")]
+    [SerializeField] private GameObject deckBoxVisualParent;
     [SerializeField] private CardInfoPanel[] cardPanels;
     [SerializeField] private CanvasGroup previewCardCg;
     [SerializeField] private CardViewModel previewCardVM;
 
+    [Header("Card Inventory Box Components")]
+    [SerializeField] private GameObject cardInventoryVisualParent;
+
+    [Header("Talent Box Components")]
+    [SerializeField] private GameObject talentBoxVisualParent;
+    [SerializeField] private TextMeshProUGUI talentPointsText;
+    [SerializeField] private TalentPanelCharacterRoster[] allTalentPanels;
+    [SerializeField] private TalentInfoPanelPopup[] talentPopups;
+    [SerializeField] private GameObject talentPopupParent;
+    [SerializeField] private CanvasGroup talentPopupCg;
+
+
+    #endregion
+
+    // Enable + Fade Main View and Default View
+    #region
     private void EnableMainView()
     {
         mainVisualParent.SetActive(true);
@@ -49,7 +60,30 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
         mainCg.DOKill();
         mainVisualParent.SetActive(false);
     }
+    private void BuildFrontPageDefaultViewState(CharacterData character)
+    {
+        currentCharacterViewing = character;
 
+        // Hide unused boxes
+        HideTalentBoxView();
+
+        // Enable default boxes
+        ShowDeckBoxView();
+        ShowCardInventoryBoxView();
+
+        // Set name header text
+        topBarCharacterNameText.text = character.myName;
+
+        // Build Character Model box views
+        BuildCharacterModelBoxFromData(currentCharacterViewing);
+
+        // Build deck box views
+        BuildCharacterDeckBoxFromData(currentCharacterViewing);
+    }
+    #endregion
+
+    // On Button Clicks
+    #region
     public void OnCharacterRosterButtonClicked()
     {
         if(mainVisualParent.activeSelf == true)
@@ -60,24 +94,86 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
         {
             EnableMainView();
             FadeInMainView();
-            BuildDefaultViewStateOnOpen();
+            BuildFrontPageDefaultViewState(CharacterDataController.Instance.AllPlayerCharacters[0]);
         }
     }
-
-    private void BuildDefaultViewStateOnOpen()
+    public void OnNextCharacterButtonClicked()
     {
-        // Get first character in roster's data
-        CharacterData defaultCharacter = CharacterDataController.Instance.AllPlayerCharacters[0];
+        List<CharacterData> allCharacters = CharacterDataController.Instance.AllPlayerCharacters;
+        CharacterData nextCharacter = null;
 
-        // Set name header text
-        topBarCharacterNameText.text = defaultCharacter.myName;
+        // Do nothing if player only has 1 character
+        if (allCharacters.Count == 1)
+        {
+            return;
+        }
+        else if (allCharacters.Count > 1)
+        {
+            int index = allCharacters.IndexOf(currentCharacterViewing);
 
-        // Build Character Model box views
-        BuildCharacterModelBoxFromData(defaultCharacter);
+            if(index == allCharacters.Count - 1)
+            {
+                nextCharacter = allCharacters[0];
+            }
+            else
+            {
+                nextCharacter = allCharacters[index + 1];
+            }
+        }
 
-        // Build deck box views
-        BuildCharacterDeckBoxFromData(defaultCharacter);
+        BuildFrontPageDefaultViewState(nextCharacter);
     }
+    public void OnPreviousCharacterButtonClicked()
+    {
+        List<CharacterData> allCharacters = CharacterDataController.Instance.AllPlayerCharacters;
+        CharacterData previousCharacter = null;
+
+        // Do nothing if player only has 1 character
+        if (allCharacters.Count == 1)
+        {
+            return;
+        }
+        else if (allCharacters.Count > 1)
+        {
+            int index = allCharacters.IndexOf(currentCharacterViewing);
+
+            if (index == 0)
+            {
+                previousCharacter = allCharacters[allCharacters.Count -1];
+            }
+            else
+            {
+                previousCharacter = allCharacters[index - 1];
+            }
+        }
+
+        BuildFrontPageDefaultViewState(previousCharacter);
+    }
+    public void OnDeckPageButtonClicked()
+    {
+        // Hide unused boxes
+        HideTalentBoxView();
+
+        // Enable deck related boxes
+        ShowDeckBoxView();
+        ShowCardInventoryBoxView();
+    }
+    public void OnTalentPageButtonClicked()
+    {
+        // Hide unused boxes
+        HideDeckBoxView();
+        HideCardInventoryBoxView();
+
+        // Enable talent related boxes
+        ShowTalentBoxView();
+
+        // Build all views
+        BuildTalentBoxFromData(currentCharacterViewing);
+    }
+    #endregion
+
+    // Model Box Logic
+    #region
     private void BuildCharacterModelBoxFromData(CharacterData data)
     {
         // Build character model
@@ -87,6 +183,18 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
         // Set health + xp texts
         currentHealthText.text = data.health.ToString();
         maxHealthText.text = data.maxHealth.ToString();
+    }
+    #endregion
+
+    // Deck Box Logic
+    #region
+    private void ShowDeckBoxView()
+    {
+        deckBoxVisualParent.SetActive(true);
+    }
+    private void HideDeckBoxView()
+    {
+        deckBoxVisualParent.SetActive(false);
     }
     private void BuildCharacterDeckBoxFromData(CharacterData data)
     {
@@ -140,4 +248,116 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
         previewCardCg.gameObject.SetActive(false);
         previewCardCg.alpha = 0;
     }
+    #endregion
+
+    // Card Inventory Logic
+    #region
+    private void ShowCardInventoryBoxView()
+    {
+        cardInventoryVisualParent.SetActive(true);
+    }
+    private void HideCardInventoryBoxView()
+    {
+        cardInventoryVisualParent.SetActive(false);
+    }
+    #endregion
+
+    // Talent Box Logic
+    #region
+    public void OnTalentPanelMouseEnter(TalentPanelCharacterRoster panel)
+    {
+        BuildAndShowTalentPopups(panel.TalentSchool);
+    }
+    public void OnTalentPanelMouseExit(TalentPanelCharacterRoster panel)
+    {
+        HideTalentPopups();
+    }
+    private void BuildAndShowTalentPopups(TalentSchool talentSchool)
+    {
+        // Reset view state
+        talentPopupCg.DOKill();
+        talentPopupCg.alpha = 0;
+        talentPopupParent.SetActive(true);      
+
+        // Build panel views
+        talentPopups[0].BuildMe(TextLogic.GetTalentPairingTierOneDescriptionText(talentSchool));
+        talentPopups[1].BuildMe(TextLogic.GetTalentPairingTierTwoDescriptionText(talentSchool));
+
+        // Fade in
+        talentPopupCg.DOFade(1, 0.25f);
+    }
+    private void HideTalentPopups()
+    {
+        // Reset view state
+        talentPopupCg.DOKill();
+        talentPopupCg.alpha = 0;
+        talentPopupParent.SetActive(false);
+    }
+    public void OnTalentPanelPlusButtonClicked(TalentPanelCharacterRoster panel)
+    {
+        if(currentCharacterViewing == null)
+        {
+            Debug.LogWarning("CharacterRosterViewController.OnTalentPanelPlusButtonClicked() detected character data is null, cancelling...");
+            return;
+        }
+
+
+    }
+    private void ShowTalentBoxView()
+    {
+        talentBoxVisualParent.SetActive(true);
+    }
+    private void HideTalentBoxView()
+    {
+        talentBoxVisualParent.SetActive(false);
+    }
+    private void BuildTalentBoxFromData(CharacterData character)
+    {
+        BuildTalentPanelsFromCharacterData(character);
+        SetTalentPointsText(character.currentTalentPoints.ToString());
+    }
+    private void SetTalentPointsText(string text)
+    {
+        talentPointsText.text = text;
+    }
+    private void BuildTalentPanelsFromCharacterData(CharacterData character)
+    {
+        foreach(TalentPanelCharacterRoster panel in allTalentPanels)
+        {
+            // Reset views
+            panel.SetTierText("0");
+            panel.SetPlusButtonActiveState(false);
+
+            // Set talent image 
+            panel.SetMyImage(SpriteLibrary.Instance.GetTalentSchoolSpriteFromEnumData(panel.TalentSchool));
+
+            // Set name text
+            panel.SetTalentNameText(panel.TalentSchool.ToString());
+
+            // cache talent level
+            int talentLevel = 0;
+
+            // Find the character's matching talent pairing, if they have it
+            foreach (TalentPairingModel tp in character.talentPairings)
+            {
+                if(panel.TalentSchool == tp.talentSchool)
+                {
+                    talentLevel = tp.talentLevel;
+
+                    // Set tier text
+                    panel.SetTierText(tp.talentLevel.ToString());
+
+                    break;
+                }
+            }
+
+            // SHould enable plus button?
+            if(character.currentTalentPoints > 0 && talentLevel < 2)
+            {
+                panel.SetPlusButtonActiveState(true);
+            }
+        }
+    }
+    #endregion
+
 }

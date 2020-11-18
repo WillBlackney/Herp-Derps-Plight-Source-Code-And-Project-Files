@@ -86,7 +86,7 @@ public class ColorLibrary : Singleton<ColorLibrary>
             colorReturned = manipulationColor;
         }
 
-        colorReturned = new Color(colorReturned.r, colorReturned.g, colorReturned.b, 0.66f);
+        colorReturned = new Color(colorReturned.r, colorReturned.g, colorReturned.b, colorReturned.a);
 
         return colorReturned;
     }

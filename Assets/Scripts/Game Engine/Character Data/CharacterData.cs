@@ -34,4 +34,5 @@ public class CharacterData
 
     [Header("Talent Properties")]
     public List<TalentPairingModel> talentPairings = new List<TalentPairingModel>();
+    public int currentTalentPoints = 0;
 }
