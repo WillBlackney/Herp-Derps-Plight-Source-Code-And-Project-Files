@@ -283,6 +283,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
     }
     public void HandleXpRewardPostCombat(EncounterType encounter)
     {
+        // Apply flat combat type xp reward
         if(encounter == EncounterType.BasicEnemy)
         {
             foreach(CharacterData character in AllPlayerCharacters)
@@ -303,6 +304,19 @@ public class CharacterDataController : Singleton<CharacterDataController>
             {
                 HandleGainXP(character, GlobalSettings.Instance.bossCombatXpReward);
             }
+        }
+
+        // Check and apply flawless bonus
+        foreach (CharacterData character in AllPlayerCharacters)
+        {
+            foreach(CharacterEntityModel entity in CharacterEntityController.Instance.AllDefenders)
+            {
+                if(entity.characterData == character && entity.hasLostHealthThisCombat == false)
+                {
+                    HandleGainXP(character, GlobalSettings.Instance.noDamageTakenXpReward);
+                }
+            }
+            
         }
     }
 

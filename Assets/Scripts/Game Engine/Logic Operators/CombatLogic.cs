@@ -482,6 +482,8 @@ public class CombatLogic : Singleton<CombatLogic>
             }
             else if (totalLifeLost > 0)
             {
+                victim.hasLostHealthThisCombat = true;
+
                 // Play hurt animation
                 if (victim.health > 0 && totalLifeLost > 0)
                 {

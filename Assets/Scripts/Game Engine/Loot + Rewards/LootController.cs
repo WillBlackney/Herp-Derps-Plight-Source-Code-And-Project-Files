@@ -485,17 +485,14 @@ public class LootController : Singleton<LootController>
 
     // Post Combat Mini XP Event Logic
     #region
-    public void PlayNewXpRewardVisualEvent(List<PreviousXpState> pxpData)
+    public void PlayNewXpRewardVisualEvent(List<PreviousXpState> pxpData, List<XpRewardData> xpRewardDataSet)
     {
-        StartCoroutine(PlayNewXpRewardVisualEventCoroutine(pxpData));
+        StartCoroutine(PlayNewXpRewardVisualEventCoroutine(pxpData, xpRewardDataSet));
     }
-    private IEnumerator PlayNewXpRewardVisualEventCoroutine(List<PreviousXpState> pxsData)
+    private IEnumerator PlayNewXpRewardVisualEventCoroutine(List<PreviousXpState> pxsData, List<XpRewardData> xpRewardDataSet)
     {
-        yield return null;
         FadeInXpRewardScreen();
-        yield return new WaitForSeconds(0.5f);
-
-        int index = 0;
+        yield return new WaitForSeconds(0.5f);     
 
         // Disable + Reset reward boxes
         foreach(RewardCharacterBox b in rewardCharacterBoxes)
@@ -503,24 +500,33 @@ public class LootController : Singleton<LootController>
             b.visualParent.SetActive(false);
         }
 
+        int index = 0;
+
         // Build character box starting states
-        foreach(CharacterData character in CharacterDataController.Instance.AllPlayerCharacters)
+        foreach (CharacterData character in CharacterDataController.Instance.AllPlayerCharacters)
         {
-            // find the characters matching psx data
+            // Find the characters matching psx data
             foreach(PreviousXpState psx in pxsData)
             {
                 if(psx.characterRef == character)
                 {
-                    // found the match
-                    BuildRewardCharacterBoxStartingViewState(rewardCharacterBoxes[index], character, psx);
-                    break;
+                    foreach(XpRewardData xrd in xpRewardDataSet)
+                    {
+                        if(xrd.characterRef == character)
+                        {
+                            BuildRewardCharacterBoxStartingViewState(rewardCharacterBoxes[index], character, psx, xrd);
+                            break;
+                        }
+                    }              
                 }
             }
 
             index++;
         }
 
-
+        // for each character
+        // play rolling number anim for total xp
+        // set combat 
     }
     private void FadeInXpRewardScreen(float speed = 0.5f)
     {
@@ -528,19 +534,51 @@ public class LootController : Singleton<LootController>
         xpRewardScreenCg.alpha = 0;
         xpRewardScreenCg.DOFade(1, speed);
     }
-    private void BuildRewardCharacterBoxStartingViewState(RewardCharacterBox box, CharacterData character, PreviousXpState pxs)
+    private void BuildRewardCharacterBoxStartingViewState(RewardCharacterBox box, CharacterData character, PreviousXpState pxs, XpRewardData xrd)
     {
         // Enable view
         box.visualParent.SetActive(true);
+        box.flawlessParent.SetActive(false);
+
+        // Calculate total xp gained for total xp text
+        int totalXpGainedInt = xrd.totalXpGained;
 
         // Build ucm 
         CharacterModelController.BuildModelFromStringReferences(box.ucm, character.modelParts);
 
-        // build texts + slider
-        box.currentLevelText.text = pxs.previousLevel.ToString();
+        // Build level and combat type texts
+        box.currentLevelText.text = pxs.previousLevel.ToString();        
+        box.combatTypeText.text = TextLogic.SplitByCapitals(xrd.encounterType.ToString());
+
+        if(xrd.encounterType == EncounterType.BasicEnemy)
+        {
+            box.combatTypeRewardText.text = GlobalSettings.Instance.basicCombatXpReward.ToString();
+        }
+        else if (xrd.encounterType == EncounterType.EliteEnemy)
+        {
+            box.combatTypeRewardText.text = GlobalSettings.Instance.eliteCombatXpReward.ToString();
+        }
+        else if (xrd.encounterType == EncounterType.BossEnemy)
+        {
+            box.combatTypeRewardText.text = GlobalSettings.Instance.bossCombatXpReward.ToString();
+        }
+
+        // Check flawless
+        if(xrd.flawless == true)
+        {
+            box.flawlessParent.SetActive(true);
+            box.flawlessAmountText.text = GlobalSettings.Instance.noDamageTakenXpReward.ToString();
+            totalXpGainedInt += GlobalSettings.Instance.noDamageTakenXpReward;
+        }
+
+        // Set total xp gained text
+        box.totalXpText.text = "+" + totalXpGainedInt.ToString() + " XP";
 
         // Set xp bar start view state
         UpdateXpBarPosition(box.xpBar, pxs.previousXp, pxs.previousMaxXp);
+
+        // Play xp bar animation
+        PlayUpdateXpBarAnimation(character, box, pxs);
 
     }
     private void UpdateXpBarPosition(Slider xpBar, int currentXp, int maxXp)
@@ -553,5 +591,54 @@ public class LootController : Singleton<LootController>
         // Modify health bar slider + health texts
         xpBar.value = xpBarFloat;
     }
+    private void PlayUpdateXpBarAnimation(CharacterData data, RewardCharacterBox box, PreviousXpState pxs)
+    {
+        StartCoroutine(PlayUpdateXpBarAnimationCoroutine( data, box, pxs));
+    }
+    private IEnumerator PlayUpdateXpBarAnimationCoroutine(CharacterData data, RewardCharacterBox box, PreviousXpState pxs)
+    {
+        // Should we play level up bar animation?
+        if (pxs.previousLevel < data.currentLevel)
+        {
+            int maxXpPoint = pxs.previousMaxXp;
+            int currentXpPoint = pxs.previousXp;
+
+            // Gradually move xp slider to end of bar 
+            while (currentXpPoint < maxXpPoint)
+            {
+                UpdateXpBarPosition(box.xpBar, currentXpPoint, maxXpPoint);
+                currentXpPoint++;
+                yield return null;
+            }
+
+            // Hit the end of bar, do level gained visual stuff
+            box.currentLevelText.text = data.currentLevel.ToString();
+
+            // Move xp slider to final position after xp overflow
+            maxXpPoint = data.currentMaxXP;
+            currentXpPoint = 0;
+            while (currentXpPoint < data.currentXP)
+            {
+                UpdateXpBarPosition(box.xpBar, currentXpPoint, maxXpPoint);
+                currentXpPoint++;
+                yield return null;
+            }
+        }
+        else
+        {
+            int maxXpPoint = data.currentMaxXP;
+            int currentXpPoint = pxs.previousXp;
+
+            // Gradually move xp slider to new pos
+            while (currentXpPoint < data.currentXP)
+            {
+                UpdateXpBarPosition(box.xpBar, currentXpPoint, maxXpPoint);
+                currentXpPoint++;
+                yield return null;
+            }
+        }
+    }
     #endregion
 }
+
+

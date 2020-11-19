@@ -49,6 +49,7 @@ public class CharacterEntityModel
     [HideInInspector] public List<Card> expendPile = new List<Card>();
 
     [Header("Misc Combat Properties")]
+    [HideInInspector] public bool hasLostHealthThisCombat = false;
     [HideInInspector] public int currentInitiativeRoll;
     [HideInInspector] public bool hasActivatedThisTurn;
     [HideInInspector] public int nextActivationCount = 1;

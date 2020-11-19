@@ -750,14 +750,47 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
             // Grant xp
             CharacterDataController.Instance.HandleXpRewardPostCombat(combatType);
+
+            // Generate and cache xp rewarded stats for visual events
+            List<XpRewardData> xpRewardDataSet = new List<XpRewardData>();
+            foreach(CharacterData character in CharacterDataController.Instance.AllPlayerCharacters)
+            {
+                bool flawless = false;
+                int combatXp = 0;
+                if(combatType == EncounterType.BasicEnemy)
+                {
+                    combatXp = GlobalSettings.Instance.basicCombatXpReward;
+                }
+                else if (combatType == EncounterType.EliteEnemy)
+                {
+                    combatXp = GlobalSettings.Instance.eliteCombatXpReward;
+                }
+                else if (combatType == EncounterType.BossEnemy)
+                {
+                    combatXp = GlobalSettings.Instance.bossCombatXpReward;
+                }
+
+                // TO DO: in future, add flawless bones here
+                int totalXp = combatXp;
+
+                // Check for flawless bonus
+                foreach(CharacterEntityModel cm in CharacterEntityController.Instance.AllDefenders)
+                {
+                    if(cm.characterData == character)
+                    {
+                        if(cm.hasLostHealthThisCombat == false)
+                        {
+                            flawless = true;                            
+                        }
+                    }
+                }
+
+                xpRewardDataSet.Add(new XpRewardData(character, totalXp, combatXp, flawless, combatType));
+            }
             
             // Start visual event
-            LootController.Instance.PlayNewXpRewardVisualEvent(pxsList);            
-        }
+            LootController.Instance.PlayNewXpRewardVisualEvent(pxsList, xpRewardDataSet);
 
-        // Generate loot result + Auto save
-        if (JourneyManager.Instance.CheckPointType != SaveCheckPoint.CombatEnd)
-        {
             // Generate loot
             LootController.Instance.SetAndCacheNewLootResult();
 
@@ -767,7 +800,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
             // Wait for xp reward v event to finish
             yield return new WaitForSeconds(3f);
-        }       
+        }          
 
         // Build loot screen views
         LootController.Instance.BuildLootScreenElementsFromLootResultData();        

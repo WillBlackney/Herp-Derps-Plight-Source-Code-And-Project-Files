@@ -14,6 +14,9 @@ public class RewardCharacterBox : MonoBehaviour
     public TextMeshProUGUI combatTypeText;
     public TextMeshProUGUI combatTypeRewardText;
 
+    public GameObject flawlessParent;
+    public TextMeshProUGUI flawlessAmountText;
+
     public Slider xpBar;
 
 
@@ -31,5 +34,22 @@ public class PreviousXpState
         previousXp = data.currentXP;
         previousLevel = data.currentLevel;
         previousMaxXp = data.currentMaxXP;
+    }
+}
+public class XpRewardData
+{
+    public CharacterData characterRef;
+    public int totalXpGained;
+    public int combatXpGained;
+    public bool flawless = false;
+    public EncounterType encounterType;
+
+    public XpRewardData(CharacterData data, int _totalXpGained, int _combatXpGained, bool _flawless, EncounterType _encounterType)
+    {
+        characterRef = data;
+        encounterType = _encounterType;
+        totalXpGained = _totalXpGained;
+        combatXpGained = _combatXpGained;
+        flawless = _flawless;
     }
 }
