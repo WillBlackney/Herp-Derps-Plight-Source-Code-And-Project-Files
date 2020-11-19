@@ -36,6 +36,12 @@ public enum CardWeaponRequirement
     DualWield = 3,
     Ranged = 4,
 }
+public enum UpgradeFilter
+{
+    Any = 0,
+    OnlyNonUpgraded = 1,
+    OnlyUpgraded = 2,
+}
 public enum CardCollection
 {
     Hand = 0,

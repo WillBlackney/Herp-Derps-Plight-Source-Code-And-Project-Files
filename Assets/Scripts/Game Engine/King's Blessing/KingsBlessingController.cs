@@ -737,7 +737,7 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
             }
 
             // Add curses to character
-            foreach(CardData affliction in validAfflictions)
+            foreach(CardData affliction in afflictionsGained)
             {
                 // Add new card to character deck
                 CharacterDataController.Instance.AddCardToCharacterDeck(startingCharacter, affliction);

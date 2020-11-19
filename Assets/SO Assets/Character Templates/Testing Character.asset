@@ -27,7 +27,7 @@ MonoBehaviour:
   physicalResistance: 0
   fireResistance: 0
   frostResistance: 0
-  shadowResistance: 0
+  shadowResistance: -38
   poisonResistance: 0
   airResistance: 0
   serializedPassiveManager:
@@ -46,7 +46,7 @@ MonoBehaviour:
     enrageStacks: 0
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
-    divineFavourStacks: 0
+    divineFavourStacks: 2
     phoenixFormStacks: 0
     poisonousStacks: 0
     venomousStacks: 2
@@ -91,12 +91,14 @@ MonoBehaviour:
     bleedingStacks: 0
     fireBallBonusDamageStacks: 0
   deck:
-  - {fileID: 11400000, guid: 4f7008c09af197b43b9e5ee443274691, type: 2}
-  - {fileID: 11400000, guid: 4f7008c09af197b43b9e5ee443274691, type: 2}
-  - {fileID: 11400000, guid: 5d351862106fb4848b497494a25a2a45, type: 2}
-  - {fileID: 11400000, guid: 04da682956a3c764f931a5efee0ddf6b, type: 2}
-  - {fileID: 11400000, guid: ec16fdb9667f111428b93d7dd14578d6, type: 2}
-  - {fileID: 11400000, guid: d2702fe837e83e240bb9b7ad516f6741, type: 2}
+  - {fileID: 11400000, guid: 9a485b795a8ea7d4fbab8525e8284e7d, type: 2}
+  - {fileID: 11400000, guid: 17a56e174d38a8844b354d92f14a8d35, type: 2}
+  - {fileID: 11400000, guid: 87514d0403c7e7f4abb87ab0dbfe26f2, type: 2}
+  - {fileID: 11400000, guid: 8d1c8d3a9da8d77469609af2293f2eb9, type: 2}
+  - {fileID: 11400000, guid: 68a2fadae69eddb48822422a193f5dde, type: 2}
+  - {fileID: 11400000, guid: 005bb532b26a34b4fa874e70d8fb7781, type: 2}
+  - {fileID: 11400000, guid: 238bc2ffb3d01884abc4765af2cb53b2, type: 2}
+  - {fileID: 11400000, guid: 695053ad1be5cc44da259bb925528723, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1
@@ -116,7 +118,5 @@ MonoBehaviour:
     mainHandItem: {fileID: 11400000, guid: dfeeccc8c225a66488eb3e4eb76d6c3b, type: 2}
     offHandItem: {fileID: 0}
   talentPairings:
-  - talentSchool: 2
-    talentLevel: 2
-  - talentSchool: 3
+  - talentSchool: 10
     talentLevel: 2

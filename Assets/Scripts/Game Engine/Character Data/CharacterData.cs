@@ -23,6 +23,11 @@ public class CharacterData
     public int dexterity;
     public int power;
 
+    [Header("XP + Level Properties")]
+    public int currentLevel = 1;
+    public int currentXP = 0;
+    public int currentMaxXP;
+
     [Header("Deck Properties")]
     [HideInInspector] public List<CardData> deck;
 

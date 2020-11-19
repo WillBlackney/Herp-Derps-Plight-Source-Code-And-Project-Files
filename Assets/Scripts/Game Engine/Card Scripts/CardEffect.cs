@@ -73,6 +73,11 @@ public class CardEffect
     [LabelWidth(200)]
     public Rarity rarityFilter;
 
+    [ShowIf("ShowUpgradeFilter")]
+    [VerticalGroup("Search Filters")]
+    [LabelWidth(200)]
+    public UpgradeFilter upgradeFilter = UpgradeFilter.OnlyNonUpgraded;
+
     [ShowIf("ShowCardLibraryFilter")]
     [VerticalGroup("Search Filters")]
     [LabelWidth(200)]
@@ -492,6 +497,19 @@ public class CardEffect
             return false;
         }
     }
+    public bool ShowUpgradeFilter()
+    {
+        if ((discoveryLocation == CardCollection.CardLibrary &&
+            cardEffectType == CardEffectType.DiscoverCards) ||
+            cardEffectType == CardEffectType.AddRandomBlessingsToHand)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
 
 [Serializable]
@@ -631,6 +649,10 @@ public class ModifyAllCardsInHandEffect
     [LabelWidth(200)]
     public Rarity rarityFilter;
 
+    [ShowIf("ShowUpgradeFilter")]
+    [LabelWidth(200)]
+    public UpgradeFilter upgradeFilter = UpgradeFilter.OnlyNonUpgraded;
+
     [ShowIf("ShowBaseDamage")]
     [LabelWidth(200)]
     public int baseDamage;
@@ -664,6 +686,10 @@ public class ModifyAllCardsInHandEffect
         return modifyEffect == ModifyAllCardsInHandEffectType.SetEnergyCost;
     }
     public bool ShowRarityFilter()
+    {
+        return modifyEffect == ModifyAllCardsInHandEffectType.AddNewCardFromLibraryToHand;
+    }
+    public bool ShowUpgradeFilter()
     {
         return modifyEffect == ModifyAllCardsInHandEffectType.AddNewCardFromLibraryToHand;
     }

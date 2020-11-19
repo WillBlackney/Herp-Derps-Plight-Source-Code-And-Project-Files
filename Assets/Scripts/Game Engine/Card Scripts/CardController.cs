@@ -226,7 +226,7 @@ public class CardController : Singleton<CardController>
     }
 
     // Core Queires
-    public List<CardData> GetCardsQuery(IEnumerable<CardData> queriedCollection, TalentSchool ts = TalentSchool.None, Rarity r = Rarity.None, bool blessing = false)
+    public List<CardData> GetCardsQuery(IEnumerable<CardData> queriedCollection, TalentSchool ts = TalentSchool.None, Rarity r = Rarity.None, bool blessing = false, UpgradeFilter uf = UpgradeFilter.Any)
     {
         Debug.Log("GetCardsQuery() called, query params --- TalentSchool = " + ts.ToString()
             + ", Rarity = " + r.ToString() + ", Blessing = " + blessing.ToString());
@@ -246,6 +246,16 @@ public class CardController : Singleton<CardController>
 
         // Filter blessings
         cardsReturned = QueryByBlessing(cardsReturned, blessing);
+
+        // Filter upgrade settings
+        if(uf == UpgradeFilter.OnlyNonUpgraded)
+        {
+            cardsReturned = QueryByNonUpgraded(cardsReturned);
+        }
+        else if (uf == UpgradeFilter.OnlyUpgraded)
+        {
+            cardsReturned = QueryByUpgraded(cardsReturned);
+        }
 
         return cardsReturned;
     }
@@ -274,6 +284,30 @@ public class CardController : Singleton<CardController>
     }
 
     // Specific Queries
+    public List<CardData> QueryByUpgraded(IEnumerable<CardData> collectionQueried)
+    {
+        List<CardData> cardsReturned = new List<CardData>();
+
+        var query =
+           from cardData in collectionQueried
+           where cardData.upgradeLevel >= 1
+           select cardData;
+
+        cardsReturned.AddRange(query);
+        return cardsReturned;
+    }
+    public List<CardData> QueryByNonUpgraded(IEnumerable<CardData> collectionQueried)
+    {
+        List<CardData> cardsReturned = new List<CardData>();
+
+        var query =
+           from cardData in collectionQueried
+           where cardData.upgradeLevel == 0
+           select cardData;
+
+        cardsReturned.AddRange(query);
+        return cardsReturned;
+    }
     public List<CardData> QueryByRacial(IEnumerable<CardData> collectionQueried)
     {
         List<CardData> cardsReturned = new List<CardData>();
@@ -358,13 +392,13 @@ public class CardController : Singleton<CardController>
         cardsReturned.AddRange(query);
         return cardsReturned;
     }
-    public List<CardData> QueryByBlessing(IEnumerable<CardData> collectionQueried, bool blessing)
+    public List<CardData> QueryByBlessing(IEnumerable<CardData> collectionQueried, bool isBlessing)
     {
         List<CardData> cardsReturned = new List<CardData>();
 
         var query =
            from cardData in collectionQueried
-           where cardData.blessing == blessing
+           where cardData.blessing == isBlessing
            select cardData;
 
         cardsReturned.AddRange(query);
@@ -1271,9 +1305,10 @@ public class CardController : Singleton<CardController>
 
         return cardReturned;
     }
-    public void CreateAndAddNewRandomBlessingsToCharacterHand(CharacterEntityModel defender, int blessingsAdded)
+    public void CreateAndAddNewRandomBlessingsToCharacterHand(CharacterEntityModel defender, int blessingsAdded, UpgradeFilter uf)
     {
-        List<CardData> blessings = QueryByBlessing(AllCards, true);
+        //List<CardData> blessings = QueryByBlessing(AllCards, true);
+        List<CardData> blessings = GetCardsQuery(AllCards, TalentSchool.None, Rarity.None, true, uf);
 
         for (int i = 0; i < blessingsAdded; i++)
         {
@@ -2441,7 +2476,7 @@ public class CardController : Singleton<CardController>
                 {
                     // Get all possible card data
                     List<CardData> discoverableCards = new List<CardData>();
-                    discoverableCards = GetCardsQuery(AllCards, modEffect.talentSchoolFilter, modEffect.rarityFilter, false);
+                    discoverableCards = GetCardsQuery(AllCards, modEffect.talentSchoolFilter, modEffect.rarityFilter, false, UpgradeFilter.OnlyNonUpgraded);
 
                     for(int i = 0; i < totalCards; i++)
                     {
@@ -2476,7 +2511,7 @@ public class CardController : Singleton<CardController>
                 // Add random blessing to hand
                 else if (modEffect.modifyEffect == ModifyAllCardsInHandEffectType.AddRandomBlessingToHand)
                 {
-                    CreateAndAddNewRandomBlessingsToCharacterHand(owner, 1);
+                    CreateAndAddNewRandomBlessingsToCharacterHand(owner, 1, modEffect.upgradeFilter);
                 }
             }
 
@@ -2686,8 +2721,19 @@ public class CardController : Singleton<CardController>
         {
             for (int i = 0; i < cardEffect.blessingsGained; i++)
             {               
-                List<CardData> blessings = QueryByBlessing(AllCards, true);
-                CardData randomBlessing = blessings[RandomGenerator.NumberBetween(0, blessings.Count - 1)];
+                List<CardData> allBlessings = QueryByBlessing(AllCards, true);
+                List<CardData> filteredBlessings = new List<CardData>();
+
+                if(cardEffect.upgradeFilter == UpgradeFilter.OnlyUpgraded)
+                {
+                    filteredBlessings = QueryByUpgraded(allBlessings);
+                }
+                else if (cardEffect.upgradeFilter == UpgradeFilter.OnlyNonUpgraded)
+                {
+                    filteredBlessings = QueryByNonUpgraded(allBlessings);
+                }
+
+                CardData randomBlessing = filteredBlessings[RandomGenerator.NumberBetween(0, filteredBlessings.Count - 1)];
                 CreateAndAddNewCardToCharacterHand(owner, randomBlessing);
             }
         }
@@ -3501,7 +3547,7 @@ public class CardController : Singleton<CardController>
         if (ce.discoveryLocation == CardCollection.CardLibrary)
         {
             List<CardData> discoverableCards = new List<CardData>();
-            discoverableCards = GetCardsQuery(AllCards, ce.talentSchoolFilter, ce.rarityFilter, ce.blessing);
+            discoverableCards = GetCardsQuery(AllCards, ce.talentSchoolFilter, ce.rarityFilter, ce.blessing, ce.upgradeFilter);
 
             // cancel there are discoverable cards to pick
             if (discoverableCards.Count == 0)

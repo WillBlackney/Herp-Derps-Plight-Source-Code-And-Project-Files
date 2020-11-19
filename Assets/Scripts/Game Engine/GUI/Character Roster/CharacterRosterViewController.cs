@@ -183,6 +183,9 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
         // Set health + xp texts
         currentHealthText.text = data.health.ToString();
         maxHealthText.text = data.maxHealth.ToString();
+        currentXpText.text = data.currentXP.ToString();
+        maxXpText.text = data.currentMaxXP.ToString();
+        currentLevelText.text = "Level " + data.currentLevel.ToString();
     }
     #endregion
 

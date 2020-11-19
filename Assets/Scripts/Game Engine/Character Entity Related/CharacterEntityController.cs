@@ -773,7 +773,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             // Gain 2 Random Blessing cards
             for (int i = 0; i < 2; i++)
             {
-                CardController.Instance.CreateAndAddNewRandomBlessingsToCharacterHand(character, 1);
+                CardController.Instance.CreateAndAddNewRandomBlessingsToCharacterHand(character, 1, UpgradeFilter.OnlyNonUpgraded);
             }
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
@@ -929,6 +929,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 for (int i = 0; i < character.pManager.divineFavourStacks; i++)
                 {
                     List<CardData> blessings = CardController.Instance.QueryByBlessing(CardController.Instance.AllCards, true);
+                    blessings = CardController.Instance.QueryByNonUpgraded(blessings);
+
                     CardData randomBlessing = blessings[RandomGenerator.NumberBetween(0, blessings.Count - 1)];
                     CardController.Instance.CreateAndAddNewCardToCharacterHand(character, randomBlessing);
                 }
@@ -957,7 +959,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             {
                 // Get all common cards
                 List<CardData> viableCards = new List<CardData>();             
-                viableCards.AddRange(CardController.Instance.GetCardsQuery(CardController.Instance.AllCards, TalentSchool.None, Rarity.Common));
+                viableCards.AddRange(CardController.Instance.GetCardsQuery(CardController.Instance.AllCards, TalentSchool.None, Rarity.Common, false, UpgradeFilter.OnlyNonUpgraded));
 
                 for (int i = 0; i < character.pManager.fastLearnerStacks; i++)
                 {

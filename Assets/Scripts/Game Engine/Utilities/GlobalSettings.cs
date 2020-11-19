@@ -11,15 +11,16 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [LabelWidth(200)]
     public StartingSceneSetting gameMode;
 
+    [Header("General Test Settings Settings")]
+    [LabelWidth(200)]
+    [ShowIf("ShowTestCharacterTemplates")]
+    public CharacterTemplateSO[] testingCharacterTemplates;
+
     // Testing Settings
     [Header("Combat Test Scene Settings")]
     [LabelWidth(200)]
     [ShowIf("ShowEnemyWave")]
-    public EnemyWaveSO testingEnemyWave;
-
-    [LabelWidth(200)]
-    [ShowIf("ShowTestCharacterTemplates")]
-    public CharacterTemplateSO[] testingCharacterTemplates;
+    public EnemyWaveSO testingEnemyWave; 
 
     [LabelWidth(200)]
     [ShowIf("ShowTestingCampDeck")]
@@ -72,6 +73,42 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     public InitiativeSettings initiativeSetting;
 
+    // XP Settings
+    [Header("General XP + Level Settings")]
+    [LabelWidth(200)]
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
+    [Range(1, 100)]
+    public int startingLevel;
+
+    [LabelWidth(200)]
+    [Range(1, 100)]
+    public int startingXpBonus;
+
+    [LabelWidth(200)]
+    [Range(1, 100)]
+    public int startingMaxXp;
+
+    [LabelWidth(200)]
+    [Range(1, 100)]
+    public int maxHpIncrementPerLevel;
+
+    [Header("Combat XP Related Settings")]
+    [LabelWidth(200)]
+    [Range(1, 100)]
+    public int basicCombatXpReward;
+
+    [LabelWidth(200)]
+    [Range(1, 100)]
+    public int eliteCombatXpReward;
+
+    [LabelWidth(200)]
+    [Range(1, 100)]
+    public int bossCombatXpReward;
+
+    [LabelWidth(200)]
+    [Range(1, 100)]
+    public int noDamageTakenXpReward;
+
     // Loot Settings
     [Header("Loot Settings")]
     [LabelWidth(200)]
@@ -110,7 +147,14 @@ public class GlobalSettings : Singleton<GlobalSettings>
     }
     public bool ShowTestCharacterTemplates()
     {
-        return gameMode != StartingSceneSetting.KingsBlessingEvent || gameMode != StartingSceneSetting.Standard;
+        if(gameMode == StartingSceneSetting.KingsBlessingEvent || gameMode == StartingSceneSetting.Standard)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
     public bool ShowEnemyWave()
     {

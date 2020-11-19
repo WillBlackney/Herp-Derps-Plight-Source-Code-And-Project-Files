@@ -94,6 +94,10 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.race = original.race;
         newCharacter.audioProfile = original.audioProfile;
 
+        newCharacter.currentMaxXP = original.currentMaxXP;
+        newCharacter.currentXP = original.currentXP;
+        SetCharacterLevel(newCharacter, original.currentLevel);
+
         SetCharacterMaxHealth(newCharacter, original.maxHealth);
         SetCharacterHealth(newCharacter, original.health);
 
@@ -142,6 +146,10 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.myClassName = template.myClassName;
         newCharacter.race = template.race;
         newCharacter.audioProfile = template.audioProfile;
+        
+        newCharacter.currentLevel = GlobalSettings.Instance.startingLevel;
+        newCharacter.currentMaxXP = GlobalSettings.Instance.startingMaxXp;
+        HandleGainXP(newCharacter, GlobalSettings.Instance.startingXpBonus);
 
         SetCharacterMaxHealth(newCharacter, template.maxHealth);
         SetCharacterHealth(newCharacter, template.health);
@@ -227,6 +235,16 @@ public class CharacterDataController : Singleton<CharacterDataController>
         data.draw += gainedOrLost;
     }
     #endregion
+
+    // Modify XP + Level Logic
+    public void SetCharacterLevel(CharacterData data, int newLevelValue)
+    {
+        data.currentLevel = newLevelValue;
+    }
+    public void HandleGainXP(CharacterData data, int xpGained)
+    {
+        data.currentXP += xpGained;
+    }
 
     // Modify Character Deck
     #region
