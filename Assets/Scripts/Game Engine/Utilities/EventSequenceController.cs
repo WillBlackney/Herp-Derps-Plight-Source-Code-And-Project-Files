@@ -96,6 +96,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Spawn enemies
         EnemySpawner.Instance.SpawnEnemyWave("Basic", GlobalSettings.Instance.testingEnemyWave);
+        JourneyManager.Instance.SetNextEncounterAsCurrentLocation();
 
         // Start a new combat event
         ActivationManager.Instance.OnNewCombatEventStarted();
@@ -110,7 +111,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Create player characters in scene
         CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
         
-        StartCombatVictorySequence();
+        StartCombatVictorySequence(EncounterType.BasicEnemy);
     }
     private IEnumerator RunRecruitCharacterTestEventSetup()
     {
@@ -310,7 +311,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
             LevelManager.Instance.EnableDungeonScenery();
             LevelManager.Instance.ShowAllNodeViews();
             CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
-            StartCombatVictorySequence();
+            StartCombatVictorySequence(encounter.encounterType);
         }
 
         // TO DO IN FUTURE: boss loot events are different to basic/enemy, and 
@@ -705,11 +706,11 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
     // Handle Post Combat Stuff
     #region
-    public void StartCombatVictorySequence()
+    public void StartCombatVictorySequence(EncounterType combatType)
     {
-        StartCoroutine(StartCombatVictorySequenceCoroutine());
+        StartCoroutine(StartCombatVictorySequenceCoroutine(combatType));
     }
-    private IEnumerator StartCombatVictorySequenceCoroutine()
+    private IEnumerator StartCombatVictorySequenceCoroutine(EncounterType combatType)
     {
         // wait until v queue count = 0
         yield return new WaitUntil(()=> VisualEventManager.Instance.EventQueue.Count == 0);
@@ -737,14 +738,35 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Hide end turn button
         UIManager.Instance.DisableEndTurnButtonView();
 
-        // Generate loot result + Auto save
-        if(JourneyManager.Instance.CheckPointType != SaveCheckPoint.CombatEnd)
+        // Do post combat mini event + reward xp
+        if (JourneyManager.Instance.CheckPointType != SaveCheckPoint.CombatEnd)
         {
+            // Cache previous xp of characters for visual events
+            List<PreviousXpState> pxsList = new List<PreviousXpState>();
+            foreach(CharacterData character in CharacterDataController.Instance.AllPlayerCharacters)
+            {
+                pxsList.Add(new PreviousXpState(character));
+            }
+
+            // Grant xp
+            CharacterDataController.Instance.HandleXpRewardPostCombat(combatType);
+            
+            // Start visual event
+            LootController.Instance.PlayNewXpRewardVisualEvent(pxsList);            
+        }
+
+        // Generate loot result + Auto save
+        if (JourneyManager.Instance.CheckPointType != SaveCheckPoint.CombatEnd)
+        {
+            // Generate loot
             LootController.Instance.SetAndCacheNewLootResult();
 
-            // Save and set cechkpoint + cache loot result
+            // Save and set checkpoint + cache loot result
             JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.CombatEnd);
             PersistencyManager.Instance.AutoUpdateSaveFile();
+
+            // Wait for xp reward v event to finish
+            yield return new WaitForSeconds(3f);
         }       
 
         // Build loot screen views

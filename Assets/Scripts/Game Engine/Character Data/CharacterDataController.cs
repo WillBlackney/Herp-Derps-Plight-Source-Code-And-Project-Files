@@ -243,7 +243,67 @@ public class CharacterDataController : Singleton<CharacterDataController>
     }
     public void HandleGainXP(CharacterData data, int xpGained)
     {
-        data.currentXP += xpGained;
+        // check spill over + level up first
+        int spillOver = (data.currentXP + xpGained) - data.currentMaxXP;
+
+        // Level up occured with spill over XP
+        if(spillOver > 0)
+        {
+            // Gain level
+            SetCharacterLevel(data, data.currentLevel + 1);
+
+            // Reset current xp
+            data.currentXP = 0;
+
+            // Increase max xp on level up
+            data.currentMaxXP += GlobalSettings.Instance.maxHpIncrementPerLevel;
+
+            // Restart the xp gain procces with the spill over amount
+            HandleGainXP(data, spillOver);
+        }
+
+        // Level up with no spill over
+        else if(spillOver == 0)
+        { 
+            // Gain level
+            SetCharacterLevel(data, data.currentLevel + 1);
+
+            // Reset current xp
+            data.currentXP = 0;
+
+            // Increase max xp on level up
+            data.currentMaxXP += GlobalSettings.Instance.maxHpIncrementPerLevel;
+        }
+
+        // Gain xp without leveling up
+        else
+        {
+            data.currentXP += xpGained;
+        }
+    }
+    public void HandleXpRewardPostCombat(EncounterType encounter)
+    {
+        if(encounter == EncounterType.BasicEnemy)
+        {
+            foreach(CharacterData character in AllPlayerCharacters)
+            {
+                HandleGainXP(character, GlobalSettings.Instance.basicCombatXpReward);
+            }         
+        }
+        else if (encounter == EncounterType.EliteEnemy)
+        {
+            foreach (CharacterData character in AllPlayerCharacters)
+            {
+                HandleGainXP(character, GlobalSettings.Instance.eliteCombatXpReward);
+            }
+        }
+        else if (encounter == EncounterType.BossEnemy)
+        {
+            foreach (CharacterData character in AllPlayerCharacters)
+            {
+                HandleGainXP(character, GlobalSettings.Instance.bossCombatXpReward);
+            }
+        }
     }
 
     // Modify Character Deck

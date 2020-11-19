@@ -5,6 +5,7 @@ using DG.Tweening;
 using System;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
+using System.Collections;
 
 public class LootController : Singleton<LootController>
 {
@@ -40,6 +41,12 @@ public class LootController : Singleton<LootController>
     [SerializeField] private CanvasGroup previewCardCg;
     [SerializeField] private RectTransform[] rectRebuilds;
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
+
+    [Header("XP Reward Screen Components")]
+    public GameObject xpRewardScreenVisualParent;
+    public CanvasGroup xpRewardScreenCg;
+    public RewardCharacterBox[] rewardCharacterBoxes;
+
 
     public LootResultModel CurrentLootResultData
     {
@@ -459,6 +466,7 @@ public class LootController : Singleton<LootController>
     #endregion
 
     // Save + Load Logic
+    #region
     public void SaveMyDataToSaveFile(SaveGameData saveFile)
     {
         saveFile.currentLootResult = CurrentLootResultData;
@@ -473,4 +481,77 @@ public class LootController : Singleton<LootController>
         timeSinceLastEpic = saveFile.timeSinceLastEpic;
         timeSinceLastUpgrade = saveFile.timeSinceLastUpgrade;
     }
+    #endregion
+
+    // Post Combat Mini XP Event Logic
+    #region
+    public void PlayNewXpRewardVisualEvent(List<PreviousXpState> pxpData)
+    {
+        StartCoroutine(PlayNewXpRewardVisualEventCoroutine(pxpData));
+    }
+    private IEnumerator PlayNewXpRewardVisualEventCoroutine(List<PreviousXpState> pxsData)
+    {
+        yield return null;
+        FadeInXpRewardScreen();
+        yield return new WaitForSeconds(0.5f);
+
+        int index = 0;
+
+        // Disable + Reset reward boxes
+        foreach(RewardCharacterBox b in rewardCharacterBoxes)
+        {
+            b.visualParent.SetActive(false);
+        }
+
+        // Build character box starting states
+        foreach(CharacterData character in CharacterDataController.Instance.AllPlayerCharacters)
+        {
+            // find the characters matching psx data
+            foreach(PreviousXpState psx in pxsData)
+            {
+                if(psx.characterRef == character)
+                {
+                    // found the match
+                    BuildRewardCharacterBoxStartingViewState(rewardCharacterBoxes[index], character, psx);
+                    break;
+                }
+            }
+
+            index++;
+        }
+
+
+    }
+    private void FadeInXpRewardScreen(float speed = 0.5f)
+    {
+        xpRewardScreenVisualParent.SetActive(true);
+        xpRewardScreenCg.alpha = 0;
+        xpRewardScreenCg.DOFade(1, speed);
+    }
+    private void BuildRewardCharacterBoxStartingViewState(RewardCharacterBox box, CharacterData character, PreviousXpState pxs)
+    {
+        // Enable view
+        box.visualParent.SetActive(true);
+
+        // Build ucm 
+        CharacterModelController.BuildModelFromStringReferences(box.ucm, character.modelParts);
+
+        // build texts + slider
+        box.currentLevelText.text = pxs.previousLevel.ToString();
+
+        // Set xp bar start view state
+        UpdateXpBarPosition(box.xpBar, pxs.previousXp, pxs.previousMaxXp);
+
+    }
+    private void UpdateXpBarPosition(Slider xpBar, int currentXp, int maxXp)
+    {
+        // Convert health int values to floats
+        float currentXpFloat = currentXp;
+        float currentMaxXpFloat = maxXp;
+        float xpBarFloat = currentXpFloat / currentMaxXpFloat;
+
+        // Modify health bar slider + health texts
+        xpBar.value = xpBarFloat;
+    }
+    #endregion
 }

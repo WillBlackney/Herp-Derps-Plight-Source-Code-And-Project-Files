@@ -21,8 +21,8 @@ MonoBehaviour:
   initiative: 3
   power: 0
   dexterity: 0
-  overrideStartingHealth: 0
-  startingHealth: 3
+  overrideStartingHealth: 1
+  startingHealth: 1
   startingBlock: 0
   physicalResistance: 50
   magicResistance: -50
@@ -70,6 +70,7 @@ MonoBehaviour:
     demonFormStacks: 0
     darkBargainStacks: 0
     volatileStacks: 0
+    soulCollectorStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -83,6 +84,7 @@ MonoBehaviour:
     sleepStacks: 0
     poisonedStacks: 0
     burningStacks: 0
+    bleedingStacks: 0
     fireBallBonusDamageStacks: 0
   allEnemyActions:
   - actionName: Strike
@@ -142,6 +144,7 @@ MonoBehaviour:
         onCharacter: 0
       visualEventsOnFinish: []
       actionType: 0
+      effectLoops: 1
       baseDamage: 5
       damageType: 1
       characterSummoned: {fileID: 0}

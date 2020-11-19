@@ -55,11 +55,12 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: fbde49cca255f42c89f5ee4378cbbfa1, type: 3}
-    totalSpriteSurfaceArea: 465602
+    totalSpriteSurfaceArea: 534050
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 2e16ff909ace4479e969b77eff6fa68e, type: 3}
+  - {fileID: 9086750579033901184, guid: da1272f0788b06c44a75890bc7690a29, type: 3}
   - {fileID: 21300000, guid: ae0c3dd1f02de49aebf112b99fa547f6, type: 3}
   - {fileID: 21300000, guid: 8f6cc60260010454985b2e3cdb197fce, type: 3}
   - {fileID: 21300000, guid: 31f842223ef934e8196a0f6c5f78a4b1, type: 3}
@@ -78,6 +79,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 132eca0feb55947e2afe9068162b62dc, type: 3}
   m_PackedSpriteNamesToIndex:
   - levelup_badge_body_goldwing_left
+  - levelup_badge_body 1_0
   - levelup_badge_body
   - levelup_badge_bottom_right
   - reward_item_energy

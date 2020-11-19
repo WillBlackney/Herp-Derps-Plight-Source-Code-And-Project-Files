@@ -797,7 +797,7 @@ public class CombatLogic : Singleton<CombatLogic>
     {
         Debug.Log("CombatLogic.StartCombatOverVictoryProcess() called...");
         currentCombatState = CombatGameState.VictoryTriggered;
-        EventSequenceController.Instance.StartCombatVictorySequence();
+        EventSequenceController.Instance.StartCombatVictorySequence(JourneyManager.Instance.CurrentEncounter.encounterType);
 
     }
     #endregion

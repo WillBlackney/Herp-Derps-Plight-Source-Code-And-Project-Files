@@ -190,6 +190,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6110975508677312415}
+  - component: {fileID: 5849362712590296468}
   m_Layer: 0
   m_Name: Reward Character Box
   m_TagString: Untagged
@@ -220,6 +221,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0.50006104, y: -19.496704}
   m_SizeDelta: {x: 1, y: 38.99347}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5849362712590296468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6110975508677312408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a7a1112931c837419ba1c7d4922d092, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visualParent: {fileID: 6110975508677312408}
+  ucm: {fileID: 2863101721033062930}
+  currentLevelText: {fileID: 6110975510076353513}
+  totalXpText: {fileID: 6110975510213545300}
+  combatTypeText: {fileID: 6110975509389990331}
+  combatTypeRewardText: {fileID: 6110975509956172773}
+  xpBar: {fileID: 6110975509347209628}
 --- !u!1 &6110975508765567905
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,7 +808,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6110975509413707993
 RectTransform:
   m_ObjectHideFlags: 0
@@ -805,9 +825,9 @@ RectTransform:
   m_Father: {fileID: 6110975509814230002}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 21.10785, y: -75}
   m_SizeDelta: {x: 300, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6110975509502579400
@@ -1959,7 +1979,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 40
+  m_fontSize: 25.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2290,7 +2310,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: -1
+  m_firstOverflowCharacterIndex: 0
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -2319,7 +2339,7 @@ MonoBehaviour:
     spaceCount: 1
     wordCount: 3
     linkCount: 0
-    lineCount: 1
+    lineCount: 4
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
