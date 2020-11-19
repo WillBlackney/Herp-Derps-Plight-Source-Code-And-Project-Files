@@ -31,7 +31,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Start application type
         if (GlobalSettings.Instance.gameMode == StartingSceneSetting.CombatSceneSingle)
         {
-            StartCoroutine(RunCombatSceneSetup());
+            StartCoroutine(RunCombatSceneTestSetup());
         }
         else if (GlobalSettings.Instance.gameMode == StartingSceneSetting.Standard)
         {
@@ -39,11 +39,11 @@ public class EventSequenceController : Singleton<EventSequenceController>
         }
         else if (GlobalSettings.Instance.gameMode == StartingSceneSetting.CombatEndLootEvent)
         {
-            StartCoroutine(RunCombatEndLootEventSetup());
+            StartCoroutine(RunCombatEndLootTestEventSetup());
         }
         else if (GlobalSettings.Instance.gameMode == StartingSceneSetting.RecruitCharacterEvent)
         {
-            StartCoroutine(RunRecruitCharacterEventSetup());
+            StartCoroutine(RunRecruitCharacterTestEventSetup());
         }
         else if (GlobalSettings.Instance.gameMode == StartingSceneSetting.KingsBlessingEvent)
         {
@@ -77,7 +77,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         MainMenuController.Instance.frontScreenGuiCg.DOFade(1f, 1f).SetEase(Ease.OutCubic);
     }
-    private IEnumerator RunCombatSceneSetup()
+    private IEnumerator RunCombatSceneTestSetup()
     {
         yield return null;
 
@@ -100,7 +100,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Start a new combat event
         ActivationManager.Instance.OnNewCombatEventStarted();
     }
-    private IEnumerator RunCombatEndLootEventSetup()
+    private IEnumerator RunCombatEndLootTestEventSetup()
     {
         yield return null;
 
@@ -112,7 +112,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         
         StartCombatVictorySequence();
     }
-    private IEnumerator RunRecruitCharacterEventSetup()
+    private IEnumerator RunRecruitCharacterTestEventSetup()
     {
         yield return null;
 
