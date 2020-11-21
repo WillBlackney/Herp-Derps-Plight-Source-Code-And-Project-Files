@@ -443,6 +443,7 @@ public enum Sound
     Music_Elite_2 = 45,
     Music_Boss_1 = 47,
     Music_Boss_2 = 48,
+    Music_Victory_Fanfare = 50,
     Music_Main_Menu_Theme_1 = 36,
 
 

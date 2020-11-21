@@ -6,6 +6,7 @@ using System;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
 using System.Collections;
+using Spriter2UnityDX;
 
 public class LootController : Singleton<LootController>
 {
@@ -43,9 +44,14 @@ public class LootController : Singleton<LootController>
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("XP Reward Screen Components")]
-    public GameObject xpRewardScreenVisualParent;
-    public CanvasGroup xpRewardScreenCg;
-    public RewardCharacterBox[] rewardCharacterBoxes;
+    [SerializeField] private GameObject xpRewardScreenVisualParent;
+    [SerializeField] private CanvasGroup xpRewardScreenCg;
+    [SerializeField] private RewardCharacterBox[] rewardCharacterBoxes;
+    [SerializeField] private Transform[] confettiTransforms;
+
+    [Header("XP Reward Screen Window Positions")]
+    [SerializeField] private Transform[] windowOnePositions;
+    [SerializeField] private Transform[] windowTwoPositions;
 
 
     public LootResultModel CurrentLootResultData
@@ -145,11 +151,11 @@ public class LootController : Singleton<LootController>
 
     // Show, Hide And Transisition Screens
     #region
-    public void FadeInMainLootView()
+    public void FadeInMainLootView(float speed = 0.5f)
     {
         visualParentCg.alpha = 0;
         visualParent.SetActive(true);
-        visualParentCg.DOFade(1f, 0.35f);
+        visualParentCg.DOFade(1f, speed);
     }
     public void FadeOutMainLootView(Action onCompleteCallback)
     {
@@ -491,16 +497,35 @@ public class LootController : Singleton<LootController>
     }
     private IEnumerator PlayNewXpRewardVisualEventCoroutine(List<PreviousXpState> pxsData, List<XpRewardData> xpRewardDataSet)
     {
-        FadeInXpRewardScreen();
-        yield return new WaitForSeconds(0.5f);     
+        // Setup
+        List<CoroutineData> sfxEvents = new List<CoroutineData>();
+        int index = 0;
 
-        // Disable + Reset reward boxes
-        foreach(RewardCharacterBox b in rewardCharacterBoxes)
+        // Show screen
+        FadeInXpRewardScreen();
+
+        // Disable + Reset reward boxes views
+        foreach (RewardCharacterBox b in rewardCharacterBoxes)
         {
             b.visualParent.SetActive(false);
         }
 
-        int index = 0;
+        // Play victory music
+        AudioManager.Instance.PlaySound(Sound.Music_Victory_Fanfare);
+        yield return new WaitForSeconds(0.5f);
+
+        // Confetti VFX
+        CreateConfettiExplosionsOnDiscovery();
+
+        // Start xp bar filling sfx
+        AudioManager.Instance.PlaySound(Sound.GUI_Rolling_Bells);
+
+        // Get the correct slot arrangement
+        Transform[] slots = windowOnePositions;
+        if(CharacterDataController.Instance.AllPlayerCharacters.Count == 2)
+        {
+            slots = windowTwoPositions;
+        }
 
         // Build character box starting states
         foreach (CharacterData character in CharacterDataController.Instance.AllPlayerCharacters)
@@ -514,7 +539,10 @@ public class LootController : Singleton<LootController>
                     {
                         if(xrd.characterRef == character)
                         {
-                            BuildRewardCharacterBoxStartingViewState(rewardCharacterBoxes[index], character, psx, xrd);
+                            CoroutineData cData = new CoroutineData();
+                            sfxEvents.Add(cData);
+                            BuildRewardCharacterBoxStartingViewState(rewardCharacterBoxes[index], character, psx, xrd, cData);
+                            MoveRewardCharacterBoxToSlotPosition(rewardCharacterBoxes[index], slots[index]);
                             break;
                         }
                     }              
@@ -522,19 +550,66 @@ public class LootController : Singleton<LootController>
             }
 
             index++;
+        }        
+
+        // Wait for xp bars to finish filling up, then stop bells sfx
+        yield return new WaitUntil(() => AllEventsFinished(sfxEvents));
+        AudioManager.Instance.StopSound(Sound.GUI_Rolling_Bells);
+
+    }
+    private void MoveRewardCharacterBoxToSlotPosition(RewardCharacterBox box, Transform position)
+    {
+        box.visualParent.transform.DOMove(position.position, 0f);
+    }
+    private bool AllEventsFinished(List<CoroutineData> events)
+    {
+        bool finished = true;
+
+        foreach(CoroutineData cData in events)
+        {
+            if(cData.CoroutineCompleted() == false)
+            {
+                finished = false;
+                break;
+            }
         }
 
-        // for each character
-        // play rolling number anim for total xp
-        // set combat 
+        return finished;
     }
     private void FadeInXpRewardScreen(float speed = 0.5f)
-    {
+    {       
+        // Enable + fade in main view
         xpRewardScreenVisualParent.SetActive(true);
         xpRewardScreenCg.alpha = 0;
         xpRewardScreenCg.DOFade(1, speed);
+
+        // Fade in characters
+        foreach (RewardCharacterBox box in rewardCharacterBoxes)
+        {
+            EntityRenderer view = box.ucm.GetComponent<EntityRenderer>();
+            view.Color = new Color(view.Color.r, view.Color.g, view.Color.b, 1f);
+
+            //CharacterEntityController.Instance.FadeInEntityRenderer(box.ucm.GetComponent<EntityRenderer>(), 10f);
+        }
     }
-    private void BuildRewardCharacterBoxStartingViewState(RewardCharacterBox box, CharacterData character, PreviousXpState pxs, XpRewardData xrd)
+    public void FadeOutXpRewardScreen(float speed = 0.5f)
+    {
+        // Enable views
+        xpRewardScreenVisualParent.SetActive(true);
+        xpRewardScreenCg.alpha = 1;
+
+        // Fade out character models
+        foreach (RewardCharacterBox box in rewardCharacterBoxes)
+        {
+            CharacterEntityController.Instance.FadeOutEntityRenderer(box.ucm.GetComponent<EntityRenderer>(), 10f);
+        }       
+  
+        // Fade out + disable main view
+        Sequence s = DOTween.Sequence();
+        s.Append(xpRewardScreenCg.DOFade(0, speed));
+        s.OnComplete(() => xpRewardScreenVisualParent.SetActive(false));
+    }
+    private void BuildRewardCharacterBoxStartingViewState(RewardCharacterBox box, CharacterData character, PreviousXpState pxs, XpRewardData xrd, CoroutineData cData)
     {
         // Enable view
         box.visualParent.SetActive(true);
@@ -545,6 +620,9 @@ public class LootController : Singleton<LootController>
 
         // Build ucm 
         CharacterModelController.BuildModelFromStringReferences(box.ucm, character.modelParts);
+
+        // Set total xp text start state
+        box.totalXpText.text = "+0 XP";
 
         // Build level and combat type texts
         box.currentLevelText.text = pxs.previousLevel.ToString();        
@@ -571,14 +649,14 @@ public class LootController : Singleton<LootController>
             totalXpGainedInt += GlobalSettings.Instance.noDamageTakenXpReward;
         }
 
-        // Set total xp gained text
-        box.totalXpText.text = "+" + totalXpGainedInt.ToString() + " XP";
-
         // Set xp bar start view state
         UpdateXpBarPosition(box.xpBar, pxs.previousXp, pxs.previousMaxXp);
 
         // Play xp bar animation
-        PlayUpdateXpBarAnimation(character, box, pxs);
+        PlayUpdateXpBarAnimation(character, box, pxs, cData);
+
+        // Play total xp gained text animation
+        PlayUpdateTotalXpGainTextAnimation(box.totalXpText, totalXpGainedInt);
 
     }
     private void UpdateXpBarPosition(Slider xpBar, int currentXp, int maxXp)
@@ -591,11 +669,11 @@ public class LootController : Singleton<LootController>
         // Modify health bar slider + health texts
         xpBar.value = xpBarFloat;
     }
-    private void PlayUpdateXpBarAnimation(CharacterData data, RewardCharacterBox box, PreviousXpState pxs)
+    private void PlayUpdateXpBarAnimation(CharacterData data, RewardCharacterBox box, PreviousXpState pxs, CoroutineData cData)
     {
-        StartCoroutine(PlayUpdateXpBarAnimationCoroutine( data, box, pxs));
+        StartCoroutine(PlayUpdateXpBarAnimationCoroutine( data, box, pxs, cData));
     }
-    private IEnumerator PlayUpdateXpBarAnimationCoroutine(CharacterData data, RewardCharacterBox box, PreviousXpState pxs)
+    private IEnumerator PlayUpdateXpBarAnimationCoroutine(CharacterData data, RewardCharacterBox box, PreviousXpState pxs, CoroutineData cData)
     {
         // Should we play level up bar animation?
         if (pxs.previousLevel < data.currentLevel)
@@ -613,6 +691,9 @@ public class LootController : Singleton<LootController>
 
             // Hit the end of bar, do level gained visual stuff
             box.currentLevelText.text = data.currentLevel.ToString();
+
+            // Chime ping SFX on level up
+            AudioManager.Instance.PlaySound(Sound.GUI_Chime_1);
 
             // Move xp slider to final position after xp overflow
             maxXpPoint = data.currentMaxXP;
@@ -636,6 +717,44 @@ public class LootController : Singleton<LootController>
                 currentXpPoint++;
                 yield return null;
             }
+        }
+
+        if(cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+    }
+    private void PlayUpdateTotalXpGainTextAnimation(TextMeshProUGUI text, int endValue)
+    {
+        StartCoroutine(PlayUpdateTotalXpGainTextAnimationCoroutine(text, endValue));
+    }
+    private IEnumerator PlayUpdateTotalXpGainTextAnimationCoroutine(TextMeshProUGUI text, int endValue)
+    {
+        int currentCount = 0;
+
+        while(currentCount < endValue)
+        {
+            currentCount += 2;
+            if(currentCount > endValue)
+            {
+                currentCount = endValue;
+            }
+
+            text.text = "+" + currentCount.ToString() + " XP";
+            
+            yield return null;
+        }
+    }
+
+    #endregion
+
+    // Misc Logic
+    #region
+    private void CreateConfettiExplosionsOnDiscovery()
+    {
+        foreach (Transform t in confettiTransforms)
+        {
+            VisualEffectManager.Instance.CreateConfettiExplosionRainbow(t.position, 10000);
         }
     }
     #endregion

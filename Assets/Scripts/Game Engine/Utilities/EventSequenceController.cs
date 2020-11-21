@@ -799,7 +799,10 @@ public class EventSequenceController : Singleton<EventSequenceController>
             PersistencyManager.Instance.AutoUpdateSaveFile();
 
             // Wait for xp reward v event to finish
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(5f);
+
+            // Fade out xp screen
+            LootController.Instance.FadeOutXpRewardScreen();
         }          
 
         // Build loot screen views
