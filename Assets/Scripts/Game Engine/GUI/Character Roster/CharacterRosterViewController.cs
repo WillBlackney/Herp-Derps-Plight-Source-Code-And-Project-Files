@@ -298,12 +298,26 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     }
     public void OnTalentPanelPlusButtonClicked(TalentPanelCharacterRoster panel)
     {
-        if(currentCharacterViewing == null)
+        if(currentCharacterViewing.talentPoints > 0)
         {
-            Debug.LogWarning("CharacterRosterViewController.OnTalentPanelPlusButtonClicked() detected character data is null, cancelling...");
-            return;
-        }
+            // VFX + SFX
+            VisualEffectManager.Instance.CreateSmallMeleeImpact(panel.PlusButtonParent.transform.position, 27000);
+            AudioManager.Instance.PlaySound(Sound.Passive_General_Buff);           
 
+            // Deduct talent points
+            CharacterDataController.Instance.ModifyCharacterTalentPoints(currentCharacterViewing, -1);
+
+            // Gain new talent
+            TalentPairingModel tpm = CharacterDataController.Instance.HandlePlayerGainTalent(currentCharacterViewing, panel.TalentSchool, 1);
+
+            // Update gui            
+            talentPointsText.text = currentCharacterViewing.talentPoints.ToString();
+            panel.SetTierText(tpm.talentLevel.ToString());
+            if(tpm.talentLevel == 2)
+            {
+                panel.SetPlusButtonActiveState(false);
+            }
+        }      
 
     }
     private void ShowTalentBoxView()
@@ -317,7 +331,7 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     private void BuildTalentBoxFromData(CharacterData character)
     {
         BuildTalentPanelsFromCharacterData(character);
-        SetTalentPointsText(character.currentTalentPoints.ToString());
+        SetTalentPointsText(character.talentPoints.ToString());
     }
     private void SetTalentPointsText(string text)
     {
@@ -355,7 +369,7 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
             }
 
             // SHould enable plus button?
-            if(character.currentTalentPoints > 0 && talentLevel < 2)
+            if(character.talentPoints > 0 && talentLevel < 2)
             {
                 panel.SetPlusButtonActiveState(true);
             }

@@ -97,6 +97,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.currentMaxXP = original.currentMaxXP;
         newCharacter.currentXP = original.currentXP;
         SetCharacterLevel(newCharacter, original.currentLevel);
+        ModifyCharacterTalentPoints(newCharacter, original.talentPoints);
 
         SetCharacterMaxHealth(newCharacter, original.maxHealth);
         SetCharacterHealth(newCharacter, original.health);
@@ -149,6 +150,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
         
         newCharacter.currentLevel = GlobalSettings.Instance.startingLevel;
         newCharacter.currentMaxXP = GlobalSettings.Instance.startingMaxXp;
+        ModifyCharacterTalentPoints(newCharacter, GlobalSettings.Instance.startingTalentPoints);
         HandleGainXP(newCharacter, GlobalSettings.Instance.startingXpBonus);
 
         SetCharacterMaxHealth(newCharacter, template.maxHealth);
@@ -256,7 +258,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
             data.currentXP = 0;
 
             // Increase max xp on level up
-            data.currentMaxXP += GlobalSettings.Instance.maxHpIncrementPerLevel;
+            data.currentMaxXP += GlobalSettings.Instance.maxXpIncrementPerLevel;
 
             // Restart the xp gain procces with the spill over amount
             HandleGainXP(data, spillOver);
@@ -272,7 +274,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
             data.currentXP = 0;
 
             // Increase max xp on level up
-            data.currentMaxXP += GlobalSettings.Instance.maxHpIncrementPerLevel;
+            data.currentMaxXP += GlobalSettings.Instance.maxXpIncrementPerLevel;
         }
 
         // Gain xp without leveling up
@@ -318,6 +320,54 @@ public class CharacterDataController : Singleton<CharacterDataController>
             }
             
         }
+    }
+    public void ModifyCharacterTalentPoints(CharacterData data, int gainedOrLost)
+    {
+        data.talentPoints += gainedOrLost;
+    }
+    public TalentPairingModel HandlePlayerGainTalent(CharacterData character, TalentSchool talent, int pointsGained)
+    {
+        TalentPairingModel tpm = null;
+
+        // Check if character already has unlocked first talent level
+        foreach(TalentPairingModel tp in character.talentPairings)
+        {
+            if(tp.talentSchool == talent)
+            {
+                tpm = tp;
+                break;
+            }
+        }
+
+        // Did we find a pre-existing talent?
+        if(tpm != null)
+        {
+            // We did, increase talent level
+            tpm.talentLevel += pointsGained;
+
+            // Prevent talent exceeding tier 2
+            if(tpm.talentLevel > 2)
+            {
+                tpm.talentLevel = 2;
+            }
+
+            // Prevent going negative
+            else if (tpm.talentLevel < 0)
+            {
+                tpm.talentLevel = 0;
+            }
+        }
+
+        // Otherwise, create a new talent pairing
+        else
+        {
+            tpm = new TalentPairingModel();
+            tpm.talentLevel = pointsGained;
+            tpm.talentSchool = talent;
+            character.talentPairings.Add(tpm);
+        }
+
+        return tpm;
     }
 
     // Modify Character Deck

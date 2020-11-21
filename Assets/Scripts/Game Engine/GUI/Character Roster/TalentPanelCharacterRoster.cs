@@ -26,6 +26,11 @@ public class TalentPanelCharacterRoster : MonoBehaviour, IPointerEnterHandler, I
     {
         get { return talentScool; }
     }
+    public GameObject PlusButtonParent
+    {
+        get { return plusButtonParent; }
+        private set { PlusButtonParent = value; }
+    }
     #endregion
 
     // Set Views
@@ -62,6 +67,7 @@ public class TalentPanelCharacterRoster : MonoBehaviour, IPointerEnterHandler, I
     #region
     public void OnPlusButtonClicked()
     {
+        Debug.LogWarning("OnPlusButtonClicked");
         CharacterRosterViewController.Instance.OnTalentPanelPlusButtonClicked(this);
     }
     public void OnPointerEnter(PointerEventData eventData)

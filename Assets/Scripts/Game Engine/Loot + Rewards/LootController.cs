@@ -694,6 +694,7 @@ public class LootController : Singleton<LootController>
 
             // Chime ping SFX on level up
             AudioManager.Instance.PlaySound(Sound.GUI_Chime_1);
+            VisualEffectManager.Instance.CreateSmallMeleeImpact(box.currentLevelText.transform.position, 10000);
 
             // Move xp slider to final position after xp overflow
             maxXpPoint = data.currentMaxXP;

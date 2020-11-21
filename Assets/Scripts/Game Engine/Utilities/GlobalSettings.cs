@@ -77,11 +77,11 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [Header("General XP + Level Settings")]
     [LabelWidth(200)]
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
-    [Range(1, 100)]
+    [Range(1, 10)]
     public int startingLevel;
 
     [LabelWidth(200)]
-    [Range(1, 100)]
+    [Range(0, 100)]
     public int startingXpBonus;
 
     [LabelWidth(200)]
@@ -89,8 +89,12 @@ public class GlobalSettings : Singleton<GlobalSettings>
     public int startingMaxXp;
 
     [LabelWidth(200)]
-    [Range(1, 100)]
-    public int maxHpIncrementPerLevel;
+    [Range(0, 100)]
+    public int maxXpIncrementPerLevel;
+
+    [LabelWidth(200)]
+    [Range(0, 100)]
+    public int startingTalentPoints = 0;
 
     [Header("Combat XP Related Settings")]
     [LabelWidth(200)]
@@ -106,7 +110,7 @@ public class GlobalSettings : Singleton<GlobalSettings>
     public int bossCombatXpReward;
 
     [LabelWidth(200)]
-    [Range(1, 100)]
+    [Range(0, 100)]
     public int noDamageTakenXpReward;
 
     // Loot Settings

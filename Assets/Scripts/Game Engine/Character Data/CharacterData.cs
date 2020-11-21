@@ -27,6 +27,7 @@ public class CharacterData
     public int currentLevel = 1;
     public int currentXP = 0;
     public int currentMaxXP;
+ 
 
     [Header("Deck Properties")]
     [HideInInspector] public List<CardData> deck;
@@ -38,6 +39,6 @@ public class CharacterData
     public ItemManagerModel itemManager = new ItemManagerModel();
 
     [Header("Talent Properties")]
+    public int talentPoints = 0;
     public List<TalentPairingModel> talentPairings = new List<TalentPairingModel>();
-    public int currentTalentPoints = 0;
 }
