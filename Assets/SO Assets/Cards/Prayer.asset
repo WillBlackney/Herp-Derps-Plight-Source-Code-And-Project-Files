@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Prayer
   cardDescription: 'Add 2 random Blessings to your hand. '
-  cardSprite: {fileID: 21300000, guid: 550483f39b545b04887d5dbc4fb1a5f1, type: 3}
+  cardSprite: {fileID: 21300000, guid: b4e7bdfe5cab431438b79934954020e8, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
   cardType: 1
   targettingType: 0
   talentSchool: 10
   rarity: 1
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 1
@@ -31,6 +32,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -70,6 +72,7 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []

@@ -19,7 +19,7 @@ MonoBehaviour:
   health: 500
   maxHealth: 500
   power: 0
-  dexterity: 0
+  dexterity: 10
   stamina: 10
   draw: 10
   initiative: 50
@@ -46,10 +46,10 @@ MonoBehaviour:
     enrageStacks: 0
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
-    divineFavourStacks: 2
+    divineFavourStacks: 0
     phoenixFormStacks: 0
     poisonousStacks: 0
-    venomousStacks: 2
+    venomousStacks: 0
     overloadStacks: 0
     fusionStacks: 0
     plantedFeetStacks: 0
@@ -75,6 +75,8 @@ MonoBehaviour:
     darkBargainStacks: 0
     volatileStacks: 0
     soulCollectorStacks: 0
+    magicMagnetStacks: 2
+    etherealStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -90,15 +92,12 @@ MonoBehaviour:
     burningStacks: 0
     bleedingStacks: 0
     fireBallBonusDamageStacks: 0
+    sourceStacks: 0
   deck:
-  - {fileID: 11400000, guid: 9a485b795a8ea7d4fbab8525e8284e7d, type: 2}
-  - {fileID: 11400000, guid: 17a56e174d38a8844b354d92f14a8d35, type: 2}
-  - {fileID: 11400000, guid: 87514d0403c7e7f4abb87ab0dbfe26f2, type: 2}
-  - {fileID: 11400000, guid: 8d1c8d3a9da8d77469609af2293f2eb9, type: 2}
-  - {fileID: 11400000, guid: 68a2fadae69eddb48822422a193f5dde, type: 2}
-  - {fileID: 11400000, guid: 005bb532b26a34b4fa874e70d8fb7781, type: 2}
-  - {fileID: 11400000, guid: 238bc2ffb3d01884abc4765af2cb53b2, type: 2}
-  - {fileID: 11400000, guid: 695053ad1be5cc44da259bb925528723, type: 2}
+  - {fileID: 11400000, guid: 5962e9276926a33409677ca286550966, type: 2}
+  - {fileID: 11400000, guid: 5962e9276926a33409677ca286550966, type: 2}
+  - {fileID: 11400000, guid: 87e710bfb78236b42a44777328a1d766, type: 2}
+  - {fileID: 11400000, guid: 87e710bfb78236b42a44777328a1d766, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1
@@ -117,6 +116,4 @@ MonoBehaviour:
   serializedItemManager:
     mainHandItem: {fileID: 11400000, guid: dfeeccc8c225a66488eb3e4eb76d6c3b, type: 2}
     offHandItem: {fileID: 0}
-  talentPairings:
-  - talentSchool: 10
-    talentLevel: 2
+  talentPairings: []

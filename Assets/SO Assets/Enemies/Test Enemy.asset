@@ -21,7 +21,7 @@ MonoBehaviour:
   initiative: 3
   power: 0
   dexterity: 0
-  overrideStartingHealth: 1
+  overrideStartingHealth: 0
   startingHealth: 1
   startingBlock: 0
   physicalResistance: 50
@@ -86,6 +86,7 @@ MonoBehaviour:
     burningStacks: 0
     bleedingStacks: 0
     fireBallBonusDamageStacks: 0
+    sourceStacks: 0
   allEnemyActions:
   - actionName: Strike
     actionType: 0

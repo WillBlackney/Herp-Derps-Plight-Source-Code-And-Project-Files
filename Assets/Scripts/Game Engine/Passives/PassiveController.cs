@@ -178,6 +178,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyOverload(newClone, originalData.overloadStacks, false);
         }
+        if (originalData.sourceStacks != 0)
+        {
+            ModifySource(newClone, originalData.sourceStacks, false);
+        }
         if (originalData.fusionStacks != 0)
         {
             ModifyFusion(newClone, originalData.fusionStacks, false);
@@ -273,6 +277,14 @@ public class PassiveController : Singleton<PassiveController>
         if (originalData.soulCollectorStacks != 0)
         {
             ModifySoulCollector(newClone, originalData.soulCollectorStacks, false);
+        }
+        if (originalData.magicMagnetStacks != 0)
+        {
+            ModifyMagicMagnet(newClone, originalData.magicMagnetStacks, false);
+        }
+        if (originalData.etherealStacks != 0)
+        {
+            ModifyEthereal(newClone, originalData.magicMagnetStacks, false);
         }
         #endregion
 
@@ -416,6 +428,8 @@ public class PassiveController : Singleton<PassiveController>
         pManager.darkBargainStacks = original.darkBargainStacks;
         pManager.volatileStacks = original.volatileStacks;
         pManager.soulCollectorStacks = original.soulCollectorStacks;
+        pManager.magicMagnetStacks = original.magicMagnetStacks;
+        pManager.etherealStacks = original.etherealStacks;
 
         pManager.runeStacks = original.runeStacks;
         pManager.barrierStacks = original.barrierStacks;
@@ -554,6 +568,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyOverload(pManager, stacks, showVFX, vfxDelay);
         }
+        else if (originalData == "Source")
+        {
+            ModifySource(pManager, stacks, showVFX, vfxDelay);
+        }
         else if (originalData == "Fusion")
         {
             ModifyFusion(pManager, stacks, showVFX, vfxDelay);
@@ -649,6 +667,14 @@ public class PassiveController : Singleton<PassiveController>
         else if (originalData == "Soul Collector")
         {
             ModifySoulCollector(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Magic Magnet")
+        {
+            ModifyMagicMagnet(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Ethereal")
+        {
+            ModifyEthereal(pManager, stacks, showVFX, vfxDelay);
         }
         #endregion
 
@@ -2176,6 +2202,65 @@ public class PassiveController : Singleton<PassiveController>
 
 
     }
+    public void ModifyEthereal(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyEthereal() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Ethereal");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.etherealStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Ethereal +" + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Ethereal " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+
+
+    }
     public void ModifySentinel(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
     {
         Debug.Log("PassiveController.ModifySentinel() called...");
@@ -2822,6 +2907,65 @@ public class PassiveController : Singleton<PassiveController>
 
 
     }
+    public void ModifyMagicMagnet(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyMagicMagnet() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Magic Magnet");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.magicMagnetStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Magic Magnet");
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Magic Magnet Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+
+
+    }
     public void ModifyPhoenixForm(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
     {
         Debug.Log("PassiveController.ModifyPhoenixForm() called...");
@@ -3231,6 +3375,76 @@ public class PassiveController : Singleton<PassiveController>
             {
                 VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
             }
+        }
+
+
+    }
+    public void ModifySource(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifySource() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Source");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.sourceStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Source +" + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGainOverloadEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Source " + stacks.ToString());
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+
+           
+            // Update cost of source spell cards in hand
+            if (pManager.myCharacter != null)
+            {
+                bool doBreath = false;
+                if(stacks > 0)
+                {
+                    doBreath = true;
+                }
+                CardController.Instance.OnSourceModified(pManager.myCharacter, doBreath);
+            }           
         }
 
 

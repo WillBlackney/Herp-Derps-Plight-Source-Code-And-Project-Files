@@ -21,6 +21,7 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 2
   rarity: 1
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 1
@@ -31,6 +32,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -76,6 +78,7 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
@@ -152,6 +155,7 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
@@ -186,6 +190,3 @@ MonoBehaviour:
   - kewWordType: 9
     weaponRequirement: 0
     passiveType: 0
-  - kewWordType: 8
-    weaponRequirement: 0
-    passiveType: 31

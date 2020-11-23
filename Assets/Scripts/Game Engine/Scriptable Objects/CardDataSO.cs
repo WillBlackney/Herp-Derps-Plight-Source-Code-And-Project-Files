@@ -95,6 +95,10 @@ public class CardDataSO : ScriptableObject
     [LabelWidth(100)]
     [GUIColor("Green")]
     public bool blessing;
+    [BoxGroup("Key Words")]
+    [LabelWidth(100)]
+    [GUIColor("Green")]
+    public bool sourceSpell;
 
     [VerticalGroup("List Groups")]
     [LabelWidth(200)]

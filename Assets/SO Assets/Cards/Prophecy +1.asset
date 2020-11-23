@@ -18,13 +18,14 @@ MonoBehaviour:
     Add 3 copies of it to your hand.
 
     Expend. '
-  cardSprite: {fileID: 21300000, guid: 550483f39b545b04887d5dbc4fb1a5f1, type: 3}
+  cardSprite: {fileID: 21300000, guid: 17748a77913a2454cb09128b66e2cc08, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
   cardType: 1
   targettingType: 0
   talentSchool: 10
   rarity: 2
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 0
@@ -35,6 +36,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -84,6 +86,7 @@ MonoBehaviour:
     discoveryLocation: 5
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 1
     onDiscoveryChoiceMadeEffects:
     - discoveryEffect: 2

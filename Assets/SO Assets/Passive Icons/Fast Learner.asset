@@ -15,7 +15,7 @@ MonoBehaviour:
   passiveSprite: {fileID: 21300000, guid: c2dd5fcdfa7a3994ea8465671e4ff4ac, type: 3}
   passiveName: Fast Learner
   passiveDescription:
-  - color: 2
+  - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'On activation start, this character adds '
@@ -30,15 +30,11 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '1 '
-  - color: 0
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'less '
+    phrase: '0 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Energy '
+    phrase: Energy
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0

@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Shield Wall +1
   cardDescription: On activation end, gain 6 Block.
-  cardSprite: {fileID: 21300000, guid: 08e4ee218e42dd247a5ac64821640f76, type: 3}
+  cardSprite: {fileID: 21300000, guid: 12b45abbd6b1e544f9262fd95e0712e7, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
   cardType: 4
   targettingType: 0
   talentSchool: 5
   rarity: 1
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 0
@@ -31,6 +32,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -66,6 +68,7 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []

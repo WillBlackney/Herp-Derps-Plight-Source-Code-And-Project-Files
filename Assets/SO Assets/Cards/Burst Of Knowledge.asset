@@ -20,7 +20,8 @@ MonoBehaviour:
   cardType: 1
   targettingType: 0
   talentSchool: 9
-  rarity: 1
+  rarity: 3
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 1
@@ -80,6 +81,7 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
@@ -92,6 +94,7 @@ MonoBehaviour:
       cardAdded: {fileID: 0}
       talentSchoolFilter: 0
       rarityFilter: 0
+      upgradeFilter: 1
       baseDamage: 0
       damageType: 0
     drawStacksFromOverload: 0

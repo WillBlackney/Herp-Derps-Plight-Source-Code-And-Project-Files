@@ -30,5 +30,6 @@ public class CardData
     public bool unplayable;
     public bool lifeSteal;
     public bool blessing;
+    public bool sourceSpell;
 
 }

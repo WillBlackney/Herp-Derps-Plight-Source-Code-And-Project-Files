@@ -149,6 +149,12 @@ public class SerializedPassiveManagerModel
     [BoxGroup("Buff Passives")]
     [LabelWidth(200)]
     public int soulCollectorStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
+    public int magicMagnetStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
+    public int etherealStacks;
 
     // Aura Passives
     [BoxGroup("Aura Passives", centerLabel: true)]
@@ -209,6 +215,10 @@ public class SerializedPassiveManagerModel
     [BoxGroup("Misc Passives", centerLabel: true)]
     [LabelWidth(200)]
     public int fireBallBonusDamageStacks;
+
+    [BoxGroup("Misc Passives")]
+    [LabelWidth(200)]
+    public int sourceStacks;
 
 
 }

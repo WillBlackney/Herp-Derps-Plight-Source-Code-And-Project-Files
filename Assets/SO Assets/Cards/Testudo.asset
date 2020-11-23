@@ -16,13 +16,14 @@ MonoBehaviour:
   cardDescription: 'Give 2 Block to self or ally.
 
     Shielded: Draw 1 card.'
-  cardSprite: {fileID: 21300000, guid: d3de1c39883d72b46b319c8a5cef9a9b, type: 3}
+  cardSprite: {fileID: 21300000, guid: a5fd44ab79fe2374b89d283da86a1fd6, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
   cardType: 1
   targettingType: 2
   talentSchool: 5
   rarity: 1
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 1
@@ -33,6 +34,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -86,6 +88,7 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
@@ -147,6 +150,7 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []

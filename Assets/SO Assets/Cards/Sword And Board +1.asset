@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Sword And Board +1
   cardDescription: "Deal 6 Physical damage. \nShielded: Gain 5 Block."
-  cardSprite: {fileID: 21300000, guid: 781c073379810db44b755b77d2d99ee4, type: 3}
+  cardSprite: {fileID: 21300000, guid: b5d8274474ec2f1498c776953217bb76, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
   cardType: 2
   targettingType: 3
   talentSchool: 5
   rarity: 1
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 0
@@ -31,6 +32,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -88,6 +90,7 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
@@ -209,6 +212,7 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []

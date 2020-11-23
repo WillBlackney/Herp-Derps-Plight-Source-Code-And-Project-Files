@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Invigorate +1
   cardDescription: Give an ally 1 Stamina.
-  cardSprite: {fileID: 21300000, guid: 5bcbc5445b57a98428a98c4eb23e5771, type: 3}
+  cardSprite: {fileID: 21300000, guid: f3440d46b171ab54c91e8ccb60d98d66, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
   cardType: 1
   targettingType: 1
   talentSchool: 10
   rarity: 2
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 0
@@ -31,6 +32,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -68,6 +70,7 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []

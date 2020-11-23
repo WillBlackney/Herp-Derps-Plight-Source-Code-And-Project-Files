@@ -83,6 +83,11 @@ public class CardEffect
     [LabelWidth(200)]
     public bool blessing;
 
+    [ShowIf("ShowCardLibraryFilter")]
+    [VerticalGroup("Search Filters")]
+    [LabelWidth(200)]
+    public bool sourceSpellsOnly;
+
 
     [ShowIf("ShowOnDiscoveryChoiceMadeEffects")]
     [LabelWidth(200)]

@@ -73,6 +73,19 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     public InitiativeSettings initiativeSetting;
 
+    [LabelWidth(200)]
+    public bool enableMaximumBlock;
+
+    [ShowIf("ShowMaximumBlockAmount")]
+    [LabelWidth(200)]
+    public int maximumBlockAmount;
+
+    public bool ShowMaximumBlockAmount()
+    {
+        return enableMaximumBlock;
+    }
+
+
     // XP Settings
     [Header("General XP + Level Settings")]
     [LabelWidth(200)]

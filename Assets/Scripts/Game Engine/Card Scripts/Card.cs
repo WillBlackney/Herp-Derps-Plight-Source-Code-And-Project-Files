@@ -41,6 +41,7 @@ public class Card
     public bool unplayable;
     public bool lifeSteal;
     public bool blessing;
+    public bool sourceSpell;
 
     // misc getters
     public CharacterData myCharacterData()

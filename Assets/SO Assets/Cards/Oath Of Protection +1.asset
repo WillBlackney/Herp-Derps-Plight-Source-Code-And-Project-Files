@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Oath Of Protection +1
   cardDescription: 'Give an ally 15 Block. Innate. Expend. '
-  cardSprite: {fileID: 21300000, guid: 04fc39377487d0c4aa2636c7d43bf49e, type: 3}
+  cardSprite: {fileID: 21300000, guid: 52f31ec76d11e3a4fb48eec5084956fe, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
   cardType: 1
   targettingType: 1
   talentSchool: 5
   rarity: 3
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 0
@@ -31,6 +32,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -86,6 +88,7 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []

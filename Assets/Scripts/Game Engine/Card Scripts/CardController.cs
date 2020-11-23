@@ -284,6 +284,18 @@ public class CardController : Singleton<CardController>
     }
 
     // Specific Queries
+    public List<CardData> QueryBySourceSpell(IEnumerable<CardData> collectionQueried)
+    {
+        List<CardData> cardsReturned = new List<CardData>();
+
+        var query =
+           from cardData in collectionQueried
+           where cardData.sourceSpell
+           select cardData;
+
+        cardsReturned.AddRange(query);
+        return cardsReturned;
+    }
     public List<CardData> QueryByUpgraded(IEnumerable<CardData> collectionQueried)
     {
         List<CardData> cardsReturned = new List<CardData>();
@@ -448,6 +460,7 @@ public class CardController : Singleton<CardController>
         c.unplayable = d.unplayable;
         c.lifeSteal = d.lifeSteal;
         c.blessing = d.blessing;
+        c.sourceSpell = d.sourceSpell;
 
         // Card effects
         c.cardEffects = new List<CardEffect>();
@@ -508,6 +521,7 @@ public class CardController : Singleton<CardController>
         c.unplayable = original.unplayable;
         c.lifeSteal = original.lifeSteal;
         c.blessing = original.blessing;
+        c.sourceSpell = original.sourceSpell;
 
         // Card effects
         c.cardEffects = new List<CardEffect>();
@@ -567,6 +581,7 @@ public class CardController : Singleton<CardController>
         card.lifeSteal = data.lifeSteal;
         card.unplayable = data.unplayable;
         card.blessing = data.blessing;
+        card.sourceSpell = data.sourceSpell;
 
         // lists
         card.cardEventListeners.AddRange(data.cardEventListeners);
@@ -603,6 +618,7 @@ public class CardController : Singleton<CardController>
         card.unplayable = data.unplayable;
         card.lifeSteal = data.lifeSteal;
         card.blessing = data.blessing;
+        card.sourceSpell = data.sourceSpell;
 
         // lists
         card.cardEventListeners.AddRange(data.cardEventListeners);
@@ -644,6 +660,7 @@ public class CardController : Singleton<CardController>
         card.unplayable = original.unplayable;
         card.lifeSteal = original.lifeSteal;
         card.blessing = original.blessing;
+        card.sourceSpell = original.sourceSpell;
 
         card.cardEffects = new List<CardEffect>();
         foreach (CardEffect ce in original.cardEffects)
@@ -1564,11 +1581,22 @@ public class CardController : Singleton<CardController>
     {
         // Setup
         CharacterEntityModel owner = card.owner;
+        int sourceReduction = 0;
+
+        // Calculate energy reduction amount from source (if source spell card)
+        if (card.sourceSpell == true)
+        {
+            sourceReduction = GetCardEnergyCost(card) - GetCardEnergyCost(card, false);
+        }
 
         // Pay Energy Cost
         CharacterEntityController.Instance.ModifyEnergy(owner, -GetCardEnergyCost(card));
 
-        // check for specific on card play effects 
+        // Remove/Pay Source cost if Source Spell card
+        if(card.sourceSpell == true)
+        {
+            PassiveController.Instance.ModifySource(owner.pManager, sourceReduction);
+        }
 
         // Remove Melee Attack reduction passive
         if (card.cardType == CardType.MeleeAttack)
@@ -1633,9 +1661,17 @@ public class CardController : Singleton<CardController>
         }
 
         // Fire Ball specific effects
-        if(card.cardName == "Fire Ball")
+        if(card.cardName == "Fire Ball" ||
+            card.cardName == "Fire Ball +1")
         {
             HandleOnFireBallCardPlayedListeners(owner);
+        }
+
+        // Arcane Bolt specific effects
+        if (card.cardName == "Arcane Bolt" ||
+             card.cardName == "Arcane Bolt +1")
+        {
+            HandleOnArcaneBoltCardPlayedListeners(owner);
         }
 
         // Infuriated 
@@ -1699,9 +1735,6 @@ public class CardController : Singleton<CardController>
 
                 PassiveController.Instance.ModifyBonusDexterity(card.owner.pManager, card.owner.pManager.evangelizeStacks, true, 0.5f);
             }
-
-
-
         }
 
         // Where should this card be sent to?
@@ -1739,8 +1772,7 @@ public class CardController : Singleton<CardController>
             if (cardVM)
             {
                 PlayACardFromHandVisualEvent(cardVM, owner.characterEntityView);
-            }
-           
+            }           
         }
     }
     private void OnCardPlayedFinish(Card card)
@@ -3007,6 +3039,21 @@ public class CardController : Singleton<CardController>
             }
         }
     }
+    public void HandleOnArcaneBoltCardPlayedListeners(CharacterEntityModel character)
+    {
+        Debug.Log("CardController.HandleOnArcaneBoltCardPlayedListeners() called...");
+
+        foreach (Card card in GetAllCharacterCardsInHandDrawAndDiscard(character))
+        {
+            foreach (CardEventListener e in card.cardEventListeners)
+            {
+                if (e.cardEventListenerType == CardEventListenerType.OnArcaneBoltCardPlayed)
+                {
+                    RunCardEventListenerFunction(card, e);
+                }
+            }
+        }
+    }
     public void HandleOnCharacterDamagedCardListeners(CharacterEntityModel character)
     {
         Debug.Log("CardController.HandleOnCharacterDamagedCardListeners() called...");
@@ -3081,6 +3128,36 @@ public class CardController : Singleton<CardController>
                         VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(cvm));
                     }
                 }                
+            }
+        }
+    }
+    public void OnSourceModified(CharacterEntityModel model, bool doBreathAnim = true)
+    {
+        foreach (Card card in model.hand)
+        {
+            if (card.sourceSpell == true)
+            {
+                // Update card vm energy text, if not null
+                CardViewModel cvm = card.cardVM;
+                int newCostTextValue = GetCardEnergyCost(card);
+                if (cvm)
+                {
+                    // Update energy cost text
+                    //VisualEventManager.Instance.CreateVisualEvent(() => SetCardViewModelEnergyText(card, cvm, newCostTextValue.ToString()));
+                    SetCardViewModelEnergyText(card, cvm, newCostTextValue.ToString());
+
+                    // Update glow
+                    AutoUpdateCardGlowOutline(card);
+
+                    // only play breath if cost of card is reduced, not increased
+
+                    if (doBreathAnim)
+                    {
+                        //VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(cvm));
+                        PlayCardBreathAnimationVisualEvent(cvm);
+
+                    }
+                }
             }
         }
     }
@@ -3164,7 +3241,7 @@ public class CardController : Singleton<CardController>
 
     // Misc + Calculators + Events
     #region
-    public int GetCardEnergyCost(Card card)
+    public int GetCardEnergyCost(Card card, bool includeSourceReduction = true)
     {
         Debug.Log("CardController.GetCardEnergyCost() called for card: " + card.cardName);
 
@@ -3201,7 +3278,7 @@ public class CardController : Singleton<CardController>
         costReturned -= card.energyReductionThisCombatOnly;
         costReturned -= card.energyReductionUntilPlayed;
 
-        
+        // Check 'Planted Feet' passive
         if(card.owner.pManager != null && 
             card.cardType == CardType.MeleeAttack &&
             card.owner.pManager.plantedFeetStacks > 0)
@@ -3209,11 +3286,21 @@ public class CardController : Singleton<CardController>
             costReturned -= card.owner.pManager.plantedFeetStacks;
         }
 
+        // Check 'Take Aim' passive
         if (card.owner.pManager != null &&
             card.cardType == CardType.RangedAttack &&
             card.owner.pManager.takenAimStacks > 0)
         {
             costReturned -= card.owner.pManager.takenAimStacks;
+        }
+
+        // Check source spell reduction from source
+        if (includeSourceReduction == true &&
+            card.owner.pManager != null &&
+            card.sourceSpell == true &&
+            card.owner.pManager.sourceStacks > 0)
+        {
+            costReturned -= card.owner.pManager.sourceStacks;
         }
 
         // Prevent cost going negative
@@ -3265,7 +3352,7 @@ public class CardController : Singleton<CardController>
             VisualEventManager.Instance.CreateVisualEvent(() => SetCardViewModelEnergyText(card, cvm, newCostTextValue.ToString()));
         }       
     }
-    private void SetCardEnergyCostThisCombat(Card card, int newEnergyCost)
+    public void SetCardEnergyCostThisCombat(Card card, int newEnergyCost)
     {
         // Setup
         CardViewModel cvm = card.cardVM;
@@ -3547,7 +3634,28 @@ public class CardController : Singleton<CardController>
         if (ce.discoveryLocation == CardCollection.CardLibrary)
         {
             List<CardData> discoverableCards = new List<CardData>();
-            discoverableCards = GetCardsQuery(AllCards, ce.talentSchoolFilter, ce.rarityFilter, ce.blessing, ce.upgradeFilter);
+            if (ce.sourceSpellsOnly)
+            {
+                foreach(CardData c in QueryBySourceSpell(AllCards))
+                {
+                    if(ce.upgradeFilter == UpgradeFilter.OnlyNonUpgraded && c.upgradeLevel == 0)
+                    {
+                        discoverableCards.Add(c);
+                    }
+                    else if (ce.upgradeFilter == UpgradeFilter.OnlyUpgraded && c.upgradeLevel >= 0)
+                    {
+                        discoverableCards.Add(c);
+                    }
+                    else
+                    {
+                        discoverableCards.Add(c);
+                    }
+                }
+            }
+            else
+            {
+                discoverableCards = GetCardsQuery(AllCards, ce.talentSchoolFilter, ce.rarityFilter, ce.blessing, ce.upgradeFilter);
+            }           
 
             // cancel there are discoverable cards to pick
             if (discoverableCards.Count == 0)
@@ -4766,24 +4874,41 @@ public class CardController : Singleton<CardController>
     {
         MoveTransformToLocation(cvm.movementParent, hv.PlayPreviewSpot.position, 0.25f);
     }
-    private void PlayCardBreathAnimationVisualEvent(CardViewModel cvm)
+    private void PlayCardBreathAnimationVisualEvent(CardViewModel cvm, float animSpeed = 0.25f, float scaleModifier = 1.25f)
     {
-        StartCoroutine(PlayCardBreathAnimationVisualEventCoroutine(cvm));
+        if (cvm != null)
+        {
+            float currentScale = cvm.movementParent.localScale.x;
+            float endScale = currentScale * scaleModifier;
+
+            Sequence s = DOTween.Sequence();
+
+            s.Append(cvm.movementParent.DOScale(endScale, animSpeed).SetEase(Ease.OutQuint));
+            s.OnComplete(() => cvm.movementParent.DOScale(currentScale, animSpeed).SetEase(Ease.OutQuint));
+        }
+
+        //StartCoroutine(PlayCardBreathAnimationVisualEventCoroutine(cvm));
     }
-    private IEnumerator PlayCardBreathAnimationVisualEventCoroutine(CardViewModel cvm)
+    /*
+    private IEnumerator PlayCardBreathAnimationVisualEventCoroutine(CardViewModel cvm, float animSpeed = 0.25f, float scaleModifier = 1.5f)
     {
         if(cvm != null)
         {
             float currentScale = cvm.movementParent.localScale.x;
-            float endScale = currentScale * 1.5f;
-            float animSpeed = 0.25f;
+            float endScale = currentScale * scaleModifier;
 
-            cvm.movementParent.DOScale(endScale, animSpeed).SetEase(Ease.OutQuint);
-            yield return new WaitForSeconds(animSpeed);
-            cvm.movementParent.DOScale(currentScale, animSpeed).SetEase(Ease.OutQuint);
+            Sequence s = DOTween.Sequence();
+
+            s.Append(cvm.movementParent.DOScale(endScale, animSpeed).SetEase(Ease.OutQuint));
+            s.OnComplete(() => cvm.movementParent.DOScale(currentScale, animSpeed).SetEase(Ease.OutQuint));
+
+            //cvm.movementParent.DOScale(endScale, animSpeed).SetEase(Ease.OutQuint);
+            //yield return new WaitForSeconds(animSpeed);
+            //cvm.movementParent.DOScale(currentScale, animSpeed).SetEase(Ease.OutQuint);
         }
         
     }
+    */
     private void PlayACardFromHandVisualEvent(CardViewModel cvm, CharacterEntityView view)
     {
         Debug.Log("CardController.PlayACardFromHandVisualEvent() called...");

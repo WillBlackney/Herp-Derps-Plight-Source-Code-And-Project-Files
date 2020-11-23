@@ -15,13 +15,14 @@ MonoBehaviour:
   cardName: Transcendence +1
   cardDescription: 'Expend your hand. For each Expend, add a random blessing to your
     hand. '
-  cardSprite: {fileID: 21300000, guid: cc2cfb87ab69b0d43940ffbfead60ddb, type: 3}
+  cardSprite: {fileID: 21300000, guid: 5f5044f3acf3ec642bd1b85c28ffca21, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
   cardType: 1
   targettingType: 0
   talentSchool: 10
   rarity: 2
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 0
@@ -32,6 +33,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 3
     getPhraseFromCardValue: 0
@@ -77,6 +79,7 @@ MonoBehaviour:
     discoveryLocation: 5
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
@@ -89,6 +92,7 @@ MonoBehaviour:
       cardAdded: {fileID: 0}
       talentSchoolFilter: 0
       rarityFilter: 0
+      upgradeFilter: 1
       baseDamage: 0
       damageType: 0
     - modifyEffect: 5
@@ -99,6 +103,7 @@ MonoBehaviour:
       cardAdded: {fileID: 0}
       talentSchoolFilter: 11
       rarityFilter: 2
+      upgradeFilter: 1
       baseDamage: 0
       damageType: 0
     drawStacksFromOverload: 0

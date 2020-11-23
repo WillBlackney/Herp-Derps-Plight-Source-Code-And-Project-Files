@@ -94,7 +94,7 @@ public class CombatLogic : Singleton<CombatLogic>
         // Add flat bonus damage from misc passives
         // Bonus fire ball damage
         if (card != null &&
-            card.cardName == "Fire Ball")
+             (card.cardName == "Fire Ball" || card.cardName == "Fire Ball +1"))
         {
             baseDamageValueReturned += entity.pManager.fireBallBonusDamageStacks;
             Debug.Log("Card base damage after bonus fire ball damage added: " + baseDamageValueReturned.ToString());
@@ -102,10 +102,18 @@ public class CombatLogic : Singleton<CombatLogic>
 
         // Shank/Ruthless damage bonus
         if (card != null &&
-            card.cardName == "Shank")
+            (card.cardName == "Shank" || card.cardName == "Shank +1"))
         {
             baseDamageValueReturned += entity.pManager.ruthlessStacks;
             Debug.Log("Card base damage after bonus Ruthless/Shank damage added: " + baseDamageValueReturned.ToString());
+        }
+
+        // Arcane Bolt / Ethereal damage bonus
+        if (card != null &&
+             (card.cardName == "Arcane Bolt" || card.cardName == "Arcane Bolt +1"))
+        {
+            baseDamageValueReturned += entity.pManager.etherealStacks;
+            Debug.Log("Card base damage after bonus Ethereal damage added: " + baseDamageValueReturned.ToString());
         }
 
         // return final value

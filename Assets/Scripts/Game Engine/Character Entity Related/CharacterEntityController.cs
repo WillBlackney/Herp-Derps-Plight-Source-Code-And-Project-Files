@@ -506,20 +506,35 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         int characterFinalBlockValue = 0;
         CharacterEntityView view = character.characterEntityView;
 
-        // prevent block going negative
-        
+        // prevent block going negative        
         if (finalBlockGainValue < 0)
         {
             finalBlockGainValue = 0;
         }        
 
+        
+
         // Apply block gain
         character.block += finalBlockGainValue;
+        bool didExceedMax = false;
+
+        // prevent block exceeding maximum
+        if (GlobalSettings.Instance.enableMaximumBlock && character.block > GlobalSettings.Instance.maximumBlockAmount)
+        {
+            character.block = GlobalSettings.Instance.maximumBlockAmount;
+            didExceedMax = true;
+        }
+
         characterFinalBlockValue = character.block;
 
         if (finalBlockGainValue > 0 && showVFX)
         {
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateGainBlockEffect(view.WorldPosition, finalBlockGainValue), QueuePosition.Back, 0, 0);
+
+            if (didExceedMax)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "MAXIMUM BLOCK!"), QueuePosition.Back, 0, 0);
+            }
         }
 
         if (showVFX)
@@ -945,6 +960,15 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 }
             }
 
+            // Magic Magnet
+            if (character.pManager.magicMagnetStacks > 0)
+            {
+                for (int i = 0; i < character.pManager.magicMagnetStacks; i++)
+                {
+                    CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetCardDataFromLibraryByName("Arcane Bolt"));
+                }
+            }
+
             // Well Of Souls
             if (character.pManager.wellOfSoulsStacks > 0)
             {
@@ -958,8 +982,14 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             if (character.pManager.fastLearnerStacks > 0)
             {
                 // Get all common cards
-                List<CardData> viableCards = new List<CardData>();             
-                viableCards.AddRange(CardController.Instance.GetCardsQuery(CardController.Instance.AllCards, TalentSchool.None, Rarity.Common, false, UpgradeFilter.OnlyNonUpgraded));
+                List<CardData> viableCards = new List<CardData>();        
+                foreach(CardData c in CardController.Instance.GetCardsQuery(CardController.Instance.AllCards, TalentSchool.None, Rarity.Common, false, UpgradeFilter.OnlyNonUpgraded))
+                {
+                    if(c.racialCard == false)
+                    {
+                        viableCards.Add(c);
+                    }
+                }
 
                 for (int i = 0; i < character.pManager.fastLearnerStacks; i++)
                 {
@@ -968,7 +998,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                     Card card = CardController.Instance.CreateAndAddNewCardToCharacterHand(character, newCard);
 
                     // Reduce its energy cost by 1
-                    CardController.Instance.ReduceCardEnergyCostThisCombat(card, 1);
+                    CardController.Instance.SetCardEnergyCostThisCombat(card, 0);
                 }
             }
 
