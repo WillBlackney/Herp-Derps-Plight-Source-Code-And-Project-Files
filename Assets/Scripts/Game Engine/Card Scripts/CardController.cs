@@ -3642,11 +3642,11 @@ public class CardController : Singleton<CardController>
                     {
                         discoverableCards.Add(c);
                     }
-                    else if (ce.upgradeFilter == UpgradeFilter.OnlyUpgraded && c.upgradeLevel >= 0)
+                    else if (ce.upgradeFilter == UpgradeFilter.OnlyUpgraded && c.upgradeLevel >= 1)
                     {
                         discoverableCards.Add(c);
                     }
-                    else
+                    else if (ce.upgradeFilter == UpgradeFilter.Any)
                     {
                         discoverableCards.Add(c);
                     }

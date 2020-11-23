@@ -831,15 +831,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         {
             // Notication vfx
             VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Manipulation Mastery!"));
+                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Manipulation Mastery!"), QueuePosition.Back, 0f, 0.5f);
 
-            // Draw 2 cards
-            /*
-            for (int i = 0; i < 2; i++)
-            {
-                CardController.Instance.DrawACardFromDrawPile(character);
-            }
-            */
             // Gain 2 Source
             PassiveController.Instance.ModifySource(character.pManager, 2, true, 0.5f);
 

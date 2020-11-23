@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Chain Lightning
   cardDescription: Deal 3 Magic Damage to a random enemy 3 times.
-  cardSprite: {fileID: 21300000, guid: b1ad735dd6a28434b8077ed6bd6ac1ba, type: 3}
+  cardSprite: {fileID: 21300000, guid: 0b2ba20c4452fb64fa5e1059c42530e7, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
   cardType: 1
   targettingType: 0
   talentSchool: 13
   rarity: 2
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 1
@@ -31,6 +32,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -74,7 +76,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []

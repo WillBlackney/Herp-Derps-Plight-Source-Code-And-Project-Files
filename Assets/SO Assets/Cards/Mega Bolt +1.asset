@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Mega Bolt
   cardDescription: 'Deal 12 Magic damage. Cost 1 less Energy for each Fireball played
     this combat. '
-  cardSprite: {fileID: 21300000, guid: 81531294d919a9c498f033c76383c2d9, type: 3}
+  cardSprite: {fileID: 21300000, guid: b30ea216dd96204409132c9d27a32d22, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 6
   cardType: 3

@@ -15,13 +15,14 @@ MonoBehaviour:
   cardName: Battery +1
   cardDescription: Gain 1 energy and draw 1 card for each stack of Overload. Remove
     all Overload.
-  cardSprite: {fileID: 21300000, guid: 425ade8b7c940674a94801e6a525b64a, type: 3}
+  cardSprite: {fileID: 21300000, guid: 8944bd6ad2fd8054dabb279c2aa7fdfd, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
   cardType: 1
   targettingType: 0
   talentSchool: 13
   rarity: 3
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 0
@@ -32,6 +33,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -103,7 +105,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
@@ -179,7 +183,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
@@ -225,7 +231,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []

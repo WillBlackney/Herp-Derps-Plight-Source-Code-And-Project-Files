@@ -72,8 +72,11 @@ public class PersistencyManager : Singleton<PersistencyManager>
             CharacterData newCharacter = CharacterDataController.Instance.CloneCharacterData(data);
             newSave.characters.Add(newCharacter);
 
+            CharacterDataController.Instance.AutoAddCharactersRacialCard(newCharacter);
+
+            /*
             // Add racial card to deck
-            foreach(CardData card in racialCardData)
+            foreach (CardData card in racialCardData)
             {
                 if(card.originRace == newCharacter.race && card.upgradeLevel == 0)
                 {
@@ -84,6 +87,7 @@ public class PersistencyManager : Singleton<PersistencyManager>
                     break;
                 }
             }
+            */
         }
 
         // Set starting journey state

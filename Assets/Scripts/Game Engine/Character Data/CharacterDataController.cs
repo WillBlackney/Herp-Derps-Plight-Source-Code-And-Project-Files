@@ -51,12 +51,14 @@ public class CharacterDataController : Singleton<CharacterDataController>
     {
         foreach(CharacterTemplateSO template in characters)
         {
-            AddNewCharacterToPlayerRoster(ConvertCharacterTemplateToCharacterData(template));
+            CloneNewCharacterToPlayerRoster(ConvertCharacterTemplateToCharacterData(template));
         }
     }
-    public void AddNewCharacterToPlayerRoster(CharacterData character)
+    public CharacterData CloneNewCharacterToPlayerRoster(CharacterData character)
     {
-        AllPlayerCharacters.Add(character);
+        CharacterData newChar = CloneCharacterData(character);
+        AllPlayerCharacters.Add(newChar);
+        return newChar;
     }
 
     #endregion
@@ -239,6 +241,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
     #endregion
 
     // Modify XP + Level Logic
+    #region
     public void SetCharacterLevel(CharacterData data, int newLevelValue)
     {
         data.currentLevel = newLevelValue;
@@ -253,6 +256,9 @@ public class CharacterDataController : Singleton<CharacterDataController>
         {
             // Gain level
             SetCharacterLevel(data, data.currentLevel + 1);
+
+            // Gain Talent point
+            ModifyCharacterTalentPoints(data, 1);
 
             // Reset current xp
             data.currentXP = 0;
@@ -369,6 +375,22 @@ public class CharacterDataController : Singleton<CharacterDataController>
 
         return tpm;
     }
+    public bool DoesCharacterMeetTalentRequirement(CharacterData character, TalentSchool school, int minimumTier)
+    {
+        bool bReturned = false;
+
+        foreach (TalentPairingModel tpm in character.talentPairings)
+        {
+            if (tpm.talentSchool == school && tpm.talentLevel >= minimumTier)
+            {
+                bReturned = true;
+                break;
+            }
+        }
+
+        return bReturned;
+    }
+    #endregion
 
     // Modify Character Deck
     #region
@@ -390,22 +412,26 @@ public class CharacterDataController : Singleton<CharacterDataController>
             card.cardName + " from " + character.myName);
         character.deck.Remove(card);
     }
-    #endregion
-
-    public bool DoesCharacterMeetTalentRequirement(CharacterData character, TalentSchool school, int minimumTier)
+    public void AutoAddCharactersRacialCard(CharacterData character)
     {
-        bool bReturned = false;
+        // Get racial cards
+        CardData[] racialCardData = CardController.Instance.QueryByRacial(CardController.Instance.AllCards).ToArray();
 
-        foreach(TalentPairingModel tpm in character.talentPairings)
+        // Add racial card to deck
+        foreach (CardData card in racialCardData)
         {
-            if(tpm.talentSchool == school && tpm.talentLevel >= minimumTier)
+            if (card.originRace == character.race && card.upgradeLevel == 0)
             {
-                bReturned = true;
+                Debug.Log("BuildNewSaveFileOnNewGameStarted() found matching racial card, adding " + card.cardName +
+                    " to " + character.myName + "'s deck");
+                CardData newRacialCard = CardController.Instance.CloneCardDataFromCardData(card);
+                AddCardToCharacterDeck(character, newRacialCard);
                 break;
             }
         }
-
-        return bReturned;
     }
+    #endregion
+
+    
 
 }

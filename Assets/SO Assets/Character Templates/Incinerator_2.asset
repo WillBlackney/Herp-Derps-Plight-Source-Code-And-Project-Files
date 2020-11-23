@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myName: Iziah
   myClassName: Incinerator
-  race: 4
-  audioProfile: 2
+  race: 3
+  audioProfile: 4
   health: 50
   maxHealth: 50
   power: 0

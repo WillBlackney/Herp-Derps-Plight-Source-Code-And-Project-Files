@@ -283,7 +283,8 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
     {
         // start recruit character process
         currentChoices.Clear();
-        CharacterDataController.Instance.AddNewCharacterToPlayerRoster(selectedCharacter);
+        CharacterData newCharacterClone = CharacterDataController.Instance.CloneNewCharacterToPlayerRoster(selectedCharacter);
+        CharacterDataController.Instance.AutoAddCharactersRacialCard(newCharacterClone);
         EventSequenceController.Instance.HandleLoadNextEncounter();
     }
     private void SetCharacterChoice(CharacterData character)
