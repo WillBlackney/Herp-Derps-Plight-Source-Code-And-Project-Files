@@ -1,0 +1,112 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
+  m_Name: Open The Waygate +1
+  m_EditorClassIdentifier: 
+  cardName: Open The Waygate
+  cardDescription: 'Discover a Source Spell.
+
+    Add it to your hand.'
+  cardSprite: {fileID: 21300000, guid: 17748a77913a2454cb09128b66e2cc08, type: 3}
+  xEnergyCost: 0
+  cardEnergyCost: 0
+  cardType: 1
+  targettingType: 0
+  talentSchool: 9
+  rarity: 2
+  affliction: 0
+  racialCard: 0
+  originRace: 0
+  upgradeable: 0
+  upgradeLevel: 1
+  expend: 0
+  innate: 0
+  fleeting: 0
+  unplayable: 0
+  lifeSteal: 0
+  blessing: 0
+  sourceSpell: 0
+  customDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Discover a '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Source Spell
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '.
+
+      Add it to your hand.
+
+'
+  cardEffects:
+  - weaponRequirement: 0
+    cardEffectType: 22
+    splitTargetEffect: 0
+    splitTargetType: 0
+    removeBlockFrom: 0
+    modifyDeckCardEffect: 0
+    permanentBlockGain: 0
+    permanentDamageGain: 0
+    chooseTargetRandomly: 0
+    passiveApplicationLoops: 0
+    validRandomTargetsType: 0
+    damageLoops: 0
+    drawSpecificType: 0
+    specificTypeDrawn: 0
+    discoveryLocation: 5
+    talentSchoolFilter: 0
+    rarityFilter: 0
+    upgradeFilter: 1
+    blessing: 0
+    sourceSpellsOnly: 1
+    onDiscoveryChoiceMadeEffects:
+    - discoveryEffect: 2
+      copiesAdded: 1
+      energyReduction: 0
+      newEnergyCost: 0
+    onChooseCardInHandChoiceMadeEffects: []
+    modifyCardsInHandEffects: []
+    drawStacksFromOverload: 0
+    drawStacksFromWeakenedOnEnemies: 0
+    blockGainValue: 0
+    baseDamageValue: 0
+    drawBaseDamageFromCurrentBlock: 0
+    drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromMeleeAttacksPlayed: 0
+    drawBaseDamageFromOverloadOnSelf: 0
+    drawBaseDamageFromBurningOnSelf: 0
+    baseDamageMultiplier: 0
+    damageType: 0
+    healthRestored: 0
+    healthLost: 0
+    energyGained: 0
+    cardsDrawn: 0
+    extraDrawEffect: 0
+    cardEnergyReduction: 0
+    passivePairing:
+      passiveData: 0
+      passiveStacks: 0
+    cardAdded: {fileID: 0}
+    copiesAdded: 0
+    blessingsGained: 0
+    visualEventsOnStart: []
+    visualEventsOnFinish: []
+  cardEventListeners: []
+  keyWordModels:
+  - kewWordType: 13
+    weaponRequirement: 0
+    passiveType: 0

@@ -168,7 +168,7 @@ public static class TextLogic
         }
         else if (ts == TalentSchool.Naturalism)
         {
-            sReturned = "On first activation start, " + ReturnColoredText("2 ", blueNumber) +
+            sReturned = "On first activation start, gain " + ReturnColoredText("2 ", blueNumber) +
                 ReturnColoredText("Overload", neutralYellow) + ".";
         }
         else if (ts == TalentSchool.Divinity)
@@ -183,8 +183,8 @@ public static class TextLogic
         }
         else if (ts == TalentSchool.Manipulation)
         {
-            sReturned = "Draw " + ReturnColoredText("2 ", blueNumber) +
-                " extra cards on your first activation.";
+            sReturned = "On first activation start, gain " + ReturnColoredText("2 ", blueNumber) +
+                ReturnColoredText("Source", neutralYellow) + ".";
         }
         else if (ts == TalentSchool.Ranger)
         {

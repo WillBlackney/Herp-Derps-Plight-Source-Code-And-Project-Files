@@ -84,12 +84,13 @@ MonoBehaviour:
     rarityFilter: 0
     upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 5
+    blockGainValue: 4
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
@@ -161,6 +162,7 @@ MonoBehaviour:
     rarityFilter: 0
     upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []

@@ -75,6 +75,8 @@ MonoBehaviour:
     darkBargainStacks: 0
     volatileStacks: 0
     soulCollectorStacks: 0
+    magicMagnetStacks: 0
+    etherealStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -90,6 +92,7 @@ MonoBehaviour:
     burningStacks: 0
     bleedingStacks: 0
     fireBallBonusDamageStacks: 0
+    sourceStacks: 0
   deck:
   - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
   - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
@@ -97,8 +100,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
-  - {fileID: 11400000, guid: 708f5f31c10f4d14e9f8a91cc822a47b, type: 2}
   - {fileID: 11400000, guid: 4f7008c09af197b43b9e5ee443274691, type: 2}
+  - {fileID: 11400000, guid: 4f7008c09af197b43b9e5ee443274691, type: 2}
+  - {fileID: 11400000, guid: f196a97a8b7eeeb4e84b98114e8ae768, type: 2}
   - {fileID: 11400000, guid: f196a97a8b7eeeb4e84b98114e8ae768, type: 2}
   modelParts:
   - Gnoll_Head_1

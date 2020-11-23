@@ -16,7 +16,7 @@ MonoBehaviour:
   cardDescription: Deal Physical damage equal to your current Block.
   cardSprite: {fileID: 21300000, guid: e97f191a7233adb41a66eee160734f7f, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 2
+  cardEnergyCost: 1
   cardType: 2
   targettingType: 3
   talentSchool: 5
@@ -74,6 +74,7 @@ MonoBehaviour:
     rarityFilter: 0
     upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []

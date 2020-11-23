@@ -74,6 +74,9 @@ MonoBehaviour:
     demonFormStacks: 0
     darkBargainStacks: 0
     volatileStacks: 0
+    soulCollectorStacks: 0
+    magicMagnetStacks: 0
+    etherealStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -87,7 +90,9 @@ MonoBehaviour:
     sleepStacks: 0
     poisonedStacks: 0
     burningStacks: 0
+    bleedingStacks: 0
     fireBallBonusDamageStacks: 0
+    sourceStacks: 0
   deck:
   - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
   - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
@@ -96,8 +101,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
-  - {fileID: 11400000, guid: 906a542ac4dbed2429e34de4a75c3c40, type: 2}
   - {fileID: 11400000, guid: b31f4356f84f2bd48add48495139e0e5, type: 2}
+  - {fileID: 11400000, guid: 906a542ac4dbed2429e34de4a75c3c40, type: 2}
+  - {fileID: 11400000, guid: 3515e3b8e92620548af756ddbf500130, type: 2}
   modelParts:
   - Elf_Chest
   - Elf_Face_1

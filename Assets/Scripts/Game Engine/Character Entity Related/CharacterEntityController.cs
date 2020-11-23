@@ -834,10 +834,14 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Manipulation Mastery!"));
 
             // Draw 2 cards
+            /*
             for (int i = 0; i < 2; i++)
             {
                 CardController.Instance.DrawACardFromDrawPile(character);
             }
+            */
+            // Gain 2 Source
+            PassiveController.Instance.ModifySource(character.pManager, 2, true, 0.5f);
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
         }

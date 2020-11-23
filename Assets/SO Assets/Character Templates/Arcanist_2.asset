@@ -74,6 +74,9 @@ MonoBehaviour:
     demonFormStacks: 0
     darkBargainStacks: 0
     volatileStacks: 0
+    soulCollectorStacks: 0
+    magicMagnetStacks: 0
+    etherealStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -87,7 +90,9 @@ MonoBehaviour:
     sleepStacks: 0
     poisonedStacks: 0
     burningStacks: 0
+    bleedingStacks: 0
     fireBallBonusDamageStacks: 0
+    sourceStacks: 0
   deck:
   - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
@@ -95,9 +100,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
   - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
   - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
-  - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
-  - {fileID: 11400000, guid: db18175c7f3366747b53efcc374bf697, type: 2}
-  - {fileID: 11400000, guid: dc39bf1b28a8c70409116fe98c26c586, type: 2}
+  - {fileID: 11400000, guid: 9e8a3bc5a7ebe1843ac9355aa15885fa, type: 2}
+  - {fileID: 11400000, guid: 1a3b61de8941d84479ffd43b97708c29, type: 2}
+  - {fileID: 11400000, guid: 57db7e22aec73994a82699a023a40619, type: 2}
+  - {fileID: 11400000, guid: 57db7e22aec73994a82699a023a40619, type: 2}
   modelParts:
   - Human_Chest
   - Elf_Face_4
@@ -112,7 +118,5 @@ MonoBehaviour:
     mainHandItem: {fileID: 11400000, guid: bfbdb5e21e389ab4c9aae5b49350a1d0, type: 2}
     offHandItem: {fileID: 0}
   talentPairings:
-  - talentSchool: 6
-    talentLevel: 1
   - talentSchool: 9
-    talentLevel: 1
+    talentLevel: 2
