@@ -16,13 +16,14 @@ MonoBehaviour:
   cardDescription: 'Gain 7 Block.
 
     Next activation, gain 1 Energy. '
-  cardSprite: {fileID: 21300000, guid: 8c5869ef68fc97b44a2f7eacff88789e, type: 3}
+  cardSprite: {fileID: 21300000, guid: 77df7a102d9c8c547b651a6b749407bd, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
   cardType: 1
   targettingType: 0
   talentSchool: 8
   rarity: 1
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 0
@@ -33,6 +34,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 0
     getPhraseFromCardValue: 0
@@ -82,7 +84,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
@@ -158,7 +162,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []

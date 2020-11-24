@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Long Draw
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: 6c7d864bda1e52e42ae4bb0c71c5e48d, type: 3}
+  passiveSprite: {fileID: 21300000, guid: eefa0096bdcac8a468551b8e24c0682e, type: 3}
   passiveName: Long Draw
   passiveDescription:
   - color: 1

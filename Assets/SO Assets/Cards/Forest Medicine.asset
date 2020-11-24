@@ -16,13 +16,14 @@ MonoBehaviour:
   cardDescription: 'Give a target 5 Block and 1 Rune.
 
     Expend. '
-  cardSprite: {fileID: 21300000, guid: 00386c18b4c21384f8ddfa5f093541d2, type: 3}
+  cardSprite: {fileID: 21300000, guid: a5574473290357542b1c2f02b9e546cd, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
   cardType: 1
   targettingType: 2
   talentSchool: 8
   rarity: 1
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 1
@@ -33,6 +34,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -90,7 +92,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
@@ -166,7 +170,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
