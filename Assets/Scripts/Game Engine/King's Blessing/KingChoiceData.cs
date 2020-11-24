@@ -31,4 +31,6 @@ public class KingChoiceData
     public List<PassivePairingData> possiblePassives;
 
     public int afflicationsGained;
+
+    public int goldGainedOrLost;
 }

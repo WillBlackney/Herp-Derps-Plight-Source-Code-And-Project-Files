@@ -1267,7 +1267,7 @@ public class CampSiteController : Singleton<CampSiteController>
         AudioManager.Instance.PlaySound(Sound.Card_Discarded);
 
         // Create Glow Trail
-        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGlowTrailEffect(cvm.movementParent.position);
+        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGreenGlowTrailEffect(cvm.movementParent.position);
 
         // Shrink card
         CardController.Instance.ScaleCardViewModel(cvm, 0.1f, 0.5f);

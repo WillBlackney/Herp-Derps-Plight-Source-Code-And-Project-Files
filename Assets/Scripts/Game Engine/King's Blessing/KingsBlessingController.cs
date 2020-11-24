@@ -159,6 +159,7 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
         data.category = so.category;
         data.impactLevel = so.impactLevel;
         data.maxHealthGainedOrLost = so.maxHealthGainedOrLost;
+        data.goldGainedOrLost = so.goldGainedOrLost;
         data.healthGainedOrLost = so.healthGainedOrLost;
         data.randomCardRarity = so.randomCardRarity;
         data.discoveryCardRarity = so.discoveryCardRarity;
@@ -442,6 +443,14 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
             FadeContinueButton(1, 1);
             SetContinueButtonInteractions(true);
         }
+        else if (button.myPairingData.benefitData.effect == KingChoiceEffectType.ModifyGold)
+        {
+            TriggerKingsChoiceEffect(button.myPairingData.benefitData);
+            TriggerKingsChoiceEffect(button.myPairingData.conseqenceData);
+            FadeOutChoiceButtons();
+            FadeContinueButton(1, 1);
+            SetContinueButtonInteractions(true);
+        }
         else if (button.myPairingData.benefitData.effect == KingChoiceEffectType.ModifyAttribute)
         {
             TriggerKingsChoiceEffect(button.myPairingData.benefitData);
@@ -563,6 +572,26 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
             // Notification VFX
             VisualEventManager.Instance.CreateVisualEvent(() =>
             VisualEffectManager.Instance.CreateStatusEffect(playerModel.transform.position, notifText));       
+        }
+
+        // Modify Gold
+        else if (data.effect == KingChoiceEffectType.ModifyGold)
+        {
+            //string notifText = "";
+
+            if (data.goldGainedOrLost < 0)
+            {
+                AudioManager.Instance.PlaySound(Sound.Gold_Dropping);
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateGoldCoinExplosion(playerModel.transform.position, 10000));
+            }
+            else if (data.goldGainedOrLost > 0)
+            {
+                AudioManager.Instance.PlaySound(Sound.Gold_Gain);
+                LootController.Instance.CreateGoldGlowTrailEffect(kingModel.transform.position, PlayerDataManager.Instance.GoldTopBarImage.transform.position);
+            }
+
+            PlayerDataManager.Instance.ModifyCurrentGold(data.goldGainedOrLost, true);
         }
 
         // Modify Health

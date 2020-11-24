@@ -6,10 +6,15 @@ using System;
 [Serializable]
 public class SaveGameData 
 {
-    public int currentJourneyPosition;
+    // Character data
     public List<CharacterData> characters = new List<CharacterData>();
 
+    // Journey data
+    public int currentJourneyPosition;
     public SaveCheckPoint saveCheckPoint;
+
+    // Player data
+    public int currentGold;
 
     // Combat event data
     public EncounterData currentEncounter;

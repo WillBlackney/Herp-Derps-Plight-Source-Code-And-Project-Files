@@ -418,7 +418,10 @@ public enum Sound
     Explosion_Fire_1 = 21,
     Explosion_Shadow_1 = 22,
     Explosion_Lightning_1 = 22,
-    Explosion_Poison_1 = 23,    
+    Explosion_Poison_1 = 23,  
+    
+    Gold_Gain = 51,
+    Gold_Dropping = 52,
 
     GUI_Chime_1 = 31,
     GUI_Rolling_Bells = 32,

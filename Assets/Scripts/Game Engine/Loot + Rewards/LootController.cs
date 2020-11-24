@@ -35,6 +35,10 @@ public class LootController : Singleton<LootController>
     [SerializeField] private LootScreenCardViewModel[] lootCardViewModels;
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
+    [Header("Gold + Gold Panel Components")]
+    [SerializeField] private LootTab goldLootTab;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
+
     [Header("Character Deck Quick View References")]
     [SerializeField] private TextMeshProUGUI characterNameText;
     [SerializeField] private CardInfoPanel[] cardPanels;
@@ -73,20 +77,28 @@ public class LootController : Singleton<LootController>
         HideFrontPageView();
         HideMainLootView();
 
+        // Hide card reward tabs
         foreach(LootTab lt in cardLootTabs)
         {
-            HideCardLootTab(lt);
+            HideLootTab(lt);
         }
+
+        // Hide gold reward tab
+        HideLootTab(goldLootTab);
     }
     public void BuildLootScreenElementsFromLootResultData()
     {
-        // Enable Choose card buttons
+        // Build Choose card buttons
         for (int i = 0; i < CharacterDataController.Instance.AllPlayerCharacters.Count; i++)
         {
-            ShowCardLootTab(cardLootTabs[i]);
+            ShowLootTab(cardLootTabs[i]);
             cardLootTabs[i].descriptionText.text = "Gain new card: " + 
                 TextLogic.ReturnColoredText(CharacterDataController.Instance.AllPlayerCharacters[i].myName, TextLogic.neutralYellow);
         }
+
+        // Build Gold reward button
+        ShowLootTab(goldLootTab);
+        goldLootTab.descriptionText.text = CurrentLootResultData.goldReward.ToString();
     }
     public void BuildChooseCardScreenCardsFromData(List<CardData> cardData)
     {
@@ -200,11 +212,11 @@ public class LootController : Singleton<LootController>
             card.ResetSelfOnEventComplete();
         }
     }
-    public void ShowCardLootTab(LootTab tab)
+    public void ShowLootTab(LootTab tab)
     {
         tab.gameObject.SetActive(true);
     }
-    public void HideCardLootTab(LootTab tab)
+    public void HideLootTab(LootTab tab)
     {
         tab.gameObject.SetActive(false);
     }
@@ -220,12 +232,30 @@ public class LootController : Singleton<LootController>
     {
         LootResultModel newLoot = new LootResultModel();
 
-        for(int i = 0; i < CharacterDataController.Instance.AllPlayerCharacters.Count; i++)
+        // Generate gold reward
+        newLoot.goldReward = 0;
+        if(JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.BasicEnemy)
+        {
+            newLoot.goldReward = RandomGenerator.NumberBetween
+                (GlobalSettings.Instance.basicEnemyGoldRewardLowerLimit, GlobalSettings.Instance.basicEnemyGoldRewardUpperLimit);
+        }
+        else if (JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.EliteEnemy)
+        {
+            newLoot.goldReward = RandomGenerator.NumberBetween
+                (GlobalSettings.Instance.eliteEnemyGoldRewardLowerLimit, GlobalSettings.Instance.eliteEnemyGoldRewardUpperLimit);
+        }
+        else if (JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.BossEnemy)
+        {
+            newLoot.goldReward = RandomGenerator.NumberBetween
+                (GlobalSettings.Instance.bossEnemyGoldRewardLowerLimit, GlobalSettings.Instance.bossEnemyGoldRewardUpperLimit);
+        }
+
+        // Generate character card choices
+        for (int i = 0; i < CharacterDataController.Instance.AllPlayerCharacters.Count; i++)
         {
             newLoot.allCharacterCardChoices.Add(new List<CardData>());
             newLoot.allCharacterCardChoices[i] = GenerateCharacterCardLootChoices(CharacterDataController.Instance.AllPlayerCharacters[i]);
         }
-
 
         return newLoot;
     }
@@ -423,8 +453,19 @@ public class LootController : Singleton<LootController>
                 LayoutRebuilder.ForceRebuildLayoutImmediate(t);
             }
         }
-        
+        else if (buttonClicked.TabType == LootTabType.GoldReward)
+        {
+            HandleGoldRewardLootTabClicked();
+        }
+    }
+    public void HandleGoldRewardLootTabClicked()
+    {
+        HideLootTab(goldLootTab);
+        PlayerDataManager.Instance.ModifyCurrentGold(CurrentLootResultData.goldReward, true);
+        AudioManager.Instance.PlaySound(Sound.Gold_Gain);
+        CreateGoldGlowTrailEffect(goldLootTab.transform.position, PlayerDataManager.Instance.GoldTopBarImage.transform.position);
 
+        // TO DO: cool sfx and anim stuff when gaining gold
     }
     public void OnLootCardViewModelClicked(LootScreenCardViewModel cardClicked)
     {
@@ -437,9 +478,7 @@ public class LootController : Singleton<LootController>
 
         // TO DO: find a better way to find the matching card tab
         // hide add card to deck button
-        HideCardLootTab(cardLootTabs[CharacterDataController.Instance.AllPlayerCharacters.IndexOf(currentCharacterSelection)]);
-
-
+        HideLootTab(cardLootTabs[CharacterDataController.Instance.AllPlayerCharacters.IndexOf(currentCharacterSelection)]);
     }
     public void OnChooseCardScreenBackButtonClicked()
     {
@@ -757,6 +796,28 @@ public class LootController : Singleton<LootController>
         {
             VisualEffectManager.Instance.CreateConfettiExplosionRainbow(t.position, 10000);
         }
+    }
+    #endregion
+
+    // Visual Events
+    #region
+    public void CreateGoldGlowTrailEffect(Vector3 startPos, Vector3 endpos)
+    {
+        // Create Glow Trail
+        ToonEffect glowTrail = VisualEffectManager.Instance.CreateYellowGlowTrailEffect(startPos, 20000);
+
+        // Move trail to destination
+        Sequence s = DOTween.Sequence();
+        s.Append(glowTrail.transform.DOMove(endpos, 0.5f));
+
+        // On arrival, stop emmisions and destroy
+        s.OnComplete(() =>
+        {
+            VisualEffectManager.Instance.CreateSmallMeleeImpact(endpos, 20000);
+            glowTrail.StopAllEmissions();
+            Destroy(glowTrail, 3);
+        });
+
     }
     #endregion
 }

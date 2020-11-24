@@ -34,7 +34,7 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [ShowIf("ShowTestingCampDeck")]
     public int testingCampDraw;
 
-    // General Settings
+    // Input/Device Settings Settings
     [Header("Input/Device Settings")]
     [LabelWidth(200)]
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
@@ -51,6 +51,12 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [LabelWidth(200)]
     [ShowIf("deviceMode", DeviceMode.Mobile)]
     public float hoverScaleAmount;
+
+    // General Settings
+    [Header("General Settings")]
+    [LabelWidth(200)]
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
+    public int startingGold;
 
     // Audio Settings
     [Header("Audio Settings")]
@@ -127,7 +133,7 @@ public class GlobalSettings : Singleton<GlobalSettings>
     public int noDamageTakenXpReward;
 
     // Loot Settings
-    [Header("Loot Settings")]
+    [Header("Card Loot Settings")]
     [LabelWidth(200)]
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     [Range(1, 100)]
@@ -156,6 +162,32 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [LabelWidth(200)]
     [Range(1, 100)]
     public int upgradePityTimer;
+
+    [Header("Gold Loot Settings")]    
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
+    [LabelWidth(300)]
+    [Range(1, 100)]
+    public int basicEnemyGoldRewardLowerLimit;
+
+    [LabelWidth(300)]
+    [Range(1, 100)]
+    public int basicEnemyGoldRewardUpperLimit;
+
+    [LabelWidth(300)]
+    [Range(1, 100)]
+    public int eliteEnemyGoldRewardLowerLimit;
+
+    [LabelWidth(300)]
+    [Range(1, 100)]
+    public int eliteEnemyGoldRewardUpperLimit;
+
+    [LabelWidth(300)]
+    [Range(1, 100)]
+    public int bossEnemyGoldRewardLowerLimit;
+
+    [LabelWidth(300)]
+    [Range(1, 200)]
+    public int bossEnemyGoldRewardUpperLimit;
 
     // Odin bools
     public bool ShowTestSceneProperties()

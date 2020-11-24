@@ -14,7 +14,8 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
 
     [Header("Card VFX Prefabs")]
     public GameObject ExpendEffectPrefab;
-    public GameObject GlowTrailEffectPrefab;
+    public GameObject GreenGlowTrailEffectPrefab;
+    public GameObject YellowGlowTrailEffectPrefab;
 
     [Header("VFX Prefabs")]
     public GameObject DamageEffectPrefab;
@@ -64,6 +65,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
     public GameObject ghostExplosionPurple;
     public GameObject confettiExplosionRainbow;
     public GameObject bloodSplatterEffect;
+    public GameObject goldCoinExplosion;
 
     [Header("Melee Impact Prefab References")]
     public GameObject smallMeleeImpact;
@@ -129,6 +131,10 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
         {
             CreateBloodExplosion(location);
         }
+        else if (effect == ParticleEffect.BloodExplosion)
+        {
+            CreateGoldCoinExplosion(location);
+        }        
         else if (effect == ParticleEffect.GhostExplosionPurple)
         {
             CreateGhostExplosionPurple(location);
@@ -268,9 +274,17 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
     // CARD FX
     #region
     // Glow Trail
-    public ToonEffect CreateGlowTrailEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
+    public ToonEffect CreateYellowGlowTrailEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
     {
-        GameObject hn = Instantiate(GlowTrailEffectPrefab, location, GlowTrailEffectPrefab.transform.rotation);
+        GameObject hn = Instantiate(YellowGlowTrailEffectPrefab, location, YellowGlowTrailEffectPrefab.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+
+        return teScript;
+    }
+    public ToonEffect CreateGreenGlowTrailEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(GreenGlowTrailEffectPrefab, location, GreenGlowTrailEffectPrefab.transform.rotation);
         ToonEffect teScript = hn.GetComponent<ToonEffect>();
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
 
@@ -811,6 +825,13 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
     // EXPLOSIONS
     #region
 
+    // Gold Coin Explosion
+    public void CreateGoldCoinExplosion(Vector3 location, int sortingOrderBonus = 0, float scaleModifier = 1f)
+    {
+        GameObject hn = Instantiate(goldCoinExplosion, location, goldCoinExplosion.transform.rotation);
+        ToonEffect teScript = hn.GetComponent<ToonEffect>();
+        teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
+    }
     // Blood Explosion
     public void CreateBloodExplosion(Vector3 location, int sortingOrderBonus = 0, float scaleModifier = 1f)
     {

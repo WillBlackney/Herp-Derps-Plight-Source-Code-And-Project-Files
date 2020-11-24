@@ -52,6 +52,9 @@ public class KingChoiceDataSO : ScriptableObject
     [ShowIf("effect", KingChoiceEffectType.GainRandomAffliction)]
     public int afflicationsGained;
 
+    [ShowIf("effect", KingChoiceEffectType.ModifyGold)]
+    public int goldGainedOrLost;
+
 }
 public enum KingChoiceImpactLevel
 {
@@ -76,6 +79,7 @@ public enum KingChoiceEffectType
     GainRandomAffliction = 4,
     ModifyAttribute = 5,
     ModifyHealth = 6,
+    ModifyGold = 12,
     ModifyMaxHealth = 7,     
     TransformCard = 8,
     TransformRandomCard = 9,

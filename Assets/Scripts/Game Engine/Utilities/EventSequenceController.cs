@@ -110,7 +110,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Create player characters in scene
         CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
-        
+
+        JourneyManager.Instance.SetNextEncounterAsCurrentLocation();
+
         StartCombatVictorySequence(EncounterType.BasicEnemy);
     }
     private IEnumerator RunRecruitCharacterTestEventSetup()

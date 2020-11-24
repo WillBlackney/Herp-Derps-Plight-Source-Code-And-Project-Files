@@ -26,3 +26,4 @@ MonoBehaviour:
   attributeAmountModified: 0
   possiblePassives: []
   afflicationsGained: 0
+  goldGainedOrLost: 0

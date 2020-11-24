@@ -45,9 +45,6 @@ public class PersistencyManager : Singleton<PersistencyManager>
         // Build characters
         List<CharacterData> chosenCharacters = new List<CharacterData>();
 
-        // Get racial cards
-        CardData[] racialCardData = CardController.Instance.QueryByRacial(CardController.Instance.AllCards).ToArray();
-
         // should randomize character?
         if (MainMenuController.Instance.randomizeCharacters)
         {
@@ -59,13 +56,9 @@ public class PersistencyManager : Singleton<PersistencyManager>
         else
         {
             chosenCharacters.Add(MainMenuController.Instance.GetChosenCharacter());
-        }
+        }       
 
-        // Build Camp site data
-        CampSiteController.Instance.BuildPropertiesFromStandardSettings();
-        CampSiteController.Instance.SaveMyDataToSaveFile(newSave);
-
-        // build each character data object
+        // Build each character data object
         foreach (CharacterData data in chosenCharacters)
         {
             // Create new character from data
@@ -73,22 +66,15 @@ public class PersistencyManager : Singleton<PersistencyManager>
             newSave.characters.Add(newCharacter);
 
             CharacterDataController.Instance.AutoAddCharactersRacialCard(newCharacter);
-
-            /*
-            // Add racial card to deck
-            foreach (CardData card in racialCardData)
-            {
-                if(card.originRace == newCharacter.race && card.upgradeLevel == 0)
-                {
-                    Debug.Log("BuildNewSaveFileOnNewGameStarted() found matching racial card, adding " + card.cardName +
-                        " to " + newCharacter.myName + "'s deck");
-                    CardData newRacialCard = CardController.Instance.CloneCardDataFromCardData(card);
-                    CharacterDataController.Instance.AddCardToCharacterDeck(newCharacter, newRacialCard);
-                    break;
-                }
-            }
-            */
         }
+
+        // Build general data
+        PlayerDataManager.Instance.ModifyCurrentGold(GlobalSettings.Instance.startingGold);
+        PlayerDataManager.Instance.SaveMyDataToSaveFile(newSave);
+
+        // Build Camp site data
+        CampSiteController.Instance.BuildPropertiesFromStandardSettings();
+        CampSiteController.Instance.SaveMyDataToSaveFile(newSave);
 
         // Set starting journey state
         newSave.currentJourneyPosition = 0;
@@ -182,6 +168,9 @@ public class PersistencyManager : Singleton<PersistencyManager>
         // Save character data
         CharacterDataController.Instance.SaveMyDataToSaveFile(newSave);
 
+        // Save Player data
+        PlayerDataManager.Instance.SaveMyDataToSaveFile(newSave);
+
         // Save journey data
         JourneyManager.Instance.SaveMyDataToSaveFile(newSave);
 
@@ -208,7 +197,10 @@ public class PersistencyManager : Singleton<PersistencyManager>
     public void SetUpGameSessionDataFromSaveFile()
     {
         // Build save file from persistency
-        SaveGameData newLoad = LoadGameFromDisk();        
+        SaveGameData newLoad = LoadGameFromDisk();
+
+        // Build player data
+        PlayerDataManager.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // Build character data
         CharacterDataController.Instance.BuildMyDataFromSaveFile(newLoad);

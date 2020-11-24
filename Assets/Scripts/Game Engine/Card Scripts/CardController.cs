@@ -4301,7 +4301,7 @@ public class CardController : Singleton<CardController>
         AudioManager.Instance.PlaySound(Sound.Card_Discarded);
 
         // Create Glow Trail
-        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGlowTrailEffect
+        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGreenGlowTrailEffect
             (CameraManager.Instance.MainCamera.ScreenToWorldPoint(movementParent.position));
 
         // Shrink card
@@ -4336,7 +4336,7 @@ public class CardController : Singleton<CardController>
         AudioManager.Instance.PlaySound(Sound.Card_Discarded);
 
         // Create Glow Trail
-        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGlowTrailEffect
+        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGreenGlowTrailEffect
             (CameraManager.Instance.MainCamera.ScreenToWorldPoint(movementParent.position));
 
         // Shrink card
@@ -4803,7 +4803,7 @@ public class CardController : Singleton<CardController>
         AudioManager.Instance.PlaySound(Sound.Card_Discarded);
 
         // Create Glow Trail
-        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGlowTrailEffect(cvm.movementParent.position);
+        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGreenGlowTrailEffect(cvm.movementParent.position);
 
         // Shrink card
         ScaleCardViewModel(cvm, 0.1f, 0.5f);
@@ -4925,7 +4925,7 @@ public class CardController : Singleton<CardController>
         AudioManager.Instance.PlaySound(Sound.Card_Discarded);
 
         // Create Glow Trail
-        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGlowTrailEffect(cvm.movementParent.position);
+        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGreenGlowTrailEffect(cvm.movementParent.position);
 
         // Shrink card
         ScaleCardViewModel(cvm, 0.1f, 0.5f);
@@ -4955,7 +4955,7 @@ public class CardController : Singleton<CardController>
         Vector3 pos2 = view.handVisual.DeckTransform.position;
 
         // Create Glow Trail at discard pile position
-        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGlowTrailEffect(view.handVisual.DiscardPileTransform.position);
+        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGreenGlowTrailEffect(view.handVisual.DiscardPileTransform.position);
 
         // Move down path
         MoveTransformToLocation(glowTrail.transform, pos1, 0.35f, false, () =>
