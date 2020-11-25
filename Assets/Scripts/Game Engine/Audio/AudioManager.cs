@@ -386,7 +386,6 @@ public class AudioManager : Singleton<AudioManager>
         {
             if (ap.source.isPlaying == false)
             {
-                Debug.LogWarning("GetNextAvailableAudioPlayer() found an available player");
                 availablePlayer = ap;
                 break;
             }
@@ -404,10 +403,9 @@ public class AudioManager : Singleton<AudioManager>
     
     private AudioPlayer CreateAndAddAudioPlayerToPool()
     {
-        Debug.LogWarning("CreateAndAddAudioPlayerToPool() called, creating a new audio player and adding it to the pool");
         AudioPlayer newAP = Instantiate(audioPlayerPrefab, audioPlayerPoolParent).GetComponent<AudioPlayer>();
         audioPlayerPool.Add(newAP);
-        Debug.LogWarning("AudioManager total player pool count = " + audioPlayerPool.Count.ToString());
+        // Debug.LogWarning("AudioManager total player pool count = " + audioPlayerPool.Count.ToString());
         return newAP;
     }
     

@@ -473,6 +473,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         {
             // disable shop keeper clickability
             ShopController.Instance.SetShopKeeperInteractionState(false);
+            ShopController.Instance.SetContinueButtonInteractionState(false);
 
             // Clear shop content result data
             ShopController.Instance.ClearShopContentDataSet();
@@ -644,6 +645,8 @@ public class EventSequenceController : Singleton<EventSequenceController>
     }
     private IEnumerator HandleLoadShopEventCoroutine()
     {
+        Debug.LogWarning("HandleLoadShopEventCoroutine()");
+
         // Generate shop content
         if(ShopController.Instance.CurrentShopContentResultData == null)
         {
@@ -667,33 +670,10 @@ public class EventSequenceController : Singleton<EventSequenceController>
         ShopController.Instance.MoveAllCharactersToTheirNodes();
         yield return new WaitForSeconds(1 + (CharacterDataController.Instance.AllPlayerCharacters.Count * 0.5f));
         ShopController.Instance.SetShopKeeperInteractionState(true);
+        ShopController.Instance.SetContinueButtonInteractionState(true);
+        ShopController.Instance.ShowContinueButton();
         ShopController.Instance.DoMerchantGreeting();
 
-        /*
-        // View sequence 1
-        LevelManager.Instance.EnableCampSiteScenery();
-        CampSiteController.Instance.EnableCharacterViewParent();
-        CampSiteController.Instance.BuildAllCampSiteCharacterViews(CharacterDataController.Instance.AllPlayerCharacters);
-        CampSiteController.Instance.SetAllCampSiteCharacterViewStartStates();
-        CampSiteController.Instance.MoveAllCharactersToStartPosition();
-        AudioManager.Instance.FadeInSound(Sound.Environment_Camp_Fire, 3f);
-
-        // View sequence 2
-        BlackScreenController.Instance.FadeInScreen(1f);
-        CameraManager.Instance.DoCameraMove(-3, 0, 0f);
-        CameraManager.Instance.DoCameraMove(0, 0, 2f);
-        CameraManager.Instance.DoCameraZoom(3, 5, 2f);
-        CampSiteController.Instance.MoveAllCharactersToTheirNodes();
-        yield return new WaitForSeconds(1 + (CharacterDataController.Instance.AllPlayerCharacters.Count * 0.5f));
-        CampSiteController.Instance.EnableCampGuiViewParent();
-        CampSiteController.Instance.FadeInAllCharacterGUI();
-        CampSiteController.Instance.FadeInNodes();
-        CampSiteController.Instance.FadeInCampGui();
-        yield return new WaitForSeconds(0.5f);
-
-        // Draw camp cards
-        CampSiteController.Instance.DrawCampCardsOnCampEventStart();
-        */
         yield return null;
     }
     private void HandleLoadCampSiteEvent()
@@ -702,13 +682,6 @@ public class EventSequenceController : Singleton<EventSequenceController>
     }
     private IEnumerator HandleLoadCampSiteEventCoroutine()
     {
-        // build camp site character data and views from character roster characters
-        // move characters to start position (off screen)
-        // fade in screen
-        // move characters to camp site positions
-        // on arrival, fade in character gui (health bars, etc)
-        // then fade in card gui, delay a tad, then camp site cards
-
         // Set Properties
         CampSiteController.Instance.PopulateDrawPile();
         CampSiteController.Instance.GainCampPointsOnNewCampEventStart();

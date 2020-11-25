@@ -45,7 +45,7 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     #region
     public void ModifyCurrentGold(int gainedOrLost, bool playTextAnim = false)
     {
-        Debug.LogWarning("ModifyCurrentGold() called, modifying by: " + gainedOrLost.ToString());
+       // Debug.LogWarning("ModifyCurrentGold() called, modifying by: " + gainedOrLost.ToString());
 
         // Increment gold value
         CurrentGold += gainedOrLost;
@@ -75,7 +75,6 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
             }
 
             int from = Convert.ToInt32(TopBarController.Instance.CurrentGoldText.text);
-            Debug.LogWarning("from: " + from);
             DoRollingGoldTextAnimation(from, CurrentGold);
         }
         else

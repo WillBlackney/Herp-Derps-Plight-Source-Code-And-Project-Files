@@ -14,6 +14,7 @@ public class ShopController : Singleton<ShopController>
     [Header("Properties")]
     private ShopContentResultModel currentShopContentResultData;
     private bool shopIsInteractable = false;
+    private bool continueButtonIsInteractable = false;
 
     [Header("Main View Components")]
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
@@ -41,6 +42,10 @@ public class ShopController : Singleton<ShopController>
 
     [Header("Shop Card Components")]
     [SerializeField] private ShopCardBox[] allShopCards;
+
+    [Header("Continue Button Components")]
+    [SerializeField] private GameObject continueButtonVisualParent;
+    [SerializeField] private CanvasGroup continueButtonCg;
 
     [Header("Speech Bubble Components")]
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
@@ -158,6 +163,10 @@ public class ShopController : Singleton<ShopController>
     public void SetShopKeeperInteractionState(bool onOrOff)
     {
         shopIsInteractable = onOrOff;
+    }
+    public void SetContinueButtonInteractionState(bool onOrOff)
+    {
+        continueButtonIsInteractable = onOrOff;
     }
     #endregion
 
@@ -411,5 +420,37 @@ public class ShopController : Singleton<ShopController>
         yield return new WaitForSeconds(1.75f);
         bubbleCg.DOFade(0, 0.5f);
     }
+    #endregion
+
+    // Continue Button Logic
+    #region
+    public void OnContinueButtonClicked()
+    {
+        if (continueButtonIsInteractable)
+        {
+            SetContinueButtonInteractionState(false);
+            HideContinueButton();
+            EventSequenceController.Instance.HandleLoadNextEncounter();
+        }
+    }
+
+    public void ShowContinueButton()
+    {
+        continueButtonCg.DOKill();
+        continueButtonCg.alpha = 0;
+        continueButtonVisualParent.SetActive(true);
+        continueButtonCg.DOFade(1, 0.5f);
+    }
+    public void HideContinueButton()
+    {
+        continueButtonCg.DOKill();
+        continueButtonCg.alpha = 1;
+        continueButtonVisualParent.SetActive(true);
+
+        Sequence s = DOTween.Sequence();
+        s.Append(continueButtonCg.DOFade(0, 0.5f));
+        s.OnComplete(() => { continueButtonVisualParent.SetActive(false); });
+    }
+
     #endregion
 }
