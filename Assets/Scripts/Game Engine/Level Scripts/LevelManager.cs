@@ -23,7 +23,8 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField] private GameObject[] allDungeonParents;
     [SerializeField] private GameObject campsiteViewParent;
     [SerializeField] private GameObject[] allCampSiteParents;
-
+    [SerializeField] private GameObject shopViewParent;
+    [SerializeField] private GameObject[] allShopParents;
 
     public LevelNode[] AllLevelNodes
     {
@@ -280,5 +281,31 @@ public class LevelManager : Singleton<LevelManager>
         allCampSiteParents[RandomGenerator.NumberBetween(0, allCampSiteParents.Length - 1)].SetActive(true);
 
     }
+
+    // Shop Event
+    public void EnableShopScenery()
+    {
+        DisableAllShops();
+        shopViewParent.SetActive(true);
+        EnableRandomShop();
+    }
+    public void DisableShopScenery()
+    {
+        DisableAllShops();
+        shopViewParent.SetActive(false);
+    }
+    private void DisableAllShops()
+    {
+        for (int i = 0; i < allShopParents.Length; i++)
+        {
+            allShopParents[i].SetActive(false);
+        }
+    }
+    private void EnableRandomShop()
+    {
+        allShopParents[RandomGenerator.NumberBetween(0, allShopParents.Length - 1)].SetActive(true);
+
+    }
+
     #endregion
 }

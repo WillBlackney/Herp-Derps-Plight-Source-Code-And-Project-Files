@@ -70,4 +70,5 @@ public enum EventSetting
 {
     Combat = 0,
     Camping = 1,
+    Shop = 2,
 }

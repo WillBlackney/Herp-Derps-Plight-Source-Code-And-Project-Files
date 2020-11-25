@@ -246,5 +246,6 @@ public enum StartingSceneSetting
     IntegrationTesting = 2,
     KingsBlessingEvent = 5,
     CampSiteEvent = 6,
+    ShopEventTest = 7,
 
 }

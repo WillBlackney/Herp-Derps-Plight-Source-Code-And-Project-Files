@@ -41,7 +41,7 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
     [SerializeField] private Transform gateStartPos;
     [SerializeField] private Transform gateEndPos;
 
-    [Header("Sppech Bubble Components")]
+    [Header("Speech Bubble Components")]
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     [SerializeField] private CanvasGroup bubbleCg;
     [SerializeField] private TextMeshProUGUI bubbleText;

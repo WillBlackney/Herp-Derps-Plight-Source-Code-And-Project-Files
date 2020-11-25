@@ -53,6 +53,10 @@ public class EventSequenceController : Singleton<EventSequenceController>
         {
             StartCoroutine(RunCampSiteTestEventSetup());
         }
+        else if (GlobalSettings.Instance.gameMode == StartingSceneSetting.ShopEventTest)
+        {
+            StartCoroutine(RunShopTestEventSetup());
+        }
     }
     #endregion
 
@@ -154,6 +158,18 @@ public class EventSequenceController : Singleton<EventSequenceController>
         CampSiteController.Instance.SetStartingCampPointRegenStat(GlobalSettings.Instance.testingCampPoints);
         CampSiteController.Instance.SetStartingDrawStat(GlobalSettings.Instance.testingCampDraw);
         HandleLoadCampSiteEvent();
+    }
+    private IEnumerator RunShopTestEventSetup()
+    {
+        Debug.Log("EventSequenceController.RunShopTestEventSetup()");
+
+        yield return null;
+
+        // Build character data
+        CharacterDataController.Instance.BuildCharacterRosterFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
+
+        // Start load shop event sequence
+        HandleLoadShopEvent();
     }
     #endregion
 
@@ -569,6 +585,56 @@ public class EventSequenceController : Singleton<EventSequenceController>
         RecruitCharacterController.Instance.ResetAllViews();
         RecruitCharacterController.Instance.ShowRecruitCharacterScreen();
         RecruitCharacterController.Instance.BuildRecruitCharacterWindows();
+    }
+    private void HandleLoadShopEvent()
+    {
+        StartCoroutine(HandleLoadShopEventCoroutine());
+    }
+    private IEnumerator HandleLoadShopEventCoroutine()
+    {
+        // Build scenery + characters
+        LevelManager.Instance.EnableShopScenery();
+        ShopController.Instance.EnableCharacterViewParent();
+        ShopController.Instance.BuildAllShopCharacterViews(CharacterDataController.Instance.AllPlayerCharacters);
+        ShopController.Instance.MoveAllCharactersToStartPosition();
+
+        // Do fades + camera moves
+        BlackScreenController.Instance.FadeInScreen(1f);
+        CameraManager.Instance.DoCameraMove(-3, 0, 0f);
+        CameraManager.Instance.DoCameraMove(0, 0, 2f);
+        CameraManager.Instance.DoCameraZoom(3, 5, 2f);
+
+        // Move and greet visual sequence
+        ShopController.Instance.MoveAllCharactersToTheirNodes();
+        yield return new WaitForSeconds(1 + (CharacterDataController.Instance.AllPlayerCharacters.Count * 0.5f));
+        ShopController.Instance.DoMerchantGreeting();
+
+        /*
+        // View sequence 1
+        LevelManager.Instance.EnableCampSiteScenery();
+        CampSiteController.Instance.EnableCharacterViewParent();
+        CampSiteController.Instance.BuildAllCampSiteCharacterViews(CharacterDataController.Instance.AllPlayerCharacters);
+        CampSiteController.Instance.SetAllCampSiteCharacterViewStartStates();
+        CampSiteController.Instance.MoveAllCharactersToStartPosition();
+        AudioManager.Instance.FadeInSound(Sound.Environment_Camp_Fire, 3f);
+
+        // View sequence 2
+        BlackScreenController.Instance.FadeInScreen(1f);
+        CameraManager.Instance.DoCameraMove(-3, 0, 0f);
+        CameraManager.Instance.DoCameraMove(0, 0, 2f);
+        CameraManager.Instance.DoCameraZoom(3, 5, 2f);
+        CampSiteController.Instance.MoveAllCharactersToTheirNodes();
+        yield return new WaitForSeconds(1 + (CharacterDataController.Instance.AllPlayerCharacters.Count * 0.5f));
+        CampSiteController.Instance.EnableCampGuiViewParent();
+        CampSiteController.Instance.FadeInAllCharacterGUI();
+        CampSiteController.Instance.FadeInNodes();
+        CampSiteController.Instance.FadeInCampGui();
+        yield return new WaitForSeconds(0.5f);
+
+        // Draw camp cards
+        CampSiteController.Instance.DrawCampCardsOnCampEventStart();
+        */
+        yield return null;
     }
     private void HandleLoadCampSiteEvent()
     {
