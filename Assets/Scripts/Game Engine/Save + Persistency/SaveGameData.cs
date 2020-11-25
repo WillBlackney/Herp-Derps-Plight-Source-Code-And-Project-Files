@@ -36,6 +36,9 @@ public class SaveGameData
 
     // KBC Data
     public List<KingsChoicePairingModel> kbcChoices = new List<KingsChoicePairingModel>();
+
+    // Shop
+    public ShopContentResultModel shopData;
    
 }
 public enum SaveCheckPoint
@@ -46,6 +49,7 @@ public enum SaveCheckPoint
     KingsBlessingStart = 3,
     RecruitCharacterStart = 4,
     CampSite = 5,
+    Shop =6,
 
 
 }

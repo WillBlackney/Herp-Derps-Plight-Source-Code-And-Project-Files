@@ -11,6 +11,10 @@ public class ShopController : Singleton<ShopController>
 {
     // Properties + Components
     #region
+    [Header("Properties")]
+    private ShopContentResultModel currentShopContentResultData;
+    private bool shopIsInteractable = false;
+
     [Header("Main View Components")]
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     [SerializeField] private GameObject mainVisualParent;
@@ -33,7 +37,10 @@ public class ShopController : Singleton<ShopController>
     [SerializeField] private Image[] merchantAccesoryImages;
     [SerializeField] private Color merchantAccessoriesNormalColour;
     [SerializeField] private Color merchantNormalColour;
-    [SerializeField] private Color merchantHightlightColour;    
+    [SerializeField] private Color merchantHightlightColour;
+
+    [Header("Shop Card Components")]
+    [SerializeField] private ShopCardBox[] allShopCards;
 
     [Header("Speech Bubble Components")]
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
@@ -43,6 +50,22 @@ public class ShopController : Singleton<ShopController>
     [SerializeField] private string[] bubbleFarewells;
     #endregion
 
+    // Getters
+    #region
+    public ShopContentResultModel CurrentShopContentResultData
+    {
+        get { return currentShopContentResultData; }
+        private set { currentShopContentResultData = value; }
+    }
+    public CanvasGroup MainCg
+    {
+        get { return mainCg; }
+        private set { mainCg = value; }
+    }
+    #endregion
+
+    // Show + Hide Views
+    #region
     private void ShowMainPanelView()
     {
         mainCg.DOKill();
@@ -50,7 +73,6 @@ public class ShopController : Singleton<ShopController>
         mainVisualParent.SetActive(true);      
         mainCg.DOFade(1f, 0.25f);
     }
-
     private void HideMainPanelView()
     {
         mainCg.DOKill();
@@ -59,54 +81,39 @@ public class ShopController : Singleton<ShopController>
         s.Append(mainCg.DOFade(0, 0.25f));
         s.OnComplete(() => mainVisualParent.SetActive(false));
     }
-    public void SetMerchantColor(EntityRenderer view, Color newColor)
+    public void EnableCharacterViewParent()
     {
-        if (view != null)
-        {
-            view.Color = new Color(newColor.r, newColor.g, newColor.b, view.Color.a);
-        }
+        charactersViewParent.SetActive(true);
     }
-    public void SetMerchantAccessoriesColor(Color newColor)
+    public void DisableCharacterViewParent()
     {
-        foreach(Image i in merchantAccesoryImages)
-        {
-            i.DOKill();
-            i.DOColor(newColor, 0.2f);
-        }
+        charactersViewParent.SetActive(false);
     }
-    public void OnMerchantCharacterClicked()
+    public void ShowShopCardBox(ShopCardBox box)
     {
-        Debug.LogWarning("OnMerchantCharacterClicked()");
-        if(mainVisualParent.activeSelf == false)
-        {
-            SetMerchantColor(merchantUcm.GetComponent<EntityRenderer>(), merchantNormalColour);
-            SetMerchantAccessoriesColor(merchantNormalColour);
-            AudioManager.Instance.PlaySound(Sound.GUI_Button_Clicked);
-            ShowMainPanelView();
-        }   
+        box.visualParent.SetActive(true);
     }
-    public void OnMerchantCharacterMouseEnter()
+    public void HideShopCardBox(ShopCardBox box)
     {
-        if(mainVisualParent.activeSelf == false)
-        {
-            AudioManager.Instance.PlaySound(Sound.GUI_Button_Mouse_Over);
-            SetMerchantColor(merchantUcm.GetComponent<EntityRenderer>(), merchantHightlightColour);
-            SetMerchantAccessoriesColor(merchantHightlightColour);
-        }
+        box.visualParent.SetActive(false);
     }
-    public void OnMerchantCharacterMouseExit()
-    {
-        if (mainVisualParent.activeSelf == false)
-        {
-            SetMerchantColor(merchantUcm.GetComponent<EntityRenderer>(), merchantNormalColour);
-            SetMerchantAccessoriesColor(merchantAccessoriesNormalColour);
-        }
-    }
-    public void OnMainPanelBackButtonClicked()
-    {
-        HideMainPanelView();
-    }
+    #endregion
 
+    // Save + Load Logic
+    #region
+    public void SaveMyDataToSaveFile(SaveGameData saveFile)
+    {
+        saveFile.shopData = CurrentShopContentResultData;
+    }
+    public void BuildMyDataFromSaveFile(SaveGameData saveFile)
+    {
+        CurrentShopContentResultData = saveFile.shopData;
+    }
+    
+    #endregion
+
+    // Build Views
+    #region
     public void BuildAllShopCharacterViews(List<CharacterData> characters)
     {
         for (int i = 0; i < characters.Count; i++)
@@ -130,6 +137,198 @@ public class ShopController : Singleton<ShopController>
         CharacterModelController.BuildModelFromStringReferences(view.characterEntityView.ucm, data.modelParts);
         CharacterModelController.ApplyItemManagerDataToCharacterModelView(data.itemManager, view.characterEntityView.ucm);
     }
+    public void BuildAllShopContentFromDataSet(ShopContentResultModel dataSet)
+    {
+        BuildAllShopCardBoxesFromDataSet(dataSet);
+    }
+    private void BuildAllShopCardBoxesFromDataSet(ShopContentResultModel dataSet)
+    {
+        for(int i = 0; i < dataSet.cardsData.Count; i++)
+        {
+            BuildShopCardBox(allShopCards[i], dataSet.cardsData[i]);
+        }
+    }
+    private void BuildShopCardBox(ShopCardBox box, CardPricePairing data)
+    {
+        ShowShopCardBox(box);
+        box.cppData = data;
+        box.goldCostText.text = data.goldCost.ToString();
+        CardController.Instance.BuildCardViewModelFromCardData(data.cardData, box.cvm);
+    }
+    public void SetShopKeeperInteractionState(bool onOrOff)
+    {
+        shopIsInteractable = onOrOff;
+    }
+    #endregion
+
+    // Generate cards and content
+    #region
+    public void SetAndCacheNewShopContentDataSet()
+    {
+        CurrentShopContentResultData = GenerateNewShopContentDataSet();
+    }
+    public void ClearShopContentDataSet()
+    {
+        CurrentShopContentResultData = null;
+    }
+    public ShopContentResultModel GenerateNewShopContentDataSet()
+    {
+        ShopContentResultModel scr = new ShopContentResultModel();
+
+        // Get ALL valid cards 
+        List<CardData> allValidLootableCards = new List<CardData>();
+        List<CardData> validCommons = new List<CardData>();
+        List<CardData> validRares = new List<CardData>();
+        List<CardData> validEpics = new List<CardData>();
+
+        List<CardData> chosenCards = new List<CardData>();
+
+        // Get all valid lootable cards for every character the player has
+        foreach (CharacterData character in CharacterDataController.Instance.AllPlayerCharacters)
+        {
+            foreach(CardData cd in LootController.Instance.GetAllValidLootableCardsForCharacter(character))
+            {
+                // Prevent doubling up on cards
+                if(allValidLootableCards.Contains(cd) == false)
+                {
+                    allValidLootableCards.Add(cd);
+                }
+            }
+        }
+
+        // Divide cards by rarity
+        foreach(CardData cd in allValidLootableCards)
+        {
+            if(cd.rarity == Rarity.Common)
+            {
+                validCommons.Add(cd);
+            }
+            else if (cd.rarity == Rarity.Rare)
+            {
+                validRares.Add(cd);
+            }
+            else if (cd.rarity == Rarity.Epic)
+            {
+                validEpics.Add(cd);
+            }
+        }
+
+        // Randomly pick 5 commons, 3 rares and 2 epics
+        for(int i = 0; i < 5; i++)
+        {
+            validCommons.Shuffle();
+            chosenCards.Add(validCommons[0]);
+            validCommons.Remove(validCommons[0]);
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            validRares.Shuffle();
+            chosenCards.Add(validRares[0]);
+            validRares.Remove(validRares[0]);
+        }
+        for (int i = 0; i < 2; i++)
+        {
+            validEpics.Shuffle();
+            chosenCards.Add(validEpics[0]);
+            validEpics.Remove(validEpics[0]);
+        }
+
+        // Create new pairings and randomized prices
+        foreach(CardData card in chosenCards)
+        {
+            scr.cardsData.Add(new CardPricePairing(card));
+        }
+
+        return scr;
+
+    }
+    #endregion
+
+    // Handle Buy Stuff Logic
+    #region
+    public void OnShopCardBoxClicked(ShopCardBox box)
+    {
+        if(PlayerDataManager.Instance.CurrentGold >= box.cppData.goldCost)
+        {
+            KeyWordLayoutController.Instance.FadeOutMainView();
+
+            // Pay gold price
+            PlayerDataManager.Instance.ModifyCurrentGold(-box.cppData.goldCost, true);           
+
+            // Cha ching SFX + coin explosion VFX
+            AudioManager.Instance.PlaySoundPooled(Sound.Gold_Cha_Ching);
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateGoldCoinExplosion(box.transform.position, 10000, 2));
+
+            // Sparkle glow trail towards inventory
+            LootController.Instance.CreateGreenGlowTrailEffect(box.transform.position, TopBarController.Instance.CharacterRosterButton.transform.position);
+
+            // Hide card box
+            HideShopCardBox(box);
+
+            // add card to player card inventory
+
+        }        
+    }
+    #endregion
+
+    // On Button Click Listeners
+    #region
+    public void OnMerchantCharacterClicked()
+    {
+        Debug.LogWarning("OnMerchantCharacterClicked()");
+        if (mainVisualParent.activeSelf == false && shopIsInteractable)
+        {
+            SetMerchantColor(merchantUcm.GetComponent<EntityRenderer>(), merchantNormalColour);
+            SetMerchantAccessoriesColor(merchantNormalColour);
+            AudioManager.Instance.PlaySound(Sound.GUI_Button_Clicked);
+            ShowMainPanelView();
+        }
+    }
+    public void OnMerchantCharacterMouseEnter()
+    {
+        if (mainVisualParent.activeSelf == false && shopIsInteractable)
+        {
+            AudioManager.Instance.PlaySoundPooled(Sound.GUI_Button_Mouse_Over);
+            SetMerchantColor(merchantUcm.GetComponent<EntityRenderer>(), merchantHightlightColour);
+            SetMerchantAccessoriesColor(merchantHightlightColour);
+        }
+    }
+    public void OnMerchantCharacterMouseExit()
+    {
+        if (mainVisualParent.activeSelf == false && shopIsInteractable)
+        {
+            SetMerchantColor(merchantUcm.GetComponent<EntityRenderer>(), merchantNormalColour);
+            SetMerchantAccessoriesColor(merchantAccessoriesNormalColour);
+        }
+    }
+    public void OnMainPanelBackButtonClicked()
+    {
+        HideMainPanelView();
+    }
+    #endregion
+
+    // Colouring
+    #region
+    public void SetMerchantColor(EntityRenderer view, Color newColor)
+    {
+        if (view != null)
+        {
+            view.Color = new Color(newColor.r, newColor.g, newColor.b, view.Color.a);
+        }
+    }
+    public void SetMerchantAccessoriesColor(Color newColor)
+    {
+        foreach (Image i in merchantAccesoryImages)
+        {
+            i.DOKill();
+            i.DOColor(newColor, 0.2f);
+        }
+    }
+    #endregion
+
+    // Character Movement Events
+    #region
     public void MoveAllCharactersToStartPosition()
     {
         for (int i = 0; i < allShopCharacterViews.Length; i++)
@@ -143,22 +342,6 @@ public class ShopController : Singleton<ShopController>
             }
 
             character.characterEntityView.ucmMovementParent.transform.position = offScreenStartPosition.position;
-
-            /*
-            // Dead characters dont walk on screen, they start at their node
-            if (character.myCharacterData.health <= 0)
-            {
-
-                //character.characterEntityView.ucmMovementParent.transform.position = campSiteNodes[i].transform.position;
-               // CharacterEntityController.Instance.PlayLayDeadAnimation(character.characterEntityView);
-            }
-
-            // Alive characters start off screen, then walk to their node on event start
-            else
-            {
-                character.characterEntityView.ucmMovementParent.transform.position = offScreenStartPosition.position;
-            }
-            */
         }
     }
     public void MoveAllCharactersToTheirNodes()
@@ -182,10 +365,25 @@ public class ShopController : Singleton<ShopController>
         }
 
     }
-    public void EnableCharacterViewParent()
+    public void MoveCharactersToOffScreenRight()
     {
-        charactersViewParent.SetActive(true);
+        StartCoroutine(MoveCharactersToOffScreenRightCoroutine());
     }
+    private IEnumerator MoveCharactersToOffScreenRightCoroutine()
+    {
+        foreach (CampSiteCharacterView character in allShopCharacterViews)
+        {
+            // Only move existing living characters
+            if (character.myCharacterData != null &&
+                character.myCharacterData.health > 0)
+            {
+                CharacterEntityController.Instance.MoveEntityToNodeCentre(character.characterEntityView, LevelManager.Instance.EnemyOffScreenNode, null);
+            }
+        }
+
+        yield return new WaitForSeconds(3f);
+    }
+    #endregion
 
     // Greeting Visual Logic
     #region

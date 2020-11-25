@@ -19,8 +19,10 @@ public class LootScreenCardViewModel : MonoBehaviour, IPointerEnterHandler, IPoi
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        //DOTween.Kill(cardViewModel.movementParent);
+        //cardViewModel.movementParent.DOKill();
         cardViewModel.movementParent.DOScale(endScale, scaleSpeed).SetEase(Ease.OutQuint);
-        AudioManager.Instance.PlaySound(Sound.Card_Discarded);
+        AudioManager.Instance.PlaySoundPooled(Sound.Card_Discarded);
 
         if (myDataRef != null)
         {
@@ -34,6 +36,8 @@ public class LootScreenCardViewModel : MonoBehaviour, IPointerEnterHandler, IPoi
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        //DOTween.Kill(cardViewModel.movementParent);
+        //cardViewModel.movementParent.DOKill();
         cardViewModel.movementParent.DOScale(originalScale, scaleSpeed).SetEase(Ease.OutQuint);
         KeyWordLayoutController.Instance.FadeOutMainView();
     }
@@ -46,6 +50,8 @@ public class LootScreenCardViewModel : MonoBehaviour, IPointerEnterHandler, IPoi
     public void ResetSelfOnEventComplete()
     {
         myDataRef = null;
+        //cardViewModel.movementParent.DOKill();
+        DOTween.Kill(cardViewModel.movementParent);
         cardViewModel.movementParent.localScale = new Vector3(originalScale, originalScale, 1f);
     }
 }

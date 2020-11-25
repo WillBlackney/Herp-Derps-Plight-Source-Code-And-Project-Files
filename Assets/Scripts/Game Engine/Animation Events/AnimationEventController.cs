@@ -35,7 +35,7 @@ public class AnimationEventController : Singleton<AnimationEventController>
 
         else if (vEvent.eventType == AnimationEventType.SoundEffect)
         {
-            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(vEvent.soundEffect));
+            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(vEvent.soundEffect));
         }
 
         else if (vEvent.eventType == AnimationEventType.ScreenOverlay)
@@ -67,7 +67,7 @@ public class AnimationEventController : Singleton<AnimationEventController>
 
         else if (vEvent.eventType == AnimationEventType.SoundEffect)
         {
-            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(vEvent.soundEffect));
+            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(vEvent.soundEffect));
         }
 
         else if (vEvent.eventType == AnimationEventType.ScreenOverlay)

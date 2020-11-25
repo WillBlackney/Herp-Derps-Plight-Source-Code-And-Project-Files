@@ -551,7 +551,7 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
 
                 // Hurt SFX
                 VisualEventManager.Instance.CreateVisualEvent(() =>
-                AudioManager.Instance.PlaySound(Sound.Ability_Damaged_Health_Lost));                
+                AudioManager.Instance.PlaySoundPooled(Sound.Ability_Damaged_Health_Lost));                
             }
             else if (data.maxHealthGainedOrLost > 0)
             {
@@ -562,7 +562,7 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
                     VisualEffectManager.Instance.CreateHealEffect(playerModel.transform.position));
 
                 // Create SFX
-                VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Passive_General_Buff));
+                VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
             }
 
             // Update Health GUI
@@ -581,14 +581,14 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
 
             if (data.goldGainedOrLost < 0)
             {
-                AudioManager.Instance.PlaySound(Sound.Gold_Dropping);
+                AudioManager.Instance.PlaySoundPooled(Sound.Gold_Dropping);
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                     VisualEffectManager.Instance.CreateGoldCoinExplosion(playerModel.transform.position, 10000));
             }
             else if (data.goldGainedOrLost > 0)
             {
-                AudioManager.Instance.PlaySound(Sound.Gold_Gain);
-                LootController.Instance.CreateGoldGlowTrailEffect(kingModel.transform.position, PlayerDataManager.Instance.GoldTopBarImage.transform.position);
+                AudioManager.Instance.PlaySoundPooled(Sound.Gold_Gain);
+                LootController.Instance.CreateGoldGlowTrailEffect(kingModel.transform.position, TopBarController.Instance.GoldTopBarImage.transform.position);
             }
 
             PlayerDataManager.Instance.ModifyCurrentGold(data.goldGainedOrLost, true);
@@ -610,7 +610,7 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
 
                 // Hurt SFX
                 VisualEventManager.Instance.CreateVisualEvent(() =>
-                AudioManager.Instance.PlaySound(Sound.Ability_Damaged_Health_Lost));
+                AudioManager.Instance.PlaySoundPooled(Sound.Ability_Damaged_Health_Lost));
 
                 // Damage Text Effect VFX
                 VisualEventManager.Instance.CreateVisualEvent(() =>
@@ -627,7 +627,7 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
                 VisualEffectManager.Instance.CreateDamageEffect(playerModel.transform.position, Mathf.Abs(data.healthGainedOrLost), true, false));
 
                 // Create SFX
-                VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Passive_General_Buff));
+                VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
             }
 
             // Update Health GUI

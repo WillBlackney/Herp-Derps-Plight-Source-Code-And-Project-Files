@@ -463,7 +463,7 @@ public class LootController : Singleton<LootController>
         HideLootTab(goldLootTab);
         PlayerDataManager.Instance.ModifyCurrentGold(CurrentLootResultData.goldReward, true);
         AudioManager.Instance.PlaySound(Sound.Gold_Gain);
-        CreateGoldGlowTrailEffect(goldLootTab.transform.position, PlayerDataManager.Instance.GoldTopBarImage.transform.position);
+        CreateGoldGlowTrailEffect(goldLootTab.transform.position, TopBarController.Instance.GoldTopBarImage.transform.position);
 
         // TO DO: cool sfx and anim stuff when gaining gold
     }
@@ -471,6 +471,9 @@ public class LootController : Singleton<LootController>
     {
         // Add card to character deck
         CharacterDataController.Instance.AddCardToCharacterDeck(currentCharacterSelection, CardController.Instance.CloneCardDataFromCardData(cardClicked.myDataRef));
+
+        // Stop breath anims
+        cardClicked.cardViewModel.movementParent.DOKill();
 
         // Close choose card window,  reopen front screen
         HideChooseCardScreen();
@@ -732,7 +735,7 @@ public class LootController : Singleton<LootController>
             box.currentLevelText.text = data.currentLevel.ToString();
 
             // Chime ping SFX on level up
-            AudioManager.Instance.PlaySound(Sound.GUI_Chime_1);
+            AudioManager.Instance.PlaySoundPooled(Sound.GUI_Chime_1);
             VisualEffectManager.Instance.CreateSmallMeleeImpact(box.currentLevelText.transform.position, 10000);
 
             // Move xp slider to final position after xp overflow
@@ -805,6 +808,24 @@ public class LootController : Singleton<LootController>
     {
         // Create Glow Trail
         ToonEffect glowTrail = VisualEffectManager.Instance.CreateYellowGlowTrailEffect(startPos, 20000);
+
+        // Move trail to destination
+        Sequence s = DOTween.Sequence();
+        s.Append(glowTrail.transform.DOMove(endpos, 0.5f));
+
+        // On arrival, stop emmisions and destroy
+        s.OnComplete(() =>
+        {
+            VisualEffectManager.Instance.CreateSmallMeleeImpact(endpos, 20000);
+            glowTrail.StopAllEmissions();
+            Destroy(glowTrail, 3);
+        });
+
+    }
+    public void CreateGreenGlowTrailEffect(Vector3 startPos, Vector3 endpos)
+    {
+        // Create Glow Trail
+        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGreenGlowTrailEffect(startPos, 20000);
 
         // Move trail to destination
         Sequence s = DOTween.Sequence();

@@ -2260,7 +2260,7 @@ public class CardController : Singleton<CardController>
             VisualEffectManager.Instance.CreateDamageEffect(owner.characterEntityView.WorldPosition, cardEffect.healthRestored, true));
 
             // Create SFX
-            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Passive_General_Buff));
+            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
         }
 
         // Heal Target
@@ -2278,7 +2278,7 @@ public class CardController : Singleton<CardController>
             VisualEffectManager.Instance.CreateDamageEffect(target.characterEntityView.WorldPosition, cardEffect.healthRestored, true));
 
             // Create SFX
-            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Passive_General_Buff));
+            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
         }
 
         // Heal Self And All Allies
@@ -2296,11 +2296,10 @@ public class CardController : Singleton<CardController>
                 // Create heal text effect
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 VisualEffectManager.Instance.CreateDamageEffect(target.characterEntityView.WorldPosition, cardEffect.healthRestored, true));
-
-                // Create SFX
-                VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Passive_General_Buff));
             }
-           
+
+            // Create SFX
+            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Passive_General_Buff));
         }
 
         // Lose Health
@@ -4298,7 +4297,7 @@ public class CardController : Singleton<CardController>
         Vector3 glowDestination = character.WorldPosition;
 
         // SFX
-        AudioManager.Instance.PlaySound(Sound.Card_Discarded);
+        AudioManager.Instance.PlaySoundPooled(Sound.Card_Discarded);
 
         // Create Glow Trail
         ToonEffect glowTrail = VisualEffectManager.Instance.CreateGreenGlowTrailEffect
@@ -4333,7 +4332,7 @@ public class CardController : Singleton<CardController>
         Vector3 glowDestination = character.transform.position;
 
         // SFX
-        AudioManager.Instance.PlaySound(Sound.Card_Discarded);
+        AudioManager.Instance.PlaySoundPooled(Sound.Card_Discarded);
 
         // Create Glow Trail
         ToonEffect glowTrail = VisualEffectManager.Instance.CreateGreenGlowTrailEffect
@@ -4730,7 +4729,7 @@ public class CardController : Singleton<CardController>
         clt.VisualState = VisualStates.Transition;
 
         // Start SFX
-        AudioManager.Instance.PlaySound(Sound.Card_Draw);
+        AudioManager.Instance.PlaySoundPooled(Sound.Card_Draw);
 
         // Shrink card, then scale up as it moves to hand
         // Get starting scale
@@ -4771,7 +4770,7 @@ public class CardController : Singleton<CardController>
         AutoUpdateCardGlowOutline(card);
 
         // Start SFX
-        AudioManager.Instance.PlaySound(Sound.Card_Draw);
+        AudioManager.Instance.PlaySoundPooled(Sound.Card_Draw);
 
         // Get starting scale
         Vector3 originalScale = new Vector3
@@ -4800,7 +4799,7 @@ public class CardController : Singleton<CardController>
         character.characterEntityView.handVisual.RemoveCard(cvm.movementParent.gameObject);
 
         // SFX
-        AudioManager.Instance.PlaySound(Sound.Card_Discarded);
+        AudioManager.Instance.PlaySoundPooled(Sound.Card_Discarded);
 
         // Create Glow Trail
         ToonEffect glowTrail = VisualEffectManager.Instance.CreateGreenGlowTrailEffect(cvm.movementParent.position);
@@ -4836,7 +4835,7 @@ public class CardController : Singleton<CardController>
         cvm.movementParent.SetParent(null);
 
         // SFX
-        AudioManager.Instance.PlaySound(Sound.Explosion_Fire_1);
+        AudioManager.Instance.PlaySoundPooled(Sound.Explosion_Fire_1);
 
         // TO DO: fade out card canvas gradually
         FadeOutCardViewModel(cvm, null, ()=> DestroyCardViewModel(cvm));
@@ -4922,7 +4921,7 @@ public class CardController : Singleton<CardController>
         cvm.movementParent.SetParent(null);
 
         // SFX
-        AudioManager.Instance.PlaySound(Sound.Card_Discarded);
+        AudioManager.Instance.PlaySoundPooled(Sound.Card_Discarded);
 
         // Create Glow Trail
         ToonEffect glowTrail = VisualEffectManager.Instance.CreateGreenGlowTrailEffect(cvm.movementParent.position);

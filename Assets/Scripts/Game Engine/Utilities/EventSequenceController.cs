@@ -168,6 +168,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Build character data
         CharacterDataController.Instance.BuildCharacterRosterFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
 
+        // Gain gold to test with
+        PlayerDataManager.Instance.ModifyCurrentGold(200);
+
         // Start load shop event sequence
         HandleLoadShopEvent();
     }
@@ -355,6 +358,10 @@ public class EventSequenceController : Singleton<EventSequenceController>
         {
             HandleLoadCampSiteEvent();
         }
+        else if (JourneyManager.Instance.CheckPointType == SaveCheckPoint.Shop)
+        {
+            HandleLoadShopEvent();
+        }
     }
     public void HandleLoadNextEncounter()
     {
@@ -409,7 +416,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         }
 
         // Tear down recruit character screen
-                else if(previousEncounter.encounterType == EncounterType.RecruitCharacter)
+        else if(previousEncounter.encounterType == EncounterType.RecruitCharacter)
         {
             // Fade out visual event
             BlackScreenController.Instance.FadeOutScreen(1f);
@@ -461,6 +468,33 @@ public class EventSequenceController : Singleton<EventSequenceController>
             LevelManager.Instance.DisableCampSiteScenery();
         }
 
+        // Do shop end sequence + tear down
+        else if (previousEncounter.encounterType == EncounterType.Shop)
+        {
+            // disable shop keeper clickability
+            ShopController.Instance.SetShopKeeperInteractionState(false);
+
+            // Clear shop content result data
+            ShopController.Instance.ClearShopContentDataSet();
+
+            // Move characters off screen
+            ShopController.Instance.MoveCharactersToOffScreenRight();
+
+            // Zoom and move camera
+            yield return new WaitForSeconds(0.5f);
+            CameraManager.Instance.DoCameraMove(3, 0, 3f);
+            CameraManager.Instance.DoCameraZoom(5, 3, 3f);
+
+            // Fade out Screen
+            BlackScreenController.Instance.FadeOutScreen(3f);
+
+            // Wait for visual events
+            yield return new WaitForSeconds(4f);
+
+            ShopController.Instance.DisableCharacterViewParent();
+            LevelManager.Instance.DisableShopScenery();
+        }
+
         // Reset Camera
         CameraManager.Instance.ResetMainCameraPositionAndZoom();
 
@@ -499,6 +533,24 @@ public class EventSequenceController : Singleton<EventSequenceController>
             PersistencyManager.Instance.AutoUpdateSaveFile();
 
             HandleLoadRecruitCharacterEncounter();
+        }
+
+        // Shop event
+        else if (JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.Shop)
+        {
+            // Generate new shop contents
+            if (ShopController.Instance.CurrentShopContentResultData == null)
+            {
+                ShopController.Instance.SetAndCacheNewShopContentDataSet();
+            }
+
+            // Set check point
+            JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.Shop);
+
+            // Auto save
+            PersistencyManager.Instance.AutoUpdateSaveFile();
+
+            HandleLoadShopEvent();
         }
 
         // Kings Blessing
@@ -592,6 +644,13 @@ public class EventSequenceController : Singleton<EventSequenceController>
     }
     private IEnumerator HandleLoadShopEventCoroutine()
     {
+        // Generate shop content
+        if(ShopController.Instance.CurrentShopContentResultData == null)
+        {
+            ShopController.Instance.SetAndCacheNewShopContentDataSet();
+        }
+        ShopController.Instance.BuildAllShopContentFromDataSet(ShopController.Instance.CurrentShopContentResultData);
+
         // Build scenery + characters
         LevelManager.Instance.EnableShopScenery();
         ShopController.Instance.EnableCharacterViewParent();
@@ -607,6 +666,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Move and greet visual sequence
         ShopController.Instance.MoveAllCharactersToTheirNodes();
         yield return new WaitForSeconds(1 + (CharacterDataController.Instance.AllPlayerCharacters.Count * 0.5f));
+        ShopController.Instance.SetShopKeeperInteractionState(true);
         ShopController.Instance.DoMerchantGreeting();
 
         /*

@@ -216,7 +216,7 @@ public class CampSiteController : Singleton<CampSiteController>
         }
 
         // Mouse over SFX
-        AudioManager.Instance.PlaySound(Sound.GUI_Button_Mouse_Over);
+        AudioManager.Instance.PlaySoundPooled(Sound.GUI_Button_Mouse_Over);
 
         // Find + Highlight character's level node
         for(int i = 0; i < campSiteNodes.Length; i++)
@@ -856,7 +856,7 @@ public class CampSiteController : Singleton<CampSiteController>
             VisualEffectManager.Instance.CreateDamageEffect(view.characterEntityView.WorldPosition, healAmount, true));
 
             // Create SFX
-            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Passive_General_Buff));
+            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
         }
 
         // Heal All
@@ -902,7 +902,7 @@ public class CampSiteController : Singleton<CampSiteController>
                     VisualEffectManager.Instance.CreateDamageEffect(campCharacter.characterEntityView.WorldPosition, healAmount, true));
 
                     // Create SFX
-                    VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Passive_General_Buff));
+                    VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
                 }
             }
            
@@ -924,7 +924,7 @@ public class CampSiteController : Singleton<CampSiteController>
                 VisualEffectManager.Instance.CreateHealEffect(view.characterEntityView.WorldPosition));
 
             // Create SFX
-            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Passive_General_Buff));
+            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
         }
 
         // Increase max health all
@@ -955,7 +955,7 @@ public class CampSiteController : Singleton<CampSiteController>
                         VisualEffectManager.Instance.CreateHealEffect(campCharacter.characterEntityView.WorldPosition));
 
                     // Create SFX
-                    VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Passive_General_Buff));
+                    VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
                 }
             }
         }
@@ -1235,7 +1235,7 @@ public class CampSiteController : Singleton<CampSiteController>
         AutoUpdateCardGlowOutline(card);
 
         // Start SFX
-        AudioManager.Instance.PlaySound(Sound.Card_Draw);
+        AudioManager.Instance.PlaySoundPooled(Sound.Card_Draw);
 
         // Get starting scale
         Vector3 originalScale = new Vector3
@@ -1264,7 +1264,7 @@ public class CampSiteController : Singleton<CampSiteController>
         cvm.movementParent.SetParent(null);
 
         // SFX
-        AudioManager.Instance.PlaySound(Sound.Card_Discarded);
+        AudioManager.Instance.PlaySoundPooled(Sound.Card_Discarded);
 
         // Create Glow Trail
         ToonEffect glowTrail = VisualEffectManager.Instance.CreateGreenGlowTrailEffect(cvm.movementParent.position);
@@ -1300,7 +1300,7 @@ public class CampSiteController : Singleton<CampSiteController>
         cvm.movementParent.SetParent(null);
 
         // SFX
-        AudioManager.Instance.PlaySound(Sound.Explosion_Fire_1);
+        AudioManager.Instance.PlaySoundPooled(Sound.Explosion_Fire_1);
 
         // TO DO: fade out card canvas gradually
         CardController.Instance.FadeOutCardViewModel(cvm, null, () => { Destroy(cvm.movementParent.gameObject); });

@@ -113,6 +113,24 @@ public class AudioManager : Singleton<AudioManager>
 
         return bReturned;
     }
+    public void PlaySoundPooled(Sound s)
+    {
+        if (s == Sound.None)
+        {
+            return;
+        }
+
+        AudioModel a = Array.Find(allAudioModels, sound => sound.soundType == s);
+        if (a != null)
+        {   
+            // Set up audio player
+            AudioPlayer player = GetNextAvailableAudioPlayer();
+            BuildAudioPlayerFromAudioModelData(a, player);
+
+            // Play the sound!
+            player.source.Play();
+        }
+    }
     public void PlaySound(Sound s)
     {
         if(s == Sound.None)
@@ -131,11 +149,19 @@ public class AudioManager : Singleton<AudioManager>
             {
                 a.source.pitch = RandomGenerator.NumberBetween(a.randomPitchLowerLimit, a.randomPitchUpperLimit);
             }
+            else
+            {
+                a.source.pitch = a.pitch;
+            }
 
             // Randomize volume if marked to do so
             if (a.randomizeVolume)
             {
                 a.source.volume = RandomGenerator.NumberBetween(a.randomVolumeLowerLimit, a.randomVolumeUpperLimit);
+            }
+            else
+            {
+                a.source.volume = a.volume;
             }
 
             a.source.Play();
@@ -200,11 +226,19 @@ public class AudioManager : Singleton<AudioManager>
         {
             player.source.pitch = RandomGenerator.NumberBetween(data.randomPitchLowerLimit, data.randomPitchUpperLimit);
         }
+        else
+        {
+            player.source.pitch = data.pitch;
+        }
 
         // Randomize volume if marked to do so
         if (data.randomizeVolume)
         {
             player.source.volume = RandomGenerator.NumberBetween(data.randomVolumeLowerLimit, data.randomVolumeUpperLimit);
+        }
+        else
+        {
+            player.source.volume = data.volume;
         }
     }
     public void StopSound(Sound s)
@@ -420,6 +454,7 @@ public enum Sound
     Explosion_Lightning_1 = 22,
     Explosion_Poison_1 = 23,  
     
+    Gold_Cha_Ching = 53,
     Gold_Gain = 51,
     Gold_Dropping = 52,
 

@@ -302,7 +302,7 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
         {
             // VFX + SFX
             VisualEffectManager.Instance.CreateSmallMeleeImpact(panel.PlusButtonParent.transform.position, 27000);
-            AudioManager.Instance.PlaySound(Sound.Passive_General_Buff);           
+            AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff);           
 
             // Deduct talent points
             CharacterDataController.Instance.ModifyCharacterTalentPoints(currentCharacterViewing, -1);

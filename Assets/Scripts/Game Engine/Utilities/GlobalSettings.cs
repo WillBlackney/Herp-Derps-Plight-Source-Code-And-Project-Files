@@ -189,6 +189,33 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [Range(1, 200)]
     public int bossEnemyGoldRewardUpperLimit;
 
+    // Shop Settings
+    [Header("Shop Settings")]    
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
+    [LabelWidth(200)]
+    [Range(1, 200)]
+    public int commonCardCostLowerLimit;
+
+    [LabelWidth(200)]
+    [Range(1, 200)]
+    public int commonCardCostUpperLimit;
+
+    [LabelWidth(200)]
+    [Range(1, 200)]
+    public int rareCardCostLowerLimit;
+
+    [LabelWidth(200)]
+    [Range(1, 200)]
+    public int rareCardCostUpperLimit;
+
+    [LabelWidth(200)]
+    [Range(1, 200)]
+    public int epicCardCostLowerLimit;
+
+    [LabelWidth(200)]
+    [Range(1, 200)]
+    public int epicCardCostUpperLimit;
+
     // Odin bools
     public bool ShowTestSceneProperties()
     {

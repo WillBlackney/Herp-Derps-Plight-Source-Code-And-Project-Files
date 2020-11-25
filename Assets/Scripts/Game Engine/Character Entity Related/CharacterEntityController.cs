@@ -1960,7 +1960,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
     {
         Debug.Log("CharacterEntityController.PlayRangedAttackAnimation() called...");
         AudioManager.Instance.StopSound(Sound.Character_Footsteps);
-        AudioManager.Instance.PlaySound(Sound.Character_Draw_Bow);
+        AudioManager.Instance.PlaySoundPooled(Sound.Character_Draw_Bow);
         StartCoroutine(PlayShootBowAnimationCoroutine(view, cData));
     }
     private IEnumerator PlayShootBowAnimationCoroutine(CharacterEntityView view, CoroutineData cData)
@@ -1998,7 +1998,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }
 
         // Mouse over SFX
-        AudioManager.Instance.PlaySound(Sound.GUI_Button_Mouse_Over);
+        AudioManager.Instance.PlaySoundPooled(Sound.GUI_Button_Mouse_Over);
 
         // Cancel this if character is dead
         if (view.character == null ||

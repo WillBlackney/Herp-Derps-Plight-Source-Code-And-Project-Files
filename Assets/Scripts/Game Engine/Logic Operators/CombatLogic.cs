@@ -467,8 +467,8 @@ public class CombatLogic : Singleton<CombatLogic>
             // Create SFX 
             VisualEventManager.Instance.CreateVisualEvent(() =>
             {
-                AudioManager.Instance.PlaySound(Sound.Ability_Holy_Buff);
-                AudioManager.Instance.PlaySound(Sound.Ability_Damaged_Health_Lost);
+                AudioManager.Instance.PlaySoundPooled(Sound.Ability_Holy_Buff);
+                AudioManager.Instance.PlaySoundPooled(Sound.Ability_Damaged_Health_Lost);
             }, queuePosition, 0, 0, EventDetail.None, batchedEvent);
         }
 
@@ -508,7 +508,7 @@ public class CombatLogic : Singleton<CombatLogic>
                 VisualEffectManager.Instance.CreateSmallMeleeImpact(victim.characterEntityView.WorldPosition, totalLifeLost), queuePosition, 0, 0, EventDetail.None, batchedEvent);
 
                 VisualEventManager.Instance.CreateVisualEvent(() =>
-                AudioManager.Instance.PlaySound(Sound.Ability_Damaged_Health_Lost), queuePosition, 0, 0, EventDetail.None, batchedEvent);
+                AudioManager.Instance.PlaySoundPooled(Sound.Ability_Damaged_Health_Lost), queuePosition, 0, 0, EventDetail.None, batchedEvent);
 
                 // Create SFX 
                 VisualEventManager.Instance.CreateVisualEvent(() =>
@@ -539,7 +539,7 @@ public class CombatLogic : Singleton<CombatLogic>
 
             // Create SFX
             VisualEventManager.Instance.CreateVisualEvent(() =>
-                AudioManager.Instance.PlaySound(Sound.Passive_General_Buff), queuePosition, 0, 0, EventDetail.None, batchedEvent);
+                AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff), queuePosition, 0, 0, EventDetail.None, batchedEvent);
         }
 
         // EVALUATE DAMAGE RELATED PASSIVE EFFECTS (but only if victim is still alive)

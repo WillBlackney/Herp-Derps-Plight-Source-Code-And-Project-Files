@@ -292,7 +292,7 @@ public class ActivationManager : Singleton<ActivationManager>
              MainMenuController.Instance.AnyMenuScreenIsActive() == false)
         {
             // Mouse click SFX
-            AudioManager.Instance.PlaySound(Sound.GUI_Button_Clicked);
+            AudioManager.Instance.PlaySoundPooled(Sound.GUI_Button_Clicked);
 
             // Trigger character on activation end sequence and events
             CharacterEntityController.Instance.CharacterOnActivationEnd(EntityActivated);
@@ -302,7 +302,7 @@ public class ActivationManager : Singleton<ActivationManager>
     {
         if(UIManager.Instance.EndTurnButton.interactable == true)
         {
-            AudioManager.Instance.PlaySound(Sound.GUI_Button_Mouse_Over);
+            AudioManager.Instance.PlaySoundPooled(Sound.GUI_Button_Mouse_Over);
         }
     }
     private void SetActivationWindowsParentViewState(bool onOrOff)
@@ -439,7 +439,7 @@ public class ActivationManager : Singleton<ActivationManager>
             window.rollText.text = entity.currentInitiativeRoll.ToString();
 
             // chime ping SFX
-            AudioManager.Instance.PlaySound(Sound.GUI_Chime_1);
+            AudioManager.Instance.PlaySoundPooled(Sound.GUI_Chime_1);
 
             // do breath effect on window
             float currentScale = window.rollText.transform.localScale.x;

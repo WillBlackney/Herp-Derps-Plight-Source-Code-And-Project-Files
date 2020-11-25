@@ -299,7 +299,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
         if (playSFX)
         {
-            AudioManager.Instance.PlaySound(Sound.Explosion_Fire_1);
+            AudioManager.Instance.PlaySoundPooled(Sound.Explosion_Fire_1);
         }
     }
     #endregion
@@ -333,7 +333,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
         GameObject hn = Instantiate(redPillarBuff, location, redPillarBuff.transform.rotation);
         ToonEffect teScript = hn.GetComponent<ToonEffect>();
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
-        AudioManager.Instance.PlaySound(Sound.Passive_General_Debuff);
+        AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Debuff);
     }
 
     // General Buff
@@ -342,7 +342,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
         GameObject hn = Instantiate(yellowPillarBuff, location, yellowPillarBuff.transform.rotation);
         ToonEffect teScript = hn.GetComponent<ToonEffect>();
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
-        AudioManager.Instance.PlaySound(Sound.Passive_General_Buff);
+        AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff);
     }
     #endregion
 
@@ -355,7 +355,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
         GameObject newImpactVFX = Instantiate(GainBlockEffectPrefab, location, Quaternion.identity);
         newImpactVFX.GetComponent<GainArmorEffect>().InitializeSetup(location, blockGained);
         CreateBlockGainedTextEffect(location, blockGained);
-        AudioManager.Instance.PlaySound(Sound.Ability_Gain_Block);
+        AudioManager.Instance.PlaySoundPooled(Sound.Ability_Gain_Block);
     }
 
     // Gain Block Text Effect
@@ -367,7 +367,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
         GameObject newImpactVFX = Instantiate(LoseBlockEffectPrefab, location, Quaternion.identity);
         newImpactVFX.GetComponent<GainArmorEffect>().InitializeSetup(location, blockLost);
         CreateDamageEffect(location, blockLost, false, false);
-        AudioManager.Instance.PlaySound(Sound.Ability_Damaged_Block_Lost);
+        AudioManager.Instance.PlaySoundPooled(Sound.Ability_Damaged_Block_Lost);
     }
     #endregion
 
@@ -382,7 +382,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
     }
     private IEnumerator ShootArrowCoroutine(Vector3 startPos, Vector3 endPos, CoroutineData cData, float speed)
     {
-        AudioManager.Instance.PlaySound(Sound.Projectile_Arrow_Fired);
+        AudioManager.Instance.PlaySoundPooled(Sound.Projectile_Arrow_Fired);
         GameObject go = Instantiate(arrow, startPos, Quaternion.identity);
         Projectile projectileScript = go.GetComponent<Projectile>();
         projectileScript.InitializeSetup(startPos, endPos, speed);
@@ -398,7 +398,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
     }
     private IEnumerator ShootFireballCoroutine(Vector3 startPosition, Vector3 endPosition, CoroutineData cData, float speed, int sortingOrderBonus, float scaleModifier)
     {
-        AudioManager.Instance.PlaySound(Sound.Projectile_Fireball_Fired);
+        AudioManager.Instance.PlaySoundPooled(Sound.Projectile_Fireball_Fired);
         GameObject go = Instantiate(fireBall, startPosition, fireBall.transform.rotation);
         ToonProjectile tsScript = go.GetComponent<ToonProjectile>();
         tsScript.InitializeSetup(sortingOrderBonus, scaleModifier);
@@ -411,7 +411,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
         {
             destinationReached = true;
             tsScript.OnDestinationReached();
-            AudioManager.Instance.PlaySound(Sound.Explosion_Fire_1);
+            AudioManager.Instance.PlaySoundPooled(Sound.Explosion_Fire_1);
 
             // Resolve early
             if(cData != null)
@@ -429,7 +429,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
                 go.transform.position.y == endPosition.y)
             {
                 tsScript.OnDestinationReached();
-                AudioManager.Instance.PlaySound(Sound.Explosion_Fire_1);
+                AudioManager.Instance.PlaySoundPooled(Sound.Explosion_Fire_1);
                 destinationReached = true;
             }
             yield return null;
@@ -451,7 +451,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
     }
     private IEnumerator ShootShadowBallCoroutine(Vector3 startPosition, Vector3 endPosition, CoroutineData cData, float speed, int sortingOrderBonus, float scaleModifier)
     {
-        AudioManager.Instance.PlaySound(Sound.Projectile_Shadowball_Fired);
+        AudioManager.Instance.PlaySoundPooled(Sound.Projectile_Shadowball_Fired);
         GameObject go = Instantiate(shadowBall, startPosition, shadowBall.transform.rotation);
         ToonProjectile tsScript = go.GetComponent<ToonProjectile>();
         tsScript.InitializeSetup(sortingOrderBonus, scaleModifier);
@@ -464,7 +464,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
         {
             destinationReached = true;
             tsScript.OnDestinationReached();
-            AudioManager.Instance.PlaySound(Sound.Explosion_Shadow_1);
+            AudioManager.Instance.PlaySoundPooled(Sound.Explosion_Shadow_1);
 
             // Resolve early
             if (cData != null)
@@ -482,7 +482,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
                 go.transform.position.y == endPosition.y)
             {
                 tsScript.OnDestinationReached();
-                AudioManager.Instance.PlaySound(Sound.Explosion_Shadow_1);
+                AudioManager.Instance.PlaySoundPooled(Sound.Explosion_Shadow_1);
                 destinationReached = true;
             }
             yield return null;
@@ -504,7 +504,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
     }
     private IEnumerator ShootPoisonBallCoroutine(Vector3 startPosition, Vector3 endPosition, CoroutineData cData, float speed, int sortingOrderBonus, float scaleModifier)
     {
-        AudioManager.Instance.PlaySound(Sound.Projectile_Poison_Fired);
+        AudioManager.Instance.PlaySoundPooled(Sound.Projectile_Poison_Fired);
         GameObject go = Instantiate(poisonBall, startPosition, poisonBall.transform.rotation);
         ToonProjectile tsScript = go.GetComponent<ToonProjectile>();
         tsScript.InitializeSetup(sortingOrderBonus, scaleModifier);
@@ -518,7 +518,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
             destinationReached = true;
 
             tsScript.OnDestinationReached();
-            AudioManager.Instance.PlaySound(Sound.Explosion_Poison_1);
+            AudioManager.Instance.PlaySoundPooled(Sound.Explosion_Poison_1);
 
             // Resolve early
             if (cData != null)
@@ -536,7 +536,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
                 go.transform.position.y == endPosition.y)
             {
                 tsScript.OnDestinationReached();
-                AudioManager.Instance.PlaySound(Sound.Explosion_Poison_1);
+                AudioManager.Instance.PlaySoundPooled(Sound.Explosion_Poison_1);
                 destinationReached = true;
             }
             yield return null;
@@ -558,7 +558,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
     }
     private IEnumerator ShootLightningBallCoroutine(Vector3 startPosition, Vector3 endPosition, CoroutineData cData, float speed, int sortingOrderBonus, float scaleModifier)
     {
-        AudioManager.Instance.PlaySound(Sound.Projectile_Lightning_Fired);
+        AudioManager.Instance.PlaySoundPooled(Sound.Projectile_Lightning_Fired);
         GameObject go = Instantiate(lightningBall, startPosition, lightningBall.transform.rotation);
         ToonProjectile tsScript = go.GetComponent<ToonProjectile>();
         tsScript.InitializeSetup(sortingOrderBonus, scaleModifier);
@@ -572,7 +572,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
             destinationReached = true;
 
             tsScript.OnDestinationReached();
-            AudioManager.Instance.PlaySound(Sound.Explosion_Lightning_1);
+            AudioManager.Instance.PlaySoundPooled(Sound.Explosion_Lightning_1);
 
             // Resolve early
             if (cData != null)
@@ -590,7 +590,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
                 go.transform.position.y == endPosition.y)
             {
                 tsScript.OnDestinationReached();
-                AudioManager.Instance.PlaySound(Sound.Explosion_Lightning_1);
+                AudioManager.Instance.PlaySoundPooled(Sound.Explosion_Lightning_1);
                 destinationReached = true;
             }
             yield return null;
@@ -714,7 +714,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
     }
     private IEnumerator ShootFireMeteorCoroutine(Vector3 startPosition, Vector3 endPosition, CoroutineData cData, float speed, int sortingOrderBonus, float scaleModifier)
     {
-        AudioManager.Instance.PlaySound(Sound.Projectile_Fireball_Fired);
+        AudioManager.Instance.PlaySoundPooled(Sound.Projectile_Fireball_Fired);
         GameObject go = Instantiate(fireMeteor, startPosition, fireMeteor.transform.rotation);
         ToonProjectile tsScript = go.GetComponent<ToonProjectile>();
         tsScript.InitializeSetup(sortingOrderBonus, scaleModifier);
@@ -727,7 +727,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
         {
             destinationReached = true;
             tsScript.OnDestinationReached();
-            AudioManager.Instance.PlaySound(Sound.Explosion_Fire_1);
+            AudioManager.Instance.PlaySoundPooled(Sound.Explosion_Fire_1);
 
             // Resolve early
             if (cData != null)
@@ -745,7 +745,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
                 go.transform.position.y == endPosition.y)
             {
                 tsScript.OnDestinationReached();
-                AudioManager.Instance.PlaySound(Sound.Explosion_Fire_1);
+                AudioManager.Instance.PlaySoundPooled(Sound.Explosion_Fire_1);
                 destinationReached = true;
             }
             yield return null;
@@ -784,7 +784,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
     // Apply Burning Effect
     public void CreateApplyBurningEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
     {
-        AudioManager.Instance.PlaySound(Sound.Passive_Burning_Gained);
+        AudioManager.Instance.PlaySoundPooled(Sound.Passive_Burning_Gained);
         GameObject hn = Instantiate(gainBurning, location, gainBurning.transform.rotation);
         ToonEffect teScript = hn.GetComponent<ToonEffect>();
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
@@ -794,7 +794,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
     // Apply Overload Effect    
     public void CreateGainOverloadEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
     {
-        AudioManager.Instance.PlaySound(Sound.Passive_Overload_Gained);
+        AudioManager.Instance.PlaySoundPooled(Sound.Passive_Overload_Gained);
         GameObject hn = Instantiate(gainOverload, location, gainOverload.transform.rotation);
         ToonEffect teScript = hn.GetComponent<ToonEffect>();
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
@@ -846,7 +846,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
         GameObject hn = Instantiate(smallLightningExplosion, location, smallLightningExplosion.transform.rotation);
         ToonEffect teScript = hn.GetComponent<ToonEffect>();
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
-        AudioManager.Instance.PlaySound(Sound.Explosion_Lightning_1);
+        AudioManager.Instance.PlaySoundPooled(Sound.Explosion_Lightning_1);
     }
 
     // Fire Explosion
@@ -855,7 +855,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
         GameObject hn = Instantiate(smallFireExplosion, location, smallFireExplosion.transform.rotation);
         ToonEffect teScript = hn.GetComponent<ToonEffect>();
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
-        AudioManager.Instance.PlaySound(Sound.Explosion_Fire_1);
+        AudioManager.Instance.PlaySoundPooled(Sound.Explosion_Fire_1);
     }
 
     // Poison Explosion
@@ -864,7 +864,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
         GameObject hn = Instantiate(smallPoisonExplosion, location, smallPoisonExplosion.transform.rotation);
         ToonEffect teScript = hn.GetComponent<ToonEffect>();
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
-        AudioManager.Instance.PlaySound(Sound.Explosion_Poison_1);
+        AudioManager.Instance.PlaySoundPooled(Sound.Explosion_Poison_1);
     }
 
     // Frost Explosion
@@ -881,7 +881,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
         GameObject hn = Instantiate(smallShadowExplosion, location, smallShadowExplosion.transform.rotation);
         ToonEffect teScript = hn.GetComponent<ToonEffect>();
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
-        AudioManager.Instance.PlaySound(Sound.Explosion_Shadow_1);
+        AudioManager.Instance.PlaySoundPooled(Sound.Explosion_Shadow_1);
     }
     // Ghost Explosion Purple
     public void CreateGhostExplosionPurple(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)
@@ -889,7 +889,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
         GameObject hn = Instantiate(ghostExplosionPurple, location, ghostExplosionPurple.transform.rotation);
         ToonEffect teScript = hn.GetComponent<ToonEffect>();
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);
-        AudioManager.Instance.PlaySound(Sound.Passive_General_Debuff);
+        AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Debuff);
     }
     // Confetti Explosion Rainbow
     public void CreateConfettiExplosionRainbow(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f)

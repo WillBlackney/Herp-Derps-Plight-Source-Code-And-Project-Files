@@ -186,6 +186,9 @@ public class PersistencyManager : Singleton<PersistencyManager>
         // KBC
         KingsBlessingController.Instance.SaveMyDataToSaveFile(newSave);
 
+        // Shop
+        ShopController.Instance.SaveMyDataToSaveFile(newSave);
+
         // START SAVE!        
         SaveGameToDisk(newSave);
     }
@@ -219,6 +222,9 @@ public class PersistencyManager : Singleton<PersistencyManager>
 
         // KBC
         KingsBlessingController.Instance.BuildMyDataFromSaveFile(newLoad);
+
+        // KBC
+        ShopController.Instance.BuildMyDataFromSaveFile(newLoad);
     }
     #endregion
 

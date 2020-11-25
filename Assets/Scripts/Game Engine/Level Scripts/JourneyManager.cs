@@ -8,8 +8,7 @@ public class JourneyManager : Singleton<JourneyManager>
     // Properties + Component Refs
     #region
     [Header("Components")]
-    [SerializeField] private TextMeshProUGUI currentEncounterText;
-    [SerializeField] private TextMeshProUGUI maxEncounterText;
+   
 
     [Header("General Properties")]
     [SerializeField] private bool allowSameEnemyWaveMultipleTimes;
@@ -91,8 +90,8 @@ public class JourneyManager : Singleton<JourneyManager>
     }
     private void UpdateCurrentEncounterText()
     {
-        currentEncounterText.text = (CurrentJourneyPosition + 1).ToString();
-        maxEncounterText.text = encounters.Count.ToString();
+        TopBarController.Instance.CurrentEncounterText.text = (CurrentJourneyPosition + 1).ToString();
+        TopBarController.Instance.MaxEncounterText.text = encounters.Count.ToString();
     }
     #endregion
     

@@ -25,7 +25,7 @@ public class PassiveIconView : MonoBehaviour
     public void OnMouseEnter()
     {
         KeyWordLayoutController.Instance.BuildAllViewsFromPassiveString(myIconData.passiveName);
-        AudioManager.Instance.PlaySound(Sound.GUI_Button_Mouse_Over);
+        AudioManager.Instance.PlaySoundPooled(Sound.GUI_Button_Mouse_Over);
         glowOutline.gameObject.SetActive(true);
         glowOutline.DOFade(1, 0f);
 

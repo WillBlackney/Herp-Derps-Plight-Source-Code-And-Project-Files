@@ -10,8 +10,6 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     #region
     [Header("Gold Properties + Components")]
     private int currentGold;
-    [SerializeField] private TextMeshProUGUI currentGoldText;
-    [SerializeField] private GameObject goldTopBarImage;
 
     [Header("Gold Text Animation Properties")]
     private bool animIsActive = false;
@@ -24,16 +22,7 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         get { return currentGold; }
         private set { currentGold = value; }
     }
-    public TextMeshProUGUI CurrentGoldText
-    {
-        get { return currentGoldText; }
-        private set { currentGoldText = value; }
-    }
-    public GameObject GoldTopBarImage
-    {
-        get { return goldTopBarImage; }
-        private set { goldTopBarImage = value; }
-    }
+   
     #endregion
 
     // Save + Load + Persistency Logic
@@ -80,17 +69,18 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
     {
         if (playTextAnim)
         {
-            if(CurrentGoldText.text == "")
+            if(TopBarController.Instance.CurrentGoldText.text == "")
             {
-                CurrentGoldText.text = "0";
+                TopBarController.Instance.CurrentGoldText.text = "0";
             }
 
-            int from = Convert.ToInt32(CurrentGoldText.text);
+            int from = Convert.ToInt32(TopBarController.Instance.CurrentGoldText.text);
+            Debug.LogWarning("from: " + from);
             DoRollingGoldTextAnimation(from, CurrentGold);
         }
         else
         {
-            CurrentGoldText.text = newValue;
+            TopBarController.Instance.CurrentGoldText.text = newValue;
         }
        
     }
@@ -112,12 +102,33 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
         yield return null;
         animIsActive = true;
 
-        while (animIsActive && current < to + 1)
+        if(from > to)
+        {
+            while (animIsActive && current != to)
+            {
+                SetCurrentGoldText(current.ToString());
+                current--;
+                yield return null;
+            }
+        }
+
+        else if (from < to)
+        {
+            while (animIsActive && current != to)
+            {
+                SetCurrentGoldText(current.ToString());
+                current++;
+                yield return null;
+            }
+        }
+
+
+
+        if (animIsActive)
         {
             SetCurrentGoldText(current.ToString());
-            current++;
-            yield return null;
         }
+      
     }
     #endregion
 }

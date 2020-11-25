@@ -21,7 +21,7 @@ public class GridCardViewModel : MonoBehaviour, IPointerEnterHandler, IPointerEx
     public void OnPointerEnter(PointerEventData eventData)
     {
         cardVM.movementParent.DOScale(endScale, scaleSpeed).SetEase(Ease.OutQuint);
-        AudioManager.Instance.PlaySound(Sound.Card_Discarded);
+        AudioManager.Instance.PlaySoundPooled(Sound.Card_Discarded);
         KeyWordLayoutController.Instance.BuildAllViewsFromKeyWordModels(myCardData.keyWordModels);
     }
 

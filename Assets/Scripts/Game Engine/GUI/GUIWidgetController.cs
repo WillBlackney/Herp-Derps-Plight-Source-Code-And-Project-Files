@@ -47,7 +47,7 @@ public class GUIWidgetController : Singleton<GUIWidgetController>
         }
         else if (wEvent.widgetEvent == WidgetEvent.PlaySound)
         {
-            AudioManager.Instance.PlaySound(wEvent.soundPlayed);
+            AudioManager.Instance.PlaySoundPooled(wEvent.soundPlayed);
         }
         else if (wEvent.widgetEvent == WidgetEvent.FadeInCanvasGroup)
         {

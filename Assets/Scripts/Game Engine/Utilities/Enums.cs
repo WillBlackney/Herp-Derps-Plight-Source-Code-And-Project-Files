@@ -570,6 +570,7 @@ public enum EncounterType
     RecruitCharacter = 4,
     KingsBlessingEvent = 5,
     CampSite = 6,
+    Shop = 7,
 
 
 

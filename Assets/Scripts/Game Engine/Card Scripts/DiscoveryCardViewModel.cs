@@ -27,7 +27,7 @@ public class DiscoveryCardViewModel : MonoBehaviour, IPointerEnterHandler, IPoin
             return;
         }
         cardViewModel.movementParent.DOScale(endScale, scaleSpeed).SetEase(Ease.OutQuint);
-        AudioManager.Instance.PlaySound(Sound.Card_Discarded);
+        AudioManager.Instance.PlaySoundPooled(Sound.Card_Discarded);
 
         if(myDataRef != null)
         {
