@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
+using UnityEngine.UI;
 
 public class CharacterRosterViewController : Singleton<CharacterRosterViewController>
 {
@@ -10,6 +11,8 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     #region
     [Header("Core Properites")]
     private CharacterData currentCharacterViewing;
+    private bool mouseIsOverDeckView = false;
+    [HideInInspector] public bool currentlyDraggingSomePanel;
 
     [Header("Core Components")]
     [SerializeField] private GameObject mainVisualParent;
@@ -29,9 +32,14 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     [SerializeField] private CardInfoPanel[] cardPanels;
     [SerializeField] private CanvasGroup previewCardCg;
     [SerializeField] private CardViewModel previewCardVM;
+    [SerializeField] private CanvasGroup dragDropCg;
 
     [Header("Card Inventory Box Components")]
     [SerializeField] private GameObject cardInventoryVisualParent;
+    [SerializeField] private InventoryCardSlot[] inventoryCardSlots;
+    [SerializeField] private CanvasGroup previewCardInventoryCg;
+    [SerializeField] private CardViewModel previewInventoryCardVM;
+    [SerializeField] private Transform dragParent;
 
     [Header("Talent Box Components")]
     [SerializeField] private GameObject talentBoxVisualParent;
@@ -43,6 +51,41 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
 
 
     #endregion
+
+    // Getters + Accessors
+    #region
+    public InventoryCardSlot[] InventoryCardSlots
+    {
+        get { return inventoryCardSlots; }
+        private set { inventoryCardSlots = value; }
+    }
+    public Transform DragParent
+    {
+        get { return dragParent; }
+        private set { dragParent = value; }
+    }
+    public GameObject MainVisualParent
+    {
+        get { return mainVisualParent; }
+        private set { mainVisualParent = value; }
+    }
+    public GameObject DeckBoxVisualParent
+    {
+        get { return deckBoxVisualParent; }
+        private set { deckBoxVisualParent = value; }
+    }
+    public bool MouseIsOverDeckView
+    {
+        get { return mouseIsOverDeckView; }
+        private set { mouseIsOverDeckView = value; }
+    }
+    public CharacterData CurrentCharacterViewing
+    {
+        get { return currentCharacterViewing; }
+        private set { currentCharacterViewing = value; }
+    }
+    #endregion
+
 
     // Enable + Fade Main View and Default View
     #region
@@ -79,10 +122,13 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
 
         // Build deck box views
         BuildCharacterDeckBoxFromData(currentCharacterViewing);
+
+        // Build card invetory box views
+        BuildInventoryCardsBoxView();
     }
     #endregion
 
-    // On Button Clicks
+    // On Button Clicks + Input Listeners
     #region
     public void OnCharacterRosterButtonClicked()
     {
@@ -170,6 +216,14 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
         // Build all views
         BuildTalentBoxFromData(currentCharacterViewing);
     }
+    public void OnMouseEnterDeckViewBox()
+    {
+        mouseIsOverDeckView = true;
+    }
+    public void OnMouseExitDeckViewBox()
+    {
+        mouseIsOverDeckView = false;
+    }
     #endregion
 
     // Model Box Logic
@@ -199,7 +253,34 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     {
         deckBoxVisualParent.SetActive(false);
     }
-    private void BuildCharacterDeckBoxFromData(CharacterData data)
+    private void BuildInventoryCardsBoxView()
+    {
+        BuildInventoryCardSlots();
+    }
+    private void BuildInventoryCardSlots()
+    {
+        // Disable + Reset all inventory slots
+        for (int i = 0; i < InventoryCardSlots.Length; i++)
+        {
+            // Reset position, reassign parent
+            InventoryCardSlots[i].cardInfoPanel.transform.SetParent(InventoryCardSlots[i].transform);
+            InventoryCardSlots[i].cardInfoPanel.transform.localPosition = Vector3.zero;
+
+            // Disable view and clear data
+            InventoryCardSlots[i].gameObject.SetActive(false);
+            InventoryCardSlots[i].cardInfoPanel.cardDataRef = null;
+        }
+
+        // Rebuild all panels based on current card inventory
+        for(int i = 0; i < InventoryController.Instance.CardInventory.Count; i++)
+        {
+            InventoryCardSlots[i].gameObject.SetActive(true);
+            InventoryCardSlots[i].cardInfoPanel.BuildCardInfoPanelFromCardData(InventoryController.Instance.CardInventory[i]);
+            InventoryCardSlots[i].cardInfoPanel.myInventorySlot = InventoryCardSlots[i];
+        }
+       
+    }
+    public void BuildCharacterDeckBoxFromData(CharacterData data)
     {
         BuildCardInfoPanels(data.deck);
     }
@@ -238,7 +319,7 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
             }
         }
     }
-    public void BuildAndShowCardViewModelPopup(CardData data)
+    public void BuildAndShowCardViewModelPopupFromDeck(CardData data)
     {
         previewCardCg.gameObject.SetActive(true);
         CardData cData = CardController.Instance.GetCardDataFromLibraryByName(data.cardName);
@@ -246,15 +327,41 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
         previewCardCg.alpha = 0;
         previewCardCg.DOFade(1f, 0.25f);
     }
-    public void HidePreviewCard()
+    public void BuildAndShowCardViewModelPopupFromInventory(CardData data)
+    {
+        previewCardInventoryCg.gameObject.SetActive(true);
+        CardData cData = CardController.Instance.GetCardDataFromLibraryByName(data.cardName);
+        CardController.Instance.BuildCardViewModelFromCardData(cData, previewInventoryCardVM);
+        previewCardInventoryCg.alpha = 0;
+        previewCardInventoryCg.DOFade(1f, 0.25f);
+    }
+    public void HidePreviewCardInDeck()
     {
         previewCardCg.gameObject.SetActive(false);
         previewCardCg.alpha = 0;
+    }
+    public void HidePreviewCardInInventory()
+    {
+        previewCardInventoryCg.gameObject.SetActive(false);
+        previewCardInventoryCg.alpha = 0;
+    }
+    public void StartDragDropAnimation()
+    {
+        dragDropCg.gameObject.SetActive(true);
+        dragDropCg.alpha = 0;
+        dragDropCg.DOFade(0.5f, 0.5f).SetLoops(-1, LoopType.Yoyo);
+    }
+    public void StopDragDropAnimation()
+    {
+        dragDropCg.DOKill();
+        dragDropCg.alpha = 0;
+        dragDropCg.gameObject.SetActive(false);
     }
     #endregion
 
     // Card Inventory Logic
     #region
+
     private void ShowCardInventoryBoxView()
     {
         cardInventoryVisualParent.SetActive(true);

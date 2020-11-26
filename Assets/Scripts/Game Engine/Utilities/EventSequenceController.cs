@@ -85,6 +85,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
     {
         yield return null;
 
+        // Populate inventory with mock card data
+        InventoryController.Instance.PopulateInventoryWithMockCardData(20);
+
         // Play battle theme music
         AudioManager.Instance.AutoPlayBasicCombatMusic(1f);
 

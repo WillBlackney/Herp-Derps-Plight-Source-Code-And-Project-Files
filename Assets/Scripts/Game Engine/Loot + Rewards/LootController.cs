@@ -397,7 +397,7 @@ public class LootController : Singleton<LootController>
 
         return validLootableCards;
     }
-    private bool IsCardLootableByCharacter(CharacterData character, CardData card)
+    public bool IsCardLootableByCharacter(CharacterData character, CardData card)
     {
         bool bReturned = false;
 
