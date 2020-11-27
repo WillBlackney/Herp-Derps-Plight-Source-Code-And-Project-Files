@@ -474,6 +474,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Do shop end sequence + tear down
         else if (previousEncounter.encounterType == EncounterType.Shop)
         {
+            // Shop keeper farewell
+            ShopController.Instance.DoMerchantFarewell();
+
             // disable shop keeper clickability
             ShopController.Instance.SetShopKeeperInteractionState(false);
             ShopController.Instance.SetContinueButtonInteractionState(false);
@@ -609,6 +612,10 @@ public class EventSequenceController : Singleton<EventSequenceController>
         {
             AudioManager.Instance.AutoPlayEliteCombatMusic(1f);
         }
+        else if (enemyWave.combatDifficulty == CombatDifficulty.Boss)
+        {
+            AudioManager.Instance.AutoPlayBossCombatMusic(1f);
+        }
 
         // Create player characters in scene
         CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
@@ -686,7 +693,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
     private IEnumerator HandleLoadCampSiteEventCoroutine()
     {
         // Set Properties
-        CampSiteController.Instance.PopulateDrawPile();
+        CampSiteController.Instance.PopulateDrawPileOnEventStart();
         CampSiteController.Instance.GainCampPointsOnNewCampEventStart();
 
         // View sequence 1
@@ -704,6 +711,8 @@ public class EventSequenceController : Singleton<EventSequenceController>
         CameraManager.Instance.DoCameraZoom(3, 5, 2f);
         CampSiteController.Instance.MoveAllCharactersToTheirNodes();
         yield return new WaitForSeconds(1 + (CharacterDataController.Instance.AllPlayerCharacters.Count * 0.5f));
+        ActivationManager.Instance.DisplayCustomNotification(null, "Camp Site");
+        yield return new WaitForSeconds(1f);
         CampSiteController.Instance.EnableCampGuiViewParent();
         CampSiteController.Instance.FadeInAllCharacterGUI();
         CampSiteController.Instance.FadeInNodes();        

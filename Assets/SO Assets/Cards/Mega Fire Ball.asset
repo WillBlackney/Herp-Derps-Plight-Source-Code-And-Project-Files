@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Mega Bolt
+  m_Name: Mega Fire Ball
   m_EditorClassIdentifier: 
-  cardName: Mega Bolt
+  cardName: Mega Fire Ball
   cardDescription: 'Deal 10 Magic damage. Cost 1 less Energy for each Fireball played
     this combat. '
-  cardSprite: {fileID: 21300000, guid: b30ea216dd96204409132c9d27a32d22, type: 3}
+  cardSprite: {fileID: 21300000, guid: 81531294d919a9c498f033c76383c2d9, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 6
+  cardEnergyCost: 4
   cardType: 3
   targettingType: 3
-  talentSchool: 9
+  talentSchool: 6
   rarity: 2
   affliction: 0
   racialCard: 0
@@ -52,25 +52,7 @@ MonoBehaviour:
     cardEffectType: 0
     phrase: 'damage.
 
-      Gain '
-  - color: 0
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: '2 '
-  - color: 0
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: Source
-  - color: 0
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: '.
-
-'
-  - color: 0
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'Costs '
+      Costs '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -86,7 +68,7 @@ MonoBehaviour:
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Arcane Bolt '
+    phrase: 'Fire Ball '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -141,7 +123,7 @@ MonoBehaviour:
     visualEventsOnStart:
     - eventType: 7
       screenOverlayType: 1
-      overlayColor: 2
+      overlayColor: 1
       overlayFadeInTime: 1
       overlayDuration: 1
       overlayFadeOutTime: 1
@@ -166,7 +148,7 @@ MonoBehaviour:
       soundEffect: 0
       characterAnimation: 3
       delayDuration: 0
-      projectileFired: 6
+      projectileFired: 9
       projectileStartPosition: 1
       onCharacter: 0
     - eventType: 4
@@ -190,7 +172,7 @@ MonoBehaviour:
       overlayFadeInTime: 0
       overlayDuration: 0
       overlayFadeOutTime: 0
-      particleEffect: 7
+      particleEffect: 8
       cameraShake: 0
       movementAnimation: 0
       soundEffect: 0
@@ -199,72 +181,9 @@ MonoBehaviour:
       projectileFired: 0
       projectileStartPosition: 0
       onCharacter: 2
-    visualEventsOnFinish:
-    - eventType: 6
-      screenOverlayType: 0
-      overlayColor: 0
-      overlayFadeInTime: 0
-      overlayDuration: 0
-      overlayFadeOutTime: 0
-      particleEffect: 0
-      cameraShake: 0
-      movementAnimation: 0
-      soundEffect: 0
-      characterAnimation: 0
-      delayDuration: 0.5
-      projectileFired: 0
-      projectileStartPosition: 0
-      onCharacter: 0
-  - weaponRequirement: 0
-    cardEffectType: 2
-    splitTargetEffect: 0
-    splitTargetType: 0
-    removeBlockFrom: 0
-    modifyDeckCardEffect: 0
-    permanentBlockGain: 0
-    permanentDamageGain: 0
-    chooseTargetRandomly: 0
-    passiveApplicationLoops: 0
-    validRandomTargetsType: 0
-    damageLoops: 0
-    drawSpecificType: 0
-    specificTypeDrawn: 0
-    discoveryLocation: 0
-    talentSchoolFilter: 0
-    rarityFilter: 0
-    upgradeFilter: 1
-    blessing: 0
-    sourceSpellsOnly: 0
-    onDiscoveryChoiceMadeEffects: []
-    onChooseCardInHandChoiceMadeEffects: []
-    modifyCardsInHandEffects: []
-    drawStacksFromOverload: 0
-    drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 0
-    baseDamageValue: 0
-    drawBaseDamageFromCurrentBlock: 0
-    drawBaseDamageFromTargetPoisoned: 0
-    drawBaseDamageFromMeleeAttacksPlayed: 0
-    drawBaseDamageFromOverloadOnSelf: 0
-    drawBaseDamageFromBurningOnSelf: 0
-    baseDamageMultiplier: 1
-    damageType: 0
-    healthRestored: 0
-    healthLost: 0
-    energyGained: 0
-    cardsDrawn: 0
-    extraDrawEffect: 0
-    cardEnergyReduction: 0
-    passivePairing:
-      passiveData: 59
-      passiveStacks: 2
-    cardAdded: {fileID: 0}
-    copiesAdded: 0
-    blessingsGained: 0
-    visualEventsOnStart: []
     visualEventsOnFinish: []
   cardEventListeners:
-  - cardEventListenerType: 8
+  - cardEventListenerType: 6
     cardEventListenerFunction: 1
     maxHealthGained: 0
     energyReductionAmount: 1
@@ -273,9 +192,6 @@ MonoBehaviour:
       passiveStacks: 0
     energyGainedOrLost: 0
   keyWordModels:
-  - kewWordType: 8
-    weaponRequirement: 0
-    passiveType: 59
   - kewWordType: 10
     weaponRequirement: 0
     passiveType: 0

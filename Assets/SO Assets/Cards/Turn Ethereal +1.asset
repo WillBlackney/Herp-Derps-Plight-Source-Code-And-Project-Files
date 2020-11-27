@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
   m_Name: Turn Ethereal +1
   m_EditorClassIdentifier: 
-  cardName: Turn Ethereal
+  cardName: Turn Ethereal +1
   cardDescription: Your Arcane Bolt cards deal 5 extra damage.
   cardSprite: {fileID: 21300000, guid: a11f67f8b7b734f4983f9ff29fb25c04, type: 3}
   xEnergyCost: 0

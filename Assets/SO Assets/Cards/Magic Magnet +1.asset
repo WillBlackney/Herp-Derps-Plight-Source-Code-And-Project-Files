@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
   m_Name: Magic Magnet +1
   m_EditorClassIdentifier: 
-  cardName: Magic Magnet
+  cardName: Magic Magnet +1
   cardDescription: 'On activation start, add an Arcane Bolt to your hand. '
   cardSprite: {fileID: 21300000, guid: 36b328c515d7db440bea3b4734ef93fd, type: 3}
   xEnergyCost: 0

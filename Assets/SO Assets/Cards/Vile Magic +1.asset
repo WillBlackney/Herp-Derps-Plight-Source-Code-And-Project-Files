@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
   m_Name: Vile Magic +1
   m_EditorClassIdentifier: 
-  cardName: Vile Magic
+  cardName: Vile Magic +1
   cardDescription: Apply 2 Vulnerable and 2 Weakened  to all enemies. Source Spell.
   cardSprite: {fileID: 21300000, guid: 5a4864e4a5a2ec14eae711e132045d4b, type: 3}
   xEnergyCost: 0

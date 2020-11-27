@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Mega Bolt +1
+  m_Name: Mega Arcane Bolt +1
   m_EditorClassIdentifier: 
-  cardName: Mega Bolt
+  cardName: Mega Arcane Bolt +1
   cardDescription: 'Deal 12 Magic damage. Cost 1 less Energy for each Fireball played
     this combat. '
   cardSprite: {fileID: 21300000, guid: b30ea216dd96204409132c9d27a32d22, type: 3}

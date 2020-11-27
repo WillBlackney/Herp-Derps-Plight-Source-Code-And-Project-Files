@@ -575,8 +575,10 @@ public class CampSiteController : Singleton<CampSiteController>
 
         }
     }
-    public void PopulateDrawPile()
+    public void PopulateDrawPileOnEventStart()
     {
+        campDrawPile.Clear();
+
         foreach (CampCardData cd in campDeck)
         {
             AddCardToDrawPile(BuildCampCardFromCampCardData(cd));

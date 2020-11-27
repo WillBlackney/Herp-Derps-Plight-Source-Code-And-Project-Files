@@ -39,6 +39,9 @@ public class SaveGameData
 
     // Shop
     public ShopContentResultModel shopData;
+
+    // Inventory data
+    public List<CardData> cardInventory = new List<CardData>();
    
 }
 public enum SaveCheckPoint

@@ -769,8 +769,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             VisualEventManager.Instance.CreateVisualEvent(() =>
                 VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Scoundrel Mastery!"));
 
-            // Gain 2 Shank cards
-            for (int i = 0; i < 2; i++)
+            // Gain 1 Shank card
+            for (int i = 0; i < 1; i++)
             {
                 CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetCardDataFromLibraryByName("Shank"));
             }
@@ -785,8 +785,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             VisualEventManager.Instance.CreateVisualEvent(() =>
                 VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Divinity Mastery!"));
 
-            // Gain 2 Random Blessing cards
-            for (int i = 0; i < 2; i++)
+            // Gain 1 Random Blessing card
+            for (int i = 0; i < 1; i++)
             {
                 CardController.Instance.CreateAndAddNewRandomBlessingsToCharacterHand(character, 1, UpgradeFilter.OnlyNonUpgraded);
             }
@@ -801,11 +801,21 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             VisualEventManager.Instance.CreateVisualEvent(() =>
                 VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Corruption Mastery!"));
 
+            // Get random enemy           
+            List<CharacterEntityModel> viableEnemies = GetAllEnemiesOfCharacter(character);
+            viableEnemies.Shuffle();
+            CharacterEntityModel randomEnemy = viableEnemies[0];
+
+            // Apply 2 weakened to random enemy
+            PassiveController.Instance.ModifyPoisoned(character, randomEnemy.pManager, 3, true, 0f);
+
             // Apply 1 Poisoned to all enemies
+            /*
             foreach (CharacterEntityModel enemy in GetAllEnemiesOfCharacter(character))
             {
                 PassiveController.Instance.ModifyPoisoned(character, enemy.pManager, 1, true, 0f);
             }
+            */
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
         }
@@ -817,11 +827,21 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             VisualEventManager.Instance.CreateVisualEvent(() =>
                 VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Shadowcraft Mastery!"));
 
+            // Get random enemy           
+            List<CharacterEntityModel> viableEnemies = GetAllEnemiesOfCharacter(character);
+            viableEnemies.Shuffle();
+            CharacterEntityModel randomEnemy = viableEnemies[0];
+
+            // Apply 2 weakened to random enemy
+            PassiveController.Instance.ModifyWeakened(randomEnemy.pManager, 2, true, 0f);
+
             // Apply 1 Weakened to all enemies
+            /*
             foreach (CharacterEntityModel enemy in GetAllEnemiesOfCharacter(character))
             {
                 PassiveController.Instance.ModifyWeakened(enemy.pManager, 1, true, 0f);
             }
+            */
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
         }
@@ -834,7 +854,10 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Manipulation Mastery!"), QueuePosition.Back, 0f, 0.5f);
 
             // Gain 2 Source
-            PassiveController.Instance.ModifySource(character.pManager, 2, true, 0.5f);
+            //PassiveController.Instance.ModifySource(character.pManager, 2, true, 0.5f);
+
+            // Add arcane bolt card to hand
+            CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetCardDataFromLibraryByName("Arcane Bolt"));
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
         }
@@ -850,7 +873,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             Card newFbCard = CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetCardDataFromLibraryByName("Fire Ball"));
 
             // Reduce cost to 0
-            CardController.Instance.ReduceCardEnergyCostThisCombat(newFbCard, newFbCard.cardBaseEnergyCost);
+            //CardController.Instance.ReduceCardEnergyCostThisCombat(newFbCard, newFbCard.cardBaseEnergyCost);
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
         }
@@ -1137,7 +1160,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         {
             // Notication vfx
             VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(entity.characterEntityView.transform.position, "Shield Wall"));
+                VisualEffectManager.Instance.CreateStatusEffect(entity.characterEntityView.transform.position, "Shield Wall"), QueuePosition.Back, 0, 0.5f);
 
             // Apply block gain
             ModifyBlock(entity, CombatLogic.Instance.CalculateBlockGainedByEffect(entity.pManager.shieldWallStacks, entity, entity));

@@ -35,11 +35,11 @@ MonoBehaviour:
     phrase: 'health.
 
 '
-  - color: 1
+  - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: Innate
-  - color: 3
+  - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: .
@@ -48,6 +48,8 @@ MonoBehaviour:
     healingType: 2
     flatHealAmount: 0
     healAmountPercentage: 0.5
+    attributeChanged: 0
+    attributeAmountGained: 0
     passivePairing:
       passiveData: 0
       passiveStacks: 0

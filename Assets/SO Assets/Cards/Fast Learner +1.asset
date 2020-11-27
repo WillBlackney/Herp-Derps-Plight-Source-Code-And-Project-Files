@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
   m_Name: Fast Learner +1
   m_EditorClassIdentifier: 
-  cardName: Fast Learner
+  cardName: Fast Learner +1
   cardDescription: On activation start, add a random common card to your hand. It
     costs 0 Energy.
   cardSprite: {fileID: 21300000, guid: c2dd5fcdfa7a3994ea8465671e4ff4ac, type: 3}

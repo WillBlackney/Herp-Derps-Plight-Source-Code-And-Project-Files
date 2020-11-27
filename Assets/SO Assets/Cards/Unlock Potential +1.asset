@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
   m_Name: Unlock Potential +1
   m_EditorClassIdentifier: 
-  cardName: Unlock Potential
+  cardName: Unlock Potential +1
   cardDescription: Give 3 Power and 3 Dexterity to an ally. Source Spell.
   cardSprite: {fileID: 21300000, guid: bf5e59c5b94f1d649ac1d1da5a5e48fb, type: 3}
   xEnergyCost: 0

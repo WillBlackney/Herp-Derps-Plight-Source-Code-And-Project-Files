@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
   m_Name: Open The Waygate +1
   m_EditorClassIdentifier: 
-  cardName: Open The Waygate
+  cardName: Open The Waygate +1
   cardDescription: 'Discover a Source Spell.
 
     Add it to your hand.'

@@ -343,8 +343,6 @@ public class AudioManager : Singleton<AudioManager>
     }
     public void AutoPlayBasicCombatMusic(float fadeDuration)
     {
-        Debug.LogWarning("AutoPlayBasicCombatMusic");
-
         // Find all basic combat music
         AudioModel[] basicCombatMusic = Array.FindAll(allAudioModels, sound => sound.combatCategory == CombatMusicCategory.Basic && sound != previousCombatTrack);
 
@@ -359,13 +357,25 @@ public class AudioManager : Singleton<AudioManager>
     }
     public void AutoPlayEliteCombatMusic(float fadeDuration)
     {
-        Debug.LogWarning("AutoPlayEliteCombatMusic");
-
         // Find all basic combat music
         AudioModel[] eliteCombatMusic = Array.FindAll(allAudioModels, sound => sound.combatCategory == CombatMusicCategory.Elite && sound != previousCombatTrack);
 
         // Choose one track randomly
         AudioModel musicSelected = eliteCombatMusic[RandomGenerator.NumberBetween(0, eliteCombatMusic.Length - 1)];
+
+        // Start music fade in
+        musicSelected.source.FadeIn(fadeDuration, musicSelected);
+
+        // Cache track so it cant be played twice in a row
+        previousCombatTrack = musicSelected;
+    }
+    public void AutoPlayBossCombatMusic(float fadeDuration)
+    {
+        // Find all basic combat music
+        AudioModel[] bossCombatMusic = Array.FindAll(allAudioModels, sound => sound.combatCategory == CombatMusicCategory.Boss && sound != previousCombatTrack);
+
+        // Choose one track randomly
+        AudioModel musicSelected = bossCombatMusic[RandomGenerator.NumberBetween(0, bossCombatMusic.Length - 1)];
 
         // Start music fade in
         musicSelected.source.FadeIn(fadeDuration, musicSelected);

@@ -142,8 +142,8 @@ public static class TextLogic
         string sReturned = "";
         if(ts == TalentSchool.Corruption)
         {
-            sReturned = "On first activation start, apply " + ReturnColoredText("1 ", blueNumber) +
-                ReturnColoredText("Poisoned", poison) + " to all enemies.";
+            sReturned = "On first activation start, apply " + ReturnColoredText("3 ", blueNumber) +
+                ReturnColoredText("Poisoned", poison) + " to a random enemy.";
         }
         else if (ts == TalentSchool.Warfare)
         {
@@ -157,14 +157,23 @@ public static class TextLogic
         }
         else if (ts == TalentSchool.Scoundrel)
         {
-            sReturned = "On first activation start, add " + ReturnColoredText("2 ", blueNumber) +
-                ReturnColoredText("Shank", neutralYellow) + " cards to your hand.";
+            /*
+            sReturned = "On first activation start, add " + ReturnColoredText("1 ", blueNumber) +
+                ReturnColoredText("Shank", neutralYellow) + " card to your hand.";
+            */
+            sReturned = "On first activation start, add a " + 
+               ReturnColoredText("Shank", neutralYellow) + " card to your hand.";
         }
         else if (ts == TalentSchool.Pyromania)
         {
+            /*
             sReturned = "On first activation start, add a " + 
                 ReturnColoredText("Fire Ball", neutralYellow) + " card to your hand. It costs " +
                 ReturnColoredText("0 ", blueNumber) + ReturnColoredText("Energy", neutralYellow) + ".";
+                */
+            sReturned = "On first activation start, add a " +
+                ReturnColoredText("Fire Ball", neutralYellow) + " card to your hand.";
+
         }
         else if (ts == TalentSchool.Naturalism)
         {
@@ -173,18 +182,18 @@ public static class TextLogic
         }
         else if (ts == TalentSchool.Divinity)
         {
-            sReturned = "On first activation start, add " + ReturnColoredText("2 ", blueNumber) +
-                ReturnColoredText("Blessing", neutralYellow) + " cards to your hand.";
+            sReturned = "On first activation start, add a random " +
+                ReturnColoredText("Blessing", neutralYellow) + " card to your hand.";
         }
         else if (ts == TalentSchool.Shadowcraft)
         {
-            sReturned = "On first activation start, apply " + ReturnColoredText("1 ", blueNumber) +
-                ReturnColoredText("Weakened", neutralYellow) + " to all enemies.";
+            sReturned = "On first activation start, apply " + ReturnColoredText("2 ", blueNumber) +
+                ReturnColoredText("Weakened", neutralYellow) + " to a random enemy.";
         }
         else if (ts == TalentSchool.Manipulation)
         {
-            sReturned = "On first activation start, gain " + ReturnColoredText("2 ", blueNumber) +
-                ReturnColoredText("Source", neutralYellow) + ".";
+            sReturned = "On first activation start, add an " +
+                 ReturnColoredText("Arcane Bolt", neutralYellow) + " card to your hand.";
         }
         else if (ts == TalentSchool.Ranger)
         {

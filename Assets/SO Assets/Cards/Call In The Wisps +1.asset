@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
   m_Name: Call In The Wisps +1
   m_EditorClassIdentifier: 
-  cardName: Call In The Wisps
+  cardName: Call In The Wisps +1
   cardDescription: Fill your hand with Arcane Bolt cards.
   cardSprite: {fileID: 21300000, guid: ca4566fb16da3604dabf5d5b112b572d, type: 3}
   xEnergyCost: 0

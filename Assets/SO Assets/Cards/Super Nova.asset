@@ -21,6 +21,7 @@ MonoBehaviour:
   targettingType: 3
   talentSchool: 6
   rarity: 3
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 1
@@ -31,6 +32,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -49,7 +51,7 @@ MonoBehaviour:
     cardEffectType: 0
     phrase: 'damage.
 
-      Gain '
+      Apply '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -57,11 +59,11 @@ MonoBehaviour:
   - color: 5
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: Burning
+    phrase: 'Burning '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '.
+    phrase: 'to self.
 
 '
   - color: 3
@@ -90,7 +92,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
@@ -166,7 +170,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []

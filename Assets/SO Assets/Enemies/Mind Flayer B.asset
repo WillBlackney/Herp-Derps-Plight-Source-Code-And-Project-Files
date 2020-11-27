@@ -71,6 +71,8 @@ MonoBehaviour:
     darkBargainStacks: 0
     volatileStacks: 0
     soulCollectorStacks: 0
+    magicMagnetStacks: 0
+    etherealStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -84,7 +86,9 @@ MonoBehaviour:
     sleepStacks: 0
     poisonedStacks: 0
     burningStacks: 0
+    bleedingStacks: 0
     fireBallBonusDamageStacks: 0
+    sourceStacks: 0
   allEnemyActions:
   - actionName: Psy Beam
     actionType: 0
@@ -227,7 +231,7 @@ MonoBehaviour:
       blockGained: 0
       cardAdded: {fileID: 11400000, guid: 6c6298096331b0c40b77130a25f22b6c, type: 2}
       copiesAdded: 3
-      collection: 2
+      collection: 1
   allBodyParts:
   - Mind_Flayer_Chest_Wear
   - Mind_Flayer_Header_Wear

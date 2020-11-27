@@ -748,6 +748,43 @@ public class ActivationManager : Singleton<ActivationManager>
             cData.MarkAsCompleted();
         }
     }
+    public void DisplayCustomNotification(CoroutineData cData, string customMessage)
+    {
+        StartCoroutine(DisplayCustomNotificationCoroutine(cData, customMessage));
+    }
+    private IEnumerator DisplayCustomNotificationCoroutine(CoroutineData cData, string customMessage)
+    {
+        // Get transforms
+        RectTransform mainParent = visualParentCG.gameObject.GetComponent<RectTransform>();
+        RectTransform textParent = whoseTurnText.gameObject.GetComponent<RectTransform>();
+
+        // Set starting view state values
+        shieldParent.SetActive(false);
+        leftSwordRect.gameObject.SetActive(false);
+        rightSwordRect.gameObject.SetActive(false);
+        visualParentCG.gameObject.SetActive(true);
+        mainParent.position = middlePos.position;
+        textParent.localScale = new Vector3(4f, 4f, 1);
+        blackBarImageRect.localScale = new Vector3(1f, 0.1f, 1);
+        visualParentCG.alpha = 0;
+        whoseTurnText.text = customMessage;
+
+        AudioManager.Instance.FadeInSound(Sound.Events_New_Turn_Notification, 0.5f);
+        visualParentCG.DOFade(1f, 0.5f);
+        textParent.DOScale(1.5f, 0.25f);
+        blackBarImageRect.DOScaleY(1, 0.25f);
+
+        yield return new WaitForSeconds(1.5f);
+
+        visualParentCG.DOFade(0f, 0.5f);
+        blackBarImageRect.DOScaleY(0.1f, 0.5f);
+
+        // Resolve
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+    }
     #endregion
 
     #endregion

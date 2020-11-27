@@ -189,6 +189,9 @@ public class PersistencyManager : Singleton<PersistencyManager>
         // Shop
         ShopController.Instance.SaveMyDataToSaveFile(newSave);
 
+        // Inventory
+        InventoryController.Instance.SaveMyDataToSaveFile(newSave);
+
         // START SAVE!        
         SaveGameToDisk(newSave);
     }
@@ -223,8 +226,11 @@ public class PersistencyManager : Singleton<PersistencyManager>
         // KBC
         KingsBlessingController.Instance.BuildMyDataFromSaveFile(newLoad);
 
-        // KBC
+        // Shop
         ShopController.Instance.BuildMyDataFromSaveFile(newLoad);
+
+        // Inventory
+        InventoryController.Instance.BuildMyDataFromSaveFile(newLoad);
     }
     #endregion
 

@@ -276,7 +276,7 @@ public class ShopController : Singleton<ShopController>
             HideShopCardBox(box);
 
             // add card to player card inventory
-
+            InventoryController.Instance.AddCardToInventory(CardController.Instance.CloneCardDataFromCardData(box.cppData.cardData));
         }        
     }
     #endregion

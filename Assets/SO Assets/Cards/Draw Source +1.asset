@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
   m_Name: Draw Source +1
   m_EditorClassIdentifier: 
-  cardName: Draw Source
+  cardName: Draw Source +1
   cardDescription: Add 3 Arcane Bolt cards to your hand.
   cardSprite: {fileID: 21300000, guid: 5efa41bbafde0b548b5081032d2879f5, type: 3}
   xEnergyCost: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Push Through
   m_EditorClassIdentifier: 
   cardName: Push Through
-  cardDescription: 'Gain 5 Block. Draw 2 Cards. '
+  cardDescription: Gain 4 Block. Draw 2 Cards. Expend.
   cardSprite: {fileID: 21300000, guid: 517b2d93f1036694180593864ff9000d, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
@@ -26,7 +26,7 @@ MonoBehaviour:
   originRace: 0
   upgradeable: 1
   upgradeLevel: 0
-  expend: 0
+  expend: 1
   innate: 0
   fleeting: 0
   unplayable: 0
@@ -59,7 +59,17 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: cards.
+    phrase: 'cards.
+
+'
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Expend
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 10
@@ -80,12 +90,13 @@ MonoBehaviour:
     rarityFilter: 0
     upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 5
+    blockGainValue: 4
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
@@ -142,6 +153,7 @@ MonoBehaviour:
     rarityFilter: 0
     upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
@@ -173,5 +185,8 @@ MonoBehaviour:
   cardEventListeners: []
   keyWordModels:
   - kewWordType: 9
+    weaponRequirement: 0
+    passiveType: 0
+  - kewWordType: 1
     weaponRequirement: 0
     passiveType: 0

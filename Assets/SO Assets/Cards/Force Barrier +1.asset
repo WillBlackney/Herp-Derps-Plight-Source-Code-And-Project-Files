@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
   m_Name: Force Barrier +1
   m_EditorClassIdentifier: 
-  cardName: Force Barrier
+  cardName: Force Barrier +1
   cardDescription: Give 1 Barrier to self and allies. Source Spell. Expend.
   cardSprite: {fileID: 21300000, guid: 8bc0797f798b4b346b2729baf942d7ba, type: 3}
   xEnergyCost: 0

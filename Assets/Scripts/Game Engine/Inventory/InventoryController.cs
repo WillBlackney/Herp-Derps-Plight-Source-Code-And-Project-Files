@@ -18,10 +18,20 @@ public class InventoryController : Singleton<InventoryController>
         get { return cardInventory; }
         private set { cardInventory = value; }
     }
-    
+
     #endregion
 
-
+    // Save + Load Logic
+    #region
+    public void SaveMyDataToSaveFile(SaveGameData saveData)
+    {
+        saveData.cardInventory = cardInventory;
+    }
+    public void BuildMyDataFromSaveFile(SaveGameData saveData)
+    {
+        cardInventory = saveData.cardInventory;
+    }
+    #endregion
     // Logic
     #region
     public void PopulateInventoryWithMockCardData(int randomCardsAdded = 10)

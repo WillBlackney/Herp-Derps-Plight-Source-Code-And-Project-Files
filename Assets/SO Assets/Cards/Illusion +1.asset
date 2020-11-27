@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
   m_Name: Illusion +1
   m_EditorClassIdentifier: 
-  cardName: Illusion
+  cardName: Illusion +1
   cardDescription: Gain 6 Block. Gain 2 Source.
   cardSprite: {fileID: 21300000, guid: f5dee98cfc41b1844b412bc49a3f8aac, type: 3}
   xEnergyCost: 0

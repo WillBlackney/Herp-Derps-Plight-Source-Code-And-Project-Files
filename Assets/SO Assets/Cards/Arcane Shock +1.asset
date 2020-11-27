@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
   m_Name: Arcane Shock +1
   m_EditorClassIdentifier: 
-  cardName: Arcane Shock
+  cardName: Arcane Shock +1
   cardDescription: 'Deal 9 Magic damage. Source Spell. '
   cardSprite: {fileID: 21300000, guid: 5247d3e0ab198d2459affb0a90689d7f, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 3
+  cardEnergyCost: 4
   cardType: 3
   targettingType: 3
   talentSchool: 9

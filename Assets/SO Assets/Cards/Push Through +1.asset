@@ -26,7 +26,7 @@ MonoBehaviour:
   originRace: 0
   upgradeable: 0
   upgradeLevel: 1
-  expend: 0
+  expend: 1
   innate: 0
   fleeting: 0
   unplayable: 0
@@ -59,7 +59,17 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: cards.
+    phrase: 'cards.
+
+'
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Expend
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 10
@@ -80,6 +90,7 @@ MonoBehaviour:
     rarityFilter: 0
     upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
@@ -142,6 +153,7 @@ MonoBehaviour:
     rarityFilter: 0
     upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
@@ -173,5 +185,8 @@ MonoBehaviour:
   cardEventListeners: []
   keyWordModels:
   - kewWordType: 9
+    weaponRequirement: 0
+    passiveType: 0
+  - kewWordType: 1
     weaponRequirement: 0
     passiveType: 0
