@@ -169,6 +169,9 @@ public class SerializedPassiveManagerModel
     [BoxGroup("Aura Passives")]
     [LabelWidth(200)]
     public int toxicAuraStacks;
+    [BoxGroup("Aura Passives")]
+    [LabelWidth(200)]
+    public int hatefulAuraStacks;
 
     // Buff Passives
     [BoxGroup("Core Damage % Modifier Passives", centerLabel: true)]

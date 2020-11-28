@@ -81,6 +81,7 @@ MonoBehaviour:
     shadowAuraStacks: 0
     guardianAuraStacks: 0
     toxicAuraStacks: 0
+    hatefulAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -94,13 +95,8 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
-  - {fileID: 11400000, guid: 5962e9276926a33409677ca286550966, type: 2}
-  - {fileID: 11400000, guid: 5962e9276926a33409677ca286550966, type: 2}
-  - {fileID: 11400000, guid: 87e710bfb78236b42a44777328a1d766, type: 2}
-  - {fileID: 11400000, guid: 87e710bfb78236b42a44777328a1d766, type: 2}
-  - {fileID: 11400000, guid: a70b2235b1cc1174585d878e823fe225, type: 2}
-  - {fileID: 11400000, guid: 759e47bdb3df88747abde825c31fe670, type: 2}
-  - {fileID: 11400000, guid: eeb8ff669e60e0a4facc9a5b68004644, type: 2}
+  - {fileID: 11400000, guid: 39d1713a0f643b640ae78d1c5da6aacf, type: 2}
+  - {fileID: 11400000, guid: 8f9678549ccde8246b41ef95f3f81cb1, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1

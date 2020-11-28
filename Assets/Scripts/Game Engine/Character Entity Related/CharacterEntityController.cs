@@ -1248,6 +1248,23 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             }
         }
 
+        // Hateful Aura
+        if (entity.pManager.hatefulAuraStacks > 0)
+        {
+            CharacterEntityModel[] allAllies = GetAllAlliesOfCharacter(entity, false).ToArray();
+            CharacterEntityModel chosenAlly = allAllies[RandomGenerator.NumberBetween(0, allAllies.Length - 1)];
+
+            if (chosenAlly != null)
+            {
+                // Notification event
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Hateful Aura!"), QueuePosition.Back, 0, 0.5f);
+
+                // Random ally gains energy
+                PassiveController.Instance.ModifyWrath(chosenAlly.pManager, 1, true, 0.5f); 
+            }
+        }
+
         // DOTS
         // Poisoned
         if (entity.pManager.poisonedStacks > 0)

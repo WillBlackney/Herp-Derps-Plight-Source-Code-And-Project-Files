@@ -19,7 +19,7 @@ MonoBehaviour:
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'On activation end, this character grants '
-  - color: 0
+  - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'X '

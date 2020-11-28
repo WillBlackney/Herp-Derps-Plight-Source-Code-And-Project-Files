@@ -63,6 +63,7 @@ public class PassiveManagerModel
     public int shadowAuraStacks;
     public int guardianAuraStacks;
     public int toxicAuraStacks;
+    public int hatefulAuraStacks;
 
     // Core Damage % Modifier Passives
     public int wrathStacks;

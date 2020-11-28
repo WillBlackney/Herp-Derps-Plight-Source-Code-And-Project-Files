@@ -200,6 +200,7 @@ public enum Passive
     Grit = 14,
     Growing = 15,
     GuardianAura = 44,
+    HatefulAura = 62,
     Infuriated = 16,
     Initiative = 17,
     LongDraw = 51,
