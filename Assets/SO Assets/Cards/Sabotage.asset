@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Sabotage
   cardDescription: Remove all Block from target. Deal 5 Physical damage. Expend.
-  cardSprite: {fileID: 21300000, guid: 08e4ee218e42dd247a5ac64821640f76, type: 3}
+  cardSprite: {fileID: 21300000, guid: 7a1dc28c1ba24604d9f7dba78d2ab120, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
   cardType: 2
   targettingType: 3
   talentSchool: 3
   rarity: 2
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 1
@@ -31,6 +32,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -86,7 +88,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
@@ -162,7 +166,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []

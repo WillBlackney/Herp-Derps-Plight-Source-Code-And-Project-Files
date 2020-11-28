@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Parry +1
   cardDescription: Gain 6 Block. Draw 2 Cards.
-  cardSprite: {fileID: 21300000, guid: 99fb5d32cca34a74bbd985be88a1c0d9, type: 3}
+  cardSprite: {fileID: 21300000, guid: 49d7732986467e142971b9d35c230cee, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
   cardType: 1
@@ -80,6 +80,7 @@ MonoBehaviour:
     rarityFilter: 0
     upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
@@ -157,6 +158,7 @@ MonoBehaviour:
     rarityFilter: 0
     upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []

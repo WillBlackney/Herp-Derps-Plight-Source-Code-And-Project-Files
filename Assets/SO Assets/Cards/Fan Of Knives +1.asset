@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Fan Of Knives +1
   cardDescription: On activation start, add a Shank to your hand.
-  cardSprite: {fileID: 21300000, guid: 72f7afdc8fa41e94c9e2cf4077dd9d34, type: 3}
+  cardSprite: {fileID: 21300000, guid: d8b8c7c1bd53d0f42936790ebdacb86c, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
   cardType: 4
   targettingType: 0
   talentSchool: 3
   rarity: 1
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 0
@@ -31,6 +32,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -62,7 +64,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []

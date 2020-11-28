@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Fan Of Knives
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: 72f7afdc8fa41e94c9e2cf4077dd9d34, type: 3}
+  passiveSprite: {fileID: 21300000, guid: d8b8c7c1bd53d0f42936790ebdacb86c, type: 3}
   passiveName: Fan Of Knives
   passiveDescription:
   - color: 1

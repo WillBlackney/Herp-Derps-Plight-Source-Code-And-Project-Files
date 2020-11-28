@@ -16,13 +16,14 @@ MonoBehaviour:
   cardDescription: 'Deal 3 Physical damage.
 
     DW: Deal 3 Physical damage again.'
-  cardSprite: {fileID: 21300000, guid: eb954e1e524c79c4a9963d7820093183, type: 3}
+  cardSprite: {fileID: 21300000, guid: 24529566cd9f71247b3c586ac9751e88, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
   cardType: 2
   targettingType: 3
   talentSchool: 3
   rarity: 2
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 1
@@ -33,6 +34,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 0
     getPhraseFromCardValue: 0
@@ -90,7 +92,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
@@ -196,7 +200,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []

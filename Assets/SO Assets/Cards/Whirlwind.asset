@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Whirlwind
   cardDescription: "Deal 5 Physical damage to all enemies. \n2H: Draw 1 card. "
-  cardSprite: {fileID: 21300000, guid: 190a45f9f2facd346b2cd896ebc637e4, type: 3}
+  cardSprite: {fileID: 21300000, guid: adc66b9bea183614295059985527b39a, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
   cardType: 2
   targettingType: 0
   talentSchool: 2
   rarity: 1
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 1
@@ -31,6 +32,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -84,7 +86,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
@@ -205,7 +209,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []

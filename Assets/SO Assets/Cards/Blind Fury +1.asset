@@ -13,29 +13,31 @@ MonoBehaviour:
   m_Name: Blind Fury +1
   m_EditorClassIdentifier: 
   cardName: Blind Fury +1
-  cardDescription: Give self or ally 5 Power and 1 Silenced.
-  cardSprite: {fileID: 21300000, guid: a780b653849ce4745a9d0756c68bffff, type: 3}
+  cardDescription: Give an ally 5 Power and 1 Silenced. Expend.
+  cardSprite: {fileID: 21300000, guid: 8d0bbf3cbbc06594fac4a03ab19a310c, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
   cardType: 1
-  targettingType: 2
+  targettingType: 1
   talentSchool: 2
   rarity: 3
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 0
   upgradeLevel: 1
-  expend: 0
+  expend: 1
   innate: 0
   fleeting: 0
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Give self or ally '
+    phrase: 'Give an ally '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -59,6 +61,16 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
+    phrase: '.
+
+'
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Expend
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
     phrase: .
   cardEffects:
   - weaponRequirement: 0
@@ -78,7 +90,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
@@ -169,7 +183,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
@@ -206,3 +222,6 @@ MonoBehaviour:
   - kewWordType: 8
     weaponRequirement: 0
     passiveType: 43
+  - kewWordType: 1
+    weaponRequirement: 0
+    passiveType: 0

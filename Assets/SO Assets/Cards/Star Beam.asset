@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Star Light
+  m_Name: Star Beam
   m_EditorClassIdentifier: 
-  cardName: Star Light
+  cardName: Star Beam
   cardDescription: Gain 1 Energy to self or ally.
-  cardSprite: {fileID: 21300000, guid: 425ade8b7c940674a94801e6a525b64a, type: 3}
+  cardSprite: {fileID: 21300000, guid: cc9b74af3ac7691499a8c54dfe7c1cd3, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
   cardType: 1
   targettingType: 2
   talentSchool: 1
   rarity: 1
+  affliction: 0
   racialCard: 1
   originRace: 4
   upgradeable: 1
@@ -31,6 +32,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -66,7 +68,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []

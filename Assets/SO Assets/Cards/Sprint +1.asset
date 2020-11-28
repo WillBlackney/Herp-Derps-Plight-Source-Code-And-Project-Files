@@ -16,13 +16,14 @@ MonoBehaviour:
   cardDescription: 'Draw 3 cards.
 
     Next activation, Draw 1 less cards.'
-  cardSprite: {fileID: 21300000, guid: 390e5d42dc0118a40b0c2560c3c1418f, type: 3}
+  cardSprite: {fileID: 21300000, guid: f862310d5f3b8cc488b02242c0c88380, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
   cardType: 1
   targettingType: 0
   talentSchool: 3
   rarity: 1
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 0
@@ -33,6 +34,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -74,7 +76,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
@@ -120,7 +124,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []

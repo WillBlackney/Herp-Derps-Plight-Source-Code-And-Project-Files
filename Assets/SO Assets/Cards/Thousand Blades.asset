@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Thousand Blades
   cardDescription: Expend your hand. For each expend, add a Shank to your hand.
-  cardSprite: {fileID: 21300000, guid: 7953a26d7a4ccc84b84daf04d6597b0c, type: 3}
+  cardSprite: {fileID: 21300000, guid: 6c0149d329345c8498f1c8ce81c507fb, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
   cardType: 1
   targettingType: 0
   talentSchool: 3
   rarity: 3
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 1
@@ -31,6 +32,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 3
     getPhraseFromCardValue: 0
@@ -68,7 +70,9 @@ MonoBehaviour:
     discoveryLocation: 5
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects:
@@ -80,6 +84,7 @@ MonoBehaviour:
       cardAdded: {fileID: 0}
       talentSchoolFilter: 0
       rarityFilter: 0
+      upgradeFilter: 1
       baseDamage: 0
       damageType: 0
     - modifyEffect: 6
@@ -90,6 +95,7 @@ MonoBehaviour:
       cardAdded: {fileID: 11400000, guid: 648ee25c51574a74983929772bcecb4d, type: 2}
       talentSchoolFilter: 11
       rarityFilter: 0
+      upgradeFilter: 1
       baseDamage: 0
       damageType: 0
     drawStacksFromOverload: 0

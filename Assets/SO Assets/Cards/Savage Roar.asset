@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Savage Roar
   cardDescription: Gain 1 Wrath. Innate.
-  cardSprite: {fileID: 21300000, guid: 6f0ffacd53c651745847a66c37c940db, type: 3}
+  cardSprite: {fileID: 21300000, guid: e4d45ae682c0d8747b8db86ea6f5852c, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
   cardType: 1
   targettingType: 0
   talentSchool: 1
   rarity: 1
+  affliction: 0
   racialCard: 1
   originRace: 2
   upgradeable: 1
@@ -31,6 +32,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -76,7 +78,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []

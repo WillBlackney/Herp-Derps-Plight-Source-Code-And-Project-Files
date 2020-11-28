@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Ram +1
   cardDescription: Deal 6 Physical damage. Apply 2 Vulnerable.
-  cardSprite: {fileID: 21300000, guid: afb20dcab9a081e4f988c41114a0285c, type: 3}
+  cardSprite: {fileID: 21300000, guid: e3436f85f2c78b249953d19a8e32c95a, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
   cardType: 2
   targettingType: 3
   talentSchool: 1
   rarity: 1
+  affliction: 0
   racialCard: 1
   originRace: 6
   upgradeable: 0
@@ -31,6 +32,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 0
     getPhraseFromCardValue: 0
@@ -80,7 +82,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
@@ -216,7 +220,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []

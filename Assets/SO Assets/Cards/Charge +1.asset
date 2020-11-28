@@ -10,27 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Rush
+  m_Name: Charge +1
   m_EditorClassIdentifier: 
-  cardName: Rush
-  cardDescription: "Deal 6 Physical damage. \nGain 2 Draw next activation. "
-  cardSprite: {fileID: 21300000, guid: 128be30d4ea408d4a9e78f7f908fbf4d, type: 3}
+  cardName: Charge +1
+  cardDescription: "Deal 8 Physical damage. \nGain 3 Draw next activation. "
+  cardSprite: {fileID: 21300000, guid: 394a9412d0244e64d8337ed23144ee54, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
   cardType: 2
   targettingType: 3
   talentSchool: 2
   rarity: 2
+  affliction: 0
   racialCard: 0
   originRace: 0
-  upgradeable: 1
-  upgradeLevel: 0
+  upgradeable: 0
+  upgradeLevel: 1
   expend: 0
   innate: 0
   fleeting: 0
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -57,7 +59,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '2 '
+    phrase: '3 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -84,14 +86,16 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 6
+    baseDamageValue: 8
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
@@ -190,7 +194,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
@@ -213,7 +219,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 31
-      passiveStacks: 2
+      passiveStacks: 3
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

@@ -15,13 +15,14 @@ MonoBehaviour:
   cardName: Flurry
   cardDescription: Whenever you play a Melee Attack card, deal 1 Physical damage
     to all enemies.
-  cardSprite: {fileID: 21300000, guid: 41d65e1d228d8d64e82a1ec0d6905c83, type: 3}
+  cardSprite: {fileID: 21300000, guid: 46296c221018aa244bffbb490efbe2ad, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
   cardType: 4
   targettingType: 0
   talentSchool: 3
   rarity: 3
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 1
@@ -32,6 +33,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -75,7 +77,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
