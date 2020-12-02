@@ -544,6 +544,22 @@ public class CombatLogic : Singleton<CombatLogic>
                 AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff), queuePosition, 0, 0, EventDetail.None, batchedEvent);
         }
 
+        // Resolve thorns passive before other post damage passive events
+        if (victim != null &&
+            attacker != null &&
+            attacker.health > 0 &&
+            victim.pManager.thornsStacks > 0 && 
+            victim.livingState == LivingState.Alive && 
+            attacker.livingState == LivingState.Alive)
+        {
+            // Brief delay 
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.25f);
+
+            // Calculate and handle damage
+            int thornsDamageValue = GetFinalDamageValueAfterAllCalculations(null, attacker, DamageType.Physical, victim.pManager.thornsStacks, null, null);
+            HandleDamage(thornsDamageValue, null, attacker, DamageType.Physical);
+        }
+
         // EVALUATE DAMAGE RELATED PASSIVE EFFECTS (but only if victim is still alive)
         if (victim.health > 0 && victim.livingState == LivingState.Alive)
         {

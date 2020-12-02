@@ -1063,8 +1063,12 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         // reset misc properties
         entity.meleeAttacksPlayedThisActivation = 0;
 
-        // Disable level node activation ring view        
-        VisualEventManager.Instance.CreateVisualEvent(() => LevelManager.Instance.SetActivatedViewState(veNode, false));
+        // Brute force disable all activation rings
+        VisualEventManager.Instance.CreateVisualEvent(() => LevelManager.Instance.DisableAllActivationRings());
+
+        // Disable level node activation ring view       
+        //if(veNode != null)
+        //   VisualEventManager.Instance.CreateVisualEvent(() => LevelManager.Instance.SetActivatedViewState(veNode, false));
 
         // Stop if combat has ended
         if (CombatLogic.Instance.CurrentCombatState != CombatGameState.CombatActive)

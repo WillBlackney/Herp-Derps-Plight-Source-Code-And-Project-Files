@@ -233,6 +233,7 @@ public enum Passive
     TemporaryInitiative = 32,
     TemporaryPower = 33,
     TemporaryStamina = 34,
+    Thorns = 63,
     ToxicAura = 50, 
     Venomous = 35,
     Vulnerable = 36,

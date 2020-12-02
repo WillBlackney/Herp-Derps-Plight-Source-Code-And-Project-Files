@@ -145,6 +145,13 @@ public class LevelManager : Singleton<LevelManager>
             node.mouseOverParent.SetActive(onOrOff);
         }        
     }
+    public void DisableAllActivationRings()
+    {
+        foreach(LevelNode n in allLevelNodes)
+        {
+            SetActivatedViewState(n, false);
+        }
+    }
     public void SetActivatedViewState(LevelNode node, bool onOrOff)
     {
         Debug.Log("LevelNode.SetActivatedViewState() called, setting: " + onOrOff.ToString());

@@ -22,7 +22,7 @@ MonoBehaviour:
   dexterity: 10
   stamina: 10
   draw: 10
-  initiative: 50
+  initiative: 1
   startingBlock: 5
   physicalResistance: 0
   fireResistance: 0
@@ -75,8 +75,9 @@ MonoBehaviour:
     darkBargainStacks: 0
     volatileStacks: 0
     soulCollectorStacks: 0
-    magicMagnetStacks: 2
+    magicMagnetStacks: 0
     etherealStacks: 0
+    thornsStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -95,10 +96,8 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
-  - {fileID: 11400000, guid: 39d1713a0f643b640ae78d1c5da6aacf, type: 2}
-  - {fileID: 11400000, guid: 8f9678549ccde8246b41ef95f3f81cb1, type: 2}
-  - {fileID: 11400000, guid: 708f5f31c10f4d14e9f8a91cc822a47b, type: 2}
-  - {fileID: 11400000, guid: 055f4c706274bea4ba260b2e369a75b6, type: 2}
+  - {fileID: 11400000, guid: 9e1ca36efe198a44b81a1af97132f9c2, type: 2}
+  - {fileID: 11400000, guid: e4c0fbdb9e2eaed45a1412076786eef9, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1

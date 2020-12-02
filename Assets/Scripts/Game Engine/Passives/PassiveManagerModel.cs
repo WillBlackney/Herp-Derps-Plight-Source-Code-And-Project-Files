@@ -56,7 +56,8 @@ public class PassiveManagerModel
     public int volatileStacks;
     public int soulCollectorStacks;
     public int magicMagnetStacks;
-    public int etherealStacks;
+    public int etherealStacks; 
+    public int thornsStacks;
 
     // Aura passives
     public int encouragingAuraStacks;

@@ -15,7 +15,7 @@ MonoBehaviour:
   myName: Twigs
   myClassName: Juggernaut
   race: 8
-  audioProfile: 1
+  audioProfile: 4
   health: 50
   maxHealth: 50
   power: 0
@@ -77,6 +77,7 @@ MonoBehaviour:
     soulCollectorStacks: 0
     magicMagnetStacks: 0
     etherealStacks: 0
+    thornsStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
