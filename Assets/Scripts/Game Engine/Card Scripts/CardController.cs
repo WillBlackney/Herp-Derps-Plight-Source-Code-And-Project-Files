@@ -1443,7 +1443,7 @@ public class CardController : Singleton<CardController>
         Destroy(cvm.movementParent.gameObject);
     }
     #endregion
-
+       
     // Conditional Checks
     #region
     private bool IsCardDrawValid(CharacterEntityModel defender)
@@ -3406,6 +3406,16 @@ public class CardController : Singleton<CardController>
         {
             return;
         }
+
+        // cancel if choosing card to upgrade, but no upgradeable cards in hand
+        foreach(OnCardInHandChoiceMadeEffect chooseEffect in ce.onChooseCardInHandChoiceMadeEffects)
+        {
+            if(chooseEffect.choiceEffect == OnCardInHandChoiceMadeEffectType.UpgradeIt &&
+                GetUpgradeableCardsFromCollection(owner.hand).Count == 0)
+            {
+                return;
+            }
+        }
         ResetChooseCardScreenProperties();
         CurrentChooseCardScreenSelection = null;
         chooseCardScreenEffectReference = ce;
@@ -3418,6 +3428,15 @@ public class CardController : Singleton<CardController>
     public void HandleChooseScreenCardSelection(Card selectedCard)
     {
         AudioManager.Instance.PlaySound(Sound.Card_Discarded);
+
+        // cancel if choice effect is for upgrade, and the card is not upgradeable
+        foreach(OnCardInHandChoiceMadeEffect choiceEffect in chooseCardScreenEffectReference.onChooseCardInHandChoiceMadeEffects)
+        {
+            if(IsCardUpgradeable(selectedCard) == false && choiceEffect.choiceEffect == OnCardInHandChoiceMadeEffectType.UpgradeIt)
+            {
+                return;
+            }
+        }
 
         // move to choice slot
         if (CurrentChooseCardScreenSelection == null)
@@ -3468,6 +3487,10 @@ public class CardController : Singleton<CardController>
             {
                 ExpendCard(CurrentChooseCardScreenSelection);
                 returnSelctionToHand = false;
+            }
+            else if (choiceEffect.choiceEffect == OnCardInHandChoiceMadeEffectType.UpgradeIt)
+            {
+                HandleUpgradeCardForCharacterEntity(CurrentChooseCardScreenSelection);
             }
 
             else if (choiceEffect.choiceEffect == OnCardInHandChoiceMadeEffectType.GainPassive)
@@ -3554,6 +3577,10 @@ public class CardController : Singleton<CardController>
         else if (data.choiceEffect == OnCardInHandChoiceMadeEffectType.ExpendIt)
         {
             newText = "Choose a Card to Expend";
+        }
+        else if (data.choiceEffect == OnCardInHandChoiceMadeEffectType.UpgradeIt)
+        {
+            newText = "Choose a Card to Upgrade";
         }
         else if (data.choiceEffect == OnCardInHandChoiceMadeEffectType.ReduceEnergyCost)
         {
@@ -4587,6 +4614,10 @@ public class CardController : Singleton<CardController>
     {
         return card.upgradeable;
     }
+    public bool IsCardUpgradeable(Card card)
+    {
+        return card.upgradeable;
+    }
     public List<CardData> GetUpgradeableCardsFromCollection(IEnumerable<CardData> collection)
     {
         Debug.Log("CardController.GetUpgradeableCardsFromCollection() called...");
@@ -4594,6 +4625,24 @@ public class CardController : Singleton<CardController>
         List <CardData> upgradeableCards = new List<CardData>();
 
         foreach(CardData card in collection)
+        {
+            if (IsCardUpgradeable(card))
+            {
+                upgradeableCards.Add(card);
+            }
+        }
+
+        Debug.Log("CardController.GetUpgradeableCardsFromCollection() found " + upgradeableCards.Count.ToString() +
+            " upgradeable cards");
+        return upgradeableCards;
+    }
+    public List<Card> GetUpgradeableCardsFromCollection(IEnumerable<Card> collection)
+    {
+        Debug.Log("CardController.GetUpgradeableCardsFromCollection() called...");
+
+        List<Card> upgradeableCards = new List<Card>();
+
+        foreach (Card card in collection)
         {
             if (IsCardUpgradeable(card))
             {
@@ -4677,6 +4726,51 @@ public class CardController : Singleton<CardController>
         }
 
         return transformedCard;
+    }
+    private void HandleUpgradeCardForCharacterEntity(Card card)
+    {
+        Debug.Log("CardController.HandleUpgradeCardForCharacterEntity() called...");
+
+        // Get handle to the card VM
+        CardViewModel cvm = card.cardVM;
+        CharacterEntityModel owner = card.owner;
+
+        CardData upgradeData = FindUpgradedCardData(GetCardDataFromLibraryByName(card.cardName));
+        Card upgradedCard = BuildCardFromCardData(upgradeData, owner);
+
+        // Remove card from which ever collection its in, then add in the upgraded card
+        if (owner.hand.Contains(card))
+        {
+            RemoveCardFromHand(owner, card);
+            AddCardToHand(owner, upgradedCard);
+        }
+        else if (owner.discardPile.Contains(card))
+        {
+            RemoveCardFromDiscardPile(owner, card);
+            AddCardToDiscardPile(owner, upgradedCard);
+        }
+        else if (owner.drawPile.Contains(card))
+        {
+            RemoveCardFromDrawPile(owner, card);
+            AddCardToDrawPile(owner, upgradedCard);
+        }
+        
+        // does the card have a cardVM linked to it?
+        if (cvm)
+        {
+            // Rebuild the old card's vm to the upgraded card.
+            ConnectCardWithCardViewModel(upgradedCard, cvm);
+
+            // Set up appearance, texts and sprites
+            SetUpCardViewModelAppearanceFromCard(cvm, upgradedCard);
+
+            // Set glow outline
+            AutoUpdateCardGlowOutline(upgradedCard);
+
+            VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(cvm));
+        }
+
+        //OnCardExpended(card);
     }
     #endregion
 

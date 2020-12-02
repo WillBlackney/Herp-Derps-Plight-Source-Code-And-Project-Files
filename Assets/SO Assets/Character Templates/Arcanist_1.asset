@@ -15,6 +15,7 @@ MonoBehaviour:
   myName: Ari
   myClassName: Arcanist
   race: 4
+  audioProfile: 2
   health: 40
   maxHealth: 40
   power: 0
@@ -72,10 +73,15 @@ MonoBehaviour:
     fastLearnerStacks: 0
     demonFormStacks: 0
     darkBargainStacks: 0
+    volatileStacks: 0
+    soulCollectorStacks: 0
+    magicMagnetStacks: 0
+    etherealStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
     toxicAuraStacks: 0
+    hatefulAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -85,7 +91,9 @@ MonoBehaviour:
     sleepStacks: 0
     poisonedStacks: 0
     burningStacks: 0
+    bleedingStacks: 0
     fireBallBonusDamageStacks: 0
+    sourceStacks: 0
   deck:
   - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
   - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}

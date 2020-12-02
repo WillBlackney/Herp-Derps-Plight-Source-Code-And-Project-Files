@@ -619,6 +619,7 @@ public enum OnCardInHandChoiceMadeEffectType
     SetEnergyCost = 3,
     ExpendIt = 4,
     GainPassive = 5,
+    UpgradeIt = 6,
 }
 
 

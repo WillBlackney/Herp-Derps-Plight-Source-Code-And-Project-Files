@@ -97,6 +97,8 @@ MonoBehaviour:
   deck:
   - {fileID: 11400000, guid: 39d1713a0f643b640ae78d1c5da6aacf, type: 2}
   - {fileID: 11400000, guid: 8f9678549ccde8246b41ef95f3f81cb1, type: 2}
+  - {fileID: 11400000, guid: 708f5f31c10f4d14e9f8a91cc822a47b, type: 2}
+  - {fileID: 11400000, guid: 055f4c706274bea4ba260b2e369a75b6, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1
@@ -111,7 +113,6 @@ MonoBehaviour:
   - Left_Hand_Simple_Battle_Axe
   - Shaman_Right_Leg_Wear
   - Shaman_Mask_Head_Wear
-  - 
   serializedItemManager:
     mainHandItem: {fileID: 11400000, guid: dfeeccc8c225a66488eb3e4eb76d6c3b, type: 2}
     offHandItem: {fileID: 0}
