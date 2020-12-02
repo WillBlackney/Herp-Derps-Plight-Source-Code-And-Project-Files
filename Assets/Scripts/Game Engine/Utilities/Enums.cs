@@ -170,6 +170,8 @@ public enum CharacterRace
     Goblin = 5, 
     Satyr = 6,
     Gnoll = 7,
+    Ent = 8,
+    Demon = 9,
 };
 public enum Passive
 {
