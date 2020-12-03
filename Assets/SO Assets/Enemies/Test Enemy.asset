@@ -24,8 +24,8 @@ MonoBehaviour:
   overrideStartingHealth: 0
   startingHealth: 1
   startingBlock: 0
-  physicalResistance: 0
-  magicResistance: 0
+  physicalResistance: 30
+  magicResistance: -30
   serializedPassiveManager:
     bonusPowerStacks: 0
     bonusDexterityStacks: 0

@@ -41,13 +41,13 @@ MonoBehaviour:
     temporaryBonusStaminaStacks: 0
     temporaryBonusInitiativeStacks: 0
     temporaryBonusDrawStacks: 0
-    runeStacks: 0
-    barrierStacks: 0
-    enrageStacks: 0
-    shieldWallStacks: 0
-    fanOfKnivesStacks: 0
-    divineFavourStacks: 0
-    phoenixFormStacks: 0
+    runeStacks: 2
+    barrierStacks: 2
+    enrageStacks: 2
+    shieldWallStacks: 2
+    fanOfKnivesStacks: 2
+    divineFavourStacks: 2
+    phoenixFormStacks: 2
     poisonousStacks: 0
     venomousStacks: 0
     overloadStacks: 0
