@@ -188,6 +188,11 @@ public class CardEffect
     public List<AnimationEventData> visualEventsOnStart;
     public List<AnimationEventData> visualEventsOnFinish;
 
+    [ShowIf("cardEffectType", CardEffectType.ModifyAllCardsInHand)]
+    public List<AnimationEventData> visualEventsOnDamageLoopStart;
+
+    [ShowIf("cardEffectType", CardEffectType.ModifyAllCardsInHand)]
+    public List<AnimationEventData> visualEventsOnDamageLoopFinish;
 
     public bool ShowCardsDrawn()
     {

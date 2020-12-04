@@ -1,0 +1,132 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
+  m_Name: Tranquil Hate +1
+  m_EditorClassIdentifier: 
+  cardName: Tranquil Hate +1
+  cardDescription: Whenever you gain Wrath, gain 4 Block.
+  cardSprite: {fileID: 21300000, guid: 36b328c515d7db440bea3b4734ef93fd, type: 3}
+  xEnergyCost: 0
+  cardEnergyCost: 1
+  cardType: 4
+  targettingType: 0
+  talentSchool: 2
+  rarity: 3
+  affliction: 0
+  racialCard: 0
+  originRace: 0
+  upgradeable: 1
+  upgradeLevel: 0
+  expend: 0
+  innate: 0
+  fleeting: 0
+  unplayable: 0
+  lifeSteal: 0
+  blessing: 0
+  sourceSpell: 0
+  customDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Whenever you gain '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Wrath
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: ', gain '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '4 '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Block
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
+  cardEffects:
+  - weaponRequirement: 0
+    cardEffectType: 2
+    splitTargetEffect: 0
+    splitTargetType: 0
+    removeBlockFrom: 0
+    modifyDeckCardEffect: 0
+    permanentBlockGain: 0
+    permanentDamageGain: 0
+    chooseTargetRandomly: 0
+    passiveApplicationLoops: 0
+    validRandomTargetsType: 0
+    damageLoops: 0
+    drawSpecificType: 0
+    specificTypeDrawn: 0
+    discoveryLocation: 0
+    talentSchoolFilter: 0
+    rarityFilter: 0
+    upgradeFilter: 1
+    blessing: 0
+    sourceSpellsOnly: 0
+    onDiscoveryChoiceMadeEffects: []
+    onChooseCardInHandChoiceMadeEffects: []
+    modifyCardsInHandEffects: []
+    drawStacksFromOverload: 0
+    drawStacksFromWeakenedOnEnemies: 0
+    blockGainValue: 0
+    baseDamageValue: 0
+    drawBaseDamageFromCurrentBlock: 0
+    drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromMeleeAttacksPlayed: 0
+    drawBaseDamageFromOverloadOnSelf: 0
+    drawBaseDamageFromBurningOnSelf: 0
+    baseDamageMultiplier: 1
+    damageType: 0
+    healthRestored: 0
+    healthLost: 0
+    energyGained: 0
+    cardsDrawn: 0
+    extraDrawEffect: 0
+    cardEnergyReduction: 0
+    passivePairing:
+      passiveData: 64
+      passiveStacks: 4
+    cardAdded: {fileID: 0}
+    copiesAdded: 0
+    blessingsGained: 0
+    visualEventsOnStart:
+    - eventType: 2
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
+      particleEffect: 0
+      cameraShake: 0
+      movementAnimation: 0
+      soundEffect: 0
+      characterAnimation: 4
+      delayDuration: 0
+      projectileFired: 0
+      projectileStartPosition: 0
+      onCharacter: 0
+    visualEventsOnFinish: []
+  cardEventListeners: []
+  keyWordModels:
+  - kewWordType: 8
+    weaponRequirement: 0
+    passiveType: 38
+  - kewWordType: 9
+    weaponRequirement: 0
+    passiveType: 0

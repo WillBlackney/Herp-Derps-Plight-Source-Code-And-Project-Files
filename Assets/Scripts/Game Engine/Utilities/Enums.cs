@@ -107,6 +107,7 @@ public enum CardEventListenerType
     OnArcaneBoltCardPlayed = 8,
     OnTargetKilled = 5,
     OnThisCardDrawn = 7,
+    OnThisCardPlayed = 9,
 }
 
 [Serializable]
@@ -235,6 +236,7 @@ public enum Passive
     TemporaryStamina = 34,
     Thorns = 63,
     ToxicAura = 50, 
+    TranquilHate = 64,
     Venomous = 35,
     Vulnerable = 36,
     Weakened = 37,
@@ -537,6 +539,7 @@ public enum ProjectileFired
     LightningBall1 = 7,
     HolyBall1 = 8,
     FireMeteor = 9,
+    Javelin = 10,
 
 }
 public enum ProjectileStartPosition

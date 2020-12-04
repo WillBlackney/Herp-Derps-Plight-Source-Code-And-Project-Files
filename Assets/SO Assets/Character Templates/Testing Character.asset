@@ -16,13 +16,13 @@ MonoBehaviour:
   myClassName: Test Class
   race: 2
   audioProfile: 3
-  health: 500
+  health: 10
   maxHealth: 500
   power: 0
   dexterity: 10
-  stamina: 10
+  stamina: 5
   draw: 10
-  initiative: 1
+  initiative: 77
   startingBlock: 5
   physicalResistance: 0
   fireResistance: 0
@@ -41,13 +41,13 @@ MonoBehaviour:
     temporaryBonusStaminaStacks: 0
     temporaryBonusInitiativeStacks: 0
     temporaryBonusDrawStacks: 0
-    runeStacks: 2
-    barrierStacks: 2
-    enrageStacks: 2
-    shieldWallStacks: 2
-    fanOfKnivesStacks: 2
-    divineFavourStacks: 2
-    phoenixFormStacks: 2
+    runeStacks: 0
+    barrierStacks: 0
+    enrageStacks: 0
+    shieldWallStacks: 0
+    fanOfKnivesStacks: 0
+    divineFavourStacks: 0
+    phoenixFormStacks: 0
     poisonousStacks: 0
     venomousStacks: 0
     overloadStacks: 0
@@ -78,6 +78,7 @@ MonoBehaviour:
     magicMagnetStacks: 0
     etherealStacks: 0
     thornsStacks: 0
+    tranquilHateStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -96,8 +97,8 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
-  - {fileID: 11400000, guid: 9e1ca36efe198a44b81a1af97132f9c2, type: 2}
-  - {fileID: 11400000, guid: e4c0fbdb9e2eaed45a1412076786eef9, type: 2}
+  - {fileID: 11400000, guid: 85a3611749ba8a047b646fe6153b4422, type: 2}
+  - {fileID: 11400000, guid: 85c10f1a438bfa6469e74a777ed826b1, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1
@@ -113,6 +114,6 @@ MonoBehaviour:
   - Shaman_Right_Leg_Wear
   - Shaman_Mask_Head_Wear
   serializedItemManager:
-    mainHandItem: {fileID: 11400000, guid: dfeeccc8c225a66488eb3e4eb76d6c3b, type: 2}
+    mainHandItem: {fileID: 11400000, guid: b533dcedf0849e047ac0af6f1d50afe0, type: 2}
     offHandItem: {fileID: 0}
   talentPairings: []

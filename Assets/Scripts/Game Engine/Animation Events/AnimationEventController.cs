@@ -184,8 +184,11 @@ public class AnimationEventController : Singleton<AnimationEventController>
 
         if (vEvent.onCharacter == CreateOnCharacter.Self)
         {
-            VisualEventManager.Instance.CreateVisualEvent(() =>
-            VisualEffectManager.Instance.CreateEffectAtLocation(vEvent.particleEffect, user.characterEntityView.WorldPosition));
+            if(user.characterEntityView != null)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                   VisualEffectManager.Instance.CreateEffectAtLocation(vEvent.particleEffect, user.characterEntityView.WorldPosition));
+            }            
         }
         else if (vEvent.onCharacter == CreateOnCharacter.Target)
         {

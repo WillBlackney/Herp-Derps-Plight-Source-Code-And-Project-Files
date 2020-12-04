@@ -406,7 +406,14 @@ public class CombatLogic : Singleton<CombatLogic>
         // Cancel this if character is already in death process
         if (victim.livingState == LivingState.Dead)
         {
-            Debug.Log("CombatLogic.HandleDamage() detected that " + victim.myName + " is already in death process, exiting damage event...");
+            Debug.Log("CombatLogic.HandleDamage() detected that victim " + victim.myName + " is already in death process, exiting damage event...");
+            return;
+        }
+
+        // Cancel if attacker already dead
+        if (attacker != null && attacker.livingState != LivingState.Alive)
+        {
+            Debug.Log("CombatLogic.HandleDamage() detected that attacker " + attacker.myName + " is already in death process, exiting damage event...");
             return;
         }
 
@@ -550,7 +557,8 @@ public class CombatLogic : Singleton<CombatLogic>
             attacker.health > 0 &&
             victim.pManager.thornsStacks > 0 && 
             victim.livingState == LivingState.Alive && 
-            attacker.livingState == LivingState.Alive)
+            attacker.livingState == LivingState.Alive &&
+            (enemyEffect != null || card != null))
         {
             // Brief delay 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.25f);

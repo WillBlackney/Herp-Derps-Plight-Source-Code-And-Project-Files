@@ -150,6 +150,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyEnrage(newClone, originalData.enrageStacks, false);
         }
+        if (originalData.tranquilHateStacks != 0)
+        {
+            ModifyTranquilHate(newClone, originalData.tranquilHateStacks, false);
+        }
         if (originalData.thornsStacks != 0)
         {
             ModifyThorns(newClone, originalData.thornsStacks, false);
@@ -439,6 +443,7 @@ public class PassiveController : Singleton<PassiveController>
         pManager.magicMagnetStacks = original.magicMagnetStacks;
         pManager.etherealStacks = original.etherealStacks;
         pManager.thornsStacks = original.thornsStacks;
+        pManager.tranquilHateStacks = original.tranquilHateStacks;
 
         pManager.runeStacks = original.runeStacks;
         pManager.barrierStacks = original.barrierStacks;
@@ -549,6 +554,10 @@ public class PassiveController : Singleton<PassiveController>
         else if (originalData == "Enrage")
         {
             ModifyEnrage(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Tranquil Hate")
+        {
+            ModifyTranquilHate(pManager, stacks, showVFX, vfxDelay);
         }
         else if (originalData == "Thorns")
         {
@@ -2385,6 +2394,65 @@ public class PassiveController : Singleton<PassiveController>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Lord Of Storms " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+
+
+    }
+    public void ModifyTranquilHate(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyTranquilHate() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Tranquil Hate");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.tranquilHateStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Tranquil Hate +" + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Tranquil Hate " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
                 });
             }
@@ -4337,6 +4405,26 @@ public class PassiveController : Singleton<PassiveController>
             {
                 CharacterEntityController.Instance.UpdateEnemyIntentGUI(pManager.myCharacter);
             }
+
+            // Handle gain block from tranquil hate passive
+            if (stacks > 0 &&
+                pManager.tranquilHateStacks > 0 &&
+                pManager.myCharacter != null
+                )
+            {
+                // Notication v event
+                if (showVFX)
+                {
+                    VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+                    VisualEventManager.Instance.CreateVisualEvent(()=>
+                    VisualEffectManager.Instance.CreateStatusEffect(pManager.myCharacter.characterEntityView.WorldPosition, "Tranquil Hate!"));
+                }
+
+                // Gain Block
+                CharacterEntityController.Instance.ModifyBlock(pManager.myCharacter,
+                    CombatLogic.Instance.CalculateBlockGainedByEffect(pManager.tranquilHateStacks, pManager.myCharacter, pManager.myCharacter), showVFX);
+            }
+
             if (showVFX)
             {
                 VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);

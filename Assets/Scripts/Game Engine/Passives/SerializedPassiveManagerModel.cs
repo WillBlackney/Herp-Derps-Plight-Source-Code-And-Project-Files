@@ -158,6 +158,9 @@ public class SerializedPassiveManagerModel
     [BoxGroup("Buff Passives")]
     [LabelWidth(200)]
     public int thornsStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
+    public int tranquilHateStacks;
 
     // Aura Passives
     [BoxGroup("Aura Passives", centerLabel: true)]

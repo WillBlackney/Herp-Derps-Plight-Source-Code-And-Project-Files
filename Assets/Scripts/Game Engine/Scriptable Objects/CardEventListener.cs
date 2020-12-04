@@ -9,6 +9,7 @@ public class CardEventListener
 {
     public CardEventListenerType cardEventListenerType;
     public CardEventListenerFunction cardEventListenerFunction;
+    public CardWeaponRequirement weaponRequirement = CardWeaponRequirement.None;
 
     [ShowIf("ShowMaxHealthGained")]
     public int maxHealthGained;

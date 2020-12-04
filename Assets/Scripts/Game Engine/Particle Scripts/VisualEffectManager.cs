@@ -27,6 +27,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
 
     [Header("Projectile Prefabs")]
     public GameObject arrow;
+    public GameObject javelin;
     public GameObject fireBall;
     public GameObject poisonBall;
     public GameObject shadowBall;
@@ -203,6 +204,10 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
         if (projectileFired == ProjectileFired.FireBall1)
         {
             ShootFireball(start, end, cData);
+        }
+        if (projectileFired == ProjectileFired.Javelin)
+        {
+            ShootJavelin(start, end, cData);
         }
         else if (projectileFired == ProjectileFired.PoisonBall1)
         {
@@ -384,6 +389,22 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
     {
         AudioManager.Instance.PlaySoundPooled(Sound.Projectile_Arrow_Fired);
         GameObject go = Instantiate(arrow, startPos, Quaternion.identity);
+        Projectile projectileScript = go.GetComponent<Projectile>();
+        projectileScript.InitializeSetup(startPos, endPos, speed);
+        yield return new WaitUntil(() => projectileScript.DestinationReached == true);
+        cData.MarkAsCompleted();
+    }
+
+    // Shoot Arrow
+    public void ShootJavelin(Vector3 startPos, Vector3 endPos, CoroutineData cData, float speed = 20)
+    {
+        Debug.Log("VisualEffectManager.ShootJavelin() called...");
+        StartCoroutine(ShootJavelinCoroutine(startPos, endPos, cData, speed));
+    }
+    private IEnumerator ShootJavelinCoroutine(Vector3 startPos, Vector3 endPos, CoroutineData cData, float speed)
+    {
+        //AudioManager.Instance.PlaySoundPooled(Sound.Projectile_Arrow_Fired);
+        GameObject go = Instantiate(javelin, startPos, Quaternion.identity);
         Projectile projectileScript = go.GetComponent<Projectile>();
         projectileScript.InitializeSetup(startPos, endPos, speed);
         yield return new WaitUntil(() => projectileScript.DestinationReached == true);
