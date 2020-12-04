@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Blade Tornado
   cardDescription: 'Spend all Energy. For each point spent, Deal 4 Physical damage
     to all enemies. '
-  cardSprite: {fileID: 21300000, guid: 70df1591f914c8843939dea83ffd9224, type: 3}
+  cardSprite: {fileID: 21300000, guid: adc66b9bea183614295059985527b39a, type: 3}
   xEnergyCost: 1
   cardEnergyCost: 0
   cardType: 2

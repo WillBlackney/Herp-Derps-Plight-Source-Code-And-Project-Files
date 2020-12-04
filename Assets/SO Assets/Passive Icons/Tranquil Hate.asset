@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Tranquil Hate
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: 36b328c515d7db440bea3b4734ef93fd, type: 3}
+  passiveSprite: {fileID: 21300000, guid: 20e82537fbd21bc4cbbaa9ae929c579d, type: 3}
   passiveName: Tranquil Hate
   passiveDescription:
   - color: 1

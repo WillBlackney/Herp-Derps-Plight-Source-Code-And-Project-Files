@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Boomerang Blade +1
   cardDescription: 'Deal 12 Physical damage. Reduce this card''s Energy cost by 1. '
-  cardSprite: {fileID: 21300000, guid: a1b508cd4488eb640888f34c3db81499, type: 3}
+  cardSprite: {fileID: 21300000, guid: 6515f2c25bb445c4590bffb2e1f867d7, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
   cardType: 2
@@ -181,6 +181,8 @@ MonoBehaviour:
       projectileFired: 0
       projectileStartPosition: 0
       onCharacter: 0
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   cardEventListeners:
   - cardEventListenerType: 9
     cardEventListenerFunction: 1

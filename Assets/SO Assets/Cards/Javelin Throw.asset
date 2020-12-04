@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Javelin Throw
   cardDescription: 'Deal 8 Physical Damage. Apply 3 Bleeding. '
-  cardSprite: {fileID: 21300000, guid: ac89caee6d8bd8d4984131d369f1e01e, type: 3}
+  cardSprite: {fileID: 21300000, guid: 2cbc1741395bc4046a9789bb22136edc, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
   cardType: 3

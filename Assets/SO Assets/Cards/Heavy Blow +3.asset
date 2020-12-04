@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Heavy Blow +3
   cardDescription: Deal 17 Physical damage. This card can be upgraded up to 2 times.
-  cardSprite: {fileID: 21300000, guid: fc5da1fd9321a5448b8d3eb7e52fba57, type: 3}
+  cardSprite: {fileID: 21300000, guid: 39b604677daf8e94fa89e553a4452a99, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
   cardType: 2
@@ -162,5 +162,7 @@ MonoBehaviour:
       projectileStartPosition: 0
       onCharacter: 0
     visualEventsOnFinish: []
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
   keyWordModels: []

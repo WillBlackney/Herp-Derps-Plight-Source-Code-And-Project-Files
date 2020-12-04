@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Tranquil Hate
   cardDescription: Whenever you gain Wrath, gain 4 Block.
-  cardSprite: {fileID: 21300000, guid: 36b328c515d7db440bea3b4734ef93fd, type: 3}
+  cardSprite: {fileID: 21300000, guid: 20e82537fbd21bc4cbbaa9ae929c579d, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
   cardType: 4
@@ -122,6 +122,8 @@ MonoBehaviour:
       projectileStartPosition: 0
       onCharacter: 0
     visualEventsOnFinish: []
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
   keyWordModels:
   - kewWordType: 8
