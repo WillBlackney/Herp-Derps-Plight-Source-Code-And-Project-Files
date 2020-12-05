@@ -634,6 +634,27 @@ public class CombatLogic : Singleton<CombatLogic>
                 }
             }
 
+            // Inflamed 
+            if (attacker != null &&
+                attacker.pManager.inflamedStacks > 0 &&
+                totalLifeLost > 0)
+            {
+                if (card != null &&
+                   (card.cardType == CardType.MeleeAttack || card.cardType == CardType.RangedAttack))
+                {
+                    VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+                    PassiveController.Instance.ModifyBurning(victim.pManager, attacker.pManager.inflamedStacks, true, 0.5f);
+                }
+                else if (enemyEffect != null &&
+                   (enemyEffect.actionType == ActionType.AttackTarget ||
+                    enemyEffect.actionType == ActionType.AttackAllEnemies)
+                    )
+                {
+                    VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+                    PassiveController.Instance.ModifyBurning(victim.pManager, attacker.pManager.inflamedStacks, true, 0.5f);
+                }
+            }
+
             // Poison Arrows
             if (attacker != null &&
                 card != null)

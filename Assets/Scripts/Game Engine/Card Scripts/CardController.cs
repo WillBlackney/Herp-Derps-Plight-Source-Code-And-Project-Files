@@ -2170,6 +2170,10 @@ public class CardController : Singleton<CardController>
             {
                 baseDamage = target.pManager.poisonedStacks * cardEffect.baseDamageMultiplier;
             }
+            else if (cardEffect.drawBaseDamageFromTargetBurning)
+            {
+                baseDamage = target.pManager.burningStacks * cardEffect.baseDamageMultiplier;
+            }
             else if (cardEffect.drawBaseDamageFromMeleeAttacksPlayed)
             {
                 baseDamage = owner.meleeAttacksPlayedThisActivation * cardEffect.baseDamageMultiplier;
@@ -2214,6 +2218,10 @@ public class CardController : Singleton<CardController>
                 {
                     baseDamage = enemy.pManager.poisonedStacks * cardEffect.baseDamageMultiplier;
                 }
+                else if (cardEffect.drawBaseDamageFromTargetBurning)
+                {
+                    baseDamage = enemy.pManager.burningStacks * cardEffect.baseDamageMultiplier;
+                }
                 else if (cardEffect.drawBaseDamageFromMeleeAttacksPlayed)
                 {
                     baseDamage = owner.meleeAttacksPlayedThisActivation * cardEffect.baseDamageMultiplier;
@@ -2254,6 +2262,10 @@ public class CardController : Singleton<CardController>
             else if (cardEffect.drawBaseDamageFromTargetPoisoned)
             {
                 baseDamage = target.pManager.poisonedStacks * cardEffect.baseDamageMultiplier;
+            }
+            else if (cardEffect.drawBaseDamageFromTargetBurning)
+            {
+                baseDamage = target.pManager.burningStacks * cardEffect.baseDamageMultiplier;
             }
             else if (cardEffect.drawBaseDamageFromMeleeAttacksPlayed)
             {
@@ -2783,6 +2795,28 @@ public class CardController : Singleton<CardController>
         else if (cardEffect.cardEffectType == CardEffectType.RemoveAllPoisonedFromTarget)
         {
             PassiveController.Instance.ModifyPoisoned(null, target.pManager, -target.pManager.poisonedStacks, true);
+        }
+
+        // Remove Weakened from self and allies
+        else if (cardEffect.cardEffectType == CardEffectType.RemoveWeakenedFromSelfAndAllies)
+        {
+            foreach (CharacterEntityModel ally in CharacterEntityController.Instance.AllDefenders)
+            {
+                PassiveController.Instance.ModifyWeakened(ally.pManager, -ally.pManager.weakenedStacks, false);
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateStatusEffect(ally.characterEntityView.WorldPosition, "Weakened Removed!"));
+            }
+        }
+
+        // Remove Vulnerable from self and allies
+        else if (cardEffect.cardEffectType == CardEffectType.RemoveVulnerableFromSelfAndAllies)
+        {
+            foreach (CharacterEntityModel ally in CharacterEntityController.Instance.AllDefenders)
+            {
+                PassiveController.Instance.ModifyVulnerable(ally.pManager, -ally.pManager.vulnerableStacks, false);
+                VisualEventManager.Instance.CreateVisualEvent(()=> 
+                    VisualEffectManager.Instance.CreateStatusEffect(ally.characterEntityView.WorldPosition, "Vulnerable Removed!"));
+            }
         }
 
         // Taunt Target
@@ -3498,6 +3532,7 @@ public class CardController : Singleton<CardController>
                 return;
             }
         }
+
         ResetChooseCardScreenProperties();
         CurrentChooseCardScreenSelection = null;
         chooseCardScreenEffectReference = ce;
@@ -3554,14 +3589,20 @@ public class CardController : Singleton<CardController>
         // so we can stash them here for now
         List<Card> newCards = new List<Card>();
         bool returnSelctionToHand = true;
+        CharacterEntityModel owner = CurrentChooseCardScreenSelection.owner;
 
-        foreach(OnCardInHandChoiceMadeEffect choiceEffect in chooseCardScreenEffectReference.onChooseCardInHandChoiceMadeEffects)
+        if(owner == null)
+        {
+            owner = ActivationManager.Instance.EntityActivated;
+        }
+
+        foreach (OnCardInHandChoiceMadeEffect choiceEffect in chooseCardScreenEffectReference.onChooseCardInHandChoiceMadeEffects)
         {
             if(choiceEffect.choiceEffect == OnCardInHandChoiceMadeEffectType.AddCopyToHand)
             {
                 for(int i = 0; i < choiceEffect.copiesAdded; i++)
                 {
-                    Card newCard =  CreateAndAddNewCardToCharacterHand(ActivationManager.Instance.EntityActivated, CurrentChooseCardScreenSelection);
+                    Card newCard =  CreateAndAddNewCardToCharacterHand(owner, CurrentChooseCardScreenSelection);
                     newCards.Add(newCard);
                 }
             }
@@ -3580,7 +3621,7 @@ public class CardController : Singleton<CardController>
                 string passiveName = TextLogic.SplitByCapitals(choiceEffect.passivePairing.passiveData.ToString());
 
                 PassiveController.Instance.ModifyPassiveOnCharacterEntity
-                    (ActivationManager.Instance.EntityActivated.pManager, passiveName, choiceEffect.passivePairing.passiveStacks, true, 0.5f, ActivationManager.Instance.EntityActivated);
+                    (owner.pManager, passiveName, choiceEffect.passivePairing.passiveStacks, true, 0.5f, owner);
             }
 
             // reduce cost of new cards
@@ -3600,6 +3641,14 @@ public class CardController : Singleton<CardController>
                     SetCardEnergyCostThisCombat(card, choiceEffect.newEnergyCost);
                 }
             }
+
+            /*
+            // Gain block self
+            else if (choiceEffect.choiceEffect == OnCardInHandChoiceMadeEffectType.GainBlockSelf)
+            {
+                CharacterEntityController.Instance.ModifyBlock(owner, CombatLogic.Instance.CalculateBlockGainedByEffect(choiceEffect.choiceEffect, owner, owner, null, cardEffect));
+            }
+            */
         }
 
         // Move the card selection back to hand

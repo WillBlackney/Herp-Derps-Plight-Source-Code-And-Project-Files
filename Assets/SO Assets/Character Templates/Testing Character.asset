@@ -19,9 +19,9 @@ MonoBehaviour:
   health: 10
   maxHealth: 500
   power: 0
-  dexterity: 10
-  stamina: 5
-  draw: 3
+  dexterity: 2
+  stamina: 10
+  draw: 10
   initiative: 77
   startingBlock: 5
   physicalResistance: 0
@@ -79,6 +79,7 @@ MonoBehaviour:
     etherealStacks: 0
     thornsStacks: 0
     tranquilHateStacks: 0
+    inflamedStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -97,14 +98,13 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
-  - {fileID: 11400000, guid: 9d8e081a72dae4342a12d65de4d977f5, type: 2}
-  - {fileID: 11400000, guid: eff41671658f95b4c86e13e05258b93b, type: 2}
-  - {fileID: 11400000, guid: eff41671658f95b4c86e13e05258b93b, type: 2}
-  - {fileID: 11400000, guid: 9d8e081a72dae4342a12d65de4d977f5, type: 2}
-  - {fileID: 11400000, guid: eff41671658f95b4c86e13e05258b93b, type: 2}
-  - {fileID: 11400000, guid: 9d8e081a72dae4342a12d65de4d977f5, type: 2}
-  - {fileID: 11400000, guid: 9d8e081a72dae4342a12d65de4d977f5, type: 2}
-  - {fileID: 11400000, guid: 9d8e081a72dae4342a12d65de4d977f5, type: 2}
+  - {fileID: 11400000, guid: 2d1c8be97a7ccf8439b2b5a6feb04454, type: 2}
+  - {fileID: 11400000, guid: 2114207216735c64c9fbdeb03b0baffe, type: 2}
+  - {fileID: 11400000, guid: f8c51ddb73872834f93e9b7d191a1a66, type: 2}
+  - {fileID: 11400000, guid: 2ef92b8ffb86b504aad967cbf5cf2521, type: 2}
+  - {fileID: 11400000, guid: 2ef92b8ffb86b504aad967cbf5cf2521, type: 2}
+  - {fileID: 11400000, guid: e1caaa3309882284582a0cb447fca7d0, type: 2}
+  - {fileID: 11400000, guid: e1caaa3309882284582a0cb447fca7d0, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1
