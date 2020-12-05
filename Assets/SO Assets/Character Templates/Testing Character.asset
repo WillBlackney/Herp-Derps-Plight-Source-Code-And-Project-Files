@@ -80,6 +80,8 @@ MonoBehaviour:
     thornsStacks: 0
     tranquilHateStacks: 0
     inflamedStacks: 0
+    shockingTouchStacks: 0
+    stormShieldStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -93,15 +95,15 @@ MonoBehaviour:
     silencedStacks: 0
     sleepStacks: 0
     poisonedStacks: 0
-    burningStacks: 5
+    burningStacks: 0
     bleedingStacks: 0
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
-  - {fileID: 11400000, guid: dc32c538d09899e45b46301e99a879d9, type: 2}
-  - {fileID: 11400000, guid: 034d9e585e633514e8512b0f077e96fb, type: 2}
-  - {fileID: 11400000, guid: 2114207216735c64c9fbdeb03b0baffe, type: 2}
-  - {fileID: 11400000, guid: 9344ca6f2072d874dabfa015ad6ef977, type: 2}
+  - {fileID: 11400000, guid: d800c615e97414c42a0a07813e61a16b, type: 2}
+  - {fileID: 11400000, guid: 74aeaf8f6594b7543ad2dd2847456496, type: 2}
+  - {fileID: 11400000, guid: 1527a432994d12b4e85b245c7b27db10, type: 2}
+  - {fileID: 11400000, guid: 2f72d3643bcfebd4c8251f29fdfb4fdc, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1

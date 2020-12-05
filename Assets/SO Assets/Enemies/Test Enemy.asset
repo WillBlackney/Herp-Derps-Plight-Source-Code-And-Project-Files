@@ -88,8 +88,8 @@ MonoBehaviour:
     disarmedStacks: 0
     silencedStacks: 0
     sleepStacks: 0
-    poisonedStacks: 4
-    burningStacks: 5
+    poisonedStacks: 0
+    burningStacks: 0
     bleedingStacks: 0
     fireBallBonusDamageStacks: 0
     sourceStacks: 0

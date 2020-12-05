@@ -26,6 +26,7 @@ public class Card
     public int upgradeLevel;
     public List<CardEffect> cardEffects = new List<CardEffect>();
     public List<CardEventListener> cardEventListeners = new List<CardEventListener>();
+    public List<CardPassiveEffect> cardPassiveEffects = new List<CardPassiveEffect>();
     public List<KeyWordModel> keyWordModels = new List<KeyWordModel>();
     public List<CustomString> cardDescriptionTwo = new List<CustomString>();
 

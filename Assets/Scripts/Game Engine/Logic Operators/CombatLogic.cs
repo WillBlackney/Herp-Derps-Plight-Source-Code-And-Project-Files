@@ -568,6 +568,23 @@ public class CombatLogic : Singleton<CombatLogic>
             HandleDamage(thornsDamageValue, null, attacker, DamageType.Physical);
         }
 
+        // Resolve storm shield passive before other post damage passive events
+        if (victim != null &&
+            attacker != null &&
+            attacker.health > 0 &&
+            victim.pManager.stormShieldStacks > 0 &&
+            victim.livingState == LivingState.Alive &&
+            attacker.livingState == LivingState.Alive &&
+            (enemyEffect != null || card != null))
+        {
+            // Brief delay 
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.25f);
+
+            // Calculate and handle damage
+            int ssDamageValue = GetFinalDamageValueAfterAllCalculations(null, attacker, DamageType.Magic, victim.pManager.stormShieldStacks, null, null);
+            HandleDamage(ssDamageValue, null, attacker, DamageType.Magic);
+        }
+
         // EVALUATE DAMAGE RELATED PASSIVE EFFECTS (but only if victim is still alive)
         if (victim.health > 0 && victim.livingState == LivingState.Alive)
         {

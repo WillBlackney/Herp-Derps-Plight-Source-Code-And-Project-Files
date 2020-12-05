@@ -476,6 +476,13 @@ public class CardController : Singleton<CardController>
             c.cardEventListeners.Add(ObjectCloner.CloneJSON(cel));
         }
 
+        // Card passive effects
+        c.cardPassiveEffects = new List<CardPassiveEffect>();
+        foreach (CardPassiveEffect cel in d.cardPassiveEffects)
+        {
+            c.cardPassiveEffects.Add(ObjectCloner.CloneJSON(cel));
+        }
+
         // Keyword Model Data
         c.keyWordModels = new List<KeyWordModel>();
         foreach (KeyWordModel kwdm in d.keyWordModels)
@@ -537,6 +544,13 @@ public class CardController : Singleton<CardController>
             c.cardEventListeners.Add(ObjectCloner.CloneJSON(cel));
         }
 
+        // Card passive effects 
+        c.cardPassiveEffects = new List<CardPassiveEffect>();
+        foreach (CardPassiveEffect cel in original.cardPassiveEffects)
+        {
+            c.cardPassiveEffects.Add(ObjectCloner.CloneJSON(cel));
+        }
+
         // Keyword Model Data
         c.keyWordModels = new List<KeyWordModel>();
         foreach (KeyWordModel kwdm in original.keyWordModels)
@@ -585,6 +599,7 @@ public class CardController : Singleton<CardController>
 
         // lists
         card.cardEventListeners.AddRange(data.cardEventListeners);
+        card.cardPassiveEffects.AddRange(data.cardPassiveEffects);
         card.cardEffects.AddRange(data.cardEffects);
         card.keyWordModels.AddRange(data.keyWordModels);
         card.cardDescriptionTwo.AddRange(data.customDescription);       
@@ -622,6 +637,7 @@ public class CardController : Singleton<CardController>
 
         // lists
         card.cardEventListeners.AddRange(data.cardEventListeners);
+        card.cardPassiveEffects.AddRange(data.cardPassiveEffects);
         card.cardEffects.AddRange(data.cardEffects);
         card.keyWordModels.AddRange(data.keyWordModels);
         card.cardDescriptionTwo.AddRange(data.cardDescriptionTwo);
@@ -1823,6 +1839,11 @@ public class CardController : Singleton<CardController>
             if (card.owner.pManager.sharpenBladeStacks > 0)
             {
                 PassiveController.Instance.ModifySharpenBlade(card.owner.pManager, -1);
+            }
+
+            if(card.owner.pManager.shockingTouchStacks > 0)
+            {
+                PassiveController.Instance.ModifyOverload(card.owner.pManager, card.owner.pManager.shockingTouchStacks);
             }
         }
 
@@ -3496,12 +3517,11 @@ public class CardController : Singleton<CardController>
                         {
                             // character has the require 'while holding' card, set energy cost to 0
                             return 0;
-                            break;
                         }
                     }
                 }
             }
-        }
+        }      
 
         // Normal logic
         int costReturned = card.cardBaseEnergyCost;
@@ -3510,8 +3530,23 @@ public class CardController : Singleton<CardController>
         costReturned -= card.energyReductionThisCombatOnly;
         costReturned -= card.energyReductionUntilPlayed;
 
+        // Check passive count reduction modifiers
+        if (card.cardPassiveEffects.Count > 0)
+        {
+            foreach (CardPassiveEffect cpe in card.cardPassiveEffects)
+            {
+                if (cpe.cardPassiveEffectType == CardPassiveEffectType.EnergyCostReducedByCurrentPassive)
+                {
+                    if (cpe.passive == Passive.Overload)
+                    {
+                        costReturned -= card.owner.pManager.overloadStacks;
+                    }
+                }
+            }
+        }
+
         // Check 'Planted Feet' passive
-        if(card.owner.pManager != null && 
+        if (card.owner.pManager != null && 
             card.cardType == CardType.MeleeAttack &&
             card.owner.pManager.plantedFeetStacks > 0)
         {
