@@ -84,6 +84,7 @@ public enum CardEffectType
     RemoveAllPoisonedFromTarget = 16,
     RemoveAllOverloadFromSelf = 20,
     RemoveAllBurningFromSelf = 31,
+    RemoveAllBurningFromTarget = 35,
     RemoveWeakenedFromSelfAndAllies = 33,
     RemoveVulnerableFromSelfAndAllies = 34,
     TauntTarget = 17,
@@ -110,6 +111,7 @@ public enum CardEventListenerType
     OnTargetKilled = 5,
     OnThisCardDrawn = 7,
     OnThisCardPlayed = 9,
+    WhileHoldingCertainCard = 10,
 }
 
 [Serializable]

@@ -145,6 +145,9 @@ public class CardEffect
     [LabelWidth(250)]
     public int baseDamageMultiplier = 1;
 
+    [ShowIf("ShowUseIndividualStackCount")]
+    public bool useEachIndividualsStackCount = true;
+
     [ShowIf("ShowDamageType")]
     [LabelWidth(200)]
     public DamageType damageType;
@@ -384,6 +387,18 @@ public class CardEffect
     {
         if ((cardEffectType == CardEffectType.DamageTarget || cardEffectType == CardEffectType.DamageSelf || cardEffectType == CardEffectType.DamageAllEnemies) &&
             (drawBaseDamageFromTargetBurning == false && drawBaseDamageFromCurrentBlock == false && drawBaseDamageFromMeleeAttacksPlayed == false && drawBaseDamageFromOverloadOnSelf == false && drawBaseDamageFromBurningOnSelf == false))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowUseIndividualStackCount()
+    {
+        if (cardEffectType == CardEffectType.DamageAllEnemies &&
+           (drawBaseDamageFromTargetBurning == true || drawBaseDamageFromTargetPoisoned == true))
         {
             return true;
         }

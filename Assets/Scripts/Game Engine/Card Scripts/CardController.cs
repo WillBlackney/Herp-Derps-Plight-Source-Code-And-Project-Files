@@ -1828,6 +1828,21 @@ public class CardController : Singleton<CardController>
 
         // Resolve 'On this card played listeners
         HandleOnThisCardPlayedListenerEvents(card);
+
+        // Update energy cost text of cards in hand with event listeners
+        foreach(Card c in card.owner.hand)
+        {
+            if(c.cardVM != null)
+            SetCardViewModelEnergyText(c, c.cardVM, GetCardEnergyCost(c).ToString());
+
+            /*
+            if (card.cardEventListeners.Count > 0 && c.cardVM != null)
+            {
+                SetCardViewModelEnergyText(c, c.cardVM, GetCardEnergyCost(c).ToString());
+            }          
+            */
+        }
+        
     }
     private void OnCardExpended(Card card)
     {
@@ -2079,6 +2094,7 @@ public class CardController : Singleton<CardController>
             cardEffect.cardEffectType == CardEffectType.ApplyPassiveToTarget ||
             cardEffect.cardEffectType == CardEffectType.GainBlockTarget ||
             cardEffect.cardEffectType == CardEffectType.RemoveAllPoisonedFromTarget ||
+            cardEffect.cardEffectType == CardEffectType.RemoveAllBurningFromTarget ||
             cardEffect.cardEffectType == CardEffectType.TauntTarget 
             )
             )
@@ -2216,11 +2232,27 @@ public class CardController : Singleton<CardController>
                 }
                 else if (cardEffect.drawBaseDamageFromTargetPoisoned)
                 {
-                    baseDamage = enemy.pManager.poisonedStacks * cardEffect.baseDamageMultiplier;
+                    if (cardEffect.useEachIndividualsStackCount)
+                    {
+                        baseDamage = enemy.pManager.poisonedStacks * cardEffect.baseDamageMultiplier;
+                    }
+                    else
+                    {
+                        baseDamage = target.pManager.poisonedStacks * cardEffect.baseDamageMultiplier;
+                    }
+                   
                 }
                 else if (cardEffect.drawBaseDamageFromTargetBurning)
                 {
-                    baseDamage = enemy.pManager.burningStacks * cardEffect.baseDamageMultiplier;
+                    if (cardEffect.useEachIndividualsStackCount)
+                    {
+                        baseDamage = enemy.pManager.burningStacks * cardEffect.baseDamageMultiplier;
+                    }
+                    else
+                    {
+                        baseDamage = target.pManager.burningStacks * cardEffect.baseDamageMultiplier;
+                    }
+                    
                 }
                 else if (cardEffect.drawBaseDamageFromMeleeAttacksPlayed)
                 {
@@ -2797,6 +2829,12 @@ public class CardController : Singleton<CardController>
             PassiveController.Instance.ModifyPoisoned(null, target.pManager, -target.pManager.poisonedStacks, true);
         }
 
+        // Remove burning from target
+        else if (cardEffect.cardEffectType == CardEffectType.RemoveAllBurningFromTarget)
+        {
+            PassiveController.Instance.ModifyBurning(target.pManager, -target.pManager.burningStacks, true);
+        }
+
         // Remove Weakened from self and allies
         else if (cardEffect.cardEffectType == CardEffectType.RemoveWeakenedFromSelfAndAllies)
         {
@@ -3036,10 +3074,66 @@ public class CardController : Singleton<CardController>
     private void AddCardToHand(CharacterEntityModel defender, Card card)
     {
         defender.hand.Add(card);
+
+        // check while holding
+        /*
+        for(int i = 0; i < defender.hand.Count; i++)
+        {
+            if(defender.hand[i].cardEventListeners[0].cardEventListenerType == CardEventListenerType.WhileHoldingCertainCard)
+            {
+                foreach(Card c in defender.hand)
+                {
+                    if (defender.hand[i].cardEventListeners[0].certainCardNames.Contains(c.cardName))
+                    {
+                        SetCardViewModelEnergyText(defender.hand[i], defender.hand[i].cardVM, GetCardEnergyCost(defender.hand[i]).ToString());
+                    }
+                }
+            }
+        }
+        */
+
+        // update all card energy costs texts for event listener cards
+        for(int i = 0; i < defender.hand.Count; i++)
+        {
+            if (defender.hand[i].cardEventListeners.Count > 0 &&
+                defender.hand[i].cardEventListeners[0].cardEventListenerType == CardEventListenerType.WhileHoldingCertainCard &&
+                defender.hand[i].cardVM != null)
+            {
+                SetCardViewModelEnergyText(defender.hand[i], defender.hand[i].cardVM, GetCardEnergyCost(defender.hand[i]).ToString());
+            }
+        }
     }
     private void RemoveCardFromHand(CharacterEntityModel defender, Card card)
     {
         defender.hand.Remove(card);
+
+        // check while holding 
+        /*
+        for (int i = 0; i < defender.hand.Count; i++)
+        {
+            if (defender.hand[i].cardEventListeners[0].cardEventListenerType == CardEventListenerType.WhileHoldingCertainCard)
+            {
+                foreach (Card c in defender.hand)
+                {
+                    if (defender.hand[i].cardEventListeners[0].certainCardNames.Contains(c.cardName))
+                    {
+                        SetCardViewModelEnergyText(defender.hand[i], defender.hand[i].cardVM, GetCardEnergyCost(defender.hand[i]).ToString());
+                    }
+                }
+            }
+        }
+        */
+
+        // update all card energy costs texts for event listener cards
+        for (int i = 0; i < defender.hand.Count; i++)
+        {
+            if (defender.hand[i].cardEventListeners.Count > 0 &&
+                defender.hand[i].cardEventListeners[0].cardEventListenerType == CardEventListenerType.WhileHoldingCertainCard &&
+                defender.hand[i].cardVM != null)
+            {
+                SetCardViewModelEnergyText(defender.hand[i], defender.hand[i].cardVM, GetCardEnergyCost(defender.hand[i]).ToString());
+            }
+        }
     }
     private void AddCardToExpendPile(CharacterEntityModel defender, Card card)
     {
@@ -3384,6 +3478,29 @@ public class CardController : Singleton<CardController>
             card.owner.pManager.darkBargainStacks > 0)
         {
             return 0;
+        }
+
+        // Check while holding listeners
+        if(card.cardEventListeners.Count > 0 && 
+            card.owner != null)
+        {             
+            foreach (CardEventListener cel in card.cardEventListeners)
+            {
+                // does the card have the required listener?
+                if(cel.cardEventListenerType == CardEventListenerType.WhileHoldingCertainCard && cel.cardCostsZero == true)
+                {
+                    // it does, search and see if character is holding the required card for reducing energy cost
+                    foreach(Card c in card.owner.hand)
+                    {
+                        if (cel.certainCardNames.Contains(c.cardName))
+                        {
+                            // character has the require 'while holding' card, set energy cost to 0
+                            return 0;
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         // Normal logic

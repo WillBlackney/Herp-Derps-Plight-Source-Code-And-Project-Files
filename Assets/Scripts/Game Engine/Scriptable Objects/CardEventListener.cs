@@ -23,6 +23,18 @@ public class CardEventListener
     [ShowIf("ShowEnergyGainedOrLost")]
     public int energyGainedOrLost;
 
+    [ShowIf("ShowCertainCardNames")]
+    public List<string> certainCardNames;
+
+    [Header("Holding Certain Card Effects")]
+    [ShowIf("ShowCertainCardNames")]
+    public bool cardCostsZero = false;
+
+    public bool ShowCertainCardNames()
+    {
+        return cardEventListenerType == CardEventListenerType.WhileHoldingCertainCard;
+
+    }
     public bool ShowMaxHealthGained()
     {
         return cardEventListenerFunction == CardEventListenerFunction.ModifyMaxHealth;

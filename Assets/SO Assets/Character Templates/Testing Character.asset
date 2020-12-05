@@ -93,18 +93,15 @@ MonoBehaviour:
     silencedStacks: 0
     sleepStacks: 0
     poisonedStacks: 0
-    burningStacks: 0
+    burningStacks: 5
     bleedingStacks: 0
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
-  - {fileID: 11400000, guid: 2d1c8be97a7ccf8439b2b5a6feb04454, type: 2}
+  - {fileID: 11400000, guid: dc32c538d09899e45b46301e99a879d9, type: 2}
+  - {fileID: 11400000, guid: 034d9e585e633514e8512b0f077e96fb, type: 2}
   - {fileID: 11400000, guid: 2114207216735c64c9fbdeb03b0baffe, type: 2}
-  - {fileID: 11400000, guid: f8c51ddb73872834f93e9b7d191a1a66, type: 2}
-  - {fileID: 11400000, guid: 2ef92b8ffb86b504aad967cbf5cf2521, type: 2}
-  - {fileID: 11400000, guid: 2ef92b8ffb86b504aad967cbf5cf2521, type: 2}
-  - {fileID: 11400000, guid: e1caaa3309882284582a0cb447fca7d0, type: 2}
-  - {fileID: 11400000, guid: e1caaa3309882284582a0cb447fca7d0, type: 2}
+  - {fileID: 11400000, guid: 9344ca6f2072d874dabfa015ad6ef977, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1

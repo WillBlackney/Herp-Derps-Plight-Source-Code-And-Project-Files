@@ -16,7 +16,7 @@ MonoBehaviour:
   cardDescription: 'Deal Magic damage equal to target''s Burning amount.
 
     Expend.'
-  cardSprite: {fileID: 21300000, guid: 48a07f13ec20d9b4b917fadf9b89829b, type: 3}
+  cardSprite: {fileID: 21300000, guid: 7cb7d2de2b54d08488abc5de26a875e3, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
   cardType: 1

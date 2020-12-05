@@ -75,6 +75,7 @@ MonoBehaviour:
     etherealStacks: 0
     thornsStacks: 0
     tranquilHateStacks: 0
+    inflamedStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -87,8 +88,8 @@ MonoBehaviour:
     disarmedStacks: 0
     silencedStacks: 0
     sleepStacks: 0
-    poisonedStacks: 0
-    burningStacks: 0
+    poisonedStacks: 4
+    burningStacks: 5
     bleedingStacks: 0
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
