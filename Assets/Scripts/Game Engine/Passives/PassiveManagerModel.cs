@@ -62,6 +62,8 @@ public class PassiveManagerModel
     public int inflamedStacks;
     public int stormShieldStacks;
     public int shockingTouchStacks;
+    public int maliceStacks;
+    public int reflexShotBonusDamageStacks;
 
     // Aura passives
     public int encouragingAuraStacks;

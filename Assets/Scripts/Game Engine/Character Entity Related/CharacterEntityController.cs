@@ -833,7 +833,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             CharacterEntityModel randomEnemy = viableEnemies[0];
 
             // Apply 2 weakened to random enemy
-            PassiveController.Instance.ModifyWeakened(randomEnemy.pManager, 2, true, 0f);
+            PassiveController.Instance.ModifyWeakened(randomEnemy.pManager, 2, character.pManager, true, 0f);
 
             // Apply 1 Weakened to all enemies
             /*
@@ -1132,7 +1132,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }
         if (entity.pManager.weakenedStacks > 0)
         {
-            PassiveController.Instance.ModifyWeakened(entity.pManager, -1, true, 0.5f);
+            PassiveController.Instance.ModifyWeakened(entity.pManager, -1, null, true, 0.5f);
         }
         if (entity.pManager.gritStacks > 0)
         {
@@ -1211,8 +1211,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Shadow Aura!"), QueuePosition.Back, 0, 0.5f);
 
-                // Random ally gains energy
-                PassiveController.Instance.ModifyWeakened(chosenEnemy.pManager, entity.pManager.shadowAuraStacks, true);
+                // Random enemy is weakened
+                PassiveController.Instance.ModifyWeakened(chosenEnemy.pManager, entity.pManager.shadowAuraStacks, entity.pManager, true);
             }
         }
 
@@ -2742,9 +2742,12 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 {
                     if (effect.collection == CardCollection.DiscardPile)
                     {
-                        // TO DO: Make a new method in CardController for this and future similar effects, like CreateCardAndAddToDiscardPile
-
                         Card card = CardController.Instance.CreateAndAddNewCardToCharacterDiscardPile(enemy.currentActionTarget, effect.cardAdded);
+                        cardsAdded.Add(card);
+                    }
+                    else if (effect.collection == CardCollection.DrawPile)
+                    {
+                        Card card = CardController.Instance.CreateAndAddNewCardToCharacterDrawPile(enemy.currentActionTarget, effect.cardAdded);
                         cardsAdded.Add(card);
                     }
                 }

@@ -101,6 +101,14 @@ public class CombatLogic : Singleton<CombatLogic>
             Debug.Log("Card base damage after bonus fire ball damage added: " + baseDamageValueReturned.ToString());
         }
 
+        // Reflex Shot bonus damage
+        if (card != null &&
+             (card.cardName == "Reflex Shot" || card.cardName == "Reflex Shot +1"))
+        {
+            baseDamageValueReturned += entity.pManager.reflexShotBonusDamageStacks;
+            Debug.Log("Card base damage after bonus reflex shot damage added: " + baseDamageValueReturned.ToString());
+        }
+
         // Shank/Ruthless damage bonus
         if (card != null &&
             (card.cardName == "Shank" || card.cardName == "Shank +1"))

@@ -1298,6 +1298,29 @@ public class CardController : Singleton<CardController>
 
         return cardReturned;
     }
+    public Card CreateAndAddNewCardToCharacterDrawPile(CharacterEntityModel defender, CardDataSO data, bool randomIndex = true)
+    {
+        Card cardReturned = null;
+
+        // Get card and remove from deck
+        Card newCard = BuildCardFromCardDataSO(data, defender);
+
+        // Add card to hand
+        AddCardToDrawPile(defender, newCard);
+
+        // randomize position in draw pile
+        if (randomIndex)
+        {
+            defender.drawPile.Remove(newCard);
+            int index = RandomGenerator.NumberBetween(0, defender.drawPile.Count);
+            defender.drawPile.Insert(index, newCard);
+        }
+
+        // cache card
+        cardReturned = newCard;
+
+        return cardReturned;
+    }
     public Card CreateAndAddNewCardToCharacterHand(CharacterEntityModel defender, CardData data)
     {
         Card cardReturned = null;
@@ -1918,7 +1941,7 @@ public class CardController : Singleton<CardController>
 
             if (targetHit != null)
             {
-                PassiveController.Instance.ModifyWeakened(targetHit.pManager, owner.pManager.corpseCollectorStacks, true);
+                PassiveController.Instance.ModifyWeakened(targetHit.pManager, owner.pManager.corpseCollectorStacks, owner.pManager, true);
             }
         }
     }
@@ -2213,6 +2236,10 @@ public class CardController : Singleton<CardController>
             {
                 baseDamage = target.pManager.poisonedStacks * cardEffect.baseDamageMultiplier;
             }
+            else if (cardEffect.drawBaseDamageFromTargetWeakened)
+            {
+                baseDamage = target.pManager.weakenedStacks * cardEffect.baseDamageMultiplier;
+            }
             else if (cardEffect.drawBaseDamageFromTargetBurning)
             {
                 baseDamage = target.pManager.burningStacks * cardEffect.baseDamageMultiplier;
@@ -2269,6 +2296,18 @@ public class CardController : Singleton<CardController>
                     }
                    
                 }
+                else if (cardEffect.drawBaseDamageFromTargetWeakened)
+                {
+                    if (cardEffect.useEachIndividualsStackCount)
+                    {
+                        baseDamage = enemy.pManager.weakenedStacks * cardEffect.baseDamageMultiplier;
+                    }
+                    else
+                    {
+                        baseDamage = target.pManager.weakenedStacks * cardEffect.baseDamageMultiplier;
+                    }
+
+                }
                 else if (cardEffect.drawBaseDamageFromTargetBurning)
                 {
                     if (cardEffect.useEachIndividualsStackCount)
@@ -2321,6 +2360,10 @@ public class CardController : Singleton<CardController>
             else if (cardEffect.drawBaseDamageFromTargetPoisoned)
             {
                 baseDamage = target.pManager.poisonedStacks * cardEffect.baseDamageMultiplier;
+            }
+            else if (cardEffect.drawBaseDamageFromTargetWeakened)
+            {
+                baseDamage = target.pManager.weakenedStacks * cardEffect.baseDamageMultiplier;
             }
             else if (cardEffect.drawBaseDamageFromTargetBurning)
             {
@@ -2867,7 +2910,7 @@ public class CardController : Singleton<CardController>
         {
             foreach (CharacterEntityModel ally in CharacterEntityController.Instance.AllDefenders)
             {
-                PassiveController.Instance.ModifyWeakened(ally.pManager, -ally.pManager.weakenedStacks, false);
+                PassiveController.Instance.ModifyWeakened(ally.pManager, -ally.pManager.weakenedStacks, null, false);
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                     VisualEffectManager.Instance.CreateStatusEffect(ally.characterEntityView.WorldPosition, "Weakened Removed!"));
             }
@@ -2909,7 +2952,20 @@ public class CardController : Singleton<CardController>
                 CreateAndAddNewCardToCharacterHand(owner, cardEffect.cardAdded);
             }
         }
-        
+
+        // Add new non deck card to draw pile
+        else if (cardEffect.cardEffectType == CardEffectType.AddCardsToDrawPile)
+        {
+            List<Card> cardsAdded = new List<Card>();
+            for (int loops = 0; loops < cardEffect.copiesAdded; loops++)
+            {
+                Card c = CreateAndAddNewCardToCharacterDrawPile(owner, cardEffect.cardAdded);
+                cardsAdded.Add(c);
+            }
+
+            StartNewShuffleCardsScreenVisualEvent(cardsAdded);
+        }
+
         // Add random blessings to hand
         else if (cardEffect.cardEffectType == CardEffectType.AddRandomBlessingsToHand)
         {
@@ -3303,6 +3359,21 @@ public class CardController : Singleton<CardController>
             foreach(CardEventListener e in card.cardEventListeners)
             {
                 if(e.cardEventListenerType == CardEventListenerType.OnLoseHealth)
+                {
+                    RunCardEventListenerFunction(card, e);
+                }
+            }
+        }
+    }
+    public void HandleOnWeakenedAppliedCardListeners(CharacterEntityModel character)
+    {
+        Debug.Log("CardController.HandleOnWeakenedAppliedCardListeners() called...");
+
+        foreach (Card card in GetAllCharacterCardsInHandDrawAndDiscard(character))
+        {
+            foreach (CardEventListener e in card.cardEventListeners)
+            {
+                if (e.cardEventListenerType == CardEventListenerType.OnWeakenedApplied)
                 {
                     RunCardEventListenerFunction(card, e);
                 }

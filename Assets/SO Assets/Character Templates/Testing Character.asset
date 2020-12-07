@@ -16,10 +16,10 @@ MonoBehaviour:
   myClassName: Test Class
   race: 2
   audioProfile: 3
-  health: 10
-  maxHealth: 500
+  health: 30
+  maxHealth: 30
   power: 0
-  dexterity: 2
+  dexterity: 0
   stamina: 10
   draw: 10
   initiative: 77
@@ -27,7 +27,7 @@ MonoBehaviour:
   physicalResistance: 0
   fireResistance: 0
   frostResistance: 0
-  shadowResistance: -38
+  shadowResistance: 0
   poisonResistance: 0
   airResistance: 0
   serializedPassiveManager:
@@ -82,8 +82,10 @@ MonoBehaviour:
     inflamedStacks: 0
     shockingTouchStacks: 0
     stormShieldStacks: 0
+    maliceStacks: 0
+    reflexShotBonusDamageStacks: 0
     encouragingAuraStacks: 0
-    shadowAuraStacks: 0
+    shadowAuraStacks: 2
     guardianAuraStacks: 0
     toxicAuraStacks: 0
     hatefulAuraStacks: 0
@@ -100,15 +102,14 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
-  - {fileID: 11400000, guid: 60df38b0373151f47af5e61ab9bf0d09, type: 2}
-  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
-  - {fileID: 11400000, guid: 94c40601d5666d84e9e6dcd7db46ac9f, type: 2}
-  - {fileID: 11400000, guid: 96ae3039de0b53449ab85ebc530b608b, type: 2}
-  - {fileID: 11400000, guid: 63e01ac5d624d154aade839e4bec694c, type: 2}
-  - {fileID: 11400000, guid: 63e01ac5d624d154aade839e4bec694c, type: 2}
-  - {fileID: 11400000, guid: e2d85003a5581124d92e3c8fcbee228d, type: 2}
-  - {fileID: 11400000, guid: 21042f6c86c7b7f43b6740bd7898aec9, type: 2}
-  - {fileID: 11400000, guid: 9f04c877821435343a8c3b8ac13a1cec, type: 2}
+  - {fileID: 11400000, guid: dbf11fa6557e4ac4b8401df063fc3192, type: 2}
+  - {fileID: 11400000, guid: 5b783402cd2197648b5efd50994733b5, type: 2}
+  - {fileID: 11400000, guid: 2c006c2038187de43b45780eee04d77c, type: 2}
+  - {fileID: 11400000, guid: b1f36fa6a8a0e884790277436599a68e, type: 2}
+  - {fileID: 11400000, guid: e29630167f68b6e4e9d5ffbbddeaacc2, type: 2}
+  - {fileID: 11400000, guid: f0fcf900006c8224c89edfeb6c6aa486, type: 2}
+  - {fileID: 11400000, guid: d202c1f3eb7e6a4458df0c3eb8248cfe, type: 2}
+  - {fileID: 11400000, guid: d202c1f3eb7e6a4458df0c3eb8248cfe, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1
