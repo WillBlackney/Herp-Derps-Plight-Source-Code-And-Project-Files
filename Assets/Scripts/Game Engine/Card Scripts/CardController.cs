@@ -1708,7 +1708,13 @@ public class CardController : Singleton<CardController>
         }
 
         // Fire Ball specific effects
-        if(card.cardName == "Fire Ball" ||
+        if (card.blessing == true)
+        {
+            HandleOnBlessingCardPlayedListeners(owner);
+        }
+
+        // Fire Ball specific effects
+        if (card.cardName == "Fire Ball" ||
             card.cardName == "Fire Ball +1")
         {
             HandleOnFireBallCardPlayedListeners(owner);
@@ -3258,6 +3264,21 @@ public class CardController : Singleton<CardController>
             }
         }
     }
+    private void HandleOnBlessingCardPlayedListeners(CharacterEntityModel character)
+    {
+        Debug.Log("CardController.HandleOnBlessingCardPlayedListeners() called...");
+
+        foreach (Card card in GetAllCharacterCardsInHandDrawAndDiscard(character))
+        {
+            foreach (CardEventListener e in card.cardEventListeners)
+            {
+                if (e.cardEventListenerType == CardEventListenerType.OnBlessingCardPlayed)
+                {
+                    RunCardEventListenerFunction(card, e);
+                }
+            }
+        }
+    }
     private void HandleOnArcaneBoltCardPlayedListeners(CharacterEntityModel character)
     {
         Debug.Log("CardController.HandleOnArcaneBoltCardPlayedListeners() called...");
@@ -3774,6 +3795,18 @@ public class CardController : Singleton<CardController>
 
                 PassiveController.Instance.ModifyPassiveOnCharacterEntity
                     (owner.pManager, passiveName, choiceEffect.passivePairing.passiveStacks, true, 0.5f, owner);
+            }
+
+            else if (choiceEffect.choiceEffect == OnCardInHandChoiceMadeEffectType.GetUpgradedBlessings)
+            {
+                for(int i = 0; i < choiceEffect.blessingsGained; i++)
+                {
+                    List<CardData> allBlessings = QueryByBlessing(AllCards, true);
+                    List<CardData> filteredBlessings = QueryByUpgraded(allBlessings);
+
+                    CardData randomBlessing = filteredBlessings[RandomGenerator.NumberBetween(0, filteredBlessings.Count - 1)];
+                    CreateAndAddNewCardToCharacterHand(owner, randomBlessing);
+                }
             }
 
             // reduce cost of new cards

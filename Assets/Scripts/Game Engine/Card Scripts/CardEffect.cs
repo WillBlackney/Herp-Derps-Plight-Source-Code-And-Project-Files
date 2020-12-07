@@ -621,7 +621,21 @@ public class OnCardInHandChoiceMadeEffect
     [ShowIf("ShowPassivePairing")]
     [LabelWidth(200)]
     public PassivePairingData passivePairing;
-   
+    [ShowIf("ShowBlessingsGained")]
+    [LabelWidth(200)]
+    public int blessingsGained;
+
+    public bool ShowBlessingsGained()
+    {
+        if (choiceEffect == OnCardInHandChoiceMadeEffectType.GetUpgradedBlessings)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     public bool ShowCopiesAdded()
     {
         if (choiceEffect == OnCardInHandChoiceMadeEffectType.AddCopyToHand)
@@ -657,6 +671,7 @@ public enum OnCardInHandChoiceMadeEffectType
     ExpendIt = 4,
     GainPassive = 5,
     UpgradeIt = 6,
+    GetUpgradedBlessings = 7,
 }
 
 

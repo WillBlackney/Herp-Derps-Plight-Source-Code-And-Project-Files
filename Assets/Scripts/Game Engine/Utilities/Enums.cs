@@ -111,6 +111,7 @@ public enum CardEventListenerType
     OnTargetKilled = 5,
     OnThisCardDrawn = 7,
     OnThisCardPlayed = 9,
+    OnBlessingCardPlayed = 11,
     WhileHoldingCertainCard = 10,
 }
 

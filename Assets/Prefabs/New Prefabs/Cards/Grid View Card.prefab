@@ -53,6 +53,7 @@ MonoBehaviour:
   originalScale: 0.6
   endScale: 0.75
   scaleSpeed: 0.3
+  blockMouseClicks: 0
 --- !u!1001 &650358520152322065
 PrefabInstance:
   m_ObjectHideFlags: 0
