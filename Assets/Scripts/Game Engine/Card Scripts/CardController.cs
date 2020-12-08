@@ -1714,7 +1714,7 @@ public class CardController : Singleton<CardController>
             {
                 VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(owner.characterEntityView.WorldPosition, "Balanced Stance!"));
 
-                CharacterEntityController.Instance.ModifyBlock(owner, CombatLogic.Instance.CalculateBlockGainedByEffect(owner.pManager.balancedStanceStacks, owner, owner, null, null));
+                CharacterEntityController.Instance.GainBlock(owner, CombatLogic.Instance.CalculateBlockGainedByEffect(owner.pManager.balancedStanceStacks, owner, owner, null, null));
 
                 VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
             }
@@ -2174,13 +2174,13 @@ public class CardController : Singleton<CardController>
         // Gain Block Self
         if (cardEffect.cardEffectType == CardEffectType.GainBlockSelf)
         {
-            CharacterEntityController.Instance.ModifyBlock(owner, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, owner, null, cardEffect));
+            CharacterEntityController.Instance.GainBlock(owner, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, owner, null, cardEffect));
         }
 
         // Gain Block Target
         else if (cardEffect.cardEffectType == CardEffectType.GainBlockTarget)
         {
-            CharacterEntityController.Instance.ModifyBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, target, null, cardEffect));
+            CharacterEntityController.Instance.GainBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, target, null, cardEffect));
         }       
 
         // Gain Block All Allies
@@ -2188,7 +2188,7 @@ public class CardController : Singleton<CardController>
         {
             foreach (CharacterEntityModel ally in CharacterEntityController.Instance.GetAllAlliesOfCharacter(owner))
             {
-                CharacterEntityController.Instance.ModifyBlock(ally, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, ally, null, cardEffect));
+                CharacterEntityController.Instance.GainBlock(ally, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, ally, null, cardEffect));
             }            
         }
 

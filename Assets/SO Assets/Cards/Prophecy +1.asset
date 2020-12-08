@@ -20,7 +20,7 @@ MonoBehaviour:
     Expend. '
   cardSprite: {fileID: 21300000, guid: 17748a77913a2454cb09128b66e2cc08, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 0
+  cardEnergyCost: 1
   cardType: 1
   targettingType: 0
   talentSchool: 10
@@ -59,7 +59,9 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: copies of it to your hand.
+    phrase: 'copies of it to your hand.
+
+'
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -88,6 +90,7 @@ MonoBehaviour:
     rarityFilter: 0
     upgradeFilter: 1
     blessing: 1
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects:
     - discoveryEffect: 2
       copiesAdded: 3
@@ -101,10 +104,13 @@ MonoBehaviour:
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
+    useEachIndividualsStackCount: 1
     damageType: 0
     healthRestored: 0
     healthLost: 0
@@ -120,7 +126,10 @@ MonoBehaviour:
     blessingsGained: 0
     visualEventsOnStart: []
     visualEventsOnFinish: []
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
+  cardPassiveEffects: []
   keyWordModels:
   - kewWordType: 5
     weaponRequirement: 0

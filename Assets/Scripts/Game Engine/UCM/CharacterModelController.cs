@@ -71,9 +71,9 @@ public static class CharacterModelController
         DisableAllActiveModelElementViews(modelToBuild);
         ClearAllActiveModelElementsReferences(modelToBuild);
 
-        if(modelClonedFrom.allModelElements.Count > 0)
+        if(modelClonedFrom.allModelElements.Length > 0)
         {
-            for (int index = 0; index < modelClonedFrom.allModelElements.Count - 1; index++)
+            for (int index = 0; index < modelClonedFrom.allModelElements.Length - 1; index++)
             {
                 if (modelClonedFrom.allModelElements[index].gameObject.activeSelf)
                 {

@@ -53,7 +53,7 @@ MonoBehaviour:
     longDrawStacks: 0
     sharpenBladeStacks: 0
     consecrationStacks: 0
-    growingStacks: 3
+    growingStacks: 2
     cautiousStacks: 0
     infuriatedStacks: 0
     battleTranceStacks: 0
@@ -70,10 +70,21 @@ MonoBehaviour:
     demonFormStacks: 0
     darkBargainStacks: 0
     volatileStacks: 0
+    soulCollectorStacks: 0
+    magicMagnetStacks: 0
+    etherealStacks: 0
+    thornsStacks: 0
+    tranquilHateStacks: 0
+    inflamedStacks: 0
+    shockingTouchStacks: 0
+    stormShieldStacks: 0
+    maliceStacks: 0
+    reflexShotBonusDamageStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
     toxicAuraStacks: 0
+    hatefulAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -83,7 +94,9 @@ MonoBehaviour:
     sleepStacks: 0
     poisonedStacks: 0
     burningStacks: 0
+    bleedingStacks: 0
     fireBallBonusDamageStacks: 0
+    sourceStacks: 0
   allEnemyActions:
   - actionName: Smash
     actionType: 0
@@ -157,7 +170,8 @@ MonoBehaviour:
         onCharacter: 0
       visualEventsOnFinish: []
       actionType: 0
-      baseDamage: 15
+      effectLoops: 1
+      baseDamage: 13
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -172,7 +186,7 @@ MonoBehaviour:
       collection: 0
   - actionName: Maul
     actionType: 1
-    intentImage: 2
+    intentImage: 11
     actionLoops: 1
     doThisOnFirstActivation: 1
     canBeConsecutive: 1
@@ -272,6 +286,7 @@ MonoBehaviour:
         projectileStartPosition: 0
         onCharacter: 0
       actionType: 1
+      effectLoops: 1
       baseDamage: 7
       damageType: 1
       characterSummoned: {fileID: 0}
@@ -281,22 +296,6 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
-      blockGained: 0
-      cardAdded: {fileID: 0}
-      copiesAdded: 0
-      collection: 0
-    - visualEventsOnStart: []
-      visualEventsOnFinish: []
-      actionType: 6
-      baseDamage: 0
-      damageType: 0
-      characterSummoned: {fileID: 0}
-      summonedCreatureStartPosition: 0
-      modelFadeInSpeed: 0
-      uiFadeInSpeed: 0
-      summonedCreatureVisualEvents: []
-      passiveApplied: {fileID: 11400000, guid: f4d581b9181795e48b68007fcfeec3d2, type: 2}
-      passiveStacks: 2
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0

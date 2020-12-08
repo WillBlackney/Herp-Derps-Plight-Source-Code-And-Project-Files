@@ -44,7 +44,7 @@ MonoBehaviour:
     runeStacks: 0
     barrierStacks: 0
     enrageStacks: 0
-    shieldWallStacks: 0
+    shieldWallStacks: 4
     fanOfKnivesStacks: 0
     divineFavourStacks: 0
     phoenixFormStacks: 0

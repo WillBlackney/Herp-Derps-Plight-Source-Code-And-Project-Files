@@ -566,7 +566,8 @@ public class CombatLogic : Singleton<CombatLogic>
             victim.pManager.thornsStacks > 0 && 
             victim.livingState == LivingState.Alive && 
             attacker.livingState == LivingState.Alive &&
-            (enemyEffect != null || card != null))
+            (enemyEffect != null || card != null) &&
+            attacker != victim)
         {
             // Brief delay 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.25f);
@@ -583,7 +584,8 @@ public class CombatLogic : Singleton<CombatLogic>
             victim.pManager.stormShieldStacks > 0 &&
             victim.livingState == LivingState.Alive &&
             attacker.livingState == LivingState.Alive &&
-            (enemyEffect != null || card != null))
+            (enemyEffect != null || card != null) &&
+            attacker != victim)
         {
             // Brief delay 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.25f);
@@ -610,7 +612,7 @@ public class CombatLogic : Singleton<CombatLogic>
                 VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
 
                 // Calculate and apply block gain
-                CharacterEntityController.Instance.ModifyBlock(victim, CalculateBlockGainedByEffect(victim.pManager.cautiousStacks, victim, victim));
+                CharacterEntityController.Instance.GainBlock(victim, CalculateBlockGainedByEffect(victim.pManager.cautiousStacks, victim, victim));
 
                 // Remove cautious
                 PassiveController.Instance.ModifyCautious(victim.pManager, -victim.pManager.cautiousStacks, true);

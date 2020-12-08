@@ -255,7 +255,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }
 
         // Set starting block
-        ModifyBlock(character, data.startingBlock, false);
+        GainBlock(character, data.startingBlock, false);
 
         // Build UCM
         CharacterModelController.BuildModelFromStringReferences(character.characterEntityView.ucm, data.allBodyParts);
@@ -498,34 +498,36 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
     // Modify Block
     #region
-    public void ModifyBlock(CharacterEntityModel character, int blockGainedOrLost, bool showVFX = true)
+    public void GainBlock(CharacterEntityModel character, int blockGained, bool showVFX = true)
     {
         Debug.Log("CharacterEntityController.ModifyBlock() called for " + character.myName);
 
-        int finalBlockGainValue = blockGainedOrLost;
-        int characterFinalBlockValue = 0;
+        int finalBlockGainValue = blockGained;
+        int characterFinalBlockValueForVisual = 0;
         CharacterEntityView view = character.characterEntityView;
 
         // prevent block going negative        
         if (finalBlockGainValue < 0)
         {
             finalBlockGainValue = 0;
-        }        
-
-        
+        }         
 
         // Apply block gain
         character.block += finalBlockGainValue;
+        character.blockGainedThisTurnCycle += finalBlockGainValue;
         bool didExceedMax = false;
 
         // prevent block exceeding maximum
         if (GlobalSettings.Instance.enableMaximumBlock && character.block > GlobalSettings.Instance.maximumBlockAmount)
         {
+            int previousOverflow = character.block;
             character.block = GlobalSettings.Instance.maximumBlockAmount;
             didExceedMax = true;
+            int difference = previousOverflow - GlobalSettings.Instance.maximumBlockAmount;
+            character.blockGainedThisTurnCycle -= difference;
         }
 
-        characterFinalBlockValue = character.block;
+        characterFinalBlockValueForVisual = character.block;
 
         if (finalBlockGainValue > 0 && showVFX)
         {
@@ -539,11 +541,11 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
         if (showVFX)
         {
-            VisualEventManager.Instance.CreateVisualEvent(() => UpdateBlockGUI(character, characterFinalBlockValue), QueuePosition.Back, 0, 0);
+            VisualEventManager.Instance.CreateVisualEvent(() => UpdateBlockGUI(character, characterFinalBlockValueForVisual), QueuePosition.Back, 0, 0);
         }
         else
         {
-            UpdateBlockGUI(character, characterFinalBlockValue);
+            UpdateBlockGUI(character, characterFinalBlockValueForVisual);
         }
 
         // Resolve Sentinel passive effect
@@ -589,9 +591,17 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             }
         }
     }
-    public void SetBlock(CharacterEntityModel character, int newBlockValue)
+    public void SetBlock(CharacterEntityModel character, int newBlockValue, bool trackAmountForThisTurnCycle = true)
     {
         Debug.Log("CharacterEntityController.SetBlock() called for " + character.myName);
+
+        if(newBlockValue < 0)
+        {
+            newBlockValue = 0;
+        }
+
+        if(trackAmountForThisTurnCycle)
+            character.blockGainedThisTurnCycle += newBlockValue - character.block;
 
         // Apply block gain
         character.block = newBlockValue;
@@ -665,59 +675,10 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
         character.hasActivatedThisTurn = false;
 
-        /*
-        // Remove Temporary Parry 
-        if (myPassiveManager.temporaryBonusParry)
-        {
-            Debug.Log("OnNewTurnCycleStartedCoroutine() removing Temporary Bonus Parry...");
-            myPassiveManager.ModifyTemporaryParry(-myPassiveManager.temporaryBonusParryStacks);
-            yield return new WaitForSeconds(0.5f);
-        }
-
-        // Bonus Dodge
-        if (myPassiveManager.temporaryBonusDodge)
-        {
-            Debug.Log("OnNewTurnCycleStartedCoroutine() removing Temporary Bonus Dodge...");
-            myPassiveManager.ModifyTemporaryDodge(-myPassiveManager.temporaryBonusDodgeStacks);
-            yield return new WaitForSeconds(0.5f);
-        }
-
-        // Remove Transcendence
-        if (myPassiveManager.transcendence)
-        {
-            Debug.Log("OnNewTurnCycleStartedCoroutine() removing Transcendence...");
-            myPassiveManager.ModifyTranscendence(-myPassiveManager.transcendenceStacks);
-            yield return new WaitForSeconds(0.5f);
-        }
-
-        // Remove Marked
-        if (myPassiveManager.marked)
-        {
-            Debug.Log("OnNewTurnCycleStartedCoroutine() checking Marked...");
-            myPassiveManager.ModifyMarked(-myPassiveManager.terrifiedStacks);
-            yield return new WaitForSeconds(0.5f);
-        }
-
-        // gain camo from satyr trickery
-        if (TurnChangeNotifier.Instance.currentTurnCount == 1 && myPassiveManager.satyrTrickery)
-        {
-            VisualEffectManager.Instance.
-                CreateStatusEffect(transform.position, "Satyr Trickery!");
-            yield return new WaitForSeconds(0.5f);
-
-            myPassiveManager.ModifyCamoflage(1);
-            yield return new WaitForSeconds(0.5f);
-        }
-
-        // gain max Energy from human ambition
-        if (TurnChangeNotifier.Instance.currentTurnCount == 1 && myPassiveManager.humanAmbition)
-        {
-            VisualEffectManager.Instance.CreateStatusEffect(transform.position, "Human Ambition");
-            VisualEffectManager.Instance.CreateGainEnergyBuffEffect(transform.position);
-            ModifyCurrentEnergy(currentMaxEnergy);
-            yield return new WaitForSeconds(0.5f);
-        }
-        */
+        // do block stuff
+        character.blockGainedPreviousTurnCycle = character.blockGainedThisTurnCycle;
+        character.blockGainedThisTurnCycle = 0;
+        
     }
     private void ResolveFirstActivationTalentBonuses(CharacterEntityModel character)
     {
@@ -747,7 +708,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Guardian Mastery!"), QueuePosition.Back, 0f, 0.5f);
 
             // Gain 5 Block
-            ModifyBlock(character, CombatLogic.Instance.CalculateBlockGainedByEffect(5, character, character));
+            GainBlock(character, CombatLogic.Instance.CalculateBlockGainedByEffect(5, character, character));
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
         }
 
@@ -929,6 +890,18 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         // Gain Energy
         ModifyEnergy(character, EntityLogic.GetTotalStamina(character));
 
+        // Handle remove block from previous turn cycle
+        if (GlobalSettings.Instance.blockExpiresOnActivationStart && 
+            character.blockGainedPreviousTurnCycle > 0 && 
+            character.block > 0)
+        {
+            VisualEventManager.Instance.CreateVisualEvent(()=>
+            VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Block Expiry"));   
+           // ModifyBlock(character, -character.blockGainedPreviousTurnCycle, false);
+            SetBlock(character, character.block - character.blockGainedPreviousTurnCycle, false);
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+        }
+
         // Modify relevant passives
         if (character.pManager.temporaryBonusStaminaStacks != 0)
         {
@@ -1028,6 +1001,18 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 PassiveController.Instance.ModifyOverload(character.pManager, character.pManager.lordOfStormsStacks, true, 0.5f);
             }
 
+            // Shield Wall
+            if (character.pManager.shieldWallStacks > 0)
+            {
+                // Notication vfx
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Shield Wall"), QueuePosition.Back, 0, 0.5f);
+
+                // Apply block gain
+                GainBlock(character, CombatLogic.Instance.CalculateBlockGainedByEffect(character.pManager.shieldWallStacks, character, character));
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+            }
+
             // Draw cards on turn start
             CardController.Instance.DrawCardsOnActivationStart(character);
 
@@ -1042,6 +1027,18 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         if (character.controller == Controller.AI &&
             character.allegiance == Allegiance.Enemy)
         {
+            // Shield Wall
+            if (character.pManager.shieldWallStacks > 0)
+            {
+                // Notication vfx
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Shield Wall"), QueuePosition.Back, 0, 0.5f);
+
+                // Apply block gain
+                GainBlock(character, CombatLogic.Instance.CalculateBlockGainedByEffect(character.pManager.shieldWallStacks, character, character));
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+            }
+
             // Brief pause at the start of enemy action, so player can anticipate visual events
             VisualEventManager.Instance.InsertTimeDelayInQueue(1f);
 
@@ -1160,6 +1157,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         // Buff Passive Triggers
 
         // Shield Wall
+        /*
         if (entity.pManager.shieldWallStacks > 0)
         {
             // Notication vfx
@@ -1167,9 +1165,10 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 VisualEffectManager.Instance.CreateStatusEffect(entity.characterEntityView.transform.position, "Shield Wall"), QueuePosition.Back, 0, 0.5f);
 
             // Apply block gain
-            ModifyBlock(entity, CombatLogic.Instance.CalculateBlockGainedByEffect(entity.pManager.shieldWallStacks, entity, entity));
+            GainBlock(entity, CombatLogic.Instance.CalculateBlockGainedByEffect(entity.pManager.shieldWallStacks, entity, entity));
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
         }       
+        */
 
         // Growing
         if (entity.pManager.growingStacks > 0)
@@ -1248,7 +1247,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             // give all allies (but not self) block.
             foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(entity, false))
             {
-                ModifyBlock(ally, CombatLogic.Instance.CalculateBlockGainedByEffect(entity.pManager.guardianAuraStacks, entity, ally));
+                GainBlock(ally, CombatLogic.Instance.CalculateBlockGainedByEffect(entity.pManager.guardianAuraStacks, entity, ally));
             }
         }
 
@@ -1304,7 +1303,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Demon Form!"), QueuePosition.Back, 0, 0.5f);
 
                 // Apply block gain
-                ModifyBlock(entity, CombatLogic.Instance.CalculateBlockGainedByEffect(entity.pManager.burningStacks, entity, entity));
+                GainBlock(entity, CombatLogic.Instance.CalculateBlockGainedByEffect(entity.pManager.burningStacks, entity, entity));
             }
 
             // Otherwise, just handle burning damage normally
@@ -2677,13 +2676,13 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                     target = enemy;
                 }
 
-                ModifyBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy, target, effect, null));
+                GainBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy, target, effect, null));
             }
 
             // Defend self
             else if (effect.actionType == ActionType.DefendSelf)
             {
-                ModifyBlock(enemy, CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy, enemy, effect, null));
+                GainBlock(enemy, CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy, enemy, effect, null));
             }
 
             // Defend All
@@ -2691,7 +2690,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             {
                 foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(enemy))
                 {
-                    ModifyBlock(ally, CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy, ally, effect, null));
+                    GainBlock(ally, CombatLogic.Instance.CalculateBlockGainedByEffect(effect.blockGained, enemy, ally, effect, null));
                 }
             }
 

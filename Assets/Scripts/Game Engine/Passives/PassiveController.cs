@@ -4702,7 +4702,7 @@ public class PassiveController : Singleton<PassiveController>
                 }
 
                 // Gain Block
-                CharacterEntityController.Instance.ModifyBlock(pManager.myCharacter,
+                CharacterEntityController.Instance.GainBlock(pManager.myCharacter,
                     CombatLogic.Instance.CalculateBlockGainedByEffect(pManager.tranquilHateStacks, pManager.myCharacter, pManager.myCharacter), showVFX);
             }
 
