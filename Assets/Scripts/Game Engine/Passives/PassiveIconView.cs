@@ -26,15 +26,15 @@ public class PassiveIconView : MonoBehaviour
     {
         KeyWordLayoutController.Instance.BuildAllViewsFromPassiveString(myIconData.passiveName);
         AudioManager.Instance.PlaySoundPooled(Sound.GUI_Button_Mouse_Over);
-        glowOutline.gameObject.SetActive(true);
-        glowOutline.DOFade(1, 0f);
+       // glowOutline.gameObject.SetActive(true);
+        //glowOutline.DOFade(1, 0f);
 
     }
     public void OnMouseExit()
     {
         KeyWordLayoutController.Instance.FadeOutMainView();
-        glowOutline.DOFade(0f, 0f);
-        glowOutline.gameObject.SetActive(false);
+        //glowOutline.DOFade(0f, 0f);
+       // glowOutline.gameObject.SetActive(false);
     }
     #endregion
 

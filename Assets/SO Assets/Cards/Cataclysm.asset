@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cataclysm
   m_EditorClassIdentifier: 
   cardName: Cataclysm
-  cardDescription: 'Expend all burn cards in hand. For each expend, deal 5 Fire damage
+  cardDescription: 'Expend all cards in hand. For each expend, deal 4 Fire damage
     to all enemies. '
   cardSprite: {fileID: 21300000, guid: 70df1591f914c8843939dea83ffd9224, type: 3}
   xEnergyCost: 0
@@ -22,6 +22,7 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 6
   rarity: 3
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 1
@@ -32,19 +33,16 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
-  - color: 1
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'Expend all '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Burn '
+    phrase: 'Expend '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'cards in hand.
+    phrase: 'all cards in hand.
 
       For each card expended, deal '
   - color: 2
@@ -77,18 +75,21 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects:
     - modifyEffect: 3
-      onlySpecificCards: 1
+      onlySpecificCards: 0
       specificCardType: 1
       energyReduction: 0
       newEnergyCost: 0
       cardAdded: {fileID: 0}
       talentSchoolFilter: 0
       rarityFilter: 0
+      upgradeFilter: 1
       baseDamage: 0
       damageType: 0
     - modifyEffect: 7
@@ -99,7 +100,8 @@ MonoBehaviour:
       cardAdded: {fileID: 0}
       talentSchoolFilter: 0
       rarityFilter: 0
-      baseDamage: 5
+      upgradeFilter: 1
+      baseDamage: 4
       damageType: 2
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
@@ -124,13 +126,102 @@ MonoBehaviour:
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
-    visualEventsOnStart: []
+    visualEventsOnStart:
+    - eventType: 1
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
+      particleEffect: 0
+      cameraShake: 0
+      movementAnimation: 2
+      soundEffect: 0
+      characterAnimation: 0
+      delayDuration: 0
+      projectileFired: 0
+      projectileStartPosition: 0
+      onCharacter: 0
+    - eventType: 2
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
+      particleEffect: 0
+      cameraShake: 1
+      movementAnimation: 0
+      soundEffect: 0
+      characterAnimation: 4
+      delayDuration: 0
+      projectileFired: 0
+      projectileStartPosition: 0
+      onCharacter: 0
     visualEventsOnFinish: []
+    visualEventsOnDamageLoopStart:
+    - eventType: 3
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
+      particleEffect: 8
+      cameraShake: 0
+      movementAnimation: 0
+      soundEffect: 0
+      characterAnimation: 0
+      delayDuration: 0
+      projectileFired: 0
+      projectileStartPosition: 0
+      onCharacter: 1
+    - eventType: 3
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
+      particleEffect: 4
+      cameraShake: 0
+      movementAnimation: 0
+      soundEffect: 0
+      characterAnimation: 0
+      delayDuration: 0
+      projectileFired: 0
+      projectileStartPosition: 0
+      onCharacter: 5
+    - eventType: 4
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
+      particleEffect: 0
+      cameraShake: 2
+      movementAnimation: 0
+      soundEffect: 0
+      characterAnimation: 0
+      delayDuration: 0
+      projectileFired: 0
+      projectileStartPosition: 0
+      onCharacter: 0
+    visualEventsOnDamageLoopFinish:
+    - eventType: 6
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
+      particleEffect: 0
+      cameraShake: 0
+      movementAnimation: 0
+      soundEffect: 0
+      characterAnimation: 0
+      delayDuration: 0.5
+      projectileFired: 0
+      projectileStartPosition: 0
+      onCharacter: 0
   cardEventListeners: []
   keyWordModels:
   - kewWordType: 1
-    weaponRequirement: 0
-    passiveType: 0
-  - kewWordType: 11
     weaponRequirement: 0
     passiveType: 0

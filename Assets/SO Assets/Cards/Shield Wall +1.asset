@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shield Wall +1
   m_EditorClassIdentifier: 
   cardName: Shield Wall +1
-  cardDescription: On activation end, gain 6 Block.
+  cardDescription: On activation start, gain 6 Block.
   cardSprite: {fileID: 21300000, guid: 12b45abbd6b1e544f9262fd95e0712e7, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -37,7 +37,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'On activation end, gain '
+    phrase: 'On activation start, gain '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -70,6 +70,7 @@ MonoBehaviour:
     rarityFilter: 0
     upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
@@ -79,10 +80,13 @@ MonoBehaviour:
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
+    useEachIndividualsStackCount: 1
     damageType: 0
     healthRestored: 0
     healthLost: 0
@@ -98,7 +102,10 @@ MonoBehaviour:
     blessingsGained: 0
     visualEventsOnStart: []
     visualEventsOnFinish: []
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
+  cardPassiveEffects: []
   keyWordModels:
   - kewWordType: 9
     weaponRequirement: 0

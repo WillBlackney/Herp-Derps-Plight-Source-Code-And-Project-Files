@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
+  m_Name: Tranquil Hate
+  m_EditorClassIdentifier: 
+  passiveSprite: {fileID: 21300000, guid: 20e82537fbd21bc4cbbaa9ae929c579d, type: 3}
+  passiveName: Tranquil Hate
+  passiveDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Whenever this character gains '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Wrath
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: ', it also gains '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'X '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Block
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
+  showStackCount: 1
+  hiddenOnPassivePanel: 0
+  runeBlocksIncrease: 0
+  runeBlocksDecrease: 1

@@ -128,23 +128,6 @@ MonoBehaviour:
   originalScale: 1
   endScale: 1.25
   scaleSpeed: 0.3
-  myDataRef:
-    myCardDataSO: {fileID: 0}
-    cardName: 
-    cardSprite: {fileID: 0}
-    cardDescription: 
-    cardBaseEnergyCost: 0
-    cardType: 0
-    rarity: 0
-    targettingType: 0
-    talentSchool: 0
-    cardEffects: []
-    cardEventListeners: []
-    expend: 0
-    innate: 0
-    fleeting: 0
-    unplayable: 0
-    blessing: 0
 --- !u!1 &5594465943372018768
 GameObject:
   m_ObjectHideFlags: 0

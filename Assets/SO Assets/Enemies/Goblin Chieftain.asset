@@ -23,13 +23,9 @@ MonoBehaviour:
   dexterity: 0
   overrideStartingHealth: 0
   startingHealth: 16
-  startingBlock: 8
+  startingBlock: 4
   physicalResistance: 0
-  fireResistance: 0
-  frostResistance: 0
-  shadowResistance: 0
-  poisonResistance: 0
-  airResistance: 0
+  magicResistance: 0
   serializedPassiveManager:
     bonusPowerStacks: 0
     bonusDexterityStacks: 0
@@ -74,10 +70,21 @@ MonoBehaviour:
     demonFormStacks: 0
     darkBargainStacks: 0
     volatileStacks: 0
+    soulCollectorStacks: 0
+    magicMagnetStacks: 0
+    etherealStacks: 0
+    thornsStacks: 0
+    tranquilHateStacks: 0
+    inflamedStacks: 0
+    shockingTouchStacks: 0
+    stormShieldStacks: 0
+    maliceStacks: 0
+    reflexShotBonusDamageStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
     toxicAuraStacks: 0
+    hatefulAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -87,7 +94,9 @@ MonoBehaviour:
     sleepStacks: 0
     poisonedStacks: 0
     burningStacks: 0
+    bleedingStacks: 0
     fireBallBonusDamageStacks: 0
+    sourceStacks: 0
   allEnemyActions:
   - actionName: Rally
     actionType: 4
@@ -135,6 +144,7 @@ MonoBehaviour:
         projectileStartPosition: 0
         onCharacter: 0
       actionType: 4
+      effectLoops: 1
       baseDamage: 0
       damageType: 0
       characterSummoned: {fileID: 0}
@@ -143,24 +153,8 @@ MonoBehaviour:
       uiFadeInSpeed: 0
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 11400000, guid: 6d216e783d4ba3a49a8dd267aa727fd3, type: 2}
-      passiveStacks: 1
+      passiveStacks: 2
       blockGained: 0
-      cardAdded: {fileID: 0}
-      copiesAdded: 0
-      collection: 0
-    - visualEventsOnStart: []
-      visualEventsOnFinish: []
-      actionType: 9
-      baseDamage: 0
-      damageType: 0
-      characterSummoned: {fileID: 0}
-      summonedCreatureStartPosition: 0
-      modelFadeInSpeed: 0
-      uiFadeInSpeed: 0
-      summonedCreatureVisualEvents: []
-      passiveApplied: {fileID: 0}
-      passiveStacks: 0
-      blockGained: 3
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0
@@ -236,6 +230,7 @@ MonoBehaviour:
         onCharacter: 0
       visualEventsOnFinish: []
       actionType: 0
+      effectLoops: 1
       baseDamage: 5
       damageType: 1
       characterSummoned: {fileID: 0}

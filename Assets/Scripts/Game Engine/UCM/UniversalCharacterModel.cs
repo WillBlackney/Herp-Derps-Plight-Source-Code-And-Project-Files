@@ -4,38 +4,9 @@ using UnityEngine;
 using System;
 public class UniversalCharacterModel : MonoBehaviour
 {
-    // TO DO: remove this awake function , find a better solution
-    /*
-    private void Awake()
-    {
-        // automatically clear null values from inspector, then trim all lists
-        
-        allModelElements.RemoveAll(list_item => list_item == null);
-        allHeadWearSpriteMasks.RemoveAll(list_item => list_item == null);
-        allHeadWear.RemoveAll(list_item => list_item == null);
-        allChestWear.RemoveAll(list_item => list_item == null);
-        allLeftLegWear.RemoveAll(list_item => list_item == null);
-        allRightLegWear.RemoveAll(list_item => list_item == null);
-        allLeftArmWear.RemoveAll(list_item => list_item == null);
-        allRightArmWear.RemoveAll(list_item => list_item == null);
-        allLeftHandWear.RemoveAll(list_item => list_item == null);
-        allRightHandWear.RemoveAll(list_item => list_item == null);
-        allMainHandWeapons.RemoveAll(list_item => list_item == null);
-        allOffHandWeapons.RemoveAll(list_item => list_item == null);
-        humanHeads.RemoveAll(list_item => list_item == null);
-        humanFaces.RemoveAll(list_item => list_item == null);
-        orcHeads.RemoveAll(list_item => list_item == null);
-        orcFaces.RemoveAll(list_item => list_item == null);
-        undeadHeads.RemoveAll(list_item => list_item == null);
-        undeadFaces.RemoveAll(list_item => list_item == null);
-        elfHeads.RemoveAll(list_item => list_item == null);
-        elfFaces.RemoveAll(list_item => list_item == null);
-    }
-    */
-
     [Header("All Model Element References")]
-    public List<UniversalCharacterModelElement> allModelElements;
-    public List<SpriteMask> allHeadWearSpriteMasks;
+    public UniversalCharacterModelElement[] allModelElements;
+    public SpriteMask[] allHeadWearSpriteMasks;
 
     // NEW Properties + Component References
     [Header("Active Body Part References")]

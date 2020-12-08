@@ -708,8 +708,8 @@ namespace Tests
             player1.initiative = 100;
 
             ActivationManager.Instance.OnNewCombatEventStarted();
-            CharacterEntityController.Instance.ModifyBlock(player1, 5);
-            CharacterEntityController.Instance.ModifyBlock(player1, 5);
+            CharacterEntityController.Instance.GainBlock(player1, 5);
+            CharacterEntityController.Instance.GainBlock(player1, 5);
 
             // Assert
             Assert.AreEqual(expected, enemy1.health);

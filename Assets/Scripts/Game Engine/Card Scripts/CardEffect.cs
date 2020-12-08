@@ -125,6 +125,14 @@ public class CardEffect
     [LabelWidth(250)]
     public bool drawBaseDamageFromTargetPoisoned;
 
+    [ShowIf("ShowDrawDamageFromTargetBurning")]
+    [LabelWidth(250)]
+    public bool drawBaseDamageFromTargetBurning;
+
+    [ShowIf("ShowDrawDamageFromTargetWeakened")]
+    [LabelWidth(250)]
+    public bool drawBaseDamageFromTargetWeakened;
+
     [ShowIf("ShowDrawDamageFromMeleeAttacksPlayed")]
     [LabelWidth(250)]
     public bool drawBaseDamageFromMeleeAttacksPlayed;
@@ -140,6 +148,9 @@ public class CardEffect
     [ShowIf("ShowDamageMultiplier")]
     [LabelWidth(250)]
     public int baseDamageMultiplier = 1;
+
+    [ShowIf("ShowUseIndividualStackCount")]
+    public bool useEachIndividualsStackCount = true;
 
     [ShowIf("ShowDamageType")]
     [LabelWidth(200)]
@@ -173,11 +184,11 @@ public class CardEffect
     [LabelWidth(200)]
     public PassivePairingData passivePairing;
 
-    [ShowIf("cardEffectType", CardEffectType.AddCardsToHand)]
+    [ShowIf("ShowCardsAdded")]
     [LabelWidth(200)]
-    public CardDataSO cardAdded;
+    public CardDataSO cardAdded;  
 
-    [ShowIf("cardEffectType", CardEffectType.AddCardsToHand)]
+    [ShowIf("ShowCardsAdded")]
     [LabelWidth(200)]
     public int copiesAdded;
 
@@ -188,7 +199,16 @@ public class CardEffect
     public List<AnimationEventData> visualEventsOnStart;
     public List<AnimationEventData> visualEventsOnFinish;
 
+    [ShowIf("cardEffectType", CardEffectType.ModifyAllCardsInHand)]
+    public List<AnimationEventData> visualEventsOnDamageLoopStart;
 
+    [ShowIf("cardEffectType", CardEffectType.ModifyAllCardsInHand)]
+    public List<AnimationEventData> visualEventsOnDamageLoopFinish;
+
+    public bool ShowCardsAdded()
+    {
+        return cardEffectType == CardEffectType.AddCardsToDrawPile || cardEffectType == CardEffectType.AddCardsToHand;
+    }
     public bool ShowCardsDrawn()
     {
         if (cardEffectType == CardEffectType.DrawCards &&
@@ -346,9 +366,11 @@ public class CardEffect
         if ((cardEffectType != CardEffectType.DamageTarget && cardEffectType != CardEffectType.DamageSelf && cardEffectType != CardEffectType.DamageAllEnemies) ||
             ((drawBaseDamageFromCurrentBlock )||
              (drawBaseDamageFromTargetPoisoned) ||
+             (drawBaseDamageFromTargetWeakened) ||
              (drawBaseDamageFromBurningOnSelf) ||
              (drawBaseDamageFromMeleeAttacksPlayed) ||
-             (drawBaseDamageFromOverloadOnSelf))
+             (drawBaseDamageFromOverloadOnSelf) ||
+             (drawBaseDamageFromTargetBurning))
             )
         {
             return false;
@@ -361,7 +383,7 @@ public class CardEffect
     public bool ShowDrawDamageFromBlock()
     {
         if ((cardEffectType == CardEffectType.DamageTarget || cardEffectType == CardEffectType.DamageSelf || cardEffectType == CardEffectType.DamageAllEnemies)  &&
-            (drawBaseDamageFromTargetPoisoned == false && drawBaseDamageFromMeleeAttacksPlayed == false && drawBaseDamageFromOverloadOnSelf == false && drawBaseDamageFromBurningOnSelf == false))
+            (drawBaseDamageFromTargetBurning == false && drawBaseDamageFromTargetWeakened == false && drawBaseDamageFromTargetPoisoned == false && drawBaseDamageFromMeleeAttacksPlayed == false && drawBaseDamageFromOverloadOnSelf == false && drawBaseDamageFromBurningOnSelf == false))
         {
             return true;
         }
@@ -373,7 +395,43 @@ public class CardEffect
     public bool ShowDrawDamageFromTargetPoisoned()
     {
         if ((cardEffectType == CardEffectType.DamageTarget || cardEffectType == CardEffectType.DamageSelf || cardEffectType == CardEffectType.DamageAllEnemies) &&
-            (drawBaseDamageFromCurrentBlock == false && drawBaseDamageFromMeleeAttacksPlayed == false && drawBaseDamageFromOverloadOnSelf == false && drawBaseDamageFromBurningOnSelf == false))
+            (drawBaseDamageFromTargetWeakened == false && drawBaseDamageFromTargetBurning == false && drawBaseDamageFromCurrentBlock == false && drawBaseDamageFromMeleeAttacksPlayed == false && drawBaseDamageFromOverloadOnSelf == false && drawBaseDamageFromBurningOnSelf == false))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowUseIndividualStackCount()
+    {
+        if (cardEffectType == CardEffectType.DamageAllEnemies &&
+           (drawBaseDamageFromTargetBurning == true || drawBaseDamageFromTargetPoisoned == true || drawBaseDamageFromTargetWeakened == true))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowDrawDamageFromTargetBurning()
+    {
+        if ((cardEffectType == CardEffectType.DamageTarget || cardEffectType == CardEffectType.DamageSelf || cardEffectType == CardEffectType.DamageAllEnemies) &&
+            (drawBaseDamageFromTargetWeakened == false && drawBaseDamageFromTargetPoisoned == false && drawBaseDamageFromCurrentBlock == false && drawBaseDamageFromMeleeAttacksPlayed == false && drawBaseDamageFromOverloadOnSelf == false && drawBaseDamageFromBurningOnSelf == false))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool ShowDrawDamageFromTargetWeakened()
+    {
+        if ((cardEffectType == CardEffectType.DamageTarget || cardEffectType == CardEffectType.DamageSelf || cardEffectType == CardEffectType.DamageAllEnemies) &&
+            (drawBaseDamageFromTargetBurning == false && drawBaseDamageFromTargetPoisoned == false && drawBaseDamageFromCurrentBlock == false && drawBaseDamageFromMeleeAttacksPlayed == false && drawBaseDamageFromOverloadOnSelf == false && drawBaseDamageFromBurningOnSelf == false))
         {
             return true;
         }
@@ -385,7 +443,7 @@ public class CardEffect
     public bool ShowDrawDamageFromBurningOnSelf()
     {
         if ((cardEffectType == CardEffectType.DamageTarget || cardEffectType == CardEffectType.DamageSelf || cardEffectType == CardEffectType.DamageAllEnemies) &&
-            (drawBaseDamageFromCurrentBlock == false && drawBaseDamageFromMeleeAttacksPlayed == false && drawBaseDamageFromTargetPoisoned == false && drawBaseDamageFromOverloadOnSelf == false))
+            (drawBaseDamageFromTargetWeakened == false && drawBaseDamageFromTargetBurning == false && drawBaseDamageFromCurrentBlock == false && drawBaseDamageFromMeleeAttacksPlayed == false && drawBaseDamageFromTargetPoisoned == false && drawBaseDamageFromOverloadOnSelf == false))
         {
             return true;
         }
@@ -397,7 +455,7 @@ public class CardEffect
     public bool ShowDrawDamageFromOverloadOnSelf()
     {
         if ((cardEffectType == CardEffectType.DamageTarget || cardEffectType == CardEffectType.DamageSelf || cardEffectType == CardEffectType.DamageAllEnemies) &&
-            (drawBaseDamageFromCurrentBlock == false && drawBaseDamageFromMeleeAttacksPlayed == false && drawBaseDamageFromTargetPoisoned == false && drawBaseDamageFromBurningOnSelf == false))
+            (drawBaseDamageFromTargetWeakened == false && drawBaseDamageFromTargetBurning == false && drawBaseDamageFromCurrentBlock == false && drawBaseDamageFromMeleeAttacksPlayed == false && drawBaseDamageFromTargetPoisoned == false && drawBaseDamageFromBurningOnSelf == false))
         {
             return true;
         }
@@ -409,7 +467,7 @@ public class CardEffect
     public bool ShowDrawDamageFromMeleeAttacksPlayed()
     {
         if ((cardEffectType == CardEffectType.DamageTarget || cardEffectType == CardEffectType.DamageSelf || cardEffectType == CardEffectType.DamageAllEnemies) &&
-           (drawBaseDamageFromCurrentBlock == false && drawBaseDamageFromTargetPoisoned == false && drawBaseDamageFromOverloadOnSelf == false && drawBaseDamageFromBurningOnSelf == false))
+           (drawBaseDamageFromTargetWeakened == false && drawBaseDamageFromTargetBurning == false && drawBaseDamageFromCurrentBlock == false && drawBaseDamageFromTargetPoisoned == false && drawBaseDamageFromOverloadOnSelf == false && drawBaseDamageFromBurningOnSelf == false))
         {
             return true;
         }
@@ -421,7 +479,7 @@ public class CardEffect
     public bool ShowDamageMultiplier()
     {
         if ((cardEffectType == CardEffectType.DamageTarget || cardEffectType == CardEffectType.DamageSelf || cardEffectType == CardEffectType.DamageAllEnemies) &&
-            (drawBaseDamageFromBurningOnSelf == true || drawBaseDamageFromCurrentBlock == true || drawBaseDamageFromTargetPoisoned == true || drawBaseDamageFromMeleeAttacksPlayed == true || drawBaseDamageFromOverloadOnSelf == true))
+            (drawBaseDamageFromTargetWeakened == true || drawBaseDamageFromTargetBurning == true || drawBaseDamageFromBurningOnSelf == true || drawBaseDamageFromCurrentBlock == true || drawBaseDamageFromTargetPoisoned == true || drawBaseDamageFromMeleeAttacksPlayed == true || drawBaseDamageFromOverloadOnSelf == true))
         {
             return true;
         }
@@ -584,7 +642,21 @@ public class OnCardInHandChoiceMadeEffect
     [ShowIf("ShowPassivePairing")]
     [LabelWidth(200)]
     public PassivePairingData passivePairing;
+    [ShowIf("ShowBlessingsGained")]
+    [LabelWidth(200)]
+    public int blessingsGained;
 
+    public bool ShowBlessingsGained()
+    {
+        if (choiceEffect == OnCardInHandChoiceMadeEffectType.GetUpgradedBlessings)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     public bool ShowCopiesAdded()
     {
         if (choiceEffect == OnCardInHandChoiceMadeEffectType.AddCopyToHand)
@@ -619,6 +691,8 @@ public enum OnCardInHandChoiceMadeEffectType
     SetEnergyCost = 3,
     ExpendIt = 4,
     GainPassive = 5,
+    UpgradeIt = 6,
+    GetUpgradedBlessings = 7,
 }
 
 

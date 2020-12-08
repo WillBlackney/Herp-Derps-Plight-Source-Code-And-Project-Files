@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Dark Bargain +1
   cardDescription: Lose 3 health. All cards cost 0 Energy this activation.
-  cardSprite: {fileID: 21300000, guid: 7a6bb477a25069249a01c57b8580ebff, type: 3}
+  cardSprite: {fileID: 21300000, guid: 827501c13da9a1a40a9a8036f5592b0c, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
   cardType: 1
   targettingType: 0
   talentSchool: 11
   rarity: 3
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 0
@@ -31,6 +32,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -78,7 +80,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
@@ -88,10 +92,13 @@ MonoBehaviour:
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 1
+    useEachIndividualsStackCount: 1
     damageType: 0
     healthRestored: 0
     healthLost: 3
@@ -137,6 +144,8 @@ MonoBehaviour:
       projectileFired: 0
       projectileStartPosition: 0
       onCharacter: 0
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   - weaponRequirement: 0
     cardEffectType: 2
     splitTargetEffect: 0
@@ -154,7 +163,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
@@ -164,10 +175,13 @@ MonoBehaviour:
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 1
+    useEachIndividualsStackCount: 1
     damageType: 0
     healthRestored: 0
     healthLost: 0
@@ -183,5 +197,8 @@ MonoBehaviour:
     blessingsGained: 0
     visualEventsOnStart: []
     visualEventsOnFinish: []
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
+  cardPassiveEffects: []
   keyWordModels: []

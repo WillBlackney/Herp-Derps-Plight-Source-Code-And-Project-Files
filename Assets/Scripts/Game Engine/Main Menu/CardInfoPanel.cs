@@ -23,7 +23,7 @@ public class CardInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     [Header("Image Components")]
     [SerializeField] private Image talentOverlay;
-    [SerializeField] private Image rarityOverlay;
+    [SerializeField] private Image[] rarityOverlays;
     [SerializeField] private Image cardTypeImage;
 
     [Header("Drag Components")]
@@ -52,8 +52,11 @@ public class CardInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         talentOverlay.color = ColorLibrary.Instance.GetTalentColor(data.talentSchool);
         talentOverlay.color = new Color(talentOverlay.color.r, talentOverlay.color.g, talentOverlay.color.b, 1);
 
-        rarityOverlay.color = ColorLibrary.Instance.GetRarityColor(data.rarity);
-        rarityOverlay.color = new Color(rarityOverlay.color.r, rarityOverlay.color.g, rarityOverlay.color.b, 1);
+        foreach(Image i in rarityOverlays)
+        {
+            i.color = ColorLibrary.Instance.GetRarityColor(data.rarity);
+            i.color = new Color(i.color.r, i.color.g, i.color.b, 1);
+        }       
 
         cardTypeImage.sprite = SpriteLibrary.Instance.GetCardTypeImageFromTypeEnumData(data.cardType);     
 

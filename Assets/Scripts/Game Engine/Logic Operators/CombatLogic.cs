@@ -101,6 +101,14 @@ public class CombatLogic : Singleton<CombatLogic>
             Debug.Log("Card base damage after bonus fire ball damage added: " + baseDamageValueReturned.ToString());
         }
 
+        // Reflex Shot bonus damage
+        if (card != null &&
+             (card.cardName == "Reflex Shot" || card.cardName == "Reflex Shot +1"))
+        {
+            baseDamageValueReturned += entity.pManager.reflexShotBonusDamageStacks;
+            Debug.Log("Card base damage after bonus reflex shot damage added: " + baseDamageValueReturned.ToString());
+        }
+
         // Shank/Ruthless damage bonus
         if (card != null &&
             (card.cardName == "Shank" || card.cardName == "Shank +1"))
@@ -406,7 +414,14 @@ public class CombatLogic : Singleton<CombatLogic>
         // Cancel this if character is already in death process
         if (victim.livingState == LivingState.Dead)
         {
-            Debug.Log("CombatLogic.HandleDamage() detected that " + victim.myName + " is already in death process, exiting damage event...");
+            Debug.Log("CombatLogic.HandleDamage() detected that victim " + victim.myName + " is already in death process, exiting damage event...");
+            return;
+        }
+
+        // Cancel if attacker already dead
+        if (attacker != null && attacker.livingState != LivingState.Alive)
+        {
+            Debug.Log("CombatLogic.HandleDamage() detected that attacker " + attacker.myName + " is already in death process, exiting damage event...");
             return;
         }
 
@@ -544,6 +559,42 @@ public class CombatLogic : Singleton<CombatLogic>
                 AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff), queuePosition, 0, 0, EventDetail.None, batchedEvent);
         }
 
+        // Resolve thorns passive before other post damage passive events
+        if (victim != null &&
+            attacker != null &&
+            attacker.health > 0 &&
+            victim.pManager.thornsStacks > 0 && 
+            victim.livingState == LivingState.Alive && 
+            attacker.livingState == LivingState.Alive &&
+            (enemyEffect != null || card != null) &&
+            attacker != victim)
+        {
+            // Brief delay 
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.25f);
+
+            // Calculate and handle damage
+            int thornsDamageValue = GetFinalDamageValueAfterAllCalculations(null, attacker, DamageType.Physical, victim.pManager.thornsStacks, null, null);
+            HandleDamage(thornsDamageValue, null, attacker, DamageType.Physical);
+        }
+
+        // Resolve storm shield passive before other post damage passive events
+        if (victim != null &&
+            attacker != null &&
+            attacker.health > 0 &&
+            victim.pManager.stormShieldStacks > 0 &&
+            victim.livingState == LivingState.Alive &&
+            attacker.livingState == LivingState.Alive &&
+            (enemyEffect != null || card != null) &&
+            attacker != victim)
+        {
+            // Brief delay 
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.25f);
+
+            // Calculate and handle damage
+            int ssDamageValue = GetFinalDamageValueAfterAllCalculations(null, attacker, DamageType.Magic, victim.pManager.stormShieldStacks, null, null);
+            HandleDamage(ssDamageValue, null, attacker, DamageType.Magic);
+        }
+
         // EVALUATE DAMAGE RELATED PASSIVE EFFECTS (but only if victim is still alive)
         if (victim.health > 0 && victim.livingState == LivingState.Alive)
         {
@@ -561,7 +612,7 @@ public class CombatLogic : Singleton<CombatLogic>
                 VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
 
                 // Calculate and apply block gain
-                CharacterEntityController.Instance.ModifyBlock(victim, CalculateBlockGainedByEffect(victim.pManager.cautiousStacks, victim, victim));
+                CharacterEntityController.Instance.GainBlock(victim, CalculateBlockGainedByEffect(victim.pManager.cautiousStacks, victim, victim));
 
                 // Remove cautious
                 PassiveController.Instance.ModifyCautious(victim.pManager, -victim.pManager.cautiousStacks, true);
@@ -607,6 +658,27 @@ public class CombatLogic : Singleton<CombatLogic>
                 {
                     VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
                     PassiveController.Instance.ModifyPoisoned(attacker, victim.pManager, attacker.pManager.poisonousStacks, true, 0.5f);
+                }
+            }
+
+            // Inflamed 
+            if (attacker != null &&
+                attacker.pManager.inflamedStacks > 0 &&
+                totalLifeLost > 0)
+            {
+                if (card != null &&
+                   (card.cardType == CardType.MeleeAttack || card.cardType == CardType.RangedAttack))
+                {
+                    VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+                    PassiveController.Instance.ModifyBurning(victim.pManager, attacker.pManager.inflamedStacks, true, 0.5f);
+                }
+                else if (enemyEffect != null &&
+                   (enemyEffect.actionType == ActionType.AttackTarget ||
+                    enemyEffect.actionType == ActionType.AttackAllEnemies)
+                    )
+                {
+                    VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+                    PassiveController.Instance.ModifyBurning(victim.pManager, attacker.pManager.inflamedStacks, true, 0.5f);
                 }
             }
 

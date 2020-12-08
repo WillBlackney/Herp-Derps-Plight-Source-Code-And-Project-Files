@@ -16,18 +16,18 @@ MonoBehaviour:
   myClassName: Test Class
   race: 2
   audioProfile: 3
-  health: 500
-  maxHealth: 500
+  health: 30
+  maxHealth: 30
   power: 0
-  dexterity: 10
+  dexterity: 0
   stamina: 10
   draw: 10
-  initiative: 50
+  initiative: 77
   startingBlock: 5
   physicalResistance: 0
   fireResistance: 0
   frostResistance: 0
-  shadowResistance: -38
+  shadowResistance: 0
   poisonResistance: 0
   airResistance: 0
   serializedPassiveManager:
@@ -44,7 +44,7 @@ MonoBehaviour:
     runeStacks: 0
     barrierStacks: 0
     enrageStacks: 0
-    shieldWallStacks: 0
+    shieldWallStacks: 4
     fanOfKnivesStacks: 0
     divineFavourStacks: 0
     phoenixFormStacks: 0
@@ -75,10 +75,17 @@ MonoBehaviour:
     darkBargainStacks: 0
     volatileStacks: 0
     soulCollectorStacks: 0
-    magicMagnetStacks: 2
+    magicMagnetStacks: 0
     etherealStacks: 0
+    thornsStacks: 0
+    tranquilHateStacks: 0
+    inflamedStacks: 0
+    shockingTouchStacks: 0
+    stormShieldStacks: 0
+    maliceStacks: 0
+    reflexShotBonusDamageStacks: 0
     encouragingAuraStacks: 0
-    shadowAuraStacks: 0
+    shadowAuraStacks: 2
     guardianAuraStacks: 0
     toxicAuraStacks: 0
     hatefulAuraStacks: 0
@@ -95,8 +102,14 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
-  - {fileID: 11400000, guid: 39d1713a0f643b640ae78d1c5da6aacf, type: 2}
-  - {fileID: 11400000, guid: 8f9678549ccde8246b41ef95f3f81cb1, type: 2}
+  - {fileID: 11400000, guid: dbf11fa6557e4ac4b8401df063fc3192, type: 2}
+  - {fileID: 11400000, guid: 5b783402cd2197648b5efd50994733b5, type: 2}
+  - {fileID: 11400000, guid: 2c006c2038187de43b45780eee04d77c, type: 2}
+  - {fileID: 11400000, guid: b1f36fa6a8a0e884790277436599a68e, type: 2}
+  - {fileID: 11400000, guid: e29630167f68b6e4e9d5ffbbddeaacc2, type: 2}
+  - {fileID: 11400000, guid: f0fcf900006c8224c89edfeb6c6aa486, type: 2}
+  - {fileID: 11400000, guid: d202c1f3eb7e6a4458df0c3eb8248cfe, type: 2}
+  - {fileID: 11400000, guid: d202c1f3eb7e6a4458df0c3eb8248cfe, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1
@@ -111,8 +124,7 @@ MonoBehaviour:
   - Left_Hand_Simple_Battle_Axe
   - Shaman_Right_Leg_Wear
   - Shaman_Mask_Head_Wear
-  - 
   serializedItemManager:
-    mainHandItem: {fileID: 11400000, guid: dfeeccc8c225a66488eb3e4eb76d6c3b, type: 2}
+    mainHandItem: {fileID: 11400000, guid: b533dcedf0849e047ac0af6f1d50afe0, type: 2}
     offHandItem: {fileID: 0}
   talentPairings: []

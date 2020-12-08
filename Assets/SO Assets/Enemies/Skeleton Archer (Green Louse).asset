@@ -17,7 +17,7 @@ MonoBehaviour:
   audioProfile: 4
   enableFlexibleMaxHealth: 1
   maxHealthFlexAmount: 1
-  maxHealth: 14
+  maxHealth: 13
   initiative: 1
   power: 0
   dexterity: 0
@@ -25,11 +25,7 @@ MonoBehaviour:
   startingHealth: 14
   startingBlock: 0
   physicalResistance: 0
-  fireResistance: 0
-  frostResistance: 0
-  shadowResistance: 0
-  poisonResistance: 0
-  airResistance: 0
+  magicResistance: 0
   serializedPassiveManager:
     bonusPowerStacks: 0
     bonusDexterityStacks: 0
@@ -58,7 +54,7 @@ MonoBehaviour:
     sharpenBladeStacks: 0
     consecrationStacks: 0
     growingStacks: 0
-    cautiousStacks: 0
+    cautiousStacks: 5
     infuriatedStacks: 0
     battleTranceStacks: 0
     balancedStanceStacks: 0
@@ -74,10 +70,21 @@ MonoBehaviour:
     demonFormStacks: 0
     darkBargainStacks: 0
     volatileStacks: 0
+    soulCollectorStacks: 0
+    magicMagnetStacks: 0
+    etherealStacks: 0
+    thornsStacks: 0
+    tranquilHateStacks: 0
+    inflamedStacks: 0
+    shockingTouchStacks: 0
+    stormShieldStacks: 0
+    maliceStacks: 0
+    reflexShotBonusDamageStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
     toxicAuraStacks: 0
+    hatefulAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -87,7 +94,9 @@ MonoBehaviour:
     sleepStacks: 0
     poisonedStacks: 0
     burningStacks: 0
+    bleedingStacks: 0
     fireBallBonusDamageStacks: 0
+    sourceStacks: 0
   allEnemyActions:
   - actionName: Shoot
     actionType: 0
@@ -131,6 +140,7 @@ MonoBehaviour:
         onCharacter: 0
       visualEventsOnFinish: []
       actionType: 0
+      effectLoops: 1
       baseDamage: 5
       damageType: 0
       characterSummoned: {fileID: 0}
@@ -171,6 +181,7 @@ MonoBehaviour:
         onCharacter: 0
       visualEventsOnFinish: []
       actionType: 5
+      effectLoops: 1
       baseDamage: 0
       damageType: 0
       characterSummoned: {fileID: 0}
@@ -178,7 +189,7 @@ MonoBehaviour:
       modelFadeInSpeed: 0
       uiFadeInSpeed: 0
       summonedCreatureVisualEvents: []
-      passiveApplied: {fileID: 11400000, guid: 6f53a59075648034ab7c521f182140e3, type: 2}
+      passiveApplied: {fileID: 11400000, guid: f4d581b9181795e48b68007fcfeec3d2, type: 2}
       passiveStacks: 2
       blockGained: 0
       cardAdded: {fileID: 0}

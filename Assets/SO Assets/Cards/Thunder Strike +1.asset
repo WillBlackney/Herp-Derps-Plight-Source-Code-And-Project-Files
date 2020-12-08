@@ -42,10 +42,10 @@ MonoBehaviour:
     getPhraseFromCardValue: 1
     cardEffectType: 6
     phrase: 4
-  - color: 7
+  - color: 4
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: ' Air '
+    phrase: ' Physical '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -92,10 +92,12 @@ MonoBehaviour:
     baseDamageValue: 6
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
+    useEachIndividualsStackCount: 1
     damageType: 1
     healthRestored: 0
     healthLost: 0
@@ -186,6 +188,8 @@ MonoBehaviour:
       projectileStartPosition: 0
       onCharacter: 0
     visualEventsOnFinish: []
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   - weaponRequirement: 0
     cardEffectType: 2
     splitTargetEffect: 0
@@ -215,10 +219,12 @@ MonoBehaviour:
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
+    useEachIndividualsStackCount: 1
     damageType: 0
     healthRestored: 0
     healthLost: 0
@@ -234,7 +240,10 @@ MonoBehaviour:
     blessingsGained: 0
     visualEventsOnStart: []
     visualEventsOnFinish: []
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
+  cardPassiveEffects: []
   keyWordModels:
   - kewWordType: 8
     weaponRequirement: 0

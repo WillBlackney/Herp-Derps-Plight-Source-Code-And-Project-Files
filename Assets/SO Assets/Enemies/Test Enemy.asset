@@ -12,20 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 272d402ffa0a347429dfe06011e3d167, type: 3}
   m_Name: Test Enemy
   m_EditorClassIdentifier: 
-  enemyName: The Harbinger
+  enemyName: Test Enemy
   enemyModelSize: 0
   audioProfile: 7
   enableFlexibleMaxHealth: 0
   maxHealthFlexAmount: 0
-  maxHealth: 30
+  maxHealth: 100
   initiative: 3
   power: 0
   dexterity: 0
   overrideStartingHealth: 0
   startingHealth: 1
   startingBlock: 0
-  physicalResistance: 50
-  magicResistance: -50
+  physicalResistance: 0
+  magicResistance: 0
   serializedPassiveManager:
     bonusPowerStacks: 0
     bonusDexterityStacks: 0
@@ -71,10 +71,16 @@ MonoBehaviour:
     darkBargainStacks: 0
     volatileStacks: 0
     soulCollectorStacks: 0
+    magicMagnetStacks: 0
+    etherealStacks: 0
+    thornsStacks: 0
+    tranquilHateStacks: 0
+    inflamedStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
     toxicAuraStacks: 0
+    hatefulAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0

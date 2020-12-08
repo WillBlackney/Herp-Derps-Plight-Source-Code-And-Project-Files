@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myName: Riff Raff
   myClassName: Rogue
-  race: 1
-  audioProfile: 1
+  race: 5
+  audioProfile: 6
   health: 50
   maxHealth: 50
   power: 0
@@ -81,6 +81,7 @@ MonoBehaviour:
     shadowAuraStacks: 0
     guardianAuraStacks: 0
     toxicAuraStacks: 0
+    hatefulAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -105,12 +106,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9ec8eb1ee986e094695b5336904bb4be, type: 2}
   - {fileID: 11400000, guid: 07576fe85892f0b46a604ce986a50e6e, type: 2}
   modelParts:
-  - Human_Chest
-  - Human_Face_1
-  - Human_Head_4
-  - Human_Right_Arm
-  - Human_Right_Hand
-  - Human_Right_Leg
+  - Goblin_Chest_2
+  - Goblin_Face_3
+  - Goblin_Head_2
+  - Goblin_Right_Arm_2
+  - Goblin_Right_Hand_2
+  - Goblin_Right_Leg_2
   - Red_Face_Mask_Head_Wear
   - Shadow_Blade_Chest_Wear
   - Shadow_Blade_Right_Leg_Wear

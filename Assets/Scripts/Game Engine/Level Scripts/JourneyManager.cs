@@ -7,8 +7,7 @@ public class JourneyManager : Singleton<JourneyManager>
 {
     // Properties + Component Refs
     #region
-    [Header("Components")]
-   
+    [Header("Components")]   
 
     [Header("General Properties")]
     [SerializeField] private bool allowSameEnemyWaveMultipleTimes;
@@ -146,6 +145,7 @@ public class JourneyManager : Singleton<JourneyManager>
     }
     public void AddEnemyWaveToAlreadyEncounteredList(EnemyWaveSO wave)
     {
+        Debug.Log("JourneyManager.AddEnemyWaveToAlreadyEncounteredList() adding " + wave.encounterName + " to already encounter list");
         enemyWavesAlreadyEncountered.Add(wave);
     }
     #endregion

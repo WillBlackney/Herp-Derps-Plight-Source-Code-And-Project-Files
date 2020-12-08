@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2410c6608dbef744a9643f0571333299, type: 3}
   m_Name: Juggernaut_2
   m_EditorClassIdentifier: 
-  myName: Ankar
+  myName: Twigs
   myClassName: Juggernaut
-  race: 1
-  audioProfile: 1
+  race: 8
+  audioProfile: 4
   health: 50
   maxHealth: 50
   power: 0
@@ -77,10 +77,12 @@ MonoBehaviour:
     soulCollectorStacks: 0
     magicMagnetStacks: 0
     etherealStacks: 0
+    thornsStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
     toxicAuraStacks: 0
+    hatefulAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -105,15 +107,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 58ad3605f0bb1844dac2124cd71174c1, type: 2}
   - {fileID: 11400000, guid: fdcce8d7a9e4a0748bf221b25c761b09, type: 2}
   modelParts:
-  - Human_Chest
-  - Human_Face_1
-  - Human_Head_1
-  - Human_Right_Arm
-  - Human_Right_Hand
-  - Human_Right_Leg
-  - Black_Silver_Helmet_Head_Wear
+  - Ent_Chest
+  - Ent_Face_2
+  - Ent_Head_1
+  - Ent_Right_Arm
+  - Ent_Right_Hand
+  - Ent_Right_Leg
   - Black_Gold_Plate_Chest_Wear
-  - Black_Gold_Plate_Right_Leg_Wear
   serializedItemManager:
     mainHandItem: {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}
     offHandItem: {fileID: 11400000, guid: a49466273aff6954d8e0303879ded604, type: 2}

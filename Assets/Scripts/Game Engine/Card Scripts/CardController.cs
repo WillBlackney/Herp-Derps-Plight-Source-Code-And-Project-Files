@@ -476,6 +476,13 @@ public class CardController : Singleton<CardController>
             c.cardEventListeners.Add(ObjectCloner.CloneJSON(cel));
         }
 
+        // Card passive effects
+        c.cardPassiveEffects = new List<CardPassiveEffect>();
+        foreach (CardPassiveEffect cel in d.cardPassiveEffects)
+        {
+            c.cardPassiveEffects.Add(ObjectCloner.CloneJSON(cel));
+        }
+
         // Keyword Model Data
         c.keyWordModels = new List<KeyWordModel>();
         foreach (KeyWordModel kwdm in d.keyWordModels)
@@ -537,6 +544,13 @@ public class CardController : Singleton<CardController>
             c.cardEventListeners.Add(ObjectCloner.CloneJSON(cel));
         }
 
+        // Card passive effects 
+        c.cardPassiveEffects = new List<CardPassiveEffect>();
+        foreach (CardPassiveEffect cel in original.cardPassiveEffects)
+        {
+            c.cardPassiveEffects.Add(ObjectCloner.CloneJSON(cel));
+        }
+
         // Keyword Model Data
         c.keyWordModels = new List<KeyWordModel>();
         foreach (KeyWordModel kwdm in original.keyWordModels)
@@ -585,6 +599,7 @@ public class CardController : Singleton<CardController>
 
         // lists
         card.cardEventListeners.AddRange(data.cardEventListeners);
+        card.cardPassiveEffects.AddRange(data.cardPassiveEffects);
         card.cardEffects.AddRange(data.cardEffects);
         card.keyWordModels.AddRange(data.keyWordModels);
         card.cardDescriptionTwo.AddRange(data.customDescription);       
@@ -622,6 +637,7 @@ public class CardController : Singleton<CardController>
 
         // lists
         card.cardEventListeners.AddRange(data.cardEventListeners);
+        card.cardPassiveEffects.AddRange(data.cardPassiveEffects);
         card.cardEffects.AddRange(data.cardEffects);
         card.keyWordModels.AddRange(data.keyWordModels);
         card.cardDescriptionTwo.AddRange(data.cardDescriptionTwo);
@@ -1282,6 +1298,29 @@ public class CardController : Singleton<CardController>
 
         return cardReturned;
     }
+    public Card CreateAndAddNewCardToCharacterDrawPile(CharacterEntityModel defender, CardDataSO data, bool randomIndex = true)
+    {
+        Card cardReturned = null;
+
+        // Get card and remove from deck
+        Card newCard = BuildCardFromCardDataSO(data, defender);
+
+        // Add card to hand
+        AddCardToDrawPile(defender, newCard);
+
+        // randomize position in draw pile
+        if (randomIndex)
+        {
+            defender.drawPile.Remove(newCard);
+            int index = RandomGenerator.NumberBetween(0, defender.drawPile.Count);
+            defender.drawPile.Insert(index, newCard);
+        }
+
+        // cache card
+        cardReturned = newCard;
+
+        return cardReturned;
+    }
     public Card CreateAndAddNewCardToCharacterHand(CharacterEntityModel defender, CardData data)
     {
         Card cardReturned = null;
@@ -1393,7 +1432,7 @@ public class CardController : Singleton<CardController>
         }                         
 
     }
-    private void ExpendCard(Card card, bool fleeting = false)
+    private void ExpendCard(Card card, bool fleeting = false, QueuePosition qp = QueuePosition.Back, float startDelay = 0, float endDelay = 0.5f)
     {
         Debug.Log("CardController.ExpendCard() called...");
 
@@ -1428,7 +1467,7 @@ public class CardController : Singleton<CardController>
 
             else
             {
-                VisualEventManager.Instance.CreateVisualEvent(() => ExpendCardVisualEvent(cvm, owner), QueuePosition.Back,0, 0.5f);
+                VisualEventManager.Instance.CreateVisualEvent(() => ExpendCardVisualEvent(cvm, owner), qp, startDelay, endDelay);
             }
             
         }
@@ -1443,7 +1482,7 @@ public class CardController : Singleton<CardController>
         Destroy(cvm.movementParent.gameObject);
     }
     #endregion
-
+       
     // Conditional Checks
     #region
     private bool IsCardDrawValid(CharacterEntityModel defender)
@@ -1572,6 +1611,37 @@ public class CardController : Singleton<CardController>
 
         return boolReturned;
     }
+    private bool DoesCardEventListenerMeetWeaponRequirement(CardEventListener cel, CharacterEntityModel owner)
+    {
+        bool boolReturned = false;
+
+        if (cel.weaponRequirement == CardWeaponRequirement.None)
+        {
+            boolReturned = true;
+        }
+        else if (cel.weaponRequirement == CardWeaponRequirement.DualWield &&
+            ItemController.Instance.IsDualWielding(owner.iManager))
+        {
+            boolReturned = true;
+        }
+        else if (cel.weaponRequirement == CardWeaponRequirement.Shielded &&
+            ItemController.Instance.IsShielded(owner.iManager))
+        {
+            boolReturned = true;
+        }
+        else if (cel.weaponRequirement == CardWeaponRequirement.TwoHanded &&
+            ItemController.Instance.IsTwoHanding(owner.iManager))
+        {
+            boolReturned = true;
+        }
+        else if (cel.weaponRequirement == CardWeaponRequirement.Ranged &&
+           ItemController.Instance.IsRanged(owner.iManager))
+        {
+            boolReturned = true;
+        }
+
+        return boolReturned;
+    }
 
     #endregion
 
@@ -1644,7 +1714,7 @@ public class CardController : Singleton<CardController>
             {
                 VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(owner.characterEntityView.WorldPosition, "Balanced Stance!"));
 
-                CharacterEntityController.Instance.ModifyBlock(owner, CombatLogic.Instance.CalculateBlockGainedByEffect(owner.pManager.balancedStanceStacks, owner, owner, null, null));
+                CharacterEntityController.Instance.GainBlock(owner, CombatLogic.Instance.CalculateBlockGainedByEffect(owner.pManager.balancedStanceStacks, owner, owner, null, null));
 
                 VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
             }
@@ -1661,7 +1731,13 @@ public class CardController : Singleton<CardController>
         }
 
         // Fire Ball specific effects
-        if(card.cardName == "Fire Ball" ||
+        if (card.blessing == true)
+        {
+            HandleOnBlessingCardPlayedListeners(owner);
+        }
+
+        // Fire Ball specific effects
+        if (card.cardName == "Fire Ball" ||
             card.cardName == "Fire Ball +1")
         {
             HandleOnFireBallCardPlayedListeners(owner);
@@ -1793,7 +1869,30 @@ public class CardController : Singleton<CardController>
             {
                 PassiveController.Instance.ModifySharpenBlade(card.owner.pManager, -1);
             }
+
+            if(card.owner.pManager.shockingTouchStacks > 0)
+            {
+                PassiveController.Instance.ModifyOverload(card.owner.pManager, card.owner.pManager.shockingTouchStacks);
+            }
         }
+
+        // Resolve 'On this card played listeners
+        HandleOnThisCardPlayedListenerEvents(card);
+
+        // Update energy cost text of cards in hand with event listeners
+        foreach(Card c in card.owner.hand)
+        {
+            if(c.cardVM != null)
+            SetCardViewModelEnergyText(c, c.cardVM, GetCardEnergyCost(c).ToString());
+
+            /*
+            if (card.cardEventListeners.Count > 0 && c.cardVM != null)
+            {
+                SetCardViewModelEnergyText(c, c.cardVM, GetCardEnergyCost(c).ToString());
+            }          
+            */
+        }
+        
     }
     private void OnCardExpended(Card card)
     {
@@ -1842,7 +1941,7 @@ public class CardController : Singleton<CardController>
 
             if (targetHit != null)
             {
-                PassiveController.Instance.ModifyWeakened(targetHit.pManager, owner.pManager.corpseCollectorStacks, true);
+                PassiveController.Instance.ModifyWeakened(targetHit.pManager, owner.pManager.corpseCollectorStacks, owner.pManager, true);
             }
         }
     }
@@ -1906,7 +2005,7 @@ public class CardController : Singleton<CardController>
             VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.MoveEntityToNodeCentre(owner.characterEntityView, node, cData), cData, QueuePosition.Back, 0.3f, 0);
         }
 
-        // Brief pause at the of all effects
+        // Brief pause at the end of all effects
         VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);        
 
         // On end events
@@ -2045,6 +2144,7 @@ public class CardController : Singleton<CardController>
             cardEffect.cardEffectType == CardEffectType.ApplyPassiveToTarget ||
             cardEffect.cardEffectType == CardEffectType.GainBlockTarget ||
             cardEffect.cardEffectType == CardEffectType.RemoveAllPoisonedFromTarget ||
+            cardEffect.cardEffectType == CardEffectType.RemoveAllBurningFromTarget ||
             cardEffect.cardEffectType == CardEffectType.TauntTarget 
             )
             )
@@ -2074,13 +2174,13 @@ public class CardController : Singleton<CardController>
         // Gain Block Self
         if (cardEffect.cardEffectType == CardEffectType.GainBlockSelf)
         {
-            CharacterEntityController.Instance.ModifyBlock(owner, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, owner, null, cardEffect));
+            CharacterEntityController.Instance.GainBlock(owner, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, owner, null, cardEffect));
         }
 
         // Gain Block Target
         else if (cardEffect.cardEffectType == CardEffectType.GainBlockTarget)
         {
-            CharacterEntityController.Instance.ModifyBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, target, null, cardEffect));
+            CharacterEntityController.Instance.GainBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, target, null, cardEffect));
         }       
 
         // Gain Block All Allies
@@ -2088,7 +2188,7 @@ public class CardController : Singleton<CardController>
         {
             foreach (CharacterEntityModel ally in CharacterEntityController.Instance.GetAllAlliesOfCharacter(owner))
             {
-                CharacterEntityController.Instance.ModifyBlock(ally, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, ally, null, cardEffect));
+                CharacterEntityController.Instance.GainBlock(ally, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, ally, null, cardEffect));
             }            
         }
 
@@ -2136,6 +2236,14 @@ public class CardController : Singleton<CardController>
             {
                 baseDamage = target.pManager.poisonedStacks * cardEffect.baseDamageMultiplier;
             }
+            else if (cardEffect.drawBaseDamageFromTargetWeakened)
+            {
+                baseDamage = target.pManager.weakenedStacks * cardEffect.baseDamageMultiplier;
+            }
+            else if (cardEffect.drawBaseDamageFromTargetBurning)
+            {
+                baseDamage = target.pManager.burningStacks * cardEffect.baseDamageMultiplier;
+            }
             else if (cardEffect.drawBaseDamageFromMeleeAttacksPlayed)
             {
                 baseDamage = owner.meleeAttacksPlayedThisActivation * cardEffect.baseDamageMultiplier;
@@ -2178,7 +2286,39 @@ public class CardController : Singleton<CardController>
                 }
                 else if (cardEffect.drawBaseDamageFromTargetPoisoned)
                 {
-                    baseDamage = enemy.pManager.poisonedStacks * cardEffect.baseDamageMultiplier;
+                    if (cardEffect.useEachIndividualsStackCount)
+                    {
+                        baseDamage = enemy.pManager.poisonedStacks * cardEffect.baseDamageMultiplier;
+                    }
+                    else
+                    {
+                        baseDamage = target.pManager.poisonedStacks * cardEffect.baseDamageMultiplier;
+                    }
+                   
+                }
+                else if (cardEffect.drawBaseDamageFromTargetWeakened)
+                {
+                    if (cardEffect.useEachIndividualsStackCount)
+                    {
+                        baseDamage = enemy.pManager.weakenedStacks * cardEffect.baseDamageMultiplier;
+                    }
+                    else
+                    {
+                        baseDamage = target.pManager.weakenedStacks * cardEffect.baseDamageMultiplier;
+                    }
+
+                }
+                else if (cardEffect.drawBaseDamageFromTargetBurning)
+                {
+                    if (cardEffect.useEachIndividualsStackCount)
+                    {
+                        baseDamage = enemy.pManager.burningStacks * cardEffect.baseDamageMultiplier;
+                    }
+                    else
+                    {
+                        baseDamage = target.pManager.burningStacks * cardEffect.baseDamageMultiplier;
+                    }
+                    
                 }
                 else if (cardEffect.drawBaseDamageFromMeleeAttacksPlayed)
                 {
@@ -2220,6 +2360,14 @@ public class CardController : Singleton<CardController>
             else if (cardEffect.drawBaseDamageFromTargetPoisoned)
             {
                 baseDamage = target.pManager.poisonedStacks * cardEffect.baseDamageMultiplier;
+            }
+            else if (cardEffect.drawBaseDamageFromTargetWeakened)
+            {
+                baseDamage = target.pManager.weakenedStacks * cardEffect.baseDamageMultiplier;
+            }
+            else if (cardEffect.drawBaseDamageFromTargetBurning)
+            {
+                baseDamage = target.pManager.burningStacks * cardEffect.baseDamageMultiplier;
             }
             else if (cardEffect.drawBaseDamageFromMeleeAttacksPlayed)
             {
@@ -2448,8 +2596,7 @@ public class CardController : Singleton<CardController>
             // need to iterate over a temp list, not the actual cards in hand list,
             // otherwise expending cards in hand while iterating over them 
             // will cause an invalid operation exception.
-
-
+           
             // Get all cards in hand
             List<Card> cardsInHand = new List<Card>();
             cardsInHand.AddRange(owner.hand);
@@ -2476,8 +2623,8 @@ public class CardController : Singleton<CardController>
             
             // Normal mod events
             foreach(ModifyAllCardsInHandEffect modEffect in cardEffect.modifyCardsInHandEffects)
-            {
-                foreach(Card c in cardsInHand)
+            { 
+                foreach (Card c in cardsInHand)
                 {
                     if(owner.livingState == LivingState.Alive &&
                         CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive)
@@ -2497,7 +2644,7 @@ public class CardController : Singleton<CardController>
                         // Expend
                         else if (modEffect.modifyEffect == ModifyAllCardsInHandEffectType.ExpendIt)
                         {
-                            ExpendCard(c);
+                            ExpendCard(c, false, QueuePosition.Front, 0, 0);
                         }
                     }                  
                 }
@@ -2543,20 +2690,39 @@ public class CardController : Singleton<CardController>
                 else if (modEffect.modifyEffect == ModifyAllCardsInHandEffectType.AddRandomBlessingToHand)
                 {
                     CreateAndAddNewRandomBlessingsToCharacterHand(owner, 1, modEffect.upgradeFilter);
-                }
+                }              
             }
 
             // Do damage events seperately
             foreach (ModifyAllCardsInHandEffect modEffect in cardEffect.modifyCardsInHandEffects)
-            {
-                if(modEffect.modifyEffect == ModifyAllCardsInHandEffectType.DamageAllEnemies)
+            {               
+
+                if (modEffect.modifyEffect == ModifyAllCardsInHandEffectType.DamageAllEnemies)
                 {
                     for(int i = 0; i < totalCards; i++)
                     {
+                        // Cancel if attacker dies at any point during the looping
+                        if(owner.health <= 0 || owner.livingState != LivingState.Alive)
+                        {
+                            break;
+                        }
+
+                        // Queue starting anims and visual events
+                        foreach (AnimationEventData vEvent in cardEffect.visualEventsOnDamageLoopStart)
+                        {
+                            AnimationEventController.Instance.PlayAnimationEvent(vEvent, owner, target);
+                        }
+
                         VisualEvent batchedEvent = VisualEventManager.Instance.InsertTimeDelayInQueue(0f);
 
                         foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
                         {
+                            // Cancel if attacker dies at any point during the looping
+                            if (owner.health <= 0 || owner.livingState != LivingState.Alive)
+                            {
+                                break;
+                            }
+
                             // Calculate damage
                             DamageType damageType = modEffect.damageType;
                             int baseDamage = modEffect.baseDamage;
@@ -2567,10 +2733,22 @@ public class CardController : Singleton<CardController>
                             // Start damage sequence
                             CombatLogic.Instance.HandleDamage(finalDamageValue, owner, enemy, card, damageType, batchedEvent);
                         }
-                    }
-                }
-            }
 
+
+                        // Stop final anim events if attacker died
+                        if (owner.health <= 0 || owner.livingState != LivingState.Alive)
+                        {
+                            break;
+                        }
+
+                        // Queue finishing anims and visual events
+                        foreach (AnimationEventData vEvent in cardEffect.visualEventsOnDamageLoopFinish)
+                        {
+                            AnimationEventController.Instance.PlayAnimationEvent(vEvent, owner, target);
+                        }
+                    }
+                }               
+            }            
 
         }
 
@@ -2721,6 +2899,34 @@ public class CardController : Singleton<CardController>
             PassiveController.Instance.ModifyPoisoned(null, target.pManager, -target.pManager.poisonedStacks, true);
         }
 
+        // Remove burning from target
+        else if (cardEffect.cardEffectType == CardEffectType.RemoveAllBurningFromTarget)
+        {
+            PassiveController.Instance.ModifyBurning(target.pManager, -target.pManager.burningStacks, true);
+        }
+
+        // Remove Weakened from self and allies
+        else if (cardEffect.cardEffectType == CardEffectType.RemoveWeakenedFromSelfAndAllies)
+        {
+            foreach (CharacterEntityModel ally in CharacterEntityController.Instance.AllDefenders)
+            {
+                PassiveController.Instance.ModifyWeakened(ally.pManager, -ally.pManager.weakenedStacks, null, false);
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateStatusEffect(ally.characterEntityView.WorldPosition, "Weakened Removed!"));
+            }
+        }
+
+        // Remove Vulnerable from self and allies
+        else if (cardEffect.cardEffectType == CardEffectType.RemoveVulnerableFromSelfAndAllies)
+        {
+            foreach (CharacterEntityModel ally in CharacterEntityController.Instance.AllDefenders)
+            {
+                PassiveController.Instance.ModifyVulnerable(ally.pManager, -ally.pManager.vulnerableStacks, false);
+                VisualEventManager.Instance.CreateVisualEvent(()=> 
+                    VisualEffectManager.Instance.CreateStatusEffect(ally.characterEntityView.WorldPosition, "Vulnerable Removed!"));
+            }
+        }
+
         // Taunt Target
         else if (cardEffect.cardEffectType == CardEffectType.TauntTarget)
         {
@@ -2746,7 +2952,20 @@ public class CardController : Singleton<CardController>
                 CreateAndAddNewCardToCharacterHand(owner, cardEffect.cardAdded);
             }
         }
-        
+
+        // Add new non deck card to draw pile
+        else if (cardEffect.cardEffectType == CardEffectType.AddCardsToDrawPile)
+        {
+            List<Card> cardsAdded = new List<Card>();
+            for (int loops = 0; loops < cardEffect.copiesAdded; loops++)
+            {
+                Card c = CreateAndAddNewCardToCharacterDrawPile(owner, cardEffect.cardAdded);
+                cardsAdded.Add(c);
+            }
+
+            StartNewShuffleCardsScreenVisualEvent(cardsAdded);
+        }
+
         // Add random blessings to hand
         else if (cardEffect.cardEffectType == CardEffectType.AddRandomBlessingsToHand)
         {
@@ -2938,10 +3157,66 @@ public class CardController : Singleton<CardController>
     private void AddCardToHand(CharacterEntityModel defender, Card card)
     {
         defender.hand.Add(card);
+
+        // check while holding
+        /*
+        for(int i = 0; i < defender.hand.Count; i++)
+        {
+            if(defender.hand[i].cardEventListeners[0].cardEventListenerType == CardEventListenerType.WhileHoldingCertainCard)
+            {
+                foreach(Card c in defender.hand)
+                {
+                    if (defender.hand[i].cardEventListeners[0].certainCardNames.Contains(c.cardName))
+                    {
+                        SetCardViewModelEnergyText(defender.hand[i], defender.hand[i].cardVM, GetCardEnergyCost(defender.hand[i]).ToString());
+                    }
+                }
+            }
+        }
+        */
+
+        // update all card energy costs texts for event listener cards
+        for(int i = 0; i < defender.hand.Count; i++)
+        {
+            if (defender.hand[i].cardEventListeners.Count > 0 &&
+                defender.hand[i].cardEventListeners[0].cardEventListenerType == CardEventListenerType.WhileHoldingCertainCard &&
+                defender.hand[i].cardVM != null)
+            {
+                SetCardViewModelEnergyText(defender.hand[i], defender.hand[i].cardVM, GetCardEnergyCost(defender.hand[i]).ToString());
+            }
+        }
     }
     private void RemoveCardFromHand(CharacterEntityModel defender, Card card)
     {
         defender.hand.Remove(card);
+
+        // check while holding 
+        /*
+        for (int i = 0; i < defender.hand.Count; i++)
+        {
+            if (defender.hand[i].cardEventListeners[0].cardEventListenerType == CardEventListenerType.WhileHoldingCertainCard)
+            {
+                foreach (Card c in defender.hand)
+                {
+                    if (defender.hand[i].cardEventListeners[0].certainCardNames.Contains(c.cardName))
+                    {
+                        SetCardViewModelEnergyText(defender.hand[i], defender.hand[i].cardVM, GetCardEnergyCost(defender.hand[i]).ToString());
+                    }
+                }
+            }
+        }
+        */
+
+        // update all card energy costs texts for event listener cards
+        for (int i = 0; i < defender.hand.Count; i++)
+        {
+            if (defender.hand[i].cardEventListeners.Count > 0 &&
+                defender.hand[i].cardEventListeners[0].cardEventListenerType == CardEventListenerType.WhileHoldingCertainCard &&
+                defender.hand[i].cardVM != null)
+            {
+                SetCardViewModelEnergyText(defender.hand[i], defender.hand[i].cardVM, GetCardEnergyCost(defender.hand[i]).ToString());
+            }
+        }
     }
     private void AddCardToExpendPile(CharacterEntityModel defender, Card card)
     {
@@ -2953,7 +3228,7 @@ public class CardController : Singleton<CardController>
     }
     #endregion
 
-    // Card Event Listener Logic
+    // Card Event Listener Logic + Passive Listeners
     #region
     private void RunCardEventListenerFunction(Card card, CardEventListener e)
     {
@@ -2962,6 +3237,13 @@ public class CardController : Singleton<CardController>
         // TO DO: Create a small visual event dotween sequence
         // on card VM's when they trigger on listener event,
         // something like scales up and then back down quickly
+
+        // Cancel if card owner doesnt meet the weapon requirement of the event effect.
+        if(card.owner == null ||
+            (card.owner != null && DoesCardEventListenerMeetWeaponRequirement(e, card.owner) == false))
+        {
+            return;
+        }
 
         // Reduce energy cost of card
         if (e.cardEventListenerFunction == CardEventListenerFunction.ReduceCardEnergyCost)
@@ -3008,7 +3290,7 @@ public class CardController : Singleton<CardController>
             CharacterEntityController.Instance.ModifyEnergy(card.owner, e.energyGainedOrLost);
         }
     }
-    public void HandleOnMeleeAttackCardPlayedListeners(CharacterEntityModel character)
+    private void HandleOnMeleeAttackCardPlayedListeners(CharacterEntityModel character)
     {
         Debug.Log("CardController.HandleOnMeleeAttackCardPlayedListeners() called...");
 
@@ -3023,7 +3305,7 @@ public class CardController : Singleton<CardController>
             }
         }
     }
-    public void HandleOnFireBallCardPlayedListeners(CharacterEntityModel character)
+    private void HandleOnFireBallCardPlayedListeners(CharacterEntityModel character)
     {
         Debug.Log("CardController.HandleOnFireBallCardPlayedListeners() called...");
 
@@ -3038,7 +3320,22 @@ public class CardController : Singleton<CardController>
             }
         }
     }
-    public void HandleOnArcaneBoltCardPlayedListeners(CharacterEntityModel character)
+    private void HandleOnBlessingCardPlayedListeners(CharacterEntityModel character)
+    {
+        Debug.Log("CardController.HandleOnBlessingCardPlayedListeners() called...");
+
+        foreach (Card card in GetAllCharacterCardsInHandDrawAndDiscard(character))
+        {
+            foreach (CardEventListener e in card.cardEventListeners)
+            {
+                if (e.cardEventListenerType == CardEventListenerType.OnBlessingCardPlayed)
+                {
+                    RunCardEventListenerFunction(card, e);
+                }
+            }
+        }
+    }
+    private void HandleOnArcaneBoltCardPlayedListeners(CharacterEntityModel character)
     {
         Debug.Log("CardController.HandleOnArcaneBoltCardPlayedListeners() called...");
 
@@ -3068,7 +3365,22 @@ public class CardController : Singleton<CardController>
             }
         }
     }
-    public void HandleOnThisCardDrawnListenerEvents(Card card)
+    public void HandleOnWeakenedAppliedCardListeners(CharacterEntityModel character)
+    {
+        Debug.Log("CardController.HandleOnWeakenedAppliedCardListeners() called...");
+
+        foreach (Card card in GetAllCharacterCardsInHandDrawAndDiscard(character))
+        {
+            foreach (CardEventListener e in card.cardEventListeners)
+            {
+                if (e.cardEventListenerType == CardEventListenerType.OnWeakenedApplied)
+                {
+                    RunCardEventListenerFunction(card, e);
+                }
+            }
+        }
+    }
+    private void HandleOnThisCardDrawnListenerEvents(Card card)
     {
         Debug.Log("CardController.HandleOnThisCardDrawnListenerEvents() called...");
 
@@ -3079,7 +3391,18 @@ public class CardController : Singleton<CardController>
                 RunCardEventListenerFunction(card, cel);
             }
         }
+    }
+    private void HandleOnThisCardPlayedListenerEvents(Card card)
+    {
+        Debug.Log("CardController.HandleOnThisCardDrawnListenerEvents() called...");
 
+        foreach (CardEventListener cel in card.cardEventListeners)
+        {
+            if (cel.cardEventListenerType == CardEventListenerType.OnThisCardPlayed)
+            {
+                RunCardEventListenerFunction(card, cel);
+            }
+        }
     }
     public void HandleOnCharacterActivationEndCardListeners(CharacterEntityModel character)
     {
@@ -3270,6 +3593,28 @@ public class CardController : Singleton<CardController>
             return 0;
         }
 
+        // Check while holding listeners
+        if(card.cardEventListeners.Count > 0 && 
+            card.owner != null)
+        {             
+            foreach (CardEventListener cel in card.cardEventListeners)
+            {
+                // does the card have the required listener?
+                if(cel.cardEventListenerType == CardEventListenerType.WhileHoldingCertainCard && cel.cardCostsZero == true)
+                {
+                    // it does, search and see if character is holding the required card for reducing energy cost
+                    foreach(Card c in card.owner.hand)
+                    {
+                        if (cel.certainCardNames.Contains(c.cardName))
+                        {
+                            // character has the require 'while holding' card, set energy cost to 0
+                            return 0;
+                        }
+                    }
+                }
+            }
+        }      
+
         // Normal logic
         int costReturned = card.cardBaseEnergyCost;
 
@@ -3277,8 +3622,23 @@ public class CardController : Singleton<CardController>
         costReturned -= card.energyReductionThisCombatOnly;
         costReturned -= card.energyReductionUntilPlayed;
 
+        // Check passive count reduction modifiers
+        if (card.cardPassiveEffects.Count > 0)
+        {
+            foreach (CardPassiveEffect cpe in card.cardPassiveEffects)
+            {
+                if (cpe.cardPassiveEffectType == CardPassiveEffectType.EnergyCostReducedByCurrentPassive)
+                {
+                    if (cpe.passive == Passive.Overload)
+                    {
+                        costReturned -= card.owner.pManager.overloadStacks;
+                    }
+                }
+            }
+        }
+
         // Check 'Planted Feet' passive
-        if(card.owner.pManager != null && 
+        if (card.owner.pManager != null && 
             card.cardType == CardType.MeleeAttack &&
             card.owner.pManager.plantedFeetStacks > 0)
         {
@@ -3406,6 +3766,17 @@ public class CardController : Singleton<CardController>
         {
             return;
         }
+
+        // cancel if choosing card to upgrade, but no upgradeable cards in hand
+        foreach(OnCardInHandChoiceMadeEffect chooseEffect in ce.onChooseCardInHandChoiceMadeEffects)
+        {
+            if(chooseEffect.choiceEffect == OnCardInHandChoiceMadeEffectType.UpgradeIt &&
+                GetUpgradeableCardsFromCollection(owner.hand).Count == 0)
+            {
+                return;
+            }
+        }
+
         ResetChooseCardScreenProperties();
         CurrentChooseCardScreenSelection = null;
         chooseCardScreenEffectReference = ce;
@@ -3418,6 +3789,15 @@ public class CardController : Singleton<CardController>
     public void HandleChooseScreenCardSelection(Card selectedCard)
     {
         AudioManager.Instance.PlaySound(Sound.Card_Discarded);
+
+        // cancel if choice effect is for upgrade, and the card is not upgradeable
+        foreach(OnCardInHandChoiceMadeEffect choiceEffect in chooseCardScreenEffectReference.onChooseCardInHandChoiceMadeEffects)
+        {
+            if(IsCardUpgradeable(selectedCard) == false && choiceEffect.choiceEffect == OnCardInHandChoiceMadeEffectType.UpgradeIt)
+            {
+                return;
+            }
+        }
 
         // move to choice slot
         if (CurrentChooseCardScreenSelection == null)
@@ -3453,14 +3833,20 @@ public class CardController : Singleton<CardController>
         // so we can stash them here for now
         List<Card> newCards = new List<Card>();
         bool returnSelctionToHand = true;
+        CharacterEntityModel owner = CurrentChooseCardScreenSelection.owner;
 
-        foreach(OnCardInHandChoiceMadeEffect choiceEffect in chooseCardScreenEffectReference.onChooseCardInHandChoiceMadeEffects)
+        if(owner == null)
+        {
+            owner = ActivationManager.Instance.EntityActivated;
+        }
+
+        foreach (OnCardInHandChoiceMadeEffect choiceEffect in chooseCardScreenEffectReference.onChooseCardInHandChoiceMadeEffects)
         {
             if(choiceEffect.choiceEffect == OnCardInHandChoiceMadeEffectType.AddCopyToHand)
             {
                 for(int i = 0; i < choiceEffect.copiesAdded; i++)
                 {
-                    Card newCard =  CreateAndAddNewCardToCharacterHand(ActivationManager.Instance.EntityActivated, CurrentChooseCardScreenSelection);
+                    Card newCard =  CreateAndAddNewCardToCharacterHand(owner, CurrentChooseCardScreenSelection);
                     newCards.Add(newCard);
                 }
             }
@@ -3469,13 +3855,29 @@ public class CardController : Singleton<CardController>
                 ExpendCard(CurrentChooseCardScreenSelection);
                 returnSelctionToHand = false;
             }
+            else if (choiceEffect.choiceEffect == OnCardInHandChoiceMadeEffectType.UpgradeIt)
+            {
+                HandleUpgradeCardForCharacterEntity(CurrentChooseCardScreenSelection);
+            }
 
             else if (choiceEffect.choiceEffect == OnCardInHandChoiceMadeEffectType.GainPassive)
             {
                 string passiveName = TextLogic.SplitByCapitals(choiceEffect.passivePairing.passiveData.ToString());
 
                 PassiveController.Instance.ModifyPassiveOnCharacterEntity
-                    (ActivationManager.Instance.EntityActivated.pManager, passiveName, choiceEffect.passivePairing.passiveStacks, true, 0.5f, ActivationManager.Instance.EntityActivated);
+                    (owner.pManager, passiveName, choiceEffect.passivePairing.passiveStacks, true, 0.5f, owner);
+            }
+
+            else if (choiceEffect.choiceEffect == OnCardInHandChoiceMadeEffectType.GetUpgradedBlessings)
+            {
+                for(int i = 0; i < choiceEffect.blessingsGained; i++)
+                {
+                    List<CardData> allBlessings = QueryByBlessing(AllCards, true);
+                    List<CardData> filteredBlessings = QueryByUpgraded(allBlessings);
+
+                    CardData randomBlessing = filteredBlessings[RandomGenerator.NumberBetween(0, filteredBlessings.Count - 1)];
+                    CreateAndAddNewCardToCharacterHand(owner, randomBlessing);
+                }
             }
 
             // reduce cost of new cards
@@ -3495,6 +3897,14 @@ public class CardController : Singleton<CardController>
                     SetCardEnergyCostThisCombat(card, choiceEffect.newEnergyCost);
                 }
             }
+
+            /*
+            // Gain block self
+            else if (choiceEffect.choiceEffect == OnCardInHandChoiceMadeEffectType.GainBlockSelf)
+            {
+                CharacterEntityController.Instance.ModifyBlock(owner, CombatLogic.Instance.CalculateBlockGainedByEffect(choiceEffect.choiceEffect, owner, owner, null, cardEffect));
+            }
+            */
         }
 
         // Move the card selection back to hand
@@ -3554,6 +3964,10 @@ public class CardController : Singleton<CardController>
         else if (data.choiceEffect == OnCardInHandChoiceMadeEffectType.ExpendIt)
         {
             newText = "Choose a Card to Expend";
+        }
+        else if (data.choiceEffect == OnCardInHandChoiceMadeEffectType.UpgradeIt)
+        {
+            newText = "Choose a Card to Upgrade";
         }
         else if (data.choiceEffect == OnCardInHandChoiceMadeEffectType.ReduceEnergyCost)
         {
@@ -4559,7 +4973,21 @@ public class CardController : Singleton<CardController>
     public CardData FindUpgradedCardData(CardData original)
     {
         CardData upgradeCard = null;
-        string searchTerm = original.cardName + " +" + (original.upgradeLevel + 1).ToString();
+        string searchTerm = "";
+
+        // Generate search term for already upgraded cards
+        if(original.upgradeLevel > 0)
+        {
+            searchTerm = original.cardName;
+            searchTerm = searchTerm.Remove(searchTerm.Length - 1);
+            searchTerm += (original.upgradeLevel + 1).ToString();
+        }
+
+        // Generate search term for non upgraded cards
+        else
+        {
+            searchTerm = original.cardName + " +" + (original.upgradeLevel + 1).ToString();
+        }
 
         Debug.Log("CardController.FindUpgradedCardData() called, searching for upgrade of " + original.cardName +
             ", search term: "+ searchTerm);
@@ -4587,6 +5015,10 @@ public class CardController : Singleton<CardController>
     {
         return card.upgradeable;
     }
+    public bool IsCardUpgradeable(Card card)
+    {
+        return card.upgradeable;
+    }
     public List<CardData> GetUpgradeableCardsFromCollection(IEnumerable<CardData> collection)
     {
         Debug.Log("CardController.GetUpgradeableCardsFromCollection() called...");
@@ -4594,6 +5026,24 @@ public class CardController : Singleton<CardController>
         List <CardData> upgradeableCards = new List<CardData>();
 
         foreach(CardData card in collection)
+        {
+            if (IsCardUpgradeable(card))
+            {
+                upgradeableCards.Add(card);
+            }
+        }
+
+        Debug.Log("CardController.GetUpgradeableCardsFromCollection() found " + upgradeableCards.Count.ToString() +
+            " upgradeable cards");
+        return upgradeableCards;
+    }
+    public List<Card> GetUpgradeableCardsFromCollection(IEnumerable<Card> collection)
+    {
+        Debug.Log("CardController.GetUpgradeableCardsFromCollection() called...");
+
+        List<Card> upgradeableCards = new List<Card>();
+
+        foreach (Card card in collection)
         {
             if (IsCardUpgradeable(card))
             {
@@ -4677,6 +5127,51 @@ public class CardController : Singleton<CardController>
         }
 
         return transformedCard;
+    }
+    private void HandleUpgradeCardForCharacterEntity(Card card)
+    {
+        Debug.Log("CardController.HandleUpgradeCardForCharacterEntity() called...");
+
+        // Get handle to the card VM
+        CardViewModel cvm = card.cardVM;
+        CharacterEntityModel owner = card.owner;
+
+        CardData upgradeData = FindUpgradedCardData(GetCardDataFromLibraryByName(card.cardName));
+        Card upgradedCard = BuildCardFromCardData(upgradeData, owner);
+
+        // Remove card from which ever collection its in, then add in the upgraded card
+        if (owner.hand.Contains(card))
+        {
+            RemoveCardFromHand(owner, card);
+            AddCardToHand(owner, upgradedCard);
+        }
+        else if (owner.discardPile.Contains(card))
+        {
+            RemoveCardFromDiscardPile(owner, card);
+            AddCardToDiscardPile(owner, upgradedCard);
+        }
+        else if (owner.drawPile.Contains(card))
+        {
+            RemoveCardFromDrawPile(owner, card);
+            AddCardToDrawPile(owner, upgradedCard);
+        }
+        
+        // does the card have a cardVM linked to it?
+        if (cvm)
+        {
+            // Rebuild the old card's vm to the upgraded card.
+            ConnectCardWithCardViewModel(upgradedCard, cvm);
+
+            // Set up appearance, texts and sprites
+            SetUpCardViewModelAppearanceFromCard(cvm, upgradedCard);
+
+            // Set glow outline
+            AutoUpdateCardGlowOutline(upgradedCard);
+
+            VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(cvm));
+        }
+
+        //OnCardExpended(card);
     }
     #endregion
 

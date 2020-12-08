@@ -91,7 +91,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9106921774474575053
 RectTransform:
   m_ObjectHideFlags: 0
@@ -505,6 +505,7 @@ GameObject:
   - component: {fileID: 3744645893696898369}
   - component: {fileID: 2535889571458701801}
   - component: {fileID: 3447786686879030101}
+  - component: {fileID: 3731985610045009895}
   m_Layer: 5
   m_Name: Passive Icon View
   m_TagString: Untagged
@@ -611,3 +612,81 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.3, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3731985610045009895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6840615612475838204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db09d9cca6141a47a3c991340f1f29f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputType: 1
+  onClickEvents: []
+  mouseEnterEvents:
+  - widgetEvent: 9
+    enableStartDelay: 0
+    startDelay: 0
+    onlyIfMouseIsStillOverMe: 0
+    objectDisabled: {fileID: 0}
+    objectEnabled: {fileID: 0}
+    functionInvoked:
+      m_PersistentCalls:
+        m_Calls: []
+    soundPlayed: 0
+    canvasGroup: {fileID: 0}
+    image: {fileID: 2907110127872008434}
+    text: {fileID: 0}
+    endColour: {r: 1, g: 1, b: 1, a: 1}
+    fadeSpeed: 0
+  - widgetEvent: 9
+    enableStartDelay: 0
+    startDelay: 0
+    onlyIfMouseIsStillOverMe: 0
+    objectDisabled: {fileID: 0}
+    objectEnabled: {fileID: 0}
+    functionInvoked:
+      m_PersistentCalls:
+        m_Calls: []
+    soundPlayed: 0
+    canvasGroup: {fileID: 0}
+    image: {fileID: 8097043956386979092}
+    text: {fileID: 0}
+    endColour: {r: 1, g: 1, b: 1, a: 1}
+    fadeSpeed: 0
+  mouseExitEvents:
+  - widgetEvent: 9
+    enableStartDelay: 0
+    startDelay: 0
+    onlyIfMouseIsStillOverMe: 0
+    objectDisabled: {fileID: 0}
+    objectEnabled: {fileID: 0}
+    functionInvoked:
+      m_PersistentCalls:
+        m_Calls: []
+    soundPlayed: 0
+    canvasGroup: {fileID: 0}
+    image: {fileID: 2907110127872008434}
+    text: {fileID: 0}
+    endColour: {r: 0.764151, g: 0.764151, b: 0.764151, a: 1}
+    fadeSpeed: 0
+  - widgetEvent: 9
+    enableStartDelay: 0
+    startDelay: 0
+    onlyIfMouseIsStillOverMe: 0
+    objectDisabled: {fileID: 0}
+    objectEnabled: {fileID: 0}
+    functionInvoked:
+      m_PersistentCalls:
+        m_Calls: []
+    soundPlayed: 0
+    canvasGroup: {fileID: 0}
+    image: {fileID: 8097043956386979092}
+    text: {fileID: 0}
+    endColour: {r: 0.7647059, g: 0.7647059, b: 0.7647059, a: 1}
+    fadeSpeed: 0
+  pointerIsOverMe: 0
+  timeSinceLastPointerEnter: 0

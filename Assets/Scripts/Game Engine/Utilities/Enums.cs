@@ -56,6 +56,7 @@ public enum CardEffectType
 {
     None = 0,
     AddCardsToHand = 1,
+    AddCardsToDrawPile = 36,
     AddRandomBlessingsToHand = 21,
     ModifyAllCardsInHand = 24,
     ApplyPassiveToSelf = 2,
@@ -84,6 +85,9 @@ public enum CardEffectType
     RemoveAllPoisonedFromTarget = 16,
     RemoveAllOverloadFromSelf = 20,
     RemoveAllBurningFromSelf = 31,
+    RemoveAllBurningFromTarget = 35,
+    RemoveWeakenedFromSelfAndAllies = 33,
+    RemoveVulnerableFromSelfAndAllies = 34,
     TauntTarget = 17,
     TauntAllEnemies = 18,
 
@@ -99,14 +103,18 @@ public enum ExtraDrawEffect
 public enum CardEventListenerType
 {
     None = 0,
-    OnLoseHealth = 1,
-    OnCardDraw = 2,
     OnActivationEnd = 3,
-    OnMeleeAttackCardPlayed = 4,
-    OnFireBallCardPlayed = 6,
     OnArcaneBoltCardPlayed = 8,
+    OnBlessingCardPlayed = 11,
+    OnCardDraw = 2,
+    OnFireBallCardPlayed = 6,
+    OnLoseHealth = 1,   
+    OnMeleeAttackCardPlayed = 4,    
     OnTargetKilled = 5,
     OnThisCardDrawn = 7,
+    OnThisCardPlayed = 9,   
+    OnWeakenedApplied = 12,
+    WhileHoldingCertainCard = 10,
 }
 
 [Serializable]
@@ -170,6 +178,8 @@ public enum CharacterRace
     Goblin = 5, 
     Satyr = 6,
     Gnoll = 7,
+    Ent = 8,
+    Demon = 9,
 };
 public enum Passive
 {
@@ -183,7 +193,7 @@ public enum Passive
     Consecration = 4,
     CorpseCollector = 49,
     DarkBargain = 55,
-    DemonForm = 54,
+    DemonForm = 66,
     Dexterity = 5,
     Disarmed = 6,
     DivineFavour = 7,
@@ -201,26 +211,31 @@ public enum Passive
     Growing = 15,
     GuardianAura = 44,
     HatefulAura = 62,
+    Inflamed = 65,
     Infuriated = 16,
     Initiative = 17,
     LongDraw = 51,
     LordOfStorms = 57,
     Overload = 18,
     MagicMagnet = 60,
+    Malice = 69,
     Pistolero = 52,
     PhoenixForm = 19,
     PlantedFeet = 20,
     Poisoned = 21,
     Poisonous = 22,
     Power = 23,
+    ReflexShotBonusDamage = 70,
     Rune = 24,
     Ruthless = 46,
     Sentinel = 45,
     ShadowAura = 25,
     SharpenBlade = 54,
     ShieldWall = 26,
+    ShockingTouch = 67,
     Sleep = 27,
     Stamina = 28,
+    StormShield = 68,
     Silenced = 43,
     SoulCollector = 56,
     Source = 59,
@@ -231,7 +246,9 @@ public enum Passive
     TemporaryInitiative = 32,
     TemporaryPower = 33,
     TemporaryStamina = 34,
+    Thorns = 63,
     ToxicAura = 50, 
+    TranquilHate = 64,
     Venomous = 35,
     Vulnerable = 36,
     Weakened = 37,
@@ -534,6 +551,7 @@ public enum ProjectileFired
     LightningBall1 = 7,
     HolyBall1 = 8,
     FireMeteor = 9,
+    Javelin = 10,
 
 }
 public enum ProjectileStartPosition

@@ -18,7 +18,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'On activation end, gain '
+    phrase: 'On activation start, this character gains '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0

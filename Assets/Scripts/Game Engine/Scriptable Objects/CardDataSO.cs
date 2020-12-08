@@ -111,6 +111,9 @@ public class CardDataSO : ScriptableObject
     public List<CardEventListener> cardEventListeners;
     [VerticalGroup("List Groups")]
     [LabelWidth(200)]
+    public List<CardPassiveEffect> cardPassiveEffects;
+    [VerticalGroup("List Groups")]
+    [LabelWidth(200)]
     public List<KeyWordModel> keyWordModels;
    
 

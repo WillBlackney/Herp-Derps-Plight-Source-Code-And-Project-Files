@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myName: Iziah
   myClassName: Incinerator
-  race: 3
+  race: 9
   audioProfile: 4
   health: 50
   maxHealth: 50
@@ -81,6 +81,7 @@ MonoBehaviour:
     shadowAuraStacks: 0
     guardianAuraStacks: 0
     toxicAuraStacks: 0
+    hatefulAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -105,13 +106,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dc39bf1b28a8c70409116fe98c26c586, type: 2}
   - {fileID: 11400000, guid: ad02d279b5d5514408afc73144555af3, type: 2}
   modelParts:
-  - Undead_Chest
-  - Undead_Face_4
-  - Undead_Head_2
-  - Undead_Right_Arm
-  - Undead_Right_Hand
-  - Undead_Right_Leg
-  - Red_Hood_Head_Wear
+  - Demon_Chest
+  - Demon_Face_2
+  - Demon_Head_3
+  - Demon_Right_Arm
+  - Demon_Right_Hand
+  - Demon_Right_Leg
   - Red_Regal_Chest_Wear
   serializedItemManager:
     mainHandItem: {fileID: 11400000, guid: bfbdb5e21e389ab4c9aae5b49350a1d0, type: 2}

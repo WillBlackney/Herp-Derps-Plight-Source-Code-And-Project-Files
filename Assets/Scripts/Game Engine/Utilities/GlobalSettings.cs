@@ -86,6 +86,9 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [LabelWidth(200)]
     public int maximumBlockAmount;
 
+    [LabelWidth(200)]
+    public bool blockExpiresOnActivationStart = false;
+
     public bool ShowMaximumBlockAmount()
     {
         return enableMaximumBlock;
@@ -242,6 +245,7 @@ public class GlobalSettings : Singleton<GlobalSettings>
     }
     #endregion       
 }
+
 
 public enum InnateSettings
 {

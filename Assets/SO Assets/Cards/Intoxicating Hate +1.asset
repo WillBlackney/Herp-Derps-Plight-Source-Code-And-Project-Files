@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Intoxicating Hate +1
   m_EditorClassIdentifier: 
   cardName: Intoxicating Hate +1
-  cardDescription: "Lose 2 HP. \nGive a target 2 Wrath. "
+  cardDescription: 'Lose 2 HP. Give 1 Wrath to self and allies. '
   cardSprite: {fileID: 21300000, guid: 4916faae99443c443ba1e1aae678adea, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
   cardType: 1
-  targettingType: 2
+  targettingType: 0
   talentSchool: 2
   rarity: 1
   affliction: 0
@@ -47,19 +47,19 @@ MonoBehaviour:
     cardEffectType: 0
     phrase: 'health.
 
-      Give a target '
+      Give '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '2 '
+    phrase: '1 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: Wrath
+    phrase: 'Wrath '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '.
+    phrase: 'to self and allies.
 
 '
   cardEffects:
@@ -157,7 +157,7 @@ MonoBehaviour:
       projectileStartPosition: 0
       onCharacter: 0
   - weaponRequirement: 0
-    cardEffectType: 3
+    cardEffectType: 5
     splitTargetEffect: 0
     splitTargetType: 0
     removeBlockFrom: 0
@@ -198,7 +198,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 38
-      passiveStacks: 2
+      passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: Flash Of Light +1
   m_EditorClassIdentifier: 
   cardName: Flash Of Light +1
-  cardDescription: 'Give a target 14 health. Expend. '
-  cardSprite: {fileID: 21300000, guid: 2926d68227b71fc4f91d6d61d5da959d, type: 3}
+  cardDescription: 'Restore 6 health to an ally. Expend. '
+  cardSprite: {fileID: 21300000, guid: 97c799ce5fe6db74f9e66fad4aa17958, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 2
+  cardEnergyCost: 1
   cardType: 1
-  targettingType: 2
-  talentSchool: 1
-  rarity: 4
+  targettingType: 1
+  talentSchool: 10
+  rarity: 2
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 0
@@ -31,19 +32,20 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Give a target '
+    phrase: 'Restore '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '14 '
+    phrase: '6 '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'health.
+    phrase: 'health to an ally.
 
 '
   - color: 3
@@ -72,7 +74,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
@@ -82,12 +86,14 @@ MonoBehaviour:
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
+    useEachIndividualsStackCount: 1
     damageType: 0
-    healthRestored: 14
+    healthRestored: 6
     healthLost: 0
     energyGained: 0
     cardsDrawn: 0
@@ -146,7 +152,10 @@ MonoBehaviour:
       projectileStartPosition: 0
       onCharacter: 0
     visualEventsOnFinish: []
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
+  cardPassiveEffects: []
   keyWordModels:
   - kewWordType: 1
     weaponRequirement: 0

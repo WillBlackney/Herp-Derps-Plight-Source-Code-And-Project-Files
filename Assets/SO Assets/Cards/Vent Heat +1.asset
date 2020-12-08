@@ -13,15 +13,16 @@ MonoBehaviour:
   m_Name: Vent Heat +1
   m_EditorClassIdentifier: 
   cardName: Vent Heat +1
-  cardDescription: Remove all Burning. Deal Magic damage to all enemies equal to
-    the amount removed.
+  cardDescription: Remove all Burning from ANY target. Deal Magic damage to all enemies
+    equal to the amount removed.
   cardSprite: {fileID: 21300000, guid: 48a07f13ec20d9b4b917fadf9b89829b, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 0
+  cardEnergyCost: 1
   cardType: 1
-  targettingType: 0
+  targettingType: 4
   talentSchool: 6
   rarity: 2
+  affliction: 0
   racialCard: 0
   originRace: 0
   upgradeable: 0
@@ -32,6 +33,7 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -40,11 +42,11 @@ MonoBehaviour:
   - color: 5
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: Burning
+    phrase: 'Burning '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '.
+    phrase: 'from ANY target.
 
       Deal '
   - color: 9
@@ -73,7 +75,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
@@ -83,10 +87,12 @@ MonoBehaviour:
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 1
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
-    drawBaseDamageFromBurningOnSelf: 1
+    drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 1
+    useEachIndividualsStackCount: 0
     damageType: 2
     healthRestored: 0
     healthLost: 0
@@ -192,8 +198,10 @@ MonoBehaviour:
       projectileFired: 0
       projectileStartPosition: 0
       onCharacter: 0
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   - weaponRequirement: 0
-    cardEffectType: 31
+    cardEffectType: 35
     splitTargetEffect: 0
     splitTargetType: 0
     removeBlockFrom: 0
@@ -209,7 +217,9 @@ MonoBehaviour:
     discoveryLocation: 0
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
@@ -219,10 +229,12 @@ MonoBehaviour:
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 1
+    useEachIndividualsStackCount: 1
     damageType: 0
     healthRestored: 0
     healthLost: 0
@@ -238,6 +250,8 @@ MonoBehaviour:
     blessingsGained: 0
     visualEventsOnStart: []
     visualEventsOnFinish: []
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
   keyWordModels:
   - kewWordType: 8
