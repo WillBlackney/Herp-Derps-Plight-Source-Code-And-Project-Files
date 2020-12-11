@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Spar
   m_EditorClassIdentifier: 
   cardName: Spar
-  cardSprite: {fileID: 21300000, guid: dc229cc261927a14f931ad07ffd8f950, type: 3}
+  cardSprite: {fileID: 21300000, guid: fb562e36e65f25446b7d03905567c47a, type: 3}
   cardEnergyCost: 1
   targettingType: 1
   targetRequirements:
@@ -29,7 +29,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: a card in target character's deck.
+    phrase: a card in a character's deck.
   cardEffects:
   - cardEffectType: 10
     healingType: 0

@@ -299,6 +299,7 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
     // Expend
     public void CreateExpendEffect(Vector3 location, int sortingOrderBonus = 15, float scaleModifier = 1f, bool playSFX = true)
     {
+        Debug.Log("VisualEffectManager.CreateExpendEffect() called...");
         GameObject hn = Instantiate(ExpendEffectPrefab, location, ExpendEffectPrefab.transform.rotation);
         ToonEffect teScript = hn.GetComponent<ToonEffect>();
         teScript.InitializeSetup(sortingOrderBonus, scaleModifier);

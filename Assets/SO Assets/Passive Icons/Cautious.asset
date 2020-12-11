@@ -26,11 +26,11 @@ MonoBehaviour:
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: Block
+    phrase: 'Block '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: .
+    phrase: until the start of its next activation.
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0

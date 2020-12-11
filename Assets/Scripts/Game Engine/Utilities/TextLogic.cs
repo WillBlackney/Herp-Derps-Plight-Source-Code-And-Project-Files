@@ -147,8 +147,8 @@ public static class TextLogic
         }
         else if (ts == TalentSchool.Warfare)
         {
-            sReturned = "On first activation start, gain " + ReturnColoredText("1 ", blueNumber) +
-                ReturnColoredText("Wrath", neutralYellow) + ".";
+            sReturned = "You have  " + ReturnColoredText("2 ", blueNumber) + "bonus "+
+                ReturnColoredText("Power ", neutralYellow) + "during your first activation.";
         }
         else if (ts == TalentSchool.Guardian)
         {

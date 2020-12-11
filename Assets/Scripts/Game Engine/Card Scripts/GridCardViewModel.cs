@@ -37,11 +37,22 @@ public class GridCardViewModel : MonoBehaviour, IPointerEnterHandler, IPointerEx
             return;
         }
 
+        // Camp events
         if (CampSiteController.Instance.AwaitingCardUpgradeChoice)
         {
             CampSiteController.Instance.selectedUpgradeCard = myCardData;
             CardController.Instance.BuildAndShowCardUpgradePopUp(myCardData);
         }
+        else if (CampSiteController.Instance.AwaitingCardRemovalChoice)
+        {
+            CampSiteController.Instance.HandleRemoveCardChoiceMade(myCardData);
+        }
+        else if (CampSiteController.Instance.AwaitingCardCloneChoice)
+        {
+            CampSiteController.Instance.HandleCloneCardChoiceMade(myCardData);
+        }
+
+        // KBC events
         else if (KingsBlessingController.Instance.AwaitingCardUpgradeChoice)
         {
             KingsBlessingController.Instance.selectedUpgradeCard = myCardData;

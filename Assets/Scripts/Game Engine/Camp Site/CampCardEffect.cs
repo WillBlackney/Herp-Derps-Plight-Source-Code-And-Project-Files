@@ -106,6 +106,8 @@ public enum CampCardEffectType
     IncreaseMaxHealthAll = 7,
     ModifyCoreAttribute = 9,
     UpgradeCard = 10,
+    RemoveCard = 11,
+    CloneCard =12,
 
 }
 public enum HealingType

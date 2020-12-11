@@ -57,6 +57,8 @@ public class CharacterEntityModel
     [HideInInspector] public int meleeAttacksPlayedThisActivation = 0;
     [HideInInspector] public int blockGainedThisTurnCycle = 0;
     [HideInInspector] public int blockGainedPreviousTurnCycle = 0;
+    [HideInInspector] public int blockFromCautiousGained = 0;
+    [HideInInspector] public bool didTriggerCautiousPrior = false;
 
     [Header("Enemy Specific Properties")]
     [HideInInspector] public CharacterEntityModel currentActionTarget;

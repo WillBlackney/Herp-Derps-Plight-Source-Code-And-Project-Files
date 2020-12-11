@@ -127,4 +127,8 @@ MonoBehaviour:
   serializedItemManager:
     mainHandItem: {fileID: 11400000, guid: b533dcedf0849e047ac0af6f1d50afe0, type: 2}
     offHandItem: {fileID: 0}
-  talentPairings: []
+  talentPairings:
+  - talentSchool: 2
+    talentLevel: 1
+  - talentSchool: 3
+    talentLevel: 1

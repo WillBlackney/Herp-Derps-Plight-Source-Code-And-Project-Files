@@ -697,7 +697,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Warfare Mastery!"), QueuePosition.Back, 0f, 0.5f);
 
             // Gain 1 Wrath
-            PassiveController.Instance.ModifyWrath(character.pManager, 1, true, 0.5f);
+            PassiveController.Instance.ModifyTemporaryPower(character.pManager, 2, true, 0.5f);
         }
 
         // Guardian bonus
@@ -900,6 +900,16 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
            // ModifyBlock(character, -character.blockGainedPreviousTurnCycle, false);
             SetBlock(character, character.block - character.blockGainedPreviousTurnCycle, false);
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+        }
+
+        // Handle remove block from cautious (if character has it and it was triggered)
+        if (GlobalSettings.Instance.blockExpiresOnActivationStart &&
+           character.didTriggerCautiousPrior &&
+           character.blockFromCautiousGained > 0)
+        {
+            SetBlock(character, character.block - character.blockFromCautiousGained, false);
+            character.blockFromCautiousGained = 0;
+            character.didTriggerCautiousPrior = false;
         }
 
         // Modify relevant passives

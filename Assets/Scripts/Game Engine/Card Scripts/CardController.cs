@@ -4603,6 +4603,47 @@ public class CardController : Singleton<CardController>
         // Reset Slot Positions
         VisualEventManager.Instance.CreateVisualEvent(() => MoveShuffleSlotsToStartPosition());
     }
+    public void StartNewShuffleCardsScreenExpendVisualEvent(List<CardData> cards)
+    {
+        // cache cards for visual events
+        List<CardData> cachedCards = new List<CardData>();
+        cachedCards.AddRange(cards);
+        List<DiscoveryCardViewModel> activeCards = new List<DiscoveryCardViewModel>();
+
+        for (int i = 0; i < cards.Count; i++)
+        {
+            activeCards.Add(shuffleCards[i]);
+        }
+
+        // Set up main screen V event
+        CoroutineData cData = new CoroutineData();
+        VisualEventManager.Instance.CreateVisualEvent(() => SetUpShuffleCardScreen(cachedCards, cData), cData);
+
+        // brief pause so player can view cards
+        VisualEventManager.Instance.InsertTimeDelayInQueue(1, QueuePosition.Back);
+        
+        // Move each card towards character v Event
+        foreach (DiscoveryCardViewModel dcvm in activeCards)
+        { 
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+            {
+                // SFX
+                AudioManager.Instance.PlaySoundPooled(Sound.Explosion_Fire_1);
+
+                // Fade CVM
+                FadeOutCardViewModel(dcvm.cardViewModel, null, () => dcvm.gameObject.SetActive(false));
+
+                // Create smokey/expend effect
+                VisualEffectManager.Instance.CreateExpendEffect(dcvm.cardViewModel.movementParent.transform.position, 20000, 1.25f);
+            });
+            
+        }
+
+        VisualEventManager.Instance.InsertTimeDelayInQueue(1f);
+
+        // Reset Slot Positions
+        VisualEventManager.Instance.CreateVisualEvent(() => MoveShuffleSlotsToStartPosition());
+    }
     public void StartNewShuffleCardsScreenVisualEvent(UniversalCharacterModel view, List<CardData> cards)
     {
         // cache cards for visual events
@@ -4680,6 +4721,7 @@ public class CardController : Singleton<CardController>
         for (int i = 0; i < cachedCards.Count; i++)
         {
             BuildCardViewModelFromCardData(cachedCards[i], shuffleCards[i].cardViewModel);
+            shuffleCards[i].cardViewModel.cg.alpha = 1;
             shuffleCards[i].gameObject.SetActive(true);
             shuffleCardSlots[i].gameObject.SetActive(true);
 
@@ -4707,15 +4749,19 @@ public class CardController : Singleton<CardController>
         Transform movementParent = card.transform;
         CardViewModel cvm = card.cardViewModel;
 
-        Vector3 cardDestination = CameraManager.Instance.MainCamera.WorldToScreenPoint(character.WorldPosition);
+        //Vector3 cardDestination = CameraManager.Instance.MainCamera.WorldToScreenPoint(character.WorldPosition);
+        Vector3 cardDestination = character.WorldPosition;
         Vector3 glowDestination = character.WorldPosition;
 
         // SFX
         AudioManager.Instance.PlaySoundPooled(Sound.Card_Discarded);
 
         // Create Glow Trail
+        //ToonEffect glowTrail = VisualEffectManager.Instance.CreateGreenGlowTrailEffect
+        //    (CameraManager.Instance.MainCamera.ScreenToWorldPoint(movementParent.position));
+
         ToonEffect glowTrail = VisualEffectManager.Instance.CreateGreenGlowTrailEffect
-            (CameraManager.Instance.MainCamera.ScreenToWorldPoint(movementParent.position));
+          (movementParent.position);
 
         // Shrink card
         ScaleCardViewModel(cvm, 0.1f, 0.5f);
@@ -4816,6 +4862,17 @@ public class CardController : Singleton<CardController>
         // Build Cards
         BuildGridScreenCards(GetUpgradeableCardsFromCollection(character.deck));
     }
+    public void CreateNewRemoveCardInDeckPopup(CharacterData character, string ribbonMessage)
+    {
+        // enable screen
+        ShowCardGridScreen();
+
+        // set text
+        cardGridRibbonText.text = ribbonMessage;
+
+        // Build Cards
+        BuildGridScreenCards(character.deck);
+    }   
     public void CreateNewTransformCardInDeckPopup(CharacterData character, string ribbonMessage)
     {
         // enable screen

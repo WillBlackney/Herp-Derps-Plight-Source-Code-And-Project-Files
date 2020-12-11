@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Stretch
   m_EditorClassIdentifier: 
   cardName: Stretch
-  cardSprite: {fileID: 21300000, guid: 704f741081080b8448b5a2294588c81f, type: 3}
-  cardEnergyCost: 1
+  cardSprite: {fileID: 21300000, guid: f862310d5f3b8cc488b02242c0c88380, type: 3}
+  cardEnergyCost: 2
   targettingType: 1
   targetRequirements:
   - targettingConditionType: 1
-  expend: 0
+  expend: 1
   innate: 0
   customDescription:
   - color: 1
@@ -37,6 +37,16 @@ MonoBehaviour:
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 1
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '.
+
+'
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Expend
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0

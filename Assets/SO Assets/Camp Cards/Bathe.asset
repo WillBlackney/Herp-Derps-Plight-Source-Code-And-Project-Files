@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11400ae9c11d05949ae4832ec0ab455d, type: 3}
+  m_Name: Bathe
+  m_EditorClassIdentifier: 
+  cardName: Bathe
+  cardSprite: {fileID: 21300000, guid: 3b082fcef342ba744a536c1be236091f, type: 3}
+  cardEnergyCost: 1
+  targettingType: 1
+  targetRequirements:
+  - targettingConditionType: 1
+  expend: 0
+  innate: 0
+  customDescription:
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Remove '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: a card from a character's deck.
+  cardEffects:
+  - cardEffectType: 11
+    healingType: 0
+    flatHealAmount: 0
+    healAmountPercentage: 0
+    attributeChanged: 0
+    attributeAmountGained: 0
+    passivePairing:
+      passiveData: 0
+      passiveStacks: 0
+    cardsDrawn: 0
+    maxHealthGained: 0
+    visualEventsOnStart: []
+  keyWordModels: []

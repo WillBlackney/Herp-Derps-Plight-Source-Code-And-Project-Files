@@ -18,7 +18,7 @@ MonoBehaviour:
   targettingType: 0
   targetRequirements:
   - targettingConditionType: 1
-  expend: 0
+  expend: 1
   innate: 0
   customDescription:
   - color: 1
@@ -29,23 +29,43 @@ MonoBehaviour:
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: '10 '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Health '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'health and gain '
+    phrase: 'and gain '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: '10 '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Maximum Health
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: max health.
+    phrase: '.
+
+'
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Expend
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
   cardEffects:
   - cardEffectType: 7
     healingType: 0
     flatHealAmount: 0
     healAmountPercentage: 0
+    attributeChanged: 0
+    attributeAmountGained: 0
     passivePairing:
       passiveData: 0
       passiveStacks: 0
@@ -86,10 +106,15 @@ MonoBehaviour:
     healingType: 1
     flatHealAmount: 10
     healAmountPercentage: 0
+    attributeChanged: 0
+    attributeAmountGained: 0
     passivePairing:
       passiveData: 0
       passiveStacks: 0
     cardsDrawn: 0
     maxHealthGained: 0
     visualEventsOnStart: []
-  keyWordModels: []
+  keyWordModels:
+  - kewWordType: 1
+    weaponRequirement: 0
+    passiveType: 0

@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Read
   m_EditorClassIdentifier: 
   cardName: Read
-  cardSprite: {fileID: 21300000, guid: 3549ceb8b43a55c41896e48b5a9b04a2, type: 3}
-  cardEnergyCost: 2
+  cardSprite: {fileID: 21300000, guid: d60db81ad207ce34b8abae61bce99cd7, type: 3}
+  cardEnergyCost: 3
   targettingType: 1
   targetRequirements:
   - targettingConditionType: 1
-  expend: 0
+  expend: 1
   innate: 0
   customDescription:
   - color: 1
@@ -37,6 +37,16 @@ MonoBehaviour:
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 1
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '.
+
+'
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Expend
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0

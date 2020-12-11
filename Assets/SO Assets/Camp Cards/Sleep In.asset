@@ -23,7 +23,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Shuffle ALL cards into the draw pile.
+    phrase: 'Shuffle ALL camp cards into the draw pile.
 
       Draw '
   - color: 2
@@ -49,6 +49,8 @@ MonoBehaviour:
     healingType: 0
     flatHealAmount: 0
     healAmountPercentage: 0
+    attributeChanged: 0
+    attributeAmountGained: 0
     passivePairing:
       passiveData: 0
       passiveStacks: 0
@@ -59,6 +61,8 @@ MonoBehaviour:
     healingType: 0
     flatHealAmount: 0
     healAmountPercentage: 0
+    attributeChanged: 0
+    attributeAmountGained: 0
     passivePairing:
       passiveData: 0
       passiveStacks: 0

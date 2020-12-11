@@ -612,7 +612,10 @@ public class CombatLogic : Singleton<CombatLogic>
                 VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
 
                 // Calculate and apply block gain
-                CharacterEntityController.Instance.GainBlock(victim, CalculateBlockGainedByEffect(victim.pManager.cautiousStacks, victim, victim));
+                int blockGain = CalculateBlockGainedByEffect(victim.pManager.cautiousStacks, victim, victim);
+                victim.blockFromCautiousGained += blockGain;
+                victim.didTriggerCautiousPrior = true;
+                CharacterEntityController.Instance.GainBlock(victim, blockGain);
 
                 // Remove cautious
                 PassiveController.Instance.ModifyCautious(victim.pManager, -victim.pManager.cautiousStacks, true);

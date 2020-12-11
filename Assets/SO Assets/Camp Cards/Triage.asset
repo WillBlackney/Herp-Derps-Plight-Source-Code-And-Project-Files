@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Triage
   m_EditorClassIdentifier: 
   cardName: Triage
-  cardSprite: {fileID: 21300000, guid: 64197fb8d8082624daf1b529f12b26f3, type: 3}
+  cardSprite: {fileID: 21300000, guid: 4f702ecc13f199a4a9dfb13fdbfe50f4, type: 3}
   cardEnergyCost: 1
   targettingType: 1
   targetRequirements:
   - targettingConditionType: 1
   expend: 0
-  innate: 1
+  innate: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -32,29 +32,28 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'of their maximum health.
-
-'
+    phrase: 'of their '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: Innate
+    phrase: Maximum Health
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: .
+    phrase: '.
+
+'
   cardEffects:
   - cardEffectType: 1
     healingType: 2
     flatHealAmount: 0
     healAmountPercentage: 0.5
+    attributeChanged: 0
+    attributeAmountGained: 0
     passivePairing:
       passiveData: 0
       passiveStacks: 0
     cardsDrawn: 0
     maxHealthGained: 0
     visualEventsOnStart: []
-  keyWordModels:
-  - kewWordType: 2
-    weaponRequirement: 0
-    passiveType: 0
+  keyWordModels: []

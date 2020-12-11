@@ -56,6 +56,8 @@ public class CampSiteController : Singleton<CampSiteController>
     [Header("Misc Properties")]
     private bool continueButtonEnabled = false;
     private bool awaitingCardUpgradeChoice = false;
+    private bool awaitingCardRemovalChoice = false;
+    private bool awaitingCardCloneChoice = false;
     private CampSiteCharacterView selectedCharacterView = null;
     public CardData selectedUpgradeCard = null;
     #endregion
@@ -75,6 +77,16 @@ public class CampSiteController : Singleton<CampSiteController>
     {
         get { return awaitingCardUpgradeChoice; }
         private set { awaitingCardUpgradeChoice = value; }
+    }
+    public bool AwaitingCardRemovalChoice
+    {
+        get { return awaitingCardRemovalChoice; }
+        private set { awaitingCardRemovalChoice = value; }
+    }
+    public bool AwaitingCardCloneChoice
+    {
+        get { return awaitingCardCloneChoice; }
+        private set { awaitingCardCloneChoice = value; }
     }
     public CampSiteCharacterView SelectedCharacterView
     {
@@ -1069,12 +1081,38 @@ public class CampSiteController : Singleton<CampSiteController>
         {
             HandleUpgradeCardStartEvent(view);
         }
+
+        // Remove Card
+        if (cardEffect.cardEffectType == CampCardEffectType.RemoveCard)
+        {
+            HandleRemoveCardStartEvent(view);
+        }
+
+        // Clone Card
+        if (cardEffect.cardEffectType == CampCardEffectType.CloneCard)
+        {
+            HandleCloneCardStartEvent(view);
+        }
     }
     private void HandleUpgradeCardStartEvent(CampSiteCharacterView character)
     {
         AwaitingCardUpgradeChoice = true;
         SelectedCharacterView = character;
         CardController.Instance.CreateNewUpgradeCardInDeckPopup(character.myCharacterData, "Upgrade A Card!");
+        CardController.Instance.DisableCardGridScreenBackButton();
+    }
+    private void HandleRemoveCardStartEvent(CampSiteCharacterView character)
+    {
+        AwaitingCardRemovalChoice = true;
+        SelectedCharacterView = character;
+        CardController.Instance.CreateNewRemoveCardInDeckPopup(character.myCharacterData, "Remove A Card!");
+        CardController.Instance.DisableCardGridScreenBackButton();
+    }
+    private void HandleCloneCardStartEvent(CampSiteCharacterView character)
+    {
+        AwaitingCardCloneChoice = true;
+        SelectedCharacterView = character;
+        CardController.Instance.CreateNewRemoveCardInDeckPopup(character.myCharacterData, "Clone A Card!");
         CardController.Instance.DisableCardGridScreenBackButton();
     }
     public void HandleUpgradeCardChoiceMade(CardData card)
@@ -1096,6 +1134,49 @@ public class CampSiteController : Singleton<CampSiteController>
 
         // Finish
         AwaitingCardUpgradeChoice = false;
+        SelectedCharacterView = null;
+    }
+    public void HandleCloneCardChoiceMade(CardData card)
+    {
+        // Setup
+        CharacterData character = SelectedCharacterView.myCharacterData;
+        List<CardData> cList = new List<CardData>();
+        cList.Add(card);
+
+        // Close Grid view Screen
+        CardController.Instance.HideCardGridScreen();
+        CardController.Instance.HideCardUpgradePopupScreen();
+
+        // Create add card to character visual event
+        CardController.Instance.StartNewShuffleCardsScreenVisualEvent(SelectedCharacterView.characterEntityView, cList);
+        
+        // Add new upgraded card
+        CardData newCard = CardController.Instance.CloneCardDataFromCardData(card);
+        CharacterDataController.Instance.AddCardToCharacterDeck(character, newCard);
+
+        // Finish
+        AwaitingCardCloneChoice = false;
+        SelectedCharacterView = null;
+    }
+    public void HandleRemoveCardChoiceMade(CardData card)
+    {
+        // Setup
+        CharacterData character = SelectedCharacterView.myCharacterData;
+        List<CardData> cList = new List<CardData>();
+        cList.Add(card);
+
+        // Close Grid view Screen
+        CardController.Instance.HideCardGridScreen();
+        CardController.Instance.HideCardUpgradePopupScreen();
+
+        // Create add card to character visual event
+        CardController.Instance.StartNewShuffleCardsScreenExpendVisualEvent(cList);
+
+        // Remove the card from character deck persistency
+        CharacterDataController.Instance.RemoveCardFromCharacterDeck(character, card);        
+
+        // Finish
+        AwaitingCardRemovalChoice = false;
         SelectedCharacterView = null;
     }
 

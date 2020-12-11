@@ -17,7 +17,7 @@ MonoBehaviour:
   audioProfile: 3
   enableFlexibleMaxHealth: 1
   maxHealthFlexAmount: 2
-  maxHealth: 36
+  maxHealth: 41
   initiative: 1
   power: 0
   dexterity: 0
@@ -71,10 +71,20 @@ MonoBehaviour:
     darkBargainStacks: 0
     volatileStacks: 0
     soulCollectorStacks: 0
+    magicMagnetStacks: 0
+    etherealStacks: 0
+    thornsStacks: 0
+    tranquilHateStacks: 0
+    inflamedStacks: 0
+    shockingTouchStacks: 0
+    stormShieldStacks: 0
+    maliceStacks: 0
+    reflexShotBonusDamageStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
     toxicAuraStacks: 0
+    hatefulAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -84,7 +94,9 @@ MonoBehaviour:
     sleepStacks: 0
     poisonedStacks: 0
     burningStacks: 0
+    bleedingStacks: 0
     fireBallBonusDamageStacks: 0
+    sourceStacks: 0
   allEnemyActions:
   - actionName: Orcish War Cry
     actionType: 2

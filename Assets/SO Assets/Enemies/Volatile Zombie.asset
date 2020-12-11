@@ -24,8 +24,8 @@ MonoBehaviour:
   overrideStartingHealth: 0
   startingHealth: 26
   startingBlock: 0
-  physicalResistance: 30
-  magicResistance: -30
+  physicalResistance: 0
+  magicResistance: 0
   serializedPassiveManager:
     bonusPowerStacks: 0
     bonusDexterityStacks: 0
@@ -70,10 +70,21 @@ MonoBehaviour:
     demonFormStacks: 0
     darkBargainStacks: 0
     volatileStacks: 3
+    soulCollectorStacks: 0
+    magicMagnetStacks: 0
+    etherealStacks: 0
+    thornsStacks: 0
+    tranquilHateStacks: 0
+    inflamedStacks: 0
+    shockingTouchStacks: 0
+    stormShieldStacks: 0
+    maliceStacks: 0
+    reflexShotBonusDamageStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
     toxicAuraStacks: 0
+    hatefulAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -83,7 +94,9 @@ MonoBehaviour:
     sleepStacks: 0
     poisonedStacks: 0
     burningStacks: 0
+    bleedingStacks: 0
     fireBallBonusDamageStacks: 0
+    sourceStacks: 0
   allEnemyActions:
   - actionName: Bite
     actionType: 0
@@ -157,6 +170,7 @@ MonoBehaviour:
         onCharacter: 0
       visualEventsOnFinish: []
       actionType: 0
+      effectLoops: 1
       baseDamage: 6
       damageType: 1
       characterSummoned: {fileID: 0}
@@ -212,6 +226,7 @@ MonoBehaviour:
         projectileStartPosition: 0
         onCharacter: 0
       actionType: 2
+      effectLoops: 1
       baseDamage: 0
       damageType: 0
       characterSummoned: {fileID: 0}

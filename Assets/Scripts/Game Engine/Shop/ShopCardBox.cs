@@ -10,6 +10,7 @@ public class ShopCardBox : MonoBehaviour
     public GameObject visualParent;
     public CardViewModel cvm;
     public TextMeshProUGUI goldCostText;
+    public GameObject onSaleVisualParent;
 
     [Header("Properties")]
     public CardPricePairing cppData;
@@ -65,6 +66,7 @@ public class CardPricePairing
 {
     public int goldCost;
     public CardData cardData;
+    public bool onSale = false;
 
     public CardPricePairing(CardData data)
     {

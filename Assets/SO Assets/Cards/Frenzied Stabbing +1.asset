@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Frenzied Stabbing +1
   m_EditorClassIdentifier: 
   cardName: Frenzied Stabbing +1
-  cardDescription: 'Spend all Energy. For each point spent, Deal 4 Physical Damage. '
+  cardDescription: 'Spend all Energy. For each point spent, Deal 6 Physical Damage. '
   cardSprite: {fileID: 21300000, guid: 4b66b4a0632eaa648b17df435d3b1a8f, type: 3}
   xEnergyCost: 1
   cardEnergyCost: 0
@@ -90,10 +90,13 @@ MonoBehaviour:
     baseDamageValue: 6
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 1
+    useEachIndividualsStackCount: 1
     damageType: 1
     healthRestored: 0
     healthLost: 0
@@ -157,4 +160,5 @@ MonoBehaviour:
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
+  cardPassiveEffects: []
   keyWordModels: []
