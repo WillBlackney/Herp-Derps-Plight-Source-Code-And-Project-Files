@@ -43,3 +43,13 @@ MonoBehaviour:
     passiveStacks: 1
   - passiveData: 49
     passiveStacks: 1
+  - passiveData: 65
+    passiveStacks: 1
+  - passiveData: 67
+    passiveStacks: 1
+  - passiveData: 63
+    passiveStacks: 2
+  - passiveData: 68
+    passiveStacks: 2
+  afflicationsGained: 0
+  goldGainedOrLost: 0

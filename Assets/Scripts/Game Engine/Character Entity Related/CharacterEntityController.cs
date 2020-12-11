@@ -669,6 +669,11 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
     // Activation Related
     #region    
+    private void SetCharacterActivationPhase(CharacterEntityModel character, ActivationPhase newPhase)
+    {
+        Debug.Log("CharacterEntityController.SetCharacterActivationPhase() called for " + character.myName +", new phase = " + newPhase.ToString());
+        character.activationPhase = newPhase;
+    }
     public void CharacterOnNewTurnCycleStarted(CharacterEntityModel character)
     {
         Debug.Log("CharacterEntityController.CharacterOnNewTurnCycleStartedCoroutine() called for " + character.myName);
@@ -883,6 +888,9 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
     {
         Debug.Log("CharacterEntityController.CharacterOnActivationStart() called for " + character.myName);
 
+        // Set Phase
+        SetCharacterActivationPhase(character, ActivationPhase.StartPhase);
+
         // Enable activated view state
         LevelNode charNode = character.levelNode;
         VisualEventManager.Instance.CreateVisualEvent(() => LevelManager.Instance.SetActivatedViewState(charNode, true), QueuePosition.Back);
@@ -1031,6 +1039,9 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             {
                 PassiveController.Instance.ModifyTemporaryDraw(character.pManager, -character.pManager.temporaryBonusDrawStacks, true, 0.5f);
             }
+
+            // Set Activated Phase
+            SetCharacterActivationPhase(character, ActivationPhase.ActivationPhase);
         }
 
         // is the character an enemy?
@@ -1060,6 +1071,9 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
     {
         Debug.Log("CharacterEntityController.CharacterOnActivationEnd() called for " + entity.myName);
 
+        // Set Activated Phase
+        SetCharacterActivationPhase(entity, ActivationPhase.EndPhase);
+
         // Cache refs for visual events
         LevelNode veNode = entity.levelNode;
         CharacterEntityView view = entity.characterEntityView;
@@ -1072,10 +1086,6 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
         // Brute force disable all activation rings
         VisualEventManager.Instance.CreateVisualEvent(() => LevelManager.Instance.DisableAllActivationRings());
-
-        // Disable level node activation ring view       
-        //if(veNode != null)
-        //   VisualEventManager.Instance.CreateVisualEvent(() => LevelManager.Instance.SetActivatedViewState(veNode, false));
 
         // Stop if combat has ended
         if (CombatLogic.Instance.CurrentCombatState != CombatGameState.CombatActive)
@@ -1162,6 +1172,16 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         if (entity.pManager.sleepStacks > 0)
         {
             PassiveController.Instance.ModifySleep(entity.pManager, -1, true, 0.5f);
+        }
+
+        // Misc passive expiries
+        if (entity.pManager.plantedFeetStacks > 0)
+        {
+            PassiveController.Instance.ModifyPlantedFeet(entity.pManager, -entity.pManager.plantedFeetStacks, true, 0.5f);
+        }
+        if (entity.pManager.takenAimStacks > 0)
+        {
+            PassiveController.Instance.ModifyTakenAim(entity.pManager, -entity.pManager.takenAimStacks, true, 0.5f);
         }
 
         // Buff Passive Triggers
@@ -1369,17 +1389,16 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             StartAutoSetEnemyIntentProcess(entity);
         }
 
-        // Disable level node activation ring view        
-        //VisualEventManager.Instance.CreateVisualEvent(() => LevelManager.Instance.SetActivatedViewState(veNode, false));
-
         // Activate next character
         if (entity != null &&
            entity.livingState == LivingState.Alive)
         {
+            // Set Activated Phase
+            SetCharacterActivationPhase(entity, ActivationPhase.NotActivated);
+
+            // Start next entity's activation, or new turn cycle
             ActivationManager.Instance.ActivateNextEntity();
         }
-
-
     }
     #endregion
 
@@ -2786,7 +2805,13 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
     private void StartEnemyActivation(CharacterEntityModel enemy)
     {
         Debug.Log("CharacterEntityController.StartEnemyActivation() called ");
+        // Set Activated Phase
+        SetCharacterActivationPhase(enemy, ActivationPhase.ActivationPhase);
+
+        // Execute activation actions
         ExecuteEnemyNextAction(enemy);
+
+        // Start end activation process
         CharacterOnActivationEnd(enemy);
     }
     #endregion

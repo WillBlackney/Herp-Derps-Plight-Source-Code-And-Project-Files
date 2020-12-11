@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce54fe6d38fa1ac4d921d5b2652a68e3, type: 3}
   m_Name: Gain 1 draw.
   m_EditorClassIdentifier: 
-  choiceDescription: Gain 1 draw.
+  choiceDescription: Permanently gain 1 Draw.
   effect: 5
   category: 1
   impactLevel: 4
@@ -24,3 +24,6 @@ MonoBehaviour:
   randomCardsTransformed: 0
   attributeModified: 4
   attributeAmountModified: 1
+  possiblePassives: []
+  afflicationsGained: 0
+  goldGainedOrLost: 0

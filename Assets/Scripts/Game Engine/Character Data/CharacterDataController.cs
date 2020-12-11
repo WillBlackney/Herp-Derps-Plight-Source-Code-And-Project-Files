@@ -276,6 +276,9 @@ public class CharacterDataController : Singleton<CharacterDataController>
             // Gain level
             SetCharacterLevel(data, data.currentLevel + 1);
 
+            // Gain Talent point
+            ModifyCharacterTalentPoints(data, 1);
+
             // Reset current xp
             data.currentXP = 0;
 

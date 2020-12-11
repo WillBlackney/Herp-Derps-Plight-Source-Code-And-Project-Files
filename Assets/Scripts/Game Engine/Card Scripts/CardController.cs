@@ -1495,6 +1495,10 @@ public class CardController : Singleton<CardController>
         {
             return false;
         }
+        else if (defender.activationPhase == ActivationPhase.NotActivated || defender.activationPhase == ActivationPhase.EndPhase)
+        {
+            return false;
+        }
         else
         {
             return true;
@@ -2767,7 +2771,8 @@ public class CardController : Singleton<CardController>
             {
                 foreach(CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
                 {
-                    stacks += enemy.pManager.weakenedStacks;
+                    if(enemy.pManager.weakenedStacks > 0)
+                        stacks += 1;
                 }                
             }
 
@@ -2789,7 +2794,8 @@ public class CardController : Singleton<CardController>
             {
                 foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
                 {
-                    stacks += enemy.pManager.weakenedStacks;
+                    if (enemy.pManager.weakenedStacks > 0)
+                        stacks += 1;
                 }
             }
             string passiveName = TextLogic.SplitByCapitals(cardEffect.passivePairing.passiveData.ToString());
@@ -2810,7 +2816,8 @@ public class CardController : Singleton<CardController>
             {
                 foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
                 {
-                    stacks += enemy.pManager.weakenedStacks;
+                    if (enemy.pManager.weakenedStacks > 0)
+                        stacks += 1;
                 }
             }
 
@@ -2836,7 +2843,8 @@ public class CardController : Singleton<CardController>
             {
                 foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
                 {
-                    stacks += enemy.pManager.weakenedStacks;
+                    if (enemy.pManager.weakenedStacks > 0)
+                        stacks += 1;
                 }
             }
 
@@ -2863,7 +2871,8 @@ public class CardController : Singleton<CardController>
             {
                 foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
                 {
-                    stacks += enemy.pManager.weakenedStacks;
+                    if (enemy.pManager.weakenedStacks > 0)
+                        stacks += 1;
                 }
             }
 
@@ -4788,15 +4797,19 @@ public class CardController : Singleton<CardController>
         Transform movementParent = card.transform;
         CardViewModel cvm = card.cardViewModel;
 
-        Vector3 cardDestination = CameraManager.Instance.MainCamera.WorldToScreenPoint(character.transform.position);
+        //Vector3 cardDestination = CameraManager.Instance.MainCamera.WorldToScreenPoint(character.transform.position);
+        Vector3 cardDestination = character.transform.position;
         Vector3 glowDestination = character.transform.position;
 
         // SFX
         AudioManager.Instance.PlaySoundPooled(Sound.Card_Discarded);
 
         // Create Glow Trail
-        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGreenGlowTrailEffect
-            (CameraManager.Instance.MainCamera.ScreenToWorldPoint(movementParent.position));
+        //ToonEffect glowTrail = VisualEffectManager.Instance.CreateGreenGlowTrailEffect
+        //    (CameraManager.Instance.MainCamera.ScreenToWorldPoint(movementParent.position));
+
+        // Create Glow Trail
+        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGreenGlowTrailEffect(movementParent.position);
 
         // Shrink card
         ScaleCardViewModel(cvm, 0.1f, 0.5f);

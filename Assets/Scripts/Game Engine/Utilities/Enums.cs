@@ -315,6 +315,13 @@ public enum AllowedEntity
 
 // Character Entity Enums
 #region
+public enum ActivationPhase
+{
+    NotActivated = 0,
+    StartPhase = 1,
+    ActivationPhase = 2,
+    EndPhase =3,
+}
 public enum Allegiance
 {
     Player = 0,

@@ -10,6 +10,7 @@ public class CharacterEntityModel
     public Allegiance allegiance;
     public Controller controller;
     public LivingState livingState;
+    public ActivationPhase activationPhase = ActivationPhase.NotActivated;
 
     [Header("Core Stats Properties")]
     public int power;

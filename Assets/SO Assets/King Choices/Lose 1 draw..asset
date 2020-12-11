@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce54fe6d38fa1ac4d921d5b2652a68e3, type: 3}
   m_Name: Lose 1 draw.
   m_EditorClassIdentifier: 
-  choiceDescription: Lose 1 draw.
+  choiceDescription: Permanently lose 1 Draw.
   effect: 5
   category: 2
-  impactLevel: 3
+  impactLevel: 4
   maxHealthGainedOrLost: 0
   healthGainedOrLost: 0
   randomCardRarity: 0
@@ -24,3 +24,6 @@ MonoBehaviour:
   randomCardsTransformed: 0
   attributeModified: 4
   attributeAmountModified: -1
+  possiblePassives: []
+  afflicationsGained: 0
+  goldGainedOrLost: 0

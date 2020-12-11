@@ -42,7 +42,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: .
+    phrase: . Expires on activation end.
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0

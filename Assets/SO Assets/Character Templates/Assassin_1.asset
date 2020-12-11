@@ -15,8 +15,9 @@ MonoBehaviour:
   myName: Cuddles
   myClassName: Assassin
   race: 7
-  health: 40
-  maxHealth: 40
+  audioProfile: 6
+  health: 60
+  maxHealth: 60
   power: 0
   dexterity: 0
   stamina: 3
@@ -72,10 +73,22 @@ MonoBehaviour:
     fastLearnerStacks: 0
     demonFormStacks: 0
     darkBargainStacks: 0
+    volatileStacks: 0
+    soulCollectorStacks: 0
+    magicMagnetStacks: 0
+    etherealStacks: 0
+    thornsStacks: 0
+    tranquilHateStacks: 0
+    inflamedStacks: 0
+    shockingTouchStacks: 0
+    stormShieldStacks: 0
+    maliceStacks: 0
+    reflexShotBonusDamageStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
     toxicAuraStacks: 0
+    hatefulAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -85,16 +98,18 @@ MonoBehaviour:
     sleepStacks: 0
     poisonedStacks: 0
     burningStacks: 0
+    bleedingStacks: 0
     fireBallBonusDamageStacks: 0
+    sourceStacks: 0
   deck:
-  - {fileID: 11400000, guid: b283ece60e43e904594443b098ac381b, type: 2}
-  - {fileID: 11400000, guid: 708f5f31c10f4d14e9f8a91cc822a47b, type: 2}
-  - {fileID: 11400000, guid: 708f5f31c10f4d14e9f8a91cc822a47b, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: 4f7008c09af197b43b9e5ee443274691, type: 2}
   - {fileID: 11400000, guid: 4f7008c09af197b43b9e5ee443274691, type: 2}
-  - {fileID: 11400000, guid: 82398fcb72827b547af04198c592e6cc, type: 2}
-  - {fileID: 11400000, guid: 82398fcb72827b547af04198c592e6cc, type: 2}
-  - {fileID: 11400000, guid: b888a78f01d9d114e94eb71e20cda519, type: 2}
   - {fileID: 11400000, guid: f196a97a8b7eeeb4e84b98114e8ae768, type: 2}
   - {fileID: 11400000, guid: f196a97a8b7eeeb4e84b98114e8ae768, type: 2}
   modelParts:

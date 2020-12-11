@@ -28,7 +28,7 @@ MonoBehaviour:
   - passiveData: 15
     passiveStacks: 1
   - passiveData: 50
-    passiveStacks: 1
+    passiveStacks: 2
   - passiveData: 53
     passiveStacks: 1
   - passiveData: 42
@@ -39,3 +39,19 @@ MonoBehaviour:
     passiveStacks: 1
   - passiveData: 45
     passiveStacks: 2
+  - passiveData: 26
+    passiveStacks: 4
+  - passiveData: 11
+    passiveStacks: 2
+  - passiveData: 19
+    passiveStacks: 2
+  - passiveData: 40
+    passiveStacks: 1
+  - passiveData: 69
+    passiveStacks: 1
+  - passiveData: 63
+    passiveStacks: 4
+  - passiveData: 68
+    passiveStacks: 4
+  afflicationsGained: 0
+  goldGainedOrLost: 0

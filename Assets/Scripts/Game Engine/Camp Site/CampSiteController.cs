@@ -536,7 +536,7 @@ public class CampSiteController : Singleton<CampSiteController>
     {
         campDeck.Add(card);
     }
-    public void RemoveCardToCampDeck(CampCardData card)
+    public void RemoveCardFromPersistentCampDeck(CampCardData card)
     {
         campDeck.Remove(card);
     }   
@@ -1251,7 +1251,7 @@ public class CampSiteController : Singleton<CampSiteController>
         }
 
         // Remove card from persistent camp deck
-        RemoveCardToCampDeck(card.myCampDeckCardRef);
+        RemoveCardFromPersistentCampDeck(card.myCampDeckCardRef);
 
 
         // does the card have a cardVM linked to it?

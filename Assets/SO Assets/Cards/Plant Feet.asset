@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Plant Feet
   m_EditorClassIdentifier: 
   cardName: Plant Feet
-  cardDescription: Your next Melee Attack card cost 1 Energy less.
+  cardDescription: Your next Melee Attack card played this activation cost 1 Energy
+    less.
   cardSprite: {fileID: 21300000, guid: f3a33061c9c67f84cba0dd7988ae9d9a, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
@@ -45,7 +46,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'card costs '
+    phrase: 'card played this activation costs '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -88,10 +89,13 @@ MonoBehaviour:
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
+    useEachIndividualsStackCount: 1
     damageType: 0
     healthRestored: 0
     healthLost: 0
@@ -122,5 +126,8 @@ MonoBehaviour:
       projectileStartPosition: 0
       onCharacter: 0
     visualEventsOnFinish: []
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
+  cardPassiveEffects: []
   keyWordModels: []

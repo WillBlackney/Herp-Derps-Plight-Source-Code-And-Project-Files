@@ -121,9 +121,6 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
 
         // Set up health bar
         UpdateHealthGUIElements(startingCharacter.health, startingCharacter.maxHealth);
-
-        // Build skeleton king model
-        // CharacterModelController.BuildModelFromStringReferences(kingModel, kingBodyParts);
     }
     private void ResetKingsBlessingViews()
     {
@@ -371,7 +368,8 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
     {
         List<KingsChoicePairingModel> startingChoices = new List<KingsChoicePairingModel>();
 
-        // Get 1 of each choice type: low, medium, high and extreme impact
+        // Get 1 of each choice type: low, medium, high and extreme impact (but get 2 low)
+        startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.Low, AllChoices));
         startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.Low, AllChoices));
         startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.Medium, AllChoices));
         startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.High, AllChoices));
@@ -535,6 +533,7 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
         if (data.effect == KingChoiceEffectType.ModifyMaxHealth)
         {
             CharacterDataController.Instance.SetCharacterMaxHealth(startingCharacter, startingCharacter.maxHealth + data.maxHealthGainedOrLost);
+            CharacterDataController.Instance.SetCharacterHealth(startingCharacter, startingCharacter.maxHealth);
 
             string notifText = "";
 
