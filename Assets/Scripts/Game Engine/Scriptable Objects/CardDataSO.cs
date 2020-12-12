@@ -47,58 +47,60 @@ public class CardDataSO : ScriptableObject
     [LabelWidth(100)]
     [GUIColor("Blue")]
     public Rarity rarity;
-    [VerticalGroup("Core Data/Stats")]
-    [LabelWidth(100)]
-    [GUIColor("Blue")]
-    public bool affliction;
-    [VerticalGroup("Core Data/Stats")]
-    [LabelWidth(100)]
-    [GUIColor("Blue")]
-    public bool racialCard;
-    [ShowIf("ShowOriginRace")]
-    [VerticalGroup("Core Data/Stats")]
-    [LabelWidth(100)]
-    [GUIColor("Blue")]
-    public CharacterRace originRace;
+  
 
     [BoxGroup("Upgrade Settings", true, true)]
     [LabelWidth(100)]
-    [GUIColor("Blue")]
+    [GUIColor("Yellow")]
     public bool upgradeable;
 
     [BoxGroup("Upgrade Settings")]
     [LabelWidth(100)]
-    [GUIColor("Blue")]
+    [GUIColor("Yellow")]
     public int upgradeLevel;
 
-    [BoxGroup("Key Words", true, true)]
+    [BoxGroup("Core Key Words", true, true)]
     [LabelWidth(100)]
     [GUIColor("Green")]
     public bool expend;
-    [BoxGroup("Key Words")]
+    [BoxGroup("Core Key Words")]
     [LabelWidth(100)]
     [GUIColor("Green")]
     public bool innate;
-    [BoxGroup("Key Words")]
+    [BoxGroup("Core Key Words")]
     [LabelWidth(100)]
     [GUIColor("Green")]
     public bool fleeting;
-    [BoxGroup("Key Words")]
+    [BoxGroup("Core Key Words")]
     [LabelWidth(100)]
     [GUIColor("Green")]
     public bool unplayable;
-    [BoxGroup("Key Words")]
+    [BoxGroup("Core Key Words")]
     [LabelWidth(100)]
     [GUIColor("Green")]
-    public bool lifeSteal;
-    [BoxGroup("Key Words")]
+    public bool lifeSteal;  
+
+    [BoxGroup("Misc Key Words", true, true)]
     [LabelWidth(100)]
-    [GUIColor("Green")]
+    [GUIColor("Blue")]
     public bool blessing;
-    [BoxGroup("Key Words")]
+    [BoxGroup("Misc Key Words")]
     [LabelWidth(100)]
-    [GUIColor("Green")]
+    [GUIColor("Blue")]
     public bool sourceSpell;
+    [BoxGroup("Misc Key Words")]
+    [LabelWidth(100)]
+    [GUIColor("Blue")]
+    public bool affliction;
+    [BoxGroup("Misc Key Words")]
+    [LabelWidth(100)]
+    [GUIColor("Blue")]
+    public bool racialCard;
+    [ShowIf("ShowOriginRace")]
+    [BoxGroup("Misc Key Words")]
+    [LabelWidth(100)]
+    [GUIColor("Blue")]
+    public CharacterRace originRace;
 
     [VerticalGroup("List Groups")]
     [LabelWidth(200)]

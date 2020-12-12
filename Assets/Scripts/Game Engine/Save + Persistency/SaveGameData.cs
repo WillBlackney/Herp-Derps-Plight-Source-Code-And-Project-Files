@@ -12,6 +12,7 @@ public class SaveGameData
     // Journey data
     public int currentJourneyPosition;
     public SaveCheckPoint saveCheckPoint;
+    public string map;
 
     // Player data
     public int currentGold;

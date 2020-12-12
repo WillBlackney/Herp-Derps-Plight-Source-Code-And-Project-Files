@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using MapSystem;
 
 public class PersistencyManager : Singleton<PersistencyManager>
 {
@@ -75,6 +76,10 @@ public class PersistencyManager : Singleton<PersistencyManager>
         // Build Camp site data
         CampSiteController.Instance.BuildPropertiesFromStandardSettings();
         CampSiteController.Instance.SaveMyDataToSaveFile(newSave);
+
+        // Generate a map
+        MapManager.Instance.SetCurrentMap(MapManager.Instance.GenerateNewMap());
+        MapManager.Instance.SaveMyDataToSaveFile(newSave);
 
         // Set starting journey state
         newSave.currentJourneyPosition = 0;
@@ -149,7 +154,6 @@ public class PersistencyManager : Singleton<PersistencyManager>
                 for (int i = 0; i < 5; i++)
                 {
                     CharacterDataController.Instance.AddCardToCharacterDeck(character, CardController.Instance.BuildCardDataFromScriptableObjectData(improviseCardData));
-                    //character.deck.Add(CardController.Instance.BuildCardDataFromScriptableObjectData(improviseCardData));
                 }
             }
         }
@@ -170,6 +174,9 @@ public class PersistencyManager : Singleton<PersistencyManager>
 
         // Save Player data
         PlayerDataManager.Instance.SaveMyDataToSaveFile(newSave);
+
+        // Save journey data
+        MapManager.Instance.SaveMyDataToSaveFile(newSave);
 
         // Save journey data
         JourneyManager.Instance.SaveMyDataToSaveFile(newSave);
@@ -210,6 +217,9 @@ public class PersistencyManager : Singleton<PersistencyManager>
 
         // Build character data
         CharacterDataController.Instance.BuildMyDataFromSaveFile(newLoad);
+
+        // Build Map data
+        MapManager.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // Set journey data
         JourneyManager.Instance.BuildMyDataFromSaveFile(newLoad);
