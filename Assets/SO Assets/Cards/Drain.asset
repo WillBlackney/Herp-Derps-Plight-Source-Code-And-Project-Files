@@ -48,7 +48,7 @@ MonoBehaviour:
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'damage equal to target''s current '
-  - color: 8
+  - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'Poisoned '

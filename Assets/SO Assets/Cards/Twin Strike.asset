@@ -36,7 +36,7 @@ MonoBehaviour:
   blessing: 0
   sourceSpell: 0
   customDescription:
-  - color: 0
+  - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'Deal '
@@ -44,21 +44,21 @@ MonoBehaviour:
     getPhraseFromCardValue: 1
     cardEffectType: 6
     phrase: 3
-  - color: 0
+  - color: 4
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: ' Physical '
-  - color: 0
+  - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'damage.
 
 '
-  - color: 0
+  - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: Dual Wield
-  - color: 0
+  - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: ': Deal '
@@ -66,11 +66,11 @@ MonoBehaviour:
     getPhraseFromCardValue: 1
     cardEffectType: 6
     phrase: 3
-  - color: 0
+  - color: 4
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: ' Physical '
-  - color: 0
+  - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: damage again.
@@ -104,10 +104,13 @@ MonoBehaviour:
     baseDamageValue: 3
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
+    useEachIndividualsStackCount: 1
     damageType: 1
     healthRestored: 0
     healthLost: 0
@@ -183,6 +186,8 @@ MonoBehaviour:
       projectileFired: 0
       projectileStartPosition: 0
       onCharacter: 0
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   - weaponRequirement: 3
     cardEffectType: 6
     splitTargetEffect: 0
@@ -212,10 +217,13 @@ MonoBehaviour:
     baseDamageValue: 3
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
+    useEachIndividualsStackCount: 1
     damageType: 1
     healthRestored: 0
     healthLost: 0
@@ -261,7 +269,10 @@ MonoBehaviour:
       projectileStartPosition: 0
       onCharacter: 0
     visualEventsOnFinish: []
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
+  cardPassiveEffects: []
   keyWordModels:
   - kewWordType: 7
     weaponRequirement: 3

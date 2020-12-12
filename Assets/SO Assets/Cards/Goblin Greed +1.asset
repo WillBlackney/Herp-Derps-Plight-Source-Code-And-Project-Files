@@ -16,7 +16,7 @@ MonoBehaviour:
   cardDescription: Choose a card in hand. Upgrade it. Innate.
   cardSprite: {fileID: 21300000, guid: c6db3708399329644a86bc1dd00dd5fe, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 0
   cardType: 1
   targettingType: 0
   talentSchool: 0
@@ -86,6 +86,7 @@ MonoBehaviour:
       passivePairing:
         passiveData: 0
         passiveStacks: 0
+      blessingsGained: 0
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
@@ -93,10 +94,13 @@ MonoBehaviour:
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
+    useEachIndividualsStackCount: 1
     damageType: 0
     healthRestored: 0
     healthLost: 0
@@ -112,7 +116,10 @@ MonoBehaviour:
     blessingsGained: 0
     visualEventsOnStart: []
     visualEventsOnFinish: []
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
+  cardPassiveEffects: []
   keyWordModels:
   - kewWordType: 1
     weaponRequirement: 0

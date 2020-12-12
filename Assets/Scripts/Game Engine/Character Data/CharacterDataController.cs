@@ -428,7 +428,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
                 Debug.Log("BuildNewSaveFileOnNewGameStarted() found matching racial card, adding " + card.cardName +
                     " to " + character.myName + "'s deck");
                 CardData newRacialCard = CardController.Instance.CloneCardDataFromCardData(card);
-                AddCardToCharacterDeck(character, newRacialCard);
+                AddCardToCharacterDeck(character, newRacialCard, 0);
                 break;
             }
         }

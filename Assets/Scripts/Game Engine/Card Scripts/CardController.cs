@@ -595,6 +595,8 @@ public class CardController : Singleton<CardController>
         card.lifeSteal = data.lifeSteal;
         card.unplayable = data.unplayable;
         card.blessing = data.blessing;
+        card.affliction = data.affliction;
+        card.racial = data.racialCard;
         card.sourceSpell = data.sourceSpell;
 
         // lists
@@ -633,6 +635,8 @@ public class CardController : Singleton<CardController>
         card.unplayable = data.unplayable;
         card.lifeSteal = data.lifeSteal;
         card.blessing = data.blessing;
+        card.racial = data.racialCard;
+        card.affliction = data.affliction;
         card.sourceSpell = data.sourceSpell;
 
         // lists
@@ -676,6 +680,8 @@ public class CardController : Singleton<CardController>
         card.unplayable = original.unplayable;
         card.lifeSteal = original.lifeSteal;
         card.blessing = original.blessing;
+        card.affliction = original.affliction;
+        card.racial = original.racial;
         card.sourceSpell = original.sourceSpell;
 
         card.cardEffects = new List<CardEffect>();
@@ -1106,7 +1112,19 @@ public class CardController : Singleton<CardController>
     {
         foreach (Image sr in cvm.talentRenderers)
         {
-            sr.color = color;
+            if(cvm.card != null && cvm.card.racialCard)
+            {
+                sr.color = ColorLibrary.Instance.racialColor;
+            }
+            else if (cvm.card != null && cvm.card.affliction)
+            {
+                sr.color = ColorLibrary.Instance.afflictionColor;
+            }
+            else
+            {
+                sr.color = color;
+            }
+           
         }
         if (cvm.myPreviewCard != null)
         {

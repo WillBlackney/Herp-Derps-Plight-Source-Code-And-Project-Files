@@ -16,7 +16,7 @@ MonoBehaviour:
   cardDescription: "Give target Power equal to your Overload. \nRemove all Overload."
   cardSprite: {fileID: 21300000, guid: 3cda532218cd08d4ab9350e8760949d4, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 1
   targettingType: 2
   talentSchool: 13

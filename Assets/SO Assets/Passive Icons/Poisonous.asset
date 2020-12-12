@@ -39,7 +39,7 @@ MonoBehaviour:
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'X '
-  - color: 8
+  - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: Poisoned

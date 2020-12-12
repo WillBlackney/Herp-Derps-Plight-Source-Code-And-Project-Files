@@ -52,7 +52,7 @@ MonoBehaviour:
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: '3 '
-  - color: 8
+  - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: Poisoned
@@ -100,10 +100,13 @@ MonoBehaviour:
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
+    useEachIndividualsStackCount: 1
     damageType: 0
     healthRestored: 0
     healthLost: 0
@@ -164,6 +167,8 @@ MonoBehaviour:
       projectileFired: 0
       projectileStartPosition: 0
       onCharacter: 0
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   - weaponRequirement: 0
     cardEffectType: 3
     splitTargetEffect: 0
@@ -193,10 +198,13 @@ MonoBehaviour:
     baseDamageValue: 5
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
+    useEachIndividualsStackCount: 1
     damageType: 4
     healthRestored: 0
     healthLost: 0
@@ -212,7 +220,10 @@ MonoBehaviour:
     blessingsGained: 0
     visualEventsOnStart: []
     visualEventsOnFinish: []
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
+  cardPassiveEffects: []
   keyWordModels:
   - kewWordType: 9
     weaponRequirement: 0

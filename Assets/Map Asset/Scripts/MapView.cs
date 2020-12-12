@@ -27,6 +27,7 @@ namespace Map
         public float orientationOffset;
         [Header("Background Settings")]
         [Tooltip("If the background sprite is null, background will not be shown")]
+        [SerializeField] private Material mapMaterial;
         public Sprite background;
         public Color32 backgroundColor = Color.white;
         public float xSize;
@@ -51,7 +52,7 @@ namespace Map
         private GameObject firstParent;
         private GameObject mapParent;
         private List<List<Point>> paths;
-        private Camera cam;
+
         // ALL nodes:
         public readonly List<MapNode> MapNodes = new List<MapNode>();
         private readonly List<LineConnection> lineConnections = new List<LineConnection>();
@@ -61,7 +62,6 @@ namespace Map
         private void Awake()
         {
             Instance = this;
-            cam = Camera.main;
         }
 
         private void ClearMap()
@@ -114,6 +114,8 @@ namespace Map
             backgroundObject.transform.localRotation = Quaternion.identity;
             var sr = backgroundObject.AddComponent<SpriteRenderer>();
             sr.color = backgroundColor;
+            sr.sortingOrder = 30000;
+            sr.material = mapMaterial;
             sr.drawMode = SpriteDrawMode.Sliced;
             sr.sprite = background;
             sr.size = new Vector2(xSize, span + yOffset * 2f);
@@ -228,10 +230,10 @@ namespace Map
             var scrollNonUi = mapParent.GetComponent<ScrollNonUI>();
             var span = mapManager.CurrentMap.DistanceBetweenFirstAndLastLayers();
             var bossNode = MapNodes.FirstOrDefault(node => node.Node.nodeType == NodeType.Boss);
-            Debug.Log("Map span in set orientation: " + span + " camera aspect: " + cam.aspect);
+            Debug.Log("Map span in set orientation: " + span + " camera aspect: " + CameraManager.Instance.MainCamera.aspect);
 
             // setting first parent to be right in front of the camera first:
-            firstParent.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y, 0f);
+            firstParent.transform.position = new Vector3(CameraManager.Instance.MainCamera.transform.position.x, CameraManager.Instance.MainCamera.transform.position.y, 0f);
             var offset = orientationOffset;
             switch (orientation)
             {
@@ -254,7 +256,7 @@ namespace Map
                     firstParent.transform.localPosition += new Vector3(0, -offset, 0);
                     break;
                 case MapOrientation.RightToLeft:
-                    offset *= cam.aspect;
+                    offset *= CameraManager.Instance.MainCamera.aspect;
                     mapParent.transform.eulerAngles = new Vector3(0, 0, 90);
                     // factor in map span:
                     firstParent.transform.localPosition -= new Vector3(offset, bossNode.transform.position.y, 0);
@@ -265,7 +267,7 @@ namespace Map
                     }
                     break;
                 case MapOrientation.LeftToRight:
-                    offset *= cam.aspect;
+                    offset *= CameraManager.Instance.MainCamera.aspect;
                     mapParent.transform.eulerAngles = new Vector3(0, 0, -90);
                     firstParent.transform.localPosition += new Vector3(offset, -bossNode.transform.position.y, 0);
                     if (scrollNonUi != null)

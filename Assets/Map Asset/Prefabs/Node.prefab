@@ -273,7 +273,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6746199761131337691}
   - component: {fileID: 630816347003431604}
-  - component: {fileID: 6142034472940283601}
+  - component: {fileID: 6045703487138762387}
   m_Layer: 0
   m_Name: Node
   m_TagString: Untagged
@@ -311,22 +311,20 @@ MonoBehaviour:
   sr: {fileID: 9037504550964365079}
   visitedCircle: {fileID: 2263283713793921596}
   visitedCircleImage: {fileID: 7600212338723090613}
---- !u!58 &6142034472940283601
-CircleCollider2D:
+  swirlCanvas: {fileID: 0}
+--- !u!65 &6045703487138762387
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6746199761131337685}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8152473846688106480
 GameObject:
   m_ObjectHideFlags: 0

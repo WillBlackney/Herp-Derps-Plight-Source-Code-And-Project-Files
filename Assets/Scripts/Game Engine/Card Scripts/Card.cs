@@ -43,6 +43,8 @@ public class Card
     public bool lifeSteal;
     public bool blessing;
     public bool sourceSpell;
+    public bool racial;
+    public bool affliction;
 
     // misc getters
     public CharacterData myCharacterData()

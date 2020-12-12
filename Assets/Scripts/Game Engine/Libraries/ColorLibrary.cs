@@ -17,6 +17,10 @@ public class ColorLibrary : Singleton<ColorLibrary>
     public Color corruptionColor;
     public Color scoundrelColor;
 
+    [Header("Misc Card Colors")]
+    public Color racialColor;
+    public Color afflictionColor;
+
     #endregion
 
     // Rarity Colors
