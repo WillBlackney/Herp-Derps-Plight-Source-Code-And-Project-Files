@@ -12,7 +12,8 @@ namespace MapSystem
 
         public IntMinMax numOfPreBossNodes;
         public IntMinMax numOfStartingNodes;
-        [Reorderable]
+
+        //[Reorderable]
         public ListOfMapLayers layers;
 
         [System.Serializable]

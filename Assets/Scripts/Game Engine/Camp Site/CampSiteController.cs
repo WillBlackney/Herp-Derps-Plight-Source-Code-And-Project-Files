@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using TMPro;
 using Sirenix.OdinInspector;
+using MapSystem;
 
 public class CampSiteController : Singleton<CampSiteController>
 {
@@ -54,7 +55,7 @@ public class CampSiteController : Singleton<CampSiteController>
     [SerializeField] private TextMeshProUGUI campPointText;
 
     [Header("Misc Properties")]
-    private bool continueButtonEnabled = false;
+    [HideInInspector] public bool continueButtonEnabled = false;
     private bool awaitingCardUpgradeChoice = false;
     private bool awaitingCardRemovalChoice = false;
     private bool awaitingCardCloneChoice = false;
@@ -526,7 +527,9 @@ public class CampSiteController : Singleton<CampSiteController>
     }
     private void HandleContinueButtonClicked()
     {
-        EventSequenceController.Instance.HandleLoadNextEncounter();
+        MapPlayerTracker.Instance.UnlockMap();
+        MapView.Instance.OnWorldMapButtonClicked();
+        // EventSequenceController.Instance.HandleLoadNextEncounter();
     }
     #endregion
 

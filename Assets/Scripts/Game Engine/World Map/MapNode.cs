@@ -5,16 +5,6 @@ using UnityEngine.UI;
 
 namespace MapSystem
 {
-    public enum NodeStates
-    {
-        Locked,
-        Visited,
-        Attainable
-    }
-}
-
-namespace MapSystem
-{
     public class MapNode : MonoBehaviour
     {
         public SpriteRenderer sr;
@@ -36,7 +26,7 @@ namespace MapSystem
             Node = node;
             Blueprint = blueprint;
             sr.sprite = blueprint.sprite;
-            if (node.nodeType == NodeType.Boss) transform.localScale *= 1.5f;
+            if (node.nodeType == EncounterType.BossEnemy) transform.localScale *= 1.5f;
             initialScale = sr.transform.localScale.x;
             visitedCircle.color = MapView.Instance.visitedColor;
             visitedCircle.gameObject.SetActive(false);

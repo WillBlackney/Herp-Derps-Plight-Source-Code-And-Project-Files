@@ -7,13 +7,7 @@ namespace MapSystem
 {
     public class MapView : Singleton<MapView>
     {
-        public enum MapOrientation
-        {
-            BottomToTop,
-            TopToBottom,
-            RightToLeft,
-            LeftToRight
-        }
+      
 
         public MapManager mapManager;
         public MapOrientation orientation;
@@ -70,13 +64,13 @@ namespace MapSystem
             }
         }
 
-        private void ShowMainMapView()
+        public void ShowMainMapView()
         {
             Debug.Log("MapView.ShowMainMapView() called...");
             masterMapParent.SetActive(true);
             ShowMap(MapManager.Instance.CurrentMap);
         }
-        private void HideMainMapView()
+        public void HideMainMapView()
         {
             Debug.Log("MapView.HideMainMapView() called...");
             masterMapParent.SetActive(false);
@@ -126,7 +120,7 @@ namespace MapSystem
 
             var backgroundObject = new GameObject("Background");
             backgroundObject.transform.SetParent(mapParent.transform);
-            var bossNode = MapNodes.FirstOrDefault(node => node.Node.nodeType == NodeType.Boss);
+            var bossNode = MapNodes.FirstOrDefault(node => node.Node.nodeType == EncounterType.BossEnemy);
             var span = m.DistanceBetweenFirstAndLastLayers();
             backgroundObject.transform.localPosition = new Vector3(bossNode.transform.localPosition.x, span / 2f, 0f);
             backgroundObject.transform.localRotation = Quaternion.identity;
@@ -248,7 +242,7 @@ namespace MapSystem
         {
             var scrollNonUi = mapParent.GetComponent<ScrollNonUI>();
             var span = mapManager.CurrentMap.DistanceBetweenFirstAndLastLayers();
-            var bossNode = MapNodes.FirstOrDefault(node => node.Node.nodeType == NodeType.Boss);
+            var bossNode = MapNodes.FirstOrDefault(node => node.Node.nodeType == EncounterType.BossEnemy);
             Debug.Log("Map span in set orientation: " + span + " camera aspect: " + CameraManager.Instance.MainCamera.aspect);
 
             // setting first parent to be right in front of the camera first:
@@ -353,7 +347,7 @@ namespace MapSystem
             return allMapConfigs.FirstOrDefault(c => c.name == configName);
         }
 
-        public NodeBlueprint GetBlueprint(NodeType type)
+        public NodeBlueprint GetBlueprint(EncounterType type)
         {
             var config = GetConfig(mapManager.CurrentMap.configName);
             return config.nodeBlueprints.FirstOrDefault(n => n.nodeType == type);
@@ -362,6 +356,10 @@ namespace MapSystem
         public NodeBlueprint GetBlueprint(string blueprintName)
         {
             var config = GetConfig(mapManager.CurrentMap.configName);
+            if(config == null)
+            {
+                Debug.LogWarning("map config is null");
+            }
             return config.nodeBlueprints.FirstOrDefault(n => n.name == blueprintName);
         }
     }

@@ -8,8 +8,9 @@ namespace MapSystem
     {
         private static MapConfig config;
 
-        private static readonly List<NodeType> RandomNodes = new List<NodeType>
-        {NodeType.Mystery, NodeType.Shop, NodeType.Treasure, NodeType.MinorEnemy, NodeType.CampSite};
+        private static readonly List<EncounterType> RandomNodes = new List<EncounterType>
+        {EncounterType.BasicEnemy, EncounterType.EliteEnemy, EncounterType.BossEnemy, EncounterType.CampSite,
+            EncounterType.RecruitCharacter, EncounterType.Shop};
 
         private static List<float> layerDistances;
         private static List<List<Point>> paths;
@@ -29,6 +30,8 @@ namespace MapSystem
 
             GenerateLayerDistances();
 
+            Debug.LogWarning("Layers in map config = " + config.layers.Count.ToString());
+
             for (var i = 0; i < conf.layers.Count; i++)
                 PlaceLayer(i);
 
@@ -44,7 +47,8 @@ namespace MapSystem
             var nodesList = nodes.SelectMany(n => n).Where(n => n.incoming.Count > 0 || n.outgoing.Count > 0).ToList();
 
             // pick a random name of the boss level for this map:
-            var bossNodeName = config.nodeBlueprints.Where(b => b.nodeType == NodeType.Boss).ToList().Random().name;
+            // var bossNodeName = config.nodeBlueprints.Where(b => b.nodeType == EncounterType.BossEnemy).ToList().Random().name;
+            var bossNodeName = "King Herp Derp Boss";
             return new Map(conf.name, bossNodeName, nodesList, new List<Point>());
         }
 
@@ -72,8 +76,12 @@ namespace MapSystem
 
             for (var i = 0; i < config.GridWidth; i++)
             {
-                var nodeType = Random.Range(0f, 1f) < layer.randomizeNodes ? GetRandomNode() : layer.nodeType;
+                //var nodeType = Random.Range(0f, 1f) < layer.randomizeNodes ? GetRandomNode() : layer.nodeType;
+                var nodeType = Random.Range(0f, 1f) < layer.randomizeNodes ? GetRandomNode(layer.possibleRandomNodeTypes) : layer.nodeType;
+                Debug.LogWarning("Random node type: " + nodeType.ToString());
                 var blueprintName = config.nodeBlueprints.Where(b => b.nodeType == nodeType).ToList().Random().name;
+                Debug.LogWarning("Blueprint name: " + blueprintName);
+                //var blueprintName = nodeType.ToString();
                 var node = new Node(nodeType, blueprintName, new Point(i, layerIndex))
                 {
                     position = new Vector2(-offset + i * layer.nodesApartDistance, GetDistanceToLayer(layerIndex))
@@ -287,9 +295,28 @@ namespace MapSystem
             return path;
         }
 
-        private static NodeType GetRandomNode()
+        private static EncounterType GetRandomNode()
         {
-            return RandomNodes[Random.Range(0, RandomNodes.Count)];
+            if (RandomNodes.Count == 1)
+            {
+                return RandomNodes[0];
+            }
+            else
+            {
+                return RandomNodes[RandomGenerator.NumberBetween(0, RandomNodes.Count - 1)];
+            }
+        }
+        private static EncounterType GetRandomNode(EncounterType[] possibleRandomNodes)
+        {
+            if(possibleRandomNodes.Length == 1)
+            {
+                return possibleRandomNodes[0];
+            }
+            else
+            {
+                return possibleRandomNodes[RandomGenerator.NumberBetween(0, possibleRandomNodes.Length - 1)];
+            }
+           
         }
     }
 }

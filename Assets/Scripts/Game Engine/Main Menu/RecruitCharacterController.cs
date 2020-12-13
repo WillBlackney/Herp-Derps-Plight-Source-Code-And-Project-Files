@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using Spriter2UnityDX;
 using System.Collections;
+using MapSystem;
 
 public class RecruitCharacterController : Singleton<RecruitCharacterController>
 {
@@ -281,11 +282,13 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
     #region
     private void HandleCharacterChoiceMade()
     {
-        // start recruit character process
+        // Start recruit character process
         currentChoices.Clear();
         CharacterData newCharacterClone = CharacterDataController.Instance.CloneNewCharacterToPlayerRoster(selectedCharacter);
         CharacterDataController.Instance.AutoAddCharactersRacialCard(newCharacterClone);
-        EventSequenceController.Instance.HandleLoadNextEncounter();
+        MapPlayerTracker.Instance.UnlockMap();
+        MapView.Instance.OnWorldMapButtonClicked();
+        // EventSequenceController.Instance.HandleLoadNextEncounter();
     }
     private void SetCharacterChoice(CharacterData character)
     {

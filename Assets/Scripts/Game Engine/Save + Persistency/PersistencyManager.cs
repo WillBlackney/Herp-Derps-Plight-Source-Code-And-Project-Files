@@ -77,19 +77,22 @@ public class PersistencyManager : Singleton<PersistencyManager>
         CampSiteController.Instance.BuildPropertiesFromStandardSettings();
         CampSiteController.Instance.SaveMyDataToSaveFile(newSave);
 
-        // Generate a map
+        // Set up map
         MapManager.Instance.SetCurrentMap(MapManager.Instance.GenerateNewMap());
         MapManager.Instance.SaveMyDataToSaveFile(newSave);
+        MapPlayerTracker.Instance.LockMap();
 
         // Set starting journey state
         newSave.currentJourneyPosition = 0;
-        EncounterData ed = JourneyManager.Instance.Encounters[0];
-        newSave.currentEncounter = ed;
+        //EncounterData ed = JourneyManager.Instance.Encounters[0];
+        newSave.currentEncounter = EncounterType.KingsBlessingEvent;
+        newSave.saveCheckPoint = SaveCheckPoint.KingsBlessingStart;
 
+        /*
         if (ed.encounterType == EncounterType.BasicEnemy || ed.encounterType == EncounterType.EliteEnemy)
         {
             newSave.saveCheckPoint = SaveCheckPoint.CombatStart;
-            EnemyWaveSO firstEnemies = JourneyManager.Instance.GetRandomEnemyWaveFromEncounterData(ed);
+            EnemyWaveSO firstEnemies = JourneyManager.Instance.GetRandomEnemyWaveFromEncountersDataSet(ed);
             newSave.currentEnemyWave = firstEnemies.encounterName;
             JourneyManager.Instance.AddEnemyWaveToAlreadyEncounteredList(firstEnemies);
         }
@@ -106,6 +109,7 @@ public class PersistencyManager : Singleton<PersistencyManager>
         {
             newSave.saveCheckPoint = SaveCheckPoint.CampSite;
         }
+        */
 
         // Generate KBC choices
         newSave.kbcChoices = KingsBlessingController.Instance.GenerateFourRandomChoices();

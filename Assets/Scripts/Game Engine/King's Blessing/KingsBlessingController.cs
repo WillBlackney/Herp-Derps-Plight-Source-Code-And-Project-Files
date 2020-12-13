@@ -6,6 +6,7 @@ using TMPro;
 using Sirenix.OdinInspector;
 using System;
 using UnityEngine.UI;
+using MapSystem;
 
 public class KingsBlessingController : Singleton<KingsBlessingController>
 {
@@ -174,8 +175,10 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
     #region
     public void OnContinueButtonClicked()
     {
-        SetContinueButtonInteractions(false);
-        EventSequenceController.Instance.HandleLoadNextEncounter();
+        //SetContinueButtonInteractions(false);
+        //EventSequenceController.Instance.HandleLoadNextEncounter();
+        MapPlayerTracker.Instance.UnlockMap();
+        MapView.Instance.OnWorldMapButtonClicked();
     }
     public void SetContinueButtonInteractions(bool onOrOff)
     {

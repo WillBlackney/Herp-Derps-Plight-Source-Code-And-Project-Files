@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using Sirenix.OdinInspector;
 using System.Collections;
 using Spriter2UnityDX;
+using MapSystem;
 
 public class LootController : Singleton<LootController>
 {
@@ -234,17 +235,17 @@ public class LootController : Singleton<LootController>
 
         // Generate gold reward
         newLoot.goldReward = 0;
-        if(JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.BasicEnemy)
+        if(JourneyManager.Instance.CurrentEncounter == EncounterType.BasicEnemy)
         {
             newLoot.goldReward = RandomGenerator.NumberBetween
                 (GlobalSettings.Instance.basicEnemyGoldRewardLowerLimit, GlobalSettings.Instance.basicEnemyGoldRewardUpperLimit);
         }
-        else if (JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.EliteEnemy)
+        else if (JourneyManager.Instance.CurrentEncounter == EncounterType.EliteEnemy)
         {
             newLoot.goldReward = RandomGenerator.NumberBetween
                 (GlobalSettings.Instance.eliteEnemyGoldRewardLowerLimit, GlobalSettings.Instance.eliteEnemyGoldRewardUpperLimit);
         }
-        else if (JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.BossEnemy)
+        else if (JourneyManager.Instance.CurrentEncounter == EncounterType.BossEnemy)
         {
             newLoot.goldReward = RandomGenerator.NumberBetween
                 (GlobalSettings.Instance.bossEnemyGoldRewardLowerLimit, GlobalSettings.Instance.bossEnemyGoldRewardUpperLimit);
@@ -492,7 +493,9 @@ public class LootController : Singleton<LootController>
     {
         if (VisualEventManager.Instance.EventQueue.Count == 0)
         {
-            EventSequenceController.Instance.HandleLoadNextEncounter();
+            MapPlayerTracker.Instance.UnlockMap();
+            MapView.Instance.OnWorldMapButtonClicked();
+            //EventSequenceController.Instance.HandleLoadNextEncounter();
         }
     }
 

@@ -18,7 +18,7 @@ public class SaveGameData
     public int currentGold;
 
     // Combat event data
-    public EncounterData currentEncounter;
+    public EncounterType currentEncounter;
     public string currentEnemyWave;
 
     // Recruit event data

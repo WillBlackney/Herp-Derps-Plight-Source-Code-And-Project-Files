@@ -597,9 +597,32 @@ public enum EncounterType
     KingsBlessingEvent = 5,
     CampSite = 6,
     Shop = 7,
-
-
-
+    Mystery = 8,
+    Treasure = 9,
+}
+public enum MapOrientation
+{
+    BottomToTop,
+    TopToBottom,
+    RightToLeft,
+    LeftToRight
+}
+public enum NodeType
+{
+    MinorEnemy = 0,
+    EliteEnemy = 1,
+    CampSite = 2,
+    Treasure = 3,
+    Shop = 4,
+    Boss = 5,
+    Mystery = 6,
+    Recruit = 7,
+}
+public enum NodeStates
+{
+    Locked,
+    Visited,
+    Attainable
 }
 #endregion
 

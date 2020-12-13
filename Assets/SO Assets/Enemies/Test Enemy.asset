@@ -17,7 +17,7 @@ MonoBehaviour:
   audioProfile: 7
   enableFlexibleMaxHealth: 0
   maxHealthFlexAmount: 0
-  maxHealth: 100
+  maxHealth: 1
   initiative: 3
   power: 0
   dexterity: 0
@@ -76,6 +76,10 @@ MonoBehaviour:
     thornsStacks: 0
     tranquilHateStacks: 0
     inflamedStacks: 0
+    shockingTouchStacks: 0
+    stormShieldStacks: 0
+    maliceStacks: 0
+    reflexShotBonusDamageStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0

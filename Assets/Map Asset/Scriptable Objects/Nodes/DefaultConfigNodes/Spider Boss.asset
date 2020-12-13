@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Spider Boss
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: a075b601154b8b84c8efd858de216b2e, type: 3}
-  nodeType: 5
+  nodeType: 3

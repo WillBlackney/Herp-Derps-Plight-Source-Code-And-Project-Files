@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using MapSystem;
 
 public class EventSequenceController : Singleton<EventSequenceController>
 {
@@ -103,7 +104,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Spawn enemies
         EnemySpawner.Instance.SpawnEnemyWave("Basic", GlobalSettings.Instance.testingEnemyWave);
-        JourneyManager.Instance.SetNextEncounterAsCurrentLocation();
+        JourneyManager.Instance.IncrementWorldMapPosition();
 
         // Start a new combat event
         ActivationManager.Instance.OnNewCombatEventStarted();
@@ -118,7 +119,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Create player characters in scene
         CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
 
-        JourneyManager.Instance.SetNextEncounterAsCurrentLocation();
+        JourneyManager.Instance.IncrementWorldMapPosition();
 
         StartCombatVictorySequence(EncounterType.BasicEnemy);
     }
@@ -130,13 +131,13 @@ public class EventSequenceController : Singleton<EventSequenceController>
         CharacterDataController.Instance.BuildCharacterRosterFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
 
         // Set up mock data
-        EncounterData mockData = new EncounterData();
-        mockData.encounterType = EncounterType.RecruitCharacter;
+        //EncounterData mockData = new EncounterData();
+       // mockData.encounterType = EncounterType.RecruitCharacter;
         RecruitCharacterController.Instance.currentChoices = RecruitCharacterController.Instance.GetThreeValidRecruitableCharacters();
         JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.RecruitCharacterStart);
 
         // Load event
-        HandleLoadEncounter(mockData);
+        HandleLoadEncounter(EncounterType.RecruitCharacter);
 
     }
     private IEnumerator RunKingsBlessingTestEventSetup()
@@ -313,21 +314,21 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
     // Load Encounters Logic
     #region
-    public void HandleLoadEncounter(EncounterData encounter)
+    public void HandleLoadEncounter(EncounterType encounter)
     {
         Debug.LogWarning("EventSequenceController.HandleLoadEncounter()");
 
-        if ((encounter.encounterType == EncounterType.BasicEnemy ||
-            encounter.encounterType == EncounterType.EliteEnemy ||
-            encounter.encounterType == EncounterType.BossEnemy) &&
+        if ((encounter == EncounterType.BasicEnemy ||
+            encounter == EncounterType.EliteEnemy ||
+            encounter == EncounterType.BossEnemy) &&
             JourneyManager.Instance.CheckPointType == SaveCheckPoint.CombatStart
             )
         {
             HandleLoadCombatEncounter(JourneyManager.Instance.CurrentEnemyWave);
         }
 
-        else if ((encounter.encounterType == EncounterType.BasicEnemy ||
-            encounter.encounterType == EncounterType.EliteEnemy) &&
+        else if ((encounter == EncounterType.BasicEnemy ||
+            encounter == EncounterType.EliteEnemy) &&
             JourneyManager.Instance.CheckPointType == SaveCheckPoint.CombatEnd
             )
         {
@@ -335,12 +336,12 @@ public class EventSequenceController : Singleton<EventSequenceController>
             LevelManager.Instance.EnableDungeonScenery();
             LevelManager.Instance.ShowAllNodeViews();
             CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
-            StartCombatVictorySequence(encounter.encounterType);
+            StartCombatVictorySequence(encounter);
         }
 
         // TO DO IN FUTURE: boss loot events are different to basic/enemy, and 
         // will require different loading logic here
-        else if ((encounter.encounterType == EncounterType.BossEnemy) &&
+        else if ((encounter == EncounterType.BossEnemy) &&
             JourneyManager.Instance.CheckPointType == SaveCheckPoint.CombatEnd
             )
         {
@@ -366,23 +367,27 @@ public class EventSequenceController : Singleton<EventSequenceController>
             HandleLoadShopEvent();
         }
     }
-    public void HandleLoadNextEncounter()
+    public void HandleLoadNextEncounter(MapNode mapNode)
     {
-        StartCoroutine(HandleLoadNextEncounterCoroutine());
+        StartCoroutine(HandleLoadNextEncounterCoroutine(mapNode));
     }
-    public IEnumerator HandleLoadNextEncounterCoroutine()
+    public IEnumerator HandleLoadNextEncounterCoroutine(MapNode mapNode)
     {
+        // Hide world map view
+        MapView.Instance.HideMainMapView();
+
         // Cache previous encounter data 
-        EncounterData previousEncounter = JourneyManager.Instance.CurrentEncounter;
+        EncounterType previousEncounter = JourneyManager.Instance.CurrentEncounter;
         EnemyWaveSO previousEnemyWave = JourneyManager.Instance.CurrentEnemyWave;
 
-        // Increment world position
-        JourneyManager.Instance.SetNextEncounterAsCurrentLocation();
+        // Increment world position + set next encounter
+        JourneyManager.Instance.IncrementWorldMapPosition();
+        JourneyManager.Instance.SetCurrentEncounterType(mapNode.Node.nodeType);
 
         // Destroy all characters and activation windows if the 
         // previous encounter was a combat event
-        if (previousEncounter.encounterType == EncounterType.BasicEnemy ||
-            previousEncounter.encounterType == EncounterType.EliteEnemy)
+        if (previousEncounter == EncounterType.BasicEnemy ||
+            previousEncounter == EncounterType.EliteEnemy)
         {
             // Mark wave as seen
             JourneyManager.Instance.AddEnemyWaveToAlreadyEncounteredList(previousEnemyWave);
@@ -413,13 +418,13 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // TO DO IN FUTURE: Boss victory means loading the next act, so we need
         // different loading/continuation logic here. We also need to end the game,
         // show score, etc, if the boss is last boss (act 3).
-        else if (previousEncounter.encounterType == EncounterType.BossEnemy)
+        else if (previousEncounter == EncounterType.BossEnemy)
         {
 
         }
 
         // Tear down recruit character screen
-        else if(previousEncounter.encounterType == EncounterType.RecruitCharacter)
+        else if(previousEncounter == EncounterType.RecruitCharacter)
         {
             // Fade out visual event
             BlackScreenController.Instance.FadeOutScreen(1f);
@@ -430,7 +435,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         }
 
         // Do kings blessing end sequence + tear down
-        else if (previousEncounter.encounterType == EncounterType.KingsBlessingEvent)
+        else if (previousEncounter == EncounterType.KingsBlessingEvent)
         {
             CoroutineData kbcSequence = new CoroutineData();
             HandleLoadKingsBlessingContinueSequence(kbcSequence);
@@ -439,10 +444,13 @@ public class EventSequenceController : Singleton<EventSequenceController>
         }
 
         // Do camp site end sequence + tear down
-        else if (previousEncounter.encounterType == EncounterType.CampSite)
+        else if (previousEncounter == EncounterType.CampSite)
         {
             List<CampSiteCharacterView> ccList = new List<CampSiteCharacterView>();
             ccList.AddRange(CampSiteController.Instance.AllCampSiteCharacterViews);
+
+            // Disable continue button interactions
+            CampSiteController.Instance.continueButtonEnabled = false;
 
             // Fade and disable out GUI + views
             CampSiteController.Instance.FadeOutNodes();
@@ -472,14 +480,15 @@ public class EventSequenceController : Singleton<EventSequenceController>
         }
 
         // Do shop end sequence + tear down
-        else if (previousEncounter.encounterType == EncounterType.Shop)
+        else if (previousEncounter == EncounterType.Shop)
         {
             // Shop keeper farewell
             ShopController.Instance.DoMerchantFarewell();
 
-            // disable shop keeper clickability
+            // disable shop keeper clickability + GUI
             ShopController.Instance.SetShopKeeperInteractionState(false);
             ShopController.Instance.SetContinueButtonInteractionState(false);
+            ShopController.Instance.HideContinueButton();
 
             // Clear shop content result data
             ShopController.Instance.ClearShopContentDataSet();
@@ -506,13 +515,29 @@ public class EventSequenceController : Singleton<EventSequenceController>
         CameraManager.Instance.ResetMainCameraPositionAndZoom();
 
         // If next event is a combat, get + set enemy wave before saving to disk
-        if (JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.BasicEnemy ||
-            JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.EliteEnemy ||
-            JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.BossEnemy)
+        if (JourneyManager.Instance.CurrentEncounter == EncounterType.BasicEnemy ||
+            JourneyManager.Instance.CurrentEncounter == EncounterType.EliteEnemy ||
+            JourneyManager.Instance.CurrentEncounter == EncounterType.BossEnemy)
         {
             // Calculate and cache the next enemy wave group
-            JourneyManager.Instance.SetCurrentEnemyWaveData 
-                (JourneyManager.Instance.GetRandomEnemyWaveFromEncounterData(JourneyManager.Instance.CurrentEncounter));
+            //JourneyManager.Instance.SetCurrentEnemyWaveData 
+            //  (JourneyManager.Instance.GetRandomEnemyWaveFromEncounterData(JourneyManager.Instance.CurrentEncounter));
+
+            if (JourneyManager.Instance.CurrentEncounter == EncounterType.BasicEnemy)
+            {
+                JourneyManager.Instance.SetCurrentEnemyWaveData 
+                  (JourneyManager.Instance.DetermineAndGetNextBasicEnemyWave());
+            }
+            else if (JourneyManager.Instance.CurrentEncounter == EncounterType.EliteEnemy)
+            {
+                JourneyManager.Instance.SetCurrentEnemyWaveData
+                  (JourneyManager.Instance.DetermineAndGetNextEliteEnemyWave());
+            }
+            else if (JourneyManager.Instance.CurrentEncounter == EncounterType.BossEnemy)
+            {
+                JourneyManager.Instance.SetCurrentEnemyWaveData
+                  (JourneyManager.Instance.DetermineAndGetNextBossEnemyWave());
+            }
 
             // Set check point
             JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.CombatStart);
@@ -525,7 +550,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         }
 
         // Recruit character event
-        else if(JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.RecruitCharacter)
+        else if(JourneyManager.Instance.CurrentEncounter == EncounterType.RecruitCharacter)
         {
             // Generate 3 random characters, if we are not loading from save
             if (RecruitCharacterController.Instance.currentChoices.Count == 0)
@@ -543,7 +568,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         }
 
         // Shop event
-        else if (JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.Shop)
+        else if (JourneyManager.Instance.CurrentEncounter == EncounterType.Shop)
         {
             // Generate new shop contents
             if (ShopController.Instance.CurrentShopContentResultData == null)
@@ -561,7 +586,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         }
 
         // Kings Blessing
-        else if (JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.KingsBlessingEvent)
+        else if (JourneyManager.Instance.CurrentEncounter == EncounterType.KingsBlessingEvent)
         {
             // Set check point
             JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.KingsBlessingStart);
@@ -573,7 +598,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         }
 
         // Camp site
-        else if (JourneyManager.Instance.CurrentEncounter.encounterType == EncounterType.CampSite)
+        else if (JourneyManager.Instance.CurrentEncounter == EncounterType.CampSite)
         {
             // Set check point
             JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.CampSite);
@@ -782,6 +807,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
     }
     private IEnumerator HandleLoadKingsBlessingContinueSequenceCoroutine(CoroutineData cData)
     {
+        // Disable continue button
+        KingsBlessingController.Instance.SetContinueButtonInteractions(false);
+
         // Fade out continue button + health bar.
         KingsBlessingController.Instance.FadeContinueButton(0, 0.5f, true);
         KingsBlessingController.Instance.FadeHealthBar(0, 0.5f, true);

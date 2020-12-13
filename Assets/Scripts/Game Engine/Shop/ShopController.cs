@@ -6,6 +6,7 @@ using Spriter2UnityDX;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
 using TMPro;
+using MapSystem;
 
 public class ShopController : Singleton<ShopController>
 {
@@ -488,9 +489,11 @@ public class ShopController : Singleton<ShopController>
     {
         if (continueButtonIsInteractable)
         {
-            SetContinueButtonInteractionState(false);
-            HideContinueButton();
-            EventSequenceController.Instance.HandleLoadNextEncounter();
+           // SetContinueButtonInteractionState(false);
+           // HideContinueButton();
+            MapPlayerTracker.Instance.UnlockMap();
+            MapView.Instance.OnWorldMapButtonClicked();
+            //EventSequenceController.Instance.HandleLoadNextEncounter();
         }
     }
 
