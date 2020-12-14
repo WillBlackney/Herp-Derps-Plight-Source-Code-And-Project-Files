@@ -15,6 +15,7 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
     [Header("Properties")]
     [SerializeField] private CharacterData selectedCharacter;
     [HideInInspector] public List<CharacterData> currentChoices = new List<CharacterData>();
+    private bool hasMadeChoice = false;
 
     [Header("Core Components")]
     [SerializeField] private GameObject recruitCharacterVisualParent;
@@ -283,12 +284,16 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
     private void HandleCharacterChoiceMade()
     {
         // Start recruit character process
-        currentChoices.Clear();
-        CharacterData newCharacterClone = CharacterDataController.Instance.CloneNewCharacterToPlayerRoster(selectedCharacter);
-        CharacterDataController.Instance.AutoAddCharactersRacialCard(newCharacterClone);
+        if (!hasMadeChoice)
+        {
+            hasMadeChoice = true;
+            currentChoices.Clear();
+            CharacterData newCharacterClone = CharacterDataController.Instance.CloneNewCharacterToPlayerRoster(selectedCharacter);
+            CharacterDataController.Instance.AutoAddCharactersRacialCard(newCharacterClone);
+        }
+   
         MapPlayerTracker.Instance.UnlockMap();
         MapView.Instance.OnWorldMapButtonClicked();
-        // EventSequenceController.Instance.HandleLoadNextEncounter();
     }
     private void SetCharacterChoice(CharacterData character)
     {
@@ -297,6 +302,7 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
     }
     private void ClearCharacterChoice()
     {
+        hasMadeChoice = false;
         selectedCharacter = null;
         confirmButton.interactable = false;
     }
