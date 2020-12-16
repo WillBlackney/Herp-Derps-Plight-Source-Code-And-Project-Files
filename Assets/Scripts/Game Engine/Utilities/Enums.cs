@@ -249,6 +249,7 @@ public enum Passive
     Thorns = 63,
     ToxicAura = 50, 
     TranquilHate = 64,
+    Unbreakable = 71,
     Venomous = 35,
     Vulnerable = 36,
     Weakened = 37,
@@ -473,6 +474,7 @@ public enum BodyPartType
     MainHandWeapon = 18, 
     OffHandWeapon = 19,
     BodyParticles = 20,
+    BodyLighting = 21,
 };
 #endregion
 

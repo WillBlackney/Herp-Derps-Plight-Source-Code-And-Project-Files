@@ -903,11 +903,14 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             character.blockGainedPreviousTurnCycle > 0 && 
             character.block > 0)
         {
-            VisualEventManager.Instance.CreateVisualEvent(()=>
-            VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Block Expiry"));   
-           // ModifyBlock(character, -character.blockGainedPreviousTurnCycle, false);
-            SetBlock(character, character.block - character.blockGainedPreviousTurnCycle, false);
-            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+            if(character.pManager.unbreakableStacks == 0)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Block Expiry"));
+                SetBlock(character, character.block - character.blockGainedPreviousTurnCycle, false);
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+            }
+ 
         }
 
         // Handle remove block from cautious (if character has it and it was triggered)
@@ -915,9 +918,12 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
            character.didTriggerCautiousPrior &&
            character.blockFromCautiousGained > 0)
         {
-            SetBlock(character, character.block - character.blockFromCautiousGained, false);
-            character.blockFromCautiousGained = 0;
-            character.didTriggerCautiousPrior = false;
+            if (character.pManager.unbreakableStacks == 0)
+            {
+                SetBlock(character, character.block - character.blockFromCautiousGained, false);
+                character.blockFromCautiousGained = 0;
+                character.didTriggerCautiousPrior = false;
+            }                
         }
 
         // Modify relevant passives
@@ -2589,7 +2595,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 FadeOutCharacterWorldCanvas(view, null, 0);
 
                 // Hide model
-                CharacterModelController.Instance.FadeOutCharacterModel(view.ucm, 1000, null);
+                CharacterModelController.Instance.FadeOutCharacterModel(view.ucm, 1000);
                 CharacterModelController.Instance.FadeOutCharacterShadow(view, 0);
                 view.blockMouseOver = true;
 

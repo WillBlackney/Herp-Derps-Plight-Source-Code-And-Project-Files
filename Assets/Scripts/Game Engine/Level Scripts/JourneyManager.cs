@@ -25,6 +25,7 @@ public class JourneyManager : Singleton<JourneyManager>
     [SerializeField] private EncounterData stageThreeBasicEnemyEncounters;
     [SerializeField] private EncounterData stageFourBasicEnemyEncounters;
     [SerializeField] private EncounterData stageFiveBasicEnemyEncounters;
+    [SerializeField] private EncounterData stageSixBasicEnemyEncounters;
 
     [Header("Elite Enemy Encounters")]
     [SerializeField] private EncounterData stageOneEliteEnemyEncounters;

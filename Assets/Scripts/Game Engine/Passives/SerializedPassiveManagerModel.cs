@@ -176,6 +176,9 @@ public class SerializedPassiveManagerModel
     [BoxGroup("Buff Passives")]
     [LabelWidth(200)]
     public int reflexShotBonusDamageStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
+    public int unbreakableStacks;
 
     // Aura Passives
     [BoxGroup("Aura Passives", centerLabel: true)]

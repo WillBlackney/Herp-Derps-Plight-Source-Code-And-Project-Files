@@ -10,6 +10,8 @@ public class UniversalCharacterModel : MonoBehaviour
 {
     // Properties + Component References
     #region
+    [HideInInspector] public bool activelyFading = false;
+
     [Header("Core Components")]
     public Animator myAnimator;
     public EntityRenderer myEntityRenderer;
@@ -22,6 +24,10 @@ public class UniversalCharacterModel : MonoBehaviour
 
     [Header("Active Particle References")]
     [HideInInspector] public UniversalCharacterModelElement activeChestParticles;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
+
+    [Header("Active Lighting References")]
+    [HideInInspector] public UniversalCharacterModelElement activeChestLighting;
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Weapon References")]

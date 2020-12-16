@@ -8,7 +8,7 @@ namespace Spriter2UnityDX {
     {
 		public enum MaskInteractionn { None, VisibleInsideMask, VisibleOutsideMask};
 
-		private SpriteRenderer[] renderers = new SpriteRenderer [0];
+		[HideInInspector] public SpriteRenderer[] renderers = new SpriteRenderer [0];
 		private SortingOrderUpdater[] updaters = new SortingOrderUpdater [0];
 		private SpriteRenderer _first; 
 		private SpriteRenderer first {
@@ -122,7 +122,7 @@ namespace Spriter2UnityDX {
 			DoForAll (x => x.enabled = false);
 		}
 		
-		private void DoForAll (Action<SpriteRenderer> action) {
+		public void DoForAll (Action<SpriteRenderer> action) {
 			for (var i = 0; i < renderers.Length; i++) action (renderers [i]);
 		}
 

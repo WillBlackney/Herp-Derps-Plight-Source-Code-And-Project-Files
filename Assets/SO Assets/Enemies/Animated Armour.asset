@@ -37,7 +37,7 @@ MonoBehaviour:
     temporaryBonusStaminaStacks: 0
     temporaryBonusInitiativeStacks: 0
     temporaryBonusDrawStacks: 0
-    runeStacks: 0
+    runeStacks: 2
     barrierStacks: 0
     enrageStacks: 0
     shieldWallStacks: 0
@@ -80,6 +80,7 @@ MonoBehaviour:
     stormShieldStacks: 0
     maliceStacks: 0
     reflexShotBonusDamageStacks: 0
+    unbreakableStacks: 1
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -98,12 +99,12 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   allEnemyActions:
-  - actionName: Strike
+  - actionName: Twin Strike
     actionType: 0
     intentImage: 0
     actionLoops: 1
     doThisOnFirstActivation: 0
-    canBeConsecutive: 1
+    canBeConsecutive: 0
     prioritiseWhenRequirementsMet: 0
     actionRequirements: []
     actionEffects:
@@ -153,10 +154,25 @@ MonoBehaviour:
         projectileFired: 0
         projectileStartPosition: 0
         onCharacter: 0
-      visualEventsOnFinish: []
+      visualEventsOnFinish:
+      - eventType: 6
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0.25
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
       actionType: 0
-      effectLoops: 1
-      baseDamage: 5
+      effectLoops: 2
+      baseDamage: 10
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -169,14 +185,18 @@ MonoBehaviour:
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0
-  - actionName: War Cry
-    actionType: 2
-    intentImage: 4
+  - actionName: Spirit Shield
+    actionType: 7
+    intentImage: 6
     actionLoops: 1
-    doThisOnFirstActivation: 0
+    doThisOnFirstActivation: 1
     canBeConsecutive: 0
     prioritiseWhenRequirementsMet: 0
-    actionRequirements: []
+    actionRequirements:
+    - requirementType: 1
+      requirementTypeValue: 1
+      passiveRequired: {fileID: 0}
+      statusStacksRequired: 0
     actionEffects:
     - visualEventsOnStart:
       - eventType: 2
@@ -194,8 +214,23 @@ MonoBehaviour:
         projectileFired: 0
         projectileStartPosition: 0
         onCharacter: 0
+      - eventType: 3
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 11
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 1
       visualEventsOnFinish: []
-      actionType: 2
+      actionType: 7
       effectLoops: 1
       baseDamage: 0
       damageType: 0
@@ -204,9 +239,112 @@ MonoBehaviour:
       modelFadeInSpeed: 0
       uiFadeInSpeed: 0
       summonedCreatureVisualEvents: []
-      passiveApplied: {fileID: 11400000, guid: 6d216e783d4ba3a49a8dd267aa727fd3, type: 2}
-      passiveStacks: 2
+      passiveApplied: {fileID: 0}
+      passiveStacks: 0
+      blockGained: 25
+      cardAdded: {fileID: 0}
+      copiesAdded: 0
+      collection: 0
+  - actionName: Phalanx Strike
+    actionType: 0
+    intentImage: 3
+    actionLoops: 1
+    doThisOnFirstActivation: 0
+    canBeConsecutive: 0
+    prioritiseWhenRequirementsMet: 0
+    actionRequirements: []
+    actionEffects:
+    - visualEventsOnStart:
+      - eventType: 1
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 1
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
+      - eventType: 2
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 1
+        delayDuration: 0
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
+      - eventType: 4
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 0
+        cameraShake: 1
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
+      visualEventsOnFinish:
+      - eventType: 6
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0.5
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
+      actionType: 0
+      effectLoops: 1
+      baseDamage: 12
+      damageType: 1
+      characterSummoned: {fileID: 0}
+      summonedCreatureStartPosition: 0
+      modelFadeInSpeed: 0
+      uiFadeInSpeed: 0
+      summonedCreatureVisualEvents: []
+      passiveApplied: {fileID: 0}
+      passiveStacks: 0
       blockGained: 0
+      cardAdded: {fileID: 0}
+      copiesAdded: 0
+      collection: 0
+    - visualEventsOnStart: []
+      visualEventsOnFinish: []
+      actionType: 7
+      effectLoops: 1
+      baseDamage: 0
+      damageType: 0
+      characterSummoned: {fileID: 0}
+      summonedCreatureStartPosition: 0
+      modelFadeInSpeed: 0
+      uiFadeInSpeed: 0
+      summonedCreatureVisualEvents: []
+      passiveApplied: {fileID: 0}
+      passiveStacks: 0
+      blockGained: 10
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0
@@ -215,3 +353,6 @@ MonoBehaviour:
   - Battle_Mage_Right_Leg_Wear
   - Battle_Mage_Head_Wear
   - Paladin_Right_Hand_Wear
+  - Blue_Glow_Light
+  - Black_Gold_Plate_Shield
+  - Left_Hand_Simple_Sword

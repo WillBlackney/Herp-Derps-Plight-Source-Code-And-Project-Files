@@ -165,4 +165,5 @@ public class CharacterEntityView : MonoBehaviour
     }
     #endregion
 
+  
 }

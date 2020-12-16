@@ -646,7 +646,7 @@ public class LootController : Singleton<LootController>
         // Fade out character models
         foreach (RewardCharacterBox box in rewardCharacterBoxes)
         {
-            CharacterModelController.Instance.FadeOutCharacterModel(box.ucm, 10f);
+            CharacterModelController.Instance.FadeOutCharacterModel(box.ucm, 0.5f);
         }       
   
         // Fade out + disable main view

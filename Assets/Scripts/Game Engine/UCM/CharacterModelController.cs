@@ -6,10 +6,8 @@ using DG.Tweening;
 
 public class CharacterModelController: Singleton<CharacterModelController>
 {
-
     // View Logic
     #region
-
     public void BuildModelFromStringReferences(UniversalCharacterModel model, List<string> partNames)
     {
         DisableAllActiveModelElementViews(model);
@@ -213,7 +211,6 @@ public class CharacterModelController: Singleton<CharacterModelController>
         }
     }
     #endregion
-
 
     // Set Specific Body Parts
     #region
@@ -576,6 +573,14 @@ public class CharacterModelController: Singleton<CharacterModelController>
             }
             model.activeChestParticles = element;
         }
+        else if (element.bodyPartType == BodyPartType.BodyLighting)
+        {
+            if (model.activeChestLighting != null)
+            {
+                DisableAndClearElementOnModel(model, model.activeChestLighting);
+            }
+            model.activeChestLighting = element;
+        }
 
         // Enable GO
         element.gameObject.SetActive(true);
@@ -685,6 +690,12 @@ public class CharacterModelController: Singleton<CharacterModelController>
             model.activeChestParticles = null;
         }
 
+        // Lighting
+        else if (element.bodyPartType == BodyPartType.BodyLighting)
+        {
+            model.activeChestLighting = null;
+        }
+
         // repeat for any connected elements (e.g. active arm/hand sprites that are connected to the chest piece
         foreach (UniversalCharacterModelElement connectedElement in element.connectedElements)
         {
@@ -790,55 +801,48 @@ public class CharacterModelController: Singleton<CharacterModelController>
 
     // Fading Logic
     #region
-    public void FadeOutCharacterModel(UniversalCharacterModel model, float speed = 5f, CoroutineData cData = null)
-    {
-        Debug.Log("CharacterEntityController.FadeOutCharacterModel() called...");
-        StartCoroutine(FadeOutCharacterModelCoroutine(model, speed, cData));
-    }
-    private IEnumerator FadeOutCharacterModelCoroutine(UniversalCharacterModel model, float speed, CoroutineData cData)
+    public void FadeOutCharacterModel(UniversalCharacterModel model, float speed = 1f)
     {
         EntityRenderer view = model.myEntityRenderer;
-        float currentAlpha = view.Color.a;
-
-        while (currentAlpha > 0)
+        foreach (SpriteRenderer sr in view.renderers)
         {
-            view.Color = new Color(view.Color.r, view.Color.g, view.Color.b, currentAlpha - (speed * Time.deltaTime));
-            currentAlpha = view.Color.a;
-            yield return null;
+            if (sr.gameObject.activeSelf)
+                sr.DOFade(0, speed);
         }
 
-        // Resolve
-        if (cData != null)
+        // Stop particles
+        if(model.activeChestParticles != null)
         {
-            cData.MarkAsCompleted();
+            ParticleSystem[] ps = model.activeChestParticles.GetComponentsInChildren<ParticleSystem>();
+            foreach(ParticleSystem p in ps)
+            {
+                p.Stop();
+            }
         }
-    }
-    public void FadeInCharacterModel(UniversalCharacterModel model, float speed = 5f, CoroutineData cData = null)
+
+    }   
+    public void FadeInCharacterModel(UniversalCharacterModel model, float speed = 1f)
     {
-        Debug.Log("CharacterEntityController.FadeInCharacterModel() called...");
-        StartCoroutine(FadeInCharacterModelCoroutine(model, speed, cData));
-    }
-    private IEnumerator FadeInCharacterModelCoroutine(UniversalCharacterModel model, float speed, CoroutineData cData)
-    {
-        // Set completely transparent at start
         EntityRenderer view = model.myEntityRenderer;
-        view.Color = new Color(view.Color.r, view.Color.g, view.Color.b, 0);
-
-        float currentAlpha = view.Color.a;
-
-        while (currentAlpha < 1)
+        foreach (SpriteRenderer sr in view.renderers)
         {
-            view.Color = new Color(view.Color.r, view.Color.g, view.Color.b, currentAlpha + (speed * Time.deltaTime));
-            currentAlpha = view.Color.a;
-            yield return null;
+            if (sr.gameObject.activeSelf)
+                sr.DOKill();
+            sr.DOFade(1, speed);
         }
 
-        // Resolve
-        if (cData != null)
+        // Restart particles
+        if (model.activeChestParticles != null)
         {
-            cData.MarkAsCompleted();
+            ParticleSystem[] ps = model.activeChestParticles.GetComponentsInChildren<ParticleSystem>();
+            foreach (ParticleSystem p in ps)
+            {
+                p.Clear();
+                p.Play();
+            }
         }
     }
+   
     public void FadeInCharacterShadow(CharacterEntityView view, float speed, System.Action onCompleteCallBack = null)
     {
         view.ucmShadowCg.DOFade(0f, 0f);

@@ -801,8 +801,9 @@ public class CombatLogic : Singleton<CombatLogic>
         VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateExpendEffect(view.WorldPosition, 15, 0.2f, false));
 
         // Fade out UCM
-        CoroutineData fadeOutCharacter = new CoroutineData();
-        VisualEventManager.Instance.CreateVisualEvent(() => CharacterModelController.Instance.FadeOutCharacterModel(view.ucm, 2.5f, fadeOutCharacter));
+        VisualEventManager.Instance.CreateVisualEvent(() => CharacterModelController.Instance.FadeOutCharacterModel(view.ucm, 1));
+        VisualEventManager.Instance.CreateVisualEvent(() => CharacterModelController.Instance.FadeInCharacterShadow(view, 0.5f));
+        VisualEventManager.Instance.InsertTimeDelayInQueue(1f);
 
         // Destroy characters activation window and update other window positions
         CharacterEntityModel currentlyActivatedEntity = ActivationManager.Instance.EntityActivated;

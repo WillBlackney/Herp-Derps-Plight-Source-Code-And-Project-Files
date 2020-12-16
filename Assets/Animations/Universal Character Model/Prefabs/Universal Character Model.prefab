@@ -101,6 +101,543 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e9dda14b6f34517a0d598d3320a902, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  renderers:
+  - {fileID: 212571190062328118}
+  - {fileID: 4674531931067961129}
+  - {fileID: 4918924559504253511}
+  - {fileID: 4959049799395275769}
+  - {fileID: 2185144507354659770}
+  - {fileID: 2832394578368537891}
+  - {fileID: 1391125327670948348}
+  - {fileID: 6512127901866161348}
+  - {fileID: 285075420803245377}
+  - {fileID: 2853568665458718998}
+  - {fileID: 8682115120356464682}
+  - {fileID: 847546913437301006}
+  - {fileID: 3131317871981190787}
+  - {fileID: 2942678107158349542}
+  - {fileID: 4535686430437883189}
+  - {fileID: 1073353319903381595}
+  - {fileID: 4106487445341835419}
+  - {fileID: 262705863548025217}
+  - {fileID: 4180590141194046670}
+  - {fileID: 15093956690635246}
+  - {fileID: 1235790299580832947}
+  - {fileID: 7996455679196418593}
+  - {fileID: 5927382042304334419}
+  - {fileID: 2766580855573966370}
+  - {fileID: 3454511876872685596}
+  - {fileID: 7450043793479373221}
+  - {fileID: 5592164848616976754}
+  - {fileID: 6009184094500160442}
+  - {fileID: 6117170004070642778}
+  - {fileID: 8417810064336824470}
+  - {fileID: 5723905422432394276}
+  - {fileID: 4026055511410298618}
+  - {fileID: 1204215030810238575}
+  - {fileID: 4800997673729896928}
+  - {fileID: 7977005393899564158}
+  - {fileID: 4536090563322497220}
+  - {fileID: 1131541988452496107}
+  - {fileID: 5874899720228665148}
+  - {fileID: 8436229812831330025}
+  - {fileID: 3964698800898227431}
+  - {fileID: 8393752389441788409}
+  - {fileID: 8261768927309338130}
+  - {fileID: 5084604247922778579}
+  - {fileID: 2802417862642051330}
+  - {fileID: 4826605960186114188}
+  - {fileID: 7573933888547789930}
+  - {fileID: 3802606837401615237}
+  - {fileID: 5779598565532803990}
+  - {fileID: 10850356521428249}
+  - {fileID: 5779072544175841539}
+  - {fileID: 6755354525261654752}
+  - {fileID: 226295589406026444}
+  - {fileID: 7968316491510866953}
+  - {fileID: 5796738944024655357}
+  - {fileID: 4217348141786162372}
+  - {fileID: 4951248947444346130}
+  - {fileID: 5347655497909956586}
+  - {fileID: 2337506485044042848}
+  - {fileID: 1139527021467831166}
+  - {fileID: 3205746806834701465}
+  - {fileID: 5356966162450524063}
+  - {fileID: 6253870399750901387}
+  - {fileID: 8142790995959943105}
+  - {fileID: 7376018498202003149}
+  - {fileID: 7094549379245860483}
+  - {fileID: 7989044462832127247}
+  - {fileID: 8488310586683608739}
+  - {fileID: 2289341302062638252}
+  - {fileID: 1362053835512359782}
+  - {fileID: 1368877522746854951}
+  - {fileID: 9191843325694183674}
+  - {fileID: 9036078896022583665}
+  - {fileID: 3015283856968554130}
+  - {fileID: 6518047111509123995}
+  - {fileID: 263502061597972837}
+  - {fileID: 7034503292283201314}
+  - {fileID: 5428988485375083082}
+  - {fileID: 5023868503809492552}
+  - {fileID: 367721286970293438}
+  - {fileID: 5217077967420903173}
+  - {fileID: 3614479123565579417}
+  - {fileID: 230225385065601449}
+  - {fileID: 6309027146602935373}
+  - {fileID: 523004119018955693}
+  - {fileID: 1804426352243619009}
+  - {fileID: 886594647667127380}
+  - {fileID: 3797772380502110358}
+  - {fileID: 7500765122579654615}
+  - {fileID: 1817880688372545116}
+  - {fileID: 2032472658546898129}
+  - {fileID: 7596348447519028320}
+  - {fileID: 155945338300292928}
+  - {fileID: 1673053764462823120}
+  - {fileID: 100248491303432658}
+  - {fileID: 3114069373850113811}
+  - {fileID: 7036530651656939461}
+  - {fileID: 6613437046858352562}
+  - {fileID: 1008595458873436245}
+  - {fileID: 3551799236116038527}
+  - {fileID: 6631052365451234766}
+  - {fileID: 5163659950803468242}
+  - {fileID: 8956660589914788257}
+  - {fileID: 590578863410570071}
+  - {fileID: 1928456940136369951}
+  - {fileID: 5066687963316295099}
+  - {fileID: 561636076396768970}
+  - {fileID: 7678484998096039699}
+  - {fileID: 4273482620770729164}
+  - {fileID: 7873912446622596032}
+  - {fileID: 6461468328997007872}
+  - {fileID: 5994267502205436917}
+  - {fileID: 1858261908866324137}
+  - {fileID: 7586149650343653069}
+  - {fileID: 8741432001339618342}
+  - {fileID: 6702920169191693623}
+  - {fileID: 4988499943523553324}
+  - {fileID: 6694669018775932028}
+  - {fileID: 6657462372356399422}
+  - {fileID: 3035095014600326829}
+  - {fileID: 676582961060283820}
+  - {fileID: 3291296392202408427}
+  - {fileID: 908578193303945419}
+  - {fileID: 4389215876192050433}
+  - {fileID: 8456957663321541323}
+  - {fileID: 3804553191232923866}
+  - {fileID: 8020735658080410575}
+  - {fileID: 8295193389602230765}
+  - {fileID: 4306237054080175230}
+  - {fileID: 7964483489200931101}
+  - {fileID: 1740501266342076273}
+  - {fileID: 3535643686954245960}
+  - {fileID: 4253335994520065877}
+  - {fileID: 8815350443162927373}
+  - {fileID: 4506100092916498084}
+  - {fileID: 2620764482788011824}
+  - {fileID: 2505236416255423628}
+  - {fileID: 3087108802058058237}
+  - {fileID: 894844027362496565}
+  - {fileID: 7533381805781693511}
+  - {fileID: 5751512386324441472}
+  - {fileID: 6771585090353411544}
+  - {fileID: 2667319560479622290}
+  - {fileID: 7576218562345106070}
+  - {fileID: 5699314133865188549}
+  - {fileID: 876259833031778848}
+  - {fileID: 2835887757720203157}
+  - {fileID: 5956838380039636621}
+  - {fileID: 5395009981078282341}
+  - {fileID: 6945340372535601376}
+  - {fileID: 8064084298055805216}
+  - {fileID: 2149483109912014419}
+  - {fileID: 3555845780802858755}
+  - {fileID: 4042461181206091864}
+  - {fileID: 7658575605808939962}
+  - {fileID: 5095614902483108889}
+  - {fileID: 6493765112899381373}
+  - {fileID: 5059819158521867043}
+  - {fileID: 3319027368401897823}
+  - {fileID: 1433145733829903672}
+  - {fileID: 3716580691657021565}
+  - {fileID: 1323681403506180276}
+  - {fileID: 205839112654478889}
+  - {fileID: 7775667608654537472}
+  - {fileID: 7460770864442906489}
+  - {fileID: 1450220368163085992}
+  - {fileID: 2540068368595652390}
+  - {fileID: 1309558590759134565}
+  - {fileID: 5274233367812349070}
+  - {fileID: 615951608162363833}
+  - {fileID: 8663510278474151816}
+  - {fileID: 9093676671266710614}
+  - {fileID: 1939247020663016541}
+  - {fileID: 4764823694360989833}
+  - {fileID: 5517354816055303200}
+  - {fileID: 4042678998533501824}
+  - {fileID: 7185877252669901206}
+  - {fileID: 937458257780255156}
+  - {fileID: 3664907363367537407}
+  - {fileID: 2162271857323160705}
+  - {fileID: 2235716463051446041}
+  - {fileID: 1371680380322644667}
+  - {fileID: 4341192342321061394}
+  - {fileID: 5533156216505790242}
+  - {fileID: 3192454084948210459}
+  - {fileID: 1136501860317380803}
+  - {fileID: 686312815231487269}
+  - {fileID: 5241115074976089105}
+  - {fileID: 6891184223315937445}
+  - {fileID: 1516842231082777159}
+  - {fileID: 6041471676164190453}
+  - {fileID: 6430725903527273567}
+  - {fileID: 8944251119415820493}
+  - {fileID: 6940154371196370028}
+  - {fileID: 7445472035215289165}
+  - {fileID: 2174812867584039429}
+  - {fileID: 2092400115897621793}
+  - {fileID: 8375028367280596884}
+  - {fileID: 4386414511925400144}
+  - {fileID: 5375053960638399309}
+  - {fileID: 2528128074585689794}
+  - {fileID: 4851117212939392925}
+  - {fileID: 7585669822229812453}
+  - {fileID: 5128665166900182273}
+  - {fileID: 3319627598288680756}
+  - {fileID: 8756023712791528509}
+  - {fileID: 1485707128340931771}
+  - {fileID: 8741026823129538274}
+  - {fileID: 6356692669409859102}
+  - {fileID: 221299461177634420}
+  - {fileID: 7758608504981367300}
+  - {fileID: 3724447130229029325}
+  - {fileID: 2929624526652167398}
+  - {fileID: 3976761267062600737}
+  - {fileID: 6142388905572397091}
+  - {fileID: 8940538147961618775}
+  - {fileID: 3887838785384320327}
+  - {fileID: 4188928338100903280}
+  - {fileID: 4783872301575383088}
+  - {fileID: 5057475737273375405}
+  - {fileID: 2185406373766157055}
+  - {fileID: 8880989328573759398}
+  - {fileID: 6609649179306915816}
+  - {fileID: 2319082290584924750}
+  - {fileID: 5526276971446208996}
+  - {fileID: 7169972853131174098}
+  - {fileID: 4262185009629413091}
+  - {fileID: 3630189639257478171}
+  - {fileID: 2220899395335381789}
+  - {fileID: 9078821805956811282}
+  - {fileID: 4420339955772615022}
+  - {fileID: 3193549943677574466}
+  - {fileID: 1459923139886826954}
+  - {fileID: 7372764213585394986}
+  - {fileID: 2945997833393396111}
+  - {fileID: 3058792819974678824}
+  - {fileID: 5469664583605568655}
+  - {fileID: 3585591392097079332}
+  - {fileID: 4468441808625657373}
+  - {fileID: 7193123061064410549}
+  - {fileID: 3163358739876793812}
+  - {fileID: 1668678121053488313}
+  - {fileID: 2704300911116767766}
+  - {fileID: 8101564543630031121}
+  - {fileID: 920693568736040954}
+  - {fileID: 4049132456361646814}
+  - {fileID: 7091377143971899166}
+  - {fileID: 6858546501736792095}
+  - {fileID: 8343952073325315620}
+  - {fileID: 7299042082748170895}
+  - {fileID: 9155561345482019097}
+  - {fileID: 731444439084348138}
+  - {fileID: 475991476103023184}
+  - {fileID: 7576977137816255317}
+  - {fileID: 2720274448529038372}
+  - {fileID: 5161357573446836347}
+  - {fileID: 5221071584630047597}
+  - {fileID: 2357956803837935300}
+  - {fileID: 2985953505773214348}
+  - {fileID: 8065623236574029813}
+  - {fileID: 1026127065421181934}
+  - {fileID: 3565397572219415597}
+  - {fileID: 4879983209163656268}
+  - {fileID: 5814195090973950537}
+  - {fileID: 3450308173779431109}
+  - {fileID: 8381691388323823112}
+  - {fileID: 957104489149842182}
+  - {fileID: 8541600586135583976}
+  - {fileID: 3326143639871681898}
+  - {fileID: 2208422329856983238}
+  - {fileID: 7716465955137134381}
+  - {fileID: 4633993296125263452}
+  - {fileID: 3648842855064015917}
+  - {fileID: 2392124417010605898}
+  - {fileID: 4826350954179248439}
+  - {fileID: 3673895021204436906}
+  - {fileID: 1194223088270949080}
+  - {fileID: 782878574088251385}
+  - {fileID: 3986400224574086640}
+  - {fileID: 4491933550728587462}
+  - {fileID: 1030596522186699317}
+  - {fileID: 4055260727759225716}
+  - {fileID: 923639698289748981}
+  - {fileID: 5989761370492129821}
+  - {fileID: 5159398305150390948}
+  - {fileID: 7413918868632795614}
+  - {fileID: 896434834729142787}
+  - {fileID: 3375501287373298227}
+  - {fileID: 7159720961306798941}
+  - {fileID: 5191798582010269518}
+  - {fileID: 1738659106625524029}
+  - {fileID: 8297858821311605152}
+  - {fileID: 3705765814352786893}
+  - {fileID: 13339171029375713}
+  - {fileID: 1546760130967974390}
+  - {fileID: 1734905465050315519}
+  - {fileID: 5996698368065070471}
+  - {fileID: 3067165887317290793}
+  - {fileID: 5417317675708308152}
+  - {fileID: 3150313018135436931}
+  - {fileID: 5962957617674033291}
+  - {fileID: 1954816243769414968}
+  - {fileID: 9053382491744959559}
+  - {fileID: 7952471875708632337}
+  - {fileID: 672304630777404319}
+  - {fileID: 6854805992224758504}
+  - {fileID: 2156497775293667901}
+  - {fileID: 8800632936008236430}
+  - {fileID: 8888938151288216005}
+  - {fileID: 2042747733131609062}
+  - {fileID: 8792278882583899383}
+  - {fileID: 5765506256051225921}
+  - {fileID: 4240708656167375152}
+  - {fileID: 1094130675416304050}
+  - {fileID: 4077824152799680198}
+  - {fileID: 3266248033170505265}
+  - {fileID: 8693326982121326494}
+  - {fileID: 3602224076421284070}
+  - {fileID: 6539331986281702143}
+  - {fileID: 6912389897586225707}
+  - {fileID: 8269028729353697399}
+  - {fileID: 7850249587015157960}
+  - {fileID: 6006223629238826122}
+  - {fileID: 8538254510653867023}
+  - {fileID: 9201223779824896307}
+  - {fileID: 7498933923957311235}
+  - {fileID: 72257727228586264}
+  - {fileID: 1240137669626620696}
+  - {fileID: 4547743751960980648}
+  - {fileID: 5386762570204722898}
+  - {fileID: 6994280780346708887}
+  - {fileID: 464699067445659950}
+  - {fileID: 2807283509501652364}
+  - {fileID: 8435546392300056284}
+  - {fileID: 1890196912563630519}
+  - {fileID: 2142579522519990694}
+  - {fileID: 8087622027559208999}
+  - {fileID: 1449147229911769864}
+  - {fileID: 76289275739152837}
+  - {fileID: 7437054886987223733}
+  - {fileID: 2732047938440802587}
+  - {fileID: 7920605283908847119}
+  - {fileID: 728446770309254712}
+  - {fileID: 941411485061093282}
+  - {fileID: 4526457785114876103}
+  - {fileID: 6272834580340749755}
+  - {fileID: 3957951224226195239}
+  - {fileID: 8403060514560788961}
+  - {fileID: 8842828693972046755}
+  - {fileID: 4619631378338449548}
+  - {fileID: 1223764938027834216}
+  - {fileID: 4191115821949490480}
+  - {fileID: 8390373418773303821}
+  - {fileID: 4940664760683856077}
+  - {fileID: 3469040507357103061}
+  - {fileID: 3918257015385836803}
+  - {fileID: 7176232265911008267}
+  - {fileID: 2558680898587665548}
+  - {fileID: 8054361175092429772}
+  - {fileID: 8842419782590050131}
+  - {fileID: 8124506732595995654}
+  - {fileID: 4181215150186715478}
+  - {fileID: 627826221252300340}
+  - {fileID: 1788249310934658757}
+  - {fileID: 4482501735248192736}
+  - {fileID: 8434211235137803787}
+  - {fileID: 1819695869135380512}
+  - {fileID: 3118075810437951724}
+  - {fileID: 6157732841178478642}
+  - {fileID: 5474390469186851711}
+  - {fileID: 635224592683747642}
+  - {fileID: 5001069058939921750}
+  - {fileID: 2695752993839049531}
+  - {fileID: 1348217064803938780}
+  - {fileID: 5849628753098885975}
+  - {fileID: 1197115857705156421}
+  - {fileID: 3143274119375118305}
+  - {fileID: 7388086128622335269}
+  - {fileID: 4240985940548460967}
+  - {fileID: 7562048090459109156}
+  - {fileID: 5088332089903329018}
+  - {fileID: 4401103109113736851}
+  - {fileID: 2986321018188468169}
+  - {fileID: 1694937951129176476}
+  - {fileID: 3923591674554418050}
+  - {fileID: 4405169237150621937}
+  - {fileID: 8361839657920361278}
+  - {fileID: 3192718700378994302}
+  - {fileID: 413313668138734939}
+  - {fileID: 3272634933894109245}
+  - {fileID: 1581794882432860544}
+  - {fileID: 1928855062683427763}
+  - {fileID: 5171555262856894652}
+  - {fileID: 3011890835186733801}
+  - {fileID: 18554387292808279}
+  - {fileID: 9199576338233393007}
+  - {fileID: 7282051055249855714}
+  - {fileID: 1588089965660542413}
+  - {fileID: 9168412586827617580}
+  - {fileID: 7395906008050165866}
+  - {fileID: 7593018053582519712}
+  - {fileID: 1034947497702676474}
+  - {fileID: 8470526601485661468}
+  - {fileID: 9209416069903792187}
+  - {fileID: 8490342754955034336}
+  - {fileID: 5771648600872985691}
+  - {fileID: 8959413140514318582}
+  - {fileID: 2605011899105607047}
+  - {fileID: 2723776011934672833}
+  - {fileID: 2366971518954795127}
+  - {fileID: 286356932163059829}
+  - {fileID: 9092506591049926974}
+  - {fileID: 3698663857010533550}
+  - {fileID: 6785143653652918069}
+  - {fileID: 2129887341314756318}
+  - {fileID: 5278403595949432968}
+  - {fileID: 7495260821352423028}
+  - {fileID: 8987462809551396014}
+  - {fileID: 7494392489531003519}
+  - {fileID: 4506808201075622600}
+  - {fileID: 3886144843517328507}
+  - {fileID: 7864180854347833476}
+  - {fileID: 3097275576990932573}
+  - {fileID: 5959248789566808891}
+  - {fileID: 7089591040900953479}
+  - {fileID: 4726277522741958840}
+  - {fileID: 8307277921650275436}
+  - {fileID: 3757351878571549948}
+  - {fileID: 5580189919482211017}
+  - {fileID: 7083893230273842251}
+  - {fileID: 2500776179148582890}
+  - {fileID: 7829512031105341140}
+  - {fileID: 3069817526595905993}
+  - {fileID: 5043120483552191856}
+  - {fileID: 5675509243871044252}
+  - {fileID: 1224115032047735775}
+  - {fileID: 4389160206612953379}
+  - {fileID: 4698633812569740869}
+  - {fileID: 7506650444021629047}
+  - {fileID: 6390456916795986193}
+  - {fileID: 2162112475563448108}
+  - {fileID: 4271820303254634647}
+  - {fileID: 2236180312209266755}
+  - {fileID: 4815733796486375899}
+  - {fileID: 1704950959823741007}
+  - {fileID: 1132373989744252270}
+  - {fileID: 2998353777153963658}
+  - {fileID: 3622303883086973452}
+  - {fileID: 6711550049992260483}
+  - {fileID: 5294294797325212171}
+  - {fileID: 232223712924317840}
+  - {fileID: 4183271477185915924}
+  - {fileID: 8343824800941564220}
+  - {fileID: 7619617396759612662}
+  - {fileID: 187422525220936166}
+  - {fileID: 5258773506344315505}
+  - {fileID: 8810809426064661930}
+  - {fileID: 8694402875521140708}
+  - {fileID: 7946674190762562110}
+  - {fileID: 4483700177009902114}
+  - {fileID: 8881219009770425060}
+  - {fileID: 4919769061693705686}
+  - {fileID: 8821104867429155997}
+  - {fileID: 8017882840175670390}
+  - {fileID: 6018847054333352320}
+  - {fileID: 202264954092923843}
+  - {fileID: 2985130945313282212}
+  - {fileID: 3684926398544495981}
+  - {fileID: 8689674257534298313}
+  - {fileID: 620386687444067861}
+  - {fileID: 2203832978976936160}
+  - {fileID: 5548857483539537187}
+  - {fileID: 1841624377931551695}
+  - {fileID: 2599594952041834333}
+  - {fileID: 739402504537565447}
+  - {fileID: 5510529794511977503}
+  - {fileID: 3943601127422290869}
+  - {fileID: 1439530665531792370}
+  - {fileID: 1984855557801355904}
+  - {fileID: 8890308710986322697}
+  - {fileID: 4547501786094777695}
+  - {fileID: 3009889753043183139}
+  - {fileID: 8665044804741553516}
+  - {fileID: 8324527686656811572}
+  - {fileID: 4396731827353793363}
+  - {fileID: 5730573950412554541}
+  - {fileID: 2531274345426364107}
+  - {fileID: 212816878254497292}
+  - {fileID: 5148775337916506475}
+  - {fileID: 6183553607954932017}
+  - {fileID: 732738204993241772}
+  - {fileID: 3707911940249151920}
+  - {fileID: 7497107027467398292}
+  - {fileID: 8407137910293721063}
+  - {fileID: 3690109368442422187}
+  - {fileID: 117525193682385000}
+  - {fileID: 4951091747868840697}
+  - {fileID: 3157644752121575205}
+  - {fileID: 1141392379665680359}
+  - {fileID: 1652552838965422825}
+  - {fileID: 8638418354702109284}
+  - {fileID: 382875192984260059}
+  - {fileID: 238628016495799823}
+  - {fileID: 3939602775430468042}
+  - {fileID: 8235325491937214663}
+  - {fileID: 5137501919703924285}
+  - {fileID: 7628901670133214274}
+  - {fileID: 1125254149085930752}
+  - {fileID: 8502156116911757316}
+  - {fileID: 714723036659206234}
+  - {fileID: 2573792782218725279}
+  - {fileID: 2785596000790148262}
+  - {fileID: 4992586590834469704}
+  - {fileID: 5108482638825591989}
+  - {fileID: 7984738503654557570}
+  - {fileID: 4337906181839453840}
+  - {fileID: 2719840098523392188}
+  - {fileID: 1694683427949066361}
+  - {fileID: 7266658532921910123}
+  - {fileID: 1144143171144057360}
+  - {fileID: 7519788012508014835}
+  - {fileID: 3732022478300321948}
+  - {fileID: 5909537053841387097}
+  - {fileID: 4677467422914924979}
+  - {fileID: 1601761283171639249}
+  - {fileID: 8247483447107819894}
+  - {fileID: 3136038035344399743}
+  - {fileID: 3414877311748003312}
+  - {fileID: 8560966180620044975}
+  - {fileID: 7221200411607161002}
+  - {fileID: 682180906336621488}
+  - {fileID: 1684962518452298751}
+  - {fileID: 518893832837540207}
+  - {fileID: 6443951950916290487}
+  - {fileID: 4734094072882617708}
+  - {fileID: 6170003580665757924}
+  - {fileID: 3979351423920290037}
   sortingOrder: 4
   visibleOutsideMask: 1
   applySpriterZOrder: 0
@@ -116,6 +653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 210b4f05cfbf5c9478136e8c77e161ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activelyFading: 0
   myAnimator: {fileID: 95795493154006126}
   myEntityRenderer: {fileID: 114544152913973280}
   allModelElements:
@@ -720,6 +1258,7 @@ MonoBehaviour:
   - {fileID: 7442526349501050577}
   - {fileID: 5077006473657095878}
   - {fileID: 7304926278552910462}
+  - {fileID: 1289659264192349921}
   allHeadWearSpriteMasks:
   - {fileID: 8306676681743101029}
   - {fileID: 7369302363670662616}
@@ -873,26 +1412,8 @@ MonoBehaviour:
   - {fileID: 6900517587133799376}
   - {fileID: 9048183743602363210}
   - {fileID: 5934487940963394032}
-  activeHead: {fileID: 0}
-  activeFace: {fileID: 0}
-  activeLeftLeg: {fileID: 0}
-  activeRightLeg: {fileID: 0}
-  activeRightHand: {fileID: 0}
-  activeRightArm: {fileID: 0}
-  activeLeftHand: {fileID: 0}
-  activeLeftArm: {fileID: 0}
-  activeChest: {fileID: 0}
-  activeHeadWear: {fileID: 0}
-  activeChestWear: {fileID: 0}
-  activeLeftLegWear: {fileID: 0}
-  activeRightLegWear: {fileID: 0}
-  activeLeftArmWear: {fileID: 0}
-  activeRightArmWear: {fileID: 0}
-  activeLeftHandWear: {fileID: 0}
-  activeRightHandWear: {fileID: 0}
-  activeMainHandWeapon: {fileID: 0}
-  activeOffHandWeapon: {fileID: 0}
   activeChestParticles: {fileID: 0}
+  activeChestLighting: {fileID: 0}
   allMainHandWeapons:
   - {fileID: 8211402810484805961}
   - {fileID: 7797523605602640107}
@@ -954,10 +1475,25 @@ MonoBehaviour:
   - {fileID: 3352878844192225806}
   - {fileID: 6046233309300872034}
   - {fileID: 4024323524527442106}
-  initializedScaling: 0
-  normalSizeScale: 0
-  smallSizeScale: 0
-  largeSizeScale: 0
+  activeHead: {fileID: 0}
+  activeFace: {fileID: 0}
+  activeLeftLeg: {fileID: 0}
+  activeRightLeg: {fileID: 0}
+  activeRightHand: {fileID: 0}
+  activeRightArm: {fileID: 0}
+  activeLeftHand: {fileID: 0}
+  activeLeftArm: {fileID: 0}
+  activeChest: {fileID: 0}
+  activeHeadWear: {fileID: 0}
+  activeChestWear: {fileID: 0}
+  activeLeftLegWear: {fileID: 0}
+  activeRightLegWear: {fileID: 0}
+  activeLeftArmWear: {fileID: 0}
+  activeRightArmWear: {fileID: 0}
+  activeLeftHandWear: {fileID: 0}
+  activeRightHandWear: {fileID: 0}
+  activeMainHandWeapon: {fileID: 0}
+  activeOffHandWeapon: {fileID: 0}
 --- !u!1 &1212364269298598
 GameObject:
   m_ObjectHideFlags: 0
@@ -991,6 +1527,7 @@ Transform:
   - {fileID: 8412553469820901857}
   - {fileID: 5401654421781709417}
   - {fileID: 2920719904950253440}
+  - {fileID: 9040140639720378283}
   m_Father: {fileID: 4168412347097908}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 91.537544}
@@ -1356,6 +1893,7 @@ MonoBehaviour:
   bodyPartType: 0
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8115868273890438
 GameObject:
   m_ObjectHideFlags: 0
@@ -1534,6 +2072,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &13794205536458490
 GameObject:
   m_ObjectHideFlags: 0
@@ -1634,6 +2173,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 1485773221905744338}
   - {fileID: 8686566306863630710}
+  baseLightIntensity: 0
 --- !u!1 &31944084750089969
 GameObject:
   m_ObjectHideFlags: 0
@@ -1732,6 +2272,7 @@ MonoBehaviour:
   bodyPartType: 13
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &34357863973388574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1830,6 +2371,7 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &39931409623338448
 GameObject:
   m_ObjectHideFlags: 0
@@ -1929,6 +2471,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 794309003253776713}
+  baseLightIntensity: 0
 --- !u!1 &41685751307333582
 GameObject:
   m_ObjectHideFlags: 0
@@ -2027,6 +2570,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &51459692389853738
 GameObject:
   m_ObjectHideFlags: 0
@@ -2159,6 +2703,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &109296122258339358
 GameObject:
   m_ObjectHideFlags: 0
@@ -2257,6 +2802,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &114341920237340153
 GameObject:
   m_ObjectHideFlags: 0
@@ -2469,6 +3015,7 @@ MonoBehaviour:
   bodyPartType: 3
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &175897846617787814
 GameObject:
   m_ObjectHideFlags: 0
@@ -2568,6 +3115,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 3389760612746191384}
+  baseLightIntensity: 0
 --- !u!1 &180597290678102853
 GameObject:
   m_ObjectHideFlags: 0
@@ -2666,6 +3214,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &182836807313468760
 GameObject:
   m_ObjectHideFlags: 0
@@ -2765,6 +3314,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 5878263606050122407}
+  baseLightIntensity: 0
 --- !u!1 &199584691225348470
 GameObject:
   m_ObjectHideFlags: 0
@@ -7697,6 +8247,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &214357942670125785
 GameObject:
   m_ObjectHideFlags: 0
@@ -7795,6 +8346,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &217005943510914543
 GameObject:
   m_ObjectHideFlags: 0
@@ -7893,6 +8445,7 @@ MonoBehaviour:
   bodyPartType: 3
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &225237780659916945
 GameObject:
   m_ObjectHideFlags: 0
@@ -7991,6 +8544,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &232298931899889986
 GameObject:
   m_ObjectHideFlags: 0
@@ -8089,6 +8643,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &235745323230538861
 GameObject:
   m_ObjectHideFlags: 0
@@ -8192,6 +8747,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &257887590180348980
 GameObject:
   m_ObjectHideFlags: 0
@@ -8243,6 +8799,7 @@ MonoBehaviour:
   bodyPartType: 20
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &271492546181975819
 GameObject:
   m_ObjectHideFlags: 0
@@ -8341,6 +8898,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &289875468991172413
 GameObject:
   m_ObjectHideFlags: 0
@@ -8522,6 +9080,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &299659043414161890
 GameObject:
   m_ObjectHideFlags: 0
@@ -8621,6 +9180,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 7889315054475343500}
+  baseLightIntensity: 0
 --- !u!1 &302828356283060062
 GameObject:
   m_ObjectHideFlags: 0
@@ -8719,6 +9279,7 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &306452576493907447
 GameObject:
   m_ObjectHideFlags: 0
@@ -8897,6 +9458,7 @@ MonoBehaviour:
   bodyPartType: 5
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &346560664591705949
 GameObject:
   m_ObjectHideFlags: 0
@@ -9108,6 +9670,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 7157804818315812986}
+  baseLightIntensity: 0
 --- !u!1 &365611674221069600
 GameObject:
   m_ObjectHideFlags: 0
@@ -9286,6 +9849,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &400960378002970308
 GameObject:
   m_ObjectHideFlags: 0
@@ -9464,6 +10028,7 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &415789435891738680
 GameObject:
   m_ObjectHideFlags: 0
@@ -9563,6 +10128,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 794309003253776713}
+  baseLightIntensity: 0
 --- !u!1 &421370140848370727
 GameObject:
   m_ObjectHideFlags: 0
@@ -9661,6 +10227,7 @@ MonoBehaviour:
   bodyPartType: 9
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &448049238667700174
 GameObject:
   m_ObjectHideFlags: 0
@@ -9795,6 +10362,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &469648665625495713
 GameObject:
   m_ObjectHideFlags: 0
@@ -9893,6 +10461,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &479158683349613772
 GameObject:
   m_ObjectHideFlags: 0
@@ -9991,6 +10560,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &515581431168176855
 GameObject:
   m_ObjectHideFlags: 0
@@ -10090,6 +10660,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 8223203713584277761}
+  baseLightIntensity: 0
 --- !u!1 &516556772031700285
 GameObject:
   m_ObjectHideFlags: 0
@@ -10188,6 +10759,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &517847041762170677
 GameObject:
   m_ObjectHideFlags: 0
@@ -10287,6 +10859,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 226214283921548820}
+  baseLightIntensity: 0
 --- !u!1 &521729943125788210
 GameObject:
   m_ObjectHideFlags: 0
@@ -10439,6 +11012,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &531254994761487003
 GameObject:
   m_ObjectHideFlags: 0
@@ -10619,6 +11193,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 2558443063769548668}
   - {fileID: 810962703671786991}
+  baseLightIntensity: 0
 --- !u!1 &535902919540886406
 GameObject:
   m_ObjectHideFlags: 0
@@ -10717,6 +11292,7 @@ MonoBehaviour:
   bodyPartType: 9
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &560817558799242986
 GameObject:
   m_ObjectHideFlags: 0
@@ -10816,6 +11392,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 3519457592821865680}
+  baseLightIntensity: 0
 --- !u!1 &562242141875960679
 GameObject:
   m_ObjectHideFlags: 0
@@ -10919,6 +11496,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &562295290623219213
 GameObject:
   m_ObjectHideFlags: 0
@@ -11022,6 +11600,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &572620425911678658
 GameObject:
   m_ObjectHideFlags: 0
@@ -11120,6 +11699,7 @@ MonoBehaviour:
   bodyPartType: 19
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &580018401532493192
 GameObject:
   m_ObjectHideFlags: 0
@@ -11218,6 +11798,7 @@ MonoBehaviour:
   bodyPartType: 3
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &595141433016314168
 GameObject:
   m_ObjectHideFlags: 0
@@ -11397,6 +11978,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 4808361054096888367}
+  baseLightIntensity: 0
 --- !u!1 &621114640386875932
 GameObject:
   m_ObjectHideFlags: 0
@@ -11496,6 +12078,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 350777195528533752}
+  baseLightIntensity: 0
 --- !u!1 &642284666911361045
 GameObject:
   m_ObjectHideFlags: 0
@@ -11600,6 +12183,7 @@ MonoBehaviour:
   - {fileID: 315874296285712399}
   - {fileID: 7669704159339914860}
   - {fileID: 5608527565557602476}
+  baseLightIntensity: 0
 --- !u!1 &648237233635233085
 GameObject:
   m_ObjectHideFlags: 0
@@ -11698,6 +12282,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &654078999563166711
 GameObject:
   m_ObjectHideFlags: 0
@@ -11796,6 +12381,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &663034345016067584
 GameObject:
   m_ObjectHideFlags: 0
@@ -11894,6 +12480,7 @@ MonoBehaviour:
   bodyPartType: 13
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &670025832472388470
 GameObject:
   m_ObjectHideFlags: 0
@@ -11993,6 +12580,7 @@ MonoBehaviour:
   itemsWithMyView:
   - {fileID: 11400000, guid: ef6ffb4463b38054d8b9a7ae0f010477, type: 2}
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &685861473386308047
 GameObject:
   m_ObjectHideFlags: 0
@@ -12091,6 +12679,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &701283337295019908
 GameObject:
   m_ObjectHideFlags: 0
@@ -12189,6 +12778,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &702395266028536293
 GameObject:
   m_ObjectHideFlags: 0
@@ -12287,6 +12877,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &718936627605002438
 GameObject:
   m_ObjectHideFlags: 0
@@ -12385,6 +12976,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &723047811056228036
 GameObject:
   m_ObjectHideFlags: 0
@@ -12483,6 +13075,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &743810952394442092
 GameObject:
   m_ObjectHideFlags: 0
@@ -12581,6 +13174,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &745437685867319376
 GameObject:
   m_ObjectHideFlags: 0
@@ -12680,6 +13274,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 5857067250579538952}
+  baseLightIntensity: 0
 --- !u!1 &746220630324487806
 GameObject:
   m_ObjectHideFlags: 0
@@ -12778,6 +13373,7 @@ MonoBehaviour:
   bodyPartType: 17
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &754629753486118889
 GameObject:
   m_ObjectHideFlags: 0
@@ -12876,6 +13472,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &758472045604879389
 GameObject:
   m_ObjectHideFlags: 0
@@ -12974,6 +13571,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &769916351193926881
 GameObject:
   m_ObjectHideFlags: 0
@@ -13072,6 +13670,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &772129636672854180
 GameObject:
   m_ObjectHideFlags: 0
@@ -13172,6 +13771,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 3938127750403446597}
   - {fileID: 6958152959130035656}
+  baseLightIntensity: 0
 --- !u!1 &783544720658993752
 GameObject:
   m_ObjectHideFlags: 0
@@ -13430,6 +14030,7 @@ MonoBehaviour:
   bodyPartType: 3
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &789707127520337086
 GameObject:
   m_ObjectHideFlags: 0
@@ -13533,6 +14134,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &799925180065900489
 GameObject:
   m_ObjectHideFlags: 0
@@ -13632,6 +14234,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 8107643341795136287}
+  baseLightIntensity: 0
 --- !u!1 &830888203929566669
 GameObject:
   m_ObjectHideFlags: 0
@@ -13730,6 +14333,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &839904140941252170
 GameObject:
   m_ObjectHideFlags: 0
@@ -13828,6 +14432,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &856177256621854371
 GameObject:
   m_ObjectHideFlags: 0
@@ -13926,6 +14531,7 @@ MonoBehaviour:
   bodyPartType: 13
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &861878454332332892
 GameObject:
   m_ObjectHideFlags: 0
@@ -14024,6 +14630,7 @@ MonoBehaviour:
   bodyPartType: 0
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &861964767282057755
 GameObject:
   m_ObjectHideFlags: 0
@@ -14122,6 +14729,7 @@ MonoBehaviour:
   bodyPartType: 3
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &864908152188644952
 GameObject:
   m_ObjectHideFlags: 0
@@ -14300,6 +14908,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &876359401006603685
 GameObject:
   m_ObjectHideFlags: 0
@@ -14398,6 +15007,7 @@ MonoBehaviour:
   bodyPartType: 11
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &892567311563567332
 GameObject:
   m_ObjectHideFlags: 0
@@ -14498,6 +15108,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 6597506745083792268}
   - {fileID: 7268962729270403741}
+  baseLightIntensity: 0
 --- !u!1 &914152423419626638
 GameObject:
   m_ObjectHideFlags: 0
@@ -14596,6 +15207,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &926937776491914888
 GameObject:
   m_ObjectHideFlags: 0
@@ -14775,6 +15387,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 6427753826755377584}
+  baseLightIntensity: 0
 --- !u!1 &941506623738791351
 GameObject:
   m_ObjectHideFlags: 0
@@ -14953,6 +15566,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &948803653842122422
 GameObject:
   m_ObjectHideFlags: 0
@@ -15056,6 +15670,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &954334273565600144
 GameObject:
   m_ObjectHideFlags: 0
@@ -15234,6 +15849,7 @@ MonoBehaviour:
   bodyPartType: 3
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &983162200396953327
 GameObject:
   m_ObjectHideFlags: 0
@@ -15337,6 +15953,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &983284213724808220
 GameObject:
   m_ObjectHideFlags: 0
@@ -15435,6 +16052,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &986433410205698846
 GameObject:
   m_ObjectHideFlags: 0
@@ -15533,6 +16151,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &990883501352408301
 GameObject:
   m_ObjectHideFlags: 0
@@ -15632,6 +16251,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 6541008204826116397}
+  baseLightIntensity: 0
 --- !u!1 &1004081212586197722
 GameObject:
   m_ObjectHideFlags: 0
@@ -15731,6 +16351,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 1484635820823545514}
+  baseLightIntensity: 0
 --- !u!1 &1006642579867427962
 GameObject:
   m_ObjectHideFlags: 0
@@ -15829,6 +16450,7 @@ MonoBehaviour:
   bodyPartType: 13
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1018187315651619333
 GameObject:
   m_ObjectHideFlags: 0
@@ -15927,6 +16549,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1031188856760582092
 GameObject:
   m_ObjectHideFlags: 0
@@ -16025,6 +16648,7 @@ MonoBehaviour:
   bodyPartType: 9
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1054212012848114529
 GameObject:
   m_ObjectHideFlags: 0
@@ -16123,6 +16747,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1094984858289373526
 GameObject:
   m_ObjectHideFlags: 0
@@ -16221,6 +16846,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1110006165328776316
 GameObject:
   m_ObjectHideFlags: 0
@@ -16399,6 +17025,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1145926044001620108
 GameObject:
   m_ObjectHideFlags: 0
@@ -16499,6 +17126,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 7608818393145377302}
   - {fileID: 9153866941874119985}
+  baseLightIntensity: 0
 --- !u!1 &1162525898572454572
 GameObject:
   m_ObjectHideFlags: 0
@@ -16793,6 +17421,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1214094877308817429
 GameObject:
   m_ObjectHideFlags: 0
@@ -16891,6 +17520,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1241128677820850965
 GameObject:
   m_ObjectHideFlags: 0
@@ -16990,6 +17620,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 7703455860423553540}
+  baseLightIntensity: 0
 --- !u!1 &1249597076683688338
 GameObject:
   m_ObjectHideFlags: 0
@@ -17317,6 +17948,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1280397783400108521
 GameObject:
   m_ObjectHideFlags: 0
@@ -17415,6 +18047,7 @@ MonoBehaviour:
   bodyPartType: 13
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1298417945967150140
 GameObject:
   m_ObjectHideFlags: 0
@@ -17593,6 +18226,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1334701511494295537
 GameObject:
   m_ObjectHideFlags: 0
@@ -17691,6 +18325,7 @@ MonoBehaviour:
   bodyPartType: 5
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1353169143368177424
 GameObject:
   m_ObjectHideFlags: 0
@@ -17869,6 +18504,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1373039563714862028
 GameObject:
   m_ObjectHideFlags: 0
@@ -17967,6 +18603,7 @@ MonoBehaviour:
   bodyPartType: 5
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1376614726570720244
 GameObject:
   m_ObjectHideFlags: 0
@@ -18227,6 +18864,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 4744136628545295502}
+  baseLightIntensity: 0
 --- !u!1 &1387314818581333271
 GameObject:
   m_ObjectHideFlags: 0
@@ -18325,6 +18963,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1397928080683240606
 GameObject:
   m_ObjectHideFlags: 0
@@ -18424,6 +19063,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 1081102669102492870}
+  baseLightIntensity: 0
 --- !u!1 &1407290107423125453
 GameObject:
   m_ObjectHideFlags: 0
@@ -18523,6 +19163,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 5743357569501870507}
+  baseLightIntensity: 0
 --- !u!1 &1428885619749245896
 GameObject:
   m_ObjectHideFlags: 0
@@ -18627,6 +19268,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1437610617455245704
 GameObject:
   m_ObjectHideFlags: 0
@@ -23479,6 +24121,7 @@ MonoBehaviour:
   bodyPartType: 0
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1448507833486525546
 GameObject:
   m_ObjectHideFlags: 0
@@ -23577,6 +24220,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1469101132579489740
 GameObject:
   m_ObjectHideFlags: 0
@@ -23675,6 +24319,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1489894419456810671
 GameObject:
   m_ObjectHideFlags: 0
@@ -23773,6 +24418,7 @@ MonoBehaviour:
   bodyPartType: 9
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1495013483748480886
 GameObject:
   m_ObjectHideFlags: 0
@@ -23871,6 +24517,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1500035609017681737
 GameObject:
   m_ObjectHideFlags: 0
@@ -23969,6 +24616,7 @@ MonoBehaviour:
   bodyPartType: 8
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1500260043485969318
 GameObject:
   m_ObjectHideFlags: 0
@@ -24067,6 +24715,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1515870722449171360
 GameObject:
   m_ObjectHideFlags: 0
@@ -24165,6 +24814,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1519189669500664002
 GameObject:
   m_ObjectHideFlags: 0
@@ -24457,6 +25107,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1570041549293334542
 GameObject:
   m_ObjectHideFlags: 0
@@ -24635,6 +25286,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1629080771081874600
 GameObject:
   m_ObjectHideFlags: 0
@@ -24733,6 +25385,7 @@ MonoBehaviour:
   bodyPartType: 11
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1633773882829917985
 GameObject:
   m_ObjectHideFlags: 0
@@ -24831,6 +25484,7 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1633974133262668209
 GameObject:
   m_ObjectHideFlags: 0
@@ -25009,6 +25663,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1658023077652815479
 GameObject:
   m_ObjectHideFlags: 0
@@ -25268,6 +25923,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 3949782914124342001}
+  baseLightIntensity: 0
 --- !u!1 &1661874598294180731
 GameObject:
   m_ObjectHideFlags: 0
@@ -25366,6 +26022,7 @@ MonoBehaviour:
   bodyPartType: 19
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1681685960876465419
 GameObject:
   m_ObjectHideFlags: 0
@@ -25465,6 +26122,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 6808282350062673487}
+  baseLightIntensity: 0
 --- !u!1 &1684040803240250592
 GameObject:
   m_ObjectHideFlags: 0
@@ -25563,6 +26221,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1685579281481531183
 GameObject:
   m_ObjectHideFlags: 0
@@ -25661,6 +26320,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1694272406044118714
 GameObject:
   m_ObjectHideFlags: 0
@@ -25759,6 +26419,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1714618044393658796
 GameObject:
   m_ObjectHideFlags: 0
@@ -25857,6 +26518,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1749656705315531449
 GameObject:
   m_ObjectHideFlags: 0
@@ -25955,6 +26617,7 @@ MonoBehaviour:
   bodyPartType: 13
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1792534547747997970
 GameObject:
   m_ObjectHideFlags: 0
@@ -26053,6 +26716,7 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1811095143579714373
 GameObject:
   m_ObjectHideFlags: 0
@@ -26151,6 +26815,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1811381413168673446
 GameObject:
   m_ObjectHideFlags: 0
@@ -26249,6 +26914,7 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1872985886793598588
 GameObject:
   m_ObjectHideFlags: 0
@@ -26383,6 +27049,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1894151656548281428
 GameObject:
   m_ObjectHideFlags: 0
@@ -26483,6 +27150,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 4576655545315747909}
   - {fileID: 6037774780657538076}
+  baseLightIntensity: 0
 --- !u!1 &1908263620540748264
 GameObject:
   m_ObjectHideFlags: 0
@@ -26581,6 +27249,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1914888349064140909
 GameObject:
   m_ObjectHideFlags: 0
@@ -26684,6 +27353,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1922965733537495380
 GameObject:
   m_ObjectHideFlags: 0
@@ -26782,6 +27452,7 @@ MonoBehaviour:
   bodyPartType: 9
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1944511709064375002
 GameObject:
   m_ObjectHideFlags: 0
@@ -26960,6 +27631,7 @@ MonoBehaviour:
   bodyPartType: 19
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1986764470236155298
 GameObject:
   m_ObjectHideFlags: 0
@@ -27010,6 +27682,7 @@ MonoBehaviour:
   bodyPartType: 20
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &1987538895308886889
 GameObject:
   m_ObjectHideFlags: 0
@@ -27108,6 +27781,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2006738831715782362
 GameObject:
   m_ObjectHideFlags: 0
@@ -27206,6 +27880,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2042115444941308114
 GameObject:
   m_ObjectHideFlags: 0
@@ -27304,6 +27979,7 @@ MonoBehaviour:
   bodyPartType: 9
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2057304891132206820
 GameObject:
   m_ObjectHideFlags: 0
@@ -27402,6 +28078,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2088674883688459830
 GameObject:
   m_ObjectHideFlags: 0
@@ -27500,6 +28177,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2097193199329718921
 GameObject:
   m_ObjectHideFlags: 0
@@ -27598,6 +28276,7 @@ MonoBehaviour:
   bodyPartType: 5
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2098645299010625593
 GameObject:
   m_ObjectHideFlags: 0
@@ -27696,6 +28375,7 @@ MonoBehaviour:
   bodyPartType: 19
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2101903780740472144
 GameObject:
   m_ObjectHideFlags: 0
@@ -27794,6 +28474,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2112162807373510524
 GameObject:
   m_ObjectHideFlags: 0
@@ -27892,6 +28573,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2123680659358675100
 GameObject:
   m_ObjectHideFlags: 0
@@ -27991,6 +28673,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 3016082130187396703}
+  baseLightIntensity: 0
 --- !u!1 &2129416098540175502
 GameObject:
   m_ObjectHideFlags: 0
@@ -28169,6 +28852,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2160476115464240235
 GameObject:
   m_ObjectHideFlags: 0
@@ -28267,6 +28951,7 @@ MonoBehaviour:
   bodyPartType: 5
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2169249159271789308
 GameObject:
   m_ObjectHideFlags: 0
@@ -28446,6 +29131,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 7431976084012412014}
+  baseLightIntensity: 0
 --- !u!1 &2179683207103108531
 GameObject:
   m_ObjectHideFlags: 0
@@ -28544,6 +29230,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2188145302812598781
 GameObject:
   m_ObjectHideFlags: 0
@@ -28642,6 +29329,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2190450046948643080
 GameObject:
   m_ObjectHideFlags: 0
@@ -28740,6 +29428,7 @@ MonoBehaviour:
   bodyPartType: 5
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2193170368854496023
 GameObject:
   m_ObjectHideFlags: 0
@@ -28872,6 +29561,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 1469155364633623016}
+  baseLightIntensity: 0
 --- !u!1 &2241427971129443720
 GameObject:
   m_ObjectHideFlags: 0
@@ -28972,6 +29662,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 8798144874463914037}
   - {fileID: 8088503466660128216}
+  baseLightIntensity: 0
 --- !u!1 &2242384909123867427
 GameObject:
   m_ObjectHideFlags: 0
@@ -29071,6 +29762,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 1893313694005219374}
+  baseLightIntensity: 0
 --- !u!1 &2255393099519020868
 GameObject:
   m_ObjectHideFlags: 0
@@ -29169,6 +29861,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2271424988803307572
 GameObject:
   m_ObjectHideFlags: 0
@@ -29267,6 +29960,7 @@ MonoBehaviour:
   bodyPartType: 5
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2288435942412220694
 GameObject:
   m_ObjectHideFlags: 0
@@ -34119,6 +34813,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2301210474133800863
 GameObject:
   m_ObjectHideFlags: 0
@@ -34217,6 +34912,7 @@ MonoBehaviour:
   bodyPartType: 13
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2314082587980073860
 GameObject:
   m_ObjectHideFlags: 0
@@ -34315,6 +35011,7 @@ MonoBehaviour:
   bodyPartType: 13
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2323365238704547292
 GameObject:
   m_ObjectHideFlags: 0
@@ -34413,6 +35110,7 @@ MonoBehaviour:
   bodyPartType: 3
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2323549940994677563
 GameObject:
   m_ObjectHideFlags: 0
@@ -34512,6 +35210,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 247927157826123970}
+  baseLightIntensity: 0
 --- !u!1 &2367413528005699205
 GameObject:
   m_ObjectHideFlags: 0
@@ -34610,6 +35309,7 @@ MonoBehaviour:
   bodyPartType: 19
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2400529813429839539
 GameObject:
   m_ObjectHideFlags: 0
@@ -34708,6 +35408,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2404165670728901623
 GameObject:
   m_ObjectHideFlags: 0
@@ -34806,6 +35507,7 @@ MonoBehaviour:
   bodyPartType: 0
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2415200366310033919
 GameObject:
   m_ObjectHideFlags: 0
@@ -34904,6 +35606,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2416287465328794425
 GameObject:
   m_ObjectHideFlags: 0
@@ -35007,6 +35710,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2423060780315432860
 GameObject:
   m_ObjectHideFlags: 0
@@ -35189,6 +35893,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2435881165231855338
 GameObject:
   m_ObjectHideFlags: 0
@@ -35287,6 +35992,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2449895574310941585
 GameObject:
   m_ObjectHideFlags: 0
@@ -35385,6 +36091,7 @@ MonoBehaviour:
   bodyPartType: 3
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2453560853366483538
 GameObject:
   m_ObjectHideFlags: 0
@@ -35483,6 +36190,7 @@ MonoBehaviour:
   bodyPartType: 5
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2467892031985208669
 GameObject:
   m_ObjectHideFlags: 0
@@ -35662,6 +36370,7 @@ MonoBehaviour:
   itemsWithMyView:
   - {fileID: 11400000, guid: b441e018b9d907a49b6f8e74e5b0e065, type: 2}
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2478136809892061586
 GameObject:
   m_ObjectHideFlags: 0
@@ -35760,6 +36469,7 @@ MonoBehaviour:
   bodyPartType: 13
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2482529480379313484
 GameObject:
   m_ObjectHideFlags: 0
@@ -35859,6 +36569,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 3040652134731957387}
+  baseLightIntensity: 0
 --- !u!1 &2483024134883068630
 GameObject:
   m_ObjectHideFlags: 0
@@ -36042,6 +36753,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2566052585224549048
 GameObject:
   m_ObjectHideFlags: 0
@@ -36140,6 +36852,7 @@ MonoBehaviour:
   bodyPartType: 5
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2580921966649288492
 GameObject:
   m_ObjectHideFlags: 0
@@ -36239,6 +36952,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 4690731324856743874}
+  baseLightIntensity: 0
 --- !u!1 &2587556229656252650
 GameObject:
   m_ObjectHideFlags: 0
@@ -36337,6 +37051,7 @@ MonoBehaviour:
   bodyPartType: 19
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2591848116301057000
 GameObject:
   m_ObjectHideFlags: 0
@@ -36511,6 +37226,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 917252262865438937}
+  baseLightIntensity: 0
 --- !u!1 &2608024158403458536
 GameObject:
   m_ObjectHideFlags: 0
@@ -36609,6 +37325,7 @@ MonoBehaviour:
   bodyPartType: 3
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2617475957368726206
 GameObject:
   m_ObjectHideFlags: 0
@@ -36707,6 +37424,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2720183091614328307
 GameObject:
   m_ObjectHideFlags: 0
@@ -36853,6 +37571,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2756711975294995593
 GameObject:
   m_ObjectHideFlags: 0
@@ -36951,6 +37670,7 @@ MonoBehaviour:
   bodyPartType: 8
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2757434826989584440
 GameObject:
   m_ObjectHideFlags: 0
@@ -37049,6 +37769,7 @@ MonoBehaviour:
   bodyPartType: 9
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2765106510054224836
 GameObject:
   m_ObjectHideFlags: 0
@@ -37148,6 +37869,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2767240273266048240
 GameObject:
   m_ObjectHideFlags: 0
@@ -37247,6 +37969,7 @@ MonoBehaviour:
   itemsWithMyView:
   - {fileID: 11400000, guid: e561792383921474c9710a3ebc1add23, type: 2}
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2769500325374200882
 GameObject:
   m_ObjectHideFlags: 0
@@ -37425,6 +38148,7 @@ MonoBehaviour:
   bodyPartType: 7
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2795566090291886358
 GameObject:
   m_ObjectHideFlags: 0
@@ -37603,6 +38327,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2807353823782137071
 GameObject:
   m_ObjectHideFlags: 0
@@ -37702,6 +38427,7 @@ MonoBehaviour:
   itemsWithMyView:
   - {fileID: 11400000, guid: bfbdb5e21e389ab4c9aae5b49350a1d0, type: 2}
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2828500484274892649
 GameObject:
   m_ObjectHideFlags: 0
@@ -37882,6 +38608,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 4287802916373573320}
   - {fileID: 1548659354055406880}
+  baseLightIntensity: 0
 --- !u!1 &2829688791391804299
 GameObject:
   m_ObjectHideFlags: 0
@@ -37980,6 +38707,7 @@ MonoBehaviour:
   bodyPartType: 0
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2844390735456328052
 GameObject:
   m_ObjectHideFlags: 0
@@ -38159,6 +38887,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 794309003253776713}
+  baseLightIntensity: 0
 --- !u!1 &2874993374241359592
 GameObject:
   m_ObjectHideFlags: 0
@@ -38302,6 +39031,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2927667494297271771
 GameObject:
   m_ObjectHideFlags: 0
@@ -38610,6 +39340,7 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &2990061070696423903
 GameObject:
   m_ObjectHideFlags: 0
@@ -38708,6 +39439,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3008044560282952148
 GameObject:
   m_ObjectHideFlags: 0
@@ -38806,6 +39538,7 @@ MonoBehaviour:
   bodyPartType: 8
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3014420557574637545
 GameObject:
   m_ObjectHideFlags: 0
@@ -38904,6 +39637,7 @@ MonoBehaviour:
   bodyPartType: 13
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3050035433263321702
 GameObject:
   m_ObjectHideFlags: 0
@@ -39002,6 +39736,7 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3050728768232737166
 GameObject:
   m_ObjectHideFlags: 0
@@ -39100,6 +39835,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3065178007007894602
 GameObject:
   m_ObjectHideFlags: 0
@@ -39202,6 +39938,7 @@ MonoBehaviour:
   - {fileID: 6220509820828346401}
   - {fileID: 8493888579766802501}
   - {fileID: 8534667042614302213}
+  baseLightIntensity: 0
 --- !u!1 &3079514104827922156
 GameObject:
   m_ObjectHideFlags: 0
@@ -39302,6 +40039,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 598468205310796015}
   - {fileID: 5668205468077134654}
+  baseLightIntensity: 0
 --- !u!1 &3088672987490294334
 GameObject:
   m_ObjectHideFlags: 0
@@ -39480,6 +40218,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3115634510231713839
 GameObject:
   m_ObjectHideFlags: 0
@@ -39658,6 +40397,7 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3139089118216889650
 GameObject:
   m_ObjectHideFlags: 0
@@ -39836,6 +40576,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3155595201298413528
 GameObject:
   m_ObjectHideFlags: 0
@@ -39934,6 +40675,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3157567225611107433
 GameObject:
   m_ObjectHideFlags: 0
@@ -40032,6 +40774,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3159198100670726582
 GameObject:
   m_ObjectHideFlags: 0
@@ -40210,6 +40953,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3164650304803204406
 GameObject:
   m_ObjectHideFlags: 0
@@ -40388,6 +41132,7 @@ MonoBehaviour:
   bodyPartType: 5
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3176922296974793646
 GameObject:
   m_ObjectHideFlags: 0
@@ -40486,6 +41231,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3180914682131416801
 GameObject:
   m_ObjectHideFlags: 0
@@ -40584,6 +41330,7 @@ MonoBehaviour:
   bodyPartType: 9
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3200181326503958913
 GameObject:
   m_ObjectHideFlags: 0
@@ -40762,6 +41509,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3206312965686197940
 GameObject:
   m_ObjectHideFlags: 0
@@ -40860,6 +41608,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3213281044998435691
 GameObject:
   m_ObjectHideFlags: 0
@@ -41038,6 +41787,7 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3253107038502540634
 GameObject:
   m_ObjectHideFlags: 0
@@ -41216,6 +41966,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3261566885960632100
 GameObject:
   m_ObjectHideFlags: 0
@@ -41314,6 +42065,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3328174474681218239
 GameObject:
   m_ObjectHideFlags: 0
@@ -41412,6 +42164,7 @@ MonoBehaviour:
   bodyPartType: 8
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3390980599889358229
 GameObject:
   m_ObjectHideFlags: 0
@@ -41510,6 +42263,7 @@ MonoBehaviour:
   bodyPartType: 9
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3410556903093137416
 GameObject:
   m_ObjectHideFlags: 0
@@ -41608,6 +42362,7 @@ MonoBehaviour:
   bodyPartType: 8
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3413953274328999066
 GameObject:
   m_ObjectHideFlags: 0
@@ -41706,6 +42461,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3418661029907331740
 GameObject:
   m_ObjectHideFlags: 0
@@ -41804,6 +42560,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3421991417931220488
 GameObject:
   m_ObjectHideFlags: 0
@@ -41902,6 +42659,7 @@ MonoBehaviour:
   bodyPartType: 9
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3443754583252652282
 GameObject:
   m_ObjectHideFlags: 0
@@ -42000,6 +42758,7 @@ MonoBehaviour:
   bodyPartType: 17
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3444344605666679428
 GameObject:
   m_ObjectHideFlags: 0
@@ -42098,6 +42857,7 @@ MonoBehaviour:
   bodyPartType: 9
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3458617639866147542
 GameObject:
   m_ObjectHideFlags: 0
@@ -42205,6 +42965,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3491527413258248148
 GameObject:
   m_ObjectHideFlags: 0
@@ -42303,6 +43064,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3499307027247149381
 GameObject:
   m_ObjectHideFlags: 0
@@ -42405,6 +43167,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3503893302158835045
 GameObject:
   m_ObjectHideFlags: 0
@@ -42538,6 +43301,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 3796414447284155016}
   - {fileID: 5391950622399506378}
+  baseLightIntensity: 0
 --- !u!1 &3521657124871660460
 GameObject:
   m_ObjectHideFlags: 0
@@ -42638,6 +43402,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 5576480712844103378}
   - {fileID: 2176311784195585386}
+  baseLightIntensity: 0
 --- !u!1 &3526130232183019344
 GameObject:
   m_ObjectHideFlags: 0
@@ -42737,6 +43502,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 1124433304148847603}
+  baseLightIntensity: 0
 --- !u!1 &3532027769625888261
 GameObject:
   m_ObjectHideFlags: 0
@@ -42838,6 +43604,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3534890637324004411
 GameObject:
   m_ObjectHideFlags: 0
@@ -42939,6 +43706,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3537205166782378690
 GameObject:
   m_ObjectHideFlags: 0
@@ -43107,6 +43875,7 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3558532720428244002
 GameObject:
   m_ObjectHideFlags: 0
@@ -43366,6 +44135,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 7804962558140945961}
+  baseLightIntensity: 0
 --- !u!1 &3596304508358434930
 GameObject:
   m_ObjectHideFlags: 0
@@ -43464,6 +44234,7 @@ MonoBehaviour:
   bodyPartType: 0
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3596943847659743255
 GameObject:
   m_ObjectHideFlags: 0
@@ -43564,6 +44335,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 8433578023627613219}
   - {fileID: 3490205009330408738}
+  baseLightIntensity: 0
 --- !u!1 &3613394369857998887
 GameObject:
   m_ObjectHideFlags: 0
@@ -43743,6 +44515,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 1727842294441296336}
+  baseLightIntensity: 0
 --- !u!1 &3634623405584722528
 GameObject:
   m_ObjectHideFlags: 0
@@ -43842,6 +44615,7 @@ MonoBehaviour:
   itemsWithMyView:
   - {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3646628602996363882
 GameObject:
   m_ObjectHideFlags: 0
@@ -43941,6 +44715,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 1435310835159144707}
+  baseLightIntensity: 0
 --- !u!1 &3647685619691221446
 GameObject:
   m_ObjectHideFlags: 0
@@ -44119,6 +44894,7 @@ MonoBehaviour:
   bodyPartType: 17
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3678849822489190834
 GameObject:
   m_ObjectHideFlags: 0
@@ -44218,6 +44994,7 @@ MonoBehaviour:
   itemsWithMyView:
   - {fileID: 11400000, guid: 75b864f4003e0624ca13cbcb3fa3d7f7, type: 2}
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3683930030922941397
 GameObject:
   m_ObjectHideFlags: 0
@@ -44396,6 +45173,7 @@ MonoBehaviour:
   bodyPartType: 9
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3692473162495748461
 GameObject:
   m_ObjectHideFlags: 0
@@ -44574,6 +45352,7 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3703852256311583047
 GameObject:
   m_ObjectHideFlags: 0
@@ -44674,6 +45453,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 8742994095287241702}
   - {fileID: 8833128047477338048}
+  baseLightIntensity: 0
 --- !u!1 &3705573471781211745
 GameObject:
   m_ObjectHideFlags: 0
@@ -44772,6 +45552,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3708422220054426614
 GameObject:
   m_ObjectHideFlags: 0
@@ -44974,6 +45755,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3759274893407569930
 GameObject:
   m_ObjectHideFlags: 0
@@ -45073,6 +45855,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 5092873005142121495}
+  baseLightIntensity: 0
 --- !u!1 &3799078484190166581
 GameObject:
   m_ObjectHideFlags: 0
@@ -45368,6 +46151,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3842715640177621417
 GameObject:
   m_ObjectHideFlags: 0
@@ -45466,6 +46250,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3861360689229458761
 GameObject:
   m_ObjectHideFlags: 0
@@ -45564,6 +46349,7 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3890353384458739256
 GameObject:
   m_ObjectHideFlags: 0
@@ -45742,6 +46528,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3945262954479906650
 GameObject:
   m_ObjectHideFlags: 0
@@ -45841,6 +46628,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 2321197794085466443}
+  baseLightIntensity: 0
 --- !u!1 &3951901792349642976
 GameObject:
   m_ObjectHideFlags: 0
@@ -45940,6 +46728,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 5537484120793342223}
+  baseLightIntensity: 0
 --- !u!1 &3975195227588422052
 GameObject:
   m_ObjectHideFlags: 0
@@ -46040,6 +46829,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 9204238807241758851}
   - {fileID: 7750214685175337412}
+  baseLightIntensity: 0
 --- !u!1 &3978578887062005810
 GameObject:
   m_ObjectHideFlags: 0
@@ -46138,6 +46928,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &3980824455666315259
 GameObject:
   m_ObjectHideFlags: 0
@@ -46239,6 +47030,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4021259949430250449
 GameObject:
   m_ObjectHideFlags: 0
@@ -46337,6 +47129,7 @@ MonoBehaviour:
   bodyPartType: 8
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4025897728199539898
 GameObject:
   m_ObjectHideFlags: 0
@@ -46435,6 +47228,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4036999418347720674
 GameObject:
   m_ObjectHideFlags: 0
@@ -46693,6 +47487,7 @@ MonoBehaviour:
   bodyPartType: 13
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4076088894489686675
 GameObject:
   m_ObjectHideFlags: 0
@@ -46792,6 +47587,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 6680849382366695220}
+  baseLightIntensity: 0
 --- !u!1 &4099528507219652754
 GameObject:
   m_ObjectHideFlags: 0
@@ -47051,6 +47847,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 4687325826015565695}
+  baseLightIntensity: 0
 --- !u!1 &4138289897454445459
 GameObject:
   m_ObjectHideFlags: 0
@@ -47150,6 +47947,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 6835725582926931401}
+  baseLightIntensity: 0
 --- !u!1 &4151709433563238790
 GameObject:
   m_ObjectHideFlags: 0
@@ -47250,6 +48048,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 8572981534389785845}
   - {fileID: 8273692265966274934}
+  baseLightIntensity: 0
 --- !u!1 &4156390506236221420
 GameObject:
   m_ObjectHideFlags: 0
@@ -47588,6 +48387,7 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4205370540241168266
 GameObject:
   m_ObjectHideFlags: 0
@@ -47687,6 +48487,7 @@ MonoBehaviour:
   itemsWithMyView:
   - {fileID: 11400000, guid: b441e018b9d907a49b6f8e74e5b0e065, type: 2}
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4206463930371677015
 GameObject:
   m_ObjectHideFlags: 0
@@ -47785,6 +48586,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4217862167346562292
 GameObject:
   m_ObjectHideFlags: 0
@@ -47883,6 +48685,7 @@ MonoBehaviour:
   bodyPartType: 13
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4242804901732173761
 GameObject:
   m_ObjectHideFlags: 0
@@ -48061,6 +48864,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4274392156811163957
 GameObject:
   m_ObjectHideFlags: 0
@@ -48159,6 +48963,7 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4302859449489744614
 GameObject:
   m_ObjectHideFlags: 0
@@ -48257,6 +49062,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4303481177620948897
 GameObject:
   m_ObjectHideFlags: 0
@@ -48435,6 +49241,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4323852676418028267
 GameObject:
   m_ObjectHideFlags: 0
@@ -48613,6 +49420,7 @@ MonoBehaviour:
   bodyPartType: 5
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4362284217611468982
 GameObject:
   m_ObjectHideFlags: 0
@@ -48711,6 +49519,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4391762484407232632
 GameObject:
   m_ObjectHideFlags: 0
@@ -48809,6 +49618,7 @@ MonoBehaviour:
   bodyPartType: 0
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4427383421058146832
 GameObject:
   m_ObjectHideFlags: 0
@@ -48907,6 +49717,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4438842221953767770
 GameObject:
   m_ObjectHideFlags: 0
@@ -49085,6 +49896,7 @@ MonoBehaviour:
   bodyPartType: 9
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4499412477652004838
 GameObject:
   m_ObjectHideFlags: 0
@@ -49184,6 +49996,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 460379435479423888}
+  baseLightIntensity: 0
 --- !u!1 &4524918469121101631
 GameObject:
   m_ObjectHideFlags: 0
@@ -49362,6 +50175,7 @@ MonoBehaviour:
   bodyPartType: 19
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4574516232543945998
 GameObject:
   m_ObjectHideFlags: 0
@@ -49460,6 +50274,7 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4576440682892290761
 GameObject:
   m_ObjectHideFlags: 0
@@ -49638,6 +50453,7 @@ MonoBehaviour:
   bodyPartType: 9
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4578227568250867118
 GameObject:
   m_ObjectHideFlags: 0
@@ -49738,6 +50554,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 343112430901630536}
   - {fileID: 3075629747830822251}
+  baseLightIntensity: 0
 --- !u!1 &4589051456729268683
 GameObject:
   m_ObjectHideFlags: 0
@@ -49916,6 +50733,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4596762763823634246
 GameObject:
   m_ObjectHideFlags: 0
@@ -50015,6 +50833,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 5976025751216800966}
+  baseLightIntensity: 0
 --- !u!1 &4599200924134367792
 GameObject:
   m_ObjectHideFlags: 0
@@ -50115,6 +50934,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 3497414114729133551}
   - {fileID: 8144296012893264393}
+  baseLightIntensity: 0
 --- !u!1 &4601289185068954221
 GameObject:
   m_ObjectHideFlags: 0
@@ -50213,6 +51033,7 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4624367508261853582
 GameObject:
   m_ObjectHideFlags: 0
@@ -50472,6 +51293,7 @@ MonoBehaviour:
   itemsWithMyView:
   - {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4650508279842982602
 GameObject:
   m_ObjectHideFlags: 0
@@ -50570,6 +51392,7 @@ MonoBehaviour:
   bodyPartType: 19
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4664959815242040051
 GameObject:
   m_ObjectHideFlags: 0
@@ -50668,6 +51491,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4667642259714708218
 GameObject:
   m_ObjectHideFlags: 0
@@ -50768,6 +51592,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 4604019166840442892}
   - {fileID: 5148278448362244162}
+  baseLightIntensity: 0
 --- !u!1 &4669092124642309690
 GameObject:
   m_ObjectHideFlags: 0
@@ -50871,6 +51696,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4677886272818418599
 GameObject:
   m_ObjectHideFlags: 0
@@ -51020,6 +51846,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 8847006184893650254}
+  baseLightIntensity: 0
 --- !u!1 &4710015263959590523
 GameObject:
   m_ObjectHideFlags: 0
@@ -51198,6 +52025,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4713469562704976433
 GameObject:
   m_ObjectHideFlags: 0
@@ -51298,6 +52126,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 6848846715285714464}
   - {fileID: 1302804344316358932}
+  baseLightIntensity: 0
 --- !u!1 &4716352293230549684
 GameObject:
   m_ObjectHideFlags: 0
@@ -51397,6 +52226,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 7537503933893444743}
+  baseLightIntensity: 0
 --- !u!1 &4778937159959874666
 GameObject:
   m_ObjectHideFlags: 0
@@ -51496,6 +52326,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 2934693702816753940}
+  baseLightIntensity: 0
 --- !u!1 &4782703199395397241
 GameObject:
   m_ObjectHideFlags: 0
@@ -56465,6 +57296,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 887935432630869737}
+  baseLightIntensity: 0
 --- !u!1 &4797648644451587789
 GameObject:
   m_ObjectHideFlags: 0
@@ -56563,6 +57395,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4805834583777522020
 GameObject:
   m_ObjectHideFlags: 0
@@ -56693,6 +57526,7 @@ MonoBehaviour:
   bodyPartType: 13
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4810429550564127181
 GameObject:
   m_ObjectHideFlags: 0
@@ -56791,6 +57625,7 @@ MonoBehaviour:
   bodyPartType: 13
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4818841482402999054
 GameObject:
   m_ObjectHideFlags: 0
@@ -56890,6 +57725,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 2333769002536910096}
+  baseLightIntensity: 0
 --- !u!1 &4834722614584744322
 GameObject:
   m_ObjectHideFlags: 0
@@ -56988,6 +57824,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4862307127763993790
 GameObject:
   m_ObjectHideFlags: 0
@@ -57214,6 +58051,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4890359325606079601
 GameObject:
   m_ObjectHideFlags: 0
@@ -57437,6 +58275,7 @@ MonoBehaviour:
   bodyPartType: 13
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4898610723676752715
 GameObject:
   m_ObjectHideFlags: 0
@@ -57538,6 +58377,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4912527922866027645
 GameObject:
   m_ObjectHideFlags: 0
@@ -57876,6 +58716,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4948180964842253508
 GameObject:
   m_ObjectHideFlags: 0
@@ -58085,6 +58926,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4979443842569010447
 GameObject:
   m_ObjectHideFlags: 0
@@ -58184,6 +59026,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 4804330042077201092}
+  baseLightIntensity: 0
 --- !u!1 &4983111043314931138
 GameObject:
   m_ObjectHideFlags: 0
@@ -58282,6 +59125,7 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &4985166552705215805
 GameObject:
   m_ObjectHideFlags: 0
@@ -58380,6 +59224,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5015859080036343588
 GameObject:
   m_ObjectHideFlags: 0
@@ -58558,6 +59403,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5050764707447661764
 GameObject:
   m_ObjectHideFlags: 0
@@ -58657,6 +59503,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 2433936582466109315}
+  baseLightIntensity: 0
 --- !u!1 &5055192268410204616
 GameObject:
   m_ObjectHideFlags: 0
@@ -58755,6 +59602,7 @@ MonoBehaviour:
   bodyPartType: 19
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5070423356986286407
 GameObject:
   m_ObjectHideFlags: 0
@@ -58933,6 +59781,7 @@ MonoBehaviour:
   bodyPartType: 13
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5110540912263000928
 GameObject:
   m_ObjectHideFlags: 0
@@ -59031,6 +59880,7 @@ MonoBehaviour:
   bodyPartType: 11
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5116659667108097797
 GameObject:
   m_ObjectHideFlags: 0
@@ -59129,6 +59979,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5118825208460122948
 GameObject:
   m_ObjectHideFlags: 0
@@ -59309,6 +60160,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 4717202435119435070}
   - {fileID: 2915048187314095791}
+  baseLightIntensity: 0
 --- !u!1 &5165179634511170587
 GameObject:
   m_ObjectHideFlags: 0
@@ -59567,6 +60419,7 @@ MonoBehaviour:
   bodyPartType: 9
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5195437697859322937
 GameObject:
   m_ObjectHideFlags: 0
@@ -59665,6 +60518,7 @@ MonoBehaviour:
   bodyPartType: 13
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5234153201924267118
 GameObject:
   m_ObjectHideFlags: 0
@@ -64597,6 +65451,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5263507627964864507
 GameObject:
   m_ObjectHideFlags: 0
@@ -64777,6 +65632,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 6886477184926172895}
+  baseLightIntensity: 0
 --- !u!1 &5299658441363867796
 GameObject:
   m_ObjectHideFlags: 0
@@ -64876,6 +65732,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 1683141934944636144}
+  baseLightIntensity: 0
 --- !u!1 &5299660080044706723
 GameObject:
   m_ObjectHideFlags: 0
@@ -64974,6 +65831,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5299969207090096068
 GameObject:
   m_ObjectHideFlags: 0
@@ -65152,6 +66010,7 @@ MonoBehaviour:
   bodyPartType: 19
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5302830480966543098
 GameObject:
   m_ObjectHideFlags: 0
@@ -65250,6 +66109,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5315134661356454941
 GameObject:
   m_ObjectHideFlags: 0
@@ -65348,6 +66208,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5317178794208073565
 GameObject:
   m_ObjectHideFlags: 0
@@ -65446,6 +66307,7 @@ MonoBehaviour:
   bodyPartType: 9
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5343451555347848115
 GameObject:
   m_ObjectHideFlags: 0
@@ -65544,6 +66406,7 @@ MonoBehaviour:
   bodyPartType: 9
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5345417857166999642
 GameObject:
   m_ObjectHideFlags: 0
@@ -65642,6 +66505,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5347945584108638892
 GameObject:
   m_ObjectHideFlags: 0
@@ -65742,6 +66606,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 7191377749631082282}
   - {fileID: 6317221762972217013}
+  baseLightIntensity: 0
 --- !u!1 &5352535117333697132
 GameObject:
   m_ObjectHideFlags: 0
@@ -65840,6 +66705,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5366812258153569328
 GameObject:
   m_ObjectHideFlags: 0
@@ -66018,6 +66884,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5392008933300603938
 GameObject:
   m_ObjectHideFlags: 0
@@ -66117,6 +66984,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 5290341116498893783}
+  baseLightIntensity: 0
 --- !u!1 &5401993156531364694
 GameObject:
   m_ObjectHideFlags: 0
@@ -66215,6 +67083,7 @@ MonoBehaviour:
   bodyPartType: 19
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5414410560254614418
 GameObject:
   m_ObjectHideFlags: 0
@@ -66313,6 +67182,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5435940574750487965
 GameObject:
   m_ObjectHideFlags: 0
@@ -66411,6 +67281,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5453112324130678620
 GameObject:
   m_ObjectHideFlags: 0
@@ -66509,6 +67380,38 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
+--- !u!1 &5462849116067134405
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9040140639720378283}
+  m_Layer: 0
+  m_Name: Body Lighting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9040140639720378283
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5462849116067134405}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7095244, w: -0.70468086}
+  m_LocalPosition: {x: 2.24, y: 1.66, z: -0.006}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4064399410195825482}
+  m_Father: {fileID: 4950898996263370}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5464712033703619885
 GameObject:
   m_ObjectHideFlags: 0
@@ -66607,6 +67510,7 @@ MonoBehaviour:
   bodyPartType: 19
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5469204779571202857
 GameObject:
   m_ObjectHideFlags: 0
@@ -66705,6 +67609,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5495316894097617901
 GameObject:
   m_ObjectHideFlags: 0
@@ -66805,6 +67710,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 2101715625656455675}
   - {fileID: 7389743923507104749}
+  baseLightIntensity: 0
 --- !u!1 &5502802366314037668
 GameObject:
   m_ObjectHideFlags: 0
@@ -66904,6 +67810,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 4377899193471135500}
+  baseLightIntensity: 0
 --- !u!1 &5503736077453538519
 GameObject:
   m_ObjectHideFlags: 0
@@ -67003,6 +67910,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 7820043969845608137}
+  baseLightIntensity: 0
 --- !u!1 &5505775154430309065
 GameObject:
   m_ObjectHideFlags: 0
@@ -67182,6 +68090,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 564139753806409735}
+  baseLightIntensity: 0
 --- !u!1 &5550534141150032087
 GameObject:
   m_ObjectHideFlags: 0
@@ -67280,6 +68189,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5560746649336975963
 GameObject:
   m_ObjectHideFlags: 0
@@ -67378,6 +68288,7 @@ MonoBehaviour:
   bodyPartType: 19
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5581440258383342211
 GameObject:
   m_ObjectHideFlags: 0
@@ -67476,6 +68387,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5584487423949728906
 GameObject:
   m_ObjectHideFlags: 0
@@ -67575,6 +68487,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 3929808670978202685}
+  baseLightIntensity: 0
 --- !u!1 &5598773470544342695
 GameObject:
   m_ObjectHideFlags: 0
@@ -67674,6 +68587,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 1683922848413959253}
+  baseLightIntensity: 0
 --- !u!1 &5613712799845975157
 GameObject:
   m_ObjectHideFlags: 0
@@ -67772,6 +68686,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5618219589152368542
 GameObject:
   m_ObjectHideFlags: 0
@@ -67873,6 +68788,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5622984578768565992
 GameObject:
   m_ObjectHideFlags: 0
@@ -67971,6 +68887,7 @@ MonoBehaviour:
   bodyPartType: 9
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5689770376121715516
 GameObject:
   m_ObjectHideFlags: 0
@@ -68069,6 +68986,7 @@ MonoBehaviour:
   bodyPartType: 8
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5690170710796112213
 GameObject:
   m_ObjectHideFlags: 0
@@ -68167,6 +69085,7 @@ MonoBehaviour:
   bodyPartType: 9
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5695420983806998239
 GameObject:
   m_ObjectHideFlags: 0
@@ -68425,6 +69344,7 @@ MonoBehaviour:
   bodyPartType: 3
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5732829215736337688
 GameObject:
   m_ObjectHideFlags: 0
@@ -68523,6 +69443,7 @@ MonoBehaviour:
   bodyPartType: 0
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5739138044455234612
 GameObject:
   m_ObjectHideFlags: 0
@@ -68621,6 +69542,7 @@ MonoBehaviour:
   bodyPartType: 13
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5785048575376224310
 GameObject:
   m_ObjectHideFlags: 0
@@ -68719,6 +69641,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5790176497426364999
 GameObject:
   m_ObjectHideFlags: 0
@@ -68817,6 +69740,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5792662394013115986
 GameObject:
   m_ObjectHideFlags: 0
@@ -68920,6 +69844,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5807061616162846351
 GameObject:
   m_ObjectHideFlags: 0
@@ -69018,6 +69943,7 @@ MonoBehaviour:
   bodyPartType: 13
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5825427582653884829
 GameObject:
   m_ObjectHideFlags: 0
@@ -69197,6 +70123,7 @@ MonoBehaviour:
   itemsWithMyView:
   - {fileID: 11400000, guid: f2e579d4bb84b82479f2d0b3183c07d4, type: 2}
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5863801854333320187
 GameObject:
   m_ObjectHideFlags: 0
@@ -69494,6 +70421,7 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5915440406320145970
 GameObject:
   m_ObjectHideFlags: 0
@@ -69681,6 +70609,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5969830374242200191
 GameObject:
   m_ObjectHideFlags: 0
@@ -69779,6 +70708,7 @@ MonoBehaviour:
   bodyPartType: 9
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5971081087126711948
 GameObject:
   m_ObjectHideFlags: 0
@@ -69877,6 +70807,7 @@ MonoBehaviour:
   bodyPartType: 8
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &5973195465347022991
 GameObject:
   m_ObjectHideFlags: 0
@@ -69976,6 +70907,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 8355462957214247960}
+  baseLightIntensity: 0
 --- !u!1 &5991539157509042143
 GameObject:
   m_ObjectHideFlags: 0
@@ -70075,6 +71007,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 9202315179135332267}
+  baseLightIntensity: 0
 --- !u!1 &5994841887640607276
 GameObject:
   m_ObjectHideFlags: 0
@@ -70173,6 +71106,7 @@ MonoBehaviour:
   bodyPartType: 3
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6049225601078961145
 GameObject:
   m_ObjectHideFlags: 0
@@ -70352,6 +71286,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 794309003253776713}
+  baseLightIntensity: 0
 --- !u!1 &6070550434827192270
 GameObject:
   m_ObjectHideFlags: 0
@@ -70530,6 +71465,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6073019693114743388
 GameObject:
   m_ObjectHideFlags: 0
@@ -70660,6 +71596,7 @@ MonoBehaviour:
   bodyPartType: 9
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6139761041613536761
 GameObject:
   m_ObjectHideFlags: 0
@@ -75512,6 +76449,7 @@ MonoBehaviour:
   bodyPartType: 11
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6183320730230899304
 GameObject:
   m_ObjectHideFlags: 0
@@ -75614,6 +76552,7 @@ MonoBehaviour:
   - {fileID: 7855052246172855227}
   - {fileID: 2333769002536910096}
   - {fileID: 7472616681557652008}
+  baseLightIntensity: 0
 --- !u!1 &6195674838028702669
 GameObject:
   m_ObjectHideFlags: 0
@@ -75793,6 +76732,7 @@ MonoBehaviour:
   itemsWithMyView:
   - {fileID: 11400000, guid: b533dcedf0849e047ac0af6f1d50afe0, type: 2}
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6214136032241353679
 GameObject:
   m_ObjectHideFlags: 0
@@ -75892,6 +76832,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 2373282312784006392}
+  baseLightIntensity: 0
 --- !u!1 &6218408663982976639
 GameObject:
   m_ObjectHideFlags: 0
@@ -75990,6 +76931,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6226301646493759281
 GameObject:
   m_ObjectHideFlags: 0
@@ -76168,6 +77110,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6232766774848545227
 GameObject:
   m_ObjectHideFlags: 0
@@ -76268,6 +77211,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 4334649376364009749}
   - {fileID: 5361218838091678549}
+  baseLightIntensity: 0
 --- !u!1 &6234906810866368875
 GameObject:
   m_ObjectHideFlags: 0
@@ -76366,6 +77310,7 @@ MonoBehaviour:
   bodyPartType: 13
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6265523124161660623
 GameObject:
   m_ObjectHideFlags: 0
@@ -76465,6 +77410,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 6400120954857561998}
+  baseLightIntensity: 0
 --- !u!1 &6271516410701689011
 GameObject:
   m_ObjectHideFlags: 0
@@ -76643,6 +77589,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6282064317156288955
 GameObject:
   m_ObjectHideFlags: 0
@@ -76741,6 +77688,7 @@ MonoBehaviour:
   bodyPartType: 3
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6284771153750683498
 GameObject:
   m_ObjectHideFlags: 0
@@ -76839,6 +77787,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6340541556524996982
 GameObject:
   m_ObjectHideFlags: 0
@@ -76937,6 +77886,7 @@ MonoBehaviour:
   bodyPartType: 13
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6357556535638455484
 GameObject:
   m_ObjectHideFlags: 0
@@ -77035,6 +77985,7 @@ MonoBehaviour:
   bodyPartType: 17
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6383051061057932175
 GameObject:
   m_ObjectHideFlags: 0
@@ -77133,6 +78084,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6396265607239762097
 GameObject:
   m_ObjectHideFlags: 0
@@ -77231,6 +78183,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6404658882628506509
 GameObject:
   m_ObjectHideFlags: 0
@@ -77329,6 +78282,7 @@ MonoBehaviour:
   bodyPartType: 17
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6438636614174908945
 GameObject:
   m_ObjectHideFlags: 0
@@ -77427,6 +78381,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6444269694835288455
 GameObject:
   m_ObjectHideFlags: 0
@@ -77605,6 +78560,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6474579936631711214
 GameObject:
   m_ObjectHideFlags: 0
@@ -77703,6 +78659,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6491200261278534026
 GameObject:
   m_ObjectHideFlags: 0
@@ -77801,6 +78758,7 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6512213414032728759
 GameObject:
   m_ObjectHideFlags: 0
@@ -77979,6 +78937,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6554530441867185413
 GameObject:
   m_ObjectHideFlags: 0
@@ -78130,6 +79089,7 @@ MonoBehaviour:
   bodyPartType: 5
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6590615662573566503
 GameObject:
   m_ObjectHideFlags: 0
@@ -78308,6 +79268,7 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6609072651757601656
 GameObject:
   m_ObjectHideFlags: 0
@@ -78407,6 +79368,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 7205811450060712794}
+  baseLightIntensity: 0
 --- !u!1 &6631110777139798888
 GameObject:
   m_ObjectHideFlags: 0
@@ -78589,6 +79551,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6644265253604477746
 GameObject:
   m_ObjectHideFlags: 0
@@ -78690,6 +79653,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 4143813368570672030}
+  baseLightIntensity: 0
 --- !u!1 &6648255053372948641
 GameObject:
   m_ObjectHideFlags: 0
@@ -83542,6 +84506,7 @@ MonoBehaviour:
   bodyPartType: 9
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6651783671558295331
 GameObject:
   m_ObjectHideFlags: 0
@@ -83641,6 +84606,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 4462408815951055283}
+  baseLightIntensity: 0
 --- !u!1 &6657488422082726327
 GameObject:
   m_ObjectHideFlags: 0
@@ -83739,6 +84705,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6677163060160288568
 GameObject:
   m_ObjectHideFlags: 0
@@ -83838,6 +84805,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 3221184980373479696}
+  baseLightIntensity: 0
 --- !u!1 &6698582426148163070
 GameObject:
   m_ObjectHideFlags: 0
@@ -83936,6 +84904,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6699922811559104029
 GameObject:
   m_ObjectHideFlags: 0
@@ -84035,6 +85004,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 5860785338971982304}
+  baseLightIntensity: 0
 --- !u!1 &6717548290105695283
 GameObject:
   m_ObjectHideFlags: 0
@@ -84134,6 +85104,7 @@ MonoBehaviour:
   itemsWithMyView:
   - {fileID: 11400000, guid: dfeeccc8c225a66488eb3e4eb76d6c3b, type: 2}
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6744930200259100646
 GameObject:
   m_ObjectHideFlags: 0
@@ -84393,6 +85364,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 752485566212670008}
+  baseLightIntensity: 0
 --- !u!1 &6779794042671260850
 GameObject:
   m_ObjectHideFlags: 0
@@ -84491,6 +85463,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6781289887038887040
 GameObject:
   m_ObjectHideFlags: 0
@@ -84669,6 +85642,7 @@ MonoBehaviour:
   bodyPartType: 5
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6819863538945461738
 GameObject:
   m_ObjectHideFlags: 0
@@ -84768,6 +85742,7 @@ MonoBehaviour:
   itemsWithMyView:
   - {fileID: 11400000, guid: a49466273aff6954d8e0303879ded604, type: 2}
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6841785532776799199
 GameObject:
   m_ObjectHideFlags: 0
@@ -84867,6 +85842,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 664451326354265110}
+  baseLightIntensity: 0
 --- !u!1 &6845817105158565553
 GameObject:
   m_ObjectHideFlags: 0
@@ -84965,6 +85941,7 @@ MonoBehaviour:
   bodyPartType: 8
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6849537199920671170
 GameObject:
   m_ObjectHideFlags: 0
@@ -85063,6 +86040,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6852973576441528301
 GameObject:
   m_ObjectHideFlags: 0
@@ -85241,6 +86219,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &6914204443487787020
 GameObject:
   m_ObjectHideFlags: 0
@@ -85420,6 +86399,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 8826837451646644028}
+  baseLightIntensity: 0
 --- !u!1 &6966353198327564664
 GameObject:
   m_ObjectHideFlags: 0
@@ -85518,6 +86498,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7005009328882936139
 GameObject:
   m_ObjectHideFlags: 0
@@ -85616,6 +86597,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7016826760404727382
 GameObject:
   m_ObjectHideFlags: 0
@@ -86035,6 +87017,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 8999717937095806177}
+  baseLightIntensity: 0
 --- !u!1 &7117205897404099699
 GameObject:
   m_ObjectHideFlags: 0
@@ -86134,6 +87117,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 8660556801827874289}
+  baseLightIntensity: 0
 --- !u!1 &7140143396962772703
 GameObject:
   m_ObjectHideFlags: 0
@@ -86232,6 +87216,7 @@ MonoBehaviour:
   bodyPartType: 8
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7154782709631738705
 GameObject:
   m_ObjectHideFlags: 0
@@ -86330,6 +87315,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7167106091899975095
 GameObject:
   m_ObjectHideFlags: 0
@@ -86428,6 +87414,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7185921628041068651
 GameObject:
   m_ObjectHideFlags: 0
@@ -86529,6 +87516,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7194094293751898508
 GameObject:
   m_ObjectHideFlags: 0
@@ -86627,6 +87615,7 @@ MonoBehaviour:
   bodyPartType: 9
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7221022553353426796
 GameObject:
   m_ObjectHideFlags: 0
@@ -86725,6 +87714,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7246018054953309168
 GameObject:
   m_ObjectHideFlags: 0
@@ -86824,6 +87814,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 794309003253776713}
+  baseLightIntensity: 0
 --- !u!1 &7269907152339450541
 GameObject:
   m_ObjectHideFlags: 0
@@ -86922,6 +87913,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7279949787448043342
 GameObject:
   m_ObjectHideFlags: 0
@@ -87025,6 +88017,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7286816375664419979
 GameObject:
   m_ObjectHideFlags: 0
@@ -87125,6 +88118,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 2517702443341577026}
   - {fileID: 4986833293588764781}
+  baseLightIntensity: 0
 --- !u!1 &7287575664582633509
 GameObject:
   m_ObjectHideFlags: 0
@@ -87304,6 +88298,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 7550465717800980231}
+  baseLightIntensity: 0
 --- !u!1 &7331374497230250105
 GameObject:
   m_ObjectHideFlags: 0
@@ -87484,6 +88479,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 6766037858371645205}
   - {fileID: 704261163122391222}
+  baseLightIntensity: 0
 --- !u!1 &7372837038322396654
 GameObject:
   m_ObjectHideFlags: 0
@@ -87583,6 +88579,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 8112670298185352845}
+  baseLightIntensity: 0
 --- !u!1 &7385920745270378044
 GameObject:
   m_ObjectHideFlags: 0
@@ -87681,6 +88678,7 @@ MonoBehaviour:
   bodyPartType: 3
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7389328475658318426
 GameObject:
   m_ObjectHideFlags: 0
@@ -87779,6 +88777,7 @@ MonoBehaviour:
   bodyPartType: 13
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7394555569045302252
 GameObject:
   m_ObjectHideFlags: 0
@@ -87878,6 +88877,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 2622163236190686034}
+  baseLightIntensity: 0
 --- !u!1 &7409034655737839763
 GameObject:
   m_ObjectHideFlags: 0
@@ -87976,6 +88976,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7435002649550971573
 GameObject:
   m_ObjectHideFlags: 0
@@ -88074,6 +89075,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7462735538502083607
 GameObject:
   m_ObjectHideFlags: 0
@@ -88172,6 +89174,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7481276992340563099
 GameObject:
   m_ObjectHideFlags: 0
@@ -88270,6 +89273,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7492393511754381041
 GameObject:
   m_ObjectHideFlags: 0
@@ -88522,6 +89526,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 7753986002285277508}
+  baseLightIntensity: 0
 --- !u!1 &7534893130445272054
 GameObject:
   m_ObjectHideFlags: 0
@@ -88621,6 +89626,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 2363901295156237674}
+  baseLightIntensity: 0
 --- !u!1 &7547706714133988530
 GameObject:
   m_ObjectHideFlags: 0
@@ -88799,6 +89805,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7611193526239900431
 GameObject:
   m_ObjectHideFlags: 0
@@ -88899,6 +89906,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 905113475210474801}
   - {fileID: 620920605554622500}
+  baseLightIntensity: 0
 --- !u!1 &7634317681710997787
 GameObject:
   m_ObjectHideFlags: 0
@@ -88999,6 +90007,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 3036968795033824815}
   - {fileID: 183252349245513576}
+  baseLightIntensity: 0
 --- !u!1 &7638480287475256726
 GameObject:
   m_ObjectHideFlags: 0
@@ -89098,6 +90107,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 4875470750905712717}
+  baseLightIntensity: 0
 --- !u!1 &7653435029719313693
 GameObject:
   m_ObjectHideFlags: 0
@@ -89258,6 +90268,109 @@ SpriteMask:
   m_BackSortingOrder: 13
   m_IsCustomRangeActive: 1
   m_SpriteSortPoint: 0
+--- !u!1 &7665743752266751241
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4064399410195825482}
+  - component: {fileID: 4977838167650133774}
+  - component: {fileID: 1289659264192349921}
+  m_Layer: 0
+  m_Name: Blue_Glow_Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &4064399410195825482
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7665743752266751241}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 100}
+  m_LocalScale: {x: 0.0074099996, y: 0.0074099996, z: 0.00926}
+  m_Children: []
+  m_Father: {fileID: 9040140639720378283}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1.84, y: -0.81}
+  m_SizeDelta: {x: 289.32272, y: 429.99}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4977838167650133774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7665743752266751241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LightType: 1
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.7
+  m_Color: {r: 0, g: 1, b: 0.94670725, a: 1}
+  m_Intensity: 0.5
+  m_LightVolumeOpacity: 0
+  m_ApplyToSortingLayers: 00000000
+  m_LightCookieSprite: {fileID: 0}
+  m_UseNormalMap: 0
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_ShadowIntensity: 0
+  m_ShadowVolumeIntensity: 0
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 1
+  m_PointLightDistance: 3
+  m_PointLightQuality: 1
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 500
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -316.62366, y: 291.76846, z: 0.0003625278}
+  - {x: -295.87314, y: 111.31644, z: 0.0003625278}
+  - {x: -207.84222, y: -14.981247, z: 0.0003625278}
+  - {x: -214.77841, y: -290.478, z: 0.0003625278}
+  - {x: -110.57678, y: -327.667, z: 0.0003625278}
+  - {x: 66.719734, y: -325.90915, z: 0.0003625278}
+  - {x: 157.87944, y: -237.53601, z: 0.0003625278}
+  - {x: 185.1129, y: -86.46938, z: 0.0003625278}
+  - {x: 193.94826, y: 9.6052885, z: 0.0003625278}
+  - {x: 223.05943, y: 329.08264, z: 0.0003625278}
+  - {x: 47.204624, y: 472.40067, z: 0.0003625278}
+  - {x: -223.12743, y: 436.47128, z: 0.0003625278}
+--- !u!114 &1289659264192349921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7665743752266751241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f198b03aafa7d4645b369971cd5cf6d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOrderBonus: 0
+  bodyPartType: 21
+  itemsWithMyView: []
+  connectedElements: []
+  baseLightIntensity: 0.5
 --- !u!1 &7668059077440347487
 GameObject:
   m_ObjectHideFlags: 0
@@ -89356,6 +90469,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7674073311519253317
 GameObject:
   m_ObjectHideFlags: 0
@@ -89454,6 +90568,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7678941628945529514
 GameObject:
   m_ObjectHideFlags: 0
@@ -89553,6 +90668,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 3984627797764421240}
+  baseLightIntensity: 0
 --- !u!1 &7681211483875274926
 GameObject:
   m_ObjectHideFlags: 0
@@ -89688,6 +90804,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7684521344258939534
 GameObject:
   m_ObjectHideFlags: 0
@@ -89786,6 +90903,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7690450651971981717
 GameObject:
   m_ObjectHideFlags: 0
@@ -89964,6 +91082,7 @@ MonoBehaviour:
   bodyPartType: 13
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7711992970505747247
 GameObject:
   m_ObjectHideFlags: 0
@@ -90111,6 +91230,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 1031426457142543244}
+  baseLightIntensity: 0
 --- !u!1 &7761195461772906592
 GameObject:
   m_ObjectHideFlags: 0
@@ -90213,6 +91333,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7768384255845634000
 GameObject:
   m_ObjectHideFlags: 0
@@ -90472,6 +91593,7 @@ MonoBehaviour:
   itemsWithMyView:
   - {fileID: 11400000, guid: 75b864f4003e0624ca13cbcb3fa3d7f7, type: 2}
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7798023690393880238
 GameObject:
   m_ObjectHideFlags: 0
@@ -90922,6 +92044,7 @@ MonoBehaviour:
   itemsWithMyView:
   - {fileID: 11400000, guid: e561792383921474c9710a3ebc1add23, type: 2}
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7903887473808687226
 GameObject:
   m_ObjectHideFlags: 0
@@ -91020,6 +92143,7 @@ MonoBehaviour:
   bodyPartType: 3
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7920573200698815137
 GameObject:
   m_ObjectHideFlags: 0
@@ -91251,6 +92375,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7936286000361126642
 GameObject:
   m_ObjectHideFlags: 0
@@ -91350,6 +92475,7 @@ MonoBehaviour:
   itemsWithMyView:
   - {fileID: 11400000, guid: 8487b0bcf8b350246ad6ff676ec686f4, type: 2}
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7966626917230446977
 GameObject:
   m_ObjectHideFlags: 0
@@ -91451,6 +92577,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7982140900385103952
 GameObject:
   m_ObjectHideFlags: 0
@@ -91550,6 +92677,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 4497047905712099995}
+  baseLightIntensity: 0
 --- !u!1 &7985391670026962248
 GameObject:
   m_ObjectHideFlags: 0
@@ -91718,6 +92846,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 337862062717354479}
+  baseLightIntensity: 0
 --- !u!1 &7992601108741681935
 GameObject:
   m_ObjectHideFlags: 0
@@ -91816,6 +92945,7 @@ MonoBehaviour:
   bodyPartType: 5
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &7993553816476342891
 GameObject:
   m_ObjectHideFlags: 0
@@ -91915,6 +93045,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 6091493156230169009}
+  baseLightIntensity: 0
 --- !u!1 &8003763918922828823
 GameObject:
   m_ObjectHideFlags: 0
@@ -92013,6 +93144,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8012499000766024079
 GameObject:
   m_ObjectHideFlags: 0
@@ -92111,6 +93243,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8019620726835654180
 GameObject:
   m_ObjectHideFlags: 0
@@ -92209,6 +93342,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8026515604540600738
 GameObject:
   m_ObjectHideFlags: 0
@@ -92387,6 +93521,7 @@ MonoBehaviour:
   bodyPartType: 8
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8052761586906060389
 GameObject:
   m_ObjectHideFlags: 0
@@ -92485,6 +93620,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8057456851548306709
 GameObject:
   m_ObjectHideFlags: 0
@@ -92583,6 +93719,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8115900528234112008
 GameObject:
   m_ObjectHideFlags: 0
@@ -92681,6 +93818,7 @@ MonoBehaviour:
   bodyPartType: 5
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8130313412126857146
 GameObject:
   m_ObjectHideFlags: 0
@@ -92779,6 +93917,7 @@ MonoBehaviour:
   bodyPartType: 19
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8131510114092879097
 GameObject:
   m_ObjectHideFlags: 0
@@ -92877,6 +94016,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8138006020161187133
 GameObject:
   m_ObjectHideFlags: 0
@@ -92976,6 +94116,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 9036716280632802658}
+  baseLightIntensity: 0
 --- !u!1 &8173760912770754487
 GameObject:
   m_ObjectHideFlags: 0
@@ -93074,6 +94215,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8173969991564724752
 GameObject:
   m_ObjectHideFlags: 0
@@ -93172,6 +94314,7 @@ MonoBehaviour:
   bodyPartType: 3
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8174352713329876987
 GameObject:
   m_ObjectHideFlags: 0
@@ -93270,6 +94413,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8180364602229282922
 GameObject:
   m_ObjectHideFlags: 0
@@ -93368,6 +94512,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8180511258944519665
 GameObject:
   m_ObjectHideFlags: 0
@@ -93466,6 +94611,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8190994464240929481
 GameObject:
   m_ObjectHideFlags: 0
@@ -93565,6 +94711,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 5883629392108970132}
+  baseLightIntensity: 0
 --- !u!1 &8227929483595238219
 GameObject:
   m_ObjectHideFlags: 0
@@ -93663,6 +94810,7 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8269201557212632790
 GameObject:
   m_ObjectHideFlags: 0
@@ -93761,6 +94909,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8273084180783497094
 GameObject:
   m_ObjectHideFlags: 0
@@ -94019,6 +95168,7 @@ MonoBehaviour:
   bodyPartType: 19
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8293734638659966799
 GameObject:
   m_ObjectHideFlags: 0
@@ -94117,6 +95267,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8310006410152568437
 GameObject:
   m_ObjectHideFlags: 0
@@ -94215,6 +95366,7 @@ MonoBehaviour:
   bodyPartType: 3
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8322596843877986419
 GameObject:
   m_ObjectHideFlags: 0
@@ -94313,6 +95465,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8323042240287852681
 GameObject:
   m_ObjectHideFlags: 0
@@ -94412,6 +95565,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 2359141089845744708}
+  baseLightIntensity: 0
 --- !u!1 &8333965667715983805
 GameObject:
   m_ObjectHideFlags: 0
@@ -94750,6 +95904,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8417690659573426995
 GameObject:
   m_ObjectHideFlags: 0
@@ -94853,6 +96008,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8430133354569807817
 GameObject:
   m_ObjectHideFlags: 0
@@ -95351,6 +96507,7 @@ MonoBehaviour:
   bodyPartType: 19
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8482007402619892948
 GameObject:
   m_ObjectHideFlags: 0
@@ -95449,6 +96606,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8482964938060576951
 GameObject:
   m_ObjectHideFlags: 0
@@ -95628,6 +96786,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 6460582891700478267}
+  baseLightIntensity: 0
 --- !u!1 &8525070222710513569
 GameObject:
   m_ObjectHideFlags: 0
@@ -95727,6 +96886,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 6413105606450518267}
+  baseLightIntensity: 0
 --- !u!1 &8537718557868157327
 GameObject:
   m_ObjectHideFlags: 0
@@ -95834,6 +96994,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8547693505930731674
 GameObject:
   m_ObjectHideFlags: 0
@@ -95986,6 +97147,7 @@ MonoBehaviour:
   bodyPartType: 5
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8568838822096146441
 GameObject:
   m_ObjectHideFlags: 0
@@ -96084,6 +97246,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8591107942261813124
 GameObject:
   m_ObjectHideFlags: 0
@@ -96184,6 +97347,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 5951677511074592177}
   - {fileID: 7923757176645220313}
+  baseLightIntensity: 0
 --- !u!1 &8610818265148282163
 GameObject:
   m_ObjectHideFlags: 0
@@ -96363,6 +97527,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 5960368072639669642}
+  baseLightIntensity: 0
 --- !u!1 &8628202183662397721
 GameObject:
   m_ObjectHideFlags: 0
@@ -96461,6 +97626,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8646921677190685116
 GameObject:
   m_ObjectHideFlags: 0
@@ -96559,6 +97725,7 @@ MonoBehaviour:
   bodyPartType: 9
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8651250347247338106
 GameObject:
   m_ObjectHideFlags: 0
@@ -96658,6 +97825,7 @@ MonoBehaviour:
   itemsWithMyView:
   - {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8651457342398728977
 GameObject:
   m_ObjectHideFlags: 0
@@ -96756,6 +97924,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8651604274661436059
 GameObject:
   m_ObjectHideFlags: 0
@@ -96854,6 +98023,7 @@ MonoBehaviour:
   bodyPartType: 6
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8656875645814160383
 GameObject:
   m_ObjectHideFlags: 0
@@ -96954,6 +98124,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 2320322186300189522}
   - {fileID: 6651744516305792977}
+  baseLightIntensity: 0
 --- !u!1 &8703444815568120682
 GameObject:
   m_ObjectHideFlags: 0
@@ -97058,6 +98229,7 @@ MonoBehaviour:
   - {fileID: 386429238982696900}
   - {fileID: 2418847137299545902}
   - {fileID: 1114431233004776689}
+  baseLightIntensity: 0
 --- !u!1 &8707888849457009059
 GameObject:
   m_ObjectHideFlags: 0
@@ -97157,6 +98329,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 7525255075597799855}
+  baseLightIntensity: 0
 --- !u!1 &8720278448390290185
 GameObject:
   m_ObjectHideFlags: 0
@@ -97255,6 +98428,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8728071772057709106
 GameObject:
   m_ObjectHideFlags: 0
@@ -97353,6 +98527,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8755626541218664367
 GameObject:
   m_ObjectHideFlags: 0
@@ -97491,6 +98666,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8780494683721293972
 GameObject:
   m_ObjectHideFlags: 0
@@ -97669,6 +98845,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8835222867936987234
 GameObject:
   m_ObjectHideFlags: 0
@@ -97769,6 +98946,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 7219114252942765064}
   - {fileID: 5170557547215734860}
+  baseLightIntensity: 0
 --- !u!1 &8838431907625845891
 GameObject:
   m_ObjectHideFlags: 0
@@ -97867,6 +99045,7 @@ MonoBehaviour:
   bodyPartType: 5
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8839664226529304146
 GameObject:
   m_ObjectHideFlags: 0
@@ -97965,6 +99144,7 @@ MonoBehaviour:
   bodyPartType: 1
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8879118179230654798
 GameObject:
   m_ObjectHideFlags: 0
@@ -98064,6 +99244,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 5652697765077804857}
+  baseLightIntensity: 0
 --- !u!1 &8907652028700722823
 GameObject:
   m_ObjectHideFlags: 0
@@ -98162,6 +99343,7 @@ MonoBehaviour:
   bodyPartType: 5
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8912642931165699850
 GameObject:
   m_ObjectHideFlags: 0
@@ -98260,6 +99442,7 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8917610779103230280
 GameObject:
   m_ObjectHideFlags: 0
@@ -98359,6 +99542,7 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8950341261988059839
 GameObject:
   m_ObjectHideFlags: 0
@@ -98537,6 +99721,7 @@ MonoBehaviour:
   bodyPartType: 8
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8953778715153714179
 GameObject:
   m_ObjectHideFlags: 0
@@ -98715,6 +99900,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8966184667131493357
 GameObject:
   m_ObjectHideFlags: 0
@@ -98819,6 +100005,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8972450433947871420
 GameObject:
   m_ObjectHideFlags: 0
@@ -98923,6 +100110,7 @@ MonoBehaviour:
   - {fileID: 2148146694388693793}
   - {fileID: 3822629682909733744}
   - {fileID: 3286354136351937708}
+  baseLightIntensity: 0
 --- !u!1 &8974385067498656910
 GameObject:
   m_ObjectHideFlags: 0
@@ -99060,6 +100248,7 @@ MonoBehaviour:
   - {fileID: 8575894275638823960}
   - {fileID: 2079197071844469937}
   - {fileID: 4541561694127779590}
+  baseLightIntensity: 0
 --- !u!1 &8988242990572437580
 GameObject:
   m_ObjectHideFlags: 0
@@ -99158,6 +100347,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &8989295978082097869
 GameObject:
   m_ObjectHideFlags: 0
@@ -99257,6 +100447,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 6838433465293996259}
+  baseLightIntensity: 0
 --- !u!1 &9004143592223008879
 GameObject:
   m_ObjectHideFlags: 0
@@ -99356,6 +100547,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &9009407401836290289
 GameObject:
   m_ObjectHideFlags: 0
@@ -99455,6 +100647,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 9172032115176396925}
+  baseLightIntensity: 0
 --- !u!1 &9013544993351898592
 GameObject:
   m_ObjectHideFlags: 0
@@ -99555,6 +100748,7 @@ MonoBehaviour:
   connectedElements:
   - {fileID: 8010766799936490437}
   - {fileID: 7850859662533646842}
+  baseLightIntensity: 0
 --- !u!1 &9019621267678183742
 GameObject:
   m_ObjectHideFlags: 0
@@ -99653,6 +100847,7 @@ MonoBehaviour:
   bodyPartType: 18
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &9029054264868336859
 GameObject:
   m_ObjectHideFlags: 0
@@ -99751,6 +100946,7 @@ MonoBehaviour:
   bodyPartType: 19
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &9034892349997822262
 GameObject:
   m_ObjectHideFlags: 0
@@ -99929,6 +101125,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &9065377706383240626
 GameObject:
   m_ObjectHideFlags: 0
@@ -100027,6 +101224,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &9079593586561387507
 GameObject:
   m_ObjectHideFlags: 0
@@ -100125,6 +101323,7 @@ MonoBehaviour:
   bodyPartType: 3
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &9094212477937816132
 GameObject:
   m_ObjectHideFlags: 0
@@ -100232,6 +101431,7 @@ MonoBehaviour:
   bodyPartType: 10
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &9097339115629758166
 GameObject:
   m_ObjectHideFlags: 0
@@ -100410,6 +101610,7 @@ MonoBehaviour:
   bodyPartType: 16
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &9113653222436487700
 GameObject:
   m_ObjectHideFlags: 0
@@ -100668,6 +101869,7 @@ MonoBehaviour:
   bodyPartType: 5
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &9151414566692637251
 GameObject:
   m_ObjectHideFlags: 0
@@ -100846,6 +102048,7 @@ MonoBehaviour:
   bodyPartType: 0
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &9160568559902107371
 GameObject:
   m_ObjectHideFlags: 0
@@ -100945,6 +102148,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 3277934258376249588}
+  baseLightIntensity: 0
 --- !u!1 &9181187929320040246
 GameObject:
   m_ObjectHideFlags: 0
@@ -101043,6 +102247,7 @@ MonoBehaviour:
   bodyPartType: 5
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &9188705819931320410
 GameObject:
   m_ObjectHideFlags: 0
@@ -101141,6 +102346,7 @@ MonoBehaviour:
   bodyPartType: 2
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &9215672891685216905
 GameObject:
   m_ObjectHideFlags: 0
@@ -101239,6 +102445,7 @@ MonoBehaviour:
   bodyPartType: 17
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1 &9215945630697818502
 GameObject:
   m_ObjectHideFlags: 0
@@ -101338,6 +102545,7 @@ MonoBehaviour:
   itemsWithMyView: []
   connectedElements:
   - {fileID: 5934396688426176085}
+  baseLightIntensity: 0
 --- !u!1 &9220899123906704250
 GameObject:
   m_ObjectHideFlags: 0
@@ -101436,6 +102644,7 @@ MonoBehaviour:
   bodyPartType: 14
   itemsWithMyView: []
   connectedElements: []
+  baseLightIntensity: 0
 --- !u!1001 &2259160632858936862
 PrefabInstance:
   m_ObjectHideFlags: 0

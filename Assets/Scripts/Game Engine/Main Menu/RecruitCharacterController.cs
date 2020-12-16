@@ -86,15 +86,11 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
         // Reset scroll window position
         popUpScrollBar.value = 1;
 
-        // Set model alpha to 0
-        //EntityRenderer er = popUpCharacterModel.GetComponent<EntityRenderer>();
-        popUpCharacterModel.myEntityRenderer.Color = new Color(popUpCharacterModel.myEntityRenderer.Color.r, popUpCharacterModel.myEntityRenderer.Color.g, popUpCharacterModel.myEntityRenderer.Color.b, 0f);
-        
         // Make model view invisible
-        //CharacterModelController.Instance.FadeOutCharacterModel(popUpCharacterModel, 1000f);
+        CharacterModelController.Instance.FadeOutCharacterModel(popUpCharacterModel, 0f);
 
         // Fade in model
-        CharacterModelController.Instance.FadeInCharacterModel(popUpCharacterModel, 3f);
+        CharacterModelController.Instance.FadeInCharacterModel(popUpCharacterModel, 0.3f);
     }
     public void HidePreviewCard()
     {
