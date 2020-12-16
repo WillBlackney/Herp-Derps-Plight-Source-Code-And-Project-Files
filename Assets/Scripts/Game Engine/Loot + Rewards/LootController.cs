@@ -646,7 +646,7 @@ public class LootController : Singleton<LootController>
         // Fade out character models
         foreach (RewardCharacterBox box in rewardCharacterBoxes)
         {
-            CharacterEntityController.Instance.FadeOutEntityRenderer(box.ucm.GetComponent<EntityRenderer>(), 10f);
+            CharacterModelController.Instance.FadeOutCharacterModel(box.ucm, 10f);
         }       
   
         // Fade out + disable main view
@@ -664,7 +664,7 @@ public class LootController : Singleton<LootController>
         int totalXpGainedInt = xrd.totalXpGained;
 
         // Build ucm 
-        CharacterModelController.BuildModelFromStringReferences(box.ucm, character.modelParts);
+        CharacterModelController.Instance.BuildModelFromStringReferences(box.ucm, character.modelParts);
 
         // Set total xp text start state
         box.totalXpText.text = "+0 XP";

@@ -87,11 +87,14 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
         popUpScrollBar.value = 1;
 
         // Set model alpha to 0
-        EntityRenderer er = popUpCharacterModel.GetComponent<EntityRenderer>();
-        er.Color = new Color(er.Color.r, er.Color.g, er.Color.b, 0f);
+        //EntityRenderer er = popUpCharacterModel.GetComponent<EntityRenderer>();
+        popUpCharacterModel.myEntityRenderer.Color = new Color(popUpCharacterModel.myEntityRenderer.Color.r, popUpCharacterModel.myEntityRenderer.Color.g, popUpCharacterModel.myEntityRenderer.Color.b, 0f);
+        
+        // Make model view invisible
+        //CharacterModelController.Instance.FadeOutCharacterModel(popUpCharacterModel, 1000f);
 
         // Fade in model
-        CharacterEntityController.Instance.FadeInEntityRenderer(er, 3f);
+        CharacterModelController.Instance.FadeInCharacterModel(popUpCharacterModel, 3f);
     }
     public void HidePreviewCard()
     {
@@ -112,8 +115,8 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
         popUpCharacterClassNameText.text = "The " + data.myClassName;
 
         // Build model
-        CharacterModelController.BuildModelFromStringReferences(popUpCharacterModel, data.modelParts);
-        CharacterModelController.ApplyItemManagerDataToCharacterModelView(data.itemManager, popUpCharacterModel);
+        CharacterModelController.Instance.BuildModelFromStringReferences(popUpCharacterModel, data.modelParts);
+        CharacterModelController.Instance.ApplyItemManagerDataToCharacterModelView(data.itemManager, popUpCharacterModel);
 
         // Build race section
         BuildRacialInfoPanel(data);

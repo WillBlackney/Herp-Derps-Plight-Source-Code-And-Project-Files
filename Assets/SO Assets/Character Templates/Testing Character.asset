@@ -103,6 +103,10 @@ MonoBehaviour:
     sourceStacks: 0
   deck:
   - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
+  - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
+  - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
+  - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
+  - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1

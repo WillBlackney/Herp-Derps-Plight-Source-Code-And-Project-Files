@@ -62,8 +62,8 @@ public class ChooseCharacterWindow : MonoBehaviour, IPointerEnterHandler, IPoint
     {
         nameText.text = template.myName;
         classNameText.text = "The " + template.myClassName;
-        CharacterModelController.BuildModelFromStringReferences(myUCM, template.modelParts);
-        CharacterModelController.ApplyItemManagerDataToCharacterModelView(template.itemManager, myUCM);
+        CharacterModelController.Instance.BuildModelFromStringReferences(myUCM, template.modelParts);
+        CharacterModelController.Instance.ApplyItemManagerDataToCharacterModelView(template.itemManager, myUCM);
         //currentIndexText.text = (CharacterDataController.Instance.AllCharacterTemplates.IndexOf(currentTemplateSelection) + 1).ToString();
     }
     #endregion

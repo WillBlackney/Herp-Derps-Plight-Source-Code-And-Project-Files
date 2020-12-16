@@ -2,49 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Spriter2UnityDX;
+using DG.Tweening;
 
-public static class CharacterModelController
+public class CharacterModelController: Singleton<CharacterModelController>
 {
-    // Scaling + Sizing Logic
-    #region
-    private static void SetModelScale(UniversalCharacterModel model, float newScale)
-    {
-        model.transform.localScale = new Vector3(newScale, newScale, newScale);
-    }
-    public static void SetModelNormalScale(UniversalCharacterModel model)
-    {
-        SetModelScale(model, model.normalSizeScale);
-    }
-    public static void SetModelLargeScale(UniversalCharacterModel model)
-    {
-        SetModelScale(model, model.largeSizeScale);
-    }
-    public static void SetModelSmallScale(UniversalCharacterModel model)
-    {
-        SetModelScale(model, model.smallSizeScale);
-    }
-    public static void AutoSetModelScaleFromRace(UniversalCharacterModel model)
-    {
-        if (model.myModelRace == CharacterRace.Gnoll ||
-            model.myModelRace == CharacterRace.Goblin)
-        {
-            SetModelSmallScale(model);
-        }
-        else if (model.myModelRace == CharacterRace.Orc)
-        {
-            SetModelLargeScale(model);
-        }
-        else
-        {
-            SetModelNormalScale(model);
-        }
-    }
-    #endregion
 
     // View Logic
     #region
 
-    public static void BuildModelFromStringReferences(UniversalCharacterModel model, List<string> partNames)
+    public void BuildModelFromStringReferences(UniversalCharacterModel model, List<string> partNames)
     {
         DisableAllActiveModelElementViews(model);
         ClearAllActiveModelElementsReferences(model);
@@ -54,7 +20,7 @@ public static class CharacterModelController
             EnableAndSetElementOnModel(model, part);
         }
     }
-    public static void BuildModelFromModelClone(UniversalCharacterModel modelToBuild, UniversalCharacterModel modelClonedFrom)
+    public void BuildModelFromModelClone(UniversalCharacterModel modelToBuild, UniversalCharacterModel modelClonedFrom)
     {
         if(modelClonedFrom == null)
         {
@@ -82,7 +48,7 @@ public static class CharacterModelController
             }
         }      
     }
-    public static void ApplyItemManagerDataToCharacterModelView(ItemManagerModel iManager, UniversalCharacterModel model)
+    public void ApplyItemManagerDataToCharacterModelView(ItemManagerModel iManager, UniversalCharacterModel model)
     {
         // Do weapons first
 
@@ -117,56 +83,13 @@ public static class CharacterModelController
                 }
             }            
         }
-    }
-    public static void ApplyItemManagerDataToCharacterModelView(SerializedItemManagerModel iManager, UniversalCharacterModel model)
-    {
-        // Do weapons first
-
-        // MH
-        if (iManager.mainHandItem != null)
-        {
-            foreach (UniversalCharacterModelElement ucme in model.allMainHandWeapons)
-            {
-                foreach (ItemDataSO itemData in ucme.itemsWithMyView)
-                {
-                    if (itemData.itemName == iManager.mainHandItem.itemName)
-                    {
-                        EnableAndSetElementOnModel(model, ucme);
-                        break;
-                    }
-                }
-            }
-        }
-
-        // Off hand
-        if (iManager.offHandItem != null)
-        {
-            foreach (UniversalCharacterModelElement ucme in model.allOffHandWeapons)
-            {
-                foreach (ItemDataSO itemData in ucme.itemsWithMyView)
-                {
-                    if (itemData.itemName == iManager.offHandItem.itemName)
-                    {
-                        EnableAndSetElementOnModel(model, ucme);
-                        break;
-                    }
-                }
-            }
-        }
-    }
-    public static void CompletelyDisableAllViews(UniversalCharacterModel model)
-    {
-        foreach(UniversalCharacterModelElement element in model.allModelElements)
-        {
-            element.gameObject.SetActive(false);
-        }
-    }
-    public static void ClearAllActiveModelElementsReferences(UniversalCharacterModel model)
+    }  
+    public void ClearAllActiveModelElementsReferences(UniversalCharacterModel model)
     {
         ClearAllClothingPartReferences(model);
         ClearAllActiveBodyPartReferences(model);
     }
-    public static void ClearAllActiveBodyPartReferences(UniversalCharacterModel model)
+    public void ClearAllActiveBodyPartReferences(UniversalCharacterModel model)
     {
         // Body Parts
         model.activeHead = null;
@@ -179,7 +102,7 @@ public static class CharacterModelController
         model.activeLeftArm = null;
         model.activeChest = null;
     }
-    public static void ClearAllClothingPartReferences(UniversalCharacterModel model)
+    public void ClearAllClothingPartReferences(UniversalCharacterModel model)
     {
         // Clothing 
         model.activeHeadWear = null;
@@ -195,7 +118,7 @@ public static class CharacterModelController
         model.activeMainHandWeapon = null;
         model.activeOffHandWeapon = null;
     }
-    public static void DisableAllActiveModelElementViews(UniversalCharacterModel model)
+    public void DisableAllActiveModelElementViews(UniversalCharacterModel model)
     {
         // Body Parts
         if (model.activeHead)
@@ -278,19 +201,10 @@ public static class CharacterModelController
         {
             model.activeOffHandWeapon.gameObject.SetActive(false);
         }
-    }
-    public static void DisableAllClothingOnModel(UniversalCharacterModel model)
+    }   
+    public void AutoSetHeadMaskOrderInLayer(UniversalCharacterModel model)
     {
-        // Set clear/naked clothing sprites
-        EnableAndSetElementOnModel(model, model.allHeadWear[0]);
-        EnableAndSetElementOnModel(model, model.allChestWear[0]);
-        EnableAndSetElementOnModel(model, model.allRightLegWear[0]);
-        EnableAndSetElementOnModel(model, model.allRightArmWear[0]);
-        EnableAndSetElementOnModel(model, model.allRightHandWear[0]);
-    }    
-    public static void AutoSetHeadMaskOrderInLayer(UniversalCharacterModel model)
-    {
-        int headSortOrder = model.GetComponent<EntityRenderer>().SortingOrder + 10;
+        int headSortOrder = model.myEntityRenderer.SortingOrder + 10;
 
         foreach(SpriteMask mask in model.allHeadWearSpriteMasks)
         {
@@ -300,553 +214,10 @@ public static class CharacterModelController
     }
     #endregion
 
-    // Build Presets
-    #region
-    public static void SetUpAsVolatileZombiePreset(UniversalCharacterModel model)
-    {
-        DisableAllActiveModelElementViews(model);
-        ClearAllActiveModelElementsReferences(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, model.undeadHeads[4]);
-        EnableAndSetElementOnModel(model, model.undeadFaces[6]);
-        EnableAndSetElementOnModel(model, "Volatile_Zombie_Right_Hand");
-        EnableAndSetElementOnModel(model, "Volatile_Zombie_Left_Hand");       
-        EnableAndSetElementOnModel(model, "Volatile_Zombie_Right_Leg");
-        EnableAndSetElementOnModel(model, "Volatile_Zombie_Left_Leg");
-        EnableAndSetElementOnModel(model, "Peasant_Cloth_Right_Arm_Wear");
-        EnableAndSetElementOnModel(model, "Peasant_Cloth_Left_Arm_Wear");
-        EnableAndSetElementOnModel(model, "Peasant_Cloth_Chest_Wear");
-    }
-    public static void SetUpAsDarkElfRangerPreset(UniversalCharacterModel model)
-    {
-        DisableAllActiveModelElementViews(model);
-        ClearAllActiveModelElementsReferences(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, "Dark_Elf_Right_Hand");
-        EnableAndSetElementOnModel(model, "Dark_Elf_Left_Hand");
-        EnableAndSetElementOnModel(model, "Dark_Elf_Right_Leg");
-        EnableAndSetElementOnModel(model, "Dark_Elf_Left_Leg");
-        EnableAndSetElementOnModel(model, "Grey_Archer_Vest_Chest_Wear");
-        EnableAndSetElementOnModel(model, "Left_Hand_Recurve_Bow_1");
-        EnableAndSetElementOnModel(model, "Elf_Face_4");
-        EnableAndSetElementOnModel(model, "Elf_Head_5");
-    }
-    public static void SetUpAsSkeletonArcherPreset(UniversalCharacterModel model)
-    {
-        DisableAllActiveModelElementViews(model);
-        ClearAllActiveModelElementsReferences(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, model.undeadLeftLeg);
-        EnableAndSetElementOnModel(model, model.undeadRightLeg);
-        EnableAndSetElementOnModel(model, model.undeadHeads[0]);
-        EnableAndSetElementOnModel(model, model.undeadFaces[0]);
-        EnableAndSetElementOnModel(model, model.undeadRightHand);
-        EnableAndSetElementOnModel(model, model.undeadRightArm);
-        EnableAndSetElementOnModel(model, model.undeadLeftHand);
-        EnableAndSetElementOnModel(model, model.undeadLeftArm);
-        EnableAndSetElementOnModel(model, model.undeadChest);
-
-        // Clothing + Weapon parts
-        EnableAndSetElementOnModel(model, "Archer_Helmet_Head_Wear");
-        EnableAndSetElementOnModel(model, "Marksman_Chest_Wear");
-        EnableAndSetElementOnModel(model, "Left_Hand_Simple_Bow");
-    }
-    public static void SetUpAsSkeletonAssassinPreset(UniversalCharacterModel model)
-    {
-        DisableAllActiveModelElementViews(model);
-        ClearAllActiveModelElementsReferences(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, model.undeadLeftLeg);
-        EnableAndSetElementOnModel(model, model.undeadRightLeg);
-        EnableAndSetElementOnModel(model, model.undeadHeads[0]);
-        EnableAndSetElementOnModel(model, model.undeadFaces[0]);
-        EnableAndSetElementOnModel(model, model.undeadRightHand);
-        EnableAndSetElementOnModel(model, model.undeadRightArm);
-        EnableAndSetElementOnModel(model, model.undeadLeftHand);
-        EnableAndSetElementOnModel(model, model.undeadLeftArm);
-        EnableAndSetElementOnModel(model, model.undeadChest);
-
-        // Clothing + Weapon parts
-        EnableAndSetElementOnModel(model, "Red_Face_Mask_Head_Wear");
-        EnableAndSetElementOnModel(model, model.allChestWear[2]);
-        EnableAndSetElementOnModel(model, model.allMainHandWeapons[2]);
-        EnableAndSetElementOnModel(model, model.allOffHandWeapons[1]);
-    }
-    public static void SetUpAsSkeletonWarriorPreset(UniversalCharacterModel model)
-    {
-        DisableAllActiveModelElementViews(model);
-        ClearAllActiveModelElementsReferences(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, model.undeadLeftLeg);
-        EnableAndSetElementOnModel(model, model.undeadRightLeg);
-        EnableAndSetElementOnModel(model, model.undeadHeads[0]);
-        EnableAndSetElementOnModel(model, model.undeadFaces[0]);
-        EnableAndSetElementOnModel(model, model.undeadRightHand);
-        EnableAndSetElementOnModel(model, model.undeadRightArm);
-        EnableAndSetElementOnModel(model, model.undeadLeftHand);
-        EnableAndSetElementOnModel(model, model.undeadLeftArm);
-        EnableAndSetElementOnModel(model, model.undeadChest);
-
-        // Clothing + Weapon parts
-        EnableAndSetElementOnModel(model, "Silver_Red_Helmet_Head_Wear");
-        EnableAndSetElementOnModel(model, model.allMainHandWeapons[0]);
-        EnableAndSetElementOnModel(model, model.allOffHandWeapons[0]);
-    }
-    public static void SetUpAsSkeletonBarbarianPreset(UniversalCharacterModel model)
-    {
-        DisableAllActiveModelElementViews(model);
-        ClearAllActiveModelElementsReferences(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, model.undeadLeftLeg);
-        EnableAndSetElementOnModel(model, model.undeadRightLeg);
-        EnableAndSetElementOnModel(model, model.undeadHeads[0]);
-        EnableAndSetElementOnModel(model, model.undeadFaces[0]);
-        EnableAndSetElementOnModel(model, model.undeadRightHand);
-        EnableAndSetElementOnModel(model, model.undeadRightArm);
-        EnableAndSetElementOnModel(model, model.undeadLeftHand);
-        EnableAndSetElementOnModel(model, model.undeadLeftArm);
-        EnableAndSetElementOnModel(model, model.undeadChest);
-
-        // Clothing + Weapon parts
-        EnableAndSetElementOnModel(model, "Berserker_Mask_Head_Wear");
-        EnableAndSetElementOnModel(model, model.allMainHandWeapons[4]);
-    }
-    public static void SetUpAsSkeletonPriestPreset(UniversalCharacterModel model)
-    {
-        DisableAllActiveModelElementViews(model);
-        ClearAllActiveModelElementsReferences(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, model.undeadLeftLeg);
-        EnableAndSetElementOnModel(model, model.undeadRightLeg);
-        EnableAndSetElementOnModel(model, model.undeadHeads[0]);
-        EnableAndSetElementOnModel(model, model.undeadFaces[0]);
-        EnableAndSetElementOnModel(model, model.undeadRightHand);
-        EnableAndSetElementOnModel(model, model.undeadRightArm);
-        EnableAndSetElementOnModel(model, model.undeadLeftHand);
-        EnableAndSetElementOnModel(model, model.undeadLeftArm);
-        EnableAndSetElementOnModel(model, model.undeadChest);
-
-        // Clothing + Weapon parts
-        EnableAndSetElementOnModel(model, "Priest_Chest_Wear");
-        EnableAndSetElementOnModel(model, "White_Head_Band_Head_Wear");
-        EnableAndSetElementOnModel(model, model.allMainHandWeapons[3]);
-    }
-    public static void SetUpAsSkeletonMagePreset(UniversalCharacterModel model)
-    {
-        DisableAllActiveModelElementViews(model);
-        ClearAllActiveModelElementsReferences(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, model.undeadLeftLeg);
-        EnableAndSetElementOnModel(model, model.undeadRightLeg);
-        EnableAndSetElementOnModel(model, model.undeadHeads[0]);
-        EnableAndSetElementOnModel(model, model.undeadFaces[0]);
-        EnableAndSetElementOnModel(model, model.undeadRightHand);
-        EnableAndSetElementOnModel(model, model.undeadRightArm);
-        EnableAndSetElementOnModel(model, model.undeadLeftHand);
-        EnableAndSetElementOnModel(model, model.undeadLeftArm);
-        EnableAndSetElementOnModel(model, model.undeadChest);
-
-        // Clothing + Weapon parts
-        EnableAndSetElementOnModel(model, "Arcanist_Head_Wear");
-        EnableAndSetElementOnModel(model, "Arcanist_Chest_Wear");
-        EnableAndSetElementOnModel(model, model.allMainHandWeapons[3]);
-    }
-    public static void SetUpAsSkeletonNecromancerPreset(UniversalCharacterModel model)
-    {
-        DisableAllActiveModelElementViews(model);
-        ClearAllActiveModelElementsReferences(model);
-
-        // Clothing + Weapon parts
-        EnableAndSetElementOnModel(model, "Orc_Face_6");
-        EnableAndSetElementOnModel(model, "Skeleton_Necromancer_Head");
-        EnableAndSetElementOnModel(model, "Black_Necromancer_Right_Arm_Wear");
-        EnableAndSetElementOnModel(model, "Black_Necromancer_Left_Arm_Wear");
-        EnableAndSetElementOnModel(model, "Black_Necromancer_Chest_Wear");
-        EnableAndSetElementOnModel(model, "Black_Necromancer_Right_Leg_Wear");
-        EnableAndSetElementOnModel(model, "Black_Necromancer_Left_Leg_Wear");
-        EnableAndSetElementOnModel(model, "Black_Necromancer_Right_Hand_Wear");
-        EnableAndSetElementOnModel(model, "Black_Necromancer_Left_Hand_Wear");
-
-        EnableAndSetElementOnModel(model, "Left_Hand_Green_Staff_1");
-    }
-    public static void SetUpAsSkeletonKingPreset(UniversalCharacterModel model)
-    {
-        DisableAllActiveModelElementViews(model);
-        ClearAllActiveModelElementsReferences(model);
-
-        // Clothing + Weapon parts
-        EnableAndSetElementOnModel(model, "Left_Hand_Graphite_Gladius");
-        EnableAndSetElementOnModel(model, "Black_Gold_Plate_Shield");
-        EnableAndSetElementOnModel(model, "Black_Gold_Plate_Right_Hand");
-        EnableAndSetElementOnModel(model, "Black_Gold_Plate_Right_Arm_Wear");
-        EnableAndSetElementOnModel(model, "Black_Gold_Plate_Left_Hand");
-        EnableAndSetElementOnModel(model, "Black_Gold_Plate_Left_Arm_Wear");
-        EnableAndSetElementOnModel(model, "Black_Gold_Plate_Chest_Wear");
-        EnableAndSetElementOnModel(model, "Black_Gold_Plate_Right_Leg_Wear");
-        EnableAndSetElementOnModel(model, "Black_Gold_Plate_Left_Leg_Wear");
-        EnableAndSetElementOnModel(model, "Undead_Head_1");
-        EnableAndSetElementOnModel(model, "Undead_Face_10");
-    }
-    public static void SetUpAsSkeletonSoldierPreset(UniversalCharacterModel model)
-    {
-        DisableAllActiveModelElementViews(model);
-        ClearAllActiveModelElementsReferences(model);
-
-        // Clothing + Weapon parts
-        EnableAndSetElementOnModel(model, "Death_Knight_Head_Wear");
-        EnableAndSetElementOnModel(model, "Death_Knight_Shield");
-        EnableAndSetElementOnModel(model, "Death_Knight_Right_Arm_Wear");
-        EnableAndSetElementOnModel(model, "Death_Knight_Left_Arm_Wear");
-        EnableAndSetElementOnModel(model, "Death_Knight_Chest_Wear");
-        EnableAndSetElementOnModel(model, "Undead_Head_1");
-        EnableAndSetElementOnModel(model, "Undead_Face_2");
-        EnableAndSetElementOnModel(model, "Undead_Right_Hand");
-        EnableAndSetElementOnModel(model, "Undead_Left_Hand");
-        EnableAndSetElementOnModel(model, "Undead_Right_Leg");
-        EnableAndSetElementOnModel(model, "Undead_Left_Leg");
-        EnableAndSetElementOnModel(model, "Left_Hand_Simple_Sword");
-    }
-    public static void SetUpAsGoblinStabbyPreset(UniversalCharacterModel model)
-    {
-        DisableAllActiveModelElementViews(model);
-        ClearAllActiveModelElementsReferences(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, model.orcHeads[1]);
-        EnableAndSetElementOnModel(model, model.orcFaces[0]);
-        EnableAndSetElementOnModel(model, model.orcLeftLeg);
-        EnableAndSetElementOnModel(model, model.orcRightLeg);
-        EnableAndSetElementOnModel(model, model.orcRightHand);
-        EnableAndSetElementOnModel(model, model.orcRightArm);
-        EnableAndSetElementOnModel(model, model.orcLeftHand);
-        EnableAndSetElementOnModel(model, model.orcLeftArm);
-        EnableAndSetElementOnModel(model, model.orcChest);
-
-        // Clothing + Weapon parts
-        EnableAndSetElementOnModel(model, model.allMainHandWeapons[1]);
-    }
-    public static void SetUpAsGoblinWarChiefPreset(UniversalCharacterModel model)
-    {
-        DisableAllActiveModelElementViews(model);
-        ClearAllActiveModelElementsReferences(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, model.orcHeads[0]);
-        EnableAndSetElementOnModel(model, model.orcFaces[1]);
-        EnableAndSetElementOnModel(model, model.orcLeftLeg);
-        EnableAndSetElementOnModel(model, model.orcRightLeg);
-        EnableAndSetElementOnModel(model, model.orcRightHand);
-        EnableAndSetElementOnModel(model, model.orcRightArm);
-        EnableAndSetElementOnModel(model, model.orcLeftHand);
-        EnableAndSetElementOnModel(model, model.orcLeftArm);
-        EnableAndSetElementOnModel(model, model.orcChest);
-
-        // Clothing + Weapon parts
-        EnableAndSetElementOnModel(model, model.allMainHandWeapons[4]);
-        EnableAndSetElementOnModel(model, "War_Chief_Chest_Wear");
-        EnableAndSetElementOnModel(model, "War_Chief_Left_Arm_Wear");
-        EnableAndSetElementOnModel(model, "War_Chief_Right_Arm_Wear");
-    }
-    public static void SetUpAsGoblinShootyPreset(UniversalCharacterModel model)
-    {
-        DisableAllActiveModelElementViews(model);
-        ClearAllActiveModelElementsReferences(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, model.orcHeads[1]);
-        EnableAndSetElementOnModel(model, model.orcFaces[0]);
-        EnableAndSetElementOnModel(model, model.orcLeftLeg);
-        EnableAndSetElementOnModel(model, model.orcRightLeg);
-        EnableAndSetElementOnModel(model, model.orcRightHand);
-        EnableAndSetElementOnModel(model, model.orcRightArm);
-        EnableAndSetElementOnModel(model, model.orcLeftHand);
-        EnableAndSetElementOnModel(model, model.orcLeftArm);
-        EnableAndSetElementOnModel(model, model.orcChest);
-
-        // Clothing + Weapon parts
-        EnableAndSetElementOnModel(model, model.allMainHandWeapons[2]);
-        EnableAndSetElementOnModel(model, "Archer_Helmet_Head_Wear");
-    }
-    public static void SetUpAsGoblinShieldBearerPreset(UniversalCharacterModel model)
-    {
-        DisableAllActiveModelElementViews(model);
-        ClearAllActiveModelElementsReferences(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, model.orcHeads[1]);
-        EnableAndSetElementOnModel(model, model.orcFaces[0]);
-        EnableAndSetElementOnModel(model, model.orcLeftLeg);
-        EnableAndSetElementOnModel(model, model.orcRightLeg);
-        EnableAndSetElementOnModel(model, model.orcRightHand);
-        EnableAndSetElementOnModel(model, model.orcRightArm);
-        EnableAndSetElementOnModel(model, model.orcLeftHand);
-        EnableAndSetElementOnModel(model, model.orcLeftArm);
-        EnableAndSetElementOnModel(model, model.orcChest);
-
-        // Clothing + Weapon parts
-        EnableAndSetElementOnModel(model, model.allMainHandWeapons[0]);
-        EnableAndSetElementOnModel(model, model.allOffHandWeapons[0]);
-        EnableAndSetElementOnModel(model, "Death_Knight_Head_Wear");
-    }
-    public static void SetUpAsMorkPreset(UniversalCharacterModel model)
-    {
-        DisableAllActiveModelElementViews(model);
-        ClearAllActiveModelElementsReferences(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, "Goblin_Head_1");
-        EnableAndSetElementOnModel(model, "Goblin_Right_Hand");
-        EnableAndSetElementOnModel(model, "Goblin_Right_Arm");
-        EnableAndSetElementOnModel(model, "Goblin_Left_Hand");
-        EnableAndSetElementOnModel(model, "Goblin_Left_Arm");
-        EnableAndSetElementOnModel(model, "Goblin_Chest");
-        EnableAndSetElementOnModel(model, "Goblin_Right_Leg");
-        EnableAndSetElementOnModel(model, "Goblin_Left_Leg");
-        EnableAndSetElementOnModel(model, "Left_Hand_Wooden_Spiked_Club");
-    }
-    public static void SetUpAsFireGolemPreset(UniversalCharacterModel model)
-    {
-        DisableAllActiveModelElementViews(model);
-        ClearAllActiveModelElementsReferences(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, "Fire_Golem_Left_Leg");
-        EnableAndSetElementOnModel(model, "Fire_Golem_Right_Leg");
-        EnableAndSetElementOnModel(model, "Fire_Golem_Head");
-        EnableAndSetElementOnModel(model, "Fire_Golem_Face");
-        EnableAndSetElementOnModel(model, "Fire_Golem_Left_Hand");
-        EnableAndSetElementOnModel(model, "Fire_Golem_Left_Arm");
-        EnableAndSetElementOnModel(model, "Fire_Golem_Right_Hand");
-        EnableAndSetElementOnModel(model, "Fire_Golem_Right_Arm");
-        EnableAndSetElementOnModel(model, "Fire_Golem_Chest");
-    }
-    public static void SetUpAsAirGolemPreset(UniversalCharacterModel model)
-    {
-        DisableAllActiveModelElementViews(model);
-        ClearAllActiveModelElementsReferences(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, "Air_Golem_Left_Leg");
-        EnableAndSetElementOnModel(model, "Air_Golem_Right_Leg");
-        EnableAndSetElementOnModel(model, "Air_Golem_Head");
-        EnableAndSetElementOnModel(model, "Air_Golem_Face");
-        EnableAndSetElementOnModel(model, "Air_Golem_Left_Hand");
-        EnableAndSetElementOnModel(model, "Air_Golem_Left_Arm");
-        EnableAndSetElementOnModel(model, "Air_Golem_Right_Hand");
-        EnableAndSetElementOnModel(model, "Air_Golem_Right_Arm");
-        EnableAndSetElementOnModel(model, "Air_Golem_Chest");
-    }
-    public static void SetUpAsPoisonGolemPreset(UniversalCharacterModel model)
-    {
-        DisableAllActiveModelElementViews(model);
-        ClearAllActiveModelElementsReferences(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, "Poison_Golem_Left_Leg");
-        EnableAndSetElementOnModel(model, "Poison_Golem_Right_Leg");
-        EnableAndSetElementOnModel(model, "Poison_Golem_Head");
-        EnableAndSetElementOnModel(model, "Poison_Golem_Face");
-        EnableAndSetElementOnModel(model, "Poison_Golem_Left_Hand");
-        EnableAndSetElementOnModel(model, "Poison_Golem_Left_Arm");
-        EnableAndSetElementOnModel(model, "Poison_Golem_Right_Hand");
-        EnableAndSetElementOnModel(model, "Poison_Golem_Right_Arm");
-        EnableAndSetElementOnModel(model, "Poison_Golem_Chest");
-    }
-    public static void SetUpAsFrostGolemPreset(UniversalCharacterModel model)
-    {
-        DisableAllActiveModelElementViews(model);
-        ClearAllActiveModelElementsReferences(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, "Frost_Golem_Left_Leg");
-        EnableAndSetElementOnModel(model, "Frost_Golem_Right_Leg");
-        EnableAndSetElementOnModel(model, "Frost_Golem_Head");
-        EnableAndSetElementOnModel(model, "Frost_Golem_Face");
-        EnableAndSetElementOnModel(model, "Frost_Golem_Left_Hand");
-        EnableAndSetElementOnModel(model, "Frost_Golem_Left_Arm");
-        EnableAndSetElementOnModel(model, "Frost_Golem_Right_Hand");
-        EnableAndSetElementOnModel(model, "Frost_Golem_Right_Arm");
-        EnableAndSetElementOnModel(model, "Frost_Golem_Chest");
-
-    }
-    public static void SetUpAsDemonBerserkerPreset(UniversalCharacterModel model)
-    {
-        DisableAllActiveModelElementViews(model);
-        ClearAllActiveModelElementsReferences(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, "Demon_Head_1");
-        EnableAndSetElementOnModel(model, "Demon_Right_Hand_1");
-        EnableAndSetElementOnModel(model, "Demon_Right_Arm_1");
-        EnableAndSetElementOnModel(model, "Demon_Left_Hand_1");
-        EnableAndSetElementOnModel(model, "Demon_Left_Arm_1");
-        EnableAndSetElementOnModel(model, "Demon_Chest_1");
-        EnableAndSetElementOnModel(model, "Demon_Right_Leg_1");
-        EnableAndSetElementOnModel(model, "Demon_Left_Leg_1");
-        EnableAndSetElementOnModel(model, "Orc_Face_5");
-        EnableAndSetElementOnModel(model, "Left_Hand_Serated_Sword_2H");
-
-    }
-    public static void SetUpAsDemonBladeMasterPreset(UniversalCharacterModel model)
-    {
-        DisableAllActiveModelElementViews(model);
-        ClearAllActiveModelElementsReferences(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, "Demon_Head_2");
-        EnableAndSetElementOnModel(model, "Demon_Right_Hand_2");
-        EnableAndSetElementOnModel(model, "Demon_Right_Arm_2");
-        EnableAndSetElementOnModel(model, "Demon_Left_Hand_2");
-        EnableAndSetElementOnModel(model, "Demon_Left_Arm_2");
-        EnableAndSetElementOnModel(model, "Demon_Chest_2");
-        EnableAndSetElementOnModel(model, "Demon_Right_Leg_2");
-        EnableAndSetElementOnModel(model, "Demon_Left_Leg_2");
-        EnableAndSetElementOnModel(model, "Orc_Face_5");
-        EnableAndSetElementOnModel(model, "Right_Hand_Serated_Sword");
-        EnableAndSetElementOnModel(model, "Left_Hand_Serated_Sword");
-    }
-    public static void SetUpAsDemonHellGuardPreset(UniversalCharacterModel model)
-    {
-        DisableAllActiveModelElementViews(model);
-        ClearAllActiveModelElementsReferences(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, "Demon_Head_1");
-        EnableAndSetElementOnModel(model, "Demon_Right_Hand_1");
-        EnableAndSetElementOnModel(model, "Demon_Left_Hand_1");
-        EnableAndSetElementOnModel(model, "Hell_Guard_Head_Wear");
-        EnableAndSetElementOnModel(model, "Right_Hand_Hell_Guard_Shield");
-        EnableAndSetElementOnModel(model, "Left_Hand_Serated_Sword");
-        EnableAndSetElementOnModel(model, "Hell_Guard_Right_Arm_Wear");
-        EnableAndSetElementOnModel(model, "Hell_Guard_Left_Arm_Wear");
-        EnableAndSetElementOnModel(model, "Orc_Face_5");
-        EnableAndSetElementOnModel(model, "Hell_Guard_Chest_Wear");
-    }
-    public static void SetUpAsHumanKingPreset(UniversalCharacterModel model)
-    {
-        DisableAllActiveModelElementViews(model);
-        ClearAllActiveModelElementsReferences(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, "Human_King_Head");
-        EnableAndSetElementOnModel(model, "Human_Face_3");
-        EnableAndSetElementOnModel(model, "Human_Right_Hand");
-        EnableAndSetElementOnModel(model, "Human_Left_Hand");
-        EnableAndSetElementOnModel(model, "Red_White_Coat_Right_Arm_Wear");
-        EnableAndSetElementOnModel(model, "Red_White_Coat_Left_Arm_Wear");
-        EnableAndSetElementOnModel(model, "Red_White_Coat_Chest_Wear");
-        EnableAndSetElementOnModel(model, "Shadow_Blade_Right_Leg_Wear");
-        EnableAndSetElementOnModel(model, "Shadow_Blade_Left_Leg_Wear");
-    }
-    #endregion
-
-    // Set Model Race
-    #region
-    public static void SetBaseHumanView(UniversalCharacterModel model)
-    {
-        Debug.Log("CharacterModelController.SetBaseHumanView() called...");
-
-        //ClearAllActiveBodyPartReferences(model);
-
-        model.myModelRace = CharacterRace.Human;
-        //AutoSetModelScaleFromRace(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, model.humanRightLeg);
-        EnableAndSetElementOnModel(model, model.humanHeads[0]);
-        EnableAndSetElementOnModel(model, model.humanFaces[0]);
-        EnableAndSetElementOnModel(model, model.humanRightHand);
-        EnableAndSetElementOnModel(model, model.humanRightArm);
-        EnableAndSetElementOnModel(model, model.humanChest);
-    }
-    public static void SetBaseOrcView(UniversalCharacterModel model)
-    {
-        Debug.Log("CharacterModelController.SetBaseOrcView() called...");
-
-        model.myModelRace = CharacterRace.Orc;
-        //AutoSetModelScaleFromRace(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, model.orcRightLeg);
-        EnableAndSetElementOnModel(model, model.orcHeads[0]);
-        EnableAndSetElementOnModel(model, model.orcFaces[0]);
-        EnableAndSetElementOnModel(model, model.orcRightHand);
-        EnableAndSetElementOnModel(model, model.orcRightArm);
-        EnableAndSetElementOnModel(model, model.orcChest);
-    }
-    public static void SetBaseUndeadView(UniversalCharacterModel model)
-    {
-        Debug.Log("CharacterModelController.SetBaseUndeadView() called...");
-
-        model.myModelRace = CharacterRace.Undead;
-        //AutoSetModelScaleFromRace(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, model.undeadRightLeg);
-        EnableAndSetElementOnModel(model, model.undeadHeads[0]);
-        EnableAndSetElementOnModel(model, model.undeadFaces[0]);
-        EnableAndSetElementOnModel(model, model.undeadRightHand);
-        EnableAndSetElementOnModel(model, model.undeadRightArm);
-        EnableAndSetElementOnModel(model, model.undeadChest);
-    }
-    public static void SetBaseElfView(UniversalCharacterModel model)
-    {
-        Debug.Log("CharacterModelController.SetBaseElfView() called...");
-
-        model.myModelRace = CharacterRace.Elf;
-        //AutoSetModelScaleFromRace(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, model.elfRightLeg);
-        EnableAndSetElementOnModel(model, model.elfHeads[0]);
-        EnableAndSetElementOnModel(model, model.elfFaces[0]);
-        EnableAndSetElementOnModel(model, model.elfRightHand);
-        EnableAndSetElementOnModel(model, model.elfRightArm);
-        EnableAndSetElementOnModel(model, model.elfChest);
-    }
-    public static void SetBaseGnollView(UniversalCharacterModel model)
-    {
-        Debug.Log("CharacterModelController.SetBaseGnollView() called...");
-
-        model.myModelRace = CharacterRace.Gnoll;
-       // AutoSetModelScaleFromRace(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, model.gnollRightLeg);
-        EnableAndSetElementOnModel(model, model.gnollHeads[0]);
-        EnableAndSetElementOnModel(model, model.gnollFaces[0]);
-        EnableAndSetElementOnModel(model, model.gnollRightHand);
-        EnableAndSetElementOnModel(model, model.gnollRightArm);
-        EnableAndSetElementOnModel(model, model.gnollChest);
-    }
-    public static void SetBaseSatyrView(UniversalCharacterModel model)
-    {
-        Debug.Log("CharacterModelController.SetBaseSatyrView() called...");
-
-        model.myModelRace = CharacterRace.Satyr;
-       // AutoSetModelScaleFromRace(model);
-
-        // Body parts
-        EnableAndSetElementOnModel(model, model.satyrRightLeg);
-        EnableAndSetElementOnModel(model, model.satyrHeads[0]);
-        EnableAndSetElementOnModel(model, model.satyrFaces[0]);
-        EnableAndSetElementOnModel(model, model.satyrRightHand);
-        EnableAndSetElementOnModel(model, model.satyrRightArm);
-        EnableAndSetElementOnModel(model, model.satyrChest);
-    }
-    #endregion
 
     // Set Specific Body Parts
     #region
-    public static void EnableAndSetElementOnModel(UniversalCharacterModel model, UniversalCharacterModelElement element)
+    public void EnableAndSetElementOnModel(UniversalCharacterModel model, UniversalCharacterModelElement element)
     {
         // Set Active Body Part Reference
         if (element.bodyPartType == BodyPartType.Chest)
@@ -1021,7 +392,7 @@ public static class CharacterModelController
             }            
         }
     }
-    public static void EnableAndSetElementOnModel(UniversalCharacterModel model, string elementName)
+    public void EnableAndSetElementOnModel(UniversalCharacterModel model, string elementName)
     {
         UniversalCharacterModelElement element = null;
 
@@ -1223,7 +594,7 @@ public static class CharacterModelController
             }            
         }
     }
-    public static void DisableAndClearElementOnModel(UniversalCharacterModel model, UniversalCharacterModelElement element)
+    public void DisableAndClearElementOnModel(UniversalCharacterModel model, UniversalCharacterModelElement element)
     {
         // disable view
         element.gameObject.SetActive(false);
@@ -1325,7 +696,7 @@ public static class CharacterModelController
 
     // Get View Parts  
     #region
-    public static UniversalCharacterModelElement GetNextElementInList(List<UniversalCharacterModelElement> list)
+    public UniversalCharacterModelElement GetNextElementInList(List<UniversalCharacterModelElement> list)
     {
         // Set up
         UniversalCharacterModelElement elementReturned = null;
@@ -1370,7 +741,7 @@ public static class CharacterModelController
 
         return elementReturned;
     }
-    public static UniversalCharacterModelElement GetPreviousElementInList(List<UniversalCharacterModelElement> list)
+    public UniversalCharacterModelElement GetPreviousElementInList(List<UniversalCharacterModelElement> list)
     {
         // Set up
         UniversalCharacterModelElement elementReturned = null;
@@ -1414,6 +785,75 @@ public static class CharacterModelController
             elementReturned.gameObject.name + " as next indexed element");
 
         return elementReturned;
+    }
+    #endregion
+
+    // Fading Logic
+    #region
+    public void FadeOutCharacterModel(UniversalCharacterModel model, float speed = 5f, CoroutineData cData = null)
+    {
+        Debug.Log("CharacterEntityController.FadeOutCharacterModel() called...");
+        StartCoroutine(FadeOutCharacterModelCoroutine(model, speed, cData));
+    }
+    private IEnumerator FadeOutCharacterModelCoroutine(UniversalCharacterModel model, float speed, CoroutineData cData)
+    {
+        EntityRenderer view = model.myEntityRenderer;
+        float currentAlpha = view.Color.a;
+
+        while (currentAlpha > 0)
+        {
+            view.Color = new Color(view.Color.r, view.Color.g, view.Color.b, currentAlpha - (speed * Time.deltaTime));
+            currentAlpha = view.Color.a;
+            yield return null;
+        }
+
+        // Resolve
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+    }
+    public void FadeInCharacterModel(UniversalCharacterModel model, float speed = 5f, CoroutineData cData = null)
+    {
+        Debug.Log("CharacterEntityController.FadeInCharacterModel() called...");
+        StartCoroutine(FadeInCharacterModelCoroutine(model, speed, cData));
+    }
+    private IEnumerator FadeInCharacterModelCoroutine(UniversalCharacterModel model, float speed, CoroutineData cData)
+    {
+        // Set completely transparent at start
+        EntityRenderer view = model.myEntityRenderer;
+        view.Color = new Color(view.Color.r, view.Color.g, view.Color.b, 0);
+
+        float currentAlpha = view.Color.a;
+
+        while (currentAlpha < 1)
+        {
+            view.Color = new Color(view.Color.r, view.Color.g, view.Color.b, currentAlpha + (speed * Time.deltaTime));
+            currentAlpha = view.Color.a;
+            yield return null;
+        }
+
+        // Resolve
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+    }
+    public void FadeInCharacterShadow(CharacterEntityView view, float speed, System.Action onCompleteCallBack = null)
+    {
+        view.ucmShadowCg.DOFade(0f, 0f);
+        Sequence s = DOTween.Sequence();
+        s.Append(view.ucmShadowCg.DOFade(1f, speed));
+
+        if (onCompleteCallBack != null)
+        {
+            s.OnComplete(() => onCompleteCallBack.Invoke());
+        }
+    }
+    public void FadeOutCharacterShadow(CharacterEntityView view, float speed)
+    {
+        view.ucmShadowCg.DOFade(1f, 0f);
+        view.ucmShadowCg.DOFade(0f, speed);
     }
     #endregion
 

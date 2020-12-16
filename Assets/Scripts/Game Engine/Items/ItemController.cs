@@ -139,7 +139,7 @@ public class ItemController : Singleton<ItemController>
 
         character.iManager = new ItemManagerModel();
         CopyItemManagerDataIntoOtherItemManager(iManagerData, character.iManager);
-        CharacterModelController.ApplyItemManagerDataToCharacterModelView(character.iManager, character.characterEntityView.ucm);
+        CharacterModelController.Instance.ApplyItemManagerDataToCharacterModelView(character.iManager, character.characterEntityView.ucm);
 
         if (character.iManager.mainHandItem != null)
         {

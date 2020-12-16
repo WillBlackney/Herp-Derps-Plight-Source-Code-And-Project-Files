@@ -410,8 +410,8 @@ public class CampSiteController : Singleton<CampSiteController>
         UpdateHealthGUIElements(view.characterEntityView, data.health, data.maxHealth);
 
         // Build UCM
-        CharacterModelController.BuildModelFromStringReferences(view.characterEntityView.ucm, data.modelParts);
-        CharacterModelController.ApplyItemManagerDataToCharacterModelView(data.itemManager, view.characterEntityView.ucm);
+        CharacterModelController.Instance.BuildModelFromStringReferences(view.characterEntityView.ucm, data.modelParts);
+        CharacterModelController.Instance.ApplyItemManagerDataToCharacterModelView(data.itemManager, view.characterEntityView.ucm);
     }
     #endregion
 

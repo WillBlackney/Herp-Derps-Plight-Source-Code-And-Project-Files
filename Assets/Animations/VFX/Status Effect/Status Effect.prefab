@@ -167,7 +167,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6465802411729289692}
   - component: {fileID: 1404616976986128897}
-  - component: {fileID: 5797780097810648836}
   m_Layer: 0
   m_Name: Status Effect
   m_TagString: Untagged
@@ -203,26 +202,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statusText: {fileID: 4862495376848011448}
-  myCanvas: {fileID: 5802570069809789151}
---- !u!95 &5797780097810648836
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5797780097810648835}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: df293b97a868bd7428db85b578a4947d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  myCg: {fileID: 1828048456159371065}
 --- !u!1 &8899150364444872109
 GameObject:
   m_ObjectHideFlags: 0
@@ -331,7 +311,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8899150364444872109}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0

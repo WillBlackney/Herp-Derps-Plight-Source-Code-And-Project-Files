@@ -206,7 +206,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         // TO DO IN FUTURE: We need a better way to track character data's body 
         // parts: strings references are not scaleable
         // Build UCM
-        CharacterModelController.BuildModelFromStringReferences(character.characterEntityView.ucm, data.modelParts);
+        CharacterModelController.Instance.BuildModelFromStringReferences(character.characterEntityView.ucm, data.modelParts);
 
         // Build activation window
         ActivationManager.Instance.CreateActivationWindow(character);
@@ -258,7 +258,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         GainBlock(character, data.startingBlock, false);
 
         // Build UCM
-        CharacterModelController.BuildModelFromStringReferences(character.characterEntityView.ucm, data.allBodyParts);
+        CharacterModelController.Instance.BuildModelFromStringReferences(character.characterEntityView.ucm, data.allBodyParts);
 
         // Build activation window
         ActivationManager.Instance.CreateActivationWindow(character);
@@ -1865,72 +1865,6 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }
     }
 
-    // NOTE: Below functions should be in CharacterModelController, but cant
-    // because CMC is a static class and not a mono behaviour, so here they shall go...
-
-    public void FadeOutEntityRenderer(EntityRenderer view, float speed = 5f, CoroutineData cData = null)
-    {
-        Debug.Log("CharacterEntityController.FadeOutEntityRenderer() called...");
-        StartCoroutine(FadeOutEntityRendererCoroutine(view, speed, cData));
-    }
-    private IEnumerator FadeOutEntityRendererCoroutine(EntityRenderer view, float speed, CoroutineData cData)
-    {
-        float currentAlpha = view.Color.a;
-
-        while (currentAlpha > 0)
-        {
-            view.Color = new Color(view.Color.r, view.Color.g, view.Color.b, currentAlpha - (speed * Time.deltaTime));
-            currentAlpha = view.Color.a;
-            yield return null;
-        }
-
-        // Resolve
-        if (cData != null)
-        {
-            cData.MarkAsCompleted();
-        }
-    }
-    public void FadeInEntityRenderer(EntityRenderer view, float speed = 5f, CoroutineData cData = null)
-    {
-        Debug.Log("CharacterEntityController.FadeInEntityRenderer() called...");
-        StartCoroutine(FadeInEntityRendererCoroutine(view, speed, cData));
-    }
-    private IEnumerator FadeInEntityRendererCoroutine(EntityRenderer view, float speed, CoroutineData cData)
-    {
-        // Set completely transparent at start
-        view.Color = new Color(view.Color.r, view.Color.g, view.Color.b, 0);
-
-        float currentAlpha = view.Color.a;
-
-        while (currentAlpha < 1)
-        {
-            view.Color = new Color(view.Color.r, view.Color.g, view.Color.b, currentAlpha + (speed * Time.deltaTime));
-            currentAlpha = view.Color.a;
-            yield return null;
-        }
-
-        // Resolve
-        if (cData != null)
-        {
-            cData.MarkAsCompleted();
-        }
-    }
-    public void FadeInCharacterShadow(CharacterEntityView view, float speed, System.Action onCompleteCallBack = null)
-    {
-        view.ucmShadowCg.DOFade(0f, 0f);
-        Sequence s = DOTween.Sequence();
-        s.Append(view.ucmShadowCg.DOFade(1f, speed));
-
-        if(onCompleteCallBack != null)
-        {
-            s.OnComplete(()=> onCompleteCallBack.Invoke());
-        }
-    }
-    public void FadeOutCharacterShadow(CharacterEntityView view, float speed)
-    {
-        view.ucmShadowCg.DOFade(1f, 0f);
-        view.ucmShadowCg.DOFade(0f, speed);
-    }
     #endregion
 
     // Trigger Animations
@@ -2655,8 +2589,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 FadeOutCharacterWorldCanvas(view, null, 0);
 
                 // Hide model
-                FadeOutEntityRenderer(view.ucm.GetComponent<EntityRenderer>(), 1000, null);
-                FadeOutCharacterShadow(view, 0);
+                CharacterModelController.Instance.FadeOutCharacterModel(view.ucm, 1000, null);
+                CharacterModelController.Instance.FadeOutCharacterShadow(view, 0);
                 view.blockMouseOver = true;
 
                 // Set start position
@@ -2686,8 +2620,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 VisualEventManager.Instance.CreateVisualEvent(() => FadeInCharacterWorldCanvas(view, null, effect.uiFadeInSpeed));
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    FadeInEntityRenderer(view.ucm.GetComponent<EntityRenderer>(), effect.modelFadeInSpeed);
-                    FadeInCharacterShadow(view, 1f, () => view.blockMouseOver = false);
+                    CharacterModelController.Instance.FadeInCharacterModel(view.ucm, effect.modelFadeInSpeed);
+                    CharacterModelController.Instance.FadeInCharacterShadow(view, 1f, () => view.blockMouseOver = false);
                 });
 
                 // Resolve visual events

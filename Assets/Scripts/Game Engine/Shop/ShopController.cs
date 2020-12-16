@@ -135,7 +135,7 @@ public class ShopController : Singleton<ShopController>
             BuildShopCharacterView(allShopCharacterViews[i], characters[i]);
         }
 
-        CharacterModelController.BuildModelFromStringReferences(merchantUcm, merchantBodyParts);
+        CharacterModelController.Instance.BuildModelFromStringReferences(merchantUcm, merchantBodyParts);
     }
     private void BuildShopCharacterView(CampSiteCharacterView view, CharacterData data)
     {
@@ -148,8 +148,8 @@ public class ShopController : Singleton<ShopController>
         view.ucmShadowParent.SetActive(true);
 
         // Build UCM
-        CharacterModelController.BuildModelFromStringReferences(view.characterEntityView.ucm, data.modelParts);
-        CharacterModelController.ApplyItemManagerDataToCharacterModelView(data.itemManager, view.characterEntityView.ucm);
+        CharacterModelController.Instance.BuildModelFromStringReferences(view.characterEntityView.ucm, data.modelParts);
+        CharacterModelController.Instance.ApplyItemManagerDataToCharacterModelView(data.itemManager, view.characterEntityView.ucm);
     }
     public void BuildAllShopContentFromDataSet(ShopContentResultModel dataSet)
     {

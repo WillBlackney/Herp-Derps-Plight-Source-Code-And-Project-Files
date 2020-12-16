@@ -317,8 +317,8 @@ public class MainMenuController : Singleton<MainMenuController>
         characterClassNameText.text = "The " + data.myClassName;
 
         // Build model
-        CharacterModelController.BuildModelFromStringReferences(characterModel, data.modelParts);
-        CharacterModelController.ApplyItemManagerDataToCharacterModelView(data.itemManager, characterModel);
+        CharacterModelController.Instance.BuildModelFromStringReferences(characterModel, data.modelParts);
+        CharacterModelController.Instance.ApplyItemManagerDataToCharacterModelView(data.itemManager, characterModel);
 
         // Build race section
         BuildRacialInfoPanel(data);

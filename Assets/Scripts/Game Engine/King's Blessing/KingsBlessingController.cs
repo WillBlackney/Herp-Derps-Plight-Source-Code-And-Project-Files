@@ -117,8 +117,8 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
         ResetKingsBlessingViews();
 
         // Build player model
-        CharacterModelController.BuildModelFromStringReferences(playerModel, startingCharacter.modelParts);
-        CharacterModelController.ApplyItemManagerDataToCharacterModelView(startingCharacter.itemManager, playerModel);
+        CharacterModelController.Instance.BuildModelFromStringReferences(playerModel, startingCharacter.modelParts);
+        CharacterModelController.Instance.ApplyItemManagerDataToCharacterModelView(startingCharacter.itemManager, playerModel);
 
         // Set up health bar
         UpdateHealthGUIElements(startingCharacter.health, startingCharacter.maxHealth);

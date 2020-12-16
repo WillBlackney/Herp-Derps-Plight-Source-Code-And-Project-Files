@@ -33,8 +33,8 @@ public class RecruitCharacterWindow : MonoBehaviour, IPointerEnterHandler, IPoin
         myTemplateData = template;
         nameText.text = template.myName;
         classNameText.text = "The " + template.myClassName;
-        CharacterModelController.BuildModelFromStringReferences(myUCM, template.modelParts);
-        CharacterModelController.ApplyItemManagerDataToCharacterModelView(template.itemManager, myUCM);
+        CharacterModelController.Instance.BuildModelFromStringReferences(myUCM, template.modelParts);
+        CharacterModelController.Instance.ApplyItemManagerDataToCharacterModelView(template.itemManager, myUCM);
     }
     public void DisableGlow()
     {

@@ -115,7 +115,7 @@ public class ActivationManager : Singleton<ActivationManager>
         AddEntityToActivationOrder(entity);
 
         // Build window UCM
-        CharacterModelController.BuildModelFromModelClone(newWindowScript.myUCM, entity.characterEntityView.ucm);
+        CharacterModelController.Instance.BuildModelFromModelClone(newWindowScript.myUCM, entity.characterEntityView.ucm);
         
         // play window idle anim on ucm
         newWindowScript.myUCM.SetBaseAnim();

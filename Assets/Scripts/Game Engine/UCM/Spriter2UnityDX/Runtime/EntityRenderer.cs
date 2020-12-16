@@ -50,7 +50,7 @@ namespace Spriter2UnityDX {
 				{
 					DoForAll(x => x.sortingOrder = value + x.GetComponent<UniversalCharacterModelElement>().sortingOrderBonus);
 					UniversalCharacterModel myUCM = GetComponent<UniversalCharacterModel>();
-					CharacterModelController.AutoSetHeadMaskOrderInLayer(myUCM);
+					CharacterModelController.Instance.AutoSetHeadMaskOrderInLayer(myUCM);
 				}
 			}
 		}

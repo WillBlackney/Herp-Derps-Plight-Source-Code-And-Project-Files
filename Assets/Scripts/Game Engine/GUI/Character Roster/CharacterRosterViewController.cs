@@ -231,8 +231,8 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     private void BuildCharacterModelBoxFromData(CharacterData data)
     {
         // Build character model
-        CharacterModelController.BuildModelFromStringReferences(characterModel, data.modelParts);
-        CharacterModelController.ApplyItemManagerDataToCharacterModelView(data.itemManager, characterModel);
+        CharacterModelController.Instance.BuildModelFromStringReferences(characterModel, data.modelParts);
+        CharacterModelController.Instance.ApplyItemManagerDataToCharacterModelView(data.itemManager, characterModel);
 
         // Set health + xp texts
         currentHealthText.text = data.health.ToString();

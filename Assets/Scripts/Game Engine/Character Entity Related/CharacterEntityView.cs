@@ -9,11 +9,14 @@ using UnityEngine.UI;
 
 public class CharacterEntityView : MonoBehaviour
 {
+    // Properties + Component References
+    #region
     [Header("Misc Properties")]
     [HideInInspector] public CharacterEntityModel character;
     public CampSiteCharacterView campCharacter;
     [HideInInspector] public bool blockMouseOver = false;
     public EventSetting eventSetting = EventSetting.Combat;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("World Space Canvas References")]   
     public Canvas worldSpaceCanvas;
@@ -81,6 +84,7 @@ public class CharacterEntityView : MonoBehaviour
     public GameObject passiveIconsVisualParent;
     [HideInInspector] public List<PassiveIconView> passiveIcons;
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
+    #endregion
 
     // Getters
     #region
