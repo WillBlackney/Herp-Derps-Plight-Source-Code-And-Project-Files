@@ -139,26 +139,34 @@ public class JourneyManager : Singleton<JourneyManager>
     {
         EnemyWaveSO waveReturned = null;
 
-        if(CurrentJourneyPosition >= 0 && CurrentJourneyPosition <= 2)
+        if(CurrentJourneyPosition >= 0 && CurrentJourneyPosition <= 3)
         {
             waveReturned = GetRandomEnemyWaveFromEncountersDataSet(stageOneBasicEnemyEncounters);
         }
 
         // recruit 2nd character here
 
-        else if (CurrentJourneyPosition >= 4 && CurrentJourneyPosition <= 5)
+        else if (CurrentJourneyPosition >= 5 && CurrentJourneyPosition <= 6)
         {
             waveReturned = GetRandomEnemyWaveFromEncountersDataSet(stageTwoBasicEnemyEncounters);
         }
-        else if (CurrentJourneyPosition >= 6 && CurrentJourneyPosition <= 7)
+        else if (CurrentJourneyPosition >= 7 && CurrentJourneyPosition <= 8)
         {
             waveReturned = GetRandomEnemyWaveFromEncountersDataSet(stageThreeBasicEnemyEncounters);
         }
 
         // recruit 3rd character here
-        else if (CurrentJourneyPosition >= 9 && CurrentJourneyPosition <= 10)
+        else if (CurrentJourneyPosition >= 10 && CurrentJourneyPosition <= 12)
         {
             waveReturned = GetRandomEnemyWaveFromEncountersDataSet(stageFourBasicEnemyEncounters);
+        }
+        else if (CurrentJourneyPosition >= 14 && CurrentJourneyPosition <= 15)
+        {
+            waveReturned = GetRandomEnemyWaveFromEncountersDataSet(stageFiveBasicEnemyEncounters);
+        }
+        else if (CurrentJourneyPosition >= 16 && CurrentJourneyPosition <= 17)
+        {
+            waveReturned = GetRandomEnemyWaveFromEncountersDataSet(stageSixBasicEnemyEncounters);
         }
 
         return waveReturned;
