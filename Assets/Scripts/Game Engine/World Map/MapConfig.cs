@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Malee;
 using UnityEngine;
 
 namespace MapSystem
@@ -13,12 +12,6 @@ namespace MapSystem
         public IntMinMax numOfPreBossNodes;
         public IntMinMax numOfStartingNodes;
 
-        //[Reorderable]
-        public ListOfMapLayers layers;
-
-        [System.Serializable]
-        public class ListOfMapLayers : ReorderableArray<MapLayer>
-        {
-        }
+        public MapLayer[] layers;
     }
 }

@@ -95,7 +95,7 @@ namespace MapSystem
 
             GenerateLayerDistances();
 
-            for (var i = 0; i < conf.layers.Count; i++)
+            for (var i = 0; i < conf.layers.Length; i++)
                 PlaceLayer(i);
 
             GeneratePaths();
@@ -232,7 +232,7 @@ namespace MapSystem
         private void RemoveCrossConnections()
         {
             for (var i = 0; i < config.GridWidth - 1; i++)
-                for (var j = 0; j < config.layers.Count - 1; j++)
+                for (var j = 0; j < config.layers.Length - 1; j++)
                 {
                     var node = GetNode(new Point(i, j));
                     if (node == null || node.HasNoConnections()) continue;
@@ -293,7 +293,7 @@ namespace MapSystem
 
         private Point GetFinalNode()
         {
-            var y = config.layers.Count - 1;
+            var y = config.layers.Length - 1;
             if (config.GridWidth % 2 == 1)
                 return new Point(config.GridWidth / 2, y);
 
