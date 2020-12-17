@@ -66,6 +66,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
     private IEnumerator RunStandardGameModeSetup()
     {
         // Set starting view state
+        TopBarController.Instance.HideTopBar();
         BlackScreenController.Instance.DoInstantFadeOut();
         MainMenuController.Instance.ShowFrontScreen();
         MainMenuController.Instance.frontScreenGuiCg.alpha = 0;
@@ -85,6 +86,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
     private IEnumerator RunCombatSceneTestSetup()
     {
         yield return null;
+
+        // Enable GUI
+        TopBarController.Instance.ShowTopBar();
 
         // Populate inventory with mock card data
         InventoryController.Instance.PopulateInventoryWithMockCardData(20);
@@ -113,6 +117,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
     {
         yield return null;
 
+        // Enable GUI
+        TopBarController.Instance.ShowTopBar();
+
         // Build character data
         CharacterDataController.Instance.BuildCharacterRosterFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
 
@@ -126,6 +133,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
     private IEnumerator RunRecruitCharacterTestEventSetup()
     {
         yield return null;
+
+        // Enable GUI
+        TopBarController.Instance.ShowTopBar();
 
         // Build character data
         CharacterDataController.Instance.BuildCharacterRosterFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
@@ -146,6 +156,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         yield return null;
 
+        // Enable GUI
+        TopBarController.Instance.ShowTopBar();
+
         // Build character data
         CharacterDataController.Instance.BuildCharacterRosterFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
         HandleLoadKingsBlessingEncounter();
@@ -155,6 +168,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
         Debug.Log("EventSequenceController.RunCampSiteTestEventSetup()");
 
         yield return null;
+
+        // Enable GUI
+        TopBarController.Instance.ShowTopBar();
 
         // Build character data
         CharacterDataController.Instance.BuildCharacterRosterFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
@@ -168,6 +184,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
         Debug.Log("EventSequenceController.RunShopTestEventSetup()");
 
         yield return null;
+
+        // Enable GUI
+        TopBarController.Instance.ShowTopBar();
 
         // Build character data
         CharacterDataController.Instance.BuildCharacterRosterFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
@@ -193,6 +212,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
         AudioManager.Instance.FadeOutSound(Sound.Music_Main_Menu_Theme_1, 2f);
         BlackScreenController.Instance.FadeOutScreen(2f);
         yield return new WaitForSeconds(2f);
+
+        // Enable GUI
+        TopBarController.Instance.ShowTopBar();
 
         // Set up characters
         PersistencyManager.Instance.BuildNewSaveFileOnNewGameStarted();
@@ -237,6 +259,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
         BlackScreenController.Instance.FadeOutScreen(2f);
         yield return new WaitForSeconds(2f);
 
+        // Enable GUI
+        TopBarController.Instance.ShowTopBar();
+
         // Reset Camera
         CameraManager.Instance.ResetMainCameraPositionAndZoom();
 
@@ -275,6 +300,11 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Wait till its safe to tearn down event queue and scene
         yield return new WaitForSeconds(2f);
+
+        // Hide Game GUI
+        TopBarController.Instance.HideTopBar();
+
+        // Brute force stop all game music
         AudioManager.Instance.ForceStopAllCombatMusic();
 
         if (handle != null && handle.cData != null)

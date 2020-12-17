@@ -31,6 +31,14 @@ namespace MapSystem
             visitedCircle.color = MapView.Instance.visitedColor;
             visitedCircle.gameObject.SetActive(false);
             SetState(NodeStates.Locked);
+            AutoSetSortingOrder();
+        }
+        private void AutoSetSortingOrder()
+        {
+            // Set sorting order
+            swirlCanvas.sortingOrder = MapView.Instance.BaseMapSortingLayer + 2;
+            visitedCircle.sortingOrder = MapView.Instance.BaseMapSortingLayer + 3;
+            sr.sortingOrder = MapView.Instance.BaseMapSortingLayer + 4;
         }
 
         public void SetState(NodeStates state)

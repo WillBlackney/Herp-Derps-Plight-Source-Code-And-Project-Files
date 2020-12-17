@@ -517,7 +517,9 @@ public class MainMenuController : Singleton<MainMenuController>
         if(inGameMenuScreenParent.activeSelf == true ||
             LootController.Instance.LootScreenIsActive() ||
             CardController.Instance.GridCardScreenIsActive() ||
-             BlackScreenController.Instance.FadeInProgress)
+             BlackScreenController.Instance.FadeInProgress ||
+             MapSystem.MapView.Instance.MasterMapParent.activeSelf ||
+             CharacterRosterViewController.Instance.MainVisualParent.activeSelf)
         {
             return true;
         }

@@ -24,11 +24,10 @@ public class StatusEffect : MonoBehaviour
     {
         myCg.alpha = 0;
         myCg.DOFade(1, 0.5f);
-        transform.DOLocalMoveY(1, 1.5f);
-        // transform.DOScale(new Vector2(1.25f, 1.25f), 1);
+        transform.DOLocalMoveY(transform.localPosition.y + 1.25f, 1.5f);
 
         Sequence s1 = DOTween.Sequence();
-        s1.Append(transform.DOScale(new Vector2(1.25f, 1.25f), 1));
+        s1.Append(transform.DOScale(new Vector2(1.1f, 1.1f), 1));
         s1.OnComplete(() => 
         {
             myCg.DOFade(0, 0.5f).OnComplete(() => DestroyThis());

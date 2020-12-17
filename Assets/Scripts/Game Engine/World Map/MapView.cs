@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DG.Tweening;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,8 +7,7 @@ using UnityEngine;
 namespace MapSystem
 {
     public class MapView : Singleton<MapView>
-    {
-      
+    {     
 
         public MapManager mapManager;
         public MapOrientation orientation;
@@ -52,11 +52,31 @@ namespace MapSystem
         public readonly List<MapNode> MapNodes = new List<MapNode>();
         private readonly List<LineConnection> lineConnections = new List<LineConnection>();
 
+        [Header("Sorting Layer Properties")]
+        public int baseMapSortingLayer = 26000;
+        public Canvas blackUnderlayCanvas;
+        public CanvasGroup blackUnderlayCg;
+        public GameObject blackUnderlayParent;
+        public int BaseMapSortingLayer
+        {
+            get { return baseMapSortingLayer; }
+            private set { baseMapSortingLayer = value; }
+        }
+        public GameObject MasterMapParent
+        {
+            get { return masterMapParent; }
+            private set { masterMapParent = value; }
+        }
+
         public void OnWorldMapButtonClicked()
         {
-            if (!masterMapParent.activeSelf)
+            if (!MasterMapParent.activeSelf)
             {
                 ShowMainMapView();
+                if (CharacterRosterViewController.Instance.MainVisualParent.activeSelf)
+                {
+                    CharacterRosterViewController.Instance.DisableMainView();
+                }
             }
             else
             {
@@ -67,13 +87,20 @@ namespace MapSystem
         public void ShowMainMapView()
         {
             Debug.Log("MapView.ShowMainMapView() called...");
-            masterMapParent.SetActive(true);
+            MasterMapParent.SetActive(true);
             ShowMap(MapManager.Instance.CurrentMap);
+            blackUnderlayCanvas.sortingOrder = BaseMapSortingLayer - 1;
+            blackUnderlayParent.SetActive(true);
+            blackUnderlayCg.DOKill();
+            blackUnderlayCg.DOFade(1, 0.25f);
         }
         public void HideMainMapView()
         {
             Debug.Log("MapView.HideMainMapView() called...");
-            masterMapParent.SetActive(false);
+            MasterMapParent.SetActive(false);
+            blackUnderlayParent.SetActive(false);
+            blackUnderlayCg.DOKill();
+            blackUnderlayCg.DOFade(0, 0);
         }
 
         private void ClearMap()
@@ -126,7 +153,7 @@ namespace MapSystem
             backgroundObject.transform.localRotation = Quaternion.identity;
             var sr = backgroundObject.AddComponent<SpriteRenderer>();
             sr.color = backgroundColor;
-            sr.sortingOrder = 30000;
+            sr.sortingOrder = baseMapSortingLayer;
             sr.material = mapMaterial;
             sr.drawMode = SpriteDrawMode.Sliced;
             sr.sprite = background;
@@ -136,7 +163,7 @@ namespace MapSystem
         private void CreateMapParent()
         {
             firstParent = new GameObject("OuterMapParent");
-            firstParent.transform.SetParent(masterMapParent.transform);
+            firstParent.transform.SetParent(MasterMapParent.transform);
             mapParent = new GameObject("MapParentWithAScroll");
             mapParent.transform.SetParent(firstParent.transform);
             var scrollNonUi = mapParent.AddComponent<ScrollNonUI>();
@@ -313,6 +340,7 @@ namespace MapSystem
         {
             var lineObject = Instantiate(linePrefab, mapParent.transform);
             var lineRenderer = lineObject.GetComponent<LineRenderer>();
+            lineRenderer.sortingOrder = BaseMapSortingLayer + 1;
             var fromPoint = from.transform.position +
                             (to.transform.position - from.transform.position).normalized * offsetFromNodes;
 

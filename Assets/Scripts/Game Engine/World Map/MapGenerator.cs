@@ -4,20 +4,81 @@ using UnityEngine;
 
 namespace MapSystem
 {
-    public static class MapGenerator
+    public class MapGenerator: Singleton<MapGenerator>
     {
-        private static MapConfig config;
+        private MapConfig config;
 
-        private static readonly List<EncounterType> RandomNodes = new List<EncounterType>
+        private readonly List<EncounterType> RandomNodes = new List<EncounterType>
         {EncounterType.BasicEnemy, EncounterType.EliteEnemy, EncounterType.BossEnemy, EncounterType.CampSite,
             EncounterType.RecruitCharacter, EncounterType.Shop};
 
-        private static List<float> layerDistances;
-        private static List<List<Point>> paths;
+        private List<float> layerDistances;
+        private List<List<Point>> paths;
         // ALL nodes by layer:
-        private static readonly List<List<Node>> nodes = new List<List<Node>>();
+        private readonly List<List<Node>> nodes = new List<List<Node>>();
 
-        public static Map GetMap(MapConfig conf)
+        [Header("Map Encounter Properties")]
+        public int maximumCampSites = 5;
+        public int maximumShops = 5;
+        public int maximumElites = 5;
+
+        [Header("Misc Properties")]
+        public int nodeFrequencyLimit = 3;
+
+        private int spawnedCampSites = 0;
+        private int spawnedShops = 0;
+        private int spawnedElites = 0;
+
+        private int timeTilCampSiteAllowed = 0;
+        private int timeTilShopAllowed = 0;
+        private int timeTilEliteAllowed = 0;
+
+      
+
+        public int SpawnedCampSites
+        {
+            get { return spawnedCampSites; }
+            private set { spawnedCampSites = value; }
+        }
+        public int SpawnedShops
+        {
+            get { return spawnedShops; }
+            private set { spawnedShops = value; }
+        }
+        public int SpawnedElites
+        {
+            get { return spawnedElites; }
+            private set { spawnedElites = value; }
+        }
+        public int TimeTilCampSiteAllowed
+        {
+            get { return timeTilCampSiteAllowed; }
+            private set { timeTilCampSiteAllowed = value; }
+        }
+        public int TimeTilShopAllowed
+        {
+            get { return timeTilShopAllowed; }
+            private set { timeTilShopAllowed = value; }
+        }
+        public int TimeTilEliteAllowed
+        {
+            get { return timeTilEliteAllowed; }
+            private set { timeTilEliteAllowed = value; }
+        }
+
+
+        public void ResetGenerationSettings()
+        {
+            SpawnedCampSites = 0;
+            SpawnedShops = 0;
+            SpawnedElites = 0;
+
+            TimeTilCampSiteAllowed = 0;
+            TimeTilShopAllowed = 0;
+            TimeTilEliteAllowed = 0;
+        }
+
+        public Map GetMap(MapConfig conf)
         {
             if (conf == null)
             {
@@ -25,12 +86,12 @@ namespace MapSystem
                 return null;
             }
 
+            ResetGenerationSettings();
+
             config = conf;
             nodes.Clear();
 
             GenerateLayerDistances();
-
-            Debug.LogWarning("Layers in map config = " + config.layers.Count.ToString());
 
             for (var i = 0; i < conf.layers.Count; i++)
                 PlaceLayer(i);
@@ -52,21 +113,21 @@ namespace MapSystem
             return new Map(conf.name, bossNodeName, nodesList, new List<Point>());
         }
 
-        private static void GenerateLayerDistances()
+        private void GenerateLayerDistances()
         {
             layerDistances = new List<float>();
             foreach (var layer in config.layers)
                 layerDistances.Add(layer.distanceFromPreviousLayer.GetValue());
         }
 
-        private static float GetDistanceToLayer(int layerIndex)
+        private float GetDistanceToLayer(int layerIndex)
         {
             if (layerIndex < 0 || layerIndex > layerDistances.Count) return 0f;
 
             return layerDistances.Take(layerIndex + 1).Sum();
         }
 
-        private static void PlaceLayer(int layerIndex)
+        private void PlaceLayer(int layerIndex)
         {
             var layer = config.layers[layerIndex];
             var nodesOnThisLayer = new List<Node>();
@@ -91,8 +152,17 @@ namespace MapSystem
 
             nodes.Add(nodesOnThisLayer);
         }
+        /*
+        private static EncounterType CalculateNodeType()
+        {
 
-        private static void RandomizeNodePositions()
+        }
+        */
+
+        // Handle Remove duplicate nodes function
+        // Handle Reroll node type
+
+        private void RandomizeNodePositions()
         {
             for (var index = 0; index < nodes.Count; index++)
             {
@@ -116,7 +186,7 @@ namespace MapSystem
             }
         }
 
-        private static void SetUpConnections()
+        private void SetUpConnections()
         {
             foreach (var path in paths)
             {
@@ -142,7 +212,7 @@ namespace MapSystem
             }
         }
 
-        private static void RemoveCrossConnections()
+        private void RemoveCrossConnections()
         {
             for (var i = 0; i < config.GridWidth - 1; i++)
                 for (var j = 0; j < config.layers.Count - 1; j++)
@@ -196,7 +266,7 @@ namespace MapSystem
                 }
         }
 
-        private static Node GetNode(Point p)
+        private Node GetNode(Point p)
         {
             if (p.y >= nodes.Count) return null;
             if (p.x >= nodes[p.y].Count) return null;
@@ -204,7 +274,7 @@ namespace MapSystem
             return nodes[p.y][p.x];
         }
 
-        private static Point GetFinalNode()
+        private Point GetFinalNode()
         {
             var y = config.layers.Count - 1;
             if (config.GridWidth % 2 == 1)
@@ -215,7 +285,7 @@ namespace MapSystem
                 : new Point(config.GridWidth / 2 - 1, y);
         }
 
-        private static void GeneratePaths()
+        private void GeneratePaths()
         {
             var finalNode = GetFinalNode();
             paths = new List<List<Point>>();
@@ -252,12 +322,12 @@ namespace MapSystem
             Debug.Log("Attempts to generate paths: " + attempts);
         }
 
-        private static bool PathsLeadToAtLeastNDifferentPoints(IEnumerable<List<Point>> paths, int n)
+        private bool PathsLeadToAtLeastNDifferentPoints(IEnumerable<List<Point>> paths, int n)
         {
             return (from path in paths select path[path.Count - 1].x).Distinct().Count() >= n;
         }
 
-        private static List<Point> Path(Point from, int toY, int width, bool firstStepUnconstrained = false)
+        private List<Point> Path(Point from, int toY, int width, bool firstStepUnconstrained = false)
         {
             if (from.y == toY)
             {
@@ -295,7 +365,7 @@ namespace MapSystem
             return path;
         }
 
-        private static EncounterType GetRandomNode()
+        private EncounterType GetRandomNode()
         {
             if (RandomNodes.Count == 1)
             {
@@ -306,16 +376,76 @@ namespace MapSystem
                 return RandomNodes[RandomGenerator.NumberBetween(0, RandomNodes.Count - 1)];
             }
         }
-        private static EncounterType GetRandomNode(EncounterType[] possibleRandomNodes)
+        private EncounterType GetRandomNode(EncounterType[] possibleRandomNodes)
         {
-            if(possibleRandomNodes.Length == 1)
+            EncounterType nodeReturned = EncounterType.BasicEnemy;
+
+            // Filter out possible choices
+            List<EncounterType> filteredChoices = new List<EncounterType>();
+
+            if(possibleRandomNodes.Contains(EncounterType.CampSite) && 
+                (SpawnedCampSites <= maximumCampSites) &&
+                TimeTilCampSiteAllowed <= 0)
             {
-                return possibleRandomNodes[0];
+                filteredChoices.Add(EncounterType.CampSite);
+            }
+            if (possibleRandomNodes.Contains(EncounterType.EliteEnemy) &&
+               (SpawnedElites <= maximumElites) &&
+                TimeTilEliteAllowed <= 0)
+            {
+                filteredChoices.Add(EncounterType.EliteEnemy);
+            }
+            if (possibleRandomNodes.Contains(EncounterType.Shop) &&
+              (SpawnedShops <= maximumShops) &&
+                TimeTilShopAllowed <= 0)
+            {
+                filteredChoices.Add(EncounterType.Shop);
+            }
+
+            // Randomly pick an encounter type
+            if (filteredChoices.Count == 0)
+            {
+                nodeReturned = EncounterType.BasicEnemy;
+            }
+            else if (filteredChoices.Count == 1)
+            {
+                nodeReturned = filteredChoices[0];
             }
             else
             {
-                return possibleRandomNodes[RandomGenerator.NumberBetween(0, possibleRandomNodes.Length - 1)];
+                nodeReturned = filteredChoices[RandomGenerator.NumberBetween(0, filteredChoices.Count - 1)];
             }
+
+            if (nodeReturned == EncounterType.BasicEnemy)
+            {
+                TimeTilShopAllowed--;
+                TimeTilCampSiteAllowed--;
+                TimeTilEliteAllowed--;
+            }
+            if (nodeReturned == EncounterType.EliteEnemy)
+            {
+                SpawnedElites++;
+                TimeTilEliteAllowed = nodeFrequencyLimit;
+                TimeTilShopAllowed--;
+                TimeTilCampSiteAllowed--; 
+
+            }
+            else if (nodeReturned == EncounterType.Shop)
+            {
+                SpawnedShops++;
+                TimeTilShopAllowed = nodeFrequencyLimit;
+                TimeTilEliteAllowed--;
+                TimeTilCampSiteAllowed--;
+            }
+            else if (nodeReturned == EncounterType.CampSite)
+            {
+                SpawnedCampSites++;
+                TimeTilCampSiteAllowed = nodeFrequencyLimit;
+                TimeTilShopAllowed--;
+                TimeTilEliteAllowed--;
+            }
+
+            return nodeReturned;
            
         }
     }

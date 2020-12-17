@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Sirenix.OdinInspector;
 
 public class JourneyManager : Singleton<JourneyManager>
 {
     // Properties + Component Refs
     #region
-    [Header("Components")]   
-
     [Header("General Properties")]
     [SerializeField] private bool allowSameEnemyWaveMultipleTimes;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Encounter Sequence Properties")]
-    [SerializeField] private List<EncounterData> encounters;
     private List<EnemyWaveSO> enemyWavesAlreadyEncountered = new List<EnemyWaveSO>();
 
     [Header("Current Player Position + Encounter Properties")]
@@ -26,26 +25,24 @@ public class JourneyManager : Singleton<JourneyManager>
     [SerializeField] private EncounterData stageFourBasicEnemyEncounters;
     [SerializeField] private EncounterData stageFiveBasicEnemyEncounters;
     [SerializeField] private EncounterData stageSixBasicEnemyEncounters;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Elite Enemy Encounters")]
     [SerializeField] private EncounterData stageOneEliteEnemyEncounters;
     [SerializeField] private EncounterData stageTwoEliteEnemyEncounters;
     [SerializeField] private EncounterData stageThreeEliteEnemyEncounters;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Boss Enemy Encounters")]
     [SerializeField] private EncounterData stageOneBossEnemyEncounters;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     #endregion
 
     // Getters + Accessors
     #region
     public EncounterType CurrentEncounter { get; private set; }
     public EnemyWaveSO CurrentEnemyWave { get; private set; }
-    public SaveCheckPoint CheckPointType { get; private set; }
-    public List<EncounterData> Encounters
-    {
-        get { return encounters; }
-        private set { encounters = value; }
-    }
+    public SaveCheckPoint CheckPointType { get; private set; } 
     public int CurrentJourneyPosition
     {
         get { return currentJourneyPosition; }
@@ -125,7 +122,8 @@ public class JourneyManager : Singleton<JourneyManager>
     private void UpdateCurrentEncounterText()
     {
         TopBarController.Instance.CurrentEncounterText.text = (CurrentJourneyPosition + 1).ToString();
-        TopBarController.Instance.MaxEncounterText.text = encounters.Count.ToString();
+        //TopBarController.Instance.MaxEncounterText.text = encounters.Count.ToString();
+        TopBarController.Instance.MaxEncounterText.text = (MapSystem.MapManager.Instance.config.layers.Length + 1).ToString();
     }
     #endregion
     

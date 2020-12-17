@@ -311,7 +311,7 @@ MonoBehaviour:
   sr: {fileID: 9037504550964365079}
   visitedCircle: {fileID: 2263283713793921596}
   visitedCircleImage: {fileID: 7600212338723090613}
-  swirlCanvas: {fileID: 0}
+  swirlCanvas: {fileID: 41993020361878916}
 --- !u!65 &6045703487138762387
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using TMPro;
 using UnityEngine.UI;
+using MapSystem;
 
 public class CharacterRosterViewController : Singleton<CharacterRosterViewController>
 {
@@ -91,17 +92,17 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     #region
     private void EnableMainView()
     {
-        mainVisualParent.SetActive(true);
+        MainVisualParent.SetActive(true);
     }
     private void FadeInMainView()
     {
         mainCg.alpha = 0;
         mainCg.DOFade(1, 0.25f);
     }
-    private void DisableMainView()
+    public void DisableMainView()
     {
         mainCg.DOKill();
-        mainVisualParent.SetActive(false);
+        MainVisualParent.SetActive(false);
     }
     private void BuildFrontPageDefaultViewState(CharacterData character)
     {
@@ -136,11 +137,16 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
         {
             DisableMainView();         
         }
-        else if (mainVisualParent.activeSelf == false)
+        else if (MainVisualParent.activeSelf == false)
         {
             EnableMainView();
             FadeInMainView();
             BuildFrontPageDefaultViewState(CharacterDataController.Instance.AllPlayerCharacters[0]);
+
+            if (MapView.Instance.MasterMapParent.activeSelf)
+            {
+                MapView.Instance.HideMainMapView();
+            }
         }
     }
     public void OnNextCharacterButtonClicked()
