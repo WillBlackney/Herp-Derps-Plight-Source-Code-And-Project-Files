@@ -89,18 +89,26 @@ namespace MapSystem
             Debug.Log("MapView.ShowMainMapView() called...");
             MasterMapParent.SetActive(true);
             ShowMap(MapManager.Instance.CurrentMap);
-            blackUnderlayCanvas.sortingOrder = BaseMapSortingLayer - 1;
-            blackUnderlayParent.SetActive(true);
-            blackUnderlayCg.DOKill();
-            blackUnderlayCg.DOFade(1, 0.25f);
+            if(blackUnderlayParent != null)
+            {
+                blackUnderlayCanvas.sortingOrder = BaseMapSortingLayer - 1;
+                blackUnderlayParent.SetActive(true);
+                blackUnderlayCg.DOKill();
+                blackUnderlayCg.DOFade(1, 0.25f);
+            }
+           
         }
         public void HideMainMapView()
         {
             Debug.Log("MapView.HideMainMapView() called...");
-            MasterMapParent.SetActive(false);
-            blackUnderlayParent.SetActive(false);
-            blackUnderlayCg.DOKill();
-            blackUnderlayCg.DOFade(0, 0);
+            MasterMapParent.SetActive(false);           
+
+            if (blackUnderlayParent != null)
+            {
+                blackUnderlayParent.SetActive(false);
+                blackUnderlayCg.DOKill();
+                blackUnderlayCg.DOFade(0, 0);
+            }
         }
 
         private void ClearMap()
@@ -112,8 +120,10 @@ namespace MapSystem
             lineConnections.Clear();
         }
 
-        public void ShowMap(Map m)
+        private void ShowMap(Map m)
         {
+            Debug.Log("MapView.ShowMap() called...");
+
             if (m == null)
             {
                 Debug.LogWarning("Map was null in MapView.ShowMap()");

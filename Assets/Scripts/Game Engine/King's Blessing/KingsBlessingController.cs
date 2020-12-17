@@ -175,8 +175,6 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
     #region
     public void OnContinueButtonClicked()
     {
-        //SetContinueButtonInteractions(false);
-        //EventSequenceController.Instance.HandleLoadNextEncounter();
         MapPlayerTracker.Instance.UnlockMap();
         MapView.Instance.OnWorldMapButtonClicked();
     }
@@ -371,16 +369,20 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
     {
         List<KingsChoicePairingModel> startingChoices = new List<KingsChoicePairingModel>();
 
+        // Filter choices for this event
+        List<KingChoiceData> validChoices = new List<KingChoiceData>();
+        validChoices.AddRange(AllChoices);
+
         // Get 1 of each choice type: low, medium, high and extreme impact (but get 2 low)
-        startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.Low, AllChoices));
-        startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.Low, AllChoices));
-        startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.Medium, AllChoices));
-        startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.High, AllChoices));
-        startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.Extreme, AllChoices));
+        startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.Low, validChoices));
+        startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.Low, validChoices));
+        startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.Medium, validChoices));
+        startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.High, validChoices));
+        startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.Extreme, validChoices));
 
         return startingChoices;
     }
-    private KingsChoicePairingModel GenerateChoicePairing(KingChoiceImpactLevel impactLevel, IEnumerable<KingChoiceData> dataSet)
+    private KingsChoicePairingModel GenerateChoicePairing(KingChoiceImpactLevel impactLevel, List<KingChoiceData> dataSet)
     {
         KingsChoicePairingModel choicePairing = new KingsChoicePairingModel();
 
@@ -408,6 +410,10 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
 
         // Pick random selections
         choicePairing.benefitData = validBenefits[0];
+
+        // Remove choice from data set, so future choices cant be duplicated
+        dataSet.Remove(validBenefits[0]);
+
         if(validConsequences.Count > 0)
         {
             choicePairing.conseqenceData = validConsequences[0];
@@ -423,6 +429,8 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
                 validConsequences.Shuffle();
                 choicePairing.conseqenceData = validConsequences[0];                
             }
+
+            dataSet.Remove(validConsequences[0]);
         }
 
         return choicePairing;

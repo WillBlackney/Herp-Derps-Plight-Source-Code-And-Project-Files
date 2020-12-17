@@ -11,6 +11,9 @@ namespace MapSystem
         [Header("Components")]
         public MapConfig config;
         public MapView view;
+
+        [Header("Properties")]
+        [SerializeField] private bool testingMode = false;
         #endregion
 
         // Getters + Accessors
@@ -20,6 +23,14 @@ namespace MapSystem
 
         // Generate + Set Map
         #region
+        private void Start()
+        {
+            if (testingMode)
+            {
+                SetCurrentMap(GenerateNewMap());
+                MapView.Instance.ShowMainMapView();
+            }
+        }
         public Map GenerateNewMap()
         {
             Map map = MapGenerator.Instance.GetMap(config);

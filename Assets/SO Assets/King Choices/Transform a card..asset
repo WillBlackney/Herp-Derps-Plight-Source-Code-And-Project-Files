@@ -15,10 +15,15 @@ MonoBehaviour:
   choiceDescription: Transform a card.
   effect: 8
   category: 1
-  impactLevel: 2
+  impactLevel: 1
   maxHealthGainedOrLost: 0
   healthGainedOrLost: 0
   randomCardRarity: 0
   discoveryCardRarity: 0
   randomCardsUpgraded: 0
   randomCardsTransformed: 0
+  attributeModified: 0
+  attributeAmountModified: 0
+  possiblePassives: []
+  afflicationsGained: 0
+  goldGainedOrLost: 0

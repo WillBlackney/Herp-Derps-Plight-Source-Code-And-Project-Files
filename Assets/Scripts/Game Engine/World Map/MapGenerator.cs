@@ -18,9 +18,9 @@ namespace MapSystem
         private readonly List<List<Node>> nodes = new List<List<Node>>();
 
         [Header("Map Encounter Properties")]
-        public int maximumCampSites = 5;
-        public int maximumShops = 5;
-        public int maximumElites = 5;
+        public int maximumCampSites = 6;
+        public int maximumShops = 6;
+        public int maximumElites = 8;
 
         [Header("Misc Properties")]
         public int nodeFrequencyLimit = 3;
@@ -32,6 +32,8 @@ namespace MapSystem
         private int timeTilCampSiteAllowed = 0;
         private int timeTilShopAllowed = 0;
         private int timeTilEliteAllowed = 0;
+
+        private List<Node> previousLayerData = new List<Node>();
 
       
 
@@ -137,12 +139,8 @@ namespace MapSystem
 
             for (var i = 0; i < config.GridWidth; i++)
             {
-                //var nodeType = Random.Range(0f, 1f) < layer.randomizeNodes ? GetRandomNode() : layer.nodeType;
                 var nodeType = Random.Range(0f, 1f) < layer.randomizeNodes ? GetRandomNode(layer.possibleRandomNodeTypes) : layer.nodeType;
-                Debug.LogWarning("Random node type: " + nodeType.ToString());
                 var blueprintName = config.nodeBlueprints.Where(b => b.nodeType == nodeType).ToList().Random().name;
-                Debug.LogWarning("Blueprint name: " + blueprintName);
-                //var blueprintName = nodeType.ToString();
                 var node = new Node(nodeType, blueprintName, new Point(i, layerIndex))
                 {
                     position = new Vector2(-offset + i * layer.nodesApartDistance, GetDistanceToLayer(layerIndex))
@@ -151,6 +149,25 @@ namespace MapSystem
             }
 
             nodes.Add(nodesOnThisLayer);
+
+            // update previous layer data
+            previousLayerData.Clear();
+            previousLayerData.AddRange(nodesOnThisLayer);
+        }
+        private bool DoesLayerContainEncounterType(EncounterType type, List<Node> layerNodes)
+        {
+            bool bRet = false;
+            foreach(Node node in layerNodes)
+            {
+                if(node.nodeType == type)
+                {
+                    bRet = true;
+                    break;
+                }
+
+            }
+
+            return bRet;
         }
         /*
         private static EncounterType CalculateNodeType()
@@ -385,19 +402,22 @@ namespace MapSystem
 
             if(possibleRandomNodes.Contains(EncounterType.CampSite) && 
                 (SpawnedCampSites <= maximumCampSites) &&
-                TimeTilCampSiteAllowed <= 0)
+                TimeTilCampSiteAllowed <= 0 &&
+                !DoesLayerContainEncounterType(EncounterType.CampSite, previousLayerData))
             {
                 filteredChoices.Add(EncounterType.CampSite);
             }
             if (possibleRandomNodes.Contains(EncounterType.EliteEnemy) &&
                (SpawnedElites <= maximumElites) &&
-                TimeTilEliteAllowed <= 0)
+                TimeTilEliteAllowed <= 0 &&
+                !DoesLayerContainEncounterType(EncounterType.EliteEnemy, previousLayerData))
             {
                 filteredChoices.Add(EncounterType.EliteEnemy);
             }
             if (possibleRandomNodes.Contains(EncounterType.Shop) &&
               (SpawnedShops <= maximumShops) &&
-                TimeTilShopAllowed <= 0)
+                TimeTilShopAllowed <= 0 &&
+                !DoesLayerContainEncounterType(EncounterType.Shop, previousLayerData))
             {
                 filteredChoices.Add(EncounterType.Shop);
             }
