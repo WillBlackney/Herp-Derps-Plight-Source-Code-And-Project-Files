@@ -15,15 +15,19 @@ MonoBehaviour:
   enemyName: The Harbinger
   enemyModelSize: 3
   audioProfile: 4
-  enableFlexibleMaxHealth: 0
-  maxHealthFlexAmount: 0
-  maxHealth: 210
-  initiative: 3
-  power: 0
-  dexterity: 0
   overrideStartingHealth: 0
   startingHealth: 0
+  enableFlexibleMaxHealth: 0
+  maxHealthFlexAmount: 0
+  maxHealth: 420
   startingBlock: 0
+  strength: 10
+  intelligence: 10
+  dexterity: 10
+  wits: 10
+  initiative: 3
+  power: 0
+  baseCrit: 0
   physicalResistance: 0
   magicResistance: 0
   serializedPassiveManager:
@@ -70,10 +74,22 @@ MonoBehaviour:
     demonFormStacks: 0
     darkBargainStacks: 0
     volatileStacks: 0
+    soulCollectorStacks: 0
+    magicMagnetStacks: 0
+    etherealStacks: 0
+    thornsStacks: 0
+    tranquilHateStacks: 0
+    inflamedStacks: 0
+    shockingTouchStacks: 0
+    stormShieldStacks: 0
+    maliceStacks: 0
+    reflexShotBonusDamageStacks: 0
+    unbreakableStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
     toxicAuraStacks: 0
+    hatefulAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -83,7 +99,9 @@ MonoBehaviour:
     sleepStacks: 0
     poisonedStacks: 0
     burningStacks: 0
+    bleedingStacks: 0
     fireBallBonusDamageStacks: 0
+    sourceStacks: 0
   allEnemyActions:
   - actionName: Inferno Barrage
     actionType: 0
@@ -173,7 +191,7 @@ MonoBehaviour:
         onCharacter: 0
       actionType: 0
       effectLoops: 5
-      baseDamage: 3
+      baseDamage: 6
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -359,7 +377,7 @@ MonoBehaviour:
         onCharacter: 0
       actionType: 1
       effectLoops: 1
-      baseDamage: 8
+      baseDamage: 16
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -384,7 +402,7 @@ MonoBehaviour:
       uiFadeInSpeed: 0
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 11400000, guid: f7130d8a7fb3f8841afdbd08d39aa132, type: 2}
-      passiveStacks: 2
+      passiveStacks: 4
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
@@ -504,7 +522,7 @@ MonoBehaviour:
         onCharacter: 0
       actionType: 1
       effectLoops: 1
-      baseDamage: 8
+      baseDamage: 16
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -529,7 +547,7 @@ MonoBehaviour:
       uiFadeInSpeed: 0
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 11400000, guid: f7130d8a7fb3f8841afdbd08d39aa132, type: 2}
-      passiveStacks: 2
+      passiveStacks: 4
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
@@ -638,7 +656,7 @@ MonoBehaviour:
       uiFadeInSpeed: 0
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 11400000, guid: 6d216e783d4ba3a49a8dd267aa727fd3, type: 2}
-      passiveStacks: 2
+      passiveStacks: 3
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
@@ -656,7 +674,7 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
-      blockGained: 10
+      blockGained: 20
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0
@@ -768,7 +786,7 @@ MonoBehaviour:
       uiFadeInSpeed: 0
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 11400000, guid: 6d216e783d4ba3a49a8dd267aa727fd3, type: 2}
-      passiveStacks: 2
+      passiveStacks: 3
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
@@ -786,7 +804,7 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
-      blockGained: 10
+      blockGained: 20
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0

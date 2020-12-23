@@ -19,11 +19,11 @@ MonoBehaviour:
   startingHealth: 0
   enableFlexibleMaxHealth: 0
   maxHealthFlexAmount: 0
-  maxHealth: 20
-  startingBlock: 20
+  maxHealth: 40
+  startingBlock: 40
   strength: 10
   intelligence: 10
-  dexterity: 0
+  dexterity: 10
   wits: 10
   initiative: 2
   power: 0
@@ -176,7 +176,7 @@ MonoBehaviour:
         onCharacter: 0
       actionType: 0
       effectLoops: 2
-      baseDamage: 10
+      baseDamage: 20
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -245,7 +245,7 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
-      blockGained: 25
+      blockGained: 50
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0
@@ -322,7 +322,7 @@ MonoBehaviour:
         onCharacter: 0
       actionType: 0
       effectLoops: 1
-      baseDamage: 12
+      baseDamage: 24
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -348,7 +348,7 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
-      blockGained: 10
+      blockGained: 20
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0

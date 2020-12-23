@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Source Destruction +1
   m_EditorClassIdentifier: 
   cardName: Source Destruction +1
-  cardDescription: 'Deal 20 Magic damage to all enemies. Source Spell. '
+  cardDescription: 'Deal 40 Magic damage to all enemies. Source Spell. '
   cardSprite: {fileID: 21300000, guid: 425ade8b7c940674a94801e6a525b64a, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 9
@@ -21,9 +21,6 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 9
   rarity: 3
-  affliction: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 0
   upgradeLevel: 1
   expend: 0
@@ -33,6 +30,9 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 1
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -87,13 +87,16 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 20
+    baseDamageValue: 40
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
+    useEachIndividualsStackCount: 1
     damageType: 2
     healthRestored: 0
     healthLost: 0
@@ -184,7 +187,10 @@ MonoBehaviour:
       projectileStartPosition: 0
       onCharacter: 0
     visualEventsOnFinish: []
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
+  cardPassiveEffects: []
   keyWordModels:
   - kewWordType: 13
     weaponRequirement: 0

@@ -21,9 +21,6 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 0
   rarity: 0
-  affliction: 1
-  racialCard: 0
-  originRace: 0
   upgradeable: 0
   upgradeLevel: 0
   expend: 0
@@ -33,6 +30,9 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 1
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 3
     getPhraseFromCardValue: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '2 '
+    phrase: '4 '
   - color: 8
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
     energyReductionAmount: 0
     passivePairing:
       passiveData: 21
-      passiveStacks: 2
+      passiveStacks: 4
     energyGainedOrLost: 0
     certainCardNames: []
     cardCostsZero: 0

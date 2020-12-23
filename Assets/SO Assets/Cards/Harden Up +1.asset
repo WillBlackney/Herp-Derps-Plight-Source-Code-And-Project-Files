@@ -21,18 +21,18 @@ MonoBehaviour:
   targettingType: 2
   talentSchool: 5
   rarity: 2
-  affliction: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 0
   upgradeLevel: 1
-  expend: 1
+  expend: 0
   innate: 0
   fleeting: 0
   unplayable: 0
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -52,14 +52,6 @@ MonoBehaviour:
     phrase: '.
 
 '
-  - color: 3
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: Expend
-  - color: 1
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: .
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 3
@@ -135,6 +127,3 @@ MonoBehaviour:
   - kewWordType: 8
     weaponRequirement: 0
     passiveType: 5
-  - kewWordType: 1
-    weaponRequirement: 0
-    passiveType: 0

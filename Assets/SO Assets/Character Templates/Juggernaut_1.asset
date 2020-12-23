@@ -16,15 +16,15 @@ MonoBehaviour:
   myClassName: Juggernaut
   race: 8
   audioProfile: 4
-  health: 60
-  maxHealth: 60
+  health: 120
+  maxHealth: 120
   startingBlock: 0
   strength: 10
   intelligence: 10
   dexterity: 13
   wits: 10
   power: 0
-  initiative: 1
+  initiative: 2
   stamina: 3
   draw: 5
   baseCrit: 0
@@ -126,3 +126,5 @@ MonoBehaviour:
   talentPairings:
   - talentSchool: 5
     talentLevel: 2
+  startingTalentPoints: 0
+  startingAttributePoints: 0

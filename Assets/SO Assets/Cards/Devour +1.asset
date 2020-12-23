@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Devour +1
   m_EditorClassIdentifier: 
   cardName: Devour +1
-  cardDescription: Deal 6 Physical damage. If this kills the target, permanently
-    gain 3 max health. Expend.
+  cardDescription: Deal 12 Physical damage. If this kills the target, permanently
+    gain 6 max health. Expend.
   cardSprite: {fileID: 21300000, guid: f93551c6d26df93438587be91fd16c0f, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -64,7 +64,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '3 '
+    phrase: '6 '
   - color: 0
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -106,7 +106,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 6
+    baseDamageValue: 12
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
@@ -197,7 +197,7 @@ MonoBehaviour:
   - cardEventListenerType: 5
     cardEventListenerFunction: 5
     weaponRequirement: 0
-    maxHealthGained: 3
+    maxHealthGained: 6
     energyReductionAmount: 0
     passivePairing:
       passiveData: 0

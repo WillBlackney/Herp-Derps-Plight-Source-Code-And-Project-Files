@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sprout Barbs +1
   m_EditorClassIdentifier: 
   cardName: Sprout Barbs +1
-  cardDescription: Whenever you are attacked, deal 3 Physical damage back.
+  cardDescription: Whenever you are attacked, deal 6 Physical damage back.
   cardSprite: {fileID: 21300000, guid: e36b65592c88a0d468f95492e20a0d18, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -41,7 +41,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '3 '
+    phrase: '6 '
   - color: 4
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -96,7 +96,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 63
-      passiveStacks: 3
+      passiveStacks: 6
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

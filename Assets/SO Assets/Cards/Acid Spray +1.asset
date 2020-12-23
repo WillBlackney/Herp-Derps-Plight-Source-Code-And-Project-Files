@@ -21,9 +21,6 @@ MonoBehaviour:
   targettingType: 3
   talentSchool: 12
   rarity: 1
-  affliction: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 0
   upgradeLevel: 1
   expend: 0
@@ -33,6 +30,9 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '5 '
+    phrase: '10 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -204,7 +204,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 21
-      passiveStacks: 5
+      passiveStacks: 10
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

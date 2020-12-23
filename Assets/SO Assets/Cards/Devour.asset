@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Devour
   m_EditorClassIdentifier: 
   cardName: Devour
-  cardDescription: 'Deal 5 Physical damage. Lethal: Gain 2 max health. Expend.'
+  cardDescription: 'Deal 10 Physical damage. Lethal: Gain 4 max health. Expend.'
   cardSprite: {fileID: 21300000, guid: f93551c6d26df93438587be91fd16c0f, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -63,7 +63,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '2 '
+    phrase: '4 '
   - color: 0
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -105,7 +105,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 5
+    baseDamageValue: 10
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
   - cardEventListenerType: 5
     cardEventListenerFunction: 5
     weaponRequirement: 0
-    maxHealthGained: 2
+    maxHealthGained: 4
     energyReductionAmount: 0
     passivePairing:
       passiveData: 0

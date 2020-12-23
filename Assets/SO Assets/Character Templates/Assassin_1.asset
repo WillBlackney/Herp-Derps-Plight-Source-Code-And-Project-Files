@@ -16,15 +16,15 @@ MonoBehaviour:
   myClassName: Assassin
   race: 7
   audioProfile: 6
-  health: 60
-  maxHealth: 60
+  health: 120
+  maxHealth: 120
   startingBlock: 0
   strength: 11
   intelligence: 10
   dexterity: 10
   wits: 12
   power: 0
-  initiative: 1
+  initiative: 2
   stamina: 3
   draw: 5
   baseCrit: 0
@@ -126,3 +126,5 @@ MonoBehaviour:
   talentPairings:
   - talentSchool: 3
     talentLevel: 2
+  startingTalentPoints: 0
+  startingAttributePoints: 0

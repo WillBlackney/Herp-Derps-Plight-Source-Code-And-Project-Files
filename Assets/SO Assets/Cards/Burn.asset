@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Burn
   m_EditorClassIdentifier: 
   cardName: Burn
-  cardDescription: "On activation end, apply 1 Burning to self. \nUnplayable."
+  cardDescription: "On activation end, apply 2 Burning to self. \nUnplayable."
   cardSprite: {fileID: 21300000, guid: 741c2c4a28c8ae544a4918701bfea295, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
@@ -21,8 +21,6 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 0
   rarity: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 1
   upgradeLevel: 0
   expend: 0
@@ -31,6 +29,10 @@ MonoBehaviour:
   unplayable: 1
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 3
     getPhraseFromCardValue: 0
@@ -45,7 +47,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '1 '
+    phrase: '2 '
   - color: 5
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -60,11 +62,16 @@ MonoBehaviour:
   cardEventListeners:
   - cardEventListenerType: 3
     cardEventListenerFunction: 2
+    weaponRequirement: 0
     maxHealthGained: 0
     energyReductionAmount: 0
     passivePairing:
       passiveData: 2
-      passiveStacks: 1
+      passiveStacks: 2
+    energyGainedOrLost: 0
+    certainCardNames: []
+    cardCostsZero: 0
+  cardPassiveEffects: []
   keyWordModels:
   - kewWordType: 8
     weaponRequirement: 0

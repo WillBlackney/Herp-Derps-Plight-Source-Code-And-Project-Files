@@ -16,15 +16,15 @@ MonoBehaviour:
   myClassName: Champion
   race: 1
   audioProfile: 1
-  health: 60
-  maxHealth: 60
+  health: 120
+  maxHealth: 120
   startingBlock: 0
   strength: 12
   intelligence: 10
   dexterity: 10
   wits: 11
   power: 0
-  initiative: 1
+  initiative: 2
   stamina: 3
   draw: 5
   baseCrit: 0
@@ -127,3 +127,5 @@ MonoBehaviour:
   talentPairings:
   - talentSchool: 2
     talentLevel: 2
+  startingTalentPoints: 0
+  startingAttributePoints: 0

@@ -15,15 +15,19 @@ MonoBehaviour:
   enemyName: Big Bad Skeleton
   enemyModelSize: 3
   audioProfile: 4
-  enableFlexibleMaxHealth: 1
-  maxHealthFlexAmount: 4
-  maxHealth: 82
-  initiative: 1
-  power: 0
-  dexterity: 0
   overrideStartingHealth: 0
   startingHealth: 65
+  enableFlexibleMaxHealth: 1
+  maxHealthFlexAmount: 8
+  maxHealth: 164
   startingBlock: 0
+  strength: 10
+  intelligence: 10
+  dexterity: 10
+  wits: 10
+  initiative: 1
+  power: 0
+  baseCrit: 0
   physicalResistance: 0
   magicResistance: 0
   serializedPassiveManager:
@@ -70,10 +74,22 @@ MonoBehaviour:
     demonFormStacks: 0
     darkBargainStacks: 0
     volatileStacks: 0
+    soulCollectorStacks: 0
+    magicMagnetStacks: 0
+    etherealStacks: 0
+    thornsStacks: 0
+    tranquilHateStacks: 0
+    inflamedStacks: 0
+    shockingTouchStacks: 0
+    stormShieldStacks: 0
+    maliceStacks: 0
+    reflexShotBonusDamageStacks: 0
+    unbreakableStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
     toxicAuraStacks: 0
+    hatefulAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -83,7 +99,9 @@ MonoBehaviour:
     sleepStacks: 0
     poisonedStacks: 0
     burningStacks: 0
+    bleedingStacks: 0
     fireBallBonusDamageStacks: 0
+    sourceStacks: 0
   allEnemyActions:
   - actionName: Bellow
     actionType: 2

@@ -16,15 +16,15 @@ MonoBehaviour:
   myClassName: Death Knight
   race: 3
   audioProfile: 4
-  health: 60
-  maxHealth: 60
+  health: 120
+  maxHealth: 120
   startingBlock: 0
   strength: 10
   intelligence: 10
   dexterity: 12
   wits: 11
   power: 0
-  initiative: 1
+  initiative: 2
   stamina: 3
   draw: 5
   baseCrit: 0
@@ -130,3 +130,5 @@ MonoBehaviour:
     talentLevel: 1
   - talentSchool: 11
     talentLevel: 1
+  startingTalentPoints: 0
+  startingAttributePoints: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dark Bargain
   m_EditorClassIdentifier: 
   cardName: Dark Bargain
-  cardDescription: Lose 5 health. All cards cost 0 Energy this activation. Expend.
+  cardDescription: Lose 10 health. All cards cost 0 Energy this activation. Expend.
   cardSprite: {fileID: 21300000, guid: 827501c13da9a1a40a9a8036f5592b0c, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -21,9 +21,6 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 11
   rarity: 3
-  affliction: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 1
   upgradeLevel: 0
   expend: 1
@@ -33,6 +30,9 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -109,7 +109,7 @@ MonoBehaviour:
     useEachIndividualsStackCount: 1
     damageType: 0
     healthRestored: 0
-    healthLost: 5
+    healthLost: 10
     energyGained: 0
     cardsDrawn: 0
     extraDrawEffect: 0

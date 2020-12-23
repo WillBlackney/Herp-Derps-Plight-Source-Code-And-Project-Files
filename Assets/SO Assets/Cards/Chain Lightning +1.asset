@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Chain Lightning +1
   m_EditorClassIdentifier: 
   cardName: Chain Lightning +1
-  cardDescription: Deal 4 Magic Damage to a random enemy 4 times.
+  cardDescription: Deal 9 Magic Damage to a random enemy 4 times.
   cardSprite: {fileID: 21300000, guid: 0b2ba20c4452fb64fa5e1059c42530e7, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -21,9 +21,6 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 13
   rarity: 2
-  affliction: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 0
   upgradeLevel: 1
   expend: 0
@@ -33,6 +30,9 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -53,7 +53,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 4
+    phrase: '3 '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -70,7 +70,7 @@ MonoBehaviour:
     chooseTargetRandomly: 1
     passiveApplicationLoops: 0
     validRandomTargetsType: 0
-    damageLoops: 4
+    damageLoops: 3
     drawSpecificType: 0
     specificTypeDrawn: 0
     discoveryLocation: 0
@@ -85,13 +85,16 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 4
+    baseDamageValue: 9
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
+    useEachIndividualsStackCount: 1
     damageType: 2
     healthRestored: 0
     healthLost: 0
@@ -152,5 +155,8 @@ MonoBehaviour:
       projectileStartPosition: 0
       onCharacter: 2
     visualEventsOnFinish: []
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
+  cardPassiveEffects: []
   keyWordModels: []

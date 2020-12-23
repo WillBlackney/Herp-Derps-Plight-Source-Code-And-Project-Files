@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Boomerang Blade
   m_EditorClassIdentifier: 
   cardName: Boomerang Blade
-  cardDescription: 'Deal 8 Physical damage. Two Handed: Reduce this card''s Energy
+  cardDescription: 'Deal 16 Physical damage. Two Handed: Reduce this card''s Energy
     cost by 1. '
   cardSprite: {fileID: 21300000, guid: 6515f2c25bb445c4590bffb2e1f867d7, type: 3}
   xEnergyCost: 0
@@ -22,9 +22,6 @@ MonoBehaviour:
   targettingType: 3
   talentSchool: 2
   rarity: 1
-  affliction: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 1
   upgradeLevel: 0
   expend: 0
@@ -34,6 +31,9 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -104,13 +104,16 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 8
+    baseDamageValue: 16
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 1
+    useEachIndividualsStackCount: 1
     damageType: 1
     healthRestored: 0
     healthLost: 0
@@ -198,6 +201,9 @@ MonoBehaviour:
       passiveData: 0
       passiveStacks: 0
     energyGainedOrLost: 0
+    certainCardNames: []
+    cardCostsZero: 0
+  cardPassiveEffects: []
   keyWordModels:
   - kewWordType: 7
     weaponRequirement: 2

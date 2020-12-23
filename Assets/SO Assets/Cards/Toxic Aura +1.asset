@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Toxic Aura +1
   m_EditorClassIdentifier: 
   cardName: Toxic Aura +1
-  cardDescription: On activation end, apply 3 Poisoned to all enemies.
+  cardDescription: On activation end, apply 6 Poisoned to all enemies.
   cardSprite: {fileID: 21300000, guid: f589a4deb7b158149b1c6c7eaa5e013c, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -21,9 +21,6 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 12
   rarity: 2
-  affliction: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 0
   upgradeLevel: 1
   expend: 0
@@ -33,6 +30,9 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '3 '
+    phrase: '6 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -96,7 +96,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 50
-      passiveStacks: 3
+      passiveStacks: 6
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Strike +1
   m_EditorClassIdentifier: 
   cardName: Strike +1
-  cardDescription: Deal 6 Physical damage.
+  cardDescription: Deal 12 Physical damage.
   cardSprite: {fileID: 21300000, guid: 899c8605fde961c4caeac02f8f9d62f6, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -77,7 +77,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 15
+    baseDamageValue: 12
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
