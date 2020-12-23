@@ -16,20 +16,18 @@ MonoBehaviour:
   myClassName: Test Class
   race: 2
   audioProfile: 3
-  health: 30
-  maxHealth: 30
-  power: 0
-  dexterity: 0
+  health: 300
+  maxHealth: 300
+  startingBlock: 0
+  strength: 15
+  intelligence: 12
+  dexterity: 12
+  wits: 10
+  power: 2
+  initiative: 12
   stamina: 10
   draw: 10
-  initiative: 77
-  startingBlock: 5
-  physicalResistance: 0
-  fireResistance: 0
-  frostResistance: 0
-  shadowResistance: 0
-  poisonResistance: 0
-  airResistance: 0
+  baseCrit: 50
   serializedPassiveManager:
     bonusPowerStacks: 0
     bonusDexterityStacks: 0
@@ -84,6 +82,7 @@ MonoBehaviour:
     stormShieldStacks: 0
     maliceStacks: 0
     reflexShotBonusDamageStacks: 0
+    unbreakableStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 2
     guardianAuraStacks: 0
@@ -102,11 +101,14 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
-  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
-  - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
-  - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
-  - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
-  - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
+  - {fileID: 11400000, guid: f1f3eb4ecc059454f9bd8b4b21e538f4, type: 2}
+  - {fileID: 11400000, guid: 3c8a0c8e99d86ba48b6aa465fc1e8dcb, type: 2}
+  - {fileID: 11400000, guid: 4f79bc1e5496cd24597d88d64237a3d2, type: 2}
+  - {fileID: 11400000, guid: 55f13da4aaeb53e4386528cbde27d8c6, type: 2}
+  - {fileID: 11400000, guid: 13a5cd3695f9f9f4ea8a1b35167a462d, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1

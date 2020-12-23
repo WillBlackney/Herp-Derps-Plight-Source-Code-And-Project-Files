@@ -1281,7 +1281,7 @@ namespace Tests
 
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(attacker.pManager, passiveName, 1);
 
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(attacker, target, DamageType.Physical, cardEffect.baseDamageValue, card, cardEffect);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(attacker, target, DamageType.Physical, cardEffect.baseDamageValue, card, cardEffect, false);
 
             // Assert
             Assert.AreEqual(expectedTotal, finalDamageValue);
@@ -1324,7 +1324,7 @@ namespace Tests
 
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(attacker.pManager, passiveName, 1);
 
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(attacker, target, DamageType.Physical, cardEffect.baseDamageValue, card, cardEffect);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(attacker, target, DamageType.Physical, cardEffect.baseDamageValue, card, cardEffect, false);
 
             // Assert
             Assert.AreEqual(expectedTotal, finalDamageValue);
@@ -1367,7 +1367,7 @@ namespace Tests
 
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, passiveName, 1);
 
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(attacker, target, DamageType.Physical, cardEffect.baseDamageValue, card, cardEffect);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(attacker, target, DamageType.Physical, cardEffect.baseDamageValue, card, cardEffect, false);
 
             // Assert
             Assert.AreEqual(expectedTotal, finalDamageValue);
@@ -1410,7 +1410,7 @@ namespace Tests
 
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, passiveName, 1);
 
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(attacker, target, DamageType.Physical, cardEffect.baseDamageValue, card, cardEffect);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(attacker, target, DamageType.Physical, cardEffect.baseDamageValue, card, cardEffect, false);
 
             // Assert
             Assert.AreEqual(expectedTotal, finalDamageValue);

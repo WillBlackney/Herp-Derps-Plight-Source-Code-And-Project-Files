@@ -20,25 +20,25 @@ public class CombatLogic : Singleton<CombatLogic>
     #region
 
     // Entry point for card specific calculations
-    public int GetFinalDamageValueAfterAllCalculations(CharacterEntityModel attacker, CharacterEntityModel target, DamageType damageType, int baseDamage, Card card, CardEffect cardEffect)
+    public int GetFinalDamageValueAfterAllCalculations(CharacterEntityModel attacker, CharacterEntityModel target, DamageType damageType, int baseDamage, Card card, CardEffect cardEffect, bool didCrit)
     {
-        return ExecuteGetFinalDamageValueAfterAllCalculations(attacker, target, damageType, baseDamage, card, cardEffect);
+        return ExecuteGetFinalDamageValueAfterAllCalculations(attacker, target, damageType, baseDamage, didCrit, card, cardEffect);
     }
 
     // Entry point for enemy action specific calculations
     public int GetFinalDamageValueAfterAllCalculations(CharacterEntityModel attacker, CharacterEntityModel target, DamageType damageType, int baseDamage, EnemyActionEffect enemyAction)
     {
-        return ExecuteGetFinalDamageValueAfterAllCalculations(attacker, target, damageType, baseDamage, null, null, enemyAction);
+        return ExecuteGetFinalDamageValueAfterAllCalculations(attacker, target, damageType, baseDamage, false, null, null, enemyAction);
     }
 
     // Entry point for non card + enemy action specific calculations
     public int GetFinalDamageValueAfterAllCalculations(CharacterEntityModel attacker, CharacterEntityModel target, DamageType damageType, int baseDamage)
     {
-        return ExecuteGetFinalDamageValueAfterAllCalculations(attacker, target, damageType, baseDamage, null, null, null);
+        return ExecuteGetFinalDamageValueAfterAllCalculations(attacker, target, damageType, baseDamage, false, null, null, null);
     }   
 
     // Main calculator
-    private int ExecuteGetFinalDamageValueAfterAllCalculations(CharacterEntityModel attacker, CharacterEntityModel target, DamageType damageType, int baseDamage = 0, Card card = null, CardEffect cardEffect = null, EnemyActionEffect enemyAction = null)
+    private int ExecuteGetFinalDamageValueAfterAllCalculations(CharacterEntityModel attacker, CharacterEntityModel target, DamageType damageType, int baseDamage = 0, bool didCrit = false, Card card = null, CardEffect cardEffect = null, EnemyActionEffect enemyAction = null)
     {
         Debug.Log("CombatLogic.GetFinalDamageValueAfterAllCalculations() called...");
         int finalDamageValueReturned = 0;
@@ -47,7 +47,7 @@ public class CombatLogic : Singleton<CombatLogic>
         finalDamageValueReturned = GetBaseDamageValue(attacker, baseDamage, damageType, card, cardEffect, enemyAction);
 
         // calculate damage after standard modifiers
-        finalDamageValueReturned = GetDamageValueAfterNonResistanceModifiers(finalDamageValueReturned, attacker, target, damageType, card, cardEffect, enemyAction);
+        finalDamageValueReturned = GetDamageValueAfterNonResistanceModifiers(finalDamageValueReturned, attacker, target, damageType, didCrit, card, cardEffect, enemyAction);
 
         // calculate damage after resistances
         finalDamageValueReturned = GetDamageValueAfterResistances(finalDamageValueReturned, damageType, target);
@@ -85,11 +85,13 @@ public class CombatLogic : Singleton<CombatLogic>
         baseDamageValueReturned += baseDamage;
 
         // Add flat damage bonus from modifiers (strength, etc)
+        /*
         if (card != null || enemyAction != null)
         {
             baseDamageValueReturned += EntityLogic.GetTotalPower(entity);
             Debug.Log("Card base damage after strength and related modifiers added: " + baseDamageValueReturned.ToString());
         }
+        */
 
         // Add flat bonus damage from misc passives
         // Bonus fire ball damage
@@ -168,7 +170,7 @@ public class CombatLogic : Singleton<CombatLogic>
 
         return damageValueReturned;
     }
-    private int GetDamageValueAfterNonResistanceModifiers(int damageValue, CharacterEntityModel attacker, CharacterEntityModel target, DamageType damageType, Card card = null, CardEffect cardEffect = null, EnemyActionEffect enemyAction = null)
+    private int GetDamageValueAfterNonResistanceModifiers(int damageValue, CharacterEntityModel attacker, CharacterEntityModel target, DamageType damageType, bool didCrit = false, Card card = null, CardEffect cardEffect = null, EnemyActionEffect enemyAction = null)
     {
         Debug.Log("CombatLogic.GetDamageValueAfterNonResistanceModifiers() called...");
 
@@ -180,6 +182,34 @@ public class CombatLogic : Singleton<CombatLogic>
         if ((card != null && cardEffect != null) ||
             enemyAction != null)
         {
+            // power
+            float powerMod = EntityLogic.GetTotalPower(attacker) / 10f;
+            damageModifier += powerMod;
+
+            // crit
+            if (didCrit)
+            {
+                damageModifier += 0.3f;
+            }
+
+            // strength
+            if(damageType == DamageType.Physical)
+            {
+                float strengthMod = EntityLogic.GetTotalStrength(attacker) / 10f;
+                strengthMod -= 1f;
+                damageModifier += strengthMod;
+                Debug.Log("Strength mod =  " + strengthMod.ToString());
+            }
+
+            // intelligence
+            if (damageType == DamageType.Magic)
+            {
+                float intMod = EntityLogic.GetTotalIntelligence(attacker) / 10f;
+                intMod -= 1f;
+                damageModifier += intMod;
+                Debug.Log("Intelligence mod =  " + intMod.ToString());
+            }
+
             // vulnerable
             if (target != null && target.pManager.vulnerableStacks > 0)
             {
@@ -231,67 +261,6 @@ public class CombatLogic : Singleton<CombatLogic>
             }
         }
 
-
-        // TO DO: Damage modifiers related to increasing magical damage by percentage should be moved to a new method (make some like CalculateMagicDamageModifiers())
-
-        // Air Damage bonuses
-        /*
-        if (damageType == "Air")
-        {
-            if (attacker.myPassiveManager.stormLord)
-            {
-                Debug.Log("Damage has a type of 'Air', and attacker has 'Storm Lord' passive, increasing damage by 30%...");
-                damageModifier += 0.3f;
-            }
-        }
-
-        // Fire Damage bonuses
-        if (damageType == "Fire")
-        {
-            if (attacker.myPassiveManager.demon)
-            {
-                Debug.Log("Damage has a type of 'Fire', and attacker has 'Demon' passive, increasing damage by 30%...");
-                damageModifier += 0.3f;
-            }
-        }
-
-        // Poison Damage bonuses
-        if (damageType == "Poison")
-        {
-            if (attacker.myPassiveManager.toxicity)
-            {
-                Debug.Log("Damage has a type of 'Poison', and attacker has 'Toxicity' passive, increasing damage by 30%...");
-                damageModifier += 0.3f;
-            }
-        }
-
-        // Frost Damage bonuses
-        if (damageType == "Frost")
-        {
-            if (attacker.myPassiveManager.frozenHeart)
-            {
-                Debug.Log("Damage has a type of 'Frost', and attacker has 'Frozen Heart' passive, increasing damage by 30%...");
-                damageModifier += 0.3f;
-            }
-        }
-
-        // Frost Damage bonuses
-        if (damageType == "Shadow")
-        {
-            if (attacker.myPassiveManager.shadowForm)
-            {
-                Debug.Log("Damage has a type of 'Shadow', and attacker has 'Shadow Form' passive, increasing damage by 30%...");
-                damageModifier += 0.3f;
-            }
-
-            if (attacker.myPassiveManager.pureHate)
-            {
-                Debug.Log("Damage has a type of 'Shadow', and attacker has 'Pure Hate' passive, increasing damage by 50%...");
-                damageModifier += 0.5f;
-            }
-        } 
-        */
-
         // prevent modifier from going negative
         if (damageModifier < 0)
         {
@@ -300,7 +269,7 @@ public class CombatLogic : Singleton<CombatLogic>
         }
 
         //damageValueReturned = (int)(damageValueReturned * damageModifier);
-        damageValueReturned = (int)Math.Ceiling(damageValueReturned * damageModifier);
+        damageValueReturned = (int)Math.Round(damageValueReturned * damageModifier);
         Debug.Log("Final damage value returned: " + damageValueReturned);
 
         return damageValueReturned;
@@ -335,7 +304,8 @@ public class CombatLogic : Singleton<CombatLogic>
         if ((cardEffect != null ||
             enemyEffect != null) && valueReturned > 0)
         {
-            valueReturned += EntityLogic.GetTotalDexterity(caster);
+            float dexMod = EntityLogic.GetTotalDexterity(caster) / 10f;
+            valueReturned = (int)Math.Round(valueReturned * dexMod);
             Debug.Log("Block gain value after dexterity added: " + valueReturned);
         }
 
@@ -349,13 +319,13 @@ public class CombatLogic : Singleton<CombatLogic>
     #region   
 
     // Handle damage from card entry points
-    public void HandleDamage(int damageAmount, CharacterEntityModel attacker, CharacterEntityModel victim, Card card, DamageType damageType, bool ignoreBlock = false)
+    public void HandleDamage(int damageAmount, CharacterEntityModel attacker, CharacterEntityModel victim, Card card, DamageType damageType, bool ignoreBlock = false, bool didCrit = false)
     {
-        ExecuteHandleDamage(damageAmount, attacker, victim, damageType, card, null, ignoreBlock);
+        ExecuteHandleDamage(damageAmount, attacker, victim, damageType, card, null, ignoreBlock, didCrit);
     }
-    public void HandleDamage(int damageAmount, CharacterEntityModel attacker, CharacterEntityModel victim, Card card, DamageType damageType, VisualEvent batchedEvent, bool ignoreBlock = false)
+    public void HandleDamage(int damageAmount, CharacterEntityModel attacker, CharacterEntityModel victim, Card card, DamageType damageType, VisualEvent batchedEvent, bool ignoreBlock = false, bool didCrit = false)
     {
-        ExecuteHandleDamage(damageAmount, attacker, victim, damageType, card, null, ignoreBlock, batchedEvent);
+        ExecuteHandleDamage(damageAmount, attacker, victim, damageType, card, null, ignoreBlock, didCrit, batchedEvent);
     }
 
     // Handle damage from enemy action entry points
@@ -365,7 +335,7 @@ public class CombatLogic : Singleton<CombatLogic>
     }
     public void HandleDamage(int damageAmount, CharacterEntityModel attacker, CharacterEntityModel victim, EnemyActionEffect enemyEffect, DamageType damageType, VisualEvent batchedEvent, bool ignoreBlock = false)
     {
-        ExecuteHandleDamage(damageAmount, attacker, victim, damageType, null, enemyEffect, ignoreBlock, batchedEvent);
+        ExecuteHandleDamage(damageAmount, attacker, victim, damageType, null, enemyEffect, ignoreBlock, false, batchedEvent);
     }
 
     // Cardless + Enemy action less damage entry points
@@ -375,12 +345,12 @@ public class CombatLogic : Singleton<CombatLogic>
     }
     public void HandleDamage(int damageAmount, CharacterEntityModel attacker, CharacterEntityModel victim, DamageType damageType, VisualEvent batchedEvent, bool ignoreBlock = false)
     {
-        ExecuteHandleDamage(damageAmount, attacker, victim, damageType, null, null, ignoreBlock, batchedEvent);
+        ExecuteHandleDamage(damageAmount, attacker, victim, damageType, null, null, ignoreBlock, false, batchedEvent);
     }
 
     // Main Damage Handler
     private void ExecuteHandleDamage(int damageAmount, CharacterEntityModel attacker, CharacterEntityModel victim,
-        DamageType damageType, Card card = null, EnemyActionEffect enemyEffect = null, bool ignoreBlock = false, VisualEvent batchedEvent = null)
+        DamageType damageType, Card card = null, EnemyActionEffect enemyEffect = null, bool ignoreBlock = false, bool didCrit = false, VisualEvent batchedEvent = null)
     {
         // Debug setup
         string cardNameString = "None";
@@ -489,6 +459,13 @@ public class CombatLogic : Singleton<CombatLogic>
             }, queuePosition, 0, 0, EventDetail.None, batchedEvent);
         }
 
+        // critical VFX
+        if (didCrit)
+        {
+            // Create critical text effect
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+            VisualEffectManager.Instance.CreateStatusEffect(victim.characterEntityView.WorldPosition, "CRITICAL!", TextLogic.neutralYellow), queuePosition, 0, 0, EventDetail.None, batchedEvent);
+        }
 
         // Finished calculating the final damage, health lost and armor lost: p
         totalLifeLost = victim.health - healthAfter;
@@ -573,7 +550,7 @@ public class CombatLogic : Singleton<CombatLogic>
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.25f);
 
             // Calculate and handle damage
-            int thornsDamageValue = GetFinalDamageValueAfterAllCalculations(null, attacker, DamageType.Physical, victim.pManager.thornsStacks, null, null);
+            int thornsDamageValue = GetFinalDamageValueAfterAllCalculations(null, attacker, DamageType.Physical, victim.pManager.thornsStacks);
             HandleDamage(thornsDamageValue, null, attacker, DamageType.Physical);
         }
 
@@ -591,7 +568,7 @@ public class CombatLogic : Singleton<CombatLogic>
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.25f);
 
             // Calculate and handle damage
-            int ssDamageValue = GetFinalDamageValueAfterAllCalculations(null, attacker, DamageType.Magic, victim.pManager.stormShieldStacks, null, null);
+            int ssDamageValue = GetFinalDamageValueAfterAllCalculations(null, attacker, DamageType.Magic, victim.pManager.stormShieldStacks);
             HandleDamage(ssDamageValue, null, attacker, DamageType.Magic);
         }
 
@@ -871,6 +848,11 @@ public class CombatLogic : Singleton<CombatLogic>
     {
         Debug.Log("CombatLogic.SetCombatState() called, new state: " + newState.ToString());
         CurrentCombatState = newState;
+    }
+    public bool RollForCritical(CharacterEntityModel character)
+    {
+        int roll = RandomGenerator.NumberBetween(1, 100);
+        return roll <= EntityLogic.GetTotalCrit(character);
     }
     #endregion
 

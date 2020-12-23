@@ -49,37 +49,41 @@ public static class EntityLogic
     }
     public static int GetTotalPower(CharacterEntityModel entity)
     {
-        Debug.Log("EntityLogic.GetTotalStrength() called for " + entity.myName + "...");
+        Debug.Log("EntityLogic.GetTotalPower() called for " + entity.myName + "...");
 
         // Base Power
-        int strengthReturned = entity.power;
-        Debug.Log(entity.myName + " base strength: " + strengthReturned.ToString());
+        int powerReturned = entity.power;
+        Debug.Log(entity.myName + " base power: " + powerReturned.ToString());
 
         // Bonus Power
-        strengthReturned += entity.pManager.bonusPowerStacks;
-        Debug.Log("Value after bonus strength added: " + strengthReturned.ToString());
+        powerReturned += entity.pManager.bonusPowerStacks;
+        Debug.Log("Value after bonus power added: " + powerReturned.ToString());
 
         // Temporary Bonus Power
-        strengthReturned += entity.pManager.temporaryBonusPowerStacks;
-        Debug.Log("Value after temporary bonus strength added: " + strengthReturned.ToString());
+        powerReturned += entity.pManager.temporaryBonusPowerStacks;
+        Debug.Log("Value after temporary bonus power added: " + powerReturned.ToString());
 
         // Return final value
-        Debug.Log("Final strength value calculated: " + strengthReturned.ToString());
-        return strengthReturned;
+        Debug.Log("Final power value calculated: " + powerReturned.ToString());
+        return powerReturned;
     }
     public static int GetTotalInitiative(CharacterEntityModel entity)
     {
         Debug.Log("EntityLogic.GetTotalInitiative() called for " + entity.myName + "...");
 
-        // Base Stamina
-        int initiativeReturned = entity.initiative;
+        // Base wits
+        int initiativeReturned = entity.wits;
+        Debug.Log(entity.myName + " base wits: " + initiativeReturned.ToString());
+
+        // Base initiative
+        initiativeReturned += entity.initiative;
         Debug.Log(entity.myName + " base initiative: " + initiativeReturned.ToString());
 
-        // Bonus Stamina
+        // Bonus initiative
         initiativeReturned += entity.pManager.bonusInitiativeStacks;
         Debug.Log("Value after bonus initiative added: " + initiativeReturned.ToString());
 
-        // Temporary Bonus Stamina
+        // Temporary Bonus initiative
         initiativeReturned += entity.pManager.temporaryBonusInitiativeStacks;
         Debug.Log("Value after temporary bonus initiative added: " + initiativeReturned.ToString());
 
@@ -106,6 +110,43 @@ public static class EntityLogic
         // Return final value
         Debug.Log("Final dexterity value calculated: " + dexterityReturned.ToString());
         return dexterityReturned;
+    }
+    public static int GetTotalCrit(CharacterEntityModel entity)
+    {
+        Debug.Log("EntityLogic.GetTotalCrit() called for " + entity.myName + "...");
+
+        // Base crit
+        int critTeurned = entity.baseCrit;
+        Debug.Log(entity.myName + " base crit: " + critTeurned.ToString());
+
+        // Bonus wits
+        critTeurned += entity.wits;
+        Debug.Log("Value after wits added: " + critTeurned.ToString());
+        return critTeurned;
+    }
+    public static int GetTotalStrength(CharacterEntityModel entity)
+    {
+        Debug.Log("EntityLogic.GetTotalStrength() called for " + entity.myName + "...");
+
+        // Base Power
+        int strengthReturned = entity.strength;
+        Debug.Log(entity.myName + " base strength: " + strengthReturned.ToString());
+
+        // Return final value
+        Debug.Log("Final strength value calculated: " + strengthReturned.ToString());
+        return strengthReturned;
+    }
+    public static int GetTotalIntelligence(CharacterEntityModel entity)
+    {
+        Debug.Log("EntityLogic.GetTotalIntelligence() called for " + entity.myName + "...");
+
+        // Base Power
+        int intelligenceReturned = entity.intelligence;
+        Debug.Log(entity.myName + " base intelligence: " + intelligenceReturned.ToString());
+
+        // Return final value
+        Debug.Log("Final intelligence value calculated: " + intelligenceReturned.ToString());
+        return intelligenceReturned;
     }
     #endregion
 }

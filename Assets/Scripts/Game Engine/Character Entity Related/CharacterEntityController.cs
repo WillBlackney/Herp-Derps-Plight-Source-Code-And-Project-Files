@@ -193,11 +193,18 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         character.audioProfile = data.audioProfile;
 
         // Setup Core Stats
+        ModifyStrength(character, data.strength);
+        ModifyIntelligence(character, data.intelligence);
+        ModifyWits(character, data.wits);
+        ModifyDexterity(character, data.dexterity);
+
+        // Setup Secondary Stats
         ModifyStamina(character, data.stamina);
         ModifyInitiative(character, data.initiative);
-        ModifyDraw(character, data.draw);
-        ModifyDexterity(character, data.dexterity);
+        ModifyDraw(character, data.draw);       
         ModifyPower(character, data.power);
+        ModifyBaseCrit(character, data.baseCrit);
+        MdifyCritModifier(character, data.critModifier);
 
         // Set up health
         ModifyMaxHealth(character, data.maxHealth);
@@ -223,9 +230,14 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         character.myName = data.enemyName;
         character.audioProfile = data.audioProfile;
 
-        // Setup Core Stats
-        ModifyInitiative(character, data.initiative);
+        // Core Attributes
+        ModifyStrength(character, data.strength);
         ModifyDexterity(character, data.dexterity);
+        ModifyWits(character, data.wits);
+        ModifyIntelligence(character, data.intelligence);
+
+        // Secondary Attrbibutes
+        ModifyInitiative(character, data.initiative);
         ModifyPower(character, data.power);
 
         // Set Resistances
@@ -412,9 +424,29 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             character.draw = 0;
         }
     }
+    public void ModifyBaseCrit(CharacterEntityModel character, int gainedOrLost)
+    {
+        character.baseCrit += gainedOrLost;
+    }
+    public void ModifyCritModifier(CharacterEntityModel character, int gainedOrLost)
+    {
+        character.critModifier += gainedOrLost;
+    }
     public void ModifyPower(CharacterEntityModel character, int powerGainedOrLost)
     {
         character.power += powerGainedOrLost;
+    }
+    public void ModifyStrength(CharacterEntityModel character, int strengthGainedOrLost)
+    {
+        character.strength += strengthGainedOrLost;
+    }
+    public void ModifyWits(CharacterEntityModel character, int witsGainedOrLost)
+    {
+        character.wits += witsGainedOrLost;
+    }
+    public void ModifyIntelligence(CharacterEntityModel character, int intelligenceGainedOrLast)
+    {
+        character.intelligence += intelligenceGainedOrLast;
     }
     public void ModifyDexterity(CharacterEntityModel character, int dexterityGainedOrLost)
     {
@@ -586,7 +618,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
 
                 // Calculate and handle damage
-                int sentinelDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(character, targetHit, DamageType.Physical, character.pManager.sentinelStacks, null, null);
+                int sentinelDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(character, targetHit, DamageType.Physical, character.pManager.sentinelStacks);
                 CombatLogic.Instance.HandleDamage(sentinelDamageValue, character, targetHit, DamageType.Physical);
             }
         }
@@ -1312,7 +1344,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Poisoned!"), QueuePosition.Back, 0, 0.5f);
 
             // Calculate and deal Poison damage
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Physical, entity.pManager.poisonedStacks, null, null);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Physical, entity.pManager.poisonedStacks);
             VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.PoisonExplosion, view.WorldPosition));
             CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Physical, true);           
@@ -1324,7 +1356,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Bleeding!"), QueuePosition.Back, 0, 0.5f);
 
             // Calculate and deal Poison damage
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Physical, entity.pManager.bleedingStacks, null, null);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Physical, entity.pManager.bleedingStacks);
             VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.BloodExplosion, view.WorldPosition));
             CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Physical, true);
@@ -1349,7 +1381,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Burning!"), QueuePosition.Back, 0, 0.5f);
 
                 // Calculate and deal Poison damage
-                int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Magic, entity.pManager.burningStacks, null, null);
+                int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Magic, entity.pManager.burningStacks);
                 VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
                 VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.FireExplosion, view.WorldPosition));
                 CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Magic, true);
@@ -1375,7 +1407,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
 
             // Deal air damage
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(entity, randomEnemy, DamageType.Magic, entity.pManager.overloadStacks, null, null);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(entity, randomEnemy, DamageType.Magic, entity.pManager.overloadStacks);
             CombatLogic.Instance.HandleDamage(finalDamageValue, entity, randomEnemy, DamageType.Magic);
 
             // Brief pause here

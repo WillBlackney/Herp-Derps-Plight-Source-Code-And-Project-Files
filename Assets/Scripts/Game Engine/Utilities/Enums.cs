@@ -276,6 +276,7 @@ public enum KeyWordType
     Expend = 1,   
     Fleeting = 3,
     Innate = 2,
+    Lethal = 14,
     LifeSteal = 12,
     Passive = 8,
     Unplayable = 4,

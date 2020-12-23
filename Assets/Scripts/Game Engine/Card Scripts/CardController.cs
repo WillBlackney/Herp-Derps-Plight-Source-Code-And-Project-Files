@@ -841,11 +841,11 @@ public class CardController : Singleton<CardController>
 
                     if(target != null)
                     {
-                        damageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(card.owner, target, matchingEffect.damageType, matchingEffect.baseDamageValue, card, matchingEffect);
+                        damageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(card.owner, target, matchingEffect.damageType, matchingEffect.baseDamageValue, card, matchingEffect, false);
                     }
                     else
                     {
-                        damageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(card.owner, null, matchingEffect.damageType, matchingEffect.baseDamageValue, card, matchingEffect);
+                        damageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(card.owner, null, matchingEffect.damageType, matchingEffect.baseDamageValue, card, matchingEffect, false);
                     }
 
                     cs.phrase = damageValue.ToString();
@@ -855,7 +855,7 @@ public class CardController : Singleton<CardController>
                 else if (cs.cardEffectType == CardEffectType.DamageAllEnemies)
                 {
                     int damageValue = 0;
-                    damageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(card.owner, null, matchingEffect.damageType, matchingEffect.baseDamageValue, card, matchingEffect);
+                    damageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(card.owner, null, matchingEffect.damageType, matchingEffect.baseDamageValue, card, matchingEffect, false);
                     cs.phrase = damageValue.ToString();
                 }
 
@@ -875,8 +875,9 @@ public class CardController : Singleton<CardController>
 
                     if(damageEffectMod != null)
                     {
+                        
                         int damageValue = 0;
-                        damageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(card.owner, null, damageEffectMod.damageType, damageEffectMod.baseDamage, card, matchingEffect);
+                        damageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(card.owner, null, damageEffectMod.damageType, damageEffectMod.baseDamage, card, matchingEffect, CombatLogic.Instance.RollForCritical(card.owner));
                         cs.phrase = damageValue.ToString();
                     }
                    
@@ -2282,11 +2283,15 @@ public class CardController : Singleton<CardController>
             {
                 baseDamage = cardEffect.baseDamageValue;
             }
+
+            // Roll for crit
+            bool didCrit = CombatLogic.Instance.RollForCritical(owner);
+
             // Calculate the end damage value
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, target, damageType, baseDamage, card, cardEffect);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, target, damageType, baseDamage, card, cardEffect, didCrit);
 
             // Start damage sequence
-            CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, card, damageType);
+            CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, card, damageType, false, didCrit);
 
         }
 
@@ -2358,12 +2363,14 @@ public class CardController : Singleton<CardController>
                 {
                     baseDamage = cardEffect.baseDamageValue;
                 }
+                // Roll for crit
+                bool didCrit = CombatLogic.Instance.RollForCritical(owner);
 
                 // Calculate the end damage value
-                int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, enemy, damageType, baseDamage, card, cardEffect);
+                int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, enemy, damageType, baseDamage, card, cardEffect, didCrit);
 
                 // Start damage sequence
-                CombatLogic.Instance.HandleDamage(finalDamageValue, owner, enemy, card, damageType, batchedEvent);
+                CombatLogic.Instance.HandleDamage(finalDamageValue, owner, enemy, card, damageType, batchedEvent, false, didCrit);
             }            
         }
 
@@ -2408,11 +2415,15 @@ public class CardController : Singleton<CardController>
                 baseDamage = cardEffect.baseDamageValue;
             }
 
+            // Roll for crit
+            bool didCrit = CombatLogic.Instance.RollForCritical(owner);
+
+
             // Calculate the end damage value
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, target, damageType, baseDamage, card, cardEffect);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, target, damageType, baseDamage, card, cardEffect, didCrit);
 
             // Start damage sequence
-            CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, card, damageType);
+            CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, card, damageType, false, didCrit);
         }
 
         // Heal Self
@@ -2745,15 +2756,18 @@ public class CardController : Singleton<CardController>
                                 break;
                             }
 
+                            //Roll for crit
+                            bool didCrit = CombatLogic.Instance.RollForCritical(owner);
+
                             // Calculate damage
                             DamageType damageType = modEffect.damageType;
                             int baseDamage = modEffect.baseDamage;
 
                             // Calculate the end damage value
-                            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, enemy, damageType, baseDamage, card, cardEffect);
+                            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, enemy, damageType, baseDamage, card, cardEffect, didCrit);
 
                             // Start damage sequence
-                            CombatLogic.Instance.HandleDamage(finalDamageValue, owner, enemy, card, damageType, batchedEvent);
+                            CombatLogic.Instance.HandleDamage(finalDamageValue, owner, enemy, card, damageType, batchedEvent, false, didCrit);
                         }
 
 

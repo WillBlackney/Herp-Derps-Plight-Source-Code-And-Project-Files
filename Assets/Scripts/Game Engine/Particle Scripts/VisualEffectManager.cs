@@ -326,11 +326,10 @@ public class VisualEffectManager : Singleton<VisualEffectManager>
     }
 
     // Status Text Effect
-    public void CreateStatusEffect(Vector3 location, string statusEffectName)
+    public void CreateStatusEffect(Vector3 location, string statusEffectName, string colorCode = "<color=#FFFFFF>")
     {
-        Color thisColor = Color.white;
         GameObject damageEffect = Instantiate(StatusEffectPrefab, location, Quaternion.identity);
-        damageEffect.GetComponent<StatusEffect>().InitializeSetup(statusEffectName, thisColor);
+        damageEffect.GetComponent<StatusEffect>().InitializeSetup(statusEffectName, colorCode);
     }
 
     // General Debuff

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class CharacterData 
@@ -16,12 +16,19 @@ public class CharacterData
     public int health;
     public int maxHealth;
 
-    [Header("Core Stat Properties")]
-    public int stamina;
-    public int initiative;
-    public int draw;
-    public int dexterity;
-    public int power;
+    [Header("Primary Attributes")]
+    public int strength = 10;
+    public int intelligence = 10;
+    public int dexterity = 10;
+    public int wits = 10;
+
+    [Header("Secondary Attributes")]
+    public int stamina = 3;
+    public int initiative = 0;
+    public int draw = 5;
+    public int power = 0;
+    public int baseCrit = 0;
+    public int critModifier = 30;
 
     [Header("XP + Level Properties")]
     public int currentLevel = 1;

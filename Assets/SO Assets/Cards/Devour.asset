@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Devour
   m_EditorClassIdentifier: 
   cardName: Devour
-  cardDescription: Deal 5 Physical damage. If this kills the target, permanently
-    gain 2 max health. Expend.
+  cardDescription: 'Deal 5 Physical damage. Lethal: Gain 2 max health. Expend.'
   cardSprite: {fileID: 21300000, guid: f93551c6d26df93438587be91fd16c0f, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -22,9 +21,6 @@ MonoBehaviour:
   targettingType: 3
   talentSchool: 0
   rarity: 1
-  affliction: 0
-  racialCard: 1
-  originRace: 7
   upgradeable: 1
   upgradeLevel: 0
   expend: 1
@@ -34,6 +30,9 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 1
+  originRace: 7
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -52,12 +51,20 @@ MonoBehaviour:
     cardEffectType: 0
     phrase: 'damage.
 
-      If this kills the target, permanently gain '
+'
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Lethal
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: ': Gain '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: '2 '
-  - color: 1
+  - color: 0
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'max health.
@@ -101,10 +108,13 @@ MonoBehaviour:
     baseDamageValue: 5
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
+    useEachIndividualsStackCount: 1
     damageType: 1
     healthRestored: 0
     healthLost: 0
@@ -180,16 +190,25 @@ MonoBehaviour:
       projectileStartPosition: 0
       onCharacter: 0
     visualEventsOnFinish: []
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   cardEventListeners:
   - cardEventListenerType: 5
     cardEventListenerFunction: 5
+    weaponRequirement: 0
     maxHealthGained: 2
     energyReductionAmount: 0
     passivePairing:
       passiveData: 0
       passiveStacks: 0
     energyGainedOrLost: 0
+    certainCardNames: []
+    cardCostsZero: 0
+  cardPassiveEffects: []
   keyWordModels:
+  - kewWordType: 14
+    weaponRequirement: 0
+    passiveType: 0
   - kewWordType: 1
     weaponRequirement: 0
     passiveType: 0

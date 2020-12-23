@@ -12,13 +12,20 @@ public class CharacterEntityModel
     public LivingState livingState;
     public ActivationPhase activationPhase = ActivationPhase.NotActivated;
 
-    [Header("Core Stats Properties")]
-    public int power;
+    [Header("Core Attrbutes")]
+    public int strength;
+    public int intelligence;
     public int dexterity;
-    public int energy;
+    public int wits;
+
+    [Header("Secondary Attrbutes")]
+    public int power;
     public int stamina;
+    public int energy;
     public int initiative;
     public int draw;
+    public int baseCrit;
+    public int critModifier;
 
     [Header("Health + Block Properties")]
     public int health;

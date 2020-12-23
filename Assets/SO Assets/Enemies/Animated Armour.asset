@@ -15,15 +15,19 @@ MonoBehaviour:
   enemyName: Animated Armour
   enemyModelSize: 2
   audioProfile: 4
+  overrideStartingHealth: 0
+  startingHealth: 0
   enableFlexibleMaxHealth: 0
   maxHealthFlexAmount: 0
   maxHealth: 20
+  startingBlock: 20
+  strength: 10
+  intelligence: 10
+  dexterity: 0
+  wits: 10
   initiative: 2
   power: 0
-  dexterity: 0
-  overrideStartingHealth: 0
-  startingHealth: 0
-  startingBlock: 20
+  baseCrit: 0
   physicalResistance: 0
   magicResistance: 0
   serializedPassiveManager:
