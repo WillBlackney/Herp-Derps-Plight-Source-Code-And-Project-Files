@@ -19,7 +19,7 @@ MonoBehaviour:
   health: 300
   maxHealth: 300
   startingBlock: 0
-  strength: 10
+  strength: 20
   intelligence: 10
   dexterity: 10
   wits: 10
@@ -129,6 +129,8 @@ MonoBehaviour:
     offHandItem: {fileID: 0}
   talentPairings:
   - talentSchool: 2
-    talentLevel: 1
+    talentLevel: 2
   - talentSchool: 3
     talentLevel: 1
+  startingTalentPoints: 3
+  startingAttributePoints: 3

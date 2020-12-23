@@ -129,12 +129,16 @@ public static class EntityLogic
         Debug.Log("EntityLogic.GetTotalCritModifier() called for " + entity.myName + "...");
 
         // Base crit mod
-        int critTeurned = entity.critModifier;
-        Debug.Log(entity.myName + " base crit mod: " + critTeurned.ToString());
+        int critReturned = entity.critModifier;
+        Debug.Log(entity.myName + " base crit mod: " + critReturned.ToString());
 
         // to do: scoundrel bonus goes here. 
+        if(entity.characterData != null)
+        {
+            critReturned += CharacterDataController.Instance.GetTalentLevel(entity.characterData, TalentSchool.Scoundrel) * 25;
+        }
 
-        return critTeurned;
+        return critReturned;
     }
     public static int GetTotalStrength(CharacterEntityModel entity)
     {

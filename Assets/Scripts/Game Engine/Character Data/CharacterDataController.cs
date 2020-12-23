@@ -178,6 +178,9 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.draw = template.draw;
         newCharacter.power = template.power;
 
+        newCharacter.attributePoints = template.startingAttributePoints;
+        newCharacter.talentPoints = template.startingTalentPoints;
+
         newCharacter.deck = new List<CardData>();
         foreach(CardDataSO cso in template.deck)
         {
@@ -470,6 +473,23 @@ public class CharacterDataController : Singleton<CharacterDataController>
         }
     }
     #endregion
+
+    // Misc Logic + Calculators
+    public int GetTalentLevel(CharacterData character, TalentSchool school)
+    {
+        int level = 0;
+
+        foreach(TalentPairingModel tp in character.talentPairings)
+        {
+            if(tp.talentSchool == school)
+            {
+                level = tp.talentLevel;
+                break;
+            }
+        }
+
+        return level;
+    }
 
     
 

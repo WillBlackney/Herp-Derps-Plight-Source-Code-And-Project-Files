@@ -237,6 +237,78 @@ public class CombatLogic : Singleton<CombatLogic>
                 damageModifier -= 0.3f;
                 Debug.Log("Damage percentage modifier after 'weakened' reduction: " + damageModifier.ToString());
             }
+
+            // TALENT MODIFIERS
+            if(attacker.characterData != null)
+            {
+                // Warfare
+                if(card.cardType == CardType.MeleeAttack)
+                {
+                    int tLevel = CharacterDataController.Instance.GetTalentLevel(attacker.characterData, TalentSchool.Warfare);
+                    if(tLevel > 0)
+                        damageModifier += (tLevel * 10f) / 100f;
+                }
+
+                // Ranger
+                if (card.cardType == CardType.RangedAttack)
+                {
+                    int tLevel = CharacterDataController.Instance.GetTalentLevel(attacker.characterData, TalentSchool.Ranger);
+                    if (tLevel > 0)
+                        damageModifier += (tLevel * 10f) / 100f;
+                }
+
+                // Naturalism
+                if(attacker.pManager.overloadStacks > 0)
+                {
+                    int tLevel = CharacterDataController.Instance.GetTalentLevel(attacker.characterData, TalentSchool.Naturalism);
+                    if (tLevel > 0)
+                        damageModifier += (tLevel * 5f) / 100f;
+                }
+
+                // Toxicology
+                if (target != null &&
+                    target.pManager.poisonedStacks > 0)
+                {
+                    int tLevel = CharacterDataController.Instance.GetTalentLevel(attacker.characterData, TalentSchool.Corruption);
+                    if (tLevel > 0)
+                        damageModifier += (tLevel * 5f) / 100f;
+                }
+
+                // Pyromania
+                if (target != null &&
+                    target.pManager.burningStacks > 0)
+                {
+                    int tLevel = CharacterDataController.Instance.GetTalentLevel(attacker.characterData, TalentSchool.Pyromania);
+                    if (tLevel > 0)
+                    {
+                        damageModifier += (tLevel * 5f) / 100f;
+                        
+                        // double bonus is attacker is also burning
+                        if(attacker.pManager.burningStacks > 0)
+                        {
+                            damageModifier += (tLevel * 5f) / 100f;
+                        }
+                    }                       
+                }
+
+                // Shadowcraft
+                if (target != null &&
+                    target.pManager.weakenedStacks > 0)
+                {
+                    int tLevel = CharacterDataController.Instance.GetTalentLevel(attacker.characterData, TalentSchool.Shadowcraft);
+                    if (tLevel > 0)
+                        damageModifier += (tLevel * 5f) / 100f;
+                }
+            }
+
+            // Guardian bonus on target
+            if(target != null &&
+                target.characterData != null)
+            {
+                int tLevel = CharacterDataController.Instance.GetTalentLevel(target.characterData, TalentSchool.Guardian);
+                if (tLevel > 0)
+                    damageModifier -= (tLevel * 10f) / 100f;
+            }
         }
 
         // Card specific modifiers

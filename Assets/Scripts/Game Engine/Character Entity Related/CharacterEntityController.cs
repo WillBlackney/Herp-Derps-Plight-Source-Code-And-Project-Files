@@ -726,6 +726,40 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             return;
         }
 
+        // Divinity bonus
+        if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Divinity, 1))
+        {
+            // Notication vfx
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Divinity Mastery!"));
+
+            // Gain Random Blessing cards
+            for (int i = 0; i < CharacterDataController.Instance.GetTalentLevel(character.characterData, TalentSchool.Divinity); i++)
+            {
+                CardController.Instance.CreateAndAddNewRandomBlessingsToCharacterHand(character, 1, UpgradeFilter.OnlyNonUpgraded);
+            }
+
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+        }
+
+        // Manipulation bonus
+        if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Manipulation, 1))
+        {
+            // Notication vfx
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Manipulation Mastery!"), QueuePosition.Back, 0f, 0.5f);
+
+            // Add arcane bolt card to hand
+            for(int i = 0; i < CharacterDataController.Instance.GetTalentLevel(character.characterData, TalentSchool.Manipulation); i++)
+            {
+                CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetCardDataFromLibraryByName("Arcane Bolt"));
+            }
+
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+        }
+
+        /*
+
         // Warfare bonus
         if(CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Warfare, 2))
         {
@@ -776,21 +810,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
         }
 
-        // Divinity bonus
-        if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Divinity, 2))
-        {
-            // Notication vfx
-            VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Divinity Mastery!"));
-
-            // Gain 1 Random Blessing card
-            for (int i = 0; i < 1; i++)
-            {
-                CardController.Instance.CreateAndAddNewRandomBlessingsToCharacterHand(character, 1, UpgradeFilter.OnlyNonUpgraded);
-            }
-
-            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-        }
+        
 
         // Toxicology bonus
         if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Corruption, 2))
@@ -806,14 +826,6 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
             // Apply 2 weakened to random enemy
             PassiveController.Instance.ModifyPoisoned(character, randomEnemy.pManager, 3, true, 0f);
-
-            // Apply 1 Poisoned to all enemies
-            /*
-            foreach (CharacterEntityModel enemy in GetAllEnemiesOfCharacter(character))
-            {
-                PassiveController.Instance.ModifyPoisoned(character, enemy.pManager, 1, true, 0f);
-            }
-            */
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
         }
@@ -832,14 +844,6 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
             // Apply 2 weakened to random enemy
             PassiveController.Instance.ModifyWeakened(randomEnemy.pManager, 2, character.pManager, true, 0f);
-
-            // Apply 1 Weakened to all enemies
-            /*
-            foreach (CharacterEntityModel enemy in GetAllEnemiesOfCharacter(character))
-            {
-                PassiveController.Instance.ModifyWeakened(enemy.pManager, 1, true, 0f);
-            }
-            */
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
         }
@@ -869,9 +873,6 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
             // Add Fire Ball to hand
             Card newFbCard = CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetCardDataFromLibraryByName("Fire Ball"));
-
-            // Reduce cost to 0
-            //CardController.Instance.ReduceCardEnergyCostThisCombat(newFbCard, newFbCard.cardBaseEnergyCost);
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
         }
@@ -915,6 +916,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
         }
+        */
     }
     public void CharacterOnActivationStart(CharacterEntityModel character)
     {

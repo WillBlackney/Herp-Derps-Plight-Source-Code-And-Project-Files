@@ -21,10 +21,10 @@ MonoBehaviour:
   startingBlock: 0
   strength: 10
   intelligence: 10
-  dexterity: 14
+  dexterity: 13
   wits: 10
   power: 0
-  initiative: 0
+  initiative: 1
   stamina: 3
   draw: 5
   baseCrit: 0

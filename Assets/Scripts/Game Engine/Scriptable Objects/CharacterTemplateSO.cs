@@ -103,6 +103,8 @@ public class CharacterTemplateSO : ScriptableObject
 
     [Header("Talent Properties")]
     public List<TalentPairingModel> talentPairings;
+    public int startingTalentPoints = 0;
+    public int startingAttributePoints = 0;
 
     // GUI Colours for Odin
     private Color Blue() { return Color.cyan; }

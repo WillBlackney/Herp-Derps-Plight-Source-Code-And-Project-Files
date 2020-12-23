@@ -5,6 +5,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine.UI;
 using MapSystem;
+using Sirenix.OdinInspector;
 
 public class CharacterRosterViewController : Singleton<CharacterRosterViewController>
 {
@@ -19,6 +20,7 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     [SerializeField] private GameObject mainVisualParent;
     [SerializeField] private CanvasGroup mainCg;
     [SerializeField] private TextMeshProUGUI topBarCharacterNameText;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Character Model Box Components")]
     [SerializeField] private UniversalCharacterModel characterModel;
@@ -27,6 +29,7 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     [SerializeField] private TextMeshProUGUI currentXpText;
     [SerializeField] private TextMeshProUGUI maxXpText;
     [SerializeField] private TextMeshProUGUI currentLevelText;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Character Deck Box Components")]
     [SerializeField] private GameObject deckBoxVisualParent;
@@ -34,6 +37,7 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     [SerializeField] private CanvasGroup previewCardCg;
     [SerializeField] private CardViewModel previewCardVM;
     [SerializeField] private CanvasGroup dragDropCg;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Card Inventory Box Components")]
     [SerializeField] private GameObject cardInventoryVisualParent;
@@ -41,6 +45,7 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     [SerializeField] private CanvasGroup previewCardInventoryCg;
     [SerializeField] private CardViewModel previewInventoryCardVM;
     [SerializeField] private Transform dragParent;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Talent Box Components")]
     [SerializeField] private GameObject talentBoxVisualParent;
@@ -49,8 +54,21 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     [SerializeField] private TalentInfoPanelPopup[] talentPopups;
     [SerializeField] private GameObject talentPopupParent;
     [SerializeField] private CanvasGroup talentPopupCg;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
+    [Header("Attribute Box Components")]
+    [SerializeField] private GameObject attributeBoxVisualParent;
+    [SerializeField] private TextMeshProUGUI attributePointsText;
 
+    [SerializeField] private TextMeshProUGUI strengthText;
+    [SerializeField] private TextMeshProUGUI intelligenceText;
+    [SerializeField] private TextMeshProUGUI dexterityText;
+    [SerializeField] private TextMeshProUGUI witsText;
+
+    [SerializeField] private GameObject strengthPlusButton;
+    [SerializeField] private GameObject intelligencePlusButton;
+    [SerializeField] private GameObject dexterityPlusButton;
+    [SerializeField] private GameObject witsPlusButton;
     #endregion
 
     // Getters + Accessors
@@ -110,6 +128,7 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
 
         // Hide unused boxes
         HideTalentBoxView();
+        HideAttributeBoxView();
 
         // Enable default boxes
         ShowDeckBoxView();
@@ -205,6 +224,7 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     {
         // Hide unused boxes
         HideTalentBoxView();
+        HideAttributeBoxView();
 
         // Enable deck related boxes
         ShowDeckBoxView();
@@ -216,11 +236,13 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
         HideDeckBoxView();
         HideCardInventoryBoxView();
 
-        // Enable talent related boxes
+        // Enable talent + attribute  boxes
         ShowTalentBoxView();
+        ShowAttributeBoxView();
 
         // Build all views
         BuildTalentBoxFromData(currentCharacterViewing);
+        BuildAttributeBoxFromData(CurrentCharacterViewing);
     }
     public void OnMouseEnterDeckViewBox()
     {
@@ -432,6 +454,14 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
             }
         }      
 
+        if(currentCharacterViewing.talentPoints == 0)
+        {
+            foreach(TalentPanelCharacterRoster tpc in allTalentPanels)
+            {
+                tpc.SetPlusButtonActiveState(false);
+            }
+        }
+
     }
     private void ShowTalentBoxView()
     {
@@ -481,11 +511,153 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
                 }
             }
 
-            // SHould enable plus button?
+            // Should enable plus button?
             if(character.talentPoints > 0 && talentLevel < 2)
             {
                 panel.SetPlusButtonActiveState(true);
             }
+        }
+    }
+    #endregion
+
+    // Attribute Box Logic
+    #region
+    private void ShowAttributeBoxView()
+    {
+        attributeBoxVisualParent.SetActive(true);
+    }
+    private void HideAttributeBoxView()
+    {
+        attributeBoxVisualParent.SetActive(false);
+    }
+    private void BuildAttributeBoxFromData(CharacterData character)
+    {
+        BuildAttributePanelsFromCharacterData(character);
+        SetAttributePointsText(character.attributePoints.ToString());
+    }
+    private void BuildAttributePanelsFromCharacterData(CharacterData character)
+    {
+        // Disable all plus buttons
+        strengthPlusButton.SetActive(false);
+        intelligencePlusButton.SetActive(false);
+        dexterityPlusButton.SetActive(false);
+        witsPlusButton.SetActive(false);
+
+        strengthText.text = character.strength.ToString();
+        if (character.strength > 10)
+        {
+            strengthText.text = TextLogic.ReturnColoredText(character.strength.ToString(), TextLogic.neutralYellow);            
+        }
+
+        intelligenceText.text = character.intelligence.ToString();
+        if (character.intelligence > 10)
+        {
+            intelligenceText.text = TextLogic.ReturnColoredText(character.intelligence.ToString(), TextLogic.neutralYellow);          
+        }
+
+        dexterityText.text = character.dexterity.ToString();
+        if (character.dexterity > 10)
+        {
+            dexterityText.text = TextLogic.ReturnColoredText(character.dexterity.ToString(), TextLogic.neutralYellow);            
+        }
+
+        witsText.text = character.wits.ToString();
+        if (character.wits > 10)
+        {
+            witsText.text = TextLogic.ReturnColoredText(character.wits.ToString(), TextLogic.neutralYellow);            
+        }
+
+        // Enable plus buttons
+        if (character.strength < 20 && character.attributePoints > 0)
+            strengthPlusButton.SetActive(true);
+
+        if (character.wits < 20 && character.attributePoints > 0)
+            witsPlusButton.SetActive(true);
+
+        if (character.dexterity < 20 && character.attributePoints > 0)
+            dexterityPlusButton.SetActive(true);
+
+        if (character.intelligence < 20 && character.attributePoints > 0)
+            intelligencePlusButton.SetActive(true);
+    }
+    private void SetAttributePointsText(string text)
+    {
+        attributePointsText.text = text;
+    }
+    public void OnStrengthPanelPlusButtonClicked()
+    {
+        if (currentCharacterViewing.attributePoints > 0 && currentCharacterViewing.strength < 20)
+        {
+            // VFX + SFX
+            VisualEffectManager.Instance.CreateSmallMeleeImpact(strengthPlusButton.transform.position, 27000);
+            AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff);
+
+            // Deduct talent points
+            CharacterDataController.Instance.ModifyCharacterAttributePoints(currentCharacterViewing, -1);
+
+            // Gain new attribute
+            CharacterDataController.Instance.ModifyStrength(CurrentCharacterViewing, 1);
+
+            // Update gui            
+            attributePointsText.text = currentCharacterViewing.attributePoints.ToString();
+            BuildAttributePanelsFromCharacterData(CurrentCharacterViewing);
+        }
+    }
+    public void OnIntelligencePanelPlusButtonClicked()
+    {
+        if (currentCharacterViewing.attributePoints > 0 && currentCharacterViewing.intelligence < 20)
+        {
+            // VFX + SFX
+            VisualEffectManager.Instance.CreateSmallMeleeImpact(intelligencePlusButton.transform.position, 27000);
+            AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff);
+
+            // Deduct talent points
+            CharacterDataController.Instance.ModifyCharacterAttributePoints(currentCharacterViewing, -1);
+
+            // Gain new attribute
+            CharacterDataController.Instance.ModifyIntelligence(CurrentCharacterViewing, 1);
+
+            // Update gui            
+            attributePointsText.text = currentCharacterViewing.attributePoints.ToString();
+            BuildAttributePanelsFromCharacterData(CurrentCharacterViewing);
+        }
+    }
+    public void OnDexterityPanelPlusButtonClicked()
+    {
+        if (currentCharacterViewing.attributePoints > 0 && currentCharacterViewing.dexterity < 20)
+        {
+            // VFX + SFX
+            VisualEffectManager.Instance.CreateSmallMeleeImpact(dexterityPlusButton.transform.position, 27000);
+            AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff);
+
+            // Deduct talent points
+            CharacterDataController.Instance.ModifyCharacterAttributePoints(currentCharacterViewing, -1);
+
+            // Gain new attribute
+            CharacterDataController.Instance.ModifyDexterity(CurrentCharacterViewing, 1);
+
+            // Update gui            
+            attributePointsText.text = currentCharacterViewing.attributePoints.ToString();
+            BuildAttributePanelsFromCharacterData(CurrentCharacterViewing);
+        }
+    }
+    public void OnWitsPanelPlusButtonClicked()
+    {
+        if (currentCharacterViewing.attributePoints > 0 && currentCharacterViewing.wits < 20)
+        {
+            // VFX + SFX
+            VisualEffectManager.Instance.CreateSmallMeleeImpact(witsPlusButton.transform.position, 27000);
+            AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff);
+
+            // Deduct talent points
+            CharacterDataController.Instance.ModifyCharacterAttributePoints(currentCharacterViewing, -1);
+
+            // Gain new attribute
+            CharacterDataController.Instance.ModifyWits(CurrentCharacterViewing, 1);
+
+            // Update gui            
+            attributePointsText.text = currentCharacterViewing.attributePoints.ToString();
+            BuildAttributePanelsFromCharacterData(CurrentCharacterViewing);
         }
     }
     #endregion

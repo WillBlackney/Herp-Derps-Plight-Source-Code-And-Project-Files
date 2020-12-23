@@ -19,12 +19,12 @@ MonoBehaviour:
   health: 60
   maxHealth: 60
   startingBlock: 0
-  strength: 12
+  strength: 11
   intelligence: 10
   dexterity: 10
   wits: 12
   power: 0
-  initiative: 0
+  initiative: 1
   stamina: 3
   draw: 5
   baseCrit: 0
