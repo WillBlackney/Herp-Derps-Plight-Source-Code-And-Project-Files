@@ -118,6 +118,14 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [Range(0, 100)]
     public int startingTalentPoints = 0;
 
+    [LabelWidth(200)]
+    [Range(0, 100)]
+    public int startingAttributePoints = 0;
+
+    [LabelWidth(200)]
+    [Range(0, 100)]
+    public int attributePointsGainedOnLevelUp = 2;
+
     [Header("Combat XP Related Settings")]
     [LabelWidth(200)]
     [Range(1, 100)]

@@ -19,15 +19,16 @@ MonoBehaviour:
   health: 300
   maxHealth: 300
   startingBlock: 0
-  strength: 15
-  intelligence: 12
-  dexterity: 12
+  strength: 10
+  intelligence: 10
+  dexterity: 10
   wits: 10
   power: 2
   initiative: 12
   stamina: 10
   draw: 10
   baseCrit: 50
+  critModifier: 30
   serializedPassiveManager:
     bonusPowerStacks: 0
     bonusDexterityStacks: 0

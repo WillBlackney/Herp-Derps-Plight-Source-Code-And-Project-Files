@@ -34,6 +34,11 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
     [SerializeField] private TextMeshProUGUI racialDescriptionText;
     [SerializeField] private RectTransform characterInfoRect;
 
+    [Header("Attribute Components")]
+    [SerializeField] private TextMeshProUGUI strengthText;
+    [SerializeField] private TextMeshProUGUI intelligenceText;
+    [SerializeField] private TextMeshProUGUI dexterityText;
+    [SerializeField] private TextMeshProUGUI witsText;
 
     [Header("Card + Panel Components")]
     [SerializeField] private CardInfoPanel[] cardInfoPanels;
@@ -117,6 +122,9 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
         // Build race section
         BuildRacialInfoPanel(data);
 
+        // Build attributes section
+        BuildAttributeInfoPanels(data);
+
         // Build talent info panels
         BuildTalentInfoPanels(data);
 
@@ -161,6 +169,32 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
             }
         }
 
+    }
+    private void BuildAttributeInfoPanels(CharacterData data)
+    {
+        strengthText.text = data.strength.ToString();
+        if (data.strength > 10)
+        {
+            strengthText.text = TextLogic.ReturnColoredText(data.strength.ToString(), TextLogic.neutralYellow);
+        }
+
+        intelligenceText.text = data.intelligence.ToString();
+        if (data.intelligence > 10)
+        {
+            intelligenceText.text = TextLogic.ReturnColoredText(data.intelligence.ToString(), TextLogic.neutralYellow);
+        }
+
+        dexterityText.text = data.dexterity.ToString();
+        if (data.dexterity > 10)
+        {
+            dexterityText.text = TextLogic.ReturnColoredText(data.dexterity.ToString(), TextLogic.neutralYellow);
+        }
+
+        witsText.text = data.wits.ToString();
+        if (data.wits > 10)
+        {
+            witsText.text = TextLogic.ReturnColoredText(data.wits.ToString(), TextLogic.neutralYellow);
+        }
     }
     private void BuildTalentInfoPanels(CharacterData data)
     {

@@ -100,6 +100,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.currentXP = original.currentXP;
         SetCharacterLevel(newCharacter, original.currentLevel);
         ModifyCharacterTalentPoints(newCharacter, original.talentPoints);
+        ModifyCharacterAttributePoints(newCharacter, original.attributePoints);
 
         SetCharacterMaxHealth(newCharacter, original.maxHealth);
         SetCharacterHealth(newCharacter, original.health);
@@ -159,6 +160,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.currentLevel = GlobalSettings.Instance.startingLevel;
         newCharacter.currentMaxXP = GlobalSettings.Instance.startingMaxXp;
         ModifyCharacterTalentPoints(newCharacter, GlobalSettings.Instance.startingTalentPoints);
+        ModifyCharacterAttributePoints(newCharacter, GlobalSettings.Instance.startingAttributePoints);
         HandleGainXP(newCharacter, GlobalSettings.Instance.startingXpBonus);
 
         SetCharacterMaxHealth(newCharacter, template.maxHealth);
@@ -284,6 +286,9 @@ public class CharacterDataController : Singleton<CharacterDataController>
             // Gain Talent point
             ModifyCharacterTalentPoints(data, 1);
 
+            // Gain attribute points
+            ModifyCharacterAttributePoints(data, GlobalSettings.Instance.attributePointsGainedOnLevelUp);
+
             // Reset current xp
             data.currentXP = 0;
 
@@ -302,6 +307,9 @@ public class CharacterDataController : Singleton<CharacterDataController>
 
             // Gain Talent point
             ModifyCharacterTalentPoints(data, 1);
+
+            // Gain attribute points
+            ModifyCharacterAttributePoints(data, GlobalSettings.Instance.attributePointsGainedOnLevelUp);
 
             // Reset current xp
             data.currentXP = 0;
@@ -357,6 +365,10 @@ public class CharacterDataController : Singleton<CharacterDataController>
     public void ModifyCharacterTalentPoints(CharacterData data, int gainedOrLost)
     {
         data.talentPoints += gainedOrLost;
+    }
+    public void ModifyCharacterAttributePoints(CharacterData data, int gainedOrLost)
+    {
+        data.attributePoints += gainedOrLost;
     }
     public TalentPairingModel HandlePlayerGainTalent(CharacterData character, TalentSchool talent, int pointsGained)
     {

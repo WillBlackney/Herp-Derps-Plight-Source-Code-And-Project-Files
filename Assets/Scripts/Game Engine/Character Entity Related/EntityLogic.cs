@@ -124,6 +124,18 @@ public static class EntityLogic
         Debug.Log("Value after wits added: " + critTeurned.ToString());
         return critTeurned;
     }
+    public static int GetTotalCritModifier(CharacterEntityModel entity)
+    {
+        Debug.Log("EntityLogic.GetTotalCritModifier() called for " + entity.myName + "...");
+
+        // Base crit mod
+        int critTeurned = entity.critModifier;
+        Debug.Log(entity.myName + " base crit mod: " + critTeurned.ToString());
+
+        // to do: scoundrel bonus goes here. 
+
+        return critTeurned;
+    }
     public static int GetTotalStrength(CharacterEntityModel entity)
     {
         Debug.Log("EntityLogic.GetTotalStrength() called for " + entity.myName + "...");

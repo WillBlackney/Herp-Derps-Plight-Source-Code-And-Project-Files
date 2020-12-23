@@ -12,6 +12,7 @@ public class TalentInfoPanel : MonoBehaviour
     #region
     [Header("Components")]
     [SerializeField] private TextMeshProUGUI talentNameText;
+    [SerializeField] private TextMeshProUGUI talentLevelText;
     [SerializeField] private Image talentImage;
 
     [Header("Pop Up Components")]
@@ -31,7 +32,8 @@ public class TalentInfoPanel : MonoBehaviour
 
         // Build main panel views
         gameObject.SetActive(true);
-        talentNameText.text = data.talentSchool.ToString() + " +" + data.talentLevel.ToString();
+        talentNameText.text = data.talentSchool.ToString();
+        talentLevelText.text = "+" + data.talentLevel.ToString();
         talentImage.sprite = SpriteLibrary.Instance.GetTalentSchoolSpriteFromEnumData(data.talentSchool);
 
         // Build pop up views

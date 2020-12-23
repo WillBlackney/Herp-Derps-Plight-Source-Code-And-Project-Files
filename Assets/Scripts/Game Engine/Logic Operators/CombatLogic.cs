@@ -189,7 +189,7 @@ public class CombatLogic : Singleton<CombatLogic>
             // crit
             if (didCrit)
             {
-                damageModifier += 0.3f;
+                damageModifier += EntityLogic.GetTotalCritModifier(attacker) / 100f;
             }
 
             // strength
@@ -293,7 +293,7 @@ public class CombatLogic : Singleton<CombatLogic>
 
     // Calculate Block Gain
     #region
-    public int CalculateBlockGainedByEffect(int baseBlockGain, CharacterEntityModel caster, CharacterEntityModel target, EnemyActionEffect enemyEffect = null, CardEffect cardEffect = null)
+    public int CalculateBlockGainedByEffect(int baseBlockGain, CharacterEntityModel caster, CharacterEntityModel target, EnemyActionEffect enemyEffect = null, CardEffect cardEffect = null, bool didCrit = false)
     {
         int valueReturned = baseBlockGain;
         Debug.Log("Base block gain value: " + valueReturned);
@@ -305,8 +305,15 @@ public class CombatLogic : Singleton<CombatLogic>
             enemyEffect != null) && valueReturned > 0)
         {
             float dexMod = EntityLogic.GetTotalDexterity(caster) / 10f;
+            float critMod = 0f;
+            if (didCrit)
+            {
+                critMod += EntityLogic.GetTotalCritModifier(caster) / 100f;
+            }
+
+            dexMod += critMod;
             valueReturned = (int)Math.Round(valueReturned * dexMod);
-            Debug.Log("Block gain value after dexterity added: " + valueReturned);
+            Debug.Log("Block gain value after dexterity and crit added: " + valueReturned);
         }
 
 

@@ -2197,13 +2197,31 @@ public class CardController : Singleton<CardController>
         // Gain Block Self
         if (cardEffect.cardEffectType == CardEffectType.GainBlockSelf)
         {
-            CharacterEntityController.Instance.GainBlock(owner, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, owner, null, cardEffect));
+            bool didCrit = CombatLogic.Instance.RollForCritical(owner);
+            CharacterEntityController.Instance.GainBlock(owner, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, owner, null, cardEffect, didCrit));
+
+            // Crit VFX
+            if (didCrit)
+            {
+                // Create critical text effect
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(owner.characterEntityView.WorldPosition, "CRITICAL!", TextLogic.neutralYellow));
+            }
         }
 
         // Gain Block Target
         else if (cardEffect.cardEffectType == CardEffectType.GainBlockTarget)
         {
-            CharacterEntityController.Instance.GainBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, target, null, cardEffect));
+            bool didCrit = CombatLogic.Instance.RollForCritical(owner);
+            CharacterEntityController.Instance.GainBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, target, null, cardEffect, didCrit));
+            
+            // Crit VFX
+            if (didCrit)
+            {
+                // Create critical text effect
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(target.characterEntityView.WorldPosition, "CRITICAL!", TextLogic.neutralYellow));
+            }
         }       
 
         // Gain Block All Allies
@@ -2211,7 +2229,16 @@ public class CardController : Singleton<CardController>
         {
             foreach (CharacterEntityModel ally in CharacterEntityController.Instance.GetAllAlliesOfCharacter(owner))
             {
-                CharacterEntityController.Instance.GainBlock(ally, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, ally, null, cardEffect));
+                bool didCrit = CombatLogic.Instance.RollForCritical(owner);
+                CharacterEntityController.Instance.GainBlock(ally, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, ally, null, cardEffect, didCrit));
+
+                // Crit VFX
+                if (didCrit)
+                {
+                    // Create critical text effect
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateStatusEffect(ally.characterEntityView.WorldPosition, "CRITICAL!", TextLogic.neutralYellow));
+                }
             }            
         }
 

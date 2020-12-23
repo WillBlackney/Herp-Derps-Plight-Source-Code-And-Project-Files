@@ -51,8 +51,11 @@ public class MainMenuController : Singleton<MainMenuController>
     [SerializeField] private CardViewModel previewCardVM;
     [HideInInspector] public CharacterData currentTemplateSelection;
 
-
-   
+    [Header("Attribute Components")]
+    [SerializeField] private TextMeshProUGUI strengthText;
+    [SerializeField] private TextMeshProUGUI intelligenceText;
+    [SerializeField] private TextMeshProUGUI dexterityText;
+    [SerializeField] private TextMeshProUGUI witsText;
 
     #endregion
 
@@ -312,6 +315,9 @@ public class MainMenuController : Singleton<MainMenuController>
     }
     public void BuildNewGameWindowFromCharacterTemplateData(CharacterData data)
     {
+        // Reset scroll window 
+        characterInfoScrollBar.value = 1;
+
         // Set Texts
         characterNameText.text = data.myName;
         characterClassNameText.text = "The " + data.myClassName;
@@ -325,6 +331,9 @@ public class MainMenuController : Singleton<MainMenuController>
 
         // Build talent info panels
         BuildTalentInfoPanels(data);
+
+        // Build attributes
+        BuildAttributeInfoPanels(data);
 
         // Build card info panels
         BuildCardInfoPanels(data);
@@ -388,6 +397,32 @@ public class MainMenuController : Singleton<MainMenuController>
             talentInfoPanels[i].BuildFromTalentPairingModel(data.talentPairings[i]);
         }
 
+    }
+    private void BuildAttributeInfoPanels(CharacterData data)
+    {
+        strengthText.text = data.strength.ToString();
+        if (data.strength > 10)
+        {
+            strengthText.text = TextLogic.ReturnColoredText(data.strength.ToString(),TextLogic.neutralYellow);
+        }
+       
+        intelligenceText.text = data.intelligence.ToString();
+        if (data.intelligence > 10)
+        {
+            intelligenceText.text = TextLogic.ReturnColoredText(data.intelligence.ToString(), TextLogic.neutralYellow);
+        }
+
+        dexterityText.text = data.dexterity.ToString();
+        if (data.dexterity > 10)
+        {
+            dexterityText.text = TextLogic.ReturnColoredText(data.dexterity.ToString(), TextLogic.neutralYellow);
+        }
+
+        witsText.text = data.wits.ToString();
+        if (data.wits > 10)
+        {
+            witsText.text = TextLogic.ReturnColoredText(data.wits.ToString(), TextLogic.neutralYellow);
+        }
     }
     private void BuildRacialInfoPanel(CharacterData data)
     {

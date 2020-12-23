@@ -48,4 +48,7 @@ public class CharacterData
     [Header("Talent Properties")]
     public int talentPoints = 0;
     public List<TalentPairingModel> talentPairings = new List<TalentPairingModel>();
+
+    [Header("Attribute Points")]
+    public int attributePoints = 0;
 }
