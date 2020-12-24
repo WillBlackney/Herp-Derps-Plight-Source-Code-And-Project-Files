@@ -17,6 +17,7 @@ public class CharacterEntityModel
     public int intelligence;
     public int dexterity;
     public int wits;
+    public int constitution;
 
     [Header("Secondary Attrbutes")]
     public int power;
@@ -73,7 +74,12 @@ public class CharacterEntityModel
     [HideInInspector] public EnemyAction myNextAction;
     [HideInInspector] public List<EnemyAction> myPreviousActionLog = new List<EnemyAction>();
     [HideInInspector] public TargettingPathReadyState targettingPathReadyState;
-    
+
+    public int MaxHealthTotal
+    {
+        get { return (int)System.Math.Round(maxHealth * (constitution / 10f)); }
+    }
+
 }
 
 public enum TargettingPathReadyState

@@ -109,6 +109,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.intelligence = original.intelligence;
         newCharacter.wits = original.wits;
         newCharacter.dexterity = original.dexterity;
+        newCharacter.constitution = original.constitution;
 
         newCharacter.stamina = original.stamina;
         newCharacter.initiative = original.initiative;     
@@ -169,7 +170,8 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.strength = template.strength;
         newCharacter.intelligence = template.intelligence;
         newCharacter.wits = template.wits;
-        newCharacter.dexterity = template.dexterity;       
+        newCharacter.dexterity = template.dexterity;
+        newCharacter.constitution = template.constitution;
 
         newCharacter.stamina = template.stamina;
         newCharacter.initiative = template.initiative;
@@ -258,6 +260,10 @@ public class CharacterDataController : Singleton<CharacterDataController>
     public void ModifyDexterity(CharacterData data, int gainedOrLost)
     {
         data.dexterity += gainedOrLost;
+    }
+    public void ModifyConstitution(CharacterData data, int gainedOrLost)
+    {
+        data.constitution += gainedOrLost;
     }
     public void ModifyStamina(CharacterData data, int gainedOrLost)
     {

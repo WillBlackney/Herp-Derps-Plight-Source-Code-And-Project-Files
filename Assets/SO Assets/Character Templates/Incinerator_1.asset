@@ -16,13 +16,14 @@ MonoBehaviour:
   myClassName: Incinerator
   race: 9
   audioProfile: 4
-  health: 120
-  maxHealth: 120
+  health: 100
+  maxHealth: 100
   startingBlock: 0
   strength: 10
   intelligence: 13
   dexterity: 10
   wits: 10
+  constitution: 10
   power: 0
   initiative: 2
   stamina: 3

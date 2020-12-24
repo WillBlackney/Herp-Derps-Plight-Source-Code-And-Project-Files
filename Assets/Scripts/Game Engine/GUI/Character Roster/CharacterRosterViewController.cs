@@ -64,11 +64,14 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     [SerializeField] private TextMeshProUGUI intelligenceText;
     [SerializeField] private TextMeshProUGUI dexterityText;
     [SerializeField] private TextMeshProUGUI witsText;
+    [SerializeField] private TextMeshProUGUI constitutionText;
 
     [SerializeField] private GameObject strengthPlusButton;
     [SerializeField] private GameObject intelligencePlusButton;
     [SerializeField] private GameObject dexterityPlusButton;
     [SerializeField] private GameObject witsPlusButton;
+    [SerializeField] private GameObject constitutionPlusButton;
+
     #endregion
 
     // Getters + Accessors
@@ -264,7 +267,7 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
 
         // Set health + xp texts
         currentHealthText.text = data.health.ToString();
-        maxHealthText.text = data.maxHealth.ToString();
+        maxHealthText.text = data.MaxHealthTotal.ToString();
         currentXpText.text = data.currentXP.ToString();
         maxXpText.text = data.currentMaxXP.ToString();
         currentLevelText.text = "Level " + data.currentLevel.ToString();
@@ -542,6 +545,7 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
         intelligencePlusButton.SetActive(false);
         dexterityPlusButton.SetActive(false);
         witsPlusButton.SetActive(false);
+        constitutionPlusButton.SetActive(false);
 
         strengthText.text = character.strength.ToString();
         if (character.strength > 10)
@@ -567,6 +571,12 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
             witsText.text = TextLogic.ReturnColoredText(character.wits.ToString(), TextLogic.neutralYellow);            
         }
 
+        constitutionText.text = character.constitution.ToString();
+        if (character.constitution > 10)
+        {
+            constitutionText.text = TextLogic.ReturnColoredText(character.constitution.ToString(), TextLogic.neutralYellow);
+        }
+
         // Enable plus buttons
         if (character.strength < 20 && character.attributePoints > 0)
             strengthPlusButton.SetActive(true);
@@ -579,6 +589,9 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
 
         if (character.intelligence < 20 && character.attributePoints > 0)
             intelligencePlusButton.SetActive(true);
+
+        if (character.constitution < 20 && character.attributePoints > 0)
+            constitutionPlusButton.SetActive(true);
     }
     private void SetAttributePointsText(string text)
     {
@@ -656,6 +669,26 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
             CharacterDataController.Instance.ModifyWits(CurrentCharacterViewing, 1);
 
             // Update gui            
+            attributePointsText.text = currentCharacterViewing.attributePoints.ToString();
+            BuildAttributePanelsFromCharacterData(CurrentCharacterViewing);
+        }
+    }
+    public void OnConstitutionPanelPlusButtonClicked()
+    {
+        if (currentCharacterViewing.attributePoints > 0 && currentCharacterViewing.constitution < 20)
+        {
+            // VFX + SFX
+            VisualEffectManager.Instance.CreateSmallMeleeImpact(constitutionPlusButton.transform.position, 27000);
+            AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff);
+
+            // Deduct talent points
+            CharacterDataController.Instance.ModifyCharacterAttributePoints(currentCharacterViewing, -1);
+
+            // Gain new attribute
+            CharacterDataController.Instance.ModifyConstitution(CurrentCharacterViewing, 1);
+
+            // Update gui            
+            maxHealthText.text = currentCharacterViewing.MaxHealthTotal.ToString();
             attributePointsText.text = currentCharacterViewing.attributePoints.ToString();
             BuildAttributePanelsFromCharacterData(CurrentCharacterViewing);
         }

@@ -28,7 +28,7 @@ MonoBehaviour:
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Initiative '
+    phrase: 'Wits '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0

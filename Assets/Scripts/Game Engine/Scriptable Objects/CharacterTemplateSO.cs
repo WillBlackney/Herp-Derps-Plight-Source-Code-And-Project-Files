@@ -60,6 +60,11 @@ public class CharacterTemplateSO : ScriptableObject
     [Range(0, 20)]
     [GUIColor("Green")]
     public int wits = 10;
+    [BoxGroup("Core Attributes")]
+    [LabelWidth(100)]
+    [Range(0, 20)]
+    [GUIColor("Green")]
+    public int constitution = 10;
 
 
     [BoxGroup("Secondary Attributes", centerLabel: true)]

@@ -16,13 +16,14 @@ MonoBehaviour:
   myClassName: Warrior
   race: 2
   audioProfile: 3
-  health: 120
-  maxHealth: 120
+  health: 100
+  maxHealth: 100
   startingBlock: 0
   strength: 11
   intelligence: 10
-  dexterity: 12
+  dexterity: 11
   wits: 10
+  constitution: 11
   power: 0
   initiative: 2
   stamina: 3

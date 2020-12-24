@@ -1,4 +1,5 @@
-﻿    using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class CharacterData 
@@ -21,6 +22,7 @@ public class CharacterData
     public int intelligence = 10;
     public int dexterity = 10;
     public int wits = 10;
+    public int constitution = 10;
 
     [Header("Secondary Attributes")]
     public int stamina = 3;
@@ -51,4 +53,10 @@ public class CharacterData
 
     [Header("Attribute Points")]
     public int attributePoints = 0;
+
+    // Getters
+    public int MaxHealthTotal
+    {
+        get { return (int) Math.Round(maxHealth * (constitution / 10f)); }
+    }
 }

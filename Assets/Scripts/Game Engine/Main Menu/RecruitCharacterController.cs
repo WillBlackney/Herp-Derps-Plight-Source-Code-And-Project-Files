@@ -7,6 +7,7 @@ using DG.Tweening;
 using Spriter2UnityDX;
 using System.Collections;
 using MapSystem;
+using Sirenix.OdinInspector;
 
 public class RecruitCharacterController : Singleton<RecruitCharacterController>
 {
@@ -14,6 +15,7 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
     #region
     [Header("Properties")]
     [SerializeField] private CharacterData selectedCharacter;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     [HideInInspector] public List<CharacterData> currentChoices = new List<CharacterData>();
     private bool hasMadeChoice = false;
 
@@ -21,6 +23,7 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
     [SerializeField] private GameObject recruitCharacterVisualParent;
     [SerializeField] private RecruitCharacterWindow[] recruitCharacterWindows;
     [SerializeField] private Button confirmButton;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Character Info Popup Components")]
     [SerializeField] private GameObject popUpVisualParent;
@@ -33,18 +36,22 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
     [SerializeField] private TextMeshProUGUI racialNameText;
     [SerializeField] private TextMeshProUGUI racialDescriptionText;
     [SerializeField] private RectTransform characterInfoRect;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Attribute Components")]
     [SerializeField] private TextMeshProUGUI strengthText;
     [SerializeField] private TextMeshProUGUI intelligenceText;
     [SerializeField] private TextMeshProUGUI dexterityText;
     [SerializeField] private TextMeshProUGUI witsText;
+    [SerializeField] private TextMeshProUGUI constitutionText;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Card + Panel Components")]
     [SerializeField] private CardInfoPanel[] cardInfoPanels;
     [SerializeField] private TalentInfoPanel[] talentInfoPanels;
     [SerializeField] private CanvasGroup previewCardCg;
     [SerializeField] private CardViewModel previewCardVM;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     #endregion
 
     // Show + Hide Views
@@ -194,6 +201,12 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
         if (data.wits > 10)
         {
             witsText.text = TextLogic.ReturnColoredText(data.wits.ToString(), TextLogic.neutralYellow);
+        }
+
+        constitutionText.text = data.constitution.ToString();
+        if (data.constitution > 10)
+        {
+            constitutionText.text = TextLogic.ReturnColoredText(data.constitution.ToString(), TextLogic.neutralYellow);
         }
     }
     private void BuildTalentInfoPanels(CharacterData data)

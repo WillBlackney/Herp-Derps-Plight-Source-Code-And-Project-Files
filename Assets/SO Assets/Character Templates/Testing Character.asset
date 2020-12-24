@@ -16,13 +16,14 @@ MonoBehaviour:
   myClassName: Test Class
   race: 2
   audioProfile: 3
-  health: 300
-  maxHealth: 300
+  health: 100
+  maxHealth: 100
   startingBlock: 0
   strength: 20
   intelligence: 10
   dexterity: 10
   wits: 10
+  constitution: 12
   power: 2
   initiative: 12
   stamina: 10

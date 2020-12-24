@@ -197,6 +197,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         ModifyIntelligence(character, data.intelligence);
         ModifyWits(character, data.wits);
         ModifyDexterity(character, data.dexterity);
+        ModifyConstitution(character, data.constitution);
 
         // Setup Secondary Stats
         ModifyStamina(character, data.stamina);
@@ -235,6 +236,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         ModifyDexterity(character, data.dexterity);
         ModifyWits(character, data.wits);
         ModifyIntelligence(character, data.intelligence);
+        ModifyConstitution(character, data.constitution);
 
         // Secondary Attrbibutes
         ModifyInitiative(character, data.initiative);
@@ -337,9 +339,9 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         finalHealthValue += healthGainedOrLost;
 
         // prevent health increasing over maximum
-        if (finalHealthValue > character.maxHealth)
+        if (finalHealthValue > character.MaxHealthTotal)
         {
-            finalHealthValue = character.maxHealth;
+            finalHealthValue = character.MaxHealthTotal;
         }
 
         // prevent health going less then 0
@@ -362,7 +364,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             CharacterDataController.Instance.SetCharacterHealth(character.characterData, character.health);
         }
 
-        VisualEventManager.Instance.CreateVisualEvent(() => UpdateHealthGUIElements(character, finalHealthValue, character.maxHealth), QueuePosition.Back, 0, 0);
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateHealthGUIElements(character, finalHealthValue, character.MaxHealthTotal), QueuePosition.Back, 0, 0);
     }
     public void ModifyMaxHealth(CharacterEntityModel character, int maxHealthGainedOrLost)
     {
@@ -377,12 +379,12 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }      
 
         int currentHealth = character.health;
-        VisualEventManager.Instance.CreateVisualEvent(() => UpdateHealthGUIElements(character, currentHealth, character.maxHealth), QueuePosition.Back, 0, 0);
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateHealthGUIElements(character, currentHealth, character.MaxHealthTotal), QueuePosition.Back, 0, 0);
 
         // Update health if it now excedes max health
-        if (character.health > character.maxHealth)
+        if (character.health > character.MaxHealthTotal)
         {
-            ModifyHealth(character, (character.maxHealth - character.health));
+            ModifyHealth(character, (character.MaxHealthTotal - character.health));
         }
     }
     private void UpdateHealthGUIElements(CharacterEntityModel character, int health, int maxHealth)
@@ -451,6 +453,10 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
     public void ModifyDexterity(CharacterEntityModel character, int dexterityGainedOrLost)
     {
         character.dexterity += dexterityGainedOrLost;
+    }
+    public void ModifyConstitution(CharacterEntityModel character, int constitutionGainedOrLost)
+    {
+        character.constitution += constitutionGainedOrLost;
     }
     public void ModifyPhysicalResistance(CharacterEntityModel character, int resistGainedOrLost)
     {

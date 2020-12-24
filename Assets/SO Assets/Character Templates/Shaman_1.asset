@@ -16,13 +16,14 @@ MonoBehaviour:
   myClassName: Shaman
   race: 2
   audioProfile: 3
-  health: 120
-  maxHealth: 120
+  health: 100
+  maxHealth: 100
   startingBlock: 0
   strength: 11
   intelligence: 11
   dexterity: 10
   wits: 11
+  constitution: 10
   power: 0
   initiative: 2
   stamina: 3

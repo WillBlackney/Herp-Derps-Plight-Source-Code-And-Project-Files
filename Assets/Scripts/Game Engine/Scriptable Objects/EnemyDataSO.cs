@@ -53,6 +53,9 @@ public class EnemyDataSO : ScriptableObject
     [BoxGroup("Core Attributes")]
     [LabelWidth(100)]
     public int wits = 10;
+    [BoxGroup("Core Attributes")]
+    [LabelWidth(100)]
+    public int constitution = 10;
 
     // Core Stats
     [BoxGroup("Secondary Attributes", centerLabel: true)]

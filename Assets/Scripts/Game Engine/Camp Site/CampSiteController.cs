@@ -407,7 +407,7 @@ public class CampSiteController : Singleton<CampSiteController>
         view.ucmShadowParent.SetActive(true);
 
         // Set health gui
-        UpdateHealthGUIElements(view.characterEntityView, data.health, data.maxHealth);
+        UpdateHealthGUIElements(view.characterEntityView, data.health, data.MaxHealthTotal);
 
         // Build UCM
         CharacterModelController.Instance.BuildModelFromStringReferences(view.characterEntityView.ucm, data.modelParts);
@@ -850,7 +850,7 @@ public class CampSiteController : Singleton<CampSiteController>
             if (cardEffect.healingType == HealingType.PercentageOfMaxHealth)
             {
                 // Calculate heal amount
-                healAmount = (int)(cData.maxHealth * 0.5f);
+                healAmount = (int)(cData.MaxHealthTotal * 0.5f);
                 Debug.LogWarning("Heal amount = " + healAmount.ToString());
             }
 
@@ -896,7 +896,7 @@ public class CampSiteController : Singleton<CampSiteController>
                     if (cardEffect.healingType == HealingType.PercentageOfMaxHealth)
                     {
                         // Calculate heal amount
-                        healAmount = (int)(cData.maxHealth * 0.5f);
+                        healAmount = (int)(cData.MaxHealthTotal * 0.5f);
                         Debug.Log("Heal amount = " + healAmount.ToString());
                     }
 
@@ -934,7 +934,7 @@ public class CampSiteController : Singleton<CampSiteController>
             CharacterDataController.Instance.SetCharacterMaxHealth(cData, cData.maxHealth + maxHpGainAmount);
 
             // Update health GUI visual event
-            VisualEventManager.Instance.CreateVisualEvent(() => UpdateHealthGUIElements(view.characterEntityView, cData.health, cData.maxHealth), QueuePosition.Back, 0, 0);
+            VisualEventManager.Instance.CreateVisualEvent(() => UpdateHealthGUIElements(view.characterEntityView, cData.health, cData.MaxHealthTotal), QueuePosition.Back, 0, 0);
 
             // Heal VFX
             VisualEventManager.Instance.CreateVisualEvent(() =>
@@ -965,7 +965,7 @@ public class CampSiteController : Singleton<CampSiteController>
                     CharacterDataController.Instance.SetCharacterMaxHealth(cData, cData.maxHealth + maxHpGainAmount);
 
                     // Update health GUI visual event
-                    VisualEventManager.Instance.CreateVisualEvent(() => UpdateHealthGUIElements(campCharacter.characterEntityView, cData.health, cData.maxHealth), QueuePosition.Back, 0, 0);
+                    VisualEventManager.Instance.CreateVisualEvent(() => UpdateHealthGUIElements(campCharacter.characterEntityView, cData.health, cData.MaxHealthTotal), QueuePosition.Back, 0, 0);
 
                     // Heal VFX
                     VisualEventManager.Instance.CreateVisualEvent(() =>
@@ -1006,6 +1006,39 @@ public class CampSiteController : Singleton<CampSiteController>
                 " +" + cardEffect.attributeAmountGained.ToString()));
             }
 
+            // Strength
+            else if (cardEffect.attributeChanged == CoreAttribute.Strength)
+            {
+                CharacterDataController.Instance.ModifyStrength(cData, cardEffect.attributeAmountGained);
+
+                // Visual notification event
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(view.characterEntityView.WorldPosition, cardEffect.attributeChanged.ToString() +
+                " +" + cardEffect.attributeAmountGained.ToString()));
+            }
+
+            // Intelligence
+            else if (cardEffect.attributeChanged == CoreAttribute.Intelligence)
+            {
+                CharacterDataController.Instance.ModifyIntelligence(cData, cardEffect.attributeAmountGained);
+
+                // Visual notification event
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(view.characterEntityView.WorldPosition, cardEffect.attributeChanged.ToString() +
+                " +" + cardEffect.attributeAmountGained.ToString()));
+            }
+
+            // Wits
+            else if (cardEffect.attributeChanged == CoreAttribute.Wits)
+            {
+                CharacterDataController.Instance.ModifyWits(cData, cardEffect.attributeAmountGained);
+
+                // Visual notification event
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(view.characterEntityView.WorldPosition, cardEffect.attributeChanged.ToString() +
+                " +" + cardEffect.attributeAmountGained.ToString()));
+            }
+
             // Dexterity
             else if (cardEffect.attributeChanged == CoreAttribute.Dexterity)
             {
@@ -1021,17 +1054,6 @@ public class CampSiteController : Singleton<CampSiteController>
             else if (cardEffect.attributeChanged == CoreAttribute.Stamina)
             {
                 CharacterDataController.Instance.ModifyStamina(cData, cardEffect.attributeAmountGained);
-
-                // Visual notification event
-                VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(view.characterEntityView.WorldPosition, cardEffect.attributeChanged.ToString() +
-                " +" + cardEffect.attributeAmountGained.ToString()));
-            }
-
-            // Initiative
-            else if (cardEffect.attributeChanged == CoreAttribute.Initiative)
-            {
-                CharacterDataController.Instance.ModifyInitiative(cData, cardEffect.attributeAmountGained);
 
                 // Visual notification event
                 VisualEventManager.Instance.CreateVisualEvent(() =>
@@ -1192,9 +1214,9 @@ public class CampSiteController : Singleton<CampSiteController>
         finalHealthValue += healthGainedOrLost;
 
         // prevent health increasing over maximum
-        if (finalHealthValue > cData.maxHealth)
+        if (finalHealthValue > cData.MaxHealthTotal)
         {
-            finalHealthValue = cData.maxHealth;
+            finalHealthValue = cData.MaxHealthTotal;
         }
 
         // prevent health going less then 0
@@ -1207,7 +1229,7 @@ public class CampSiteController : Singleton<CampSiteController>
         CharacterDataController.Instance.SetCharacterHealth(cData, finalHealthValue);
 
         // Update health GUI visual event
-        VisualEventManager.Instance.CreateVisualEvent(() => UpdateHealthGUIElements(character.characterEntityView, finalHealthValue, cData.maxHealth), QueuePosition.Back, 0, 0);
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateHealthGUIElements(character.characterEntityView, finalHealthValue, cData.MaxHealthTotal), QueuePosition.Back, 0, 0);
 
     }
     private void OnCardPlayedStart(CampCard card)

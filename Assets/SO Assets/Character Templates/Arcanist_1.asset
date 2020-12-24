@@ -16,13 +16,14 @@ MonoBehaviour:
   myClassName: Arcanist
   race: 4
   audioProfile: 2
-  health: 120
-  maxHealth: 120
+  health: 100
+  maxHealth: 100
   startingBlock: 0
   strength: 10
   intelligence: 12
   dexterity: 10
   wits: 11
+  constitution: 10
   power: 0
   initiative: 2
   stamina: 3

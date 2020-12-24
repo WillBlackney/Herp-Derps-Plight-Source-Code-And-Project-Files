@@ -264,7 +264,11 @@ public enum CoreAttribute
     Dexterity = 2,
     Stamina = 3,
     Draw = 4,
-    Initiative = 5,
+    Wits = 5,
+    Strength = 6,
+    Intelligence = 7,
+    Constitution = 8,
+
 }
 public enum KeyWordType
 {

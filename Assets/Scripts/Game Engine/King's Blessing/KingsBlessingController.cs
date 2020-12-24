@@ -121,7 +121,7 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
         CharacterModelController.Instance.ApplyItemManagerDataToCharacterModelView(startingCharacter.itemManager, playerModel);
 
         // Set up health bar
-        UpdateHealthGUIElements(startingCharacter.health, startingCharacter.maxHealth);
+        UpdateHealthGUIElements(startingCharacter.health, startingCharacter.MaxHealthTotal);
     }
     private void ResetKingsBlessingViews()
     {
@@ -544,7 +544,7 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
         if (data.effect == KingChoiceEffectType.ModifyMaxHealth)
         {
             CharacterDataController.Instance.SetCharacterMaxHealth(startingCharacter, startingCharacter.maxHealth + data.maxHealthGainedOrLost);
-            CharacterDataController.Instance.SetCharacterHealth(startingCharacter, startingCharacter.maxHealth);
+            CharacterDataController.Instance.SetCharacterHealth(startingCharacter, startingCharacter.MaxHealthTotal);
 
             string notifText = "";
 
@@ -577,7 +577,7 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
 
             // Update Health GUI
             VisualEventManager.Instance.CreateVisualEvent(() =>
-              UpdateHealthGUIElements(startingCharacter.health, startingCharacter.maxHealth));
+              UpdateHealthGUIElements(startingCharacter.health, startingCharacter.MaxHealthTotal));
 
             // Notification VFX
             VisualEventManager.Instance.CreateVisualEvent(() =>
@@ -642,7 +642,7 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
 
             // Update Health GUI
             VisualEventManager.Instance.CreateVisualEvent(() =>
-              UpdateHealthGUIElements(startingCharacter.health, startingCharacter.maxHealth));
+              UpdateHealthGUIElements(startingCharacter.health, startingCharacter.MaxHealthTotal));
 
         }
 
@@ -673,10 +673,29 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
                 CharacterDataController.Instance.ModifyDraw(startingCharacter, data.attributeAmountModified);
                 notifMessage = "Draw ";
             }
-            else if (data.attributeModified == CoreAttribute.Initiative)
+            else if (data.attributeModified == CoreAttribute.Wits)
             {
-                CharacterDataController.Instance.ModifyInitiative(startingCharacter, data.attributeAmountModified);
+                CharacterDataController.Instance.ModifyWits(startingCharacter, data.attributeAmountModified);
                 notifMessage = "Initiative ";
+            }
+            else if (data.attributeModified == CoreAttribute.Strength)
+            {
+                CharacterDataController.Instance.ModifyStrength(startingCharacter, data.attributeAmountModified);
+                notifMessage = "Strength ";
+            }
+            else if (data.attributeModified == CoreAttribute.Intelligence)
+            {
+                CharacterDataController.Instance.ModifyIntelligence(startingCharacter, data.attributeAmountModified);
+                notifMessage = "Intelligence ";
+            }
+            else if (data.attributeModified == CoreAttribute.Constitution)
+            {
+                CharacterDataController.Instance.ModifyConstitution(startingCharacter, data.attributeAmountModified);
+                notifMessage = "Constitution ";
+
+                // Update Health GUI
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                  UpdateHealthGUIElements(startingCharacter.health, startingCharacter.MaxHealthTotal));
             }
 
             // Set stacks text message + play buff or debuff VFX
