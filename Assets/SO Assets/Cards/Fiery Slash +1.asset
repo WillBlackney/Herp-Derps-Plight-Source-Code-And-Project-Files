@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fiery Slash +1
   m_EditorClassIdentifier: 
   cardName: Fiery Slash +1
-  cardDescription: "Deal 22 Magic Damage. \nAdd a burn to your hand."
+  cardDescription: "Deal 18 Magic Damage. \nAdd a burn to your hand."
   cardSprite: {fileID: 21300000, guid: 76062c60d3cf73a45a8c48cfc151d8c2, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -91,7 +91,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 22
+    baseDamageValue: 18
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0

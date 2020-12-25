@@ -25,6 +25,7 @@ MonoBehaviour:
   intelligence: 10
   dexterity: 10
   wits: 10
+  constitution: 10
   initiative: 2
   power: 0
   baseCrit: 0
@@ -73,7 +74,7 @@ MonoBehaviour:
     fastLearnerStacks: 0
     demonFormStacks: 0
     darkBargainStacks: 0
-    volatileStacks: 3
+    volatileStacks: 6
     soulCollectorStacks: 0
     magicMagnetStacks: 0
     etherealStacks: 0

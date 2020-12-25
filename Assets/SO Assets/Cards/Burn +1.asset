@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Burn +1
   m_EditorClassIdentifier: 
   cardName: Burn +1
-  cardDescription: "On activation end, apply 4 Burning to self. \nUnplayable."
+  cardDescription: "On activation end, apply 2 Burning to self. \nUnplayable."
   cardSprite: {fileID: 21300000, guid: 741c2c4a28c8ae544a4918701bfea295, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '4 '
+    phrase: '2 '
   - color: 5
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
     energyReductionAmount: 0
     passivePairing:
       passiveData: 2
-      passiveStacks: 4
+      passiveStacks: 2
     energyGainedOrLost: 0
     certainCardNames: []
     cardCostsZero: 0

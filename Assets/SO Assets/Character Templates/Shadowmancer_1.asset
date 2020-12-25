@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: Shadowmancer_1
   m_EditorClassIdentifier: 
   myName: Sabrina
-  myClassName: Shadowmancer
+  myClassName: Blood Mage
   race: 4
   audioProfile: 2
   health: 100
   maxHealth: 100
   startingBlock: 0
   strength: 10
-  intelligence: 12
+  intelligence: 11
   dexterity: 10
   wits: 11
-  constitution: 10
+  constitution: 11
   power: 0
   initiative: 2
   stamina: 3
@@ -105,14 +105,14 @@ MonoBehaviour:
   deck:
   - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
   - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
-  - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
-  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: 906a542ac4dbed2429e34de4a75c3c40, type: 2}
   - {fileID: 11400000, guid: 906a542ac4dbed2429e34de4a75c3c40, type: 2}
-  - {fileID: 11400000, guid: 1aa5ba9a69a1e014883cdff8719c8e91, type: 2}
   - {fileID: 11400000, guid: 3515e3b8e92620548af756ddbf500130, type: 2}
+  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
+  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
+  - {fileID: 11400000, guid: b31f4356f84f2bd48add48495139e0e5, type: 2}
   modelParts:
   - Elf_Chest
   - Elf_Face_1
@@ -126,6 +126,8 @@ MonoBehaviour:
     offHandItem: {fileID: 0}
   talentPairings:
   - talentSchool: 11
-    talentLevel: 2
+    talentLevel: 1
+  - talentSchool: 2
+    talentLevel: 1
   startingTalentPoints: 0
   startingAttributePoints: 0

@@ -25,6 +25,7 @@ MonoBehaviour:
   intelligence: 10
   dexterity: 10
   wits: 10
+  constitution: 10
   initiative: 1
   power: 0
   baseCrit: 0
@@ -161,7 +162,7 @@ MonoBehaviour:
       visualEventsOnFinish: []
       actionType: 0
       effectLoops: 1
-      baseDamage: 20
+      baseDamage: 14
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Savage Strike +1
   m_EditorClassIdentifier: 
   cardName: Savage Strike +1
-  cardDescription: "Lose 2HP. \nDeal 22 Physical damage. "
+  cardDescription: "Lose 2HP. \nDeal 20 Physical damage. "
   cardSprite: {fileID: 21300000, guid: 6c5ed9f1ea359a54d84832144749cb8d, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -170,7 +170,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 22
+    baseDamageValue: 20
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0

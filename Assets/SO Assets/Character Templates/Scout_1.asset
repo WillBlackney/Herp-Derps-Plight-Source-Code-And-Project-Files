@@ -19,10 +19,10 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   startingBlock: 0
-  strength: 10
+  strength: 11
   intelligence: 10
   dexterity: 10
-  wits: 13
+  wits: 12
   constitution: 10
   power: 0
   initiative: 2
@@ -105,14 +105,14 @@ MonoBehaviour:
   deck:
   - {fileID: 11400000, guid: 7e0607c8c06c28a448dc2170bf23c76c, type: 2}
   - {fileID: 11400000, guid: 7e0607c8c06c28a448dc2170bf23c76c, type: 2}
-  - {fileID: 11400000, guid: 7e0607c8c06c28a448dc2170bf23c76c, type: 2}
-  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: dbf11fa6557e4ac4b8401df063fc3192, type: 2}
   - {fileID: 11400000, guid: dbf11fa6557e4ac4b8401df063fc3192, type: 2}
-  - {fileID: 11400000, guid: d202c1f3eb7e6a4458df0c3eb8248cfe, type: 2}
   - {fileID: 11400000, guid: 0850c317e7fca884a83731f62a1b6c0c, type: 2}
+  - {fileID: 11400000, guid: 4fa47f450ff530d47884c246293bb23a, type: 2}
+  - {fileID: 11400000, guid: d202c1f3eb7e6a4458df0c3eb8248cfe, type: 2}
+  - {fileID: 11400000, guid: d202c1f3eb7e6a4458df0c3eb8248cfe, type: 2}
   modelParts:
   - Goblin_Chest_2
   - Goblin_Face_4

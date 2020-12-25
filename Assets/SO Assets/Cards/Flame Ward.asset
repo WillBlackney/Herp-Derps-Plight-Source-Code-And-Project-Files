@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Flame Ward
   m_EditorClassIdentifier: 
   cardName: Flame Ward
-  cardDescription: 'Give 14 Block to self or ally.
+  cardDescription: 'Give 12 Block to self or ally.
 
     Add a Burn to your hand.'
   cardSprite: {fileID: 21300000, guid: 7dce0e89304761c48b9523d476e9943a, type: 3}
@@ -88,7 +88,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 14
+    blockGainValue: 12
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
