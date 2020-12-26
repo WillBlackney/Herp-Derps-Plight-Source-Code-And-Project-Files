@@ -708,7 +708,7 @@ public class CombatLogic : Singleton<CombatLogic>
                    (card.cardType == CardType.MeleeAttack || card.cardType == CardType.RangedAttack))
                 {
                     VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-                    PassiveController.Instance.ModifyPoisoned(attacker, victim.pManager, attacker.pManager.poisonousStacks, true, 0.5f);
+                    PassiveController.Instance.ModifyPoisoned(attacker.pManager, victim.pManager, attacker.pManager.poisonousStacks, true, 0.5f);
                 }
                 else if (enemyEffect != null &&
                    (enemyEffect.actionType == ActionType.AttackTarget ||
@@ -716,7 +716,7 @@ public class CombatLogic : Singleton<CombatLogic>
                     )
                 {
                     VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-                    PassiveController.Instance.ModifyPoisoned(attacker, victim.pManager, attacker.pManager.poisonousStacks, true, 0.5f);
+                    PassiveController.Instance.ModifyPoisoned(attacker.pManager, victim.pManager, attacker.pManager.poisonousStacks, true, 0.5f);
                 }
             }
 
@@ -760,7 +760,7 @@ public class CombatLogic : Singleton<CombatLogic>
                 if (poisonApplied > 0)
                 {
                     VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-                    PassiveController.Instance.ModifyPoisoned(attacker, victim.pManager, poisonApplied, true, 0.5f);
+                    PassiveController.Instance.ModifyPoisoned(attacker.pManager, victim.pManager, poisonApplied, true, 0.5f);
                 }
             }
         }           
@@ -784,7 +784,7 @@ public class CombatLogic : Singleton<CombatLogic>
 
                 foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(victim))
                 {
-                    PassiveController.Instance.ModifyPoisoned(victim, enemy.pManager, victim.pManager.volatileStacks);
+                    PassiveController.Instance.ModifyPoisoned(victim.pManager, enemy.pManager, victim.pManager.volatileStacks);
                 }
             }
 

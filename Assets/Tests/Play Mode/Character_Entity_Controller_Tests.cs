@@ -26,27 +26,19 @@ namespace Tests
             // Load Scene, wait until completed
             AsyncOperation loading = SceneManager.LoadSceneAsync(SCENE_NAME);
             yield return new WaitUntil(() => loading.isDone);
-            //GameObject.FindObjectOfType<CombatTestSceneController>().runMockScene = false;
             GameObject.FindObjectOfType<GlobalSettings>().gameMode = StartingSceneSetting.IntegrationTesting;
 
             // Create mock character data
             characterData = new CharacterData
             {
                 myName = "Test Runner Name",
-                health = 30,
-                maxHealth = 30,
+                health = 100,
+                maxHealth = 100,
                 stamina = 30,
                 initiative = 3,
                 draw = 5,
-                dexterity = 0,
-                power = 0,
                 deck = new List<CardData>(),
             };
-
-            // Create mock deck data
-            //deckData = new List<CardDataSO>();
-            //characterData.initialDeckData = deckData;
-            //deckData.Add(AssetDatabase.LoadAssetAtPath<CardDataSO>("Assets/SO Assets/Cards/Strike.asset"));
 
             // Create mock model data
             characterData.modelParts = new List<string>();
@@ -215,11 +207,11 @@ namespace Tests
         public void Modify_Max_Health_Adjusts_Current_Health_Below_Maximum_If_Maximum_Is_Exceeded()
         {
             // Arange
-            CharacterEntityModel model;
-            int expectedHealth = 25;
+            CharacterEntityModel model;           
 
             // Act
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            int expectedHealth = model.health - 5;
             CharacterEntityController.Instance.ModifyMaxHealth(model, -5);
 
             // Assert
@@ -238,7 +230,7 @@ namespace Tests
             CharacterEntityController.Instance.ModifyInitiative(model, -100);
 
             // Assert
-            Assert.AreEqual(expectedInitiative, model.dexterity);
+            Assert.AreEqual(expectedInitiative, model.initiative);
         }
         [Test]
         public void Modify_Draw_Cant_Set_Draw_Below_Zero()

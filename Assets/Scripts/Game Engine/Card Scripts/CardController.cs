@@ -2836,7 +2836,7 @@ public class CardController : Singleton<CardController>
             }
 
             string passiveName = TextLogic.SplitByCapitals(cardEffect.passivePairing.passiveData.ToString());
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(owner.pManager, passiveName, stacks, true, 0.5f, owner);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(owner.pManager, passiveName, stacks, true, 0.5f, owner.pManager);
         }
 
         // Apply passive to target
@@ -2858,7 +2858,7 @@ public class CardController : Singleton<CardController>
                 }
             }
             string passiveName = TextLogic.SplitByCapitals(cardEffect.passivePairing.passiveData.ToString());
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, passiveName, stacks, true, 0.5f, owner);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, passiveName, stacks, true, 0.5f, owner.pManager);
         }
 
         // Apply passive to all allies
@@ -2883,7 +2883,7 @@ public class CardController : Singleton<CardController>
             foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllAlliesOfCharacter(owner))
             {
                 string passiveName = TextLogic.SplitByCapitals(cardEffect.passivePairing.passiveData.ToString());
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemy.pManager, passiveName, stacks, true, 0f, owner);
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemy.pManager, passiveName, stacks, true, 0f, owner.pManager);
             }
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
@@ -2910,7 +2910,7 @@ public class CardController : Singleton<CardController>
             foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
             {
                 string passiveName = TextLogic.SplitByCapitals(cardEffect.passivePairing.passiveData.ToString());
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemy.pManager, passiveName, stacks, true, 0f, owner);                
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemy.pManager, passiveName, stacks, true, 0f, owner.pManager);                
             }
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
@@ -2938,7 +2938,7 @@ public class CardController : Singleton<CardController>
             foreach (CharacterEntityModel ally in CharacterEntityController.Instance.GetAllAlliesOfCharacter(owner))
             {
                 string passiveName = TextLogic.SplitByCapitals(cardEffect.passivePairing.passiveData.ToString());
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(ally.pManager, passiveName, stacks, true, 0f, owner);
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(ally.pManager, passiveName, stacks, true, 0f, owner.pManager);
                 VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
             }
         }
@@ -3061,7 +3061,7 @@ public class CardController : Singleton<CardController>
         {
             if(target.pManager.poisonedStacks > 0)
             {
-                PassiveController.Instance.ModifyPoisoned(owner, target.pManager, target.pManager.poisonedStacks, true);
+                PassiveController.Instance.ModifyPoisoned(owner.pManager, target.pManager, target.pManager.poisonedStacks, true);
             }
             
         }
@@ -3332,7 +3332,7 @@ public class CardController : Singleton<CardController>
         {
             string passiveName = TextLogic.SplitByCapitals(e.passivePairing.passiveData.ToString());
             VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(card.cardVM));
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(card.owner.pManager, passiveName, e.passivePairing.passiveStacks, true, 0.5f, card.owner);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(card.owner.pManager, passiveName, e.passivePairing.passiveStacks, true, 0.5f, card.owner.pManager);
         }
 
         // Draw this
@@ -3933,7 +3933,7 @@ public class CardController : Singleton<CardController>
                 string passiveName = TextLogic.SplitByCapitals(choiceEffect.passivePairing.passiveData.ToString());
 
                 PassiveController.Instance.ModifyPassiveOnCharacterEntity
-                    (owner.pManager, passiveName, choiceEffect.passivePairing.passiveStacks, true, 0.5f, owner);
+                    (owner.pManager, passiveName, choiceEffect.passivePairing.passiveStacks, true, 0.5f, owner.pManager);
             }
 
             else if (choiceEffect.choiceEffect == OnCardInHandChoiceMadeEffectType.GetUpgradedBlessings)

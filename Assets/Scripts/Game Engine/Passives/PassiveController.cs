@@ -527,7 +527,7 @@ public class PassiveController : Singleton<PassiveController>
 
     // Apply Passive To Character Entities
     #region
-    public void ModifyPassiveOnCharacterEntity(PassiveManagerModel pManager, string originalData, int stacks, bool showVFX = true, float vfxDelay = 0f, CharacterEntityModel applier = null)
+    public void ModifyPassiveOnCharacterEntity(PassiveManagerModel pManager, string originalData, int stacks, bool showVFX = true, float vfxDelay = 0f, PassiveManagerModel applier = null)
     {
         Debug.Log("PassiveController.ModifyPassiveOnCharacterEntity() called...");
 
@@ -811,7 +811,7 @@ public class PassiveController : Singleton<PassiveController>
         }
         else if (originalData == "Weakened")
         {
-            ModifyWeakened(pManager, stacks, applier.pManager, showVFX, vfxDelay);
+            ModifyWeakened(pManager, stacks, pManager, showVFX, vfxDelay);
         }
         else if (originalData == "Grit")
         {
@@ -5227,7 +5227,7 @@ public class PassiveController : Singleton<PassiveController>
 
     // DoT Passives
     #region
-    public void ModifyPoisoned(CharacterEntityModel applier, PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    public void ModifyPoisoned(PassiveManagerModel applier, PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
     {
         Debug.Log("PassiveController.ModifyPoisoned() called...");
 
@@ -5245,9 +5245,9 @@ public class PassiveController : Singleton<PassiveController>
 
         // Add venomous bonus from applier
         if (applier != null &&
-            applier.pManager.venomousStacks > 0)
+            applier.venomousStacks > 0)
         {
-            stacks += applier.pManager.venomousStacks;
+            stacks += applier.venomousStacks;
         }
 
         // Check for rune

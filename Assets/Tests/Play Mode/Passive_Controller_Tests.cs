@@ -100,13 +100,14 @@ namespace Tests
             characterData = new CharacterData
             {
                 myName = "Test Runner Name",
-                health = 30,
-                maxHealth = 30,
-                stamina = 30,
+                health = 100,
+                maxHealth = 100,
+                stamina = 3,
                 initiative = 3,
                 draw = 5,
-                dexterity = 0,
-                power = 0,
+                dexterity = 10,
+                strength = 10,
+                intelligence = 10,
                 deck = new List<CardData>(),
             };
 
@@ -353,11 +354,12 @@ namespace Tests
             // Arange
             CharacterEntityModel model;
             string passiveName = PassiveController.Instance.GetPassiveIconDataByName(TEMPORARY_DEXTERITY_NAME).passiveName;
-            int stacks = 1;
-            int expected = 0;
+            int stacks = 1;            
 
             // Act 
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            int expected = EntityLogic.GetTotalDexterity(model);
+
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
             ActivationManager.Instance.OnNewCombatEventStarted();
             CharacterEntityController.Instance.CharacterOnActivationEnd(model);
@@ -1305,7 +1307,7 @@ namespace Tests
             Assert.AreEqual(expected, model.pManager.wrathStacks);
         }
         [Test]
-        public void Weakened_Does_Increase_Damage_In_Handle_Damage_Calculations()
+        public void Weakened_Does_Decrease_Damage_In_Handle_Damage_Calculations()
         {
             // Arange
             CharacterEntityModel attacker;
@@ -1315,7 +1317,7 @@ namespace Tests
 
             // Act
             attacker = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
-            target = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            target = CharacterEntityController.Instance.CreateEnemyCharacter(enemyData, defenderNode);
 
             Card card = new Card();
             card.owner = attacker;
@@ -1670,11 +1672,11 @@ namespace Tests
             // Arange
             CharacterEntityModel model;
             string passiveName = PassiveController.Instance.GetPassiveIconDataByName(BARRIER_NAME).passiveName;
-            int stacks = 1;
-            int expectedTotal = 30;
+            int stacks = 1;            
 
             // Act
             model = CharacterEntityController.Instance.CreatePlayerCharacter(characterData, defenderNode);
+            int expectedTotal = model.health;
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(model.pManager, passiveName, stacks);
             CombatLogic.Instance.HandleDamage(10, null, model, DamageType.Physical);
 

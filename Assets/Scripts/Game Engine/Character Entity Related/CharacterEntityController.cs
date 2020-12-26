@@ -1305,7 +1305,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             // Apply poison to all enemies, and small poison explosion
             foreach (CharacterEntityModel enemy in GetAllEnemiesOfCharacter(entity))
             {
-                PassiveController.Instance.ModifyPoisoned(entity, enemy.pManager, entity.pManager.toxicAuraStacks, true);
+                PassiveController.Instance.ModifyPoisoned(entity.pManager, enemy.pManager, entity.pManager.toxicAuraStacks, true);
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 VisualEffectManager.Instance.CreatePoisonExplosion(enemy.characterEntityView.WorldPosition));
             }
@@ -2713,7 +2713,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                     target = enemy;
                 }
 
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0f, enemy);
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0f, enemy.pManager);
             }
 
             // Buff All
@@ -2721,7 +2721,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             {
                 foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(enemy))
                 {
-                    PassiveController.Instance.ModifyPassiveOnCharacterEntity(ally.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0, enemy);
+                    PassiveController.Instance.ModifyPassiveOnCharacterEntity(ally.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0, enemy.pManager);
                 }
 
             }
@@ -2729,7 +2729,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             // Debuff Target
             else if (effect.actionType == ActionType.DebuffTarget)
             {
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0f, enemy);
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0f, enemy.pManager);
             }
 
             // Debuff All
@@ -2737,7 +2737,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             {
                 foreach (CharacterEntityModel enemyy in GetAllEnemiesOfCharacter(enemy))
                 {
-                    PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemyy.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0f, enemy);
+                    PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemyy.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0f, enemy.pManager);
                 }
 
             }
