@@ -193,11 +193,19 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         character.audioProfile = data.audioProfile;
 
         // Setup Core Stats
+        ModifyStrength(character, data.strength);
+        ModifyIntelligence(character, data.intelligence);
+        ModifyWits(character, data.wits);
+        ModifyDexterity(character, data.dexterity);
+        ModifyConstitution(character, data.constitution);
+
+        // Setup Secondary Stats
         ModifyStamina(character, data.stamina);
         ModifyInitiative(character, data.initiative);
-        ModifyDraw(character, data.draw);
-        ModifyDexterity(character, data.dexterity);
+        ModifyDraw(character, data.draw);       
         ModifyPower(character, data.power);
+        ModifyBaseCrit(character, data.baseCrit);
+        ModifyCritModifier(character, data.critModifier);
 
         // Set up health
         ModifyMaxHealth(character, data.maxHealth);
@@ -223,9 +231,15 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         character.myName = data.enemyName;
         character.audioProfile = data.audioProfile;
 
-        // Setup Core Stats
-        ModifyInitiative(character, data.initiative);
+        // Core Attributes
+        ModifyStrength(character, data.strength);
         ModifyDexterity(character, data.dexterity);
+        ModifyWits(character, data.wits);
+        ModifyIntelligence(character, data.intelligence);
+        ModifyConstitution(character, data.constitution);
+
+        // Secondary Attrbibutes
+        ModifyInitiative(character, data.initiative);
         ModifyPower(character, data.power);
 
         // Set Resistances
@@ -325,9 +339,9 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         finalHealthValue += healthGainedOrLost;
 
         // prevent health increasing over maximum
-        if (finalHealthValue > character.maxHealth)
+        if (finalHealthValue > character.MaxHealthTotal)
         {
-            finalHealthValue = character.maxHealth;
+            finalHealthValue = character.MaxHealthTotal;
         }
 
         // prevent health going less then 0
@@ -350,7 +364,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             CharacterDataController.Instance.SetCharacterHealth(character.characterData, character.health);
         }
 
-        VisualEventManager.Instance.CreateVisualEvent(() => UpdateHealthGUIElements(character, finalHealthValue, character.maxHealth), QueuePosition.Back, 0, 0);
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateHealthGUIElements(character, finalHealthValue, character.MaxHealthTotal), QueuePosition.Back, 0, 0);
     }
     public void ModifyMaxHealth(CharacterEntityModel character, int maxHealthGainedOrLost)
     {
@@ -365,12 +379,12 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }      
 
         int currentHealth = character.health;
-        VisualEventManager.Instance.CreateVisualEvent(() => UpdateHealthGUIElements(character, currentHealth, character.maxHealth), QueuePosition.Back, 0, 0);
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateHealthGUIElements(character, currentHealth, character.MaxHealthTotal), QueuePosition.Back, 0, 0);
 
         // Update health if it now excedes max health
-        if (character.health > character.maxHealth)
+        if (character.health > character.MaxHealthTotal)
         {
-            ModifyHealth(character, (character.maxHealth - character.health));
+            ModifyHealth(character, (character.MaxHealthTotal - character.health));
         }
     }
     private void UpdateHealthGUIElements(CharacterEntityModel character, int health, int maxHealth)
@@ -412,13 +426,37 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             character.draw = 0;
         }
     }
+    public void ModifyBaseCrit(CharacterEntityModel character, int gainedOrLost)
+    {
+        character.baseCrit += gainedOrLost;
+    }
+    public void ModifyCritModifier(CharacterEntityModel character, int gainedOrLost)
+    {
+        character.critModifier += gainedOrLost;
+    }
     public void ModifyPower(CharacterEntityModel character, int powerGainedOrLost)
     {
         character.power += powerGainedOrLost;
     }
+    public void ModifyStrength(CharacterEntityModel character, int strengthGainedOrLost)
+    {
+        character.strength += strengthGainedOrLost;
+    }
+    public void ModifyWits(CharacterEntityModel character, int witsGainedOrLost)
+    {
+        character.wits += witsGainedOrLost;
+    }
+    public void ModifyIntelligence(CharacterEntityModel character, int intelligenceGainedOrLast)
+    {
+        character.intelligence += intelligenceGainedOrLast;
+    }
     public void ModifyDexterity(CharacterEntityModel character, int dexterityGainedOrLost)
     {
         character.dexterity += dexterityGainedOrLost;
+    }
+    public void ModifyConstitution(CharacterEntityModel character, int constitutionGainedOrLost)
+    {
+        character.constitution += constitutionGainedOrLost;
     }
     public void ModifyPhysicalResistance(CharacterEntityModel character, int resistGainedOrLost)
     {
@@ -586,7 +624,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
 
                 // Calculate and handle damage
-                int sentinelDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(character, targetHit, DamageType.Physical, character.pManager.sentinelStacks, null, null);
+                int sentinelDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(character, targetHit, DamageType.Physical, character.pManager.sentinelStacks);
                 CombatLogic.Instance.HandleDamage(sentinelDamageValue, character, targetHit, DamageType.Physical);
             }
         }
@@ -694,6 +732,40 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             return;
         }
 
+        // Divinity bonus
+        if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Divinity, 1))
+        {
+            // Notication vfx
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Divinity Mastery!"));
+
+            // Gain Random Blessing cards
+            for (int i = 0; i < CharacterDataController.Instance.GetTalentLevel(character.characterData, TalentSchool.Divinity); i++)
+            {
+                CardController.Instance.CreateAndAddNewRandomBlessingsToCharacterHand(character, 1, UpgradeFilter.OnlyNonUpgraded);
+            }
+
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+        }
+
+        // Manipulation bonus
+        if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Manipulation, 1))
+        {
+            // Notication vfx
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Manipulation Mastery!"), QueuePosition.Back, 0f, 0.5f);
+
+            // Add arcane bolt card to hand
+            for(int i = 0; i < CharacterDataController.Instance.GetTalentLevel(character.characterData, TalentSchool.Manipulation); i++)
+            {
+                CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetCardDataFromLibraryByName("Arcane Bolt"));
+            }
+
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+        }
+
+        /*
+
         // Warfare bonus
         if(CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Warfare, 2))
         {
@@ -744,21 +816,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
         }
 
-        // Divinity bonus
-        if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Divinity, 2))
-        {
-            // Notication vfx
-            VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Divinity Mastery!"));
-
-            // Gain 1 Random Blessing card
-            for (int i = 0; i < 1; i++)
-            {
-                CardController.Instance.CreateAndAddNewRandomBlessingsToCharacterHand(character, 1, UpgradeFilter.OnlyNonUpgraded);
-            }
-
-            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-        }
+        
 
         // Toxicology bonus
         if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Corruption, 2))
@@ -774,14 +832,6 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
             // Apply 2 weakened to random enemy
             PassiveController.Instance.ModifyPoisoned(character, randomEnemy.pManager, 3, true, 0f);
-
-            // Apply 1 Poisoned to all enemies
-            /*
-            foreach (CharacterEntityModel enemy in GetAllEnemiesOfCharacter(character))
-            {
-                PassiveController.Instance.ModifyPoisoned(character, enemy.pManager, 1, true, 0f);
-            }
-            */
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
         }
@@ -800,14 +850,6 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
             // Apply 2 weakened to random enemy
             PassiveController.Instance.ModifyWeakened(randomEnemy.pManager, 2, character.pManager, true, 0f);
-
-            // Apply 1 Weakened to all enemies
-            /*
-            foreach (CharacterEntityModel enemy in GetAllEnemiesOfCharacter(character))
-            {
-                PassiveController.Instance.ModifyWeakened(enemy.pManager, 1, true, 0f);
-            }
-            */
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
         }
@@ -837,9 +879,6 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
             // Add Fire Ball to hand
             Card newFbCard = CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetCardDataFromLibraryByName("Fire Ball"));
-
-            // Reduce cost to 0
-            //CardController.Instance.ReduceCardEnergyCostThisCombat(newFbCard, newFbCard.cardBaseEnergyCost);
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
         }
@@ -883,6 +922,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
         }
+        */
     }
     public void CharacterOnActivationStart(CharacterEntityModel character)
     {
@@ -1265,7 +1305,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             // Apply poison to all enemies, and small poison explosion
             foreach (CharacterEntityModel enemy in GetAllEnemiesOfCharacter(entity))
             {
-                PassiveController.Instance.ModifyPoisoned(entity, enemy.pManager, entity.pManager.toxicAuraStacks, true);
+                PassiveController.Instance.ModifyPoisoned(entity.pManager, enemy.pManager, entity.pManager.toxicAuraStacks, true);
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 VisualEffectManager.Instance.CreatePoisonExplosion(enemy.characterEntityView.WorldPosition));
             }
@@ -1312,7 +1352,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Poisoned!"), QueuePosition.Back, 0, 0.5f);
 
             // Calculate and deal Poison damage
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Physical, entity.pManager.poisonedStacks, null, null);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Physical, entity.pManager.poisonedStacks);
             VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.PoisonExplosion, view.WorldPosition));
             CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Physical, true);           
@@ -1324,7 +1364,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Bleeding!"), QueuePosition.Back, 0, 0.5f);
 
             // Calculate and deal Poison damage
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Physical, entity.pManager.bleedingStacks, null, null);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Physical, entity.pManager.bleedingStacks);
             VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.BloodExplosion, view.WorldPosition));
             CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Physical, true);
@@ -1349,7 +1389,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Burning!"), QueuePosition.Back, 0, 0.5f);
 
                 // Calculate and deal Poison damage
-                int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Magic, entity.pManager.burningStacks, null, null);
+                int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(null, entity, DamageType.Magic, entity.pManager.burningStacks);
                 VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
                 VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.FireExplosion, view.WorldPosition));
                 CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Magic, true);
@@ -1375,7 +1415,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
 
             // Deal air damage
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(entity, randomEnemy, DamageType.Magic, entity.pManager.overloadStacks, null, null);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(entity, randomEnemy, DamageType.Magic, entity.pManager.overloadStacks);
             CombatLogic.Instance.HandleDamage(finalDamageValue, entity, randomEnemy, DamageType.Magic);
 
             // Brief pause here
@@ -2673,7 +2713,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                     target = enemy;
                 }
 
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0f, enemy);
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0f, enemy.pManager);
             }
 
             // Buff All
@@ -2681,7 +2721,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             {
                 foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(enemy))
                 {
-                    PassiveController.Instance.ModifyPassiveOnCharacterEntity(ally.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0, enemy);
+                    PassiveController.Instance.ModifyPassiveOnCharacterEntity(ally.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0, enemy.pManager);
                 }
 
             }
@@ -2689,7 +2729,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             // Debuff Target
             else if (effect.actionType == ActionType.DebuffTarget)
             {
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0f, enemy);
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0f, enemy.pManager);
             }
 
             // Debuff All
@@ -2697,7 +2737,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             {
                 foreach (CharacterEntityModel enemyy in GetAllEnemiesOfCharacter(enemy))
                 {
-                    PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemyy.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0f, enemy);
+                    PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemyy.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0f, enemy.pManager);
                 }
 
             }

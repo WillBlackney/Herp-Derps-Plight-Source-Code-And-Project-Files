@@ -21,9 +21,6 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 0
   rarity: 0
-  affliction: 1
-  racialCard: 0
-  originRace: 0
   upgradeable: 0
   upgradeLevel: 0
   expend: 0
@@ -32,6 +29,10 @@ MonoBehaviour:
   unplayable: 1
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
+  affliction: 1
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 3
     getPhraseFromCardValue: 0
@@ -53,6 +54,7 @@ MonoBehaviour:
     phrase: .
   cardEffects: []
   cardEventListeners: []
+  cardPassiveEffects: []
   keyWordModels:
   - kewWordType: 4
     weaponRequirement: 0

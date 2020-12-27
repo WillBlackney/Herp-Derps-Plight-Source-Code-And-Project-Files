@@ -12,15 +12,30 @@ namespace MapSystem
         public readonly List<Point> incoming = new List<Point>();
         public readonly List<Point> outgoing = new List<Point>();
         [JsonConverter(typeof(StringEnumConverter))]
-        public readonly EncounterType nodeType;
-        public readonly string blueprintName;
+        private EncounterType nodeType;
+        private string blueprintName;        
         public Vector2 position;
 
+        public EncounterType NodeType
+        {
+            get { return nodeType; }
+            private set { nodeType = value; }
+        }
+        public string BlueprintName
+        {
+            get { return blueprintName; }
+            private set { blueprintName = value; }
+        }
         public Node(EncounterType nodeType, string blueprintName, Point point)
         {
-            this.nodeType = nodeType;
-            this.blueprintName = blueprintName;
+            this.NodeType = nodeType;
+            this.BlueprintName = blueprintName;
             this.point = point;
+        }
+        public void RerollType(EncounterType type, string blueprintName)
+        {
+            this.NodeType = type;
+            this.BlueprintName = blueprintName;
         }
 
         public void AddIncoming(Point p)

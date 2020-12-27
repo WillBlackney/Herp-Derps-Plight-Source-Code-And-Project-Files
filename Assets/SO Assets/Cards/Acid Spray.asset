@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Acid Spray
   m_EditorClassIdentifier: 
   cardName: Acid Spray
-  cardDescription: Remove all Block from target. Apply 3 Poisoned. Expend.
+  cardDescription: Remove all Block from target. Apply 6 Poisoned. Expend.
   cardSprite: {fileID: 21300000, guid: 9fc9d71819cfd154d882395b9822769d, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -21,9 +21,6 @@ MonoBehaviour:
   targettingType: 3
   talentSchool: 12
   rarity: 1
-  affliction: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 1
   upgradeLevel: 0
   expend: 1
@@ -33,6 +30,9 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '3 '
+    phrase: '6 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -214,7 +214,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 21
-      passiveStacks: 3
+      passiveStacks: 6
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

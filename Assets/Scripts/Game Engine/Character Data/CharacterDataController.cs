@@ -100,15 +100,23 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.currentXP = original.currentXP;
         SetCharacterLevel(newCharacter, original.currentLevel);
         ModifyCharacterTalentPoints(newCharacter, original.talentPoints);
+        ModifyCharacterAttributePoints(newCharacter, original.attributePoints);
 
         SetCharacterMaxHealth(newCharacter, original.maxHealth);
         SetCharacterHealth(newCharacter, original.health);
 
-        newCharacter.stamina = original.stamina;
-        newCharacter.initiative = original.initiative;
+        newCharacter.strength = original.strength;
+        newCharacter.intelligence = original.intelligence;
+        newCharacter.wits = original.wits;
         newCharacter.dexterity = original.dexterity;
+        newCharacter.constitution = original.constitution;
+
+        newCharacter.stamina = original.stamina;
+        newCharacter.initiative = original.initiative;     
         newCharacter.draw = original.draw;
         newCharacter.power = original.power;
+        newCharacter.baseCrit = original.baseCrit;
+        newCharacter.critModifier = original.critModifier;
 
         newCharacter.deck = new List<CardData>();
         foreach (CardData cso in original.deck)
@@ -153,16 +161,27 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.currentLevel = GlobalSettings.Instance.startingLevel;
         newCharacter.currentMaxXP = GlobalSettings.Instance.startingMaxXp;
         ModifyCharacterTalentPoints(newCharacter, GlobalSettings.Instance.startingTalentPoints);
+        ModifyCharacterAttributePoints(newCharacter, GlobalSettings.Instance.startingAttributePoints);
         HandleGainXP(newCharacter, GlobalSettings.Instance.startingXpBonus);
 
         SetCharacterMaxHealth(newCharacter, template.maxHealth);
         SetCharacterHealth(newCharacter, template.health);
 
+        newCharacter.strength = template.strength;
+        newCharacter.intelligence = template.intelligence;
+        newCharacter.wits = template.wits;
+        newCharacter.dexterity = template.dexterity;
+        newCharacter.constitution = template.constitution;
+
         newCharacter.stamina = template.stamina;
         newCharacter.initiative = template.initiative;
-        newCharacter.dexterity = template.dexterity;
+        newCharacter.baseCrit = template.baseCrit;
+        newCharacter.critModifier = template.critModifier;
         newCharacter.draw = template.draw;
         newCharacter.power = template.power;
+
+        newCharacter.attributePoints = template.startingAttributePoints;
+        newCharacter.talentPoints = template.startingTalentPoints;
 
         newCharacter.deck = new List<CardData>();
         foreach(CardDataSO cso in template.deck)
@@ -226,9 +245,25 @@ public class CharacterDataController : Singleton<CharacterDataController>
     {
         data.initiative += gainedOrLost;
     }
+    public void ModifyStrength(CharacterData data, int gainedOrLost)
+    {
+        data.strength += gainedOrLost;
+    }
+    public void ModifyIntelligence(CharacterData data, int gainedOrLost)
+    {
+        data.intelligence += gainedOrLost;
+    }
+    public void ModifyWits(CharacterData data, int gainedOrLost)
+    {
+        data.wits += gainedOrLost;
+    }
     public void ModifyDexterity(CharacterData data, int gainedOrLost)
     {
         data.dexterity += gainedOrLost;
+    }
+    public void ModifyConstitution(CharacterData data, int gainedOrLost)
+    {
+        data.constitution += gainedOrLost;
     }
     public void ModifyStamina(CharacterData data, int gainedOrLost)
     {
@@ -260,6 +295,9 @@ public class CharacterDataController : Singleton<CharacterDataController>
             // Gain Talent point
             ModifyCharacterTalentPoints(data, 1);
 
+            // Gain attribute points
+            ModifyCharacterAttributePoints(data, GlobalSettings.Instance.attributePointsGainedOnLevelUp);
+
             // Reset current xp
             data.currentXP = 0;
 
@@ -278,6 +316,9 @@ public class CharacterDataController : Singleton<CharacterDataController>
 
             // Gain Talent point
             ModifyCharacterTalentPoints(data, 1);
+
+            // Gain attribute points
+            ModifyCharacterAttributePoints(data, GlobalSettings.Instance.attributePointsGainedOnLevelUp);
 
             // Reset current xp
             data.currentXP = 0;
@@ -333,6 +374,10 @@ public class CharacterDataController : Singleton<CharacterDataController>
     public void ModifyCharacterTalentPoints(CharacterData data, int gainedOrLost)
     {
         data.talentPoints += gainedOrLost;
+    }
+    public void ModifyCharacterAttributePoints(CharacterData data, int gainedOrLost)
+    {
+        data.attributePoints += gainedOrLost;
     }
     public TalentPairingModel HandlePlayerGainTalent(CharacterData character, TalentSchool talent, int pointsGained)
     {
@@ -434,6 +479,23 @@ public class CharacterDataController : Singleton<CharacterDataController>
         }
     }
     #endregion
+
+    // Misc Logic + Calculators
+    public int GetTalentLevel(CharacterData character, TalentSchool school)
+    {
+        int level = 0;
+
+        foreach(TalentPairingModel tp in character.talentPairings)
+        {
+            if(tp.talentSchool == school)
+            {
+                level = tp.talentLevel;
+                break;
+            }
+        }
+
+        return level;
+    }
 
     
 

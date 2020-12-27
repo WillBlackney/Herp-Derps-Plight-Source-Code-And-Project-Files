@@ -11,6 +11,7 @@ public class ActivationWindow : MonoBehaviour, IPointerEnterHandler, IPointerExi
     // Properties + Component References
     #region
     [Header("Component References")]
+    [SerializeField] private GameObject visualParent;
     public TextMeshProUGUI rollText;
     public Slider myHealthBar;
     public GameObject myGlowOutline;
@@ -36,7 +37,15 @@ public class ActivationWindow : MonoBehaviour, IPointerEnterHandler, IPointerExi
         Debug.Log("ActivationWindow.OnMouseExit called...");
         CharacterEntityController.Instance.OnCharacterMouseExit(myCharacter.characterEntityView);
     }
-    
+    public void Hide()
+    {
+        visualParent.SetActive(false);
+    }
+    public void Show()
+    {
+        visualParent.SetActive(true);
+    }
+
     #endregion
 
 }

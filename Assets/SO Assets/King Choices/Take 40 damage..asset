@@ -10,12 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce54fe6d38fa1ac4d921d5b2652a68e3, type: 3}
-  m_Name: Take 30 damage.
+  m_Name: Take 40 damage.
   m_EditorClassIdentifier: 
-  choiceDescription: Take 30 damage.
+  choiceDescription: Take 40 damage.
   effect: 6
   category: 2
   impactLevel: 4
   maxHealthGainedOrLost: 0
-  healthGainedOrLost: -30
+  healthGainedOrLost: -40
   randomCardRarity: 0
+  discoveryCardRarity: 0
+  randomCardsUpgraded: 0
+  randomCardsTransformed: 0
+  attributeModified: 0
+  attributeAmountModified: 0
+  possiblePassives: []
+  afflicationsGained: 0
+  goldGainedOrLost: 0

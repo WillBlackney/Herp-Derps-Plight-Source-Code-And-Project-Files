@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
 using System;
+using Sirenix.OdinInspector;
 
 public class MainMenuController : Singleton<MainMenuController>
 {
@@ -18,21 +19,25 @@ public class MainMenuController : Singleton<MainMenuController>
     [SerializeField] private GameObject continueButtonParent;
     [SerializeField] private GameObject abandonRunButtonParent;
     [SerializeField] private GameObject abandonRunPopupParent;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("In Game Menu Components")]
     [SerializeField] private GameObject inGameMenuScreenParent;
     [SerializeField] private CanvasGroup inGameMenuScreenCg;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Run Modifier Menu Components")]
     [SerializeField] private GameObject runModifierScreenParent;
     [SerializeField] private RunModifierButton randomizeCharactersButton;
     [SerializeField] private RunModifierButton randomizeDecksButton;
     [SerializeField] private RunModifierButton improviseDecksButton;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Run Modifier Properties")]
     [HideInInspector] public bool randomizeCharacters = false;
     [HideInInspector] public bool randomizeDecks = false;
     [HideInInspector] public bool improviseDecks = false;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("New Game Screen Components/Properties")]
     [SerializeField] private GameObject newGameScreenVisualParent;
@@ -50,9 +55,15 @@ public class MainMenuController : Singleton<MainMenuController>
     [SerializeField] private CanvasGroup previewCardCg;
     [SerializeField] private CardViewModel previewCardVM;
     [HideInInspector] public CharacterData currentTemplateSelection;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
-
-   
+    [Header("Attribute Components")]
+    [SerializeField] private TextMeshProUGUI strengthText;
+    [SerializeField] private TextMeshProUGUI intelligenceText;
+    [SerializeField] private TextMeshProUGUI dexterityText;
+    [SerializeField] private TextMeshProUGUI witsText;
+    [SerializeField] private TextMeshProUGUI constitutionText;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     #endregion
 
@@ -312,6 +323,9 @@ public class MainMenuController : Singleton<MainMenuController>
     }
     public void BuildNewGameWindowFromCharacterTemplateData(CharacterData data)
     {
+        // Reset scroll window 
+        characterInfoScrollBar.value = 1;
+
         // Set Texts
         characterNameText.text = data.myName;
         characterClassNameText.text = "The " + data.myClassName;
@@ -325,6 +339,9 @@ public class MainMenuController : Singleton<MainMenuController>
 
         // Build talent info panels
         BuildTalentInfoPanels(data);
+
+        // Build attributes
+        BuildAttributeInfoPanels(data);
 
         // Build card info panels
         BuildCardInfoPanels(data);
@@ -388,6 +405,38 @@ public class MainMenuController : Singleton<MainMenuController>
             talentInfoPanels[i].BuildFromTalentPairingModel(data.talentPairings[i]);
         }
 
+    }
+    private void BuildAttributeInfoPanels(CharacterData data)
+    {
+        strengthText.text = data.strength.ToString();
+        if (data.strength > 10)
+        {
+            strengthText.text = TextLogic.ReturnColoredText(data.strength.ToString(),TextLogic.neutralYellow);
+        }
+       
+        intelligenceText.text = data.intelligence.ToString();
+        if (data.intelligence > 10)
+        {
+            intelligenceText.text = TextLogic.ReturnColoredText(data.intelligence.ToString(), TextLogic.neutralYellow);
+        }
+
+        dexterityText.text = data.dexterity.ToString();
+        if (data.dexterity > 10)
+        {
+            dexterityText.text = TextLogic.ReturnColoredText(data.dexterity.ToString(), TextLogic.neutralYellow);
+        }
+
+        witsText.text = data.wits.ToString();
+        if (data.wits > 10)
+        {
+            witsText.text = TextLogic.ReturnColoredText(data.wits.ToString(), TextLogic.neutralYellow);
+        }
+
+        constitutionText.text = data.constitution.ToString();
+        if (data.constitution > 10)
+        {
+            constitutionText.text = TextLogic.ReturnColoredText(data.constitution.ToString(), TextLogic.neutralYellow);
+        }
     }
     private void BuildRacialInfoPanel(CharacterData data)
     {

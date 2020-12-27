@@ -841,11 +841,11 @@ public class CardController : Singleton<CardController>
 
                     if(target != null)
                     {
-                        damageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(card.owner, target, matchingEffect.damageType, matchingEffect.baseDamageValue, card, matchingEffect);
+                        damageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(card.owner, target, matchingEffect.damageType, matchingEffect.baseDamageValue, card, matchingEffect, false);
                     }
                     else
                     {
-                        damageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(card.owner, null, matchingEffect.damageType, matchingEffect.baseDamageValue, card, matchingEffect);
+                        damageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(card.owner, null, matchingEffect.damageType, matchingEffect.baseDamageValue, card, matchingEffect, false);
                     }
 
                     cs.phrase = damageValue.ToString();
@@ -855,7 +855,7 @@ public class CardController : Singleton<CardController>
                 else if (cs.cardEffectType == CardEffectType.DamageAllEnemies)
                 {
                     int damageValue = 0;
-                    damageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(card.owner, null, matchingEffect.damageType, matchingEffect.baseDamageValue, card, matchingEffect);
+                    damageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(card.owner, null, matchingEffect.damageType, matchingEffect.baseDamageValue, card, matchingEffect, false);
                     cs.phrase = damageValue.ToString();
                 }
 
@@ -875,8 +875,9 @@ public class CardController : Singleton<CardController>
 
                     if(damageEffectMod != null)
                     {
+                        
                         int damageValue = 0;
-                        damageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(card.owner, null, damageEffectMod.damageType, damageEffectMod.baseDamage, card, matchingEffect);
+                        damageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(card.owner, null, damageEffectMod.damageType, damageEffectMod.baseDamage, card, matchingEffect, CombatLogic.Instance.RollForCritical(card.owner));
                         cs.phrase = damageValue.ToString();
                     }
                    
@@ -2196,13 +2197,31 @@ public class CardController : Singleton<CardController>
         // Gain Block Self
         if (cardEffect.cardEffectType == CardEffectType.GainBlockSelf)
         {
-            CharacterEntityController.Instance.GainBlock(owner, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, owner, null, cardEffect));
+            bool didCrit = CombatLogic.Instance.RollForCritical(owner);
+            CharacterEntityController.Instance.GainBlock(owner, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, owner, null, cardEffect, didCrit));
+
+            // Crit VFX
+            if (didCrit)
+            {
+                // Create critical text effect
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(owner.characterEntityView.WorldPosition, "CRITICAL!", TextLogic.neutralYellow));
+            }
         }
 
         // Gain Block Target
         else if (cardEffect.cardEffectType == CardEffectType.GainBlockTarget)
         {
-            CharacterEntityController.Instance.GainBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, target, null, cardEffect));
+            bool didCrit = CombatLogic.Instance.RollForCritical(owner);
+            CharacterEntityController.Instance.GainBlock(target, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, target, null, cardEffect, didCrit));
+            
+            // Crit VFX
+            if (didCrit)
+            {
+                // Create critical text effect
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(target.characterEntityView.WorldPosition, "CRITICAL!", TextLogic.neutralYellow));
+            }
         }       
 
         // Gain Block All Allies
@@ -2210,7 +2229,16 @@ public class CardController : Singleton<CardController>
         {
             foreach (CharacterEntityModel ally in CharacterEntityController.Instance.GetAllAlliesOfCharacter(owner))
             {
-                CharacterEntityController.Instance.GainBlock(ally, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, ally, null, cardEffect));
+                bool didCrit = CombatLogic.Instance.RollForCritical(owner);
+                CharacterEntityController.Instance.GainBlock(ally, CombatLogic.Instance.CalculateBlockGainedByEffect(cardEffect.blockGainValue, owner, ally, null, cardEffect, didCrit));
+
+                // Crit VFX
+                if (didCrit)
+                {
+                    // Create critical text effect
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateStatusEffect(ally.characterEntityView.WorldPosition, "CRITICAL!", TextLogic.neutralYellow));
+                }
             }            
         }
 
@@ -2282,11 +2310,15 @@ public class CardController : Singleton<CardController>
             {
                 baseDamage = cardEffect.baseDamageValue;
             }
+
+            // Roll for crit
+            bool didCrit = CombatLogic.Instance.RollForCritical(owner);
+
             // Calculate the end damage value
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, target, damageType, baseDamage, card, cardEffect);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, target, damageType, baseDamage, card, cardEffect, didCrit);
 
             // Start damage sequence
-            CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, card, damageType);
+            CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, card, damageType, false, didCrit);
 
         }
 
@@ -2358,12 +2390,14 @@ public class CardController : Singleton<CardController>
                 {
                     baseDamage = cardEffect.baseDamageValue;
                 }
+                // Roll for crit
+                bool didCrit = CombatLogic.Instance.RollForCritical(owner);
 
                 // Calculate the end damage value
-                int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, enemy, damageType, baseDamage, card, cardEffect);
+                int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, enemy, damageType, baseDamage, card, cardEffect, didCrit);
 
                 // Start damage sequence
-                CombatLogic.Instance.HandleDamage(finalDamageValue, owner, enemy, card, damageType, batchedEvent);
+                CombatLogic.Instance.HandleDamage(finalDamageValue, owner, enemy, card, damageType, batchedEvent, false, didCrit);
             }            
         }
 
@@ -2408,11 +2442,15 @@ public class CardController : Singleton<CardController>
                 baseDamage = cardEffect.baseDamageValue;
             }
 
+            // Roll for crit
+            bool didCrit = CombatLogic.Instance.RollForCritical(owner);
+
+
             // Calculate the end damage value
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, target, damageType, baseDamage, card, cardEffect);
+            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, target, damageType, baseDamage, card, cardEffect, didCrit);
 
             // Start damage sequence
-            CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, card, damageType);
+            CombatLogic.Instance.HandleDamage(finalDamageValue, owner, target, card, damageType, false, didCrit);
         }
 
         // Heal Self
@@ -2745,15 +2783,18 @@ public class CardController : Singleton<CardController>
                                 break;
                             }
 
+                            //Roll for crit
+                            bool didCrit = CombatLogic.Instance.RollForCritical(owner);
+
                             // Calculate damage
                             DamageType damageType = modEffect.damageType;
                             int baseDamage = modEffect.baseDamage;
 
                             // Calculate the end damage value
-                            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, enemy, damageType, baseDamage, card, cardEffect);
+                            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, enemy, damageType, baseDamage, card, cardEffect, didCrit);
 
                             // Start damage sequence
-                            CombatLogic.Instance.HandleDamage(finalDamageValue, owner, enemy, card, damageType, batchedEvent);
+                            CombatLogic.Instance.HandleDamage(finalDamageValue, owner, enemy, card, damageType, batchedEvent, false, didCrit);
                         }
 
 
@@ -2795,7 +2836,7 @@ public class CardController : Singleton<CardController>
             }
 
             string passiveName = TextLogic.SplitByCapitals(cardEffect.passivePairing.passiveData.ToString());
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(owner.pManager, passiveName, stacks, true, 0.5f, owner);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(owner.pManager, passiveName, stacks, true, 0.5f, owner.pManager);
         }
 
         // Apply passive to target
@@ -2817,7 +2858,7 @@ public class CardController : Singleton<CardController>
                 }
             }
             string passiveName = TextLogic.SplitByCapitals(cardEffect.passivePairing.passiveData.ToString());
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, passiveName, stacks, true, 0.5f, owner);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(target.pManager, passiveName, stacks, true, 0.5f, owner.pManager);
         }
 
         // Apply passive to all allies
@@ -2842,7 +2883,7 @@ public class CardController : Singleton<CardController>
             foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllAlliesOfCharacter(owner))
             {
                 string passiveName = TextLogic.SplitByCapitals(cardEffect.passivePairing.passiveData.ToString());
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemy.pManager, passiveName, stacks, true, 0f, owner);
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemy.pManager, passiveName, stacks, true, 0f, owner.pManager);
             }
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
@@ -2869,7 +2910,7 @@ public class CardController : Singleton<CardController>
             foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
             {
                 string passiveName = TextLogic.SplitByCapitals(cardEffect.passivePairing.passiveData.ToString());
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemy.pManager, passiveName, stacks, true, 0f, owner);                
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemy.pManager, passiveName, stacks, true, 0f, owner.pManager);                
             }
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
@@ -2897,7 +2938,7 @@ public class CardController : Singleton<CardController>
             foreach (CharacterEntityModel ally in CharacterEntityController.Instance.GetAllAlliesOfCharacter(owner))
             {
                 string passiveName = TextLogic.SplitByCapitals(cardEffect.passivePairing.passiveData.ToString());
-                PassiveController.Instance.ModifyPassiveOnCharacterEntity(ally.pManager, passiveName, stacks, true, 0f, owner);
+                PassiveController.Instance.ModifyPassiveOnCharacterEntity(ally.pManager, passiveName, stacks, true, 0f, owner.pManager);
                 VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
             }
         }
@@ -3020,7 +3061,7 @@ public class CardController : Singleton<CardController>
         {
             if(target.pManager.poisonedStacks > 0)
             {
-                PassiveController.Instance.ModifyPoisoned(owner, target.pManager, target.pManager.poisonedStacks, true);
+                PassiveController.Instance.ModifyPoisoned(owner.pManager, target.pManager, target.pManager.poisonedStacks, true);
             }
             
         }
@@ -3291,7 +3332,7 @@ public class CardController : Singleton<CardController>
         {
             string passiveName = TextLogic.SplitByCapitals(e.passivePairing.passiveData.ToString());
             VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(card.cardVM));
-            PassiveController.Instance.ModifyPassiveOnCharacterEntity(card.owner.pManager, passiveName, e.passivePairing.passiveStacks, true, 0.5f, card.owner);
+            PassiveController.Instance.ModifyPassiveOnCharacterEntity(card.owner.pManager, passiveName, e.passivePairing.passiveStacks, true, 0.5f, card.owner.pManager);
         }
 
         // Draw this
@@ -3892,7 +3933,7 @@ public class CardController : Singleton<CardController>
                 string passiveName = TextLogic.SplitByCapitals(choiceEffect.passivePairing.passiveData.ToString());
 
                 PassiveController.Instance.ModifyPassiveOnCharacterEntity
-                    (owner.pManager, passiveName, choiceEffect.passivePairing.passiveStacks, true, 0.5f, owner);
+                    (owner.pManager, passiveName, choiceEffect.passivePairing.passiveStacks, true, 0.5f, owner.pManager);
             }
 
             else if (choiceEffect.choiceEffect == OnCardInHandChoiceMadeEffectType.GetUpgradedBlessings)

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Magic Magnet +1
   m_EditorClassIdentifier: 
   cardName: Magic Magnet +1
-  cardDescription: 'On activation start, add an Arcane Bolt to your hand. '
+  cardDescription: On activation start, add an Arcane Bolt to your hand. Innate.
   cardSprite: {fileID: 21300000, guid: 36b328c515d7db440bea3b4734ef93fd, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -21,18 +21,18 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 9
   rarity: 1
-  affliction: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 0
   upgradeLevel: 1
   expend: 0
-  innate: 0
+  innate: 1
   fleeting: 0
   unplayable: 0
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -45,7 +45,15 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'card to your hand. '
+    phrase: "card to your hand. \n"
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Innate
+  - color: 0
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 2
@@ -76,10 +84,13 @@ MonoBehaviour:
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 1
+    useEachIndividualsStackCount: 1
     damageType: 0
     healthRestored: 0
     healthLost: 0
@@ -125,5 +136,11 @@ MonoBehaviour:
       projectileStartPosition: 0
       onCharacter: 1
     visualEventsOnFinish: []
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
-  keyWordModels: []
+  cardPassiveEffects: []
+  keyWordModels:
+  - kewWordType: 2
+    weaponRequirement: 0
+    passiveType: 0

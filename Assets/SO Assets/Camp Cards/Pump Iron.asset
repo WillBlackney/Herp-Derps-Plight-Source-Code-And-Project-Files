@@ -28,7 +28,7 @@ MonoBehaviour:
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Power '
+    phrase: 'Strength '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
     healingType: 0
     flatHealAmount: 0
     healAmountPercentage: 0
-    attributeChanged: 1
+    attributeChanged: 6
     attributeAmountGained: 1
     passivePairing:
       passiveData: 23

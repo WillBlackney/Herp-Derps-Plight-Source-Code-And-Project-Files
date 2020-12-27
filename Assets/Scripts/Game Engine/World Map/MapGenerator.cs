@@ -133,6 +133,7 @@ namespace MapSystem
         {
             var layer = config.layers[layerIndex];
             var nodesOnThisLayer = new List<Node>();
+            bool atleastOneRandom = false;
 
             // offset of this layer to make all the nodes centered:
             var offset = layer.nodesApartDistance * config.GridWidth / 2f;
@@ -140,12 +141,28 @@ namespace MapSystem
             for (var i = 0; i < config.GridWidth; i++)
             {
                 var nodeType = Random.Range(0f, 1f) < layer.randomizeNodes ? GetRandomNode(layer.possibleRandomNodeTypes) : layer.nodeType;
+                if (nodeType != layer.nodeType)
+                    atleastOneRandom = true;
+
                 var blueprintName = config.nodeBlueprints.Where(b => b.nodeType == nodeType).ToList().Random().name;
                 var node = new Node(nodeType, blueprintName, new Point(i, layerIndex))
                 {
                     position = new Vector2(-offset + i * layer.nodesApartDistance, GetDistanceToLayer(layerIndex))
                 };
                 nodesOnThisLayer.Add(node);
+            }
+
+            if(!atleastOneRandom && layer.guaranteeAtleastOneRandom)
+            {
+                Debug.LogWarning("Didn't hit a random node, rerolling for a random node");
+
+                // get a random node + type on the layer
+                Node randomNode = nodesOnThisLayer[RandomGenerator.NumberBetween(0, nodesOnThisLayer.Count - 1)];
+                EncounterType randomNodeType = GetRandomNode(layer.possibleRandomNodeTypes);
+
+                // change the node to new random type
+                var blueprintName = config.nodeBlueprints.Where(b => b.nodeType == randomNodeType).ToList().Random().name;
+                randomNode.RerollType(randomNodeType, blueprintName);
             }
 
             nodes.Add(nodesOnThisLayer);
@@ -159,7 +176,7 @@ namespace MapSystem
             bool bRet = false;
             foreach(Node node in layerNodes)
             {
-                if(node.nodeType == type)
+                if(node.NodeType == type)
                 {
                     bRet = true;
                     break;

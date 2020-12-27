@@ -10,77 +10,87 @@ public class CharacterTemplateSO : ScriptableObject
     // General Info
     [BoxGroup("General Info", centerLabel: true)]
     [LabelWidth(100)]
+    [GUIColor("Yellow")]
     public string myName;
     [BoxGroup("General Info")]
     [LabelWidth(100)]
+    [GUIColor("Yellow")]
     public string myClassName;
     [BoxGroup("General Info")]
     [LabelWidth(100)]
+    [GUIColor("Yellow")]
     public CharacterRace race;
     [BoxGroup("General Info")]
     [LabelWidth(100)]
+    [GUIColor("Yellow")]
     public AudioProfileType audioProfile;
 
-    // Core Stats
-    [BoxGroup("Core Stats", centerLabel: true)]
+    // Health Stats
+    [BoxGroup("Health Attributes", centerLabel: true)]
     [LabelWidth(100)]
+    [GUIColor("Red")]
     public int health;
-    [BoxGroup("Core Stats")]
+    [BoxGroup("Health Attributes")]
     [LabelWidth(100)]
+    [GUIColor("Red")]
     public int maxHealth;
-    [BoxGroup("Core Stats")]
+    [BoxGroup("Health Attributes")]
     [LabelWidth(100)]
-    public int power;
-    [BoxGroup("Core Stats")]
-    [LabelWidth(100)]
-    public int dexterity;
-    [BoxGroup("Core Stats")]
-    [LabelWidth(100)]
-    public int stamina;
-    [BoxGroup("Core Stats")]
-    [LabelWidth(100)]
-    public int draw;
-    [BoxGroup("Core Stats")]
-    [LabelWidth(100)]
-    public int initiative;
-
-
-    // Misc Stats
-    [BoxGroup("Misc Stats", centerLabel: true)]
-    [LabelWidth(100)]
+    [GUIColor("Red")]
     public int startingBlock;
 
-    // Resistances
-    [BoxGroup("Resistances", centerLabel: true)]
+    // Core Attributes
+    [BoxGroup("Core Attributes", centerLabel: true)]
     [LabelWidth(100)]
-    [Range(-100, 100)]
-    [GUIColor(0.8f, 0.4f, 0.4f)]
-    public int physicalResistance;
-    [BoxGroup("Resistances")]
+    [Range(0,20)]
+    [GUIColor("Green")]
+    public int strength = 10;
+    [BoxGroup("Core Attributes")]
     [LabelWidth(100)]
-    [Range(-100, 100)]
-    [GUIColor(1f, 0f, 0f)]
-    public int fireResistance;
-    [BoxGroup("Resistances")]
+    [Range(0, 20)]
+    [GUIColor("Green")]
+    public int intelligence = 10;
+    [BoxGroup("Core Attributes")]
     [LabelWidth(100)]
-    [Range(-100, 100)]
-    [GUIColor(0f, 1f, 1f)]
-    public int frostResistance;
-    [BoxGroup("Resistances")]
+    [Range(0, 20)]
+    [GUIColor("Green")]
+    public int dexterity = 10;
+    [BoxGroup("Core Attributes")]
     [LabelWidth(100)]
-    [Range(-100, 100)]
-    [GUIColor(1f, 0f, 1f)]
-    public int shadowResistance;
-    [BoxGroup("Resistances")]
+    [Range(0, 20)]
+    [GUIColor("Green")]
+    public int wits = 10;
+    [BoxGroup("Core Attributes")]
     [LabelWidth(100)]
-    [Range(-100, 100)]
-    [GUIColor(0.5f, 1f, 0.5f)]
-    public int poisonResistance;
-    [BoxGroup("Resistances")]
+    [Range(0, 20)]
+    [GUIColor("Green")]
+    public int constitution = 10;
+
+
+    [BoxGroup("Secondary Attributes", centerLabel: true)]
     [LabelWidth(100)]
-    [Range(-100, 100)]
-    [GUIColor(0.5f, 0.5f, 0.5f)]
-    public int airResistance;
+    [GUIColor("Blue")]
+    public int power = 0;
+    [BoxGroup("Secondary Attributes")]
+    [LabelWidth(100)]
+    [GUIColor("Blue")]
+    public int initiative;
+    [BoxGroup("Secondary Attributes")]
+    [LabelWidth(100)]
+    [GUIColor("Blue")]
+    public int stamina = 3;
+    [BoxGroup("Secondary Attributes")]
+    [LabelWidth(100)]
+    [GUIColor("Blue")]
+    public int draw = 4;
+    [BoxGroup("Secondary Attributes")]
+    [LabelWidth(100)]
+    [GUIColor("Blue")]
+    public int baseCrit = 0;
+    [BoxGroup("Secondary Attributes")]
+    [LabelWidth(100)]
+    [GUIColor("Blue")]
+    public int critModifier = 30;
 
     // Passive Traits
     [BoxGroup("Passive Data", centerLabel: true)]
@@ -98,4 +108,12 @@ public class CharacterTemplateSO : ScriptableObject
 
     [Header("Talent Properties")]
     public List<TalentPairingModel> talentPairings;
+    public int startingTalentPoints = 0;
+    public int startingAttributePoints = 0;
+
+    // GUI Colours for Odin
+    private Color Blue() { return Color.cyan; }
+    private Color Green() { return Color.green; }
+    private Color Yellow() { return Color.yellow; }
+    private Color Red() { return Color.red; }
 }

@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce54fe6d38fa1ac4d921d5b2652a68e3, type: 3}
-  m_Name: Gain 1 initiative.
+  m_Name: Lose 15 max health.
   m_EditorClassIdentifier: 
-  choiceDescription: Permanently gain 1 Initiative.
-  effect: 5
-  category: 1
+  choiceDescription: Lose 15 max health.
+  effect: 7
+  category: 2
   impactLevel: 2
-  maxHealthGainedOrLost: 0
+  maxHealthGainedOrLost: -15
   healthGainedOrLost: 0
   randomCardRarity: 0
   discoveryCardRarity: 0
   randomCardsUpgraded: 0
   randomCardsTransformed: 0
-  attributeModified: 5
-  attributeAmountModified: 1
+  attributeModified: 0
+  attributeAmountModified: 0
   possiblePassives: []
   afflicationsGained: 0
   goldGainedOrLost: 0

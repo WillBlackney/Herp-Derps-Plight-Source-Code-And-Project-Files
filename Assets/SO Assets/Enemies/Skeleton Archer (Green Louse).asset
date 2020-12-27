@@ -15,15 +15,20 @@ MonoBehaviour:
   enemyName: Skeleton Ranger
   enemyModelSize: 0
   audioProfile: 4
-  enableFlexibleMaxHealth: 1
-  maxHealthFlexAmount: 1
-  maxHealth: 13
-  initiative: 1
-  power: 0
-  dexterity: 0
   overrideStartingHealth: 0
   startingHealth: 14
+  enableFlexibleMaxHealth: 1
+  maxHealthFlexAmount: 2
+  maxHealth: 26
   startingBlock: 0
+  strength: 10
+  intelligence: 10
+  dexterity: 10
+  wits: 10
+  constitution: 10
+  initiative: 1
+  power: 0
+  baseCrit: 0
   physicalResistance: 0
   magicResistance: 0
   serializedPassiveManager:
@@ -54,7 +59,7 @@ MonoBehaviour:
     sharpenBladeStacks: 0
     consecrationStacks: 0
     growingStacks: 0
-    cautiousStacks: 5
+    cautiousStacks: 10
     infuriatedStacks: 0
     battleTranceStacks: 0
     balancedStanceStacks: 0
@@ -80,6 +85,7 @@ MonoBehaviour:
     stormShieldStacks: 0
     maliceStacks: 0
     reflexShotBonusDamageStacks: 0
+    unbreakableStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -141,7 +147,7 @@ MonoBehaviour:
       visualEventsOnFinish: []
       actionType: 0
       effectLoops: 1
-      baseDamage: 5
+      baseDamage: 10
       damageType: 0
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0

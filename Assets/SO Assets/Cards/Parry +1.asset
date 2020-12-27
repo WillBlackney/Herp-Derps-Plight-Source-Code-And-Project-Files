@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Parry +1
   m_EditorClassIdentifier: 
   cardName: Parry +1
-  cardDescription: Gain 6 Block. Draw 2 Cards.
+  cardDescription: Gain 12 Block. Draw 2 Cards.
   cardSprite: {fileID: 21300000, guid: 49d7732986467e142971b9d35c230cee, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -21,9 +21,6 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 2
   rarity: 1
-  affliction: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 0
   upgradeLevel: 1
   expend: 0
@@ -33,6 +30,9 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -86,7 +86,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 6
+    blockGainValue: 12
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0

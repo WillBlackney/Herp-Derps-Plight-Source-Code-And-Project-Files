@@ -10,10 +10,9 @@ public class StatusEffect : MonoBehaviour
     public TextMeshProUGUI statusText;
     public CanvasGroup myCg;
 
-    public void InitializeSetup(string statusName, Color textColor)
+    public void InitializeSetup(string statusName, string textColor)
     {
-        statusText.text = statusName;
-        statusText.color = textColor;
+        statusText.text = TextLogic.ReturnColoredText(statusName, textColor);
         PlayAnimation();
     }
     public void DestroyThis()

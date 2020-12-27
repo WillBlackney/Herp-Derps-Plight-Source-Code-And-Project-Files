@@ -219,6 +219,7 @@ public enum Passive
     Overload = 18,
     MagicMagnet = 60,
     Malice = 69,
+    Pierce = 70,
     Pistolero = 52,
     PhoenixForm = 19,
     PlantedFeet = 20,
@@ -264,7 +265,11 @@ public enum CoreAttribute
     Dexterity = 2,
     Stamina = 3,
     Draw = 4,
-    Initiative = 5,
+    Wits = 5,
+    Strength = 6,
+    Intelligence = 7,
+    Constitution = 8,
+
 }
 public enum KeyWordType
 {
@@ -276,6 +281,7 @@ public enum KeyWordType
     Expend = 1,   
     Fleeting = 3,
     Innate = 2,
+    Lethal = 14,
     LifeSteal = 12,
     Passive = 8,
     Unplayable = 4,

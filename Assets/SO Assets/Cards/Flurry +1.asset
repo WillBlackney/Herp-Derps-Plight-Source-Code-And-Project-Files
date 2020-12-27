@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Flurry +1
   m_EditorClassIdentifier: 
   cardName: Flurry +1
-  cardDescription: Whenever you play a Melee Attack card, deal 1 Physical damage
+  cardDescription: Whenever you play a Melee Attack card, deal 2 Physical damage
     to all enemies.
   cardSprite: {fileID: 21300000, guid: 46296c221018aa244bffbb490efbe2ad, type: 3}
   xEnergyCost: 0
@@ -22,9 +22,6 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 3
   rarity: 3
-  affliction: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 0
   upgradeLevel: 1
   expend: 0
@@ -34,6 +31,9 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '1 '
+    phrase: '2 '
   - color: 4
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -89,10 +89,13 @@ MonoBehaviour:
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
+    useEachIndividualsStackCount: 1
     damageType: 0
     healthRestored: 0
     healthLost: 0
@@ -102,7 +105,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 42
-      passiveStacks: 1
+      passiveStacks: 2
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
@@ -123,5 +126,8 @@ MonoBehaviour:
       projectileStartPosition: 0
       onCharacter: 0
     visualEventsOnFinish: []
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
+  cardPassiveEffects: []
   keyWordModels: []

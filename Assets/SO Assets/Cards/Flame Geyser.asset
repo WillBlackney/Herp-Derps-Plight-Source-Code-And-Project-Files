@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Flame Geyser
   m_EditorClassIdentifier: 
   cardName: Flame Geyser
-  cardDescription: "Deal 7 Magic damage. If you\u2019re holding a Burn, this costs
+  cardDescription: "Deal 14 Magic damage. If you\u2019re holding a Burn, this costs
     0 Energy."
   cardSprite: {fileID: 21300000, guid: c3d5789c6aaabb645a99b3a39a08983a, type: 3}
   xEnergyCost: 0
@@ -22,9 +22,6 @@ MonoBehaviour:
   targettingType: 3
   talentSchool: 6
   rarity: 1
-  affliction: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 1
   upgradeLevel: 0
   expend: 0
@@ -34,6 +31,9 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -100,14 +100,16 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 7
+    baseDamageValue: 14
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 1
+    useEachIndividualsStackCount: 1
     damageType: 2
     healthRestored: 0
     healthLost: 0
@@ -169,6 +171,7 @@ MonoBehaviour:
     - Burn
     - Burn +1
     cardCostsZero: 1
+  cardPassiveEffects: []
   keyWordModels:
   - kewWordType: 11
     weaponRequirement: 0

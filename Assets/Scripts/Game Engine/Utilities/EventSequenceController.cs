@@ -412,7 +412,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Increment world position + set next encounter
         JourneyManager.Instance.IncrementWorldMapPosition();
-        JourneyManager.Instance.SetCurrentEncounterType(mapNode.Node.nodeType);
+        JourneyManager.Instance.SetCurrentEncounterType(mapNode.Node.NodeType);
 
         // Destroy all characters and activation windows if the 
         // previous encounter was a combat event

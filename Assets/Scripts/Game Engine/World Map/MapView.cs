@@ -157,7 +157,7 @@ namespace MapSystem
 
             var backgroundObject = new GameObject("Background");
             backgroundObject.transform.SetParent(mapParent.transform);
-            var bossNode = MapNodes.FirstOrDefault(node => node.Node.nodeType == EncounterType.BossEnemy);
+            var bossNode = MapNodes.FirstOrDefault(node => node.Node.NodeType == EncounterType.BossEnemy);
             var span = m.DistanceBetweenFirstAndLastLayers();
             backgroundObject.transform.localPosition = new Vector3(bossNode.transform.localPosition.x, span / 2f, 0f);
             backgroundObject.transform.localRotation = Quaternion.identity;
@@ -200,7 +200,7 @@ namespace MapSystem
         {
             var mapNodeObject = Instantiate(nodePrefab, mapParent.transform);
             var mapNode = mapNodeObject.GetComponent<MapNode>();
-            var blueprint = GetBlueprint(node.blueprintName);
+            var blueprint = GetBlueprint(node.BlueprintName);
             mapNode.SetUp(node, blueprint);
             mapNode.transform.localPosition = node.position;
             return mapNode;
@@ -279,7 +279,7 @@ namespace MapSystem
         {
             var scrollNonUi = mapParent.GetComponent<ScrollNonUI>();
             var span = mapManager.CurrentMap.DistanceBetweenFirstAndLastLayers();
-            var bossNode = MapNodes.FirstOrDefault(node => node.Node.nodeType == EncounterType.BossEnemy);
+            var bossNode = MapNodes.FirstOrDefault(node => node.Node.NodeType == EncounterType.BossEnemy);
             Debug.Log("Map span in set orientation: " + span + " camera aspect: " + CameraManager.Instance.MainCamera.aspect);
 
             // setting first parent to be right in front of the camera first:

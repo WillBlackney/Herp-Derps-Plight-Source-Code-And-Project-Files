@@ -150,6 +150,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyEnrage(newClone, originalData.enrageStacks, false);
         }
+        if (originalData.pierceStacks != 0)
+        {
+            ModifyPierce(newClone, originalData.pierceStacks, false);
+        }
         if (originalData.unbreakableStacks != 0)
         {
             ModifyUnbreakable(newClone, originalData.unbreakableStacks, false);
@@ -473,6 +477,7 @@ public class PassiveController : Singleton<PassiveController>
         pManager.shockingTouchStacks = original.shockingTouchStacks;
         pManager.maliceStacks = original.maliceStacks;
         pManager.unbreakableStacks = original.unbreakableStacks;
+        pManager.pierceStacks = original.pierceStacks;
 
         pManager.runeStacks = original.runeStacks;
         pManager.barrierStacks = original.barrierStacks;
@@ -527,7 +532,7 @@ public class PassiveController : Singleton<PassiveController>
 
     // Apply Passive To Character Entities
     #region
-    public void ModifyPassiveOnCharacterEntity(PassiveManagerModel pManager, string originalData, int stacks, bool showVFX = true, float vfxDelay = 0f, CharacterEntityModel applier = null)
+    public void ModifyPassiveOnCharacterEntity(PassiveManagerModel pManager, string originalData, int stacks, bool showVFX = true, float vfxDelay = 0f, PassiveManagerModel applier = null)
     {
         Debug.Log("PassiveController.ModifyPassiveOnCharacterEntity() called...");
 
@@ -584,6 +589,10 @@ public class PassiveController : Singleton<PassiveController>
         else if (originalData == "Enrage")
         {
             ModifyEnrage(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Pierce")
+        {
+            ModifyPierce(pManager, stacks, showVFX, vfxDelay);
         }
         else if (originalData == "Unbreakable")
         {
@@ -811,7 +820,7 @@ public class PassiveController : Singleton<PassiveController>
         }
         else if (originalData == "Weakened")
         {
-            ModifyWeakened(pManager, stacks, applier.pManager, showVFX, vfxDelay);
+            ModifyWeakened(pManager, stacks, pManager, showVFX, vfxDelay);
         }
         else if (originalData == "Grit")
         {
@@ -4435,6 +4444,65 @@ public class PassiveController : Singleton<PassiveController>
 
 
     }
+    public void ModifyPierce(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyPierce() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Pierce");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.pierceStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Pierce");
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Pierce Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+
+
+    }
     public void ModifyHatefulAura(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
     {
         Debug.Log("PassiveController.ModifyHatefulAura() called...");
@@ -5227,7 +5295,7 @@ public class PassiveController : Singleton<PassiveController>
 
     // DoT Passives
     #region
-    public void ModifyPoisoned(CharacterEntityModel applier, PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    public void ModifyPoisoned(PassiveManagerModel applier, PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
     {
         Debug.Log("PassiveController.ModifyPoisoned() called...");
 
@@ -5245,9 +5313,9 @@ public class PassiveController : Singleton<PassiveController>
 
         // Add venomous bonus from applier
         if (applier != null &&
-            applier.pManager.venomousStacks > 0)
+            applier.venomousStacks > 0)
         {
-            stacks += applier.pManager.venomousStacks;
+            stacks += applier.venomousStacks;
         }
 
         // Check for rune

@@ -12,13 +12,21 @@ public class CharacterEntityModel
     public LivingState livingState;
     public ActivationPhase activationPhase = ActivationPhase.NotActivated;
 
-    [Header("Core Stats Properties")]
-    public int power;
+    [Header("Core Attrbutes")]
+    public int strength;
+    public int intelligence;
     public int dexterity;
-    public int energy;
+    public int wits;
+    public int constitution;
+
+    [Header("Secondary Attrbutes")]
+    public int power;
     public int stamina;
+    public int energy;
     public int initiative;
     public int draw;
+    public int baseCrit;
+    public int critModifier;
 
     [Header("Health + Block Properties")]
     public int health;
@@ -66,7 +74,12 @@ public class CharacterEntityModel
     [HideInInspector] public EnemyAction myNextAction;
     [HideInInspector] public List<EnemyAction> myPreviousActionLog = new List<EnemyAction>();
     [HideInInspector] public TargettingPathReadyState targettingPathReadyState;
-    
+
+    public int MaxHealthTotal
+    {
+        get { return (int)System.Math.Round(maxHealth * (constitution / 10f)); }
+    }
+
 }
 
 public enum TargettingPathReadyState

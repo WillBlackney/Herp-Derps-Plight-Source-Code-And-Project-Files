@@ -15,15 +15,19 @@ MonoBehaviour:
   enemyName: Orc King Mummy
   enemyModelSize: 3
   audioProfile: 3
-  enableFlexibleMaxHealth: 1
-  maxHealthFlexAmount: 5
-  maxHealth: 130
-  initiative: 1
-  power: 0
-  dexterity: 0
   overrideStartingHealth: 0
   startingHealth: 130
-  startingBlock: 8
+  enableFlexibleMaxHealth: 1
+  maxHealthFlexAmount: 10
+  maxHealth: 260
+  startingBlock: 16
+  strength: 10
+  intelligence: 10
+  dexterity: 10
+  wits: 10
+  initiative: 1
+  power: 0
+  baseCrit: 0
   physicalResistance: 0
   magicResistance: 0
   serializedPassiveManager:
@@ -80,6 +84,7 @@ MonoBehaviour:
     stormShieldStacks: 0
     maliceStacks: 0
     reflexShotBonusDamageStacks: 0
+    unbreakableStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -171,7 +176,7 @@ MonoBehaviour:
       visualEventsOnFinish: []
       actionType: 0
       effectLoops: 1
-      baseDamage: 20
+      baseDamage: 40
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -334,7 +339,7 @@ MonoBehaviour:
       uiFadeInSpeed: 0
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 11400000, guid: 2d4338dcb8cb3b042bb822f2c24a4d8e, type: 2}
-      passiveStacks: -1
+      passiveStacks: -3
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
@@ -351,7 +356,7 @@ MonoBehaviour:
       uiFadeInSpeed: 0
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 11400000, guid: 6d216e783d4ba3a49a8dd267aa727fd3, type: 2}
-      passiveStacks: -1
+      passiveStacks: -3
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0

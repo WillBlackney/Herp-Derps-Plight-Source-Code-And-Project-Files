@@ -21,8 +21,6 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 0
   rarity: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 1
   upgradeLevel: 0
   expend: 0
@@ -31,6 +29,10 @@ MonoBehaviour:
   unplayable: 1
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 3
     getPhraseFromCardValue: 0
@@ -60,11 +62,16 @@ MonoBehaviour:
   cardEventListeners:
   - cardEventListenerType: 3
     cardEventListenerFunction: 2
+    weaponRequirement: 0
     maxHealthGained: 0
     energyReductionAmount: 0
     passivePairing:
       passiveData: 2
       passiveStacks: 1
+    energyGainedOrLost: 0
+    certainCardNames: []
+    cardCostsZero: 0
+  cardPassiveEffects: []
   keyWordModels:
   - kewWordType: 8
     weaponRequirement: 0

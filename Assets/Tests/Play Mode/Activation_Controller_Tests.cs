@@ -36,13 +36,12 @@ namespace Tests
             characterData = new CharacterData
             {
                 myName = "Test Runner Name",
-                health = 30,
-                maxHealth = 30,
-                stamina = 30,
+                health = 100,
+                maxHealth = 100,
+                stamina = 3,
                 initiative = 3,
                 draw = 5,
-                dexterity = 0,
-                power = 0,
+                dexterity = 10,
                 deck = new List<CardData>(),
             };
                         

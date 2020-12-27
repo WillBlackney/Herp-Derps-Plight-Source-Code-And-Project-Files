@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Consecration +1
   m_EditorClassIdentifier: 
   cardName: Consecration +1
-  cardDescription: Whenever you play a Blessing card, deal 3 Magic damage to all
+  cardDescription: Whenever you play a Blessing card, deal 6 Magic damage to all
     enemies.
   cardSprite: {fileID: 21300000, guid: 555c9827eda9e504c93fdd817875b298, type: 3}
   xEnergyCost: 0
@@ -22,9 +22,6 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 10
   rarity: 2
-  affliction: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 0
   upgradeLevel: 1
   expend: 0
@@ -34,6 +31,9 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -50,7 +50,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '3 '
+    phrase: '6 '
   - color: 9
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -79,6 +79,7 @@ MonoBehaviour:
     rarityFilter: 0
     upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
@@ -88,10 +89,13 @@ MonoBehaviour:
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
+    useEachIndividualsStackCount: 1
     damageType: 0
     healthRestored: 0
     healthLost: 0
@@ -101,13 +105,16 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 4
-      passiveStacks: 3
+      passiveStacks: 6
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
     visualEventsOnStart: []
     visualEventsOnFinish: []
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
+  cardPassiveEffects: []
   keyWordModels:
   - kewWordType: 5
     weaponRequirement: 0

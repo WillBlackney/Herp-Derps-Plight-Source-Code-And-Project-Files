@@ -10,12 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce54fe6d38fa1ac4d921d5b2652a68e3, type: 3}
-  m_Name: Take 23 damage.
+  m_Name: Gain 1 Intelligence.
   m_EditorClassIdentifier: 
-  choiceDescription: Take 23 damage.
-  effect: 6
-  category: 2
-  impactLevel: 3
+  choiceDescription: Permanently gain 1 Intelligence.
+  effect: 5
+  category: 1
+  impactLevel: 2
   maxHealthGainedOrLost: 0
-  healthGainedOrLost: -23
+  healthGainedOrLost: 0
   randomCardRarity: 0
+  discoveryCardRarity: 0
+  randomCardsUpgraded: 0
+  randomCardsTransformed: 0
+  attributeModified: 7
+  attributeAmountModified: 1
+  possiblePassives: []
+  afflicationsGained: 0
+  goldGainedOrLost: 0

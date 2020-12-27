@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Super Nova +1
   m_EditorClassIdentifier: 
   cardName: Super Nova +1
-  cardDescription: Deal 15 Magic damage. Gain 5 Burning. Expend.
+  cardDescription: Deal 30 Magic damage. Gain 10 Burning. Expend.
   cardSprite: {fileID: 21300000, guid: f61a1440a7cfa354cb03d05f28a7d78b, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
@@ -21,9 +21,6 @@ MonoBehaviour:
   targettingType: 3
   talentSchool: 6
   rarity: 3
-  affliction: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 0
   upgradeLevel: 1
   expend: 1
@@ -33,6 +30,9 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '5 '
+    phrase: '10 '
   - color: 5
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -101,13 +101,16 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 15
+    baseDamageValue: 30
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
+    useEachIndividualsStackCount: 1
     damageType: 2
     healthRestored: 0
     healthLost: 0
@@ -153,6 +156,8 @@ MonoBehaviour:
       projectileStartPosition: 0
       onCharacter: 0
     visualEventsOnFinish: []
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   - weaponRequirement: 0
     cardEffectType: 2
     splitTargetEffect: 0
@@ -182,10 +187,13 @@ MonoBehaviour:
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
+    useEachIndividualsStackCount: 1
     damageType: 0
     healthRestored: 0
     healthLost: 0
@@ -195,13 +203,16 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 2
-      passiveStacks: 5
+      passiveStacks: 10
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
     visualEventsOnStart: []
     visualEventsOnFinish: []
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
+  cardPassiveEffects: []
   keyWordModels:
   - kewWordType: 1
     weaponRequirement: 0

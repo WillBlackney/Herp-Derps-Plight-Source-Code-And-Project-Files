@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tendon Slash
   m_EditorClassIdentifier: 
   cardName: Tendon Slash
-  cardDescription: 'Apply 3 Bleeding and 2 Weakened to target. '
+  cardDescription: 'Apply 6 Bleeding and 2 Weakened to target. '
   cardSprite: {fileID: 21300000, guid: f3260a0dcd6bf354c86e8494addabcc7, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -21,9 +21,6 @@ MonoBehaviour:
   targettingType: 3
   talentSchool: 3
   rarity: 1
-  affliction: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 1
   upgradeLevel: 0
   expend: 0
@@ -33,6 +30,9 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '3 '
+    phrase: '6 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -108,7 +108,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 58
-      passiveStacks: 3
+      passiveStacks: 6
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

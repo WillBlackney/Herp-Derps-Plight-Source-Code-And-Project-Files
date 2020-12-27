@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Slice And Dice +1
   m_EditorClassIdentifier: 
   cardName: Slice And Dice +1
-  cardDescription: 'Deal 9 Physical Damage.
+  cardDescription: 'Deal 18 Physical Damage.
 
     Cost 1 Energy less for each Melee
     Attack played this activation.'
@@ -24,9 +24,6 @@ MonoBehaviour:
   targettingType: 3
   talentSchool: 3
   rarity: 1
-  affliction: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 0
   upgradeLevel: 1
   expend: 0
@@ -36,6 +33,9 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -102,13 +102,16 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 9
+    baseDamageValue: 18
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
+    useEachIndividualsStackCount: 1
     damageType: 1
     healthRestored: 0
     healthLost: 0
@@ -199,13 +202,19 @@ MonoBehaviour:
       projectileStartPosition: 0
       onCharacter: 0
     visualEventsOnFinish: []
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   cardEventListeners:
   - cardEventListenerType: 4
     cardEventListenerFunction: 3
+    weaponRequirement: 0
     maxHealthGained: 0
     energyReductionAmount: 1
     passivePairing:
       passiveData: 0
       passiveStacks: 0
     energyGainedOrLost: 0
+    certainCardNames: []
+    cardCostsZero: 0
+  cardPassiveEffects: []
   keyWordModels: []

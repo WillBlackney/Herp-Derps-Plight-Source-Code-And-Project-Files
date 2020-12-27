@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -18,40 +18,60 @@ public class EnemyDataSO : ScriptableObject
     [LabelWidth(100)]
     public AudioProfileType audioProfile;
 
-    // Core Stats
-    [BoxGroup("Core Stats", centerLabel: true)]
-    [LabelWidth(100)]
+    // Health Stats
+    [BoxGroup("Health Attributes", centerLabel: true)]
+    [LabelWidth(150)]
+    public bool overrideStartingHealth;
+    [BoxGroup("Health Attributes")]
+    [LabelWidth(150)]
+    [ShowIf("ShowStartingHealth")]
+    public int startingHealth;    
+    [BoxGroup("Health Attributes")]
+    [LabelWidth(150)]
     public bool enableFlexibleMaxHealth;
-    [BoxGroup("Core Stats")]
-    [LabelWidth(100)]
+    [BoxGroup("Health Attributes")]
+    [LabelWidth(150)]
     [ShowIf("ShowMaxHealthFlexAmount")]
     public int maxHealthFlexAmount;
-    [BoxGroup("Core Stats")]
-    [LabelWidth(100)]
+    [BoxGroup("Health Attributes")]
+    [LabelWidth(150)]
     public int maxHealth;
-    [BoxGroup("Core Stats")]
-    [LabelWidth(100)]
-    public int initiative;
-    [BoxGroup("Core Stats")]
-    [LabelWidth(100)]
-    public int power;
-    [BoxGroup("Core Stats")]
-    [LabelWidth(100)]
-    public int dexterity;   
+    [BoxGroup("Health Attributes")]
+    [LabelWidth(150)]
+    public int startingBlock;
 
-    
+    // Core Stats
+    [BoxGroup("Core Attributes", centerLabel: true)]
+    [LabelWidth(100)]
+    public int strength = 10;
+    [BoxGroup("Core Attributes")]
+    [LabelWidth(100)]
+    public int intelligence = 10;
+    [BoxGroup("Core Attributes")]
+    [LabelWidth(100)]
+    public int dexterity = 10;
+    [BoxGroup("Core Attributes")]
+    [LabelWidth(100)]
+    public int wits = 10;
+    [BoxGroup("Core Attributes")]
+    [LabelWidth(100)]
+    public int constitution = 10;
+
+    // Core Stats
+    [BoxGroup("Secondary Attributes", centerLabel: true)]
+    [LabelWidth(100)]
+    public int initiative = 0;
+    [BoxGroup("Secondary Attributes")]
+    [LabelWidth(100)]
+    public int power = 0;
+    [BoxGroup("Secondary Attributes")]
+    [LabelWidth(100)]
+    public int baseCrit = 0;
+
+
 
     // Misc Stats
-    [BoxGroup("Misc Stats", centerLabel: true)]
-    [LabelWidth(100)]
-    public bool overrideStartingHealth;
-    [BoxGroup("Misc Stats")]
-    [LabelWidth(100)]
-    [ShowIf("ShowStartingHealth")]
-    public int startingHealth;
-    [BoxGroup("Misc Stats")]
-    [LabelWidth(100)]
-    public int startingBlock;
+   
 
     // Resistances
     [BoxGroup("Resistances", centerLabel: true)]
