@@ -26,7 +26,7 @@ namespace MapSystem
             Node = node;
             Blueprint = blueprint;
             sr.sprite = blueprint.sprite;
-            if (node.nodeType == EncounterType.BossEnemy) transform.localScale *= 1.5f;
+            if (node.NodeType == EncounterType.BossEnemy) transform.localScale *= 1.5f;
             initialScale = sr.transform.localScale.x;
             visitedCircle.color = MapView.Instance.visitedColor;
             visitedCircle.gameObject.SetActive(false);

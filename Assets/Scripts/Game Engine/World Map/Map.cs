@@ -20,7 +20,7 @@ namespace MapSystem
 
         public Node GetBossNode()
         {
-            return nodes.FirstOrDefault(n => n.nodeType == EncounterType.BossEnemy);
+            return nodes.FirstOrDefault(n => n.NodeType == EncounterType.BossEnemy);
         }
 
         public float DistanceBetweenFirstAndLastLayers()

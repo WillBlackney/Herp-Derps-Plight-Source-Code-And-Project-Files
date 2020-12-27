@@ -143,6 +143,12 @@ public class ActivationManager : Singleton<ActivationManager>
         // Move windows to start positions if combat has only just started
         if (CurrentTurn == 0)
         {   
+            // Hide activation windows
+            foreach(CharacterEntityModel character in ActivationOrder)
+            {
+                character.characterEntityView.myActivationWindow.Hide();
+            }
+
             // Wait for character move on screen animations to finish
             VisualEventManager.Instance.InsertTimeDelayInQueue(1.5f);
 
@@ -150,7 +156,17 @@ public class ActivationManager : Singleton<ActivationManager>
             VisualEventManager.Instance.CreateVisualEvent(() => DisplayCombatStartNotification(combatStartNotif), combatStartNotif);
 
             // Enable activation window visibility
-            VisualEventManager.Instance.CreateVisualEvent(() => SetActivationWindowsParentViewState(true));
+            VisualEventManager.Instance.CreateVisualEvent(() => 
+            {
+                SetActivationWindowsParentViewState(true);
+
+                // Show activation windows
+                foreach (CharacterEntityModel character in ActivationOrder)
+                {
+                    character.characterEntityView.myActivationWindow.Show();
+                }
+                
+            });
 
             // Play window move anims
             CharacterEntityModel[] characters = activationOrder.ToArray();

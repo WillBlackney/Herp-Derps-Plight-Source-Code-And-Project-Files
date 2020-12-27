@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Javelin Throw
   m_EditorClassIdentifier: 
   cardName: Javelin Throw
-  cardDescription: 'Deal 16 Physical Damage. Apply 6 Bleeding. '
+  cardDescription: 'Deal 15 Physical Damage. Apply 5 Bleeding. '
   cardSprite: {fileID: 21300000, guid: 2cbc1741395bc4046a9789bb22136edc, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -55,7 +55,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '6 '
+    phrase: '5 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -91,7 +91,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 16
+    baseDamageValue: 15
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
@@ -223,7 +223,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 58
-      passiveStacks: 6
+      passiveStacks: 5
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

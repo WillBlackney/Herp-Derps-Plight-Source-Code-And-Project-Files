@@ -219,6 +219,7 @@ public enum Passive
     Overload = 18,
     MagicMagnet = 60,
     Malice = 69,
+    Pierce = 70,
     Pistolero = 52,
     PhoenixForm = 19,
     PlantedFeet = 20,

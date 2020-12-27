@@ -481,7 +481,13 @@ public class CombatLogic : Singleton<CombatLogic>
         int blockAfter = victim.block;
         int healthAfter = victim.health;
 
-        // TO DO IN FUTURE: check for pierce here
+        // Check for pierce
+        if(attacker.pManager != null && 
+            attacker.pManager.pierceStacks > 0 &&
+            (enemyEffect != null || card != null))
+        {
+            ignoreBlock = true;
+        }
 
         // Check for no block
         if (victim.block == 0)

@@ -53,23 +53,23 @@ namespace MapSystem
 
             for(int i = 0; i < map.nodes.Count; i++)
             {
-                if(map.nodes[i].nodeType == EncounterType.BasicEnemy)
+                if(map.nodes[i].NodeType == EncounterType.BasicEnemy)
                 {
                     totalBasics++;
                 }
-                else if (map.nodes[i].nodeType == EncounterType.CampSite)
+                else if (map.nodes[i].NodeType == EncounterType.CampSite)
                 {
                     totalCamps++;
                 }
-                else if (map.nodes[i].nodeType == EncounterType.Shop)
+                else if (map.nodes[i].NodeType == EncounterType.Shop)
                 {
                     totalShops++;
                 }
-                else if (map.nodes[i].nodeType == EncounterType.EliteEnemy)
+                else if (map.nodes[i].NodeType == EncounterType.EliteEnemy)
                 {
                     totalElites++;
                 }
-                else if (map.nodes[i].nodeType == EncounterType.BossEnemy)
+                else if (map.nodes[i].NodeType == EncounterType.BossEnemy)
                 {
                     totalBosses++;
                 }

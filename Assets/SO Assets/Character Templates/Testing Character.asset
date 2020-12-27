@@ -85,6 +85,7 @@ MonoBehaviour:
     maliceStacks: 0
     reflexShotBonusDamageStacks: 0
     unbreakableStacks: 0
+    pierceStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 2
     guardianAuraStacks: 0
@@ -111,6 +112,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4f79bc1e5496cd24597d88d64237a3d2, type: 2}
   - {fileID: 11400000, guid: 55f13da4aaeb53e4386528cbde27d8c6, type: 2}
   - {fileID: 11400000, guid: 13a5cd3695f9f9f4ea8a1b35167a462d, type: 2}
+  - {fileID: 11400000, guid: d44d8007ea09dd74b80949bdaa0f893b, type: 2}
+  - {fileID: 11400000, guid: 2d330773c9bc1614db9f9e8765c181cc, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1

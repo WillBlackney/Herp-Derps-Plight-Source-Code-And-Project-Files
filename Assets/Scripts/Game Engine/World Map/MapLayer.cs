@@ -17,6 +17,9 @@ namespace MapSystem
         [Range(0f, 1f)] public float randomizeNodes;
 
         [ShowIf("ShowPossibleRandomNodeTypes")]
+        public bool guaranteeAtleastOneRandom;
+
+        [ShowIf("ShowPossibleRandomNodeTypes")]
         public EncounterType[] possibleRandomNodeTypes;
 
         public bool ShowPossibleRandomNodeTypes()

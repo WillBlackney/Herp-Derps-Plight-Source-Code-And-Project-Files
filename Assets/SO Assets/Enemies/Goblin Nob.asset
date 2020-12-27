@@ -86,6 +86,7 @@ MonoBehaviour:
     maliceStacks: 0
     reflexShotBonusDamageStacks: 0
     unbreakableStacks: 0
+    pierceStacks: 1
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -162,7 +163,7 @@ MonoBehaviour:
       visualEventsOnFinish: []
       actionType: 0
       effectLoops: 1
-      baseDamage: 14
+      baseDamage: 8
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
