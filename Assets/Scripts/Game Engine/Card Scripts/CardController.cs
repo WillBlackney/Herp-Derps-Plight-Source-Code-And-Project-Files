@@ -747,6 +747,21 @@ public class CardController : Singleton<CardController>
         // Shuffle the characters draw pile
         defender.drawPile.Shuffle();
     }
+    public void BuildCharacterEntityCombatDeckFromCardDataSoSet(CharacterEntityModel defender, List<CardDataSO> deckData)
+    {
+        Debug.Log("CardController.BuildDefenderDeckFromDeckData() called...");
+
+        // Convert each cardDataSO into a card object
+        foreach (CardDataSO cardData in deckData)
+        {
+            Card newCard = BuildCardFromCardDataSO(cardData, defender);
+            AddCardToDrawPile(defender, newCard);
+            //ConnectCombatCardWithCardInCharacterDataDeck(newCard, cardData);
+        }
+
+        // Shuffle the characters draw pile
+        defender.drawPile.Shuffle();
+    }
     public void SetUpCardViewModelAppearanceFromCard(CardViewModel cardVM, Card card)
     {
         // Set texts and images
@@ -2174,7 +2189,15 @@ public class CardController : Singleton<CardController>
         {
             Debug.Log("CardController.TriggerEffectFromCardCoroutine() cancelling: target is no longer valid");
             return;
-        }        
+        }
+
+        // Stop and return if effect requires a an empty summoning node    
+        if (cardEffect.cardEffectType == CardEffectType.SummonCharacter &&
+             LevelManager.Instance.GetNextAvailableDefenderNode() == null)
+        {
+            Debug.Log("CardController.TriggerEffectFromCardCoroutine() cancelling: no available summoning positions");
+            return;
+        }
 
         Debug.Log("CardController.PlayCardFromHand() called, effect: '" + cardEffect.cardEffectType.ToString() + 
         "' from card: '" + card.cardName);
@@ -2207,6 +2230,59 @@ public class CardController : Singleton<CardController>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 VisualEffectManager.Instance.CreateStatusEffect(owner.characterEntityView.WorldPosition, "CRITICAL!", TextLogic.neutralYellow));
             }
+        }
+
+        // Summon Character
+        else if (cardEffect.cardEffectType == CardEffectType.SummonCharacter)
+        {
+            // get next available node
+            LevelNode node = LevelManager.Instance.GetNextAvailableDefenderNode();
+
+            // Create character
+            CharacterEntityModel newSummon = CharacterEntityController.Instance.CreateSummonedPlayerCharacter(cardEffect.characterSummoned, node);
+
+            // Disable activation window until ready
+            CharacterEntityView view = newSummon.characterEntityView;
+            view.myActivationWindow.gameObject.SetActive(false);
+            ActivationManager.Instance.DisablePanelSlotAtIndex(ActivationManager.Instance.ActivationOrder.IndexOf(newSummon));
+
+            // Hide GUI
+            CharacterEntityController.Instance.FadeOutCharacterWorldCanvas(view, null, 0);
+
+            // Hide model
+            CharacterModelController.Instance.FadeOutCharacterModel(view.ucm, 0);
+            CharacterModelController.Instance.FadeOutCharacterShadow(view, 0);
+            view.blockMouseOver = true;
+
+            // Enable activation window
+            int windowIndex = ActivationManager.Instance.ActivationOrder.IndexOf(newSummon);
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+            {
+                view.myActivationWindow.gameObject.SetActive(true);
+                view.myActivationWindow.Show();
+                ActivationManager.Instance.EnablePanelSlotAtIndex(windowIndex);
+            }, QueuePosition.Back, 0f, 0.1f);
+
+            // Update all window slot positions + activation pointer arrow
+            CharacterEntityModel entityActivated = ActivationManager.Instance.EntityActivated;
+            VisualEventManager.Instance.CreateVisualEvent(() => ActivationManager.Instance.UpdateWindowPositions());
+            VisualEventManager.Instance.CreateVisualEvent(() => ActivationManager.Instance.MoveActivationArrowTowardsEntityWindow(entityActivated), QueuePosition.Back);
+
+            // Fade in model + UI
+            VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.FadeInCharacterWorldCanvas(view, null, cardEffect.uiFadeInSpeed));
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+            {
+                CharacterModelController.Instance.FadeInCharacterModel(view.ucm, cardEffect.modelFadeInSpeed);
+                CharacterModelController.Instance.FadeInCharacterShadow(view, 1f, () => view.blockMouseOver = false);
+            });
+
+            // Resolve visual events
+            foreach (AnimationEventData vEvent in cardEffect.summonedCreatureVisualEvents)
+            {
+                AnimationEventController.Instance.PlayAnimationEvent(vEvent, newSummon, newSummon);
+            }
+
+
         }
 
         // Gain Block Target
@@ -2976,7 +3052,7 @@ public class CardController : Singleton<CardController>
         // Remove Weakened from self and allies
         else if (cardEffect.cardEffectType == CardEffectType.RemoveWeakenedFromSelfAndAllies)
         {
-            foreach (CharacterEntityModel ally in CharacterEntityController.Instance.AllDefenders)
+            foreach (CharacterEntityModel ally in CharacterEntityController.Instance.GetAllAlliesOfCharacter(owner))
             {
                 PassiveController.Instance.ModifyWeakened(ally.pManager, -ally.pManager.weakenedStacks, null, false);
                 VisualEventManager.Instance.CreateVisualEvent(() =>
@@ -2987,7 +3063,7 @@ public class CardController : Singleton<CardController>
         // Remove Vulnerable from self and allies
         else if (cardEffect.cardEffectType == CardEffectType.RemoveVulnerableFromSelfAndAllies)
         {
-            foreach (CharacterEntityModel ally in CharacterEntityController.Instance.AllDefenders)
+            foreach (CharacterEntityModel ally in CharacterEntityController.Instance.GetAllAlliesOfCharacter(owner))
             {
                 PassiveController.Instance.ModifyVulnerable(ally.pManager, -ally.pManager.vulnerableStacks, false);
                 VisualEventManager.Instance.CreateVisualEvent(()=> 

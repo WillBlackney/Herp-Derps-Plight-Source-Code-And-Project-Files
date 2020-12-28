@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce54fe6d38fa1ac4d921d5b2652a68e3, type: 3}
-  m_Name: Gain 1 Draw.
+  m_Name: Gain 1 draw.
   m_EditorClassIdentifier: 
   choiceDescription: Permanently gain 1 Draw.
   effect: 5

@@ -903,6 +903,8 @@ public class EventSequenceController : Singleton<EventSequenceController>
             }
         }
 
+        // TO DO: tear down summoned character models + views
+
         // Destroy Activation windows
         ActivationManager.Instance.DestroyAllActivationWindows();
 
