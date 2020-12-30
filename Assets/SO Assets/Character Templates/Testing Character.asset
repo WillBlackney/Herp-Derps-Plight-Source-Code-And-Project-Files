@@ -98,8 +98,8 @@ MonoBehaviour:
     disarmedStacks: 0
     silencedStacks: 0
     sleepStacks: 0
-    poisonedStacks: 0
-    burningStacks: 0
+    poisonedStacks: 3
+    burningStacks: 3
     bleedingStacks: 0
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
@@ -109,7 +109,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c726ed68806ad6a48838ae52bcad6b3e, type: 2}
   - {fileID: 11400000, guid: c726ed68806ad6a48838ae52bcad6b3e, type: 2}
   - {fileID: 11400000, guid: c726ed68806ad6a48838ae52bcad6b3e, type: 2}
-  - {fileID: 11400000, guid: c726ed68806ad6a48838ae52bcad6b3e, type: 2}
+  - {fileID: 11400000, guid: 188b3c6d82a60d5458c4dd3fe81e3123, type: 2}
+  - {fileID: 11400000, guid: a22484253b514a64eb1eb6c5e8bfa6bb, type: 2}
+  - {fileID: 11400000, guid: 0b936854d056ac8459e1b9c5b1a3b5ec, type: 2}
+  - {fileID: 11400000, guid: c934510fdd52aff4db19c24ccf67dec6, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1

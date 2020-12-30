@@ -1363,8 +1363,16 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         // Encouraging Aura
         if (entity.pManager.encouragingAuraStacks > 0)
         {
+            CharacterEntityModel chosenAlly = null;
             CharacterEntityModel[] allAllies = GetAllAlliesOfCharacter(entity, false).ToArray();
-            CharacterEntityModel chosenAlly = allAllies[RandomGenerator.NumberBetween(0, allAllies.Length - 1)];
+            if(allAllies.Length == 0)
+            {
+                chosenAlly = entity;
+            }
+            else
+            {
+                chosenAlly = allAllies[RandomGenerator.NumberBetween(0, allAllies.Length - 1)];
+            }
 
             if (chosenAlly != null)
             {
@@ -1433,8 +1441,16 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         // Hateful Aura
         if (entity.pManager.hatefulAuraStacks > 0)
         {
+            CharacterEntityModel chosenAlly = null;
             CharacterEntityModel[] allAllies = GetAllAlliesOfCharacter(entity, false).ToArray();
-            CharacterEntityModel chosenAlly = allAllies[RandomGenerator.NumberBetween(0, allAllies.Length - 1)];
+            if (allAllies.Length == 0)
+            {
+                chosenAlly = entity;
+            }
+            else
+            {
+                chosenAlly = allAllies[RandomGenerator.NumberBetween(0, allAllies.Length - 1)];
+            }
 
             if (chosenAlly != null)
             {

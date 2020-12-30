@@ -2825,7 +2825,15 @@ public class CardController : Singleton<CardController>
                 // Add random blessing to hand
                 else if (modEffect.modifyEffect == ModifyAllCardsInHandEffectType.AddRandomBlessingToHand)
                 {
-                    CreateAndAddNewRandomBlessingsToCharacterHand(owner, 1, modEffect.upgradeFilter);
+                    for (int i = 0; i < totalCards; i++)
+                    {
+                        if (owner.livingState == LivingState.Alive &&
+                            CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive)
+                        {
+                            // Add card to hand
+                            CreateAndAddNewRandomBlessingsToCharacterHand(owner, 1, modEffect.upgradeFilter);
+                        }
+                    }
                 }              
             }
 

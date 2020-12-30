@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lightning Rod
   m_EditorClassIdentifier: 
   cardName: Lightning Rod
-  cardDescription: 'Deal 6 Magic damage to a target for each stack of Overload on
+  cardDescription: 'Deal 3 Magic damage to a target for each stack of Overload on
     self.
 
     Remove all Overload.'
@@ -44,7 +44,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '6 '
+    phrase: '3 '
   - color: 9
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -82,6 +82,11 @@ MonoBehaviour:
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -112,7 +117,7 @@ MonoBehaviour:
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 1
     drawBaseDamageFromBurningOnSelf: 0
-    baseDamageMultiplier: 6
+    baseDamageMultiplier: 3
     useEachIndividualsStackCount: 1
     damageType: 2
     healthRestored: 0
@@ -195,6 +200,11 @@ MonoBehaviour:
     cardEffectType: 20
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0

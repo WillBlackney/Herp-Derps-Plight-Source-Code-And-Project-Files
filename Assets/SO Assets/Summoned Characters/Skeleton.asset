@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myName: Skeleton
   audioProfile: 4
-  health: 20
-  maxHealth: 20
+  health: 12
+  maxHealth: 12
   startingBlock: 0
   strength: 10
   intelligence: 10
@@ -104,8 +104,10 @@ MonoBehaviour:
   deck:
   - {fileID: 11400000, guid: 288b40d7816b3334396e676e3d8500f4, type: 2}
   - {fileID: 11400000, guid: 288b40d7816b3334396e676e3d8500f4, type: 2}
-  - {fileID: 11400000, guid: 288b40d7816b3334396e676e3d8500f4, type: 2}
-  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: 186eaded8ce25764581f9036feb58e61, type: 2}
+  - {fileID: 11400000, guid: 186eaded8ce25764581f9036feb58e61, type: 2}
+  - {fileID: 11400000, guid: 3515e3b8e92620548af756ddbf500130, type: 2}
+  - {fileID: 11400000, guid: 3515e3b8e92620548af756ddbf500130, type: 2}
   modelParts:
   - Undead_Head_1
   - Undead_Face_2

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Forest Medicine
   m_EditorClassIdentifier: 
   cardName: Forest Medicine
-  cardDescription: 'Give a target 10 Block and 1 Rune.
+  cardDescription: 'Give 5 Block to self or ally. Removes Burning and Poisoned.
 
-    Expend. '
+    Expend.'
   cardSprite: {fileID: 21300000, guid: a5574473290357542b1c2f02b9e546cd, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -39,7 +39,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Give a target '
+    phrase: 'Give '
   - color: 2
     getPhraseFromCardValue: 1
     cardEffectType: 19
@@ -51,15 +51,21 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'and '
-  - color: 2
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: '1 '
+    phrase: 'to self or ally.
+
+      Removes '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: Rune
+    phrase: 'Burning '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'and '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Poisoned
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -79,6 +85,11 @@ MonoBehaviour:
     cardEffectType: 19
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -159,9 +170,14 @@ MonoBehaviour:
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
   - weaponRequirement: 0
-    cardEffectType: 3
+    cardEffectType: 35
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -192,7 +208,7 @@ MonoBehaviour:
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
-    baseDamageMultiplier: 0
+    baseDamageMultiplier: 1
     useEachIndividualsStackCount: 1
     damageType: 0
     healthRestored: 0
@@ -202,8 +218,81 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: 24
-      passiveStacks: 1
+      passiveData: 0
+      passiveStacks: 0
+    cardAdded: {fileID: 0}
+    copiesAdded: 0
+    blessingsGained: 0
+    visualEventsOnStart: []
+    visualEventsOnFinish:
+    - eventType: 6
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
+      particleEffect: 0
+      cameraShake: 0
+      movementAnimation: 0
+      soundEffect: 0
+      characterAnimation: 0
+      delayDuration: 0.5
+      projectileFired: 0
+      projectileStartPosition: 0
+      onCharacter: 0
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
+  - weaponRequirement: 0
+    cardEffectType: 16
+    splitTargetEffect: 0
+    splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
+    removeBlockFrom: 0
+    modifyDeckCardEffect: 0
+    permanentBlockGain: 0
+    permanentDamageGain: 0
+    chooseTargetRandomly: 0
+    passiveApplicationLoops: 0
+    validRandomTargetsType: 0
+    damageLoops: 0
+    drawSpecificType: 0
+    specificTypeDrawn: 0
+    discoveryLocation: 0
+    talentSchoolFilter: 0
+    rarityFilter: 0
+    upgradeFilter: 1
+    blessing: 0
+    sourceSpellsOnly: 0
+    onDiscoveryChoiceMadeEffects: []
+    onChooseCardInHandChoiceMadeEffects: []
+    modifyCardsInHandEffects: []
+    drawStacksFromOverload: 0
+    drawStacksFromWeakenedOnEnemies: 0
+    blockGainValue: 0
+    baseDamageValue: 0
+    drawBaseDamageFromCurrentBlock: 0
+    drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
+    drawBaseDamageFromMeleeAttacksPlayed: 0
+    drawBaseDamageFromOverloadOnSelf: 0
+    drawBaseDamageFromBurningOnSelf: 0
+    baseDamageMultiplier: 1
+    useEachIndividualsStackCount: 1
+    damageType: 0
+    healthRestored: 0
+    healthLost: 0
+    energyGained: 0
+    cardsDrawn: 0
+    extraDrawEffect: 0
+    cardEnergyReduction: 0
+    passivePairing:
+      passiveData: 0
+      passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

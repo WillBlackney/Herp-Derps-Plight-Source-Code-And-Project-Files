@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Storm Shield +1
   m_EditorClassIdentifier: 
   cardName: Storm Shield +1
-  cardDescription: Whenever you are attacked, deal 6 Magic damage back.
+  cardDescription: Whenever you are attacked, deal 5 Magic damage back.
   cardSprite: {fileID: 21300000, guid: ba29272667fc44549b00ac2368f61ac4, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 2
+  cardEnergyCost: 1
   cardType: 4
   targettingType: 0
   talentSchool: 13
@@ -41,7 +41,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '6 '
+    phrase: '5 '
   - color: 9
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -55,6 +55,11 @@ MonoBehaviour:
     cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -96,7 +101,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 68
-      passiveStacks: 6
+      passiveStacks: 5
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

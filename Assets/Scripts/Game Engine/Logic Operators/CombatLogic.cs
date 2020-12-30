@@ -827,6 +827,10 @@ public class CombatLogic : Singleton<CombatLogic>
         {
             CharacterEntityController.Instance.RemoveEnemyFromPersistency(entity);
         }
+        else if (entity.allegiance == Allegiance.Player && CharacterEntityController.Instance.AllSummonedDefenders.Contains(entity))
+        {
+            CharacterEntityController.Instance.RemoveSummonedDefenderFromPersistency(entity);
+        }
         else if (entity.allegiance == Allegiance.Player)
         {
             CharacterEntityController.Instance.RemoveDefenderFromPersistency(entity);

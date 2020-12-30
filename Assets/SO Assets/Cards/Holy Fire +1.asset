@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Holy Fire +1
   m_EditorClassIdentifier: 
   cardName: Holy Fire +1
-  cardDescription: Deal 14 Magic damage to an enemy, or grant 14 Block to self or
+  cardDescription: Deal 12 Magic damage to an enemy, or grant 12 Block to self or
     ally.
   cardSprite: {fileID: 21300000, guid: cffa94b4e3f8b84479409f2ddbf34dff, type: 3}
   xEnergyCost: 0
@@ -68,6 +68,11 @@ MonoBehaviour:
     cardEffectType: 6
     splitTargetEffect: 1
     splitTargetType: 3
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -90,7 +95,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 14
+    baseDamageValue: 12
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
@@ -181,6 +186,11 @@ MonoBehaviour:
     cardEffectType: 19
     splitTargetEffect: 1
     splitTargetType: 2
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -202,7 +212,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 14
+    blockGainValue: 12
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
