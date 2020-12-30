@@ -315,6 +315,10 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Destroy game scene
         HandleCombatSceneTearDown();
 
+        // Hide world map + roster
+        MapView.Instance.HideMainMapView();
+        CharacterRosterViewController.Instance.DisableMainView();
+
         // Hide Recruit character screen
         RecruitCharacterController.Instance.ResetAllViews();
 
