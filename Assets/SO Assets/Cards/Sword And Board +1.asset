@@ -52,14 +52,10 @@ MonoBehaviour:
     phrase: 'damage.
 
 '
-  - color: 3
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: Shielded
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: ': Gain '
+    phrase: 'Gain '
   - color: 2
     getPhraseFromCardValue: 1
     cardEffectType: 10
@@ -77,6 +73,11 @@ MonoBehaviour:
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -99,7 +100,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 12
+    baseDamageValue: 10
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
@@ -201,10 +202,15 @@ MonoBehaviour:
       onCharacter: 0
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
-  - weaponRequirement: 1
+  - weaponRequirement: 0
     cardEffectType: 10
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -226,7 +232,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 9
+    blockGainValue: 10
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
@@ -257,9 +263,6 @@ MonoBehaviour:
   cardEventListeners: []
   cardPassiveEffects: []
   keyWordModels:
-  - kewWordType: 7
-    weaponRequirement: 1
-    passiveType: 0
   - kewWordType: 9
     weaponRequirement: 0
     passiveType: 0

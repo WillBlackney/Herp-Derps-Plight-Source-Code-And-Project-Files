@@ -54,14 +54,10 @@ MonoBehaviour:
     phrase: 'to self or ally.
 
 '
-  - color: 3
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: Shielded
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: ': Draw '
+    phrase: 'Draw '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -75,6 +71,11 @@ MonoBehaviour:
     cardEffectType: 19
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -96,7 +97,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 8
+    blockGainValue: 7
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
@@ -139,10 +140,15 @@ MonoBehaviour:
     visualEventsOnFinish: []
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
-  - weaponRequirement: 1
+  - weaponRequirement: 0
     cardEffectType: 9
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -212,7 +218,4 @@ MonoBehaviour:
   keyWordModels:
   - kewWordType: 9
     weaponRequirement: 0
-    passiveType: 0
-  - kewWordType: 7
-    weaponRequirement: 1
     passiveType: 0
