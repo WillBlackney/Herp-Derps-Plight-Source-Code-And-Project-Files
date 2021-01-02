@@ -15,6 +15,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
     private List<CharacterEntityModel> allCharacters = new List<CharacterEntityModel>();
     private List<CharacterEntityModel> allDefenders = new List<CharacterEntityModel>();
     private List<CharacterEntityModel> allEnemies = new List<CharacterEntityModel>();
+    private List<CharacterEntityModel> allSummonedDefenders = new List<CharacterEntityModel>();
 
     [Header("UCM Colours")]
     public Color normalColour;
@@ -44,6 +45,17 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         private set
         {
             allDefenders = value;
+        }
+    }
+    public List<CharacterEntityModel> AllSummonedDefenders
+    {
+        get
+        {
+            return allSummonedDefenders;
+        }
+        private set
+        {
+            allSummonedDefenders = value;
         }
     }
     public List<CharacterEntityModel> AllEnemies
@@ -107,6 +119,46 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         AllCharacters.Clear();
         AllDefenders.Clear();
         AllEnemies.Clear();
+        AllSummonedDefenders.Clear();
+    }
+    public CharacterEntityModel CreateSummonedPlayerCharacter(SummonedCharacterDataSO data, LevelNode position)
+    {
+        // Create GO + View
+        CharacterEntityView vm = CreateCharacterEntityView().GetComponent<CharacterEntityView>();
+
+        // Face enemies
+        LevelManager.Instance.SetDirection(vm, FacingDirection.Right);
+
+        // Create data object
+        CharacterEntityModel model = new CharacterEntityModel();
+
+        // Connect model to view
+        model.characterEntityView = vm;
+        vm.character = model;
+
+        // Connect model to character data
+        //model.characterData = data;
+
+        // Set up positioning in world
+        LevelManager.Instance.PlaceEntityAtNode(model, position);
+
+        // Set type + allegiance
+        model.controller = Controller.Player;
+        model.allegiance = Allegiance.Player;
+
+        // Set up view
+        SetCharacterViewStartingState(model);
+
+        // Copy data from character data into new model
+        SetupSummonedCharacterFromCharacterData(model, data);
+
+        // Build deck
+        CardController.Instance.BuildCharacterEntityCombatDeckFromCardDataSoSet(model, data.deck);
+
+        // Add to persistency
+        AddSummonedDefenderToPersistency(model);
+
+        return model;
     }
     public CharacterEntityModel CreatePlayerCharacter(CharacterData data, LevelNode position)
     {       
@@ -185,6 +237,45 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         AddEnemyToPersistency(model);
 
         return model;
+    }
+    private void SetupSummonedCharacterFromCharacterData(CharacterEntityModel character, SummonedCharacterDataSO data)
+    {
+        // Set general info
+        character.myName = data.myName;
+        character.audioProfile = data.audioProfile;
+
+        // Setup Core Stats
+        ModifyStrength(character, data.strength);
+        ModifyIntelligence(character, data.intelligence);
+        ModifyWits(character, data.wits);
+        ModifyDexterity(character, data.dexterity);
+        ModifyConstitution(character, data.constitution);
+
+        // Setup Secondary Stats
+        ModifyStamina(character, data.stamina);
+        ModifyInitiative(character, data.initiative);
+        ModifyDraw(character, data.draw);
+        ModifyPower(character, data.power);
+        ModifyBaseCrit(character, data.baseCrit);
+        ModifyCritModifier(character, data.critModifier);
+
+        // Set up health
+        ModifyMaxHealth(character, data.maxHealth);
+        ModifyHealth(character, data.health);
+
+        // TO DO IN FUTURE: We need a better way to track character data's body 
+        // parts: strings references are not scaleable
+        // Build UCM
+        CharacterModelController.Instance.BuildModelFromStringReferences(character.characterEntityView.ucm, data.modelParts);
+
+        // Build activation window
+        ActivationManager.Instance.CreateActivationWindow(character);
+
+        // Set up passive traits
+        PassiveController.Instance.BuildCharacterEntityPassivesFromSummonedCharacterData(character, data);
+
+        // Set up items
+        //ItemController.Instance.RunItemSetupOnCharacterEntityFromItemManagerData(character, data.itemManager);
     }
     private void SetupCharacterFromCharacterData(CharacterEntityModel character, CharacterData data)
     {
@@ -291,11 +382,23 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         AllCharacters.Add(character);
         AllDefenders.Add(character);
     }
+    public void AddSummonedDefenderToPersistency(CharacterEntityModel character)
+    {
+        Debug.Log("CharacterEntityController.AddDefenderPersistency() called, adding: " + character.myName);
+        AllCharacters.Add(character);
+        AllSummonedDefenders.Add(character);
+    }
     public void RemoveDefenderFromPersistency(CharacterEntityModel character)
     {
         Debug.Log("CharacterEntityController.RemoveDefenderFromPersistency() called, removing: " + character.myName);
         AllCharacters.Remove(character);
         AllDefenders.Remove(character);
+    }
+    public void RemoveSummonedDefenderFromPersistency(CharacterEntityModel character)
+    {
+        Debug.Log("CharacterEntityController.RemoveDefenderFromPersistency() called, removing: " + character.myName);
+        AllCharacters.Remove(character);
+        AllSummonedDefenders.Remove(character);
     }
     public void AddEnemyToPersistency(CharacterEntityModel character)
     {
@@ -1260,8 +1363,16 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         // Encouraging Aura
         if (entity.pManager.encouragingAuraStacks > 0)
         {
+            CharacterEntityModel chosenAlly = null;
             CharacterEntityModel[] allAllies = GetAllAlliesOfCharacter(entity, false).ToArray();
-            CharacterEntityModel chosenAlly = allAllies[RandomGenerator.NumberBetween(0, allAllies.Length - 1)];
+            if(allAllies.Length == 0)
+            {
+                chosenAlly = entity;
+            }
+            else
+            {
+                chosenAlly = allAllies[RandomGenerator.NumberBetween(0, allAllies.Length - 1)];
+            }
 
             if (chosenAlly != null)
             {
@@ -1330,8 +1441,16 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         // Hateful Aura
         if (entity.pManager.hatefulAuraStacks > 0)
         {
+            CharacterEntityModel chosenAlly = null;
             CharacterEntityModel[] allAllies = GetAllAlliesOfCharacter(entity, false).ToArray();
-            CharacterEntityModel chosenAlly = allAllies[RandomGenerator.NumberBetween(0, allAllies.Length - 1)];
+            if (allAllies.Length == 0)
+            {
+                chosenAlly = entity;
+            }
+            else
+            {
+                chosenAlly = allAllies[RandomGenerator.NumberBetween(0, allAllies.Length - 1)];
+            }
 
             if (chosenAlly != null)
             {
@@ -1472,6 +1591,11 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         foreach (CharacterEntityModel defender in AllDefenders)
         {
             DisableDefenderTargetIndicator(defender.characterEntityView);
+        }
+
+        foreach (CharacterEntityModel summonedDefender in AllSummonedDefenders)
+        {
+            DisableDefenderTargetIndicator(summonedDefender.characterEntityView);
         }
 
         // Disable targeting path lines from all nodes
@@ -2635,7 +2759,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 FadeOutCharacterWorldCanvas(view, null, 0);
 
                 // Hide model
-                CharacterModelController.Instance.FadeOutCharacterModel(view.ucm, 1000);
+                CharacterModelController.Instance.FadeOutCharacterModel(view.ucm, 0);
                 CharacterModelController.Instance.FadeOutCharacterShadow(view, 0);
                 view.blockMouseOver = true;
 
@@ -2654,13 +2778,14 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
                     view.myActivationWindow.gameObject.SetActive(true);
+                    view.myActivationWindow.Show();
                     ActivationManager.Instance.EnablePanelSlotAtIndex(windowIndex);
                 }, QueuePosition.Back, 0f, 0.1f);
 
                 // Update all window slot positions + activation pointer arrow
                 CharacterEntityModel entityActivated = ActivationManager.Instance.EntityActivated;
                 VisualEventManager.Instance.CreateVisualEvent(() => ActivationManager.Instance.UpdateWindowPositions());
-                VisualEventManager.Instance.CreateVisualEvent(() => ActivationManager.Instance.MoveActivationArrowTowardsEntityWindow(entityActivated), QueuePosition.Back);
+                VisualEventManager.Instance.CreateVisualEvent(() => ActivationManager.Instance.MoveActivationArrowTowardsEntityWindow(entityActivated));
 
                 // Fade in model + UI
                 VisualEventManager.Instance.CreateVisualEvent(() => FadeInCharacterWorldCanvas(view, null, effect.uiFadeInSpeed));

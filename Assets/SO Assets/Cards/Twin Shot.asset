@@ -49,34 +49,17 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'damage.
-
-'
-  - color: 3
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: Ranged
-  - color: 1
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: ': Deal '
-  - color: 2
-    getPhraseFromCardValue: 1
-    cardEffectType: 6
-    phrase: 3
-  - color: 0
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: ' Physical '
-  - color: 1
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: damage again.
+    phrase: damage twice.
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -156,10 +139,15 @@ MonoBehaviour:
     visualEventsOnFinish: []
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
-  - weaponRequirement: 4
+  - weaponRequirement: 0
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -241,7 +229,4 @@ MonoBehaviour:
     visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
   cardPassiveEffects: []
-  keyWordModels:
-  - kewWordType: 7
-    weaponRequirement: 4
-    passiveType: 0
+  keyWordModels: []

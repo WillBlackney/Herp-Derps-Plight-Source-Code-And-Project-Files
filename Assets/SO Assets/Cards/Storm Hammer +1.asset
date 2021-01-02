@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Storm Hammer +1
   m_EditorClassIdentifier: 
   cardName: Storm Hammer +1
-  cardDescription: "Deal 24 Magic damage. \nGain 4 Overload."
+  cardDescription: "Deal 24 Magic damage. \nGain 8 Overload."
   cardSprite: {fileID: 21300000, guid: 38fa2a7e143d4ee4dbb946432cb79339, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -53,7 +53,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '4 '
+    phrase: '8 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -67,6 +67,11 @@ MonoBehaviour:
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -195,6 +200,11 @@ MonoBehaviour:
     cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -236,7 +246,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 18
-      passiveStacks: 4
+      passiveStacks: 8
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

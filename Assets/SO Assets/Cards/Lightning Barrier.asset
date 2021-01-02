@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Lightning Barrier
   cardDescription: 'Gain 10 Block.
 
-    Gain 1 Overload.'
+    Gain 2 Overload.'
   cardSprite: {fileID: 21300000, guid: fd34c1e15f795c14394b7050605b62b9, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -61,7 +61,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '1 '
+    phrase: '2 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -75,6 +75,11 @@ MonoBehaviour:
     cardEffectType: 10
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -143,6 +148,11 @@ MonoBehaviour:
     cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -184,7 +194,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 18
-      passiveStacks: 1
+      passiveStacks: 2
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

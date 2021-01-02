@@ -15,12 +15,12 @@ MonoBehaviour:
   cardName: Noble Sacrifice
   cardDescription: 'Lose 2 HP.
 
-    Give an ally 14 Block.'
+    Give an ally 12 Block.'
   cardSprite: {fileID: 21300000, guid: 4837db294b1e18e4caadf772c80a4a2b, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
   cardType: 1
-  targettingType: 1
+  targettingType: 2
   talentSchool: 5
   rarity: 1
   upgradeable: 1
@@ -49,7 +49,7 @@ MonoBehaviour:
     cardEffectType: 0
     phrase: ' health.
 
-      Give an ally '
+      Give '
   - color: 2
     getPhraseFromCardValue: 1
     cardEffectType: 19
@@ -57,16 +57,21 @@ MonoBehaviour:
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: ' Block'
+    phrase: ' Block '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: .
+    phrase: to self or ally.
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 14
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -165,6 +170,11 @@ MonoBehaviour:
     cardEffectType: 19
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -186,7 +196,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 14
+    blockGainValue: 12
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0

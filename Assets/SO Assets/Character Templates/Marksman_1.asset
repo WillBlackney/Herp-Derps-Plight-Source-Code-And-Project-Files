@@ -85,6 +85,7 @@ MonoBehaviour:
     maliceStacks: 0
     reflexShotBonusDamageStacks: 0
     unbreakableStacks: 0
+    pierceStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -103,11 +104,9 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
-  - {fileID: 11400000, guid: 7e0607c8c06c28a448dc2170bf23c76c, type: 2}
-  - {fileID: 11400000, guid: 7e0607c8c06c28a448dc2170bf23c76c, type: 2}
-  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
-  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: cee9929222ec7e34bbb1593ae7ad23b5, type: 2}
+  - {fileID: 11400000, guid: 4fa47f450ff530d47884c246293bb23a, type: 2}
+  - {fileID: 11400000, guid: e74b37417c31bac4f853047f01e6be3d, type: 2}
   - {fileID: 11400000, guid: e74b37417c31bac4f853047f01e6be3d, type: 2}
   - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
   - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}

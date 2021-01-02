@@ -315,6 +315,10 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Destroy game scene
         HandleCombatSceneTearDown();
 
+        // Hide world map + roster
+        MapView.Instance.HideMainMapView();
+        CharacterRosterViewController.Instance.DisableMainView();
+
         // Hide Recruit character screen
         RecruitCharacterController.Instance.ResetAllViews();
 
@@ -886,11 +890,27 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // wait until v queue count = 0
         yield return new WaitUntil(()=> VisualEventManager.Instance.EventQueue.Count == 0);
 
+        // stop combat music
         AudioManager.Instance.FadeOutAllCombatMusic(1f);
 
-        // fade out combat music
-        // play victory music sfx
-        // create victory pop up + firework particles + xp gain stuff (in future)
+        // Tear down summoned characters
+        foreach (CharacterEntityModel model in CharacterEntityController.Instance.AllSummonedDefenders)
+        {
+            // Smokey vanish effect
+            VisualEffectManager.Instance.CreateExpendEffect(model.characterEntityView.WorldPosition, 15, 0.2f, false);
+
+            // Fade out character model
+            CharacterModelController.Instance.FadeOutCharacterModel(model.characterEntityView.ucm, 1f);
+
+            // Fade out UI elements
+            CharacterEntityController.Instance.FadeOutCharacterWorldCanvas(model.characterEntityView, null);
+            CharacterEntityController.Instance.FadeOutCharacterUICanvas(model.characterEntityView, null);
+            if (model.characterEntityView.uiCanvasParent.activeSelf == true)
+            {
+                CharacterEntityController.Instance.FadeOutCharacterUICanvas(model.characterEntityView, null);
+            }
+        }
+
 
         // Disable any player characteer gui's if they're still active
         foreach (CharacterEntityModel model in CharacterEntityController.Instance.AllDefenders)

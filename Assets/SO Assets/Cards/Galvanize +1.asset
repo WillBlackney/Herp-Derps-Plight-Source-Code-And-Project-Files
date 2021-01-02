@@ -21,9 +21,6 @@ MonoBehaviour:
   targettingType: 2
   talentSchool: 13
   rarity: 1
-  affliction: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 0
   upgradeLevel: 1
   expend: 0
@@ -33,6 +30,9 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Power '
+    phrase: 'Temporary Power '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -73,6 +73,11 @@ MonoBehaviour:
     cardEffectType: 3
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -113,7 +118,7 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: 23
+      passiveData: 33
       passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
@@ -156,6 +161,11 @@ MonoBehaviour:
     cardEffectType: 20
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -210,7 +220,7 @@ MonoBehaviour:
   keyWordModels:
   - kewWordType: 8
     weaponRequirement: 0
-    passiveType: 23
+    passiveType: 33
   - kewWordType: 8
     weaponRequirement: 0
     passiveType: 18

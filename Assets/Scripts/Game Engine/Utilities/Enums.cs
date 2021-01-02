@@ -88,6 +88,7 @@ public enum CardEffectType
     RemoveAllBurningFromTarget = 35,
     RemoveWeakenedFromSelfAndAllies = 33,
     RemoveVulnerableFromSelfAndAllies = 34,
+    SummonCharacter = 37,
     TauntTarget = 17,
     TauntAllEnemies = 18,
 

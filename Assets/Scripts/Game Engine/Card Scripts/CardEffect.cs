@@ -19,6 +19,29 @@ public class CardEffect
     [LabelWidth(200)]
     public TargettingType splitTargetType;
 
+    [ShowIf("ShowSummonProperties")]
+    [LabelWidth(200)]
+    public SummonedCharacterDataSO characterSummoned;
+
+    [ShowIf("ShowSummonProperties")]
+    [LabelWidth(200)]
+    public int amountSummoned = 1;
+
+    [Header("Summoning Visual Event Properties")]
+    [ShowIf("ShowSummonProperties")]
+    [LabelWidth(150)]
+    public float modelFadeInSpeed;
+
+    [ShowIf("ShowSummonProperties")]
+    [LabelWidth(150)]
+    public float uiFadeInSpeed;
+
+    [ShowIf("ShowSummonProperties")]
+    [LabelWidth(150)]
+    public AnimationEventData[] summonedCreatureVisualEvents;
+
+   
+   
     [ShowIf("ShowRemoveBlockFrom")]
     [LabelWidth(200)]
     public RemoveBlockFrom removeBlockFrom;    
@@ -205,6 +228,10 @@ public class CardEffect
     [ShowIf("cardEffectType", CardEffectType.ModifyAllCardsInHand)]
     public List<AnimationEventData> visualEventsOnDamageLoopFinish;
 
+    public bool ShowSummonProperties()
+    {
+        return cardEffectType == CardEffectType.SummonCharacter;
+    }
     public bool ShowCardsAdded()
     {
         return cardEffectType == CardEffectType.AddCardsToDrawPile || cardEffectType == CardEffectType.AddCardsToHand;

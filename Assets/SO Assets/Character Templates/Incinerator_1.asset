@@ -85,6 +85,7 @@ MonoBehaviour:
     maliceStacks: 0
     reflexShotBonusDamageStacks: 0
     unbreakableStacks: 0
+    pierceStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -103,14 +104,12 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
-  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
-  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
-  - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
-  - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
   - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
   - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
   - {fileID: 11400000, guid: 2d1c8be97a7ccf8439b2b5a6feb04454, type: 2}
   - {fileID: 11400000, guid: 2d1c8be97a7ccf8439b2b5a6feb04454, type: 2}
+  - {fileID: 11400000, guid: 0163cb54b6898bf46aab115bc74d0350, type: 2}
+  - {fileID: 11400000, guid: 0163cb54b6898bf46aab115bc74d0350, type: 2}
   - {fileID: 11400000, guid: ad02d279b5d5514408afc73144555af3, type: 2}
   - {fileID: 11400000, guid: dc39bf1b28a8c70409116fe98c26c586, type: 2}
   modelParts:

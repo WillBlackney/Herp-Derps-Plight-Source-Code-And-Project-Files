@@ -54,14 +54,10 @@ MonoBehaviour:
     phrase: 'damage.
 
 '
-  - color: 3
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: Ranged
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: ': Apply '
+    phrase: Apply
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -75,6 +71,11 @@ MonoBehaviour:
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -184,10 +185,15 @@ MonoBehaviour:
       onCharacter: 0
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
-  - weaponRequirement: 4
+  - weaponRequirement: 0
     cardEffectType: 3
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -240,9 +246,6 @@ MonoBehaviour:
   cardEventListeners: []
   cardPassiveEffects: []
   keyWordModels:
-  - kewWordType: 7
-    weaponRequirement: 4
-    passiveType: 0
   - kewWordType: 8
     weaponRequirement: 0
     passiveType: 36
