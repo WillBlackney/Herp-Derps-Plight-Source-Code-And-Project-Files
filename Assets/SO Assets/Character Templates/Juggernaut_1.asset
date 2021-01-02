@@ -27,7 +27,7 @@ MonoBehaviour:
   power: 0
   initiative: 2
   stamina: 3
-  draw: 4
+  draw: 5
   baseCrit: 0
   critModifier: 30
   serializedPassiveManager:

@@ -19,7 +19,7 @@ MonoBehaviour:
   startingHealth: 18
   enableFlexibleMaxHealth: 1
   maxHealthFlexAmount: 4
-  maxHealth: 100
+  maxHealth: 130
   startingBlock: 0
   strength: 10
   intelligence: 10
@@ -163,7 +163,7 @@ MonoBehaviour:
       visualEventsOnFinish: []
       actionType: 0
       effectLoops: 1
-      baseDamage: 8
+      baseDamage: 10
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0

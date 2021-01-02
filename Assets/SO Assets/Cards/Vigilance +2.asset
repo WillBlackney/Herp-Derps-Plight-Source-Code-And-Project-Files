@@ -50,7 +50,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'to an ally.
+    phrase: 'to self or ally.
 
       This card can be '
   - color: 3
@@ -74,6 +74,11 @@ MonoBehaviour:
     cardEffectType: 19
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0

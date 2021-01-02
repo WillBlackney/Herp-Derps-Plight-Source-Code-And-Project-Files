@@ -392,6 +392,11 @@ public class ActivationManager : Singleton<ActivationManager>
 
             if(nextEntityToActivate != null)
             {
+                // Update all window slot positions + activation pointer arrow
+                VisualEventManager.Instance.CreateVisualEvent(() => UpdateWindowPositions());
+                VisualEventManager.Instance.CreateVisualEvent(() => MoveActivationArrowTowardsEntityWindow(nextEntityToActivate));
+
+                // Activate!
                 ActivateEntity(nextEntityToActivate);
             }
             else

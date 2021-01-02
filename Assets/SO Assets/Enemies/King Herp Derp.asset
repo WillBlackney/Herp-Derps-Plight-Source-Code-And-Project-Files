@@ -19,12 +19,13 @@ MonoBehaviour:
   startingHealth: 0
   enableFlexibleMaxHealth: 0
   maxHealthFlexAmount: 0
-  maxHealth: 280
+  maxHealth: 330
   startingBlock: 0
   strength: 10
   intelligence: 10
   dexterity: 10
   wits: 10
+  constitution: 10
   initiative: 3
   power: 0
   baseCrit: 0
@@ -85,6 +86,7 @@ MonoBehaviour:
     maliceStacks: 0
     reflexShotBonusDamageStacks: 0
     unbreakableStacks: 0
+    pierceStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0

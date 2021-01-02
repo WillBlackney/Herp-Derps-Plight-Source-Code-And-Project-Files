@@ -27,7 +27,7 @@ MonoBehaviour:
   power: 0
   initiative: 2
   stamina: 3
-  draw: 4
+  draw: 5
   baseCrit: 0
   critModifier: 30
   serializedPassiveManager:
@@ -119,7 +119,7 @@ MonoBehaviour:
   - Human_Right_Arm
   - Human_Right_Hand
   - Human_Right_Leg
-  - Monk_Chest_Wear
+  - Brown_Orange_Chest_Wear
   serializedItemManager:
     mainHandItem: {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}
     offHandItem: {fileID: 11400000, guid: a49466273aff6954d8e0303879ded604, type: 2}

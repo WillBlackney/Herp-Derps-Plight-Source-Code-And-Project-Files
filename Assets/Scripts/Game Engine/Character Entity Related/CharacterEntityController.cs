@@ -2785,7 +2785,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 // Update all window slot positions + activation pointer arrow
                 CharacterEntityModel entityActivated = ActivationManager.Instance.EntityActivated;
                 VisualEventManager.Instance.CreateVisualEvent(() => ActivationManager.Instance.UpdateWindowPositions());
-                VisualEventManager.Instance.CreateVisualEvent(() => ActivationManager.Instance.MoveActivationArrowTowardsEntityWindow(entityActivated), QueuePosition.Back);
+                VisualEventManager.Instance.CreateVisualEvent(() => ActivationManager.Instance.MoveActivationArrowTowardsEntityWindow(entityActivated));
 
                 // Fade in model + UI
                 VisualEventManager.Instance.CreateVisualEvent(() => FadeInCharacterWorldCanvas(view, null, effect.uiFadeInSpeed));
