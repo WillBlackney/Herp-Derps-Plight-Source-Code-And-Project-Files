@@ -22,10 +22,10 @@ MonoBehaviour:
   strength: 12
   intelligence: 10
   dexterity: 10
-  wits: 11
+  wits: 10
   constitution: 10
   power: 0
-  initiative: 2
+  initiative: 3
   stamina: 3
   draw: 5
   baseCrit: 0

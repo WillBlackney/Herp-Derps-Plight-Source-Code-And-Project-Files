@@ -100,16 +100,18 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.currentXP = original.currentXP;
         SetCharacterLevel(newCharacter, original.currentLevel);
         ModifyCharacterTalentPoints(newCharacter, original.talentPoints);
-        ModifyCharacterAttributePoints(newCharacter, original.attributePoints);
-
-        SetCharacterMaxHealth(newCharacter, original.maxHealth);
-        SetCharacterHealth(newCharacter, original.health);
+        ModifyCharacterAttributePoints(newCharacter, original.attributePoints);        
 
         newCharacter.strength = original.strength;
         newCharacter.intelligence = original.intelligence;
         newCharacter.wits = original.wits;
         newCharacter.dexterity = original.dexterity;
+        newCharacter.constitution = 0;
+        ModifyConstitution(newCharacter, original.constitution);
         newCharacter.constitution = original.constitution;
+
+        SetCharacterMaxHealth(newCharacter, original.maxHealth);
+        SetCharacterHealth(newCharacter, original.health);
 
         newCharacter.stamina = original.stamina;
         newCharacter.initiative = original.initiative;     
@@ -162,16 +164,17 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.currentMaxXP = GlobalSettings.Instance.startingMaxXp;
         ModifyCharacterTalentPoints(newCharacter, GlobalSettings.Instance.startingTalentPoints);
         ModifyCharacterAttributePoints(newCharacter, GlobalSettings.Instance.startingAttributePoints);
-        HandleGainXP(newCharacter, GlobalSettings.Instance.startingXpBonus);
-
-        SetCharacterMaxHealth(newCharacter, template.maxHealth);
-        SetCharacterHealth(newCharacter, template.health);
+        HandleGainXP(newCharacter, GlobalSettings.Instance.startingXpBonus);       
 
         newCharacter.strength = template.strength;
         newCharacter.intelligence = template.intelligence;
         newCharacter.wits = template.wits;
         newCharacter.dexterity = template.dexterity;
+       // ModifyConstitution(newCharacter, template.constitution);
         newCharacter.constitution = template.constitution;
+
+        SetCharacterMaxHealth(newCharacter, template.maxHealth);
+        SetCharacterHealth(newCharacter, newCharacter.MaxHealthTotal);
 
         newCharacter.stamina = template.stamina;
         newCharacter.initiative = template.initiative;
@@ -229,6 +232,9 @@ public class CharacterDataController : Singleton<CharacterDataController>
             data.myName + "', new health value = " + newValue.ToString());
 
         data.health = newValue;
+
+        if (data.health > data.MaxHealthTotal)
+            data.health = data.MaxHealthTotal;
     }
     public void SetCharacterMaxHealth(CharacterData data, int newValue)
     {
@@ -236,6 +242,9 @@ public class CharacterDataController : Singleton<CharacterDataController>
             data.myName + "', new max health value = " + newValue.ToString());
 
         data.maxHealth = newValue;
+
+        if (data.health > data.MaxHealthTotal)
+            data.health = data.MaxHealthTotal;
     }
     public void ModifyPower(CharacterData data, int gainedOrLost)
     {
@@ -261,9 +270,19 @@ public class CharacterDataController : Singleton<CharacterDataController>
     {
         data.dexterity += gainedOrLost;
     }
-    public void ModifyConstitution(CharacterData data, int gainedOrLost)
+    public void ModifyConstitution(CharacterData data, int gainedOrLost, bool updateCurrentHealth = true)
     {
+
+        int previousMaxHealth = data.MaxHealthTotal;
         data.constitution += gainedOrLost;
+
+        if (updateCurrentHealth)
+        {
+            int difference = data.MaxHealthTotal - previousMaxHealth;
+            SetCharacterHealth(data, data.health + difference);
+
+            Debug.LogWarning("Difference = " + difference.ToString());
+        }
     }
     public void ModifyStamina(CharacterData data, int gainedOrLost)
     {

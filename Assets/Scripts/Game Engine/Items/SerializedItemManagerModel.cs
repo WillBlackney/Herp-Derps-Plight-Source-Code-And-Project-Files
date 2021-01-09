@@ -8,4 +8,6 @@ public class SerializedItemManagerModel
 {
     public ItemDataSO mainHandItem;
     public ItemDataSO offHandItem;
+    public ItemDataSO trinketOne;
+    public ItemDataSO trinketTwo;
 }

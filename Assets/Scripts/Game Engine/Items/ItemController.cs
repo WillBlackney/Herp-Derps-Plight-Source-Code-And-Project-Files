@@ -27,10 +27,6 @@ public class ItemController : Singleton<ItemController>
         base.Awake();
         BuildItemLibrary();
     }
-    private void Start()
-    {
-        //BuildItemLibrary();
-    }
     private void BuildItemLibrary()
     {
         Debug.LogWarning("ItemController.BuildItemLibrary() called...");
@@ -52,6 +48,20 @@ public class ItemController : Singleton<ItemController>
         i.itemType = data.itemType;
         i.itemRarity = data.itemRarity;
         i.passivePairings = data.passivePairings;
+
+        // Custom string Data
+        i.customDescription = new List<CustomString>();
+        foreach (CustomString cs in data.customDescription)
+        {
+            i.customDescription.Add(ObjectCloner.CloneJSON(cs));
+        }
+
+        // Keyword Model Data
+        i.keyWordModels = new List<KeyWordModel>();
+        foreach (KeyWordModel kwdm in data.keyWordModels)
+        {
+            i.keyWordModels.Add(ObjectCloner.CloneJSON(kwdm));
+        }
 
         return i;
     }
@@ -150,6 +160,14 @@ public class ItemController : Singleton<ItemController>
             ApplyItemEffectsToCharacterEntity(character, character.iManager.offHandItem);
         }
 
+        if (character.iManager.trinketOne != null)
+        {
+            ApplyItemEffectsToCharacterEntity(character, character.iManager.trinketOne);
+        }
+        if (character.iManager.trinketTwo != null)
+        {
+            ApplyItemEffectsToCharacterEntity(character, character.iManager.trinketTwo);
+        }
     }    
     private void ApplyItemEffectsToCharacterEntity(CharacterEntityModel character, ItemData item)
     {
@@ -173,6 +191,8 @@ public class ItemController : Singleton<ItemController>
 
         clone.mainHandItem = originalData.mainHandItem;
         clone.offHandItem = originalData.offHandItem;
+        clone.trinketOne = originalData.trinketOne;
+        clone.trinketTwo = originalData.trinketTwo;
     }
     public void CopySerializedItemManagerIntoStandardItemManager(SerializedItemManagerModel data, ItemManagerModel iManager)
     {
@@ -185,7 +205,16 @@ public class ItemController : Singleton<ItemController>
         {
             iManager.offHandItem = GetItemDataByName(data.offHandItem.itemName);
         }
-      
+
+        if (data.trinketOne != null)
+        {
+            iManager.trinketOne = GetItemDataByName(data.trinketOne.itemName);
+        }
+        if (data.trinketTwo != null)
+        {
+            iManager.trinketTwo = GetItemDataByName(data.trinketTwo.itemName);
+        }
+
     }
     #endregion
 }

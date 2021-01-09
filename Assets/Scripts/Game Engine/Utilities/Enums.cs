@@ -301,6 +301,7 @@ public enum ItemType
     TwoHandMelee = 2,
     TwoHandRanged = 3,
     Shield = 4,
+    Trinket = 5,
 }
 #endregion
 

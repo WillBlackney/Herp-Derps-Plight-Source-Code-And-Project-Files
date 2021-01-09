@@ -19,13 +19,13 @@ MonoBehaviour:
   health: 100
   maxHealth: 100
   startingBlock: 0
-  strength: 20
+  strength: 10
   intelligence: 10
   dexterity: 10
   wits: 10
-  constitution: 12
-  power: 2
-  initiative: 12
+  constitution: 10
+  power: 0
+  initiative: 10
   stamina: 10
   draw: 10
   baseCrit: 50
@@ -44,7 +44,7 @@ MonoBehaviour:
     runeStacks: 0
     barrierStacks: 0
     enrageStacks: 0
-    shieldWallStacks: 4
+    shieldWallStacks: 0
     fanOfKnivesStacks: 0
     divineFavourStacks: 0
     phoenixFormStacks: 0
@@ -87,7 +87,7 @@ MonoBehaviour:
     unbreakableStacks: 0
     pierceStacks: 0
     encouragingAuraStacks: 0
-    shadowAuraStacks: 2
+    shadowAuraStacks: 0
     guardianAuraStacks: 0
     toxicAuraStacks: 0
     hatefulAuraStacks: 0
@@ -98,8 +98,8 @@ MonoBehaviour:
     disarmedStacks: 0
     silencedStacks: 0
     sleepStacks: 0
-    poisonedStacks: 3
-    burningStacks: 3
+    poisonedStacks: 0
+    burningStacks: 0
     bleedingStacks: 0
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
@@ -130,6 +130,8 @@ MonoBehaviour:
   serializedItemManager:
     mainHandItem: {fileID: 11400000, guid: b533dcedf0849e047ac0af6f1d50afe0, type: 2}
     offHandItem: {fileID: 0}
+    trinketOne: {fileID: 11400000, guid: cc47f8626a3f24449b0c5019433b7734, type: 2}
+    trinketTwo: {fileID: 0}
   talentPairings:
   - talentSchool: 2
     talentLevel: 2

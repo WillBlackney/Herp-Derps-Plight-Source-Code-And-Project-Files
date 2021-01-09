@@ -25,4 +25,11 @@ public class ItemDataSO : ScriptableObject
     [BoxGroup("Item Effects Info", true, true)]
     [LabelWidth(100)]
     public List<PassivePairingData> passivePairings;
+
+    [VerticalGroup("Description Info")]
+    [LabelWidth(200)]
+    public List<CustomString> customDescription;
+    [VerticalGroup("Description Info")]
+    [LabelWidth(200)]
+    public List<KeyWordModel> keyWordModels;
 }

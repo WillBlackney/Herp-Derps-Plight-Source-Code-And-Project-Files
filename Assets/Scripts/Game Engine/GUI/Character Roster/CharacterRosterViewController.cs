@@ -29,6 +29,11 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     [SerializeField] private TextMeshProUGUI currentXpText;
     [SerializeField] private TextMeshProUGUI maxXpText;
     [SerializeField] private TextMeshProUGUI currentLevelText;
+    [SerializeField] private RosterItemSlot mainHandItemSlot;
+    [SerializeField] private RosterItemSlot offHandItemSlot;
+    [SerializeField] private RosterItemSlot trinketOneSlot;
+    [SerializeField] private RosterItemSlot trinketTwoSlot;
+    [SerializeField] private RosterItemSlot[] allItemSlots;
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Character Deck Box Components")]
@@ -39,12 +44,14 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     [SerializeField] private CanvasGroup dragDropCg;
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
-    [Header("Card Inventory Box Components")]
-    [SerializeField] private GameObject cardInventoryVisualParent;
+    [Header("Inventory Box Components")]
+    [SerializeField] private GameObject inventoryVisualParent;
     [SerializeField] private InventoryCardSlot[] inventoryCardSlots;
     [SerializeField] private CanvasGroup previewCardInventoryCg;
     [SerializeField] private CardViewModel previewInventoryCardVM;
     [SerializeField] private Transform dragParent;
+    [SerializeField] private GameObject cardInventoryParent;
+    [SerializeField] private GameObject itemInventoryParent;
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Talent Box Components")]
@@ -135,7 +142,9 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
 
         // Enable default boxes
         ShowDeckBoxView();
-        ShowCardInventoryBoxView();
+        ShowInventoryBoxView();
+        ShowCardInventory();
+        HideItemInventory();
 
         // Set name header text
         topBarCharacterNameText.text = character.myName;
@@ -143,11 +152,16 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
         // Build Character Model box views
         BuildCharacterModelBoxFromData(currentCharacterViewing);
 
+        // Build item slots
+        BuildCharacterItemSlotsFromData(character);
+
         // Build deck box views
         BuildCharacterDeckBoxFromData(currentCharacterViewing);
 
         // Build card invetory box views
         BuildInventoryCardsBoxView();
+
+        
     }
     #endregion
 
@@ -231,13 +245,15 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
 
         // Enable deck related boxes
         ShowDeckBoxView();
-        ShowCardInventoryBoxView();
+        ShowInventoryBoxView();
+        ShowCardInventory();
+        HideItemInventory();
     }
     public void OnTalentPageButtonClicked()
     {
         // Hide unused boxes
         HideDeckBoxView();
-        HideCardInventoryBoxView();
+        HideInventoryBoxView();
 
         // Enable talent + attribute  boxes
         ShowTalentBoxView();
@@ -246,6 +262,22 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
         // Build all views
         BuildTalentBoxFromData(currentCharacterViewing);
         BuildAttributeBoxFromData(CurrentCharacterViewing);
+    }
+    public void OnItemInventoryButtonClicked()
+    {
+        if(itemInventoryParent.activeSelf == false)
+        {            
+            HideCardInventory();
+            ShowItemInventory();
+        }
+    }
+    public void OnCardInventoryButtonClicked()
+    {
+        if (cardInventoryParent.activeSelf == false)
+        {
+            HideItemInventory();
+            ShowCardInventory();            
+        }
     }
     public void OnMouseEnterDeckViewBox()
     {
@@ -271,6 +303,38 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
         currentXpText.text = data.currentXP.ToString();
         maxXpText.text = data.currentMaxXP.ToString();
         currentLevelText.text = "Level " + data.currentLevel.ToString();
+    }
+    private void BuildCharacterItemSlotsFromData(CharacterData data)
+    {
+        // Reset slots
+        foreach(RosterItemSlot ris in allItemSlots)
+        {
+            ris.itemDataRef = null;
+            ris.itemImage.gameObject.SetActive(false);
+        }
+
+        if(data.itemManager.mainHandItem != null)
+        {
+            BuildCharacterItemSlotFromItemData(mainHandItemSlot, data.itemManager.mainHandItem);
+        }
+        if (data.itemManager.offHandItem != null)
+        {
+            BuildCharacterItemSlotFromItemData(offHandItemSlot, data.itemManager.offHandItem);
+        }
+        if (data.itemManager.trinketOne != null)
+        {
+            BuildCharacterItemSlotFromItemData(trinketOneSlot, data.itemManager.trinketOne);
+        }
+        if (data.itemManager.trinketTwo != null)
+        {
+            BuildCharacterItemSlotFromItemData(trinketTwoSlot, data.itemManager.trinketTwo);
+        }
+    }
+    private void BuildCharacterItemSlotFromItemData(RosterItemSlot slot, ItemData itemData)
+    {
+        slot.itemImage.gameObject.SetActive(true);
+        slot.itemImage.sprite = itemData.itemSprite;
+        slot.itemDataRef = itemData;
     }
     #endregion
 
@@ -390,16 +454,32 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     }
     #endregion
 
-    // Card Inventory Logic
+    // Inventory Logic
     #region
 
-    private void ShowCardInventoryBoxView()
+    private void ShowInventoryBoxView()
     {
-        cardInventoryVisualParent.SetActive(true);
+        inventoryVisualParent.SetActive(true);
     }
-    private void HideCardInventoryBoxView()
+    private void HideInventoryBoxView()
     {
-        cardInventoryVisualParent.SetActive(false);
+        inventoryVisualParent.SetActive(false);
+    }
+    private void ShowCardInventory()
+    {
+        cardInventoryParent.SetActive(true);
+    }
+    private void HideCardInventory()
+    {
+        cardInventoryParent.SetActive(false);
+    }
+    private void ShowItemInventory()
+    {
+        itemInventoryParent.SetActive(true);
+    }
+    private void HideItemInventory()
+    {
+        itemInventoryParent.SetActive(false);
     }
     #endregion
 

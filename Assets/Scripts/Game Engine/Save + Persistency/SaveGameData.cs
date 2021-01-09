@@ -43,6 +43,7 @@ public class SaveGameData
 
     // Inventory data
     public List<CardData> cardInventory = new List<CardData>();
+    public List<ItemData> itemInventory = new List<ItemData>();
    
 }
 public enum SaveCheckPoint

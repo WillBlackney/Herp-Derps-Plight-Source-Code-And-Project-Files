@@ -317,7 +317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
-  config: {fileID: 11400000, guid: 4cb903d4821f49e409632bd5e1373333, type: 2}
+  config: {fileID: 11400000, guid: ee70a87c8b67f5b4da9de67617cc0cd0, type: 2}
   view: {fileID: 1038897691559836130}
   testingMode: 1
 --- !u!1 &1038897691343972005
@@ -355,6 +355,7 @@ MonoBehaviour:
   allMapConfigs:
   - {fileID: 11400000, guid: 19bf411c79e522b4b8e54f82b0140314, type: 2}
   - {fileID: 11400000, guid: 4cb903d4821f49e409632bd5e1373333, type: 2}
+  - {fileID: 11400000, guid: ee70a87c8b67f5b4da9de67617cc0cd0, type: 2}
   nodePrefab: {fileID: 6746199761131337685, guid: 621ccae6afb8e8949ba963674577578a,
     type: 3}
   orientationOffset: -4
@@ -510,6 +511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
+  enableCampSiteLimit: 1
   maximumCampSites: 6
   maximumShops: 6
   maximumElites: 8

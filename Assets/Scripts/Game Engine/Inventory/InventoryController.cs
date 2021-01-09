@@ -7,7 +7,8 @@ public class InventoryController : Singleton<InventoryController>
     // Properties + Component References
     #region
     [Header("Properties")]
-    private List<CardData> cardInventory = new List<CardData>();   
+    private List<CardData> cardInventory = new List<CardData>();
+    private List<ItemData> itemInventory = new List<ItemData>();
 
     #endregion
 
@@ -18,6 +19,11 @@ public class InventoryController : Singleton<InventoryController>
         get { return cardInventory; }
         private set { cardInventory = value; }
     }
+    public List<ItemData> ItemInventory
+    {
+        get { return itemInventory; }
+        private set { itemInventory = value; }
+    }
 
     #endregion
 
@@ -26,12 +32,15 @@ public class InventoryController : Singleton<InventoryController>
     public void SaveMyDataToSaveFile(SaveGameData saveData)
     {
         saveData.cardInventory = cardInventory;
+        saveData.itemInventory = itemInventory;
     }
     public void BuildMyDataFromSaveFile(SaveGameData saveData)
     {
         cardInventory = saveData.cardInventory;
+        itemInventory = saveData.itemInventory;
     }
     #endregion
+
     // Logic
     #region
     public void PopulateInventoryWithMockCardData(int randomCardsAdded = 10)
