@@ -19,3 +19,24 @@ MonoBehaviour:
   passivePairings:
   - passiveData: 26
     passiveStacks: 4
+  customDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'On activation start, gain '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '4 '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Block
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
+  keyWordModels:
+  - kewWordType: 9
+    weaponRequirement: 0
+    passiveType: 0

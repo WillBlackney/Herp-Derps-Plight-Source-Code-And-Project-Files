@@ -39,6 +39,7 @@ public class CardViewModel : MonoBehaviour
     public Image[] cardTypeImages;
     public GameObject cardTypeParent;
     public GameObject talentSchoolParent;
+    public GameObject energyParent;
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Glow Outline References")]

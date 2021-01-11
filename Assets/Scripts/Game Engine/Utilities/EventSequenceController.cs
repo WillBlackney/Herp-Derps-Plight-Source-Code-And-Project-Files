@@ -90,8 +90,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Enable GUI
         TopBarController.Instance.ShowTopBar();
 
-        // Populate inventory with mock card data
+        // Populate inventory with mock cards and items
         InventoryController.Instance.PopulateInventoryWithMockCardData(20);
+        InventoryController.Instance.PopulateInventoryWitMockItemData();
 
         // Play battle theme music
         AudioManager.Instance.AutoPlayBasicCombatMusic(1f);

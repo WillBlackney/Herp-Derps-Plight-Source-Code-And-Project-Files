@@ -15,6 +15,7 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     private CharacterData currentCharacterViewing;
     private bool mouseIsOverDeckView = false;
     [HideInInspector] public bool currentlyDraggingSomePanel;
+     public RosterItemSlot rosterSlotMousedOver = null;
 
     [Header("Core Components")]
     [SerializeField] private GameObject mainVisualParent;
@@ -47,8 +48,13 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     [Header("Inventory Box Components")]
     [SerializeField] private GameObject inventoryVisualParent;
     [SerializeField] private InventoryCardSlot[] inventoryCardSlots;
+    [SerializeField] private InventoryItemSlot[] inventoryItemSlots;
     [SerializeField] private CanvasGroup previewCardInventoryCg;
     [SerializeField] private CardViewModel previewInventoryCardVM;
+    [SerializeField] private CanvasGroup previewCardInventoryItemCg;
+    [SerializeField] private CardViewModel previewCardInventoryItemVM;
+    [SerializeField] private CanvasGroup previewCardRosterItemCg;
+    [SerializeField] private CardViewModel previewCardRosterItemVM;
     [SerializeField] private Transform dragParent;
     [SerializeField] private GameObject cardInventoryParent;
     [SerializeField] private GameObject itemInventoryParent;
@@ -87,6 +93,11 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     {
         get { return inventoryCardSlots; }
         private set { inventoryCardSlots = value; }
+    }
+    public InventoryItemSlot[] InventoryItemSlots
+    {
+        get { return inventoryItemSlots; }
+        private set { inventoryItemSlots = value; }
     }
     public Transform DragParent
     {
@@ -269,6 +280,7 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
         {            
             HideCardInventory();
             ShowItemInventory();
+            BuildInventoryItemSlots();
         }
     }
     public void OnCardInventoryButtonClicked()
@@ -304,7 +316,7 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
         maxXpText.text = data.currentMaxXP.ToString();
         currentLevelText.text = "Level " + data.currentLevel.ToString();
     }
-    private void BuildCharacterItemSlotsFromData(CharacterData data)
+    public void BuildCharacterItemSlotsFromData(CharacterData data)
     {
         // Reset slots
         foreach(RosterItemSlot ris in allItemSlots)
@@ -375,6 +387,30 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
         }
        
     }
+    public void BuildInventoryItemSlots()
+    {
+        // Disable + Reset all inventory slots
+        for (int i = 0; i < InventoryItemSlots.Length; i++)
+        {
+            // Reset position, reassign parent
+            InventoryItemSlots[i].myItem.transform.SetParent(InventoryItemSlots[i].transform);
+            InventoryItemSlots[i].myItem.transform.localPosition = Vector3.zero;
+
+            // Disable view and clear data
+            InventoryItemSlots[i].gameObject.SetActive(false);
+            InventoryItemSlots[i].myItem.itemDataRef = null;
+        }
+
+        // Rebuild all panels based on current card inventory
+        for (int i = 0; i < InventoryController.Instance.ItemInventory.Count; i++)
+        {
+            InventoryItemSlots[i].gameObject.SetActive(true);
+            InventoryItemSlots[i].myItem.gameObject.SetActive(true);
+            InventoryItemSlots[i].myItem.BuildInventoryItemFromItemData(InventoryController.Instance.ItemInventory[i]);
+            //InventoryItemSlots[i].myItem.myInventorySlot = InventoryItemSlots[i];
+        }
+
+    }
     public void BuildCharacterDeckBoxFromData(CharacterData data)
     {
         BuildCardInfoPanels(data.deck);
@@ -430,6 +466,20 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
         previewCardInventoryCg.alpha = 0;
         previewCardInventoryCg.DOFade(1f, 0.25f);
     }
+    public void BuildAndShowCardViewModelPopupFromInventoryItem(ItemData item)
+    {
+        previewCardInventoryItemCg.gameObject.SetActive(true);
+        CardController.Instance.BuildCardViewModelFromItemData(item, previewCardInventoryItemVM);
+        previewCardInventoryItemCg.alpha = 0;
+        previewCardInventoryItemCg.DOFade(1f, 0.25f);
+    }
+    public void BuildAndShowCardViewModelPopupFromRosterItem(ItemData item)
+    {
+        previewCardRosterItemCg.gameObject.SetActive(true);
+        CardController.Instance.BuildCardViewModelFromItemData(item, previewCardRosterItemVM);
+        previewCardRosterItemCg.alpha = 0;
+        previewCardRosterItemCg.DOFade(1f, 0.25f);
+    }
     public void HidePreviewCardInDeck()
     {
         previewCardCg.gameObject.SetActive(false);
@@ -439,6 +489,16 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     {
         previewCardInventoryCg.gameObject.SetActive(false);
         previewCardInventoryCg.alpha = 0;
+    }
+    public void HidePreviewItemCardInInventory()
+    {
+        previewCardInventoryItemCg.gameObject.SetActive(false);
+        previewCardInventoryItemCg.alpha = 0;
+    }
+    public void HidePreviewItemCardInRoster()
+    {
+        previewCardRosterItemCg.gameObject.SetActive(false);
+        previewCardRosterItemCg.alpha = 0;
     }
     public void StartDragDropAnimation()
     {
@@ -456,7 +516,39 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
 
     // Inventory Logic
     #region
+    public bool IsItemValidOnSlot(InventoryItem item, RosterItemSlot slot)
+    {
+        if(item == null)
+        {
+            Debug.LogWarning("ITEM IS NULL!!!");
+            return false;
+        }
 
+        if (slot == null)
+        {
+            Debug.LogWarning("SLOT IS NULL!!!");
+            return false;
+        }
+
+        bool bRet = false;
+        ItemType itemType = item.itemDataRef.itemType;
+
+        if (itemType == ItemType.Trinket && (slot.slotType == RosterSlotType.TrinketOne || slot.slotType == RosterSlotType.TrinketTwo))
+            bRet = true;
+        else if (itemType == ItemType.OneHandMelee && (slot.slotType == RosterSlotType.MainHand || slot.slotType == RosterSlotType.OffHand))
+            bRet = true;
+        else if (itemType == ItemType.Shield && slot.slotType == RosterSlotType.OffHand)
+            bRet = true;
+        else if (itemType == ItemType.TwoHandMelee && slot.slotType == RosterSlotType.MainHand)
+            bRet = true;
+        else if (itemType == ItemType.TwoHandRanged && slot.slotType == RosterSlotType.MainHand)
+            bRet = true;
+
+        Debug.LogWarning("IsItemValidOnSlot() returning " + bRet.ToString());
+
+        return bRet;
+            
+    }
     private void ShowInventoryBoxView()
     {
         inventoryVisualParent.SetActive(true);

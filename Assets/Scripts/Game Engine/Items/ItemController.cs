@@ -65,6 +65,31 @@ public class ItemController : Singleton<ItemController>
 
         return i;
     }
+    public ItemData CloneItem(ItemData data)
+    {
+        ItemData i = new ItemData();
+        i.itemSprite = data.itemSprite;
+        i.itemName = data.itemName;
+        i.itemType = data.itemType;
+        i.itemRarity = data.itemRarity;
+        i.passivePairings = data.passivePairings;
+
+        // Custom string Data
+        i.customDescription = new List<CustomString>();
+        foreach (CustomString cs in data.customDescription)
+        {
+            i.customDescription.Add(ObjectCloner.CloneJSON(cs));
+        }
+
+        // Keyword Model Data
+        i.keyWordModels = new List<KeyWordModel>();
+        foreach (KeyWordModel kwdm in data.keyWordModels)
+        {
+            i.keyWordModels.Add(ObjectCloner.CloneJSON(kwdm));
+        }
+
+        return i;
+    }
     public ItemData GetItemDataByName(string name)
     {
         ItemData itemReturned = null;
@@ -215,6 +240,73 @@ public class ItemController : Singleton<ItemController>
             iManager.trinketTwo = GetItemDataByName(data.trinketTwo.itemName);
         }
 
+    }
+    public void HandleGiveItemToCharacterFromInventory(CharacterData character, ItemData newItem, RosterItemSlot slot)
+    {
+        Debug.LogWarning("ItemController.HandleGiveItemToCharacterFromInventory() called, character = " +
+            character.myName + ", item = " + newItem.itemName + ", slot = " + slot.slotType.ToString());
+
+        ItemData previousItem = slot.itemDataRef;
+
+
+        // remove new item from inventory
+        InventoryController.Instance.RemoveItemFromInventory(newItem);
+
+        if (previousItem != null)
+        {
+            Debug.LogWarning("Item "+ previousItem.itemName + " already in slot: " + slot.slotType.ToString() + ", returning it to inventory...");
+            InventoryController.Instance.AddItemToInventory(previousItem);
+
+            // check 2h logic
+            if(newItem.itemType == ItemType.TwoHandMelee || newItem.itemType == ItemType.TwoHandRanged)
+            {
+                ItemData offhandItem = character.itemManager.offHandItem;
+                if(offhandItem != null)
+                {
+                    InventoryController.Instance.AddItemToInventory(offhandItem);
+                    character.itemManager.offHandItem = null;
+
+                }
+            }
+        }
+
+        // 2H items
+        if(newItem.itemType == ItemType.TwoHandMelee || newItem.itemType == ItemType.TwoHandMelee)
+        {
+            character.itemManager.mainHandItem = newItem;
+        }
+
+        // 1h melee items
+        if (newItem.itemType == ItemType.OneHandMelee)
+        {
+            if(slot.slotType == RosterSlotType.MainHand)
+                character.itemManager.mainHandItem = newItem;
+
+            if (slot.slotType == RosterSlotType.OffHand)
+                character.itemManager.offHandItem = newItem;
+        }
+
+        // shields
+        if (newItem.itemType == ItemType.Shield)
+        {
+            character.itemManager.offHandItem = newItem;
+        }
+
+        // trinkets
+        if (newItem.itemType == ItemType.Trinket)
+        {
+            if(slot.slotType == RosterSlotType.TrinketOne)
+                character.itemManager.trinketOne = newItem;
+
+            if (slot.slotType == RosterSlotType.TrinketTwo)
+                character.itemManager.trinketTwo = newItem;
+        }
+
+
+        // check for previous item in slot /  if an item is also being removed
+        // if there is one, return it to inventory, remove bonuses of item?
+
+        // apply item to character
     }
     #endregion
 }

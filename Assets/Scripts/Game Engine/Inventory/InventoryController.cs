@@ -61,6 +61,26 @@ public class InventoryController : Singleton<InventoryController>
     {
         CardInventory.Remove(card);
     }
+    public void AddItemToInventory(ItemData item, bool cloneItem = true)
+    {
+        if (cloneItem)
+            ItemInventory.Add(ItemController.Instance.CloneItem(item));
+
+        else
+            ItemInventory.Add(item);
+    }
+    public void RemoveItemFromInventory(ItemData item)
+    {
+        ItemInventory.Remove(item);
+    }
+    public void PopulateInventoryWitMockItemData(int randomItems = 20)
+    {
+        for (int i = 0; i < randomItems; i++)
+        {
+            ItemData randomItem = ItemController.Instance.AllItems[RandomGenerator.NumberBetween(0, ItemController.Instance.AllItems.Length - 1)];
+            AddItemToInventory(randomItem);
+        }
+    }
     #endregion
 
 

@@ -2456,6 +2456,7 @@ MonoBehaviour:
   - {fileID: 3115553368541553505}
   cardTypeParent: {fileID: 6089532835483068177}
   talentSchoolParent: {fileID: 5268349065512352914}
+  energyParent: {fileID: 4044816621416729156}
   glowAnimator: {fileID: 1958240855201226750}
   talentRenderers:
   - {fileID: 5749229534053445422}

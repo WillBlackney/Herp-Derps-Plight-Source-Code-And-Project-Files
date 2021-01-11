@@ -797,6 +797,24 @@ public class CardController : Singleton<CardController>
         ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(card.rarity));
         SetCardViewModelCardTypeImage(cardVM, SpriteLibrary.Instance.GetCardTypeImageFromTypeEnumData(card.cardType));
     }
+    public void BuildCardViewModelFromItemData(ItemData item, CardViewModel cardVM)
+    {
+        Debug.Log("CardController.BuildCardViewModelFromCardData() called...");
+
+        // Set texts and images
+        SetCardViewModelNameText(cardVM, item.itemName, false);
+        //AutoUpdateCardDescription(item);
+        SetCardViewModelDescriptionText(cardVM, TextLogic.ConvertCustomStringListToString(item.customDescription));
+       // SetCardViewModelEnergyText(null, cardVM, item.cardBaseEnergyCost.ToString());
+        SetCardViewModelGraphicImage(cardVM, item.itemSprite);
+        //SetCardViewModelTalentSchoolImage(cardVM, SpriteLibrary.Instance.GetTalentSchoolSpriteFromEnumData(item.talentSchool));
+        //ApplyCardViewModelTalentColoring(cardVM, ColorLibrary.Instance.GetTalentColor(item.talentSchool));
+        ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(item.itemRarity));
+        cardVM.cardTypeParent.SetActive(false);
+        cardVM.talentSchoolParent.SetActive(false);
+        cardVM.energyParent.SetActive(false);
+
+    }
     private void ConnectCombatCardWithCardInCharacterDataDeck(Card card, CardData deckDataCard)
     {
         card.myCharacterDeckCard = deckDataCard;

@@ -123,7 +123,8 @@ public class CardInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     }
     #endregion
 
-    // Drag Listeners
+    // Drag Logic
+    #region
     public void OnDrag(PointerEventData eventData)
     {
        if(location == CardPanelLocation.CharacterRosterScreenCardInventory)
@@ -167,7 +168,6 @@ public class CardInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         }
     }
-
     public void OnEndDrag(PointerEventData eventData)
     {
         if(location != CardPanelLocation.CharacterRosterScreenCardInventory)
@@ -187,11 +187,6 @@ public class CardInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         // Was the drag succesful?
         if (DragSuccessful())
         {
-            // to do: on drag success
-            // add card to character deck
-            // hide draging card and slot
-            // create new card panel slot in deck view 
-
             // Card added SFX
             AudioManager.Instance.PlaySound(Sound.GUI_Chime_1);
 
@@ -222,7 +217,6 @@ public class CardInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         }
 
     }
-
     public bool DragSuccessful()
     {
         bool bRet = false;
@@ -235,7 +229,7 @@ public class CardInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         return bRet;
     }
-
+    #endregion
 }
 
 public enum CardPanelLocation
