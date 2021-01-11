@@ -144,6 +144,16 @@ public class GlobalSettings : Singleton<GlobalSettings>
     public int noDamageTakenXpReward;
 
     // Loot Settings
+    [Header("Trinket Loot Settings")]
+    [LabelWidth(200)]
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
+    [Range(0, 100)]
+    public int basicTrinketProbability;
+
+    [LabelWidth(200)]
+    [Range(0, 100)]
+    public int eliteTrinketProbability;
+
     [Header("Card Loot Settings")]
     [LabelWidth(200)]
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]

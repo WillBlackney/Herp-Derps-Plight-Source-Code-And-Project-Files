@@ -66,6 +66,7 @@ public class PassiveManagerModel
     public int reflexShotBonusDamageStacks;
     public int unbreakableStacks;
     public int pierceStacks;
+    public int regenerationStacks;
 
     // Aura passives
     public int encouragingAuraStacks;
@@ -84,7 +85,6 @@ public class PassiveManagerModel
     public int disarmedStacks;
     public int silencedStacks;
     public int sleepStacks;
-
 
     // Misc passives
     [HideInInspector] public int tauntStacks;

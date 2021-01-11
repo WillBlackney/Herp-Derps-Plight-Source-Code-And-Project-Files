@@ -318,6 +318,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyStormShield(newClone, originalData.stormShieldStacks, false);
         }
+        if (originalData.regenerationStacks != 0)
+        {
+            ModifyRegeneration(newClone, originalData.regenerationStacks, false);
+        }
         #endregion
 
         // Special Defensive Passives
@@ -478,6 +482,7 @@ public class PassiveController : Singleton<PassiveController>
         pManager.maliceStacks = original.maliceStacks;
         pManager.unbreakableStacks = original.unbreakableStacks;
         pManager.pierceStacks = original.pierceStacks;
+        pManager.regenerationStacks = original.regenerationStacks;
 
         pManager.runeStacks = original.runeStacks;
         pManager.barrierStacks = original.barrierStacks;
@@ -2648,6 +2653,65 @@ public class PassiveController : Singleton<PassiveController>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Tranquil Hate " + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+
+
+    }
+    public void ModifyRegeneration(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyRegeneration() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Regeneration");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.regenerationStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Regeneration +" + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Regeneration " + stacks.ToString());
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
                 });
             }

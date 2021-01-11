@@ -28,6 +28,6 @@ MonoBehaviour:
     cardEffectType: 0
     phrase: to their activation order roll.
   showStackCount: 1
-  hiddenOnPassivePanel: 0
+  hiddenOnPassivePanel: 1
   runeBlocksIncrease: 0
   runeBlocksDecrease: 1

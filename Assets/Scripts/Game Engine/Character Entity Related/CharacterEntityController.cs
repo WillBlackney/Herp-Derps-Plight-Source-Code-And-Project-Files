@@ -1168,6 +1168,30 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 PassiveController.Instance.ModifyOverload(character.pManager, character.pManager.lordOfStormsStacks, true, 0.5f);
             }
 
+            // Regeneration
+            if (character.pManager.regenerationStacks > 0)
+            {
+                // Notication vfx
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Regeneration!"), QueuePosition.Back, 0, 0.5f);
+
+                // Modify health
+                ModifyHealth(character, character.pManager.regenerationStacks);
+
+                // Heal VFX
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateHealEffect(character.characterEntityView.WorldPosition, character.pManager.regenerationStacks));
+
+                // Create heal text effect
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateDamageEffect(character.characterEntityView.WorldPosition, character.pManager.regenerationStacks, true));
+
+                // Create SFX
+                VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
+
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+            }
+
             // Shield Wall
             if (character.pManager.shieldWallStacks > 0)
             {

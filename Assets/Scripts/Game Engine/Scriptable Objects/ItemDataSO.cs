@@ -21,6 +21,9 @@ public class ItemDataSO : ScriptableObject
     [VerticalGroup("General Info/Stats")]
     [LabelWidth(100)]
     public Rarity itemRarity;
+    [VerticalGroup("General Info/Stats")]
+    [LabelWidth(100)]
+    public bool lootable;
 
     [BoxGroup("Item Effects Info", true, true)]
     [LabelWidth(100)]

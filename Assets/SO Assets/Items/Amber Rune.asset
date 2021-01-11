@@ -16,6 +16,7 @@ MonoBehaviour:
   itemName: Amber Rune
   itemType: 5
   itemRarity: 1
+  lootable: 1
   passivePairings:
   - passiveData: 26
     passiveStacks: 4

@@ -48,6 +48,7 @@ public class ItemController : Singleton<ItemController>
         i.itemType = data.itemType;
         i.itemRarity = data.itemRarity;
         i.passivePairings = data.passivePairings;
+        i.lootable = data.lootable;
 
         // Custom string Data
         i.customDescription = new List<CustomString>();
@@ -73,6 +74,7 @@ public class ItemController : Singleton<ItemController>
         i.itemType = data.itemType;
         i.itemRarity = data.itemRarity;
         i.passivePairings = data.passivePairings;
+        i.lootable = data.lootable;
 
         // Custom string Data
         i.customDescription = new List<CustomString>();
@@ -111,6 +113,7 @@ public class ItemController : Singleton<ItemController>
 
         return itemReturned;
     }
+
     #endregion
 
     // Conditional Checks
@@ -202,6 +205,9 @@ public class ItemController : Singleton<ItemController>
 
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(character.pManager, passiveName, passive.passiveStacks, false);
         }
+
+        // TO DO: apply non passive related effects
+
     }
     public void CopyItemManagerDataIntoOtherItemManager(ItemManagerModel originalData, ItemManagerModel clone)
     {
@@ -247,7 +253,6 @@ public class ItemController : Singleton<ItemController>
             character.myName + ", item = " + newItem.itemName + ", slot = " + slot.slotType.ToString());
 
         ItemData previousItem = slot.itemDataRef;
-
 
         // remove new item from inventory
         InventoryController.Instance.RemoveItemFromInventory(newItem);

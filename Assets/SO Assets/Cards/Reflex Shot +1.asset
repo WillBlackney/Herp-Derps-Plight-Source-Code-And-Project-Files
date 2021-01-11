@@ -80,6 +80,11 @@ MonoBehaviour:
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -163,6 +168,11 @@ MonoBehaviour:
     cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -203,7 +213,7 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: 70
+      passiveData: 72
       passiveStacks: 2
     cardAdded: {fileID: 0}
     copiesAdded: 0

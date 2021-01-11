@@ -21,4 +21,5 @@ public enum LootTabType
     None = 0,
     CardReward = 1,
     GoldReward = 2,
+    TrinketReward = 3,
 }

@@ -182,6 +182,9 @@ public class SerializedPassiveManagerModel
     [BoxGroup("Buff Passives")]
     [LabelWidth(200)]
     public int pierceStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
+    public int regenerationStacks;
 
     // Aura Passives
     [BoxGroup("Aura Passives", centerLabel: true)]

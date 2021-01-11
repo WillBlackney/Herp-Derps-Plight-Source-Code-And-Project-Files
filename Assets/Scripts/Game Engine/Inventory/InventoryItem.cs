@@ -59,9 +59,6 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
             // Hide card preview
             CharacterRosterViewController.Instance.HidePreviewItemCardInInventory();
-
-            // Make deck box glow
-            //CharacterRosterViewController.Instance.StartDragDropAnimation();
         }
 
         // Unparent from vert fitter, so it wont be masked while dragging
@@ -69,13 +66,10 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
         // Get the needec components, if we dont have them already
         if (dragCanvas == null)
-        {
             dragCanvas = CharacterRosterViewController.Instance.MainVisualParent.GetComponent<Canvas>();
-        }
+        
         if (dragTransform == null)
-        {
-            dragTransform = CharacterRosterViewController.Instance.MainVisualParent.transform as RectTransform;
-        }
+            dragTransform = CharacterRosterViewController.Instance.MainVisualParent.transform as RectTransform;        
 
         // Weird hoki poki magic for dragging in local space on a non screen overlay canvas
         Vector2 pos;
@@ -107,9 +101,11 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             ItemController.Instance.HandleGiveItemToCharacterFromInventory
                 (CharacterRosterViewController.Instance.CurrentCharacterViewing, itemDataRef, CharacterRosterViewController.Instance.rosterSlotMousedOver);
 
-            // re build roster and inventory views
+            // re build roster, inventory and model views
             CharacterRosterViewController.Instance.BuildCharacterItemSlotsFromData(CharacterRosterViewController.Instance.CurrentCharacterViewing);
             CharacterRosterViewController.Instance.BuildInventoryItemSlots();
+            CharacterModelController.Instance.ApplyItemManagerDataToCharacterModelView
+                (CharacterRosterViewController.Instance.CurrentCharacterViewing.itemManager, CharacterRosterViewController.Instance.CharacterModel);
         }
 
         else
@@ -122,6 +118,9 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             s.OnComplete(() => transform.SetParent(myInventorySlot.transform));
         }
 
+        // Hide card previews, just in case
+        CharacterRosterViewController.Instance.HidePreviewItemCardInInventory();
+        CharacterRosterViewController.Instance.HidePreviewItemCardInRoster();
     }
     public bool DragSuccessful()
     {

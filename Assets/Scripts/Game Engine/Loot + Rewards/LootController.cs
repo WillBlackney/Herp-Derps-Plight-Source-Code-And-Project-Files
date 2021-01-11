@@ -40,6 +40,10 @@ public class LootController : Singleton<LootController>
     [SerializeField] private LootTab goldLootTab;
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
+    [Header("Trinket Panel Components")]
+    [SerializeField] private LootTab itemLootTab;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
+
     [Header("Character Deck Quick View References")]
     [SerializeField] private TextMeshProUGUI characterNameText;
     [SerializeField] private CardInfoPanel[] cardPanels;
@@ -100,6 +104,13 @@ public class LootController : Singleton<LootController>
         // Build Gold reward button
         ShowLootTab(goldLootTab);
         goldLootTab.descriptionText.text = CurrentLootResultData.goldReward.ToString();
+
+        // Build trinket tab
+        if(currentLootResultData.itemReward != null)
+        {
+            ShowLootTab(itemLootTab);
+            itemLootTab.descriptionText.text = "Trinket: " + CurrentLootResultData.itemReward.itemName;
+        }
     }
     public void BuildChooseCardScreenCardsFromData(List<CardData> cardData)
     {
@@ -221,6 +232,7 @@ public class LootController : Singleton<LootController>
     {
         tab.gameObject.SetActive(false);
     }
+
     #endregion
 
     // Generate Loot Result Logic
@@ -258,7 +270,57 @@ public class LootController : Singleton<LootController>
             newLoot.allCharacterCardChoices[i] = GenerateCharacterCardLootChoices(CharacterDataController.Instance.AllPlayerCharacters[i]);
         }
 
+        // Trinket/Item
+        bool shouldGetTrinket = false;
+
+        int trinketRoll = RandomGenerator.NumberBetween(1, 100);
+
+        if (JourneyManager.Instance.CurrentEncounter == EncounterType.BasicEnemy &&
+            trinketRoll <= GlobalSettings.Instance.basicTrinketProbability)        
+            shouldGetTrinket = true;
+
+        else if (JourneyManager.Instance.CurrentEncounter == EncounterType.EliteEnemy &&
+          trinketRoll <= GlobalSettings.Instance.eliteTrinketProbability)
+            shouldGetTrinket = true;
+
+        if (shouldGetTrinket)
+        {
+            newLoot.itemReward = GetRandomTrinketLootReward();
+        }
+
         return newLoot;
+    }
+    private ItemData GetRandomTrinketLootReward()
+    {
+        int roll = RandomGenerator.NumberBetween(1, 100);
+        ItemData itemRet = null;
+
+        List<ItemData> commons = new List<ItemData>();
+        List<ItemData> rares = new List<ItemData>();
+        List<ItemData> epics = new List<ItemData>();
+
+        foreach (ItemData i in ItemController.Instance.AllItems)
+        {
+            if (i.lootable && i.itemRarity == Rarity.Common)
+                commons.Add(i);
+
+            else if (i.lootable && i.itemRarity == Rarity.Rare)
+                rares.Add(i);
+
+            else if (i.lootable && i.itemRarity == Rarity.Epic)
+                epics.Add(i);
+        }
+
+        if (roll >= 1 && roll <= 65)
+            itemRet = commons[RandomGenerator.NumberBetween(0, commons.Count - 1)];
+
+        else if (roll >= 66 && roll <= 90)
+            itemRet = rares[RandomGenerator.NumberBetween(0, rares.Count - 1)];
+
+        else if (roll >= 91 && roll <= 100)
+            itemRet = epics[RandomGenerator.NumberBetween(0, epics.Count - 1)];
+
+        return itemRet;
     }
     #endregion
 
@@ -458,6 +520,10 @@ public class LootController : Singleton<LootController>
         {
             HandleGoldRewardLootTabClicked();
         }
+        else if (buttonClicked.TabType == LootTabType.TrinketReward)
+        {
+            HandleItemRewardLootTabClicked();
+        }
     }
     public void HandleGoldRewardLootTabClicked()
     {
@@ -465,8 +531,14 @@ public class LootController : Singleton<LootController>
         PlayerDataManager.Instance.ModifyCurrentGold(CurrentLootResultData.goldReward, true);
         AudioManager.Instance.PlaySound(Sound.Gold_Gain);
         CreateGoldGlowTrailEffect(goldLootTab.transform.position, TopBarController.Instance.GoldTopBarImage.transform.position);
+    }
+    public void HandleItemRewardLootTabClicked()
+    {
+        HideLootTab(itemLootTab);
+        InventoryController.Instance.AddItemToInventory(CurrentLootResultData.itemReward);
+        AudioManager.Instance.PlaySound(Sound.GUI_Button_Clicked);
+        CreateGoldGlowTrailEffect(itemLootTab.transform.position, TopBarController.Instance.CharacterRosterButton.transform.position);
 
-        // TO DO: cool sfx and anim stuff when gaining gold
     }
     public void OnLootCardViewModelClicked(LootScreenCardViewModel cardClicked)
     {

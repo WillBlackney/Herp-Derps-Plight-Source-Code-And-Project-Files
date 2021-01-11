@@ -89,6 +89,11 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
 
     // Getters + Accessors
     #region
+    public UniversalCharacterModel CharacterModel
+    {
+        get { return characterModel; }
+        private set { characterModel = value; }
+    }
     public InventoryCardSlot[] InventoryCardSlots
     {
         get { return inventoryCardSlots; }

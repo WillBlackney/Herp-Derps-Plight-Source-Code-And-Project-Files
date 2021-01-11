@@ -11,4 +11,5 @@ public class ItemData
     public List<PassivePairingData> passivePairings;
     public List<CustomString> customDescription;
     public List<KeyWordModel> keyWordModels;
+    public bool lootable;
 }
