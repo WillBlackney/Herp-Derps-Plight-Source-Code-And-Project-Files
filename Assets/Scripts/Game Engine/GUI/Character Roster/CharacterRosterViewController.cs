@@ -350,7 +350,7 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     private void BuildCharacterItemSlotFromItemData(RosterItemSlot slot, ItemData itemData)
     {
         slot.itemImage.gameObject.SetActive(true);
-        slot.itemImage.sprite = itemData.itemSprite;
+        slot.itemImage.sprite = itemData.ItemSprite;
         slot.itemDataRef = itemData;
     }
     #endregion

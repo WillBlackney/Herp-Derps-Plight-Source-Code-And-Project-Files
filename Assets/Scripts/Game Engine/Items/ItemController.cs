@@ -18,6 +18,11 @@ public class ItemController : Singleton<ItemController>
         get { return allItems; }
         private set { allItems = value; }
     }
+    public ItemDataSO[] AllItemScriptableObjects
+    {
+        get { return allItemScriptableObjects; }
+        private set { allItemScriptableObjects = value; }
+    }
     #endregion
 
     // Library Logic
@@ -43,7 +48,7 @@ public class ItemController : Singleton<ItemController>
     public ItemData BuildItemDataFromScriptableObjectData(ItemDataSO data)
     {
         ItemData i = new ItemData();
-        i.itemSprite = data.itemSprite;
+        //i.ItemSprite = data.itemSprite;
         i.itemName = data.itemName;
         i.itemType = data.itemType;
         i.itemRarity = data.itemRarity;
@@ -69,7 +74,7 @@ public class ItemController : Singleton<ItemController>
     public ItemData CloneItem(ItemData data)
     {
         ItemData i = new ItemData();
-        i.itemSprite = data.itemSprite;
+        //i.itemSprite = data.itemSprite;
         i.itemName = data.itemName;
         i.itemType = data.itemType;
         i.itemRarity = data.itemRarity;
@@ -123,6 +128,18 @@ public class ItemController : Singleton<ItemController>
                 lootableItems.Add(AllItems[i]);
         }
         return lootableItems;
+    }
+    public ItemData GetRandomLootableItem(Rarity rarity)
+    {
+        List<ItemData> validItems = new List<ItemData>();
+
+        foreach(ItemData item in AllItems)
+        {
+            if (item.lootable && item.itemRarity == rarity)
+                validItems.Add(item);
+        }
+
+        return validItems[RandomGenerator.NumberBetween(0, validItems.Count - 1)];
     }
 
     #endregion

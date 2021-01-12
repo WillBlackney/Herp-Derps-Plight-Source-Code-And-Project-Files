@@ -167,6 +167,7 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
         data.attributeAmountModified = so.attributeAmountModified;
         data.possiblePassives = so.possiblePassives;
         data.afflicationsGained = so.afflicationsGained;
+        data.itemRarity = so.itemRarity;
         return data;
     }
     #endregion
@@ -485,6 +486,15 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
             FadeContinueButton(1, 1);
             SetContinueButtonInteractions(true);
         }
+        else if (button.myPairingData.benefitData.effect == KingChoiceEffectType.GainRandomItem)
+        {
+            TriggerKingsChoiceEffect(button.myPairingData.benefitData);
+            TriggerKingsChoiceEffect(button.myPairingData.conseqenceData);
+
+            FadeOutChoiceButtons();
+            FadeContinueButton(1, 1);
+            SetContinueButtonInteractions(true);
+        }
         else if (button.myPairingData.benefitData.effect == KingChoiceEffectType.GainRandomAffliction)
         {
             TriggerKingsChoiceEffect(button.myPairingData.benefitData);
@@ -752,6 +762,20 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
             // Notification VFX
             VisualEventManager.Instance.CreateVisualEvent(() =>
             VisualEffectManager.Instance.CreateStatusEffect(playerModel.transform.position, notifMessage));
+        }
+
+        // Gain random item
+        else if(data.effect == KingChoiceEffectType.GainRandomItem)
+        {
+            // Get random item
+            ItemData randomItem = ItemController.Instance.GetRandomLootableItem(data.itemRarity);
+            List<ItemData> vEventList = new List<ItemData> {randomItem};
+
+            // Add to inventory
+            InventoryController.Instance.AddItemToInventory(randomItem);
+
+            // Add item to inventory visual event pop up
+            CardController.Instance.StartNewShuffleCardsScreenVisualEvent(playerModel, vEventList);
         }
 
         // Gain random card

@@ -106,10 +106,11 @@ public class LootController : Singleton<LootController>
         goldLootTab.descriptionText.text = CurrentLootResultData.goldReward.ToString();
 
         // Build trinket tab
-        if(currentLootResultData.itemReward != null)
+        if(CurrentLootResultData.itemReward != null)
         {
             ShowLootTab(itemLootTab);
             itemLootTab.descriptionText.text = "Trinket: " + CurrentLootResultData.itemReward.itemName;
+            itemLootTab.typeImage.sprite = CurrentLootResultData.itemReward.GetMySprite();
         }
     }
     public void BuildChooseCardScreenCardsFromData(List<CardData> cardData)

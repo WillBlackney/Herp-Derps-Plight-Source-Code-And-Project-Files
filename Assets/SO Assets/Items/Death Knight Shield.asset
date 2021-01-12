@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName: Death Knight Shield
   itemType: 4
   itemRarity: 1
-  lootable: 1
+  lootable: 0
   passivePairings: []
   customDescription: []
   keyWordModels: []

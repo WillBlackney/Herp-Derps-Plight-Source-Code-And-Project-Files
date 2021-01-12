@@ -806,7 +806,7 @@ public class CardController : Singleton<CardController>
         //AutoUpdateCardDescription(item);
         SetCardViewModelDescriptionText(cardVM, TextLogic.ConvertCustomStringListToString(item.customDescription));
        // SetCardViewModelEnergyText(null, cardVM, item.cardBaseEnergyCost.ToString());
-        SetCardViewModelGraphicImage(cardVM, item.itemSprite);
+        SetCardViewModelGraphicImage(cardVM, item.ItemSprite);
         //SetCardViewModelTalentSchoolImage(cardVM, SpriteLibrary.Instance.GetTalentSchoolSpriteFromEnumData(item.talentSchool));
         //ApplyCardViewModelTalentColoring(cardVM, ColorLibrary.Instance.GetTalentColor(item.talentSchool));
         ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(item.itemRarity));
@@ -4773,6 +4773,35 @@ public class CardController : Singleton<CardController>
         // Reset Slot Positions
         VisualEventManager.Instance.CreateVisualEvent(() => MoveShuffleSlotsToStartPosition());
     }
+    public void StartNewShuffleCardsScreenVisualEvent(UniversalCharacterModel view, List<ItemData> cards)
+    {
+        // cache cards for visual events
+        List<ItemData> cachedCards = new List<ItemData>();
+        cachedCards.AddRange(cards);
+        List<DiscoveryCardViewModel> activeCards = new List<DiscoveryCardViewModel>();
+
+        for (int i = 0; i < cards.Count; i++)
+        {
+            activeCards.Add(shuffleCards[i]);
+        }
+
+        // Set up main screen V event
+        CoroutineData cData = new CoroutineData();
+        VisualEventManager.Instance.CreateVisualEvent(() => SetUpShuffleCardScreen(cachedCards, cData), cData);
+
+        // brief pause so player can view cards
+        VisualEventManager.Instance.InsertTimeDelayInQueue(1, QueuePosition.Back);
+
+        // Move each card towards character v Event
+        foreach (DiscoveryCardViewModel dcvm in activeCards)
+        {
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                    MoveShuffleCardTowardsCharacterEntityView(dcvm, view), QueuePosition.Back, 0, 0.2f);
+        }
+
+        // Reset Slot Positions
+        VisualEventManager.Instance.CreateVisualEvent(() => MoveShuffleSlotsToStartPosition());
+    }
     public void StartNewShuffleCardsScreenExpendVisualEvent(List<CardData> cards)
     {
         // cache cards for visual events
@@ -4857,6 +4886,42 @@ public class CardController : Singleton<CardController>
         for (int i = 0; i < cachedCards.Count; i++)
         {
             SetUpCardViewModelAppearanceFromCard(shuffleCards[i].cardViewModel, cachedCards[i]);
+            shuffleCards[i].gameObject.SetActive(true);
+            shuffleCardSlots[i].gameObject.SetActive(true);
+
+            // shrink cards down
+            shuffleCards[i].scalingParent.localScale = new Vector3(0.1f, 0.1f);
+        }
+
+        yield return null;
+
+        for (int i = 0; i < cachedCards.Count; i++)
+        {
+            // move card to slot     
+            shuffleCards[i].scalingParent.DOScale(1, 0.3f);
+            shuffleCards[i].transform.gameObject.transform.DOMove(shuffleCardSlots[i].position, 0.3f);
+        }
+
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+    }
+    private void SetUpShuffleCardScreen(List<ItemData> cachedCards, CoroutineData cData)
+    {
+        StartCoroutine(SetUpShuffleCardScreenCoroutine(cachedCards, cData));
+    }
+    private IEnumerator SetUpShuffleCardScreenCoroutine(List<ItemData> cachedCards, CoroutineData cData)
+    {
+        shuffleCardsScreenVisualParent.SetActive(true);
+        MoveShuffleSlotsToStartPosition();
+        //yield return null;
+        MoveShuffleCardsToStartPosition();
+
+        for (int i = 0; i < cachedCards.Count; i++)
+        {
+            BuildCardViewModelFromItemData(cachedCards[i], shuffleCards[i].cardViewModel);
+            //SetUpCardViewModelAppearanceFromCard(shuffleCards[i].cardViewModel, cachedCards[i]);
             shuffleCards[i].gameObject.SetActive(true);
             shuffleCardSlots[i].gameObject.SetActive(true);
 

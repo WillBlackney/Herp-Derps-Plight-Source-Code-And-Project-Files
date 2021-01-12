@@ -23,7 +23,7 @@ public class InventoryItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     public void BuildInventoryItemFromItemData(ItemData data)
     {
         itemDataRef = data;
-        itemImage.sprite = data.itemSprite;
+        itemImage.sprite = data.ItemSprite;
     }
     #endregion
 

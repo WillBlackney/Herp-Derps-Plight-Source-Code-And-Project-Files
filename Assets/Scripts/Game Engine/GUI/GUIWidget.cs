@@ -19,6 +19,8 @@ public class GUIWidget : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     [SerializeField] GUIWidgetEventData[] mouseExitEvents;
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
+    [SerializeField] GUIWidgetEventData[] onDisableEvents;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Input State")]
     public bool pointerIsOverMe;
@@ -39,6 +41,11 @@ public class GUIWidget : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
     {
         get { return mouseExitEvents; }
         private set { mouseExitEvents = value; }
+    }
+    public GUIWidgetEventData[] OnDisableEvents
+    {
+        get { return onDisableEvents; }
+        private set { onDisableEvents = value; }
     }
     #endregion
 
@@ -95,6 +102,14 @@ public class GUIWidget : MonoBehaviour, IPointerClickHandler, IPointerEnterHandl
         {
             GUIWidgetController.Instance.HandleWidgetEvents(this, OnClickEvents);
         }
+    }
+    #endregion
+
+    // Life Cycle Listeners
+    #region
+    void OnDisable()
+    {
+        GUIWidgetController.Instance.HandleWidgetEvents(this, OnDisableEvents);
     }
     #endregion
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Poisonous +1
   m_EditorClassIdentifier: 
   cardName: Poisonous +1
-  cardDescription: Your Melee Attack cards that reduce health apply 2 Poisoned. Innate.
+  cardDescription: Your Melee Attack cards that reduce health apply 3 Poisoned. Innate.
   cardSprite: {fileID: 21300000, guid: 08bf267e01c18e84f945ea973a625e49, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -57,7 +57,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '1 '
+    phrase: '3 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -81,6 +81,11 @@ MonoBehaviour:
     cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -122,7 +127,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 22
-      passiveStacks: 1
+      passiveStacks: 3
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

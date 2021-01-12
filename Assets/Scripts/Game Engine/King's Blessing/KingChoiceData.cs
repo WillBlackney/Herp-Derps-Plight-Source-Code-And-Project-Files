@@ -33,4 +33,6 @@ public class KingChoiceData
     public int afflicationsGained;
 
     public int goldGainedOrLost;
+
+    public Rarity itemRarity;
 }

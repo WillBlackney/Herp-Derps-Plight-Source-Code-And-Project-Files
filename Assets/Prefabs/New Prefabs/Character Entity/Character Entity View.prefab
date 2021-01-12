@@ -328,6 +328,7 @@ MonoBehaviour:
     text: {fileID: 0}
     endColour: {r: 0, g: 0, b: 0, a: 0}
     fadeSpeed: 0
+  onDisableEvents: []
   pointerIsOverMe: 0
   timeSinceLastPointerEnter: 0
 --- !u!1 &51584551387952533
@@ -2458,6 +2459,7 @@ MonoBehaviour:
     text: {fileID: 0}
     endColour: {r: 0, g: 0, b: 0, a: 0}
     fadeSpeed: 0
+  onDisableEvents: []
   pointerIsOverMe: 0
   timeSinceLastPointerEnter: 0
 --- !u!1 &1828790543730969962
@@ -3810,6 +3812,7 @@ MonoBehaviour:
     text: {fileID: 0}
     endColour: {r: 0, g: 0, b: 0, a: 0}
     fadeSpeed: 0
+  onDisableEvents: []
   pointerIsOverMe: 0
   timeSinceLastPointerEnter: 0
 --- !u!1 &2692146444910949532
@@ -15083,6 +15086,7 @@ MonoBehaviour:
     text: {fileID: 0}
     endColour: {r: 0, g: 0, b: 0, a: 0}
     fadeSpeed: 0
+  onDisableEvents: []
   pointerIsOverMe: 0
   timeSinceLastPointerEnter: 0
 --- !u!1 &4283105271316746918
@@ -16211,6 +16215,7 @@ MonoBehaviour:
     text: {fileID: 0}
     endColour: {r: 0, g: 0, b: 0, a: 0}
     fadeSpeed: 0
+  onDisableEvents: []
   pointerIsOverMe: 0
   timeSinceLastPointerEnter: 0
 --- !u!1 &5150683010773427224
@@ -17170,6 +17175,7 @@ MonoBehaviour:
     text: {fileID: 0}
     endColour: {r: 0, g: 0, b: 0, a: 0}
     fadeSpeed: 0
+  onDisableEvents: []
   pointerIsOverMe: 0
   timeSinceLastPointerEnter: 0
 --- !u!1 &5934048118635498538
@@ -17663,6 +17669,7 @@ MonoBehaviour:
     text: {fileID: 0}
     endColour: {r: 0.8235294, g: 0.8235294, b: 0.8235294, a: 1}
     fadeSpeed: 0
+  onDisableEvents: []
   pointerIsOverMe: 0
   timeSinceLastPointerEnter: 0
 --- !u!1 &6162258418987239513
@@ -18222,6 +18229,37 @@ MonoBehaviour:
     text: {fileID: 0}
     endColour: {r: 0.30980393, g: 0.7176471, b: 1, a: 1}
     fadeSpeed: 0
+  - widgetEvent: 6
+    enableStartDelay: 0
+    startDelay: 0
+    onlyIfMouseIsStillOverMe: 0
+    objectDisabled: {fileID: 0}
+    objectEnabled: {fileID: 0}
+    functionInvoked:
+      m_PersistentCalls:
+        m_Calls: []
+    soundPlayed: 0
+    canvasGroup: {fileID: 3397857161439382562}
+    image: {fileID: 0}
+    text: {fileID: 0}
+    endColour: {r: 0, g: 0, b: 0, a: 0}
+    fadeSpeed: 0
+  - widgetEvent: 2
+    enableStartDelay: 0
+    startDelay: 0
+    onlyIfMouseIsStillOverMe: 0
+    objectDisabled: {fileID: 3641133376698376482}
+    objectEnabled: {fileID: 0}
+    functionInvoked:
+      m_PersistentCalls:
+        m_Calls: []
+    soundPlayed: 0
+    canvasGroup: {fileID: 0}
+    image: {fileID: 0}
+    text: {fileID: 0}
+    endColour: {r: 0, g: 0, b: 0, a: 0}
+    fadeSpeed: 0
+  onDisableEvents:
   - widgetEvent: 6
     enableStartDelay: 0
     startDelay: 0
@@ -20158,6 +20196,7 @@ MonoBehaviour:
     text: {fileID: 0}
     endColour: {r: 0, g: 0, b: 0, a: 0}
     fadeSpeed: 0
+  onDisableEvents: []
   pointerIsOverMe: 0
   timeSinceLastPointerEnter: 0
 --- !u!1 &9031453836507326950

@@ -277,6 +277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tabType: 0
   descriptionText: {fileID: 6569094378612362540}
+  typeImage: {fileID: 6569094376925326821}
 --- !u!114 &8640850181060928730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,8 +290,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db09d9cca6141a47a3c991340f1f29f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputType: 0
   onClickEvents:
   - widgetEvent: 3
+    enableStartDelay: 0
+    startDelay: 0
+    onlyIfMouseIsStillOverMe: 0
     objectDisabled: {fileID: 0}
     objectEnabled: {fileID: 0}
     functionInvoked:
@@ -314,6 +319,9 @@ MonoBehaviour:
     endColour: {r: 0, g: 0, b: 0, a: 0}
     fadeSpeed: 0
   - widgetEvent: 9
+    enableStartDelay: 0
+    startDelay: 0
+    onlyIfMouseIsStillOverMe: 0
     objectDisabled: {fileID: 0}
     objectEnabled: {fileID: 0}
     functionInvoked:
@@ -326,6 +334,9 @@ MonoBehaviour:
     endColour: {r: 0.59607846, g: 0.59607846, b: 0.59607846, a: 1}
     fadeSpeed: 0
   - widgetEvent: 4
+    enableStartDelay: 0
+    startDelay: 0
+    onlyIfMouseIsStillOverMe: 0
     objectDisabled: {fileID: 0}
     objectEnabled: {fileID: 0}
     functionInvoked:
@@ -339,6 +350,9 @@ MonoBehaviour:
     fadeSpeed: 0
   mouseEnterEvents:
   - widgetEvent: 9
+    enableStartDelay: 0
+    startDelay: 0
+    onlyIfMouseIsStillOverMe: 0
     objectDisabled: {fileID: 0}
     objectEnabled: {fileID: 0}
     functionInvoked:
@@ -351,6 +365,9 @@ MonoBehaviour:
     endColour: {r: 1, g: 1, b: 1, a: 1}
     fadeSpeed: 0
   - widgetEvent: 4
+    enableStartDelay: 0
+    startDelay: 0
+    onlyIfMouseIsStillOverMe: 0
     objectDisabled: {fileID: 0}
     objectEnabled: {fileID: 0}
     functionInvoked:
@@ -364,6 +381,9 @@ MonoBehaviour:
     fadeSpeed: 0
   mouseExitEvents:
   - widgetEvent: 9
+    enableStartDelay: 0
+    startDelay: 0
+    onlyIfMouseIsStillOverMe: 0
     objectDisabled: {fileID: 0}
     objectEnabled: {fileID: 0}
     functionInvoked:
@@ -375,6 +395,9 @@ MonoBehaviour:
     text: {fileID: 0}
     endColour: {r: 0.59607846, g: 0.59607846, b: 0.59607846, a: 1}
     fadeSpeed: 0
+  onDisableEvents: []
+  pointerIsOverMe: 0
+  timeSinceLastPointerEnter: 0
 --- !u!1 &6569094378612362542
 GameObject:
   m_ObjectHideFlags: 0
