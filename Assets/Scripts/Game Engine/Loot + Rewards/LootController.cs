@@ -567,7 +567,6 @@ public class LootController : Singleton<LootController>
         {
             MapPlayerTracker.Instance.UnlockMap();
             MapView.Instance.OnWorldMapButtonClicked();
-            //EventSequenceController.Instance.HandleLoadNextEncounter();
         }
     }
 

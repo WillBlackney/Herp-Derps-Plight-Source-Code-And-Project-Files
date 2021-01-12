@@ -60,6 +60,7 @@ public class ShopCardBox : MonoBehaviour
 public class ShopContentResultModel
 {
     public List<CardPricePairing> cardsData = new List<CardPricePairing>();
+    public List<ItemPricePairing> itemsData = new List<ItemPricePairing>();
 }
 
 public class CardPricePairing
@@ -85,3 +86,4 @@ public class CardPricePairing
         }
     }
 }
+

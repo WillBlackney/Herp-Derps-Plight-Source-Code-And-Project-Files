@@ -113,6 +113,17 @@ public class ItemController : Singleton<ItemController>
 
         return itemReturned;
     }
+    public List<ItemData> GetAllLootableItems()
+    {
+        List<ItemData> lootableItems = new List<ItemData>();
+
+        for(int i = 0; i < AllItems.Length; i++)
+        {
+            if (AllItems[i].lootable)
+                lootableItems.Add(AllItems[i]);
+        }
+        return lootableItems;
+    }
 
     #endregion
 

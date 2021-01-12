@@ -42,7 +42,9 @@ public class ShopController : Singleton<ShopController>
     [SerializeField] private Color merchantHightlightColour;
 
     [Header("Shop Card Components")]
+    [SerializeField] private GameObject cardRowThreeParent;
     [SerializeField] private ShopCardBox[] allShopCards;
+    [SerializeField] private ItemCardBox[] allShopItems;
 
     [Header("Continue Button Components")]
     [SerializeField] private GameObject continueButtonVisualParent;
@@ -99,7 +101,16 @@ public class ShopController : Singleton<ShopController>
     {
         box.visualParent.SetActive(true);
     }
+    public void ShowShopItemBox(ItemCardBox box)
+    {
+        box.visualParent.SetActive(true);
+    }
     public void HideShopCardBox(ShopCardBox box)
+    {
+        box.onSaleVisualParent.SetActive(false);
+        box.visualParent.SetActive(false);
+    }
+    public void HideItemCardBox(ItemCardBox box)
     {
         box.onSaleVisualParent.SetActive(false);
         box.visualParent.SetActive(false);
@@ -109,6 +120,13 @@ public class ShopController : Singleton<ShopController>
         foreach(ShopCardBox scb in allShopCards)
         {
             HideShopCardBox(scb);
+        }
+    }
+    private void HideAllShopItemBoxes()
+    {
+        foreach (ItemCardBox icb in allShopItems)
+        {
+            HideItemCardBox(icb);
         }
     }
     #endregion
@@ -154,10 +172,15 @@ public class ShopController : Singleton<ShopController>
     public void BuildAllShopContentFromDataSet(ShopContentResultModel dataSet)
     {
         // Reset 
+        cardRowThreeParent.SetActive(false);
         HideAllShopCardBoxes();
+        HideAllShopItemBoxes();
 
         // Build cards
         BuildAllShopCardBoxesFromDataSet(dataSet);
+
+        // Build Items
+        BuildAllShopItemBoxesFromDataSet(dataSet);
     }
     private void BuildAllShopCardBoxesFromDataSet(ShopContentResultModel dataSet)
     {
@@ -165,12 +188,20 @@ public class ShopController : Singleton<ShopController>
         {
             BuildShopCardBox(allShopCards[i], dataSet.cardsData[i]);
         }
+        if(dataSet.cardsData.Count > 10)
+            cardRowThreeParent.SetActive(true);
+    }
+    private void BuildAllShopItemBoxesFromDataSet(ShopContentResultModel dataSet)
+    {
+        for (int i = 0; i < dataSet.itemsData.Count; i++)
+        {
+            BuildShopItemBox(allShopItems[i], dataSet.itemsData[i]);
+        }
     }
     private void BuildShopCardBox(ShopCardBox box, CardPricePairing data)
     {
         ShowShopCardBox(box);
         box.cppData = data;
-        //box.goldCostText.text = data.goldCost.ToString();
         AutoColourShopCardCostText(box);
         CardController.Instance.BuildCardViewModelFromCardData(data.cardData, box.cvm);
 
@@ -180,21 +211,41 @@ public class ShopController : Singleton<ShopController>
             box.onSaleVisualParent.SetActive(true);
         }
     }
+    private void BuildShopItemBox(ItemCardBox box, ItemPricePairing data)
+    {
+        ShowShopItemBox(box);
+        box.ippData = data;
+        AutoColourShopItemCostText(box);
+        CardController.Instance.BuildCardViewModelFromItemData(data.itemData, box.cvm);
+
+        if (data.onSale)
+        {
+            // enable on sale views
+            box.onSaleVisualParent.SetActive(true);
+        }
+    }
     private void AutoColourShopCardCostText(ShopCardBox box)
     {
-        if(box.cppData.goldCost > PlayerDataManager.Instance.CurrentGold)
-        {
+        if(box.cppData.goldCost > PlayerDataManager.Instance.CurrentGold)        
             box.goldCostText.text = "<color=#E52B2B>" + box.cppData.goldCost.ToString();
-        }
-        else if (box.cppData.goldCost <= PlayerDataManager.Instance.CurrentGold && box.cppData.onSale)
-        {
+        
+        else if (box.cppData.goldCost <= PlayerDataManager.Instance.CurrentGold && box.cppData.onSale)        
             box.goldCostText.text = "<color=#51C3FF>" + box.cppData.goldCost.ToString();
-        }
-        else
-        {
-            box.goldCostText.text = "<color=#FFFFFF>" + box.cppData.goldCost.ToString();
-
-        }
+        
+        else        
+            box.goldCostText.text = "<color=#FFFFFF>" + box.cppData.goldCost.ToString();        
+    }
+    private void AutoColourShopItemCostText(ItemCardBox box)
+    {
+        if (box.ippData.goldCost > PlayerDataManager.Instance.CurrentGold)        
+            box.goldCostText.text = "<color=#E52B2B>" + box.ippData.goldCost.ToString();
+        
+        else if (box.ippData.goldCost <= PlayerDataManager.Instance.CurrentGold && box.ippData.onSale)        
+            box.goldCostText.text = "<color=#51C3FF>" + box.ippData.goldCost.ToString();
+        
+        else        
+            box.goldCostText.text = "<color=#FFFFFF>" + box.ippData.goldCost.ToString();
+        
     }
     public void SetShopKeeperInteractionState(bool onOrOff)
     {
@@ -220,6 +271,19 @@ public class ShopController : Singleton<ShopController>
     {
         ShopContentResultModel scr = new ShopContentResultModel();
 
+        // Generate cards
+        scr.cardsData = GenerateShopCardDataSet();
+
+        // Generate items
+        scr.itemsData = GenerateShopItemDataSet();
+
+        return scr;
+
+    }
+    private List<CardPricePairing> GenerateShopCardDataSet()
+    {
+        List<CardPricePairing> listReturned = new List<CardPricePairing>();
+
         // Get ALL valid cards 
         List<CardData> allValidLootableCards = new List<CardData>();
         List<CardData> validCommons = new List<CardData>();
@@ -231,38 +295,32 @@ public class ShopController : Singleton<ShopController>
         // Get all valid lootable cards for every character the player has
         foreach (CharacterData character in CharacterDataController.Instance.AllPlayerCharacters)
         {
-            foreach(CardData cd in LootController.Instance.GetAllValidLootableCardsForCharacter(character))
+            foreach (CardData cd in LootController.Instance.GetAllValidLootableCardsForCharacter(character))
             {
                 // Prevent doubling up on cards
-                if(allValidLootableCards.Contains(cd) == false)
-                {
+                if (allValidLootableCards.Contains(cd) == false)
                     allValidLootableCards.Add(cd);
-                }
             }
         }
 
         // Divide cards by rarity
-        foreach(CardData cd in allValidLootableCards)
+        foreach (CardData cd in allValidLootableCards)
         {
-            if(cd.rarity == Rarity.Common)
-            {
+            if (cd.rarity == Rarity.Common)
                 validCommons.Add(cd);
-            }
+
             else if (cd.rarity == Rarity.Rare)
-            {
                 validRares.Add(cd);
-            }
+
             else if (cd.rarity == Rarity.Epic)
-            {
                 validEpics.Add(cd);
-            }
         }
 
         int commons = 5;
         int rares = 3;
         int epics = 2;
 
-        if(CharacterDataController.Instance.AllPlayerCharacters.Count > 1)
+        if (CharacterDataController.Instance.AllPlayerCharacters.Count > 1)
         {
             commons = 8;
             rares = 4;
@@ -270,7 +328,7 @@ public class ShopController : Singleton<ShopController>
         }
 
         // Randomly pick 5 commons, 3 rares and 2 epics
-        for(int i = 0; i < commons; i++)
+        for (int i = 0; i < commons; i++)
         {
             validCommons.Shuffle();
             chosenCards.Add(validCommons[0]);
@@ -290,18 +348,80 @@ public class ShopController : Singleton<ShopController>
         }
 
         // Create new pairings and randomized prices
-        foreach(CardData card in chosenCards)
+        foreach (CardData card in chosenCards)
         {
-            scr.cardsData.Add(new CardPricePairing(card));
+            listReturned.Add(new CardPricePairing(card));
         }
 
         // Put a random card on sale
-        CardPricePairing randomCard = scr.cardsData[RandomGenerator.NumberBetween(0, scr.cardsData.Count - 1)];
+        CardPricePairing randomCard = listReturned[RandomGenerator.NumberBetween(0, listReturned.Count - 1)];
         randomCard.onSale = true;
         randomCard.goldCost = randomCard.goldCost / 2;
 
-        return scr;
+        return listReturned;
+    }
+    private List<ItemPricePairing> GenerateShopItemDataSet()
+    {
+        List<ItemPricePairing> listReturned = new List<ItemPricePairing>();
 
+        // Get ALL valid cards 
+        List<ItemData> allValidLootableItems = ItemController.Instance.GetAllLootableItems();
+        List<ItemData> validCommons = new List<ItemData>();
+        List<ItemData> validRares = new List<ItemData>();
+        List<ItemData> validEpics = new List<ItemData>();
+
+        List<ItemData> chosenItems = new List<ItemData>();
+
+        // Divide cards by rarity
+        foreach (ItemData i in allValidLootableItems)
+        {
+            if (i.itemRarity == Rarity.Common)
+                validCommons.Add(i);
+
+            else if (i.itemRarity == Rarity.Rare)
+                validRares.Add(i);
+
+            else if (i.itemRarity == Rarity.Epic)
+                validEpics.Add(i);
+        }
+
+        int commons = 2;
+        int rares = 2;
+        int epics = 1;
+
+
+        // Randomly pick 2 commons, 2 rares and 1 epic
+        for (int i = 0; i < commons; i++)
+        {
+            validCommons.Shuffle();
+            chosenItems.Add(validCommons[0]);
+            validCommons.Remove(validCommons[0]);
+        }
+        for (int i = 0; i < rares; i++)
+        {
+            validRares.Shuffle();
+            chosenItems.Add(validRares[0]);
+            validRares.Remove(validRares[0]);
+        }
+        for (int i = 0; i < epics; i++)
+        {
+            validEpics.Shuffle();
+            chosenItems.Add(validEpics[0]);
+            validEpics.Remove(validEpics[0]);
+        }
+
+        // Create new pairings and randomized prices
+        foreach (ItemData i in chosenItems)
+        {
+            listReturned.Add(new ItemPricePairing(i));
+        }
+
+        // Put a random card on sale
+        ItemPricePairing randomItem = listReturned[RandomGenerator.NumberBetween(0, listReturned.Count - 1)];
+        randomItem.onSale = true;
+        randomItem.goldCost = randomItem.goldCost / 2;
+
+        return listReturned;
     }
     #endregion
 
@@ -331,14 +451,51 @@ public class ShopController : Singleton<ShopController>
             InventoryController.Instance.AddCardToInventory(CardController.Instance.CloneCardDataFromCardData(box.cppData.cardData));
 
             // Update shop card box texts on gold value changed
-            foreach(ShopCardBox scb in allShopCards)
-            {
-                if(scb.cppData != null)
-                {
-                    AutoColourShopCardCostText(scb);
-                }
-            }
+            UpdateGoldTextColouringsOnGoldValueChanged();
         }        
+    }
+    public void OnShopItemBoxClicked(ItemCardBox box)
+    {
+        if (PlayerDataManager.Instance.CurrentGold >= box.ippData.goldCost)
+        {
+            KeyWordLayoutController.Instance.FadeOutMainView();
+
+            // Pay gold price
+            PlayerDataManager.Instance.ModifyCurrentGold(-box.ippData.goldCost, true);
+
+            // Cha ching SFX + coin explosion VFX
+            AudioManager.Instance.PlaySoundPooled(Sound.Gold_Cha_Ching);
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateGoldCoinExplosion(box.transform.position, 10000, 2));
+
+            // Sparkle glow trail towards inventory
+            LootController.Instance.CreateGreenGlowTrailEffect(box.transform.position, TopBarController.Instance.CharacterRosterButton.transform.position);
+
+            // Hide card box
+            HideItemCardBox(box);
+
+            // add item to inventory
+            InventoryController.Instance.AddItemToInventory(box.ippData.itemData);
+
+            // Update gold texts
+            UpdateGoldTextColouringsOnGoldValueChanged();
+        }
+    }
+    private void UpdateGoldTextColouringsOnGoldValueChanged()
+    {
+        // Update shop card box texts on gold value changed
+        foreach (ShopCardBox scb in allShopCards)
+        {
+            if (scb.cppData != null)
+                AutoColourShopCardCostText(scb);
+        }
+
+        // Update shop item box texts on gold value changed
+        foreach (ItemCardBox icb in allShopItems)
+        {
+            if (icb.ippData != null)
+                AutoColourShopItemCostText(icb);
+        }
     }
     #endregion
 
@@ -489,11 +646,8 @@ public class ShopController : Singleton<ShopController>
     {
         if (continueButtonIsInteractable)
         {
-           // SetContinueButtonInteractionState(false);
-           // HideContinueButton();
             MapPlayerTracker.Instance.UnlockMap();
             MapView.Instance.OnWorldMapButtonClicked();
-            //EventSequenceController.Instance.HandleLoadNextEncounter();
         }
     }
 
