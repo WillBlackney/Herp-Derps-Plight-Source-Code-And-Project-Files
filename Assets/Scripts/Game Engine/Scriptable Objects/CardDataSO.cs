@@ -17,7 +17,7 @@ public class CardDataSO : ScriptableObject
     public string cardDescription; 
 
     [HorizontalGroup("Core Data", 75)]
-    [HideLabel]
+    [HideLabel] 
     [PreviewField(75)]
     [GUIColor("Blue")]
     public Sprite cardSprite;

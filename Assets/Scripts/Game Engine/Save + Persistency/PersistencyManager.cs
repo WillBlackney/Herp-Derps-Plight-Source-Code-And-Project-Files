@@ -88,29 +88,6 @@ public class PersistencyManager : Singleton<PersistencyManager>
         newSave.currentEncounter = EncounterType.KingsBlessingEvent;
         newSave.saveCheckPoint = SaveCheckPoint.KingsBlessingStart;
 
-        /*
-        if (ed.encounterType == EncounterType.BasicEnemy || ed.encounterType == EncounterType.EliteEnemy)
-        {
-            newSave.saveCheckPoint = SaveCheckPoint.CombatStart;
-            EnemyWaveSO firstEnemies = JourneyManager.Instance.GetRandomEnemyWaveFromEncountersDataSet(ed);
-            newSave.currentEnemyWave = firstEnemies.encounterName;
-            JourneyManager.Instance.AddEnemyWaveToAlreadyEncounteredList(firstEnemies);
-        }
-        else if (ed.encounterType == EncounterType.RecruitCharacter)
-        {
-            newSave.saveCheckPoint = SaveCheckPoint.RecruitCharacterStart;
-            newSave.recruitCharacterChoices = RecruitCharacterController.Instance.GetThreeValidRecruitableCharacters();
-        }
-        else if (ed.encounterType == EncounterType.KingsBlessingEvent)
-        {
-            newSave.saveCheckPoint = SaveCheckPoint.KingsBlessingStart;            
-        }
-        else if (ed.encounterType == EncounterType.CampSite)
-        {
-            newSave.saveCheckPoint = SaveCheckPoint.CampSite;
-        }
-        */
-
         // Generate KBC choices
         newSave.kbcChoices = KingsBlessingController.Instance.GenerateFourRandomChoices();
 
@@ -203,6 +180,10 @@ public class PersistencyManager : Singleton<PersistencyManager>
         // Inventory
         InventoryController.Instance.SaveMyDataToSaveFile(newSave);
 
+        // States
+        StateController.Instance.SaveMyDataToSaveFile(newSave);
+        ShrineController.Instance.SaveMyDataToSaveFile(newSave);
+
         // START SAVE!        
         SaveGameToDisk(newSave);
     }
@@ -245,6 +226,10 @@ public class PersistencyManager : Singleton<PersistencyManager>
 
         // Inventory
         InventoryController.Instance.BuildMyDataFromSaveFile(newLoad);
+
+        // States
+        StateController.Instance.BuildMyDataFromSaveFile(newLoad);
+        ShrineController.Instance.BuildMyDataFromSaveFile(newLoad);
     }
     #endregion
 

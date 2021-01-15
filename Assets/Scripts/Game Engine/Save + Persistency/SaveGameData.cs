@@ -44,6 +44,10 @@ public class SaveGameData
     // Inventory data
     public List<CardData> cardInventory = new List<CardData>();
     public List<ItemData> itemInventory = new List<ItemData>();
+
+    // States
+    public List<StateData> playerStates = new List<StateData>();
+    public ShrineStateResult currentShrineStates;
    
 }
 public enum SaveCheckPoint

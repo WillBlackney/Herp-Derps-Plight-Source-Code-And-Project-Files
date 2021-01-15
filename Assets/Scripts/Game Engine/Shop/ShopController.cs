@@ -267,7 +267,7 @@ public class ShopController : Singleton<ShopController>
     {
         CurrentShopContentResultData = null;
     }
-    public ShopContentResultModel GenerateNewShopContentDataSet()
+    private ShopContentResultModel GenerateNewShopContentDataSet()
     {
         ShopContentResultModel scr = new ShopContentResultModel();
 

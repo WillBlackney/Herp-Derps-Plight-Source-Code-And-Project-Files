@@ -610,6 +610,7 @@ public enum EncounterType
     Shop = 7,
     Mystery = 8,
     Treasure = 9,
+    Shrine = 10,
 }
 public enum MapOrientation
 {

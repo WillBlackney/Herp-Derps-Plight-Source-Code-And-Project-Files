@@ -707,12 +707,13 @@ public class CombatLogic : Singleton<CombatLogic>
             }
 
             // Poisonous 
-            if (attacker != null &&
-                attacker.pManager.poisonousStacks > 0 &&
-                totalLifeLost > 0)
+            if (attacker != null &&                
+                attacker.pManager.poisonousStacks > 0)
+                //totalLifeLost > 0)
             {
                 if (card != null &&
-                   (card.cardType == CardType.MeleeAttack || card.cardType == CardType.RangedAttack))
+                    card.cardType == CardType.MeleeAttack)
+                  // (card.cardType == CardType.MeleeAttack || card.cardType == CardType.RangedAttack))
                 {
                     VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
                     PassiveController.Instance.ModifyPoisoned(attacker.pManager, victim.pManager, attacker.pManager.poisonousStacks, true, 0.5f);
@@ -729,11 +730,12 @@ public class CombatLogic : Singleton<CombatLogic>
 
             // Inflamed 
             if (attacker != null &&
-                attacker.pManager.inflamedStacks > 0 &&
-                totalLifeLost > 0)
+                attacker.pManager.inflamedStacks > 0 )
+                //totalLifeLost > 0)
             {
                 if (card != null &&
-                   (card.cardType == CardType.MeleeAttack || card.cardType == CardType.RangedAttack))
+                    card.cardType == CardType.MeleeAttack)
+                  // (card.cardType == CardType.MeleeAttack || card.cardType == CardType.RangedAttack))
                 {
                     VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
                     PassiveController.Instance.ModifyBurning(victim.pManager, attacker.pManager.inflamedStacks, true, 0.5f);

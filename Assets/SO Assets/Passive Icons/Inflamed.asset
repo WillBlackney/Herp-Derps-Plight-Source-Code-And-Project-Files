@@ -18,23 +18,15 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Whenever this character reduces health with a '
+    phrase: 'This character''s '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Melee Attack '
+    phrase: 'Melee Attacks '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'or '
-  - color: 3
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'Ranged Attack '
-  - color: 1
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'card, it applies '
+    phrase: 'apply '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0

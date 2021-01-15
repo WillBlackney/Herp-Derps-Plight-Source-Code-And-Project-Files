@@ -42,10 +42,10 @@ MonoBehaviour:
     getPhraseFromCardValue: 1
     cardEffectType: 6
     phrase: '7 '
-  - color: 9
+  - color: 4
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: ' Magic '
+    phrase: ' Physical '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -69,6 +69,11 @@ MonoBehaviour:
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -101,7 +106,7 @@ MonoBehaviour:
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
     useEachIndividualsStackCount: 1
-    damageType: 2
+    damageType: 1
     healthRestored: 0
     healthLost: 0
     energyGained: 0
@@ -197,6 +202,11 @@ MonoBehaviour:
     cardEffectType: 1
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0

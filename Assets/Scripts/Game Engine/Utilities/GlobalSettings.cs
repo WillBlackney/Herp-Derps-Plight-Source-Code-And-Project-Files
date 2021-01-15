@@ -296,5 +296,6 @@ public enum StartingSceneSetting
     KingsBlessingEvent = 5,
     CampSiteEvent = 6,
     ShopEventTest = 7,
+    ShrineEventtest = 8
 
 }

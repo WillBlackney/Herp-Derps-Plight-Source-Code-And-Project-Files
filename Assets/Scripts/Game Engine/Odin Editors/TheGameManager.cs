@@ -30,6 +30,7 @@ namespace CustomOdinGUI
         private DrawSelected<CharacterTemplateSO> drawCharacterTemplates = new DrawSelected<CharacterTemplateSO>();
         private DrawSelected<CampCardDataSO> drawCampCards = new DrawSelected<CampCardDataSO>();
         private DrawSelected<MapConfig> drawMapConfigs = new DrawSelected<MapConfig>();
+        private DrawSelected<StateDataSO> drawStates = new DrawSelected<StateDataSO>();
 
         // Create field for each type of manager object in project to be drawn
         private DrawSpriteLibrary drawSpriteLibrary = new DrawSpriteLibrary();
@@ -51,6 +52,7 @@ namespace CustomOdinGUI
         private string itemsPath = "Assets/SO Assets/Items";
         private string characterTemplatesPath = "Assets/SO Assets/Character Templates";
         private string mapConfigsPath = "Assets/SO Assets/Map Configs";
+        private string statesPath = "Assets/SO Assets/States";
 
         [MenuItem("Tools/The Game Manager")]
         public static void OpenWindow()
@@ -76,6 +78,7 @@ namespace CustomOdinGUI
             drawEncounters.SetPath(encountersPath);
             drawCharacterTemplates.SetPath(characterTemplatesPath);
             drawMapConfigs.SetPath(mapConfigsPath);
+            drawStates.SetPath(statesPath);
 
             // Find manager objects
             drawSpriteLibrary.FindMyObject();
@@ -111,6 +114,7 @@ namespace CustomOdinGUI
                 case ManagerState.combatEncounters:
                 case ManagerState.characterTemplates:
                 case ManagerState.mapConfigs:
+                case ManagerState.states:
                     DrawEditor(enumIndex);
                     break;
                 default:
@@ -161,7 +165,7 @@ namespace CustomOdinGUI
                 case ManagerState.characterTemplates:
                     drawCharacterTemplates.SetSelected(MenuTree.Selection.SelectedValue);
                     break;
-
+             
                 case ManagerState.spriteLibrary:
                     DrawEditor(enumIndex);
                     break;                
@@ -180,6 +184,10 @@ namespace CustomOdinGUI
 
                 case ManagerState.mapConfigs:
                     drawMapConfigs.SetSelected(MenuTree.Selection.SelectedValue);
+                    break;
+
+                case ManagerState.states:
+                    drawStates.SetSelected(MenuTree.Selection.SelectedValue);
                     break;
 
 
@@ -208,7 +216,7 @@ namespace CustomOdinGUI
             targets.Add(drawCampCards);
             targets.Add(drawPassives);
             targets.Add(drawEncounters);
-            targets.Add(drawCharacterTemplates);
+            targets.Add(drawCharacterTemplates);         
             targets.Add(drawSpriteLibrary);           
             targets.Add(drawPrefabHolder);
             targets.Add(drawColorLibrary);
@@ -218,6 +226,7 @@ namespace CustomOdinGUI
             targets.Add(drawKeyWordLibrary);
             targets.Add(drawCampSiteController);
             targets.Add(drawMapConfigs);
+            targets.Add(drawStates);
 
             targets.Add(base.GetTarget());
 
@@ -237,6 +246,7 @@ namespace CustomOdinGUI
                 case ManagerState.combatEncounters:
                 case ManagerState.characterTemplates:
                 case ManagerState.mapConfigs:
+                case ManagerState.states:
                     base.DrawMenu();
                     break;
                 default:
@@ -277,13 +287,15 @@ namespace CustomOdinGUI
                 case ManagerState.characterTemplates:
                     tree.AddAllAssetsAtPath("Character Templates", characterTemplatesPath, typeof(CharacterTemplateSO));
                     tree.SortMenuItemsByName();
-                    break;                    
+                    break;               
                 case ManagerState.mapConfigs:
                     tree.AddAllAssetsAtPath("Map Configs", mapConfigsPath, typeof(MapConfig));
                     tree.SortMenuItemsByName();
                     break;
-
-
+                case ManagerState.states:
+                    tree.AddAllAssetsAtPath("States", mapConfigsPath, typeof(StateDataSO));
+                    tree.SortMenuItemsByName();
+                    break;
             }
             return tree;
         }
@@ -296,7 +308,7 @@ namespace CustomOdinGUI
             campCards,
             passives,
             combatEncounters,
-            characterTemplates,
+            characterTemplates,            
             spriteLibrary,
             prefabHolder,
             colorLibrary,
@@ -306,6 +318,7 @@ namespace CustomOdinGUI
             keyWordLibrary,     
             campSiteController,
             mapConfigs,
+            states,
         };
 
 

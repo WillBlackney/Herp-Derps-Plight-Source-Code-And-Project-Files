@@ -25,6 +25,8 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField] private GameObject[] allCampSiteParents;
     [SerializeField] private GameObject shopViewParent;
     [SerializeField] private GameObject[] allShopParents;
+    [SerializeField] private GameObject shrineViewParent;
+    [SerializeField] private GameObject[] allShrineParents;
 
     public LevelNode[] AllLevelNodes
     {
@@ -311,6 +313,31 @@ public class LevelManager : Singleton<LevelManager>
     private void EnableRandomShop()
     {
         allShopParents[RandomGenerator.NumberBetween(0, allShopParents.Length - 1)].SetActive(true);
+
+    }
+
+    // Shrine Event
+    public void EnableShrineScenery()
+    {
+        DisableAllShrines();
+        shrineViewParent.SetActive(true);
+        EnableRandomShrine();
+    }
+    public void DisableShrineScenery()
+    {
+        DisableAllShrines();
+        shrineViewParent.SetActive(false);
+    }
+    private void DisableAllShrines()
+    {
+        for (int i = 0; i < allShrineParents.Length; i++)
+        {
+            allShrineParents[i].SetActive(false);
+        }
+    }
+    private void EnableRandomShrine()
+    {
+        allShrineParents[RandomGenerator.NumberBetween(0, allShrineParents.Length - 1)].SetActive(true);
 
     }
 

@@ -58,6 +58,10 @@ public class EventSequenceController : Singleton<EventSequenceController>
         {
             StartCoroutine(RunShopTestEventSetup());
         }
+        else if (GlobalSettings.Instance.gameMode == StartingSceneSetting.ShrineEventtest)
+        {
+            StartCoroutine(RunShrineEventTestSetup());
+        }
     }
     #endregion
 
@@ -197,6 +201,24 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Start load shop event sequence
         HandleLoadShopEvent();
+    }
+    private IEnumerator RunShrineEventTestSetup()
+    {
+        Debug.Log("EventSequenceController.RunShrineEventTestSetup()");
+
+        yield return null;
+
+        // Enable GUI
+        TopBarController.Instance.ShowTopBar();
+
+        // Build character data
+        CharacterDataController.Instance.BuildCharacterRosterFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
+
+        // Gain gold to test with
+        PlayerDataManager.Instance.ModifyCurrentGold(200);
+
+        // Start load shop event sequence
+        HandleLoadShrineEvent();
     }
     #endregion
 
@@ -708,6 +730,38 @@ public class EventSequenceController : Singleton<EventSequenceController>
         RecruitCharacterController.Instance.ResetAllViews();
         RecruitCharacterController.Instance.ShowRecruitCharacterScreen();
         RecruitCharacterController.Instance.BuildRecruitCharacterWindows();
+    }
+    private void HandleLoadShrineEvent()
+    {
+        StartCoroutine(HandleLoadShrineEventCoroutine());
+    }
+    private IEnumerator HandleLoadShrineEventCoroutine()
+    {
+        Debug.LogWarning("HandleLoadShrineEventCoroutine()");
+
+        // Generate Shrine states
+        if(ShrineController.Instance.CurrentShrineStates == null)
+        {
+            ShrineController.Instance.GenerateNewShrineContentData();
+        }
+
+        // Build Scenery + Characters
+        LevelManager.Instance.EnableShrineScenery();
+        ShrineController.Instance.EnableCharacterViewParent();
+        ShrineController.Instance.BuildAllShrineCharacterViews(CharacterDataController.Instance.AllPlayerCharacters);
+        ShrineController.Instance.MoveAllCharactersToStartPosition();
+
+        // Do fades + camera moves
+        BlackScreenController.Instance.FadeInScreen(1f);
+        CameraManager.Instance.DoCameraMove(-3, 0, 0f);
+        CameraManager.Instance.DoCameraMove(0, 0, 2f);
+        CameraManager.Instance.DoCameraZoom(3, 5, 2f);
+
+        // Move characters to shrine sequence
+        ShrineController.Instance.MoveAllCharactersToTheirNodes();
+        yield return new WaitForSeconds(1 + (CharacterDataController.Instance.AllPlayerCharacters.Count * 0.5f));
+
+
     }
     private void HandleLoadShopEvent()
     {
