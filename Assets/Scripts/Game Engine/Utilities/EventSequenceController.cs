@@ -252,16 +252,23 @@ public class EventSequenceController : Singleton<EventSequenceController>
         MainMenuController.Instance.HideNewGameScreen();
         MainMenuController.Instance.HideFrontScreen();
 
+        // Setup town view
+        TownViewController.Instance.ShowMainTownView();
+
+        // Set up character panel views
+        CharacterPanelViewController.Instance.ShowCharacterRosterPanel();
+        CharacterPanelViewController.Instance.RebuildAllViews();
+
         // Act start visual sequence
         yield return new WaitForSeconds(0.5f);
         AudioManager.Instance.FadeInSound(Sound.Ambience_Outdoor_Spooky, 1f);
         yield return new WaitForSeconds(1f);
-        PlayActNotificationVisualEvent();
+        //PlayActNotificationVisualEvent();
         BlackScreenController.Instance.FadeInScreen(0f);
-        yield return new WaitForSeconds(3.5f);
+        //yield return new WaitForSeconds(3.5f);
 
         // Start the first encounter set up sequence
-        HandleLoadEncounter(JourneyManager.Instance.CurrentEncounter);        
+       // HandleLoadEncounter(JourneyManager.Instance.CurrentEncounter);        
     }
     public void HandleLoadSavedGameFromMainMenuEvent()
     {

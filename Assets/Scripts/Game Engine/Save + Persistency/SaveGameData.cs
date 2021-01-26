@@ -16,6 +16,7 @@ public class SaveGameData
 
     // Player data
     public int currentGold;
+    public int maxRosterSize;
 
     // Combat event data
     public EncounterType currentEncounter;

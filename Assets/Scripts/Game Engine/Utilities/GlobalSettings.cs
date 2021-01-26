@@ -58,6 +58,9 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     public int startingGold;
 
+    [LabelWidth(200)]
+    public int startingMaxRosterSize;
+
     // Audio Settings
     [Header("Audio Settings")]
     [LabelWidth(200)]

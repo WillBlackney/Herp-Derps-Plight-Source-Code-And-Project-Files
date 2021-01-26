@@ -12,7 +12,13 @@ public class CharacterDataController : Singleton<CharacterDataController>
     [SerializeField] private CharacterTemplateSO[] allCharacterTemplatesSOs;
     [SerializeField] private CharacterData[] allCharacterTemplates;
 
+    private int currentMaxRosterSize;
 
+    public int CurrentMaxRosterSize
+    {
+        get { return currentMaxRosterSize; }
+        private set { currentMaxRosterSize = value; }
+    }
     public List<CharacterData> AllPlayerCharacters
     {
         get { return allPlayerCharacters; }
@@ -73,6 +79,8 @@ public class CharacterDataController : Singleton<CharacterDataController>
         {
             AllPlayerCharacters.Add(characterData);
         }
+
+        SetMaxRosterSize(saveFile.maxRosterSize);
     }
     public void SaveMyDataToSaveFile(SaveGameData saveFile)
     {
@@ -80,6 +88,8 @@ public class CharacterDataController : Singleton<CharacterDataController>
         {
             saveFile.characters.Add(character);
         }
+
+        saveFile.maxRosterSize = CurrentMaxRosterSize;
     }
     #endregion
 
@@ -499,7 +509,15 @@ public class CharacterDataController : Singleton<CharacterDataController>
     }
     #endregion
 
+    // Modify Roster Properties
+    #region
+    public void SetMaxRosterSize(int newSize)
+    {
+        CurrentMaxRosterSize = newSize;
+    }
+    #endregion
     // Misc Logic + Calculators
+    #region
     public int GetTalentLevel(CharacterData character, TalentSchool school)
     {
         int level = 0;
@@ -515,7 +533,8 @@ public class CharacterDataController : Singleton<CharacterDataController>
 
         return level;
     }
+    #endregion
 
-    
+
 
 }

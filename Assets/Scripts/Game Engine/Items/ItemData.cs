@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemData 
 {
     public string itemName;
-    public ItemType itemType;
+    public ItemCategory itemType;
     public Rarity itemRarity;
     public List<PassivePairingData> passivePairings;
     public List<CustomString> customDescription;

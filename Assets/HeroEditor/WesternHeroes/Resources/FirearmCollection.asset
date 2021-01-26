@@ -1,0 +1,452 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20438ef1890f427991147f72aa955074, type: 3}
+  m_Name: FirearmCollection
+  m_EditorClassIdentifier: 
+  Id: WesternHeroes
+  Firearms:
+  - Name: BorderGun
+    FirearmTexture: {fileID: 0}
+    Type: 1
+    HoldType: 0
+    MagazineType: 0
+    LoadType: 1
+    AutomaticFire: 0
+    AutomaticLoad: 1
+    FireRateInMinute: 200
+    MagazineCapacity: 6
+    Recoil: 0.1
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.33, y: 0.33}
+    MagazinePosition: {x: 0, y: 0}
+    FireMuzzlePosition: {x: 0.9, y: 0.36}
+    FireMuzzlePrefab: {fileID: 198416100499550440, guid: 67b6dae581584190a973e20ff32ed3f1,
+      type: 3}
+    ProjectilePrefab: {fileID: 114844765844241412, guid: 7e87f263b8e94d5288bb0397c3b0d752,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 405b3eb6b7e2460586f227618d2dd649, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 3a58d909a05f4afba3340fa4e6739c9e, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 266fca90c3444762aa36ab2086f2e71d, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: 1e1cb6f5c8394ba3b753b5a18525aa63, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: c46d262cd5344d758a1d2915f0563224, type: 2}
+    Meta: []
+  - Name: Deserter
+    FirearmTexture: {fileID: 0}
+    Type: 1
+    HoldType: 0
+    MagazineType: 0
+    LoadType: 1
+    AutomaticFire: 0
+    AutomaticLoad: 1
+    FireRateInMinute: 250
+    MagazineCapacity: 6
+    Recoil: 0.1
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.39, y: 0.33}
+    MagazinePosition: {x: 0, y: 0}
+    FireMuzzlePosition: {x: 1.2, y: 0.38}
+    FireMuzzlePrefab: {fileID: 198416100499550440, guid: 67b6dae581584190a973e20ff32ed3f1,
+      type: 3}
+    ProjectilePrefab: {fileID: 114844765844241412, guid: 7e87f263b8e94d5288bb0397c3b0d752,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 405b3eb6b7e2460586f227618d2dd649, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 3a58d909a05f4afba3340fa4e6739c9e, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 266fca90c3444762aa36ab2086f2e71d, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: 1e1cb6f5c8394ba3b753b5a18525aa63, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: c46d262cd5344d758a1d2915f0563224, type: 2}
+    Meta: []
+  - Name: Lawgiver
+    FirearmTexture: {fileID: 0}
+    Type: 1
+    HoldType: 0
+    MagazineType: 0
+    LoadType: 1
+    AutomaticFire: 0
+    AutomaticLoad: 1
+    FireRateInMinute: 300
+    MagazineCapacity: 6
+    Recoil: 0.1
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.48, y: 0.37}
+    MagazinePosition: {x: 0, y: 0}
+    FireMuzzlePosition: {x: 1.22, y: 0.42}
+    FireMuzzlePrefab: {fileID: 198416100499550440, guid: 67b6dae581584190a973e20ff32ed3f1,
+      type: 3}
+    ProjectilePrefab: {fileID: 114844765844241412, guid: 7e87f263b8e94d5288bb0397c3b0d752,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 405b3eb6b7e2460586f227618d2dd649, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 3a58d909a05f4afba3340fa4e6739c9e, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 266fca90c3444762aa36ab2086f2e71d, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: 1e1cb6f5c8394ba3b753b5a18525aa63, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: c46d262cd5344d758a1d2915f0563224, type: 2}
+    Meta: []
+  - Name: DoubleBarrelShotgun
+    FirearmTexture: {fileID: 0}
+    Type: 1
+    HoldType: 2
+    MagazineType: 0
+    LoadType: 1
+    AutomaticFire: 0
+    AutomaticLoad: 1
+    FireRateInMinute: 300
+    MagazineCapacity: 6
+    Recoil: 0.1
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.56, y: 0.37}
+    MagazinePosition: {x: 0, y: 0}
+    FireMuzzlePosition: {x: 1.55, y: 0.38}
+    FireMuzzlePrefab: {fileID: 198416100499550440, guid: 67b6dae581584190a973e20ff32ed3f1,
+      type: 3}
+    ProjectilePrefab: {fileID: 114844765844241412, guid: 7e87f263b8e94d5288bb0397c3b0d752,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 405b3eb6b7e2460586f227618d2dd649, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 3a58d909a05f4afba3340fa4e6739c9e, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 266fca90c3444762aa36ab2086f2e71d, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: 1e1cb6f5c8394ba3b753b5a18525aa63, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: c46d262cd5344d758a1d2915f0563224, type: 2}
+    Meta: []
+  - Name: LongBarrelRevolver
+    FirearmTexture: {fileID: 0}
+    Type: 1
+    HoldType: 0
+    MagazineType: 0
+    LoadType: 1
+    AutomaticFire: 0
+    AutomaticLoad: 1
+    FireRateInMinute: 300
+    MagazineCapacity: 6
+    Recoil: 0.1
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.43, y: 0.37}
+    MagazinePosition: {x: 0, y: 0}
+    FireMuzzlePosition: {x: 1.57, y: 0.35}
+    FireMuzzlePrefab: {fileID: 198416100499550440, guid: 67b6dae581584190a973e20ff32ed3f1,
+      type: 3}
+    ProjectilePrefab: {fileID: 114844765844241412, guid: 7e87f263b8e94d5288bb0397c3b0d752,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 405b3eb6b7e2460586f227618d2dd649, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 3a58d909a05f4afba3340fa4e6739c9e, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 266fca90c3444762aa36ab2086f2e71d, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: 1e1cb6f5c8394ba3b753b5a18525aa63, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: c46d262cd5344d758a1d2915f0563224, type: 2}
+    Meta: []
+  - Name: Quickshot
+    FirearmTexture: {fileID: 0}
+    Type: 1
+    HoldType: 0
+    MagazineType: 0
+    LoadType: 1
+    AutomaticFire: 0
+    AutomaticLoad: 1
+    FireRateInMinute: 400
+    MagazineCapacity: 12
+    Recoil: 0.1
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.47, y: 0.36}
+    MagazinePosition: {x: 0, y: 0}
+    FireMuzzlePosition: {x: 1.16, y: 0.43}
+    FireMuzzlePrefab: {fileID: 198416100499550440, guid: 67b6dae581584190a973e20ff32ed3f1,
+      type: 3}
+    ProjectilePrefab: {fileID: 114844765844241412, guid: 7e87f263b8e94d5288bb0397c3b0d752,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 405b3eb6b7e2460586f227618d2dd649, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 3a58d909a05f4afba3340fa4e6739c9e, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 266fca90c3444762aa36ab2086f2e71d, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: 1e1cb6f5c8394ba3b753b5a18525aa63, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: c46d262cd5344d758a1d2915f0563224, type: 2}
+    Meta: []
+  - Name: LittleHelper
+    FirearmTexture: {fileID: 0}
+    Type: 9
+    HoldType: 2
+    MagazineType: 0
+    LoadType: 0
+    AutomaticFire: 0
+    AutomaticLoad: 1
+    FireRateInMinute: 150
+    MagazineCapacity: 12
+    Recoil: 0.05
+    Accuracy: 0.95
+    MuzzleVelocity: 12.5
+    SlidePosition: {x: 0.51, y: 0.47}
+    MagazinePosition: {x: 0.51, y: 0.47}
+    FireMuzzlePosition: {x: 1.3, y: 0.41}
+    FireMuzzlePrefab: {fileID: 198582016570033758, guid: d699a66c5b924bb1b0b1eacf761ee917,
+      type: 3}
+    ProjectilePrefab: {fileID: 114663788644885588, guid: 097e74d1dc2342e9b79f15aa1c0163ee,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 4a80e53a04d7490295d073c444745e8c, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 29102619d7644efa8b2efdc36e84a239, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: c142c1a184f54e4a8b449cb7be2ff42a, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: f6831b2b1cb143acbf92818784374a78, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: fa34d240661e4409b0fc998f66e51e03, type: 2}
+    Meta: []
+  - Name: Cannon
+    FirearmTexture: {fileID: 0}
+    Type: 9
+    HoldType: 2
+    MagazineType: 0
+    LoadType: 0
+    AutomaticFire: 0
+    AutomaticLoad: 1
+    FireRateInMinute: 150
+    MagazineCapacity: 12
+    Recoil: 0.05
+    Accuracy: 0.95
+    MuzzleVelocity: 12.5
+    SlidePosition: {x: 0.51, y: 0.47}
+    MagazinePosition: {x: 0.51, y: 0.47}
+    FireMuzzlePosition: {x: 1.3, y: 0.41}
+    FireMuzzlePrefab: {fileID: 198582016570033758, guid: d699a66c5b924bb1b0b1eacf761ee917,
+      type: 3}
+    ProjectilePrefab: {fileID: 114663788644885588, guid: 097e74d1dc2342e9b79f15aa1c0163ee,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 4a80e53a04d7490295d073c444745e8c, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 29102619d7644efa8b2efdc36e84a239, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: c142c1a184f54e4a8b449cb7be2ff42a, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: f6831b2b1cb143acbf92818784374a78, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: fa34d240661e4409b0fc998f66e51e03, type: 2}
+    Meta: []
+  - Name: BigBertha
+    FirearmTexture: {fileID: 0}
+    Type: 9
+    HoldType: 2
+    MagazineType: 0
+    LoadType: 0
+    AutomaticFire: 0
+    AutomaticLoad: 1
+    FireRateInMinute: 150
+    MagazineCapacity: 1
+    Recoil: 0.05
+    Accuracy: 0.95
+    MuzzleVelocity: 12.5
+    SlidePosition: {x: 0.51, y: 0.47}
+    MagazinePosition: {x: 0.51, y: 0.47}
+    FireMuzzlePosition: {x: 1.3, y: 0.49}
+    FireMuzzlePrefab: {fileID: 198582016570033758, guid: d699a66c5b924bb1b0b1eacf761ee917,
+      type: 3}
+    ProjectilePrefab: {fileID: 114663788644885588, guid: 097e74d1dc2342e9b79f15aa1c0163ee,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 4a80e53a04d7490295d073c444745e8c, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 29102619d7644efa8b2efdc36e84a239, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: c142c1a184f54e4a8b449cb7be2ff42a, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: f6831b2b1cb143acbf92818784374a78, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: fa34d240661e4409b0fc998f66e51e03, type: 2}
+    Meta: []
+  - Name: GunfighterRifle
+    FirearmTexture: {fileID: 0}
+    Type: 5
+    HoldType: 2
+    MagazineType: 0
+    LoadType: 0
+    AutomaticFire: 0
+    AutomaticLoad: 1
+    FireRateInMinute: 200
+    MagazineCapacity: 8
+    Recoil: 0.1
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.43, y: 0.34}
+    MagazinePosition: {x: 0.5, y: 0.25}
+    FireMuzzlePosition: {x: 1.92, y: 0.28}
+    FireMuzzlePrefab: {fileID: 198416100499550440, guid: 67b6dae581584190a973e20ff32ed3f1,
+      type: 3}
+    ProjectilePrefab: {fileID: 114844765844241412, guid: 7e87f263b8e94d5288bb0397c3b0d752,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 4de3c846c3ff4faf8498e1ecc58681db, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: eb720cb58e9249f38d1c3dfc623e7b03, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 9c1b71067b724c938ae87967d8e1807e, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: 2670e6fd2ca84afdbb781f5c965271c3, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: fe1c27dcbeb442b098eb2849a0d5d24b, type: 2}
+    Meta: []
+  - Name: TrooperRifle
+    FirearmTexture: {fileID: 0}
+    Type: 5
+    HoldType: 2
+    MagazineType: 0
+    LoadType: 0
+    AutomaticFire: 0
+    AutomaticLoad: 1
+    FireRateInMinute: 300
+    MagazineCapacity: 12
+    Recoil: 0.1
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.42, y: 0.34}
+    MagazinePosition: {x: 0.5, y: 0.25}
+    FireMuzzlePosition: {x: 1.95, y: 0.3}
+    FireMuzzlePrefab: {fileID: 198416100499550440, guid: 67b6dae581584190a973e20ff32ed3f1,
+      type: 3}
+    ProjectilePrefab: {fileID: 114844765844241412, guid: 7e87f263b8e94d5288bb0397c3b0d752,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 4de3c846c3ff4faf8498e1ecc58681db, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: eb720cb58e9249f38d1c3dfc623e7b03, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 9c1b71067b724c938ae87967d8e1807e, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: 2670e6fd2ca84afdbb781f5c965271c3, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: fe1c27dcbeb442b098eb2849a0d5d24b, type: 2}
+    Meta: []
+  - Name: LongBarrelSniperRifle
+    FirearmTexture: {fileID: 0}
+    Type: 5
+    HoldType: 2
+    MagazineType: 0
+    LoadType: 0
+    AutomaticFire: 0
+    AutomaticLoad: 1
+    FireRateInMinute: 300
+    MagazineCapacity: 12
+    Recoil: 0.1
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.35, y: 0.28}
+    MagazinePosition: {x: 0.84, y: 0.1}
+    FireMuzzlePosition: {x: 2.03, y: 0.3}
+    FireMuzzlePrefab: {fileID: 198416100499550440, guid: 67b6dae581584190a973e20ff32ed3f1,
+      type: 3}
+    ProjectilePrefab: {fileID: 114844765844241412, guid: 7e87f263b8e94d5288bb0397c3b0d752,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 4de3c846c3ff4faf8498e1ecc58681db, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: eb720cb58e9249f38d1c3dfc623e7b03, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 9c1b71067b724c938ae87967d8e1807e, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: 2670e6fd2ca84afdbb781f5c965271c3, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: fe1c27dcbeb442b098eb2849a0d5d24b, type: 2}
+    Meta: []
+  - Name: AutomaticRifle
+    FirearmTexture: {fileID: 0}
+    Type: 5
+    HoldType: 2
+    MagazineType: 0
+    LoadType: 0
+    AutomaticFire: 0
+    AutomaticLoad: 1
+    FireRateInMinute: 300
+    MagazineCapacity: 12
+    Recoil: 0.1
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.58, y: 0.4}
+    MagazinePosition: {x: 0.88, y: -0.07}
+    FireMuzzlePosition: {x: 1.9, y: 0.35}
+    FireMuzzlePrefab: {fileID: 198416100499550440, guid: 67b6dae581584190a973e20ff32ed3f1,
+      type: 3}
+    ProjectilePrefab: {fileID: 114844765844241412, guid: 7e87f263b8e94d5288bb0397c3b0d752,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 4de3c846c3ff4faf8498e1ecc58681db, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: eb720cb58e9249f38d1c3dfc623e7b03, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 9c1b71067b724c938ae87967d8e1807e, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: 2670e6fd2ca84afdbb781f5c965271c3, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: fe1c27dcbeb442b098eb2849a0d5d24b, type: 2}
+    Meta: []
+  - Name: ChiefGun
+    FirearmTexture: {fileID: 0}
+    Type: 5
+    HoldType: 2
+    MagazineType: 0
+    LoadType: 0
+    AutomaticFire: 0
+    AutomaticLoad: 1
+    FireRateInMinute: 120
+    MagazineCapacity: 6
+    Recoil: 0.1
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.42, y: 0.34}
+    MagazinePosition: {x: 0.56, y: 0.06}
+    FireMuzzlePosition: {x: 1.93, y: 0.3}
+    FireMuzzlePrefab: {fileID: 198416100499550440, guid: 67b6dae581584190a973e20ff32ed3f1,
+      type: 3}
+    ProjectilePrefab: {fileID: 114844765844241412, guid: 7e87f263b8e94d5288bb0397c3b0d752,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 4de3c846c3ff4faf8498e1ecc58681db, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: eb720cb58e9249f38d1c3dfc623e7b03, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 9c1b71067b724c938ae87967d8e1807e, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: 2670e6fd2ca84afdbb781f5c965271c3, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: fe1c27dcbeb442b098eb2849a0d5d24b, type: 2}
+    Meta: []
+  - Name: Sweetheart
+    FirearmTexture: {fileID: 0}
+    Type: 8
+    HoldType: 2
+    MagazineType: 1
+    LoadType: 0
+    AutomaticFire: 0
+    AutomaticLoad: 0
+    FireRateInMinute: 150
+    MagazineCapacity: 8
+    Recoil: 0.1
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.5, y: 0.34}
+    MagazinePosition: {x: 0.56, y: 0.06}
+    FireMuzzlePosition: {x: 1.5, y: 0.35}
+    FireMuzzlePrefab: {fileID: 198416100499550440, guid: 67b6dae581584190a973e20ff32ed3f1,
+      type: 3}
+    ProjectilePrefab: {fileID: 114844765844241412, guid: 7e87f263b8e94d5288bb0397c3b0d752,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: e02aaaf76b394813a4a653e36d9a4565, type: 3}
+    SoundClipIn: {fileID: 0}
+    SoundClipOut: {fileID: 0}
+    SoundLoad: {fileID: 8300000, guid: 23d70da66b404dfabf526d6cf52b29fa, type: 3}
+    SoundPump: {fileID: 8300000, guid: 1a2c07c338554ecab591594b8ecb6f9d, type: 3}
+    HoldAnimation: {fileID: 7400000, guid: 2670e6fd2ca84afdbb781f5c965271c3, type: 2}
+    LoadAnimation: {fileID: 7400000, guid: e633484e1eae4d1db0f0decd5d9e6c86, type: 2}
+    ReloadAnimation: {fileID: 7400000, guid: fe1c27dcbeb442b098eb2849a0d5d24b, type: 2}
+    Meta:
+    - Spread=5

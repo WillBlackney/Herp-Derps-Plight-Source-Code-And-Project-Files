@@ -1,0 +1,1501 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba669b94ec0c484e85b7afb7407f75ba, type: 3}
+  m_Name: IconCollection
+  m_EditorClassIdentifier: 
+  Backgrounds:
+  - {fileID: 21300000, guid: 6a7965a697c24a689633cfa2a821ca7e, type: 3}
+  - {fileID: 21300000, guid: 533abca1f345417e984b150a43d1ef78, type: 3}
+  - {fileID: 21300000, guid: b7b50a648b914b71a63c6ede8a31ea9b, type: 3}
+  - {fileID: 21300000, guid: 176661c66228466f9f74c027f6d60f9f, type: 3}
+  - {fileID: 21300000, guid: 3d210ed8562242d3804c2502b7312c3a, type: 3}
+  - {fileID: 21300000, guid: dbff44ea28934646b14fff229f0db0d9, type: 3}
+  Id: CyberpunkHeroes
+  ScanFolder: {fileID: 102900000, guid: 4e5f024a6ba64e7b83ec1409faacf1b8, type: 3}
+  Icons:
+  - Name: =3=
+    Path: BodyParts/Eyebrows/Emoji/=3=
+    Sprite: {fileID: 21300000, guid: bb73b8ea5f77491da7e8371727e4f5ca, type: 3}
+  - Name: =3=
+    Path: BodyParts/Eyes/Emoji/=3=
+    Sprite: {fileID: 21300000, guid: a3498670e2774167b5b6c646cae9099d, type: 3}
+  - Name: =3=
+    Path: BodyParts/Mouth/Emoji/=3=
+    Sprite: {fileID: 21300000, guid: 8258027b056948699169ce6ea0de9ae3, type: 3}
+  - Name: 1
+    Path: BodyParts/Mouth/Bonus/1
+    Sprite: {fileID: 21300000, guid: 6834e798420e4ef6b1563aa9db772257, type: 3}
+  - Name: 10
+    Path: BodyParts/Mouth/Bonus/10
+    Sprite: {fileID: 21300000, guid: 1751b13c519743e587dc9314ea2044fe, type: 3}
+  - Name: 11
+    Path: BodyParts/Mouth/Bonus/11
+    Sprite: {fileID: 21300000, guid: 53582851d3c048ecbf881df7bf4c4a7f, type: 3}
+  - Name: 2
+    Path: BodyParts/Mouth/Bonus/2
+    Sprite: {fileID: 21300000, guid: 1a77f479952f4540835b55c50fd70307, type: 3}
+  - Name: 3
+    Path: BodyParts/Mouth/Bonus/3
+    Sprite: {fileID: 21300000, guid: db719e4ad4d54dd0b9b02f0360d34e53, type: 3}
+  - Name: 4
+    Path: BodyParts/Mouth/Bonus/4
+    Sprite: {fileID: 21300000, guid: 2074c222fc444211baca6eee2c97a526, type: 3}
+  - Name: 5
+    Path: BodyParts/Mouth/Bonus/5
+    Sprite: {fileID: 21300000, guid: 29a5559026e842a2b6684e5c575fb184, type: 3}
+  - Name: 6
+    Path: BodyParts/Mouth/Bonus/6
+    Sprite: {fileID: 21300000, guid: 8d5971e6394a4e93ab771ae09ca4e1d4, type: 3}
+  - Name: 7
+    Path: BodyParts/Mouth/Bonus/7
+    Sprite: {fileID: 21300000, guid: 4a5dbf3d364342dcbcac5c9dfb3a6076, type: 3}
+  - Name: 8
+    Path: BodyParts/Mouth/Bonus/8
+    Sprite: {fileID: 21300000, guid: f70d5e0a919a449b8f74ad5775af98f6, type: 3}
+  - Name: 83
+    Path: BodyParts/Eyes/Emoji/83
+    Sprite: {fileID: 21300000, guid: b00a1d96b3504c62bcb5a754e9c93cc0, type: 3}
+  - Name: 83
+    Path: BodyParts/Mouth/Emoji/83
+    Sprite: {fileID: 21300000, guid: b0a096275ffe4f2b9be7699b92bed335, type: 3}
+  - Name: 9
+    Path: BodyParts/Mouth/Bonus/9
+    Sprite: {fileID: 21300000, guid: 0ea97e7f0d4140a888335f74abc21f29, type: 3}
+  - Name: Afro
+    Path: BodyParts/Hair/Basic/Afro
+    Sprite: {fileID: 21300000, guid: d0ed8166432241c6ab917446d2a9f241, type: 3}
+  - Name: AfroSmall
+    Path: BodyParts/Hair/Basic/AfroSmall
+    Sprite: {fileID: 21300000, guid: 6925710d3cef45629bb02ae7bc24fa88, type: 3}
+  - Name: Angry
+    Path: BodyParts/Eyebrows/Basic/Angry
+    Sprite: {fileID: 21300000, guid: 7419efdc76c2450eaf57d6c44b6e3237, type: 3}
+  - Name: Angry
+    Path: BodyParts/Eyebrows/Expressions/Angry
+    Sprite: {fileID: 21300000, guid: 6409c4716e154e29af22f74835bc6152, type: 3}
+  - Name: Angry
+    Path: BodyParts/Eyes/Expressions/Angry
+    Sprite: {fileID: 21300000, guid: f6bc887d971641108e31c9080d7f2e4b, type: 3}
+  - Name: Angry
+    Path: BodyParts/Mouth/Basic/Angry
+    Sprite: {fileID: 21300000, guid: 90f63faa30cd47f6913003c9fcfe5f72, type: 3}
+  - Name: Angry
+    Path: BodyParts/Mouth/Expressions/Angry
+    Sprite: {fileID: 21300000, guid: 777107af75bd49af9ec1e7e387cd70c6, type: 3}
+  - Name: AngryConfused
+    Path: BodyParts/Eyebrows/Expressions/AngryConfused
+    Sprite: {fileID: 21300000, guid: 51b63ed8c2574c6aa17fc8b855152201, type: 3}
+  - Name: AngryNormal
+    Path: BodyParts/Eyebrows/Expressions/AngryNormal
+    Sprite: {fileID: 21300000, guid: d9aad3c0bf814e8b8c8c8bca16c6d110, type: 3}
+  - Name: AnimeGirl
+    Path: BodyParts/Hair/Bonus/AnimeGirl
+    Sprite: {fileID: 21300000, guid: 14f2aea8d89d46419156eabe9e12ca24, type: 3}
+  - Name: Annoyed
+    Path: BodyParts/Eyebrows/Emoji/Annoyed
+    Sprite: {fileID: 21300000, guid: ffa4e479fb52469ea258cb38d5ebcbec, type: 3}
+  - Name: Annoyed
+    Path: BodyParts/Eyes/Emoji/Annoyed
+    Sprite: {fileID: 21300000, guid: c6482207be12448f8f35f99480ed4ca0, type: 3}
+  - Name: Annoyed
+    Path: BodyParts/Mouth/Emoji/Annoyed
+    Sprite: {fileID: 21300000, guid: e591b8347a844738adf67dfc8ef014ea, type: 3}
+  - Name: Ariel
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Ariel
+    Sprite: {fileID: 21300000, guid: 9f95955390d64dffb20bd0fbe0cd1c31, type: 3}
+  - Name: Ariel
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Ariel
+    Sprite: {fileID: 21300000, guid: 4f5a2a4e75ca4e8dbe86e37241cf2c3a, type: 3}
+  - Name: Ariel
+    Path: BodyParts/Hair/Style/Ariel
+    Sprite: {fileID: 21300000, guid: 59b8ea595e9048efba82602fd1b2d202, type: 3}
+  - Name: Ariel
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Ariel
+    Sprite: {fileID: 21300000, guid: c33099a548ae45cdab67a2cc35152987, type: 3}
+  - Name: Army
+    Path: BodyParts/Hair/Bonus/Army
+    Sprite: {fileID: 21300000, guid: 10a958241a854f52b696e3dd4c664ae9, type: 3}
+  - Name: Arrow1.Arrow
+    Path: Equipment/Arrow/Pro/Arrow1.Arrow
+    Sprite: {fileID: 21300000, guid: ffab08944b0f4f2cadb1fd97eded95e8, type: 3}
+  - Name: Arrow2.Arrow
+    Path: Equipment/Arrow/Pro/Arrow2.Arrow
+    Sprite: {fileID: 21300000, guid: 7435f93fc53a458dacc1cd85e0978ec7, type: 3}
+  - Name: Arrow3 [Paint].Arrow
+    Path: Equipment/Arrow/Pro/Arrow3 [Paint].Arrow
+    Sprite: {fileID: 21300000, guid: a67de628f74e482a88299662e06e8636, type: 3}
+  - Name: Arrow4.Arrow
+    Path: Equipment/Arrow/Pro/Arrow4.Arrow
+    Sprite: {fileID: 21300000, guid: 87737dbf750440a093250c77d008b813, type: 3}
+  - Name: ArrowQuiver1 [Paint]
+    Path: Equipment/Back/Pro/ArrowQuiver1 [Paint]
+    Sprite: {fileID: 21300000, guid: 3af18f185b8a45718408c05db0669b45, type: 3}
+  - Name: ArrowQuiver2 [Paint]
+    Path: Equipment/Back/Pro/ArrowQuiver2 [Paint]
+    Sprite: {fileID: 21300000, guid: f56c727e6ab54d0a9b6c5adbfa5bae4d, type: 3}
+  - Name: ArrowQuiver3 [Paint]
+    Path: Equipment/Back/Pro/ArrowQuiver3 [Paint]
+    Sprite: {fileID: 21300000, guid: cbb4919ffdc8441c8f2c1ecdfb0c5bce, type: 3}
+  - Name: ArrowQuiver4  [Paint]
+    Path: Equipment/Back/Pro/ArrowQuiver4  [Paint]
+    Sprite: {fileID: 21300000, guid: 2c69b09da33649e19b5906bbb2f2f0c1, type: 3}
+  - Name: Axeorang [Paint]
+    Path: Equipment/Supplies/Pro/Throwing/Axeorang [Paint]
+    Sprite: {fileID: 21300000, guid: e0db861299a04cff8f87bf540ccfd2ff, type: 3}
+  - Name: Banan
+    Path: Equipment/Earrings/Basic/Banan
+    Sprite: {fileID: 21300000, guid: 9c7041fc6dbf4b33bcea16e1c6e5a982, type: 3}
+  - Name: Beard
+    Path: BodyParts/Beard/Basic/Beard
+    Sprite: {fileID: 21300000, guid: 43c69dcfabea40afa54d6b4c7acb5e71, type: 3}
+  - Name: Blade
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Blade
+    Sprite: {fileID: 21300000, guid: d7c7b936c44e44738397ac5695b598be, type: 3}
+  - Name: Blade
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Blade
+    Sprite: {fileID: 21300000, guid: 81175f7bd7c54f88870025975dbbca70, type: 3}
+  - Name: Blade
+    Path: BodyParts/Hair/Style/Blade
+    Sprite: {fileID: 21300000, guid: 090cd73525c74bb4ac4aa2e2f2ec6ad6, type: 3}
+  - Name: Blade
+    Path: BodyParts/Hair/Style [Preview] [NoPaint]/Blade
+    Sprite: {fileID: 21300000, guid: 373249570c864f8ebb7194b9f56f6465, type: 3}
+  - Name: Blade
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Blade
+    Sprite: {fileID: 21300000, guid: 2bd048468c6547248b6b440861e85906, type: 3}
+  - Name: Blank
+    Path: BodyParts/Eyes/Emoji/Blank
+    Sprite: {fileID: 21300000, guid: 537f0775898b48579ea298dda8920af1, type: 3}
+  - Name: Blank
+    Path: BodyParts/Mouth/Emoji/Blank
+    Sprite: {fileID: 21300000, guid: 56fd71ab40a843ccb4a1b49fa91dc537, type: 3}
+  - Name: Blossom [HideEars]
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Blossom [HideEars]
+    Sprite: {fileID: 21300000, guid: 1881384b8b534bdba19c73ed058b84c5, type: 3}
+  - Name: Blossom [HideEars]
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Blossom [HideEars]
+    Sprite: {fileID: 21300000, guid: b15cc7df1e814c7a8d90accb4e463b63, type: 3}
+  - Name: Blossom [HideEars]
+    Path: BodyParts/Hair/Style/Blossom [HideEars]
+    Sprite: {fileID: 21300000, guid: 73cb4bfca3c3404c9d2b9ef14c4dccaa, type: 3}
+  - Name: Blossom [HideEars]
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Blossom [HideEars]
+    Sprite: {fileID: 21300000, guid: d46249dd2f924f458b9d5c430be56712, type: 3}
+  - Name: Blossom [Paint] [FullHair]
+    Path: Equipment/Helmet/Style/Blossom [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 53662fbf86f04bc7bbad087f50365b48, type: 3}
+  - Name: Boomerang [Paint]
+    Path: Equipment/Supplies/Pro/Throwing/Boomerang [Paint]
+    Sprite: {fileID: 21300000, guid: 53130f18960a40e9b4880428e251f8eb, type: 3}
+  - Name: Bored
+    Path: BodyParts/Eyebrows/Expressions/Bored
+    Sprite: {fileID: 21300000, guid: 5e8568200d7246c3a5410ec41019e358, type: 3}
+  - Name: Bored
+    Path: BodyParts/Eyes/Expressions/Bored
+    Sprite: {fileID: 21300000, guid: 2650ce6cfba949f68b6f7e7ad6449b6c, type: 3}
+  - Name: Bored
+    Path: BodyParts/Mouth/Expressions/Bored
+    Sprite: {fileID: 21300000, guid: a0d16a72a1294476bc88dd6508c9dce2, type: 3}
+  - Name: BoredSurpried
+    Path: BodyParts/Eyebrows/Expressions/BoredSurpried
+    Sprite: {fileID: 21300000, guid: 437a76ed1fc64ef4a3f2b2efaa4fe639, type: 3}
+  - Name: Bow1
+    Path: Equipment/Bow/Pro/Bow1
+    Sprite: {fileID: 21300000, guid: 58f9c71a33094a4ebd54aca63f7b46c9, type: 3}
+  - Name: Bow2
+    Path: Equipment/Bow/Pro/Bow2
+    Sprite: {fileID: 21300000, guid: 1ff4fcefb3bf438f850c815722d877b5, type: 3}
+  - Name: Bow3 [Paint]
+    Path: Equipment/Bow/Pro/Bow3 [Paint]
+    Sprite: {fileID: 21300000, guid: c6635a7b48c94ab8b1bcab5b68f14360, type: 3}
+  - Name: Bow4
+    Path: Equipment/Bow/Pro/Bow4
+    Sprite: {fileID: 21300000, guid: 75ad6a249b1a45119c72ebfd15bf8872, type: 3}
+  - Name: BowlCut
+    Path: BodyParts/Hair/Bonus/BowlCut
+    Sprite: {fileID: 21300000, guid: fc43eea18c4546e4863abccca4a42ede, type: 3}
+  - Name: Bubble
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Bubble
+    Sprite: {fileID: 21300000, guid: b17e9bae295a4f4f9969631bc7c49dc4, type: 3}
+  - Name: Bubble
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Bubble
+    Sprite: {fileID: 21300000, guid: 731f40857f63465cb51ba3ea79f93363, type: 3}
+  - Name: Bubble
+    Path: BodyParts/Hair/Style/Bubble
+    Sprite: {fileID: 21300000, guid: 00e3385804cd414fba8c9c9dc1e3d6e6, type: 3}
+  - Name: Bubble
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Bubble
+    Sprite: {fileID: 21300000, guid: 02af3cce306f4481a2c9fca4b2a9d39d, type: 3}
+  - Name: Bundle
+    Path: BodyParts/Hair/Bonus/Bundle
+    Sprite: {fileID: 21300000, guid: 5ab3967400a14494bf3d1f3610819dda, type: 3}
+  - Name: BunnyEars [FullHair]
+    Path: Equipment/Helmet/Style/BunnyEars [FullHair]
+    Sprite: {fileID: 21300000, guid: a91df6a25a7d4a81902c7d292bf61d5f, type: 3}
+  - Name: BunnyEars1 [Paint] [FullHair]
+    Path: Equipment/Helmet/Style/BunnyEars1 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: b4f8e3a5ef76447787ec5997e76ab6be, type: 3}
+  - Name: BunnyEars2 [FullHair]
+    Path: Equipment/Helmet/Style/BunnyEars2 [FullHair]
+    Sprite: {fileID: 21300000, guid: 1d3d55ee3d114c478cd2656447204b0e, type: 3}
+  - Name: BunnyEars2 [Paint] [FullHair]
+    Path: Equipment/Helmet/Style/BunnyEars2 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: f209b0b9fa3b4f10be096e912f1ebe41, type: 3}
+  - Name: BunnyFace
+    Path: BodyParts/Eyes/Emoji/BunnyFace
+    Sprite: {fileID: 21300000, guid: 35be29195cda4420a2f0dedd27fedcfb, type: 3}
+  - Name: BunnyFace
+    Path: BodyParts/Mouth/Emoji/BunnyFace
+    Sprite: {fileID: 21300000, guid: 7a844145a71841819952fa50f4c7c881, type: 3}
+  - Name: BunnyPin [FullHair]
+    Path: Equipment/Helmet/Style/BunnyPin [FullHair]
+    Sprite: {fileID: 21300000, guid: 96e295f68fed4ff6b69abc3a41d8f2ac, type: 3}
+  - Name: BuzzCut
+    Path: BodyParts/Hair/Basic/BuzzCut
+    Sprite: {fileID: 21300000, guid: 1b882b1b69ca40acac731f1c2b138c98, type: 3}
+  - Name: Cape1
+    Path: Equipment/Cape/Pro/Cape1
+    Sprite: {fileID: 21300000, guid: cb8caec9fa0446ffb4d9991edbf91d27, type: 3}
+  - Name: Cape2
+    Path: Equipment/Cape/Pro/Cape2
+    Sprite: {fileID: 21300000, guid: f40dce4238c64280ae7b5296fda1078f, type: 3}
+  - Name: Cape3
+    Path: Equipment/Cape/Pro/Cape3
+    Sprite: {fileID: 21300000, guid: d0193ba5fc704650b6057846e8c83140, type: 3}
+  - Name: Cape4
+    Path: Equipment/Cape/Pro/Cape4
+    Sprite: {fileID: 21300000, guid: 4420876b3dce4183b933679fec5241a7, type: 3}
+  - Name: CaptainForm
+    Path: Equipment/Armor/Pro/CaptainForm
+    Sprite: {fileID: 21300000, guid: e84930b455fe4c1e8f19ad73b2af776b, type: 3}
+  - Name: CaptainForm.Belt
+    Path: Equipment/Belt/Pro/CaptainForm.Belt
+    Sprite: {fileID: 21300000, guid: 0e828984ed7a46fba999e2007711f8b9, type: 3}
+  - Name: CaptainForm.Boots
+    Path: Equipment/Boots/Pro/CaptainForm.Boots
+    Sprite: {fileID: 21300000, guid: 0f69ad965d8d4804bed7d5a1a6ed4bd8, type: 3}
+  - Name: CaptainForm.Gloves
+    Path: Equipment/Gloves/Pro/CaptainForm.Gloves
+    Sprite: {fileID: 21300000, guid: 3c1a7ada23ba43a7978977aea81471ba, type: 3}
+  - Name: CaptainForm.Pauldrons
+    Path: Equipment/Pauldrons/Pro/CaptainForm.Pauldrons
+    Sprite: {fileID: 21300000, guid: d71aeb8faed641189fd41134ba39ec1e, type: 3}
+  - Name: CaptainForm.Vest
+    Path: Equipment/Vest/Pro/CaptainForm.Vest
+    Sprite: {fileID: 21300000, guid: 317c92f0a7694702b26759cd1497c2fd, type: 3}
+  - Name: CatEars [Paint] [FullHair]
+    Path: Equipment/Helmet/Style/CatEars [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 68e5d1ca674c47f299067f8cf480eadf, type: 3}
+  - Name: Cheeky
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Cheeky
+    Sprite: {fileID: 21300000, guid: 9018e8a294894f5989111411956c5c6f, type: 3}
+  - Name: Cheeky
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Cheeky
+    Sprite: {fileID: 21300000, guid: 24d02733e63d4008b2b4417e41557862, type: 3}
+  - Name: Cheeky
+    Path: BodyParts/Hair/Style/Cheeky
+    Sprite: {fileID: 21300000, guid: 52a6002a316e490cb007e1cbf3fc72fb, type: 3}
+  - Name: Cheeky
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Cheeky
+    Sprite: {fileID: 21300000, guid: 5e78e00adfed448e974cb1beac9e6c42, type: 3}
+  - Name: Cleo [HideEars]
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Cleo [HideEars]
+    Sprite: {fileID: 21300000, guid: 949b0a9dcfd74e81be8afab35b60b316, type: 3}
+  - Name: Cleo [HideEars]
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Cleo [HideEars]
+    Sprite: {fileID: 21300000, guid: 0788bdd752644fec94ec6d0b582f7dc9, type: 3}
+  - Name: Cleo [HideEars]
+    Path: BodyParts/Hair/Style/Cleo [HideEars]
+    Sprite: {fileID: 21300000, guid: 509b85cf4c74480987b73277440963ce, type: 3}
+  - Name: Cleo [HideEars]
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Cleo [HideEars]
+    Sprite: {fileID: 21300000, guid: 6cbc33f1ad614247824b00287a557e03, type: 3}
+  - Name: Clumsy
+    Path: BodyParts/Hair/Bonus/Clumsy
+    Sprite: {fileID: 21300000, guid: 4b40603db7e8426d94420277f9ad9a1f, type: 3}
+  - Name: Communicator
+    Path: Equipment/Shield/Pro/Communicator
+    Sprite: {fileID: 21300000, guid: 9b210426cb6c4375b04fad81418c9a3a, type: 3}
+  - Name: Communicator
+    Path: Equipment/Supplies/Pro/Radio/Communicator
+    Sprite: {fileID: 21300000, guid: ee1015c844ae42bba11c5c0335edf381, type: 3}
+  - Name: Confused
+    Path: BodyParts/Eyes/Emoji/Confused
+    Sprite: {fileID: 21300000, guid: ab1c477973614998bceb01178cdef1f3, type: 3}
+  - Name: Confused
+    Path: BodyParts/Mouth/Emoji/Confused
+    Sprite: {fileID: 21300000, guid: 1f4127f112aa4c2d8f43706b5f13daed, type: 3}
+  - Name: ConfusedAngry
+    Path: BodyParts/Eyebrows/Expressions/ConfusedAngry
+    Sprite: {fileID: 21300000, guid: 30c79d17c88c45feaf92f792a39fcde5, type: 3}
+  - Name: CoolBoy
+    Path: BodyParts/Hair/Bonus/CoolBoy
+    Sprite: {fileID: 21300000, guid: f7559ae1962343e59448ac929d97e55c, type: 3}
+  - Name: Crown [FullHair]
+    Path: Equipment/Helmet/Style/Crown [FullHair]
+    Sprite: {fileID: 21300000, guid: 7a4f1a1b95b34ed59ab0d435394e395a, type: 3}
+  - Name: Crying
+    Path: BodyParts/Eyebrows/Emoji/Crying
+    Sprite: {fileID: 21300000, guid: 9fc68e77bf2649a5bae6ab8564457d10, type: 3}
+  - Name: Crying
+    Path: BodyParts/Eyes/Emoji/Crying
+    Sprite: {fileID: 21300000, guid: 4da607ec8613440abfe323ef2a77dc45, type: 3}
+  - Name: Crying
+    Path: BodyParts/Mouth/Emoji/Crying
+    Sprite: {fileID: 21300000, guid: aec1985e3c4a4246bd438552febf5f7d, type: 3}
+  - Name: Cutie
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Cutie
+    Sprite: {fileID: 21300000, guid: f9e0e4cc96d842e4a0664c201b1ea907, type: 3}
+  - Name: Cutie
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Cutie
+    Sprite: {fileID: 21300000, guid: 5a2ea1b7d3874ae9beee72b7469d4229, type: 3}
+  - Name: Cutie
+    Path: BodyParts/Hair/Style/Cutie
+    Sprite: {fileID: 21300000, guid: ecc49973640b42c5bb15259c5cc07e02, type: 3}
+  - Name: Cutie
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Cutie
+    Sprite: {fileID: 21300000, guid: 3b1f1c4e3c8a42ef9f90bc6c7a4fd792, type: 3}
+  - Name: Dandy
+    Path: BodyParts/Hair/Bonus/Dandy
+    Sprite: {fileID: 21300000, guid: 82c1532610774009821c50b4949ab82c, type: 3}
+  - Name: Dead
+    Path: BodyParts/Eyes/Basic/Dead
+    Sprite: {fileID: 21300000, guid: 6602363eef2f48688e5e5ba3f68e0fa5, type: 3}
+  - Name: Dead
+    Path: BodyParts/Eyes/Emoji/Dead
+    Sprite: {fileID: 21300000, guid: d4345dd224624fbc983c095e2ab5f433, type: 3}
+  - Name: Dead
+    Path: BodyParts/Mouth/Emoji/Dead
+    Sprite: {fileID: 21300000, guid: 0798bd776f7348049a0940e5a030c7ba, type: 3}
+  - Name: Diadem [FullHair]
+    Path: Equipment/Helmet/Style/Diadem [FullHair]
+    Sprite: {fileID: 21300000, guid: 90a7a2ec3ead49798c0a1ca27ec7d90e, type: 3}
+  - Name: Dizzy
+    Path: BodyParts/Eyebrows/Emoji/Dizzy
+    Sprite: {fileID: 21300000, guid: ece7cea0730b4743aeb0fbb76ecb00be, type: 3}
+  - Name: Dizzy
+    Path: BodyParts/Eyes/Emoji/Dizzy
+    Sprite: {fileID: 21300000, guid: 30a2cf2dba8f468d9c2803c944fc58f8, type: 3}
+  - Name: Dizzy
+    Path: BodyParts/Mouth/Emoji/Dizzy
+    Sprite: {fileID: 21300000, guid: 0fe34f6e29d440a89ebf5e1775843f56, type: 3}
+  - Name: DoubleTrouble
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/DoubleTrouble
+    Sprite: {fileID: 21300000, guid: 83478bb6e1474f7e9535dd5894c5a969, type: 3}
+  - Name: DoubleTrouble
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/DoubleTrouble
+    Sprite: {fileID: 21300000, guid: 21e6c372c1094516990495af816e545e, type: 3}
+  - Name: DoubleTrouble
+    Path: BodyParts/Hair/Style/DoubleTrouble
+    Sprite: {fileID: 21300000, guid: 3413d486c0834bbfb0c212b1e7665cf7, type: 3}
+  - Name: DoubleTrouble
+    Path: BodyParts/Hair/SunStyle [NoPaint]/DoubleTrouble
+    Sprite: {fileID: 21300000, guid: 6169ab04183c4550aa13b3ccecfe00c7, type: 3}
+  - Name: DragonTooth
+    Path: Equipment/MeleeWeapon1H/Basic/Sword/DragonTooth
+    Sprite: {fileID: 21300000, guid: 14d99c2b11ee48329a6b9dc14fd55a48, type: 3}
+  - Name: Drooling
+    Path: BodyParts/Eyes/Emoji/Drooling
+    Sprite: {fileID: 21300000, guid: 88cc137006a54d0d91e44290ec5e423a, type: 3}
+  - Name: Drooling
+    Path: BodyParts/Mouth/Emoji/Drooling
+    Sprite: {fileID: 21300000, guid: 67054fe70d324606906d9a60f425424a, type: 3}
+  - Name: Eh
+    Path: BodyParts/Eyebrows/Emoji/Eh
+    Sprite: {fileID: 21300000, guid: b8d635ff279a4d9b8ff874255df981f7, type: 3}
+  - Name: Eh
+    Path: BodyParts/Eyes/Emoji/Eh
+    Sprite: {fileID: 21300000, guid: f4474f1d45784dd59edbefffd2acd94a, type: 3}
+  - Name: Eh
+    Path: BodyParts/Mouth/Emoji/Eh
+    Sprite: {fileID: 21300000, guid: 258f9dc9ec51496da5c228018c1bd0d5, type: 3}
+  - Name: ElfEar
+    Path: BodyParts/Ears/Basic/ElfEar
+    Sprite: {fileID: 21300000, guid: 89efe3c41cb94e6286d6b7149a555012, type: 3}
+  - Name: Emma [HideEars]
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Emma [HideEars]
+    Sprite: {fileID: 21300000, guid: 467f068c32ec42b4aed9e4724e8743bf, type: 3}
+  - Name: Emma [HideEars]
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Emma [HideEars]
+    Sprite: {fileID: 21300000, guid: 10a9ee13b369473183581a5aa45911f0, type: 3}
+  - Name: Emma [HideEars]
+    Path: BodyParts/Hair/Style/Emma [HideEars]
+    Sprite: {fileID: 21300000, guid: 3db635e719aa45d3ad3f7c4055137001, type: 3}
+  - Name: Emma [HideEars]
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Emma [HideEars]
+    Sprite: {fileID: 21300000, guid: cab3e47046854ccdad096c7e31c62078, type: 3}
+  - Name: EnergyKnife
+    Path: Equipment/MeleeWeapon1H/Basic/Sword/EnergyKnife
+    Sprite: {fileID: 21300000, guid: 36a4c05afc2c470c95a7b89e80de3a81, type: 3}
+  - Name: EnergyKnife [Paint]
+    Path: Equipment/MeleeWeapon1H/Basic/Sword/EnergyKnife [Paint]
+    Sprite: {fileID: 21300000, guid: 0cad04a0ad0a4e069d8f2a31b5d1bd2a, type: 3}
+  - Name: EnergyShield
+    Path: Equipment/Shield/Basic/EnergyShield
+    Sprite: {fileID: 21300000, guid: 7c6193b3f84f42d1bd5ef34865ec41a5, type: 3}
+  - Name: EnergyShield [Paint]
+    Path: Equipment/Shield/Basic/EnergyShield [Paint]
+    Sprite: {fileID: 21300000, guid: c444d7d8d64c4790b8c5a8d579531737, type: 3}
+  - Name: EnergyShield2
+    Path: Equipment/Shield/Basic/EnergyShield2
+    Sprite: {fileID: 21300000, guid: d941631e9c574d8fa146e55c77054f1f, type: 3}
+  - Name: EnergyShield2 [Paint]
+    Path: Equipment/Shield/Basic/EnergyShield2 [Paint]
+    Sprite: {fileID: 21300000, guid: f749578a8d7d4fe6a54fad9956519433, type: 3}
+  - Name: EnergyShield3
+    Path: Equipment/Shield/Basic/EnergyShield3
+    Sprite: {fileID: 21300000, guid: 4bb124620a114d8c97c1e8ad4f9e7e2d, type: 3}
+  - Name: EnergyShield3 [Paint]
+    Path: Equipment/Shield/Basic/EnergyShield3 [Paint]
+    Sprite: {fileID: 21300000, guid: 49953a09d6094efb990560891d8dd0c4, type: 3}
+  - Name: EnergySword
+    Path: Equipment/MeleeWeapon1H/Basic/Sword/EnergySword
+    Sprite: {fileID: 21300000, guid: e5d04a5591fa4127a1bc4d6bf3045e7d, type: 3}
+  - Name: EnergySword [Paint]
+    Path: Equipment/MeleeWeapon1H/Basic/Sword/EnergySword [Paint]
+    Sprite: {fileID: 21300000, guid: 26d49ad843e34cf49f99a2626b2ad773, type: 3}
+  - Name: Enrage
+    Path: BodyParts/Eyebrows/Emoji/Enrage
+    Sprite: {fileID: 21300000, guid: 7f87d9b7ba6d41279bba4cc3414106f3, type: 3}
+  - Name: Enrage
+    Path: BodyParts/Eyes/Emoji/Enrage
+    Sprite: {fileID: 21300000, guid: c020035f9d0c4ab783c8ea246ac8d0a6, type: 3}
+  - Name: Enrage
+    Path: BodyParts/Mouth/Emoji/Enrage
+    Sprite: {fileID: 21300000, guid: 0a6d4006e7a943ec896b3976388cae25, type: 3}
+  - Name: Eyes1
+    Path: BodyParts/Eyes/Bonus/Eyes1
+    Sprite: {fileID: 21300000, guid: 93ac9f182a754d798d5bb305790014ce, type: 3}
+  - Name: Eyes10
+    Path: BodyParts/Eyes/Bonus/Eyes10
+    Sprite: {fileID: 21300000, guid: e632897bfa004fd3892bdabb3d7d05a3, type: 3}
+  - Name: Eyes11
+    Path: BodyParts/Eyes/Bonus/Eyes11
+    Sprite: {fileID: 21300000, guid: 188173b489994639bbb3b19267c0c66b, type: 3}
+  - Name: Eyes12
+    Path: BodyParts/Eyes/Bonus/Eyes12
+    Sprite: {fileID: 21300000, guid: bebcb636b5244cda840dbd44c0def74e, type: 3}
+  - Name: Eyes13
+    Path: BodyParts/Eyes/Bonus/Eyes13
+    Sprite: {fileID: 21300000, guid: 350eec10d1f94aefa4a0f29f8679afba, type: 3}
+  - Name: Eyes14
+    Path: BodyParts/Eyes/Bonus/Eyes14
+    Sprite: {fileID: 21300000, guid: d27f24264e5c47d5a8abbd69c6998ecf, type: 3}
+  - Name: Eyes15
+    Path: BodyParts/Eyes/Bonus/Eyes15
+    Sprite: {fileID: 21300000, guid: cbc11b8d1ecf4b079501b27460b8563c, type: 3}
+  - Name: Eyes2
+    Path: BodyParts/Eyes/Bonus/Eyes2
+    Sprite: {fileID: 21300000, guid: cab7da46a46b48da8e51fe5ab2bf62d8, type: 3}
+  - Name: Eyes3
+    Path: BodyParts/Eyes/Bonus/Eyes3
+    Sprite: {fileID: 21300000, guid: e944462fefdc413083027de085e83fe9, type: 3}
+  - Name: Eyes4
+    Path: BodyParts/Eyes/Bonus/Eyes4
+    Sprite: {fileID: 21300000, guid: 42a56a3e83464be883f142790132872a, type: 3}
+  - Name: Eyes5
+    Path: BodyParts/Eyes/Bonus/Eyes5
+    Sprite: {fileID: 21300000, guid: dd6ce309ef3d4e05b7aa2dad0f1022a6, type: 3}
+  - Name: Eyes6
+    Path: BodyParts/Eyes/Bonus/Eyes6
+    Sprite: {fileID: 21300000, guid: 794f790064af4434bd4d198b58991839, type: 3}
+  - Name: Eyes7
+    Path: BodyParts/Eyes/Bonus/Eyes7
+    Sprite: {fileID: 21300000, guid: f4612c9c60504b5183ad37d1a7f68dec, type: 3}
+  - Name: Eyes8
+    Path: BodyParts/Eyes/Bonus/Eyes8
+    Sprite: {fileID: 21300000, guid: 9a7bbbdc414c4653bb06183c218386e4, type: 3}
+  - Name: Eyes9
+    Path: BodyParts/Eyes/Bonus/Eyes9
+    Sprite: {fileID: 21300000, guid: 0ba487e332484b75a2c3304b725a3d6a, type: 3}
+  - Name: FauxHawk
+    Path: BodyParts/Hair/Bonus/FauxHawk
+    Sprite: {fileID: 21300000, guid: 96bafc0b5ad44305b56e262002a7c30e, type: 3}
+  - Name: Female
+    Path: BodyParts/Eyes/Basic/Female
+    Sprite: {fileID: 21300000, guid: f06ecb2a56d84e0babd7df95ecfdf03c, type: 3}
+  - Name: FirestormFusionBlaster
+    Path: Equipment/Firearms1H/Pro/FirestormFusionBlaster
+    Sprite: {fileID: 21300000, guid: 07722e914b444fe0802fcaba3bf16101, type: 3}
+  - Name: Fishy
+    Path: BodyParts/Eyes/Emoji/Fishy
+    Sprite: {fileID: 21300000, guid: 2088a7adb7a4475e83c2f3fc86db1f2c, type: 3}
+  - Name: Fishy
+    Path: BodyParts/Mouth/Emoji/Fishy
+    Sprite: {fileID: 21300000, guid: d7bd340f04404987b6acb1af34310ba8, type: 3}
+  - Name: Flash
+    Path: Equipment/Supplies/Pro/Bombs/Flash
+    Sprite: {fileID: 21300000, guid: 7a66e64c510a443e8e23287de8e84b0d, type: 3}
+  - Name: Fluffy
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Fluffy
+    Sprite: {fileID: 21300000, guid: 2de0c91941c643549376ebeaa9dc0665, type: 3}
+  - Name: Fluffy
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Fluffy
+    Sprite: {fileID: 21300000, guid: 01d303fc0c474473a36e84a0f9103bba, type: 3}
+  - Name: Fluffy
+    Path: BodyParts/Hair/Style/Fluffy
+    Sprite: {fileID: 21300000, guid: d259fe4ab7bc4f5eb5fb9c0df3af9e74, type: 3}
+  - Name: Fluffy
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Fluffy
+    Sprite: {fileID: 21300000, guid: 4ac8bc6391744fdd82675e87d2e26e0b, type: 3}
+  - Name: FringedUp
+    Path: BodyParts/Hair/Bonus/FringedUp
+    Sprite: {fileID: 21300000, guid: 0017e66b83534034b33fb233e7a48bf5, type: 3}
+  - Name: Glasses1 [Paint]
+    Path: Equipment/Glasses/Pro/Glasses1 [Paint]
+    Sprite: {fileID: 21300000, guid: ec9eb63e7c79474c810759039ae5999a, type: 3}
+  - Name: Glasses2 [Paint]
+    Path: Equipment/Glasses/Pro/Glasses2 [Paint]
+    Sprite: {fileID: 21300000, guid: 3fd7b09346ff4835b537348e517496c5, type: 3}
+  - Name: Glasses3 [Paint]
+    Path: Equipment/Glasses/Pro/Glasses3 [Paint]
+    Sprite: {fileID: 21300000, guid: fa0be50901b747e48c61eb3d4956e4fb, type: 3}
+  - Name: Glasses4 [Paint]
+    Path: Equipment/Glasses/Pro/Glasses4 [Paint]
+    Sprite: {fileID: 21300000, guid: ee075433180244309c822add378c943c, type: 3}
+  - Name: GoldenEarring
+    Path: Equipment/Earrings/Basic/GoldenEarring
+    Sprite: {fileID: 21300000, guid: a665049889414125a07bee3baafa2121, type: 3}
+  - Name: Greedy
+    Path: BodyParts/Eyebrows/Emoji/Greedy
+    Sprite: {fileID: 21300000, guid: 12c4ce8afd7d4817953af0ac69f52b53, type: 3}
+  - Name: Greedy
+    Path: BodyParts/Eyes/Emoji/Greedy
+    Sprite: {fileID: 21300000, guid: b6a1527a43774982ab8297d78bc77889, type: 3}
+  - Name: Greedy
+    Path: BodyParts/Mouth/Emoji/Greedy
+    Sprite: {fileID: 21300000, guid: 336295eada5341afb9a6f050554c6e88, type: 3}
+  - Name: Grin
+    Path: BodyParts/Mouth/Basic/Grin
+    Sprite: {fileID: 21300000, guid: 2b9d5a41a9a34f36be36d2066dca6041, type: 3}
+  - Name: Happy
+    Path: BodyParts/Eyebrows/Emoji/Happy
+    Sprite: {fileID: 21300000, guid: a72334547c064539b9e2064e630989da, type: 3}
+  - Name: Happy
+    Path: BodyParts/Eyebrows/Expressions/Happy
+    Sprite: {fileID: 21300000, guid: 1c1932b3ddf74b2a8e05b0733d6bb4e4, type: 3}
+  - Name: Happy
+    Path: BodyParts/Eyes/Emoji/Happy
+    Sprite: {fileID: 21300000, guid: 7a8f562335cd4825b49773dacb6601ba, type: 3}
+  - Name: Happy
+    Path: BodyParts/Eyes/Expressions/Happy
+    Sprite: {fileID: 21300000, guid: 7a42c6ab636b443ca8ae6f77883b19c9, type: 3}
+  - Name: Happy
+    Path: BodyParts/Mouth/Emoji/Happy
+    Sprite: {fileID: 21300000, guid: 0246745e95d94d03863223a96ba09213, type: 3}
+  - Name: Happy
+    Path: BodyParts/Mouth/Expressions/Happy
+    Sprite: {fileID: 21300000, guid: 2e8f0eeacdbf421e8630b997f3b94751, type: 3}
+  - Name: HB-2000
+    Path: Equipment/Firearms2H/Pro/HB-2000
+    Sprite: {fileID: 21300000, guid: c21b6b6c8d7b468fb2a89823c192c432, type: 3}
+  - Name: Head
+    Path: BodyParts/Head/Basic/Head
+    Sprite: {fileID: 21300000, guid: 8c006cbda4354252b712083009572a15, type: 3}
+  - Name: HeadScar
+    Path: BodyParts/Head/Basic/HeadScar
+    Sprite: {fileID: 21300000, guid: a9970581fdc64abc91e73eb1ba429c47, type: 3}
+  - Name: HeavySword [Paint]
+    Path: Equipment/MeleeWeapon2H/Pro/Sword/HeavySword [Paint]
+    Sprite: {fileID: 21300000, guid: bf690c90df2e4fcdbd0cc0d9b4e2990a, type: 3}
+  - Name: HeavySword2 [Paint]
+    Path: Equipment/MeleeWeapon2H/Pro/Sword/HeavySword2 [Paint]
+    Sprite: {fileID: 21300000, guid: bb74eff4dbcf4c0caa48dd13dd09eaa4, type: 3}
+  - Name: Helm1 [Paint]
+    Path: Equipment/Helmet/Basic/Helm1 [Paint]
+    Sprite: {fileID: 21300000, guid: 4a37a8c91a2e4556a35c7cb82b0227c9, type: 3}
+  - Name: Helm1a [Paint]
+    Path: Equipment/Helmet/Basic/Helm1a [Paint]
+    Sprite: {fileID: 21300000, guid: 150a6380a7024687a87ec4ddfaa4cd73, type: 3}
+  - Name: Helm2 [Paint]
+    Path: Equipment/Helmet/Pro/Helm2 [Paint]
+    Sprite: {fileID: 21300000, guid: 73b292f0579945ce9eb8fcbc13ff8f7f, type: 3}
+  - Name: Helm2a [Paint]
+    Path: Equipment/Helmet/Pro/Helm2a [Paint]
+    Sprite: {fileID: 21300000, guid: dddf9d4e74714c63b1a6e19f9c0e6a8f, type: 3}
+  - Name: Helm3 [Paint]
+    Path: Equipment/Helmet/Basic/Helm3 [Paint]
+    Sprite: {fileID: 21300000, guid: 3bfcee83db4a4a53941a664fe113b5d6, type: 3}
+  - Name: Helm3a [Paint]
+    Path: Equipment/Helmet/Basic/Helm3a [Paint]
+    Sprite: {fileID: 21300000, guid: 40f57e20c5ff4981b8be696f01b6995a, type: 3}
+  - Name: Helm3b
+    Path: Equipment/Helmet/Basic/Helm3b
+    Sprite: {fileID: 21300000, guid: 902fd03f760e4f2091d5eac7abde1e2d, type: 3}
+  - Name: Helm4 [Paint]
+    Path: Equipment/Helmet/Pro/Helm4 [Paint]
+    Sprite: {fileID: 21300000, guid: 2676e748f3c04464a876574aa65ec813, type: 3}
+  - Name: Helm4a [Paint]
+    Path: Equipment/Helmet/Pro/Helm4a [Paint]
+    Sprite: {fileID: 21300000, guid: 2a2bf1d7aaa64c6e8653058852a8a0e9, type: 3}
+  - Name: Helm5 [Paint]
+    Path: Equipment/Helmet/Pro/Helm5 [Paint]
+    Sprite: {fileID: 21300000, guid: 4101647c28374e40af002e7211edb133, type: 3}
+  - Name: Helm6 [Paint]
+    Path: Equipment/Helmet/Pro/Helm6 [Paint]
+    Sprite: {fileID: 21300000, guid: e42de7f872314c66b1533f530d49d061, type: 3}
+  - Name: Helm7 [Paint]
+    Path: Equipment/Helmet/Pro/Helm7 [Paint]
+    Sprite: {fileID: 21300000, guid: 6f00b30c6fb440fd887f8fa3b2b36ae7, type: 3}
+  - Name: Horns1 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns1 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 3219e889902e445a829e6fe52dda7d72, type: 3}
+  - Name: Horns10 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns10 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: ddb811d8c58b473da9364cf565a50f1d, type: 3}
+  - Name: Horns11 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns11 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: aa3a00a9cda9404b9d3fd63086d0550c, type: 3}
+  - Name: Horns12 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns12 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 19b0615a4daa4f55ba868ac243abfc85, type: 3}
+  - Name: Horns13 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns13 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 279a4db5754b423b88ef6bbb76c3a4df, type: 3}
+  - Name: Horns14 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns14 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 83a7963def68436699bab0367035f943, type: 3}
+  - Name: Horns15[Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns15[Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: d26effd4b10e45a48d0dde82d0045989, type: 3}
+  - Name: Horns2 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns2 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 3633c509d9eb421ab5daf19b47694563, type: 3}
+  - Name: Horns3 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns3 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: adba6d5546f748a9826d3c2209e0dd40, type: 3}
+  - Name: Horns4 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns4 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: d811fa8f120446d8a469c072a7f6bb1a, type: 3}
+  - Name: Horns5 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns5 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 1a8d44bd628841dba3f6b02043483a63, type: 3}
+  - Name: Horns6 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns6 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 7570c63c779a46aa8535daf129f6dba7, type: 3}
+  - Name: Horns7 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns7 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 94136f49f5414f56932d4ee1ddb3947b, type: 3}
+  - Name: Horns8 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns8 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: dc517d7fed5f40e6b07cd8782b8dfdc1, type: 3}
+  - Name: Horns9 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns9 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 7f66383db55941129e98fa4c2ba55daa, type: 3}
+  - Name: Human
+    Path: BodyParts/Body/Basic/Human
+    Sprite: {fileID: 21300000, guid: 1904d83e7cee4bab8b4f77de1ac4f21d, type: 3}
+  - Name: HumanEar
+    Path: BodyParts/Ears/Basic/HumanEar
+    Sprite: {fileID: 21300000, guid: 1f9e3bb1cb56476db8708a1d277291e6, type: 3}
+  - Name: Injured
+    Path: BodyParts/Eyebrows/Emoji/Injured
+    Sprite: {fileID: 21300000, guid: 6484e2c288214774bf2c59ebd97bf739, type: 3}
+  - Name: Injured
+    Path: BodyParts/Eyes/Emoji/Injured
+    Sprite: {fileID: 21300000, guid: 4003e7a27a1d4681becb89ddebd3d054, type: 3}
+  - Name: Injured
+    Path: BodyParts/Mouth/Emoji/Injured
+    Sprite: {fileID: 21300000, guid: 4a1c00f297104e18868fe8a18c43406b, type: 3}
+  - Name: InLove
+    Path: BodyParts/Eyebrows/Emoji/InLove
+    Sprite: {fileID: 21300000, guid: e8551c5df82245d48c015e50fb0ff83d, type: 3}
+  - Name: InLove
+    Path: BodyParts/Eyes/Emoji/InLove
+    Sprite: {fileID: 21300000, guid: 2a61e79d5a364d72bab5bc21faf13a33, type: 3}
+  - Name: InLove
+    Path: BodyParts/Mouth/Emoji/InLove
+    Sprite: {fileID: 21300000, guid: 72d9659a85754cd691ddca701559dd18, type: 3}
+  - Name: Jetpack
+    Path: Equipment/Back/Pro/Jetpack
+    Sprite: {fileID: 21300000, guid: 610a5782b98749dd9b88f8ee2fe3c392, type: 3}
+  - Name: Jetpack2
+    Path: Equipment/Back/Pro/Jetpack2
+    Sprite: {fileID: 21300000, guid: 43719f53f3ea46658aa7b82aaf1fed1c, type: 3}
+  - Name: Kitty
+    Path: BodyParts/Eyes/Emoji/Kitty
+    Sprite: {fileID: 21300000, guid: dbc1178e25504173a884f02eb0d6a95d, type: 3}
+  - Name: Kitty
+    Path: BodyParts/Mouth/Emoji/Kitty
+    Sprite: {fileID: 21300000, guid: f5055fc06b4d4b21acfe5d9e98b68f66, type: 3}
+  - Name: LagreHealing
+    Path: Equipment/Supplies/Basic/Potions/LagreHealing
+    Sprite: {fileID: 21300000, guid: 981a136548cc45c09ee0fc9e8929e4ca, type: 3}
+  - Name: LB-200
+    Path: Equipment/Firearms1H/Basic/LB-200
+    Sprite: {fileID: 21300000, guid: 33fda0ea9e6d4b68972b9f0e54ad9ef1, type: 3}
+  - Name: LB-600
+    Path: Equipment/Firearms1H/Pro/LB-600
+    Sprite: {fileID: 21300000, guid: ab4baea697eb400197f15def4e493351, type: 3}
+  - Name: Lea [HideEars]
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Lea [HideEars]
+    Sprite: {fileID: 21300000, guid: d2549a4019384915a672589befc9a332, type: 3}
+  - Name: Lea [HideEars]
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Lea [HideEars]
+    Sprite: {fileID: 21300000, guid: b5ff8b773fac431383c8e896ca5526d9, type: 3}
+  - Name: Lea [HideEars]
+    Path: BodyParts/Hair/Style/Lea [HideEars]
+    Sprite: {fileID: 21300000, guid: d0b251dd34c84ba2aa69e6ac7cfcab5b, type: 3}
+  - Name: Lea [HideEars]
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Lea [HideEars]
+    Sprite: {fileID: 21300000, guid: 91f6c6c30c954722967b9907e5f8913d, type: 3}
+  - Name: Leaky
+    Path: BodyParts/Hair/Basic/Leaky
+    Sprite: {fileID: 21300000, guid: 2c5b9b0185864909b453bd888a5d8f24, type: 3}
+  - Name: LightHandBlaster
+    Path: Equipment/Firearms1H/Basic/LightHandBlaster
+    Sprite: {fileID: 21300000, guid: 41c734bf82b441219a60ff4ab3e40e4f, type: 3}
+  - Name: LightSword
+    Path: Equipment/MeleeWeapon1H/Basic/Sword/LightSword
+    Sprite: {fileID: 21300000, guid: c869d069e6d34d99bcdf7236e0051c28, type: 3}
+  - Name: LightSword2
+    Path: Equipment/MeleeWeapon1H/Basic/Sword/LightSword2
+    Sprite: {fileID: 21300000, guid: 467987c815294ae3ac29650a31f684fb, type: 3}
+  - Name: LongHair
+    Path: BodyParts/Hair/Basic/LongHair
+    Sprite: {fileID: 21300000, guid: 6e2e87dd72674fa4ad1ec3b2bf8b1585, type: 3}
+  - Name: LR-100
+    Path: Equipment/Firearms2H/Basic/LR-100
+    Sprite: {fileID: 21300000, guid: 6eda548ce1a748ae856a7f1194d872fe, type: 3}
+  - Name: LR-300
+    Path: Equipment/Firearms2H/Pro/LR-300
+    Sprite: {fileID: 21300000, guid: 94d24a6363c24cb282ac582af6925a23, type: 3}
+  - Name: LR-300RX
+    Path: Equipment/Firearms2H/Pro/LR-300RX
+    Sprite: {fileID: 21300000, guid: 83be55e96323409cbc9cd3467770016e, type: 3}
+  - Name: LR-500
+    Path: Equipment/Firearms2H/Pro/LR-500
+    Sprite: {fileID: 21300000, guid: 932816684cf54cf095ba518a56530631, type: 3}
+  - Name: Male
+    Path: BodyParts/Eyes/Basic/Male
+    Sprite: {fileID: 21300000, guid: cd854b6afb6848a2b70f6f9f3fb1ce3a, type: 3}
+  - Name: MARK-H1 [Paint]
+    Path: Equipment/Armor/Basic/MARK-H1 [Paint]
+    Sprite: {fileID: 21300000, guid: 164921703490494a9fdc0c374d6e4e32, type: 3}
+  - Name: MARK-H1 [Paint].Belt
+    Path: Equipment/Belt/Basic/MARK-H1 [Paint].Belt
+    Sprite: {fileID: 21300000, guid: 0cff1a1bb06f42ec945cd771aa541d77, type: 3}
+  - Name: MARK-H1 [Paint].Boots
+    Path: Equipment/Boots/Basic/MARK-H1 [Paint].Boots
+    Sprite: {fileID: 21300000, guid: 2d7858c5e07b42cca7083edeadb0d448, type: 3}
+  - Name: MARK-H1 [Paint].Gloves
+    Path: Equipment/Gloves/Basic/MARK-H1 [Paint].Gloves
+    Sprite: {fileID: 21300000, guid: 00bb8d83a7854e6d9317e1100d6717be, type: 3}
+  - Name: MARK-H1 [Paint].Pauldrons
+    Path: Equipment/Pauldrons/Basic/MARK-H1 [Paint].Pauldrons
+    Sprite: {fileID: 21300000, guid: 8e18f7fe72874fa3abee92b5ad9bf3c8, type: 3}
+  - Name: MARK-H1 [Paint].Vest
+    Path: Equipment/Vest/Basic/MARK-H1 [Paint].Vest
+    Sprite: {fileID: 21300000, guid: 2aa130f9faa142f6a03cf806c5d515e5, type: 3}
+  - Name: MARK-H1B [Paint]
+    Path: Equipment/Armor/Basic/MARK-H1B [Paint]
+    Sprite: {fileID: 21300000, guid: 9cd471d4c89b460da7478fe494979e56, type: 3}
+  - Name: MARK-H1B [Paint].Belt
+    Path: Equipment/Belt/Basic/MARK-H1B [Paint].Belt
+    Sprite: {fileID: 21300000, guid: 7ec243c1fa45463ba9e36a9bf8f11b53, type: 3}
+  - Name: MARK-H1B [Paint].Boots
+    Path: Equipment/Boots/Basic/MARK-H1B [Paint].Boots
+    Sprite: {fileID: 21300000, guid: cb1b4c679d144f90ad0ad6c0d181c70f, type: 3}
+  - Name: MARK-H1B [Paint].Gloves
+    Path: Equipment/Gloves/Basic/MARK-H1B [Paint].Gloves
+    Sprite: {fileID: 21300000, guid: d51b485a7dc443c7a30d7c8804f3d874, type: 3}
+  - Name: MARK-H1B [Paint].Pauldrons
+    Path: Equipment/Pauldrons/Basic/MARK-H1B [Paint].Pauldrons
+    Sprite: {fileID: 21300000, guid: 2f5a08b359c94b8f823e8c61d2721371, type: 3}
+  - Name: MARK-H1B [Paint].Vest
+    Path: Equipment/Vest/Basic/MARK-H1B [Paint].Vest
+    Sprite: {fileID: 21300000, guid: 6ea6ec16c9f94651826d4d81d6b27110, type: 3}
+  - Name: MARK-H2 [Paint]
+    Path: Equipment/Armor/Pro/MARK-H2 [Paint]
+    Sprite: {fileID: 21300000, guid: ac0d73817fb1478498d7ff49dd441a88, type: 3}
+  - Name: MARK-H2 [Paint].Belt
+    Path: Equipment/Belt/Pro/MARK-H2 [Paint].Belt
+    Sprite: {fileID: 21300000, guid: 8c5f5c88011a45ec9380731864d847db, type: 3}
+  - Name: MARK-H2 [Paint].Boots
+    Path: Equipment/Boots/Pro/MARK-H2 [Paint].Boots
+    Sprite: {fileID: 21300000, guid: d393f3aa69f941d48da491466b40371c, type: 3}
+  - Name: MARK-H2 [Paint].Gloves
+    Path: Equipment/Gloves/Pro/MARK-H2 [Paint].Gloves
+    Sprite: {fileID: 21300000, guid: d0a9652afb7f4f3f95794296875c8b71, type: 3}
+  - Name: MARK-H2 [Paint].Pauldrons
+    Path: Equipment/Pauldrons/Pro/MARK-H2 [Paint].Pauldrons
+    Sprite: {fileID: 21300000, guid: 57bb1aac45044b6483ceba70f0e48ca3, type: 3}
+  - Name: MARK-H2 [Paint].Vest
+    Path: Equipment/Vest/Pro/MARK-H2 [Paint].Vest
+    Sprite: {fileID: 21300000, guid: 5a383796ff5e48ac97ac6a960c551c42, type: 3}
+  - Name: MARK-H2B [Paint]
+    Path: Equipment/Armor/Pro/MARK-H2B [Paint]
+    Sprite: {fileID: 21300000, guid: 9ee0b68319a9425686d69db66ff007a9, type: 3}
+  - Name: MARK-H2B [Paint].Belt
+    Path: Equipment/Belt/Pro/MARK-H2B [Paint].Belt
+    Sprite: {fileID: 21300000, guid: db8bf54f15a740b8b4323a604fa69126, type: 3}
+  - Name: MARK-H2B [Paint].Boots
+    Path: Equipment/Boots/Pro/MARK-H2B [Paint].Boots
+    Sprite: {fileID: 21300000, guid: 97139c0336264fae9e686d76319a49b0, type: 3}
+  - Name: MARK-H2B [Paint].Gloves
+    Path: Equipment/Gloves/Pro/MARK-H2B [Paint].Gloves
+    Sprite: {fileID: 21300000, guid: 48a5a2728c3b4264aae97e2c24180464, type: 3}
+  - Name: MARK-H2B [Paint].Pauldrons
+    Path: Equipment/Pauldrons/Pro/MARK-H2B [Paint].Pauldrons
+    Sprite: {fileID: 21300000, guid: 89cc620a106d4ad5be44a2e687988276, type: 3}
+  - Name: MARK-H2B [Paint].Vest
+    Path: Equipment/Vest/Pro/MARK-H2B [Paint].Vest
+    Sprite: {fileID: 21300000, guid: d0ac53ef9ff945f7955e1613ce442e2f, type: 3}
+  - Name: MARK-H2Shield
+    Path: Equipment/Shield/Pro/MARK-H2Shield
+    Sprite: {fileID: 21300000, guid: 4dc805b1324e4d68a99d26327c45b65a, type: 3}
+  - Name: MARK-H2ShieldLight
+    Path: Equipment/Shield/Pro/MARK-H2ShieldLight
+    Sprite: {fileID: 21300000, guid: f65fec70dea243e2998e524eddffeeb3, type: 3}
+  - Name: MARK-H3 [Paint]
+    Path: Equipment/Armor/Basic/MARK-H3 [Paint]
+    Sprite: {fileID: 21300000, guid: 285315496d32422c9cf17bbdb792f089, type: 3}
+  - Name: MARK-H3 [Paint].Belt
+    Path: Equipment/Belt/Basic/MARK-H3 [Paint].Belt
+    Sprite: {fileID: 21300000, guid: 045d25469ac64cc09b225d3861c7125f, type: 3}
+  - Name: MARK-H3 [Paint].Boots
+    Path: Equipment/Boots/Basic/MARK-H3 [Paint].Boots
+    Sprite: {fileID: 21300000, guid: 997d0c4435e546cba64379ae6ffca187, type: 3}
+  - Name: MARK-H3 [Paint].Gloves
+    Path: Equipment/Gloves/Basic/MARK-H3 [Paint].Gloves
+    Sprite: {fileID: 21300000, guid: 72b5af13381d46c181a5222121922463, type: 3}
+  - Name: MARK-H3 [Paint].Pauldrons
+    Path: Equipment/Pauldrons/Basic/MARK-H3 [Paint].Pauldrons
+    Sprite: {fileID: 21300000, guid: b8194245fc274e668f58a77f3ad49840, type: 3}
+  - Name: MARK-H3 [Paint].Vest
+    Path: Equipment/Vest/Basic/MARK-H3 [Paint].Vest
+    Sprite: {fileID: 21300000, guid: 5bbcaa9866d042a2a3116302a287eb15, type: 3}
+  - Name: MARK-H3B [Paint]
+    Path: Equipment/Armor/Basic/MARK-H3B [Paint]
+    Sprite: {fileID: 21300000, guid: f810d52f7a2e4b69a73654d3359c8666, type: 3}
+  - Name: MARK-H3B [Paint].Belt
+    Path: Equipment/Belt/Basic/MARK-H3B [Paint].Belt
+    Sprite: {fileID: 21300000, guid: ae9db7ecb0604c3a88d53b1627e888a5, type: 3}
+  - Name: MARK-H3B [Paint].Boots
+    Path: Equipment/Boots/Basic/MARK-H3B [Paint].Boots
+    Sprite: {fileID: 21300000, guid: 81336b0d9e8649fd8bb1be85305b7c64, type: 3}
+  - Name: MARK-H3B [Paint].Gloves
+    Path: Equipment/Gloves/Basic/MARK-H3B [Paint].Gloves
+    Sprite: {fileID: 21300000, guid: 64e960f889c44ee3a9f034dce506fbcd, type: 3}
+  - Name: MARK-H3B [Paint].Pauldrons
+    Path: Equipment/Pauldrons/Basic/MARK-H3B [Paint].Pauldrons
+    Sprite: {fileID: 21300000, guid: 9fcd579f1dfd4edfa61c908e1f548833, type: 3}
+  - Name: MARK-H3B [Paint].Vest
+    Path: Equipment/Vest/Basic/MARK-H3B [Paint].Vest
+    Sprite: {fileID: 21300000, guid: e1d1b1b3b0a5444a9f5037ded20e70e5, type: 3}
+  - Name: MARK-H4 [Paint]
+    Path: Equipment/Armor/Basic/MARK-H4 [Paint]
+    Sprite: {fileID: 21300000, guid: 0c98c5b4449c43a3ab4b895efe89d770, type: 3}
+  - Name: MARK-H4 [Paint].Belt
+    Path: Equipment/Belt/Basic/MARK-H4 [Paint].Belt
+    Sprite: {fileID: 21300000, guid: 9d70b39cb93c4cc0a90a8ac627c5e173, type: 3}
+  - Name: MARK-H4 [Paint].Boots
+    Path: Equipment/Boots/Basic/MARK-H4 [Paint].Boots
+    Sprite: {fileID: 21300000, guid: 390790640d454805b3dcb087cd5a7aed, type: 3}
+  - Name: MARK-H4 [Paint].Gloves
+    Path: Equipment/Gloves/Basic/MARK-H4 [Paint].Gloves
+    Sprite: {fileID: 21300000, guid: 1b68246f58e441109b5ea7302f23556b, type: 3}
+  - Name: MARK-H4 [Paint].Pauldrons
+    Path: Equipment/Pauldrons/Basic/MARK-H4 [Paint].Pauldrons
+    Sprite: {fileID: 21300000, guid: 1c09748ae2ec44ea9105807bbb4229fa, type: 3}
+  - Name: MARK-H4 [Paint].Vest
+    Path: Equipment/Vest/Basic/MARK-H4 [Paint].Vest
+    Sprite: {fileID: 21300000, guid: 772a0fcfed3141ba9decd2b7da29c32f, type: 3}
+  - Name: MARK-H4B [Paint]
+    Path: Equipment/Armor/Pro/MARK-H4B [Paint]
+    Sprite: {fileID: 21300000, guid: 4cdb56dc99aa46c4a93365aa4d178cbc, type: 3}
+  - Name: MARK-H4B [Paint].Belt
+    Path: Equipment/Belt/Pro/MARK-H4B [Paint].Belt
+    Sprite: {fileID: 21300000, guid: 8dfbeba877bd4f27ac26580e376b377d, type: 3}
+  - Name: MARK-H4B [Paint].Boots
+    Path: Equipment/Boots/Pro/MARK-H4B [Paint].Boots
+    Sprite: {fileID: 21300000, guid: 83f91bd8d6584c77b262fe18e87f229a, type: 3}
+  - Name: MARK-H4B [Paint].Gloves
+    Path: Equipment/Gloves/Pro/MARK-H4B [Paint].Gloves
+    Sprite: {fileID: 21300000, guid: fee796cf4f284631861d97ff8fae1575, type: 3}
+  - Name: MARK-H4B [Paint].Pauldrons
+    Path: Equipment/Pauldrons/Pro/MARK-H4B [Paint].Pauldrons
+    Sprite: {fileID: 21300000, guid: e39ca4c948374e3e940dbb11dc992f33, type: 3}
+  - Name: MARK-H4B [Paint].Vest
+    Path: Equipment/Vest/Pro/MARK-H4B [Paint].Vest
+    Sprite: {fileID: 21300000, guid: 2d4de0d8b2e1492d930413922160b2c0, type: 3}
+  - Name: MARK-H4Shield
+    Path: Equipment/Shield/Basic/MARK-H4Shield
+    Sprite: {fileID: 21300000, guid: 93fc4f9254514e118657958fcef1a062, type: 3}
+  - Name: MARK-H5
+    Path: Equipment/Armor/Pro/MARK-H5
+    Sprite: {fileID: 21300000, guid: 549072eb762d42d89d8013c638c613cf, type: 3}
+  - Name: MARK-H5.Belt
+    Path: Equipment/Belt/Pro/MARK-H5.Belt
+    Sprite: {fileID: 21300000, guid: 97309cb6ee5c4e8490ca941c93af121f, type: 3}
+  - Name: MARK-H5.Boots
+    Path: Equipment/Boots/Pro/MARK-H5.Boots
+    Sprite: {fileID: 21300000, guid: fe9685ea06904085be30a776223bcea7, type: 3}
+  - Name: MARK-H5.Gloves
+    Path: Equipment/Gloves/Pro/MARK-H5.Gloves
+    Sprite: {fileID: 21300000, guid: 38662ef9db2a4265b1b9cfb9b2466bd7, type: 3}
+  - Name: MARK-H5.Pauldrons
+    Path: Equipment/Pauldrons/Pro/MARK-H5.Pauldrons
+    Sprite: {fileID: 21300000, guid: 6cc75cf7324a408d9498ab0cbbf85062, type: 3}
+  - Name: MARK-H5.Vest
+    Path: Equipment/Vest/Pro/MARK-H5.Vest
+    Sprite: {fileID: 21300000, guid: b0084000f5ec4cc79cf81722c8ccc226, type: 3}
+  - Name: MARK-L1 [Paint]
+    Path: Equipment/Armor/Pro/MARK-L1 [Paint]
+    Sprite: {fileID: 21300000, guid: 0c1ca887370047e195360b10c75eb5f4, type: 3}
+  - Name: MARK-L1 [Paint].Belt
+    Path: Equipment/Belt/Pro/MARK-L1 [Paint].Belt
+    Sprite: {fileID: 21300000, guid: f0548d6a5dc54864b2cf7585ecf653f2, type: 3}
+  - Name: MARK-L1 [Paint].Boots
+    Path: Equipment/Boots/Pro/MARK-L1 [Paint].Boots
+    Sprite: {fileID: 21300000, guid: 37166ca4106a43ca83ea9c4dbda5dfa6, type: 3}
+  - Name: MARK-L1 [Paint].Gloves
+    Path: Equipment/Gloves/Pro/MARK-L1 [Paint].Gloves
+    Sprite: {fileID: 21300000, guid: eddc273f031c44e7bfd425f261f0de9a, type: 3}
+  - Name: MARK-L1 [Paint].Pauldrons
+    Path: Equipment/Pauldrons/Pro/MARK-L1 [Paint].Pauldrons
+    Sprite: {fileID: 21300000, guid: 2ca8212f117844949cba07205fe59c55, type: 3}
+  - Name: MARK-L1 [Paint].Vest
+    Path: Equipment/Vest/Pro/MARK-L1 [Paint].Vest
+    Sprite: {fileID: 21300000, guid: ae7377bc80af49c39cfce1741cbfd9be, type: 3}
+  - Name: MARK-L2 [Paint]
+    Path: Equipment/Armor/Pro/MARK-L2 [Paint]
+    Sprite: {fileID: 21300000, guid: 62ef8532b6d14d3a87328b9d11c0cabf, type: 3}
+  - Name: MARK-L2 [Paint].Belt
+    Path: Equipment/Belt/Pro/MARK-L2 [Paint].Belt
+    Sprite: {fileID: 21300000, guid: b6bf0ab222434637be04eeaac48c1a31, type: 3}
+  - Name: MARK-L2 [Paint].Boots
+    Path: Equipment/Boots/Pro/MARK-L2 [Paint].Boots
+    Sprite: {fileID: 21300000, guid: c3d57a290ea24bf3bc8282957af78281, type: 3}
+  - Name: MARK-L2 [Paint].Gloves
+    Path: Equipment/Gloves/Pro/MARK-L2 [Paint].Gloves
+    Sprite: {fileID: 21300000, guid: f869594ae2dc4583a7c59d36e7d6f831, type: 3}
+  - Name: MARK-L2 [Paint].Pauldrons
+    Path: Equipment/Pauldrons/Pro/MARK-L2 [Paint].Pauldrons
+    Sprite: {fileID: 21300000, guid: 63c9487165954f75b63c80c19cec5680, type: 3}
+  - Name: MARK-L2 [Paint].Vest
+    Path: Equipment/Vest/Pro/MARK-L2 [Paint].Vest
+    Sprite: {fileID: 21300000, guid: 5cd3947a0a5e4db597a4b7f79e32fc52, type: 3}
+  - Name: MARK-L3 [Paint]
+    Path: Equipment/Armor/Pro/MARK-L3 [Paint]
+    Sprite: {fileID: 21300000, guid: cecb905ddb504afda56f16202ba329c0, type: 3}
+  - Name: MARK-L3 [Paint].Belt
+    Path: Equipment/Belt/Pro/MARK-L3 [Paint].Belt
+    Sprite: {fileID: 21300000, guid: 559b4053a5af41eba0f575c710694e78, type: 3}
+  - Name: MARK-L3 [Paint].Boots
+    Path: Equipment/Boots/Pro/MARK-L3 [Paint].Boots
+    Sprite: {fileID: 21300000, guid: 3d727905c1d94221b51ce04e0462941a, type: 3}
+  - Name: MARK-L3 [Paint].Gloves
+    Path: Equipment/Gloves/Pro/MARK-L3 [Paint].Gloves
+    Sprite: {fileID: 21300000, guid: e6ab0e04cf074aeb9b78bb23e1b044a0, type: 3}
+  - Name: MARK-L3 [Paint].Pauldrons
+    Path: Equipment/Pauldrons/Pro/MARK-L3 [Paint].Pauldrons
+    Sprite: {fileID: 21300000, guid: 84f237dc4c6946b181acf252e3a94c5a, type: 3}
+  - Name: MARK-L3 [Paint].Vest
+    Path: Equipment/Vest/Pro/MARK-L3 [Paint].Vest
+    Sprite: {fileID: 21300000, guid: 69f9c95c3ea74daab465babea485e920, type: 3}
+  - Name: MARK-L4 [Paint]
+    Path: Equipment/Armor/Pro/MARK-L4 [Paint]
+    Sprite: {fileID: 21300000, guid: 9c405fab9fb54651a2b1bc0ac98c2e28, type: 3}
+  - Name: MARK-L4 [Paint].Belt
+    Path: Equipment/Belt/Pro/MARK-L4 [Paint].Belt
+    Sprite: {fileID: 21300000, guid: 54148035bfe94491bed8f28127aa61f2, type: 3}
+  - Name: MARK-L4 [Paint].Boots
+    Path: Equipment/Boots/Pro/MARK-L4 [Paint].Boots
+    Sprite: {fileID: 21300000, guid: 1bb800d3108a415eaba2845f4d8c7c9f, type: 3}
+  - Name: MARK-L4 [Paint].Gloves
+    Path: Equipment/Gloves/Pro/MARK-L4 [Paint].Gloves
+    Sprite: {fileID: 21300000, guid: ef3a1793a24d493780e48449fad9acd8, type: 3}
+  - Name: MARK-L4 [Paint].Pauldrons
+    Path: Equipment/Pauldrons/Pro/MARK-L4 [Paint].Pauldrons
+    Sprite: {fileID: 21300000, guid: c16cf82437d5477ab8bff15386134921, type: 3}
+  - Name: MARK-L4 [Paint].Vest
+    Path: Equipment/Vest/Pro/MARK-L4 [Paint].Vest
+    Sprite: {fileID: 21300000, guid: 2fcc5e59e6fd4fc3a8d9f29a987f09f5, type: 3}
+  - Name: MARK-L5 [Paint]
+    Path: Equipment/Armor/Pro/MARK-L5 [Paint]
+    Sprite: {fileID: 21300000, guid: c51b2cdbb1e44768862e5837baf3f49c, type: 3}
+  - Name: MARK-L5 [Paint].Belt
+    Path: Equipment/Belt/Pro/MARK-L5 [Paint].Belt
+    Sprite: {fileID: 21300000, guid: 42f4d202e8864c8a8cffbf3873d9073e, type: 3}
+  - Name: MARK-L5 [Paint].Boots
+    Path: Equipment/Boots/Pro/MARK-L5 [Paint].Boots
+    Sprite: {fileID: 21300000, guid: 39c65c4e49354d78be075e3e439459c7, type: 3}
+  - Name: MARK-L5 [Paint].Gloves
+    Path: Equipment/Gloves/Pro/MARK-L5 [Paint].Gloves
+    Sprite: {fileID: 21300000, guid: d4aeed06c83a4896b0fac67f0aa7d004, type: 3}
+  - Name: MARK-L5 [Paint].Pauldrons
+    Path: Equipment/Pauldrons/Pro/MARK-L5 [Paint].Pauldrons
+    Sprite: {fileID: 21300000, guid: d57d771f57454523a0b555729750bebd, type: 3}
+  - Name: MARK-L5 [Paint].Vest
+    Path: Equipment/Vest/Pro/MARK-L5 [Paint].Vest
+    Sprite: {fileID: 21300000, guid: ac9082fe44ad465c9d12e94c65883fa7, type: 3}
+  - Name: MARK-L6 [Paint]
+    Path: Equipment/Armor/Pro/MARK-L6 [Paint]
+    Sprite: {fileID: 21300000, guid: 42e0a06b03234fe991a4d6fa481f8100, type: 3}
+  - Name: MARK-L6 [Paint].Belt
+    Path: Equipment/Belt/Pro/MARK-L6 [Paint].Belt
+    Sprite: {fileID: 21300000, guid: 93579ce361d946129f2fd8e19a69e0fa, type: 3}
+  - Name: MARK-L6 [Paint].Boots
+    Path: Equipment/Boots/Pro/MARK-L6 [Paint].Boots
+    Sprite: {fileID: 21300000, guid: 4bb4fa4827b94927a1416572b507ba64, type: 3}
+  - Name: MARK-L6 [Paint].Gloves
+    Path: Equipment/Gloves/Pro/MARK-L6 [Paint].Gloves
+    Sprite: {fileID: 21300000, guid: 1e80b5b6f2b142ecb9fd7b96c3da31cd, type: 3}
+  - Name: MARK-L6 [Paint].Pauldrons
+    Path: Equipment/Pauldrons/Pro/MARK-L6 [Paint].Pauldrons
+    Sprite: {fileID: 21300000, guid: c6c40da1f6e54e33ad3e4dabfa232fe0, type: 3}
+  - Name: MARK-L6 [Paint].Vest
+    Path: Equipment/Vest/Pro/MARK-L6 [Paint].Vest
+    Sprite: {fileID: 21300000, guid: 33b62c1427044f93932fee6a8024e520, type: 3}
+  - Name: Mask1 [Paint]
+    Path: Equipment/Mask/Pro/Mask1 [Paint]
+    Sprite: {fileID: 21300000, guid: e85fcaf65fa84696a402593856d19f65, type: 3}
+  - Name: Mask2 [Paint]
+    Path: Equipment/Mask/Pro/Mask2 [Paint]
+    Sprite: {fileID: 21300000, guid: 7905bb5edf944cc29d949628c2939b13, type: 3}
+  - Name: Mask3 [Paint]
+    Path: Equipment/Mask/Pro/Mask3 [Paint]
+    Sprite: {fileID: 21300000, guid: b14296e23a124cafb7b028013b49f5d4, type: 3}
+  - Name: MediumHealing
+    Path: Equipment/Supplies/Basic/Potions/MediumHealing
+    Sprite: {fileID: 21300000, guid: e1f6b02150824a9a8ddd636ffd5fd302, type: 3}
+  - Name: Mine
+    Path: Equipment/Supplies/Pro/Mines/Mine
+    Sprite: {fileID: 21300000, guid: 69df4ba4980a45e6b82cf6582131b2b6, type: 3}
+  - Name: Mohawk
+    Path: BodyParts/Hair/Basic/Mohawk
+    Sprite: {fileID: 21300000, guid: dd18e8020084476899828884d792686b, type: 3}
+  - Name: Normal
+    Path: BodyParts/Eyes/Expressions/Normal
+    Sprite: {fileID: 21300000, guid: d5cee57f70414191837316b938b96da0, type: 3}
+  - Name: Normal
+    Path: BodyParts/Mouth/Basic/Normal
+    Sprite: {fileID: 21300000, guid: 468c792104f642439b878ef6b2c7b2d9, type: 3}
+  - Name: Normal
+    Path: BodyParts/Mouth/Expressions/Normal
+    Sprite: {fileID: 21300000, guid: ea26ea2082f245b38c91a41591d7e4db, type: 3}
+  - Name: Normal1
+    Path: BodyParts/Eyebrows/Basic/Normal1
+    Sprite: {fileID: 21300000, guid: 6c9dc213fb0d4e4e9c49c8b94f3fdc88, type: 3}
+  - Name: Normal2
+    Path: BodyParts/Eyebrows/Basic/Normal2
+    Sprite: {fileID: 21300000, guid: 44fc579cf28046f68135e8a03415c098, type: 3}
+  - Name: Normal3
+    Path: BodyParts/Eyebrows/Basic/Normal3
+    Sprite: {fileID: 21300000, guid: c07d83ea2eef43aebe508bc878cf01e9, type: 3}
+  - Name: Normal4
+    Path: BodyParts/Eyebrows/Basic/Normal4
+    Sprite: {fileID: 21300000, guid: b6619da8b73048e9978b74e275088885, type: 3}
+  - Name: Normal5
+    Path: BodyParts/Eyebrows/Basic/Normal5
+    Sprite: {fileID: 21300000, guid: 5f57c1c400e64f4e899e677a00ccd981, type: 3}
+  - Name: Normal6
+    Path: BodyParts/Eyebrows/Basic/Normal6
+    Sprite: {fileID: 21300000, guid: cb3483a7790a4ef0a5fb45c5e17fe5c1, type: 3}
+  - Name: NormalAngry
+    Path: BodyParts/Eyebrows/Expressions/NormalAngry
+    Sprite: {fileID: 21300000, guid: f8df658a65124b279726795d63305d01, type: 3}
+  - Name: OblivionPlasmaGun
+    Path: Equipment/Firearms2H/Pro/OblivionPlasmaGun
+    Sprite: {fileID: 21300000, guid: d6e94284f3f141caa485f14b2b83b1db, type: 3}
+  - Name: OMG
+    Path: BodyParts/Eyebrows/Emoji/OMG
+    Sprite: {fileID: 21300000, guid: e43a53d2806d454c8fee45525edc6a07, type: 3}
+  - Name: OMG
+    Path: BodyParts/Eyes/Emoji/OMG
+    Sprite: {fileID: 21300000, guid: c708c54c5147434097718f1982d0ffd1, type: 3}
+  - Name: OMG
+    Path: BodyParts/Mouth/Emoji/OMG
+    Sprite: {fileID: 21300000, guid: 45ab07f6198940e4b8296eac81a4d228, type: 3}
+  - Name: Orly
+    Path: BodyParts/Eyes/Emoji/Orly
+    Sprite: {fileID: 21300000, guid: 962a67da83b145daad85dc66e7252efa, type: 3}
+  - Name: Orly
+    Path: BodyParts/Mouth/Emoji/Orly
+    Sprite: {fileID: 21300000, guid: 6f469eacf69b4a728c41801ac2e3ff66, type: 3}
+  - Name: PeasantHead
+    Path: BodyParts/Head/Basic/PeasantHead
+    Sprite: {fileID: 21300000, guid: 63399125362147b5982bd46433c5c70d, type: 3}
+  - Name: Perverted
+    Path: BodyParts/Eyebrows/Emoji/Perverted
+    Sprite: {fileID: 21300000, guid: fc57fd1e9c6a4a97ae6355e9a94d2943, type: 3}
+  - Name: Perverted
+    Path: BodyParts/Eyes/Emoji/Perverted
+    Sprite: {fileID: 21300000, guid: 2a08a4af47d6461a933171e09cb65536, type: 3}
+  - Name: Perverted
+    Path: BodyParts/Mouth/Emoji/Perverted
+    Sprite: {fileID: 21300000, guid: bbaadc802b53473ba38b1a2eab19a220, type: 3}
+  - Name: PP-RX
+    Path: Equipment/Firearms1H/Pro/PP-RX
+    Sprite: {fileID: 21300000, guid: 0d872d3b9c0b480d80ea59e9294cd436, type: 3}
+  - Name: PR-5000
+    Path: Equipment/Firearms2H/Basic/PR-5000
+    Sprite: {fileID: 21300000, guid: f34a191bc04e497a99d79053098ad43a, type: 3}
+  - Name: PR-9000
+    Path: Equipment/Firearms2H/Pro/PR-9000
+    Sprite: {fileID: 21300000, guid: c33e972760534feeb53a0b124e04ae16, type: 3}
+  - Name: Princess
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Princess
+    Sprite: {fileID: 21300000, guid: df032ac45029478f81212bc8d5605f20, type: 3}
+  - Name: Princess
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Princess
+    Sprite: {fileID: 21300000, guid: 2d8e8ddba66b4a14903d0c58f4be7015, type: 3}
+  - Name: Princess
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Princess
+    Sprite: {fileID: 21300000, guid: 5c5a13c8bb724f589ddf7a455d490bb0, type: 3}
+  - Name: Princess [HideEars]
+    Path: BodyParts/Hair/Style/Princess [HideEars]
+    Sprite: {fileID: 21300000, guid: 808db3abacba427780587c7de5e0ffb1, type: 3}
+  - Name: PulsePistol
+    Path: Equipment/Firearms1H/Pro/PulsePistol
+    Sprite: {fileID: 21300000, guid: c233c36f18754c11a9054319886444d3, type: 3}
+  - Name: PushedBack
+    Path: BodyParts/Hair/Basic/PushedBack
+    Sprite: {fileID: 21300000, guid: 8a7bd38fe2d745f2aaf54ac6ced5d523, type: 3}
+  - Name: Ribbon1 [FullHair]
+    Path: Equipment/Helmet/Style/Ribbon1 [FullHair]
+    Sprite: {fileID: 21300000, guid: 2e5ad9f9645f42aeb014c8de14cb3706, type: 3}
+  - Name: Ribbon1 [Paint] [FullHair]
+    Path: Equipment/Helmet/Style/Ribbon1 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: b288021ce8a149bbb98150e8d1210da3, type: 3}
+  - Name: Ribbon2 [FullHair]
+    Path: Equipment/Helmet/Style/Ribbon2 [FullHair]
+    Sprite: {fileID: 21300000, guid: 1a890a400b5541eea0882eb68153a82d, type: 3}
+  - Name: Ribbon2 [Paint] [FullHair]
+    Path: Equipment/Helmet/Style/Ribbon2 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 271a307814544b50950d655e8953c74d, type: 3}
+  - Name: RL-800
+    Path: Equipment/Firearms2H/Pro/RL-800
+    Sprite: {fileID: 21300000, guid: 79b4b5c1c85141a49b09f00270819937, type: 3}
+  - Name: RL-DIY200
+    Path: Equipment/Firearms2H/Pro/RL-DIY200
+    Sprite: {fileID: 21300000, guid: c384e95ca50b46768a7cab4a63cbfc52, type: 3}
+  - Name: Rocky
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Rocky
+    Sprite: {fileID: 21300000, guid: 61cb12c725cc41fe8f4c95a3ff7b982b, type: 3}
+  - Name: Rocky
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Rocky
+    Sprite: {fileID: 21300000, guid: 4685ee2ceab846caa555d05355f1f3e2, type: 3}
+  - Name: Rocky
+    Path: BodyParts/Hair/Style/Rocky
+    Sprite: {fileID: 21300000, guid: ad915c9629084dbba5818235bb5edf68, type: 3}
+  - Name: Rocky
+    Path: BodyParts/Hair/Style [Preview] [NoPaint]/Rocky
+    Sprite: {fileID: 21300000, guid: e10a0a8672ac4d1298727fad2f09339b, type: 3}
+  - Name: Rocky
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Rocky
+    Sprite: {fileID: 21300000, guid: bd51e67d0e7c4051b27e7a32a4486fbd, type: 3}
+  - Name: Rocky [Paint] [FullHair]
+    Path: Equipment/Helmet/Style/Rocky [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 17455981697f4bd3b28c64805a0fb120, type: 3}
+  - Name: RRII
+    Path: Equipment/Firearms2H/Pro/RRII
+    Sprite: {fileID: 21300000, guid: 3120ea8053a149ff8ffc6ede25e0adc2, type: 3}
+  - Name: Sad
+    Path: BodyParts/Eyebrows/Emoji/Sad
+    Sprite: {fileID: 21300000, guid: bd5a886d666a4f83a3135e255046cda9, type: 3}
+  - Name: Sad
+    Path: BodyParts/Eyebrows/Expressions/Sad
+    Sprite: {fileID: 21300000, guid: eca738aabb3d4cbc9c9ff7dfceaca8b3, type: 3}
+  - Name: Sad
+    Path: BodyParts/Eyes/Emoji/Sad
+    Sprite: {fileID: 21300000, guid: c490dc06989b426ea4790395768917b7, type: 3}
+  - Name: Sad
+    Path: BodyParts/Eyes/Expressions/Sad
+    Sprite: {fileID: 21300000, guid: 15c8183ae7014152b8cc7898fae99c5f, type: 3}
+  - Name: Sad
+    Path: BodyParts/Mouth/Emoji/Sad
+    Sprite: {fileID: 21300000, guid: 196ae2936425407eb6566bcd67741c3a, type: 3}
+  - Name: Sad
+    Path: BodyParts/Mouth/Expressions/Sad
+    Sprite: {fileID: 21300000, guid: 56cf0b3c6f9e4f729284e479d7bc1932, type: 3}
+  - Name: SampleCape [Paint]
+    Path: Equipment/Cape/Basic/SampleCape [Paint]
+    Sprite: {fileID: 21300000, guid: f730d6309a7449d59f1bb6a82cacfad0, type: 3}
+  - Name: Santa1
+    Path: Equipment/Armor/Christmas/Santa1
+    Sprite: {fileID: 21300000, guid: df6cf6bc959648248c27b3298daeda3d, type: 3}
+  - Name: Santa1.Belt
+    Path: Equipment/Belt/Christmas/Santa1.Belt
+    Sprite: {fileID: 21300000, guid: ca5a09fe07ed47c3abbf356970d4ef3a, type: 3}
+  - Name: Santa1.Boots
+    Path: Equipment/Boots/Christmas/Santa1.Boots
+    Sprite: {fileID: 21300000, guid: dfb6a69fde58439eb64a5ce913def3e6, type: 3}
+  - Name: Santa1.Gloves
+    Path: Equipment/Gloves/Christmas/Santa1.Gloves
+    Sprite: {fileID: 21300000, guid: a18767bcdf6a4be6a89189627f279eb0, type: 3}
+  - Name: Santa1.Pauldrons
+    Path: Equipment/Pauldrons/Christmas/Santa1.Pauldrons
+    Sprite: {fileID: 21300000, guid: 639e13be5b1a460aaa834a9febbf521a, type: 3}
+  - Name: Santa1.Vest
+    Path: Equipment/Vest/Christmas/Santa1.Vest
+    Sprite: {fileID: 21300000, guid: b302b3871d184baba4014f84bec3848e, type: 3}
+  - Name: Santa2
+    Path: Equipment/Armor/Christmas/Santa2
+    Sprite: {fileID: 21300000, guid: e53c798eb7de4beaa8231734f17b0dcb, type: 3}
+  - Name: Santa2.Belt
+    Path: Equipment/Belt/Christmas/Santa2.Belt
+    Sprite: {fileID: 21300000, guid: 2a24f49ec532462792d66fcc3a3101ae, type: 3}
+  - Name: Santa2.Boots
+    Path: Equipment/Boots/Christmas/Santa2.Boots
+    Sprite: {fileID: 21300000, guid: a4573fdcd60546bbbf9e656684c4385a, type: 3}
+  - Name: Santa2.Gloves
+    Path: Equipment/Gloves/Christmas/Santa2.Gloves
+    Sprite: {fileID: 21300000, guid: bbe0abf72b594116ad7e1e0570a483fe, type: 3}
+  - Name: Santa2.Pauldrons
+    Path: Equipment/Pauldrons/Christmas/Santa2.Pauldrons
+    Sprite: {fileID: 21300000, guid: cd668ca0f94c4b4f83721e16191731e6, type: 3}
+  - Name: Santa2.Vest
+    Path: Equipment/Vest/Christmas/Santa2.Vest
+    Sprite: {fileID: 21300000, guid: d780226ca6a04163b6eaa2e95e0e77ec, type: 3}
+  - Name: SantaHat
+    Path: Equipment/Helmet/Christmas/SantaHat
+    Sprite: {fileID: 21300000, guid: e0480d1fcb4f49d689104e50b60e0c4f, type: 3}
+  - Name: SantaHelper
+    Path: Equipment/Armor/Christmas/SantaHelper
+    Sprite: {fileID: 21300000, guid: af75419e08924b87a61b124105f93640, type: 3}
+  - Name: SantaHelper.Belt
+    Path: Equipment/Belt/Christmas/SantaHelper.Belt
+    Sprite: {fileID: 21300000, guid: 979f84f0bbae44f694f1ed1f759c99ec, type: 3}
+  - Name: SantaHelper.Boots
+    Path: Equipment/Boots/Christmas/SantaHelper.Boots
+    Sprite: {fileID: 21300000, guid: e4ef4f7ef5df433a83d50ed5446a9057, type: 3}
+  - Name: SantaHelper.Gloves
+    Path: Equipment/Gloves/Christmas/SantaHelper.Gloves
+    Sprite: {fileID: 21300000, guid: 6b51befa26a44b099c364a5ca59b612d, type: 3}
+  - Name: SantaHelper.Pauldrons
+    Path: Equipment/Pauldrons/Christmas/SantaHelper.Pauldrons
+    Sprite: {fileID: 21300000, guid: 23ad097ee0c64d42b4f466dbc11b7405, type: 3}
+  - Name: SantaHelper.Vest
+    Path: Equipment/Vest/Christmas/SantaHelper.Vest
+    Sprite: {fileID: 21300000, guid: 0ae9297a15934a9297bd79819226a451, type: 3}
+  - Name: SantaHelperHat1
+    Path: Equipment/Helmet/Christmas/SantaHelperHat1
+    Sprite: {fileID: 21300000, guid: 74b91854fada4683ab9f1e4f24e715ef, type: 3}
+  - Name: SantaHelperHat2
+    Path: Equipment/Helmet/Christmas/SantaHelperHat2
+    Sprite: {fileID: 21300000, guid: d231e4738e1b4dea934d9477bfd34209, type: 3}
+  - Name: SantaHelperHat3
+    Path: Equipment/Helmet/Christmas/SantaHelperHat3
+    Sprite: {fileID: 21300000, guid: c545ad3e8e15408d896ab44aa5107347, type: 3}
+  - Name: SantaHelperWand
+    Path: Equipment/MeleeWeapon1H/Christmas/Wand/SantaHelperWand
+    Sprite: {fileID: 21300000, guid: 1a7773123ace4addab20749b2caaa9cd, type: 3}
+  - Name: SantaWand
+    Path: Equipment/MeleeWeapon1H/Christmas/Wand/SantaWand
+    Sprite: {fileID: 21300000, guid: bdd5b4c82699402d83d8a52368e5be3b, type: 3}
+  - Name: SG-V
+    Path: Equipment/Firearms2H/Pro/SG-V
+    Sprite: {fileID: 21300000, guid: 53a2442160614e2b81c106b5e0321f7a, type: 3}
+  - Name: Shaggy
+    Path: BodyParts/Hair/Basic/Shaggy
+    Sprite: {fileID: 21300000, guid: 168aaff63a5043f68c8d75ec1174f8ae, type: 3}
+  - Name: ShortHair
+    Path: BodyParts/Hair/Basic/ShortHair
+    Sprite: {fileID: 21300000, guid: b51450ddb82b4b13972693031e556b41, type: 3}
+  - Name: ShortPonytail
+    Path: BodyParts/Hair/Basic/ShortPonytail
+    Sprite: {fileID: 21300000, guid: 1fa6e79d5772419991568a7538a0a4d7, type: 3}
+  - Name: Shy
+    Path: BodyParts/Eyebrows/Expressions/Shy
+    Sprite: {fileID: 21300000, guid: c6421bf817a347bdb5484e9c56d97cfc, type: 3}
+  - Name: Shy
+    Path: BodyParts/Eyes/Expressions/Shy
+    Sprite: {fileID: 21300000, guid: 87cc9fd0043f4e4da7d7fc8d02718c63, type: 3}
+  - Name: Shy
+    Path: BodyParts/Mouth/Expressions/Shy
+    Sprite: {fileID: 21300000, guid: 3cfad92f8f2c4d8b843d8108154a19bd, type: 3}
+  - Name: Sick
+    Path: BodyParts/Eyebrows/Emoji/Sick
+    Sprite: {fileID: 21300000, guid: e5cfe919616f492eae5bf8c84d64e412, type: 3}
+  - Name: Sick
+    Path: BodyParts/Eyes/Emoji/Sick
+    Sprite: {fileID: 21300000, guid: 2ef98a6b13514a6aa3fb413e4d1cf103, type: 3}
+  - Name: Sick
+    Path: BodyParts/Mouth/Emoji/Sick
+    Sprite: {fileID: 21300000, guid: 0fa208472b6c49a78c762641dba7843a, type: 3}
+  - Name: SideFringe
+    Path: BodyParts/Hair/Basic/SideFringe
+    Sprite: {fileID: 21300000, guid: 3f9f93abaad44788aa741b5c6b66af79, type: 3}
+  - Name: SideFringeDisheveled
+    Path: BodyParts/Hair/Bonus/SideFringeDisheveled
+    Sprite: {fileID: 21300000, guid: 3e8b8bb502044f43953dfab8a653a4ef, type: 3}
+  - Name: Sigh
+    Path: BodyParts/Eyebrows/Emoji/Sigh
+    Sprite: {fileID: 21300000, guid: 353c4b54b93740c391d1f8cd6194b645, type: 3}
+  - Name: Sigh
+    Path: BodyParts/Eyes/Emoji/Sigh
+    Sprite: {fileID: 21300000, guid: 5ec77cb1a5f24dbfa9db418b977ac5b1, type: 3}
+  - Name: Sigh
+    Path: BodyParts/Mouth/Emoji/Sigh
+    Sprite: {fileID: 21300000, guid: 858b0475f05d4503a46cd6c0b3a255bb, type: 3}
+  - Name: SkullPin [FullHair]
+    Path: Equipment/Helmet/Style/SkullPin [FullHair]
+    Sprite: {fileID: 21300000, guid: 98e22ecff51e419a81d97ac0ae9f2de2, type: 3}
+  - Name: Slicked
+    Path: BodyParts/Hair/Basic/Slicked
+    Sprite: {fileID: 21300000, guid: 3c5b72e25a7b4689855cb862d87f1d14, type: 3}
+  - Name: SlickedTwintales
+    Path: BodyParts/Hair/Basic/SlickedTwintales
+    Sprite: {fileID: 21300000, guid: fe0d370bd8934f14b545ce94f1cb40ba, type: 3}
+  - Name: SlickedTwintalesDisheveled
+    Path: BodyParts/Hair/Bonus/SlickedTwintalesDisheveled
+    Sprite: {fileID: 21300000, guid: 57a548cf559b4a589570660970002f6e, type: 3}
+  - Name: SmallHealing
+    Path: Equipment/Supplies/Basic/Potions/SmallHealing
+    Sprite: {fileID: 21300000, guid: 42a8cb70e0ac49d38e4b1a9321ac6db4, type: 3}
+  - Name: Smirk
+    Path: BodyParts/Mouth/Basic/Smirk
+    Sprite: {fileID: 21300000, guid: 3efa49000d614a4fa00d4c9c049a6d67, type: 3}
+  - Name: Smoke
+    Path: Equipment/Supplies/Pro/Bombs/Smoke
+    Sprite: {fileID: 21300000, guid: 209853fed000452d8c1182e06836d432, type: 3}
+  - Name: SpaceTrooperHelmet [Paint]
+    Path: Equipment/Helmet/Pro/SpaceTrooperHelmet [Paint]
+    Sprite: {fileID: 21300000, guid: c26958495f6e426884d5ce6840a76892, type: 3}
+  - Name: SpaceTrooperVisor [Paint]
+    Path: Equipment/Glasses/Pro/SpaceTrooperVisor [Paint]
+    Sprite: {fileID: 21300000, guid: a9d9d549a8e4472e839eb2ea77f10446, type: 3}
+  - Name: Spiky
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Spiky
+    Sprite: {fileID: 21300000, guid: 4d80c6b2ec69402f8fb2548a61376791, type: 3}
+  - Name: Spiky
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Spiky
+    Sprite: {fileID: 21300000, guid: ce93d93403c04ed1affff62a001f0fa7, type: 3}
+  - Name: Spiky
+    Path: BodyParts/Hair/Style/Spiky
+    Sprite: {fileID: 21300000, guid: a55f65999d974dc99fed9c3ac35738c3, type: 3}
+  - Name: Spiky
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Spiky
+    Sprite: {fileID: 21300000, guid: 8dde9067732c48fb87c0f7b7417515a5, type: 3}
+  - Name: SpreadGun
+    Path: Equipment/Firearms2H/Basic/SpreadGun
+    Sprite: {fileID: 21300000, guid: 3293cfb4ab5e471fb87ca0d74c8c6cf1, type: 3}
+  - Name: SR-25
+    Path: Equipment/Firearms2H/Pro/SR-25
+    Sprite: {fileID: 21300000, guid: 5c7daea9dc7a48d89d0db99254cb638d, type: 3}
+  - Name: SR-MDK
+    Path: Equipment/Firearms2H/Pro/SR-MDK
+    Sprite: {fileID: 21300000, guid: b7476963d724403081482ea6462f96d2, type: 3}
+  - Name: SteelShield [Paint]
+    Path: Equipment/Shield/Basic/SteelShield [Paint]
+    Sprite: {fileID: 21300000, guid: e02dbea1fba64df89cea88418a99d1b9, type: 3}
+  - Name: SteelShield2 [Paint]
+    Path: Equipment/Shield/Basic/SteelShield2 [Paint]
+    Sprite: {fileID: 21300000, guid: 657a284e9891420085773cd8a29d38e2, type: 3}
+  - Name: Surprised
+    Path: BodyParts/Eyebrows/Expressions/Surprised
+    Sprite: {fileID: 21300000, guid: 0946129cd39445dabd0ab0286cc92cf6, type: 3}
+  - Name: Surprised
+    Path: BodyParts/Eyes/Expressions/Surprised
+    Sprite: {fileID: 21300000, guid: 87cc96c736924b999abc8ae7712b5878, type: 3}
+  - Name: Surprised
+    Path: BodyParts/Mouth/Expressions/Surprised
+    Sprite: {fileID: 21300000, guid: a38777fb8a77400eab90610f151b0e9a, type: 3}
+  - Name: SurprisedBored
+    Path: BodyParts/Eyebrows/Expressions/SurprisedBored
+    Sprite: {fileID: 21300000, guid: 4a9527af8c8e422eb201cc5dabd4d51f, type: 3}
+  - Name: SweatDrop
+    Path: BodyParts/Eyebrows/Emoji/SweatDrop
+    Sprite: {fileID: 21300000, guid: 5e418eff62ec461e9cf88b84424287da, type: 3}
+  - Name: SweatDrop
+    Path: BodyParts/Eyes/Emoji/SweatDrop
+    Sprite: {fileID: 21300000, guid: b647f03a59a543119715b1be42e71d0e, type: 3}
+  - Name: SweatDrop
+    Path: BodyParts/Mouth/Emoji/SweatDrop
+    Sprite: {fileID: 21300000, guid: 78803804622d4c2494c1ef96caabf6b2, type: 3}
+  - Name: TBody
+    Path: BodyParts/Body/Basic/TBody
+    Sprite: {fileID: 21300000, guid: 85f0b41289734feab9d5874815d198ad, type: 3}
+  - Name: TBody2
+    Path: BodyParts/Body/Basic/TBody2
+    Sprite: {fileID: 21300000, guid: 5bd94236cf2a473db170ca55e442d75c, type: 3}
+  - Name: THead
+    Path: BodyParts/Head/Basic/THead
+    Sprite: {fileID: 21300000, guid: 69b0318046f94554aa28f5031d0d2ae3, type: 3}
+  - Name: Thermal
+    Path: Equipment/Supplies/Pro/Bombs/Thermal
+    Sprite: {fileID: 21300000, guid: 5c53e534f4524759a7367146fb85e5fe, type: 3}
+  - Name: ThrowingStar [Paint]
+    Path: Equipment/Supplies/Pro/Throwing/ThrowingStar [Paint]
+    Sprite: {fileID: 21300000, guid: 55a579758cb04a16a8a3dcb70b6623a6, type: 3}
+  - Name: ThrowingStar2
+    Path: Equipment/Supplies/Pro/Throwing/ThrowingStar2
+    Sprite: {fileID: 21300000, guid: 23603bbea4f04a1980966072c8407f09, type: 3}
+  - Name: Twisty
+    Path: BodyParts/Hair/Bonus/Twisty
+    Sprite: {fileID: 21300000, guid: ee98bd2631e04baaac1e6168ec0b7e8c, type: 3}
+  - Name: VerySurprised
+    Path: BodyParts/Eyebrows/Expressions/VerySurprised
+    Sprite: {fileID: 21300000, guid: 6ac2961c287a4886b7cc20526290e9b5, type: 3}
+  - Name: VerySurprised
+    Path: BodyParts/Eyes/Expressions/VerySurprised
+    Sprite: {fileID: 21300000, guid: e3955373c2c9409aa2b12ff5508b4c29, type: 3}
+  - Name: VerySurprised
+    Path: BodyParts/Mouth/Expressions/VerySurprised
+    Sprite: {fileID: 21300000, guid: f2d31481ea534311afcf586c2bc1993f, type: 3}
+  - Name: VikingBeard
+    Path: BodyParts/Beard/Vikings/VikingBeard
+    Sprite: {fileID: 21300000, guid: a5be169b923d499a90cb6ae07d1f483f, type: 3}
+  - Name: VillageGirl
+    Path: BodyParts/Hair/Bonus/VillageGirl
+    Sprite: {fileID: 21300000, guid: cb4553880d3140fabe34e614897d3a33, type: 3}
+  - Name: Wanting
+    Path: BodyParts/Eyes/Emoji/Wanting
+    Sprite: {fileID: 21300000, guid: 761cfa71510b49d380e38c511d90548c, type: 3}
+  - Name: Wanting
+    Path: BodyParts/Mouth/Emoji/Wanting
+    Sprite: {fileID: 21300000, guid: 012ed3421e314182b0abaf2a4d4c2241, type: 3}
+  - Name: Wavy
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Wavy
+    Sprite: {fileID: 21300000, guid: 56b2333e816246b98719995194cfd1d1, type: 3}
+  - Name: Wavy
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Wavy
+    Sprite: {fileID: 21300000, guid: bc00646f4d0d431cab9f9944d5215e14, type: 3}
+  - Name: Wavy
+    Path: BodyParts/Hair/Style/Wavy
+    Sprite: {fileID: 21300000, guid: 41bebc08b20447679b95ace280a76a92, type: 3}
+  - Name: Wavy
+    Path: BodyParts/Hair/Style [Preview] [NoPaint]/Wavy
+    Sprite: {fileID: 21300000, guid: 4d861ceaae62487c8e5ab21984599fdd, type: 3}
+  - Name: Wavy
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Wavy
+    Sprite: {fileID: 21300000, guid: 43cd6bd1e4624f918ff8f7be1f205629, type: 3}
+  - Name: Worm
+    Path: Equipment/Earrings/Basic/Worm
+    Sprite: {fileID: 21300000, guid: 934dae684f574a81bda54d53bb2a9840, type: 3}
+  - Name: WTF
+    Path: BodyParts/Eyebrows/Emoji/WTF
+    Sprite: {fileID: 21300000, guid: 632e33cdc8f0483ea7a02bde7f8d7cf2, type: 3}
+  - Name: WTF
+    Path: BodyParts/Eyes/Emoji/WTF
+    Sprite: {fileID: 21300000, guid: 5eedb539b3014815b75b6c90873e1034, type: 3}
+  - Name: WTF
+    Path: BodyParts/Mouth/Emoji/WTF
+    Sprite: {fileID: 21300000, guid: 544f185fffc245fa8925512cb543c1ab, type: 3}
+  - Name: XD
+    Path: BodyParts/Eyes/Emoji/XD
+    Sprite: {fileID: 21300000, guid: a5a9cbe87c41460a8f09c77ed141d721, type: 3}
+  - Name: XD
+    Path: BodyParts/Mouth/Emoji/XD
+    Sprite: {fileID: 21300000, guid: 5df49de3be8343359eee183057200b3a, type: 3}
+  - Name: Zombie
+    Path: BodyParts/Mouth/Basic/Zombie
+    Sprite: {fileID: 21300000, guid: 01bb7247e74a4fa9adff581dd58ca5bf, type: 3}
+  - Name: ZombieShabby
+    Path: BodyParts/Hair/Basic/ZombieShabby
+    Sprite: {fileID: 21300000, guid: 00be0f0219cd4504beac47f17bbebc93, type: 3}
+  - Name: ZombieSticks
+    Path: BodyParts/Hair/Basic/ZombieSticks
+    Sprite: {fileID: 21300000, guid: 180a0e2287754dfc8ff31e89c5f45334, type: 3}
+  DefaultItemIcon: {fileID: 21300000, guid: ae011a2b76094d3d988dc7d5ab9b778d, type: 3}

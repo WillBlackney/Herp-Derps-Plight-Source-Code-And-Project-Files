@@ -295,7 +295,7 @@ public enum KeyWordType
 
 // Item Enums
 #region
-public enum ItemType
+public enum ItemCategory
 {
     None = 0,
     OneHandMelee = 1,

@@ -1,0 +1,684 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20438ef1890f427991147f72aa955074, type: 3}
+  m_Name: FirearmCollection
+  m_EditorClassIdentifier: 
+  Id: CyberpunkHeroes
+  Firearms:
+  - Name: LB-200
+    FirearmTexture: {fileID: 2800000, guid: 66f819c8cdbc4e2c8120b90a43a4f8e8, type: 3}
+    Type: 3
+    HoldType: 0
+    MagazineType: 0
+    LoadType: 2
+    AutomaticFire: 1
+    AutomaticLoad: 1
+    FireRateInMinute: 600
+    MagazineCapacity: 30
+    Recoil: 0.025
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.26, y: 0.26}
+    MagazinePosition: {x: 0.44, y: 0.06}
+    FireMuzzlePosition: {x: 1, y: 0.3}
+    FireMuzzlePrefab: {fileID: 198684210168347052, guid: b82ab74e777f4cb98e904e07635096c3,
+      type: 3}
+    ProjectilePrefab: {fileID: 114184942612474710, guid: 8945ee1c95db45c7afb178ec8f6014f0,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 2aadd1378923401dbc1c35073567d361, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 19538cf420b14f04a1b7f61cd5a98a70, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 0e4ae6be00374f92ae3284a55c15dbfa, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: 1e1cb6f5c8394ba3b753b5a18525aa63, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: c46d262cd5344d758a1d2915f0563224, type: 2}
+    Meta:
+    - LampReady=#00FFFFFF
+    - LampFire=#FF0000FF
+    - LampReload=#FFFF00FF
+  - Name: LB-600
+    FirearmTexture: {fileID: 2800000, guid: 1369945b365c496a9e7e9cf2917db08f, type: 3}
+    Type: 3
+    HoldType: 0
+    MagazineType: 0
+    LoadType: 2
+    AutomaticFire: 1
+    AutomaticLoad: 1
+    FireRateInMinute: 800
+    MagazineCapacity: 60
+    Recoil: 0.025
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.23, y: 0.3}
+    MagazinePosition: {x: 0.47, y: -0.01}
+    FireMuzzlePosition: {x: 1.03, y: 0.27}
+    FireMuzzlePrefab: {fileID: 198036533519535048, guid: 524b2a55f6f049639c24f159b61a27da,
+      type: 3}
+    ProjectilePrefab: {fileID: 114969275981921784, guid: 2dc9136321d7453cb82d570e1b9810f6,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 2aadd1378923401dbc1c35073567d361, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 19538cf420b14f04a1b7f61cd5a98a70, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 0e4ae6be00374f92ae3284a55c15dbfa, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: 1e1cb6f5c8394ba3b753b5a18525aa63, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: c46d262cd5344d758a1d2915f0563224, type: 2}
+    Meta:
+    - LampReady=#00FFFFFF
+    - LampFire=#FF0000FF
+    - LampReload=#FFFF00FF
+  - Name: HB-2000
+    FirearmTexture: {fileID: 2800000, guid: 9efec27cbf2d4cc5bda354d1caf77144, type: 3}
+    Type: 6
+    HoldType: 2
+    MagazineType: 0
+    LoadType: 2
+    AutomaticFire: 1
+    AutomaticLoad: 1
+    FireRateInMinute: 400
+    MagazineCapacity: 50
+    Recoil: 0.05
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.45, y: 0.4}
+    MagazinePosition: {x: 0.51, y: 0.22}
+    FireMuzzlePosition: {x: 1.18, y: 0.38}
+    FireMuzzlePrefab: {fileID: 198036533519535048, guid: 524b2a55f6f049639c24f159b61a27da,
+      type: 3}
+    ProjectilePrefab: {fileID: 114969275981921784, guid: 2dc9136321d7453cb82d570e1b9810f6,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 2aadd1378923401dbc1c35073567d361, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 19538cf420b14f04a1b7f61cd5a98a70, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 0e4ae6be00374f92ae3284a55c15dbfa, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: 1e1cb6f5c8394ba3b753b5a18525aa63, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: c46d262cd5344d758a1d2915f0563224, type: 2}
+    Meta:
+    - LampReady=#00FFFFFF
+    - LampFire=#FF0000FF
+    - LampReload=#FFFF00FF
+  - Name: LightHandBlaster
+    FirearmTexture: {fileID: 2800000, guid: cc2d8d87c56a48d68abd87570e43a2e0, type: 3}
+    Type: 2
+    HoldType: 0
+    MagazineType: 0
+    LoadType: 2
+    AutomaticFire: 0
+    AutomaticLoad: 1
+    FireRateInMinute: 250
+    MagazineCapacity: 14
+    Recoil: 0.05
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.52, y: 0.25}
+    MagazinePosition: {x: 0.12, y: 0.02}
+    FireMuzzlePosition: {x: 0.96, y: 0.28}
+    FireMuzzlePrefab: {fileID: 198513537569721870, guid: fd0e4e43134f4174acff0f3545504925,
+      type: 3}
+    ProjectilePrefab: {fileID: 114285776036949220, guid: e06cc22641094ff7b95a2bc76d41de75,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: c4e104d150bf49aab04f596b789e3739, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 19538cf420b14f04a1b7f61cd5a98a70, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 0e4ae6be00374f92ae3284a55c15dbfa, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: 1e1cb6f5c8394ba3b753b5a18525aa63, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: c46d262cd5344d758a1d2915f0563224, type: 2}
+    Meta:
+    - LampReady=#00FFFFFF
+    - LampFire=#FF0000FF
+    - LampReload=#FFFF00FF
+  - Name: FirestormFusionBlaster
+    FirearmTexture: {fileID: 2800000, guid: deed0a1987d24c8fa508e5bbed670407, type: 3}
+    Type: 2
+    HoldType: 0
+    MagazineType: 0
+    LoadType: 2
+    AutomaticFire: 1
+    AutomaticLoad: 1
+    FireRateInMinute: 300
+    MagazineCapacity: 25
+    Recoil: 0.05
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.33, y: 0.18}
+    MagazinePosition: {x: 0.85, y: 0.27}
+    FireMuzzlePosition: {x: 0.99, y: 0.25}
+    FireMuzzlePrefab: {fileID: 198684210168347052, guid: b82ab74e777f4cb98e904e07635096c3,
+      type: 3}
+    ProjectilePrefab: {fileID: 114184942612474710, guid: 8945ee1c95db45c7afb178ec8f6014f0,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: c4e104d150bf49aab04f596b789e3739, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 19538cf420b14f04a1b7f61cd5a98a70, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 0e4ae6be00374f92ae3284a55c15dbfa, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: 1e1cb6f5c8394ba3b753b5a18525aa63, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: c46d262cd5344d758a1d2915f0563224, type: 2}
+    Meta:
+    - LampReady=#00FFFFFF
+    - LampFire=#FF0000FF
+    - LampReload=#FFFF00FF
+  - Name: LR-100
+    FirearmTexture: {fileID: 2800000, guid: e40afcfa3ff142cc861f424e47ec94f6, type: 3}
+    Type: 6
+    HoldType: 2
+    MagazineType: 0
+    LoadType: 2
+    AutomaticFire: 1
+    AutomaticLoad: 1
+    FireRateInMinute: 700
+    MagazineCapacity: 30
+    Recoil: 0.05
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.24, y: 0.37}
+    MagazinePosition: {x: 0.47, y: 0.07}
+    FireMuzzlePosition: {x: 1.62, y: 0.35}
+    FireMuzzlePrefab: {fileID: 198513537569721870, guid: fd0e4e43134f4174acff0f3545504925,
+      type: 3}
+    ProjectilePrefab: {fileID: 114285776036949220, guid: e06cc22641094ff7b95a2bc76d41de75,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 7eaf31fb31fb4870a9e82bf2695290c2, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 19538cf420b14f04a1b7f61cd5a98a70, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 0e4ae6be00374f92ae3284a55c15dbfa, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: f6831b2b1cb143acbf92818784374a78, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: fa34d240661e4409b0fc998f66e51e03, type: 2}
+    Meta:
+    - LampReady=#00FFFFFF
+    - LampFire=#64FF00FF
+    - LampReload=#FFFF00FF
+  - Name: LR-300
+    FirearmTexture: {fileID: 2800000, guid: 16d1c69831f546fabd3ce205f32503b7, type: 3}
+    Type: 6
+    HoldType: 2
+    MagazineType: 0
+    LoadType: 2
+    AutomaticFire: 1
+    AutomaticLoad: 1
+    FireRateInMinute: 700
+    MagazineCapacity: 30
+    Recoil: 0.05
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.45, y: 0.28}
+    MagazinePosition: {x: 0.67, y: 0.16}
+    FireMuzzlePosition: {x: 1.46, y: 0.35}
+    FireMuzzlePrefab: {fileID: 198513537569721870, guid: fd0e4e43134f4174acff0f3545504925,
+      type: 3}
+    ProjectilePrefab: {fileID: 114285776036949220, guid: e06cc22641094ff7b95a2bc76d41de75,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 7eaf31fb31fb4870a9e82bf2695290c2, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 19538cf420b14f04a1b7f61cd5a98a70, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 0e4ae6be00374f92ae3284a55c15dbfa, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: f6831b2b1cb143acbf92818784374a78, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: fa34d240661e4409b0fc998f66e51e03, type: 2}
+    Meta:
+    - LampReady=#00FFFFFF
+    - LampFire=#64FF00FF
+    - LampReload=#FFFF00FF
+  - Name: LR-300RX
+    FirearmTexture: {fileID: 2800000, guid: 418ab483bc88423b913545022231ba96, type: 3}
+    Type: 6
+    HoldType: 2
+    MagazineType: 0
+    LoadType: 2
+    AutomaticFire: 1
+    AutomaticLoad: 1
+    FireRateInMinute: 750
+    MagazineCapacity: 30
+    Recoil: 0.05
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.62, y: 0.26}
+    MagazinePosition: {x: 0.7, y: 0.16}
+    FireMuzzlePosition: {x: 1.38, y: 0.32}
+    FireMuzzlePrefab: {fileID: 198513537569721870, guid: fd0e4e43134f4174acff0f3545504925,
+      type: 3}
+    ProjectilePrefab: {fileID: 114285776036949220, guid: e06cc22641094ff7b95a2bc76d41de75,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 7eaf31fb31fb4870a9e82bf2695290c2, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 19538cf420b14f04a1b7f61cd5a98a70, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 0e4ae6be00374f92ae3284a55c15dbfa, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: f6831b2b1cb143acbf92818784374a78, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: fa34d240661e4409b0fc998f66e51e03, type: 2}
+    Meta:
+    - LampReady=#00FFFFFF
+    - LampFire=#64FF00FF
+    - LampReload=#FFFF00FF
+  - Name: LR-500
+    FirearmTexture: {fileID: 2800000, guid: 4c31739d765e412a8c68ae4c11c0128f, type: 3}
+    Type: 6
+    HoldType: 2
+    MagazineType: 0
+    LoadType: 2
+    AutomaticFire: 1
+    AutomaticLoad: 1
+    FireRateInMinute: 800
+    MagazineCapacity: 50
+    Recoil: 0.05
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.1, y: 0.46}
+    MagazinePosition: {x: 0.52, y: 0}
+    FireMuzzlePosition: {x: 1.7, y: 0.39}
+    FireMuzzlePrefab: {fileID: 198416100499550440, guid: 76d3d215efe0448583678e5d4b0ca20b,
+      type: 3}
+    ProjectilePrefab: {fileID: 114184123756969392, guid: 4bcf45ba243b483aae825defb000cc96,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 7eaf31fb31fb4870a9e82bf2695290c2, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 19538cf420b14f04a1b7f61cd5a98a70, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 0e4ae6be00374f92ae3284a55c15dbfa, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: f6831b2b1cb143acbf92818784374a78, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: fa34d240661e4409b0fc998f66e51e03, type: 2}
+    Meta:
+    - LampReady=#00FFFFFF
+    - LampFire=#64FF00FF
+    - LampReload=#FFFF00FF
+  - Name: OblivionPlasmaGun
+    FirearmTexture: {fileID: 2800000, guid: 922c5ab800d740ddb58993e969b67943, type: 3}
+    Type: 6
+    HoldType: 2
+    MagazineType: 0
+    LoadType: 2
+    AutomaticFire: 1
+    AutomaticLoad: 1
+    FireRateInMinute: 200
+    MagazineCapacity: 50
+    Recoil: 0.07
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 1.01, y: 0.55}
+    MagazinePosition: {x: 0.6, y: 0.21}
+    FireMuzzlePosition: {x: 1.92, y: 0.29}
+    FireMuzzlePrefab: {fileID: 198785386551605324, guid: 3d383c8a4f5c47bdbaaf63fe23f5888f,
+      type: 3}
+    ProjectilePrefab: {fileID: 114602421003182654, guid: 13828c9aa6eb4b95b72d29c48614f124,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 2a1329042a42452f97448c4d46942de4, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 19538cf420b14f04a1b7f61cd5a98a70, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 0e4ae6be00374f92ae3284a55c15dbfa, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: f6831b2b1cb143acbf92818784374a78, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: fa34d240661e4409b0fc998f66e51e03, type: 2}
+    Meta:
+    - LampReady=#00FFFFFF
+    - LampFire=#64FF00FF
+    - LampReload=#FFFF00FF
+  - Name: RRII
+    FirearmTexture: {fileID: 2800000, guid: f98292df967f47fd9b29bcf280e19435, type: 3}
+    Type: 6
+    HoldType: 2
+    MagazineType: 0
+    LoadType: 2
+    AutomaticFire: 1
+    AutomaticLoad: 1
+    FireRateInMinute: 200
+    MagazineCapacity: 50
+    Recoil: 0.07
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.46, y: 0.45}
+    MagazinePosition: {x: 0.83, y: 0.27}
+    FireMuzzlePosition: {x: 2.1, y: 0.29}
+    FireMuzzlePrefab: {fileID: 198785386551605324, guid: 3d383c8a4f5c47bdbaaf63fe23f5888f,
+      type: 3}
+    ProjectilePrefab: {fileID: 114602421003182654, guid: 13828c9aa6eb4b95b72d29c48614f124,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 2a1329042a42452f97448c4d46942de4, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 19538cf420b14f04a1b7f61cd5a98a70, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 0e4ae6be00374f92ae3284a55c15dbfa, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: f6831b2b1cb143acbf92818784374a78, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: fa34d240661e4409b0fc998f66e51e03, type: 2}
+    Meta:
+    - LampReady=#00FFFFFF
+    - LampFire=#64FF00FF
+    - LampReload=#FFFF00FF
+  - Name: PR-5000
+    FirearmTexture: {fileID: 2800000, guid: 99c4e00480a44195b43c9be1900529c4, type: 3}
+    Type: 6
+    HoldType: 1
+    MagazineType: 0
+    LoadType: 2
+    AutomaticFire: 1
+    AutomaticLoad: 1
+    FireRateInMinute: 700
+    MagazineCapacity: 30
+    Recoil: 0.05
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.5, y: 0.24}
+    MagazinePosition: {x: 0.52, y: 0}
+    FireMuzzlePosition: {x: 1.64, y: 0.31}
+    FireMuzzlePrefab: {fileID: 198513537569721870, guid: fd0e4e43134f4174acff0f3545504925,
+      type: 3}
+    ProjectilePrefab: {fileID: 114285776036949220, guid: e06cc22641094ff7b95a2bc76d41de75,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 7d20440a2c45481abfe81d8883d7d513, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 19538cf420b14f04a1b7f61cd5a98a70, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 0e4ae6be00374f92ae3284a55c15dbfa, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: f6831b2b1cb143acbf92818784374a78, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: fa34d240661e4409b0fc998f66e51e03, type: 2}
+    Meta:
+    - LampReady=#00FFFFFF
+    - LampFire=#64FF00FF
+    - LampReload=#FFFF00FF
+  - Name: PR-9000
+    FirearmTexture: {fileID: 2800000, guid: 6788e2a5462b4209bf76eab710f601d2, type: 3}
+    Type: 6
+    HoldType: 1
+    MagazineType: 0
+    LoadType: 2
+    AutomaticFire: 1
+    AutomaticLoad: 1
+    FireRateInMinute: 800
+    MagazineCapacity: 50
+    Recoil: 0.05
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.09, y: 0.29}
+    MagazinePosition: {x: 0.52, y: 0}
+    FireMuzzlePosition: {x: 1.62, y: 0.28}
+    FireMuzzlePrefab: {fileID: 198036533519535048, guid: 524b2a55f6f049639c24f159b61a27da,
+      type: 3}
+    ProjectilePrefab: {fileID: 114969275981921784, guid: 2dc9136321d7453cb82d570e1b9810f6,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 7d20440a2c45481abfe81d8883d7d513, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 19538cf420b14f04a1b7f61cd5a98a70, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 0e4ae6be00374f92ae3284a55c15dbfa, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: f6831b2b1cb143acbf92818784374a78, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: fa34d240661e4409b0fc998f66e51e03, type: 2}
+    Meta:
+    - LampReady=#00FFFFFF
+    - LampFire=#64FF00FF
+    - LampReload=#FFFF00FF
+  - Name: PulsePistol
+    FirearmTexture: {fileID: 2800000, guid: a7ecdb46a00d4058bf90eabe6be82fd7, type: 3}
+    Type: 2
+    HoldType: 0
+    MagazineType: 0
+    LoadType: 2
+    AutomaticFire: 0
+    AutomaticLoad: 1
+    FireRateInMinute: 300
+    MagazineCapacity: 25
+    Recoil: 0.05
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.04, y: 0.23}
+    MagazinePosition: {x: 0.12, y: -0.04}
+    FireMuzzlePosition: {x: 0.8, y: 0.29}
+    FireMuzzlePrefab: {fileID: 198785386551605324, guid: 3d383c8a4f5c47bdbaaf63fe23f5888f,
+      type: 3}
+    ProjectilePrefab: {fileID: 114602421003182654, guid: 13828c9aa6eb4b95b72d29c48614f124,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: c4e104d150bf49aab04f596b789e3739, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 19538cf420b14f04a1b7f61cd5a98a70, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 0e4ae6be00374f92ae3284a55c15dbfa, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: 1e1cb6f5c8394ba3b753b5a18525aa63, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: c46d262cd5344d758a1d2915f0563224, type: 2}
+    Meta:
+    - LampReady=#00FFFFFF
+    - LampFire=#FF20FFFF
+    - LampReload=#FFFF00FF
+  - Name: PP-RX
+    FirearmTexture: {fileID: 2800000, guid: e4ed54cc13f34534bb457d2cc839ccb2, type: 3}
+    Type: 2
+    HoldType: 0
+    MagazineType: 0
+    LoadType: 2
+    AutomaticFire: 0
+    AutomaticLoad: 1
+    FireRateInMinute: 500
+    MagazineCapacity: 25
+    Recoil: 0.05
+    Accuracy: 0.95
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.48, y: 0}
+    MagazinePosition: {x: 0.49, y: 0.1}
+    FireMuzzlePosition: {x: 1.01, y: 0.27}
+    FireMuzzlePrefab: {fileID: 198785386551605324, guid: 3d383c8a4f5c47bdbaaf63fe23f5888f,
+      type: 3}
+    ProjectilePrefab: {fileID: 114602421003182654, guid: 13828c9aa6eb4b95b72d29c48614f124,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: c4e104d150bf49aab04f596b789e3739, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 19538cf420b14f04a1b7f61cd5a98a70, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 0e4ae6be00374f92ae3284a55c15dbfa, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: 1e1cb6f5c8394ba3b753b5a18525aa63, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: c46d262cd5344d758a1d2915f0563224, type: 2}
+    Meta:
+    - LampReady=#00FFFFFF
+    - LampFire=#FF20FFFF
+    - LampReload=#FFFF00FF
+  - Name: RL-800
+    FirearmTexture: {fileID: 2800000, guid: 9c6813c492b84c3cab130801b341ca93, type: 3}
+    Type: 9
+    HoldType: 1
+    MagazineType: 0
+    LoadType: 0
+    AutomaticFire: 0
+    AutomaticLoad: 1
+    FireRateInMinute: 60
+    MagazineCapacity: 1
+    Recoil: 0.05
+    Accuracy: 0.95
+    MuzzleVelocity: 12.5
+    SlidePosition: {x: 0.46, y: 0.3}
+    MagazinePosition: {x: 0.5, y: 0}
+    FireMuzzlePosition: {x: 1.4, y: 0.34}
+    FireMuzzlePrefab: {fileID: 198582016570033758, guid: eb8113a6a31848e39bac7f871a82f1e1,
+      type: 3}
+    ProjectilePrefab: {fileID: 114663788644885588, guid: 62363a261ff04a3b9d298593ffac901a,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: b4edbc5c41ba4e2889d02b2c0d5b7a35, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 19538cf420b14f04a1b7f61cd5a98a70, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 0e4ae6be00374f92ae3284a55c15dbfa, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: f6831b2b1cb143acbf92818784374a78, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: fa34d240661e4409b0fc998f66e51e03, type: 2}
+    Meta: []
+  - Name: RL-DIY200
+    FirearmTexture: {fileID: 2800000, guid: bba8fef31bc5490481c63b5298c7cad8, type: 3}
+    Type: 9
+    HoldType: 1
+    MagazineType: 0
+    LoadType: 0
+    AutomaticFire: 0
+    AutomaticLoad: 1
+    FireRateInMinute: 60
+    MagazineCapacity: 1
+    Recoil: 0.05
+    Accuracy: 0.95
+    MuzzleVelocity: 12.5
+    SlidePosition: {x: 0.46, y: 0.3}
+    MagazinePosition: {x: 0.5, y: 0}
+    FireMuzzlePosition: {x: 1.4, y: 0.38}
+    FireMuzzlePrefab: {fileID: 198582016570033758, guid: eb8113a6a31848e39bac7f871a82f1e1,
+      type: 3}
+    ProjectilePrefab: {fileID: 114663788644885588, guid: 62363a261ff04a3b9d298593ffac901a,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: b4edbc5c41ba4e2889d02b2c0d5b7a35, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 19538cf420b14f04a1b7f61cd5a98a70, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 0e4ae6be00374f92ae3284a55c15dbfa, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: f6831b2b1cb143acbf92818784374a78, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: fa34d240661e4409b0fc998f66e51e03, type: 2}
+    Meta: []
+  - Name: SpreadGun
+    FirearmTexture: {fileID: 2800000, guid: 9a9da2f42d724de7a46d1445dbd469f4, type: 3}
+    Type: 8
+    HoldType: 2
+    MagazineType: 0
+    LoadType: 2
+    AutomaticFire: 0
+    AutomaticLoad: 1
+    FireRateInMinute: 240
+    MagazineCapacity: 8
+    Recoil: 0.075
+    Accuracy: 0.9
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.24, y: 0.42}
+    MagazinePosition: {x: 0.74, y: 0.14}
+    FireMuzzlePosition: {x: 1.5, y: 0.32}
+    FireMuzzlePrefab: {fileID: 198416100499550440, guid: 76d3d215efe0448583678e5d4b0ca20b,
+      type: 3}
+    ProjectilePrefab: {fileID: 114184123756969392, guid: 4bcf45ba243b483aae825defb000cc96,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 9ca5afe6960e4e51aed3b11956362d6d, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 19538cf420b14f04a1b7f61cd5a98a70, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 0e4ae6be00374f92ae3284a55c15dbfa, type: 3}
+    SoundLoad: {fileID: 8300000, guid: 7c4673a2434746d5800d94ba1ffefd29, type: 3}
+    SoundPump: {fileID: 8300000, guid: bbb4ee57680142e4a74dd23ee588a5d0, type: 3}
+    HoldAnimation: {fileID: 7400000, guid: 2670e6fd2ca84afdbb781f5c965271c3, type: 2}
+    LoadAnimation: {fileID: 7400000, guid: e633484e1eae4d1db0f0decd5d9e6c86, type: 2}
+    ReloadAnimation: {fileID: 7400000, guid: fe1c27dcbeb442b098eb2849a0d5d24b, type: 2}
+    Meta:
+    - Spread=4
+    - LampReady=#00FFFFFF
+    - LampFire=#FF0000FF
+    - LampReload=#FFFF00FF
+  - Name: SG-V
+    FirearmTexture: {fileID: 2800000, guid: 3733ba84ce824933aa034ce80c5d2048, type: 3}
+    Type: 8
+    HoldType: 2
+    MagazineType: 0
+    LoadType: 2
+    AutomaticFire: 1
+    AutomaticLoad: 1
+    FireRateInMinute: 300
+    MagazineCapacity: 16
+    Recoil: 0.075
+    Accuracy: 0.9
+    MuzzleVelocity: 18.75
+    SlidePosition: {x: 0.67, y: 0.4}
+    MagazinePosition: {x: 0.73, y: 0.41}
+    FireMuzzlePosition: {x: 1.38, y: 0.32}
+    FireMuzzlePrefab: {fileID: 198416100499550440, guid: 76d3d215efe0448583678e5d4b0ca20b,
+      type: 3}
+    ProjectilePrefab: {fileID: 114184123756969392, guid: 4bcf45ba243b483aae825defb000cc96,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 9ca5afe6960e4e51aed3b11956362d6d, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 19538cf420b14f04a1b7f61cd5a98a70, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 0e4ae6be00374f92ae3284a55c15dbfa, type: 3}
+    SoundLoad: {fileID: 8300000, guid: 7c4673a2434746d5800d94ba1ffefd29, type: 3}
+    SoundPump: {fileID: 8300000, guid: bbb4ee57680142e4a74dd23ee588a5d0, type: 3}
+    HoldAnimation: {fileID: 7400000, guid: 2670e6fd2ca84afdbb781f5c965271c3, type: 2}
+    LoadAnimation: {fileID: 7400000, guid: e633484e1eae4d1db0f0decd5d9e6c86, type: 2}
+    ReloadAnimation: {fileID: 7400000, guid: fe1c27dcbeb442b098eb2849a0d5d24b, type: 2}
+    Meta:
+    - Spread=4
+    - LampReady=#00FFFFFF
+    - LampFire=#FF0000FF
+    - LampReload=#FFFF00FF
+  - Name: SR-25
+    FirearmTexture: {fileID: 2800000, guid: e3be069aa0814d89b56b92c50bc32f66, type: 3}
+    Type: 7
+    HoldType: 2
+    MagazineType: 0
+    LoadType: 2
+    AutomaticFire: 0
+    AutomaticLoad: 1
+    FireRateInMinute: 50
+    MagazineCapacity: 10
+    Recoil: 0.1
+    Accuracy: 0.95
+    MuzzleVelocity: 25
+    SlidePosition: {x: 0.62, y: 0.27}
+    MagazinePosition: {x: 0.78, y: 0.25}
+    FireMuzzlePosition: {x: 1.96, y: 0.3}
+    FireMuzzlePrefab: {fileID: 198684210168347052, guid: b82ab74e777f4cb98e904e07635096c3,
+      type: 3}
+    ProjectilePrefab: {fileID: 114184942612474710, guid: 8945ee1c95db45c7afb178ec8f6014f0,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 2a1329042a42452f97448c4d46942de4, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 19538cf420b14f04a1b7f61cd5a98a70, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 0e4ae6be00374f92ae3284a55c15dbfa, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: 2670e6fd2ca84afdbb781f5c965271c3, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: fe1c27dcbeb442b098eb2849a0d5d24b, type: 2}
+    Meta:
+    - LampReady=#00FFFFFF
+    - LampFire=#64FF00FF
+    - LampReload=#FF0000FF
+  - Name: SR-MDK
+    FirearmTexture: {fileID: 2800000, guid: fcaf2c30695f48868c6a34bc4fd1c4d7, type: 3}
+    Type: 7
+    HoldType: 2
+    MagazineType: 0
+    LoadType: 2
+    AutomaticFire: 0
+    AutomaticLoad: 1
+    FireRateInMinute: 100
+    MagazineCapacity: 12
+    Recoil: 0.1
+    Accuracy: 0.95
+    MuzzleVelocity: 25
+    SlidePosition: {x: 0.06, y: 0.25}
+    MagazinePosition: {x: 0.53, y: 0.15}
+    FireMuzzlePosition: {x: 2.15, y: 0.28}
+    FireMuzzlePrefab: {fileID: 198684210168347052, guid: b82ab74e777f4cb98e904e07635096c3,
+      type: 3}
+    ProjectilePrefab: {fileID: 114184942612474710, guid: 8945ee1c95db45c7afb178ec8f6014f0,
+      type: 3}
+    SoundFire: {fileID: 8300000, guid: 2a1329042a42452f97448c4d46942de4, type: 3}
+    SoundClipIn: {fileID: 8300000, guid: 19538cf420b14f04a1b7f61cd5a98a70, type: 3}
+    SoundClipOut: {fileID: 8300000, guid: 0e4ae6be00374f92ae3284a55c15dbfa, type: 3}
+    SoundLoad: {fileID: 0}
+    SoundPump: {fileID: 0}
+    HoldAnimation: {fileID: 7400000, guid: 2670e6fd2ca84afdbb781f5c965271c3, type: 2}
+    LoadAnimation: {fileID: 0}
+    ReloadAnimation: {fileID: 7400000, guid: fe1c27dcbeb442b098eb2849a0d5d24b, type: 2}
+    Meta:
+    - LampReady=#00FFFFFF
+    - LampFire=#64FF00FF
+    - LampReload=#FF0000FF

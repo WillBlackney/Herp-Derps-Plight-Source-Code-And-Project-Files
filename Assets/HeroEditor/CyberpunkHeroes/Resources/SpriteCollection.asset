@@ -1,0 +1,4914 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -501458331, guid: 37c5e9f1bad94b3398ad4f3c326513e9, type: 3}
+  m_Name: SpriteCollection
+  m_EditorClassIdentifier: 
+  Id: CyberpunkHeroes
+  ScanFolderTags:
+  - CyberpunkHeroes
+  - '[CPH]'
+  CollectionFilter: []
+  CollectionFilterIgnore: []
+  Head:
+  - Name: Head
+    Collection: Basic
+    Id: 2018966701
+    Path: BodyParts/Head/Basic/Head
+    Sprite: {fileID: 21300000, guid: 2c44c86215bd40c9a042dbe0caa124a6, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 2c44c86215bd40c9a042dbe0caa124a6, type: 3}
+    Multiple: 1
+    Hash: 921e6275507014a2b6874c99c234215a
+    Meta: 
+    Tags: []
+  - Name: HeadScar
+    Collection: Basic
+    Id: -1020114330
+    Path: BodyParts/Head/Basic/HeadScar
+    Sprite: {fileID: 21300000, guid: 53e40fdfff264801bd35048f5d72d059, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 53e40fdfff264801bd35048f5d72d059, type: 3}
+    Multiple: 1
+    Hash: dc40afc0021bf4e37117d12c1181defc
+    Meta: 
+    Tags: []
+  - Name: PeasantHead
+    Collection: Basic
+    Id: -842426959
+    Path: BodyParts/Head/Basic/PeasantHead
+    Sprite: {fileID: 21300000, guid: 647c22f0b0684acc8ae3d0357ddd62b0, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 647c22f0b0684acc8ae3d0357ddd62b0, type: 3}
+    Multiple: 1
+    Hash: d6497b91aa060725116c9d84dfebf93d
+    Meta: 
+    Tags: []
+  - Name: THead
+    Collection: Basic
+    Id: 92188441
+    Path: BodyParts/Head/Basic/THead
+    Sprite: {fileID: 21300000, guid: 350d8fe6516846f4bbdbfa2cf07dd850, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 350d8fe6516846f4bbdbfa2cf07dd850, type: 3}
+    Multiple: 1
+    Hash: e5123c2071cc73ece0017819dd096d1e
+    Meta: 
+    Tags: []
+  Ears:
+  - Name: ElfEar
+    Collection: Basic
+    Id: -161008430
+    Path: BodyParts/Ears/Basic/ElfEar
+    Sprite: {fileID: 21300000, guid: 5cc21ec30b5e440cb5f44e82e033ec75, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 5cc21ec30b5e440cb5f44e82e033ec75, type: 3}
+    Multiple: 1
+    Hash: 2a4dfe1cbaae7964bbbc5e5b8fe8ee18
+    Meta: 
+    Tags: []
+  - Name: HumanEar
+    Collection: Basic
+    Id: -207874782
+    Path: BodyParts/Ears/Basic/HumanEar
+    Sprite: {fileID: 21300000, guid: 9d633b45038d410eb197ccff20e67359, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 9d633b45038d410eb197ccff20e67359, type: 3}
+    Multiple: 1
+    Hash: 9d13ae392bcba8401d487f9fcc890720
+    Meta: 
+    Tags: []
+  Hair:
+  - Name: Afro
+    Collection: Basic
+    Id: 197408699
+    Path: BodyParts/Hair/Basic/Afro
+    Sprite: {fileID: 21300000, guid: 0a422863ceba40b9a90c075764012e4b, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 0a422863ceba40b9a90c075764012e4b, type: 3}
+    Multiple: 1
+    Hash: e6fef48ba92742dd5c0b3cd049fa8e6d
+    Meta: 
+    Tags: []
+  - Name: AfroSmall
+    Collection: Basic
+    Id: 2105250540
+    Path: BodyParts/Hair/Basic/AfroSmall
+    Sprite: {fileID: 21300000, guid: e8f05550f2874d9483c733cdf3efae08, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: e8f05550f2874d9483c733cdf3efae08, type: 3}
+    Multiple: 1
+    Hash: c1315226ab3a349b4eed3798bce1837c
+    Meta: 
+    Tags: []
+  - Name: AnimeGirl
+    Collection: Bonus
+    Id: 1126397040
+    Path: BodyParts/Hair/Bonus/AnimeGirl
+    Sprite: {fileID: 21300000, guid: 64f713ae43734eb899f764bfd28ebda9, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 64f713ae43734eb899f764bfd28ebda9, type: 3}
+    Multiple: 1
+    Hash: 95198fb41a4599d8aef32f0e27c3807a
+    Meta: 
+    Tags: []
+  - Name: Ariel
+    Collection: MoonStyle [NoPaint]
+    Id: -2084567091
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Ariel
+    Sprite: {fileID: 21300000, guid: c0668d8503934519846065df34cad1fa, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: c0668d8503934519846065df34cad1fa, type: 3}
+    Multiple: 1
+    Hash: 95290ec8666c821c17c62adc1d3f731e
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Ariel
+    Collection: SkyStyle [NoPaint]
+    Id: 1339898107
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Ariel
+    Sprite: {fileID: 21300000, guid: 98c5708475fc4882b9a9e96fc48f3cdb, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 98c5708475fc4882b9a9e96fc48f3cdb, type: 3}
+    Multiple: 1
+    Hash: 1e164af1d0e57063815b2475f9bbb39f
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Ariel
+    Collection: Style
+    Id: -1278531161
+    Path: BodyParts/Hair/Style/Ariel
+    Sprite: {fileID: 21300000, guid: 81d8b1ac337a4725b63dc9a5acd07ea9, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 81d8b1ac337a4725b63dc9a5acd07ea9, type: 3}
+    Multiple: 1
+    Hash: 560bae889932c18fe27a3b82631969fb
+    Meta: 
+    Tags: []
+  - Name: Ariel
+    Collection: SunStyle [NoPaint]
+    Id: 150002124
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Ariel
+    Sprite: {fileID: 21300000, guid: 6ed083345dca46b4bc21b1daffc99538, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 6ed083345dca46b4bc21b1daffc99538, type: 3}
+    Multiple: 1
+    Hash: 1c2ca4881dc1e1dd68e3688882627546
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Army
+    Collection: Bonus
+    Id: 1171863485
+    Path: BodyParts/Hair/Bonus/Army
+    Sprite: {fileID: 21300000, guid: aee67f7393874edca194c54c34cedc9e, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: aee67f7393874edca194c54c34cedc9e, type: 3}
+    Multiple: 1
+    Hash: 94939cbb8a08b7632ab067e926c1d118
+    Meta: 
+    Tags: []
+  - Name: Blade
+    Collection: Style [Preview] [NoPaint]
+    Id: 828073479
+    Path: BodyParts/Hair/Style [Preview] [NoPaint]/Blade
+    Sprite: {fileID: 21300000, guid: be976b0bea024306a825e74d10744e59, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: be976b0bea024306a825e74d10744e59, type: 3}
+    Multiple: 1
+    Hash: 1f6219c78490300069208eef875dab0c
+    Meta: 
+    Tags:
+    - Preview
+    - NoPaint
+  - Name: Blade
+    Collection: MoonStyle [NoPaint]
+    Id: -1028919296
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Blade
+    Sprite: {fileID: 21300000, guid: b21136c6d6bb42d5921588c0ad4936fc, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: b21136c6d6bb42d5921588c0ad4936fc, type: 3}
+    Multiple: 1
+    Hash: 26fdd03f0df626449d946081505a5d72
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Blade
+    Collection: SkyStyle [NoPaint]
+    Id: -185521224
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Blade
+    Sprite: {fileID: 21300000, guid: 5db25b1d00364a8fa95196fcb4ff5a16, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 5db25b1d00364a8fa95196fcb4ff5a16, type: 3}
+    Multiple: 1
+    Hash: 4c4b157d4eaaf57d77b5c136a8b012dd
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Blade
+    Collection: Style
+    Id: -1143763730
+    Path: BodyParts/Hair/Style/Blade
+    Sprite: {fileID: 21300000, guid: a1c44d074f8b4cddb822d97748c70f39, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: a1c44d074f8b4cddb822d97748c70f39, type: 3}
+    Multiple: 1
+    Hash: a82a73abaee68782334296377e893858
+    Meta: 
+    Tags: []
+  - Name: Blade
+    Collection: SunStyle [NoPaint]
+    Id: 1563692927
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Blade
+    Sprite: {fileID: 21300000, guid: 8279b5f7d22a4be485dc42e8911ac6ee, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 8279b5f7d22a4be485dc42e8911ac6ee, type: 3}
+    Multiple: 1
+    Hash: 1f6219c78490300069208eef875dab0c
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Blossom [HideEars]
+    Collection: MoonStyle [NoPaint]
+    Id: -1563447530
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Blossom [HideEars]
+    Sprite: {fileID: 21300000, guid: d0b658b16e744122acc64eb3e4d43565, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: d0b658b16e744122acc64eb3e4d43565, type: 3}
+    Multiple: 1
+    Hash: cfdf0368b94c30b2466ad5b6ff603006
+    Meta: 
+    Tags:
+    - NoPaint
+    - HideEars
+  - Name: Blossom [HideEars]
+    Collection: SkyStyle [NoPaint]
+    Id: 791652674
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Blossom [HideEars]
+    Sprite: {fileID: 21300000, guid: 05c7ae8a739342b7b19e32ad98ea7e08, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 05c7ae8a739342b7b19e32ad98ea7e08, type: 3}
+    Multiple: 1
+    Hash: a53bcc01907c7b5ca0e5cb5afd8238d9
+    Meta: 
+    Tags:
+    - NoPaint
+    - HideEars
+  - Name: Blossom [HideEars]
+    Collection: Style
+    Id: -463379920
+    Path: BodyParts/Hair/Style/Blossom [HideEars]
+    Sprite: {fileID: 21300000, guid: 2aef7ac1a46c4bb697cad6633354dbc0, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 2aef7ac1a46c4bb697cad6633354dbc0, type: 3}
+    Multiple: 1
+    Hash: 6ed00dc3e34ebfc4529d8ceadbd7607b
+    Meta: 
+    Tags:
+    - HideEars
+  - Name: Blossom [HideEars]
+    Collection: SunStyle [NoPaint]
+    Id: -494693531
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Blossom [HideEars]
+    Sprite: {fileID: 21300000, guid: e110dbcd42d14d2c951135ea6b190f58, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: e110dbcd42d14d2c951135ea6b190f58, type: 3}
+    Multiple: 1
+    Hash: cfd4c5d2b1cebba17bdeef3ac4f5bbec
+    Meta: 
+    Tags:
+    - NoPaint
+    - HideEars
+  - Name: BowlCut
+    Collection: Bonus
+    Id: 1510739446
+    Path: BodyParts/Hair/Bonus/BowlCut
+    Sprite: {fileID: 21300000, guid: 277988588e7e4c66861c45df699e5bbb, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 277988588e7e4c66861c45df699e5bbb, type: 3}
+    Multiple: 1
+    Hash: 571a9f09e6ccd2f2fee3963075c1312f
+    Meta: 
+    Tags: []
+  - Name: Bubble
+    Collection: MoonStyle [NoPaint]
+    Id: 1812067980
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Bubble
+    Sprite: {fileID: 21300000, guid: 1d0e33306172442a8ffae719df20a49b, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 1d0e33306172442a8ffae719df20a49b, type: 3}
+    Multiple: 1
+    Hash: 470f967e92bf9ffea38701ee30d393e7
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Bubble
+    Collection: SkyStyle [NoPaint]
+    Id: -1704193664
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Bubble
+    Sprite: {fileID: 21300000, guid: 0703aa28a292426f8faee9ed2aa0267b, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 0703aa28a292426f8faee9ed2aa0267b, type: 3}
+    Multiple: 1
+    Hash: 66414e31b695bd0305c91fea43c00c97
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Bubble
+    Collection: Style
+    Id: -29651226
+    Path: BodyParts/Hair/Style/Bubble
+    Sprite: {fileID: 21300000, guid: 42ac9f9416154d9ea6ddf77c6b84fe53, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 42ac9f9416154d9ea6ddf77c6b84fe53, type: 3}
+    Multiple: 1
+    Hash: 5f7ea758e24933cb84b4733ec422613a
+    Meta: 
+    Tags: []
+  - Name: Bubble
+    Collection: SunStyle [NoPaint]
+    Id: -643746585
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Bubble
+    Sprite: {fileID: 21300000, guid: 2ab7d4017f724d92b9762b2e0c2917a3, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 2ab7d4017f724d92b9762b2e0c2917a3, type: 3}
+    Multiple: 1
+    Hash: 938c5d9b9250e0d187bc9650a0b4d34f
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Bundle
+    Collection: Bonus
+    Id: 2135771662
+    Path: BodyParts/Hair/Bonus/Bundle
+    Sprite: {fileID: 21300000, guid: 936916b30bc9474db4ae63b9f9102823, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 936916b30bc9474db4ae63b9f9102823, type: 3}
+    Multiple: 1
+    Hash: 277b7747c3462c569a5006f8c8f47b2d
+    Meta: 
+    Tags: []
+  - Name: BuzzCut
+    Collection: Basic
+    Id: -1092482320
+    Path: BodyParts/Hair/Basic/BuzzCut
+    Sprite: {fileID: 21300000, guid: be26f734a3fd46119127e14fed290b3a, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: be26f734a3fd46119127e14fed290b3a, type: 3}
+    Multiple: 1
+    Hash: 9c34af2ec200f9fc1be10e9cb48b965c
+    Meta: 
+    Tags: []
+  - Name: Cheeky
+    Collection: MoonStyle [NoPaint]
+    Id: 1182811479
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Cheeky
+    Sprite: {fileID: 21300000, guid: f5caf8ad58aa4132a36425009b6cc4d6, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: f5caf8ad58aa4132a36425009b6cc4d6, type: 3}
+    Multiple: 1
+    Hash: 99d209f96b28cb282870f8699df28f34
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Cheeky
+    Collection: SkyStyle [NoPaint]
+    Id: 1166113953
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Cheeky
+    Sprite: {fileID: 21300000, guid: ca9fd4e952f244bfb2daf152cbdaf122, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: ca9fd4e952f244bfb2daf152cbdaf122, type: 3}
+    Multiple: 1
+    Hash: f23413129a3739373c96be86a56fe0ea
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Cheeky
+    Collection: Style
+    Id: 937317573
+    Path: BodyParts/Hair/Style/Cheeky
+    Sprite: {fileID: 21300000, guid: b9340df243e2435bbcbdcdb4f31aa138, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: b9340df243e2435bbcbdcdb4f31aa138, type: 3}
+    Multiple: 1
+    Hash: 243fe7418c08ec61d1ea50b43c11de3c
+    Meta: 
+    Tags: []
+  - Name: Cheeky
+    Collection: SunStyle [NoPaint]
+    Id: -502088516
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Cheeky
+    Sprite: {fileID: 21300000, guid: ea4895821c2b4631a5833f8ada406e23, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: ea4895821c2b4631a5833f8ada406e23, type: 3}
+    Multiple: 1
+    Hash: a79f83dbbcc02e39c101632c143f8fe1
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Cleo [HideEars]
+    Collection: MoonStyle [NoPaint]
+    Id: -1852252004
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Cleo [HideEars]
+    Sprite: {fileID: 21300000, guid: 2f35c1a2f7d94680b7af2ee24301d038, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 2f35c1a2f7d94680b7af2ee24301d038, type: 3}
+    Multiple: 1
+    Hash: 0076d1f0b1f1525f72a979a6a29e9b78
+    Meta: 
+    Tags:
+    - NoPaint
+    - HideEars
+  - Name: Cleo [HideEars]
+    Collection: SkyStyle [NoPaint]
+    Id: -1909869120
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Cleo [HideEars]
+    Sprite: {fileID: 21300000, guid: f4d7d076ad7c4d1bb9a5597edaf8891b, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: f4d7d076ad7c4d1bb9a5597edaf8891b, type: 3}
+    Multiple: 1
+    Hash: b7626b14e6bc978d85ce29fd93ae59f8
+    Meta: 
+    Tags:
+    - NoPaint
+    - HideEars
+  - Name: Cleo [HideEars]
+    Collection: Style
+    Id: 669361326
+    Path: BodyParts/Hair/Style/Cleo [HideEars]
+    Sprite: {fileID: 21300000, guid: 802bfadb366c4d638a31dfe589b4085d, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 802bfadb366c4d638a31dfe589b4085d, type: 3}
+    Multiple: 1
+    Hash: 9e026ea6fb8e1dd1f2d96a67c4a56d4f
+    Meta: 
+    Tags:
+    - HideEars
+  - Name: Cleo [HideEars]
+    Collection: SunStyle [NoPaint]
+    Id: 59078631
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Cleo [HideEars]
+    Sprite: {fileID: 21300000, guid: d42b592fa68b47cea40347f46ea1d7de, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: d42b592fa68b47cea40347f46ea1d7de, type: 3}
+    Multiple: 1
+    Hash: 8de1e3efe84197d5744bb356e65bffda
+    Meta: 
+    Tags:
+    - NoPaint
+    - HideEars
+  - Name: Clumsy
+    Collection: Bonus
+    Id: -212478105
+    Path: BodyParts/Hair/Bonus/Clumsy
+    Sprite: {fileID: 21300000, guid: 62d90a7b6c2145fb8771851b99fd9c92, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 62d90a7b6c2145fb8771851b99fd9c92, type: 3}
+    Multiple: 1
+    Hash: 5dd3cef834b9e5a6609d9c8e73e2fcc9
+    Meta: 
+    Tags: []
+  - Name: CoolBoy
+    Collection: Bonus
+    Id: 1604816473
+    Path: BodyParts/Hair/Bonus/CoolBoy
+    Sprite: {fileID: 21300000, guid: 746eba386766419ea491926818ae9cc9, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 746eba386766419ea491926818ae9cc9, type: 3}
+    Multiple: 1
+    Hash: 0ceb6fe4599bb3e10d3bb24b01a5a728
+    Meta: 
+    Tags: []
+  - Name: Cutie
+    Collection: MoonStyle [NoPaint]
+    Id: -1378760360
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Cutie
+    Sprite: {fileID: 21300000, guid: 77363f4c2ca24f6ab64a5e147e692351, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 77363f4c2ca24f6ab64a5e147e692351, type: 3}
+    Multiple: 1
+    Hash: f7510f4453c0c511cfecdfc31bdfea39
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Cutie
+    Collection: SkyStyle [NoPaint]
+    Id: -70693488
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Cutie
+    Sprite: {fileID: 21300000, guid: 3d962cb8f80547e7ae637d386381f297, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 3d962cb8f80547e7ae637d386381f297, type: 3}
+    Multiple: 1
+    Hash: 0bc95aa432d98352916d6aa2d9da700a
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Cutie
+    Collection: Style
+    Id: -8074178
+    Path: BodyParts/Hair/Style/Cutie
+    Sprite: {fileID: 21300000, guid: f662d8f4ec494ee0915071e926192a2a, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: f662d8f4ec494ee0915071e926192a2a, type: 3}
+    Multiple: 1
+    Hash: dd972cab59880c5270ac8564c51bfdfd
+    Meta: 
+    Tags: []
+  - Name: Cutie
+    Collection: SunStyle [NoPaint]
+    Id: 488612711
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Cutie
+    Sprite: {fileID: 21300000, guid: 6108aa08ab114314a56923e8a35976ef, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 6108aa08ab114314a56923e8a35976ef, type: 3}
+    Multiple: 1
+    Hash: 0f6fde9d1c7cbcdcc9848fe2a1568793
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Dandy
+    Collection: Bonus
+    Id: 83946482
+    Path: BodyParts/Hair/Bonus/Dandy
+    Sprite: {fileID: 21300000, guid: 205355e7ec344425b18afd4be7ff6c93, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 205355e7ec344425b18afd4be7ff6c93, type: 3}
+    Multiple: 1
+    Hash: 5a66c1bfac301b6a0581f9b2624d0de0
+    Meta: 
+    Tags: []
+  - Name: DoubleTrouble
+    Collection: MoonStyle [NoPaint]
+    Id: -1012143090
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/DoubleTrouble
+    Sprite: {fileID: 21300000, guid: 5bb658404fab43a6b3c4984c923af815, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 5bb658404fab43a6b3c4984c923af815, type: 3}
+    Multiple: 1
+    Hash: 4aa0a9ef9e8dc67d0d8b77da028c3ecf
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: DoubleTrouble
+    Collection: SkyStyle [NoPaint]
+    Id: 1144846710
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/DoubleTrouble
+    Sprite: {fileID: 21300000, guid: 49837134163549cf9a5141a08769cbc6, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 49837134163549cf9a5141a08769cbc6, type: 3}
+    Multiple: 1
+    Hash: 0f9b06f8c7f501a88d2ea9c2fd37053d
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: DoubleTrouble
+    Collection: Style
+    Id: -2142104352
+    Path: BodyParts/Hair/Style/DoubleTrouble
+    Sprite: {fileID: 21300000, guid: 88478f16524a4659ade84025e0b4850a, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 88478f16524a4659ade84025e0b4850a, type: 3}
+    Multiple: 1
+    Hash: bd080688fef7189648b2effa4abd2cfd
+    Meta: 
+    Tags: []
+  - Name: DoubleTrouble
+    Collection: SunStyle [NoPaint]
+    Id: 2008036167
+    Path: BodyParts/Hair/SunStyle [NoPaint]/DoubleTrouble
+    Sprite: {fileID: 21300000, guid: 21f8fdad64e641f099a0ca024fb2f466, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 21f8fdad64e641f099a0ca024fb2f466, type: 3}
+    Multiple: 1
+    Hash: d2c3e701477b85a98c46adc01e702167
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Emma [HideEars]
+    Collection: MoonStyle [NoPaint]
+    Id: -608127747
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Emma [HideEars]
+    Sprite: {fileID: 21300000, guid: 337b217bf6454689bfc88899821cf72a, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 337b217bf6454689bfc88899821cf72a, type: 3}
+    Multiple: 1
+    Hash: 6be5c79745a727f1616b2bb9f26525e2
+    Meta: 
+    Tags:
+    - NoPaint
+    - HideEars
+  - Name: Emma [HideEars]
+    Collection: SkyStyle [NoPaint]
+    Id: 1398270143
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Emma [HideEars]
+    Sprite: {fileID: 21300000, guid: 239790ad11d943bfa06ffd67a6060004, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 239790ad11d943bfa06ffd67a6060004, type: 3}
+    Multiple: 1
+    Hash: e259866af4b2ad850b43193631f0c4bd
+    Meta: 
+    Tags:
+    - NoPaint
+    - HideEars
+  - Name: Emma [HideEars]
+    Collection: Style
+    Id: -1551822549
+    Path: BodyParts/Hair/Style/Emma [HideEars]
+    Sprite: {fileID: 21300000, guid: fe8ee5ac29864db6ac2a97d5c5b9a371, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: fe8ee5ac29864db6ac2a97d5c5b9a371, type: 3}
+    Multiple: 1
+    Hash: 15e132e68cfc352a30be23229fcbcecc
+    Meta: 
+    Tags:
+    - HideEars
+  - Name: Emma [HideEars]
+    Collection: SunStyle [NoPaint]
+    Id: 647101912
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Emma [HideEars]
+    Sprite: {fileID: 21300000, guid: d3649dab589e43b2aec1e913df31fe20, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: d3649dab589e43b2aec1e913df31fe20, type: 3}
+    Multiple: 1
+    Hash: 84d3afd4700e8726827c9514e63e6dd9
+    Meta: 
+    Tags:
+    - NoPaint
+    - HideEars
+  - Name: FauxHawk
+    Collection: Bonus
+    Id: -1601779643
+    Path: BodyParts/Hair/Bonus/FauxHawk
+    Sprite: {fileID: 21300000, guid: 536e3c7410934523ab487d829a9f2dbf, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 536e3c7410934523ab487d829a9f2dbf, type: 3}
+    Multiple: 1
+    Hash: 2036b4497abd75a6e3b80cc44d2d1db7
+    Meta: 
+    Tags: []
+  - Name: Fluffy
+    Collection: MoonStyle [NoPaint]
+    Id: -959671510
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Fluffy
+    Sprite: {fileID: 21300000, guid: faaf7274bc5744c9aece553ad40f7e30, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: faaf7274bc5744c9aece553ad40f7e30, type: 3}
+    Multiple: 1
+    Hash: b1218fb3aeb9b01dfcaea6b64bdfd443
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Fluffy
+    Collection: SkyStyle [NoPaint]
+    Id: 1285269282
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Fluffy
+    Sprite: {fileID: 21300000, guid: 81b374e401fa42d794424860d8ece0c0, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 81b374e401fa42d794424860d8ece0c0, type: 3}
+    Multiple: 1
+    Hash: f26f35aa1c0f98040161dcada716366c
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Fluffy
+    Collection: Style
+    Id: -284276860
+    Path: BodyParts/Hair/Style/Fluffy
+    Sprite: {fileID: 21300000, guid: e955fadb56644d1d82a77d5d84d065bd, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: e955fadb56644d1d82a77d5d84d065bd, type: 3}
+    Multiple: 1
+    Hash: 0fdc61a4a73238990a84a79e4451e14f
+    Meta: 
+    Tags: []
+  - Name: Fluffy
+    Collection: SunStyle [NoPaint]
+    Id: 1784133819
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Fluffy
+    Sprite: {fileID: 21300000, guid: 7a0f3e4291014ac3b6c2e840fa7d790e, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 7a0f3e4291014ac3b6c2e840fa7d790e, type: 3}
+    Multiple: 1
+    Hash: 636c6a250e3a44dcadbe8c3b663c7351
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: FringedUp
+    Collection: Bonus
+    Id: 176021042
+    Path: BodyParts/Hair/Bonus/FringedUp
+    Sprite: {fileID: 21300000, guid: 00dc402fc1644ab5b326e36e5149ab04, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 00dc402fc1644ab5b326e36e5149ab04, type: 3}
+    Multiple: 1
+    Hash: da726de39719506872abaa5b2f39e8a8
+    Meta: 
+    Tags: []
+  - Name: Lea [HideEars]
+    Collection: MoonStyle [NoPaint]
+    Id: 1126469733
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Lea [HideEars]
+    Sprite: {fileID: 21300000, guid: 71492c24cd8f4ab2ba1e8417511c0843, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 71492c24cd8f4ab2ba1e8417511c0843, type: 3}
+    Multiple: 1
+    Hash: c701b4df9e94634a8a9d2052d03db200
+    Meta: 
+    Tags:
+    - NoPaint
+    - HideEars
+  - Name: Lea [HideEars]
+    Collection: SkyStyle [NoPaint]
+    Id: 571641155
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Lea [HideEars]
+    Sprite: {fileID: 21300000, guid: 100d40c5bc75461f83b2cdeee5da3320, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 100d40c5bc75461f83b2cdeee5da3320, type: 3}
+    Multiple: 1
+    Hash: 2dd1999d2278817cea84c8a6a33bb882
+    Meta: 
+    Tags:
+    - NoPaint
+    - HideEars
+  - Name: Lea [HideEars]
+    Collection: Style
+    Id: 1047455351
+    Path: BodyParts/Hair/Style/Lea [HideEars]
+    Sprite: {fileID: 21300000, guid: f395766088cb4c438efbf10a466d253e, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: f395766088cb4c438efbf10a466d253e, type: 3}
+    Multiple: 1
+    Hash: 37447f7014b9d43637c8caf2088958ba
+    Meta: 
+    Tags:
+    - HideEars
+  - Name: Lea [HideEars]
+    Collection: SunStyle [NoPaint]
+    Id: 728404388
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Lea [HideEars]
+    Sprite: {fileID: 21300000, guid: 7a12630aa258406cb267efee0cf4f30c, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 7a12630aa258406cb267efee0cf4f30c, type: 3}
+    Multiple: 1
+    Hash: 3655b9742602c46d8dcfed28dc8f7663
+    Meta: 
+    Tags:
+    - NoPaint
+    - HideEars
+  - Name: Leaky
+    Collection: Basic
+    Id: 1415862655
+    Path: BodyParts/Hair/Basic/Leaky
+    Sprite: {fileID: 21300000, guid: 2094caf0a678413ba8011815b3f206a8, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 2094caf0a678413ba8011815b3f206a8, type: 3}
+    Multiple: 1
+    Hash: 49bec40bcc7a0f28d52a065cdedea11d
+    Meta: 
+    Tags: []
+  - Name: LongHair
+    Collection: Basic
+    Id: 52060305
+    Path: BodyParts/Hair/Basic/LongHair
+    Sprite: {fileID: 21300000, guid: 655c9230e94145269010f7bc3e15ec44, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 655c9230e94145269010f7bc3e15ec44, type: 3}
+    Multiple: 1
+    Hash: c25908e70b50f33882ce6a3e68724027
+    Meta: 
+    Tags: []
+  - Name: Mohawk
+    Collection: Basic
+    Id: 401066760
+    Path: BodyParts/Hair/Basic/Mohawk
+    Sprite: {fileID: 21300000, guid: 925618958eff4c0c8877e4794e3b9ca3, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 925618958eff4c0c8877e4794e3b9ca3, type: 3}
+    Multiple: 1
+    Hash: 10017b4d24bff4e9957674cc2a5e2a86
+    Meta: 
+    Tags: []
+  - Name: Princess
+    Collection: MoonStyle [NoPaint]
+    Id: 293538441
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Princess
+    Sprite: {fileID: 21300000, guid: 3995f4d7c3b143e094c1b33cc7fa996f, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 3995f4d7c3b143e094c1b33cc7fa996f, type: 3}
+    Multiple: 1
+    Hash: b30221b2adada263ed1b6a3cccfc93fe
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Princess
+    Collection: SkyStyle [NoPaint]
+    Id: -1395497353
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Princess
+    Sprite: {fileID: 21300000, guid: 5656b5bdde964b6f980eda035891e3ec, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 5656b5bdde964b6f980eda035891e3ec, type: 3}
+    Multiple: 1
+    Hash: a3a544aca28ac04b832cd5e274796d11
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Princess
+    Collection: SunStyle [NoPaint]
+    Id: -448239562
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Princess
+    Sprite: {fileID: 21300000, guid: a02b9932b2ac4d58b07743cefd4329fe, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: a02b9932b2ac4d58b07743cefd4329fe, type: 3}
+    Multiple: 1
+    Hash: 361ff85b36359534d62471e223cf416d
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Princess [HideEars]
+    Collection: Style
+    Id: -62599306
+    Path: BodyParts/Hair/Style/Princess [HideEars]
+    Sprite: {fileID: 21300000, guid: 184d84d413c34a25a352e3e3682a9500, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 184d84d413c34a25a352e3e3682a9500, type: 3}
+    Multiple: 1
+    Hash: b00f288315ecd0ba3b17af2ef65c17c4
+    Meta: 
+    Tags:
+    - HideEars
+  - Name: PushedBack
+    Collection: Basic
+    Id: 64865797
+    Path: BodyParts/Hair/Basic/PushedBack
+    Sprite: {fileID: 21300000, guid: fbf7dcff135c48e9bb1c8752c195b13c, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: fbf7dcff135c48e9bb1c8752c195b13c, type: 3}
+    Multiple: 1
+    Hash: c4a835b7af05b59601e72a6c9705ab66
+    Meta: 
+    Tags: []
+  - Name: Rocky
+    Collection: Style [Preview] [NoPaint]
+    Id: 1016307737
+    Path: BodyParts/Hair/Style [Preview] [NoPaint]/Rocky
+    Sprite: {fileID: 21300000, guid: ad989052e6074bc6bd527a9783abf7eb, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: ad989052e6074bc6bd527a9783abf7eb, type: 3}
+    Multiple: 1
+    Hash: 588f24018bdc766b6e1fe5cc5371cdb8
+    Meta: 
+    Tags:
+    - Preview
+    - NoPaint
+  - Name: Rocky
+    Collection: MoonStyle [NoPaint]
+    Id: 1276494154
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Rocky
+    Sprite: {fileID: 21300000, guid: abb379049b1048459d4886fd3ec9a033, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: abb379049b1048459d4886fd3ec9a033, type: 3}
+    Multiple: 1
+    Hash: 10f17575e69bcaa83efb6a85ff95637e
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Rocky
+    Collection: SkyStyle [NoPaint]
+    Id: 1051510378
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Rocky
+    Sprite: {fileID: 21300000, guid: 0e5393a102d84346b014df4ab986a823, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 0e5393a102d84346b014df4ab986a823, type: 3}
+    Multiple: 1
+    Hash: 588f24018bdc766b6e1fe5cc5371cdb8
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Rocky
+    Collection: Style
+    Id: -243068752
+    Path: BodyParts/Hair/Style/Rocky
+    Sprite: {fileID: 21300000, guid: b790d4e1f52541858d75b7733e008bb9, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: b790d4e1f52541858d75b7733e008bb9, type: 3}
+    Multiple: 1
+    Hash: e34056a7a5890258b5dd1385cf4a71c1
+    Meta: 
+    Tags: []
+  - Name: Rocky
+    Collection: SunStyle [NoPaint]
+    Id: 326661597
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Rocky
+    Sprite: {fileID: 21300000, guid: efea5435e9d44d1da5746099367f5daf, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: efea5435e9d44d1da5746099367f5daf, type: 3}
+    Multiple: 1
+    Hash: ce7f3c0cc4d622358c02ca59f1ac2136
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Shaggy
+    Collection: Basic
+    Id: -1472929658
+    Path: BodyParts/Hair/Basic/Shaggy
+    Sprite: {fileID: 21300000, guid: bf6dcb9ad02d41788d7981a5952ebadf, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: bf6dcb9ad02d41788d7981a5952ebadf, type: 3}
+    Multiple: 1
+    Hash: ed1623f96ab45560ece9aa4d913c0e45
+    Meta: 
+    Tags: []
+  - Name: ShortHair
+    Collection: Basic
+    Id: 537532233
+    Path: BodyParts/Hair/Basic/ShortHair
+    Sprite: {fileID: 21300000, guid: 6b265492321142ca89d6f786d76fb275, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 6b265492321142ca89d6f786d76fb275, type: 3}
+    Multiple: 1
+    Hash: 1e2b228c960af5d4c3f8cd79af937c4a
+    Meta: 
+    Tags: []
+  - Name: ShortPonytail
+    Collection: Basic
+    Id: -2042128533
+    Path: BodyParts/Hair/Basic/ShortPonytail
+    Sprite: {fileID: 21300000, guid: 4d029b5293714483bd024effd981099f, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 4d029b5293714483bd024effd981099f, type: 3}
+    Multiple: 1
+    Hash: 6cb9aa1c4812f3246a1e74916f5964ab
+    Meta: 
+    Tags: []
+  - Name: SideFringe
+    Collection: Basic
+    Id: 1041949531
+    Path: BodyParts/Hair/Basic/SideFringe
+    Sprite: {fileID: 21300000, guid: a37fc0ecb3734823aec538005d4b9ecd, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: a37fc0ecb3734823aec538005d4b9ecd, type: 3}
+    Multiple: 1
+    Hash: e48be19d2ff8a6f3643487a3f8690932
+    Meta: 
+    Tags: []
+  - Name: SideFringeDisheveled
+    Collection: Bonus
+    Id: 720989369
+    Path: BodyParts/Hair/Bonus/SideFringeDisheveled
+    Sprite: {fileID: 21300000, guid: e168e54ccb554f7f8012df1802eca70b, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: e168e54ccb554f7f8012df1802eca70b, type: 3}
+    Multiple: 1
+    Hash: 71deeea4e873170fdc15f9d269366cef
+    Meta: 
+    Tags: []
+  - Name: Slicked
+    Collection: Basic
+    Id: -1896045462
+    Path: BodyParts/Hair/Basic/Slicked
+    Sprite: {fileID: 21300000, guid: 5780052d992444f5b983dcae58dd7caf, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 5780052d992444f5b983dcae58dd7caf, type: 3}
+    Multiple: 1
+    Hash: 6cd5623404b1b03d77c894d3023ac2ae
+    Meta: 
+    Tags: []
+  - Name: SlickedTwintales
+    Collection: Basic
+    Id: -1350971243
+    Path: BodyParts/Hair/Basic/SlickedTwintales
+    Sprite: {fileID: 21300000, guid: b9aa6cd0c8ed4a6c814f8b6a4afeec26, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: b9aa6cd0c8ed4a6c814f8b6a4afeec26, type: 3}
+    Multiple: 1
+    Hash: 8c764409212b3a1747b97a54f1ff9d76
+    Meta: 
+    Tags: []
+  - Name: SlickedTwintalesDisheveled
+    Collection: Bonus
+    Id: -1487769377
+    Path: BodyParts/Hair/Bonus/SlickedTwintalesDisheveled
+    Sprite: {fileID: 21300000, guid: a4634f7c4b02461282f55221235ac854, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: a4634f7c4b02461282f55221235ac854, type: 3}
+    Multiple: 1
+    Hash: 540a2923c2ca05e72c45073170dea5c1
+    Meta: 
+    Tags: []
+  - Name: Spiky
+    Collection: MoonStyle [NoPaint]
+    Id: 1329936804
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Spiky
+    Sprite: {fileID: 21300000, guid: 10ae672dbd6744bb8ef36d627b64cb5c, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 10ae672dbd6744bb8ef36d627b64cb5c, type: 3}
+    Multiple: 1
+    Hash: 56b1de5cd92ccd8d836f70ade3669da3
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Spiky
+    Collection: SkyStyle [NoPaint]
+    Id: -157827052
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Spiky
+    Sprite: {fileID: 21300000, guid: 2d2170be03d2431f91c999680e5abb82, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 2d2170be03d2431f91c999680e5abb82, type: 3}
+    Multiple: 1
+    Hash: db8a6baef76e35111ce9f064ce98199f
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Spiky
+    Collection: Style
+    Id: -754276106
+    Path: BodyParts/Hair/Style/Spiky
+    Sprite: {fileID: 21300000, guid: d0fba0ddec424fdf9e7993f8c3c5d0e2, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: d0fba0ddec424fdf9e7993f8c3c5d0e2, type: 3}
+    Multiple: 1
+    Hash: 15de61c77ec3429da1e806869d037d44
+    Meta: 
+    Tags: []
+  - Name: Spiky
+    Collection: SunStyle [NoPaint]
+    Id: 293421273
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Spiky
+    Sprite: {fileID: 21300000, guid: fcd1fc9d4f304be4abc5fece2f80b5ec, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: fcd1fc9d4f304be4abc5fece2f80b5ec, type: 3}
+    Multiple: 1
+    Hash: 25ccb3eb31fbec16d9d2e415b072286d
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Twisty
+    Collection: Bonus
+    Id: 1637846676
+    Path: BodyParts/Hair/Bonus/Twisty
+    Sprite: {fileID: 21300000, guid: 197b719465b74e808e46f5dc8e3e2722, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 197b719465b74e808e46f5dc8e3e2722, type: 3}
+    Multiple: 1
+    Hash: d0bc3d77fa2f171aec1eb56b52eb00a1
+    Meta: 
+    Tags: []
+  - Name: VillageGirl
+    Collection: Bonus
+    Id: 1006756356
+    Path: BodyParts/Hair/Bonus/VillageGirl
+    Sprite: {fileID: 21300000, guid: 8e0982791a9d45a5872316b82cd3f726, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 8e0982791a9d45a5872316b82cd3f726, type: 3}
+    Multiple: 1
+    Hash: b94a816548d0ff19b6b14af8627c287e
+    Meta: 
+    Tags: []
+  - Name: Wavy
+    Collection: Style [Preview] [NoPaint]
+    Id: 1708498772
+    Path: BodyParts/Hair/Style [Preview] [NoPaint]/Wavy
+    Sprite: {fileID: 21300000, guid: 405570e1835640c0a4efda502cca2489, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 405570e1835640c0a4efda502cca2489, type: 3}
+    Multiple: 1
+    Hash: 2aa41ec92b177e9bc5078131db864c0d
+    Meta: 
+    Tags:
+    - Preview
+    - NoPaint
+  - Name: Wavy
+    Collection: MoonStyle [NoPaint]
+    Id: 1591820663
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Wavy
+    Sprite: {fileID: 21300000, guid: 65dad03769b04e1e892ae0252e4e09ee, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 65dad03769b04e1e892ae0252e4e09ee, type: 3}
+    Multiple: 1
+    Hash: 2aa41ec92b177e9bc5078131db864c0d
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Wavy
+    Collection: SkyStyle [NoPaint]
+    Id: 1142691393
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Wavy
+    Sprite: {fileID: 21300000, guid: 4ccfb47ba3c942f88bfa57ee77c201dd, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 4ccfb47ba3c942f88bfa57ee77c201dd, type: 3}
+    Multiple: 1
+    Hash: fe151dab72bd4d4abc59e8936fb205b6
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: Wavy
+    Collection: Style
+    Id: -703228707
+    Path: BodyParts/Hair/Style/Wavy
+    Sprite: {fileID: 21300000, guid: 605bab6d94a240a593f02e2e51b0b4af, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 605bab6d94a240a593f02e2e51b0b4af, type: 3}
+    Multiple: 1
+    Hash: 6eef2fbaa68314c5769a047af39bef61
+    Meta: 
+    Tags: []
+  - Name: Wavy
+    Collection: SunStyle [NoPaint]
+    Id: 1740742636
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Wavy
+    Sprite: {fileID: 21300000, guid: 10cf173600d34aafb0b0b555c529cd8d, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 10cf173600d34aafb0b0b555c529cd8d, type: 3}
+    Multiple: 1
+    Hash: 868d568a8e69ad641e9f813108507172
+    Meta: 
+    Tags:
+    - NoPaint
+  - Name: ZombieShabby
+    Collection: Basic
+    Id: -1869722346
+    Path: BodyParts/Hair/Basic/ZombieShabby
+    Sprite: {fileID: 21300000, guid: 39aa184bda074a08af81ec7df72cb9a7, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 39aa184bda074a08af81ec7df72cb9a7, type: 3}
+    Multiple: 1
+    Hash: b44da016d2a4b0473425f17ff7bbb98a
+    Meta: 
+    Tags: []
+  - Name: ZombieSticks
+    Collection: Basic
+    Id: 192599326
+    Path: BodyParts/Hair/Basic/ZombieSticks
+    Sprite: {fileID: 21300000, guid: 665d6c4f69b344ce982c693e2877e728, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 665d6c4f69b344ce982c693e2877e728, type: 3}
+    Multiple: 1
+    Hash: e66a4d9567a01ee1e922410a6513d95c
+    Meta: 
+    Tags: []
+  Eyebrows:
+  - Name: =3=
+    Collection: Emoji
+    Id: -1539555716
+    Path: BodyParts/Eyebrows/Emoji/=3=
+    Sprite: {fileID: 21300000, guid: caf914ef2e1748bab4da787d04d6c442, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: caf914ef2e1748bab4da787d04d6c442, type: 3}
+    Multiple: 1
+    Hash: b6c878d81e24f20257effddb6e9964f1
+    Meta: 
+    Tags: []
+  - Name: Angry
+    Collection: Basic
+    Id: -439197954
+    Path: BodyParts/Eyebrows/Basic/Angry
+    Sprite: {fileID: 21300000, guid: 4ef31f0c51624b5ba69b82fd109094ec, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 4ef31f0c51624b5ba69b82fd109094ec, type: 3}
+    Multiple: 1
+    Hash: adc5464073acdb13a062a0f0db7592ed
+    Meta: 
+    Tags: []
+  - Name: Angry
+    Collection: Expressions
+    Id: 1186125869
+    Path: BodyParts/Eyebrows/Expressions/Angry
+    Sprite: {fileID: 21300000, guid: 3c69b82aa6d940de97c4ac23696033d0, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 3c69b82aa6d940de97c4ac23696033d0, type: 3}
+    Multiple: 1
+    Hash: 2be5cf793e08c0fb95cd88c812529cfa
+    Meta: 
+    Tags: []
+  - Name: AngryConfused
+    Collection: Expressions
+    Id: 1076262404
+    Path: BodyParts/Eyebrows/Expressions/AngryConfused
+    Sprite: {fileID: 21300000, guid: df74cb3e36c7470592a73937b5a45ba0, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: df74cb3e36c7470592a73937b5a45ba0, type: 3}
+    Multiple: 1
+    Hash: 4a694010451cb928644e80672b5726a9
+    Meta: 
+    Tags: []
+  - Name: AngryNormal
+    Collection: Expressions
+    Id: 205266484
+    Path: BodyParts/Eyebrows/Expressions/AngryNormal
+    Sprite: {fileID: 21300000, guid: 21240f5bbb5748aca2c6f798617068b0, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 21240f5bbb5748aca2c6f798617068b0, type: 3}
+    Multiple: 1
+    Hash: b409277b6245d8319bb2799b77af45b7
+    Meta: 
+    Tags: []
+  - Name: Annoyed
+    Collection: Emoji
+    Id: -31756511
+    Path: BodyParts/Eyebrows/Emoji/Annoyed
+    Sprite: {fileID: 21300000, guid: 6c48d05c3f354f61841742fa3e874ecc, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 6c48d05c3f354f61841742fa3e874ecc, type: 3}
+    Multiple: 1
+    Hash: ad73b5809ff485149f127dc04ef2f81f
+    Meta: 
+    Tags: []
+  - Name: Bored
+    Collection: Expressions
+    Id: -1589809116
+    Path: BodyParts/Eyebrows/Expressions/Bored
+    Sprite: {fileID: 21300000, guid: 385ed38466bf48ebbe7bec3e28e2e573, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 385ed38466bf48ebbe7bec3e28e2e573, type: 3}
+    Multiple: 1
+    Hash: 3cb77101416510021591e35b3653bff5
+    Meta: 
+    Tags: []
+  - Name: BoredSurpried
+    Collection: Expressions
+    Id: -1731406482
+    Path: BodyParts/Eyebrows/Expressions/BoredSurpried
+    Sprite: {fileID: 21300000, guid: 3f2b0f62a849425b90b4154665cad9a1, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 3f2b0f62a849425b90b4154665cad9a1, type: 3}
+    Multiple: 1
+    Hash: 43ac854ae0573892357f07f7ebf3a9f4
+    Meta: 
+    Tags: []
+  - Name: ConfusedAngry
+    Collection: Expressions
+    Id: -1824204154
+    Path: BodyParts/Eyebrows/Expressions/ConfusedAngry
+    Sprite: {fileID: 21300000, guid: 768b29eb4a1b4e7a8f028c7e99670a10, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 768b29eb4a1b4e7a8f028c7e99670a10, type: 3}
+    Multiple: 1
+    Hash: 717c1e47f34044e486601d06d76e0202
+    Meta: 
+    Tags: []
+  - Name: Crying
+    Collection: Emoji
+    Id: -322058233
+    Path: BodyParts/Eyebrows/Emoji/Crying
+    Sprite: {fileID: 21300000, guid: 11435143125b4e2a8db2f5c8dc260c56, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 11435143125b4e2a8db2f5c8dc260c56, type: 3}
+    Multiple: 1
+    Hash: 18db57800cd9ee8b16055426e92b8695
+    Meta: 
+    Tags: []
+  - Name: Dizzy
+    Collection: Emoji
+    Id: -1296874249
+    Path: BodyParts/Eyebrows/Emoji/Dizzy
+    Sprite: {fileID: 21300000, guid: b26d1c6c0d60413bac2131ac610144b7, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: b26d1c6c0d60413bac2131ac610144b7, type: 3}
+    Multiple: 1
+    Hash: 42f8ff8970909e72de737102d9e930fc
+    Meta: 
+    Tags: []
+  - Name: Eh
+    Collection: Emoji
+    Id: -1594668932
+    Path: BodyParts/Eyebrows/Emoji/Eh
+    Sprite: {fileID: 21300000, guid: 2a816c29a32848078ef9d9893d415bd0, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 2a816c29a32848078ef9d9893d415bd0, type: 3}
+    Multiple: 1
+    Hash: 7aca21ce8f955fc1ba7ff164ac634fb7
+    Meta: 
+    Tags: []
+  - Name: Enrage
+    Collection: Emoji
+    Id: 1998040633
+    Path: BodyParts/Eyebrows/Emoji/Enrage
+    Sprite: {fileID: 21300000, guid: 198afd218a7e4e87b4f5d8fb78c04b1d, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 198afd218a7e4e87b4f5d8fb78c04b1d, type: 3}
+    Multiple: 1
+    Hash: 90f4e966a85cb01d24c6363fb7f5979d
+    Meta: 
+    Tags: []
+  - Name: Greedy
+    Collection: Emoji
+    Id: 2117846895
+    Path: BodyParts/Eyebrows/Emoji/Greedy
+    Sprite: {fileID: 21300000, guid: b88b2c7a853d43a2b2e5d156acc63793, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: b88b2c7a853d43a2b2e5d156acc63793, type: 3}
+    Multiple: 1
+    Hash: b6c878d81e24f20257effddb6e9964f1
+    Meta: 
+    Tags: []
+  - Name: Happy
+    Collection: Emoji
+    Id: 1351468275
+    Path: BodyParts/Eyebrows/Emoji/Happy
+    Sprite: {fileID: 21300000, guid: 0dbf1f3a2b844ee6b6db487d706376db, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 0dbf1f3a2b844ee6b6db487d706376db, type: 3}
+    Multiple: 1
+    Hash: 9ed23e6e9e28c489122a5abc2d8a9a94
+    Meta: 
+    Tags: []
+  - Name: Happy
+    Collection: Expressions
+    Id: 762629972
+    Path: BodyParts/Eyebrows/Expressions/Happy
+    Sprite: {fileID: 21300000, guid: d51d5542d2d64f64a10eb7fc6f1a98ce, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: d51d5542d2d64f64a10eb7fc6f1a98ce, type: 3}
+    Multiple: 1
+    Hash: 036b8d7a57b9ad71668828aa0982ea04
+    Meta: 
+    Tags: []
+  - Name: Injured
+    Collection: Emoji
+    Id: -1510105486
+    Path: BodyParts/Eyebrows/Emoji/Injured
+    Sprite: {fileID: 21300000, guid: a488f6ddd30e4dcd8c4c32f4960917e3, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: a488f6ddd30e4dcd8c4c32f4960917e3, type: 3}
+    Multiple: 1
+    Hash: f7e00c3d743262b9fca753bf2ec52bfe
+    Meta: 
+    Tags: []
+  - Name: InLove
+    Collection: Emoji
+    Id: -1933776414
+    Path: BodyParts/Eyebrows/Emoji/InLove
+    Sprite: {fileID: 21300000, guid: 8ba54151517648d4873c4c30b093da0b, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 8ba54151517648d4873c4c30b093da0b, type: 3}
+    Multiple: 1
+    Hash: 5dfedafc9f32630ecb5810cabecc230a
+    Meta: 
+    Tags: []
+  - Name: Normal1
+    Collection: Basic
+    Id: -137259913
+    Path: BodyParts/Eyebrows/Basic/Normal1
+    Sprite: {fileID: 21300000, guid: abf14c1ca17c4f96aae5662e65af88ae, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: abf14c1ca17c4f96aae5662e65af88ae, type: 3}
+    Multiple: 1
+    Hash: ce34fb845f9febbb93ecf898129a641e
+    Meta: 
+    Tags: []
+  - Name: Normal2
+    Collection: Basic
+    Id: -137259916
+    Path: BodyParts/Eyebrows/Basic/Normal2
+    Sprite: {fileID: 21300000, guid: 79c95764655247bd9b978bf6a63ce3c4, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 79c95764655247bd9b978bf6a63ce3c4, type: 3}
+    Multiple: 1
+    Hash: 5305e0036a34f791c888ae1115f10d98
+    Meta: 
+    Tags: []
+  - Name: Normal3
+    Collection: Basic
+    Id: -137259915
+    Path: BodyParts/Eyebrows/Basic/Normal3
+    Sprite: {fileID: 21300000, guid: a34be371c89342caba39b79aabaec0f4, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: a34be371c89342caba39b79aabaec0f4, type: 3}
+    Multiple: 1
+    Hash: e45c45569e8abfbeabeac09412e5703a
+    Meta: 
+    Tags: []
+  - Name: Normal4
+    Collection: Basic
+    Id: -137259910
+    Path: BodyParts/Eyebrows/Basic/Normal4
+    Sprite: {fileID: 21300000, guid: 1531b8c3a61d478ca905bb2a94726360, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 1531b8c3a61d478ca905bb2a94726360, type: 3}
+    Multiple: 1
+    Hash: 675aa867c0fa6dfc1c44f8ccc725427b
+    Meta: 
+    Tags: []
+  - Name: Normal5
+    Collection: Basic
+    Id: -137259909
+    Path: BodyParts/Eyebrows/Basic/Normal5
+    Sprite: {fileID: 21300000, guid: 8c7123f146364b60a599d5a70a246175, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 8c7123f146364b60a599d5a70a246175, type: 3}
+    Multiple: 1
+    Hash: 44e5764456cd61947936c89b5b8f67a6
+    Meta: 
+    Tags: []
+  - Name: Normal6
+    Collection: Basic
+    Id: -137259912
+    Path: BodyParts/Eyebrows/Basic/Normal6
+    Sprite: {fileID: 21300000, guid: 69e5fd6410f4412c88ab9a616769e48f, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 69e5fd6410f4412c88ab9a616769e48f, type: 3}
+    Multiple: 1
+    Hash: 2b7c94fadce0c0e430d5f6e2d3c1044d
+    Meta: 
+    Tags: []
+  - Name: NormalAngry
+    Collection: Expressions
+    Id: 2142121302
+    Path: BodyParts/Eyebrows/Expressions/NormalAngry
+    Sprite: {fileID: 21300000, guid: 5e0597d37ee24ca6b212ddcf3b8abc52, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 5e0597d37ee24ca6b212ddcf3b8abc52, type: 3}
+    Multiple: 1
+    Hash: 81001bdeeba296091583f592c3b9fe5f
+    Meta: 
+    Tags: []
+  - Name: OMG
+    Collection: Emoji
+    Id: 147484046
+    Path: BodyParts/Eyebrows/Emoji/OMG
+    Sprite: {fileID: 21300000, guid: f82329b889174520ae13a3710e2bf777, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: f82329b889174520ae13a3710e2bf777, type: 3}
+    Multiple: 1
+    Hash: 0aaf03829ceb86d252d3cdcc7828dbc3
+    Meta: 
+    Tags: []
+  - Name: Perverted
+    Collection: Emoji
+    Id: -1256621826
+    Path: BodyParts/Eyebrows/Emoji/Perverted
+    Sprite: {fileID: 21300000, guid: b9bdb441a68446bea59529b2e0e5273d, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: b9bdb441a68446bea59529b2e0e5273d, type: 3}
+    Multiple: 1
+    Hash: f6b0bd1a624eb1672284e79ca133119a
+    Meta: 
+    Tags: []
+  - Name: Sad
+    Collection: Emoji
+    Id: -1109423347
+    Path: BodyParts/Eyebrows/Emoji/Sad
+    Sprite: {fileID: 21300000, guid: f2bd3ae405f449949dc0e3a2c3ff394b, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: f2bd3ae405f449949dc0e3a2c3ff394b, type: 3}
+    Multiple: 1
+    Hash: 18db57800cd9ee8b16055426e92b8695
+    Meta: 
+    Tags: []
+  - Name: Sad
+    Collection: Expressions
+    Id: -1126655210
+    Path: BodyParts/Eyebrows/Expressions/Sad
+    Sprite: {fileID: 21300000, guid: 2a06f340c902482ba14df90d42f9a28e, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 2a06f340c902482ba14df90d42f9a28e, type: 3}
+    Multiple: 1
+    Hash: 47ca398bd5a19668c154aaef01c2e9e9
+    Meta: 
+    Tags: []
+  - Name: Shy
+    Collection: Expressions
+    Id: 1245997788
+    Path: BodyParts/Eyebrows/Expressions/Shy
+    Sprite: {fileID: 21300000, guid: 7cd98c68528d4584bcf3dbc6f3a72a51, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 7cd98c68528d4584bcf3dbc6f3a72a51, type: 3}
+    Multiple: 1
+    Hash: ac9fe72fb01304b7f291c9a333110785
+    Meta: 
+    Tags: []
+  - Name: Sick
+    Collection: Emoji
+    Id: -1158371935
+    Path: BodyParts/Eyebrows/Emoji/Sick
+    Sprite: {fileID: 21300000, guid: 6988d2dd6a834eee844b71b16621716d, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 6988d2dd6a834eee844b71b16621716d, type: 3}
+    Multiple: 1
+    Hash: b889a830abfbaca11cf6dc30ee555f2d
+    Meta: 
+    Tags: []
+  - Name: Sigh
+    Collection: Emoji
+    Id: -1561656466
+    Path: BodyParts/Eyebrows/Emoji/Sigh
+    Sprite: {fileID: 21300000, guid: 2770a639a4a748fa9492019047be6665, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 2770a639a4a748fa9492019047be6665, type: 3}
+    Multiple: 1
+    Hash: 18db57800cd9ee8b16055426e92b8695
+    Meta: 
+    Tags: []
+  - Name: Surprised
+    Collection: Expressions
+    Id: 571475087
+    Path: BodyParts/Eyebrows/Expressions/Surprised
+    Sprite: {fileID: 21300000, guid: beb20084d8304c8992ac47d8a3c0dd8d, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: beb20084d8304c8992ac47d8a3c0dd8d, type: 3}
+    Multiple: 1
+    Hash: 2cd1b0e62d020b8c39fc71cd4b5a0119
+    Meta: 
+    Tags: []
+  - Name: SurprisedBored
+    Collection: Expressions
+    Id: 1209769953
+    Path: BodyParts/Eyebrows/Expressions/SurprisedBored
+    Sprite: {fileID: 21300000, guid: b11fd76a89f949b187fc7b3939c6715a, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: b11fd76a89f949b187fc7b3939c6715a, type: 3}
+    Multiple: 1
+    Hash: 72864b0839b0c4c471ebb31790d26411
+    Meta: 
+    Tags: []
+  - Name: SweatDrop
+    Collection: Emoji
+    Id: 406801398
+    Path: BodyParts/Eyebrows/Emoji/SweatDrop
+    Sprite: {fileID: 21300000, guid: 99455bbabb254e8391e90707f0d807f1, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 99455bbabb254e8391e90707f0d807f1, type: 3}
+    Multiple: 1
+    Hash: 0569107fe508084824e942b80b6d1b5b
+    Meta: 
+    Tags: []
+  - Name: VerySurprised
+    Collection: Expressions
+    Id: 504998463
+    Path: BodyParts/Eyebrows/Expressions/VerySurprised
+    Sprite: {fileID: 21300000, guid: 63904cc5e25742b8af66722a82672cc1, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 63904cc5e25742b8af66722a82672cc1, type: 3}
+    Multiple: 1
+    Hash: 80139c2d220dc0ea5b14b897a90ab9cb
+    Meta: 
+    Tags: []
+  - Name: WTF
+    Collection: Emoji
+    Id: 644877172
+    Path: BodyParts/Eyebrows/Emoji/WTF
+    Sprite: {fileID: 21300000, guid: b452ef631ceb4633bc9ef933b256fa84, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: b452ef631ceb4633bc9ef933b256fa84, type: 3}
+    Multiple: 1
+    Hash: 16c366540332f7677be15cf35a920070
+    Meta: 
+    Tags: []
+  Eyes:
+  - Name: =3=
+    Collection: Emoji
+    Id: -1539555716
+    Path: BodyParts/Eyes/Emoji/=3=
+    Sprite: {fileID: 21300000, guid: 69e0d873603e433495536d906353e4a1, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 69e0d873603e433495536d906353e4a1, type: 3}
+    Multiple: 1
+    Hash: 84f8c3e375726e5bba943d79b5eb6b4a
+    Meta: 
+    Tags: []
+  - Name: 83
+    Collection: Emoji
+    Id: 347848468
+    Path: BodyParts/Eyes/Emoji/83
+    Sprite: {fileID: 21300000, guid: 6968b7ee902f4065b4afc43020f7d7ba, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 6968b7ee902f4065b4afc43020f7d7ba, type: 3}
+    Multiple: 1
+    Hash: e83b46336b4438ade9da4a92d88f5b6a
+    Meta: 
+    Tags: []
+  - Name: Angry
+    Collection: Expressions
+    Id: 1186125869
+    Path: BodyParts/Eyes/Expressions/Angry
+    Sprite: {fileID: 21300000, guid: aeb10c0a872a4b45af63c2cc00605acf, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: aeb10c0a872a4b45af63c2cc00605acf, type: 3}
+    Multiple: 1
+    Hash: f01dbdf3919a834c30ce74a8c2e41d5f
+    Meta: 
+    Tags: []
+  - Name: Annoyed
+    Collection: Emoji
+    Id: -31756511
+    Path: BodyParts/Eyes/Emoji/Annoyed
+    Sprite: {fileID: 21300000, guid: 77ded521214948cab688deddda437f70, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 77ded521214948cab688deddda437f70, type: 3}
+    Multiple: 1
+    Hash: f908aa2d36f8c9e2d06b48945e24fcd8
+    Meta: 
+    Tags: []
+  - Name: Blank
+    Collection: Emoji
+    Id: -483651175
+    Path: BodyParts/Eyes/Emoji/Blank
+    Sprite: {fileID: 21300000, guid: ea23d3bfd5d24cb0bdfd4031628c7784, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: ea23d3bfd5d24cb0bdfd4031628c7784, type: 3}
+    Multiple: 1
+    Hash: 939b6511c875e19995a6753d48c87822
+    Meta: 
+    Tags: []
+  - Name: Bored
+    Collection: Expressions
+    Id: -1589809116
+    Path: BodyParts/Eyes/Expressions/Bored
+    Sprite: {fileID: 21300000, guid: fb4dc48189014c618d092f2e979e6ef4, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: fb4dc48189014c618d092f2e979e6ef4, type: 3}
+    Multiple: 1
+    Hash: 743ce50346e070fe93dec558a1275423
+    Meta: 
+    Tags: []
+  - Name: BunnyFace
+    Collection: Emoji
+    Id: -1527256202
+    Path: BodyParts/Eyes/Emoji/BunnyFace
+    Sprite: {fileID: 21300000, guid: 42f9464843454976903187a0148a225d, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 42f9464843454976903187a0148a225d, type: 3}
+    Multiple: 1
+    Hash: 6911c09f317935028816918597686965
+    Meta: 
+    Tags: []
+  - Name: Confused
+    Collection: Emoji
+    Id: 8021306
+    Path: BodyParts/Eyes/Emoji/Confused
+    Sprite: {fileID: 21300000, guid: 6d873c95bc054c0899cb22cfe7bc8bfc, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 6d873c95bc054c0899cb22cfe7bc8bfc, type: 3}
+    Multiple: 1
+    Hash: 939b6511c875e19995a6753d48c87822
+    Meta: 
+    Tags: []
+  - Name: Crying
+    Collection: Emoji
+    Id: -322058233
+    Path: BodyParts/Eyes/Emoji/Crying
+    Sprite: {fileID: 21300000, guid: fa51ad00df8b49b8872370a536b1a4a4, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: fa51ad00df8b49b8872370a536b1a4a4, type: 3}
+    Multiple: 1
+    Hash: efa096f18d17bdb544a44d25cdc67d5a
+    Meta: 
+    Tags: []
+  - Name: Dead
+    Collection: Basic
+    Id: 2018966305
+    Path: BodyParts/Eyes/Basic/Dead
+    Sprite: {fileID: 21300000, guid: 4381424041914fb8afe82d01d9bf7eb3, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 4381424041914fb8afe82d01d9bf7eb3, type: 3}
+    Multiple: 1
+    Hash: efa096f18d17bdb544a44d25cdc67d5a
+    Meta: 
+    Tags: []
+  - Name: Dead
+    Collection: Emoji
+    Id: 1328591679
+    Path: BodyParts/Eyes/Emoji/Dead
+    Sprite: {fileID: 21300000, guid: da4c155a4344426683237aa0edb6255e, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: da4c155a4344426683237aa0edb6255e, type: 3}
+    Multiple: 1
+    Hash: f9405a6e6c0319c3967aac2a16f83032
+    Meta: 
+    Tags: []
+  - Name: Dizzy
+    Collection: Emoji
+    Id: -1296874249
+    Path: BodyParts/Eyes/Emoji/Dizzy
+    Sprite: {fileID: 21300000, guid: ecb60c57e2e14fefa82763ee0f23141d, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: ecb60c57e2e14fefa82763ee0f23141d, type: 3}
+    Multiple: 1
+    Hash: b11f90d6d95bb1aa3b21053103da303f
+    Meta: 
+    Tags: []
+  - Name: Drooling
+    Collection: Emoji
+    Id: -2092655131
+    Path: BodyParts/Eyes/Emoji/Drooling
+    Sprite: {fileID: 21300000, guid: 5204d21b8f8442d3927a6f4585f28879, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 5204d21b8f8442d3927a6f4585f28879, type: 3}
+    Multiple: 1
+    Hash: 3843393d02481c445a2d64e3e32eaa51
+    Meta: 
+    Tags: []
+  - Name: Eh
+    Collection: Emoji
+    Id: -1594668932
+    Path: BodyParts/Eyes/Emoji/Eh
+    Sprite: {fileID: 21300000, guid: 38134856389147acb36ae165f5d94649, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 38134856389147acb36ae165f5d94649, type: 3}
+    Multiple: 1
+    Hash: 8a46ffa40e7ced5e65a3241230525853
+    Meta: 
+    Tags: []
+  - Name: Enrage
+    Collection: Emoji
+    Id: 1998040633
+    Path: BodyParts/Eyes/Emoji/Enrage
+    Sprite: {fileID: 21300000, guid: 03ad399921364717b7f3931baae5065f, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 03ad399921364717b7f3931baae5065f, type: 3}
+    Multiple: 1
+    Hash: 47f63558aa6443657614036761cc9605
+    Meta: 
+    Tags: []
+  - Name: Eyes1
+    Collection: Bonus
+    Id: 2133876109
+    Path: BodyParts/Eyes/Bonus/Eyes1
+    Sprite: {fileID: 21300000, guid: 56cfee2a447b4f9eb8ad22cf4c03d33f, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 56cfee2a447b4f9eb8ad22cf4c03d33f, type: 3}
+    Multiple: 1
+    Hash: fd3fd294670958835957588e92204917
+    Meta: 
+    Tags: []
+  - Name: Eyes10
+    Collection: Bonus
+    Id: 1163265053
+    Path: BodyParts/Eyes/Bonus/Eyes10
+    Sprite: {fileID: 21300000, guid: e78e5bb80a12492fb9d88f37756d9383, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: e78e5bb80a12492fb9d88f37756d9383, type: 3}
+    Multiple: 1
+    Hash: d1b2bc9f3bb5349dd93ca2a9c3702be4
+    Meta: 
+    Tags: []
+  - Name: Eyes11
+    Collection: Bonus
+    Id: -1565618302
+    Path: BodyParts/Eyes/Bonus/Eyes11
+    Sprite: {fileID: 21300000, guid: 5b3928ea1e4f4eb08df8e0cdf93a12d8, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 5b3928ea1e4f4eb08df8e0cdf93a12d8, type: 3}
+    Multiple: 1
+    Hash: 0c7fbc035041d703d7173a70abdcf8cf
+    Meta: 
+    Tags: []
+  - Name: Eyes12
+    Collection: Bonus
+    Id: -1968902829
+    Path: BodyParts/Eyes/Bonus/Eyes12
+    Sprite: {fileID: 21300000, guid: ec6186f102ae48eaba296cb05322046c, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: ec6186f102ae48eaba296cb05322046c, type: 3}
+    Multiple: 1
+    Hash: bb30314f67b55a7f8d7c451f21c70427
+    Meta: 
+    Tags: []
+  - Name: Eyes13
+    Collection: Bonus
+    Id: -402818888
+    Path: BodyParts/Eyes/Bonus/Eyes13
+    Sprite: {fileID: 21300000, guid: 1a5329d0339b4f5eb5e5b42522eb4891, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 1a5329d0339b4f5eb5e5b42522eb4891, type: 3}
+    Multiple: 1
+    Hash: 8f05f1e88ea5f4862547e8c52902a440
+    Meta: 
+    Tags: []
+  - Name: Eyes14
+    Collection: Bonus
+    Id: -1162333775
+    Path: BodyParts/Eyes/Bonus/Eyes14
+    Sprite: {fileID: 21300000, guid: 1ec969031e6841819a8f0fdffce078e9, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 1ec969031e6841819a8f0fdffce078e9, type: 3}
+    Multiple: 1
+    Hash: 661227f28a7f5dbe63e9bdf35d997732
+    Meta: 
+    Tags: []
+  - Name: Eyes15
+    Collection: Bonus
+    Id: 403750166
+    Path: BodyParts/Eyes/Bonus/Eyes15
+    Sprite: {fileID: 21300000, guid: 21c83fb4624847ee81c2e045286f33fd, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 21c83fb4624847ee81c2e045286f33fd, type: 3}
+    Multiple: 1
+    Hash: 25e280992adbe78ea4a1213edda718f8
+    Meta: 
+    Tags: []
+  - Name: Eyes2
+    Collection: Bonus
+    Id: 2133876106
+    Path: BodyParts/Eyes/Bonus/Eyes2
+    Sprite: {fileID: 21300000, guid: ac7f24f2c6744e4699390b12623e7e3b, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: ac7f24f2c6744e4699390b12623e7e3b, type: 3}
+    Multiple: 1
+    Hash: 3dd817f71631fca60a9885451d2a2fc1
+    Meta: 
+    Tags: []
+  - Name: Eyes3
+    Collection: Bonus
+    Id: 2133876107
+    Path: BodyParts/Eyes/Bonus/Eyes3
+    Sprite: {fileID: 21300000, guid: 12f1e2b9e8ff4f828a65e925c2ee33d6, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 12f1e2b9e8ff4f828a65e925c2ee33d6, type: 3}
+    Multiple: 1
+    Hash: 0a223dfdf770da04494755f88fc8b507
+    Meta: 
+    Tags: []
+  - Name: Eyes4
+    Collection: Bonus
+    Id: 2133876112
+    Path: BodyParts/Eyes/Bonus/Eyes4
+    Sprite: {fileID: 21300000, guid: 4c5673fad01a49c098d6b9aede998d8c, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 4c5673fad01a49c098d6b9aede998d8c, type: 3}
+    Multiple: 1
+    Hash: 16ae98554edd52a93209a31840fa69f7
+    Meta: 
+    Tags: []
+  - Name: Eyes5
+    Collection: Bonus
+    Id: 2133876113
+    Path: BodyParts/Eyes/Bonus/Eyes5
+    Sprite: {fileID: 21300000, guid: 8a0b5d92a90f4270bd2ef5e473882a5b, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 8a0b5d92a90f4270bd2ef5e473882a5b, type: 3}
+    Multiple: 1
+    Hash: cc636cf0f537602272745e553df4f2e4
+    Meta: 
+    Tags: []
+  - Name: Eyes6
+    Collection: Bonus
+    Id: 2133876110
+    Path: BodyParts/Eyes/Bonus/Eyes6
+    Sprite: {fileID: 21300000, guid: 2e3f80b2b2d6425b88d9a6cbf9fcd81b, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 2e3f80b2b2d6425b88d9a6cbf9fcd81b, type: 3}
+    Multiple: 1
+    Hash: d46359d425ae4dc4bcbf07c5437b0613
+    Meta: 
+    Tags: []
+  - Name: Eyes7
+    Collection: Bonus
+    Id: 2133876111
+    Path: BodyParts/Eyes/Bonus/Eyes7
+    Sprite: {fileID: 21300000, guid: cf5283ab7d4e4eb6a13671acfd73454a, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: cf5283ab7d4e4eb6a13671acfd73454a, type: 3}
+    Multiple: 1
+    Hash: 75013c58d471f4afdd70e8a9ce591a65
+    Meta: 
+    Tags: []
+  - Name: Eyes8
+    Collection: Bonus
+    Id: 2133876100
+    Path: BodyParts/Eyes/Bonus/Eyes8
+    Sprite: {fileID: 21300000, guid: 2fda6941bb4942b5880314faee8464e4, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 2fda6941bb4942b5880314faee8464e4, type: 3}
+    Multiple: 1
+    Hash: ee427fd2e4b8043bbd07da9ab4e7bf81
+    Meta: 
+    Tags: []
+  - Name: Eyes9
+    Collection: Bonus
+    Id: 2133876101
+    Path: BodyParts/Eyes/Bonus/Eyes9
+    Sprite: {fileID: 21300000, guid: 20814042dcd94c568c11c4218c13f5be, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 20814042dcd94c568c11c4218c13f5be, type: 3}
+    Multiple: 1
+    Hash: 8b606d4cfee2508ee739dbcc32a07706
+    Meta: 
+    Tags: []
+  - Name: Female
+    Collection: Basic
+    Id: -2053180385
+    Path: BodyParts/Eyes/Basic/Female
+    Sprite: {fileID: 21300000, guid: 2cfebad6e4ed4a3295abf3936c592682, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 2cfebad6e4ed4a3295abf3936c592682, type: 3}
+    Multiple: 1
+    Hash: 50cdc17f90d9def773570229305c5546
+    Meta: 
+    Tags: []
+  - Name: Fishy
+    Collection: Emoji
+    Id: 578387782
+    Path: BodyParts/Eyes/Emoji/Fishy
+    Sprite: {fileID: 21300000, guid: c3813c45aa1547e49f8c5f5d34b3038a, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: c3813c45aa1547e49f8c5f5d34b3038a, type: 3}
+    Multiple: 1
+    Hash: 939b6511c875e19995a6753d48c87822
+    Meta: 
+    Tags: []
+  - Name: Greedy
+    Collection: Emoji
+    Id: 2117846895
+    Path: BodyParts/Eyes/Emoji/Greedy
+    Sprite: {fileID: 21300000, guid: aa5d5b57d6cc4ecea7658406ae292a31, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: aa5d5b57d6cc4ecea7658406ae292a31, type: 3}
+    Multiple: 1
+    Hash: 00abdc282bf7e01337f412bc3b353361
+    Meta: 
+    Tags: []
+  - Name: Happy
+    Collection: Emoji
+    Id: 1351468275
+    Path: BodyParts/Eyes/Emoji/Happy
+    Sprite: {fileID: 21300000, guid: 8dbf1c11b4b849be80006d09ff834b51, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 8dbf1c11b4b849be80006d09ff834b51, type: 3}
+    Multiple: 1
+    Hash: 90c64ff65c5623dd6fff3859e8ae9ab5
+    Meta: 
+    Tags: []
+  - Name: Happy
+    Collection: Expressions
+    Id: 762629972
+    Path: BodyParts/Eyes/Expressions/Happy
+    Sprite: {fileID: 21300000, guid: 779d70dec8a14043aa91c7c0cb3d2ec9, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 779d70dec8a14043aa91c7c0cb3d2ec9, type: 3}
+    Multiple: 1
+    Hash: fac119c6f397bd916bb5acf90769a398
+    Meta: 
+    Tags: []
+  - Name: Injured
+    Collection: Emoji
+    Id: -1510105486
+    Path: BodyParts/Eyes/Emoji/Injured
+    Sprite: {fileID: 21300000, guid: 2c7704ca02ac4751bebfbc051d2d2dba, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 2c7704ca02ac4751bebfbc051d2d2dba, type: 3}
+    Multiple: 1
+    Hash: 39795e02f74383afe1661bc0c752c254
+    Meta: 
+    Tags: []
+  - Name: InLove
+    Collection: Emoji
+    Id: -1933776414
+    Path: BodyParts/Eyes/Emoji/InLove
+    Sprite: {fileID: 21300000, guid: 9197c229e3fe49e0ae572e1384190e82, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 9197c229e3fe49e0ae572e1384190e82, type: 3}
+    Multiple: 1
+    Hash: f40ca7cc5b2e6e1a9fc1e356f8db599c
+    Meta: 
+    Tags: []
+  - Name: Kitty
+    Collection: Emoji
+    Id: -1747199312
+    Path: BodyParts/Eyes/Emoji/Kitty
+    Sprite: {fileID: 21300000, guid: 4c817ca8a2e34579bcf255446be00046, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 4c817ca8a2e34579bcf255446be00046, type: 3}
+    Multiple: 1
+    Hash: 43eb3af6e9045cff793d17ca5b6bb2b9
+    Meta: 
+    Tags: []
+  - Name: Male
+    Collection: Basic
+    Id: -467997708
+    Path: BodyParts/Eyes/Basic/Male
+    Sprite: {fileID: 21300000, guid: 3a1e3b63163043478a0182679dad59bb, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 3a1e3b63163043478a0182679dad59bb, type: 3}
+    Multiple: 1
+    Hash: 5fe13de180ef008f43e5e026932b59d4
+    Meta: 
+    Tags: []
+  - Name: Normal
+    Collection: Expressions
+    Id: -909059415
+    Path: BodyParts/Eyes/Expressions/Normal
+    Sprite: {fileID: 21300000, guid: d133eb4ce4a34275bfd291122e4e636e, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: d133eb4ce4a34275bfd291122e4e636e, type: 3}
+    Multiple: 1
+    Hash: 33000cc464b1e362d476203c890a9870
+    Meta: 
+    Tags: []
+  - Name: OMG
+    Collection: Emoji
+    Id: 147484046
+    Path: BodyParts/Eyes/Emoji/OMG
+    Sprite: {fileID: 21300000, guid: 195f0d9238b1431f9e61d8fcc063996b, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 195f0d9238b1431f9e61d8fcc063996b, type: 3}
+    Multiple: 1
+    Hash: 7b6f2e055aee8c0f947c75be1855d772
+    Meta: 
+    Tags: []
+  - Name: Orly
+    Collection: Emoji
+    Id: 2068162211
+    Path: BodyParts/Eyes/Emoji/Orly
+    Sprite: {fileID: 21300000, guid: c6af099c2b1c4c7ba272523d7408b5bc, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: c6af099c2b1c4c7ba272523d7408b5bc, type: 3}
+    Multiple: 1
+    Hash: 30c3a926fde6b94e9ba8849d4baa984e
+    Meta: 
+    Tags: []
+  - Name: Perverted
+    Collection: Emoji
+    Id: -1256621826
+    Path: BodyParts/Eyes/Emoji/Perverted
+    Sprite: {fileID: 21300000, guid: 0abb8eab32054ff1976b87362285b50f, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 0abb8eab32054ff1976b87362285b50f, type: 3}
+    Multiple: 1
+    Hash: d7bb1eb9de43b3d8ed43d07ab6362f9b
+    Meta: 
+    Tags: []
+  - Name: Sad
+    Collection: Emoji
+    Id: -1109423347
+    Path: BodyParts/Eyes/Emoji/Sad
+    Sprite: {fileID: 21300000, guid: fee29b2cbb7d4f64b72313feda0f86c7, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: fee29b2cbb7d4f64b72313feda0f86c7, type: 3}
+    Multiple: 1
+    Hash: 6911c09f317935028816918597686965
+    Meta: 
+    Tags: []
+  - Name: Sad
+    Collection: Expressions
+    Id: -1126655210
+    Path: BodyParts/Eyes/Expressions/Sad
+    Sprite: {fileID: 21300000, guid: bd62e93214214e569c2facb0f8fc658d, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: bd62e93214214e569c2facb0f8fc658d, type: 3}
+    Multiple: 1
+    Hash: 6b5df8afdf47e81736b1f5f3d866c4cc
+    Meta: 
+    Tags: []
+  - Name: Shy
+    Collection: Expressions
+    Id: 1245997788
+    Path: BodyParts/Eyes/Expressions/Shy
+    Sprite: {fileID: 21300000, guid: 205ae853184e4c11b995ed88929b9cb4, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 205ae853184e4c11b995ed88929b9cb4, type: 3}
+    Multiple: 1
+    Hash: 7d4da3a754d5c7275ed221b4bee4d704
+    Meta: 
+    Tags: []
+  - Name: Sick
+    Collection: Emoji
+    Id: -1158371935
+    Path: BodyParts/Eyes/Emoji/Sick
+    Sprite: {fileID: 21300000, guid: 8ab293c6c0304d67b3a07661f8efaa80, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 8ab293c6c0304d67b3a07661f8efaa80, type: 3}
+    Multiple: 1
+    Hash: 14e68cdb65f1bee87d5b3d65cfd45de0
+    Meta: 
+    Tags: []
+  - Name: Sigh
+    Collection: Emoji
+    Id: -1561656466
+    Path: BodyParts/Eyes/Emoji/Sigh
+    Sprite: {fileID: 21300000, guid: e47e6245be0c47e9a74407b85244fa85, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: e47e6245be0c47e9a74407b85244fa85, type: 3}
+    Multiple: 1
+    Hash: 1b1d812adf38fb00cc8ff084a65fe7c5
+    Meta: 
+    Tags: []
+  - Name: Surprised
+    Collection: Expressions
+    Id: 571475087
+    Path: BodyParts/Eyes/Expressions/Surprised
+    Sprite: {fileID: 21300000, guid: 84cd7fe7ceaf482ca51c13250ba46748, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 84cd7fe7ceaf482ca51c13250ba46748, type: 3}
+    Multiple: 1
+    Hash: 14a0ec2a09c26d1bcc465798dd9020f2
+    Meta: 
+    Tags: []
+  - Name: SweatDrop
+    Collection: Emoji
+    Id: 406801398
+    Path: BodyParts/Eyes/Emoji/SweatDrop
+    Sprite: {fileID: 21300000, guid: e3a6d95eea1444a5a02aa7552ca5a89d, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: e3a6d95eea1444a5a02aa7552ca5a89d, type: 3}
+    Multiple: 1
+    Hash: 66160e88a16c7f4b227f62bce1699380
+    Meta: 
+    Tags: []
+  - Name: VerySurprised
+    Collection: Expressions
+    Id: 504998463
+    Path: BodyParts/Eyes/Expressions/VerySurprised
+    Sprite: {fileID: 21300000, guid: a41b272710e24237a859c426028fb22f, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: a41b272710e24237a859c426028fb22f, type: 3}
+    Multiple: 1
+    Hash: d94ce2daeabb0b73a25962059adfadcb
+    Meta: 
+    Tags: []
+  - Name: Wanting
+    Collection: Emoji
+    Id: -2068060641
+    Path: BodyParts/Eyes/Emoji/Wanting
+    Sprite: {fileID: 21300000, guid: 5ee37c3c3a9f4ffc98ae86dd605a5d8b, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 5ee37c3c3a9f4ffc98ae86dd605a5d8b, type: 3}
+    Multiple: 1
+    Hash: 61f2bd22963abc02bbf6636f961941bf
+    Meta: 
+    Tags: []
+  - Name: WTF
+    Collection: Emoji
+    Id: 644877172
+    Path: BodyParts/Eyes/Emoji/WTF
+    Sprite: {fileID: 21300000, guid: a6526ddb6a8a408db4d243ae73aa6c1f, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: a6526ddb6a8a408db4d243ae73aa6c1f, type: 3}
+    Multiple: 1
+    Hash: 9cff7c277b3e014627c1e49a05d0f468
+    Meta: 
+    Tags: []
+  - Name: XD
+    Collection: Emoji
+    Id: -1050221877
+    Path: BodyParts/Eyes/Emoji/XD
+    Sprite: {fileID: 21300000, guid: 3a29af7fb9d0405faf4bf05f1007b5f0, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 3a29af7fb9d0405faf4bf05f1007b5f0, type: 3}
+    Multiple: 1
+    Hash: d5482f047aa88ae99ed7363fa9e9dffa
+    Meta: 
+    Tags: []
+  Mouth:
+  - Name: =3=
+    Collection: Emoji
+    Id: -1539555716
+    Path: BodyParts/Mouth/Emoji/=3=
+    Sprite: {fileID: 21300000, guid: 60eff200751e4faf899e3a309ab2913e, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 60eff200751e4faf899e3a309ab2913e, type: 3}
+    Multiple: 1
+    Hash: 5d62ce4e8694602c055c6669da1dc3db
+    Meta: 
+    Tags: []
+  - Name: 1
+    Collection: Bonus
+    Id: 138098171
+    Path: BodyParts/Mouth/Bonus/1
+    Sprite: {fileID: 21300000, guid: b8d09e7a11534e918774740ce9a7e299, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: b8d09e7a11534e918774740ce9a7e299, type: 3}
+    Multiple: 1
+    Hash: 9dda40bbe3d9d457b7b2ba61e185a43f
+    Meta: 
+    Tags: []
+  - Name: 10
+    Collection: Bonus
+    Id: -17827573
+    Path: BodyParts/Mouth/Bonus/10
+    Sprite: {fileID: 21300000, guid: de1ae95edf5749b7b5443cf9ab208994, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: de1ae95edf5749b7b5443cf9ab208994, type: 3}
+    Multiple: 1
+    Hash: 6f4c2d545d4bd7fba526513c46b2b669
+    Meta: 
+    Tags: []
+  - Name: 11
+    Collection: Bonus
+    Id: 1548256368
+    Path: BodyParts/Mouth/Bonus/11
+    Sprite: {fileID: 21300000, guid: 757a4476db6c45439f06882d3320f308, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 757a4476db6c45439f06882d3320f308, type: 3}
+    Multiple: 1
+    Hash: 82730912b7f4567660884f85ad2a0eaa
+    Meta: 
+    Tags: []
+  - Name: 2
+    Collection: Bonus
+    Id: 138098168
+    Path: BodyParts/Mouth/Bonus/2
+    Sprite: {fileID: 21300000, guid: 4e875b36330b4f059df09500de9222dc, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 4e875b36330b4f059df09500de9222dc, type: 3}
+    Multiple: 1
+    Hash: 9f5f738812ebcb621549a06c7e081e81
+    Meta: 
+    Tags: []
+  - Name: 3
+    Collection: Bonus
+    Id: 138098169
+    Path: BodyParts/Mouth/Bonus/3
+    Sprite: {fileID: 21300000, guid: 7f70692619e54fdaafabdf3fb0131dd5, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 7f70692619e54fdaafabdf3fb0131dd5, type: 3}
+    Multiple: 1
+    Hash: 14fff3f2f599817194591bb8b359add3
+    Meta: 
+    Tags: []
+  - Name: 4
+    Collection: Bonus
+    Id: 138098174
+    Path: BodyParts/Mouth/Bonus/4
+    Sprite: {fileID: 21300000, guid: 3ae51244e85048c4b49851dbc5d50ab4, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 3ae51244e85048c4b49851dbc5d50ab4, type: 3}
+    Multiple: 1
+    Hash: 306075be894ff5370d7e0b79ee606df6
+    Meta: 
+    Tags: []
+  - Name: 5
+    Collection: Bonus
+    Id: 138098175
+    Path: BodyParts/Mouth/Bonus/5
+    Sprite: {fileID: 21300000, guid: 446dc1d71b934a09801dafbcfda2232d, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 446dc1d71b934a09801dafbcfda2232d, type: 3}
+    Multiple: 1
+    Hash: 0326fa1cb82cc631e5ddd2e34f8269fc
+    Meta: 
+    Tags: []
+  - Name: 6
+    Collection: Bonus
+    Id: 138098172
+    Path: BodyParts/Mouth/Bonus/6
+    Sprite: {fileID: 21300000, guid: 7b62657fa0084dc2a9a47338e98d8324, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 7b62657fa0084dc2a9a47338e98d8324, type: 3}
+    Multiple: 1
+    Hash: 38294933168826879309215c7a69b6e7
+    Meta: 
+    Tags: []
+  - Name: 7
+    Collection: Bonus
+    Id: 138098173
+    Path: BodyParts/Mouth/Bonus/7
+    Sprite: {fileID: 21300000, guid: f0cecae88d97405fb4204c35f4778610, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: f0cecae88d97405fb4204c35f4778610, type: 3}
+    Multiple: 1
+    Hash: 62675c1d2d40094d73a6c85c768d9317
+    Meta: 
+    Tags: []
+  - Name: 8
+    Collection: Bonus
+    Id: 138098162
+    Path: BodyParts/Mouth/Bonus/8
+    Sprite: {fileID: 21300000, guid: 7a46e01a9a0d4a108b86bd315f4067a6, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 7a46e01a9a0d4a108b86bd315f4067a6, type: 3}
+    Multiple: 1
+    Hash: a4e4d026008c011b40c666ef3ba1e768
+    Meta: 
+    Tags: []
+  - Name: 83
+    Collection: Emoji
+    Id: 347848468
+    Path: BodyParts/Mouth/Emoji/83
+    Sprite: {fileID: 21300000, guid: dfb7942f934140a9b0a3b562a636c186, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: dfb7942f934140a9b0a3b562a636c186, type: 3}
+    Multiple: 1
+    Hash: 4ed8334f354de70897362673b451977f
+    Meta: 
+    Tags: []
+  - Name: 9
+    Collection: Bonus
+    Id: 138098163
+    Path: BodyParts/Mouth/Bonus/9
+    Sprite: {fileID: 21300000, guid: 6df414a8177a4c43ae0aecb4b09284c4, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 6df414a8177a4c43ae0aecb4b09284c4, type: 3}
+    Multiple: 1
+    Hash: 684e52d1ab0433892727a7e3bbc539d7
+    Meta: 
+    Tags: []
+  - Name: Angry
+    Collection: Basic
+    Id: -439197954
+    Path: BodyParts/Mouth/Basic/Angry
+    Sprite: {fileID: 21300000, guid: 1b121409adfa4058bbcf9dfae2a83b62, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 1b121409adfa4058bbcf9dfae2a83b62, type: 3}
+    Multiple: 1
+    Hash: a0e0ed27e96c609693010b7c115f3669
+    Meta: 
+    Tags: []
+  - Name: Angry
+    Collection: Expressions
+    Id: 1186125869
+    Path: BodyParts/Mouth/Expressions/Angry
+    Sprite: {fileID: 21300000, guid: 12be7d47de4146778b7225dded8490d1, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 12be7d47de4146778b7225dded8490d1, type: 3}
+    Multiple: 1
+    Hash: a47c2952acdc0dc1c4d4152d7f3d1d96
+    Meta: 
+    Tags: []
+  - Name: Annoyed
+    Collection: Emoji
+    Id: -31756511
+    Path: BodyParts/Mouth/Emoji/Annoyed
+    Sprite: {fileID: 21300000, guid: ac3a3812af164fd0a0362e388e282bf5, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: ac3a3812af164fd0a0362e388e282bf5, type: 3}
+    Multiple: 1
+    Hash: d5512707fae11568caf0c5d19dfdbb8c
+    Meta: 
+    Tags: []
+  - Name: Blank
+    Collection: Emoji
+    Id: -483651175
+    Path: BodyParts/Mouth/Emoji/Blank
+    Sprite: {fileID: 21300000, guid: 3f1f5e11834f43c2baf1ee5e71160844, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 3f1f5e11834f43c2baf1ee5e71160844, type: 3}
+    Multiple: 1
+    Hash: 6a182572085f3931bb67a8881f4876d1
+    Meta: 
+    Tags: []
+  - Name: Bored
+    Collection: Expressions
+    Id: -1589809116
+    Path: BodyParts/Mouth/Expressions/Bored
+    Sprite: {fileID: 21300000, guid: b72cb55e9c0b40e78353453e4f992727, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: b72cb55e9c0b40e78353453e4f992727, type: 3}
+    Multiple: 1
+    Hash: 4f55d567f5f2c730860c42ee53cd26fe
+    Meta: 
+    Tags: []
+  - Name: BunnyFace
+    Collection: Emoji
+    Id: -1527256202
+    Path: BodyParts/Mouth/Emoji/BunnyFace
+    Sprite: {fileID: 21300000, guid: 14b96e13221d42318c612b161163d853, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 14b96e13221d42318c612b161163d853, type: 3}
+    Multiple: 1
+    Hash: d448fc4c86eb69ccdb78001bec3f4779
+    Meta: 
+    Tags: []
+  - Name: Confused
+    Collection: Emoji
+    Id: 8021306
+    Path: BodyParts/Mouth/Emoji/Confused
+    Sprite: {fileID: 21300000, guid: fcb157fc85e9452eb13414668c2a93a3, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: fcb157fc85e9452eb13414668c2a93a3, type: 3}
+    Multiple: 1
+    Hash: 5a5ce0b7504c7166592fbc612df326f7
+    Meta: 
+    Tags: []
+  - Name: Crying
+    Collection: Emoji
+    Id: -322058233
+    Path: BodyParts/Mouth/Emoji/Crying
+    Sprite: {fileID: 21300000, guid: e87c8e7c781d4334a8cc9c50b0724ea6, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: e87c8e7c781d4334a8cc9c50b0724ea6, type: 3}
+    Multiple: 1
+    Hash: 4ae0003035b128f4a38e66606ca7669c
+    Meta: 
+    Tags: []
+  - Name: Dead
+    Collection: Emoji
+    Id: 1328591679
+    Path: BodyParts/Mouth/Emoji/Dead
+    Sprite: {fileID: 21300000, guid: 7bb44763f0ab4039b5493e75a89d868e, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 7bb44763f0ab4039b5493e75a89d868e, type: 3}
+    Multiple: 1
+    Hash: fbd7717c3f4026597c8b832290f051cd
+    Meta: 
+    Tags: []
+  - Name: Dizzy
+    Collection: Emoji
+    Id: -1296874249
+    Path: BodyParts/Mouth/Emoji/Dizzy
+    Sprite: {fileID: 21300000, guid: 0fac33c370a342f3903750d017724de0, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 0fac33c370a342f3903750d017724de0, type: 3}
+    Multiple: 1
+    Hash: 47856e39800a67423af2b0a73add1d3b
+    Meta: 
+    Tags: []
+  - Name: Drooling
+    Collection: Emoji
+    Id: -2092655131
+    Path: BodyParts/Mouth/Emoji/Drooling
+    Sprite: {fileID: 21300000, guid: 21144e4fb5304aa684ddceb9c0a87b62, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 21144e4fb5304aa684ddceb9c0a87b62, type: 3}
+    Multiple: 1
+    Hash: 72667a2168c48b3c0140e371197c436b
+    Meta: 
+    Tags: []
+  - Name: Eh
+    Collection: Emoji
+    Id: -1594668932
+    Path: BodyParts/Mouth/Emoji/Eh
+    Sprite: {fileID: 21300000, guid: aea789e0b4cb4175a55ee6267fb1bed2, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: aea789e0b4cb4175a55ee6267fb1bed2, type: 3}
+    Multiple: 1
+    Hash: 13ad423e05fad6f2b1c834eac2ec7205
+    Meta: 
+    Tags: []
+  - Name: Enrage
+    Collection: Emoji
+    Id: 1998040633
+    Path: BodyParts/Mouth/Emoji/Enrage
+    Sprite: {fileID: 21300000, guid: a8ea58e356b24b70ba0e564d554d6645, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: a8ea58e356b24b70ba0e564d554d6645, type: 3}
+    Multiple: 1
+    Hash: a0e0ed27e96c609693010b7c115f3669
+    Meta: 
+    Tags: []
+  - Name: Fishy
+    Collection: Emoji
+    Id: 578387782
+    Path: BodyParts/Mouth/Emoji/Fishy
+    Sprite: {fileID: 21300000, guid: 58b7d15d10534e7194bba87ee8da3345, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 58b7d15d10534e7194bba87ee8da3345, type: 3}
+    Multiple: 1
+    Hash: bc26fd2e26c7c85ece3adab1d8ccab93
+    Meta: 
+    Tags: []
+  - Name: Greedy
+    Collection: Emoji
+    Id: 2117846895
+    Path: BodyParts/Mouth/Emoji/Greedy
+    Sprite: {fileID: 21300000, guid: 0ed6f82aa83f41bca9cea1a8ccc8cc2d, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 0ed6f82aa83f41bca9cea1a8ccc8cc2d, type: 3}
+    Multiple: 1
+    Hash: 67f5d2ffd4e2f4339d075e83a0813e3e
+    Meta: 
+    Tags: []
+  - Name: Grin
+    Collection: Basic
+    Id: -30955889
+    Path: BodyParts/Mouth/Basic/Grin
+    Sprite: {fileID: 21300000, guid: a831d737836e436e891534f29afa805f, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: a831d737836e436e891534f29afa805f, type: 3}
+    Multiple: 1
+    Hash: dd94df16e19a406458d99ba054640cb0
+    Meta: 
+    Tags: []
+  - Name: Happy
+    Collection: Emoji
+    Id: 1351468275
+    Path: BodyParts/Mouth/Emoji/Happy
+    Sprite: {fileID: 21300000, guid: 3529221400514a2e9c4a3e128154fa95, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 3529221400514a2e9c4a3e128154fa95, type: 3}
+    Multiple: 1
+    Hash: 225ff578c664f6d6d8e3d73f6eba1778
+    Meta: 
+    Tags: []
+  - Name: Happy
+    Collection: Expressions
+    Id: 762629972
+    Path: BodyParts/Mouth/Expressions/Happy
+    Sprite: {fileID: 21300000, guid: 68dcce9135ba47a2a8860ca3f0b6e4a1, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 68dcce9135ba47a2a8860ca3f0b6e4a1, type: 3}
+    Multiple: 1
+    Hash: 2fc0344974c0f6496dd805448e9b3c92
+    Meta: 
+    Tags: []
+  - Name: Injured
+    Collection: Emoji
+    Id: -1510105486
+    Path: BodyParts/Mouth/Emoji/Injured
+    Sprite: {fileID: 21300000, guid: bd538c4e3ec44927b525557875136e22, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: bd538c4e3ec44927b525557875136e22, type: 3}
+    Multiple: 1
+    Hash: b47d67bca4c4fea50b45174e998c3a9e
+    Meta: 
+    Tags: []
+  - Name: InLove
+    Collection: Emoji
+    Id: -1933776414
+    Path: BodyParts/Mouth/Emoji/InLove
+    Sprite: {fileID: 21300000, guid: f15812e1e68f4a84bd2366bd410daf3f, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: f15812e1e68f4a84bd2366bd410daf3f, type: 3}
+    Multiple: 1
+    Hash: a1e10e907e659b34a40ab9e060311830
+    Meta: 
+    Tags: []
+  - Name: Kitty
+    Collection: Emoji
+    Id: -1747199312
+    Path: BodyParts/Mouth/Emoji/Kitty
+    Sprite: {fileID: 21300000, guid: 03dd70f5686848d4a1ba4b30968334d0, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 03dd70f5686848d4a1ba4b30968334d0, type: 3}
+    Multiple: 1
+    Hash: d11f64faec2d9b34e2788da800057342
+    Meta: 
+    Tags: []
+  - Name: Normal
+    Collection: Basic
+    Id: -439259322
+    Path: BodyParts/Mouth/Basic/Normal
+    Sprite: {fileID: 21300000, guid: 17e7cccfb40c4035804a632f742a62a4, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 17e7cccfb40c4035804a632f742a62a4, type: 3}
+    Multiple: 1
+    Hash: 6fe07853418cf4e66133ca9f023b4c70
+    Meta: 
+    Tags: []
+  - Name: Normal
+    Collection: Expressions
+    Id: -909059415
+    Path: BodyParts/Mouth/Expressions/Normal
+    Sprite: {fileID: 21300000, guid: a8f52d8dc1b3479782e574fc1a1e118f, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: a8f52d8dc1b3479782e574fc1a1e118f, type: 3}
+    Multiple: 1
+    Hash: b20b955f0ed97f31edb2b0e834a2d3b9
+    Meta: 
+    Tags: []
+  - Name: OMG
+    Collection: Emoji
+    Id: 147484046
+    Path: BodyParts/Mouth/Emoji/OMG
+    Sprite: {fileID: 21300000, guid: 27b7889aed6840a987469a0d6eaa90a9, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 27b7889aed6840a987469a0d6eaa90a9, type: 3}
+    Multiple: 1
+    Hash: e70e2b4415e389ee0ae7ca417b750c26
+    Meta: 
+    Tags: []
+  - Name: Orly
+    Collection: Emoji
+    Id: 2068162211
+    Path: BodyParts/Mouth/Emoji/Orly
+    Sprite: {fileID: 21300000, guid: dda7c8a96c634430ba1fb77cd44ccc78, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: dda7c8a96c634430ba1fb77cd44ccc78, type: 3}
+    Multiple: 1
+    Hash: 7dfb93e01fe07a858ebf222191158a1c
+    Meta: 
+    Tags: []
+  - Name: Perverted
+    Collection: Emoji
+    Id: -1256621826
+    Path: BodyParts/Mouth/Emoji/Perverted
+    Sprite: {fileID: 21300000, guid: 37998d997d08468295cc6fa1465f348a, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 37998d997d08468295cc6fa1465f348a, type: 3}
+    Multiple: 1
+    Hash: 1fb8d7910b3d0ff06f8ad7d9c5c56e0e
+    Meta: 
+    Tags: []
+  - Name: Sad
+    Collection: Emoji
+    Id: -1109423347
+    Path: BodyParts/Mouth/Emoji/Sad
+    Sprite: {fileID: 21300000, guid: 062e42dd2f5a40a9a5fbf29b2801e9c7, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 062e42dd2f5a40a9a5fbf29b2801e9c7, type: 3}
+    Multiple: 1
+    Hash: 00256ac81d38912e822a276bbf04b753
+    Meta: 
+    Tags: []
+  - Name: Sad
+    Collection: Expressions
+    Id: -1126655210
+    Path: BodyParts/Mouth/Expressions/Sad
+    Sprite: {fileID: 21300000, guid: 2aa28d3f66d64f6db80dd0666c5d3b6a, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 2aa28d3f66d64f6db80dd0666c5d3b6a, type: 3}
+    Multiple: 1
+    Hash: 0b1bffb9c9644a19631cde449a500d82
+    Meta: 
+    Tags: []
+  - Name: Shy
+    Collection: Expressions
+    Id: 1245997788
+    Path: BodyParts/Mouth/Expressions/Shy
+    Sprite: {fileID: 21300000, guid: 68cf870c640d4a759c1524bdc7b82927, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 68cf870c640d4a759c1524bdc7b82927, type: 3}
+    Multiple: 1
+    Hash: f6e50195fece41c3f32ea85b88045b6d
+    Meta: 
+    Tags: []
+  - Name: Sick
+    Collection: Emoji
+    Id: -1158371935
+    Path: BodyParts/Mouth/Emoji/Sick
+    Sprite: {fileID: 21300000, guid: 098d720ed7124f2da6cb9cb626deae70, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 098d720ed7124f2da6cb9cb626deae70, type: 3}
+    Multiple: 1
+    Hash: 8c711a8caae0e7aacfea4390b0fbb996
+    Meta: 
+    Tags: []
+  - Name: Sigh
+    Collection: Emoji
+    Id: -1561656466
+    Path: BodyParts/Mouth/Emoji/Sigh
+    Sprite: {fileID: 21300000, guid: 84ed76d2c6174d88ad47960b1689d0f7, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 84ed76d2c6174d88ad47960b1689d0f7, type: 3}
+    Multiple: 1
+    Hash: f123b37833a6c2d9cd212ed4b5aded8f
+    Meta: 
+    Tags: []
+  - Name: Smirk
+    Collection: Basic
+    Id: -539977737
+    Path: BodyParts/Mouth/Basic/Smirk
+    Sprite: {fileID: 21300000, guid: 61420218b3064e819986ae8757bd94a7, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 61420218b3064e819986ae8757bd94a7, type: 3}
+    Multiple: 1
+    Hash: 1848265b75ed65fc77f0799613748929
+    Meta: 
+    Tags: []
+  - Name: Surprised
+    Collection: Expressions
+    Id: 571475087
+    Path: BodyParts/Mouth/Expressions/Surprised
+    Sprite: {fileID: 21300000, guid: ae0a0afa19ea4aa49382ebb545ea259f, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: ae0a0afa19ea4aa49382ebb545ea259f, type: 3}
+    Multiple: 1
+    Hash: 0c39bd3ad8f07361b3508242fe54b468
+    Meta: 
+    Tags: []
+  - Name: SweatDrop
+    Collection: Emoji
+    Id: 406801398
+    Path: BodyParts/Mouth/Emoji/SweatDrop
+    Sprite: {fileID: 21300000, guid: 5d0a1abcbaa84fc8bd04d843f4ea0c4a, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 5d0a1abcbaa84fc8bd04d843f4ea0c4a, type: 3}
+    Multiple: 1
+    Hash: ad3fd38e4e3f1a8f0bb133168309a747
+    Meta: 
+    Tags: []
+  - Name: VerySurprised
+    Collection: Expressions
+    Id: 504998463
+    Path: BodyParts/Mouth/Expressions/VerySurprised
+    Sprite: {fileID: 21300000, guid: 8a44b330405b423dad38d6b8abe25d9f, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 8a44b330405b423dad38d6b8abe25d9f, type: 3}
+    Multiple: 1
+    Hash: 70e2a24b2d018edf82a3ca8cedcb5107
+    Meta: 
+    Tags: []
+  - Name: Wanting
+    Collection: Emoji
+    Id: -2068060641
+    Path: BodyParts/Mouth/Emoji/Wanting
+    Sprite: {fileID: 21300000, guid: 76190cfa95bb4c529120598764844ece, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 76190cfa95bb4c529120598764844ece, type: 3}
+    Multiple: 1
+    Hash: c8162b77bb4eadea347d39a726ca5d29
+    Meta: 
+    Tags: []
+  - Name: WTF
+    Collection: Emoji
+    Id: 644877172
+    Path: BodyParts/Mouth/Emoji/WTF
+    Sprite: {fileID: 21300000, guid: 344844bc17a64da5ba13ffd9efe4a3df, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 344844bc17a64da5ba13ffd9efe4a3df, type: 3}
+    Multiple: 1
+    Hash: aa56c0f95afb100ec5629b34904a4f9b
+    Meta: 
+    Tags: []
+  - Name: XD
+    Collection: Emoji
+    Id: -1050221877
+    Path: BodyParts/Mouth/Emoji/XD
+    Sprite: {fileID: 21300000, guid: 7b4263c8217c4cb5b4b10c70d1a81b66, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 7b4263c8217c4cb5b4b10c70d1a81b66, type: 3}
+    Multiple: 1
+    Hash: 2222f560727481da1b42912a01e7b4fa
+    Meta: 
+    Tags: []
+  - Name: Zombie
+    Collection: Basic
+    Id: 784135931
+    Path: BodyParts/Mouth/Basic/Zombie
+    Sprite: {fileID: 21300000, guid: f5f4e39f292d45018bf90346921dfc80, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: f5f4e39f292d45018bf90346921dfc80, type: 3}
+    Multiple: 1
+    Hash: d70d4e2cad3e3e9666e23131ee2ce260
+    Meta: 
+    Tags: []
+  Beard:
+  - Name: Beard
+    Collection: Basic
+    Id: -1669253351
+    Path: BodyParts/Beard/Basic/Beard
+    Sprite: {fileID: 21300000, guid: f102839221834193a7e2af88400dac1a, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: f102839221834193a7e2af88400dac1a, type: 3}
+    Multiple: 1
+    Hash: 2d3a8a04b6a3db1cb6d13eae4fa48435
+    Meta: 
+    Tags: []
+  - Name: VikingBeard
+    Collection: Vikings
+    Id: -1237961022
+    Path: BodyParts/Beard/Vikings/VikingBeard
+    Sprite: {fileID: 21300000, guid: 602b60e5be724a3ba0eae6611f55301d, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 602b60e5be724a3ba0eae6611f55301d, type: 3}
+    Multiple: 1
+    Hash: 612b59e4b99e3bfa121927477a54e8bd
+    Meta: 
+    Tags: []
+  Body:
+  - Name: Human
+    Collection: Basic
+    Id: -1427069686
+    Path: BodyParts/Body/Basic/Human
+    Sprite: {fileID: 21300004, guid: bacfe06fd913465ab0cfd10caf5e1241, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: bacfe06fd913465ab0cfd10caf5e1241, type: 3}
+    - {fileID: 21300002, guid: bacfe06fd913465ab0cfd10caf5e1241, type: 3}
+    - {fileID: 21300022, guid: bacfe06fd913465ab0cfd10caf5e1241, type: 3}
+    - {fileID: 21300010, guid: bacfe06fd913465ab0cfd10caf5e1241, type: 3}
+    - {fileID: 21300008, guid: bacfe06fd913465ab0cfd10caf5e1241, type: 3}
+    - {fileID: 21300016, guid: bacfe06fd913465ab0cfd10caf5e1241, type: 3}
+    - {fileID: 21300018, guid: bacfe06fd913465ab0cfd10caf5e1241, type: 3}
+    - {fileID: 21300012, guid: bacfe06fd913465ab0cfd10caf5e1241, type: 3}
+    - {fileID: 21300006, guid: bacfe06fd913465ab0cfd10caf5e1241, type: 3}
+    - {fileID: 21300014, guid: bacfe06fd913465ab0cfd10caf5e1241, type: 3}
+    - {fileID: 21300020, guid: bacfe06fd913465ab0cfd10caf5e1241, type: 3}
+    - {fileID: 21300000, guid: bacfe06fd913465ab0cfd10caf5e1241, type: 3}
+    Multiple: 1
+    Hash: dd8d559b92f7622b04df297552f87bd8
+    Meta: 
+    Tags: []
+  - Name: TBody
+    Collection: Basic
+    Id: 488566761
+    Path: BodyParts/Body/Basic/TBody
+    Sprite: {fileID: 21300004, guid: 6a73e48aefe44c728868c63a9dd8addf, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: 6a73e48aefe44c728868c63a9dd8addf, type: 3}
+    - {fileID: 21300002, guid: 6a73e48aefe44c728868c63a9dd8addf, type: 3}
+    - {fileID: 21300022, guid: 6a73e48aefe44c728868c63a9dd8addf, type: 3}
+    - {fileID: 21300010, guid: 6a73e48aefe44c728868c63a9dd8addf, type: 3}
+    - {fileID: 21300008, guid: 6a73e48aefe44c728868c63a9dd8addf, type: 3}
+    - {fileID: 21300016, guid: 6a73e48aefe44c728868c63a9dd8addf, type: 3}
+    - {fileID: 21300018, guid: 6a73e48aefe44c728868c63a9dd8addf, type: 3}
+    - {fileID: 21300012, guid: 6a73e48aefe44c728868c63a9dd8addf, type: 3}
+    - {fileID: 21300006, guid: 6a73e48aefe44c728868c63a9dd8addf, type: 3}
+    - {fileID: 21300014, guid: 6a73e48aefe44c728868c63a9dd8addf, type: 3}
+    - {fileID: 21300020, guid: 6a73e48aefe44c728868c63a9dd8addf, type: 3}
+    - {fileID: 21300000, guid: 6a73e48aefe44c728868c63a9dd8addf, type: 3}
+    Multiple: 1
+    Hash: 93266495fec0fa1f9eb9923b4c320ca1
+    Meta: 
+    Tags: []
+  - Name: TBody2
+    Collection: Basic
+    Id: -363504605
+    Path: BodyParts/Body/Basic/TBody2
+    Sprite: {fileID: 21300004, guid: a380aab72848444487113c1d8637e3e7, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: a380aab72848444487113c1d8637e3e7, type: 3}
+    - {fileID: 21300002, guid: a380aab72848444487113c1d8637e3e7, type: 3}
+    - {fileID: 21300022, guid: a380aab72848444487113c1d8637e3e7, type: 3}
+    - {fileID: 21300010, guid: a380aab72848444487113c1d8637e3e7, type: 3}
+    - {fileID: 21300008, guid: a380aab72848444487113c1d8637e3e7, type: 3}
+    - {fileID: 21300016, guid: a380aab72848444487113c1d8637e3e7, type: 3}
+    - {fileID: 21300018, guid: a380aab72848444487113c1d8637e3e7, type: 3}
+    - {fileID: 21300012, guid: a380aab72848444487113c1d8637e3e7, type: 3}
+    - {fileID: 21300006, guid: a380aab72848444487113c1d8637e3e7, type: 3}
+    - {fileID: 21300014, guid: a380aab72848444487113c1d8637e3e7, type: 3}
+    - {fileID: 21300020, guid: a380aab72848444487113c1d8637e3e7, type: 3}
+    - {fileID: 21300000, guid: a380aab72848444487113c1d8637e3e7, type: 3}
+    Multiple: 1
+    Hash: cf34945bf7075b7df8baf4b7c6e5188d
+    Meta: 
+    Tags: []
+  Helmet:
+  - Name: Blossom [Paint] [FullHair]
+    Collection: Style
+    Id: 572866942
+    Path: Equipment/Helmet/Style/Blossom [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 9916249a1d8b47638247f08152e8e700, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 9916249a1d8b47638247f08152e8e700, type: 3}
+    Multiple: 1
+    Hash: f6d5a51a9a6a6dd1fa9b61ac46efdd18
+    Meta: 
+    Tags:
+    - Paint
+    - FullHair
+  - Name: BunnyEars [FullHair]
+    Collection: Style
+    Id: 1564292516
+    Path: Equipment/Helmet/Style/BunnyEars [FullHair]
+    Sprite: {fileID: 21300000, guid: 9bb7139920184e3ea211030bbbd32164, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 9bb7139920184e3ea211030bbbd32164, type: 3}
+    Multiple: 1
+    Hash: 385540afa8df6b736310add77e4375f9
+    Meta: 
+    Tags:
+    - FullHair
+  - Name: BunnyEars1 [Paint] [FullHair]
+    Collection: Style
+    Id: 1603979561
+    Path: Equipment/Helmet/Style/BunnyEars1 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 6a6731fa01074fc1a92d205751241318, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 6a6731fa01074fc1a92d205751241318, type: 3}
+    Multiple: 1
+    Hash: 68fffe1191bf119e63aae4cadb6c0c98
+    Meta: 
+    Tags:
+    - Paint
+    - FullHair
+  - Name: BunnyEars2 [FullHair]
+    Collection: Style
+    Id: 473573676
+    Path: Equipment/Helmet/Style/BunnyEars2 [FullHair]
+    Sprite: {fileID: 21300000, guid: d77ba76cfd3e46d68e5b220301f121ba, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: d77ba76cfd3e46d68e5b220301f121ba, type: 3}
+    Multiple: 1
+    Hash: 819f1f12cd75cf7949893074f5037e49
+    Meta: 
+    Tags:
+    - FullHair
+  - Name: BunnyEars2 [Paint] [FullHair]
+    Collection: Style
+    Id: -273528230
+    Path: Equipment/Helmet/Style/BunnyEars2 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 0f338c65a9ff48b2963c0a6c01b85261, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 0f338c65a9ff48b2963c0a6c01b85261, type: 3}
+    Multiple: 1
+    Hash: 01ea71503741c8d96aa8bf526c19a32d
+    Meta: 
+    Tags:
+    - Paint
+    - FullHair
+  - Name: BunnyPin [FullHair]
+    Collection: Style
+    Id: -2053231746
+    Path: Equipment/Helmet/Style/BunnyPin [FullHair]
+    Sprite: {fileID: 21300000, guid: eaee0e9b5ed644b2b521c8334d246ccc, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: eaee0e9b5ed644b2b521c8334d246ccc, type: 3}
+    Multiple: 1
+    Hash: 72396e0ba6da51796ef1ef00d65f7f98
+    Meta: 
+    Tags:
+    - FullHair
+  - Name: CatEars [Paint] [FullHair]
+    Collection: Style
+    Id: -2038936462
+    Path: Equipment/Helmet/Style/CatEars [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 70a01f38caba4bef91435b8b055f5142, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 70a01f38caba4bef91435b8b055f5142, type: 3}
+    Multiple: 1
+    Hash: fc49d50cbf95d0ccc2ed77b440c93d94
+    Meta: 
+    Tags:
+    - Paint
+    - FullHair
+  - Name: Crown [FullHair]
+    Collection: Style
+    Id: -771357218
+    Path: Equipment/Helmet/Style/Crown [FullHair]
+    Sprite: {fileID: 21300000, guid: 63fd4433cb974b099999fdfc03935a62, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 63fd4433cb974b099999fdfc03935a62, type: 3}
+    Multiple: 1
+    Hash: 1870af4c2fad30ef0bcb57322385f8cf
+    Meta: 
+    Tags:
+    - FullHair
+  - Name: Diadem [FullHair]
+    Collection: Style
+    Id: -1989598389
+    Path: Equipment/Helmet/Style/Diadem [FullHair]
+    Sprite: {fileID: 21300000, guid: 9cd020f68c9047118001993fe8411e64, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 9cd020f68c9047118001993fe8411e64, type: 3}
+    Multiple: 1
+    Hash: 3012ffbbc4cfa43b9ad77531a2cfc978
+    Meta: 
+    Tags:
+    - FullHair
+  - Name: Helm1 [Paint]
+    Collection: Basic
+    Id: -1689843186
+    Path: Equipment/Helmet/Basic/Helm1 [Paint]
+    Sprite: {fileID: 21300000, guid: e2d8017e626340d5af518e7c854e7c5f, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: e2d8017e626340d5af518e7c854e7c5f, type: 3}
+    Multiple: 1
+    Hash: 87413bc5674ca491d75286fcb8bf491c
+    Meta: 
+    Tags:
+    - Paint
+  - Name: Helm1a [Paint]
+    Collection: Basic
+    Id: 1957796473
+    Path: Equipment/Helmet/Basic/Helm1a [Paint]
+    Sprite: {fileID: 21300000, guid: a1348751cd1f420087466ce30494ff15, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: a1348751cd1f420087466ce30494ff15, type: 3}
+    Multiple: 1
+    Hash: 3bf425d80ea2dc816cb96203094747ff
+    Meta: 
+    Tags:
+    - Paint
+  - Name: Helm2 [Paint]
+    Collection: Pro
+    Id: -1998996970
+    Path: Equipment/Helmet/Pro/Helm2 [Paint]
+    Sprite: {fileID: 21300000, guid: d29153e5e5154dc4b71714154eabf6c7, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: d29153e5e5154dc4b71714154eabf6c7, type: 3}
+    Multiple: 1
+    Hash: 2920931c214883389a32fe2503ec00ae
+    Meta: 
+    Tags:
+    - Paint
+  - Name: Helm2a [Paint]
+    Collection: Pro
+    Id: 890000569
+    Path: Equipment/Helmet/Pro/Helm2a [Paint]
+    Sprite: {fileID: 21300000, guid: 00968356db1443679a7fa6b45de3ecfc, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 00968356db1443679a7fa6b45de3ecfc, type: 3}
+    Multiple: 1
+    Hash: 2008234e8e8e8d73cb3b2d02c4de925d
+    Meta: 
+    Tags:
+    - Paint
+  - Name: Helm3 [Paint]
+    Collection: Basic
+    Id: -1687475700
+    Path: Equipment/Helmet/Basic/Helm3 [Paint]
+    Sprite: {fileID: 21300000, guid: d37378dc9d1842c9a28864d0cf96d2a3, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: d37378dc9d1842c9a28864d0cf96d2a3, type: 3}
+    Multiple: 1
+    Hash: 6a8565d191cec4f4a3e1016917948881
+    Meta: 
+    Tags:
+    - Paint
+  - Name: Helm3a [Paint]
+    Collection: Basic
+    Id: 1955420407
+    Path: Equipment/Helmet/Basic/Helm3a [Paint]
+    Sprite: {fileID: 21300000, guid: d63ba4fc7be64d34b6be198054f3363d, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: d63ba4fc7be64d34b6be198054f3363d, type: 3}
+    Multiple: 1
+    Hash: ce306b2c2c2fb2c2e235143f7da9ceed
+    Meta: 
+    Tags:
+    - Paint
+  - Name: Helm3b
+    Collection: Basic
+    Id: 77563944
+    Path: Equipment/Helmet/Basic/Helm3b
+    Sprite: {fileID: 21300000, guid: 50f2d8e44165485e85c0fae4e8b66015, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 50f2d8e44165485e85c0fae4e8b66015, type: 3}
+    Multiple: 1
+    Hash: 5f0a378965e19771aa54efc7aac88172
+    Meta: 
+    Tags: []
+  - Name: Helm4 [Paint]
+    Collection: Pro
+    Id: -2006107884
+    Path: Equipment/Helmet/Pro/Helm4 [Paint]
+    Sprite: {fileID: 21300000, guid: 83c9cdcb66f54ab6946c1af5fef576ba, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 83c9cdcb66f54ab6946c1af5fef576ba, type: 3}
+    Multiple: 1
+    Hash: 0a7f02c0fe53c3b337e4e9291f54c630
+    Meta: 
+    Tags:
+    - Paint
+  - Name: Helm4a [Paint]
+    Collection: Pro
+    Id: 887632959
+    Path: Equipment/Helmet/Pro/Helm4a [Paint]
+    Sprite: {fileID: 21300000, guid: 28d171dd27c24218b69e96eec5985676, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 28d171dd27c24218b69e96eec5985676, type: 3}
+    Multiple: 1
+    Hash: 18974d45eb622781d4dbea845825c8d0
+    Meta: 
+    Tags:
+    - Paint
+  - Name: Helm5 [Paint]
+    Collection: Pro
+    Id: -2000393837
+    Path: Equipment/Helmet/Pro/Helm5 [Paint]
+    Sprite: {fileID: 21300000, guid: bd8f4b75141b4660bb2d6b98764eff02, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: bd8f4b75141b4660bb2d6b98764eff02, type: 3}
+    Multiple: 1
+    Hash: 312af64fd366bf34b096f4a200752829
+    Meta: 
+    Tags:
+    - Paint
+  - Name: Helm6 [Paint]
+    Collection: Pro
+    Id: -2003740398
+    Path: Equipment/Helmet/Pro/Helm6 [Paint]
+    Sprite: {fileID: 21300000, guid: ed7f654c84e54d968a3322fb48994491, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: ed7f654c84e54d968a3322fb48994491, type: 3}
+    Multiple: 1
+    Hash: 402fd9b96e5456339360c01971360ede
+    Meta: 
+    Tags:
+    - Paint
+  - Name: Helm7 [Paint]
+    Collection: Pro
+    Id: -2007217775
+    Path: Equipment/Helmet/Pro/Helm7 [Paint]
+    Sprite: {fileID: 21300000, guid: df27f7640d984a7db6388d9a06bf106b, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: df27f7640d984a7db6388d9a06bf106b, type: 3}
+    Multiple: 1
+    Hash: 488eee2707cab4317eef8c7767a5e730
+    Meta: 
+    Tags:
+    - Paint
+  - Name: Horns1 [Paint] [FullHair]
+    Collection: Horns (Style)
+    Id: -1795914813
+    Path: Equipment/Helmet/Horns (Style)/Horns1 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 63c2481abb8543b2a0c51bf003ef22f1, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 63c2481abb8543b2a0c51bf003ef22f1, type: 3}
+    Multiple: 1
+    Hash: 9ed43aea5b3183c18887bdde5f67e71c
+    Meta: 
+    Tags:
+    - Paint
+    - FullHair
+  - Name: Horns10 [Paint] [FullHair]
+    Collection: Horns (Style)
+    Id: 845360415
+    Path: Equipment/Helmet/Horns (Style)/Horns10 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 855aa1e5a0cd4593a9b273a0e702b817, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 855aa1e5a0cd4593a9b273a0e702b817, type: 3}
+    Multiple: 1
+    Hash: b31fafb4a966fd1dd3461002399747b8
+    Meta: 
+    Tags:
+    - Paint
+    - FullHair
+  - Name: Horns11 [Paint] [FullHair]
+    Collection: Horns (Style)
+    Id: 555462016
+    Path: Equipment/Helmet/Horns (Style)/Horns11 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 587eacbc314a4b8987a85e3c7ca25e76, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 587eacbc314a4b8987a85e3c7ca25e76, type: 3}
+    Multiple: 1
+    Hash: 5e982287d5851cc517566e68ea109a00
+    Meta: 
+    Tags:
+    - Paint
+    - FullHair
+  - Name: Horns12 [Paint] [FullHair]
+    Collection: Horns (Style)
+    Id: 1412618977
+    Path: Equipment/Helmet/Horns (Style)/Horns12 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 77406e8446924e9ca790c6f03cc243b2, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 77406e8446924e9ca790c6f03cc243b2, type: 3}
+    Multiple: 1
+    Hash: a2fbaec5935bfbc56e7bf6dd08628ecf
+    Meta: 
+    Tags:
+    - Paint
+    - FullHair
+  - Name: Horns13 [Paint] [FullHair]
+    Collection: Horns (Style)
+    Id: -1061741758
+    Path: Equipment/Helmet/Horns (Style)/Horns13 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: e5b5747e422b4a1f88449cd3f1ee0350, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: e5b5747e422b4a1f88449cd3f1ee0350, type: 3}
+    Multiple: 1
+    Hash: 910670e7d065b2d8e6289290cf20afb3
+    Meta: 
+    Tags:
+    - Paint
+    - FullHair
+  - Name: Horns14 [Paint] [FullHair]
+    Collection: Horns (Style)
+    Id: 2003159707
+    Path: Equipment/Helmet/Horns (Style)/Horns14 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: a957d25935a0437981cb1d7f90d6597c, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: a957d25935a0437981cb1d7f90d6597c, type: 3}
+    Multiple: 1
+    Hash: 4d78e84e63bca84ad0c62390741f0857
+    Meta: 
+    Tags:
+    - Paint
+    - FullHair
+  - Name: Horns15[Paint] [FullHair]
+    Collection: Horns (Style)
+    Id: -1759424338
+    Path: Equipment/Helmet/Horns (Style)/Horns15[Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 9f34aff186bb48718f4153a1ac7c141b, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 9f34aff186bb48718f4153a1ac7c141b, type: 3}
+    Multiple: 1
+    Hash: 56caa6c8d0aacee11899dc8462d1e2f2
+    Meta: 
+    Tags:
+    - Paint
+    - FullHair
+  - Name: Horns2 [Paint] [FullHair]
+    Collection: Horns (Style)
+    Id: 81592978
+    Path: Equipment/Helmet/Horns (Style)/Horns2 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: b0f00dc724ac4b92995fe6942cf37202, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: b0f00dc724ac4b92995fe6942cf37202, type: 3}
+    Multiple: 1
+    Hash: f9ebe48f8c75a537ff12bdd628d9285d
+    Meta: 
+    Tags:
+    - Paint
+    - FullHair
+  - Name: Horns3 [Paint] [FullHair]
+    Collection: Horns (Style)
+    Id: -1683476147
+    Path: Equipment/Helmet/Horns (Style)/Horns3 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: dfde533e23384117be07a98017d25f32, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: dfde533e23384117be07a98017d25f32, type: 3}
+    Multiple: 1
+    Hash: ea9613ad23590883cab21f6cebeb8d45
+    Meta: 
+    Tags:
+    - Paint
+    - FullHair
+  - Name: Horns4 [Paint] [FullHair]
+    Collection: Horns (Style)
+    Id: 1493902836
+    Path: Equipment/Helmet/Horns (Style)/Horns4 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 0a0fb40d36d44bb7a9b490a0de3e6b3d, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 0a0fb40d36d44bb7a9b490a0de3e6b3d, type: 3}
+    Multiple: 1
+    Hash: a87785f60e3988acb61cf9b055a7eaca
+    Meta: 
+    Tags:
+    - Paint
+    - FullHair
+  - Name: Horns5 [Paint] [FullHair]
+    Collection: Horns (Style)
+    Id: 1763637679
+    Path: Equipment/Helmet/Horns (Style)/Horns5 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: c1ac12c39de64f009ecea909f4a6b81b, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: c1ac12c39de64f009ecea909f4a6b81b, type: 3}
+    Multiple: 1
+    Hash: 82cc9b92b87f9b4ced08347b01077915
+    Meta: 
+    Tags:
+    - Paint
+    - FullHair
+  - Name: Horns6 [Paint] [FullHair]
+    Collection: Horns (Style)
+    Id: -653821826
+    Path: Equipment/Helmet/Horns (Style)/Horns6 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 1fa53b6d7f874cf2b148aadf06f07d67, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 1fa53b6d7f874cf2b148aadf06f07d67, type: 3}
+    Multiple: 1
+    Hash: 790cd16540ce26bb8c19f537c7e25fe8
+    Meta: 
+    Tags:
+    - Paint
+    - FullHair
+  - Name: Horns7 [Paint] [FullHair]
+    Collection: Horns (Style)
+    Id: 1876076345
+    Path: Equipment/Helmet/Horns (Style)/Horns7 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 141240e0842d45a7be771c944d786cae, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 141240e0842d45a7be771c944d786cae, type: 3}
+    Multiple: 1
+    Hash: 7da5153bd6d9147ca993dc15d73040af
+    Meta: 
+    Tags:
+    - Paint
+    - FullHair
+  - Name: Horns8 [Paint] [FullHair]
+    Collection: Horns (Style)
+    Id: 1435561952
+    Path: Equipment/Helmet/Horns (Style)/Horns8 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 3a54c2cbc4f741b0bf2e4208a83e7929, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 3a54c2cbc4f741b0bf2e4208a83e7929, type: 3}
+    Multiple: 1
+    Hash: c39b03f16b16387f4940da7b3b6bc258
+    Meta: 
+    Tags:
+    - Paint
+    - FullHair
+  - Name: Horns9 [Paint] [FullHair]
+    Collection: Horns (Style)
+    Id: 1705296795
+    Path: Equipment/Helmet/Horns (Style)/Horns9 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: b4f3a910c8494cfaa2a21825a105fd33, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: b4f3a910c8494cfaa2a21825a105fd33, type: 3}
+    Multiple: 1
+    Hash: 65ad6fb30e39696d2b4a0f80e302bc14
+    Meta: 
+    Tags:
+    - Paint
+    - FullHair
+  - Name: Ribbon1 [FullHair]
+    Collection: Style
+    Id: -1404328550
+    Path: Equipment/Helmet/Style/Ribbon1 [FullHair]
+    Sprite: {fileID: 21300000, guid: e1082789a9104bc884327a6a1e8efe85, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: e1082789a9104bc884327a6a1e8efe85, type: 3}
+    Multiple: 1
+    Hash: c2cdc4a723672eeec3ae382857299cdd
+    Meta: 
+    Tags:
+    - FullHair
+  - Name: Ribbon1 [Paint] [FullHair]
+    Collection: Style
+    Id: 1963169464
+    Path: Equipment/Helmet/Style/Ribbon1 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 042f9da101714e3e8c2d8783e2391e06, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 042f9da101714e3e8c2d8783e2391e06, type: 3}
+    Multiple: 1
+    Hash: 42ab7da3b54ad9ad435f40dd821886e4
+    Meta: 
+    Tags:
+    - Paint
+    - FullHair
+  - Name: Ribbon2 [FullHair]
+    Collection: Style
+    Id: -1445973125
+    Path: Equipment/Helmet/Style/Ribbon2 [FullHair]
+    Sprite: {fileID: 21300000, guid: 2d3b975b973d45a8b452dcea1ef1fa58, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 2d3b975b973d45a8b452dcea1ef1fa58, type: 3}
+    Multiple: 1
+    Hash: 49793055cce8aa06a788d1b3c9c089bf
+    Meta: 
+    Tags:
+    - FullHair
+  - Name: Ribbon2 [Paint] [FullHair]
+    Collection: Style
+    Id: -739343141
+    Path: Equipment/Helmet/Style/Ribbon2 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 044224b86fcd4c43b781cf031ad2ffb6, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 044224b86fcd4c43b781cf031ad2ffb6, type: 3}
+    Multiple: 1
+    Hash: 3c2e251e100274f808d5822ccb1f3255
+    Meta: 
+    Tags:
+    - Paint
+    - FullHair
+  - Name: Rocky [Paint] [FullHair]
+    Collection: Style
+    Id: 2000944507
+    Path: Equipment/Helmet/Style/Rocky [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: a996170d52124d12909376dbc509dab8, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: a996170d52124d12909376dbc509dab8, type: 3}
+    Multiple: 1
+    Hash: 3bcbf69b1f87a275024d704162e79a1a
+    Meta: 
+    Tags:
+    - Paint
+    - FullHair
+  - Name: SantaHat
+    Collection: Christmas
+    Id: -2014741001
+    Path: Equipment/Helmet/Christmas/SantaHat
+    Sprite: {fileID: 21300000, guid: 5ce7cc9637584aa6ae8caefe2c8ab308, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 5ce7cc9637584aa6ae8caefe2c8ab308, type: 3}
+    Multiple: 1
+    Hash: d7c182cb5fb7645e4b2c34d173558023
+    Meta: 
+    Tags: []
+  - Name: SantaHelperHat1
+    Collection: Christmas
+    Id: -81625504
+    Path: Equipment/Helmet/Christmas/SantaHelperHat1
+    Sprite: {fileID: 21300000, guid: 29306b58c1974079b6235b813a8774b1, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 29306b58c1974079b6235b813a8774b1, type: 3}
+    Multiple: 1
+    Hash: 6573be19fe455a1721274e9d435b0e50
+    Meta: 
+    Tags: []
+  - Name: SantaHelperHat2
+    Collection: Christmas
+    Id: -81625505
+    Path: Equipment/Helmet/Christmas/SantaHelperHat2
+    Sprite: {fileID: 21300000, guid: a1b1f0cb825c40f3b9a73ef7052cd8a3, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: a1b1f0cb825c40f3b9a73ef7052cd8a3, type: 3}
+    Multiple: 1
+    Hash: 1fca1159321cd028c08d8143fbd2c8f4
+    Meta: 
+    Tags: []
+  - Name: SantaHelperHat3
+    Collection: Christmas
+    Id: -81625506
+    Path: Equipment/Helmet/Christmas/SantaHelperHat3
+    Sprite: {fileID: 21300000, guid: d88b9ea0494a4bba99df8af448fd9dc2, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: d88b9ea0494a4bba99df8af448fd9dc2, type: 3}
+    Multiple: 1
+    Hash: 10f29bba95ec7a9357009c6dbff676fc
+    Meta: 
+    Tags: []
+  - Name: SkullPin [FullHair]
+    Collection: Style
+    Id: -1339945343
+    Path: Equipment/Helmet/Style/SkullPin [FullHair]
+    Sprite: {fileID: 21300000, guid: 96c8510dd0874f92b8a4f695b2c4aad1, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 96c8510dd0874f92b8a4f695b2c4aad1, type: 3}
+    Multiple: 1
+    Hash: 45b7e088a103c4d9666626ba350b2f71
+    Meta: 
+    Tags:
+    - FullHair
+  - Name: SpaceTrooperHelmet [Paint]
+    Collection: Pro
+    Id: 537339932
+    Path: Equipment/Helmet/Pro/SpaceTrooperHelmet [Paint]
+    Sprite: {fileID: 21300000, guid: b712037f6aaa4492902a887f983671d9, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: b712037f6aaa4492902a887f983671d9, type: 3}
+    Multiple: 1
+    Hash: a2dc833be8d7f7b8256f031c574ae54b
+    Meta: 
+    Tags:
+    - Paint
+  Glasses:
+  - Name: Glasses1 [Paint]
+    Collection: Pro
+    Id: 1637106963
+    Path: Equipment/Glasses/Pro/Glasses1 [Paint]
+    Sprite: {fileID: 21300000, guid: bdb9f4579a6447b39a32cee5f2c38fb7, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: bdb9f4579a6447b39a32cee5f2c38fb7, type: 3}
+    Multiple: 1
+    Hash: 091780308cc340b7c827c825b73df99e
+    Meta: 
+    Tags:
+    - Paint
+  - Name: Glasses2 [Paint]
+    Collection: Pro
+    Id: 169916206
+    Path: Equipment/Glasses/Pro/Glasses2 [Paint]
+    Sprite: {fileID: 21300000, guid: 7f1a37a2fe584e959aca1b589b28da7d, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 7f1a37a2fe584e959aca1b589b28da7d, type: 3}
+    Multiple: 1
+    Hash: 31cdaef81304356ff6fbc8bf0749b28e
+    Meta: 
+    Tags:
+    - Paint
+  - Name: Glasses3 [Paint]
+    Collection: Pro
+    Id: 1384369737
+    Path: Equipment/Glasses/Pro/Glasses3 [Paint]
+    Sprite: {fileID: 21300000, guid: 2b1ff30d3ee74a229884f1797172cee7, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 2b1ff30d3ee74a229884f1797172cee7, type: 3}
+    Multiple: 1
+    Hash: 305225a5eeda0e406ea53c1e133f5c06
+    Meta: 
+    Tags:
+    - Paint
+  - Name: Glasses4 [Paint]
+    Collection: Pro
+    Id: -1377705844
+    Path: Equipment/Glasses/Pro/Glasses4 [Paint]
+    Sprite: {fileID: 21300000, guid: c5bd38715de6431f99dac2f4ee181d58, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: c5bd38715de6431f99dac2f4ee181d58, type: 3}
+    Multiple: 1
+    Hash: 4a11de4150fedd1371cc06426f8363cd
+    Meta: 
+    Tags:
+    - Paint
+  - Name: SpaceTrooperVisor [Paint]
+    Collection: Pro
+    Id: -28654744
+    Path: Equipment/Glasses/Pro/SpaceTrooperVisor [Paint]
+    Sprite: {fileID: 21300000, guid: 0ddcac3bfef64c1087464622577824ca, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 0ddcac3bfef64c1087464622577824ca, type: 3}
+    Multiple: 1
+    Hash: d04ed8fbc914e00409fc3beef0b3eec4
+    Meta: 
+    Tags:
+    - Paint
+  Mask:
+  - Name: Mask1 [Paint]
+    Collection: Pro
+    Id: 1472843351
+    Path: Equipment/Mask/Pro/Mask1 [Paint]
+    Sprite: {fileID: 21300000, guid: 07ae2b8f9c104292a27c4626a8771de8, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 07ae2b8f9c104292a27c4626a8771de8, type: 3}
+    Multiple: 1
+    Hash: 0dfbf7d029f39559f70bb8bf8c18c95c
+    Meta: 
+    Tags:
+    - Paint
+  - Name: Mask2 [Paint]
+    Collection: Pro
+    Id: 1469353306
+    Path: Equipment/Mask/Pro/Mask2 [Paint]
+    Sprite: {fileID: 21300000, guid: c636ea2eafc84839a8ba07452fd21425, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: c636ea2eafc84839a8ba07452fd21425, type: 3}
+    Multiple: 1
+    Hash: 21c3d0a878fa99849bac8fffe289114b
+    Meta: 
+    Tags:
+    - Paint
+  - Name: Mask3 [Paint]
+    Collection: Pro
+    Id: 1470467417
+    Path: Equipment/Mask/Pro/Mask3 [Paint]
+    Sprite: {fileID: 21300000, guid: e30abefe3bc94697a17fa4ed9ea9e6a8, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: e30abefe3bc94697a17fa4ed9ea9e6a8, type: 3}
+    Multiple: 1
+    Hash: 9824097f25757c4c3c5716a893b9d166
+    Meta: 
+    Tags:
+    - Paint
+  Earrings:
+  - Name: Banan
+    Collection: Basic
+    Id: 44641599
+    Path: Equipment/Earrings/Basic/Banan
+    Sprite: {fileID: 21300000, guid: 3791264e058e45bc802d6d0ecb7b1bfb, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 3791264e058e45bc802d6d0ecb7b1bfb, type: 3}
+    Multiple: 1
+    Hash: 4b26b1435377a7e9b38b5c6f099d590c
+    Meta: 
+    Tags: []
+  - Name: GoldenEarring
+    Collection: Basic
+    Id: 967513538
+    Path: Equipment/Earrings/Basic/GoldenEarring
+    Sprite: {fileID: 21300000, guid: 2913df47c35e4e7eadc8cdb502f93046, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 2913df47c35e4e7eadc8cdb502f93046, type: 3}
+    Multiple: 1
+    Hash: 25c33adbab0dd5044da75be53a96845b
+    Meta: 
+    Tags: []
+  - Name: Worm
+    Collection: Basic
+    Id: -1234161774
+    Path: Equipment/Earrings/Basic/Worm
+    Sprite: {fileID: 21300000, guid: 02d9b5c307eb432c9ce7c4258a5941e9, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 02d9b5c307eb432c9ce7c4258a5941e9, type: 3}
+    Multiple: 1
+    Hash: d5dee78da85abd5fec5389f9781f3604
+    Meta: 
+    Tags: []
+  Armor:
+  - Name: CaptainForm
+    Collection: Pro
+    Id: -432389772
+    Path: Equipment/Armor/Pro/CaptainForm
+    Sprite: {fileID: 21300004, guid: d88699391f0e4d2b870bc07a007d91af, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: d88699391f0e4d2b870bc07a007d91af, type: 3}
+    - {fileID: 21300002, guid: d88699391f0e4d2b870bc07a007d91af, type: 3}
+    - {fileID: 21300022, guid: d88699391f0e4d2b870bc07a007d91af, type: 3}
+    - {fileID: 21300010, guid: d88699391f0e4d2b870bc07a007d91af, type: 3}
+    - {fileID: 21300008, guid: d88699391f0e4d2b870bc07a007d91af, type: 3}
+    - {fileID: 21300016, guid: d88699391f0e4d2b870bc07a007d91af, type: 3}
+    - {fileID: 21300018, guid: d88699391f0e4d2b870bc07a007d91af, type: 3}
+    - {fileID: 21300012, guid: d88699391f0e4d2b870bc07a007d91af, type: 3}
+    - {fileID: 21300006, guid: d88699391f0e4d2b870bc07a007d91af, type: 3}
+    - {fileID: 21300014, guid: d88699391f0e4d2b870bc07a007d91af, type: 3}
+    - {fileID: 21300020, guid: d88699391f0e4d2b870bc07a007d91af, type: 3}
+    - {fileID: 21300000, guid: d88699391f0e4d2b870bc07a007d91af, type: 3}
+    Multiple: 1
+    Hash: 6f08a050aa193570b63e030ebbe9f4ff
+    Meta: 
+    Tags: []
+  - Name: MARK-H1 [Paint]
+    Collection: Basic
+    Id: -262968418
+    Path: Equipment/Armor/Basic/MARK-H1 [Paint]
+    Sprite: {fileID: 21300004, guid: 5826038429d04708bd03702da5ba1f99, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: 5826038429d04708bd03702da5ba1f99, type: 3}
+    - {fileID: 21300002, guid: 5826038429d04708bd03702da5ba1f99, type: 3}
+    - {fileID: 21300022, guid: 5826038429d04708bd03702da5ba1f99, type: 3}
+    - {fileID: 21300010, guid: 5826038429d04708bd03702da5ba1f99, type: 3}
+    - {fileID: 21300008, guid: 5826038429d04708bd03702da5ba1f99, type: 3}
+    - {fileID: 21300016, guid: 5826038429d04708bd03702da5ba1f99, type: 3}
+    - {fileID: 21300018, guid: 5826038429d04708bd03702da5ba1f99, type: 3}
+    - {fileID: 21300012, guid: 5826038429d04708bd03702da5ba1f99, type: 3}
+    - {fileID: 21300006, guid: 5826038429d04708bd03702da5ba1f99, type: 3}
+    - {fileID: 21300014, guid: 5826038429d04708bd03702da5ba1f99, type: 3}
+    - {fileID: 21300020, guid: 5826038429d04708bd03702da5ba1f99, type: 3}
+    - {fileID: 21300000, guid: 5826038429d04708bd03702da5ba1f99, type: 3}
+    Multiple: 1
+    Hash: 287609e7fa2a746b40afa18ffaeac100
+    Meta: 
+    Tags:
+    - Paint
+  - Name: MARK-H1B [Paint]
+    Collection: Basic
+    Id: 131197968
+    Path: Equipment/Armor/Basic/MARK-H1B [Paint]
+    Sprite: {fileID: 21300004, guid: fe0d8b62a4dd4a1db6e0e8101109f391, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: fe0d8b62a4dd4a1db6e0e8101109f391, type: 3}
+    - {fileID: 21300002, guid: fe0d8b62a4dd4a1db6e0e8101109f391, type: 3}
+    - {fileID: 21300022, guid: fe0d8b62a4dd4a1db6e0e8101109f391, type: 3}
+    - {fileID: 21300010, guid: fe0d8b62a4dd4a1db6e0e8101109f391, type: 3}
+    - {fileID: 21300008, guid: fe0d8b62a4dd4a1db6e0e8101109f391, type: 3}
+    - {fileID: 21300016, guid: fe0d8b62a4dd4a1db6e0e8101109f391, type: 3}
+    - {fileID: 21300018, guid: fe0d8b62a4dd4a1db6e0e8101109f391, type: 3}
+    - {fileID: 21300012, guid: fe0d8b62a4dd4a1db6e0e8101109f391, type: 3}
+    - {fileID: 21300006, guid: fe0d8b62a4dd4a1db6e0e8101109f391, type: 3}
+    - {fileID: 21300014, guid: fe0d8b62a4dd4a1db6e0e8101109f391, type: 3}
+    - {fileID: 21300020, guid: fe0d8b62a4dd4a1db6e0e8101109f391, type: 3}
+    - {fileID: 21300000, guid: fe0d8b62a4dd4a1db6e0e8101109f391, type: 3}
+    Multiple: 1
+    Hash: cc7d58bb7a7fd2c9763dee2f03145a7a
+    Meta: 
+    Tags:
+    - Paint
+  - Name: MARK-H2 [Paint]
+    Collection: Pro
+    Id: -2075238010
+    Path: Equipment/Armor/Pro/MARK-H2 [Paint]
+    Sprite: {fileID: 21300004, guid: 272272b84b794392a5dc5851755a9faf, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: 272272b84b794392a5dc5851755a9faf, type: 3}
+    - {fileID: 21300002, guid: 272272b84b794392a5dc5851755a9faf, type: 3}
+    - {fileID: 21300022, guid: 272272b84b794392a5dc5851755a9faf, type: 3}
+    - {fileID: 21300010, guid: 272272b84b794392a5dc5851755a9faf, type: 3}
+    - {fileID: 21300008, guid: 272272b84b794392a5dc5851755a9faf, type: 3}
+    - {fileID: 21300016, guid: 272272b84b794392a5dc5851755a9faf, type: 3}
+    - {fileID: 21300018, guid: 272272b84b794392a5dc5851755a9faf, type: 3}
+    - {fileID: 21300012, guid: 272272b84b794392a5dc5851755a9faf, type: 3}
+    - {fileID: 21300006, guid: 272272b84b794392a5dc5851755a9faf, type: 3}
+    - {fileID: 21300014, guid: 272272b84b794392a5dc5851755a9faf, type: 3}
+    - {fileID: 21300020, guid: 272272b84b794392a5dc5851755a9faf, type: 3}
+    - {fileID: 21300000, guid: 272272b84b794392a5dc5851755a9faf, type: 3}
+    Multiple: 1
+    Hash: 0ba2b3989db0c51c101c736f4b92e154
+    Meta: 
+    Tags:
+    - Paint
+  - Name: MARK-H2B [Paint]
+    Collection: Pro
+    Id: -1786745172
+    Path: Equipment/Armor/Pro/MARK-H2B [Paint]
+    Sprite: {fileID: 21300004, guid: a8b7248d458e4c0683cc70955cd90079, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: a8b7248d458e4c0683cc70955cd90079, type: 3}
+    - {fileID: 21300002, guid: a8b7248d458e4c0683cc70955cd90079, type: 3}
+    - {fileID: 21300022, guid: a8b7248d458e4c0683cc70955cd90079, type: 3}
+    - {fileID: 21300010, guid: a8b7248d458e4c0683cc70955cd90079, type: 3}
+    - {fileID: 21300008, guid: a8b7248d458e4c0683cc70955cd90079, type: 3}
+    - {fileID: 21300016, guid: a8b7248d458e4c0683cc70955cd90079, type: 3}
+    - {fileID: 21300018, guid: a8b7248d458e4c0683cc70955cd90079, type: 3}
+    - {fileID: 21300012, guid: a8b7248d458e4c0683cc70955cd90079, type: 3}
+    - {fileID: 21300006, guid: a8b7248d458e4c0683cc70955cd90079, type: 3}
+    - {fileID: 21300014, guid: a8b7248d458e4c0683cc70955cd90079, type: 3}
+    - {fileID: 21300020, guid: a8b7248d458e4c0683cc70955cd90079, type: 3}
+    - {fileID: 21300000, guid: a8b7248d458e4c0683cc70955cd90079, type: 3}
+    Multiple: 1
+    Hash: 05ea787a08a2e12b4b441a732310b082
+    Meta: 
+    Tags:
+    - Paint
+  - Name: MARK-H3 [Paint]
+    Collection: Basic
+    Id: -256136032
+    Path: Equipment/Armor/Basic/MARK-H3 [Paint]
+    Sprite: {fileID: 21300004, guid: 57656411bb8f41f4a00cf0ea2af5aca3, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: 57656411bb8f41f4a00cf0ea2af5aca3, type: 3}
+    - {fileID: 21300002, guid: 57656411bb8f41f4a00cf0ea2af5aca3, type: 3}
+    - {fileID: 21300022, guid: 57656411bb8f41f4a00cf0ea2af5aca3, type: 3}
+    - {fileID: 21300010, guid: 57656411bb8f41f4a00cf0ea2af5aca3, type: 3}
+    - {fileID: 21300008, guid: 57656411bb8f41f4a00cf0ea2af5aca3, type: 3}
+    - {fileID: 21300016, guid: 57656411bb8f41f4a00cf0ea2af5aca3, type: 3}
+    - {fileID: 21300018, guid: 57656411bb8f41f4a00cf0ea2af5aca3, type: 3}
+    - {fileID: 21300012, guid: 57656411bb8f41f4a00cf0ea2af5aca3, type: 3}
+    - {fileID: 21300006, guid: 57656411bb8f41f4a00cf0ea2af5aca3, type: 3}
+    - {fileID: 21300014, guid: 57656411bb8f41f4a00cf0ea2af5aca3, type: 3}
+    - {fileID: 21300020, guid: 57656411bb8f41f4a00cf0ea2af5aca3, type: 3}
+    - {fileID: 21300000, guid: 57656411bb8f41f4a00cf0ea2af5aca3, type: 3}
+    Multiple: 1
+    Hash: af82044cec5a323c55cf420060c6cb17
+    Meta: 
+    Tags:
+    - Paint
+  - Name: MARK-H3B [Paint]
+    Collection: Basic
+    Id: 133565586
+    Path: Equipment/Armor/Basic/MARK-H3B [Paint]
+    Sprite: {fileID: 21300004, guid: 9db6a24522d8412e81a390c5011940cd, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: 9db6a24522d8412e81a390c5011940cd, type: 3}
+    - {fileID: 21300002, guid: 9db6a24522d8412e81a390c5011940cd, type: 3}
+    - {fileID: 21300022, guid: 9db6a24522d8412e81a390c5011940cd, type: 3}
+    - {fileID: 21300010, guid: 9db6a24522d8412e81a390c5011940cd, type: 3}
+    - {fileID: 21300008, guid: 9db6a24522d8412e81a390c5011940cd, type: 3}
+    - {fileID: 21300016, guid: 9db6a24522d8412e81a390c5011940cd, type: 3}
+    - {fileID: 21300018, guid: 9db6a24522d8412e81a390c5011940cd, type: 3}
+    - {fileID: 21300012, guid: 9db6a24522d8412e81a390c5011940cd, type: 3}
+    - {fileID: 21300006, guid: 9db6a24522d8412e81a390c5011940cd, type: 3}
+    - {fileID: 21300014, guid: 9db6a24522d8412e81a390c5011940cd, type: 3}
+    - {fileID: 21300020, guid: 9db6a24522d8412e81a390c5011940cd, type: 3}
+    - {fileID: 21300000, guid: 9db6a24522d8412e81a390c5011940cd, type: 3}
+    Multiple: 1
+    Hash: 0a8dd62f4058d06bf85b93551395a165
+    Meta: 
+    Tags:
+    - Paint
+  - Name: MARK-H4 [Paint]
+    Collection: Basic
+    Id: -266597735
+    Path: Equipment/Armor/Basic/MARK-H4 [Paint]
+    Sprite: {fileID: 21300004, guid: c82f321717384048bb6dde6b91f298d6, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: c82f321717384048bb6dde6b91f298d6, type: 3}
+    - {fileID: 21300002, guid: c82f321717384048bb6dde6b91f298d6, type: 3}
+    - {fileID: 21300022, guid: c82f321717384048bb6dde6b91f298d6, type: 3}
+    - {fileID: 21300010, guid: c82f321717384048bb6dde6b91f298d6, type: 3}
+    - {fileID: 21300008, guid: c82f321717384048bb6dde6b91f298d6, type: 3}
+    - {fileID: 21300016, guid: c82f321717384048bb6dde6b91f298d6, type: 3}
+    - {fileID: 21300018, guid: c82f321717384048bb6dde6b91f298d6, type: 3}
+    - {fileID: 21300012, guid: c82f321717384048bb6dde6b91f298d6, type: 3}
+    - {fileID: 21300006, guid: c82f321717384048bb6dde6b91f298d6, type: 3}
+    - {fileID: 21300014, guid: c82f321717384048bb6dde6b91f298d6, type: 3}
+    - {fileID: 21300020, guid: c82f321717384048bb6dde6b91f298d6, type: 3}
+    - {fileID: 21300000, guid: c82f321717384048bb6dde6b91f298d6, type: 3}
+    Multiple: 1
+    Hash: 7cd348eae2fb09c180e40f3c2b9b1e37
+    Meta: 
+    Tags:
+    - Paint
+  - Name: MARK-H4B [Paint]
+    Collection: Pro
+    Id: -1784377562
+    Path: Equipment/Armor/Pro/MARK-H4B [Paint]
+    Sprite: {fileID: 21300004, guid: d8c9473473a74aad8c53a5b980b51cf1, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: d8c9473473a74aad8c53a5b980b51cf1, type: 3}
+    - {fileID: 21300002, guid: d8c9473473a74aad8c53a5b980b51cf1, type: 3}
+    - {fileID: 21300022, guid: d8c9473473a74aad8c53a5b980b51cf1, type: 3}
+    - {fileID: 21300010, guid: d8c9473473a74aad8c53a5b980b51cf1, type: 3}
+    - {fileID: 21300008, guid: d8c9473473a74aad8c53a5b980b51cf1, type: 3}
+    - {fileID: 21300016, guid: d8c9473473a74aad8c53a5b980b51cf1, type: 3}
+    - {fileID: 21300018, guid: d8c9473473a74aad8c53a5b980b51cf1, type: 3}
+    - {fileID: 21300012, guid: d8c9473473a74aad8c53a5b980b51cf1, type: 3}
+    - {fileID: 21300006, guid: d8c9473473a74aad8c53a5b980b51cf1, type: 3}
+    - {fileID: 21300014, guid: d8c9473473a74aad8c53a5b980b51cf1, type: 3}
+    - {fileID: 21300020, guid: d8c9473473a74aad8c53a5b980b51cf1, type: 3}
+    - {fileID: 21300000, guid: d8c9473473a74aad8c53a5b980b51cf1, type: 3}
+    Multiple: 1
+    Hash: f980feea4d9231c08ec3fb59416f2fb5
+    Meta: 
+    Tags:
+    - Paint
+  - Name: MARK-H5
+    Collection: Pro
+    Id: 309813279
+    Path: Equipment/Armor/Pro/MARK-H5
+    Sprite: {fileID: 21300004, guid: f17b7c556cde4a08af9721f23a13ec4b, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: f17b7c556cde4a08af9721f23a13ec4b, type: 3}
+    - {fileID: 21300002, guid: f17b7c556cde4a08af9721f23a13ec4b, type: 3}
+    - {fileID: 21300022, guid: f17b7c556cde4a08af9721f23a13ec4b, type: 3}
+    - {fileID: 21300010, guid: f17b7c556cde4a08af9721f23a13ec4b, type: 3}
+    - {fileID: 21300008, guid: f17b7c556cde4a08af9721f23a13ec4b, type: 3}
+    - {fileID: 21300016, guid: f17b7c556cde4a08af9721f23a13ec4b, type: 3}
+    - {fileID: 21300018, guid: f17b7c556cde4a08af9721f23a13ec4b, type: 3}
+    - {fileID: 21300012, guid: f17b7c556cde4a08af9721f23a13ec4b, type: 3}
+    - {fileID: 21300006, guid: f17b7c556cde4a08af9721f23a13ec4b, type: 3}
+    - {fileID: 21300014, guid: f17b7c556cde4a08af9721f23a13ec4b, type: 3}
+    - {fileID: 21300020, guid: f17b7c556cde4a08af9721f23a13ec4b, type: 3}
+    - {fileID: 21300000, guid: f17b7c556cde4a08af9721f23a13ec4b, type: 3}
+    Multiple: 1
+    Hash: 7d647a50a61587eb5a87a904ef946564
+    Meta: 
+    Tags: []
+  - Name: MARK-L1 [Paint]
+    Collection: Pro
+    Id: 681569903
+    Path: Equipment/Armor/Pro/MARK-L1 [Paint]
+    Sprite: {fileID: 21300004, guid: 0c8d0e310c4245e08d8b270ea21468a5, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: 0c8d0e310c4245e08d8b270ea21468a5, type: 3}
+    - {fileID: 21300002, guid: 0c8d0e310c4245e08d8b270ea21468a5, type: 3}
+    - {fileID: 21300022, guid: 0c8d0e310c4245e08d8b270ea21468a5, type: 3}
+    - {fileID: 21300010, guid: 0c8d0e310c4245e08d8b270ea21468a5, type: 3}
+    - {fileID: 21300008, guid: 0c8d0e310c4245e08d8b270ea21468a5, type: 3}
+    - {fileID: 21300016, guid: 0c8d0e310c4245e08d8b270ea21468a5, type: 3}
+    - {fileID: 21300018, guid: 0c8d0e310c4245e08d8b270ea21468a5, type: 3}
+    - {fileID: 21300012, guid: 0c8d0e310c4245e08d8b270ea21468a5, type: 3}
+    - {fileID: 21300006, guid: 0c8d0e310c4245e08d8b270ea21468a5, type: 3}
+    - {fileID: 21300014, guid: 0c8d0e310c4245e08d8b270ea21468a5, type: 3}
+    - {fileID: 21300020, guid: 0c8d0e310c4245e08d8b270ea21468a5, type: 3}
+    - {fileID: 21300000, guid: 0c8d0e310c4245e08d8b270ea21468a5, type: 3}
+    Multiple: 1
+    Hash: 71076d40043eda55766887227ce0770b
+    Meta: 
+    Tags:
+    - Paint
+  - Name: MARK-L2 [Paint]
+    Collection: Pro
+    Id: 682679794
+    Path: Equipment/Armor/Pro/MARK-L2 [Paint]
+    Sprite: {fileID: 21300004, guid: bc73e5841fde4cc1b26cf7177f419e90, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: bc73e5841fde4cc1b26cf7177f419e90, type: 3}
+    - {fileID: 21300002, guid: bc73e5841fde4cc1b26cf7177f419e90, type: 3}
+    - {fileID: 21300022, guid: bc73e5841fde4cc1b26cf7177f419e90, type: 3}
+    - {fileID: 21300010, guid: bc73e5841fde4cc1b26cf7177f419e90, type: 3}
+    - {fileID: 21300008, guid: bc73e5841fde4cc1b26cf7177f419e90, type: 3}
+    - {fileID: 21300016, guid: bc73e5841fde4cc1b26cf7177f419e90, type: 3}
+    - {fileID: 21300018, guid: bc73e5841fde4cc1b26cf7177f419e90, type: 3}
+    - {fileID: 21300012, guid: bc73e5841fde4cc1b26cf7177f419e90, type: 3}
+    - {fileID: 21300006, guid: bc73e5841fde4cc1b26cf7177f419e90, type: 3}
+    - {fileID: 21300014, guid: bc73e5841fde4cc1b26cf7177f419e90, type: 3}
+    - {fileID: 21300020, guid: bc73e5841fde4cc1b26cf7177f419e90, type: 3}
+    - {fileID: 21300000, guid: bc73e5841fde4cc1b26cf7177f419e90, type: 3}
+    Multiple: 1
+    Hash: c3fa7f114f1c437a254aca0138eea390
+    Meta: 
+    Tags:
+    - Paint
+  - Name: MARK-L3 [Paint]
+    Collection: Pro
+    Id: 688393841
+    Path: Equipment/Armor/Pro/MARK-L3 [Paint]
+    Sprite: {fileID: 21300004, guid: e627ddf0e5d24d29a574a469ffdeb977, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: e627ddf0e5d24d29a574a469ffdeb977, type: 3}
+    - {fileID: 21300002, guid: e627ddf0e5d24d29a574a469ffdeb977, type: 3}
+    - {fileID: 21300022, guid: e627ddf0e5d24d29a574a469ffdeb977, type: 3}
+    - {fileID: 21300010, guid: e627ddf0e5d24d29a574a469ffdeb977, type: 3}
+    - {fileID: 21300008, guid: e627ddf0e5d24d29a574a469ffdeb977, type: 3}
+    - {fileID: 21300016, guid: e627ddf0e5d24d29a574a469ffdeb977, type: 3}
+    - {fileID: 21300018, guid: e627ddf0e5d24d29a574a469ffdeb977, type: 3}
+    - {fileID: 21300012, guid: e627ddf0e5d24d29a574a469ffdeb977, type: 3}
+    - {fileID: 21300006, guid: e627ddf0e5d24d29a574a469ffdeb977, type: 3}
+    - {fileID: 21300014, guid: e627ddf0e5d24d29a574a469ffdeb977, type: 3}
+    - {fileID: 21300020, guid: e627ddf0e5d24d29a574a469ffdeb977, type: 3}
+    - {fileID: 21300000, guid: e627ddf0e5d24d29a574a469ffdeb977, type: 3}
+    Multiple: 1
+    Hash: 3e59dc10cd56a67d66178b2b869bcd99
+    Meta: 
+    Tags:
+    - Paint
+  - Name: MARK-L4 [Paint]
+    Collection: Pro
+    Id: 689790708
+    Path: Equipment/Armor/Pro/MARK-L4 [Paint]
+    Sprite: {fileID: 21300004, guid: c99b521663604c18a5d31570606bc49a, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: c99b521663604c18a5d31570606bc49a, type: 3}
+    - {fileID: 21300002, guid: c99b521663604c18a5d31570606bc49a, type: 3}
+    - {fileID: 21300022, guid: c99b521663604c18a5d31570606bc49a, type: 3}
+    - {fileID: 21300010, guid: c99b521663604c18a5d31570606bc49a, type: 3}
+    - {fileID: 21300008, guid: c99b521663604c18a5d31570606bc49a, type: 3}
+    - {fileID: 21300016, guid: c99b521663604c18a5d31570606bc49a, type: 3}
+    - {fileID: 21300018, guid: c99b521663604c18a5d31570606bc49a, type: 3}
+    - {fileID: 21300012, guid: c99b521663604c18a5d31570606bc49a, type: 3}
+    - {fileID: 21300006, guid: c99b521663604c18a5d31570606bc49a, type: 3}
+    - {fileID: 21300014, guid: c99b521663604c18a5d31570606bc49a, type: 3}
+    - {fileID: 21300020, guid: c99b521663604c18a5d31570606bc49a, type: 3}
+    - {fileID: 21300000, guid: c99b521663604c18a5d31570606bc49a, type: 3}
+    Multiple: 1
+    Hash: ee166aca3ceaeb4a2984ea5fbda05007
+    Meta: 
+    Tags:
+    - Paint
+  - Name: MARK-L5 [Paint]
+    Collection: Pro
+    Id: 686313331
+    Path: Equipment/Armor/Pro/MARK-L5 [Paint]
+    Sprite: {fileID: 21300004, guid: 31898bc04e9b470fa3f697ab17b0fcef, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: 31898bc04e9b470fa3f697ab17b0fcef, type: 3}
+    - {fileID: 21300002, guid: 31898bc04e9b470fa3f697ab17b0fcef, type: 3}
+    - {fileID: 21300022, guid: 31898bc04e9b470fa3f697ab17b0fcef, type: 3}
+    - {fileID: 21300010, guid: 31898bc04e9b470fa3f697ab17b0fcef, type: 3}
+    - {fileID: 21300008, guid: 31898bc04e9b470fa3f697ab17b0fcef, type: 3}
+    - {fileID: 21300016, guid: 31898bc04e9b470fa3f697ab17b0fcef, type: 3}
+    - {fileID: 21300018, guid: 31898bc04e9b470fa3f697ab17b0fcef, type: 3}
+    - {fileID: 21300012, guid: 31898bc04e9b470fa3f697ab17b0fcef, type: 3}
+    - {fileID: 21300006, guid: 31898bc04e9b470fa3f697ab17b0fcef, type: 3}
+    - {fileID: 21300014, guid: 31898bc04e9b470fa3f697ab17b0fcef, type: 3}
+    - {fileID: 21300020, guid: 31898bc04e9b470fa3f697ab17b0fcef, type: 3}
+    - {fileID: 21300000, guid: 31898bc04e9b470fa3f697ab17b0fcef, type: 3}
+    Multiple: 1
+    Hash: 13763b91e5bfda6136b0f7ccb9b325cb
+    Meta: 
+    Tags:
+    - Paint
+  - Name: MARK-L6 [Paint]
+    Collection: Pro
+    Id: 687423222
+    Path: Equipment/Armor/Pro/MARK-L6 [Paint]
+    Sprite: {fileID: 21300004, guid: 9f436136a9de4ce68b4738f4158ca91f, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: 9f436136a9de4ce68b4738f4158ca91f, type: 3}
+    - {fileID: 21300002, guid: 9f436136a9de4ce68b4738f4158ca91f, type: 3}
+    - {fileID: 21300022, guid: 9f436136a9de4ce68b4738f4158ca91f, type: 3}
+    - {fileID: 21300010, guid: 9f436136a9de4ce68b4738f4158ca91f, type: 3}
+    - {fileID: 21300008, guid: 9f436136a9de4ce68b4738f4158ca91f, type: 3}
+    - {fileID: 21300016, guid: 9f436136a9de4ce68b4738f4158ca91f, type: 3}
+    - {fileID: 21300018, guid: 9f436136a9de4ce68b4738f4158ca91f, type: 3}
+    - {fileID: 21300012, guid: 9f436136a9de4ce68b4738f4158ca91f, type: 3}
+    - {fileID: 21300006, guid: 9f436136a9de4ce68b4738f4158ca91f, type: 3}
+    - {fileID: 21300014, guid: 9f436136a9de4ce68b4738f4158ca91f, type: 3}
+    - {fileID: 21300020, guid: 9f436136a9de4ce68b4738f4158ca91f, type: 3}
+    - {fileID: 21300000, guid: 9f436136a9de4ce68b4738f4158ca91f, type: 3}
+    Multiple: 1
+    Hash: 826083711f7bfe84bf2aa2317e0518fa
+    Meta: 
+    Tags:
+    - Paint
+  - Name: Santa1
+    Collection: Christmas
+    Id: 150210823
+    Path: Equipment/Armor/Christmas/Santa1
+    Sprite: {fileID: 21300004, guid: d80d2500e823451aaf0e7a111eadcea0, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: d80d2500e823451aaf0e7a111eadcea0, type: 3}
+    - {fileID: 21300002, guid: d80d2500e823451aaf0e7a111eadcea0, type: 3}
+    - {fileID: 21300022, guid: d80d2500e823451aaf0e7a111eadcea0, type: 3}
+    - {fileID: 21300010, guid: d80d2500e823451aaf0e7a111eadcea0, type: 3}
+    - {fileID: 21300008, guid: d80d2500e823451aaf0e7a111eadcea0, type: 3}
+    - {fileID: 21300016, guid: d80d2500e823451aaf0e7a111eadcea0, type: 3}
+    - {fileID: 21300018, guid: d80d2500e823451aaf0e7a111eadcea0, type: 3}
+    - {fileID: 21300012, guid: d80d2500e823451aaf0e7a111eadcea0, type: 3}
+    - {fileID: 21300006, guid: d80d2500e823451aaf0e7a111eadcea0, type: 3}
+    - {fileID: 21300014, guid: d80d2500e823451aaf0e7a111eadcea0, type: 3}
+    - {fileID: 21300020, guid: d80d2500e823451aaf0e7a111eadcea0, type: 3}
+    - {fileID: 21300000, guid: d80d2500e823451aaf0e7a111eadcea0, type: 3}
+    Multiple: 1
+    Hash: e720f745fb55210a3dba7bad23b25b98
+    Meta: 
+    Tags: []
+  - Name: Santa2
+    Collection: Christmas
+    Id: -1415873118
+    Path: Equipment/Armor/Christmas/Santa2
+    Sprite: {fileID: 21300004, guid: 57e05865197f4f33a9d386e4799fa42c, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: 57e05865197f4f33a9d386e4799fa42c, type: 3}
+    - {fileID: 21300002, guid: 57e05865197f4f33a9d386e4799fa42c, type: 3}
+    - {fileID: 21300022, guid: 57e05865197f4f33a9d386e4799fa42c, type: 3}
+    - {fileID: 21300010, guid: 57e05865197f4f33a9d386e4799fa42c, type: 3}
+    - {fileID: 21300008, guid: 57e05865197f4f33a9d386e4799fa42c, type: 3}
+    - {fileID: 21300016, guid: 57e05865197f4f33a9d386e4799fa42c, type: 3}
+    - {fileID: 21300018, guid: 57e05865197f4f33a9d386e4799fa42c, type: 3}
+    - {fileID: 21300012, guid: 57e05865197f4f33a9d386e4799fa42c, type: 3}
+    - {fileID: 21300006, guid: 57e05865197f4f33a9d386e4799fa42c, type: 3}
+    - {fileID: 21300014, guid: 57e05865197f4f33a9d386e4799fa42c, type: 3}
+    - {fileID: 21300020, guid: 57e05865197f4f33a9d386e4799fa42c, type: 3}
+    - {fileID: 21300000, guid: 57e05865197f4f33a9d386e4799fa42c, type: 3}
+    Multiple: 1
+    Hash: 76e4d2d2717aca7b811c92d65bffa8bb
+    Meta: 
+    Tags: []
+  - Name: SantaHelper
+    Collection: Christmas
+    Id: 1714528084
+    Path: Equipment/Armor/Christmas/SantaHelper
+    Sprite: {fileID: 21300004, guid: 938e0e076b84407aaefbf4cffc606b6f, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: 938e0e076b84407aaefbf4cffc606b6f, type: 3}
+    - {fileID: 21300002, guid: 938e0e076b84407aaefbf4cffc606b6f, type: 3}
+    - {fileID: 21300022, guid: 938e0e076b84407aaefbf4cffc606b6f, type: 3}
+    - {fileID: 21300010, guid: 938e0e076b84407aaefbf4cffc606b6f, type: 3}
+    - {fileID: 21300008, guid: 938e0e076b84407aaefbf4cffc606b6f, type: 3}
+    - {fileID: 21300016, guid: 938e0e076b84407aaefbf4cffc606b6f, type: 3}
+    - {fileID: 21300018, guid: 938e0e076b84407aaefbf4cffc606b6f, type: 3}
+    - {fileID: 21300012, guid: 938e0e076b84407aaefbf4cffc606b6f, type: 3}
+    - {fileID: 21300006, guid: 938e0e076b84407aaefbf4cffc606b6f, type: 3}
+    - {fileID: 21300014, guid: 938e0e076b84407aaefbf4cffc606b6f, type: 3}
+    - {fileID: 21300020, guid: 938e0e076b84407aaefbf4cffc606b6f, type: 3}
+    - {fileID: 21300000, guid: 938e0e076b84407aaefbf4cffc606b6f, type: 3}
+    Multiple: 1
+    Hash: 027ff3c0976a46ae0262c7c2c245aee2
+    Meta: 
+    Tags: []
+  Cape:
+  - Name: Cape1
+    Collection: Pro
+    Id: -1849895644
+    Path: Equipment/Cape/Pro/Cape1
+    Sprite: {fileID: 21300000, guid: 701b05b8aae746eb9ee8bfc6d4e5828a, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 701b05b8aae746eb9ee8bfc6d4e5828a, type: 3}
+    Multiple: 1
+    Hash: 2af0c263c42a381c4bc944e055c4cca3
+    Meta: 
+    Tags: []
+  - Name: Cape2
+    Collection: Pro
+    Id: -1849895641
+    Path: Equipment/Cape/Pro/Cape2
+    Sprite: {fileID: 21300000, guid: 9a7201ca21b94c818c195d515623661b, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 9a7201ca21b94c818c195d515623661b, type: 3}
+    Multiple: 1
+    Hash: a70bae2d51d5cb8f181caba63e320c2f
+    Meta: 
+    Tags: []
+  - Name: Cape3
+    Collection: Pro
+    Id: -1849895642
+    Path: Equipment/Cape/Pro/Cape3
+    Sprite: {fileID: 21300000, guid: 27937242f9cc42b3a25b0c167b3e6126, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 27937242f9cc42b3a25b0c167b3e6126, type: 3}
+    Multiple: 1
+    Hash: 51dc30251f29911f827cf40a2330eacd
+    Meta: 
+    Tags: []
+  - Name: Cape4
+    Collection: Pro
+    Id: -1849895639
+    Path: Equipment/Cape/Pro/Cape4
+    Sprite: {fileID: 21300000, guid: 682b9ad999eb4bff8f8dbf77180a33ac, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 682b9ad999eb4bff8f8dbf77180a33ac, type: 3}
+    Multiple: 1
+    Hash: 3b69957b81267f2976420705f7ed274f
+    Meta: 
+    Tags: []
+  - Name: SampleCape [Paint]
+    Collection: Basic
+    Id: -162565566
+    Path: Equipment/Cape/Basic/SampleCape [Paint]
+    Sprite: {fileID: 21300000, guid: 843ab050d3ae4b1cb44873c79f8c97db, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 843ab050d3ae4b1cb44873c79f8c97db, type: 3}
+    Multiple: 1
+    Hash: a5a73142671c5b0499a7b13d15ebf6a9
+    Meta: 
+    Tags:
+    - Paint
+  Back:
+  - Name: ArrowQuiver1 [Paint]
+    Collection: Pro
+    Id: 956714114
+    Path: Equipment/Back/Pro/ArrowQuiver1 [Paint]
+    Sprite: {fileID: 21300000, guid: e63645a82dd9478b91c702e42fb1bd77, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: e63645a82dd9478b91c702e42fb1bd77, type: 3}
+    Multiple: 1
+    Hash: ae425f4a9ea7c8fa0fe6fbdafe74b979
+    Meta: 
+    Tags:
+    - Paint
+  - Name: ArrowQuiver2 [Paint]
+    Collection: Pro
+    Id: 1573448753
+    Path: Equipment/Back/Pro/ArrowQuiver2 [Paint]
+    Sprite: {fileID: 21300000, guid: 1cad6e71cf28413d8706a5122bc8bccb, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 1cad6e71cf28413d8706a5122bc8bccb, type: 3}
+    Multiple: 1
+    Hash: 3375fd8f7348d1ec72f60bb687c48276
+    Meta: 
+    Tags:
+    - Paint
+  - Name: ArrowQuiver3 [Paint]
+    Collection: Pro
+    Id: -1507065012
+    Path: Equipment/Back/Pro/ArrowQuiver3 [Paint]
+    Sprite: {fileID: 21300000, guid: 4acc29418f4b463a95667e28eeb60a2f, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 4acc29418f4b463a95667e28eeb60a2f, type: 3}
+    Multiple: 1
+    Hash: 07da1261e925be6fc3c3f62fb5dca9bf
+    Meta: 
+    Tags:
+    - Paint
+  - Name: ArrowQuiver4  [Paint]
+    Collection: Pro
+    Id: -663256661
+    Path: Equipment/Back/Pro/ArrowQuiver4  [Paint]
+    Sprite: {fileID: 21300000, guid: 416d629db5554b379a03b93feaa675ce, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 416d629db5554b379a03b93feaa675ce, type: 3}
+    Multiple: 1
+    Hash: c7f185ad679938228a64904ce92f2bac
+    Meta: 
+    Tags:
+    - Paint
+  - Name: Jetpack
+    Collection: Pro
+    Id: -559760172
+    Path: Equipment/Back/Pro/Jetpack
+    Sprite: {fileID: 21300000, guid: c0697c433a7e4d0c87f3e0fac3e8ce14, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: c0697c433a7e4d0c87f3e0fac3e8ce14, type: 3}
+    Multiple: 1
+    Hash: f7e343cebc43f6a3ce8ce3b6f9a55566
+    Meta: 
+    Tags: []
+  - Name: Jetpack2
+    Collection: Pro
+    Id: -346518406
+    Path: Equipment/Back/Pro/Jetpack2
+    Sprite: {fileID: 21300000, guid: ddaaa40d94b44211832afe65b14ad9e3, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: ddaaa40d94b44211832afe65b14ad9e3, type: 3}
+    Multiple: 1
+    Hash: caec3142175109fd712d7d8714600eb4
+    Meta: 
+    Tags: []
+  MeleeWeapon1H:
+  - Name: DragonTooth
+    Collection: Basic
+    Id: -1487240104
+    Path: Equipment/MeleeWeapon1H/Basic/Sword/DragonTooth
+    Sprite: {fileID: 21300000, guid: c82b7f4cdadb420893565fedb608d6f9, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: c82b7f4cdadb420893565fedb608d6f9, type: 3}
+    Multiple: 1
+    Hash: 639aeaee1519571c6fada200d792ebfb
+    Meta: 
+    Tags: []
+  - Name: EnergyKnife
+    Collection: Basic
+    Id: -889217694
+    Path: Equipment/MeleeWeapon1H/Basic/Sword/EnergyKnife
+    Sprite: {fileID: 21300000, guid: cafe9b4e9dbc4b8cb6e654003fa72d33, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: cafe9b4e9dbc4b8cb6e654003fa72d33, type: 3}
+    Multiple: 1
+    Hash: 609fcc417d8c2e638f5503d4d53aa82e
+    Meta: 
+    Tags: []
+  - Name: EnergyKnife [Paint]
+    Collection: Basic
+    Id: 638161000
+    Path: Equipment/MeleeWeapon1H/Basic/Sword/EnergyKnife [Paint]
+    Sprite: {fileID: 21300000, guid: 1018f873427344199a0dba32ba040536, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 1018f873427344199a0dba32ba040536, type: 3}
+    Multiple: 1
+    Hash: d73e048840f936cc1f8229856bbfc0a4
+    Meta: 
+    Tags:
+    - Paint
+  - Name: EnergySword
+    Collection: Basic
+    Id: 287111058
+    Path: Equipment/MeleeWeapon1H/Basic/Sword/EnergySword
+    Sprite: {fileID: 21300000, guid: 406f298457df437f9d2ebbee92bfaf27, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 406f298457df437f9d2ebbee92bfaf27, type: 3}
+    Multiple: 1
+    Hash: 675851e8f9b14eee8b6ab2ad2eb95452
+    Meta: 
+    Tags: []
+  - Name: EnergySword [Paint]
+    Collection: Basic
+    Id: 902768332
+    Path: Equipment/MeleeWeapon1H/Basic/Sword/EnergySword [Paint]
+    Sprite: {fileID: 21300000, guid: a50e8c5737ac420d87aa321b7e04e09d, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: a50e8c5737ac420d87aa321b7e04e09d, type: 3}
+    Multiple: 1
+    Hash: 58ec336cbc0bf2a019948117a50adb31
+    Meta: 
+    Tags:
+    - Paint
+  - Name: LightSword
+    Collection: Basic
+    Id: -224869996
+    Path: Equipment/MeleeWeapon1H/Basic/Sword/LightSword
+    Sprite: {fileID: 21300000, guid: 9d799c1917234d5b91c86c8c707303fb, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 9d799c1917234d5b91c86c8c707303fb, type: 3}
+    Multiple: 1
+    Hash: e4f7befac47107dc3850239b8bcdb1cd
+    Meta: 
+    Tags: []
+  - Name: LightSword2
+    Collection: Basic
+    Id: -2112467098
+    Path: Equipment/MeleeWeapon1H/Basic/Sword/LightSword2
+    Sprite: {fileID: 21300000, guid: 4289cca0ed724d0f9e3f97b8856b0f40, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 4289cca0ed724d0f9e3f97b8856b0f40, type: 3}
+    Multiple: 1
+    Hash: f72ba1f407df20cb13b9c7973a60a8b3
+    Meta: 
+    Tags: []
+  - Name: SantaHelperWand
+    Collection: Christmas
+    Id: 1142041222
+    Path: Equipment/MeleeWeapon1H/Christmas/Wand/SantaHelperWand
+    Sprite: {fileID: 21300000, guid: e2e8f5e873464623add830b0139077d5, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: e2e8f5e873464623add830b0139077d5, type: 3}
+    Multiple: 1
+    Hash: 4d6392ca0878a543202a752c042206f0
+    Meta: 
+    Tags: []
+  - Name: SantaWand
+    Collection: Christmas
+    Id: -529753990
+    Path: Equipment/MeleeWeapon1H/Christmas/Wand/SantaWand
+    Sprite: {fileID: 21300000, guid: f60366ff0c584e5382cad2ffbd2fc7e0, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: f60366ff0c584e5382cad2ffbd2fc7e0, type: 3}
+    Multiple: 1
+    Hash: 160bc423f0ddb2a6ee4b48ad4b097c52
+    Meta: 
+    Tags: []
+  MeleeWeapon2H:
+  - Name: HeavySword [Paint]
+    Collection: Pro
+    Id: 323999908
+    Path: Equipment/MeleeWeapon2H/Pro/Sword/HeavySword [Paint]
+    Sprite: {fileID: 21300000, guid: e3bb89a8ba6440e58c4e64fc91125e07, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: e3bb89a8ba6440e58c4e64fc91125e07, type: 3}
+    Multiple: 1
+    Hash: 34c3c1d95454bfe4a23d8ed56fe4f0d4
+    Meta: 
+    Tags:
+    - Paint
+  - Name: HeavySword2 [Paint]
+    Collection: Pro
+    Id: 727827786
+    Path: Equipment/MeleeWeapon2H/Pro/Sword/HeavySword2 [Paint]
+    Sprite: {fileID: 21300000, guid: c87e9f90e7074cbdab80436670dc864b, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: c87e9f90e7074cbdab80436670dc864b, type: 3}
+    Multiple: 1
+    Hash: 0ef1b1bd7ef46116dcf80d6fc4b5cae2
+    Meta: 
+    Tags:
+    - Paint
+  Bow:
+  - Name: Bow1
+    Collection: Pro
+    Id: 1317448141
+    Path: Equipment/Bow/Pro/Bow1
+    Sprite: {fileID: 21300004, guid: 584cb86da2cf481887a29d5ed3304b4c, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: 584cb86da2cf481887a29d5ed3304b4c, type: 3}
+    - {fileID: 21300002, guid: 584cb86da2cf481887a29d5ed3304b4c, type: 3}
+    - {fileID: 21300000, guid: 584cb86da2cf481887a29d5ed3304b4c, type: 3}
+    Multiple: 1
+    Hash: 795b67c61e3c09085462a06285fad6b7
+    Meta: 
+    Tags: []
+  - Name: Bow2
+    Collection: Pro
+    Id: -248635800
+    Path: Equipment/Bow/Pro/Bow2
+    Sprite: {fileID: 21300004, guid: 4fa637c6ab7b49f19c8396a03ac3caef, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: 4fa637c6ab7b49f19c8396a03ac3caef, type: 3}
+    - {fileID: 21300002, guid: 4fa637c6ab7b49f19c8396a03ac3caef, type: 3}
+    - {fileID: 21300000, guid: 4fa637c6ab7b49f19c8396a03ac3caef, type: 3}
+    Multiple: 1
+    Hash: e90143be9c39e5dc963a494f9bcc4eba
+    Meta: 
+    Tags: []
+  - Name: Bow3 [Paint]
+    Collection: Pro
+    Id: -1096913373
+    Path: Equipment/Bow/Pro/Bow3 [Paint]
+    Sprite: {fileID: 21300004, guid: fb1888f356334d30a4bf382fd6adff5b, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: fb1888f356334d30a4bf382fd6adff5b, type: 3}
+    - {fileID: 21300002, guid: fb1888f356334d30a4bf382fd6adff5b, type: 3}
+    - {fileID: 21300000, guid: fb1888f356334d30a4bf382fd6adff5b, type: 3}
+    Multiple: 1
+    Hash: a4a29edf93037af319f651cc629833fa
+    Meta: 
+    Tags:
+    - Paint
+  - Name: Bow4
+    Collection: Pro
+    Id: 914163614
+    Path: Equipment/Bow/Pro/Bow4
+    Sprite: {fileID: 21300004, guid: 7bcebad915a442249e2f97bab1434ad6, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: 7bcebad915a442249e2f97bab1434ad6, type: 3}
+    - {fileID: 21300002, guid: 7bcebad915a442249e2f97bab1434ad6, type: 3}
+    - {fileID: 21300000, guid: 7bcebad915a442249e2f97bab1434ad6, type: 3}
+    Multiple: 1
+    Hash: a3d4173fe8f2a0baca59f1113969238e
+    Meta: 
+    Tags: []
+  Firearms1H:
+  - Name: FirestormFusionBlaster
+    Collection: Pro
+    Id: 1526715608
+    Path: Equipment/Firearms1H/Pro/FirestormFusionBlaster
+    Sprite: {fileID: 21300004, guid: deed0a1987d24c8fa508e5bbed670407, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: deed0a1987d24c8fa508e5bbed670407, type: 3}
+    - {fileID: 21300012, guid: deed0a1987d24c8fa508e5bbed670407, type: 3}
+    - {fileID: 21300008, guid: deed0a1987d24c8fa508e5bbed670407, type: 3}
+    - {fileID: 21300002, guid: deed0a1987d24c8fa508e5bbed670407, type: 3}
+    - {fileID: 21300000, guid: deed0a1987d24c8fa508e5bbed670407, type: 3}
+    - {fileID: 21300010, guid: deed0a1987d24c8fa508e5bbed670407, type: 3}
+    - {fileID: 21300006, guid: deed0a1987d24c8fa508e5bbed670407, type: 3}
+    Multiple: 1
+    Hash: 4fa6fead2c26a0ca83e0a5de7eead4b9
+    Meta: 
+    Tags: []
+  - Name: LB-200
+    Collection: Basic
+    Id: 350017136
+    Path: Equipment/Firearms1H/Basic/LB-200
+    Sprite: {fileID: 21300004, guid: 66f819c8cdbc4e2c8120b90a43a4f8e8, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: 66f819c8cdbc4e2c8120b90a43a4f8e8, type: 3}
+    - {fileID: 21300012, guid: 66f819c8cdbc4e2c8120b90a43a4f8e8, type: 3}
+    - {fileID: 21300008, guid: 66f819c8cdbc4e2c8120b90a43a4f8e8, type: 3}
+    - {fileID: 21300002, guid: 66f819c8cdbc4e2c8120b90a43a4f8e8, type: 3}
+    - {fileID: 21300000, guid: 66f819c8cdbc4e2c8120b90a43a4f8e8, type: 3}
+    - {fileID: 21300010, guid: 66f819c8cdbc4e2c8120b90a43a4f8e8, type: 3}
+    - {fileID: 21300006, guid: 66f819c8cdbc4e2c8120b90a43a4f8e8, type: 3}
+    Multiple: 1
+    Hash: 5c64234c84408c2d08549e02fb787b37
+    Meta: 
+    Tags: []
+  - Name: LB-600
+    Collection: Pro
+    Id: -286463017
+    Path: Equipment/Firearms1H/Pro/LB-600
+    Sprite: {fileID: 21300004, guid: 1369945b365c496a9e7e9cf2917db08f, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: 1369945b365c496a9e7e9cf2917db08f, type: 3}
+    - {fileID: 21300012, guid: 1369945b365c496a9e7e9cf2917db08f, type: 3}
+    - {fileID: 21300008, guid: 1369945b365c496a9e7e9cf2917db08f, type: 3}
+    - {fileID: 21300002, guid: 1369945b365c496a9e7e9cf2917db08f, type: 3}
+    - {fileID: 21300000, guid: 1369945b365c496a9e7e9cf2917db08f, type: 3}
+    - {fileID: 21300010, guid: 1369945b365c496a9e7e9cf2917db08f, type: 3}
+    - {fileID: 21300006, guid: 1369945b365c496a9e7e9cf2917db08f, type: 3}
+    Multiple: 1
+    Hash: 3b2d983b1b6f05334de65a0a3647e373
+    Meta: 
+    Tags: []
+  - Name: LightHandBlaster
+    Collection: Basic
+    Id: 281735063
+    Path: Equipment/Firearms1H/Basic/LightHandBlaster
+    Sprite: {fileID: 21300004, guid: cc2d8d87c56a48d68abd87570e43a2e0, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: cc2d8d87c56a48d68abd87570e43a2e0, type: 3}
+    - {fileID: 21300012, guid: cc2d8d87c56a48d68abd87570e43a2e0, type: 3}
+    - {fileID: 21300008, guid: cc2d8d87c56a48d68abd87570e43a2e0, type: 3}
+    - {fileID: 21300002, guid: cc2d8d87c56a48d68abd87570e43a2e0, type: 3}
+    - {fileID: 21300000, guid: cc2d8d87c56a48d68abd87570e43a2e0, type: 3}
+    - {fileID: 21300010, guid: cc2d8d87c56a48d68abd87570e43a2e0, type: 3}
+    - {fileID: 21300006, guid: cc2d8d87c56a48d68abd87570e43a2e0, type: 3}
+    Multiple: 1
+    Hash: 51b91cbfb5223dbd0b588311211a3fc4
+    Meta: 
+    Tags: []
+  - Name: PP-RX
+    Collection: Pro
+    Id: 374151425
+    Path: Equipment/Firearms1H/Pro/PP-RX
+    Sprite: {fileID: 21300004, guid: e4ed54cc13f34534bb457d2cc839ccb2, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: e4ed54cc13f34534bb457d2cc839ccb2, type: 3}
+    - {fileID: 21300012, guid: e4ed54cc13f34534bb457d2cc839ccb2, type: 3}
+    - {fileID: 21300008, guid: e4ed54cc13f34534bb457d2cc839ccb2, type: 3}
+    - {fileID: 21300002, guid: e4ed54cc13f34534bb457d2cc839ccb2, type: 3}
+    - {fileID: 21300000, guid: e4ed54cc13f34534bb457d2cc839ccb2, type: 3}
+    - {fileID: 21300010, guid: e4ed54cc13f34534bb457d2cc839ccb2, type: 3}
+    - {fileID: 21300006, guid: e4ed54cc13f34534bb457d2cc839ccb2, type: 3}
+    Multiple: 1
+    Hash: 7f03e9844c29be6911984409cd4fca5f
+    Meta: 
+    Tags: []
+  - Name: PulsePistol
+    Collection: Pro
+    Id: 1462236108
+    Path: Equipment/Firearms1H/Pro/PulsePistol
+    Sprite: {fileID: 21300004, guid: a7ecdb46a00d4058bf90eabe6be82fd7, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: a7ecdb46a00d4058bf90eabe6be82fd7, type: 3}
+    - {fileID: 21300012, guid: a7ecdb46a00d4058bf90eabe6be82fd7, type: 3}
+    - {fileID: 21300008, guid: a7ecdb46a00d4058bf90eabe6be82fd7, type: 3}
+    - {fileID: 21300002, guid: a7ecdb46a00d4058bf90eabe6be82fd7, type: 3}
+    - {fileID: 21300000, guid: a7ecdb46a00d4058bf90eabe6be82fd7, type: 3}
+    - {fileID: 21300010, guid: a7ecdb46a00d4058bf90eabe6be82fd7, type: 3}
+    - {fileID: 21300006, guid: a7ecdb46a00d4058bf90eabe6be82fd7, type: 3}
+    Multiple: 1
+    Hash: ecba747ae8d8c9f4d54628d134b1eef7
+    Meta: 
+    Tags: []
+  Firearms2H:
+  - Name: HB-2000
+    Collection: Pro
+    Id: -1994144361
+    Path: Equipment/Firearms2H/Pro/HB-2000
+    Sprite: {fileID: 21300004, guid: 9efec27cbf2d4cc5bda354d1caf77144, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: 9efec27cbf2d4cc5bda354d1caf77144, type: 3}
+    - {fileID: 21300014, guid: 9efec27cbf2d4cc5bda354d1caf77144, type: 3}
+    - {fileID: 21300008, guid: 9efec27cbf2d4cc5bda354d1caf77144, type: 3}
+    - {fileID: 21300002, guid: 9efec27cbf2d4cc5bda354d1caf77144, type: 3}
+    - {fileID: 21300000, guid: 9efec27cbf2d4cc5bda354d1caf77144, type: 3}
+    - {fileID: 21300012, guid: 9efec27cbf2d4cc5bda354d1caf77144, type: 3}
+    - {fileID: 21300018, guid: 9efec27cbf2d4cc5bda354d1caf77144, type: 3}
+    Multiple: 1
+    Hash: 996534d2a652299dd16769ca110a0d25
+    Meta: 
+    Tags: []
+  - Name: LR-100
+    Collection: Basic
+    Id: -1364067461
+    Path: Equipment/Firearms2H/Basic/LR-100
+    Sprite: {fileID: 21300004, guid: e40afcfa3ff142cc861f424e47ec94f6, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: e40afcfa3ff142cc861f424e47ec94f6, type: 3}
+    - {fileID: 21300014, guid: e40afcfa3ff142cc861f424e47ec94f6, type: 3}
+    - {fileID: 21300008, guid: e40afcfa3ff142cc861f424e47ec94f6, type: 3}
+    - {fileID: 21300002, guid: e40afcfa3ff142cc861f424e47ec94f6, type: 3}
+    - {fileID: 21300000, guid: e40afcfa3ff142cc861f424e47ec94f6, type: 3}
+    - {fileID: 21300012, guid: e40afcfa3ff142cc861f424e47ec94f6, type: 3}
+    - {fileID: 21300018, guid: e40afcfa3ff142cc861f424e47ec94f6, type: 3}
+    Multiple: 1
+    Hash: 425b10cc0442023f34ba1346a8c37c4f
+    Meta: 
+    Tags: []
+  - Name: LR-300
+    Collection: Pro
+    Id: 862971576
+    Path: Equipment/Firearms2H/Pro/LR-300
+    Sprite: {fileID: 21300004, guid: 16d1c69831f546fabd3ce205f32503b7, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: 16d1c69831f546fabd3ce205f32503b7, type: 3}
+    - {fileID: 21300014, guid: 16d1c69831f546fabd3ce205f32503b7, type: 3}
+    - {fileID: 21300008, guid: 16d1c69831f546fabd3ce205f32503b7, type: 3}
+    - {fileID: 21300002, guid: 16d1c69831f546fabd3ce205f32503b7, type: 3}
+    - {fileID: 21300000, guid: 16d1c69831f546fabd3ce205f32503b7, type: 3}
+    - {fileID: 21300012, guid: 16d1c69831f546fabd3ce205f32503b7, type: 3}
+    - {fileID: 21300018, guid: 16d1c69831f546fabd3ce205f32503b7, type: 3}
+    Multiple: 1
+    Hash: df1838ea782354d97f76a5ff3dfafadf
+    Meta: 
+    Tags: []
+  - Name: LR-300RX
+    Collection: Pro
+    Id: -497814930
+    Path: Equipment/Firearms2H/Pro/LR-300RX
+    Sprite: {fileID: 21300004, guid: 418ab483bc88423b913545022231ba96, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: 418ab483bc88423b913545022231ba96, type: 3}
+    - {fileID: 21300014, guid: 418ab483bc88423b913545022231ba96, type: 3}
+    - {fileID: 21300008, guid: 418ab483bc88423b913545022231ba96, type: 3}
+    - {fileID: 21300002, guid: 418ab483bc88423b913545022231ba96, type: 3}
+    - {fileID: 21300000, guid: 418ab483bc88423b913545022231ba96, type: 3}
+    - {fileID: 21300012, guid: 418ab483bc88423b913545022231ba96, type: 3}
+    - {fileID: 21300018, guid: 418ab483bc88423b913545022231ba96, type: 3}
+    Multiple: 1
+    Hash: 3af9b81108111f719ffd0fedc94545f3
+    Meta: 
+    Tags: []
+  - Name: LR-500
+    Collection: Pro
+    Id: 1709946582
+    Path: Equipment/Firearms2H/Pro/LR-500
+    Sprite: {fileID: 21300004, guid: 4c31739d765e412a8c68ae4c11c0128f, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: 4c31739d765e412a8c68ae4c11c0128f, type: 3}
+    - {fileID: 21300014, guid: 4c31739d765e412a8c68ae4c11c0128f, type: 3}
+    - {fileID: 21300008, guid: 4c31739d765e412a8c68ae4c11c0128f, type: 3}
+    - {fileID: 21300002, guid: 4c31739d765e412a8c68ae4c11c0128f, type: 3}
+    - {fileID: 21300000, guid: 4c31739d765e412a8c68ae4c11c0128f, type: 3}
+    - {fileID: 21300012, guid: 4c31739d765e412a8c68ae4c11c0128f, type: 3}
+    - {fileID: 21300018, guid: 4c31739d765e412a8c68ae4c11c0128f, type: 3}
+    Multiple: 1
+    Hash: 8d7c2e0ac3f57382d4d11bbd9244706b
+    Meta: 
+    Tags: []
+  - Name: OblivionPlasmaGun
+    Collection: Pro
+    Id: 1535456592
+    Path: Equipment/Firearms2H/Pro/OblivionPlasmaGun
+    Sprite: {fileID: 21300004, guid: 922c5ab800d740ddb58993e969b67943, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: 922c5ab800d740ddb58993e969b67943, type: 3}
+    - {fileID: 21300014, guid: 922c5ab800d740ddb58993e969b67943, type: 3}
+    - {fileID: 21300008, guid: 922c5ab800d740ddb58993e969b67943, type: 3}
+    - {fileID: 21300002, guid: 922c5ab800d740ddb58993e969b67943, type: 3}
+    - {fileID: 21300000, guid: 922c5ab800d740ddb58993e969b67943, type: 3}
+    - {fileID: 21300012, guid: 922c5ab800d740ddb58993e969b67943, type: 3}
+    - {fileID: 21300018, guid: 922c5ab800d740ddb58993e969b67943, type: 3}
+    Multiple: 1
+    Hash: 399655bd64e60e768876820880b296c7
+    Meta: 
+    Tags: []
+  - Name: PR-5000
+    Collection: Basic
+    Id: -498115853
+    Path: Equipment/Firearms2H/Basic/PR-5000
+    Sprite: {fileID: 21300004, guid: 99c4e00480a44195b43c9be1900529c4, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: 99c4e00480a44195b43c9be1900529c4, type: 3}
+    - {fileID: 21300014, guid: 99c4e00480a44195b43c9be1900529c4, type: 3}
+    - {fileID: 21300008, guid: 99c4e00480a44195b43c9be1900529c4, type: 3}
+    - {fileID: 21300002, guid: 99c4e00480a44195b43c9be1900529c4, type: 3}
+    - {fileID: 21300000, guid: 99c4e00480a44195b43c9be1900529c4, type: 3}
+    - {fileID: 21300012, guid: 99c4e00480a44195b43c9be1900529c4, type: 3}
+    - {fileID: 21300018, guid: 99c4e00480a44195b43c9be1900529c4, type: 3}
+    Multiple: 1
+    Hash: ab5444b0d148b3270bc40bc87c80c791
+    Meta: 
+    Tags: []
+  - Name: PR-9000
+    Collection: Pro
+    Id: -1127338666
+    Path: Equipment/Firearms2H/Pro/PR-9000
+    Sprite: {fileID: 21300004, guid: 6788e2a5462b4209bf76eab710f601d2, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: 6788e2a5462b4209bf76eab710f601d2, type: 3}
+    - {fileID: 21300012, guid: 6788e2a5462b4209bf76eab710f601d2, type: 3}
+    - {fileID: 21300008, guid: 6788e2a5462b4209bf76eab710f601d2, type: 3}
+    - {fileID: 21300002, guid: 6788e2a5462b4209bf76eab710f601d2, type: 3}
+    - {fileID: 21300000, guid: 6788e2a5462b4209bf76eab710f601d2, type: 3}
+    - {fileID: 21300010, guid: 6788e2a5462b4209bf76eab710f601d2, type: 3}
+    - {fileID: 21300006, guid: 6788e2a5462b4209bf76eab710f601d2, type: 3}
+    Multiple: 1
+    Hash: add8957f0a281b08070123508de78c15
+    Meta: 
+    Tags: []
+  - Name: RL-800
+    Collection: Pro
+    Id: -1619874911
+    Path: Equipment/Firearms2H/Pro/RL-800
+    Sprite: {fileID: 21300004, guid: 9c6813c492b84c3cab130801b341ca93, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: 9c6813c492b84c3cab130801b341ca93, type: 3}
+    - {fileID: 21300014, guid: 9c6813c492b84c3cab130801b341ca93, type: 3}
+    - {fileID: 21300008, guid: 9c6813c492b84c3cab130801b341ca93, type: 3}
+    - {fileID: 21300002, guid: 9c6813c492b84c3cab130801b341ca93, type: 3}
+    - {fileID: 21300000, guid: 9c6813c492b84c3cab130801b341ca93, type: 3}
+    - {fileID: 21300012, guid: 9c6813c492b84c3cab130801b341ca93, type: 3}
+    - {fileID: 21300018, guid: 9c6813c492b84c3cab130801b341ca93, type: 3}
+    Multiple: 1
+    Hash: b38b9b2e5cd772b75ba0ede06121b990
+    Meta: 
+    Tags: []
+  - Name: RL-DIY200
+    Collection: Pro
+    Id: -1933728245
+    Path: Equipment/Firearms2H/Pro/RL-DIY200
+    Sprite: {fileID: 21300004, guid: bba8fef31bc5490481c63b5298c7cad8, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: bba8fef31bc5490481c63b5298c7cad8, type: 3}
+    - {fileID: 21300014, guid: bba8fef31bc5490481c63b5298c7cad8, type: 3}
+    - {fileID: 21300008, guid: bba8fef31bc5490481c63b5298c7cad8, type: 3}
+    - {fileID: 21300002, guid: bba8fef31bc5490481c63b5298c7cad8, type: 3}
+    - {fileID: 21300000, guid: bba8fef31bc5490481c63b5298c7cad8, type: 3}
+    - {fileID: 21300012, guid: bba8fef31bc5490481c63b5298c7cad8, type: 3}
+    - {fileID: 21300018, guid: bba8fef31bc5490481c63b5298c7cad8, type: 3}
+    Multiple: 1
+    Hash: 90f8b16d5d7e6f6e8feee715b9de412a
+    Meta: 
+    Tags: []
+  - Name: RRII
+    Collection: Pro
+    Id: 611118480
+    Path: Equipment/Firearms2H/Pro/RRII
+    Sprite: {fileID: 21300004, guid: f98292df967f47fd9b29bcf280e19435, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: f98292df967f47fd9b29bcf280e19435, type: 3}
+    - {fileID: 21300014, guid: f98292df967f47fd9b29bcf280e19435, type: 3}
+    - {fileID: 21300008, guid: f98292df967f47fd9b29bcf280e19435, type: 3}
+    - {fileID: 21300002, guid: f98292df967f47fd9b29bcf280e19435, type: 3}
+    - {fileID: 21300000, guid: f98292df967f47fd9b29bcf280e19435, type: 3}
+    - {fileID: 21300012, guid: f98292df967f47fd9b29bcf280e19435, type: 3}
+    - {fileID: 21300018, guid: f98292df967f47fd9b29bcf280e19435, type: 3}
+    Multiple: 1
+    Hash: c62fdf432e10ef72b7710c9d976a1a1d
+    Meta: 
+    Tags: []
+  - Name: SG-V
+    Collection: Pro
+    Id: 1559108497
+    Path: Equipment/Firearms2H/Pro/SG-V
+    Sprite: {fileID: 21300004, guid: 3733ba84ce824933aa034ce80c5d2048, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: 3733ba84ce824933aa034ce80c5d2048, type: 3}
+    - {fileID: 21300014, guid: 3733ba84ce824933aa034ce80c5d2048, type: 3}
+    - {fileID: 21300008, guid: 3733ba84ce824933aa034ce80c5d2048, type: 3}
+    - {fileID: 21300002, guid: 3733ba84ce824933aa034ce80c5d2048, type: 3}
+    - {fileID: 21300000, guid: 3733ba84ce824933aa034ce80c5d2048, type: 3}
+    - {fileID: 21300012, guid: 3733ba84ce824933aa034ce80c5d2048, type: 3}
+    - {fileID: 21300018, guid: 3733ba84ce824933aa034ce80c5d2048, type: 3}
+    Multiple: 1
+    Hash: d91135e9bc44053296c47b05f50400c0
+    Meta: 
+    Tags: []
+  - Name: SpreadGun
+    Collection: Basic
+    Id: 852385404
+    Path: Equipment/Firearms2H/Basic/SpreadGun
+    Sprite: {fileID: 21300004, guid: 9a9da2f42d724de7a46d1445dbd469f4, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: 9a9da2f42d724de7a46d1445dbd469f4, type: 3}
+    - {fileID: 21300014, guid: 9a9da2f42d724de7a46d1445dbd469f4, type: 3}
+    - {fileID: 21300008, guid: 9a9da2f42d724de7a46d1445dbd469f4, type: 3}
+    - {fileID: 21300002, guid: 9a9da2f42d724de7a46d1445dbd469f4, type: 3}
+    - {fileID: 21300000, guid: 9a9da2f42d724de7a46d1445dbd469f4, type: 3}
+    - {fileID: 21300012, guid: 9a9da2f42d724de7a46d1445dbd469f4, type: 3}
+    - {fileID: 21300018, guid: 9a9da2f42d724de7a46d1445dbd469f4, type: 3}
+    Multiple: 1
+    Hash: 548f3905e9aa9984eb4ce0518ee70b92
+    Meta: 
+    Tags: []
+  - Name: SR-25
+    Collection: Pro
+    Id: -1292688087
+    Path: Equipment/Firearms2H/Pro/SR-25
+    Sprite: {fileID: 21300004, guid: e3be069aa0814d89b56b92c50bc32f66, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: e3be069aa0814d89b56b92c50bc32f66, type: 3}
+    - {fileID: 21300014, guid: e3be069aa0814d89b56b92c50bc32f66, type: 3}
+    - {fileID: 21300008, guid: e3be069aa0814d89b56b92c50bc32f66, type: 3}
+    - {fileID: 21300002, guid: e3be069aa0814d89b56b92c50bc32f66, type: 3}
+    - {fileID: 21300000, guid: e3be069aa0814d89b56b92c50bc32f66, type: 3}
+    - {fileID: 21300012, guid: e3be069aa0814d89b56b92c50bc32f66, type: 3}
+    - {fileID: 21300018, guid: e3be069aa0814d89b56b92c50bc32f66, type: 3}
+    Multiple: 1
+    Hash: d2619f9c96f3d453fcb711774d5b00db
+    Meta: 
+    Tags: []
+  - Name: SR-MDK
+    Collection: Pro
+    Id: -57662724
+    Path: Equipment/Firearms2H/Pro/SR-MDK
+    Sprite: {fileID: 21300004, guid: fcaf2c30695f48868c6a34bc4fd1c4d7, type: 3}
+    Sprites:
+    - {fileID: 21300004, guid: fcaf2c30695f48868c6a34bc4fd1c4d7, type: 3}
+    - {fileID: 21300014, guid: fcaf2c30695f48868c6a34bc4fd1c4d7, type: 3}
+    - {fileID: 21300008, guid: fcaf2c30695f48868c6a34bc4fd1c4d7, type: 3}
+    - {fileID: 21300002, guid: fcaf2c30695f48868c6a34bc4fd1c4d7, type: 3}
+    - {fileID: 21300000, guid: fcaf2c30695f48868c6a34bc4fd1c4d7, type: 3}
+    - {fileID: 21300012, guid: fcaf2c30695f48868c6a34bc4fd1c4d7, type: 3}
+    - {fileID: 21300018, guid: fcaf2c30695f48868c6a34bc4fd1c4d7, type: 3}
+    Multiple: 1
+    Hash: 910f57f2af3cad8ececa82109eb9e35e
+    Meta: 
+    Tags: []
+  Shield:
+  - Name: Communicator
+    Collection: Pro
+    Id: 111109435
+    Path: Equipment/Shield/Pro/Communicator
+    Sprite: {fileID: 21300000, guid: 6416523cc19e4ac0b827efefbf020682, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 6416523cc19e4ac0b827efefbf020682, type: 3}
+    Multiple: 1
+    Hash: a6b1d0b9b26b3a3e4e712fb740107aca
+    Meta: 
+    Tags: []
+  - Name: EnergyShield
+    Collection: Basic
+    Id: 1806973132
+    Path: Equipment/Shield/Basic/EnergyShield
+    Sprite: {fileID: 21300000, guid: a95d5d129f8f43249c1870429964c4da, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: a95d5d129f8f43249c1870429964c4da, type: 3}
+    Multiple: 1
+    Hash: 9693ed6dc95b3b37017ae4e85c8ebffb
+    Meta: 
+    Tags: []
+  - Name: EnergyShield [Paint]
+    Collection: Basic
+    Id: -530324434
+    Path: Equipment/Shield/Basic/EnergyShield [Paint]
+    Sprite: {fileID: 21300000, guid: 1445f47df908415ea46018f607301be1, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 1445f47df908415ea46018f607301be1, type: 3}
+    Multiple: 1
+    Hash: 2472b3786c21da68dde7a7457b76ff89
+    Meta: 
+    Tags:
+    - Paint
+  - Name: EnergyShield2
+    Collection: Basic
+    Id: -442282630
+    Path: Equipment/Shield/Basic/EnergyShield2
+    Sprite: {fileID: 21300000, guid: 0682e000753243cbbd6766a6756b1755, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 0682e000753243cbbd6766a6756b1755, type: 3}
+    Multiple: 1
+    Hash: aa5e9f0001fd1cb615b20a6b71112cd2
+    Meta: 
+    Tags: []
+  - Name: EnergyShield2 [Paint]
+    Collection: Basic
+    Id: -610208180
+    Path: Equipment/Shield/Basic/EnergyShield2 [Paint]
+    Sprite: {fileID: 21300000, guid: ee92551f4c104ff2ab54d270af8e4419, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: ee92551f4c104ff2ab54d270af8e4419, type: 3}
+    Multiple: 1
+    Hash: b1defe623eecb1da58b68d446842fc35
+    Meta: 
+    Tags:
+    - Paint
+  - Name: EnergyShield3
+    Collection: Basic
+    Id: -442282629
+    Path: Equipment/Shield/Basic/EnergyShield3
+    Sprite: {fileID: 21300000, guid: 35162d41b40c4c14b0c7d269eaa2f38a, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 35162d41b40c4c14b0c7d269eaa2f38a, type: 3}
+    Multiple: 1
+    Hash: c07477c9980b8d3641f869733bf30bd2
+    Meta: 
+    Tags: []
+  - Name: EnergyShield3 [Paint]
+    Collection: Basic
+    Id: -609094069
+    Path: Equipment/Shield/Basic/EnergyShield3 [Paint]
+    Sprite: {fileID: 21300000, guid: 85d0ffee20904ed4a476c099f02d1987, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 85d0ffee20904ed4a476c099f02d1987, type: 3}
+    Multiple: 1
+    Hash: a8c00a9cea6dab7a7e8a1f38d1e5cff8
+    Meta: 
+    Tags:
+    - Paint
+  - Name: MARK-H2Shield
+    Collection: Pro
+    Id: 529632623
+    Path: Equipment/Shield/Pro/MARK-H2Shield
+    Sprite: {fileID: 21300000, guid: 4a4e9accce7a4069a7ec934192b0e0db, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 4a4e9accce7a4069a7ec934192b0e0db, type: 3}
+    Multiple: 1
+    Hash: 4c0d84c2b353298fcae5d0e9f3493918
+    Meta: 
+    Tags: []
+  - Name: MARK-H2ShieldLight
+    Collection: Pro
+    Id: -117070287
+    Path: Equipment/Shield/Pro/MARK-H2ShieldLight
+    Sprite: {fileID: 21300000, guid: ca2703073c4243c5b4ebc5a455a157ab, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: ca2703073c4243c5b4ebc5a455a157ab, type: 3}
+    Multiple: 1
+    Hash: 825c005613ca79b4efc1526c22282ee3
+    Meta: 
+    Tags: []
+  - Name: MARK-H4Shield
+    Collection: Basic
+    Id: -348086906
+    Path: Equipment/Shield/Basic/MARK-H4Shield
+    Sprite: {fileID: 21300000, guid: a96d8dea542e4c9c82441a3d3ab12be6, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: a96d8dea542e4c9c82441a3d3ab12be6, type: 3}
+    Multiple: 1
+    Hash: 68e39d58525dbefb0b265ac22fc8b76e
+    Meta: 
+    Tags: []
+  - Name: SteelShield [Paint]
+    Collection: Basic
+    Id: -387999467
+    Path: Equipment/Shield/Basic/SteelShield [Paint]
+    Sprite: {fileID: 21300000, guid: 2cf5d7a914924ec1a8974e7e04abc9c8, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 2cf5d7a914924ec1a8974e7e04abc9c8, type: 3}
+    Multiple: 1
+    Hash: e97fde5dcbd381e2901cf19ee4d2ec3c
+    Meta: 
+    Tags:
+    - Paint
+  - Name: SteelShield2 [Paint]
+    Collection: Basic
+    Id: -363962049
+    Path: Equipment/Shield/Basic/SteelShield2 [Paint]
+    Sprite: {fileID: 21300000, guid: ac6cab4fac444045bdef9506657fe24c, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: ac6cab4fac444045bdef9506657fe24c, type: 3}
+    Multiple: 1
+    Hash: 1480f6ca191647d42796b430cd56d241
+    Meta: 
+    Tags:
+    - Paint
+  Supplies:
+  - Name: Axeorang [Paint]
+    Collection: Pro
+    Id: -2053915601
+    Path: Equipment/Supplies/Pro/Throwing/Axeorang [Paint]
+    Sprite: {fileID: 21300000, guid: a3a14342847c43208ea3e53568df5ad0, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: a3a14342847c43208ea3e53568df5ad0, type: 3}
+    Multiple: 1
+    Hash: ca370846180632edafd009129be429b7
+    Meta: 
+    Tags:
+    - Paint
+  - Name: Boomerang [Paint]
+    Collection: Pro
+    Id: -420071340
+    Path: Equipment/Supplies/Pro/Throwing/Boomerang [Paint]
+    Sprite: {fileID: 21300000, guid: 1a41b9479f5a4b328b73e04260b0220c, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 1a41b9479f5a4b328b73e04260b0220c, type: 3}
+    Multiple: 1
+    Hash: c2b18617eb91240626e6a7a2b1db6b15
+    Meta: 
+    Tags:
+    - Paint
+  - Name: Communicator
+    Collection: Pro
+    Id: 111109435
+    Path: Equipment/Supplies/Pro/Radio/Communicator
+    Sprite: {fileID: 21300000, guid: df1f2952f1ad4ffa9e09d0018d22477e, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: df1f2952f1ad4ffa9e09d0018d22477e, type: 3}
+    Multiple: 1
+    Hash: 036f26b33cc3843fde69b16cf3cecdc3
+    Meta: 
+    Tags: []
+  - Name: Flash
+    Collection: Pro
+    Id: -1883655912
+    Path: Equipment/Supplies/Pro/Bombs/Flash
+    Sprite: {fileID: 21300000, guid: 4a412f88b84e4f3987721bdf4d626e20, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 4a412f88b84e4f3987721bdf4d626e20, type: 3}
+    Multiple: 1
+    Hash: 9e15f9a8cc3f288c19f004cfe93f5d27
+    Meta: 
+    Tags: []
+  - Name: LagreHealing
+    Collection: Basic
+    Id: 336541388
+    Path: Equipment/Supplies/Basic/Potions/LagreHealing
+    Sprite: {fileID: 21300000, guid: 67294795ae8841ad9e14f26c3e1470fa, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 67294795ae8841ad9e14f26c3e1470fa, type: 3}
+    Multiple: 1
+    Hash: 37101f301b082be207a633f2872c7528
+    Meta: 
+    Tags: []
+  - Name: MediumHealing
+    Collection: Basic
+    Id: -500156896
+    Path: Equipment/Supplies/Basic/Potions/MediumHealing
+    Sprite: {fileID: 21300000, guid: b5198c0297aa404c8999282f7e6ec8f3, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: b5198c0297aa404c8999282f7e6ec8f3, type: 3}
+    Multiple: 1
+    Hash: fe0646549d14a53bd6f79b574a60ba85
+    Meta: 
+    Tags: []
+  - Name: Mine
+    Collection: Pro
+    Id: -1122461955
+    Path: Equipment/Supplies/Pro/Mines/Mine
+    Sprite: {fileID: 21300000, guid: ce9e2e4f947b43d7b567be8082036ddb, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: ce9e2e4f947b43d7b567be8082036ddb, type: 3}
+    Multiple: 1
+    Hash: dd98b05a06840c4a4641ad387ec9cff6
+    Meta: 
+    Tags: []
+  - Name: SmallHealing
+    Collection: Basic
+    Id: 1293393442
+    Path: Equipment/Supplies/Basic/Potions/SmallHealing
+    Sprite: {fileID: 21300000, guid: 51d23945cd234a76bc4c26cfac02a57c, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 51d23945cd234a76bc4c26cfac02a57c, type: 3}
+    Multiple: 1
+    Hash: a20c6dc8f98499529d50703885a27a2f
+    Meta: 
+    Tags: []
+  - Name: Smoke
+    Collection: Pro
+    Id: -1607993607
+    Path: Equipment/Supplies/Pro/Bombs/Smoke
+    Sprite: {fileID: 21300000, guid: 776b5f2d50664522841bfd2f84dc578d, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 776b5f2d50664522841bfd2f84dc578d, type: 3}
+    Multiple: 1
+    Hash: 039bbadf7809edfdd0efdba1121e98e2
+    Meta: 
+    Tags: []
+  - Name: Thermal
+    Collection: Pro
+    Id: -635208903
+    Path: Equipment/Supplies/Pro/Bombs/Thermal
+    Sprite: {fileID: 21300000, guid: fdcb3eef9e234360a22924a9d53c30ab, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: fdcb3eef9e234360a22924a9d53c30ab, type: 3}
+    Multiple: 1
+    Hash: 31dac7ae50a061727bccd05223e80040
+    Meta: 
+    Tags: []
+  - Name: ThrowingStar [Paint]
+    Collection: Pro
+    Id: 557910224
+    Path: Equipment/Supplies/Pro/Throwing/ThrowingStar [Paint]
+    Sprite: {fileID: 21300000, guid: 8f76bc8e06ff4bd787122cedb649564a, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: 8f76bc8e06ff4bd787122cedb649564a, type: 3}
+    Multiple: 1
+    Hash: 48305131fb126bc67f2165d1aeec489e
+    Meta: 
+    Tags:
+    - Paint
+  - Name: ThrowingStar2
+    Collection: Pro
+    Id: -224082152
+    Path: Equipment/Supplies/Pro/Throwing/ThrowingStar2
+    Sprite: {fileID: 21300000, guid: fb5b175827224f438e633cb7885f2f2f, type: 3}
+    Sprites:
+    - {fileID: 21300000, guid: fb5b175827224f438e633cb7885f2f2f, type: 3}
+    Multiple: 1
+    Hash: 817434d9fb9ae65d9af79b3ecdb1d7a8
+    Meta: 
+    Tags: []
+  DebugLogging: 0

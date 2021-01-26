@@ -536,17 +536,17 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
         }
 
         bool bRet = false;
-        ItemType itemType = item.itemDataRef.itemType;
+        ItemCategory itemType = item.itemDataRef.itemType;
 
-        if (itemType == ItemType.Trinket && (slot.slotType == RosterSlotType.TrinketOne || slot.slotType == RosterSlotType.TrinketTwo))
+        if (itemType == ItemCategory.Trinket && (slot.slotType == RosterSlotType.TrinketOne || slot.slotType == RosterSlotType.TrinketTwo))
             bRet = true;
-        else if (itemType == ItemType.OneHandMelee && (slot.slotType == RosterSlotType.MainHand || slot.slotType == RosterSlotType.OffHand))
+        else if (itemType == ItemCategory.OneHandMelee && (slot.slotType == RosterSlotType.MainHand || slot.slotType == RosterSlotType.OffHand))
             bRet = true;
-        else if (itemType == ItemType.Shield && slot.slotType == RosterSlotType.OffHand)
+        else if (itemType == ItemCategory.Shield && slot.slotType == RosterSlotType.OffHand)
             bRet = true;
-        else if (itemType == ItemType.TwoHandMelee && slot.slotType == RosterSlotType.MainHand)
+        else if (itemType == ItemCategory.TwoHandMelee && slot.slotType == RosterSlotType.MainHand)
             bRet = true;
-        else if (itemType == ItemType.TwoHandRanged && slot.slotType == RosterSlotType.MainHand)
+        else if (itemType == ItemCategory.TwoHandRanged && slot.slotType == RosterSlotType.MainHand)
             bRet = true;
 
         Debug.LogWarning("IsItemValidOnSlot() returning " + bRet.ToString());

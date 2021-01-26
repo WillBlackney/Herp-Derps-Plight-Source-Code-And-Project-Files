@@ -1,0 +1,2992 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba669b94ec0c484e85b7afb7407f75ba, type: 3}
+  m_Name: IconCollection
+  m_EditorClassIdentifier: 
+  Backgrounds:
+  - {fileID: 21300000, guid: 6a7965a697c24a689633cfa2a821ca7e, type: 3}
+  - {fileID: 21300000, guid: 533abca1f345417e984b150a43d1ef78, type: 3}
+  - {fileID: 21300000, guid: b7b50a648b914b71a63c6ede8a31ea9b, type: 3}
+  - {fileID: 21300000, guid: 176661c66228466f9f74c027f6d60f9f, type: 3}
+  - {fileID: 21300000, guid: 3d210ed8562242d3804c2502b7312c3a, type: 3}
+  - {fileID: 21300000, guid: dbff44ea28934646b14fff229f0db0d9, type: 3}
+  Id: UndeadHeroes
+  ScanFolder: {fileID: 102900000, guid: 87ebeaab50904bf99636cd0b30d305c7, type: 3}
+  Icons:
+  - Name: ApprenticeWand
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/ApprenticeWand
+    Sprite: {fileID: 21300000, guid: e9d63327bf2d42f4b3301d87e4ba903c, type: 3}
+  - Name: ArcaneHat
+    Path: Equipment/Helmet/AbandonedWorkshop/ArcaneHat
+    Sprite: {fileID: 21300000, guid: 5a66a067ed00439ea0389d7a6ec764e7, type: 3}
+  - Name: ArcaneRobe
+    Path: Equipment/Armor/AbandonedWorkshop/ArcaneRobe
+    Sprite: {fileID: 21300000, guid: d3962d4c95d24f168668a90c94949d44, type: 3}
+  - Name: ArcaneRobe.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/ArcaneRobe.Belt
+    Sprite: {fileID: 21300000, guid: 339e3e363ebe48139d3a1591c7b19fb2, type: 3}
+  - Name: ArcaneRobe.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/ArcaneRobe.Boots
+    Sprite: {fileID: 21300000, guid: 13114d772f6a4c589046bfe020c432b8, type: 3}
+  - Name: ArcaneRobe.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/ArcaneRobe.Gloves
+    Sprite: {fileID: 21300000, guid: 2d76b187a03243cba2cdd2b4b53c13b8, type: 3}
+  - Name: ArcaneRobe.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/ArcaneRobe.Pauldrons
+    Sprite: {fileID: 21300000, guid: 8871d63960304f1896e59a51e475882a, type: 3}
+  - Name: ArcaneRobe.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/ArcaneRobe.Vest
+    Sprite: {fileID: 21300000, guid: 67db141d3b054bceab70d543829724be, type: 3}
+  - Name: Ariel
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Ariel
+    Sprite: {fileID: 21300000, guid: ebbf930a657e4f55bd07790af416f9c3, type: 3}
+  - Name: Ariel
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Ariel
+    Sprite: {fileID: 21300000, guid: f9276fa3860e4976ac71e5c3a47d46d5, type: 3}
+  - Name: Ariel
+    Path: BodyParts/Hair/Style/Ariel
+    Sprite: {fileID: 21300000, guid: c563e3157a4f4768b7fadf72780e41df, type: 3}
+  - Name: Ariel
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Ariel
+    Sprite: {fileID: 21300000, guid: 09722be4b361414bbe6da2ecca2f18a1, type: 3}
+  - Name: AriostinGreatsword
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Sword/AriostinGreatsword
+    Sprite: {fileID: 21300000, guid: e9695824e0fb4497bc28bbe21a484bb2, type: 3}
+  - Name: ArmoredLoincloth
+    Path: Equipment/Armor/Furry/ArmoredLoincloth
+    Sprite: {fileID: 21300000, guid: eba893dd089e44cb8b5f2d486448ee3c, type: 3}
+  - Name: ArmoredLoincloth.Belt
+    Path: Equipment/Belt/Furry/ArmoredLoincloth.Belt
+    Sprite: {fileID: 21300000, guid: af6a4a3388aa4729b7b6c9d9a2565acd, type: 3}
+  - Name: ArmoredLoincloth.Boots
+    Path: Equipment/Boots/Furry/ArmoredLoincloth.Boots
+    Sprite: {fileID: 21300000, guid: 8bd4ae2c83324e898b6ad53407dc908a, type: 3}
+  - Name: ArmoredLoincloth.Gloves
+    Path: Equipment/Gloves/Furry/ArmoredLoincloth.Gloves
+    Sprite: {fileID: 21300000, guid: a9012ddba35c4df4a8d3256dab2825d4, type: 3}
+  - Name: ArmoredLoincloth.Pauldrons
+    Path: Equipment/Pauldrons/Furry/ArmoredLoincloth.Pauldrons
+    Sprite: {fileID: 21300000, guid: 3621c80394db446da10f1cbfacf3bf57, type: 3}
+  - Name: ArmoredLoincloth.Vest
+    Path: Equipment/Vest/Furry/ArmoredLoincloth.Vest
+    Sprite: {fileID: 21300000, guid: 4e48526d34714e108d9e09bd124c7cbd, type: 3}
+  - Name: ArmorOfCryingDemon
+    Path: Equipment/Armor/Epic/ArmorOfCryingDemon
+    Sprite: {fileID: 21300000, guid: adb579d3222546e9a62e2588ed4ebf15, type: 3}
+  - Name: ArmorOfCryingDemon.Belt
+    Path: Equipment/Belt/Epic/ArmorOfCryingDemon.Belt
+    Sprite: {fileID: 21300000, guid: 06a9555d0d7341cd8caec56b000f86c9, type: 3}
+  - Name: ArmorOfCryingDemon.Boots
+    Path: Equipment/Boots/Epic/ArmorOfCryingDemon.Boots
+    Sprite: {fileID: 21300000, guid: 3e2d313846fd424eb76715d86bce754a, type: 3}
+  - Name: ArmorOfCryingDemon.Gloves
+    Path: Equipment/Gloves/Epic/ArmorOfCryingDemon.Gloves
+    Sprite: {fileID: 21300000, guid: 120f037b87a34eddac121c0163f7486c, type: 3}
+  - Name: ArmorOfCryingDemon.Pauldrons
+    Path: Equipment/Pauldrons/Epic/ArmorOfCryingDemon.Pauldrons
+    Sprite: {fileID: 21300000, guid: c24fe8af73584390b1656a7c0cfcfc4c, type: 3}
+  - Name: ArmorOfCryingDemon.Vest
+    Path: Equipment/Vest/Epic/ArmorOfCryingDemon.Vest
+    Sprite: {fileID: 21300000, guid: c2d750d55872467098325799df41a09c, type: 3}
+  - Name: ArmorOfEndingLight
+    Path: Equipment/Armor/Epic/ArmorOfEndingLight
+    Sprite: {fileID: 21300000, guid: 9aba7ee4bf4a46b1a03e64e194baf86d, type: 3}
+  - Name: ArmorOfEndingLight.Belt
+    Path: Equipment/Belt/Epic/ArmorOfEndingLight.Belt
+    Sprite: {fileID: 21300000, guid: 8f06f852dde4455a9fc2ff47ee06ee71, type: 3}
+  - Name: ArmorOfEndingLight.Boots
+    Path: Equipment/Boots/Epic/ArmorOfEndingLight.Boots
+    Sprite: {fileID: 21300000, guid: 15e07189a41544499e00966d7ae2d7a4, type: 3}
+  - Name: ArmorOfEndingLight.Gloves
+    Path: Equipment/Gloves/Epic/ArmorOfEndingLight.Gloves
+    Sprite: {fileID: 21300000, guid: 7d8d20a0d1054863907c3ab66ba1f2ea, type: 3}
+  - Name: ArmorOfEndingLight.Pauldrons
+    Path: Equipment/Pauldrons/Epic/ArmorOfEndingLight.Pauldrons
+    Sprite: {fileID: 21300000, guid: 6abd1e341fcf449caaa69322b119f5f0, type: 3}
+  - Name: ArmorOfEndingLight.Vest
+    Path: Equipment/Vest/Epic/ArmorOfEndingLight.Vest
+    Sprite: {fileID: 21300000, guid: 4b3bc20659f24efb929f0f999ed23d78, type: 3}
+  - Name: ArmorOfFadedHeavens
+    Path: Equipment/Armor/Epic/ArmorOfFadedHeavens
+    Sprite: {fileID: 21300000, guid: 6d1abf87d6334ba4a4a74b9d111e678d, type: 3}
+  - Name: ArmorOfFadedHeavens.Belt
+    Path: Equipment/Belt/Epic/ArmorOfFadedHeavens.Belt
+    Sprite: {fileID: 21300000, guid: 0d65a879c39144c0962b7c59f50f0692, type: 3}
+  - Name: ArmorOfFadedHeavens.Boots
+    Path: Equipment/Boots/Epic/ArmorOfFadedHeavens.Boots
+    Sprite: {fileID: 21300000, guid: 0a88ebd8c0fc49d3a62974d6695c8fec, type: 3}
+  - Name: ArmorOfFadedHeavens.Gloves
+    Path: Equipment/Gloves/Epic/ArmorOfFadedHeavens.Gloves
+    Sprite: {fileID: 21300000, guid: 5c4018fa3ba244a28affe79d2051eb53, type: 3}
+  - Name: ArmorOfFadedHeavens.Pauldrons
+    Path: Equipment/Pauldrons/Epic/ArmorOfFadedHeavens.Pauldrons
+    Sprite: {fileID: 21300000, guid: c1fe8d48720347b39a2bc59596c52062, type: 3}
+  - Name: ArmorOfFadedHeavens.Vest
+    Path: Equipment/Vest/Epic/ArmorOfFadedHeavens.Vest
+    Sprite: {fileID: 21300000, guid: 32aad1f8d4174165a98847148ad28fed, type: 3}
+  - Name: ArmorOfLoneWolf
+    Path: Equipment/Armor/Epic/ArmorOfLoneWolf
+    Sprite: {fileID: 21300000, guid: 03e359209a9c4f1198c40ecc8dfe3f83, type: 3}
+  - Name: ArmorOfLoneWolf.Belt
+    Path: Equipment/Belt/Epic/ArmorOfLoneWolf.Belt
+    Sprite: {fileID: 21300000, guid: 4f4630d9e8db4e719b13f1a8afdeabd9, type: 3}
+  - Name: ArmorOfLoneWolf.Boots
+    Path: Equipment/Boots/Epic/ArmorOfLoneWolf.Boots
+    Sprite: {fileID: 21300000, guid: 6c43bb7d9fce485f84e9b12695ef7470, type: 3}
+  - Name: ArmorOfLoneWolf.Gloves
+    Path: Equipment/Gloves/Epic/ArmorOfLoneWolf.Gloves
+    Sprite: {fileID: 21300000, guid: ec37b051d4ea420eb695b74043756bcd, type: 3}
+  - Name: ArmorOfLoneWolf.Pauldrons
+    Path: Equipment/Pauldrons/Epic/ArmorOfLoneWolf.Pauldrons
+    Sprite: {fileID: 21300000, guid: ce9ce98de06643d39e4436a74e1219e8, type: 3}
+  - Name: ArmorOfLoneWolf.Vest
+    Path: Equipment/Vest/Epic/ArmorOfLoneWolf.Vest
+    Sprite: {fileID: 21300000, guid: e343d498e4f2494f8e743eb3e0634cc6, type: 3}
+  - Name: ArmorOfRagingCrux
+    Path: Equipment/Armor/Epic/ArmorOfRagingCrux
+    Sprite: {fileID: 21300000, guid: a74ae2a38956437c8d253640c2386467, type: 3}
+  - Name: ArmorOfRagingCrux.Belt
+    Path: Equipment/Belt/Epic/ArmorOfRagingCrux.Belt
+    Sprite: {fileID: 21300000, guid: 953c68fb0f38452192eb47d1efa5dfe5, type: 3}
+  - Name: ArmorOfRagingCrux.Boots
+    Path: Equipment/Boots/Epic/ArmorOfRagingCrux.Boots
+    Sprite: {fileID: 21300000, guid: 4811509a1eed4523b5d6118f9d4a0939, type: 3}
+  - Name: ArmorOfRagingCrux.Gloves
+    Path: Equipment/Gloves/Epic/ArmorOfRagingCrux.Gloves
+    Sprite: {fileID: 21300000, guid: 275a878315fb446f8cd504734396145a, type: 3}
+  - Name: ArmorOfRagingCrux.Pauldrons
+    Path: Equipment/Pauldrons/Epic/ArmorOfRagingCrux.Pauldrons
+    Sprite: {fileID: 21300000, guid: 40c5e1bbb5684159a7450c204db5e4ae, type: 3}
+  - Name: ArmorOfRagingCrux.Vest
+    Path: Equipment/Vest/Epic/ArmorOfRagingCrux.Vest
+    Sprite: {fileID: 21300000, guid: 7d039cea3ac2482a9941fa7183ca932b, type: 3}
+  - Name: ArmorOfRelentlessNightmares
+    Path: Equipment/Armor/Epic/ArmorOfRelentlessNightmares
+    Sprite: {fileID: 21300000, guid: 010e9bc266a14462938117cd75898966, type: 3}
+  - Name: ArmorOfRelentlessNightmares.Belt
+    Path: Equipment/Belt/Epic/ArmorOfRelentlessNightmares.Belt
+    Sprite: {fileID: 21300000, guid: bcf84d25b22f43a0a79e07a19fff75c5, type: 3}
+  - Name: ArmorOfRelentlessNightmares.Boots
+    Path: Equipment/Boots/Epic/ArmorOfRelentlessNightmares.Boots
+    Sprite: {fileID: 21300000, guid: a925ca27b7ff422a9e37241122ef3d0c, type: 3}
+  - Name: ArmorOfRelentlessNightmares.Gloves
+    Path: Equipment/Gloves/Epic/ArmorOfRelentlessNightmares.Gloves
+    Sprite: {fileID: 21300000, guid: b6640800713c4007817f6877c02630e6, type: 3}
+  - Name: ArmorOfRelentlessNightmares.Pauldrons
+    Path: Equipment/Pauldrons/Epic/ArmorOfRelentlessNightmares.Pauldrons
+    Sprite: {fileID: 21300000, guid: 4a80a36869e743958721261924f90e1a, type: 3}
+  - Name: ArmorOfRelentlessNightmares.Vest
+    Path: Equipment/Vest/Epic/ArmorOfRelentlessNightmares.Vest
+    Sprite: {fileID: 21300000, guid: 8f7f455b6e0a44018a71de5e2d9794d8, type: 3}
+  - Name: ArmorOfTheForgottenFoe
+    Path: Equipment/Armor/Epic/ArmorOfTheForgottenFoe
+    Sprite: {fileID: 21300000, guid: 9ba014043ccd4c1e8ed24f4153bbee99, type: 3}
+  - Name: ArmorOfTheForgottenFoe.Belt
+    Path: Equipment/Belt/Epic/ArmorOfTheForgottenFoe.Belt
+    Sprite: {fileID: 21300000, guid: 6a4fa01a9f5f412789e7d33924936524, type: 3}
+  - Name: ArmorOfTheForgottenFoe.Boots
+    Path: Equipment/Boots/Epic/ArmorOfTheForgottenFoe.Boots
+    Sprite: {fileID: 21300000, guid: 7dff84ddc601425298960057212adaa2, type: 3}
+  - Name: ArmorOfTheForgottenFoe.Gloves
+    Path: Equipment/Gloves/Epic/ArmorOfTheForgottenFoe.Gloves
+    Sprite: {fileID: 21300000, guid: cbb53106ebdf41539d7e66eb6fb8d64e, type: 3}
+  - Name: ArmorOfTheForgottenFoe.Pauldrons
+    Path: Equipment/Pauldrons/Epic/ArmorOfTheForgottenFoe.Pauldrons
+    Sprite: {fileID: 21300000, guid: 34ac827ba73440dab4e7690cc90183c5, type: 3}
+  - Name: ArmorOfTheForgottenFoe.Vest
+    Path: Equipment/Vest/Epic/ArmorOfTheForgottenFoe.Vest
+    Sprite: {fileID: 21300000, guid: d644bc05ac204941a66518449a614c8c, type: 3}
+  - Name: ArrowQuiver
+    Path: Equipment/Back/Undead/ArrowQuiver
+    Sprite: {fileID: 21300000, guid: 619104f981fb4e4fa3b7d2ab67c3b310, type: 3}
+  - Name: Arrows [FullHair]
+    Path: Equipment/Helmet/Zombies/Arrows [FullHair]
+    Sprite: {fileID: 21300000, guid: 2f55f581ef0943d3a7919eddfb3c35e5, type: 3}
+  - Name: AsteraArmor
+    Path: Equipment/Armor/AbandonedWorkshop/AsteraArmor
+    Sprite: {fileID: 21300000, guid: 31a16a291435471099518b48ed744247, type: 3}
+  - Name: AsteraArmor.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/AsteraArmor.Belt
+    Sprite: {fileID: 21300000, guid: 175cf3eee29245c5b007890dd15eecf5, type: 3}
+  - Name: AsteraArmor.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/AsteraArmor.Boots
+    Sprite: {fileID: 21300000, guid: d21364080eb34917b1d0420703342982, type: 3}
+  - Name: AsteraArmor.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/AsteraArmor.Gloves
+    Sprite: {fileID: 21300000, guid: cb2dad2d38f74affa4f58d756ddcc341, type: 3}
+  - Name: AsteraArmor.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/AsteraArmor.Pauldrons
+    Sprite: {fileID: 21300000, guid: ae6b8c56535244869ca636949051f699, type: 3}
+  - Name: AsteraArmor.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/AsteraArmor.Vest
+    Sprite: {fileID: 21300000, guid: 7d57b295999443faaf4c5b53fa82746d, type: 3}
+  - Name: AsteraHood
+    Path: Equipment/Helmet/AbandonedWorkshop/AsteraHood
+    Sprite: {fileID: 21300000, guid: ca0f43ccf37149859fc940c3d6c98195, type: 3}
+  - Name: Axe [FullHair]
+    Path: Equipment/Helmet/Zombies/Axe [FullHair]
+    Sprite: {fileID: 21300000, guid: 881b5fa920ec4e828f2ffb828a711244, type: 3}
+  - Name: Axeorang
+    Path: Equipment/Supplies/Throwing/Axeorang
+    Sprite: {fileID: 21300000, guid: 52520eda5434459399650369247b7b1f, type: 3}
+  - Name: AzureStaff
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/AzureStaff
+    Sprite: {fileID: 21300000, guid: 698fdd49c55841589f2cf7ec7726a9e4, type: 3}
+  - Name: BalancedAxe
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Axe/BalancedAxe
+    Sprite: {fileID: 21300000, guid: ba75de105bee46b0a6c224c6bc31aa6b, type: 3}
+  - Name: Banan
+    Path: Equipment/Earrings/Zombies/Banan
+    Sprite: {fileID: 21300000, guid: 133e07dee5e74b288741904d436fe648, type: 3}
+  - Name: BarbarianAxe
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Axe/BarbarianAxe
+    Sprite: {fileID: 21300000, guid: 3b1750eb669c4dd888abca947619e588, type: 3}
+  - Name: BarbedClub
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Hammer/BarbedClub
+    Sprite: {fileID: 21300000, guid: 101ebe72febb494ea4caecfb192fa0dc, type: 3}
+  - Name: BattleguardArmor
+    Path: Equipment/Armor/AbandonedWorkshop/BattleguardArmor
+    Sprite: {fileID: 21300000, guid: 4ecf308bfbf44060a86eb083c2db01da, type: 3}
+  - Name: BattleguardArmor.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/BattleguardArmor.Belt
+    Sprite: {fileID: 21300000, guid: 45e81e20f10743478370718d425e1215, type: 3}
+  - Name: BattleguardArmor.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/BattleguardArmor.Boots
+    Sprite: {fileID: 21300000, guid: 14c1d840d246403a94f6bb03674a5020, type: 3}
+  - Name: BattleguardArmor.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/BattleguardArmor.Gloves
+    Sprite: {fileID: 21300000, guid: 6a2819af547b428b927baabdb8f8f428, type: 3}
+  - Name: BattleguardArmor.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/BattleguardArmor.Pauldrons
+    Sprite: {fileID: 21300000, guid: aa20261177eb480a801d1f0e47e09572, type: 3}
+  - Name: BattleguardArmor.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/BattleguardArmor.Vest
+    Sprite: {fileID: 21300000, guid: 14176ebc5cf14413b36f1ba6ba9f2b2f, type: 3}
+  - Name: BattleguardHelm
+    Path: Equipment/Helmet/AbandonedWorkshop/BattleguardHelm
+    Sprite: {fileID: 21300000, guid: 9a8dff9c069949739f3a4a13d8971ffd, type: 3}
+  - Name: BlackSteelAxe
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Axe/BlackSteelAxe
+    Sprite: {fileID: 21300000, guid: ae4e6f6bd63e48c7aad181a670b290bd, type: 3}
+  - Name: BlackSteelClub
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Hammer/BlackSteelClub
+    Sprite: {fileID: 21300000, guid: b50dc340a43348ea9d56037a5bcf676b, type: 3}
+  - Name: BlackSteelHammer
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Hammer/BlackSteelHammer
+    Sprite: {fileID: 21300000, guid: cc8ebb0faa76429a8dd8c606d9b56f60, type: 3}
+  - Name: BlackSteelMace
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Hammer/BlackSteelMace
+    Sprite: {fileID: 21300000, guid: aacd65a6015d4e799ff0ac2332003530, type: 3}
+  - Name: Blade
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Blade
+    Sprite: {fileID: 21300000, guid: 6c27ca2c93d64fefb12f320642024ade, type: 3}
+  - Name: Blade
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Blade
+    Sprite: {fileID: 21300000, guid: 1fc83a7f14b9423dbe5a02cb46b07abe, type: 3}
+  - Name: Blade
+    Path: BodyParts/Hair/Style/Blade
+    Sprite: {fileID: 21300000, guid: 29da8e6eb7ea49cdb667e52f8b7eaf14, type: 3}
+  - Name: Blade
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Blade
+    Sprite: {fileID: 21300000, guid: e3b55df759df4982a61a50b7a4313c31, type: 3}
+  - Name: BladeBow
+    Path: Equipment/Bow/Undead/BladeBow
+    Sprite: {fileID: 21300000, guid: 69f0ecf0386c49b6852cc6b929b1ceab, type: 3}
+  - Name: BladeBow.Arrow
+    Path: Equipment/Arrow/Undead/BladeBow.Arrow
+    Sprite: {fileID: 21300000, guid: 18ab5ea2a3da4482b6e54b4407862c31, type: 3}
+  - Name: BlazewingArmor
+    Path: Equipment/Armor/Epic/BlazewingArmor
+    Sprite: {fileID: 21300000, guid: 5423f443173a442ead95f8156d695c5b, type: 3}
+  - Name: BlazewingArmor.Belt
+    Path: Equipment/Belt/Epic/BlazewingArmor.Belt
+    Sprite: {fileID: 21300000, guid: 7a9251d91a5d414599aceef67a7a8447, type: 3}
+  - Name: BlazewingArmor.Boots
+    Path: Equipment/Boots/Epic/BlazewingArmor.Boots
+    Sprite: {fileID: 21300000, guid: 2511024877fd4e6ea8ced39a6a048699, type: 3}
+  - Name: BlazewingArmor.Gloves
+    Path: Equipment/Gloves/Epic/BlazewingArmor.Gloves
+    Sprite: {fileID: 21300000, guid: 46be199c55e04d36aa2257a37b6782d0, type: 3}
+  - Name: BlazewingArmor.Pauldrons
+    Path: Equipment/Pauldrons/Epic/BlazewingArmor.Pauldrons
+    Sprite: {fileID: 21300000, guid: 44c72539fda247748ba47aa3c803adea, type: 3}
+  - Name: BlazewingArmor.Vest
+    Path: Equipment/Vest/Epic/BlazewingArmor.Vest
+    Sprite: {fileID: 21300000, guid: 5f4716099d6d47adaaa14c35e6911443, type: 3}
+  - Name: BlazewingCape
+    Path: Equipment/Cape/Epic/BlazewingCape
+    Sprite: {fileID: 21300000, guid: fdae4fb7b02e43ecbd870cfbcd657145, type: 3}
+  - Name: BlazewingHelmet
+    Path: Equipment/Helmet/Epic/BlazewingHelmet
+    Sprite: {fileID: 21300000, guid: 3384f051dca44c278cb1a7c64b4aa962, type: 3}
+  - Name: BlazewingSword
+    Path: Equipment/MeleeWeapon1H/Epic/Sword/BlazewingSword
+    Sprite: {fileID: 21300000, guid: 4151c64124484022a3347254c085b82b, type: 3}
+  - Name: BleedingMace
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Hammer/BleedingMace
+    Sprite: {fileID: 21300000, guid: b14f1b0fa8d34629b648ae0c291d0086, type: 3}
+  - Name: BlessedAxe
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Axe/BlessedAxe
+    Sprite: {fileID: 21300000, guid: 1c63339a3474438f974a7892e90b3b2a, type: 3}
+  - Name: BloodAxe
+    Path: Equipment/MeleeWeapon2H/Undead/Axe/BloodAxe
+    Sprite: {fileID: 21300000, guid: 313b7ee8d44f47e8962327b2c046dc9a, type: 3}
+  - Name: BloodiedSpiritArmor
+    Path: Equipment/Armor/Epic/BloodiedSpiritArmor
+    Sprite: {fileID: 21300000, guid: 8e9f3e43907f486cb42e104605150141, type: 3}
+  - Name: BloodiedSpiritArmor.Belt
+    Path: Equipment/Belt/Epic/BloodiedSpiritArmor.Belt
+    Sprite: {fileID: 21300000, guid: a5a800c38b9347ab93a4ee0a9b55e607, type: 3}
+  - Name: BloodiedSpiritArmor.Boots
+    Path: Equipment/Boots/Epic/BloodiedSpiritArmor.Boots
+    Sprite: {fileID: 21300000, guid: 29e0d09f8b39464fa243bf88d131ce12, type: 3}
+  - Name: BloodiedSpiritArmor.Gloves
+    Path: Equipment/Gloves/Epic/BloodiedSpiritArmor.Gloves
+    Sprite: {fileID: 21300000, guid: 7f2ab1bcb835459489f8a156797159c0, type: 3}
+  - Name: BloodiedSpiritArmor.Pauldrons
+    Path: Equipment/Pauldrons/Epic/BloodiedSpiritArmor.Pauldrons
+    Sprite: {fileID: 21300000, guid: 482eac0fdc0e419d9d3992313b60accf, type: 3}
+  - Name: BloodiedSpiritArmor.Vest
+    Path: Equipment/Vest/Epic/BloodiedSpiritArmor.Vest
+    Sprite: {fileID: 21300000, guid: a899bff73edc4b269bec2772e03e2c27, type: 3}
+  - Name: BloodiedSpiritCape
+    Path: Equipment/Cape/Epic/BloodiedSpiritCape
+    Sprite: {fileID: 21300000, guid: 414bcbb25ea44ad5baa7b72bb30ea26c, type: 3}
+  - Name: BloodiedSpiritHelmet
+    Path: Equipment/Helmet/Epic/BloodiedSpiritHelmet
+    Sprite: {fileID: 21300000, guid: a2212927a39446f4a6a1c45e97d0ad85, type: 3}
+  - Name: BloodiedSpiritShield
+    Path: Equipment/Shield/BloodiedSpiritShield
+    Sprite: {fileID: 21300000, guid: 587c5a3f02df4c6b947c77c7d15f2a5d, type: 3}
+  - Name: BloodiedSpiritSword
+    Path: Equipment/MeleeWeapon1H/Epic/Sword/BloodiedSpiritSword
+    Sprite: {fileID: 21300000, guid: b729230c947b4fc3b0f3143742dbb259, type: 3}
+  - Name: Blossom [HideEars]
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Blossom [HideEars]
+    Sprite: {fileID: 21300000, guid: f84e5f35479144c7911d4ee29f721a36, type: 3}
+  - Name: Blossom [HideEars]
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Blossom [HideEars]
+    Sprite: {fileID: 21300000, guid: cae7016afb354a07ab7fd48edde6b071, type: 3}
+  - Name: Blossom [HideEars]
+    Path: BodyParts/Hair/Style/Blossom [HideEars]
+    Sprite: {fileID: 21300000, guid: 8ce47fc39116464d836c82a6e36d3ef7, type: 3}
+  - Name: Blossom [HideEars]
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Blossom [HideEars]
+    Sprite: {fileID: 21300000, guid: 05a503df1fa149e3ac0a86fec442b5eb, type: 3}
+  - Name: Blossom [Paint] [FullHair]
+    Path: Equipment/Helmet/Style/Blossom [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 5fe0a97e52a64560b3496d0beae1aae8, type: 3}
+  - Name: Bluetooth
+    Path: Equipment/Earrings/Zombies/Bluetooth
+    Sprite: {fileID: 21300000, guid: 54bfaec0174b472b92b2c90c4bcbf046, type: 3}
+  - Name: BlueWand
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/BlueWand
+    Sprite: {fileID: 21300000, guid: 738cff569d464c4b8d1c071d0a41f5fe, type: 3}
+  - Name: BoneBow
+    Path: Equipment/Bow/Undead/BoneBow
+    Sprite: {fileID: 21300000, guid: dc9b4a7c3da549cb84c6b67f10e56f8e, type: 3}
+  - Name: BoneBow.Arrow
+    Path: Equipment/Arrow/Undead/BoneBow.Arrow
+    Sprite: {fileID: 21300000, guid: 391fdf4618a6401381be1097c31b80a6, type: 3}
+  - Name: BoneClub
+    Path: Equipment/MeleeWeapon1H/Undead/Mace/BoneClub
+    Sprite: {fileID: 21300000, guid: 376da8d7952e4457b7fdf2426815f005, type: 3}
+  - Name: Boomerang [Paint]
+    Path: Equipment/Supplies/Throwing/Boomerang [Paint]
+    Sprite: {fileID: 21300000, guid: bce0a1d60516424795bb171c694cd899, type: 3}
+  - Name: BootlegHat
+    Path: Equipment/Helmet/AbandonedWorkshop/BootlegHat
+    Sprite: {fileID: 21300000, guid: 9be81cb703384dea8d28991774766ed0, type: 3}
+  - Name: Brainz
+    Path: Equipment/Supplies/Food/Brainz
+    Sprite: {fileID: 21300000, guid: 46545c38a5a94c06a954c3161df6a98e, type: 3}
+  - Name: Brainz [FullHair]
+    Path: Equipment/Helmet/Zombies/Brainz [FullHair]
+    Sprite: {fileID: 21300000, guid: 633185657cd948fb92a31101c57d6e71, type: 3}
+  - Name: BroadCurvedSword
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/BroadCurvedSword
+    Sprite: {fileID: 21300000, guid: 4bc101ec0f4642a9acb950715f13c1a9, type: 3}
+  - Name: Broadsword
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/Broadsword
+    Sprite: {fileID: 21300000, guid: 76444eca9b054607add3f679a6844142, type: 3}
+  - Name: BrokenSword
+    Path: Equipment/MeleeWeapon1H/Undead/Sword/BrokenSword
+    Sprite: {fileID: 21300000, guid: 6499e136acdc42949d6875fa52f57613, type: 3}
+  - Name: BrokenSwordTypeA
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/BrokenSwordTypeA
+    Sprite: {fileID: 21300000, guid: 153dbcc80d7340af9c0924e15281d8f2, type: 3}
+  - Name: BrokenSwordTypeB
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/BrokenSwordTypeB
+    Sprite: {fileID: 21300000, guid: fcb715af0de8488bbdd45e2dec128cbb, type: 3}
+  - Name: BrokenSwordTypeC
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/BrokenSwordTypeC
+    Sprite: {fileID: 21300000, guid: 420a74cb192c41f28f9cb4d8fec8d444, type: 3}
+  - Name: Bubble
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Bubble
+    Sprite: {fileID: 21300000, guid: 894e7f428d1f4aaba7141d711b214097, type: 3}
+  - Name: Bubble
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Bubble
+    Sprite: {fileID: 21300000, guid: 1dfe52b04d624065be087f1355e1775b, type: 3}
+  - Name: Bubble
+    Path: BodyParts/Hair/Style/Bubble
+    Sprite: {fileID: 21300000, guid: e2fe48191c0b4f90bca3f681c0d06d14, type: 3}
+  - Name: Bubble
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Bubble
+    Sprite: {fileID: 21300000, guid: 1d22702ed7ae4e53af956b2456ace2d2, type: 3}
+  - Name: BulletHammerTypeA
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Hammer/BulletHammerTypeA
+    Sprite: {fileID: 21300000, guid: 7b21306259d14b6793ea2e247d14ebf6, type: 3}
+  - Name: BulletHammerTypeB
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Hammer/BulletHammerTypeB
+    Sprite: {fileID: 21300000, guid: 55735f3ce3d943af8842f10a4d5c7069, type: 3}
+  - Name: BunnyEars [FullHair]
+    Path: Equipment/Helmet/Style/BunnyEars [FullHair]
+    Sprite: {fileID: 21300000, guid: 5e6d4db194f4490dbb64e88aa3d5ee05, type: 3}
+  - Name: BunnyEars1 [Paint] [FullHair]
+    Path: Equipment/Helmet/Style/BunnyEars1 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: fc80aa21e85247228045ddb9ae292a8f, type: 3}
+  - Name: BunnyEars2 [FullHair]
+    Path: Equipment/Helmet/Style/BunnyEars2 [FullHair]
+    Sprite: {fileID: 21300000, guid: 999f4496b41742729d207ef846a0acce, type: 3}
+  - Name: BunnyEars2 [Paint] [FullHair]
+    Path: Equipment/Helmet/Style/BunnyEars2 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 0391bb404ba14fa0a9e50e3726a1a78a, type: 3}
+  - Name: BunnyPin [FullHair]
+    Path: Equipment/Helmet/Style/BunnyPin [FullHair]
+    Sprite: {fileID: 21300000, guid: 172ce525ad834deb86b446a22c48163c, type: 3}
+  - Name: ButcherKnife
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Sword/ButcherKnife
+    Sprite: {fileID: 21300000, guid: bf497e9fea954382abad378195f6c7ff, type: 3}
+  - Name: CapeOfEndingLight
+    Path: Equipment/Cape/Epic/CapeOfEndingLight
+    Sprite: {fileID: 21300000, guid: 935808ed110d4bf1ac7dd75fa0d4d41c, type: 3}
+  - Name: CapeOfRagingCrux
+    Path: Equipment/Cape/Epic/CapeOfRagingCrux
+    Sprite: {fileID: 21300000, guid: e8e5424535d74e3faa167f7aa3c34a00, type: 3}
+  - Name: CapeOfRelentlessNightmares
+    Path: Equipment/Cape/Epic/CapeOfRelentlessNightmares
+    Sprite: {fileID: 21300000, guid: 8ee5cd09e2f8444aae1e2921bdac45f5, type: 3}
+  - Name: CatEars [Paint] [FullHair]
+    Path: Equipment/Helmet/Style/CatEars [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 7dc7272b9a554821886a30a445ff6668, type: 3}
+  - Name: CebertShield
+    Path: Equipment/Shield/AbandonedWorkshop/CebertShield
+    Sprite: {fileID: 21300000, guid: f84cbb24f3254fd5abc27e9e2513d502, type: 3}
+  - Name: Cheeky
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Cheeky
+    Sprite: {fileID: 21300000, guid: a59cf3fcd18d429b95965306e8e192c6, type: 3}
+  - Name: Cheeky
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Cheeky
+    Sprite: {fileID: 21300000, guid: b984a93ddcf347fdbb9ea2e98cf4f484, type: 3}
+  - Name: Cheeky
+    Path: BodyParts/Hair/Style/Cheeky
+    Sprite: {fileID: 21300000, guid: 433220d3fb574bb2b2590098dadfd21f, type: 3}
+  - Name: Cheeky
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Cheeky
+    Sprite: {fileID: 21300000, guid: 2cddbf3a60c343e6885433bc140b7997, type: 3}
+  - Name: Cleaver
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/Cleaver
+    Sprite: {fileID: 21300000, guid: e5ba949dee2f4faf9291086acc2ef8d0, type: 3}
+  - Name: Cleo [HideEars]
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Cleo [HideEars]
+    Sprite: {fileID: 21300000, guid: b3803f98d8e74197b02323160abbae56, type: 3}
+  - Name: Cleo [HideEars]
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Cleo [HideEars]
+    Sprite: {fileID: 21300000, guid: 71576b33c7e545eab869b2ef13a5fd3d, type: 3}
+  - Name: Cleo [HideEars]
+    Path: BodyParts/Hair/Style/Cleo [HideEars]
+    Sprite: {fileID: 21300000, guid: 97201fb4204846c189e8f2355b12bf1c, type: 3}
+  - Name: Cleo [HideEars]
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Cleo [HideEars]
+    Sprite: {fileID: 21300000, guid: 9bbb612ba0d44abc96a08b532c0c6542, type: 3}
+  - Name: CommanderOrcHelm
+    Path: Equipment/Helmet/AbandonedWorkshop/CommanderOrcHelm
+    Sprite: {fileID: 21300000, guid: ae284324596744628b641b2a1b6a6fca, type: 3}
+  - Name: CommonAxe
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Axe/CommonAxe
+    Sprite: {fileID: 21300000, guid: b765bf23b1134671bcb51ea00e546ddf, type: 3}
+  - Name: CommonAxe
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Axe/CommonAxe
+    Sprite: {fileID: 21300000, guid: 3de8a9513ead49cbbc6ebb144542bcfe, type: 3}
+  - Name: CommonHammer
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Hammer/CommonHammer
+    Sprite: {fileID: 21300000, guid: 392eec6679574a00afefcf22dfe45bd0, type: 3}
+  - Name: CommonMace
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Hammer/CommonMace
+    Sprite: {fileID: 21300000, guid: 8ea65c2a5bc0495797784242b75f78bb, type: 3}
+  - Name: CommonSwordTypeA
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/CommonSwordTypeA
+    Sprite: {fileID: 21300000, guid: 2bb2aea1c6a649669645d61a032cc47f, type: 3}
+  - Name: CommonSwordTypeB
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/CommonSwordTypeB
+    Sprite: {fileID: 21300000, guid: 35dff9450cd745e9b32672e754b294f0, type: 3}
+  - Name: CorruptedEyeStaff
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/CorruptedEyeStaff
+    Sprite: {fileID: 21300000, guid: b5f83803ca5847c7a93eab6a56a2e925, type: 3}
+  - Name: CrimsonCrossSword
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/CrimsonCrossSword
+    Sprite: {fileID: 21300000, guid: f2b8d179bdf54fa1a250e8c90496ce04, type: 3}
+  - Name: Crown [FullHair]
+    Path: Equipment/Helmet/Style/Crown [FullHair]
+    Sprite: {fileID: 21300000, guid: fe8b706ea4874c6dad7ecf1d7119617d, type: 3}
+  - Name: CrystalClawWand
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/CrystalClawWand
+    Sprite: {fileID: 21300000, guid: 82e39d00c1e44d7bbe5b4b009fcdfe97, type: 3}
+  - Name: CursedStaff
+    Path: Equipment/MeleeWeapon1H/Undead/Wand/CursedStaff
+    Sprite: {fileID: 21300000, guid: 4bb443f6967d47289523cf1146f88632, type: 3}
+  - Name: CursedSword
+    Path: Equipment/MeleeWeapon2H/Undead/Sword/CursedSword
+    Sprite: {fileID: 21300000, guid: 8c04a6c2576647e29942b939f254836d, type: 3}
+  - Name: CurvedBow
+    Path: Equipment/Bow/AbandonedWorkshop/CurvedBow
+    Sprite: {fileID: 21300000, guid: 3c53365ff6ec4cfc8c956b51d3574657, type: 3}
+  - Name: CurvedBow.Arrow
+    Path: Equipment/Arrow/AbandonedWorkshop/CurvedBow.Arrow
+    Sprite: {fileID: 21300000, guid: eeabd3577498419e9ee4e32cb9d4f465, type: 3}
+  - Name: Cutie
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Cutie
+    Sprite: {fileID: 21300000, guid: 48cfabed607a4c7995476903ddbd16a1, type: 3}
+  - Name: Cutie
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Cutie
+    Sprite: {fileID: 21300000, guid: 3deadf2c515e448a800a786e591e8c1a, type: 3}
+  - Name: Cutie
+    Path: BodyParts/Hair/Style/Cutie
+    Sprite: {fileID: 21300000, guid: cd4876b0dbd04b3f9503ef69ea10cbd1, type: 3}
+  - Name: Cutie
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Cutie
+    Sprite: {fileID: 21300000, guid: 28b024ab2067471884b869b575468c86, type: 3}
+  - Name: CuttingDagger
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Dagger/CuttingDagger
+    Sprite: {fileID: 21300000, guid: a4f810f2502c4825bda00387f758fd8b, type: 3}
+  - Name: Dagger [FullHair]
+    Path: Equipment/Helmet/Zombies/Dagger [FullHair]
+    Sprite: {fileID: 21300000, guid: e58e2d31aee24e9a975fe8f17a287dc2, type: 3}
+  - Name: Demon1
+    Path: BodyParts/Body/Demon/Demon1
+    Sprite: {fileID: 21300000, guid: a384d639866343cab47d4cb0165363b1, type: 3}
+  - Name: Demon2
+    Path: BodyParts/Body/Demon/Demon2
+    Sprite: {fileID: 21300000, guid: da72e8cac8114fc0b7f71728e894272b, type: 3}
+  - Name: DemonEar1
+    Path: BodyParts/Ears/Demon/DemonEar1
+    Sprite: {fileID: 21300000, guid: 082dfa8ef88a4a6b98203f71ed499f34, type: 3}
+  - Name: DemonEar2
+    Path: BodyParts/Ears/Demon/DemonEar2
+    Sprite: {fileID: 21300000, guid: 0f38ca01219d4fc1b11a23251e0eb704, type: 3}
+  - Name: DemonEar3
+    Path: BodyParts/Ears/Demon/DemonEar3
+    Sprite: {fileID: 21300000, guid: 6620c751f0e4463594f3b20a1af23f51, type: 3}
+  - Name: DemonEar4
+    Path: BodyParts/Ears/Demon/DemonEar4
+    Sprite: {fileID: 21300000, guid: 7d34388ce39546ebbdef834559789540, type: 3}
+  - Name: DemonEyes1
+    Path: BodyParts/Eyes/Demon/DemonEyes1
+    Sprite: {fileID: 21300000, guid: b7fe32f26bb74eec9412b0313539b693, type: 3}
+  - Name: DemonEyes2
+    Path: BodyParts/Eyes/Demon/DemonEyes2
+    Sprite: {fileID: 21300000, guid: 0f8750ec95b54956a32e6f7bebc93ce9, type: 3}
+  - Name: DemonEyes3
+    Path: BodyParts/Eyes/Demon/DemonEyes3
+    Sprite: {fileID: 21300000, guid: 9aae11be5f964ef3857c75c6f1edeb60, type: 3}
+  - Name: DemonEyes4
+    Path: BodyParts/Eyes/Demon/DemonEyes4
+    Sprite: {fileID: 21300000, guid: f2d7ce73131b4e4082b1d7cf09646937, type: 3}
+  - Name: DemonHead1
+    Path: BodyParts/Head/Demon/DemonHead1
+    Sprite: {fileID: 21300000, guid: 50ba731347d84e8d8e0a88e13c8af345, type: 3}
+  - Name: DemonHead2
+    Path: BodyParts/Head/Demon/DemonHead2
+    Sprite: {fileID: 21300000, guid: 94c3c4ea095b4bcfa8ff6b3167c2ff64, type: 3}
+  - Name: DemonMouth1
+    Path: BodyParts/Mouth/Demon/DemonMouth1
+    Sprite: {fileID: 21300000, guid: 2a3507971dee46a0aa7266c64bbfa8b3, type: 3}
+  - Name: DemonMouth2
+    Path: BodyParts/Mouth/Demon/DemonMouth2
+    Sprite: {fileID: 21300000, guid: fb82125a24764b6b8c0a8ccdbf74a23e, type: 3}
+  - Name: Diadem [FullHair]
+    Path: Equipment/Helmet/Style/Diadem [FullHair]
+    Sprite: {fileID: 21300000, guid: 1db82bf570bd4daabb041511ecc4855b, type: 3}
+  - Name: DireGreataxe
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Axe/DireGreataxe
+    Sprite: {fileID: 21300000, guid: 4b1364e16ccc405d84da4ad32c0cffe2, type: 3}
+  - Name: DoomWing
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Dagger/DoomWing
+    Sprite: {fileID: 21300000, guid: 20a06df3871745c9b824a86f93c21a9e, type: 3}
+  - Name: DoubleTrouble
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/DoubleTrouble
+    Sprite: {fileID: 21300000, guid: e887a8aeb714492c8554ae04f403ab54, type: 3}
+  - Name: DoubleTrouble
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/DoubleTrouble
+    Sprite: {fileID: 21300000, guid: 91c70c30bf2f4509b837bac8d619717f, type: 3}
+  - Name: DoubleTrouble
+    Path: BodyParts/Hair/Style/DoubleTrouble
+    Sprite: {fileID: 21300000, guid: 1e1700b6375f45b8a0c8c1faba5da7bd, type: 3}
+  - Name: DoubleTrouble
+    Path: BodyParts/Hair/SunStyle [NoPaint]/DoubleTrouble
+    Sprite: {fileID: 21300000, guid: c19ec6c7fd5d4716b9ea7e6de16296a8, type: 3}
+  - Name: DraconicArmor
+    Path: Equipment/Armor/AbandonedWorkshop/DraconicArmor
+    Sprite: {fileID: 21300000, guid: bee61fe958734d1093e6ed5f8b3acf3c, type: 3}
+  - Name: DraconicArmor.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/DraconicArmor.Belt
+    Sprite: {fileID: 21300000, guid: d891a053a14148a8aed706e7527308bb, type: 3}
+  - Name: DraconicArmor.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/DraconicArmor.Boots
+    Sprite: {fileID: 21300000, guid: 02ef08dbfd904cdea768d89c17ee5a74, type: 3}
+  - Name: DraconicArmor.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/DraconicArmor.Gloves
+    Sprite: {fileID: 21300000, guid: f704241946394b49b875c7d1eac55a55, type: 3}
+  - Name: DraconicArmor.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/DraconicArmor.Pauldrons
+    Sprite: {fileID: 21300000, guid: 9a3a00094caa41fd9e72ceadf021ef32, type: 3}
+  - Name: DraconicArmor.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/DraconicArmor.Vest
+    Sprite: {fileID: 21300000, guid: 49aa7bb756554831a8a20bd6887ee5b9, type: 3}
+  - Name: DraconicHelmet
+    Path: Equipment/Helmet/AbandonedWorkshop/DraconicHelmet
+    Sprite: {fileID: 21300000, guid: 4a93378de13948d4896375688f48591b, type: 3}
+  - Name: DragonEyeBlade
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Sword/DragonEyeBlade
+    Sprite: {fileID: 21300000, guid: 928af73cde1b4de9974bbefdddb071ca, type: 3}
+  - Name: DragonGuardBroadsword
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Sword/DragonGuardBroadsword
+    Sprite: {fileID: 21300000, guid: 89cf2f6d3d8b4538829a35ce6825f522, type: 3}
+  - Name: DragonGuardLongsword
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Sword/DragonGuardLongsword
+    Sprite: {fileID: 21300000, guid: cb8dec4f16064ccdab237057a3adea82, type: 3}
+  - Name: DragoniteAxe
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Axe/DragoniteAxe
+    Sprite: {fileID: 21300000, guid: bb260d062609409b9cce5ef26c2abd27, type: 3}
+  - Name: DragoniteHammer
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Hammer/DragoniteHammer
+    Sprite: {fileID: 21300000, guid: a74c8da798464132893dbccacf41ebbb, type: 3}
+  - Name: DragoniteShield
+    Path: Equipment/Shield/AbandonedWorkshop/DragoniteShield
+    Sprite: {fileID: 21300000, guid: bc94ad68ed88431e99f33239af0ac727, type: 3}
+  - Name: DreadCleaver
+    Path: Equipment/MeleeWeapon1H/Undead/Axe/DreadCleaver
+    Sprite: {fileID: 21300000, guid: 8c9e317e05764c6e8fc614974e478d94, type: 3}
+  - Name: DreamcallerRod
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/DreamcallerRod
+    Sprite: {fileID: 21300000, guid: f69cd6a3a91a4e67bf560eb7f13035a3, type: 3}
+  - Name: DreamwatcherStaff
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/DreamwatcherStaff
+    Sprite: {fileID: 21300000, guid: 42ff32c1e88641e480402b8c9a89e9d5, type: 3}
+  - Name: DreytonShield
+    Path: Equipment/Shield/AbandonedWorkshop/DreytonShield
+    Sprite: {fileID: 21300000, guid: 9455e5032a384dbbaf1060ef854d67f7, type: 3}
+  - Name: DrifterForehead
+    Path: Equipment/Helmet/AbandonedWorkshop/DrifterForehead
+    Sprite: {fileID: 21300000, guid: 3e768e2275794783903fde554987d110, type: 3}
+  - Name: DrifterLightArmor
+    Path: Equipment/Armor/AbandonedWorkshop/DrifterLightArmor
+    Sprite: {fileID: 21300000, guid: 6a485624dc494f508bcc676e3eab42eb, type: 3}
+  - Name: DrifterLightArmor.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/DrifterLightArmor.Belt
+    Sprite: {fileID: 21300000, guid: f052ec0c696a4b0b922caa880e5bc4bc, type: 3}
+  - Name: DrifterLightArmor.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/DrifterLightArmor.Boots
+    Sprite: {fileID: 21300000, guid: 3886344cc9a04f4a94dfbe91b9165dfd, type: 3}
+  - Name: DrifterLightArmor.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/DrifterLightArmor.Gloves
+    Sprite: {fileID: 21300000, guid: b36b41a6e6f6480aaf16ee6177a0e090, type: 3}
+  - Name: DrifterLightArmor.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/DrifterLightArmor.Pauldrons
+    Sprite: {fileID: 21300000, guid: f25fffd81b7b450cad3b675e55b56006, type: 3}
+  - Name: DrifterLightArmor.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/DrifterLightArmor.Vest
+    Sprite: {fileID: 21300000, guid: 1ba01647657b4eb8affcd7176f744f9d, type: 3}
+  - Name: DrifterSword
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Sword/DrifterSword
+    Sprite: {fileID: 21300000, guid: ff762e1610fd42068fe90b74fb7d72e8, type: 3}
+  - Name: DwarvenSword
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/DwarvenSword
+    Sprite: {fileID: 21300000, guid: 0ef9d04d90024b00baf075872e59d728, type: 3}
+  - Name: EdgyHandleSword
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/EdgyHandleSword
+    Sprite: {fileID: 21300000, guid: f1a92eb8fbb24c78a9a19be6fa30f552, type: 3}
+  - Name: EgyptianBow
+    Path: Equipment/Bow/Undead/EgyptianBow
+    Sprite: {fileID: 21300000, guid: ea073765b38a4495a969a038f9526b7d, type: 3}
+  - Name: EgyptianBow.Arrow
+    Path: Equipment/Arrow/Undead/EgyptianBow.Arrow
+    Sprite: {fileID: 21300000, guid: 3c66d366c7da4447aeef40261c4c4129, type: 3}
+  - Name: EgyptianSword
+    Path: Equipment/MeleeWeapon1H/Undead/Sword/EgyptianSword
+    Sprite: {fileID: 21300000, guid: b0b4eb18aaeb4c8fa7a77221b3a60e8c, type: 3}
+  - Name: ElegantArcherHood
+    Path: Equipment/Helmet/AbandonedWorkshop/ElegantArcherHood
+    Sprite: {fileID: 21300000, guid: 399fbe93d1eb412f80addc67519cd652, type: 3}
+  - Name: ElegantArcherVest
+    Path: Equipment/Armor/AbandonedWorkshop/ElegantArcherVest
+    Sprite: {fileID: 21300000, guid: 2163a0f67ca043fb89f20f89826a873d, type: 3}
+  - Name: ElegantArcherVest.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/ElegantArcherVest.Belt
+    Sprite: {fileID: 21300000, guid: c3332d2439ad4b65a5a800b07727ee4d, type: 3}
+  - Name: ElegantArcherVest.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/ElegantArcherVest.Boots
+    Sprite: {fileID: 21300000, guid: d022c27c052b41349529a2c646f520b9, type: 3}
+  - Name: ElegantArcherVest.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/ElegantArcherVest.Gloves
+    Sprite: {fileID: 21300000, guid: 78a37bc760f14dfab26ca9682e5388ce, type: 3}
+  - Name: ElegantArcherVest.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/ElegantArcherVest.Pauldrons
+    Sprite: {fileID: 21300000, guid: 37a770706a264bf9936e257c050dc563, type: 3}
+  - Name: ElegantArcherVest.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/ElegantArcherVest.Vest
+    Sprite: {fileID: 21300000, guid: 7723dccdfb104a6196537f8e7e855e5d, type: 3}
+  - Name: EliteGuardShield
+    Path: Equipment/Shield/AbandonedWorkshop/EliteGuardShield
+    Sprite: {fileID: 21300000, guid: 4854077e31a84f02b40a28eeb6ecff98, type: 3}
+  - Name: EliteTowerKeeperArmor
+    Path: Equipment/Armor/AbandonedWorkshop/EliteTowerKeeperArmor
+    Sprite: {fileID: 21300000, guid: 0cf9b31c101046f1be3880eabd811e1e, type: 3}
+  - Name: EliteTowerKeeperArmor.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/EliteTowerKeeperArmor.Belt
+    Sprite: {fileID: 21300000, guid: 6a66a1439acc44098b4bd3903e5ecfe0, type: 3}
+  - Name: EliteTowerKeeperArmor.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/EliteTowerKeeperArmor.Boots
+    Sprite: {fileID: 21300000, guid: 5229de1f44a74540948e26aa2b850c67, type: 3}
+  - Name: EliteTowerKeeperArmor.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/EliteTowerKeeperArmor.Gloves
+    Sprite: {fileID: 21300000, guid: 2cd9ae27538d43d1a75c218bca616a86, type: 3}
+  - Name: EliteTowerKeeperArmor.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/EliteTowerKeeperArmor.Pauldrons
+    Sprite: {fileID: 21300000, guid: e762061e1df347ebacf00b4bb06ebc85, type: 3}
+  - Name: EliteTowerKeeperArmor.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/EliteTowerKeeperArmor.Vest
+    Sprite: {fileID: 21300000, guid: cc0adfd72af2469a8a198abc4a404b50, type: 3}
+  - Name: EliteTowerKeeperHelm
+    Path: Equipment/Helmet/AbandonedWorkshop/EliteTowerKeeperHelm
+    Sprite: {fileID: 21300000, guid: 4587907d3b3247e3a71757c85bf29f1b, type: 3}
+  - Name: ElvenSword
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/ElvenSword
+    Sprite: {fileID: 21300000, guid: b2bc7c1bf08f42e28cc6092ac6e27715, type: 3}
+  - Name: EmbroidedVest
+    Path: Equipment/Armor/AbandonedWorkshop/EmbroidedVest
+    Sprite: {fileID: 21300000, guid: 90bf8c05c4d0467e90e4592ff19f715f, type: 3}
+  - Name: EmbroidedVest.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/EmbroidedVest.Belt
+    Sprite: {fileID: 21300000, guid: a5c6c5d57a094bdab06dc3cf3777709d, type: 3}
+  - Name: EmbroidedVest.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/EmbroidedVest.Boots
+    Sprite: {fileID: 21300000, guid: 95e0bd7a99014bdd99078c3a86b2991c, type: 3}
+  - Name: EmbroidedVest.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/EmbroidedVest.Gloves
+    Sprite: {fileID: 21300000, guid: a6e17061219a46409f21c6737a2aac12, type: 3}
+  - Name: EmbroidedVest.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/EmbroidedVest.Pauldrons
+    Sprite: {fileID: 21300000, guid: 9d22eb0c02b24566a3ebe9c2daafefda, type: 3}
+  - Name: EmbroidedVest.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/EmbroidedVest.Vest
+    Sprite: {fileID: 21300000, guid: bb97b26014604fbba13a47c99d8b3db0, type: 3}
+  - Name: Emma [HideEars]
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Emma [HideEars]
+    Sprite: {fileID: 21300000, guid: a4a94f9f12a6492ab8971cf18f84a146, type: 3}
+  - Name: Emma [HideEars]
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Emma [HideEars]
+    Sprite: {fileID: 21300000, guid: ede1a8d310f549a69755bf4a1e45411a, type: 3}
+  - Name: Emma [HideEars]
+    Path: BodyParts/Hair/Style/Emma [HideEars]
+    Sprite: {fileID: 21300000, guid: 66a8b8f2bc2e4a53867b4ce370e1c1d0, type: 3}
+  - Name: Emma [HideEars]
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Emma [HideEars]
+    Sprite: {fileID: 21300000, guid: fd32bc22242c43f5902496282231f127, type: 3}
+  - Name: EnchantedScarletArmor
+    Path: Equipment/Armor/AbandonedWorkshop/EnchantedScarletArmor
+    Sprite: {fileID: 21300000, guid: b5f93581bb834a51bd7df35874afa7f1, type: 3}
+  - Name: EnchantedScarletArmor.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/EnchantedScarletArmor.Belt
+    Sprite: {fileID: 21300000, guid: 864fbef5bcfd474ab43b77640783aa9e, type: 3}
+  - Name: EnchantedScarletArmor.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/EnchantedScarletArmor.Boots
+    Sprite: {fileID: 21300000, guid: de6d15f5de8c45f8bdc833e59711ae87, type: 3}
+  - Name: EnchantedScarletArmor.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/EnchantedScarletArmor.Gloves
+    Sprite: {fileID: 21300000, guid: feba4f165072435a8d67afb6aecb32b4, type: 3}
+  - Name: EnchantedScarletArmor.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/EnchantedScarletArmor.Pauldrons
+    Sprite: {fileID: 21300000, guid: f4f08f7f759347ffa17d417ec85956ab, type: 3}
+  - Name: EnchantedScarletArmor.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/EnchantedScarletArmor.Vest
+    Sprite: {fileID: 21300000, guid: efea0131cb734f2b80df7a897d3ebbd0, type: 3}
+  - Name: EnchantedScarletHelm
+    Path: Equipment/Helmet/AbandonedWorkshop/EnchantedScarletHelm
+    Sprite: {fileID: 21300000, guid: be6790a17f40444eb8a97084f00d4ac2, type: 3}
+  - Name: EnhancedDagger
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Dagger/EnhancedDagger
+    Sprite: {fileID: 21300000, guid: fd3b6e4538914d7f8bde2638880582db, type: 3}
+  - Name: EnlightenmentStaff
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/EnlightenmentStaff
+    Sprite: {fileID: 21300000, guid: 5d3ee5e2361b4f3cb3bef8e0c4a9f39a, type: 3}
+  - Name: EpicAxe
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Axe/EpicAxe
+    Sprite: {fileID: 21300000, guid: 5748562e5f674b29baab985d33114fbf, type: 3}
+  - Name: EpicHammer
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Hammer/EpicHammer
+    Sprite: {fileID: 21300000, guid: fda694dadb3d41b081a31057d91478c7, type: 3}
+  - Name: EpicSwordTypeA
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/EpicSwordTypeA
+    Sprite: {fileID: 21300000, guid: efb2466e2019490991321cf954dd454f, type: 3}
+  - Name: EpicSwordTypeB
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/EpicSwordTypeB
+    Sprite: {fileID: 21300000, guid: 406cafcd486848b286315547fc5bd2eb, type: 3}
+  - Name: FateLongsword
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Sword/FateLongsword
+    Sprite: {fileID: 21300000, guid: 28d1439a9fc74d038aec6496c96a3bb1, type: 3}
+  - Name: FineSteelSword
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/FineSteelSword
+    Sprite: {fileID: 21300000, guid: 5a65eae05c4e407189079d26af4b2719, type: 3}
+  - Name: FlameSalamanderBow
+    Path: Equipment/Bow/AbandonedWorkshop/FlameSalamanderBow
+    Sprite: {fileID: 21300000, guid: 67317d7ca8b540e29936fbe053d4e246, type: 3}
+  - Name: FlameSalamanderBow.Arrow
+    Path: Equipment/Arrow/AbandonedWorkshop/FlameSalamanderBow.Arrow
+    Sprite: {fileID: 21300000, guid: 5c026e51d6674a578415b832a1a32be9, type: 3}
+  - Name: FlameSalamanderHelm
+    Path: Equipment/Helmet/AbandonedWorkshop/FlameSalamanderHelm
+    Sprite: {fileID: 21300000, guid: 87e28ac9f25f4ab5a6c7e3bfa120374f, type: 3}
+  - Name: Fluffy
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Fluffy
+    Sprite: {fileID: 21300000, guid: 14942406630c4892860d78a811ba85dd, type: 3}
+  - Name: Fluffy
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Fluffy
+    Sprite: {fileID: 21300000, guid: 92f9c8e4118f40e8a9bfaa55436e8206, type: 3}
+  - Name: Fluffy
+    Path: BodyParts/Hair/Style/Fluffy
+    Sprite: {fileID: 21300000, guid: ce6c2d9dadb9455494b47d6f46332699, type: 3}
+  - Name: Fluffy
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Fluffy
+    Sprite: {fileID: 21300000, guid: a49595c17d794d0c92d109cddcba3af7, type: 3}
+  - Name: ForesterTunic
+    Path: Equipment/Armor/AbandonedWorkshop/ForesterTunic
+    Sprite: {fileID: 21300000, guid: a9ff6107ef9746cdb165f195b236cf39, type: 3}
+  - Name: ForesterTunic.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/ForesterTunic.Belt
+    Sprite: {fileID: 21300000, guid: 97a488db70d74bd596653fb86a01d8d3, type: 3}
+  - Name: ForesterTunic.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/ForesterTunic.Boots
+    Sprite: {fileID: 21300000, guid: 2f23fd7490234f1a8664c1698ca9a894, type: 3}
+  - Name: ForesterTunic.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/ForesterTunic.Gloves
+    Sprite: {fileID: 21300000, guid: 835f5c26070d4512b1b668d30a5897b0, type: 3}
+  - Name: ForesterTunic.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/ForesterTunic.Pauldrons
+    Sprite: {fileID: 21300000, guid: d361994943be4444aae93f65937c947c, type: 3}
+  - Name: ForesterTunic.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/ForesterTunic.Vest
+    Sprite: {fileID: 21300000, guid: 139ee4d51d4d41d1b55d31adcc76a9b8, type: 3}
+  - Name: ForestKeeperHat
+    Path: Equipment/Helmet/AbandonedWorkshop/ForestKeeperHat
+    Sprite: {fileID: 21300000, guid: 9c80c8f9e48b4585a81e8c32040723b4, type: 3}
+  - Name: ForestKeeperVestment
+    Path: Equipment/Armor/AbandonedWorkshop/ForestKeeperVestment
+    Sprite: {fileID: 21300000, guid: 1db8ba1e37f744db98af58c595999f73, type: 3}
+  - Name: ForestKeeperVestment.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/ForestKeeperVestment.Belt
+    Sprite: {fileID: 21300000, guid: 20b416b3ec2b4380a3450050007447f0, type: 3}
+  - Name: ForestKeeperVestment.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/ForestKeeperVestment.Boots
+    Sprite: {fileID: 21300000, guid: 71d594b449184aab83e202793493b851, type: 3}
+  - Name: ForestKeeperVestment.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/ForestKeeperVestment.Gloves
+    Sprite: {fileID: 21300000, guid: 32f9b3049af846b9b2f01e66d2abf0f0, type: 3}
+  - Name: ForestKeeperVestment.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/ForestKeeperVestment.Pauldrons
+    Sprite: {fileID: 21300000, guid: d2bf2390dc4545e2929a0985f9d2d836, type: 3}
+  - Name: ForestKeeperVestment.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/ForestKeeperVestment.Vest
+    Sprite: {fileID: 21300000, guid: 8ba4fbacfa7d408fb58a959a36930c98, type: 3}
+  - Name: ForgottenGreatswordTypeA
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Sword/ForgottenGreatswordTypeA
+    Sprite: {fileID: 21300000, guid: 0ea9146cfdc14f87bf39c0dd51ec04ce, type: 3}
+  - Name: ForgottenGreatswordTypeB
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Sword/ForgottenGreatswordTypeB
+    Sprite: {fileID: 21300000, guid: b808e9fdbcc7456b9ddd0fcab18aed02, type: 3}
+  - Name: FortuityStaff
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/FortuityStaff
+    Sprite: {fileID: 21300000, guid: e2deef8989f3482b84a44bbdb48ac373, type: 3}
+  - Name: FrostRobe
+    Path: Equipment/Armor/AbandonedWorkshop/FrostRobe
+    Sprite: {fileID: 21300000, guid: 89932e59195a4dc1b382b37a3ab04a24, type: 3}
+  - Name: FrostRobe.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/FrostRobe.Belt
+    Sprite: {fileID: 21300000, guid: a8db0b85a9894bfc93eb9877b5d1348c, type: 3}
+  - Name: FrostRobe.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/FrostRobe.Boots
+    Sprite: {fileID: 21300000, guid: ed4c9922bc1743f08142a7fbddcde022, type: 3}
+  - Name: FrostRobe.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/FrostRobe.Gloves
+    Sprite: {fileID: 21300000, guid: f5687d4665bf449a8d6987bf4752ffc8, type: 3}
+  - Name: FrostRobe.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/FrostRobe.Pauldrons
+    Sprite: {fileID: 21300000, guid: 9a40a6ffe6054376977f0e10b2c52119, type: 3}
+  - Name: FrostRobe.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/FrostRobe.Vest
+    Sprite: {fileID: 21300000, guid: b54f8e2d4c204c50be4fdf1dcc15dbee, type: 3}
+  - Name: FrozenMightHat
+    Path: Equipment/Helmet/AbandonedWorkshop/FrozenMightHat
+    Sprite: {fileID: 21300000, guid: 73de8c555ee54ea2b2d2b8e3e59a94af, type: 3}
+  - Name: FrozenMightRobe
+    Path: Equipment/Armor/AbandonedWorkshop/FrozenMightRobe
+    Sprite: {fileID: 21300000, guid: 3e123c10c64f4af285c62ea271c5a0e1, type: 3}
+  - Name: FrozenMightRobe.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/FrozenMightRobe.Belt
+    Sprite: {fileID: 21300000, guid: 6bce423b3d35486bb87b5e28683faf06, type: 3}
+  - Name: FrozenMightRobe.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/FrozenMightRobe.Boots
+    Sprite: {fileID: 21300000, guid: f1c3d46fdaeb475fb9c550784addc294, type: 3}
+  - Name: FrozenMightRobe.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/FrozenMightRobe.Gloves
+    Sprite: {fileID: 21300000, guid: 17a9470bd2d546769e24b1603ae66413, type: 3}
+  - Name: FrozenMightRobe.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/FrozenMightRobe.Pauldrons
+    Sprite: {fileID: 21300000, guid: f219472af68442fc950b5bdd9a319430, type: 3}
+  - Name: FrozenMightRobe.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/FrozenMightRobe.Vest
+    Sprite: {fileID: 21300000, guid: 7bf86c5483c34a7c82a2c50b906d7d37, type: 3}
+  - Name: FurryBody1
+    Path: BodyParts/Body/Furry/FurryBody1
+    Sprite: {fileID: 21300000, guid: 0bd66f17c99c4a18b0c5815deb1f053f, type: 3}
+  - Name: FurryBody2
+    Path: BodyParts/Body/Furry/FurryBody2
+    Sprite: {fileID: 21300000, guid: 90bcf9ba65744725947a7f992d8f5cc9, type: 3}
+  - Name: FurryBody3
+    Path: BodyParts/Body/Furry/FurryBody3
+    Sprite: {fileID: 21300000, guid: 2e8c80e17a59411ab19a69232678543a, type: 3}
+  - Name: FurryBody4
+    Path: BodyParts/Body/Furry/FurryBody4
+    Sprite: {fileID: 21300000, guid: 0d8a8541c6c2436faebb6990254a28f5, type: 3}
+  - Name: FurryEars1 [Paint]
+    Path: Equipment/Helmet/Furry/FurryEars1 [Paint]
+    Sprite: {fileID: 21300000, guid: d4cfb97bc6af482daf1cebde0defecef, type: 3}
+  - Name: FurryEars2 [Paint]
+    Path: Equipment/Helmet/Furry/FurryEars2 [Paint]
+    Sprite: {fileID: 21300000, guid: 0debc1af6b084e15899ca7e78eacd96d, type: 3}
+  - Name: FurryEars3 [Paint]
+    Path: Equipment/Helmet/Furry/FurryEars3 [Paint]
+    Sprite: {fileID: 21300000, guid: 8e693929ac4d4cdaa54271742366acdd, type: 3}
+  - Name: FurryEars4 [Paint]
+    Path: Equipment/Helmet/Furry/FurryEars4 [Paint]
+    Sprite: {fileID: 21300000, guid: 2a33a890298a4683aadf77794fa7ab87, type: 3}
+  - Name: FurryEyes1
+    Path: BodyParts/Eyes/Furry/FurryEyes1
+    Sprite: {fileID: 21300000, guid: 63a83a7c80bf407b991eb8ab4cba416b, type: 3}
+  - Name: FurryEyes2
+    Path: BodyParts/Eyes/Furry/FurryEyes2
+    Sprite: {fileID: 21300000, guid: 5e1f79c348b149b7bf1fb86075226238, type: 3}
+  - Name: FurryEyes3
+    Path: BodyParts/Eyes/Furry/FurryEyes3
+    Sprite: {fileID: 21300000, guid: ef39b86e48d440a784d19ceedea8ccfa, type: 3}
+  - Name: FurryEyes4
+    Path: BodyParts/Eyes/Furry/FurryEyes4
+    Sprite: {fileID: 21300000, guid: 604080dcaade413f9ef3fe9ba04c9f7f, type: 3}
+  - Name: FurryNose
+    Path: Equipment/Mask/Piglet/FurryNose
+    Sprite: {fileID: 21300000, guid: fbee29bce4ec432aa384f84d271fb85c, type: 3}
+  - Name: GadiatorLoincloth
+    Path: Equipment/Armor/Furry/GadiatorLoincloth
+    Sprite: {fileID: 21300000, guid: ed70571f16d74f17a5e162166c528cba, type: 3}
+  - Name: GadiatorLoincloth.Belt
+    Path: Equipment/Belt/Furry/GadiatorLoincloth.Belt
+    Sprite: {fileID: 21300000, guid: 171af03073a647c0887c8b39c2591049, type: 3}
+  - Name: GadiatorLoincloth.Boots
+    Path: Equipment/Boots/Furry/GadiatorLoincloth.Boots
+    Sprite: {fileID: 21300000, guid: a3e5a04ca6a24548a98d61fe7da2bc76, type: 3}
+  - Name: GadiatorLoincloth.Gloves
+    Path: Equipment/Gloves/Furry/GadiatorLoincloth.Gloves
+    Sprite: {fileID: 21300000, guid: 8bf7bf1484a940a090427607efbbcd88, type: 3}
+  - Name: GadiatorLoincloth.Pauldrons
+    Path: Equipment/Pauldrons/Furry/GadiatorLoincloth.Pauldrons
+    Sprite: {fileID: 21300000, guid: b95bf88b4f1848ca94604f3a178270b8, type: 3}
+  - Name: GadiatorLoincloth.Vest
+    Path: Equipment/Vest/Furry/GadiatorLoincloth.Vest
+    Sprite: {fileID: 21300000, guid: ce89d62734d841188d76a9fcd2bd2f67, type: 3}
+  - Name: GenieTurban
+    Path: Equipment/Helmet/AbandonedWorkshop/GenieTurban
+    Sprite: {fileID: 21300000, guid: f4c9e846caa74f85bbdf43409dabfed0, type: 3}
+  - Name: GenieVestment
+    Path: Equipment/Armor/AbandonedWorkshop/GenieVestment
+    Sprite: {fileID: 21300000, guid: d187ef4660ac41e78f74f9a17ae87519, type: 3}
+  - Name: GenieVestment.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/GenieVestment.Belt
+    Sprite: {fileID: 21300000, guid: b7867ba10c03418c82b3d36551a0d03e, type: 3}
+  - Name: GenieVestment.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/GenieVestment.Boots
+    Sprite: {fileID: 21300000, guid: 0f869bbb6dca47fb872278ca05f78e15, type: 3}
+  - Name: GenieVestment.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/GenieVestment.Gloves
+    Sprite: {fileID: 21300000, guid: 3963edd98a59432fa83d6980c1af4c9c, type: 3}
+  - Name: GenieVestment.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/GenieVestment.Pauldrons
+    Sprite: {fileID: 21300000, guid: 010816d306e94d81a923e20999cbba28, type: 3}
+  - Name: GenieVestment.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/GenieVestment.Vest
+    Sprite: {fileID: 21300000, guid: 8a3d91c541fb488490c9e9302f0ad27a, type: 3}
+  - Name: GlowingEyes
+    Path: BodyParts/Eyes/Mummies/GlowingEyes
+    Sprite: {fileID: 21300000, guid: c5225e554b734868ad0e70e3eabf49a8, type: 3}
+  - Name: GoldenEarring
+    Path: Equipment/Earrings/Zombies/GoldenEarring
+    Sprite: {fileID: 21300000, guid: f1db971e91614f748355334adf54344a, type: 3}
+  - Name: GoldenHawkGreatsword
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Sword/GoldenHawkGreatsword
+    Sprite: {fileID: 21300000, guid: 18ac39094f0c48f99fd0b36bd714b4c0, type: 3}
+  - Name: GoldenShield
+    Path: Equipment/Shield/AbandonedWorkshop/GoldenShield
+    Sprite: {fileID: 21300000, guid: 84960b81c82e43809af4a6a4c35f1a8d, type: 3}
+  - Name: GoldenWings
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Dagger/GoldenWings
+    Sprite: {fileID: 21300000, guid: a1feba9889dc487cb76fa1425f7d6fa9, type: 3}
+  - Name: GreenCrystalMace
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Hammer/GreenCrystalMace
+    Sprite: {fileID: 21300000, guid: 0d8609a900f3472a98ece50dc80618f6, type: 3}
+  - Name: GreenCrystalMace
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Hammer/GreenCrystalMace
+    Sprite: {fileID: 21300000, guid: 76d1a522139b483aa0284f959b53c92a, type: 3}
+  - Name: GuardianSword
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/GuardianSword
+    Sprite: {fileID: 21300000, guid: 0967fa4118ae4941b5741fcab41e65d9, type: 3}
+  - Name: GuildArmor
+    Path: Equipment/Armor/AbandonedWorkshop/GuildArmor
+    Sprite: {fileID: 21300000, guid: e417cd0be39d4aa9b9116e7016b25078, type: 3}
+  - Name: GuildArmor.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/GuildArmor.Belt
+    Sprite: {fileID: 21300000, guid: 9f3847df7f254c89bb492272f6c60876, type: 3}
+  - Name: GuildArmor.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/GuildArmor.Boots
+    Sprite: {fileID: 21300000, guid: fea2268e2ea54ab38721abdef2074465, type: 3}
+  - Name: GuildArmor.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/GuildArmor.Gloves
+    Sprite: {fileID: 21300000, guid: c4def4e42bcb4fda9ea92461b74120ac, type: 3}
+  - Name: GuildArmor.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/GuildArmor.Pauldrons
+    Sprite: {fileID: 21300000, guid: 9fc6b0ad487649aaac12c7b810542ff1, type: 3}
+  - Name: GuildArmor.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/GuildArmor.Vest
+    Sprite: {fileID: 21300000, guid: 335d6d94a28f490c9ce0749bf63e7b77, type: 3}
+  - Name: GuildHelmet
+    Path: Equipment/Helmet/AbandonedWorkshop/GuildHelmet
+    Sprite: {fileID: 21300000, guid: 4c9b54f15e1a42018bf90c4642052a84, type: 3}
+  - Name: GuildShield
+    Path: Equipment/Shield/AbandonedWorkshop/GuildShield
+    Sprite: {fileID: 21300000, guid: fc09e3d90ff04e9886b3c88caa03c7d1, type: 3}
+  - Name: GuildSword
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/GuildSword
+    Sprite: {fileID: 21300000, guid: b6cde991e80c4f04baa737ae72f19b39, type: 3}
+  - Name: GustHammer
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Hammer/GustHammer
+    Sprite: {fileID: 21300000, guid: 66e1b6b4bd2a41ffadb9c54de8f86db8, type: 3}
+  - Name: HailstormStaff
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/HailstormStaff
+    Sprite: {fileID: 21300000, guid: 904c2c5bb9fa455199aef5a3e480f907, type: 3}
+  - Name: Head
+    Path: BodyParts/Head/Basic/Head
+    Sprite: {fileID: 21300000, guid: 5a51a7bfc7894490b76cae43d1f42e41, type: 3}
+  - Name: HeavyAxe
+    Path: Equipment/MeleeWeapon2H/Undead/Axe/HeavyAxe
+    Sprite: {fileID: 21300000, guid: ff88db2d887a4c3d9eb337092371a4e7, type: 3}
+  - Name: HeavyBow
+    Path: Equipment/Bow/AbandonedWorkshop/HeavyBow
+    Sprite: {fileID: 21300000, guid: 4dd847f4f0e34d8b938ff12cadc82b71, type: 3}
+  - Name: HeavyBow.Arrow
+    Path: Equipment/Arrow/AbandonedWorkshop/HeavyBow.Arrow
+    Sprite: {fileID: 21300000, guid: 91f33e5a1d954bffbf764e399c6607e2, type: 3}
+  - Name: HeavyBroadsword
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Sword/HeavyBroadsword
+    Sprite: {fileID: 21300000, guid: 1e9fb04acf4c43e2b54742d4abc276cb, type: 3}
+  - Name: HeavyHammer
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Hammer/HeavyHammer
+    Sprite: {fileID: 21300000, guid: d4a7c04a220341139ffebbb4678c9649, type: 3}
+  - Name: HeavyMace
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Hammer/HeavyMace
+    Sprite: {fileID: 21300000, guid: f4edd2fa0f1c4aa4a56515bf7aa65257, type: 3}
+  - Name: HeavyPoleaxe
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Axe/HeavyPoleaxe
+    Sprite: {fileID: 21300000, guid: 802a6410a2424d15a13f12dd3d0ece31, type: 3}
+  - Name: HeavyWoodenShield
+    Path: Equipment/Shield/AbandonedWorkshop/HeavyWoodenShield
+    Sprite: {fileID: 21300000, guid: 485ea24ca7774fed94d8c5b903c2fcab, type: 3}
+  - Name: HelmetOfCryingDemon
+    Path: Equipment/Helmet/Epic/HelmetOfCryingDemon
+    Sprite: {fileID: 21300000, guid: 34a45c14cc07474b8be312bbc220c288, type: 3}
+  - Name: HelmetOfEndingLight
+    Path: Equipment/Helmet/Epic/HelmetOfEndingLight
+    Sprite: {fileID: 21300000, guid: 2106802ae8294c6b9535a74342e31d56, type: 3}
+  - Name: HelmetOfFadedHeavens
+    Path: Equipment/Helmet/Epic/HelmetOfFadedHeavens
+    Sprite: {fileID: 21300000, guid: 09c2e8a18e7849af90d7ba2cd7ff71af, type: 3}
+  - Name: HelmetOfForgottenFoe [FullHair]
+    Path: Equipment/Helmet/Epic/HelmetOfForgottenFoe [FullHair]
+    Sprite: {fileID: 21300000, guid: a18acbc722694b85a68669d3a63ce1e9, type: 3}
+  - Name: HelmetOfLoneWolf
+    Path: Equipment/Helmet/Epic/HelmetOfLoneWolf
+    Sprite: {fileID: 21300000, guid: b258a0ee6c204b69870df8bd2ed1bb00, type: 3}
+  - Name: HelmetOfRagingCrux
+    Path: Equipment/Helmet/Epic/HelmetOfRagingCrux
+    Sprite: {fileID: 21300000, guid: ed05a6f3cc5949a5ad6394737ecd6d9e, type: 3}
+  - Name: HelmetOfRelentlessNightmares [FullHair]
+    Path: Equipment/Helmet/Epic/HelmetOfRelentlessNightmares [FullHair]
+    Sprite: {fileID: 21300000, guid: f6d171b2a3634c859a801ebb802f1b86, type: 3}
+  - Name: HexWoodenShield
+    Path: Equipment/Shield/AbandonedWorkshop/HexWoodenShield
+    Sprite: {fileID: 21300000, guid: 7a3e03305d004781b1cffca4afb253e1, type: 3}
+  - Name: HighCrusaderArmor
+    Path: Equipment/Armor/AbandonedWorkshop/HighCrusaderArmor
+    Sprite: {fileID: 21300000, guid: f4b597041734441396a2752f94152819, type: 3}
+  - Name: HighCrusaderArmor.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/HighCrusaderArmor.Belt
+    Sprite: {fileID: 21300000, guid: 28de50c2f0f04ddd82a842e490961373, type: 3}
+  - Name: HighCrusaderArmor.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/HighCrusaderArmor.Boots
+    Sprite: {fileID: 21300000, guid: 3961d36744594f138a466d424ae8ec14, type: 3}
+  - Name: HighCrusaderArmor.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/HighCrusaderArmor.Gloves
+    Sprite: {fileID: 21300000, guid: 32648aebc96a4de68040cb2b63b3e0e6, type: 3}
+  - Name: HighCrusaderArmor.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/HighCrusaderArmor.Pauldrons
+    Sprite: {fileID: 21300000, guid: 5da9944286764e40948e25f6d38836e5, type: 3}
+  - Name: HighCrusaderArmor.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/HighCrusaderArmor.Vest
+    Sprite: {fileID: 21300000, guid: 2ad3fddd1c5a415d8bb44934280adee5, type: 3}
+  - Name: HighCrusaderHelm
+    Path: Equipment/Helmet/AbandonedWorkshop/HighCrusaderHelm
+    Sprite: {fileID: 21300000, guid: 5d5e1eb0c7eb4b3c89b7b393437cb7ad, type: 3}
+  - Name: HighCrusaderShield
+    Path: Equipment/Shield/AbandonedWorkshop/HighCrusaderShield
+    Sprite: {fileID: 21300000, guid: 0e287b75a4c7492797a9eb18d6192298, type: 3}
+  - Name: HighGuardianShield
+    Path: Equipment/Shield/AbandonedWorkshop/HighGuardianShield
+    Sprite: {fileID: 21300000, guid: dffcd17acf3949ce9c12c201ed1a8bf1, type: 3}
+  - Name: HighKnightArmor
+    Path: Equipment/Armor/AbandonedWorkshop/HighKnightArmor
+    Sprite: {fileID: 21300000, guid: a8361355c1684e1895c3ddbd46e2cd2b, type: 3}
+  - Name: HighKnightArmor.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/HighKnightArmor.Belt
+    Sprite: {fileID: 21300000, guid: 6f2cd62681874e148ca8b0d4566c37d1, type: 3}
+  - Name: HighKnightArmor.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/HighKnightArmor.Boots
+    Sprite: {fileID: 21300000, guid: d49c59eef11446b18db19809d807a7f4, type: 3}
+  - Name: HighKnightArmor.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/HighKnightArmor.Gloves
+    Sprite: {fileID: 21300000, guid: 5c7264a135534a8587850c000208881a, type: 3}
+  - Name: HighKnightArmor.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/HighKnightArmor.Pauldrons
+    Sprite: {fileID: 21300000, guid: 264387c68d2346278bcba30d16747c66, type: 3}
+  - Name: HighKnightArmor.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/HighKnightArmor.Vest
+    Sprite: {fileID: 21300000, guid: e8f70c5e65e147499531ea09adf73db2, type: 3}
+  - Name: HighKnightHelm
+    Path: Equipment/Helmet/AbandonedWorkshop/HighKnightHelm
+    Sprite: {fileID: 21300000, guid: 5c390ca32f044f92982e6bcf3b52fbc4, type: 3}
+  - Name: HighKnightShield
+    Path: Equipment/Shield/AbandonedWorkshop/HighKnightShield
+    Sprite: {fileID: 21300000, guid: 6c8f58b60f5b482eb044d19e846020e3, type: 3}
+  - Name: HollowAxe
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Axe/HollowAxe
+    Sprite: {fileID: 21300000, guid: bb1c7d5796244008a80dc9c76200029f, type: 3}
+  - Name: HolyGrandstaff
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/HolyGrandstaff
+    Sprite: {fileID: 21300000, guid: 0d7ab66421fd46d38b1569c8a99d1585, type: 3}
+  - Name: Horns1 [FullHair]
+    Path: Equipment/Helmet/Horns (FM)/Horns1 [FullHair]
+    Sprite: {fileID: 21300000, guid: 8c9d7c299e6145e7b9bddee881768720, type: 3}
+  - Name: Horns1 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (FM)/Horns1 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 501ad563bbda40daa022302e058a41cd, type: 3}
+  - Name: Horns1 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns1 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: a7dd2e707a1548ed84d8eec557167a65, type: 3}
+  - Name: Horns10 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns10 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 979ccf20b74c4524867404d52d5f70e9, type: 3}
+  - Name: Horns11 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns11 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 09e1e8e86a5f487f98e05d3531929d49, type: 3}
+  - Name: Horns12 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns12 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 1e558d8b281f485e8bd37686b5e89b05, type: 3}
+  - Name: Horns13 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns13 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 61b875862326427fa8a9eef4934d89ed, type: 3}
+  - Name: Horns14 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns14 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 3ee73b46a04f49768696c058c5ca9c47, type: 3}
+  - Name: Horns15[Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns15[Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 7e3f7cba33b14c79a1bfcf1666db4b40, type: 3}
+  - Name: Horns2 [FullHair]
+    Path: Equipment/Helmet/Horns (FM)/Horns2 [FullHair]
+    Sprite: {fileID: 21300000, guid: 7b0f93fe9bfb4453a9cf19f6d6779704, type: 3}
+  - Name: Horns2 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (FM)/Horns2 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 3fce2c5d4962468a82a69fac7545e721, type: 3}
+  - Name: Horns2 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns2 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: f1fe21155c4447259176c6effeb52afd, type: 3}
+  - Name: Horns3 [FullHair]
+    Path: Equipment/Helmet/Horns (FM)/Horns3 [FullHair]
+    Sprite: {fileID: 21300000, guid: a8834b8f20504a5783d92fcc54021c4f, type: 3}
+  - Name: Horns3 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (FM)/Horns3 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 4cea74edac574da188022292fa52344f, type: 3}
+  - Name: Horns3 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns3 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: d16009f991804b0fba65e5c655810c11, type: 3}
+  - Name: Horns4 [FullHair]
+    Path: Equipment/Helmet/Horns (FM)/Horns4 [FullHair]
+    Sprite: {fileID: 21300000, guid: 7faf5b80098c432c8861db2ed4ff7481, type: 3}
+  - Name: Horns4 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (FM)/Horns4 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 8ab977cef064457587cac781cd6df813, type: 3}
+  - Name: Horns4 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns4 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 0b18ca50eacb4841872b12ac08bd6bdd, type: 3}
+  - Name: Horns5 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns5 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 33b0ac30525d40ca9a9a7fc60d7f4787, type: 3}
+  - Name: Horns6 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns6 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 54904acb04c842f6a837cb682f753f68, type: 3}
+  - Name: Horns7 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns7 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: a19b41fa2d6747c0baa0dec3f4fe2e0e, type: 3}
+  - Name: Horns8 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns8 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 95c6878774f14446b9e11db990ee33f7, type: 3}
+  - Name: Horns9 [Paint] [FullHair]
+    Path: Equipment/Helmet/Horns (Style)/Horns9 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: e7d5653663e74e3db523f39cbfb8389c, type: 3}
+  - Name: Human
+    Path: BodyParts/Body/Basic/Human
+    Sprite: {fileID: 21300000, guid: ec564932b5464e409580c49d12ee864c, type: 3}
+  - Name: IllusionMantle
+    Path: Equipment/Armor/AbandonedWorkshop/IllusionMantle
+    Sprite: {fileID: 21300000, guid: 24699acfaf8d4fd595c95fffa7b56ea0, type: 3}
+  - Name: IllusionMantle.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/IllusionMantle.Belt
+    Sprite: {fileID: 21300000, guid: cccbcaa380874477ba8c3d1a24d7e40c, type: 3}
+  - Name: IllusionMantle.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/IllusionMantle.Boots
+    Sprite: {fileID: 21300000, guid: 1c921dbe81fc4c18b98657124ea1b066, type: 3}
+  - Name: IllusionMantle.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/IllusionMantle.Gloves
+    Sprite: {fileID: 21300000, guid: d7c37af8d6e24a6f83b6be34bb975f31, type: 3}
+  - Name: IllusionMantle.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/IllusionMantle.Pauldrons
+    Sprite: {fileID: 21300000, guid: 5ebcfaef6a3a4a25afc10c8203e9cc8f, type: 3}
+  - Name: IllusionMantle.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/IllusionMantle.Vest
+    Sprite: {fileID: 21300000, guid: 65db3007bfc74abfa03037df05d9c6d2, type: 3}
+  - Name: Imperial TemplarArmor
+    Path: Equipment/Armor/AbandonedWorkshop/Imperial TemplarArmor
+    Sprite: {fileID: 21300000, guid: 4705de8636904e3a84aa892f5090929c, type: 3}
+  - Name: Imperial TemplarArmor.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/Imperial TemplarArmor.Belt
+    Sprite: {fileID: 21300000, guid: 58e97b2d634d4108b6d782e4dc0ba3f0, type: 3}
+  - Name: Imperial TemplarArmor.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/Imperial TemplarArmor.Boots
+    Sprite: {fileID: 21300000, guid: c67b9753d51e4c1ab8fb21ec54b45954, type: 3}
+  - Name: Imperial TemplarArmor.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/Imperial TemplarArmor.Gloves
+    Sprite: {fileID: 21300000, guid: 481847f7c06243deb4b2952ce9e0ae01, type: 3}
+  - Name: Imperial TemplarArmor.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/Imperial TemplarArmor.Pauldrons
+    Sprite: {fileID: 21300000, guid: a4d67127578449e5865e0639d4e4730d, type: 3}
+  - Name: Imperial TemplarArmor.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/Imperial TemplarArmor.Vest
+    Sprite: {fileID: 21300000, guid: c175ebdb3f4e4d3fadf4ca2f7b1166e8, type: 3}
+  - Name: Imperial TemplarHelm
+    Path: Equipment/Helmet/AbandonedWorkshop/Imperial TemplarHelm
+    Sprite: {fileID: 21300000, guid: b080ba61810643108df1d1dedfd02bc0, type: 3}
+  - Name: ImperialKnight Cuirass
+    Path: Equipment/Armor/AbandonedWorkshop/ImperialKnight Cuirass
+    Sprite: {fileID: 21300000, guid: 7a0ce7d795b44311b4c31899ab385f81, type: 3}
+  - Name: ImperialKnight Cuirass.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/ImperialKnight Cuirass.Belt
+    Sprite: {fileID: 21300000, guid: 2ea787afa4e14bcbb75f4ca89f5dfdb9, type: 3}
+  - Name: ImperialKnight Cuirass.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/ImperialKnight Cuirass.Boots
+    Sprite: {fileID: 21300000, guid: 9fdd39ec61094bb8a2a52b98921d6cf3, type: 3}
+  - Name: ImperialKnight Cuirass.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/ImperialKnight Cuirass.Gloves
+    Sprite: {fileID: 21300000, guid: 1c01c017ac6c4200b8dfd3e14aa605c0, type: 3}
+  - Name: ImperialKnight Cuirass.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/ImperialKnight Cuirass.Pauldrons
+    Sprite: {fileID: 21300000, guid: 7a31c22fef2d4db2a9d624d236a29352, type: 3}
+  - Name: ImperialKnight Cuirass.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/ImperialKnight Cuirass.Vest
+    Sprite: {fileID: 21300000, guid: 60c313a88b7d40a7af84b1c25ffefdef, type: 3}
+  - Name: ImperialKnightHelm
+    Path: Equipment/Helmet/AbandonedWorkshop/ImperialKnightHelm
+    Sprite: {fileID: 21300000, guid: 05f7da241bdd4803b4af48e4b237d5c7, type: 3}
+  - Name: ImperialKnightShield
+    Path: Equipment/Shield/AbandonedWorkshop/ImperialKnightShield
+    Sprite: {fileID: 21300000, guid: ea6056a2431a4889a67426ad32139726, type: 3}
+  - Name: ImperialTemplarShield
+    Path: Equipment/Shield/AbandonedWorkshop/ImperialTemplarShield
+    Sprite: {fileID: 21300000, guid: 1ead6d76369b436ea3c0c10fbfc59bf3, type: 3}
+  - Name: IronCuirass
+    Path: Equipment/Armor/AbandonedWorkshop/IronCuirass
+    Sprite: {fileID: 21300000, guid: d5bf090a303b4425ad66c3c079d58603, type: 3}
+  - Name: IronCuirass.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/IronCuirass.Belt
+    Sprite: {fileID: 21300000, guid: 271b7c7954e0463c9db65cee2242b065, type: 3}
+  - Name: IronCuirass.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/IronCuirass.Boots
+    Sprite: {fileID: 21300000, guid: fc1902e01d58413aaf3fa05b9ec51b03, type: 3}
+  - Name: IronCuirass.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/IronCuirass.Gloves
+    Sprite: {fileID: 21300000, guid: 59f5c6972ac84dac85bd33a8358a8499, type: 3}
+  - Name: IronCuirass.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/IronCuirass.Pauldrons
+    Sprite: {fileID: 21300000, guid: b52b20df07574ff5b29a875fbce91378, type: 3}
+  - Name: IronCuirass.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/IronCuirass.Vest
+    Sprite: {fileID: 21300000, guid: bad3aacc980e40a0964988a35aee828f, type: 3}
+  - Name: IronHeavyHelm
+    Path: Equipment/Helmet/AbandonedWorkshop/IronHeavyHelm
+    Sprite: {fileID: 21300000, guid: 1df964d2ffbd474c903a88b6ab12ed34, type: 3}
+  - Name: IronHunterArmor
+    Path: Equipment/Armor/AbandonedWorkshop/IronHunterArmor
+    Sprite: {fileID: 21300000, guid: a94cee16a1e64de78eae535054dc820e, type: 3}
+  - Name: IronHunterArmor.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/IronHunterArmor.Belt
+    Sprite: {fileID: 21300000, guid: 3d8560c5c4644e0395f2ea498279ef5f, type: 3}
+  - Name: IronHunterArmor.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/IronHunterArmor.Boots
+    Sprite: {fileID: 21300000, guid: 1d81ad3653234633b1fdf69122a898e5, type: 3}
+  - Name: IronHunterArmor.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/IronHunterArmor.Gloves
+    Sprite: {fileID: 21300000, guid: 30104978cebf44ba8e63ce755521e901, type: 3}
+  - Name: IronHunterArmor.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/IronHunterArmor.Pauldrons
+    Sprite: {fileID: 21300000, guid: 7bbe56b5ac5a4285aebabc361337ae9d, type: 3}
+  - Name: IronHunterArmor.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/IronHunterArmor.Vest
+    Sprite: {fileID: 21300000, guid: 28185f41477044c2b449982fb402d889, type: 3}
+  - Name: IronHunterHelm
+    Path: Equipment/Helmet/AbandonedWorkshop/IronHunterHelm
+    Sprite: {fileID: 21300000, guid: ece565bfef564e118c2a2cea8de6b233, type: 3}
+  - Name: IronHunterShield
+    Path: Equipment/Shield/AbandonedWorkshop/IronHunterShield
+    Sprite: {fileID: 21300000, guid: f0b11c5e1fa943e29d96e6b4854028e6, type: 3}
+  - Name: IronLongsword
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Sword/IronLongsword
+    Sprite: {fileID: 21300000, guid: 50173aba1f224f038973e2d066beeb56, type: 3}
+  - Name: IronShield
+    Path: Equipment/Shield/AbandonedWorkshop/IronShield
+    Sprite: {fileID: 21300000, guid: b24fb98a01354cbb8b6c31dc31a04388, type: 3}
+  - Name: Lea [HideEars]
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Lea [HideEars]
+    Sprite: {fileID: 21300000, guid: 06d75640726e412498ee3726bb629eaf, type: 3}
+  - Name: Lea [HideEars]
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Lea [HideEars]
+    Sprite: {fileID: 21300000, guid: 766618701a1b4ca09b2e86b76c7e0b02, type: 3}
+  - Name: Lea [HideEars]
+    Path: BodyParts/Hair/Style/Lea [HideEars]
+    Sprite: {fileID: 21300000, guid: bec217123f6c408395ed213d2573a01b, type: 3}
+  - Name: Lea [HideEars]
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Lea [HideEars]
+    Sprite: {fileID: 21300000, guid: c84f169fa2af4a18b189edaad6f39b72, type: 3}
+  - Name: LegendarySword
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/LegendarySword
+    Sprite: {fileID: 21300000, guid: 7160660506b544c6bbb89ca24a28f992, type: 3}
+  - Name: LightenedPoleaxe
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Axe/LightenedPoleaxe
+    Sprite: {fileID: 21300000, guid: 305709dbe82c4bfe8cbe60bf25bc3235, type: 3}
+  - Name: MagicShield
+    Path: Equipment/Shield/AbandonedWorkshop/MagicShield
+    Sprite: {fileID: 21300000, guid: ef92b51c59a6433286af86a84276f487, type: 3}
+  - Name: MarkedScoutOrcHelm
+    Path: Equipment/Helmet/AbandonedWorkshop/MarkedScoutOrcHelm
+    Sprite: {fileID: 21300000, guid: df5fded4504342d5b2b7083ae1a7473b, type: 3}
+  - Name: MarketCommanderOrcHelm
+    Path: Equipment/Helmet/AbandonedWorkshop/MarketCommanderOrcHelm
+    Sprite: {fileID: 21300000, guid: 3e8c6269d57f4ef580a7ff38148c4ae6, type: 3}
+  - Name: MiniSword
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Dagger/MiniSword
+    Sprite: {fileID: 21300000, guid: b81ee23347ee4aabb0b5367e26d861c2, type: 3}
+  - Name: MoonlightSword
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/MoonlightSword
+    Sprite: {fileID: 21300000, guid: 863b1aa8240f49c18af955ff0cac061b, type: 3}
+  - Name: MoonshadowGreatstaff
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/MoonshadowGreatstaff
+    Sprite: {fileID: 21300000, guid: 36b7bebdf343472c8c704e1c70ce5782, type: 3}
+  - Name: MummyBody1
+    Path: BodyParts/Body/Mummies/MummyBody1
+    Sprite: {fileID: 21300000, guid: ee00669657f24bdc9cc93fba9e224428, type: 3}
+  - Name: MummyBody2
+    Path: BodyParts/Body/Mummies/MummyBody2
+    Sprite: {fileID: 21300000, guid: eaf105f4ec704b7c945e037dfe867592, type: 3}
+  - Name: MummyBody3
+    Path: BodyParts/Body/Mummies/MummyBody3
+    Sprite: {fileID: 21300000, guid: 3cef072154594f7d845a168723b76818, type: 3}
+  - Name: MummyClothes1
+    Path: Equipment/Armor/Mummies/MummyClothes1
+    Sprite: {fileID: 21300000, guid: ddb9b6f3dc8847a5ac54722af0529961, type: 3}
+  - Name: MummyClothes1.Belt
+    Path: Equipment/Belt/Mummies/MummyClothes1.Belt
+    Sprite: {fileID: 21300000, guid: 7cb3e15f37dd4c2f860efc69eff08f80, type: 3}
+  - Name: MummyClothes1.Boots
+    Path: Equipment/Boots/Mummies/MummyClothes1.Boots
+    Sprite: {fileID: 21300000, guid: 0fb3b0771e0c4323854711d840784804, type: 3}
+  - Name: MummyClothes1.Gloves
+    Path: Equipment/Gloves/Mummies/MummyClothes1.Gloves
+    Sprite: {fileID: 21300000, guid: c008d1f56eb34b21ba74b167b4f12e8c, type: 3}
+  - Name: MummyClothes1.Pauldrons
+    Path: Equipment/Pauldrons/Mummies/MummyClothes1.Pauldrons
+    Sprite: {fileID: 21300000, guid: 6d0c40c79dcc477184aa3600261691df, type: 3}
+  - Name: MummyClothes1.Vest
+    Path: Equipment/Vest/Mummies/MummyClothes1.Vest
+    Sprite: {fileID: 21300000, guid: f1bd3d710bc14a6690af84f8874b69ce, type: 3}
+  - Name: MummyClothes2
+    Path: Equipment/Armor/Mummies/MummyClothes2
+    Sprite: {fileID: 21300000, guid: 75c26239bfce40328a4317ab29552ada, type: 3}
+  - Name: MummyClothes2.Belt
+    Path: Equipment/Belt/Mummies/MummyClothes2.Belt
+    Sprite: {fileID: 21300000, guid: f8eb7112b034438890a5e43fbb203d2f, type: 3}
+  - Name: MummyClothes2.Boots
+    Path: Equipment/Boots/Mummies/MummyClothes2.Boots
+    Sprite: {fileID: 21300000, guid: c015b1be34aa4cb98168d0da55a929ee, type: 3}
+  - Name: MummyClothes2.Gloves
+    Path: Equipment/Gloves/Mummies/MummyClothes2.Gloves
+    Sprite: {fileID: 21300000, guid: ff0e352600644abcb613f1472d6ef490, type: 3}
+  - Name: MummyClothes2.Pauldrons
+    Path: Equipment/Pauldrons/Mummies/MummyClothes2.Pauldrons
+    Sprite: {fileID: 21300000, guid: 31c730f1d3454a9eaeebfc00dcd61484, type: 3}
+  - Name: MummyClothes2.Vest
+    Path: Equipment/Vest/Mummies/MummyClothes2.Vest
+    Sprite: {fileID: 21300000, guid: fbfc70836b5b4901911ca92973fb9486, type: 3}
+  - Name: MummyClothes3
+    Path: Equipment/Armor/Mummies/MummyClothes3
+    Sprite: {fileID: 21300000, guid: 588c09c9f52945f7ad2d1face944558f, type: 3}
+  - Name: MummyClothes3.Belt
+    Path: Equipment/Belt/Mummies/MummyClothes3.Belt
+    Sprite: {fileID: 21300000, guid: 7d8f14eac9694be3a38785858166045c, type: 3}
+  - Name: MummyClothes3.Boots
+    Path: Equipment/Boots/Mummies/MummyClothes3.Boots
+    Sprite: {fileID: 21300000, guid: 61950d8b1a0d44b786d8de37c07a7d82, type: 3}
+  - Name: MummyClothes3.Gloves
+    Path: Equipment/Gloves/Mummies/MummyClothes3.Gloves
+    Sprite: {fileID: 21300000, guid: c6bcec8900d14973aa913c276d766a32, type: 3}
+  - Name: MummyClothes3.Pauldrons
+    Path: Equipment/Pauldrons/Mummies/MummyClothes3.Pauldrons
+    Sprite: {fileID: 21300000, guid: 46d3d148f2a3477e8185cfcf0277e7c8, type: 3}
+  - Name: MummyClothes3.Vest
+    Path: Equipment/Vest/Mummies/MummyClothes3.Vest
+    Sprite: {fileID: 21300000, guid: 9ce8719439424592a393f6222c90d400, type: 3}
+  - Name: MummyClothes4
+    Path: Equipment/Armor/Mummies/MummyClothes4
+    Sprite: {fileID: 21300000, guid: 31b134a6fba94587879e5d7460545a80, type: 3}
+  - Name: MummyClothes4.Belt
+    Path: Equipment/Belt/Mummies/MummyClothes4.Belt
+    Sprite: {fileID: 21300000, guid: a9e2184df0244af2aa53af03d6f20b00, type: 3}
+  - Name: MummyClothes4.Boots
+    Path: Equipment/Boots/Mummies/MummyClothes4.Boots
+    Sprite: {fileID: 21300000, guid: 9fa181cffac941bfaef8d7d92776770d, type: 3}
+  - Name: MummyClothes4.Gloves
+    Path: Equipment/Gloves/Mummies/MummyClothes4.Gloves
+    Sprite: {fileID: 21300000, guid: 3bf5fa03797b4214aa21d8e7cb15ca59, type: 3}
+  - Name: MummyClothes4.Pauldrons
+    Path: Equipment/Pauldrons/Mummies/MummyClothes4.Pauldrons
+    Sprite: {fileID: 21300000, guid: 88d75c7107be4d748b015bf6448568cd, type: 3}
+  - Name: MummyClothes4.Vest
+    Path: Equipment/Vest/Mummies/MummyClothes4.Vest
+    Sprite: {fileID: 21300000, guid: 3a58466783d54a6ba004f1311a9aaf29, type: 3}
+  - Name: MummyEar1
+    Path: BodyParts/Ears/Mummies/MummyEar1
+    Sprite: {fileID: 21300000, guid: ec814e4c44404835a3fcb414c70f75e1, type: 3}
+  - Name: MummyEar2
+    Path: BodyParts/Ears/Mummies/MummyEar2
+    Sprite: {fileID: 21300000, guid: 1ea637a0f28b4e53946b860405417f78, type: 3}
+  - Name: MummyHat1
+    Path: Equipment/Helmet/Mummies/MummyHat1
+    Sprite: {fileID: 21300000, guid: f50e329b21ec40efa50514e2e803f7ea, type: 3}
+  - Name: MummyHat2
+    Path: Equipment/Helmet/Mummies/MummyHat2
+    Sprite: {fileID: 21300000, guid: f92c9bf576d64586ae13044f905fca74, type: 3}
+  - Name: MummyHat3
+    Path: Equipment/Helmet/Mummies/MummyHat3
+    Sprite: {fileID: 21300000, guid: 62e57a2dcc7f4d268f887946e142a4a1, type: 3}
+  - Name: MummyHat4
+    Path: Equipment/Helmet/Mummies/MummyHat4
+    Sprite: {fileID: 21300000, guid: e0429f1deffb4972a63758e34401a279, type: 3}
+  - Name: MummyHead1
+    Path: BodyParts/Head/Mummies/MummyHead1
+    Sprite: {fileID: 21300000, guid: b8350ee3a7994263961fce6c472f1bcb, type: 3}
+  - Name: MummyHead2
+    Path: BodyParts/Head/Mummies/MummyHead2
+    Sprite: {fileID: 21300000, guid: b6a6865ab4cc40d58235cccf7771f5e6, type: 3}
+  - Name: MummyHead3
+    Path: BodyParts/Head/Mummies/MummyHead3
+    Sprite: {fileID: 21300000, guid: 245c580f1d58408190a485264f34ab76, type: 3}
+  - Name: MummyWand
+    Path: Equipment/MeleeWeapon1H/Undead/Wand/MummyWand
+    Sprite: {fileID: 21300000, guid: ce86a139b03f46d4b94fe281499e2137, type: 3}
+  - Name: NativeWand
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/NativeWand
+    Sprite: {fileID: 21300000, guid: 39ab6715d8c240fcae80e80260eaee2b, type: 3}
+  - Name: NightCharmsWand
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/NightCharmsWand
+    Sprite: {fileID: 21300000, guid: 846bc9a844c541f0a13a93f376af3525, type: 3}
+  - Name: NightStaff
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/NightStaff
+    Sprite: {fileID: 21300000, guid: 143d9e74712746979c2e9b2165325782, type: 3}
+  - Name: NobleDagger
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Dagger/NobleDagger
+    Sprite: {fileID: 21300000, guid: 20df12aedea247659cb2a15ccea17968, type: 3}
+  - Name: NordicArmor
+    Path: Equipment/Armor/AbandonedWorkshop/NordicArmor
+    Sprite: {fileID: 21300000, guid: 4b3510e4d7c84d2ea7ae502670b9f5ec, type: 3}
+  - Name: NordicArmor.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/NordicArmor.Belt
+    Sprite: {fileID: 21300000, guid: 7ab3515878dc4e46b29fbb3bcb31b81f, type: 3}
+  - Name: NordicArmor.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/NordicArmor.Boots
+    Sprite: {fileID: 21300000, guid: f87d8155318742e793fa178d4ff70af7, type: 3}
+  - Name: NordicArmor.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/NordicArmor.Gloves
+    Sprite: {fileID: 21300000, guid: 7d75af606db14083a7a3cc12f67670b4, type: 3}
+  - Name: NordicArmor.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/NordicArmor.Pauldrons
+    Sprite: {fileID: 21300000, guid: c14820942f644f1f9719816e5515812d, type: 3}
+  - Name: NordicArmor.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/NordicArmor.Vest
+    Sprite: {fileID: 21300000, guid: d91342727f674c3cac783a164907192d, type: 3}
+  - Name: NordicHelm
+    Path: Equipment/Helmet/AbandonedWorkshop/NordicHelm
+    Sprite: {fileID: 21300000, guid: fe617d2b25f2433f933bd0cac5ad0dd0, type: 3}
+  - Name: NordicShield
+    Path: Equipment/Shield/AbandonedWorkshop/NordicShield
+    Sprite: {fileID: 21300000, guid: 6b9b6f9eecc54675a99db18910e64489, type: 3}
+  - Name: Normal
+    Path: BodyParts/Mouth/Furry/Normal
+    Sprite: {fileID: 21300000, guid: e5d95e79fb5a4f2597f545b12a111e3c, type: 3}
+  - Name: NosrossArcherArmor
+    Path: Equipment/Armor/AbandonedWorkshop/NosrossArcherArmor
+    Sprite: {fileID: 21300000, guid: a86d7a93e3d84524bfb72752cba9c533, type: 3}
+  - Name: NosrossArcherArmor.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/NosrossArcherArmor.Belt
+    Sprite: {fileID: 21300000, guid: 1bc0c897df924bb9b5c1c9b4054cb025, type: 3}
+  - Name: NosrossArcherArmor.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/NosrossArcherArmor.Boots
+    Sprite: {fileID: 21300000, guid: b510aea7eaa14038bba62795858b9f3c, type: 3}
+  - Name: NosrossArcherArmor.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/NosrossArcherArmor.Gloves
+    Sprite: {fileID: 21300000, guid: 969787ee23ea415e812d35c12fb3b024, type: 3}
+  - Name: NosrossArcherArmor.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/NosrossArcherArmor.Pauldrons
+    Sprite: {fileID: 21300000, guid: 9f628a4316e642b8b5cc021285ed29f7, type: 3}
+  - Name: NosrossArcherArmor.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/NosrossArcherArmor.Vest
+    Sprite: {fileID: 21300000, guid: e74bb73e76be4433af37d649546b76e6, type: 3}
+  - Name: NosrossArcherHelm
+    Path: Equipment/Helmet/AbandonedWorkshop/NosrossArcherHelm
+    Sprite: {fileID: 21300000, guid: 23a3b4bc45fb43e084227659b211043d, type: 3}
+  - Name: NoviceStaff
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/NoviceStaff
+    Sprite: {fileID: 21300000, guid: 39ea8cb55e9e43b1bf572450d8e1224f, type: 3}
+  - Name: OldBattleAxe
+    Path: Equipment/MeleeWeapon1H/Undead/Axe/OldBattleAxe
+    Sprite: {fileID: 21300000, guid: f076ae0fdf6845ac98784312a6842bf3, type: 3}
+  - Name: OldBoomerang
+    Path: Equipment/Supplies/Throwing/OldBoomerang
+    Sprite: {fileID: 21300000, guid: b336ac593046449581c5dc7a5a5c1aaf, type: 3}
+  - Name: OldCap
+    Path: Equipment/Helmet/Zombies/OldCap
+    Sprite: {fileID: 21300000, guid: 7cb222733b224df19d9f1a920af60b0d, type: 3}
+  - Name: OldGladiatorHelm
+    Path: Equipment/Helmet/Skeletons/OldGladiatorHelm
+    Sprite: {fileID: 21300000, guid: 45a7f396bc7e409f8e40483aacc3e0b9, type: 3}
+  - Name: OldHornHelm
+    Path: Equipment/Helmet/Skeletons/OldHornHelm
+    Sprite: {fileID: 21300000, guid: 89d7f14b7ba4439891ed48c589e9b2d5, type: 3}
+  - Name: OldLeatherHelm
+    Path: Equipment/Helmet/Skeletons/OldLeatherHelm
+    Sprite: {fileID: 21300000, guid: 32f75a776b93424398c4d69be76cdf26, type: 3}
+  - Name: OldPirateHat
+    Path: Equipment/Helmet/Skeletons/OldPirateHat
+    Sprite: {fileID: 21300000, guid: 532f5f201ec349809e65339d34f22714, type: 3}
+  - Name: OldPirateSaber
+    Path: Equipment/MeleeWeapon1H/Undead/Sword/OldPirateSaber
+    Sprite: {fileID: 21300000, guid: 51960a9061b34254b0ad0a7c26ab61d4, type: 3}
+  - Name: OldThrowingAxe
+    Path: Equipment/MeleeWeapon1H/Undead/Axe/OldThrowingAxe
+    Sprite: {fileID: 21300000, guid: 4d0172584532460b8d0d640901bd3b5b, type: 3}
+  - Name: OldWarriorSword
+    Path: Equipment/MeleeWeapon1H/Undead/Sword/OldWarriorSword
+    Sprite: {fileID: 21300000, guid: 4569c05cae7c48f5897d61b0d5e29b0b, type: 3}
+  - Name: OldWoodcutterAxe
+    Path: Equipment/MeleeWeapon1H/Undead/Axe/OldWoodcutterAxe
+    Sprite: {fileID: 21300000, guid: 21598d4f3bdc4775bec0b2a8c1ba0d37, type: 3}
+  - Name: OmegaGreatstaff
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/OmegaGreatstaff
+    Sprite: {fileID: 21300000, guid: ca6ff3db9cfc451ab2e4fffee2471300, type: 3}
+  - Name: OrcArmor
+    Path: Equipment/Armor/AbandonedWorkshop/OrcArmor
+    Sprite: {fileID: 21300000, guid: d7b0dbc043e44200b9fb7dfd2953340b, type: 3}
+  - Name: OrcArmor.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/OrcArmor.Belt
+    Sprite: {fileID: 21300000, guid: 45dc9c3731b44c858e5181f42b8b03bb, type: 3}
+  - Name: OrcArmor.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/OrcArmor.Boots
+    Sprite: {fileID: 21300000, guid: 3c4ec9725d5f466d84ef743ba08b3902, type: 3}
+  - Name: OrcArmor.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/OrcArmor.Gloves
+    Sprite: {fileID: 21300000, guid: 2a4efcbdfaf74673a8ce55488756d4bc, type: 3}
+  - Name: OrcArmor.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/OrcArmor.Pauldrons
+    Sprite: {fileID: 21300000, guid: 4ae9f1ce01554e0990e565025b9617b1, type: 3}
+  - Name: OrcArmor.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/OrcArmor.Vest
+    Sprite: {fileID: 21300000, guid: f26bb0c748b84ad0b8202fd57640b509, type: 3}
+  - Name: OrcSword
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/OrcSword
+    Sprite: {fileID: 21300000, guid: 9caadd7f2e1744e396a57a72e5c585bd, type: 3}
+  - Name: OrkShield
+    Path: Equipment/Shield/AbandonedWorkshop/OrkShield
+    Sprite: {fileID: 21300000, guid: 6552e1c295b745e59bfe4e287e80e09c, type: 3}
+  - Name: OzeriasHood
+    Path: Equipment/Helmet/AbandonedWorkshop/OzeriasHood
+    Sprite: {fileID: 21300000, guid: c2a84b2cc38644f8ac22a80d78ac76b4, type: 3}
+  - Name: OzeriasRobe
+    Path: Equipment/Armor/AbandonedWorkshop/OzeriasRobe
+    Sprite: {fileID: 21300000, guid: 8608b2b2b37047968df86a31bdecb349, type: 3}
+  - Name: OzeriasRobe.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/OzeriasRobe.Belt
+    Sprite: {fileID: 21300000, guid: 673af109fd814eaa9867807000f9a431, type: 3}
+  - Name: OzeriasRobe.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/OzeriasRobe.Boots
+    Sprite: {fileID: 21300000, guid: 54ec1a2d8e284a5aa9419a531590e820, type: 3}
+  - Name: OzeriasRobe.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/OzeriasRobe.Gloves
+    Sprite: {fileID: 21300000, guid: d40d3932f5314fb09066b3f7c94464e1, type: 3}
+  - Name: OzeriasRobe.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/OzeriasRobe.Pauldrons
+    Sprite: {fileID: 21300000, guid: abb137dbc71e443d97bbc2f0d2700f66, type: 3}
+  - Name: OzeriasRobe.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/OzeriasRobe.Vest
+    Sprite: {fileID: 21300000, guid: 862ea2c9794646f8829fbc14d9f7f107, type: 3}
+  - Name: Pappenheimer
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/Pappenheimer
+    Sprite: {fileID: 21300000, guid: c8423a3ca34b499cbbe0cff75a222f88, type: 3}
+  - Name: PharaohStaff
+    Path: Equipment/MeleeWeapon1H/Undead/Wand/PharaohStaff
+    Sprite: {fileID: 21300000, guid: 303158625ce44bd2a9cc09244b0c27de, type: 3}
+  - Name: Piglet1 [Paint]
+    Path: Equipment/Mask/Piglet/Piglet1 [Paint]
+    Sprite: {fileID: 21300000, guid: a175438ce3db4df889de5835b8d14b4c, type: 3}
+  - Name: Piglet2 [Paint]
+    Path: Equipment/Mask/Piglet/Piglet2 [Paint]
+    Sprite: {fileID: 21300000, guid: 566f8d6697af48069a9a1402df6b1530, type: 3}
+  - Name: Piglet3 [Paint]
+    Path: Equipment/Mask/Piglet/Piglet3 [Paint]
+    Sprite: {fileID: 21300000, guid: fc03ad1d96d14b7d931ce1d7bce574e9, type: 3}
+  - Name: Piglet4 [Paint]
+    Path: Equipment/Mask/Piglet/Piglet4 [Paint]
+    Sprite: {fileID: 21300000, guid: 2444c809124c4470bfd1e25e0ed2c6fd, type: 3}
+  - Name: PlateShield
+    Path: Equipment/Shield/AbandonedWorkshop/PlateShield
+    Sprite: {fileID: 21300000, guid: 329b552d1be84189b9eddab5fb79db8b, type: 3}
+  - Name: Princess
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Princess
+    Sprite: {fileID: 21300000, guid: f731e1ec1b4e4783ba816e6d70f19c4a, type: 3}
+  - Name: Princess
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Princess
+    Sprite: {fileID: 21300000, guid: dd108f713a0e4dc2b0507c2670233284, type: 3}
+  - Name: Princess
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Princess
+    Sprite: {fileID: 21300000, guid: 71d06fb11dc74e6faa2379a27ccbd77d, type: 3}
+  - Name: Princess [HideEars]
+    Path: BodyParts/Hair/Style/Princess [HideEars]
+    Sprite: {fileID: 21300000, guid: 3cda4fda7e064079821289cbe55a283d, type: 3}
+  - Name: PunishmentMace
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Hammer/PunishmentMace
+    Sprite: {fileID: 21300000, guid: d4b99fc6e57b455cbe5ee102c7eaf285, type: 3}
+  - Name: RagLoincloth
+    Path: Equipment/Armor/Furry/RagLoincloth
+    Sprite: {fileID: 21300000, guid: 908c4d1ac40b476db1ddaac7f63d0d88, type: 3}
+  - Name: RagLoincloth.Belt
+    Path: Equipment/Belt/Furry/RagLoincloth.Belt
+    Sprite: {fileID: 21300000, guid: e043bd4cd8e24e8386019fde64cfb797, type: 3}
+  - Name: RagLoincloth.Boots
+    Path: Equipment/Boots/Furry/RagLoincloth.Boots
+    Sprite: {fileID: 21300000, guid: 8f731f5485c84d5a9d0501f6b3c72748, type: 3}
+  - Name: RagLoincloth.Gloves
+    Path: Equipment/Gloves/Furry/RagLoincloth.Gloves
+    Sprite: {fileID: 21300000, guid: e701469a7fd846df87a6ff7f94ed4199, type: 3}
+  - Name: RagLoincloth.Pauldrons
+    Path: Equipment/Pauldrons/Furry/RagLoincloth.Pauldrons
+    Sprite: {fileID: 21300000, guid: 9a30a5a4657e43ccae2da7c4bf92f9e6, type: 3}
+  - Name: RagLoincloth.Vest
+    Path: Equipment/Vest/Furry/RagLoincloth.Vest
+    Sprite: {fileID: 21300000, guid: 7ffdf9eb855f4732bc47ea7c6d1ea2ca, type: 3}
+  - Name: RaiderSword
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/RaiderSword
+    Sprite: {fileID: 21300000, guid: db8f8dd27a3c4d46b4a0ee36869e5cf4, type: 3}
+  - Name: RareAxe
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Axe/RareAxe
+    Sprite: {fileID: 21300000, guid: b812a4de0e7a46f5bba2fe07b66b7817, type: 3}
+  - Name: RareHammer
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Hammer/RareHammer
+    Sprite: {fileID: 21300000, guid: c80c478c864e43b3830a3c896be8120b, type: 3}
+  - Name: RareSwordTypeA
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/RareSwordTypeA
+    Sprite: {fileID: 21300000, guid: 8ba785a583fe4115a44aac003f69e5ff, type: 3}
+  - Name: RareSwordTypeB
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/RareSwordTypeB
+    Sprite: {fileID: 21300000, guid: 40cdc5f51e42430db8075c2a2eb1aca4, type: 3}
+  - Name: RareWand1
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/RareWand1
+    Sprite: {fileID: 21300000, guid: 86efa23cadde4201b71df50dc8a5b595, type: 3}
+  - Name: ReckoningStaff
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/ReckoningStaff
+    Sprite: {fileID: 21300000, guid: 0d8c0beafbdc4f21aa7a45b1a2c4190d, type: 3}
+  - Name: RedBandana [FullHair]
+    Path: Equipment/Helmet/Skeletons/RedBandana [FullHair]
+    Sprite: {fileID: 21300000, guid: 6d6625a3ccd6412c8cc5e637bf6767c7, type: 3}
+  - Name: RedGuardianArmor
+    Path: Equipment/Armor/AbandonedWorkshop/RedGuardianArmor
+    Sprite: {fileID: 21300000, guid: 587d767b15544bc6ad28ee9587a911b1, type: 3}
+  - Name: RedGuardianArmor.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/RedGuardianArmor.Belt
+    Sprite: {fileID: 21300000, guid: bdc2c7e059c04f4c8c0bfbc0ee202b59, type: 3}
+  - Name: RedGuardianArmor.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/RedGuardianArmor.Boots
+    Sprite: {fileID: 21300000, guid: 0861a9a5fe2149ea97f368ddb69b230a, type: 3}
+  - Name: RedGuardianArmor.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/RedGuardianArmor.Gloves
+    Sprite: {fileID: 21300000, guid: 1e5d87fbf86f4955afd107e973ccd9ff, type: 3}
+  - Name: RedGuardianArmor.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/RedGuardianArmor.Pauldrons
+    Sprite: {fileID: 21300000, guid: 04d31852eada45209fc7340aa8e4533c, type: 3}
+  - Name: RedGuardianArmor.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/RedGuardianArmor.Vest
+    Sprite: {fileID: 21300000, guid: 1073923abc914d51abbd0bb15c81f18f, type: 3}
+  - Name: RedGuardianSword
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/RedGuardianSword
+    Sprite: {fileID: 21300000, guid: 722d3617d153426f9fab9fabab607518, type: 3}
+  - Name: RedKittyHood
+    Path: Equipment/Helmet/AbandonedWorkshop/RedKittyHood
+    Sprite: {fileID: 21300000, guid: be181c62e8e0446082e85e81ec882586, type: 3}
+  - Name: RedKittyRobe
+    Path: Equipment/Armor/AbandonedWorkshop/RedKittyRobe
+    Sprite: {fileID: 21300000, guid: 0802de1eee004513b4dd1b3a84d9c525, type: 3}
+  - Name: RedKittyRobe.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/RedKittyRobe.Belt
+    Sprite: {fileID: 21300000, guid: 0ae3bbe56b5749159f229e97898952fe, type: 3}
+  - Name: RedKittyRobe.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/RedKittyRobe.Boots
+    Sprite: {fileID: 21300000, guid: 8c14a7166db04fde90f871768a00c6d6, type: 3}
+  - Name: RedKittyRobe.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/RedKittyRobe.Gloves
+    Sprite: {fileID: 21300000, guid: ba3a6e72ee3346b0b63bdadb94a39008, type: 3}
+  - Name: RedKittyRobe.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/RedKittyRobe.Pauldrons
+    Sprite: {fileID: 21300000, guid: 3305eb306c9942ca985a346bec226acb, type: 3}
+  - Name: RedKittyRobe.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/RedKittyRobe.Vest
+    Sprite: {fileID: 21300000, guid: ade145100ae54a4a90ee7d50e57783f4, type: 3}
+  - Name: RedLunarHood
+    Path: Equipment/Helmet/AbandonedWorkshop/RedLunarHood
+    Sprite: {fileID: 21300000, guid: 41ea905aa8bb43dd8c7b7f893460a6d5, type: 3}
+  - Name: RedLunarRobe
+    Path: Equipment/Armor/AbandonedWorkshop/RedLunarRobe
+    Sprite: {fileID: 21300000, guid: 2255b8f1e74940859b989bf1be052f5c, type: 3}
+  - Name: RedLunarRobe.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/RedLunarRobe.Belt
+    Sprite: {fileID: 21300000, guid: d34cb714da1b4141b7816d1731df871c, type: 3}
+  - Name: RedLunarRobe.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/RedLunarRobe.Boots
+    Sprite: {fileID: 21300000, guid: 117993dff3b34c3a93b0a6028a40a40a, type: 3}
+  - Name: RedLunarRobe.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/RedLunarRobe.Gloves
+    Sprite: {fileID: 21300000, guid: ff3c1eaff6724522a241880c3f7f4622, type: 3}
+  - Name: RedLunarRobe.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/RedLunarRobe.Pauldrons
+    Sprite: {fileID: 21300000, guid: 34840d31e4294f5b8bfcb27d9bf1eae4, type: 3}
+  - Name: RedLunarRobe.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/RedLunarRobe.Vest
+    Sprite: {fileID: 21300000, guid: 1ccdff38cbd24fa78a88a72d8457e53a, type: 3}
+  - Name: RedwoodBow
+    Path: Equipment/Bow/AbandonedWorkshop/RedwoodBow
+    Sprite: {fileID: 21300000, guid: a428639ea41c4833bb6333f7ea812b84, type: 3}
+  - Name: RedwoodBow.Arrow
+    Path: Equipment/Arrow/AbandonedWorkshop/RedwoodBow.Arrow
+    Sprite: {fileID: 21300000, guid: 3746b3786b854639a95dbbc3a9c78955, type: 3}
+  - Name: ReinforcedLeatherArmor
+    Path: Equipment/Armor/AbandonedWorkshop/ReinforcedLeatherArmor
+    Sprite: {fileID: 21300000, guid: aa0ae47bcd0046f5b3a9911a34427b74, type: 3}
+  - Name: ReinforcedLeatherArmor.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/ReinforcedLeatherArmor.Belt
+    Sprite: {fileID: 21300000, guid: 5103a8f238e24a009bfd49b9b3f43d5c, type: 3}
+  - Name: ReinforcedLeatherArmor.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/ReinforcedLeatherArmor.Boots
+    Sprite: {fileID: 21300000, guid: 4115a293155d46ab9813c567b1abc069, type: 3}
+  - Name: ReinforcedLeatherArmor.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/ReinforcedLeatherArmor.Gloves
+    Sprite: {fileID: 21300000, guid: e4558c97b7674ae0adf583c6177aafae, type: 3}
+  - Name: ReinforcedLeatherArmor.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/ReinforcedLeatherArmor.Pauldrons
+    Sprite: {fileID: 21300000, guid: 816e522547194a6d85fe772cb00962ea, type: 3}
+  - Name: ReinforcedLeatherArmor.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/ReinforcedLeatherArmor.Vest
+    Sprite: {fileID: 21300000, guid: d0edecd79d9c41418bca86806e666878, type: 3}
+  - Name: ReinforcedLeatherTunic
+    Path: Equipment/Armor/AbandonedWorkshop/ReinforcedLeatherTunic
+    Sprite: {fileID: 21300000, guid: 2947a1c8f1b34d9b93c427b7ba9e2b17, type: 3}
+  - Name: ReinforcedLeatherTunic.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/ReinforcedLeatherTunic.Belt
+    Sprite: {fileID: 21300000, guid: da8355dccd364fd79bc260c6756f4231, type: 3}
+  - Name: ReinforcedLeatherTunic.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/ReinforcedLeatherTunic.Boots
+    Sprite: {fileID: 21300000, guid: 6db638d2f011425e909452bb0c2c7bb7, type: 3}
+  - Name: ReinforcedLeatherTunic.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/ReinforcedLeatherTunic.Gloves
+    Sprite: {fileID: 21300000, guid: 0a3d457fd7f2481d9710fbcda283a871, type: 3}
+  - Name: ReinforcedLeatherTunic.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/ReinforcedLeatherTunic.Pauldrons
+    Sprite: {fileID: 21300000, guid: bd19362abef94c909004fb1423d1fff6, type: 3}
+  - Name: ReinforcedLeatherTunic.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/ReinforcedLeatherTunic.Vest
+    Sprite: {fileID: 21300000, guid: b6fd91755f434dbf8f889cd0073afdc0, type: 3}
+  - Name: ReinforcedMace
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Hammer/ReinforcedMace
+    Sprite: {fileID: 21300000, guid: f96096ae421a41ecb681606c4b5ae30b, type: 3}
+  - Name: RenovatedArmor
+    Path: Equipment/Armor/AbandonedWorkshop/RenovatedArmor
+    Sprite: {fileID: 21300000, guid: 39966126c0914eae9e172d82bf4664de, type: 3}
+  - Name: RenovatedArmor.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/RenovatedArmor.Belt
+    Sprite: {fileID: 21300000, guid: 572822fcc53643cb9f22f578c0f316ab, type: 3}
+  - Name: RenovatedArmor.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/RenovatedArmor.Boots
+    Sprite: {fileID: 21300000, guid: 778ccb417bca4d17a50b668793880408, type: 3}
+  - Name: RenovatedArmor.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/RenovatedArmor.Gloves
+    Sprite: {fileID: 21300000, guid: 6be56a16d1a8456cbd986c26efc9a55c, type: 3}
+  - Name: RenovatedArmor.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/RenovatedArmor.Pauldrons
+    Sprite: {fileID: 21300000, guid: c25640e7bb8749afa90f357e5311119e, type: 3}
+  - Name: RenovatedArmor.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/RenovatedArmor.Vest
+    Sprite: {fileID: 21300000, guid: 69b777c9bfb74eb5ad4e620932687cc3, type: 3}
+  - Name: RenovatedHelm
+    Path: Equipment/Helmet/AbandonedWorkshop/RenovatedHelm
+    Sprite: {fileID: 21300000, guid: 2a9c79de3e4c4b9880aa6901a91f6cd3, type: 3}
+  - Name: RetributionBow
+    Path: Equipment/Bow/AbandonedWorkshop/RetributionBow
+    Sprite: {fileID: 21300000, guid: a7d7536afdc14f439811f706b43ae047, type: 3}
+  - Name: RetributionBow.Arrow
+    Path: Equipment/Arrow/AbandonedWorkshop/RetributionBow.Arrow
+    Sprite: {fileID: 21300000, guid: cf3ef2c05f8a4504819f8089fd75b816, type: 3}
+  - Name: Ribbon1 [FullHair]
+    Path: Equipment/Helmet/Style/Ribbon1 [FullHair]
+    Sprite: {fileID: 21300000, guid: 0ffdddaa1f004b558d8385f8b45941cd, type: 3}
+  - Name: Ribbon1 [Paint] [FullHair]
+    Path: Equipment/Helmet/Style/Ribbon1 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: b99cfcfcb22849adb2325b1ac450df7c, type: 3}
+  - Name: Ribbon2 [FullHair]
+    Path: Equipment/Helmet/Style/Ribbon2 [FullHair]
+    Sprite: {fileID: 21300000, guid: 894e3ee266814441874f5225e412e99f, type: 3}
+  - Name: Ribbon2 [Paint] [FullHair]
+    Path: Equipment/Helmet/Style/Ribbon2 [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 51605d6f0d5c43738b78b5f6192484a6, type: 3}
+  - Name: RisenBow
+    Path: Equipment/Bow/AbandonedWorkshop/RisenBow
+    Sprite: {fileID: 21300000, guid: 01a0f79a34a94d3aa70c542d2591320b, type: 3}
+  - Name: RisenBow.Arrow
+    Path: Equipment/Arrow/AbandonedWorkshop/RisenBow.Arrow
+    Sprite: {fileID: 21300000, guid: 57357647b88c4160a1ddfcf5d679c53f, type: 3}
+  - Name: RobberCap
+    Path: Equipment/Helmet/AbandonedWorkshop/RobberCap
+    Sprite: {fileID: 21300000, guid: 2ecb317b98f343c08fd3b847433a16cc, type: 3}
+  - Name: Rocky
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Rocky
+    Sprite: {fileID: 21300000, guid: 444b50bce5194a80bf7143ca80068660, type: 3}
+  - Name: Rocky
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Rocky
+    Sprite: {fileID: 21300000, guid: 29390b03cda0477a9fefe0b893082c7d, type: 3}
+  - Name: Rocky
+    Path: BodyParts/Hair/Style/Rocky
+    Sprite: {fileID: 21300000, guid: de522e21f38d40199144c906209f1d19, type: 3}
+  - Name: Rocky
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Rocky
+    Sprite: {fileID: 21300000, guid: 77c694c79461428f8c28ac9f2c26f5b2, type: 3}
+  - Name: Rocky [Paint] [FullHair]
+    Path: Equipment/Helmet/Style/Rocky [Paint] [FullHair]
+    Sprite: {fileID: 21300000, guid: 2ff677f47eeb4241b8eeac20196887f1, type: 3}
+  - Name: RoyalHeaddress
+    Path: Equipment/Helmet/AbandonedWorkshop/RoyalHeaddress
+    Sprite: {fileID: 21300000, guid: 81a4c12d07264a9b8bab34e07d787630, type: 3}
+  - Name: RoyalTunic
+    Path: Equipment/Armor/AbandonedWorkshop/RoyalTunic
+    Sprite: {fileID: 21300000, guid: 40dd4aadb3b54e95bcda70ef6eec9b95, type: 3}
+  - Name: RoyalTunic.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/RoyalTunic.Belt
+    Sprite: {fileID: 21300000, guid: c2d4603f9f604632860c3f9e5a2c5a7e, type: 3}
+  - Name: RoyalTunic.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/RoyalTunic.Boots
+    Sprite: {fileID: 21300000, guid: a323a276970e46e7a371f7b4f32fe2e7, type: 3}
+  - Name: RoyalTunic.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/RoyalTunic.Gloves
+    Sprite: {fileID: 21300000, guid: e556cea30d7f4b26a800250033c3696e, type: 3}
+  - Name: RoyalTunic.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/RoyalTunic.Pauldrons
+    Sprite: {fileID: 21300000, guid: c71e72cdef67432fb76b77d963596633, type: 3}
+  - Name: RoyalTunic.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/RoyalTunic.Vest
+    Sprite: {fileID: 21300000, guid: c03e32de70284f2685e8d1e9e8f9b1d2, type: 3}
+  - Name: RunicShield
+    Path: Equipment/Shield/AbandonedWorkshop/RunicShield
+    Sprite: {fileID: 21300000, guid: 8817582aded84a85845a4a0b4da1c700, type: 3}
+  - Name: RustedSword
+    Path: Equipment/MeleeWeapon1H/Undead/Sword/RustedSword
+    Sprite: {fileID: 21300000, guid: 9d50a6a7356a43f2b067b58d81b39678, type: 3}
+  - Name: RustyPaleSword
+    Path: Equipment/MeleeWeapon2H/Undead/Sword/RustyPaleSword
+    Sprite: {fileID: 21300000, guid: 6b408a0231dd4494947b10deece77f5f, type: 3}
+  - Name: RybyReflectionGreatstaff
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/RybyReflectionGreatstaff
+    Sprite: {fileID: 21300000, guid: 4a575b06a08f4407b5ebd7bcc4e533f9, type: 3}
+  - Name: SacredWolfyRobe
+    Path: Equipment/Armor/AbandonedWorkshop/SacredWolfyRobe
+    Sprite: {fileID: 21300000, guid: 49d9b23693c6419ba235be87f39e8ace, type: 3}
+  - Name: SacredWolfyRobe
+    Path: Equipment/Helmet/AbandonedWorkshop/SacredWolfyRobe
+    Sprite: {fileID: 21300000, guid: 8d2389828c994e89a845f2457362d15b, type: 3}
+  - Name: SacredWolfyRobe.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/SacredWolfyRobe.Belt
+    Sprite: {fileID: 21300000, guid: db0534432e4547b9ba2d76371cd1dfea, type: 3}
+  - Name: SacredWolfyRobe.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/SacredWolfyRobe.Boots
+    Sprite: {fileID: 21300000, guid: ad5f246d6d5a47ebb3c88d0e067c07db, type: 3}
+  - Name: SacredWolfyRobe.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/SacredWolfyRobe.Gloves
+    Sprite: {fileID: 21300000, guid: b08b59542aa2458581ae575f5467a450, type: 3}
+  - Name: SacredWolfyRobe.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/SacredWolfyRobe.Pauldrons
+    Sprite: {fileID: 21300000, guid: fce0778306e24c6f910def7e86a5eed8, type: 3}
+  - Name: SacredWolfyRobe.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/SacredWolfyRobe.Vest
+    Sprite: {fileID: 21300000, guid: bc1012b50d7b4ff9af8e52ae0abbb481, type: 3}
+  - Name: SagewoodWand
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/SagewoodWand
+    Sprite: {fileID: 21300000, guid: cfba0cdd06f0428ab289dd13032494c9, type: 3}
+  - Name: SandHijab
+    Path: Equipment/Helmet/AbandonedWorkshop/SandHijab
+    Sprite: {fileID: 21300000, guid: c67e7ed227344a74a25ffcfddbf1e57d, type: 3}
+  - Name: SandTunic
+    Path: Equipment/Armor/AbandonedWorkshop/SandTunic
+    Sprite: {fileID: 21300000, guid: f29884a546e74753a54d1e96d4aa1860, type: 3}
+  - Name: SandTunic.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/SandTunic.Belt
+    Sprite: {fileID: 21300000, guid: 1bd19649f93a4773a9db6e594123f6f5, type: 3}
+  - Name: SandTunic.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/SandTunic.Boots
+    Sprite: {fileID: 21300000, guid: dfdb41f64bfb4255b8be774f1007c4ed, type: 3}
+  - Name: SandTunic.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/SandTunic.Gloves
+    Sprite: {fileID: 21300000, guid: 99e1499d7d96441daddf2ae7887dcaba, type: 3}
+  - Name: SandTunic.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/SandTunic.Pauldrons
+    Sprite: {fileID: 21300000, guid: 98d821e50cf94c2081ce43d2f7272fc5, type: 3}
+  - Name: SandTunic.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/SandTunic.Vest
+    Sprite: {fileID: 21300000, guid: 029569071cba4438bad81a3f54301181, type: 3}
+  - Name: Santa1
+    Path: Equipment/Armor/Christmas/Santa1
+    Sprite: {fileID: 21300000, guid: ea10d17a6f1a4a74b7ac3f794cae38dd, type: 3}
+  - Name: Santa1.Belt
+    Path: Equipment/Belt/Christmas/Santa1.Belt
+    Sprite: {fileID: 21300000, guid: e7e8f16801c243b9b088625c4ca79ac3, type: 3}
+  - Name: Santa1.Boots
+    Path: Equipment/Boots/Christmas/Santa1.Boots
+    Sprite: {fileID: 21300000, guid: 3e05c9a9f9c149bfa29b75f69f447315, type: 3}
+  - Name: Santa1.Gloves
+    Path: Equipment/Gloves/Christmas/Santa1.Gloves
+    Sprite: {fileID: 21300000, guid: e141945ca6c74a858105f9a914b3bd9b, type: 3}
+  - Name: Santa1.Pauldrons
+    Path: Equipment/Pauldrons/Christmas/Santa1.Pauldrons
+    Sprite: {fileID: 21300000, guid: 3739c58b7ff64bf69df6860055b743fc, type: 3}
+  - Name: Santa1.Vest
+    Path: Equipment/Vest/Christmas/Santa1.Vest
+    Sprite: {fileID: 21300000, guid: 26325eb61a2142b2baf0527fb581c1f2, type: 3}
+  - Name: Santa2
+    Path: Equipment/Armor/Christmas/Santa2
+    Sprite: {fileID: 21300000, guid: d8484ff7675b44e4bc6a7c60bcbed88c, type: 3}
+  - Name: Santa2.Belt
+    Path: Equipment/Belt/Christmas/Santa2.Belt
+    Sprite: {fileID: 21300000, guid: e882abb5762147639c0c620973784d50, type: 3}
+  - Name: Santa2.Boots
+    Path: Equipment/Boots/Christmas/Santa2.Boots
+    Sprite: {fileID: 21300000, guid: a5a5df0cebd74a09bd7c87a4a70b53fc, type: 3}
+  - Name: Santa2.Gloves
+    Path: Equipment/Gloves/Christmas/Santa2.Gloves
+    Sprite: {fileID: 21300000, guid: 49859196a9d14b4187044272a6d2a101, type: 3}
+  - Name: Santa2.Pauldrons
+    Path: Equipment/Pauldrons/Christmas/Santa2.Pauldrons
+    Sprite: {fileID: 21300000, guid: 1153e79218b7478888c5341da4c3b621, type: 3}
+  - Name: Santa2.Vest
+    Path: Equipment/Vest/Christmas/Santa2.Vest
+    Sprite: {fileID: 21300000, guid: ab226df7c3d1418abad8f283eeda5915, type: 3}
+  - Name: SantaHat
+    Path: Equipment/Helmet/Christmas/SantaHat
+    Sprite: {fileID: 21300000, guid: bf2be53cd82e4718894393b7a5002528, type: 3}
+  - Name: SantaHelper
+    Path: Equipment/Armor/Christmas/SantaHelper
+    Sprite: {fileID: 21300000, guid: 876f898c5ecf486491ad456771425404, type: 3}
+  - Name: SantaHelper.Belt
+    Path: Equipment/Belt/Christmas/SantaHelper.Belt
+    Sprite: {fileID: 21300000, guid: 691deabe4259483dabbe907eead45275, type: 3}
+  - Name: SantaHelper.Boots
+    Path: Equipment/Boots/Christmas/SantaHelper.Boots
+    Sprite: {fileID: 21300000, guid: 42b55624b95a4da7bcd40220d6c5b2ab, type: 3}
+  - Name: SantaHelper.Gloves
+    Path: Equipment/Gloves/Christmas/SantaHelper.Gloves
+    Sprite: {fileID: 21300000, guid: 9127182d3903438fbd25710bf80d357d, type: 3}
+  - Name: SantaHelper.Pauldrons
+    Path: Equipment/Pauldrons/Christmas/SantaHelper.Pauldrons
+    Sprite: {fileID: 21300000, guid: 9b78ed8932284f4583d1d30e44d831f6, type: 3}
+  - Name: SantaHelper.Vest
+    Path: Equipment/Vest/Christmas/SantaHelper.Vest
+    Sprite: {fileID: 21300000, guid: ca44c0a1fba943859995926daa4c3b71, type: 3}
+  - Name: SantaHelperHat1
+    Path: Equipment/Helmet/Christmas/SantaHelperHat1
+    Sprite: {fileID: 21300000, guid: 9f7f0a1b9fc94569a31fbbc5548deb71, type: 3}
+  - Name: SantaHelperHat2
+    Path: Equipment/Helmet/Christmas/SantaHelperHat2
+    Sprite: {fileID: 21300000, guid: acca6f941b9045b596f7201159123dc3, type: 3}
+  - Name: SantaHelperHat3
+    Path: Equipment/Helmet/Christmas/SantaHelperHat3
+    Sprite: {fileID: 21300000, guid: 99c3291a403b41d284210f3a81186f51, type: 3}
+  - Name: SantaHelperWand
+    Path: Equipment/MeleeWeapon1H/Christmas/Wand/SantaHelperWand
+    Sprite: {fileID: 21300000, guid: 3b2560ad97dc4947aa6d131699a4da7f, type: 3}
+  - Name: SantaWand
+    Path: Equipment/MeleeWeapon1H/Christmas/Wand/SantaWand
+    Sprite: {fileID: 21300000, guid: 721846b5329f44ca9e00bb6efe1d95df, type: 3}
+  - Name: ScoutOrcHelm
+    Path: Equipment/Helmet/AbandonedWorkshop/ScoutOrcHelm
+    Sprite: {fileID: 21300000, guid: f389a870d53a44a385f4d721bbe18e1f, type: 3}
+  - Name: ShadowFang
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/ShadowFang
+    Sprite: {fileID: 21300000, guid: a999829f852e47c0bbbc4b0fc3d015a9, type: 3}
+  - Name: SharpenedInfantrySword
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/SharpenedInfantrySword
+    Sprite: {fileID: 21300000, guid: 740fc2eedf5e41a588f8025f0047fe0c, type: 3}
+  - Name: Shestoper
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Hammer/Shestoper
+    Sprite: {fileID: 21300000, guid: 2f2d4df628b442118740ee77c0b9b746, type: 3}
+  - Name: ShieldOfCryingDemon
+    Path: Equipment/Shield/ShieldOfCryingDemon
+    Sprite: {fileID: 21300000, guid: 077e502d1d3648dcb2fde3747f98a4fc, type: 3}
+  - Name: ShieldOfEndingLight
+    Path: Equipment/Shield/ShieldOfEndingLight
+    Sprite: {fileID: 21300000, guid: 71d78372f33d4f288470a01ea821469c, type: 3}
+  - Name: ShieldOfLoneWolf
+    Path: Equipment/Shield/ShieldOfLoneWolf
+    Sprite: {fileID: 21300000, guid: ae460e51e7db4963b248ecadc66caf1c, type: 3}
+  - Name: ShieldOfRagingCrux
+    Path: Equipment/Shield/ShieldOfRagingCrux
+    Sprite: {fileID: 21300000, guid: f7187baad30745d4b28bc7abdf115143, type: 3}
+  - Name: ShieldOfRelentlessNightmares
+    Path: Equipment/Shield/ShieldOfRelentlessNightmares
+    Sprite: {fileID: 21300000, guid: d7d85b28c5d348b0b3b0f219ea64ec4d, type: 3}
+  - Name: ShiningStarMace
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Hammer/ShiningStarMace
+    Sprite: {fileID: 21300000, guid: 0e903f98545944f8a721b81cfaa50a21, type: 3}
+  - Name: Sickle
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/Sickle
+    Sprite: {fileID: 21300000, guid: 5d75f3629d3f4fb19a6162708405c8cc, type: 3}
+  - Name: SiegeAxe
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Axe/SiegeAxe
+    Sprite: {fileID: 21300000, guid: 303f3c00a06049fd96c5f4061ceed5dc, type: 3}
+  - Name: SilverShield
+    Path: Equipment/Shield/AbandonedWorkshop/SilverShield
+    Sprite: {fileID: 21300000, guid: 7108541081d74331be8332b79f880f15, type: 3}
+  - Name: Skeleton1
+    Path: BodyParts/Body/Skeletons/Skeleton1
+    Sprite: {fileID: 21300000, guid: 9462fba1fc9d4fd4b20cc3e2ef0da959, type: 3}
+  - Name: Skeleton1
+    Path: BodyParts/Head/Skeletons/Skeleton1
+    Sprite: {fileID: 21300000, guid: a1d31f9c948a419d85eb9ab14050e98a, type: 3}
+  - Name: Skeleton1Eyes
+    Path: BodyParts/Eyes/Skeletons/Skeleton1Eyes
+    Sprite: {fileID: 21300000, guid: 8bb7fd3448614a14954193fa18260b68, type: 3}
+  - Name: Skeleton1EyesDead
+    Path: BodyParts/Eyes/Skeletons/Skeleton1EyesDead
+    Sprite: {fileID: 21300000, guid: a4a88ea8b8494ead831010f99636813a, type: 3}
+  - Name: Skeleton1EyesGlow
+    Path: BodyParts/Eyes/Skeletons/Skeleton1EyesGlow
+    Sprite: {fileID: 21300000, guid: 9fd90698cdb14520ab30d30ed861ebb2, type: 3}
+  - Name: Skeleton1Hook
+    Path: BodyParts/Body/Skeletons/Skeleton1Hook
+    Sprite: {fileID: 21300000, guid: d366943ce58a476db1e09bd2ce68fb0f, type: 3}
+  - Name: Skeleton1NoHandL
+    Path: BodyParts/Body/Skeletons/Skeleton1NoHandL
+    Sprite: {fileID: 21300000, guid: 03e4865e15054f7c8d76f4cd3118c549, type: 3}
+  - Name: Skeleton1NoHandR
+    Path: BodyParts/Body/Skeletons/Skeleton1NoHandR
+    Sprite: {fileID: 21300000, guid: 5b168353fc3c4cb6b0a49897f5f53b7e, type: 3}
+  - Name: Skeleton2
+    Path: BodyParts/Body/Skeletons/Skeleton2
+    Sprite: {fileID: 21300000, guid: b5ade1a548d14e5d98d1eb5d0b7b93dc, type: 3}
+  - Name: Skeleton2
+    Path: BodyParts/Head/Skeletons/Skeleton2
+    Sprite: {fileID: 21300000, guid: 82e6ac492c424725999b82f08fe55468, type: 3}
+  - Name: Skeleton2Crutches
+    Path: BodyParts/Body/Skeletons/Skeleton2Crutches
+    Sprite: {fileID: 21300000, guid: e976b687ca734378b8f38c3fc82fc6df, type: 3}
+  - Name: Skeleton2Dagger
+    Path: BodyParts/Body/Skeletons/Skeleton2Dagger
+    Sprite: {fileID: 21300000, guid: fc6c0f2fc97649cba67d6de234ebb7c6, type: 3}
+  - Name: Skeleton2Eyes
+    Path: BodyParts/Eyes/Skeletons/Skeleton2Eyes
+    Sprite: {fileID: 21300000, guid: 9419466c333c4a46aab718c293a5c549, type: 3}
+  - Name: Skeleton2EyesDead
+    Path: BodyParts/Eyes/Skeletons/Skeleton2EyesDead
+    Sprite: {fileID: 21300000, guid: 2cc44515446b4d289e630509119eb20c, type: 3}
+  - Name: Skeleton2EyesGlow
+    Path: BodyParts/Eyes/Skeletons/Skeleton2EyesGlow
+    Sprite: {fileID: 21300000, guid: 7f2f17fe739847fd99960fd0c9ff4dd6, type: 3}
+  - Name: Skeleton3
+    Path: BodyParts/Head/Skeletons/Skeleton3
+    Sprite: {fileID: 21300000, guid: 70bd298dc76a4c258a66c2569bd5cee3, type: 3}
+  - Name: Skeleton4
+    Path: BodyParts/Head/Skeletons/Skeleton4
+    Sprite: {fileID: 21300000, guid: 34de7cbf13be4ec0811ce923fd1c0303, type: 3}
+  - Name: Skeleton5
+    Path: BodyParts/Head/Skeletons/Skeleton5
+    Sprite: {fileID: 21300000, guid: 6467ff95da704a5bb357640f4c993afe, type: 3}
+  - Name: Skeleton6
+    Path: BodyParts/Head/Skeletons/Skeleton6
+    Sprite: {fileID: 21300000, guid: 1a3fcc5dad654439bf047d5136aace95, type: 3}
+  - Name: Skeleton7
+    Path: BodyParts/Head/Skeletons/Skeleton7
+    Sprite: {fileID: 21300000, guid: 902cb79f625943559e1e5b8ceb35f45c, type: 3}
+  - Name: Skeleton8
+    Path: BodyParts/Head/Skeletons/Skeleton8
+    Sprite: {fileID: 21300000, guid: b829429d5f4642318ac440c3aba0bd38, type: 3}
+  - Name: SkeletonArmor1
+    Path: Equipment/Armor/Skeletons/SkeletonArmor1
+    Sprite: {fileID: 21300000, guid: 7b289e1972884eff99801dcc6cb3f30c, type: 3}
+  - Name: SkeletonArmor1.Belt
+    Path: Equipment/Belt/Skeletons/SkeletonArmor1.Belt
+    Sprite: {fileID: 21300000, guid: b34307c93bae4af4af7dcd4b9966ce93, type: 3}
+  - Name: SkeletonArmor1.Boots
+    Path: Equipment/Boots/Skeletons/SkeletonArmor1.Boots
+    Sprite: {fileID: 21300000, guid: bdc6d2385dba4214aabb1c5c3582ad60, type: 3}
+  - Name: SkeletonArmor1.Gloves
+    Path: Equipment/Gloves/Skeletons/SkeletonArmor1.Gloves
+    Sprite: {fileID: 21300000, guid: 02da3a3ce67342c189d4923ad73186db, type: 3}
+  - Name: SkeletonArmor1.Pauldrons
+    Path: Equipment/Pauldrons/Skeletons/SkeletonArmor1.Pauldrons
+    Sprite: {fileID: 21300000, guid: 66f8967a03a545daa9ab02a81ae45557, type: 3}
+  - Name: SkeletonArmor1.Vest
+    Path: Equipment/Vest/Skeletons/SkeletonArmor1.Vest
+    Sprite: {fileID: 21300000, guid: b4dbef98f33840e5a54d810e57ed1caa, type: 3}
+  - Name: SkeletonArmor2
+    Path: Equipment/Armor/Skeletons/SkeletonArmor2
+    Sprite: {fileID: 21300000, guid: c14102e124f344479a5092e47eb09a7a, type: 3}
+  - Name: SkeletonArmor2.Belt
+    Path: Equipment/Belt/Skeletons/SkeletonArmor2.Belt
+    Sprite: {fileID: 21300000, guid: eb65aa969c2e4625a0e4c6cb24727cce, type: 3}
+  - Name: SkeletonArmor2.Boots
+    Path: Equipment/Boots/Skeletons/SkeletonArmor2.Boots
+    Sprite: {fileID: 21300000, guid: d1416cad4ff94d62ab7d525f25bdf6b2, type: 3}
+  - Name: SkeletonArmor2.Gloves
+    Path: Equipment/Gloves/Skeletons/SkeletonArmor2.Gloves
+    Sprite: {fileID: 21300000, guid: 502d2d8438ba4ef8bb8d0357199183ba, type: 3}
+  - Name: SkeletonArmor2.Pauldrons
+    Path: Equipment/Pauldrons/Skeletons/SkeletonArmor2.Pauldrons
+    Sprite: {fileID: 21300000, guid: d2e1d060f2cc4003ad22a075640ee128, type: 3}
+  - Name: SkeletonArmor2.Vest
+    Path: Equipment/Vest/Skeletons/SkeletonArmor2.Vest
+    Sprite: {fileID: 21300000, guid: 9f849fb767034fe68505507b5001ed0d, type: 3}
+  - Name: SkeletonArmor3
+    Path: Equipment/Armor/Skeletons/SkeletonArmor3
+    Sprite: {fileID: 21300000, guid: ebccb528e92b49d58116045a80496b3b, type: 3}
+  - Name: SkeletonArmor3.Belt
+    Path: Equipment/Belt/Skeletons/SkeletonArmor3.Belt
+    Sprite: {fileID: 21300000, guid: 3ce2f2bf6ade474bbf64e66a286125c5, type: 3}
+  - Name: SkeletonArmor3.Boots
+    Path: Equipment/Boots/Skeletons/SkeletonArmor3.Boots
+    Sprite: {fileID: 21300000, guid: 4e776eb482d4446083a51533fb5fadc9, type: 3}
+  - Name: SkeletonArmor3.Gloves
+    Path: Equipment/Gloves/Skeletons/SkeletonArmor3.Gloves
+    Sprite: {fileID: 21300000, guid: 8d7bd4fee1534d0db0cb45395a355629, type: 3}
+  - Name: SkeletonArmor3.Pauldrons
+    Path: Equipment/Pauldrons/Skeletons/SkeletonArmor3.Pauldrons
+    Sprite: {fileID: 21300000, guid: 8babd2463e784ad080fcac5ae7ba6a28, type: 3}
+  - Name: SkeletonArmor3.Vest
+    Path: Equipment/Vest/Skeletons/SkeletonArmor3.Vest
+    Sprite: {fileID: 21300000, guid: 4e57ec9548d14acebb7693f3bd0d2ddb, type: 3}
+  - Name: SkeletonArmor4
+    Path: Equipment/Armor/Skeletons/SkeletonArmor4
+    Sprite: {fileID: 21300000, guid: ae477fed011e4720b54d95433af180b0, type: 3}
+  - Name: SkeletonArmor4.Belt
+    Path: Equipment/Belt/Skeletons/SkeletonArmor4.Belt
+    Sprite: {fileID: 21300000, guid: ff0e077120ed4d25ba0fc78c3eb023a3, type: 3}
+  - Name: SkeletonArmor4.Boots
+    Path: Equipment/Boots/Skeletons/SkeletonArmor4.Boots
+    Sprite: {fileID: 21300000, guid: 5f12cc0933574f8c9f2d63745adee4e6, type: 3}
+  - Name: SkeletonArmor4.Gloves
+    Path: Equipment/Gloves/Skeletons/SkeletonArmor4.Gloves
+    Sprite: {fileID: 21300000, guid: f397ccc22f8d4724be83710042218752, type: 3}
+  - Name: SkeletonArmor4.Pauldrons
+    Path: Equipment/Pauldrons/Skeletons/SkeletonArmor4.Pauldrons
+    Sprite: {fileID: 21300000, guid: 4ae1779e35ef400caa245f97c3f9df2c, type: 3}
+  - Name: SkeletonArmor4.Vest
+    Path: Equipment/Vest/Skeletons/SkeletonArmor4.Vest
+    Sprite: {fileID: 21300000, guid: 188ee609ba044671bb1c7eddb72e6e51, type: 3}
+  - Name: SkeletonArmor5
+    Path: Equipment/Armor/Skeletons/SkeletonArmor5
+    Sprite: {fileID: 21300000, guid: 192d28330bbb4e3eb97a3f6555f9967f, type: 3}
+  - Name: SkeletonArmor5.Belt
+    Path: Equipment/Belt/Skeletons/SkeletonArmor5.Belt
+    Sprite: {fileID: 21300000, guid: 0c3201d306834ef38c0e3d8beb4b82c6, type: 3}
+  - Name: SkeletonArmor5.Boots
+    Path: Equipment/Boots/Skeletons/SkeletonArmor5.Boots
+    Sprite: {fileID: 21300000, guid: f19bfcfdd16347b29472b056c9dae404, type: 3}
+  - Name: SkeletonArmor5.Gloves
+    Path: Equipment/Gloves/Skeletons/SkeletonArmor5.Gloves
+    Sprite: {fileID: 21300000, guid: 93fa6ce176074af1b80b2b3946918a85, type: 3}
+  - Name: SkeletonArmor5.Pauldrons
+    Path: Equipment/Pauldrons/Skeletons/SkeletonArmor5.Pauldrons
+    Sprite: {fileID: 21300000, guid: 041e8a0f8a9846e6bbbd5e0ae92d6a0d, type: 3}
+  - Name: SkeletonArmor5.Vest
+    Path: Equipment/Vest/Skeletons/SkeletonArmor5.Vest
+    Sprite: {fileID: 21300000, guid: 7e0892b676a546e99a0cbf0f1f5ca805, type: 3}
+  - Name: SkeletonArmor6
+    Path: Equipment/Armor/Skeletons/SkeletonArmor6
+    Sprite: {fileID: 21300000, guid: 54e6ec2740ff4ba183877ca6ac49aaba, type: 3}
+  - Name: SkeletonArmor6.Belt
+    Path: Equipment/Belt/Skeletons/SkeletonArmor6.Belt
+    Sprite: {fileID: 21300000, guid: 6acfd554483248dba06f62104a695d27, type: 3}
+  - Name: SkeletonArmor6.Boots
+    Path: Equipment/Boots/Skeletons/SkeletonArmor6.Boots
+    Sprite: {fileID: 21300000, guid: 302a9e78c7ef4ccaaba5e245de762ec5, type: 3}
+  - Name: SkeletonArmor6.Gloves
+    Path: Equipment/Gloves/Skeletons/SkeletonArmor6.Gloves
+    Sprite: {fileID: 21300000, guid: b1b1abee9a3547c0a5062ed7d737cb29, type: 3}
+  - Name: SkeletonArmor6.Pauldrons
+    Path: Equipment/Pauldrons/Skeletons/SkeletonArmor6.Pauldrons
+    Sprite: {fileID: 21300000, guid: e6df52f97ebd4a57aedc9729e0a11328, type: 3}
+  - Name: SkeletonArmor6.Vest
+    Path: Equipment/Vest/Skeletons/SkeletonArmor6.Vest
+    Sprite: {fileID: 21300000, guid: 8b38b4eb29674bda9a11b29b240457c9, type: 3}
+  - Name: SkeletonBow
+    Path: Equipment/Bow/Undead/SkeletonBow
+    Sprite: {fileID: 21300000, guid: 92f57bd8571d41ebbf81b9d359df592f, type: 3}
+  - Name: SkeletonBow.Arrow
+    Path: Equipment/Arrow/Undead/SkeletonBow.Arrow
+    Sprite: {fileID: 21300000, guid: 269b57802e7d4c6d9628f0bebb40d164, type: 3}
+  - Name: SkeletonBow2
+    Path: Equipment/Bow/Undead/SkeletonBow2
+    Sprite: {fileID: 21300000, guid: 28598efb67fb4e3ca9942c39c4c344b7, type: 3}
+  - Name: SkeletonBow2.Arrow
+    Path: Equipment/Arrow/Undead/SkeletonBow2.Arrow
+    Sprite: {fileID: 21300000, guid: 67e32a9842fe48f9973e5d17e06c49ea, type: 3}
+  - Name: SkeletonBrains [FullHair]
+    Path: Equipment/Helmet/Skeletons/SkeletonBrains [FullHair]
+    Sprite: {fileID: 21300000, guid: e60c7b40dd0e48af8131a6487da8b354, type: 3}
+  - Name: SkeletonHandLHook
+    Path: Equipment/MeleeWeapon1H/Undead/Unsorted/SkeletonHandLHook
+    Sprite: {fileID: 21300000, guid: 56956b1bdcd54141afcf141a9ef618ab, type: 3}
+  - Name: SkeletonHandRKnife
+    Path: Equipment/MeleeWeapon1H/Undead/Unsorted/SkeletonHandRKnife
+    Sprite: {fileID: 21300000, guid: 987f115d30364712b4654925ea976c91, type: 3}
+  - Name: SkeletonKing
+    Path: Equipment/Armor/Skeletons/SkeletonKing
+    Sprite: {fileID: 21300000, guid: 7f443ba81ded4ec1ae9c749984d4df5d, type: 3}
+  - Name: SkeletonKing [FullHair]
+    Path: Equipment/Helmet/Skeletons/SkeletonKing [FullHair]
+    Sprite: {fileID: 21300000, guid: 864683bded264641b094fe186f8b6981, type: 3}
+  - Name: SkeletonKing.Belt
+    Path: Equipment/Belt/Skeletons/SkeletonKing.Belt
+    Sprite: {fileID: 21300000, guid: ae96d87746e24aaca28bda8d28422c2d, type: 3}
+  - Name: SkeletonKing.Boots
+    Path: Equipment/Boots/Skeletons/SkeletonKing.Boots
+    Sprite: {fileID: 21300000, guid: 9b29ce3aa9b649519035eda2230101dd, type: 3}
+  - Name: SkeletonKing.Gloves
+    Path: Equipment/Gloves/Skeletons/SkeletonKing.Gloves
+    Sprite: {fileID: 21300000, guid: 91a2bd78a1e64c5dacfbd170a545219f, type: 3}
+  - Name: SkeletonKing.Pauldrons
+    Path: Equipment/Pauldrons/Skeletons/SkeletonKing.Pauldrons
+    Sprite: {fileID: 21300000, guid: f43d3c9947c0475baf32aa465f613c04, type: 3}
+  - Name: SkeletonKing.Vest
+    Path: Equipment/Vest/Skeletons/SkeletonKing.Vest
+    Sprite: {fileID: 21300000, guid: c89fb06faa7b4ce0bdf586234faaef16, type: 3}
+  - Name: SkeletonKingAxe
+    Path: Equipment/MeleeWeapon2H/Undead/Axe/SkeletonKingAxe
+    Sprite: {fileID: 21300000, guid: 249cb222039e46ecada5b2e69b086028, type: 3}
+  - Name: SkeletonKingAxeImproved
+    Path: Equipment/MeleeWeapon2H/Undead/Axe/SkeletonKingAxeImproved
+    Sprite: {fileID: 21300000, guid: b4b7e6133a0a47d7b99bdea8e44dd9aa, type: 3}
+  - Name: SkeletonLeftArmHook
+    Path: Equipment/Shield/Undead/SkeletonLeftArmHook
+    Sprite: {fileID: 21300000, guid: e387bbb37f1449fb94f590d2b7b1117d, type: 3}
+  - Name: SkeletonShield1
+    Path: Equipment/Shield/Undead/SkeletonShield1
+    Sprite: {fileID: 21300000, guid: e3a890447d5e43629226849d14181547, type: 3}
+  - Name: SkeletonShield2
+    Path: Equipment/Shield/Undead/SkeletonShield2
+    Sprite: {fileID: 21300000, guid: da186e960d1048cc950853fe76f01677, type: 3}
+  - Name: SkeletonShield3
+    Path: Equipment/Shield/Undead/SkeletonShield3
+    Sprite: {fileID: 21300000, guid: d88ad44596ea467bbd19cfde8b6815de, type: 3}
+  - Name: SkeletonSword
+    Path: Equipment/MeleeWeapon2H/Undead/Sword/SkeletonSword
+    Sprite: {fileID: 21300000, guid: b0099806c6034d2d8a502f015ed0cf16, type: 3}
+  - Name: SkullCrusher
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Hammer/SkullCrusher
+    Sprite: {fileID: 21300000, guid: 9b80574546b74c76ad7d02f1331378d9, type: 3}
+  - Name: SkullPin [FullHair]
+    Path: Equipment/Helmet/Style/SkullPin [FullHair]
+    Sprite: {fileID: 21300000, guid: 16d2d33fe57344f5ad26ab01c9d37ebf, type: 3}
+  - Name: SmallShowel
+    Path: Equipment/MeleeWeapon1H/Undead/Unsorted/SmallShowel
+    Sprite: {fileID: 21300000, guid: 7243492c29bb4de1a901ac49df3c785f, type: 3}
+  - Name: Smirk
+    Path: BodyParts/Mouth/Furry/Smirk
+    Sprite: {fileID: 21300000, guid: 47428ce6c518457d83b17406a070fbfe, type: 3}
+  - Name: SnakeEye
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/SnakeEye
+    Sprite: {fileID: 21300000, guid: fa9caaaeccf44687bf3b9400c00a88cb, type: 3}
+  - Name: SolarStaff
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/SolarStaff
+    Sprite: {fileID: 21300000, guid: 2b2188fcb596452c8a987727b2927c1f, type: 3}
+  - Name: SoulCrystalSword
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/SoulCrystalSword
+    Sprite: {fileID: 21300000, guid: 6145fc23ea1241e486831894ff4fecdb, type: 3}
+  - Name: SoulReaver
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Dagger/SoulReaver
+    Sprite: {fileID: 21300000, guid: 327c74e155844527acf89704bdf1375f, type: 3}
+  - Name: SpellbinderStaff
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/SpellbinderStaff
+    Sprite: {fileID: 21300000, guid: aaae8f1ddf9f4e34b7696ae3fd6e6a67, type: 3}
+  - Name: SpikeShield
+    Path: Equipment/Shield/AbandonedWorkshop/SpikeShield
+    Sprite: {fileID: 21300000, guid: 2bb3335ce3084345924f017019d907fd, type: 3}
+  - Name: Spiky
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Spiky
+    Sprite: {fileID: 21300000, guid: f82fbb2a171c43da9d055ab5a8c33541, type: 3}
+  - Name: Spiky
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Spiky
+    Sprite: {fileID: 21300000, guid: 4fe970b116214f68bb7fc9622b968c7b, type: 3}
+  - Name: Spiky
+    Path: BodyParts/Hair/Style/Spiky
+    Sprite: {fileID: 21300000, guid: c9fb87cde938443eba11100447080d9c, type: 3}
+  - Name: Spiky
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Spiky
+    Sprite: {fileID: 21300000, guid: 541f62b74a534e34b5a5b5eeeaed6b8a, type: 3}
+  - Name: SpineBow
+    Path: Equipment/Bow/Undead/SpineBow
+    Sprite: {fileID: 21300000, guid: 112df722034a4e499d48c77c086b7cfc, type: 3}
+  - Name: SpineBow.Arrow
+    Path: Equipment/Arrow/Undead/SpineBow.Arrow
+    Sprite: {fileID: 21300000, guid: ec611083c5014637a7172616f78f376e, type: 3}
+  - Name: SpiritbinderStaff
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/SpiritbinderStaff
+    Sprite: {fileID: 21300000, guid: fbe70fff4d4b4d93a0f5b50c4ed0d3ed, type: 3}
+  - Name: Stiches [FullHair]
+    Path: Equipment/Helmet/Zombies/Stiches [FullHair]
+    Sprite: {fileID: 21300000, guid: d7e26861e1ad4c368ac0dec55f0bf157, type: 3}
+  - Name: StoneAxe
+    Path: Equipment/MeleeWeapon1H/Undead/Axe/StoneAxe
+    Sprite: {fileID: 21300000, guid: b7fb123f9dd34b15a3263a73aac50f88, type: 3}
+  - Name: StoneWarAxe
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Axe/StoneWarAxe
+    Sprite: {fileID: 21300000, guid: 2a382bd1fe6448db95eb4c69122b2ad0, type: 3}
+  - Name: StormcallerArmor
+    Path: Equipment/Armor/Epic/StormcallerArmor
+    Sprite: {fileID: 21300000, guid: 41ee3aad197a4984ac865de8f03b1f75, type: 3}
+  - Name: StormcallerArmor.Belt
+    Path: Equipment/Belt/Epic/StormcallerArmor.Belt
+    Sprite: {fileID: 21300000, guid: e2772f4de15740ff8124df1e81990542, type: 3}
+  - Name: StormcallerArmor.Boots
+    Path: Equipment/Boots/Epic/StormcallerArmor.Boots
+    Sprite: {fileID: 21300000, guid: 41281d20c6d4431c971d6c331282b1fa, type: 3}
+  - Name: StormcallerArmor.Gloves
+    Path: Equipment/Gloves/Epic/StormcallerArmor.Gloves
+    Sprite: {fileID: 21300000, guid: 815f15335e4b4934a0802bd30878a521, type: 3}
+  - Name: StormcallerArmor.Pauldrons
+    Path: Equipment/Pauldrons/Epic/StormcallerArmor.Pauldrons
+    Sprite: {fileID: 21300000, guid: 38112ad4c260448091b70ee3fc152ebb, type: 3}
+  - Name: StormcallerArmor.Vest
+    Path: Equipment/Vest/Epic/StormcallerArmor.Vest
+    Sprite: {fileID: 21300000, guid: 99e3e4b664c44f279b23f3fc00b81ab8, type: 3}
+  - Name: StormcallerHelmet
+    Path: Equipment/Cape/Epic/StormcallerHelmet
+    Sprite: {fileID: 21300000, guid: 709f838b7ae94825adadee1c6f3848d7, type: 3}
+  - Name: StormcallerHelmet [FullHair]
+    Path: Equipment/Helmet/Epic/StormcallerHelmet [FullHair]
+    Sprite: {fileID: 21300000, guid: c5401cbd2d41438a9ef98f3571bbb20a, type: 3}
+  - Name: StormcallerShield
+    Path: Equipment/Shield/StormcallerShield
+    Sprite: {fileID: 21300000, guid: c0fe9d6b75eb438ebbdb6b4b150df918, type: 3}
+  - Name: StormcallerSword
+    Path: Equipment/MeleeWeapon1H/Epic/Sword/StormcallerSword
+    Sprite: {fileID: 21300000, guid: be3309cd2bce4352acf5d17d92b8e1b3, type: 3}
+  - Name: SwordOfCryingDemon
+    Path: Equipment/MeleeWeapon1H/Epic/Sword/SwordOfCryingDemon
+    Sprite: {fileID: 21300000, guid: c90044bdb851456e9f038e3dbf819d58, type: 3}
+  - Name: SwordOfEndingLight
+    Path: Equipment/MeleeWeapon1H/Epic/Sword/SwordOfEndingLight
+    Sprite: {fileID: 21300000, guid: 7abcc7dc18304947a88d0eec62527d20, type: 3}
+  - Name: SwordOfFadedHeavens
+    Path: Equipment/MeleeWeapon1H/Epic/Sword/SwordOfFadedHeavens
+    Sprite: {fileID: 21300000, guid: eb3ef3ac52954023a9d98d34613afab8, type: 3}
+  - Name: SwordOfForgottenFoe
+    Path: Equipment/MeleeWeapon1H/Epic/Sword/SwordOfForgottenFoe
+    Sprite: {fileID: 21300000, guid: ffc3d77ec96d4d2d82e64b2f4bf94888, type: 3}
+  - Name: SwordOfLoneWolf
+    Path: Equipment/MeleeWeapon1H/Epic/Sword/SwordOfLoneWolf
+    Sprite: {fileID: 21300000, guid: c4356c37820b4fc88e034bc1f7f65112, type: 3}
+  - Name: SwordOfRagingCrux
+    Path: Equipment/MeleeWeapon1H/Epic/Sword/SwordOfRagingCrux
+    Sprite: {fileID: 21300000, guid: 0d9fcc67fb1e4a09a46113443614e587, type: 3}
+  - Name: SwordOfRelentlessNightmares
+    Path: Equipment/MeleeWeapon1H/Epic/Sword/SwordOfRelentlessNightmares
+    Sprite: {fileID: 21300000, guid: 14d546fac83149b5ad7203a45d5ad72a, type: 3}
+  - Name: TemplarSword
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Sword/TemplarSword
+    Sprite: {fileID: 21300000, guid: 8e6c6132da0c44bf99d1fdd498ce1a76, type: 3}
+  - Name: ThirstyTreeWand
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/ThirstyTreeWand
+    Sprite: {fileID: 21300000, guid: c6dc2b149de34f8482034301952e8f11, type: 3}
+  - Name: ThrowingStar
+    Path: Equipment/Supplies/Throwing/ThrowingStar
+    Sprite: {fileID: 21300000, guid: fc08bc858aa74128986a7591d11feed0, type: 3}
+  - Name: ThrowingStar2
+    Path: Equipment/Supplies/Throwing/ThrowingStar2
+    Sprite: {fileID: 21300000, guid: 52460227d8664c729dd7a1f1b2b33621, type: 3}
+  - Name: TitanGreatsword
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Sword/TitanGreatsword
+    Sprite: {fileID: 21300000, guid: bf65101ade8e4a1f990f5651b414908d, type: 3}
+  - Name: TitanShield
+    Path: Equipment/Shield/AbandonedWorkshop/TitanShield
+    Sprite: {fileID: 21300000, guid: 757b911eed5c4d3fb2b5a5f84587a2cd, type: 3}
+  - Name: TribalLoincloth
+    Path: Equipment/Armor/Furry/TribalLoincloth
+    Sprite: {fileID: 21300000, guid: 6ffbd73b09a44a8a905a67fb19c7e16d, type: 3}
+  - Name: TribalLoincloth.Belt
+    Path: Equipment/Belt/Furry/TribalLoincloth.Belt
+    Sprite: {fileID: 21300000, guid: 7e8e94b469f4480c8402efca57790326, type: 3}
+  - Name: TribalLoincloth.Boots
+    Path: Equipment/Boots/Furry/TribalLoincloth.Boots
+    Sprite: {fileID: 21300000, guid: 289ad0e975e74f2886e8b3988d0188da, type: 3}
+  - Name: TribalLoincloth.Gloves
+    Path: Equipment/Gloves/Furry/TribalLoincloth.Gloves
+    Sprite: {fileID: 21300000, guid: bb853c48d2f94aa2a1648f462b14a866, type: 3}
+  - Name: TribalLoincloth.Pauldrons
+    Path: Equipment/Pauldrons/Furry/TribalLoincloth.Pauldrons
+    Sprite: {fileID: 21300000, guid: 565d0fe82e70472bb663f37e5d5eef15, type: 3}
+  - Name: TribalLoincloth.Vest
+    Path: Equipment/Vest/Furry/TribalLoincloth.Vest
+    Sprite: {fileID: 21300000, guid: d40e9c5e27b94c21947b723b0be3f5b5, type: 3}
+  - Name: TunnelEar2
+    Path: BodyParts/Ears/Zombies/TunnelEar2
+    Sprite: {fileID: 21300000, guid: 0a523cf071c04f7493b1cf140acde289, type: 3}
+  - Name: TunnelEarring
+    Path: Equipment/Earrings/Zombies/TunnelEarring
+    Sprite: {fileID: 21300000, guid: bbccb1380815456291b3260ca027855b, type: 3}
+  - Name: TwinEdgeBow
+    Path: Equipment/Bow/AbandonedWorkshop/TwinEdgeBow
+    Sprite: {fileID: 21300000, guid: 7ffcd7878c7648ac9f1fdcc562d43b4b, type: 3}
+  - Name: TwinEdgeBow.Arrow
+    Path: Equipment/Arrow/AbandonedWorkshop/TwinEdgeBow.Arrow
+    Sprite: {fileID: 21300000, guid: 4c1d64dca1c14920b7dac781f3bb4ab0, type: 3}
+  - Name: TwitchWand
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Wand/TwitchWand
+    Sprite: {fileID: 21300000, guid: 4999da7de3da47c286b8157b50ca5ef7, type: 3}
+  - Name: TyrantMace
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Hammer/TyrantMace
+    Sprite: {fileID: 21300000, guid: 4d5c9bba0ddd40bab369077b0f934745, type: 3}
+  - Name: Underpants1
+    Path: Equipment/Armor/AbandonedWorkshop/Underpants1
+    Sprite: {fileID: 21300000, guid: f21c4eee65764d98aa22ce974ed498db, type: 3}
+  - Name: Underpants1.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/Underpants1.Belt
+    Sprite: {fileID: 21300000, guid: 73ced468230e4e74b72837b3321b11c7, type: 3}
+  - Name: Underpants1.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/Underpants1.Boots
+    Sprite: {fileID: 21300000, guid: 2da608b25bce4fa89ece1a13735799d7, type: 3}
+  - Name: Underpants1.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/Underpants1.Gloves
+    Sprite: {fileID: 21300000, guid: 5a4477b20bc346b1b57ed5ab66164207, type: 3}
+  - Name: Underpants1.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/Underpants1.Pauldrons
+    Sprite: {fileID: 21300000, guid: 8855eebf0694405683c494195df5caf7, type: 3}
+  - Name: Underpants1.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/Underpants1.Vest
+    Sprite: {fileID: 21300000, guid: 3dd99de4a7e04db6ba10eaefa66188d1, type: 3}
+  - Name: Underpants10
+    Path: Equipment/Armor/AbandonedWorkshop/Underpants10
+    Sprite: {fileID: 21300000, guid: c39c1de4d37f4b53b71b31b9106a1ecc, type: 3}
+  - Name: Underpants10.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/Underpants10.Belt
+    Sprite: {fileID: 21300000, guid: 651a1ac9bfd34a5dad79d4c2bb83878e, type: 3}
+  - Name: Underpants10.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/Underpants10.Boots
+    Sprite: {fileID: 21300000, guid: a3aac20c90c5482db22ea1cc65766119, type: 3}
+  - Name: Underpants10.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/Underpants10.Gloves
+    Sprite: {fileID: 21300000, guid: 28ea1c8335724120901273de6d15c07a, type: 3}
+  - Name: Underpants10.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/Underpants10.Pauldrons
+    Sprite: {fileID: 21300000, guid: 8269569cda6d49909605bfc1decbdfb5, type: 3}
+  - Name: Underpants10.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/Underpants10.Vest
+    Sprite: {fileID: 21300000, guid: 3cdb3e5dd27f4163a8a472cc37475dc8, type: 3}
+  - Name: Underpants2
+    Path: Equipment/Armor/AbandonedWorkshop/Underpants2
+    Sprite: {fileID: 21300000, guid: a3e0c6f12c0548e786c69215c5046a68, type: 3}
+  - Name: Underpants2.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/Underpants2.Belt
+    Sprite: {fileID: 21300000, guid: 34bf86acd9754705bdcd90c85aec8b4d, type: 3}
+  - Name: Underpants2.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/Underpants2.Boots
+    Sprite: {fileID: 21300000, guid: ce057bd6e06c4e25ac344110049fbd97, type: 3}
+  - Name: Underpants2.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/Underpants2.Gloves
+    Sprite: {fileID: 21300000, guid: 4a1b9320bb98444e9519e0730b044ad6, type: 3}
+  - Name: Underpants2.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/Underpants2.Pauldrons
+    Sprite: {fileID: 21300000, guid: 8832269974d2445a8f056fce3cb8390f, type: 3}
+  - Name: Underpants2.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/Underpants2.Vest
+    Sprite: {fileID: 21300000, guid: a314e5e2fa394ad8aa663a7fb83fe739, type: 3}
+  - Name: Underpants3
+    Path: Equipment/Armor/AbandonedWorkshop/Underpants3
+    Sprite: {fileID: 21300000, guid: d5daf28795034d1d965057584c3558c1, type: 3}
+  - Name: Underpants3.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/Underpants3.Belt
+    Sprite: {fileID: 21300000, guid: 62d3e0a24a6f4fbf9d5cb73fd600c2dd, type: 3}
+  - Name: Underpants3.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/Underpants3.Boots
+    Sprite: {fileID: 21300000, guid: 5be32527392b4ddb928c8b38a337cccf, type: 3}
+  - Name: Underpants3.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/Underpants3.Gloves
+    Sprite: {fileID: 21300000, guid: 0a97813b57ab4f7b8a70c9ef13ecd076, type: 3}
+  - Name: Underpants3.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/Underpants3.Pauldrons
+    Sprite: {fileID: 21300000, guid: 9b0174eb5f3a49f2b5ab22ee05901f1a, type: 3}
+  - Name: Underpants3.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/Underpants3.Vest
+    Sprite: {fileID: 21300000, guid: bdfc9df203a7410dad2cb26fa6e8ad0c, type: 3}
+  - Name: Underpants4
+    Path: Equipment/Armor/AbandonedWorkshop/Underpants4
+    Sprite: {fileID: 21300000, guid: c9f276f7b80f40ceaa66e9557e3f48d7, type: 3}
+  - Name: Underpants4.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/Underpants4.Belt
+    Sprite: {fileID: 21300000, guid: 7543fd969c2e443da09cda8842575805, type: 3}
+  - Name: Underpants4.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/Underpants4.Boots
+    Sprite: {fileID: 21300000, guid: 86cb494aafaa4f80b702fed3fdcf09da, type: 3}
+  - Name: Underpants4.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/Underpants4.Gloves
+    Sprite: {fileID: 21300000, guid: 511e99972ae448f2b21f4121040bd488, type: 3}
+  - Name: Underpants4.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/Underpants4.Pauldrons
+    Sprite: {fileID: 21300000, guid: 7317be6816fe483eb9f08ee2b4794a71, type: 3}
+  - Name: Underpants4.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/Underpants4.Vest
+    Sprite: {fileID: 21300000, guid: 2299f0db5b6e41559d882c13db585637, type: 3}
+  - Name: Underpants5
+    Path: Equipment/Armor/AbandonedWorkshop/Underpants5
+    Sprite: {fileID: 21300000, guid: c330aaabeab7455294ac4100b1929539, type: 3}
+  - Name: Underpants5.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/Underpants5.Belt
+    Sprite: {fileID: 21300000, guid: a2128a8fec3942cd9579b492727ac23a, type: 3}
+  - Name: Underpants5.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/Underpants5.Boots
+    Sprite: {fileID: 21300000, guid: a48b0026834a48b38bb4d76885be87c7, type: 3}
+  - Name: Underpants5.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/Underpants5.Gloves
+    Sprite: {fileID: 21300000, guid: 95b35058ba8940c9944f41df0659b271, type: 3}
+  - Name: Underpants5.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/Underpants5.Pauldrons
+    Sprite: {fileID: 21300000, guid: c988ea60b8574bde8df33f45b0a329ff, type: 3}
+  - Name: Underpants5.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/Underpants5.Vest
+    Sprite: {fileID: 21300000, guid: 5f625e72ff7a417c9d7e2edadfde3374, type: 3}
+  - Name: Underpants6
+    Path: Equipment/Armor/AbandonedWorkshop/Underpants6
+    Sprite: {fileID: 21300000, guid: e74ae5ebdf454a08aa586804de1d76f2, type: 3}
+  - Name: Underpants6.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/Underpants6.Belt
+    Sprite: {fileID: 21300000, guid: 92ca83ea754c4b09ac47b650adb1661d, type: 3}
+  - Name: Underpants6.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/Underpants6.Boots
+    Sprite: {fileID: 21300000, guid: 81f0f903e79546c580f38305da78c418, type: 3}
+  - Name: Underpants6.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/Underpants6.Gloves
+    Sprite: {fileID: 21300000, guid: 01bc73d3bc8946d180da8518de11f02e, type: 3}
+  - Name: Underpants6.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/Underpants6.Pauldrons
+    Sprite: {fileID: 21300000, guid: 1a8ab993b8c74110b2962cc464c52baf, type: 3}
+  - Name: Underpants6.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/Underpants6.Vest
+    Sprite: {fileID: 21300000, guid: bad689854251431eba8e5bd4eaf6e300, type: 3}
+  - Name: Underpants7
+    Path: Equipment/Armor/AbandonedWorkshop/Underpants7
+    Sprite: {fileID: 21300000, guid: 3bc894ce657948599e8f888302b5c221, type: 3}
+  - Name: Underpants7.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/Underpants7.Belt
+    Sprite: {fileID: 21300000, guid: 76348b80db29495993a4f190750641f1, type: 3}
+  - Name: Underpants7.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/Underpants7.Boots
+    Sprite: {fileID: 21300000, guid: 6b4571becb534c7685d0c05e2b8fa6a5, type: 3}
+  - Name: Underpants7.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/Underpants7.Gloves
+    Sprite: {fileID: 21300000, guid: 70dc2f1a2bba40e89b9e5d9c44387813, type: 3}
+  - Name: Underpants7.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/Underpants7.Pauldrons
+    Sprite: {fileID: 21300000, guid: 9f98e4ec83ba4b259741c30ced900e33, type: 3}
+  - Name: Underpants7.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/Underpants7.Vest
+    Sprite: {fileID: 21300000, guid: 32731516a54f4389b5c31d57322b9cdc, type: 3}
+  - Name: Underpants8
+    Path: Equipment/Armor/AbandonedWorkshop/Underpants8
+    Sprite: {fileID: 21300000, guid: a99817f9aa97454d8caa29fbb9e0f90c, type: 3}
+  - Name: Underpants8.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/Underpants8.Belt
+    Sprite: {fileID: 21300000, guid: 78805bc52df44513849adc7ee4ff33ce, type: 3}
+  - Name: Underpants8.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/Underpants8.Boots
+    Sprite: {fileID: 21300000, guid: 91a244f9306a4963ba6ca2e35e899fdf, type: 3}
+  - Name: Underpants8.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/Underpants8.Gloves
+    Sprite: {fileID: 21300000, guid: 8c57e63820934467ade54c4bcb9423bf, type: 3}
+  - Name: Underpants8.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/Underpants8.Pauldrons
+    Sprite: {fileID: 21300000, guid: 5f81c0e1c4134833ac3d9884608eb0df, type: 3}
+  - Name: Underpants8.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/Underpants8.Vest
+    Sprite: {fileID: 21300000, guid: 4bb64f7dfe304335a3c1d15266731e9f, type: 3}
+  - Name: Underpants9
+    Path: Equipment/Armor/AbandonedWorkshop/Underpants9
+    Sprite: {fileID: 21300000, guid: 3eb165e9828448bc8ce496abdf0e202d, type: 3}
+  - Name: Underpants9.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/Underpants9.Belt
+    Sprite: {fileID: 21300000, guid: 45de9c123eb2468e98b0f369318b1b4e, type: 3}
+  - Name: Underpants9.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/Underpants9.Boots
+    Sprite: {fileID: 21300000, guid: 713bea789caf453c80adf01655ffb7b4, type: 3}
+  - Name: Underpants9.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/Underpants9.Gloves
+    Sprite: {fileID: 21300000, guid: 11687ad9f18d4c348996cc9ba208cfb1, type: 3}
+  - Name: Underpants9.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/Underpants9.Pauldrons
+    Sprite: {fileID: 21300000, guid: 2566664df55d495aa1326e736f174e3a, type: 3}
+  - Name: Underpants9.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/Underpants9.Vest
+    Sprite: {fileID: 21300000, guid: 72775d532b294bf6892c70a5cfb48142, type: 3}
+  - Name: UnderworldHammer
+    Path: Equipment/MeleeWeapon2H/AbandonedWorkshop/Hammer/UnderworldHammer
+    Sprite: {fileID: 21300000, guid: 31e3b891623144e5b08ddda082e80526, type: 3}
+  - Name: WallKeeperArmor
+    Path: Equipment/Armor/AbandonedWorkshop/WallKeeperArmor
+    Sprite: {fileID: 21300000, guid: a750ec59559749d89b71c95b563f2aa9, type: 3}
+  - Name: WallKeeperArmor.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/WallKeeperArmor.Belt
+    Sprite: {fileID: 21300000, guid: 0b4e2e947d244fca8a3a4e918411fd5b, type: 3}
+  - Name: WallKeeperArmor.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/WallKeeperArmor.Boots
+    Sprite: {fileID: 21300000, guid: 61985f80027d4f9ca9cd8c44ba3df140, type: 3}
+  - Name: WallKeeperArmor.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/WallKeeperArmor.Gloves
+    Sprite: {fileID: 21300000, guid: f1a1cbe14dec4048a180bc3b12a8e4ad, type: 3}
+  - Name: WallKeeperArmor.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/WallKeeperArmor.Pauldrons
+    Sprite: {fileID: 21300000, guid: 4001250510924cc3a69824e8c6b218e2, type: 3}
+  - Name: WallKeeperArmor.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/WallKeeperArmor.Vest
+    Sprite: {fileID: 21300000, guid: 1285998a0933438996814e93c2b9a3c1, type: 3}
+  - Name: WallKeeperHelm
+    Path: Equipment/Helmet/AbandonedWorkshop/WallKeeperHelm
+    Sprite: {fileID: 21300000, guid: 90975375843947f2901b7f6820f5b2e9, type: 3}
+  - Name: WallKeeperShield
+    Path: Equipment/Shield/AbandonedWorkshop/WallKeeperShield
+    Sprite: {fileID: 21300000, guid: 33a88943def2413dba4408f1041f52b3, type: 3}
+  - Name: WarriorLoincloth
+    Path: Equipment/Armor/Furry/WarriorLoincloth
+    Sprite: {fileID: 21300000, guid: 3091ceb1ed03416b8eff1c3c30a61fed, type: 3}
+  - Name: WarriorLoincloth.Belt
+    Path: Equipment/Belt/Furry/WarriorLoincloth.Belt
+    Sprite: {fileID: 21300000, guid: 1436276d8e2b45a7b6e87fe57c5de30c, type: 3}
+  - Name: WarriorLoincloth.Boots
+    Path: Equipment/Boots/Furry/WarriorLoincloth.Boots
+    Sprite: {fileID: 21300000, guid: 1a697bb933594597b700be4deef52a73, type: 3}
+  - Name: WarriorLoincloth.Gloves
+    Path: Equipment/Gloves/Furry/WarriorLoincloth.Gloves
+    Sprite: {fileID: 21300000, guid: 116b17e36e434f7a85cabacbd671d796, type: 3}
+  - Name: WarriorLoincloth.Pauldrons
+    Path: Equipment/Pauldrons/Furry/WarriorLoincloth.Pauldrons
+    Sprite: {fileID: 21300000, guid: df23b3d4f3e54c0da59910c0d047cfd1, type: 3}
+  - Name: WarriorLoincloth.Vest
+    Path: Equipment/Vest/Furry/WarriorLoincloth.Vest
+    Sprite: {fileID: 21300000, guid: e8112d56dd0f442bb4ad21eda84bc0b6, type: 3}
+  - Name: WarriorOrcHelm
+    Path: Equipment/Helmet/AbandonedWorkshop/WarriorOrcHelm
+    Sprite: {fileID: 21300000, guid: e18ab35210884644958f22e95194ffef, type: 3}
+  - Name: Wavy
+    Path: BodyParts/Hair/MoonStyle [NoPaint]/Wavy
+    Sprite: {fileID: 21300000, guid: aa43e99e3df14b1aa394a0ffda37d286, type: 3}
+  - Name: Wavy
+    Path: BodyParts/Hair/SkyStyle [NoPaint]/Wavy
+    Sprite: {fileID: 21300000, guid: 711fd07024684977b09cc7926c094968, type: 3}
+  - Name: Wavy
+    Path: BodyParts/Hair/Style/Wavy
+    Sprite: {fileID: 21300000, guid: 65e429b17655414dab506a52edf786e5, type: 3}
+  - Name: Wavy
+    Path: BodyParts/Hair/SunStyle [NoPaint]/Wavy
+    Sprite: {fileID: 21300000, guid: ca4139d367954dc9aa8ab852f769fc35, type: 3}
+  - Name: WhiteGuardian
+    Path: Equipment/Armor/AbandonedWorkshop/WhiteGuardian
+    Sprite: {fileID: 21300000, guid: b10f9d5b10ff41b58e973fae2522f0a7, type: 3}
+  - Name: WhiteGuardian.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/WhiteGuardian.Belt
+    Sprite: {fileID: 21300000, guid: efb78f31efb0414093eee517450179a6, type: 3}
+  - Name: WhiteGuardian.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/WhiteGuardian.Boots
+    Sprite: {fileID: 21300000, guid: edf2eeab44614496a0eb60f5cbe6c347, type: 3}
+  - Name: WhiteGuardian.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/WhiteGuardian.Gloves
+    Sprite: {fileID: 21300000, guid: 2234ed199ac34fee96a38137e12edf64, type: 3}
+  - Name: WhiteGuardian.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/WhiteGuardian.Pauldrons
+    Sprite: {fileID: 21300000, guid: 4647c8d8643c49288402650fec4ca4e9, type: 3}
+  - Name: WhiteGuardian.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/WhiteGuardian.Vest
+    Sprite: {fileID: 21300000, guid: 477cb0d4f4ef44a99caded32e0c743de, type: 3}
+  - Name: WhiteKittyRobe
+    Path: Equipment/Armor/AbandonedWorkshop/WhiteKittyRobe
+    Sprite: {fileID: 21300000, guid: f17836f2befa4b04b45a8ed40f00fb05, type: 3}
+  - Name: WhiteKittyRobe
+    Path: Equipment/Helmet/AbandonedWorkshop/WhiteKittyRobe
+    Sprite: {fileID: 21300000, guid: 5b4347838d944c1983b55c1aac467554, type: 3}
+  - Name: WhiteKittyRobe.Belt
+    Path: Equipment/Belt/AbandonedWorkshop/WhiteKittyRobe.Belt
+    Sprite: {fileID: 21300000, guid: 850de03e66c240058b82e6181bd614f1, type: 3}
+  - Name: WhiteKittyRobe.Boots
+    Path: Equipment/Boots/AbandonedWorkshop/WhiteKittyRobe.Boots
+    Sprite: {fileID: 21300000, guid: 22d417e02f274096be6b416c87c097b0, type: 3}
+  - Name: WhiteKittyRobe.Gloves
+    Path: Equipment/Gloves/AbandonedWorkshop/WhiteKittyRobe.Gloves
+    Sprite: {fileID: 21300000, guid: e8627883728047ea9119b4c0096402a9, type: 3}
+  - Name: WhiteKittyRobe.Pauldrons
+    Path: Equipment/Pauldrons/AbandonedWorkshop/WhiteKittyRobe.Pauldrons
+    Sprite: {fileID: 21300000, guid: 94bae721e0d84291b8fc65afa0943236, type: 3}
+  - Name: WhiteKittyRobe.Vest
+    Path: Equipment/Vest/AbandonedWorkshop/WhiteKittyRobe.Vest
+    Sprite: {fileID: 21300000, guid: ed3aea62e70b423f89538af09301073d, type: 3}
+  - Name: WickerSword
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Sword/WickerSword
+    Sprite: {fileID: 21300000, guid: 83f7d1fc8ca14d07b7de97448318868d, type: 3}
+  - Name: WideDagger
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Dagger/WideDagger
+    Sprite: {fileID: 21300000, guid: 04a48f44e6044dcbb9f6705ae4f99eba, type: 3}
+  - Name: WolfyEars1
+    Path: BodyParts/Ears/Furry/WolfyEars1
+    Sprite: {fileID: 21300000, guid: 80d7e7ce19614a26af16db6ab7e7cf75, type: 3}
+  - Name: WolfyEars2
+    Path: BodyParts/Ears/Furry/WolfyEars2
+    Sprite: {fileID: 21300000, guid: b1f225f88c974fe6b328a9bea5f93dfa, type: 3}
+  - Name: WolfyEars3
+    Path: BodyParts/Ears/Furry/WolfyEars3
+    Sprite: {fileID: 21300000, guid: 368bff931ecd4bef8c2baad9dbd0547e, type: 3}
+  - Name: WolfyEars4
+    Path: BodyParts/Ears/Furry/WolfyEars4
+    Sprite: {fileID: 21300000, guid: beca145ea6d04b5898eece490a860cab, type: 3}
+  - Name: WolfyHead1
+    Path: BodyParts/Head/Furry/WolfyHead1
+    Sprite: {fileID: 21300000, guid: d2a80595d1fb49e0a17bc316218c1267, type: 3}
+  - Name: WolfyHead2
+    Path: BodyParts/Head/Furry/WolfyHead2
+    Sprite: {fileID: 21300000, guid: 6c37bccb1ef444e1905d8adc49321742, type: 3}
+  - Name: WolfyHead3
+    Path: BodyParts/Head/Furry/WolfyHead3
+    Sprite: {fileID: 21300000, guid: d87346061d48437bb4f3f7b26a176175, type: 3}
+  - Name: WolfyHead4
+    Path: BodyParts/Head/Furry/WolfyHead4
+    Sprite: {fileID: 21300000, guid: a78a621c0782480c964bc97de9caee05, type: 3}
+  - Name: WoodenClub
+    Path: Equipment/MeleeWeapon1H/Undead/Mace/WoodenClub
+    Sprite: {fileID: 21300000, guid: 9a47c00585274fe485753adb3c15e8d5, type: 3}
+  - Name: WoodenShield
+    Path: Equipment/Shield/AbandonedWorkshop/WoodenShield
+    Sprite: {fileID: 21300000, guid: 67431dfe684344f48dbf6d899ad206ca, type: 3}
+  - Name: WoodenStake
+    Path: Equipment/MeleeWeapon1H/Undead/Unsorted/WoodenStake
+    Sprite: {fileID: 21300000, guid: 1106f361a82d49f48bc8f205757b8972, type: 3}
+  - Name: Worm
+    Path: Equipment/Earrings/Zombies/Worm
+    Sprite: {fileID: 21300000, guid: de11779b571f400da334fdd1d63ac196, type: 3}
+  - Name: WyvernAxe
+    Path: Equipment/MeleeWeapon1H/AbandonedWorkshop/Axe/WyvernAxe
+    Sprite: {fileID: 21300000, guid: 2fe9224aab0041edb25e0e40cb5d644f, type: 3}
+  - Name: WyvernHornBow
+    Path: Equipment/Bow/AbandonedWorkshop/WyvernHornBow
+    Sprite: {fileID: 21300000, guid: 9420cb23f0a64f94a5456193b4908972, type: 3}
+  - Name: WyvernHornBow.Arrow
+    Path: Equipment/Arrow/AbandonedWorkshop/WyvernHornBow.Arrow
+    Sprite: {fileID: 21300000, guid: d870ddd3bea043069361ca490e551595, type: 3}
+  - Name: ZombieBody1
+    Path: BodyParts/Body/Zombies/ZombieBody1
+    Sprite: {fileID: 21300000, guid: 36858fbc1bf9401ca3b67f776a87cf09, type: 3}
+  - Name: ZombieBody2
+    Path: BodyParts/Body/Zombies/ZombieBody2
+    Sprite: {fileID: 21300000, guid: 548b035dabc54710abf3ff2d0749db43, type: 3}
+  - Name: ZombieClothes1
+    Path: Equipment/Armor/Zombies/ZombieClothes1
+    Sprite: {fileID: 21300000, guid: a9b4bee80cdb48d290e71a3380a7ae23, type: 3}
+  - Name: ZombieClothes1.Belt
+    Path: Equipment/Belt/Zombies/ZombieClothes1.Belt
+    Sprite: {fileID: 21300000, guid: ff6114d2d50a450dbe013527f99972fb, type: 3}
+  - Name: ZombieClothes1.Boots
+    Path: Equipment/Boots/Zombies/ZombieClothes1.Boots
+    Sprite: {fileID: 21300000, guid: 4a413d6e870e40d2b05ac2425686250b, type: 3}
+  - Name: ZombieClothes1.Gloves
+    Path: Equipment/Gloves/Zombies/ZombieClothes1.Gloves
+    Sprite: {fileID: 21300000, guid: 9bd3690e5c634be7838a6c0784011195, type: 3}
+  - Name: ZombieClothes1.Pauldrons
+    Path: Equipment/Pauldrons/Zombies/ZombieClothes1.Pauldrons
+    Sprite: {fileID: 21300000, guid: 15d603e62f294dbbb7bc9bf4d42f19b3, type: 3}
+  - Name: ZombieClothes1.Vest
+    Path: Equipment/Vest/Zombies/ZombieClothes1.Vest
+    Sprite: {fileID: 21300000, guid: 807f26d4fe604a28926ee46fb2b553dd, type: 3}
+  - Name: ZombieClothes2
+    Path: Equipment/Armor/Zombies/ZombieClothes2
+    Sprite: {fileID: 21300000, guid: f98f1187675041a99c250a29f830b800, type: 3}
+  - Name: ZombieClothes2.Belt
+    Path: Equipment/Belt/Zombies/ZombieClothes2.Belt
+    Sprite: {fileID: 21300000, guid: 73d56e28856a45198f036043bd509946, type: 3}
+  - Name: ZombieClothes2.Boots
+    Path: Equipment/Boots/Zombies/ZombieClothes2.Boots
+    Sprite: {fileID: 21300000, guid: 6254a1eba82e48dc84dd228a75a16d31, type: 3}
+  - Name: ZombieClothes2.Gloves
+    Path: Equipment/Gloves/Zombies/ZombieClothes2.Gloves
+    Sprite: {fileID: 21300000, guid: 17244d7c9a0f4c83a7996abf4c41bbe8, type: 3}
+  - Name: ZombieClothes2.Pauldrons
+    Path: Equipment/Pauldrons/Zombies/ZombieClothes2.Pauldrons
+    Sprite: {fileID: 21300000, guid: 2431b1fc3e874fca8fddb14ab32a47fe, type: 3}
+  - Name: ZombieClothes2.Vest
+    Path: Equipment/Vest/Zombies/ZombieClothes2.Vest
+    Sprite: {fileID: 21300000, guid: 8e42a7476aca4c5098bfc9cdc5625c7f, type: 3}
+  - Name: ZombieClothes3
+    Path: Equipment/Armor/Zombies/ZombieClothes3
+    Sprite: {fileID: 21300000, guid: b50cb74e91864c38844bf9710e83501f, type: 3}
+  - Name: ZombieClothes3.Belt
+    Path: Equipment/Belt/Zombies/ZombieClothes3.Belt
+    Sprite: {fileID: 21300000, guid: 3d32912b6a394905af4b39d83a47b9cd, type: 3}
+  - Name: ZombieClothes3.Boots
+    Path: Equipment/Boots/Zombies/ZombieClothes3.Boots
+    Sprite: {fileID: 21300000, guid: 17ddabe0d2e14f99b45a2141fa7084c3, type: 3}
+  - Name: ZombieClothes3.Gloves
+    Path: Equipment/Gloves/Zombies/ZombieClothes3.Gloves
+    Sprite: {fileID: 21300000, guid: fbe189bb5fd34c1b9ab1058c8ef5b9e1, type: 3}
+  - Name: ZombieClothes3.Pauldrons
+    Path: Equipment/Pauldrons/Zombies/ZombieClothes3.Pauldrons
+    Sprite: {fileID: 21300000, guid: c7cb82c81a1848168b1db8ad4435ad70, type: 3}
+  - Name: ZombieClothes3.Vest
+    Path: Equipment/Vest/Zombies/ZombieClothes3.Vest
+    Sprite: {fileID: 21300000, guid: 6704b9082ae44a82a808490d67173c69, type: 3}
+  - Name: ZombieClothes4
+    Path: Equipment/Armor/Zombies/ZombieClothes4
+    Sprite: {fileID: 21300000, guid: 4c877d2a7900411396717e9ffe437a10, type: 3}
+  - Name: ZombieClothes4.Belt
+    Path: Equipment/Belt/Zombies/ZombieClothes4.Belt
+    Sprite: {fileID: 21300000, guid: 4ee2e621fb5d4a45846d494152e70d64, type: 3}
+  - Name: ZombieClothes4.Boots
+    Path: Equipment/Boots/Zombies/ZombieClothes4.Boots
+    Sprite: {fileID: 21300000, guid: c7c3a5ae169f471184727741bfe6a8ad, type: 3}
+  - Name: ZombieClothes4.Gloves
+    Path: Equipment/Gloves/Zombies/ZombieClothes4.Gloves
+    Sprite: {fileID: 21300000, guid: d92dda90817940b2a55c64dd1be182f9, type: 3}
+  - Name: ZombieClothes4.Pauldrons
+    Path: Equipment/Pauldrons/Zombies/ZombieClothes4.Pauldrons
+    Sprite: {fileID: 21300000, guid: e5da8981801e4cb19e82e6c19c9ec306, type: 3}
+  - Name: ZombieClothes4.Vest
+    Path: Equipment/Vest/Zombies/ZombieClothes4.Vest
+    Sprite: {fileID: 21300000, guid: 726608ed8aed4e59ae5a398a1b7e9254, type: 3}
+  - Name: ZombieClothes5
+    Path: Equipment/Armor/Zombies/ZombieClothes5
+    Sprite: {fileID: 21300000, guid: 6995c0758c4545c2b955b1b1a0421776, type: 3}
+  - Name: ZombieClothes5.Belt
+    Path: Equipment/Belt/Zombies/ZombieClothes5.Belt
+    Sprite: {fileID: 21300000, guid: 7033c431f8f14593b5ee31d114ab5416, type: 3}
+  - Name: ZombieClothes5.Boots
+    Path: Equipment/Boots/Zombies/ZombieClothes5.Boots
+    Sprite: {fileID: 21300000, guid: 339056d6ba064aeca9e3268c4387ad59, type: 3}
+  - Name: ZombieClothes5.Gloves
+    Path: Equipment/Gloves/Zombies/ZombieClothes5.Gloves
+    Sprite: {fileID: 21300000, guid: 021fec0c14c64a9da49ca8b25ccf449c, type: 3}
+  - Name: ZombieClothes5.Pauldrons
+    Path: Equipment/Pauldrons/Zombies/ZombieClothes5.Pauldrons
+    Sprite: {fileID: 21300000, guid: ecca89bb6d8f4fa0a0637c0d5839709b, type: 3}
+  - Name: ZombieClothes5.Vest
+    Path: Equipment/Vest/Zombies/ZombieClothes5.Vest
+    Sprite: {fileID: 21300000, guid: 15a11e28d93a494f9c3e8b20e81a324a, type: 3}
+  - Name: ZombieEar1
+    Path: BodyParts/Ears/Zombies/ZombieEar1
+    Sprite: {fileID: 21300000, guid: e65ed4140e694dee898182a342814646, type: 3}
+  - Name: ZombieEyes1
+    Path: BodyParts/Eyes/Zombies/ZombieEyes1
+    Sprite: {fileID: 21300000, guid: 22a6076f26a942118fc725ed7fe7c87a, type: 3}
+  - Name: ZombieEyes2
+    Path: BodyParts/Eyes/Zombies/ZombieEyes2
+    Sprite: {fileID: 21300000, guid: d0993813911847649e2dcfac2cce832f, type: 3}
+  - Name: ZombieEyes3
+    Path: BodyParts/Eyes/Zombies/ZombieEyes3
+    Sprite: {fileID: 21300000, guid: 6cad814612d14b2c9a23ce5d17a06377, type: 3}
+  - Name: ZombieEyes4
+    Path: BodyParts/Eyes/Zombies/ZombieEyes4
+    Sprite: {fileID: 21300000, guid: ef8617120e49451d9e3107115ee793a9, type: 3}
+  - Name: ZombieEyes5
+    Path: BodyParts/Eyes/Zombies/ZombieEyes5
+    Sprite: {fileID: 21300000, guid: fee46ab3130b43dfbcea01ce6d577a5c, type: 3}
+  - Name: ZombieEyes6
+    Path: BodyParts/Eyes/Zombies/ZombieEyes6
+    Sprite: {fileID: 21300000, guid: afc84c16921c4b088cb208337c597da3, type: 3}
+  - Name: ZombieEyes7
+    Path: BodyParts/Eyes/Zombies/ZombieEyes7
+    Sprite: {fileID: 21300000, guid: ebdc24bb2d3b428389118a39456bfe21, type: 3}
+  - Name: ZombieHead1
+    Path: BodyParts/Head/Zombies/ZombieHead1
+    Sprite: {fileID: 21300000, guid: 74dbb8474f94473bae08796bffcc86fb, type: 3}
+  - Name: ZombieHead2
+    Path: BodyParts/Head/Zombies/ZombieHead2
+    Sprite: {fileID: 21300000, guid: e5e57f81029148bda989182b637f094d, type: 3}
+  - Name: ZombieMouth1
+    Path: BodyParts/Mouth/Zombies/ZombieMouth1
+    Sprite: {fileID: 21300000, guid: 3237042f95384c7fa219d90d7f0723d1, type: 3}
+  - Name: ZombieMouth2
+    Path: BodyParts/Mouth/Zombies/ZombieMouth2
+    Sprite: {fileID: 21300000, guid: f6959462febc4051bc120643782cb701, type: 3}
+  - Name: ZombieMouth3
+    Path: BodyParts/Mouth/Zombies/ZombieMouth3
+    Sprite: {fileID: 21300000, guid: f4c8e5ba46a948989538a2c835715f1d, type: 3}
+  - Name: ZombieMouth4
+    Path: BodyParts/Mouth/Zombies/ZombieMouth4
+    Sprite: {fileID: 21300000, guid: c16db9883c9043f9bfc529244777a69d, type: 3}
+  - Name: ZombieMouth5
+    Path: BodyParts/Mouth/Zombies/ZombieMouth5
+    Sprite: {fileID: 21300000, guid: 9c04fbcc8a904c17a6d701c2dce5bc9c, type: 3}
+  - Name: ZombieMouth6
+    Path: BodyParts/Mouth/Zombies/ZombieMouth6
+    Sprite: {fileID: 21300000, guid: eff98c3478764add8d54ecee72a85f4d, type: 3}
+  DefaultItemIcon: {fileID: 21300000, guid: ae011a2b76094d3d988dc7d5ab9b778d, type: 3}

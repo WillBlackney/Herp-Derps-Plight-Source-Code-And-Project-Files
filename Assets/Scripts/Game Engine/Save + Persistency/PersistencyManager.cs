@@ -72,6 +72,7 @@ public class PersistencyManager : Singleton<PersistencyManager>
         // Build general data
         PlayerDataManager.Instance.ModifyCurrentGold(GlobalSettings.Instance.startingGold);
         PlayerDataManager.Instance.SaveMyDataToSaveFile(newSave);
+        CharacterDataController.Instance.SetMaxRosterSize(GlobalSettings.Instance.startingMaxRosterSize);
 
         // Build Camp site data
         CampSiteController.Instance.BuildPropertiesFromStandardSettings();
