@@ -61,6 +61,7 @@ public class CharacterPanelViewController : Singleton<CharacterPanelViewControll
     }
     private void BuildCharacterPanelFromCharacterData(CharacterPanelView panel, CharacterData data)
     {
+        panel.characterDataRef = data; 
         panel.visualParent.SetActive(true);
         panel.nameText.text = data.myName;
         panel.levelText.text = data.currentLevel.ToString();
@@ -87,6 +88,10 @@ public class CharacterPanelViewController : Singleton<CharacterPanelViewControll
     private void UpdateCurrentCharacterCountText()
     {
         currentCharacterCountText.text = CharacterDataController.Instance.AllPlayerCharacters.Count.ToString();
+    }
+    public void OnCharacterPanelViewClicked(CharacterPanelView panel)
+    {
+        CharacterSheetViewController.Instance.BuildViewsFromCharacterData(panel.characterDataRef);
     }
     #endregion
 }

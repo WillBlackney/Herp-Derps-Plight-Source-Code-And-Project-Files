@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
-public class CharacterPanelView : MonoBehaviour
+public class CharacterPanelView : MonoBehaviour, IPointerClickHandler
 {
+    [Header("Properties")]
+    [HideInInspector] public CharacterData characterDataRef;
+
     [Header("Core Components")]
     public GameObject visualParent;
     public UniversalCharacterModel ucm;
@@ -21,4 +25,8 @@ public class CharacterPanelView : MonoBehaviour
     public TextMeshProUGUI levelText;
     public Slider xpBar;
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        CharacterPanelViewController.Instance.OnCharacterPanelViewClicked(this);
+    }
 }

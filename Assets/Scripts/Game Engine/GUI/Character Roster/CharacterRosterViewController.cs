@@ -15,7 +15,7 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     private CharacterData currentCharacterViewing;
     private bool mouseIsOverDeckView = false;
     [HideInInspector] public bool currentlyDraggingSomePanel;
-     public RosterItemSlot rosterSlotMousedOver = null;
+    public RosterItemSlot rosterSlotMousedOver = null;
 
     [Header("Core Components")]
     [SerializeField] private GameObject mainVisualParent;
@@ -130,7 +130,6 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
         private set { currentCharacterViewing = value; }
     }
     #endregion
-
 
     // Enable + Fade Main View and Default View
     #region
