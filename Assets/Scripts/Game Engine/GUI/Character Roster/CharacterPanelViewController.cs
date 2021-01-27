@@ -91,7 +91,7 @@ public class CharacterPanelViewController : Singleton<CharacterPanelViewControll
     }
     public void OnCharacterPanelViewClicked(CharacterPanelView panel)
     {
-        CharacterSheetViewController.Instance.BuildViewsFromCharacterData(panel.characterDataRef);
+        CharacterSheetViewController.Instance.OnCharacterPanelViewClicked(panel);
     }
     #endregion
 }

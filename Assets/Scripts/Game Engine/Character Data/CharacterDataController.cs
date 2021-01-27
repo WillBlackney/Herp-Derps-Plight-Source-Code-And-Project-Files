@@ -25,6 +25,11 @@ public class CharacterDataController : Singleton<CharacterDataController>
         private set { allPlayerCharacters = value; }
 
     }
+    public CharacterTemplateSO[] AllCharacterTemplatesSOs
+    {
+        get { return allCharacterTemplatesSOs; }
+        private set { allCharacterTemplatesSOs = value; }
+    }
     public CharacterData[] AllCharacterTemplates
     {
         get { return allCharacterTemplates; }

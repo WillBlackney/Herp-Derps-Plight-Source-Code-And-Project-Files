@@ -68,15 +68,15 @@ public class TalentPanelCharacterRoster : MonoBehaviour, IPointerEnterHandler, I
     public void OnPlusButtonClicked()
     {
         Debug.LogWarning("OnPlusButtonClicked");
-        CharacterRosterViewController.Instance.OnTalentPanelPlusButtonClicked(this);
+        CharacterSheetViewController.Instance.OnTalentPanelPlusButtonClicked(this);
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        CharacterRosterViewController.Instance.OnTalentPanelMouseEnter(this);
+        CharacterSheetViewController.Instance.OnTalentPanelMouseEnter(this);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        CharacterRosterViewController.Instance.OnTalentPanelMouseExit(this);
+        CharacterSheetViewController.Instance.OnTalentPanelMouseExit(this);
     }
     #endregion
 }
