@@ -79,7 +79,7 @@ public class CharacterPanelViewController : Singleton<CharacterPanelViewControll
         float currentXP = data.currentXP;
         float currentMaxXpFloat = data.currentMaxXP;
         float xpBarFloat = currentXP / currentMaxXpFloat;
-        panel.xpBar.value = healthBarFloat;
+        panel.xpBar.value = xpBarFloat;
     }
     private void UpdateMaxRosterSizeText()
     {
