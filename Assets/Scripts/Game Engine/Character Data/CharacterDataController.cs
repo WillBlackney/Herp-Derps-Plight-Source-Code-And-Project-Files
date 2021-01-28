@@ -367,24 +367,24 @@ public class CharacterDataController : Singleton<CharacterDataController>
             data.currentXP += xpGained;
         }
     }
-    public void HandleXpRewardPostCombat(EncounterType encounter)
+    public void HandleXpRewardPostCombat(CombatDifficulty encounter)
     {
         // Apply flat combat type xp reward
-        if(encounter == EncounterType.BasicEnemy)
+        if(encounter == CombatDifficulty.Basic)
         {
             foreach(CharacterData character in AllPlayerCharacters)
             {
                 HandleGainXP(character, GlobalSettings.Instance.basicCombatXpReward);
             }         
         }
-        else if (encounter == EncounterType.EliteEnemy)
+        else if (encounter == CombatDifficulty.Elite)
         {
             foreach (CharacterData character in AllPlayerCharacters)
             {
                 HandleGainXP(character, GlobalSettings.Instance.eliteCombatXpReward);
             }
         }
-        else if (encounter == EncounterType.BossEnemy)
+        else if (encounter == CombatDifficulty.Boss)
         {
             foreach (CharacterData character in AllPlayerCharacters)
             {
@@ -504,7 +504,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
         {
             if (card.originRace == character.race && card.upgradeLevel == 0)
             {
-                Debug.Log("BuildNewSaveFileOnNewGameStarted() found matching racial card, adding " + card.cardName +
+                Debug.Log("AutoAddCharactersRacialCard() found matching racial card, adding " + card.cardName +
                     " to " + character.myName + "'s deck");
                 CardData newRacialCard = CardController.Instance.CloneCardDataFromCardData(card);
                 AddCardToCharacterDeck(character, newRacialCard, 0);

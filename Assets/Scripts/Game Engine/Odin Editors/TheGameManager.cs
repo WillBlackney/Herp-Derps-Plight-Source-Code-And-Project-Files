@@ -352,7 +352,7 @@ namespace CustomOdinGUI
     public class DrawPrefabHolder : DrawSceneObject<PrefabHolder>
     {
     }
-    public class DrawJourneyManager : DrawSceneObject<JourneyManager>
+    public class DrawJourneyManager : DrawSceneObject<ProgressionController>
     {
     }
     public class DrawCampSiteController : DrawSceneObject<CampSiteController>

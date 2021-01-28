@@ -113,7 +113,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Spawn enemies
         EnemySpawner.Instance.SpawnEnemyWave("Basic", GlobalSettings.Instance.testingEnemyWave);
-        JourneyManager.Instance.IncrementWorldMapPosition();
+       // ProgressionController.Instance.IncrementWorldMapPosition();
 
         // Start a new combat event
         ActivationManager.Instance.OnNewCombatEventStarted();
@@ -131,9 +131,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Create player characters in scene
         CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
 
-        JourneyManager.Instance.IncrementWorldMapPosition();
+       // ProgressionController.Instance.IncrementWorldMapPosition();
 
-        StartCombatVictorySequence(EncounterType.BasicEnemy);
+        StartCombatVictorySequence(CombatDifficulty.Basic);
     }
     private IEnumerator RunRecruitCharacterTestEventSetup()
     {
@@ -149,7 +149,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         //EncounterData mockData = new EncounterData();
        // mockData.encounterType = EncounterType.RecruitCharacter;
         RecruitCharacterController.Instance.currentChoices = RecruitCharacterController.Instance.GetThreeValidRecruitableCharacters();
-        JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.RecruitCharacterStart);
+        ProgressionController.Instance.SetCheckPoint(SaveCheckPoint.RecruitCharacterStart);
 
         // Load event
         HandleLoadEncounter(EncounterType.RecruitCharacter);
@@ -299,7 +299,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         MainMenuController.Instance.HideFrontScreen();
 
         // Load the encounter the player saved at
-        HandleLoadEncounter(JourneyManager.Instance.CurrentEncounter);
+       // HandleLoadEncounter(ProgressionController.Instance.CurrentEncounter);
     }
 
     #endregion
@@ -385,48 +385,48 @@ public class EventSequenceController : Singleton<EventSequenceController>
         if ((encounter == EncounterType.BasicEnemy ||
             encounter == EncounterType.EliteEnemy ||
             encounter == EncounterType.BossEnemy) &&
-            JourneyManager.Instance.CheckPointType == SaveCheckPoint.CombatStart
+            ProgressionController.Instance.CheckPointType == SaveCheckPoint.CombatStart
             )
         {
-            HandleLoadCombatEncounter(JourneyManager.Instance.CurrentEnemyWave);
+           // HandleLoadCombatEncounter(ProgressionController.Instance.CurrentCombatData);
         }
 
         else if ((encounter == EncounterType.BasicEnemy ||
             encounter == EncounterType.EliteEnemy) &&
-            JourneyManager.Instance.CheckPointType == SaveCheckPoint.CombatEnd
+            ProgressionController.Instance.CheckPointType == SaveCheckPoint.CombatEnd
             )
         {
             BlackScreenController.Instance.FadeInScreen(1f);
             LevelManager.Instance.EnableDungeonScenery();
             LevelManager.Instance.ShowAllNodeViews();
             CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
-            StartCombatVictorySequence(encounter);
+            //StartCombatVictorySequence(encounter);
         }
 
         // TO DO IN FUTURE: boss loot events are different to basic/enemy, and 
         // will require different loading logic here
         else if ((encounter == EncounterType.BossEnemy) &&
-            JourneyManager.Instance.CheckPointType == SaveCheckPoint.CombatEnd
+            ProgressionController.Instance.CheckPointType == SaveCheckPoint.CombatEnd
             )
         {
            
         }
 
-        else if (JourneyManager.Instance.CheckPointType == SaveCheckPoint.RecruitCharacterStart)
+        else if (ProgressionController.Instance.CheckPointType == SaveCheckPoint.RecruitCharacterStart)
         {
             HandleLoadRecruitCharacterEncounter();
         }
 
-        else if (JourneyManager.Instance.CheckPointType == SaveCheckPoint.KingsBlessingStart)
+        else if (ProgressionController.Instance.CheckPointType == SaveCheckPoint.KingsBlessingStart)
         {
             HandleLoadKingsBlessingEncounter();
         }
 
-        else if (JourneyManager.Instance.CheckPointType == SaveCheckPoint.CampSite)
+        else if (ProgressionController.Instance.CheckPointType == SaveCheckPoint.CampSite)
         {
             HandleLoadCampSiteEvent();
         }
-        else if (JourneyManager.Instance.CheckPointType == SaveCheckPoint.Shop)
+        else if (ProgressionController.Instance.CheckPointType == SaveCheckPoint.Shop)
         {
             HandleLoadShopEvent();
         }
@@ -439,22 +439,24 @@ public class EventSequenceController : Singleton<EventSequenceController>
     {
         // Hide world map view
         MapView.Instance.HideMainMapView();
+        yield return null;
 
         // Cache previous encounter data 
-        EncounterType previousEncounter = JourneyManager.Instance.CurrentEncounter;
-        EnemyWaveSO previousEnemyWave = JourneyManager.Instance.CurrentEnemyWave;
+       //// EncounterType previousEncounter = ProgressionController.Instance.CurrentEncounter;
+        //EnemyWaveSO previousEnemyWave = ProgressionController.Instance.CurrentCombatData;
 
         // Increment world position + set next encounter
-        JourneyManager.Instance.IncrementWorldMapPosition();
-        JourneyManager.Instance.SetCurrentEncounterType(mapNode.Node.NodeType);
+       // ProgressionController.Instance.IncrementWorldMapPosition();
+       // ProgressionController.Instance.SetCurrentEncounterType(mapNode.Node.NodeType);
 
         // Destroy all characters and activation windows if the 
         // previous encounter was a combat event
+        /*
         if (previousEncounter == EncounterType.BasicEnemy ||
             previousEncounter == EncounterType.EliteEnemy)
         {
             // Mark wave as seen
-            JourneyManager.Instance.AddEnemyWaveToAlreadyEncounteredList(previousEnemyWave);
+            ProgressionController.Instance.AddEnemyWaveToAlreadyEncounteredList(previousEnemyWave);
 
             // Fade out visual event
             BlackScreenController.Instance.FadeOutScreen(3f);
@@ -579,42 +581,42 @@ public class EventSequenceController : Singleton<EventSequenceController>
         CameraManager.Instance.ResetMainCameraPositionAndZoom();
 
         // If next event is a combat, get + set enemy wave before saving to disk
-        if (JourneyManager.Instance.CurrentEncounter == EncounterType.BasicEnemy ||
-            JourneyManager.Instance.CurrentEncounter == EncounterType.EliteEnemy ||
-            JourneyManager.Instance.CurrentEncounter == EncounterType.BossEnemy)
+        if (ProgressionController.Instance.CurrentEncounter == EncounterType.BasicEnemy ||
+            ProgressionController.Instance.CurrentEncounter == EncounterType.EliteEnemy ||
+            ProgressionController.Instance.CurrentEncounter == EncounterType.BossEnemy)
         {
             // Calculate and cache the next enemy wave group
             //JourneyManager.Instance.SetCurrentEnemyWaveData 
             //  (JourneyManager.Instance.GetRandomEnemyWaveFromEncounterData(JourneyManager.Instance.CurrentEncounter));
 
-            if (JourneyManager.Instance.CurrentEncounter == EncounterType.BasicEnemy)
+            if (ProgressionController.Instance.CurrentEncounter == EncounterType.BasicEnemy)
             {
-                JourneyManager.Instance.SetCurrentEnemyWaveData 
-                  (JourneyManager.Instance.DetermineAndGetNextBasicEnemyWave());
+                ProgressionController.Instance.SetCurrentEnemyWaveData 
+                  (ProgressionController.Instance.DetermineAndGetNextBasicEnemyWave());
             }
-            else if (JourneyManager.Instance.CurrentEncounter == EncounterType.EliteEnemy)
+            else if (ProgressionController.Instance.CurrentEncounter == EncounterType.EliteEnemy)
             {
-                JourneyManager.Instance.SetCurrentEnemyWaveData
-                  (JourneyManager.Instance.DetermineAndGetNextEliteEnemyWave());
+                ProgressionController.Instance.SetCurrentEnemyWaveData
+                  (ProgressionController.Instance.DetermineAndGetNextEliteEnemyWave());
             }
-            else if (JourneyManager.Instance.CurrentEncounter == EncounterType.BossEnemy)
+            else if (ProgressionController.Instance.CurrentEncounter == EncounterType.BossEnemy)
             {
-                JourneyManager.Instance.SetCurrentEnemyWaveData
-                  (JourneyManager.Instance.DetermineAndGetNextBossEnemyWave());
+                ProgressionController.Instance.SetCurrentEnemyWaveData
+                  (ProgressionController.Instance.DetermineAndGetNextBossEnemyWave());
             }
 
             // Set check point
-            JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.CombatStart);
+            ProgressionController.Instance.SetCheckPoint(SaveCheckPoint.CombatStart);
 
             // Auto save
             PersistencyManager.Instance.AutoUpdateSaveFile();
 
             // Start Load combat
-            HandleLoadCombatEncounter(JourneyManager.Instance.CurrentEnemyWave);
+            HandleLoadCombatEncounter(ProgressionController.Instance.CurrentCombatData);
         }
 
         // Recruit character event
-        else if(JourneyManager.Instance.CurrentEncounter == EncounterType.RecruitCharacter)
+        else if(ProgressionController.Instance.CurrentEncounter == EncounterType.RecruitCharacter)
         {
             // Generate 3 random characters, if we are not loading from save
             if (RecruitCharacterController.Instance.currentChoices.Count == 0)
@@ -623,7 +625,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
             }
 
             // Set check point
-            JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.RecruitCharacterStart);
+            ProgressionController.Instance.SetCheckPoint(SaveCheckPoint.RecruitCharacterStart);
 
             // Auto save
             PersistencyManager.Instance.AutoUpdateSaveFile();
@@ -632,7 +634,8 @@ public class EventSequenceController : Singleton<EventSequenceController>
         }
 
         // Shop event
-        else if (JourneyManager.Instance.CurrentEncounter == EncounterType.Shop)
+        /*
+        else if (ProgressionController.Instance.CurrentEncounter == EncounterType.Shop)
         {
             // Generate new shop contents
             if (ShopController.Instance.CurrentShopContentResultData == null)
@@ -641,37 +644,15 @@ public class EventSequenceController : Singleton<EventSequenceController>
             }
 
             // Set check point
-            JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.Shop);
+            ProgressionController.Instance.SetCheckPoint(SaveCheckPoint.Shop);
 
             // Auto save
             PersistencyManager.Instance.AutoUpdateSaveFile();
 
             HandleLoadShopEvent();
         }
+        */
 
-        // Kings Blessing
-        else if (JourneyManager.Instance.CurrentEncounter == EncounterType.KingsBlessingEvent)
-        {
-            // Set check point
-            JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.KingsBlessingStart);
-
-            // Auto save
-            PersistencyManager.Instance.AutoUpdateSaveFile();
-
-            HandleLoadKingsBlessingEncounter();
-        }
-
-        // Camp site
-        else if (JourneyManager.Instance.CurrentEncounter == EncounterType.CampSite)
-        {
-            // Set check point
-            JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.CampSite);
-
-            // Auto save
-            PersistencyManager.Instance.AutoUpdateSaveFile();
-
-            HandleLoadCampSiteEvent();
-        }
     }
     private void HandleLoadCombatEncounter(EnemyWaveSO enemyWave)
     {
@@ -943,11 +924,11 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
     // Handle Post Combat Stuff
     #region
-    public void StartCombatVictorySequence(EncounterType combatType)
+    public void StartCombatVictorySequence(CombatDifficulty combatType)
     {
         StartCoroutine(StartCombatVictorySequenceCoroutine(combatType));
     }
-    private IEnumerator StartCombatVictorySequenceCoroutine(EncounterType combatType)
+    private IEnumerator StartCombatVictorySequenceCoroutine(CombatDifficulty combatType)
     {
         // wait until v queue count = 0
         yield return new WaitUntil(()=> VisualEventManager.Instance.EventQueue.Count == 0);
@@ -992,7 +973,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         UIManager.Instance.DisableEndTurnButtonView();
 
         // Do post combat mini event + reward xp
-        if (JourneyManager.Instance.CheckPointType != SaveCheckPoint.CombatEnd)
+        if (ProgressionController.Instance.CheckPointType != SaveCheckPoint.CombatEnd)
         {
             // Cache previous xp of characters for visual events
             List<PreviousXpState> pxsList = new List<PreviousXpState>();
@@ -1010,15 +991,15 @@ public class EventSequenceController : Singleton<EventSequenceController>
             {
                 bool flawless = false;
                 int combatXp = 0;
-                if(combatType == EncounterType.BasicEnemy)
+                if(combatType == CombatDifficulty.Basic)
                 {
                     combatXp = GlobalSettings.Instance.basicCombatXpReward;
                 }
-                else if (combatType == EncounterType.EliteEnemy)
+                else if (combatType == CombatDifficulty.Elite)
                 {
                     combatXp = GlobalSettings.Instance.eliteCombatXpReward;
                 }
-                else if (combatType == EncounterType.BossEnemy)
+                else if (combatType == CombatDifficulty.Boss)
                 {
                     combatXp = GlobalSettings.Instance.bossCombatXpReward;
                 }
@@ -1048,7 +1029,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
             LootController.Instance.SetAndCacheNewLootResult();
 
             // Save and set checkpoint + cache loot result
-            JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.CombatEnd);
+            ProgressionController.Instance.SetCheckPoint(SaveCheckPoint.CombatEnd);
             PersistencyManager.Instance.AutoUpdateSaveFile();
 
             // Wait for xp reward v event to finish

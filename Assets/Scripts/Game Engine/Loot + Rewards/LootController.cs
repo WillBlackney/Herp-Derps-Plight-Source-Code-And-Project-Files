@@ -246,24 +246,25 @@ public class LootController : Singleton<LootController>
     {
         LootResultModel newLoot = new LootResultModel();
 
+        /*
         // Generate gold reward
         newLoot.goldReward = 0;
-        if(JourneyManager.Instance.CurrentEncounter == EncounterType.BasicEnemy)
+        if(ProgressionController.Instance.CurrentEncounter == EncounterType.BasicEnemy)
         {
             newLoot.goldReward = RandomGenerator.NumberBetween
                 (GlobalSettings.Instance.basicEnemyGoldRewardLowerLimit, GlobalSettings.Instance.basicEnemyGoldRewardUpperLimit);
         }
-        else if (JourneyManager.Instance.CurrentEncounter == EncounterType.EliteEnemy)
+        else if (ProgressionController.Instance.CurrentEncounter == EncounterType.EliteEnemy)
         {
             newLoot.goldReward = RandomGenerator.NumberBetween
                 (GlobalSettings.Instance.eliteEnemyGoldRewardLowerLimit, GlobalSettings.Instance.eliteEnemyGoldRewardUpperLimit);
         }
-        else if (JourneyManager.Instance.CurrentEncounter == EncounterType.BossEnemy)
+        else if (ProgressionController.Instance.CurrentEncounter == EncounterType.BossEnemy)
         {
             newLoot.goldReward = RandomGenerator.NumberBetween
                 (GlobalSettings.Instance.bossEnemyGoldRewardLowerLimit, GlobalSettings.Instance.bossEnemyGoldRewardUpperLimit);
         }
-
+        */
         // Generate character card choices
         for (int i = 0; i < CharacterDataController.Instance.AllPlayerCharacters.Count; i++)
         {
@@ -272,15 +273,16 @@ public class LootController : Singleton<LootController>
         }
 
         // Trinket/Item
+        /*
         bool shouldGetTrinket = false;
 
         int trinketRoll = RandomGenerator.NumberBetween(1, 100);
 
-        if (JourneyManager.Instance.CurrentEncounter == EncounterType.BasicEnemy &&
+        if (ProgressionController.Instance.CurrentEncounter == EncounterType.BasicEnemy &&
             trinketRoll <= GlobalSettings.Instance.basicTrinketProbability)        
             shouldGetTrinket = true;
 
-        else if (JourneyManager.Instance.CurrentEncounter == EncounterType.EliteEnemy &&
+        else if (ProgressionController.Instance.CurrentEncounter == EncounterType.EliteEnemy &&
           trinketRoll <= GlobalSettings.Instance.eliteTrinketProbability)
             shouldGetTrinket = true;
 
@@ -288,6 +290,7 @@ public class LootController : Singleton<LootController>
         {
             newLoot.itemReward = GetRandomTrinketLootReward();
         }
+        */
 
         return newLoot;
     }
@@ -745,15 +748,15 @@ public class LootController : Singleton<LootController>
         box.currentLevelText.text = pxs.previousLevel.ToString();        
         box.combatTypeText.text = TextLogic.SplitByCapitals(xrd.encounterType.ToString());
 
-        if(xrd.encounterType == EncounterType.BasicEnemy)
+        if(xrd.encounterType == CombatDifficulty.Basic)
         {
             box.combatTypeRewardText.text = GlobalSettings.Instance.basicCombatXpReward.ToString();
         }
-        else if (xrd.encounterType == EncounterType.EliteEnemy)
+        else if (xrd.encounterType == CombatDifficulty.Elite)
         {
             box.combatTypeRewardText.text = GlobalSettings.Instance.eliteCombatXpReward.ToString();
         }
-        else if (xrd.encounterType == EncounterType.BossEnemy)
+        else if (xrd.encounterType == CombatDifficulty.Boss)
         {
             box.combatTypeRewardText.text = GlobalSettings.Instance.bossCombatXpReward.ToString();
         }

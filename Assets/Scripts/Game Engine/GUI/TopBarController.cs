@@ -39,7 +39,7 @@ public class TopBarController : Singleton<TopBarController>
         get { return goldTopBarImage; }
         set { goldTopBarImage = value; }
     }
-    public TextMeshProUGUI CurrentEncounterText
+    public TextMeshProUGUI CurrentDayText
     {
         get { return currentEncounterText; }
         set { currentEncounterText = value; }

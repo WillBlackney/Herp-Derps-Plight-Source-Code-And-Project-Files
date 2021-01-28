@@ -84,73 +84,16 @@ public class PersistencyManager : Singleton<PersistencyManager>
         PlayerDataManager.Instance.SaveMyDataToSaveFile(newSave);
         CharacterDataController.Instance.SetMaxRosterSize(GlobalSettings.Instance.startingMaxRosterSize);
 
-        // Build Camp site data
-        CampSiteController.Instance.BuildPropertiesFromStandardSettings();
-        CampSiteController.Instance.SaveMyDataToSaveFile(newSave);
+        // Generate first day data
+        ProgressionController.Instance.SetDayNumber(1);
+        ProgressionController.Instance.SetDailyCombatChoices(CombatGenerationController.Instance.GenerateWeeklyCombatChoices());
+        ProgressionController.Instance.SaveMyDataToSaveFile(newSave);
 
-        // Set up map
-        MapManager.Instance.SetCurrentMap(MapManager.Instance.GenerateNewMap());
-        MapManager.Instance.SaveMyDataToSaveFile(newSave);
-        MapPlayerTracker.Instance.LockMap();
+        // generate recruitable characters
 
-        // Set starting journey state
-        newSave.currentJourneyPosition = 0;
-        //EncounterData ed = JourneyManager.Instance.Encounters[0];
-        newSave.currentEncounter = EncounterType.KingsBlessingEvent;
-        newSave.saveCheckPoint = SaveCheckPoint.KingsBlessingStart;
 
-        // Generate KBC choices
-        newSave.kbcChoices = KingsBlessingController.Instance.GenerateFourRandomChoices();
 
-        // DECK MODIFIER SETUP
-        // Randomize decks
-        if (MainMenuController.Instance.randomizeDecks)
-        {
-            foreach(CharacterData character in newSave.characters)
-            {
-                // empty deck
-                character.deck.Clear();
-
-                // Get viable random cards
-                List<CardDataSO> viableCards = new List<CardDataSO>();
-                foreach(CardDataSO cardData in CardController.Instance.AllCardScriptableObjects)
-                {
-                    if(cardData.rarity != Rarity.None && cardData.talentSchool != TalentSchool.None)
-                    {
-                        viableCards.Add(cardData);
-                    }
-                }
-
-                // Choose 10 random cards rom viable cards lists
-                for(int i = 0; i < 10; i++)
-                {
-                    int randomIndex = RandomGenerator.NumberBetween(0, viableCards.Count - 1);
-                    CardData randomCard = CardController.Instance.BuildCardDataFromScriptableObjectData(viableCards[randomIndex]);
-                    CharacterDataController.Instance.AddCardToCharacterDeck(character, randomCard);
-                }
-            }
-        }
-
-        // Improvise decks
-        else if (MainMenuController.Instance.improviseDecks)
-        {
-            foreach (CharacterData character in newSave.characters)
-            {
-                // empty deck
-                character.deck.Clear();
-
-                // Get improvise card
-                CardDataSO improviseCardData = CardController.Instance.GetCardDataSOFromLibraryByName("Improvise");
-
-                // Fill deck with 10 improvise cards
-                for (int i = 0; i < 5; i++)
-                {
-                    CharacterDataController.Instance.AddCardToCharacterDeck(character, CardController.Instance.BuildCardDataFromScriptableObjectData(improviseCardData));
-                }
-            }
-        }
-
-        // START SAVE!        
+        // START SAVE!    
         SaveGameToDisk(newSave);
     }
     public void AutoUpdateSaveFile()
@@ -171,7 +114,7 @@ public class PersistencyManager : Singleton<PersistencyManager>
         MapManager.Instance.SaveMyDataToSaveFile(newSave);
 
         // Save journey data
-        JourneyManager.Instance.SaveMyDataToSaveFile(newSave);
+        ProgressionController.Instance.SaveMyDataToSaveFile(newSave);
 
         // Save recruit data
         RecruitCharacterController.Instance.SaveMyDataToSaveFile(newSave);
@@ -218,7 +161,7 @@ public class PersistencyManager : Singleton<PersistencyManager>
         MapManager.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // Set journey data
-        JourneyManager.Instance.BuildMyDataFromSaveFile(newLoad);
+        ProgressionController.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // Set recruit character event 
         RecruitCharacterController.Instance.BuildMyDataFromSaveFile(newLoad);

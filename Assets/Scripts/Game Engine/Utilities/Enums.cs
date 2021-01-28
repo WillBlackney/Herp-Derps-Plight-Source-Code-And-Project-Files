@@ -456,6 +456,13 @@ public enum CombatDifficulty
     Elite = 2,
     Boss = 3,
 }
+public enum CombatLevelRange
+{
+    ZeroToTwo = 0,
+    ThreeToFour = 1,
+    FiveToSix = 2,
+    Six = 3,
+}
 #endregion
 
 // UCM Enums

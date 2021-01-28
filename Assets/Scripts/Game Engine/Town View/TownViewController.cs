@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class TownViewController : Singleton<TownViewController>
 {
@@ -15,6 +16,19 @@ public class TownViewController : Singleton<TownViewController>
 
     [Header("UI Components")]
     [SerializeField] private TextMeshProUGUI mainTopBarButtonText;
+
+    [Header("Colours")]
+    [SerializeField] Color basicColour;
+    [SerializeField] Color eliteColour;
+    [SerializeField] Color bossColour;
+
+    [Header("Combat Overview Panel Components")]
+    [SerializeField] TextMeshProUGUI levelRangeText;
+    [SerializeField] GameObject[] difficultySkulls;
+    [SerializeField] TextMeshProUGUI[] enemyNameTexts;
+
+    [SerializeField] ChooseCombatButton[] chooseCombatButtons;
+
     #endregion
 
 
@@ -30,7 +44,7 @@ public class TownViewController : Singleton<TownViewController>
     }
     #endregion
 
-    // Transisition Logic
+    // Screen Transisition Logic
     #region
     public void HandleTransistionFromTownToArena()
     {
@@ -78,7 +92,7 @@ public class TownViewController : Singleton<TownViewController>
     }
     #endregion
 
-    // On click logic
+    // On Click logic
     #region
     public void OnTopBarMainButtonClicked()
     {
@@ -86,6 +100,79 @@ public class TownViewController : Singleton<TownViewController>
             HandleTransistionFromTownToArena();
         else if (currentScreenViewState == ScreenViewState.Arena)
             HandleTransistionFromArenaToTown();
+    }
+    #endregion
+
+    // Combat Panel Overview Logic
+    #region
+    private void BuildCombatOverviewPanelFromCombatData(CombatData data)
+    {
+        // reset views first
+        foreach (GameObject skull in difficultySkulls)
+            skull.SetActive(false);
+
+        foreach (TextMeshProUGUI text in enemyNameTexts)
+            text.gameObject.SetActive(false);
+
+        // Set level text
+        if (data.levelRange == CombatLevelRange.ZeroToTwo)
+            levelRangeText.text = "Level 0-2";
+        else if (data.levelRange == CombatLevelRange.ThreeToFour)
+            levelRangeText.text = "Level 3-4";
+        else if (data.levelRange == CombatLevelRange.FiveToSix)
+            levelRangeText.text = "Level 5-6";
+        else if (data.levelRange == CombatLevelRange.Six)
+            levelRangeText.text = "Level 6";
+
+        // Set difficulty skulls
+        int skullCount = 1;
+        if (data.combatDifficulty == CombatDifficulty.Elite)
+            skullCount = 2;
+        else if (data.combatDifficulty == CombatDifficulty.Boss)
+            skullCount = 3;
+
+        for(int i = 0; i < skullCount; i++)        
+            difficultySkulls[i].gameObject.SetActive(true);
+        
+
+    }
+    #endregion
+
+    // Combat Choose Button Logic
+    #region
+    private void BuildAllChooseCombatButtonFromDataSet(List<CombatData> combats)
+    {
+        // Disable + reset all choose buttons
+        foreach (ChooseCombatButton button in chooseCombatButtons)
+            button.gameObject.SetActive(false);
+        
+        // Rebuild each button
+        for(int i = 0; i < combats.Count; i++)
+        {
+            BuildChooseCombatButtonFromData(chooseCombatButtons[i], combats[i]);
+        }
+    }
+    private void BuildChooseCombatButtonFromData(ChooseCombatButton button, CombatData data)
+    {
+        // Show button
+        button.gameObject.SetActive(true);
+
+        // Cache data ref
+        button.combatDataRef = data;
+
+        // Set encounter image + shadow
+        foreach (Image i in button.encounterImages)
+            i.sprite = data.encounterSprite;
+
+        // Set difficulty colouring
+        if (data.combatDifficulty == CombatDifficulty.Basic)
+            button.difficultyColourImage.color = basicColour;
+        else if (data.combatDifficulty == CombatDifficulty.Elite)
+            button.difficultyColourImage.color = eliteColour;
+        else if (data.combatDifficulty == CombatDifficulty.Boss)
+            button.difficultyColourImage.color = bossColour;
+
+
     }
     #endregion
 

@@ -11,6 +11,7 @@ public class SaveGameData
 
     // Journey data
     public int currentJourneyPosition;
+    public int dayNumber;
     public SaveCheckPoint saveCheckPoint;
     public string map;
 
@@ -19,8 +20,7 @@ public class SaveGameData
     public int maxRosterSize;
 
     // Combat event data
-    public EncounterType currentEncounter;
-    public string currentEnemyWave;
+    public CombatData currentCombatData;
 
     // Recruit event data
     public List<CharacterData> recruitCharacterChoices = new List<CharacterData>();
@@ -49,7 +49,9 @@ public class SaveGameData
     // States
     public List<StateData> playerStates = new List<StateData>();
     public ShrineStateResult currentShrineStates;
-   
+
+    //cache daily conbats
+    public CombatChoicesResult dailyCombatChoices;
 }
 public enum SaveCheckPoint
 {
