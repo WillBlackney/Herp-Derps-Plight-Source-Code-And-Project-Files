@@ -21,6 +21,8 @@ public class SaveGameData
 
     // Combat event data
     public CombatData currentCombatData;
+    public List<CharacterData> chosenCombatCharacters = new List<CharacterData>();
+    // to do: save and cache player characters in the combat some how.
 
     // Recruit event data
     public List<CharacterData> recruitCharacterChoices = new List<CharacterData>();
@@ -58,10 +60,7 @@ public enum SaveCheckPoint
     None = 0,
     CombatStart = 1,
     CombatEnd = 2,
-    KingsBlessingStart = 3,
-    RecruitCharacterStart = 4,
-    CampSite = 5,
-    Shop =6,
+    TownDayStart = 3,
 
 
 }

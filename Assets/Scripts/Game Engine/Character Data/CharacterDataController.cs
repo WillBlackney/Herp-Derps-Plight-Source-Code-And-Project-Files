@@ -296,7 +296,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
             int difference = data.MaxHealthTotal - previousMaxHealth;
             SetCharacterHealth(data, data.health + difference);
 
-            Debug.LogWarning("Difference = " + difference.ToString());
+            //Debug.LogWarning("Difference = " + difference.ToString());
         }
     }
     public void ModifyStamina(CharacterData data, int gainedOrLost)

@@ -15,6 +15,7 @@ public class ProgressionController : Singleton<ProgressionController>
     // Getters + Accessors
     #region
     public CombatData CurrentCombatData { get; private set; }
+    public List<CharacterData> ChosenCombatCharacters { get; private set; }
     public SaveCheckPoint CheckPointType { get; private set; }
     public CombatChoicesResult DailyCombatChoices { get; private set; }
     public int DayNumber { get { return dayNumber; } private set { dayNumber = value; } }
@@ -28,13 +29,15 @@ public class ProgressionController : Singleton<ProgressionController>
         SetDayNumber(saveData.dayNumber);
         SetCheckPoint(saveData.saveCheckPoint);
         SetCurrentCombat(saveData.currentCombatData);
+        SetChosenCombatCharacters(saveData.chosenCombatCharacters);
         SetDailyCombatChoices(saveData.dailyCombatChoices);
         UpdateCurrentDayText();
     }
     public void SaveMyDataToSaveFile(SaveGameData saveFile)
     {
         saveFile.dayNumber = DayNumber;
-        saveFile.currentCombatData = CurrentCombatData;  
+        saveFile.currentCombatData = CurrentCombatData;
+        saveFile.chosenCombatCharacters = ChosenCombatCharacters;
         saveFile.saveCheckPoint = CheckPointType;
         saveFile.dailyCombatChoices = DailyCombatChoices;
     }
@@ -53,8 +56,12 @@ public class ProgressionController : Singleton<ProgressionController>
     }
     #endregion
     
-    // Get + Set Enemy Waves
+    // Get + Set Enemy Waves + etc
     #region
+    public void SetChosenCombatCharacters(List<CharacterData> characters)
+    {
+        ChosenCombatCharacters = characters;
+    }
     public void SetCurrentCombat(CombatData wave)
     {
         CurrentCombatData = wave;

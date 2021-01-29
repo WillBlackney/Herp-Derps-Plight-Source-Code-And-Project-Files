@@ -23,14 +23,26 @@ public class TownViewController : Singleton<TownViewController>
     [SerializeField] Color bossColour;
 
     [Header("Combat Overview Panel Components")]
-    [SerializeField] TextMeshProUGUI levelRangeText;
+    [SerializeField] TextMeshProUGUI encounterNameText;
+    [SerializeField] TextMeshProUGUI difficultyText;
     [SerializeField] GameObject[] difficultySkulls;
     [SerializeField] TextMeshProUGUI[] enemyNameTexts;
-
+    [SerializeField] TextMeshProUGUI goldRewardText;
     [SerializeField] ChooseCombatButton[] chooseCombatButtons;
+
+
+    private CombatData selectedCombat;
 
     #endregion
 
+    // Properties + Accessors
+    #region
+    public CombatData SelectedCombat
+    {
+        get { return selectedCombat; }
+        private set { selectedCombat = value; }
+    }
+    #endregion
 
     // View Logic
     #region
@@ -42,6 +54,22 @@ public class TownViewController : Singleton<TownViewController>
     {
         townVisualParent.SetActive(false);
     }
+    public void ShowChosenCharacterSlots()
+    {
+        chosenCharacterSlotsVisualParent.SetActive(true);
+    }
+    public void HideChosenCharacterSlots()
+    {
+        chosenCharacterSlotsVisualParent.SetActive(false);
+    }
+    public void ShowArenaScreen()
+    {
+        arenaScreenVisualParent.SetActive(true);
+    }
+    public void HideArenaScreen()
+    {
+        arenaScreenVisualParent.SetActive(false);
+    }
     #endregion
 
     // Screen Transisition Logic
@@ -52,6 +80,8 @@ public class TownViewController : Singleton<TownViewController>
     }
     private IEnumerator HandleTransistionFromTownToArenaCoroutine()
     {
+        Debug.LogWarning("TownViewController.HandleTransistionFromTownToArenaCoroutine() called...");
+
         currentScreenViewState = ScreenViewState.Arena;
         BlackScreenController.Instance.FadeOutScreen(0.5f);
         yield return new WaitForSeconds(0.5f);
@@ -61,11 +91,17 @@ public class TownViewController : Singleton<TownViewController>
         HideMainTownView();
 
         // enable new views
-        arenaScreenVisualParent.SetActive(true);
-        chosenCharacterSlotsVisualParent.SetActive(true);
+        ShowArenaScreen();
+        ShowChosenCharacterSlots();
 
         // set tip bar button text
         mainTopBarButtonText.text = "To Town";
+
+        // Build combat choice buttons
+        BuildAllChooseCombatButtonsFromDataSet(ProgressionController.Instance.DailyCombatChoices.encounters);
+
+        // Auto select first encounter
+        OnChooseCombatButtonClicked(chooseCombatButtons[0]);
 
     }
     public void HandleTransistionFromArenaToTown()
@@ -80,8 +116,8 @@ public class TownViewController : Singleton<TownViewController>
         BlackScreenController.Instance.FadeInScreen(0.5f);
 
         // disable old views
-        arenaScreenVisualParent.SetActive(false);
-        chosenCharacterSlotsVisualParent.SetActive(false);
+        HideArenaScreen();
+        HideChosenCharacterSlots();
 
         // enable new views
         ShowMainTownView();
@@ -101,12 +137,25 @@ public class TownViewController : Singleton<TownViewController>
         else if (currentScreenViewState == ScreenViewState.Arena)
             HandleTransistionFromArenaToTown();
     }
+    public void OnChooseCombatButtonClicked(ChooseCombatButton button)
+    {
+        SelectedCombat = button.combatDataRef;
+        BuildCombatOverviewPanelFromCombatData(button.combatDataRef);
+    }
+    public void OnFightButtonClicked()
+    {
+        // to do: check validity: player has selected enough characters, characters within level range, etc
+
+        EventSequenceController.Instance.HandleStartCombatFromChooseCombatScreen();
+    }
     #endregion
 
     // Combat Panel Overview Logic
     #region
     private void BuildCombatOverviewPanelFromCombatData(CombatData data)
     {
+        Debug.LogWarning("TownViewController.BuildCombatOverviewPanelFromCombatData() called, combat: " + data.encounterName);
+
         // reset views first
         foreach (GameObject skull in difficultySkulls)
             skull.SetActive(false);
@@ -114,15 +163,37 @@ public class TownViewController : Singleton<TownViewController>
         foreach (TextMeshProUGUI text in enemyNameTexts)
             text.gameObject.SetActive(false);
 
+        // Set encounter name header text
+        encounterNameText.text = data.encounterName;
+
         // Set level text
         if (data.levelRange == CombatLevelRange.ZeroToTwo)
-            levelRangeText.text = "Level 0-2";
+        {
+            difficultyText.text = "Level 1";
+            difficultyText.color = basicColour;
+        }
+           
         else if (data.levelRange == CombatLevelRange.ThreeToFour)
-            levelRangeText.text = "Level 3-4";
+        {
+            difficultyText.text = "Level 3";
+            difficultyText.color = eliteColour;
+        }
+            
         else if (data.levelRange == CombatLevelRange.FiveToSix)
-            levelRangeText.text = "Level 5-6";
+        {
+            difficultyText.text = "Level 5";
+            difficultyText.color = bossColour;
+        }
+           
         else if (data.levelRange == CombatLevelRange.Six)
-            levelRangeText.text = "Level 6";
+        {
+            difficultyText.text = "Level 6";
+            difficultyText.color = bossColour;
+        }
+            
+
+        // Add combat difficulty type to text
+        difficultyText.text += " " + data.combatDifficulty.ToString();
 
         // Set difficulty skulls
         int skullCount = 1;
@@ -133,6 +204,16 @@ public class TownViewController : Singleton<TownViewController>
 
         for(int i = 0; i < skullCount; i++)        
             difficultySkulls[i].gameObject.SetActive(true);
+
+        // Build enemy name texts
+        for(int i = 0; i < data.enemies.Count; i++)
+        {
+            enemyNameTexts[i].gameObject.SetActive(true);
+            enemyNameTexts[i].text = "- " + data.enemies[i].enemyName;
+        }
+
+        // Build reward icons
+        goldRewardText.text = data.goldReward.ToString();
         
 
     }
@@ -140,8 +221,10 @@ public class TownViewController : Singleton<TownViewController>
 
     // Combat Choose Button Logic
     #region
-    private void BuildAllChooseCombatButtonFromDataSet(List<CombatData> combats)
+    private void BuildAllChooseCombatButtonsFromDataSet(List<CombatData> combats)
     {
+        Debug.LogWarning("TownViewController.BuildAllChooseCombatButtonFromDataSet() called...");
+
         // Disable + reset all choose buttons
         foreach (ChooseCombatButton button in chooseCombatButtons)
             button.gameObject.SetActive(false);
@@ -154,6 +237,8 @@ public class TownViewController : Singleton<TownViewController>
     }
     private void BuildChooseCombatButtonFromData(ChooseCombatButton button, CombatData data)
     {
+        Debug.LogWarning("TownViewController.BuildChooseCombatButtonFromData() called, combat name: " + data.encounterName);
+
         // Show button
         button.gameObject.SetActive(true);
 
@@ -162,7 +247,7 @@ public class TownViewController : Singleton<TownViewController>
 
         // Set encounter image + shadow
         foreach (Image i in button.encounterImages)
-            i.sprite = data.encounterSprite;
+            i.sprite = data.GetMySprite();
 
         // Set difficulty colouring
         if (data.combatDifficulty == CombatDifficulty.Basic)

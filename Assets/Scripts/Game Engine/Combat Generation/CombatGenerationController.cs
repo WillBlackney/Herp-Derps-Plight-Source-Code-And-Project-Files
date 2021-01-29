@@ -8,6 +8,7 @@ public class CombatGenerationController : Singleton<CombatGenerationController>
     #region
     [Header("Properties")]
     [SerializeField] private EnemyWaveSO[] allEnemyWaves;
+    [SerializeField] private Sprite[] encounterSprites;
     #endregion
 
     // Getters + Accessors
@@ -16,10 +17,15 @@ public class CombatGenerationController : Singleton<CombatGenerationController>
     {
         get { return allEnemyWaves; }
     }
+    public Sprite[] EncounterSprites
+    {
+        get { return encounterSprites; }
+    }
     #endregion
 
     public CombatChoicesResult GenerateWeeklyCombatChoices()
     {
+        Debug.LogWarning("CombatGenerationController.GenerateWeeklyCombatChoices() called...");
         CombatChoicesResult ccr = new CombatChoicesResult();
 
         // Generate 2 basic and 1 elite each week for now
@@ -56,12 +62,14 @@ public class CombatGenerationController : Singleton<CombatGenerationController>
     }
     private CombatData GenerateCombatDataFromDataSO(EnemyWaveSO data)
     {
+        Debug.LogWarning("CombatGenerationController.GenerateCombatDataFromDataSO() called...");
+
         CombatData ewd = new CombatData();
 
         ewd.encounterName = data.encounterName;
         ewd.combatDifficulty = data.combatDifficulty;
         ewd.levelRange = data.levelRange;
-        ewd.encounterSprite = data.encounterSprite;
+        ewd.encounterSpriteType = data.encounterSpriteType;
 
         // Choose enemies randomly
         foreach (EnemyGroup enemyGroup in data.enemyGroups)
@@ -92,4 +100,14 @@ public class CombatGenerationController : Singleton<CombatGenerationController>
 public class CombatChoicesResult
 {
     public List<CombatData> encounters = new List<CombatData>();
+}
+
+public enum EncounterSpriteType
+{
+    None = 0,
+    Human1 = 1,
+    Undead1 = 2,
+    Orc1 = 3,
+    Goblin1 = 4,
+    Ent1 = 5,
 }

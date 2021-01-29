@@ -60,15 +60,17 @@ public class PersistencyManager : Singleton<PersistencyManager>
         }       
 
         // Build each character data object
+        /*
         foreach (CharacterData data in chosenCharacters)
         {
             // Create new character from data
             CharacterData newCharacter = CharacterDataController.Instance.CloneCharacterData(data);
-            newSave.characters.Add(newCharacter);
+            //newSave.characters.Add(newCharacter);
 
             CharacterDataController.Instance.AutoAddCharactersRacialCard(newCharacter);
+            CharacterDataController.Instance.CloneNewCharacterToPlayerRoster(newCharacter);
         }
-
+        */
         // TESTING: REMOVE LATER
         foreach (CharacterTemplateSO d in CharacterDataController.Instance.AllCharacterTemplatesSOs)
         {
@@ -77,24 +79,23 @@ public class PersistencyManager : Singleton<PersistencyManager>
             newSave.characters.Add(newCharacter);
 
             CharacterDataController.Instance.AutoAddCharactersRacialCard(newCharacter);
+            CharacterDataController.Instance.CloneNewCharacterToPlayerRoster(newCharacter);
         }
 
         // Build general data
         PlayerDataManager.Instance.ModifyCurrentGold(GlobalSettings.Instance.startingGold);
-        PlayerDataManager.Instance.SaveMyDataToSaveFile(newSave);
         CharacterDataController.Instance.SetMaxRosterSize(GlobalSettings.Instance.startingMaxRosterSize);
 
-        // Generate first day data
+        // Generate first day data        
         ProgressionController.Instance.SetDayNumber(1);
         ProgressionController.Instance.SetDailyCombatChoices(CombatGenerationController.Instance.GenerateWeeklyCombatChoices());
-        ProgressionController.Instance.SaveMyDataToSaveFile(newSave);
+        ProgressionController.Instance.SetCheckPoint(SaveCheckPoint.TownDayStart);
 
         // generate recruitable characters
 
-
-
         // START SAVE!    
-        SaveGameToDisk(newSave);
+        //SaveGameToDisk(newSave);
+        AutoUpdateSaveFile();
     }
     public void AutoUpdateSaveFile()
     {
@@ -111,32 +112,32 @@ public class PersistencyManager : Singleton<PersistencyManager>
         PlayerDataManager.Instance.SaveMyDataToSaveFile(newSave);
 
         // Save journey data
-        MapManager.Instance.SaveMyDataToSaveFile(newSave);
+       // MapManager.Instance.SaveMyDataToSaveFile(newSave);
 
         // Save journey data
         ProgressionController.Instance.SaveMyDataToSaveFile(newSave);
 
         // Save recruit data
-        RecruitCharacterController.Instance.SaveMyDataToSaveFile(newSave);
+        //RecruitCharacterController.Instance.SaveMyDataToSaveFile(newSave);
 
         // Save combat end loot data
-        LootController.Instance.SaveMyDataToSaveFile(newSave);
+       // LootController.Instance.SaveMyDataToSaveFile(newSave);
 
         // Save camp properties
-        CampSiteController.Instance.SaveMyDataToSaveFile(newSave);
+        //CampSiteController.Instance.SaveMyDataToSaveFile(newSave);
 
         // KBC
-        KingsBlessingController.Instance.SaveMyDataToSaveFile(newSave);
+       // KingsBlessingController.Instance.SaveMyDataToSaveFile(newSave);
 
         // Shop
-        ShopController.Instance.SaveMyDataToSaveFile(newSave);
+       // ShopController.Instance.SaveMyDataToSaveFile(newSave);
 
         // Inventory
-        InventoryController.Instance.SaveMyDataToSaveFile(newSave);
+        //InventoryController.Instance.SaveMyDataToSaveFile(newSave);
 
         // States
-        StateController.Instance.SaveMyDataToSaveFile(newSave);
-        ShrineController.Instance.SaveMyDataToSaveFile(newSave);
+        //StateController.Instance.SaveMyDataToSaveFile(newSave);
+        //ShrineController.Instance.SaveMyDataToSaveFile(newSave);
 
         // START SAVE!        
         SaveGameToDisk(newSave);
@@ -158,7 +159,7 @@ public class PersistencyManager : Singleton<PersistencyManager>
         CharacterDataController.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // Build Map data
-        MapManager.Instance.BuildMyDataFromSaveFile(newLoad);
+       // MapManager.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // Set journey data
         ProgressionController.Instance.BuildMyDataFromSaveFile(newLoad);
@@ -170,7 +171,7 @@ public class PersistencyManager : Singleton<PersistencyManager>
         LootController.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // Set up camp site data
-        CampSiteController.Instance.BuildMyDataFromSaveFile(newLoad);
+       // CampSiteController.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // KBC
         KingsBlessingController.Instance.BuildMyDataFromSaveFile(newLoad);

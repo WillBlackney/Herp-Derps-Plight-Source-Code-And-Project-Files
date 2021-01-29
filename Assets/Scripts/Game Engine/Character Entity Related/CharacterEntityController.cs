@@ -107,6 +107,17 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             }          
         }
     }
+    public void CreateAllPlayerCombatCharacters(List<CharacterData> characters)
+    {
+        foreach (CharacterData data in characters)
+        {
+            // Dont spawn dead characters
+            if (data.health > 0)
+            {
+                CreatePlayerCharacter(data, LevelManager.Instance.GetNextAvailableDefenderNode());
+            }
+        }
+    }
     public void DestroyCharacterViewModelsAndGameObjects(List<CharacterEntityModel> charactersDestroyed)
     {
         foreach (CharacterEntityModel character in charactersDestroyed)
