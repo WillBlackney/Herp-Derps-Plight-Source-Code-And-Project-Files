@@ -134,6 +134,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.power = original.power;
         newCharacter.baseCrit = original.baseCrit;
         newCharacter.critModifier = original.critModifier;
+        newCharacter.baseFristActivationDrawBonus = original.baseFristActivationDrawBonus;
 
         newCharacter.deck = new List<CardData>();
         foreach (CardData cso in original.deck)
@@ -195,6 +196,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.initiative = template.initiative;
         newCharacter.baseCrit = template.baseCrit;
         newCharacter.critModifier = template.critModifier;
+        newCharacter.baseFristActivationDrawBonus = template.baseFristActivationDrawBonus;
         newCharacter.draw = template.draw;
         newCharacter.power = template.power;
 

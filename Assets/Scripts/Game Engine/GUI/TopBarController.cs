@@ -15,16 +15,15 @@ public class TopBarController : Singleton<TopBarController>
     [Header("Text Components")]
     [SerializeField] private TextMeshProUGUI currentGoldText;    
     [SerializeField] private TextMeshProUGUI currentEncounterText;
-    [SerializeField] private TextMeshProUGUI maxEncounterText;
-    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
-
-    [Header("Main Button Components")]
-    [SerializeField] private GameObject characterRosterButton;
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Misc Components")]
     [SerializeField] private GameObject goldTopBarImage;
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
+
+    [Header("Navigation Button Components")]
+    [SerializeField] private GameObject navigationButtonVisualParent;
+    [SerializeField] private TextMeshProUGUI navigationButtonText;
     #endregion
 
     // Getters + Accessors
@@ -43,21 +42,24 @@ public class TopBarController : Singleton<TopBarController>
     {
         get { return currentEncounterText; }
         set { currentEncounterText = value; }
-    }
-    public TextMeshProUGUI MaxEncounterText
-    {
-        get { return maxEncounterText; }
-        set { maxEncounterText = value; }
-    }
-    public GameObject CharacterRosterButton
-    {
-        get { return characterRosterButton; }
-        set { characterRosterButton = value; }
-    }
+    }    
+ 
     #endregion
 
     // Core Functions
     #region
+    public void ShowNavigationButton()
+    {
+        navigationButtonVisualParent.SetActive(true);
+    }
+    public void HideNavigationButton()
+    {
+        navigationButtonVisualParent.SetActive(false);
+    }
+    public void SetNavigationButtonText(string newText)
+    {
+        navigationButtonText.text = newText;
+    }
     public void ShowTopBar()
     {
         visualParent.SetActive(true);

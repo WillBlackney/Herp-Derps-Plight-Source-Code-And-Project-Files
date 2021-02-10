@@ -43,6 +43,12 @@ public static class EntityLogic
         drawReturned += entity.pManager.temporaryBonusDrawStacks;
         Debug.Log("Value after temporary bonus draw added: " + drawReturned.ToString());
 
+        // First turn bonus
+        if(ActivationManager.Instance.CurrentTurn == 1)
+        {
+            drawReturned += entity.baseFristActivationDrawBonus;
+        }
+
         // Return final value
         Debug.Log("Final draw value calculated: " + drawReturned.ToString());
         return drawReturned;

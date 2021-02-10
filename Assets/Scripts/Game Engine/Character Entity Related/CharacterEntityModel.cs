@@ -27,6 +27,7 @@ public class CharacterEntityModel
     public int draw;
     public int baseCrit;
     public int critModifier;
+    public int baseFristActivationDrawBonus;
 
     [Header("Health + Block Properties")]
     public int health;

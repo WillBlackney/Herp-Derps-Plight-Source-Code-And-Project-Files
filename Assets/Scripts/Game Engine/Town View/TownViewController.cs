@@ -14,9 +14,6 @@ public class TownViewController : Singleton<TownViewController>
     [SerializeField] GameObject chosenCharacterSlotsVisualParent;
     private ScreenViewState currentScreenViewState = ScreenViewState.Town;
 
-    [Header("UI Components")]
-    [SerializeField] private TextMeshProUGUI mainTopBarButtonText;
-
     [Header("Colours")]
     [SerializeField] Color basicColour;
     [SerializeField] Color eliteColour;
@@ -82,7 +79,7 @@ public class TownViewController : Singleton<TownViewController>
     {
         Debug.LogWarning("TownViewController.HandleTransistionFromTownToArenaCoroutine() called...");
 
-        currentScreenViewState = ScreenViewState.Arena;
+        SetScreenViewState(ScreenViewState.Arena);
         BlackScreenController.Instance.FadeOutScreen(0.5f);
         yield return new WaitForSeconds(0.5f);
         BlackScreenController.Instance.FadeInScreen(0.5f);
@@ -95,7 +92,7 @@ public class TownViewController : Singleton<TownViewController>
         ShowChosenCharacterSlots();
 
         // set tip bar button text
-        mainTopBarButtonText.text = "To Town";
+        TopBarController.Instance.SetNavigationButtonText("To Town");
 
         // Build combat choice buttons
         BuildAllChooseCombatButtonsFromDataSet(ProgressionController.Instance.DailyCombatChoices.encounters);
@@ -110,7 +107,7 @@ public class TownViewController : Singleton<TownViewController>
     }
     private IEnumerator HandleTransistionFromArenaToTownCoroutine()
     {
-        currentScreenViewState = ScreenViewState.Town;
+        SetScreenViewState(ScreenViewState.Town);
         BlackScreenController.Instance.FadeOutScreen(0.5f);
         yield return new WaitForSeconds(0.5f);
         BlackScreenController.Instance.FadeInScreen(0.5f);
@@ -122,9 +119,13 @@ public class TownViewController : Singleton<TownViewController>
         // enable new views
         ShowMainTownView();
 
-        // set tip bar button text
-        mainTopBarButtonText.text = "To Arena";
+        // set top bar button text
+        TopBarController.Instance.SetNavigationButtonText("To Arena");
 
+    }
+    public void SetScreenViewState(ScreenViewState newState)
+    {
+        currentScreenViewState = newState;
     }
     #endregion
 

@@ -308,6 +308,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         ModifyPower(character, data.power);
         ModifyBaseCrit(character, data.baseCrit);
         ModifyCritModifier(character, data.critModifier);
+        ModifyBaseFirstActivationDrawBonus(character, data.baseFristActivationDrawBonus);
 
         // Set up health
         ModifyMaxHealth(character, data.maxHealth);
@@ -547,6 +548,10 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
     public void ModifyCritModifier(CharacterEntityModel character, int gainedOrLost)
     {
         character.critModifier += gainedOrLost;
+    }
+    public void ModifyBaseFirstActivationDrawBonus(CharacterEntityModel character, int gainedOrLost)
+    {
+        character.baseFristActivationDrawBonus += gainedOrLost;
     }
     public void ModifyPower(CharacterEntityModel character, int powerGainedOrLost)
     {
@@ -1287,8 +1292,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 PassiveController.Instance.ModifyDarkBargain(entity.pManager, -entity.pManager.darkBargainStacks, true, 0.5f);
             }
 
-            // Lose unused energy, discard hand
-            ModifyEnergy(entity, -entity.energy);
+            // Lose unused energy
+            //ModifyEnergy(entity, -entity.energy);
 
             // reset activation only energy values on cards
             CardController.Instance.ResetAllCardEnergyCostsOnActivationEnd(entity);
@@ -1301,7 +1306,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
 
             // Discard Hand
-            CardController.Instance.DiscardHandOnActivationEnd(entity);
+            //CardController.Instance.DiscardHandOnActivationEnd(entity);
 
             // Fade out view
             CoroutineData fadeOutEvent = new CoroutineData();

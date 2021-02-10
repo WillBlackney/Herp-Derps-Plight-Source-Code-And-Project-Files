@@ -165,26 +165,26 @@ public class PersistencyManager : Singleton<PersistencyManager>
         ProgressionController.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // Set recruit character event 
-        RecruitCharacterController.Instance.BuildMyDataFromSaveFile(newLoad);
+       // RecruitCharacterController.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // Set recruit character event 
-        LootController.Instance.BuildMyDataFromSaveFile(newLoad);
+        //LootController.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // Set up camp site data
        // CampSiteController.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // KBC
-        KingsBlessingController.Instance.BuildMyDataFromSaveFile(newLoad);
+       // KingsBlessingController.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // Shop
-        ShopController.Instance.BuildMyDataFromSaveFile(newLoad);
+       // ShopController.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // Inventory
-        InventoryController.Instance.BuildMyDataFromSaveFile(newLoad);
+       // InventoryController.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // States
-        StateController.Instance.BuildMyDataFromSaveFile(newLoad);
-        ShrineController.Instance.BuildMyDataFromSaveFile(newLoad);
+        //StateController.Instance.BuildMyDataFromSaveFile(newLoad);
+        //ShrineController.Instance.BuildMyDataFromSaveFile(newLoad);
     }
     #endregion
 

@@ -541,7 +541,7 @@ public class LootController : Singleton<LootController>
         HideLootTab(itemLootTab);
         InventoryController.Instance.AddItemToInventory(CurrentLootResultData.itemReward);
         AudioManager.Instance.PlaySound(Sound.GUI_Button_Clicked);
-        CreateGoldGlowTrailEffect(itemLootTab.transform.position, TopBarController.Instance.CharacterRosterButton.transform.position);
+        CreateGoldGlowTrailEffect(itemLootTab.transform.position, TopBarController.Instance.GoldTopBarImage.transform.position);
 
     }
     public void OnLootCardViewModelClicked(LootScreenCardViewModel cardClicked)

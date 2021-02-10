@@ -131,8 +131,10 @@ public class EventSequenceController : Singleton<EventSequenceController>
         BlackScreenController.Instance.FadeOutScreen(2f);
         yield return new WaitForSeconds(2f);
 
-        // Enable GUI
+        // Set up top bar
         TopBarController.Instance.ShowTopBar();
+        TopBarController.Instance.ShowNavigationButton();
+        TopBarController.Instance.SetNavigationButtonText("To Arena");
 
         // Set up characters
         PersistencyManager.Instance.BuildNewSaveFileOnNewGameStarted();
@@ -149,7 +151,8 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Setup town view
         TownViewController.Instance.ShowMainTownView();
-
+        TownViewController.Instance.SetScreenViewState(ScreenViewState.Town);
+        
         // Set up character panel views
         CharacterPanelViewController.Instance.ShowCharacterRosterPanel();
         CharacterPanelViewController.Instance.RebuildAllViews();
@@ -165,8 +168,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         StartCoroutine(HandleLoadSavedGameFromMainMenuEventCoroutine());
     }
     private IEnumerator HandleLoadSavedGameFromMainMenuEventCoroutine()
-    {
-       
+    {     
 
         // Fade menu music
         if (AudioManager.Instance.IsSoundPlaying(Sound.Music_Main_Menu_Theme_1))
@@ -191,6 +193,22 @@ public class EventSequenceController : Singleton<EventSequenceController>
         MainMenuController.Instance.HideFrontScreen();
 
         // if in town, load into town
+        if(ProgressionController.Instance.CheckPointType == SaveCheckPoint.TownDayStart)
+        {
+            // Setup town view
+            TownViewController.Instance.ShowMainTownView();
+            TownViewController.Instance.SetScreenViewState(ScreenViewState.Town);
+
+            // Set up character panel views
+            CharacterPanelViewController.Instance.ShowCharacterRosterPanel();
+            CharacterPanelViewController.Instance.RebuildAllViews();
+
+            // Act start visual sequence
+            yield return new WaitForSeconds(0.5f);
+            AudioManager.Instance.FadeInSound(Sound.Ambience_Outdoor_Spooky, 1f);
+            yield return new WaitForSeconds(1f);
+            BlackScreenController.Instance.FadeInScreen(1f);
+        }
 
         // if at combat start, load combat start sequence
 
@@ -241,24 +259,31 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Destroy game scene
         HandleCombatSceneTearDown();
 
+        // Hide town/in-game UI
+        CharacterPanelViewController.Instance.HideCharacterRosterPanel();
+        TownViewController.Instance.HideArenaScreen();
+        TownViewController.Instance.HideChosenCharacterSlots();
+        TownViewController.Instance.HideMainTownView();
+
         // Hide world map + roster
-        MapView.Instance.HideMainMapView();
-        CharacterRosterViewController.Instance.DisableMainView();
+        //MapView.Instance.HideMainMapView();
+        //CharacterRosterViewController.Instance.DisableMainView();
 
         // Hide Recruit character screen
-        RecruitCharacterController.Instance.ResetAllViews();
+        // RecruitCharacterController.Instance.ResetAllViews();
 
         // Hide Loot screen elements
-        LootController.Instance.CloseAndResetAllViews();
+        // LootController.Instance.CloseAndResetAllViews();
 
         // Hide Kings Blessing screen elements
-        LevelManager.Instance.DisableGraveyardScenery();
-        KingsBlessingController.Instance.DisableUIView();
+
+        // LevelManager.Instance.DisableGraveyardScenery();
+        // KingsBlessingController.Instance.DisableUIView();
 
         // Hide camp site
-        LevelManager.Instance.DisableCampSiteScenery();
-        CampSiteController.Instance.DisableCharacterViewParent();
-        CampSiteController.Instance.DisableCampGuiViewParent();
+        //LevelManager.Instance.DisableCampSiteScenery();
+       // CampSiteController.Instance.DisableCharacterViewParent();
+       // CampSiteController.Instance.DisableCampGuiViewParent();
 
         // Fade in menu music
         AudioManager.Instance.FadeInSound(Sound.Music_Main_Menu_Theme_1, 1f);
@@ -284,11 +309,12 @@ public class EventSequenceController : Singleton<EventSequenceController>
         BlackScreenController.Instance.FadeOutScreen(1f);
         yield return new WaitForSeconds(1f);
 
-        // hide all town views
+        // Hide all town views
         TownViewController.Instance.HideChosenCharacterSlots();
         TownViewController.Instance.HideArenaScreen();
         TownViewController.Instance.HideMainTownView();
         CharacterPanelViewController.Instance.HideCharacterRosterPanel();
+        TopBarController.Instance.HideNavigationButton();
 
         // save stuff
         ProgressionController.Instance.SetCheckPoint(SaveCheckPoint.CombatStart);

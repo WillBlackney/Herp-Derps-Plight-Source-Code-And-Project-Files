@@ -442,7 +442,7 @@ public class ShopController : Singleton<ShopController>
                 VisualEffectManager.Instance.CreateGoldCoinExplosion(box.transform.position, 10000, 2));
 
             // Sparkle glow trail towards inventory
-            LootController.Instance.CreateGreenGlowTrailEffect(box.transform.position, TopBarController.Instance.CharacterRosterButton.transform.position);
+            //LootController.Instance.CreateGreenGlowTrailEffect(box.transform.position, TopBarController.Instance.CharacterRosterButton.transform.position);
 
             // Hide card box
             HideShopCardBox(box);
@@ -469,7 +469,7 @@ public class ShopController : Singleton<ShopController>
                 VisualEffectManager.Instance.CreateGoldCoinExplosion(box.transform.position, 10000, 2));
 
             // Sparkle glow trail towards inventory
-            LootController.Instance.CreateGreenGlowTrailEffect(box.transform.position, TopBarController.Instance.CharacterRosterButton.transform.position);
+           // LootController.Instance.CreateGreenGlowTrailEffect(box.transform.position, TopBarController.Instance.CharacterRosterButton.transform.position);
 
             // Hide card box
             HideItemCardBox(box);
