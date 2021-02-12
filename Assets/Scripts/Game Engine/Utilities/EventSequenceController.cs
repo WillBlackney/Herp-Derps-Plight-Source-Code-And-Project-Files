@@ -42,6 +42,10 @@ public class EventSequenceController : Singleton<EventSequenceController>
         {
             StartCoroutine(RunCombatEndLootTestEventSetup());
         }
+        else if (GlobalSettings.Instance.gameMode == StartingSceneSetting.JourneyStartTest)
+        {
+            HandleStartNewGameFromMainMenuEvent();
+        }
     }
     #endregion
 
@@ -318,21 +322,15 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // save stuff
         ProgressionController.Instance.SetCheckPoint(SaveCheckPoint.CombatStart);
-        ProgressionController.Instance.SetCurrentCombat(TownViewController.Instance.SelectedCombat);
+        ProgressionController.Instance.SetCurrentCombat(TownViewController.Instance.SelectedCombatEvent);
 
-        // Cache characters selected for the combat
-        // TO DO: change this when we implement actually selected characters: for now, just grab the first 3 characters in roster
-        List<CharacterData> chosenChars = new List<CharacterData>();
-        for(int i = 0; i < 3; i++)
-        {
-            chosenChars.Add(CharacterDataController.Instance.AllPlayerCharacters[i]);
-        }
-        ProgressionController.Instance.SetChosenCombatCharacters(chosenChars);
+        // Cache characters selected for the combat        
+        ProgressionController.Instance.SetChosenCombatCharacters(TownViewController.Instance.SelectedCombatCharacters);
 
         PersistencyManager.Instance.AutoUpdateSaveFile();
 
         // Start load combat process
-        HandleLoadCombatEncounter(TownViewController.Instance.SelectedCombat, ProgressionController.Instance.ChosenCombatCharacters);
+        HandleLoadCombatEncounter(TownViewController.Instance.SelectedCombatEvent, ProgressionController.Instance.ChosenCombatCharacters);
 
 
     }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.EventSystems;
 
-public class CharacterPanelView : MonoBehaviour, IPointerClickHandler, IDragHandler, IEndDragHandler
+public class CharacterPanelView : MonoBehaviour, IPointerClickHandler, IDragHandler, IEndDragHandler, IBeginDragHandler
 {
     // Properties + Component Refs
     #region
@@ -27,19 +27,25 @@ public class CharacterPanelView : MonoBehaviour, IPointerClickHandler, IDragHand
     [Header("XP Bar Components")]
     public TextMeshProUGUI levelText;
     public Slider xpBar;
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        Debug.LogWarning("CharacterPanelView.OnBeginDrag() called...");
+        CharacterBoxDragger.Instance.OnCharacterPanelViewDragStart(this);
+    }
     #endregion
 
     // Drag + Input Listeners
     #region
     public void OnDrag(PointerEventData eventData)
     {
-        CharacterBoxDragger.Instance.OnCharacterPanelViewDragStart(this);
+       // although nothing is done during OnDrag, dragging doesnt work if this interface isn't implemented
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (!CharacterBoxDragger.Instance.CurrentPanelDragging)
-            CharacterBoxDragger.Instance.OnCharacterPanelViewDragEnd();
+        Debug.LogWarning("CharacterPanelView.OnEndDrag() called...");
+        CharacterBoxDragger.Instance.OnCharacterPanelViewDragEnd();
     }
 
     public void OnPointerClick(PointerEventData eventData)

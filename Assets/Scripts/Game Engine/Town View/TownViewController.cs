@@ -27,17 +27,23 @@ public class TownViewController : Singleton<TownViewController>
     [SerializeField] TextMeshProUGUI goldRewardText;
     [SerializeField] ChooseCombatButton[] chooseCombatButtons;
 
-
-    private CombatData selectedCombat;
+    [Header("Chosen Combat Related Properties")]
+    private CombatData selectedCombaEvent;
+    private List<CharacterData> selectedCombatCharacters = new List<CharacterData>();
 
     #endregion
 
     // Properties + Accessors
     #region
-    public CombatData SelectedCombat
+    public CombatData SelectedCombatEvent
     {
-        get { return selectedCombat; }
-        private set { selectedCombat = value; }
+        get { return selectedCombaEvent; }
+        private set { selectedCombaEvent = value; }
+    }
+    public List<CharacterData> SelectedCombatCharacters
+    {
+        get { return selectedCombatCharacters; }
+        private set { selectedCombatCharacters = value; }
     }
     #endregion
 
@@ -140,7 +146,7 @@ public class TownViewController : Singleton<TownViewController>
     }
     public void OnChooseCombatButtonClicked(ChooseCombatButton button)
     {
-        SelectedCombat = button.combatDataRef;
+        SelectedCombatEvent = button.combatDataRef;
         BuildCombatOverviewPanelFromCombatData(button.combatDataRef);
     }
     public void OnFightButtonClicked()
@@ -259,6 +265,29 @@ public class TownViewController : Singleton<TownViewController>
             button.difficultyColourImage.color = bossColour;
 
 
+    }
+    #endregion
+
+    // Choose Combat Characters Logic
+    #region
+    public void AddCharacterToSelectedCombatCharacters(CharacterData character)
+    {
+        Debug.LogWarning("TownViewController.AddCharacterToSelectedCombatCharacters() called, adding " +
+            character.myName + ". Total selected characters = " + (SelectedCombatCharacters.Count + 1).ToString());
+        SelectedCombatCharacters.Add(character);
+    }
+    public void RemoveCharacterFromSelectedCombatCharacters(CharacterData character)
+    {
+        if (SelectedCombatCharacters.Contains(character))
+        {
+            Debug.LogWarning("TownViewController.RemoveCharacterFromSelectedCombatCharacters() called, removing " +
+            character.myName + ". Total selected characters = " + (SelectedCombatCharacters.Count - 1).ToString());
+            SelectedCombatCharacters.Remove(character);
+        }            
+    }
+    public void ClearAllSelectedCombatCharacters()
+    {
+        SelectedCombatCharacters.Clear();
     }
     #endregion
 
