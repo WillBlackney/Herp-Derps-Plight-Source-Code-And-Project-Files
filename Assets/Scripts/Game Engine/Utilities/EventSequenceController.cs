@@ -331,8 +331,6 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Start load combat process
         HandleLoadCombatEncounter(TownViewController.Instance.SelectedCombatEvent, ProgressionController.Instance.ChosenCombatCharacters);
-
-
     }
     public void HandleLoadEncounter(EncounterType encounter)
     {
@@ -700,17 +698,17 @@ public class EventSequenceController : Singleton<EventSequenceController>
         {
             // Cache previous xp of characters for visual events
             List<PreviousXpState> pxsList = new List<PreviousXpState>();
-            foreach(CharacterData character in CharacterDataController.Instance.AllPlayerCharacters)
+            foreach(CharacterData character in ProgressionController.Instance.ChosenCombatCharacters)
             {
                 pxsList.Add(new PreviousXpState(character));
             }
 
             // Grant xp
-            CharacterDataController.Instance.HandleXpRewardPostCombat(combatType);
+            CharacterDataController.Instance.HandleXpRewardPostCombat(combatType, ProgressionController.Instance.ChosenCombatCharacters);
 
             // Generate and cache xp rewarded stats for visual events
             List<XpRewardData> xpRewardDataSet = new List<XpRewardData>();
-            foreach(CharacterData character in CharacterDataController.Instance.AllPlayerCharacters)
+            foreach(CharacterData character in ProgressionController.Instance.ChosenCombatCharacters)
             {
                 bool flawless = false;
                 int combatXp = 0;
@@ -727,7 +725,6 @@ public class EventSequenceController : Singleton<EventSequenceController>
                     combatXp = GlobalSettings.Instance.bossCombatXpReward;
                 }
 
-                // TO DO: in future, add flawless bones here
                 int totalXp = combatXp;
 
                 // Check for flawless bonus
@@ -768,6 +765,43 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // fade in loot window
         LootController.Instance.FadeInMainLootView();
         LootController.Instance.ShowFrontPageView();
+    }
+    public void HandleReturnToTownPostCombatSequence()
+    {
+        StartCoroutine(HandleReturnToTownPostCombatSequenceCoroutine());
+    }
+    private IEnumerator HandleReturnToTownPostCombatSequenceCoroutine()
+    {
+        // Fade out visual event
+        BlackScreenController.Instance.FadeOutScreen(3f);
+
+        // Fade and close loot screen views
+        LootController.Instance.FadeOutMainLootView(() => LootController.Instance.HideMainLootView());
+
+        // Move characters off screen
+        CharacterEntityController.Instance.MoveCharactersToOffScreenRight(CharacterEntityController.Instance.AllDefenders, null);
+        AudioManager.Instance.FadeOutSound(Sound.Environment_Camp_Fire, 3f);
+
+        // Zoom and move camera & Fade foot steps
+        yield return new WaitForSeconds(0.5f);
+        AudioManager.Instance.FadeOutSound(Sound.Character_Footsteps, 2.5f);
+        CameraManager.Instance.DoCameraMove(3, 0, 3f);
+        CameraManager.Instance.DoCameraZoom(5, 3, 3f);
+
+        // Wait for visual events
+        yield return new WaitForSeconds(4f);
+
+        // Tear down combat scene
+        HandleCombatSceneTearDown();
+
+        // Set check point
+        ProgressionController.Instance.SetCheckPoint(SaveCheckPoint.TownDayStart);
+
+        // Auto save
+        PersistencyManager.Instance.AutoUpdateSaveFile();
+
+        // NOTE: When to save and update save file? Now? or after we generate the next days combats, recruits, etc?
+
     }
     #endregion
 

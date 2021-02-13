@@ -94,13 +94,14 @@ public class LootController : Singleton<LootController>
     public void BuildLootScreenElementsFromLootResultData()
     {
         // Build Choose card buttons
-        for (int i = 0; i < CharacterDataController.Instance.AllPlayerCharacters.Count; i++)
+        for (int i = 0; i < ProgressionController.Instance.ChosenCombatCharacters.Count; i++)
         {
             ShowLootTab(cardLootTabs[i]);
             cardLootTabs[i].descriptionText.text = "Gain new card: " + 
-                TextLogic.ReturnColoredText(CharacterDataController.Instance.AllPlayerCharacters[i].myName, TextLogic.neutralYellow);
+                TextLogic.ReturnColoredText(ProgressionController.Instance.ChosenCombatCharacters[i].myName, TextLogic.neutralYellow);
         }
 
+        /*
         // Build Gold reward button
         ShowLootTab(goldLootTab);
         goldLootTab.descriptionText.text = CurrentLootResultData.goldReward.ToString();
@@ -112,6 +113,7 @@ public class LootController : Singleton<LootController>
             itemLootTab.descriptionText.text = "Trinket: " + CurrentLootResultData.itemReward.itemName;
             itemLootTab.typeImage.sprite = CurrentLootResultData.itemReward.GetMySprite();
         }
+        */
     }
     public void BuildChooseCardScreenCardsFromData(List<CardData> cardData)
     {
@@ -266,10 +268,10 @@ public class LootController : Singleton<LootController>
         }
         */
         // Generate character card choices
-        for (int i = 0; i < CharacterDataController.Instance.AllPlayerCharacters.Count; i++)
+        for (int i = 0; i < ProgressionController.Instance.ChosenCombatCharacters.Count; i++)
         {
             newLoot.allCharacterCardChoices.Add(new List<CardData>());
-            newLoot.allCharacterCardChoices[i] = GenerateCharacterCardLootChoices(CharacterDataController.Instance.AllPlayerCharacters[i]);
+            newLoot.allCharacterCardChoices[i] = GenerateCharacterCardLootChoices(ProgressionController.Instance.ChosenCombatCharacters[i]);
         }
 
         // Trinket/Item
@@ -503,7 +505,7 @@ public class LootController : Singleton<LootController>
             List<CardData> cardChoices = CurrentLootResultData.allCharacterCardChoices[index];
 
             // Cache the character, so we know which character to reward a card to if player chooses one
-            currentCharacterSelection = CharacterDataController.Instance.AllPlayerCharacters[index];
+            currentCharacterSelection = ProgressionController.Instance.ChosenCombatCharacters[index];
             characterNameText.text = currentCharacterSelection.myName;
 
             // Build choose card view models
@@ -558,7 +560,7 @@ public class LootController : Singleton<LootController>
 
         // TO DO: find a better way to find the matching card tab
         // hide add card to deck button
-        HideLootTab(cardLootTabs[CharacterDataController.Instance.AllPlayerCharacters.IndexOf(currentCharacterSelection)]);
+        HideLootTab(cardLootTabs[ProgressionController.Instance.ChosenCombatCharacters.IndexOf(currentCharacterSelection)]);
     }
     public void OnChooseCardScreenBackButtonClicked()
     {
@@ -569,8 +571,9 @@ public class LootController : Singleton<LootController>
     {
         if (VisualEventManager.Instance.EventQueue.Count == 0)
         {
-            MapPlayerTracker.Instance.UnlockMap();
-            MapView.Instance.OnWorldMapButtonClicked();
+            EventSequenceController.Instance.HandleReturnToTownPostCombatSequence();
+            //MapPlayerTracker.Instance.UnlockMap();
+            //MapView.Instance.OnWorldMapButtonClicked();
         }
     }
 
@@ -642,13 +645,13 @@ public class LootController : Singleton<LootController>
 
         // Get the correct slot arrangement
         Transform[] slots = windowOnePositions;
-        if(CharacterDataController.Instance.AllPlayerCharacters.Count == 2)
+        if(ProgressionController.Instance.ChosenCombatCharacters.Count == 2)
         {
             slots = windowTwoPositions;
         }
 
         // Build character box starting states
-        foreach (CharacterData character in CharacterDataController.Instance.AllPlayerCharacters)
+        foreach (CharacterData character in ProgressionController.Instance.ChosenCombatCharacters)
         {
             // Find the characters matching psx data
             foreach(PreviousXpState psx in pxsData)

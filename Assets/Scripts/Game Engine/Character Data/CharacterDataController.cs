@@ -369,33 +369,33 @@ public class CharacterDataController : Singleton<CharacterDataController>
             data.currentXP += xpGained;
         }
     }
-    public void HandleXpRewardPostCombat(CombatDifficulty encounter)
+    public void HandleXpRewardPostCombat(CombatDifficulty encounter, List<CharacterData> characters)
     {
         // Apply flat combat type xp reward
         if(encounter == CombatDifficulty.Basic)
         {
-            foreach(CharacterData character in AllPlayerCharacters)
+            foreach(CharacterData character in characters)
             {
                 HandleGainXP(character, GlobalSettings.Instance.basicCombatXpReward);
             }         
         }
         else if (encounter == CombatDifficulty.Elite)
         {
-            foreach (CharacterData character in AllPlayerCharacters)
+            foreach (CharacterData character in characters)
             {
                 HandleGainXP(character, GlobalSettings.Instance.eliteCombatXpReward);
             }
         }
         else if (encounter == CombatDifficulty.Boss)
         {
-            foreach (CharacterData character in AllPlayerCharacters)
+            foreach (CharacterData character in characters)
             {
                 HandleGainXP(character, GlobalSettings.Instance.bossCombatXpReward);
             }
         }
 
         // Check and apply flawless bonus
-        foreach (CharacterData character in AllPlayerCharacters)
+        foreach (CharacterData character in characters)
         {
             foreach(CharacterEntityModel entity in CharacterEntityController.Instance.AllDefenders)
             {

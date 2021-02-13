@@ -19,7 +19,7 @@ MonoBehaviour:
   startingHealth: 0
   enableFlexibleMaxHealth: 1
   maxHealthFlexAmount: 5
-  maxHealth: 100
+  maxHealth: 10
   startingBlock: 0
   strength: 10
   intelligence: 10
