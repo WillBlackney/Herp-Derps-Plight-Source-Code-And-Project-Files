@@ -100,15 +100,9 @@ public class CharacterBoxDragger : Singleton<CharacterBoxDragger>
             SlotMousedOver = null;
     }
     public void OnChooseCombatSlotMouseClick(ChooseCombatCharacterSlot slot)
-    {
-        ResetChooseCombatSlot(slot);
+    {       
         TownViewController.Instance.RemoveCharacterFromSelectedCombatCharacters(slot.characterDataRef);
-    }
-    private void ResetChooseCombatSlot(ChooseCombatCharacterSlot slot)
-    {
-        TownViewController.Instance.RemoveCharacterFromSelectedCombatCharacters(slot.characterDataRef);
-        slot.characterDataRef = null;
-        slot.ucmVisualParent.SetActive(false);
+        TownViewController.Instance.ResetChooseCombatSlot(slot);
     }
     private bool IsDragDropValid()
     {

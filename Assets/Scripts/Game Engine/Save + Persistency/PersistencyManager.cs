@@ -117,20 +117,23 @@ public class PersistencyManager : Singleton<PersistencyManager>
         // Save journey data
         ProgressionController.Instance.SaveMyDataToSaveFile(newSave);
 
+        // Save combat end loot data
+        LootController.Instance.SaveMyDataToSaveFile(newSave);
+
         // Save recruit data
         //RecruitCharacterController.Instance.SaveMyDataToSaveFile(newSave);
 
         // Save combat end loot data
-       // LootController.Instance.SaveMyDataToSaveFile(newSave);
+        // LootController.Instance.SaveMyDataToSaveFile(newSave);
 
         // Save camp properties
         //CampSiteController.Instance.SaveMyDataToSaveFile(newSave);
 
         // KBC
-       // KingsBlessingController.Instance.SaveMyDataToSaveFile(newSave);
+        // KingsBlessingController.Instance.SaveMyDataToSaveFile(newSave);
 
         // Shop
-       // ShopController.Instance.SaveMyDataToSaveFile(newSave);
+        // ShopController.Instance.SaveMyDataToSaveFile(newSave);
 
         // Inventory
         //InventoryController.Instance.SaveMyDataToSaveFile(newSave);
@@ -164,23 +167,26 @@ public class PersistencyManager : Singleton<PersistencyManager>
         // Set journey data
         ProgressionController.Instance.BuildMyDataFromSaveFile(newLoad);
 
+        // Rebuild loot data
+        LootController.Instance.BuildMyDataFromSaveFile(newLoad);
+
         // Set recruit character event 
-       // RecruitCharacterController.Instance.BuildMyDataFromSaveFile(newLoad);
+        // RecruitCharacterController.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // Set recruit character event 
         //LootController.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // Set up camp site data
-       // CampSiteController.Instance.BuildMyDataFromSaveFile(newLoad);
+        // CampSiteController.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // KBC
-       // KingsBlessingController.Instance.BuildMyDataFromSaveFile(newLoad);
+        // KingsBlessingController.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // Shop
-       // ShopController.Instance.BuildMyDataFromSaveFile(newLoad);
+        // ShopController.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // Inventory
-       // InventoryController.Instance.BuildMyDataFromSaveFile(newLoad);
+        // InventoryController.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // States
         //StateController.Instance.BuildMyDataFromSaveFile(newLoad);

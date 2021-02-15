@@ -1,8 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using TMPro;
-using Sirenix.OdinInspector;
 
 public class ProgressionController : Singleton<ProgressionController>
 {
@@ -69,6 +66,7 @@ public class ProgressionController : Singleton<ProgressionController>
     public void SetDayNumber(int newValue)
     {
         DayNumber = newValue;
+        UpdateCurrentDayText();
     }
     public void SetDailyCombatChoices(CombatChoicesResult result)
     {

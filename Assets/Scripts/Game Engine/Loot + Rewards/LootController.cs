@@ -501,6 +501,11 @@ public class LootController : Singleton<LootController>
                 }
             }
 
+            if(CurrentLootResultData == null)
+            {
+                Debug.LogWarning("loot result is null!!");
+            }
+
             // Get the predetermined card loot result for the character
             List<CardData> cardChoices = CurrentLootResultData.allCharacterCardChoices[index];
 

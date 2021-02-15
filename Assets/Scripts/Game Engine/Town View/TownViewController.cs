@@ -26,6 +26,7 @@ public class TownViewController : Singleton<TownViewController>
     [SerializeField] TextMeshProUGUI[] enemyNameTexts;
     [SerializeField] TextMeshProUGUI goldRewardText;
     [SerializeField] ChooseCombatButton[] chooseCombatButtons;
+    [SerializeField] ChooseCombatCharacterSlot[] chooseCombatCharacterSlots;
 
     [Header("Chosen Combat Related Properties")]
     private CombatData selectedCombaEvent;
@@ -35,6 +36,10 @@ public class TownViewController : Singleton<TownViewController>
 
     // Properties + Accessors
     #region
+    public ChooseCombatCharacterSlot[] ChooseCombatCharacterSlots
+    {
+        get { return chooseCombatCharacterSlots; }
+    }
     public CombatData SelectedCombatEvent
     {
         get { return selectedCombaEvent; }
@@ -285,9 +290,19 @@ public class TownViewController : Singleton<TownViewController>
             SelectedCombatCharacters.Remove(character);
         }            
     }
-    public void ClearAllSelectedCombatCharacters()
+    public void ClearAllSelectedCombatCharactersAndSlots()
     {
         SelectedCombatCharacters.Clear();
+        foreach(ChooseCombatCharacterSlot slot in ChooseCombatCharacterSlots)
+        {
+            ResetChooseCombatSlot(slot);
+        }
+    }
+    public void ResetChooseCombatSlot(ChooseCombatCharacterSlot slot)
+    {
+        RemoveCharacterFromSelectedCombatCharacters(slot.characterDataRef);
+        slot.characterDataRef = null;
+        slot.ucmVisualParent.SetActive(false);
     }
     #endregion
 

@@ -161,6 +161,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
         CharacterPanelViewController.Instance.ShowCharacterRosterPanel();
         CharacterPanelViewController.Instance.RebuildAllViews();
 
+        // Reset chosen combat character slots + data
+        TownViewController.Instance.ClearAllSelectedCombatCharactersAndSlots();
+
         // Act start visual sequence
         yield return new WaitForSeconds(0.5f);
         AudioManager.Instance.FadeInSound(Sound.Ambience_Outdoor_Spooky, 1f);
@@ -173,7 +176,6 @@ public class EventSequenceController : Singleton<EventSequenceController>
     }
     private IEnumerator HandleLoadSavedGameFromMainMenuEventCoroutine()
     {     
-
         // Fade menu music
         if (AudioManager.Instance.IsSoundPlaying(Sound.Music_Main_Menu_Theme_1))
         {
@@ -196,8 +198,11 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Hide Main Menu
         MainMenuController.Instance.HideFrontScreen();
 
+        // Reset chosen combat character slots + data
+        TownViewController.Instance.ClearAllSelectedCombatCharactersAndSlots();
+
         // if in town, load into town
-        if(ProgressionController.Instance.CheckPointType == SaveCheckPoint.TownDayStart)
+        if (ProgressionController.Instance.CheckPointType == SaveCheckPoint.TownDayStart)
         {
             // Setup town view
             TownViewController.Instance.ShowMainTownView();
@@ -215,8 +220,28 @@ public class EventSequenceController : Singleton<EventSequenceController>
         }
 
         // if at combat start, load combat start sequence
+        if (ProgressionController.Instance.CheckPointType == SaveCheckPoint.CombatStart)
+        {
+            HandleLoadCombatEncounter(ProgressionController.Instance.CurrentCombatData, ProgressionController.Instance.ChosenCombatCharacters);
+        }
 
         // if at combat end event, load combat end.
+        if (ProgressionController.Instance.CheckPointType == SaveCheckPoint.CombatEnd)
+        {
+            // Build level + character views
+            LevelManager.Instance.EnableDungeonScenery();
+            LevelManager.Instance.ShowAllNodeViews();
+            CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
+
+            // Build and show loot screen views
+            LootController.Instance.BuildLootScreenElementsFromLootResultData();
+            LootController.Instance.FadeInMainLootView();
+            LootController.Instance.ShowFrontPageView();
+
+            // Fade in
+            BlackScreenController.Instance.FadeInScreen(1f);
+        }
+               
 
     }
 
@@ -260,7 +285,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
             yield return new WaitUntil(() => handle.cData.CoroutineCompleted() == true);
         }
 
-        // Destroy game scene
+        // Destroy combat scene
         HandleCombatSceneTearDown();
 
         // Hide town/in-game UI
@@ -794,13 +819,41 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Tear down combat scene
         HandleCombatSceneTearDown();
 
-        // Set check point
+        // Set check point + new day data generation 
+        ProgressionController.Instance.SetDayNumber(ProgressionController.Instance.DayNumber + 1);
+        ProgressionController.Instance.SetDailyCombatChoices(CombatGenerationController.Instance.GenerateWeeklyCombatChoices());
         ProgressionController.Instance.SetCheckPoint(SaveCheckPoint.TownDayStart);
+        // to do: generate and cache new recruitable characters here
 
         // Auto save
         PersistencyManager.Instance.AutoUpdateSaveFile();
 
-        // NOTE: When to save and update save file? Now? or after we generate the next days combats, recruits, etc?
+        // Rebuild town views
+
+        // Set up top bar
+        TopBarController.Instance.ShowTopBar();
+        TopBarController.Instance.ShowNavigationButton();
+        TopBarController.Instance.SetNavigationButtonText("To Arena");
+
+        // Reset Camera
+        CameraManager.Instance.ResetMainCameraPositionAndZoom();
+
+        // Setup town views
+        TownViewController.Instance.ShowMainTownView();
+        TownViewController.Instance.SetScreenViewState(ScreenViewState.Town);
+
+        // Set up character panel views
+        CharacterPanelViewController.Instance.ShowCharacterRosterPanel();
+        CharacterPanelViewController.Instance.RebuildAllViews();
+
+        // Reset chosen combat character slots + data
+        TownViewController.Instance.ClearAllSelectedCombatCharactersAndSlots();
+
+        // Fade in screen + town music
+        yield return new WaitForSeconds(0.5f);
+        AudioManager.Instance.FadeInSound(Sound.Ambience_Outdoor_Spooky, 1f);
+        yield return new WaitForSeconds(1f);
+        BlackScreenController.Instance.FadeInScreen(1f);
 
     }
     #endregion
