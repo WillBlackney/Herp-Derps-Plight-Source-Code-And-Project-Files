@@ -308,7 +308,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         ModifyPower(character, data.power);
         ModifyBaseCrit(character, data.baseCrit);
         ModifyCritModifier(character, data.critModifier);
-        ModifyBaseFirstActivationDrawBonus(character, data.baseFristActivationDrawBonus);
+        ModifyBaseFirstActivationDrawBonus(character, data.baseFirstActivationDrawBonus);
 
         // Set up health
         ModifyMaxHealth(character, data.maxHealth);

@@ -134,7 +134,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.power = original.power;
         newCharacter.baseCrit = original.baseCrit;
         newCharacter.critModifier = original.critModifier;
-        newCharacter.baseFristActivationDrawBonus = original.baseFristActivationDrawBonus;
+        newCharacter.baseFirstActivationDrawBonus = original.baseFirstActivationDrawBonus;
 
         newCharacter.deck = new List<CardData>();
         foreach (CardData cso in original.deck)
@@ -196,7 +196,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.initiative = template.initiative;
         newCharacter.baseCrit = template.baseCrit;
         newCharacter.critModifier = template.critModifier;
-        newCharacter.baseFristActivationDrawBonus = template.baseFristActivationDrawBonus;
+        newCharacter.baseFirstActivationDrawBonus = template.baseFristActivationDrawBonus;
         newCharacter.draw = template.draw;
         newCharacter.power = template.power;
 
@@ -230,7 +230,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
 
         return newCharacter;
     }
-    private TalentPairingModel CloneTalentPairingModel(TalentPairingModel original)
+    public TalentPairingModel CloneTalentPairingModel(TalentPairingModel original)
     {
         TalentPairingModel tpm = new TalentPairingModel();
         tpm.talentLevel = original.talentLevel;

@@ -31,7 +31,7 @@ public class CharacterData
     public int power = 0;
     public int baseCrit = 0;
     public int critModifier = 30;
-    public int baseFristActivationDrawBonus = 2;
+    public int baseFirstActivationDrawBonus = 2;
 
     [Header("XP + Level Properties")]
     public int currentLevel = 1;
