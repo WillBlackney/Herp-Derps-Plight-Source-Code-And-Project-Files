@@ -8,12 +8,23 @@ public class CharacterDataController : Singleton<CharacterDataController>
     #region
     [Header("Properties")]
     private List<CharacterData> allPlayerCharacters = new List<CharacterData>();
+    private int currentMaxRosterSize;
+    private List<CharacterData> characterDeck = new List<CharacterData>();
+    private List<CharacterData> dailyRecruits = new List<CharacterData>();
+    private List<CharacterRace> validCharacterRaces = new List<CharacterRace>
+    { CharacterRace.Demon, CharacterRace.Elf, CharacterRace.Ent, CharacterRace.Gnoll, CharacterRace.Goblin, CharacterRace.Human,
+      CharacterRace.Orc, CharacterRace.Satyr, CharacterRace.Undead};
 
+    [Header("Templates Buckets")]
     [SerializeField] private CharacterTemplateSO[] allCharacterTemplatesSOs;
     [SerializeField] private CharacterData[] allCharacterTemplates;
+    public List<ClassTemplateSO> allTemplateSOs;
+    public List<ModelTemplateSO> allModelTemplateSOs;
 
-    private int currentMaxRosterSize;
+    #endregion
 
+    // Accessors + Getters
+    #region
     public int CurrentMaxRosterSize
     {
         get { return currentMaxRosterSize; }
@@ -35,9 +46,20 @@ public class CharacterDataController : Singleton<CharacterDataController>
         get { return allCharacterTemplates; }
         private set { allCharacterTemplates = value; }
     }
+    public List<CharacterData> CharacterDeck
+    {
+        get { return characterDeck; }
+        private set { characterDeck = value; }
+    }
+    public List<CharacterData> DailyRecruits
+    {
+        get { return dailyRecruits; }
+        private set { dailyRecruits = value; }
+    }
     #endregion
 
     // Initialization
+    #region
     private void Start()
     {
         BuildTemplateLibrary();
@@ -55,6 +77,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
 
         AllCharacterTemplates = tempList.ToArray();
     }
+    #endregion
 
     // Build, Add and Delete Characters 
     #region
@@ -78,13 +101,24 @@ public class CharacterDataController : Singleton<CharacterDataController>
     #region
     public void BuildMyDataFromSaveFile(SaveGameData saveFile)
     {
+        // Build character roster
         AllPlayerCharacters.Clear();
-
         foreach (CharacterData characterData in saveFile.characters)
         {
             AllPlayerCharacters.Add(characterData);
         }
 
+        // Build character deck
+        CharacterDeck.Clear();
+        foreach (CharacterData cd in saveFile.characterDeck)
+            CharacterDeck.Add(cd);
+
+        // Build daily recruits
+        DailyRecruits.Clear();
+        foreach (CharacterData cd in saveFile.dailyCharacterRecruits)
+            DailyRecruits.Add(cd);
+
+        // Misc stuff
         SetMaxRosterSize(saveFile.maxRosterSize);
     }
     public void SaveMyDataToSaveFile(SaveGameData saveFile)
@@ -92,6 +126,16 @@ public class CharacterDataController : Singleton<CharacterDataController>
         foreach (CharacterData character in AllPlayerCharacters)
         {
             saveFile.characters.Add(character);
+        }
+
+        foreach (CharacterData character in CharacterDeck)
+        {
+            saveFile.characterDeck.Add(character);
+        }
+
+        foreach (CharacterData character in DailyRecruits)
+        {
+            saveFile.dailyCharacterRecruits.Add(character);
         }
 
         saveFile.maxRosterSize = CurrentMaxRosterSize;
@@ -523,6 +567,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
         CurrentMaxRosterSize = newSize;
     }
     #endregion
+
     // Misc Logic + Calculators
     #region
     public int GetTalentLevel(CharacterData character, TalentSchool school)
@@ -542,6 +587,128 @@ public class CharacterDataController : Singleton<CharacterDataController>
     }
     #endregion
 
+    // Character Generation Logic
+    #region
+    public CharacterData GenerateCharacter(ClassTemplateSO ct, CharacterRace race)
+    {
+        CharacterData character = new CharacterData();
+
+        Debug.Log("CharacterDataController.ConverCharacterTemplateToCharacterData() called...");
+
+        CharacterData newCharacter = new CharacterData();
+
+        newCharacter.myName = "random name";
+        newCharacter.myClassName = ct.templateName;
+        newCharacter.race = race;
+        // TO DO: change in future when we re-implement audio profiles
+        newCharacter.audioProfile = AudioProfileType.HumanMale;
+
+        newCharacter.currentLevel = GlobalSettings.Instance.startingLevel;
+        newCharacter.currentMaxXP = GlobalSettings.Instance.startingMaxXp;
+        CharacterDataController.Instance.ModifyCharacterTalentPoints(newCharacter, GlobalSettings.Instance.startingTalentPoints);
+        CharacterDataController.Instance.ModifyCharacterAttributePoints(newCharacter, GlobalSettings.Instance.startingAttributePoints);
+        CharacterDataController.Instance.HandleGainXP(newCharacter, GlobalSettings.Instance.startingXpBonus);
+
+        newCharacter.strength = ct.strength;
+        newCharacter.intelligence = ct.intelligence;
+        newCharacter.wits = ct.wits;
+        newCharacter.dexterity = ct.dexterity;
+        newCharacter.constitution = ct.constitution;
+
+        CharacterDataController.Instance.SetCharacterMaxHealth(newCharacter, ct.maxHealth);
+        CharacterDataController.Instance.SetCharacterHealth(newCharacter, newCharacter.MaxHealthTotal);
+
+        newCharacter.stamina = 2;
+        newCharacter.initiative = 10;
+        newCharacter.baseCrit = 0;
+        newCharacter.critModifier = 30;
+        newCharacter.baseFirstActivationDrawBonus = 2;
+        newCharacter.draw = 2;
+        newCharacter.power = 0;
+
+        newCharacter.attributePoints = 0;
+        newCharacter.talentPoints = 0;
+
+        // Randomize deck
+        DeckTemplateSO randomDeckData = ct.possibleDecks[RandomGenerator.NumberBetween(0, ct.possibleDecks.Count - 1)];
+        newCharacter.deck = new List<CardData>();
+        foreach (CardDataSO cso in randomDeckData.cards)
+        {
+            CharacterDataController.Instance.AddCardToCharacterDeck(newCharacter, CardController.Instance.BuildCardDataFromScriptableObjectData(cso));
+        }
+
+        // Randomize appearance + outfit
+        newCharacter.modelParts = new List<string>();
+        OutfitTemplateSO randomOutfit = ct.possibleOutfits[RandomGenerator.NumberBetween(0, ct.possibleOutfits.Count - 1)];
+        ModelTemplateSO randomRaceModel = GetRandomModelTemplate(race);
+        newCharacter.modelParts.AddRange(randomOutfit.outfitParts);
+        newCharacter.modelParts.AddRange(randomRaceModel.bodyParts);
+
+        // Randomize items
+        newCharacter.itemManager = new ItemManagerModel();
+        SerializedItemManagerModel randomItemSet = ct.possibleWeapons[RandomGenerator.NumberBetween(0, ct.possibleWeapons.Count - 1)];
+        ItemController.Instance.CopySerializedItemManagerIntoStandardItemManager(randomItemSet, newCharacter.itemManager);
+
+        // Talents
+        newCharacter.talentPairings = new List<TalentPairingModel>();
+        foreach (TalentPairingModel tpm in ct.talentPairings)
+            newCharacter.talentPairings.Add(CharacterDataController.Instance.CloneTalentPairingModel(tpm));
+
+        return character;
+    }
+    private ModelTemplateSO GetRandomModelTemplate(CharacterRace race)
+    {
+        List<ModelTemplateSO> validTemplates = new List<ModelTemplateSO>();
+
+        foreach (ModelTemplateSO mt in allModelTemplateSOs)
+        {
+            if (mt.race == race)
+                validTemplates.Add(mt);
+        }
+
+        return validTemplates[RandomGenerator.NumberBetween(0, validTemplates.Count - 1)];
+
+    }
+    private CharacterRace GetRandomRace()
+    {
+        return validCharacterRaces[RandomGenerator.NumberBetween(0, validCharacterRaces.Count - 1)];
+    }
+    private List<CharacterData> GenerateCharacterDeck()
+    {
+        List<CharacterData> newCharacterDeck = new List<CharacterData>();
+
+        foreach (ClassTemplateSO ct in allTemplateSOs)
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                newCharacterDeck.Add(GenerateCharacter(ct, GetRandomRace()));
+            }
+        }
+
+        return newCharacterDeck;
+    }
+    public void AutoGenerateAndCacheNewCharacterDeck()
+    {
+        CharacterDeck.Clear();
+        CharacterDeck = GenerateCharacterDeck();
+        CharacterDeck.Shuffle();
+    }
+    public void AutoGenerateAndCacheDailyCharacterRecruits(int totalRecruits)
+    {
+        for(int i = 0; i < totalRecruits; i++)
+        {
+            // Generate new character deck if deck is empty
+            if (CharacterDeck.Count == 0)
+            {
+                AutoGenerateAndCacheNewCharacterDeck();
+            }
+
+            // Pop random character
+            DailyRecruits.Add(CharacterDeck[0]);
+            CharacterDeck.Remove(CharacterDeck[0]);
+        }
+    }
+    #endregion
 
 
 }

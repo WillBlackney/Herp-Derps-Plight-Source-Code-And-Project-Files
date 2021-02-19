@@ -354,16 +354,6 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
     }
     #endregion
 
-    // Save + Load Logic
-    #region
-    public void BuildMyDataFromSaveFile(SaveGameData saveFile)
-    {
-        currentChoices = saveFile.recruitCharacterChoices;
-    }
-    public void SaveMyDataToSaveFile(SaveGameData saveFile)
-    {
-        saveFile.recruitCharacterChoices = currentChoices;
-    }
-    #endregion
+  
 
 }

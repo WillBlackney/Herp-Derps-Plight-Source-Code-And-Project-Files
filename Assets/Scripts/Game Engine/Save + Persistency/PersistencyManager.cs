@@ -59,18 +59,6 @@ public class PersistencyManager : Singleton<PersistencyManager>
             chosenCharacters.Add(MainMenuController.Instance.GetChosenCharacter());
         }       
 
-        // Build each character data object
-        /*
-        foreach (CharacterData data in chosenCharacters)
-        {
-            // Create new character from data
-            CharacterData newCharacter = CharacterDataController.Instance.CloneCharacterData(data);
-            //newSave.characters.Add(newCharacter);
-
-            CharacterDataController.Instance.AutoAddCharactersRacialCard(newCharacter);
-            CharacterDataController.Instance.CloneNewCharacterToPlayerRoster(newCharacter);
-        }
-        */
         // TESTING: REMOVE LATER
         foreach (CharacterTemplateSO d in CharacterDataController.Instance.AllCharacterTemplatesSOs)
         {
@@ -91,7 +79,9 @@ public class PersistencyManager : Singleton<PersistencyManager>
         ProgressionController.Instance.SetDailyCombatChoices(CombatGenerationController.Instance.GenerateWeeklyCombatChoices());
         ProgressionController.Instance.SetCheckPoint(SaveCheckPoint.TownDayStart);
 
-        // generate recruitable characters
+        // Generate recruitable characters
+        CharacterDataController.Instance.AutoGenerateAndCacheNewCharacterDeck();
+        CharacterDataController.Instance.AutoGenerateAndCacheDailyCharacterRecruits(2);
 
         // START SAVE!    
         //SaveGameToDisk(newSave);

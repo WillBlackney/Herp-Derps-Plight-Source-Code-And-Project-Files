@@ -24,8 +24,9 @@ public class SaveGameData
     public List<CharacterData> chosenCombatCharacters = new List<CharacterData>();
     // to do: save and cache player characters in the combat some how.
 
-    // Recruit event data
-    public List<CharacterData> recruitCharacterChoices = new List<CharacterData>();
+    // Recruitable character deck
+    public List<CharacterData> characterDeck = new List<CharacterData>();
+    public List<CharacterData> dailyCharacterRecruits = new List<CharacterData>();
 
     // Loot data
     public LootResultModel currentLootResult;

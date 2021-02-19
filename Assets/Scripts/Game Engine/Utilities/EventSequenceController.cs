@@ -819,10 +819,12 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Tear down combat scene
         HandleCombatSceneTearDown();
 
-        // Set check point + new day data generation 
+        // Set check point + new day data generation logic
         ProgressionController.Instance.SetDayNumber(ProgressionController.Instance.DayNumber + 1);
         ProgressionController.Instance.SetDailyCombatChoices(CombatGenerationController.Instance.GenerateWeeklyCombatChoices());
         ProgressionController.Instance.SetCheckPoint(SaveCheckPoint.TownDayStart);
+        CharacterDataController.Instance.AutoGenerateAndCacheDailyCharacterRecruits(2);
+
         // to do: generate and cache new recruitable characters here
 
         // Auto save

@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4f6f3ac19f3b24389408288d63c16e, type: 3}
+  m_Name: Assassin 1
+  m_EditorClassIdentifier: 
+  templateName: Assassin 1
+  possibleDecks:
+  - {fileID: 11400000, guid: 2b2518ea7b2e52c40acb67229a560289, type: 2}
+  possibleOutfits:
+  - {fileID: 11400000, guid: c762ab1da317a114fa1f3f0ab9f44250, type: 2}
+  - {fileID: 11400000, guid: 88c9a135f9adcfe41854412f2ff07ca9, type: 2}
+  - {fileID: 11400000, guid: 2fdff403fe47ab243a43fafec2024e61, type: 2}
+  possibleWeapons:
+  - mainHandItem: {fileID: 11400000, guid: b441e018b9d907a49b6f8e74e5b0e065, type: 2}
+    offHandItem: {fileID: 11400000, guid: b441e018b9d907a49b6f8e74e5b0e065, type: 2}
+    trinketOne: {fileID: 0}
+    trinketTwo: {fileID: 0}
+  - mainHandItem: {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}
+    offHandItem: {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}
+    trinketOne: {fileID: 0}
+    trinketTwo: {fileID: 0}
+  strength: 11
+  intelligence: 10
+  dexterity: 10
+  wits: 11
+  constitution: 10
+  maxHealth: 100
+  talentPairings:
+  - talentSchool: 3
+    talentLevel: 2
