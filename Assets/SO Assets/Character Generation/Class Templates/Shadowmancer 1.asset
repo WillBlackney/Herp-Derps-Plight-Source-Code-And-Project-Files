@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4f6f3ac19f3b24389408288d63c16e, type: 3}
+  m_Name: Shadowmancer 1
+  m_EditorClassIdentifier: 
+  templateName: Shadowmancer 1
+  possibleDecks:
+  - {fileID: 11400000, guid: e5db80c470ca38f478cad3761e417693, type: 2}
+  possibleOutfits:
+  - {fileID: 11400000, guid: db48cb3bc4cb7934a887c0700bae2382, type: 2}
+  - {fileID: 11400000, guid: fb324dae066af714e865daf4ddd774f0, type: 2}
+  possibleWeapons:
+  - mainHandItem: {fileID: 11400000, guid: bfbdb5e21e389ab4c9aae5b49350a1d0, type: 2}
+    offHandItem: {fileID: 0}
+    trinketOne: {fileID: 0}
+    trinketTwo: {fileID: 0}
+  strength: 10
+  intelligence: 12
+  dexterity: 10
+  wits: 10
+  constitution: 10
+  maxHealth: 100
+  talentPairings:
+  - talentSchool: 11
+    talentLevel: 2

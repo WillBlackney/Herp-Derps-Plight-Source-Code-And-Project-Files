@@ -32,6 +32,8 @@ public class TownViewController : Singleton<TownViewController>
     private CombatData selectedCombaEvent;
     private List<CharacterData> selectedCombatCharacters = new List<CharacterData>();
 
+    [Header("Recruit Window Components")]
+    [SerializeField] GameObject recruitWindowVisualParent;
     #endregion
 
     // Properties + Accessors
@@ -159,6 +161,10 @@ public class TownViewController : Singleton<TownViewController>
         // to do: check validity: player has selected enough characters, characters within level range, etc
 
         EventSequenceController.Instance.HandleStartCombatFromChooseCombatScreen();
+    }
+    public void OnOpenRecruitWindowButtonClicked()
+    {
+
     }
     #endregion
 

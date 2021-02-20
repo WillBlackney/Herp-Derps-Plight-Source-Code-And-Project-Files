@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4f6f3ac19f3b24389408288d63c16e, type: 3}
+  m_Name: Scout 1
+  m_EditorClassIdentifier: 
+  templateName: Scout 1
+  possibleDecks:
+  - {fileID: 11400000, guid: 61ac690332ce60b429e017843f78ae38, type: 2}
+  possibleOutfits:
+  - {fileID: 11400000, guid: 7db2cc3392a4de6459a95d6df9ca33c7, type: 2}
+  possibleWeapons:
+  - mainHandItem: {fileID: 11400000, guid: dfeeccc8c225a66488eb3e4eb76d6c3b, type: 2}
+    offHandItem: {fileID: 0}
+    trinketOne: {fileID: 0}
+    trinketTwo: {fileID: 0}
+  strength: 11
+  intelligence: 10
+  dexterity: 10
+  wits: 11
+  constitution: 10
+  maxHealth: 100
+  talentPairings:
+  - talentSchool: 8
+    talentLevel: 1
+  - talentSchool: 3
+    talentLevel: 1

@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4f6f3ac19f3b24389408288d63c16e, type: 3}
+  m_Name: Arcanist 1
+  m_EditorClassIdentifier: 
+  templateName: Arcanist 1
+  possibleDecks:
+  - {fileID: 11400000, guid: ff9a7de8f9222f84eb4c901b007471ac, type: 2}
+  possibleOutfits:
+  - {fileID: 11400000, guid: 605c8a24fc67ab24496745385b297f64, type: 2}
+  - {fileID: 11400000, guid: 4ac02cb8cb68f584a8045c7ba2ca7b70, type: 2}
+  possibleWeapons:
+  - mainHandItem: {fileID: 11400000, guid: bfbdb5e21e389ab4c9aae5b49350a1d0, type: 2}
+    offHandItem: {fileID: 0}
+    trinketOne: {fileID: 0}
+    trinketTwo: {fileID: 0}
+  strength: 10
+  intelligence: 12
+  dexterity: 10
+  wits: 10
+  constitution: 10
+  maxHealth: 100
+  talentPairings:
+  - talentSchool: 9
+    talentLevel: 2
