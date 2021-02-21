@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4f6f3ac19f3b24389408288d63c16e, type: 3}
   m_Name: Arcanist 1
   m_EditorClassIdentifier: 
-  templateName: Arcanist 1
+  templateName: Arcanist
   possibleDecks:
   - {fileID: 11400000, guid: ff9a7de8f9222f84eb4c901b007471ac, type: 2}
   possibleOutfits:

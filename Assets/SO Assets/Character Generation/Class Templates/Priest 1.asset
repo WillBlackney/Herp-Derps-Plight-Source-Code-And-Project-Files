@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4f6f3ac19f3b24389408288d63c16e, type: 3}
   m_Name: Priest 1
   m_EditorClassIdentifier: 
-  templateName: Priest 1
+  templateName: Priest
   possibleDecks:
   - {fileID: 11400000, guid: f888652b3bd91854abd16793dbda78de, type: 2}
   possibleOutfits:

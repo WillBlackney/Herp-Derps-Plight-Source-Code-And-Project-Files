@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4f6f3ac19f3b24389408288d63c16e, type: 3}
   m_Name: Incinerator 1
   m_EditorClassIdentifier: 
-  templateName: Incinerator 1
+  templateName: Incinerator
   possibleDecks:
   - {fileID: 11400000, guid: 2ed84fa971d4e1c4bacb26850a4e8097, type: 2}
   possibleOutfits:

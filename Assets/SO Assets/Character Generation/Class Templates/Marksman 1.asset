@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4f6f3ac19f3b24389408288d63c16e, type: 3}
   m_Name: Marksman 1
   m_EditorClassIdentifier: 
-  templateName: Marksman 1
+  templateName: Marksman
   possibleDecks:
   - {fileID: 11400000, guid: 0c21fb1adbaa7c741be12458ae39979b, type: 2}
   possibleOutfits:

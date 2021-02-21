@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4f6f3ac19f3b24389408288d63c16e, type: 3}
   m_Name: Scout 1
   m_EditorClassIdentifier: 
-  templateName: Scout 1
+  templateName: Scout
   possibleDecks:
   - {fileID: 11400000, guid: 61ac690332ce60b429e017843f78ae38, type: 2}
   possibleOutfits:

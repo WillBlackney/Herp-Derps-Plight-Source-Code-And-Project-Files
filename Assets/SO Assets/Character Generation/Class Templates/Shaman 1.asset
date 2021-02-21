@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4f6f3ac19f3b24389408288d63c16e, type: 3}
   m_Name: Shaman 1
   m_EditorClassIdentifier: 
-  templateName: Shaman 1
+  templateName: Shaman
   possibleDecks:
   - {fileID: 11400000, guid: 56e9fed956b29824c8a5aaaf80eab019, type: 2}
   possibleOutfits:

@@ -33,7 +33,8 @@ public class TownViewController : Singleton<TownViewController>
     private List<CharacterData> selectedCombatCharacters = new List<CharacterData>();
 
     [Header("Recruit Window Components")]
-    [SerializeField] GameObject recruitWindowVisualParent;
+    [SerializeField] GameObject recruitPageVisualParent;
+    [SerializeField] RecruitCharacterTab[] recruitCharacterTabs;
     #endregion
 
     // Properties + Accessors
@@ -162,9 +163,14 @@ public class TownViewController : Singleton<TownViewController>
 
         EventSequenceController.Instance.HandleStartCombatFromChooseCombatScreen();
     }
-    public void OnOpenRecruitWindowButtonClicked()
+    public void OnOpenRecruitPageButtonClicked()
     {
-
+        BuildRecruitCharactersPageViews();
+        ShowRecruitCharactersPage();
+    }
+    public void OnCloseRecruitPageButtonClicked()
+    {
+        HideRecruitCharactersPage();
     }
     #endregion
 
@@ -309,6 +315,48 @@ public class TownViewController : Singleton<TownViewController>
         RemoveCharacterFromSelectedCombatCharacters(slot.characterDataRef);
         slot.characterDataRef = null;
         slot.ucmVisualParent.SetActive(false);
+    }
+    #endregion
+
+    // Recruit Characters Page Logic
+    #region
+    private void ShowRecruitCharactersPage()
+    {
+        recruitPageVisualParent.SetActive(true);
+    }
+    private void BuildRecruitCharactersPageViews()
+    {
+        BuildAllRecruitCharacterTabsFromDataSet(CharacterDataController.Instance.DailyRecruits);
+    }
+    private void HideRecruitCharactersPage()
+    {
+        recruitPageVisualParent.SetActive(false);
+    }
+    private void HideAllRecruitTabs()
+    {
+        foreach (RecruitCharacterTab tab in recruitCharacterTabs)
+            tab.gameObject.SetActive(false);
+    }
+    private void BuildAllRecruitCharacterTabsFromDataSet(List<CharacterData> characters)
+    {
+        Debug.LogWarning("Characters count: " + characters.Count);
+        // Reset tabs
+        HideAllRecruitTabs();
+
+        // Build tabs
+        for(int i = 0; i < characters.Count; i++)
+        {
+            BuildRecruitCharacterTabFromCharacterData(characters[i], recruitCharacterTabs[i]);
+        }
+    }
+    private void BuildRecruitCharacterTabFromCharacterData(CharacterData data, RecruitCharacterTab tab)
+    {
+        tab.gameObject.SetActive(true);
+
+        tab.characterDataRef = data;
+        tab.nameText.text = data.myName;
+        tab.raceAndClassText.text = data.race.ToString() + " " + data.myClassName;
+        CharacterModelController.Instance.BuildModelMugShotFromStringReferences(tab.ucm, data.modelParts);
     }
     #endregion
 

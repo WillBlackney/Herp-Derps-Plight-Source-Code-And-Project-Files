@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4f6f3ac19f3b24389408288d63c16e, type: 3}
   m_Name: Champion 1
   m_EditorClassIdentifier: 
-  templateName: Champion 1
+  templateName: Champion
   possibleDecks:
   - {fileID: 11400000, guid: 3e27ced14723dde4587818f9258e4a55, type: 2}
   possibleOutfits:

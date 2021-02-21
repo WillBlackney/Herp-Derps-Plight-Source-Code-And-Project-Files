@@ -14,5 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outfitName: Wayfarer 1
   outfitParts:
-  - Barbarian_Chest_Wear
-  - Silver_Red_Helmet_Head_Wear
+  - Green_Camo_Robe_Chest_Wear

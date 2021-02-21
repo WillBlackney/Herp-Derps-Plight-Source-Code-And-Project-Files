@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4f6f3ac19f3b24389408288d63c16e, type: 3}
   m_Name: Rogue 1
   m_EditorClassIdentifier: 
-  templateName: Rogue 1
+  templateName: Rogue
   possibleDecks:
   - {fileID: 11400000, guid: 94e9579e154f8334da161df92438c3d2, type: 2}
   possibleOutfits:

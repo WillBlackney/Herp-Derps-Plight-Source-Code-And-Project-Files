@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4f6f3ac19f3b24389408288d63c16e, type: 3}
   m_Name: Wayfarer 1
   m_EditorClassIdentifier: 
-  templateName: Wayfarer 1
+  templateName: Wayfarer
   possibleDecks:
   - {fileID: 11400000, guid: 6e63fc7e6c1402c4ea1ae9fb1d2e6d4c, type: 2}
   possibleOutfits:

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4f6f3ac19f3b24389408288d63c16e, type: 3}
   m_Name: Assassin 1
   m_EditorClassIdentifier: 
-  templateName: Assassin 1
+  templateName: Assassin
   possibleDecks:
   - {fileID: 11400000, guid: 2b2518ea7b2e52c40acb67229a560289, type: 2}
   possibleOutfits:

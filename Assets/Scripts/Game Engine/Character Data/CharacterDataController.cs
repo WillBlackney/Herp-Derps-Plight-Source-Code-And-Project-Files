@@ -21,6 +21,17 @@ public class CharacterDataController : Singleton<CharacterDataController>
     public List<ClassTemplateSO> allTemplateSOs;
     public List<ModelTemplateSO> allModelTemplateSOs;
 
+    [Header("Character Name Buckets")]
+    [SerializeField] string[] humanNames;
+    [SerializeField] string[] elfNames;
+    [SerializeField] string[] orcNames;
+    [SerializeField] string[] satyrNames;
+    [SerializeField] string[] goblinNames;
+    [SerializeField] string[] entNames;
+    [SerializeField] string[] demonNames;
+    [SerializeField] string[] gnollNames;
+    [SerializeField] string[] undeadNames;
+
     #endregion
 
     // Accessors + Getters
@@ -591,13 +602,11 @@ public class CharacterDataController : Singleton<CharacterDataController>
     #region
     public CharacterData GenerateCharacter(ClassTemplateSO ct, CharacterRace race)
     {
-        CharacterData character = new CharacterData();
-
-        Debug.Log("CharacterDataController.ConverCharacterTemplateToCharacterData() called...");
+        Debug.Log("CharacterDataController.GenerateCharacter() called...");
 
         CharacterData newCharacter = new CharacterData();
 
-        newCharacter.myName = "random name";
+        newCharacter.myName = GetRandomCharacterName(race);
         newCharacter.myClassName = ct.templateName;
         newCharacter.race = race;
         // TO DO: change in future when we re-implement audio profiles
@@ -605,9 +614,9 @@ public class CharacterDataController : Singleton<CharacterDataController>
 
         newCharacter.currentLevel = GlobalSettings.Instance.startingLevel;
         newCharacter.currentMaxXP = GlobalSettings.Instance.startingMaxXp;
-        CharacterDataController.Instance.ModifyCharacterTalentPoints(newCharacter, GlobalSettings.Instance.startingTalentPoints);
-        CharacterDataController.Instance.ModifyCharacterAttributePoints(newCharacter, GlobalSettings.Instance.startingAttributePoints);
-        CharacterDataController.Instance.HandleGainXP(newCharacter, GlobalSettings.Instance.startingXpBonus);
+        ModifyCharacterTalentPoints(newCharacter, GlobalSettings.Instance.startingTalentPoints);
+        ModifyCharacterAttributePoints(newCharacter, GlobalSettings.Instance.startingAttributePoints);
+        HandleGainXP(newCharacter, GlobalSettings.Instance.startingXpBonus);
 
         newCharacter.strength = ct.strength;
         newCharacter.intelligence = ct.intelligence;
@@ -615,8 +624,8 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.dexterity = ct.dexterity;
         newCharacter.constitution = ct.constitution;
 
-        CharacterDataController.Instance.SetCharacterMaxHealth(newCharacter, ct.maxHealth);
-        CharacterDataController.Instance.SetCharacterHealth(newCharacter, newCharacter.MaxHealthTotal);
+        SetCharacterMaxHealth(newCharacter, ct.maxHealth);
+        SetCharacterHealth(newCharacter, newCharacter.MaxHealthTotal);
 
         newCharacter.stamina = 2;
         newCharacter.initiative = 10;
@@ -634,7 +643,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.deck = new List<CardData>();
         foreach (CardDataSO cso in randomDeckData.cards)
         {
-            CharacterDataController.Instance.AddCardToCharacterDeck(newCharacter, CardController.Instance.BuildCardDataFromScriptableObjectData(cso));
+            AddCardToCharacterDeck(newCharacter, CardController.Instance.BuildCardDataFromScriptableObjectData(cso));
         }
 
         // Randomize appearance + outfit
@@ -652,9 +661,42 @@ public class CharacterDataController : Singleton<CharacterDataController>
         // Talents
         newCharacter.talentPairings = new List<TalentPairingModel>();
         foreach (TalentPairingModel tpm in ct.talentPairings)
-            newCharacter.talentPairings.Add(CharacterDataController.Instance.CloneTalentPairingModel(tpm));
+            newCharacter.talentPairings.Add(CloneTalentPairingModel(tpm));
 
-        return character;
+        return newCharacter;
+    }
+    public string GetRandomCharacterName(CharacterRace race)
+    {
+        string nameReturned = "";
+        if (race == CharacterRace.Demon)
+            nameReturned = demonNames[RandomGenerator.NumberBetween(0, demonNames.Length - 1)];
+
+        if (race == CharacterRace.Elf)
+            nameReturned = elfNames[RandomGenerator.NumberBetween(0, elfNames.Length - 1)];
+
+        if (race == CharacterRace.Ent)
+            nameReturned = entNames[RandomGenerator.NumberBetween(0, entNames.Length - 1)];
+
+        if (race == CharacterRace.Gnoll)
+            nameReturned = gnollNames[RandomGenerator.NumberBetween(0, gnollNames.Length - 1)];
+
+        if (race == CharacterRace.Goblin)
+            nameReturned = goblinNames[RandomGenerator.NumberBetween(0, goblinNames.Length - 1)];
+
+        if (race == CharacterRace.Human)
+            nameReturned = humanNames[RandomGenerator.NumberBetween(0, humanNames.Length - 1)];
+
+        if (race == CharacterRace.Orc)
+            nameReturned = orcNames[RandomGenerator.NumberBetween(0, orcNames.Length - 1)];
+
+        if (race == CharacterRace.Satyr)
+            nameReturned = satyrNames[RandomGenerator.NumberBetween(0, satyrNames.Length - 1)];
+
+        if (race == CharacterRace.Undead)
+            nameReturned = undeadNames[RandomGenerator.NumberBetween(0, undeadNames.Length - 1)];
+
+
+        return nameReturned;
     }
     private ModelTemplateSO GetRandomModelTemplate(CharacterRace race)
     {
@@ -689,12 +731,18 @@ public class CharacterDataController : Singleton<CharacterDataController>
     }
     public void AutoGenerateAndCacheNewCharacterDeck()
     {
+        Debug.Log("AutoGenerateAndCacheNewCharacterDeck() called, generating");
         CharacterDeck.Clear();
         CharacterDeck = GenerateCharacterDeck();
         CharacterDeck.Shuffle();
     }
     public void AutoGenerateAndCacheDailyCharacterRecruits(int totalRecruits)
     {
+        Debug.Log("AutoGenerateAndCacheDailyCharacterRecruits() called, generating " + totalRecruits.ToString() +
+            " new recruits.");
+
+        DailyRecruits.Clear();
+
         for(int i = 0; i < totalRecruits; i++)
         {
             // Generate new character deck if deck is empty

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4f6f3ac19f3b24389408288d63c16e, type: 3}
   m_Name: Death Knight 1
   m_EditorClassIdentifier: 
-  templateName: Death Knight 1
+  templateName: Death Knight
   possibleDecks:
   - {fileID: 11400000, guid: bd84ac5a897c53f489bdd7d7f700ed10, type: 2}
   possibleOutfits:

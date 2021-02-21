@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4f6f3ac19f3b24389408288d63c16e, type: 3}
   m_Name: Warrior 1
   m_EditorClassIdentifier: 
-  templateName: Warrior 1
+  templateName: Warrior
   possibleDecks:
   - {fileID: 11400000, guid: 063762ac2e3d8d74e92bd02a960826af, type: 2}
   possibleOutfits:

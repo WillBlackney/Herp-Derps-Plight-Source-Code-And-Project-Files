@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4f6f3ac19f3b24389408288d63c16e, type: 3}
   m_Name: Battle Mage 1
   m_EditorClassIdentifier: 
-  templateName: Battle Mage 1
+  templateName: Battle Mage
   possibleDecks:
   - {fileID: 11400000, guid: dce2cb3bbfcca8b42be1164ea4c2889f, type: 2}
   possibleOutfits:

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4f6f3ac19f3b24389408288d63c16e, type: 3}
   m_Name: Elementalist 1
   m_EditorClassIdentifier: 
-  templateName: Elementalist 1
+  templateName: Elementalist
   possibleDecks:
   - {fileID: 11400000, guid: a038eaa58eaca0340be04b397f7581a4, type: 2}
   possibleOutfits:

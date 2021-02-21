@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4f6f3ac19f3b24389408288d63c16e, type: 3}
   m_Name: Juggernaut 1
   m_EditorClassIdentifier: 
-  templateName: Juggernaut 1
+  templateName: Juggernaut
   possibleDecks:
   - {fileID: 11400000, guid: e2b3c0c97212aaa45926454aab3b477d, type: 2}
   possibleOutfits:
