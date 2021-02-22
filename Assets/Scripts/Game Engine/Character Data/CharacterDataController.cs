@@ -105,6 +105,13 @@ public class CharacterDataController : Singleton<CharacterDataController>
         AllPlayerCharacters.Add(newChar);
         return newChar;
     }
+    public void HandleRecruitCharacter(CharacterData newCharacter)
+    {
+        AllPlayerCharacters.Add(newCharacter);
+        DailyRecruits.Remove(newCharacter);
+        CharacterPanelViewController.Instance.RebuildAllViews();
+        TownViewController.Instance.OnCharacterRecruited(newCharacter);
+    }
 
     #endregion
 

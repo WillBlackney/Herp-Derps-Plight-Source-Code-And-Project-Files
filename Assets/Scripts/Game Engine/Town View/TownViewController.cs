@@ -328,6 +328,16 @@ public class TownViewController : Singleton<TownViewController>
     {
         BuildAllRecruitCharacterTabsFromDataSet(CharacterDataController.Instance.DailyRecruits);
     }
+    public void OnCharacterRecruited(CharacterData data)
+    {
+        foreach(RecruitCharacterTab tab in recruitCharacterTabs)
+        {
+            if(tab.characterDataRef == data)
+            {
+                tab.gameObject.SetActive(false);
+            }
+        }
+    }
     private void HideRecruitCharactersPage()
     {
         recruitPageVisualParent.SetActive(false);

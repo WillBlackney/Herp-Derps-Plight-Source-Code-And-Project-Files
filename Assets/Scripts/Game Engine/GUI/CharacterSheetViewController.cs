@@ -162,14 +162,14 @@ public class CharacterSheetViewController : Singleton<CharacterSheetViewControll
     {
         DisableMainView();
     }
-    public void OnCharacterPanelViewClicked(CharacterPanelView panel)
+    public void OnAnyCharacterPanelViewClicked(CharacterData data)
     {
         if(MainVisualParent.activeSelf == false)
         {
             EnableMainView();
             FadeInMainView();
         }        
-        BuildFrontPageDefaultViewState(panel.characterDataRef);
+        BuildFrontPageDefaultViewState(data);
     }
     public void OnDeckPageButtonClicked()
     {

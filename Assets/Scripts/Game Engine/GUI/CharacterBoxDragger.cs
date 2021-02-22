@@ -13,6 +13,7 @@ public class CharacterBoxDragger : Singleton<CharacterBoxDragger>
 
     [Header("Properties")]
     private CharacterPanelView currentPanelDragging;
+    private RecruitCharacterTab currentRecruitDragging;
     private ChooseCombatCharacterSlot slotMousedOver;
 
 
@@ -39,7 +40,7 @@ public class CharacterBoxDragger : Singleton<CharacterBoxDragger>
     }
     private void FollowMouse()
     {
-        if (currentPanelDragging)
+        if (currentPanelDragging || currentRecruitDragging)
         {
             Vector3 mousePos = CameraManager.Instance.MainCamera.ScreenToWorldPoint(Input.mousePosition);
             Vector3 newPos = new Vector3(mousePos.x, mousePos.y, 0);
@@ -76,7 +77,7 @@ public class CharacterBoxDragger : Singleton<CharacterBoxDragger>
     }
     public void OnCharacterPanelViewDragEnd()
     {    
-        if (IsDragDropValid())
+        if (IsCharacterPanelDragDropValid())
         {
             // Check if slot is already occupied
             if(SlotMousedOver.characterDataRef != null)
@@ -88,6 +89,20 @@ public class CharacterBoxDragger : Singleton<CharacterBoxDragger>
         }
 
         currentPanelDragging = null;
+        HideBox();
+    }
+    public void OnRecruitCharacterTabDragStart(RecruitCharacterTab tab)
+    {
+        currentRecruitDragging = tab;
+        BuildBoxViewFromCharacterData(tab.characterDataRef);
+        ShowBox();
+    }
+    public void OnRecruitCharacterTabDragEnd()
+    {
+        if (IsRecruitCharacterDragDropValid())        
+            CharacterDataController.Instance.HandleRecruitCharacter(currentRecruitDragging.characterDataRef);        
+
+        currentRecruitDragging = null;
         HideBox();
     }
     public void OnChooseCombatSlotMouseEnter(ChooseCombatCharacterSlot slot)
@@ -104,7 +119,7 @@ public class CharacterBoxDragger : Singleton<CharacterBoxDragger>
         TownViewController.Instance.RemoveCharacterFromSelectedCombatCharacters(slot.characterDataRef);
         TownViewController.Instance.ResetChooseCombatSlot(slot);
     }
-    private bool IsDragDropValid()
+    private bool IsCharacterPanelDragDropValid()
     {
         return SlotMousedOver != null;
 
@@ -117,6 +132,17 @@ public class CharacterBoxDragger : Singleton<CharacterBoxDragger>
          * how to handle these things?
          * 
          */
+    }
+    private bool IsRecruitCharacterDragDropValid()
+    {
+        if (CharacterPanelViewController.Instance.MouseIsOverRoster &&
+            CharacterDataController.Instance.CurrentMaxRosterSize >
+            CharacterDataController.Instance.AllPlayerCharacters.Count)        
+            return true;
+        
+        else
+            return false;
+        
     }
     #endregion
 

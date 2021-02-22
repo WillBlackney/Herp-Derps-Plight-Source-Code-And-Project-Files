@@ -60,6 +60,7 @@ public class PersistencyManager : Singleton<PersistencyManager>
         }       
 
         // TESTING: REMOVE LATER
+        /*
         foreach (CharacterTemplateSO d in CharacterDataController.Instance.AllCharacterTemplatesSOs)
         {
             // Create new character from data
@@ -69,6 +70,7 @@ public class PersistencyManager : Singleton<PersistencyManager>
             CharacterDataController.Instance.AutoAddCharactersRacialCard(newCharacter);
             CharacterDataController.Instance.CloneNewCharacterToPlayerRoster(newCharacter);
         }
+        */
 
         // Build general data
         PlayerDataManager.Instance.ModifyCurrentGold(GlobalSettings.Instance.startingGold);

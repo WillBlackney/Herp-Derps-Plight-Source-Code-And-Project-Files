@@ -6,6 +6,9 @@ public class CharacterPanelViewController : Singleton<CharacterPanelViewControll
 {
     // Properties + Components
     #region
+    [Header("Properties")]
+    bool mouseIsOverRoster;
+
     [Header("Core Component References")]
     [SerializeField] GameObject visualParent;
 
@@ -22,6 +25,10 @@ public class CharacterPanelViewController : Singleton<CharacterPanelViewControll
     public CharacterPanelView[] AllCharacterPanels
     {
         get { return allCharacterPanels; }
+    }
+    public bool MouseIsOverRoster
+    {
+        get { return mouseIsOverRoster; }
     }
     #endregion
 
@@ -91,7 +98,25 @@ public class CharacterPanelViewController : Singleton<CharacterPanelViewControll
     }
     public void OnCharacterPanelViewClicked(CharacterPanelView panel)
     {
-        CharacterSheetViewController.Instance.OnCharacterPanelViewClicked(panel);
+        CharacterSheetViewController.Instance.OnAnyCharacterPanelViewClicked(panel.characterDataRef);
+    }
+    public void OnRecruitCharacterTabClicked(RecruitCharacterTab tab)
+    {
+        CharacterSheetViewController.Instance.OnAnyCharacterPanelViewClicked(tab.characterDataRef);
+    }
+    #endregion
+
+    // Input Logic + Listeners
+    #region
+    public void OnRosterBoxMouseEnter()
+    {
+        Debug.Log("CharacterPanelViewController.OnRosterBoxMouseEnter() called...");
+        mouseIsOverRoster = true;
+    }
+    public void OnRosterBoxMouseExit()
+    {
+        Debug.Log("CharacterPanelViewController.OnRosterBoxMouseExit() called...");
+        mouseIsOverRoster = false;
     }
     #endregion
 }
