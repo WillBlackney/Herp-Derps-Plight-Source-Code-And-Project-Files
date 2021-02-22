@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fiery Slash +1
   m_EditorClassIdentifier: 
   cardName: Fiery Slash +1
-  cardDescription: "Deal 18 Magic Damage. \nAdd a burn to your hand."
+  cardDescription: Deal Physical damage. Apply 6 Burning.
   cardSprite: {fileID: 21300000, guid: 76062c60d3cf73a45a8c48cfc151d8c2, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -55,15 +55,19 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Add a '
+    phrase: 'Apply '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '6 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Burn '
+    phrase: Burning
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: card to your hand.
+    phrase: .
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 6
@@ -96,7 +100,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 18
+    baseDamageValue: 10
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
@@ -199,7 +203,7 @@ MonoBehaviour:
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
   - weaponRequirement: 0
-    cardEffectType: 1
+    cardEffectType: 3
     splitTargetEffect: 0
     splitTargetType: 0
     characterSummoned: {fileID: 0}
@@ -247,8 +251,8 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: 0
-      passiveStacks: 0
+      passiveData: 2
+      passiveStacks: 6
     cardAdded: {fileID: 11400000, guid: e4da3cf9bac315a4586b6ba520cf9a90, type: 2}
     copiesAdded: 1
     blessingsGained: 0
@@ -274,6 +278,6 @@ MonoBehaviour:
   cardEventListeners: []
   cardPassiveEffects: []
   keyWordModels:
-  - kewWordType: 11
+  - kewWordType: 8
     weaponRequirement: 0
-    passiveType: 0
+    passiveType: 2

@@ -15,6 +15,7 @@ MonoBehaviour:
   templateName: Wayfarer
   possibleDecks:
   - {fileID: 11400000, guid: 6e63fc7e6c1402c4ea1ae9fb1d2e6d4c, type: 2}
+  - {fileID: 11400000, guid: e7bf56fbc67372e45aa615eaf3c2af0d, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: 2313e3069df944346bfa975e80a659ca, type: 2}
   possibleWeapons:

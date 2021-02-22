@@ -61,6 +61,9 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [LabelWidth(200)]
     public int startingMaxRosterSize;
 
+    [LabelWidth(200)]
+    public int startingRecruitsPerDay;
+
     // Audio Settings
     [Header("Audio Settings")]
     [LabelWidth(200)]

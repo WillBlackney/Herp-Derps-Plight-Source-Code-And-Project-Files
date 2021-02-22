@@ -15,6 +15,7 @@ MonoBehaviour:
   templateName: Elementalist
   possibleDecks:
   - {fileID: 11400000, guid: a038eaa58eaca0340be04b397f7581a4, type: 2}
+  - {fileID: 11400000, guid: db223d86c0edf4443898b84901b940b3, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: 71b7fecf586fb3243b5ed314eb66a131, type: 2}
   - {fileID: 11400000, guid: 0149b6bcfa9a7b14b9a41bf9678b38cc, type: 2}

@@ -15,6 +15,7 @@ MonoBehaviour:
   templateName: Shadowmancer
   possibleDecks:
   - {fileID: 11400000, guid: e5db80c470ca38f478cad3761e417693, type: 2}
+  - {fileID: 11400000, guid: 6a770ae53594e1440a1561bc3fa53b80, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: db48cb3bc4cb7934a887c0700bae2382, type: 2}
   - {fileID: 11400000, guid: fb324dae066af714e865daf4ddd774f0, type: 2}

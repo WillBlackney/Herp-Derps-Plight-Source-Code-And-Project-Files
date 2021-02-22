@@ -15,6 +15,7 @@ MonoBehaviour:
   templateName: Assassin
   possibleDecks:
   - {fileID: 11400000, guid: 2b2518ea7b2e52c40acb67229a560289, type: 2}
+  - {fileID: 11400000, guid: 9cc30399c64398846881a66172b9f3f7, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: c762ab1da317a114fa1f3f0ab9f44250, type: 2}
   - {fileID: 11400000, guid: 88c9a135f9adcfe41854412f2ff07ca9, type: 2}

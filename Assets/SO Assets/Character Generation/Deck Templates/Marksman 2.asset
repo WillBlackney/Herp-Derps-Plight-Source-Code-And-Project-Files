@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 037dbb91702418b4e869afd5641058c4, type: 3}
+  m_Name: Marksman 2
+  m_EditorClassIdentifier: 
+  cards:
+  - {fileID: 11400000, guid: cee9929222ec7e34bbb1593ae7ad23b5, type: 2}
+  - {fileID: 11400000, guid: 4fa47f450ff530d47884c246293bb23a, type: 2}
+  - {fileID: 11400000, guid: e74b37417c31bac4f853047f01e6be3d, type: 2}
+  - {fileID: 11400000, guid: e74b37417c31bac4f853047f01e6be3d, type: 2}
+  - {fileID: 11400000, guid: 34b829276cefc0b498814b7127285085, type: 2}
+  - {fileID: 11400000, guid: 34b829276cefc0b498814b7127285085, type: 2}
+  - {fileID: 11400000, guid: 87754b7748bb31947acb4178c8beb7c3, type: 2}
+  - {fileID: 11400000, guid: 87754b7748bb31947acb4178c8beb7c3, type: 2}

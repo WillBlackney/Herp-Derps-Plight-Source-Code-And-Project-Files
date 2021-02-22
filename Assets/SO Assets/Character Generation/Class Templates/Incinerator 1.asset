@@ -15,6 +15,7 @@ MonoBehaviour:
   templateName: Incinerator
   possibleDecks:
   - {fileID: 11400000, guid: 2ed84fa971d4e1c4bacb26850a4e8097, type: 2}
+  - {fileID: 11400000, guid: 06854a0c13ff76b4abe9dcee7ab40acd, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: c86c117027dca424a9c907a44f867181, type: 2}
   possibleWeapons:

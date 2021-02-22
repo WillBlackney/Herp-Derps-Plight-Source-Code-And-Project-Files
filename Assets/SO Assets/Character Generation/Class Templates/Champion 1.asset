@@ -15,6 +15,7 @@ MonoBehaviour:
   templateName: Champion
   possibleDecks:
   - {fileID: 11400000, guid: 3e27ced14723dde4587818f9258e4a55, type: 2}
+  - {fileID: 11400000, guid: 3f858cab633a36549aa62a9c4facf61e, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: 587cb65ed7d72cf49bfc5a8804a81d30, type: 2}
   - {fileID: 11400000, guid: 57e3a206564557142b7ad153b5a7b48d, type: 2}

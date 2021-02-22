@@ -122,13 +122,13 @@ public static class EntityLogic
         Debug.Log("EntityLogic.GetTotalCrit() called for " + entity.myName + "...");
 
         // Base crit
-        int critTeurned = entity.baseCrit;
-        Debug.Log(entity.myName + " base crit: " + critTeurned.ToString());
+        int critReturned = entity.baseCrit;
+        Debug.Log(entity.myName + " base crit: " + critReturned.ToString());
 
         // Bonus wits
-        critTeurned += entity.wits;
-        Debug.Log("Value after wits added: " + critTeurned.ToString());
-        return critTeurned;
+        critReturned +=  (int) (entity.wits / 2f);
+        Debug.Log("Value after wits added: " + critReturned.ToString());
+        return critReturned;
     }
     public static int GetTotalCritModifier(CharacterEntityModel entity)
     {

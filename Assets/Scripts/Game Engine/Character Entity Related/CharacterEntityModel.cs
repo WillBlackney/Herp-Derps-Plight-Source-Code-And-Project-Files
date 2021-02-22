@@ -78,7 +78,7 @@ public class CharacterEntityModel
 
     public int MaxHealthTotal
     {
-        get { return (int)System.Math.Round(maxHealth * (constitution / 10f)); }
+        get { return (int)System.Math.Round(maxHealth * (constitution / 20f)); }
     }
 
 }

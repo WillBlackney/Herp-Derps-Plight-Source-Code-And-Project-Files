@@ -9,6 +9,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
     [Header("Properties")]
     private List<CharacterData> allPlayerCharacters = new List<CharacterData>();
     private int currentMaxRosterSize;
+    private int recruitsPerDay;
     private List<CharacterData> characterDeck = new List<CharacterData>();
     private List<CharacterData> dailyRecruits = new List<CharacterData>();
     private List<CharacterRace> validCharacterRaces = new List<CharacterRace>
@@ -36,6 +37,11 @@ public class CharacterDataController : Singleton<CharacterDataController>
 
     // Accessors + Getters
     #region
+    public int RecruitsPerDay
+    {
+        get { return recruitsPerDay; }
+        private set { recruitsPerDay = value; }
+    }
     public int CurrentMaxRosterSize
     {
         get { return currentMaxRosterSize; }
@@ -762,6 +768,10 @@ public class CharacterDataController : Singleton<CharacterDataController>
             DailyRecruits.Add(CharacterDeck[0]);
             CharacterDeck.Remove(CharacterDeck[0]);
         }
+    }
+    public void SetRecruitsPerDay(int newSize)
+    {
+        RecruitsPerDay = newSize;
     }
     #endregion
 

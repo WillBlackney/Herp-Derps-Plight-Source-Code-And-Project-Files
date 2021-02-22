@@ -15,6 +15,7 @@ MonoBehaviour:
   templateName: Shaman
   possibleDecks:
   - {fileID: 11400000, guid: 56e9fed956b29824c8a5aaaf80eab019, type: 2}
+  - {fileID: 11400000, guid: f0e516161ed255b4c8a0d9454aa401e9, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: d7a6d2991d86e8f479a1a1970e5e4620, type: 2}
   - {fileID: 11400000, guid: a1b63016e1e0c574fbb4ea6ae312b7e7, type: 2}

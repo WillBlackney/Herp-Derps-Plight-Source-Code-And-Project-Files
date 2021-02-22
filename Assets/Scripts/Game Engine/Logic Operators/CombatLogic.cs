@@ -195,7 +195,7 @@ public class CombatLogic : Singleton<CombatLogic>
             // strength
             if(damageType == DamageType.Physical)
             {
-                float strengthMod = EntityLogic.GetTotalStrength(attacker) / 10f;
+                float strengthMod = EntityLogic.GetTotalStrength(attacker) / 20f;
                 strengthMod -= 1f;
                 damageModifier += strengthMod;
                 Debug.Log("Strength mod =  " + strengthMod.ToString());
@@ -204,7 +204,7 @@ public class CombatLogic : Singleton<CombatLogic>
             // intelligence
             if (damageType == DamageType.Magic)
             {
-                float intMod = EntityLogic.GetTotalIntelligence(attacker) / 10f;
+                float intMod = EntityLogic.GetTotalIntelligence(attacker) / 20f;
                 intMod -= 1f;
                 damageModifier += intMod;
                 Debug.Log("Intelligence mod =  " + intMod.ToString());

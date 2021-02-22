@@ -15,6 +15,8 @@ MonoBehaviour:
   templateName: Priest
   possibleDecks:
   - {fileID: 11400000, guid: f888652b3bd91854abd16793dbda78de, type: 2}
+  - {fileID: 11400000, guid: ef020b92fe7c0c048ad3d18097a59900, type: 2}
+  - {fileID: 11400000, guid: 9013b86b3b0bb734ca6a956e9fc2da68, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: 2bacfc308f5f45a408e1da96cebe130f, type: 2}
   possibleWeapons:

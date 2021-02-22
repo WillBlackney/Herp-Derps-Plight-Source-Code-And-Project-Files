@@ -15,6 +15,7 @@ MonoBehaviour:
   templateName: Battle Mage
   possibleDecks:
   - {fileID: 11400000, guid: dce2cb3bbfcca8b42be1164ea4c2889f, type: 2}
+  - {fileID: 11400000, guid: a15c62f02589f224e87169bddbe5d45f, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: 2d8f475668e63954abba1952c834d845, type: 2}
   - {fileID: 11400000, guid: 1fa593d6c63501b4cb9212154e22374b, type: 2}

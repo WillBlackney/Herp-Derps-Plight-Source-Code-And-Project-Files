@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: Guardian Aura
   m_EditorClassIdentifier: 
   cardName: Guardian Aura
-  cardDescription: On activation end, give 5 Block to all allies.
+  cardDescription: On activation end, give 4 Block to self and allies. Expend.
   cardSprite: {fileID: 21300000, guid: 0fb274f4ae833334ea758f7191324fa8, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
   cardType: 4
   targettingType: 0
   talentSchool: 5
-  rarity: 2
+  rarity: 1
   upgradeable: 1
   upgradeLevel: 0
-  expend: 0
+  expend: 1
   innate: 0
   fleeting: 0
   unplayable: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '5 '
+    phrase: 5
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -49,12 +49,27 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: to all allies.
+    phrase: 'to self and allies.
+
+'
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Expend
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -138,5 +153,8 @@ MonoBehaviour:
   cardPassiveEffects: []
   keyWordModels:
   - kewWordType: 9
+    weaponRequirement: 0
+    passiveType: 0
+  - kewWordType: 1
     weaponRequirement: 0
     passiveType: 0

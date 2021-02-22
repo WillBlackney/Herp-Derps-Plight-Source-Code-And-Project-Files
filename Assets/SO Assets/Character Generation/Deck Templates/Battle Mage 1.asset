@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Battle Mage 1
   m_EditorClassIdentifier: 
   cards:
+  - {fileID: 11400000, guid: 25f889ca097d2c742a862cb5f2097476, type: 2}
   - {fileID: 11400000, guid: c06d99a9268bd124c80720801c12d236, type: 2}
   - {fileID: 11400000, guid: c06d99a9268bd124c80720801c12d236, type: 2}
-  - {fileID: 11400000, guid: 0163cb54b6898bf46aab115bc74d0350, type: 2}
-  - {fileID: 11400000, guid: 0163cb54b6898bf46aab115bc74d0350, type: 2}
   - {fileID: 11400000, guid: 91a684a63c896f94fae7a593b1d28422, type: 2}
-  - {fileID: 11400000, guid: c29964ec64c216a41ac3fd20a356a5f5, type: 2}
+  - {fileID: 11400000, guid: 3587b8c7f77c41d4eafbc12793734665, type: 2}
+  - {fileID: 11400000, guid: ef2b9ffdee54c0a48adddcc159a622a3, type: 2}
   - {fileID: 11400000, guid: c62cea059d102884a8aabb11de5b070c, type: 2}
   - {fileID: 11400000, guid: c62cea059d102884a8aabb11de5b070c, type: 2}

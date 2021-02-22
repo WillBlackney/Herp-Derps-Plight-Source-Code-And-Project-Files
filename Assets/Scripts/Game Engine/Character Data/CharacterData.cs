@@ -18,16 +18,16 @@ public class CharacterData
     public int maxHealth;
 
     [Header("Primary Attributes")]
-    public int strength = 10;
-    public int intelligence = 10;
-    public int dexterity = 10;
-    public int wits = 10;
-    public int constitution = 10;
+    public int strength = 20;
+    public int intelligence = 20;
+    public int dexterity = 20;
+    public int wits = 20;
+    public int constitution = 20;
 
     [Header("Secondary Attributes")]
-    public int stamina = 3;
+    public int stamina = 2;
     public int initiative = 0;
-    public int draw = 5;
+    public int draw = 2;
     public int power = 0;
     public int baseCrit = 0;
     public int critModifier = 30;
@@ -58,6 +58,6 @@ public class CharacterData
     // Getters
     public int MaxHealthTotal
     {
-        get { return (int) Math.Round(maxHealth * (constitution / 10f)); }
+        get { return (int) Math.Round(maxHealth * (constitution / 20f)); }
     }
 }

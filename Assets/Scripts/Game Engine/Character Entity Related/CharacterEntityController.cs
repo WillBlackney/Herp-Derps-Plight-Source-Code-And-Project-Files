@@ -1472,7 +1472,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Guardian Aura!"), QueuePosition.Back, 0, 0.5f);
 
             // give all allies (but not self) block.
-            foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(entity, false))
+            foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(entity))
             {
                 GainBlock(ally, CombatLogic.Instance.CalculateBlockGainedByEffect(entity.pManager.guardianAuraStacks, entity, ally));
             }

@@ -823,7 +823,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         ProgressionController.Instance.SetDayNumber(ProgressionController.Instance.DayNumber + 1);
         ProgressionController.Instance.SetDailyCombatChoices(CombatGenerationController.Instance.GenerateWeeklyCombatChoices());
         ProgressionController.Instance.SetCheckPoint(SaveCheckPoint.TownDayStart);
-        CharacterDataController.Instance.AutoGenerateAndCacheDailyCharacterRecruits(2);
+        CharacterDataController.Instance.AutoGenerateAndCacheDailyCharacterRecruits(CharacterDataController.Instance.RecruitsPerDay);
 
         // to do: generate and cache new recruitable characters here
 

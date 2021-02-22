@@ -15,6 +15,7 @@ MonoBehaviour:
   templateName: Arcanist
   possibleDecks:
   - {fileID: 11400000, guid: ff9a7de8f9222f84eb4c901b007471ac, type: 2}
+  - {fileID: 11400000, guid: b8e4918f11ee8944ea8b2b4c068c74ee, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: 605c8a24fc67ab24496745385b297f64, type: 2}
   - {fileID: 11400000, guid: 4ac02cb8cb68f584a8045c7ba2ca7b70, type: 2}

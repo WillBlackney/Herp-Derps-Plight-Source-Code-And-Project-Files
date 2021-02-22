@@ -75,6 +75,7 @@ public class PersistencyManager : Singleton<PersistencyManager>
         // Build general data
         PlayerDataManager.Instance.ModifyCurrentGold(GlobalSettings.Instance.startingGold);
         CharacterDataController.Instance.SetMaxRosterSize(GlobalSettings.Instance.startingMaxRosterSize);
+        CharacterDataController.Instance.SetRecruitsPerDay(GlobalSettings.Instance.startingRecruitsPerDay);
 
         // Generate first day data        
         ProgressionController.Instance.SetDayNumber(1);
@@ -83,7 +84,7 @@ public class PersistencyManager : Singleton<PersistencyManager>
 
         // Generate recruitable characters
         CharacterDataController.Instance.AutoGenerateAndCacheNewCharacterDeck();
-        CharacterDataController.Instance.AutoGenerateAndCacheDailyCharacterRecruits(2);
+        CharacterDataController.Instance.AutoGenerateAndCacheDailyCharacterRecruits(CharacterDataController.Instance.RecruitsPerDay);
 
         // START SAVE!    
         //SaveGameToDisk(newSave);
