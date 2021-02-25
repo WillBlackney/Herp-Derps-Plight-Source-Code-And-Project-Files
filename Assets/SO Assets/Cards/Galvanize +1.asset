@@ -41,7 +41,7 @@ MonoBehaviour:
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Temporary Power '
+    phrase: 'Power '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -118,7 +118,7 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: 33
+      passiveData: 23
       passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0

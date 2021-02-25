@@ -264,7 +264,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.initiative = template.initiative;
         newCharacter.baseCrit = template.baseCrit;
         newCharacter.critModifier = template.critModifier;
-        newCharacter.baseFirstActivationDrawBonus = template.baseFristActivationDrawBonus;
+        newCharacter.baseFirstActivationDrawBonus = template.baseFirstActivationDrawBonus;
         newCharacter.draw = template.draw;
         newCharacter.power = template.power;
 
@@ -631,21 +631,30 @@ public class CharacterDataController : Singleton<CharacterDataController>
         ModifyCharacterAttributePoints(newCharacter, GlobalSettings.Instance.startingAttributePoints);
         HandleGainXP(newCharacter, GlobalSettings.Instance.startingXpBonus);
 
-        newCharacter.strength = ct.strength;
-        newCharacter.intelligence = ct.intelligence;
-        newCharacter.wits = ct.wits;
-        newCharacter.dexterity = ct.dexterity;
-        newCharacter.constitution = ct.constitution;
+        // Randomize base stats
+        newCharacter.strength = RandomGenerator.NumberBetween(18, 22);
+        newCharacter.intelligence = RandomGenerator.NumberBetween(18, 22);
+        newCharacter.wits = RandomGenerator.NumberBetween(18, 22);
+        newCharacter.dexterity = RandomGenerator.NumberBetween(18, 22);
+        newCharacter.constitution = RandomGenerator.NumberBetween(18, 22);
 
-        SetCharacterMaxHealth(newCharacter, ct.maxHealth);
+        // Apply stat modifier from template
+        newCharacter.strength += ct.strengthMod;
+        newCharacter.intelligence += ct.intelligenceMod;
+        newCharacter.wits += ct.witsMod;
+        newCharacter.dexterity += ct.dexterityMod;
+        newCharacter.constitution += ct.constitutionMod;
+
+        // Randomize health
+        SetCharacterMaxHealth(newCharacter, RandomGenerator.NumberBetween(95, 105));
         SetCharacterHealth(newCharacter, newCharacter.MaxHealthTotal);
 
         newCharacter.stamina = 2;
         newCharacter.initiative = 10;
         newCharacter.baseCrit = 0;
         newCharacter.critModifier = 30;
-        newCharacter.baseFirstActivationDrawBonus = 2;
-        newCharacter.draw = 2;
+        newCharacter.baseFirstActivationDrawBonus = 0;
+        newCharacter.draw = 4;
         newCharacter.power = 0;
 
         newCharacter.attributePoints = 0;

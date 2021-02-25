@@ -59,7 +59,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '6 '
+    phrase: '5 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -252,7 +252,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 2
-      passiveStacks: 6
+      passiveStacks: 5
     cardAdded: {fileID: 11400000, guid: e4da3cf9bac315a4586b6ba520cf9a90, type: 2}
     copiesAdded: 1
     blessingsGained: 0

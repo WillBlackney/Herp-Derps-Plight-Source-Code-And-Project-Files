@@ -27,11 +27,11 @@ MonoBehaviour:
     offHandItem: {fileID: 11400000, guid: a49466273aff6954d8e0303879ded604, type: 2}
     trinketOne: {fileID: 0}
     trinketTwo: {fileID: 0}
-  strength: 10
-  intelligence: 10
-  dexterity: 12
-  wits: 10
-  constitution: 10
+  strengthMod: 0
+  intelligenceMod: 0
+  dexterityMod: 3
+  witsMod: 0
+  constitutionMod: 1
   maxHealth: 100
   talentPairings:
   - talentSchool: 5

@@ -134,7 +134,12 @@ public class EnemyActionEffect
     [LabelWidth(150)]
     public AnimationEventData[] summonedCreatureVisualEvents;
 
-   
+    // Heal Properties
+    [VerticalGroup("Healing Properties")]
+    [ShowIf("ShowHealProperties")]
+    [LabelWidth(150)]
+    public int healAmount;   
+
 
     // Status properties
     [VerticalGroup("Status Properties")]
@@ -190,7 +195,10 @@ public class EnemyActionEffect
             return false;
         }
     }
-
+    public bool ShowHealProperties()
+    {
+        return actionType == ActionType.HealAlliesAndSelf || actionType == ActionType.HealAlly || actionType == ActionType.HealSelf;
+    }
     public bool ShowStatus()
     {
         if (actionType == ActionType.BuffAllAllies ||

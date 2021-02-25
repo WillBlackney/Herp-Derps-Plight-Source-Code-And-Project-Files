@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Feel No Pain
   m_EditorClassIdentifier: 
   cardName: Feel No Pain
-  cardDescription: Lose 6 HP. Gain 1 Barrier.
+  cardDescription: Lose 5 HP. Gain 1 Barrier.
   cardSprite: {fileID: 21300000, guid: c4c42964efc9980419ffab8aedd7f1f4, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
@@ -65,6 +65,11 @@ MonoBehaviour:
     cardEffectType: 14
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -99,7 +104,7 @@ MonoBehaviour:
     useEachIndividualsStackCount: 1
     damageType: 0
     healthRestored: 0
-    healthLost: 6
+    healthLost: 5
     energyGained: 0
     cardsDrawn: 0
     extraDrawEffect: 0
@@ -163,6 +168,11 @@ MonoBehaviour:
     cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0

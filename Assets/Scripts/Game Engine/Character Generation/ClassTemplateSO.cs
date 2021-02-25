@@ -14,11 +14,11 @@ public class ClassTemplateSO : ScriptableObject
     public List<SerializedItemManagerModel> possibleWeapons = new List<SerializedItemManagerModel>();
 
     [Header("Core Attributes")]
-    public int strength;
-    public int intelligence;
-    public int dexterity;
-    public int wits;
-    public int constitution;
+    public int strengthMod;
+    public int intelligenceMod;
+    public int dexterityMod;
+    public int witsMod;
+    public int constitutionMod;
 
     [Header("Secondary Attributes")]
     public int maxHealth;

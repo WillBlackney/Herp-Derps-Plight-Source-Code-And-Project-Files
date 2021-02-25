@@ -23,7 +23,7 @@ MonoBehaviour:
   rarity: 3
   upgradeable: 0
   upgradeLevel: 1
-  expend: 0
+  expend: 1
   innate: 0
   fleeting: 0
   unplayable: 0
@@ -41,12 +41,22 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '5 '
+    phrase: '3 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: Overload
   - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '.
+
+'
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Expend
+  - color: 0
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: .
@@ -101,7 +111,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 57
-      passiveStacks: 5
+      passiveStacks: 3
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
@@ -160,3 +170,6 @@ MonoBehaviour:
   - kewWordType: 8
     weaponRequirement: 0
     passiveType: 18
+  - kewWordType: 1
+    weaponRequirement: 0
+    passiveType: 0

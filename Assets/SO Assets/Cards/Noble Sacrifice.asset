@@ -20,7 +20,7 @@ MonoBehaviour:
   xEnergyCost: 0
   cardEnergyCost: 1
   cardType: 1
-  targettingType: 2
+  targettingType: 1
   talentSchool: 5
   rarity: 1
   upgradeable: 1
@@ -61,7 +61,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: to self or ally.
+    phrase: to an ally.
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 14
@@ -106,7 +106,7 @@ MonoBehaviour:
     useEachIndividualsStackCount: 1
     damageType: 0
     healthRestored: 0
-    healthLost: 2
+    healthLost: 3
     energyGained: 0
     cardsDrawn: 0
     extraDrawEffect: 0

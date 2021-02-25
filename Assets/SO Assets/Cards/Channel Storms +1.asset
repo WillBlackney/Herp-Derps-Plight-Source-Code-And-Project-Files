@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Channel Storms +1
   m_EditorClassIdentifier: 
   cardName: Channel Storms +1
-  cardDescription: Spend all your energy. For each point spent, gain 3 Overload and
-    6 Block.
+  cardDescription: Spend all your energy. For each point spent, gain 1 Overload and
+    5 Block.
   cardSprite: {fileID: 21300000, guid: 6412b6900e39f1f4fad06fd7092946e6, type: 3}
   xEnergyCost: 1
   cardEnergyCost: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '3 '
+    phrase: '1 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -126,7 +126,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 18
-      passiveStacks: 3
+      passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
@@ -164,7 +164,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 6
+    blockGainValue: 5
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0

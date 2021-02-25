@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Lightning Bolt
   cardDescription: 'Deal 10 Magic damage.
 
-    Gain 2 Overload.'
+    Gain 1 Overload.'
   cardSprite: {fileID: 21300000, guid: c77c39b719f391d4382b7a303c86b271, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -61,7 +61,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '2 '
+    phrase: '1 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -239,7 +239,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 18
-      passiveStacks: 2
+      passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

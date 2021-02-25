@@ -1306,7 +1306,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
 
             // Discard Hand
-            //CardController.Instance.DiscardHandOnActivationEnd(entity);
+            CardController.Instance.DiscardHandOnActivationEnd(entity);
 
             // Fade out view
             CoroutineData fadeOutEvent = new CoroutineData();
@@ -2904,6 +2904,71 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 {
                     PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemyy.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0f, enemy.pManager);
                 }
+
+            }
+
+            // Heal Ally
+            else if (effect.actionType == ActionType.HealAlly)
+            {
+                if (target == null)
+                {
+                    target = enemy;
+                }
+
+                // Modify health
+                ModifyHealth(target, effect.healAmount);
+
+                // Heal VFX
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateHealEffect(target.characterEntityView.WorldPosition, effect.healAmount));
+
+                // Create heal text effect
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateDamageEffect(target.characterEntityView.WorldPosition, effect.healAmount, true));
+
+                // Create SFX
+                VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
+            }
+
+            // Heal Self
+            else if (effect.actionType == ActionType.HealAlly)
+            {
+                // Modify health
+                ModifyHealth(enemy, effect.healAmount);
+
+                // Heal VFX
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateHealEffect(enemy.characterEntityView.WorldPosition, effect.healAmount));
+
+                // Create heal text effect
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateDamageEffect(enemy.characterEntityView.WorldPosition, effect.healAmount, true));
+
+                // Create SFX
+                VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
+
+            }
+
+            // Heal All + Self
+            else if (effect.actionType == ActionType.HealAlliesAndSelf)
+            {
+                foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(enemy))
+                {
+                    // Modify health
+                    ModifyHealth(ally, effect.healAmount);
+
+                    // Heal VFX
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                        VisualEffectManager.Instance.CreateHealEffect(ally.characterEntityView.WorldPosition,  effect.healAmount));
+
+                    // Create heal text effect
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateDamageEffect(ally.characterEntityView.WorldPosition, effect.healAmount, true));                    
+
+                }
+
+                // Create SFX
+                VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
 
             }
 

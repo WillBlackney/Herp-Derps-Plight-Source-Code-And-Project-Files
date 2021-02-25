@@ -94,7 +94,7 @@ public class CharacterTemplateSO : ScriptableObject
     [BoxGroup("Secondary Attributes")]
     [LabelWidth(100)]
     [GUIColor("Blue")]
-    public int baseFristActivationDrawBonus = 2;
+    public int baseFirstActivationDrawBonus = 0;
 
     // Passive Traits
     [BoxGroup("Passive Data", centerLabel: true)]

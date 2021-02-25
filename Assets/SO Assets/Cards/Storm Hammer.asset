@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Storm Hammer
   m_EditorClassIdentifier: 
   cardName: Storm Hammer
-  cardDescription: "Deal 20 Magic damage. \nGain 5 Overload."
+  cardDescription: "Deal 12 Magic damage. \nGain 3 Overload."
   cardSprite: {fileID: 21300000, guid: 38fa2a7e143d4ee4dbb946432cb79339, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -53,7 +53,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '5 '
+    phrase: '3 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -94,7 +94,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 20
+    baseDamageValue: 12
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
@@ -246,7 +246,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 18
-      passiveStacks: 5
+      passiveStacks: 3
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

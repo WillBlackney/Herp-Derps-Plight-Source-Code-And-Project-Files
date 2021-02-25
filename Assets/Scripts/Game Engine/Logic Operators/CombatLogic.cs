@@ -376,7 +376,7 @@ public class CombatLogic : Singleton<CombatLogic>
         if ((cardEffect != null ||
             enemyEffect != null) && valueReturned > 0)
         {
-            float dexMod = EntityLogic.GetTotalDexterity(caster) / 10f;
+            float dexMod = EntityLogic.GetTotalDexterity(caster) / 20f;
             float critMod = 0f;
             if (didCrit)
             {

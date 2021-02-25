@@ -15,14 +15,14 @@ MonoBehaviour:
   cardName: Noble Sacrifice +1
   cardDescription: 'Lose 2 HP.
 
-    Give an ally 16 Block.
+    Give an ally 15 Block.
 
     Innate'
   cardSprite: {fileID: 21300000, guid: 4837db294b1e18e4caadf772c80a4a2b, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
   cardType: 1
-  targettingType: 2
+  targettingType: 1
   talentSchool: 5
   rarity: 1
   upgradeable: 0
@@ -63,7 +63,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'to self or ally.
+    phrase: 'to an ally.
 
 '
   - color: 3
@@ -208,7 +208,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 16
+    blockGainValue: 15
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0

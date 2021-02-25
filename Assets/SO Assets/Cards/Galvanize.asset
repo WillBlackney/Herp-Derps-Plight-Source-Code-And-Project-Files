@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Galvanize
   m_EditorClassIdentifier: 
   cardName: Galvanize
-  cardDescription: "Give a target Temporary Power equal to your Overload. \nRemove
-    all Overload."
+  cardDescription: "Give a target Power equal to your Overload. \nRemove all Overload."
   cardSprite: {fileID: 21300000, guid: 3cda532218cd08d4ab9350e8760949d4, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -42,7 +41,7 @@ MonoBehaviour:
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Temporary Power '
+    phrase: 'Power '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -119,7 +118,7 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: 33
+      passiveData: 23
       passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0

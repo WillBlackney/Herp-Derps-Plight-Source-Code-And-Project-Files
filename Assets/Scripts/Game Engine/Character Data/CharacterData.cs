@@ -27,11 +27,11 @@ public class CharacterData
     [Header("Secondary Attributes")]
     public int stamina = 2;
     public int initiative = 0;
-    public int draw = 2;
+    public int draw = 4;
     public int power = 0;
     public int baseCrit = 0;
     public int critModifier = 30;
-    public int baseFirstActivationDrawBonus = 2;
+    public int baseFirstActivationDrawBonus = 0;
 
     [Header("XP + Level Properties")]
     public int currentLevel = 1;
