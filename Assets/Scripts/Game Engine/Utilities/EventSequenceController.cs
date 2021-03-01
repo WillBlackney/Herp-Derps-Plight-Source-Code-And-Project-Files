@@ -357,41 +357,6 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Start load combat process
         HandleLoadCombatEncounter(TownViewController.Instance.SelectedCombatEvent, ProgressionController.Instance.ChosenCombatCharacters);
     }
-    public void HandleLoadEncounter(EncounterType encounter)
-    {
-        Debug.LogWarning("EventSequenceController.HandleLoadEncounter()");
-
-        if ((encounter == EncounterType.BasicEnemy ||
-            encounter == EncounterType.EliteEnemy ||
-            encounter == EncounterType.BossEnemy) &&
-            ProgressionController.Instance.CheckPointType == SaveCheckPoint.CombatStart
-            )
-        {
-           // HandleLoadCombatEncounter(ProgressionController.Instance.CurrentCombatData);
-        }
-
-        else if ((encounter == EncounterType.BasicEnemy ||
-            encounter == EncounterType.EliteEnemy) &&
-            ProgressionController.Instance.CheckPointType == SaveCheckPoint.CombatEnd
-            )
-        {
-            BlackScreenController.Instance.FadeInScreen(1f);
-            LevelManager.Instance.EnableDungeonScenery();
-            LevelManager.Instance.ShowAllNodeViews();
-            CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
-            //StartCombatVictorySequence(encounter);
-        }
-
-        // TO DO IN FUTURE: boss loot events are different to basic/enemy, and 
-        // will require different loading logic here
-        else if ((encounter == EncounterType.BossEnemy) &&
-            ProgressionController.Instance.CheckPointType == SaveCheckPoint.CombatEnd
-            )
-        {
-           
-        }
-
-    }
     public void HandleLoadNextEncounter(MapNode mapNode)
     {
         StartCoroutine(HandleLoadNextEncounterCoroutine(mapNode));
@@ -772,6 +737,12 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
             // Generate loot
             LootController.Instance.SetAndCacheNewLootResult();
+
+            // Give player gold reward for combat
+            PlayerDataManager.Instance.ModifyCurrentGold(ProgressionController.Instance.CurrentCombatData.goldReward, false);
+
+            // TO DO: give player item reward + building token rewards
+            //
 
             // Save and set checkpoint + cache loot result
             ProgressionController.Instance.SetCheckPoint(SaveCheckPoint.CombatEnd);

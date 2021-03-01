@@ -55,7 +55,7 @@ public class CharacterSheetViewController : Singleton<CharacterSheetViewControll
 
     [Header("Attribute Box Components")]
     [SerializeField] private GameObject attributeBoxVisualParent;
-    [SerializeField] private TextMeshProUGUI attributePointsText;
+    [SerializeField] private TextMeshProUGUI attributeRollCountText;
 
     [SerializeField] private TextMeshProUGUI strengthText;
     [SerializeField] private TextMeshProUGUI intelligenceText;
@@ -71,6 +71,11 @@ public class CharacterSheetViewController : Singleton<CharacterSheetViewControll
 
     [Header("Traits Box Components")]
     [SerializeField] private GameObject traitsBoxVisualParent;
+
+    [Header("Increase Attribute Page Components")]
+    [SerializeField] private GameObject increaseAttributePageVisualParent;
+    [SerializeField] private CanvasGroup increaseAttributePageCg;
+    
 
     #endregion
 
@@ -419,7 +424,7 @@ public class CharacterSheetViewController : Singleton<CharacterSheetViewControll
             TalentPairingModel tpm = CharacterDataController.Instance.HandlePlayerGainTalent(currentCharacterViewing, panel.TalentSchool, 1);
 
             // Update gui            
-            talentPointsText.text = currentCharacterViewing.talentPoints.ToString();
+            SetTalentPointsText(currentCharacterViewing.talentPoints.ToString());
             panel.SetTierText(tpm.talentLevel.ToString());
             if (tpm.talentLevel == 2)
             {
@@ -451,6 +456,7 @@ public class CharacterSheetViewController : Singleton<CharacterSheetViewControll
     }
     private void SetTalentPointsText(string text)
     {
+        Debug.Log("CharacterSheetViewController.SetTalentPointsText() called, value = " + text);
         talentPointsText.text = text;
     }
     private void BuildTalentPanelsFromCharacterData(CharacterData character)
@@ -506,11 +512,12 @@ public class CharacterSheetViewController : Singleton<CharacterSheetViewControll
     private void BuildAttributeBoxFromData(CharacterData character)
     {
         BuildAttributePanelsFromCharacterData(character);
-        SetAttributePointsText(character.attributePoints.ToString());
+        SetAttributeRollCountText(character.attributeRollResults.Count.ToString());
     }
     private void BuildAttributePanelsFromCharacterData(CharacterData character)
     {
         // Disable all plus buttons
+
         strengthPlusButton.SetActive(false);
         intelligencePlusButton.SetActive(false);
         dexterityPlusButton.SetActive(false);
@@ -563,9 +570,9 @@ public class CharacterSheetViewController : Singleton<CharacterSheetViewControll
         if (character.constitution < 20 && character.attributePoints > 0)
             constitutionPlusButton.SetActive(true);
     }
-    private void SetAttributePointsText(string text)
+    private void SetAttributeRollCountText(string text)
     {
-        attributePointsText.text = text;
+        attributeRollCountText.text = text;
     }
     public void OnStrengthPanelPlusButtonClicked()
     {
@@ -582,85 +589,36 @@ public class CharacterSheetViewController : Singleton<CharacterSheetViewControll
             CharacterDataController.Instance.ModifyStrength(CurrentCharacterViewing, 1);
 
             // Update gui            
-            attributePointsText.text = currentCharacterViewing.attributePoints.ToString();
+            //SetAttributePointsText(currentCharacterViewing.attributePoints.ToString());
+            attributeRollCountText.text = currentCharacterViewing.attributePoints.ToString();
             BuildAttributePanelsFromCharacterData(CurrentCharacterViewing);
         }
     }
-    public void OnIntelligencePanelPlusButtonClicked()
+    #endregion
+
+    // Attribute Level Up Screen logic
+    #region
+    private void ShowAttributeLevelUpPage()
     {
-        if (currentCharacterViewing.attributePoints > 0 && currentCharacterViewing.intelligence < 20)
-        {
-            // VFX + SFX
-            VisualEffectManager.Instance.CreateSmallMeleeImpact(intelligencePlusButton.transform.position, 27000);
-            AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff);
-
-            // Deduct talent points
-            CharacterDataController.Instance.ModifyCharacterAttributePoints(currentCharacterViewing, -1);
-
-            // Gain new attribute
-            CharacterDataController.Instance.ModifyIntelligence(CurrentCharacterViewing, 1);
-
-            // Update gui            
-            attributePointsText.text = currentCharacterViewing.attributePoints.ToString();
-            BuildAttributePanelsFromCharacterData(CurrentCharacterViewing);
-        }
+        increaseAttributePageVisualParent.SetActive(true);
+        increaseAttributePageCg.DOKill();
+        increaseAttributePageCg.alpha = 0;
+        increaseAttributePageCg.DOFade(1, 0.25f);
     }
-    public void OnDexterityPanelPlusButtonClicked()
+    private void HideAttributeLevelUpPage()
     {
-        if (currentCharacterViewing.attributePoints > 0 && currentCharacterViewing.dexterity < 20)
-        {
-            // VFX + SFX
-            VisualEffectManager.Instance.CreateSmallMeleeImpact(dexterityPlusButton.transform.position, 27000);
-            AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff);
-
-            // Deduct talent points
-            CharacterDataController.Instance.ModifyCharacterAttributePoints(currentCharacterViewing, -1);
-
-            // Gain new attribute
-            CharacterDataController.Instance.ModifyDexterity(CurrentCharacterViewing, 1);
-
-            // Update gui            
-            attributePointsText.text = currentCharacterViewing.attributePoints.ToString();
-            BuildAttributePanelsFromCharacterData(CurrentCharacterViewing);
-        }
+        increaseAttributePageCg.DOKill();
+        increaseAttributePageCg.alpha = 1;
+        Sequence s = DOTween.Sequence();
+        s.Append(increaseAttributePageCg.DOFade(0, 0.25f));
+        s.OnComplete(() => increaseAttributePageVisualParent.SetActive(false));       
     }
-    public void OnWitsPanelPlusButtonClicked()
+    public void OnAttributeRollCountTextClicked()
     {
-        if (currentCharacterViewing.attributePoints > 0 && currentCharacterViewing.wits < 20)
+        if (CurrentCharacterViewing.attributeRollResults.Count > 0)
         {
-            // VFX + SFX
-            VisualEffectManager.Instance.CreateSmallMeleeImpact(witsPlusButton.transform.position, 27000);
-            AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff);
-
-            // Deduct talent points
-            CharacterDataController.Instance.ModifyCharacterAttributePoints(currentCharacterViewing, -1);
-
-            // Gain new attribute
-            CharacterDataController.Instance.ModifyWits(CurrentCharacterViewing, 1);
-
-            // Update gui            
-            attributePointsText.text = currentCharacterViewing.attributePoints.ToString();
-            BuildAttributePanelsFromCharacterData(CurrentCharacterViewing);
-        }
-    }
-    public void OnConstitutionPanelPlusButtonClicked()
-    {
-        if (currentCharacterViewing.attributePoints > 0 && currentCharacterViewing.constitution < 20)
-        {
-            // VFX + SFX
-            VisualEffectManager.Instance.CreateSmallMeleeImpact(constitutionPlusButton.transform.position, 27000);
-            AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff);
-
-            // Deduct talent points
-            CharacterDataController.Instance.ModifyCharacterAttributePoints(currentCharacterViewing, -1);
-
-            // Gain new attribute
-            CharacterDataController.Instance.ModifyConstitution(CurrentCharacterViewing, 1);
-
-            // Update gui            
-            maxHealthText.text = currentCharacterViewing.MaxHealthTotal.ToString();
-            attributePointsText.text = currentCharacterViewing.attributePoints.ToString();
-            BuildAttributePanelsFromCharacterData(CurrentCharacterViewing);
+            // build page + buttons, text , etc xxxx
+            ShowAttributeLevelUpPage();
         }
     }
     #endregion

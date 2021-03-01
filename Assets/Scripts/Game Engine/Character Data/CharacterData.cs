@@ -54,6 +54,7 @@ public class CharacterData
 
     [Header("Attribute Points")]
     public int attributePoints = 0;
+    public List<AttributeRollResult> attributeRollResults = new List<AttributeRollResult>();
 
     // Getters
     public int MaxHealthTotal

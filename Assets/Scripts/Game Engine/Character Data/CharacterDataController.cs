@@ -229,6 +229,12 @@ public class CharacterDataController : Singleton<CharacterDataController>
             newCharacter.talentPairings.Add(CloneTalentPairingModel(tpm));
         }
 
+        // Attribute rolls
+        newCharacter.attributeRollResults = new List<AttributeRollResult>();
+        foreach(AttributeRollResult arr in original.attributeRollResults)
+        {
+            newCharacter.attributeRollResults.Add(new AttributeRollResult(arr));
+        }
         return newCharacter;
 
 
@@ -400,7 +406,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
             ModifyCharacterTalentPoints(data, 1);
 
             // Gain attribute points
-            ModifyCharacterAttributePoints(data, GlobalSettings.Instance.attributePointsGainedOnLevelUp);
+            //ModifyCharacterAttributePoints(data, GlobalSettings.Instance.attributePointsGainedOnLevelUp);
 
             // Reset current xp
             data.currentXP = 0;
@@ -410,6 +416,9 @@ public class CharacterDataController : Singleton<CharacterDataController>
 
             // Restart the xp gain procces with the spill over amount
             HandleGainXP(data, spillOver);
+
+            // TO DO: Generate new stat increase data
+            GenerateAndCacheAttributeRollOnLevelUp(data);
         }
 
         // Level up with no spill over
@@ -422,13 +431,16 @@ public class CharacterDataController : Singleton<CharacterDataController>
             ModifyCharacterTalentPoints(data, 1);
 
             // Gain attribute points
-            ModifyCharacterAttributePoints(data, GlobalSettings.Instance.attributePointsGainedOnLevelUp);
+            //ModifyCharacterAttributePoints(data, GlobalSettings.Instance.attributePointsGainedOnLevelUp);
 
             // Reset current xp
             data.currentXP = 0;
 
             // Increase max xp on level up
             data.currentMaxXP += GlobalSettings.Instance.maxXpIncrementPerLevel;
+
+            // TO DO: Generate new stat increase data
+            GenerateAndCacheAttributeRollOnLevelUp(data);
         }
 
         // Gain xp without leveling up
@@ -477,6 +489,8 @@ public class CharacterDataController : Singleton<CharacterDataController>
     }
     public void ModifyCharacterTalentPoints(CharacterData data, int gainedOrLost)
     {
+        Debug.Log("CharacterDataController.ModifyCharacterTalentPoints() called, modifying talents by " + gainedOrLost.ToString() +
+            " for character " + data.myName);
         data.talentPoints += gainedOrLost;
     }
     public void ModifyCharacterAttributePoints(CharacterData data, int gainedOrLost)
@@ -541,6 +555,11 @@ public class CharacterDataController : Singleton<CharacterDataController>
         }
 
         return bReturned;
+    }
+    private void GenerateAndCacheAttributeRollOnLevelUp(CharacterData character)
+    {
+        AttributeRollResult arr = new AttributeRollResult(character);
+        character.attributeRollResults.Add(arr);
     }
     #endregion
 
@@ -656,9 +675,6 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.baseFirstActivationDrawBonus = 0;
         newCharacter.draw = 4;
         newCharacter.power = 0;
-
-        newCharacter.attributePoints = 0;
-        newCharacter.talentPoints = 0;
 
         // Randomize deck
         DeckTemplateSO randomDeckData = ct.possibleDecks[RandomGenerator.NumberBetween(0, ct.possibleDecks.Count - 1)];
