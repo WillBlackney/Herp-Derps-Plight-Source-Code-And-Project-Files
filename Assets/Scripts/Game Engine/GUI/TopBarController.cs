@@ -11,6 +11,7 @@ public class TopBarController : Singleton<TopBarController>
     #region
     [Header("Core Components")]
     [SerializeField] private GameObject visualParent;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Text Components")]
     [SerializeField] private TextMeshProUGUI currentGoldText;    

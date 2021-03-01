@@ -52,6 +52,7 @@ public class PassiveManagerModel
     public int pistoleroStacks;
     public int fastLearnerStacks;
     public int demonFormStacks;
+    public int undeadStacks;
     public int darkBargainStacks;
     public int volatileStacks;
     public int soulCollectorStacks;
@@ -83,6 +84,7 @@ public class PassiveManagerModel
 
     // Disabling Debuffs
     public int disarmedStacks;
+    public int blindedStacks;
     public int silencedStacks;
     public int sleepStacks;
 

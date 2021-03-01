@@ -1567,6 +1567,7 @@ public class CardController : Singleton<CardController>
             CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive &&
             card.unplayable == false &&
             !IsCardPlayBlockedByDisarmed(card, owner) &&
+            !IsCardPlayBlockedByBlinded(card, owner) &&
             !IsCardPlayBlockedBySilenced(card, owner) &&
             !IsCardBlockedByPistolero(card,owner))
         {
@@ -1590,6 +1591,18 @@ public class CardController : Singleton<CardController>
     {
         if(card.cardType == CardType.MeleeAttack &&
             owner.pManager.disarmedStacks > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public bool IsCardPlayBlockedByBlinded(Card card, CharacterEntityModel owner)
+    {
+        if (card.cardType == CardType.RangedAttack &&
+            owner.pManager.blindedStacks > 0)
         {
             return true;
         }

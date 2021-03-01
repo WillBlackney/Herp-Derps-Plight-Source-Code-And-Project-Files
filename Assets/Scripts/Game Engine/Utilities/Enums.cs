@@ -189,6 +189,7 @@ public enum Passive
     BattleTrance = 40,
     BalancedStance = 41,
     Bleeding = 58,
+    Blinded = 75,
     Burning = 2,
     Cautious = 3,
     Consecration = 4,
@@ -258,6 +259,7 @@ public enum Passive
     Weakened = 37,
     WellOfSouls = 48,
     Wrath = 38,  
+    Undead = 74, 
 
 };
 public enum CoreAttribute

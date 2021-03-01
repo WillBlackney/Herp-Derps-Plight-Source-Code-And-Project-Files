@@ -1354,6 +1354,10 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         {
             PassiveController.Instance.ModifyDisarmed(entity.pManager, -1, true, 0.5f);
         }
+        if (entity.pManager.blindedStacks > 0)
+        {
+            PassiveController.Instance.ModifyBlinded(entity.pManager, -1, true, 0.5f);
+        }
         if (entity.pManager.silencedStacks > 0)
         {
             PassiveController.Instance.ModifySilenced(entity.pManager, -1, true, 0.5f);

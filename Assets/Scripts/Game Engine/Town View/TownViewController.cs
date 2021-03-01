@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Sirenix.OdinInspector;
 
 public class TownViewController : Singleton<TownViewController>
 {
@@ -12,12 +13,15 @@ public class TownViewController : Singleton<TownViewController>
     [SerializeField] GameObject townVisualParent;
     [SerializeField] GameObject arenaScreenVisualParent;
     [SerializeField] GameObject chosenCharacterSlotsVisualParent;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     private ScreenViewState currentScreenViewState = ScreenViewState.Town;
+
 
     [Header("Colours")]
     [SerializeField] Color basicColour;
     [SerializeField] Color eliteColour;
     [SerializeField] Color bossColour;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Combat Overview Panel Components")]
     [SerializeField] TextMeshProUGUI encounterNameText;
@@ -27,6 +31,7 @@ public class TownViewController : Singleton<TownViewController>
     [SerializeField] TextMeshProUGUI goldRewardText;
     [SerializeField] ChooseCombatButton[] chooseCombatButtons;
     [SerializeField] ChooseCombatCharacterSlot[] chooseCombatCharacterSlots;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Chosen Combat Related Properties")]
     private CombatData selectedCombaEvent;
@@ -35,6 +40,11 @@ public class TownViewController : Singleton<TownViewController>
     [Header("Recruit Window Components")]
     [SerializeField] GameObject recruitPageVisualParent;
     [SerializeField] RecruitCharacterTab[] recruitCharacterTabs;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
+
+    [Header("Doctor Window Components")]
+    [SerializeField] GameObject doctorPageVisualParent;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     #endregion
 
     // Properties + Accessors

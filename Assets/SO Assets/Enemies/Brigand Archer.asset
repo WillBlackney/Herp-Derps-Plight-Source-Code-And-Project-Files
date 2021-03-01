@@ -73,6 +73,7 @@ MonoBehaviour:
     pistoleroStacks: 0
     fastLearnerStacks: 0
     demonFormStacks: 0
+    undeadStacks: 0
     darkBargainStacks: 0
     volatileStacks: 0
     soulCollectorStacks: 0
@@ -98,6 +99,7 @@ MonoBehaviour:
     vulnerableStacks: 0
     gritStacks: 0
     disarmedStacks: 0
+    blindedStacks: 0
     silencedStacks: 0
     sleepStacks: 0
     poisonedStacks: 0
@@ -186,6 +188,7 @@ MonoBehaviour:
       modelFadeInSpeed: 0
       uiFadeInSpeed: 0
       summonedCreatureVisualEvents: []
+      healAmount: 0
       passiveApplied: {fileID: 0}
       passiveStacks: 0
       blockGained: 0
@@ -203,6 +206,7 @@ MonoBehaviour:
       modelFadeInSpeed: 0
       uiFadeInSpeed: 0
       summonedCreatureVisualEvents: []
+      healAmount: 0
       passiveApplied: {fileID: 11400000, guid: 6f53a59075648034ab7c521f182140e3, type: 2}
       passiveStacks: 2
       blockGained: 0
@@ -274,8 +278,9 @@ MonoBehaviour:
       modelFadeInSpeed: 0
       uiFadeInSpeed: 0
       summonedCreatureVisualEvents: []
+      healAmount: 0
       passiveApplied: {fileID: 11400000, guid: fee46413281a2d7449fbfe00e0c8f1bc, type: 2}
-      passiveStacks: 1
+      passiveStacks: 2
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
