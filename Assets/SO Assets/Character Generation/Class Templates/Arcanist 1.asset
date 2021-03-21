@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Arcanist 1
   m_EditorClassIdentifier: 
   templateName: Arcanist
+  possibleRaces: 0100000004000000030000000600000008000000
   possibleDecks:
   - {fileID: 11400000, guid: ff9a7de8f9222f84eb4c901b007471ac, type: 2}
   - {fileID: 11400000, guid: b8e4918f11ee8944ea8b2b4c068c74ee, type: 2}
+  - {fileID: 11400000, guid: 677a5d400eed82b46a178eaae51262f3, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: 605c8a24fc67ab24496745385b297f64, type: 2}
   - {fileID: 11400000, guid: 4ac02cb8cb68f584a8045c7ba2ca7b70, type: 2}
@@ -27,9 +29,9 @@ MonoBehaviour:
   strengthMod: 0
   intelligenceMod: 3
   dexterityMod: 0
-  witsMod: 1
-  constitutionMod: 0
-  maxHealth: 100
+  witsMod: 0
+  constitutionMod: 1
+  maxHealth: 90
   talentPairings:
   - talentSchool: 9
     talentLevel: 2

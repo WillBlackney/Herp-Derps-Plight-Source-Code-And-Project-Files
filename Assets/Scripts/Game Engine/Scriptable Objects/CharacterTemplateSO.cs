@@ -42,29 +42,29 @@ public class CharacterTemplateSO : ScriptableObject
     // Core Attributes
     [BoxGroup("Core Attributes", centerLabel: true)]
     [LabelWidth(100)]
-    [Range(0,20)]
+    [Range(0,30)]
     [GUIColor("Green")]
-    public int strength = 10;
+    public int strength = 20;
     [BoxGroup("Core Attributes")]
     [LabelWidth(100)]
-    [Range(0, 20)]
+    [Range(0, 30)]
     [GUIColor("Green")]
-    public int intelligence = 10;
+    public int intelligence = 20;
     [BoxGroup("Core Attributes")]
     [LabelWidth(100)]
-    [Range(0, 20)]
+    [Range(0, 30)]
     [GUIColor("Green")]
-    public int dexterity = 10;
+    public int dexterity = 20;
     [BoxGroup("Core Attributes")]
     [LabelWidth(100)]
-    [Range(0, 20)]
+    [Range(0, 30)]
     [GUIColor("Green")]
-    public int wits = 10;
+    public int wits = 20;
     [BoxGroup("Core Attributes")]
     [LabelWidth(100)]
-    [Range(0, 20)]
+    [Range(0, 30)]
     [GUIColor("Green")]
-    public int constitution = 10;
+    public int constitution = 20;
 
 
     [BoxGroup("Secondary Attributes", centerLabel: true)]
@@ -91,10 +91,6 @@ public class CharacterTemplateSO : ScriptableObject
     [LabelWidth(100)]
     [GUIColor("Blue")]
     public int critModifier = 30;
-    [BoxGroup("Secondary Attributes")]
-    [LabelWidth(100)]
-    [GUIColor("Blue")]
-    public int baseFirstActivationDrawBonus = 0;
 
     // Passive Traits
     [BoxGroup("Passive Data", centerLabel: true)]

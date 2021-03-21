@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Insanity Potion +1
   m_EditorClassIdentifier: 
   cardName: Insanity Potion +1
-  cardDescription: Gain 3 Power. On activation end, lose 3 Power. Expend.
+  cardDescription: 'Gain 3 Power. On activation end, lose 3 Power. '
   cardSprite: {fileID: 21300000, guid: 8c321c8ca404a964383a020458669145, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
@@ -23,7 +23,7 @@ MonoBehaviour:
   rarity: 1
   upgradeable: 0
   upgradeLevel: 1
-  expend: 1
+  expend: 0
   innate: 0
   fleeting: 0
   unplayable: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '5 '
+    phrase: '3 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '5 '
+    phrase: '3 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -66,14 +66,6 @@ MonoBehaviour:
     phrase: '.
 
 '
-  - color: 3
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: Expend
-  - color: 1
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: .
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 2
@@ -125,7 +117,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 33
-      passiveStacks: 5
+      passiveStacks: 3
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
@@ -154,6 +146,3 @@ MonoBehaviour:
   - kewWordType: 8
     weaponRequirement: 0
     passiveType: 23
-  - kewWordType: 1
-    weaponRequirement: 0
-    passiveType: 0

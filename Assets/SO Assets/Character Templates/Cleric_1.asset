@@ -16,21 +16,20 @@ MonoBehaviour:
   myClassName: Cleric
   race: 4
   audioProfile: 2
-  health: 100
-  maxHealth: 100
+  health: 90
+  maxHealth: 90
   startingBlock: 0
-  strength: 10
-  intelligence: 10
-  dexterity: 11
-  wits: 10
-  constitution: 11
+  strength: 20
+  intelligence: 20
+  dexterity: 22
+  wits: 20
+  constitution: 22
   power: 0
   initiative: 3
   stamina: 2
-  draw: 2
+  draw: 4
   baseCrit: 0
   critModifier: 30
-  baseFristActivationDrawBonus: 2
   serializedPassiveManager:
     bonusPowerStacks: 0
     bonusDexterityStacks: 0
@@ -88,6 +87,8 @@ MonoBehaviour:
     unbreakableStacks: 0
     pierceStacks: 0
     regenerationStacks: 0
+    hurricaneStacks: 0
+    holierThanThouStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -106,14 +107,14 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
-  - {fileID: 11400000, guid: 63b57dcf22d80b749bf6fdcebe2b66cb, type: 2}
-  - {fileID: 11400000, guid: 63b57dcf22d80b749bf6fdcebe2b66cb, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
   - {fileID: 11400000, guid: 58ad3605f0bb1844dac2124cd71174c1, type: 2}
+  - {fileID: 11400000, guid: fdcce8d7a9e4a0748bf221b25c761b09, type: 2}
   - {fileID: 11400000, guid: 04b3ac38b9732134c9076aed80c85796, type: 2}
   - {fileID: 11400000, guid: 04b3ac38b9732134c9076aed80c85796, type: 2}
-  - {fileID: 11400000, guid: 60df38b0373151f47af5e61ab9bf0d09, type: 2}
-  - {fileID: 11400000, guid: 60df38b0373151f47af5e61ab9bf0d09, type: 2}
-  - {fileID: 11400000, guid: 5105852492770134e9c9d344ea979348, type: 2}
   modelParts:
   - Human_Chest
   - Elf_Face_6

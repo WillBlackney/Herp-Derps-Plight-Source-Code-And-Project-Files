@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Throwing Knife
   m_EditorClassIdentifier: 
   cardName: Throwing Knife
-  cardDescription: Deal 10 Physical Damage. Draw 1 card.
+  cardDescription: Deal 8 Physical Damage. Draw 1 card.
   cardSprite: {fileID: 21300000, guid: 4bf0775a87d89ac44805f5d59724a68e, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -65,6 +65,11 @@ MonoBehaviour:
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -87,7 +92,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 10
+    baseDamageValue: 8
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
@@ -178,6 +183,11 @@ MonoBehaviour:
     cardEffectType: 9
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0

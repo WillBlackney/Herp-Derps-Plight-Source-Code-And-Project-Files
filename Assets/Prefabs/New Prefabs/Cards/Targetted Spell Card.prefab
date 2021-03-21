@@ -53,11 +53,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000011410052404}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.02}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.01999998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4000012692886846}
+  m_Father: {fileID: 5548612868083868543}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1000011705971226
@@ -89,7 +89,7 @@ Transform:
   m_Children:
   - {fileID: 2716996666950630152}
   - {fileID: 4000010226418558}
-  m_Father: {fileID: 4000012692886846}
+  m_Father: {fileID: 5548612868083868543}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1000011733785156
@@ -201,12 +201,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000013038665068}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.099999905}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4000013193875924}
   - {fileID: 4000013755621746}
-  m_Father: {fileID: 4000012692886846}
+  m_Father: {fileID: 5548612868083868543}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &65000012157949282
@@ -418,6 +418,7 @@ GameObject:
   - component: {fileID: 4000012692886846}
   - component: {fileID: 114000011163528004}
   - component: {fileID: 114000010313624196}
+  - component: {fileID: 7853707231705660834}
   m_Layer: 0
   m_Name: Targetted Spell Card
   m_TagString: Untagged
@@ -436,10 +437,7 @@ Transform:
   m_LocalPosition: {x: -1.507604, y: 0.10019586, z: 5.7436523}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4125756217139963252}
-  - {fileID: 4000010270032596}
-  - {fileID: 4000011752682698}
-  - {fileID: 4000012248882074}
+  - {fileID: 5548612868083868543}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -475,12 +473,59 @@ MonoBehaviour:
   canvas: {fileID: 4125911802041884414}
   baseHandSortingOrder: 900
   state: 0
+--- !u!114 &7853707231705660834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000013289343952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbce5656c0ed0404bb0b8833f092659d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  t: {fileID: 5548612868083868543}
+--- !u!1 &6253099311751138110
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5548612868083868543}
+  m_Layer: 0
+  m_Name: Slot Fitter Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5548612868083868543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6253099311751138110}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4125756217139963252}
+  - {fileID: 4000010270032596}
+  - {fileID: 4000011752682698}
+  - {fileID: 4000012248882074}
+  m_Father: {fileID: 4000012692886846}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4853518890112068954
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 4000012692886846}
+    m_TransformParent: {fileID: 5548612868083868543}
     m_Modifications:
     - target: {fileID: 434137997889915102, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
         type: 3}
@@ -517,6 +562,11 @@ PrefabInstance:
       propertyPath: movementParent
       value: 
       objectReference: {fileID: 4000012692886846}
+    - target: {fileID: 434137997889915102, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
+        type: 3}
+      propertyPath: mySlotHelper
+      value: 
+      objectReference: {fileID: 7853707231705660834}
     - target: {fileID: 3921468461960682075, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -540,7 +590,7 @@ PrefabInstance:
     - target: {fileID: 7441281725316709466, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 31
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 7441281725316709466, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
         type: 3}
@@ -620,17 +670,17 @@ PrefabInstance:
     - target: {fileID: 8798495303511279662, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8798495303511279662, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8798495303511279662, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8798495303511279662, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
         type: 3}

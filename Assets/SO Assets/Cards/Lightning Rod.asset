@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lightning Rod
   m_EditorClassIdentifier: 
   cardName: Lightning Rod
-  cardDescription: 'Deal 6 Magic damage to a target for each stack of Overload on
+  cardDescription: 'Deal 5 Magic damage to a target for each stack of Overload on
     self.
 
     Remove all Overload.'
@@ -44,7 +44,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '6 '
+    phrase: '5 '
   - color: 9
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -117,7 +117,7 @@ MonoBehaviour:
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 1
     drawBaseDamageFromBurningOnSelf: 0
-    baseDamageMultiplier: 6
+    baseDamageMultiplier: 5
     useEachIndividualsStackCount: 1
     damageType: 2
     healthRestored: 0

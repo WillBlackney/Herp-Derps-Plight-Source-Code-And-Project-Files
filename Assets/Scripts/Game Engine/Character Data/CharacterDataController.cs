@@ -8,10 +8,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
     #region
     [Header("Properties")]
     private List<CharacterData> allPlayerCharacters = new List<CharacterData>();
-    private int currentMaxRosterSize;
-    private int recruitsPerDay;
     private List<CharacterData> characterDeck = new List<CharacterData>();
-    private List<CharacterData> dailyRecruits = new List<CharacterData>();
     private List<CharacterRace> validCharacterRaces = new List<CharacterRace>
     { CharacterRace.Demon, CharacterRace.Elf, CharacterRace.Ent, CharacterRace.Gnoll, CharacterRace.Goblin, CharacterRace.Human,
       CharacterRace.Orc, CharacterRace.Satyr, CharacterRace.Undead};
@@ -19,7 +16,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
     [Header("Templates Buckets")]
     [SerializeField] private CharacterTemplateSO[] allCharacterTemplatesSOs;
     [SerializeField] private CharacterData[] allCharacterTemplates;
-    public List<ClassTemplateSO> allTemplateSOs;
+    public List<ClassTemplateSO> allClassTemplateSOs;
     public List<ModelTemplateSO> allModelTemplateSOs;
 
     [Header("Character Name Buckets")]
@@ -37,16 +34,6 @@ public class CharacterDataController : Singleton<CharacterDataController>
 
     // Accessors + Getters
     #region
-    public int RecruitsPerDay
-    {
-        get { return recruitsPerDay; }
-        private set { recruitsPerDay = value; }
-    }
-    public int CurrentMaxRosterSize
-    {
-        get { return currentMaxRosterSize; }
-        private set { currentMaxRosterSize = value; }
-    }
     public List<CharacterData> AllPlayerCharacters
     {
         get { return allPlayerCharacters; }
@@ -67,11 +54,6 @@ public class CharacterDataController : Singleton<CharacterDataController>
     {
         get { return characterDeck; }
         private set { characterDeck = value; }
-    }
-    public List<CharacterData> DailyRecruits
-    {
-        get { return dailyRecruits; }
-        private set { dailyRecruits = value; }
     }
     #endregion
 
@@ -100,7 +82,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
     #region
     public void BuildCharacterRosterFromCharacterTemplateList(IEnumerable<CharacterTemplateSO> characters)
     {
-        foreach(CharacterTemplateSO template in characters)
+        foreach (CharacterTemplateSO template in characters)
         {
             CloneNewCharacterToPlayerRoster(ConvertCharacterTemplateToCharacterData(template));
         }
@@ -108,15 +90,12 @@ public class CharacterDataController : Singleton<CharacterDataController>
     public CharacterData CloneNewCharacterToPlayerRoster(CharacterData character)
     {
         CharacterData newChar = CloneCharacterData(character);
-        AllPlayerCharacters.Add(newChar);
+        AddCharacterToRoster(newChar);
         return newChar;
     }
-    public void HandleRecruitCharacter(CharacterData newCharacter)
+    public void AddCharacterToRoster(CharacterData character)
     {
-        AllPlayerCharacters.Add(newCharacter);
-        DailyRecruits.Remove(newCharacter);
-        CharacterPanelViewController.Instance.RebuildAllViews();
-        TownViewController.Instance.OnCharacterRecruited(newCharacter);
+        AllPlayerCharacters.Add(character);
     }
 
     #endregion
@@ -129,40 +108,22 @@ public class CharacterDataController : Singleton<CharacterDataController>
         AllPlayerCharacters.Clear();
         foreach (CharacterData characterData in saveFile.characters)
         {
-            AllPlayerCharacters.Add(characterData);
+            AddCharacterToRoster(characterData);
         }
-
+        
         // Build character deck
         CharacterDeck.Clear();
         foreach (CharacterData cd in saveFile.characterDeck)
             CharacterDeck.Add(cd);
-
-        // Build daily recruits
-        DailyRecruits.Clear();
-        foreach (CharacterData cd in saveFile.dailyCharacterRecruits)
-            DailyRecruits.Add(cd);
-
-        // Misc stuff
-        SetMaxRosterSize(saveFile.maxRosterSize);
     }
     public void SaveMyDataToSaveFile(SaveGameData saveFile)
     {
-        foreach (CharacterData character in AllPlayerCharacters)
-        {
-            saveFile.characters.Add(character);
-        }
-
-        foreach (CharacterData character in CharacterDeck)
-        {
+        foreach (CharacterData character in AllPlayerCharacters)        
+            saveFile.characters.Add(character);        
+        
+        foreach (CharacterData character in CharacterDeck)        
             saveFile.characterDeck.Add(character);
-        }
-
-        foreach (CharacterData character in DailyRecruits)
-        {
-            saveFile.dailyCharacterRecruits.Add(character);
-        }
-
-        saveFile.maxRosterSize = CurrentMaxRosterSize;
+        
     }
     #endregion
 
@@ -183,7 +144,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.currentXP = original.currentXP;
         SetCharacterLevel(newCharacter, original.currentLevel);
         ModifyCharacterTalentPoints(newCharacter, original.talentPoints);
-        ModifyCharacterAttributePoints(newCharacter, original.attributePoints);        
+        ModifyCharacterAttributePoints(newCharacter, original.attributePoints);
 
         newCharacter.strength = original.strength;
         newCharacter.intelligence = original.intelligence;
@@ -197,12 +158,11 @@ public class CharacterDataController : Singleton<CharacterDataController>
         SetCharacterHealth(newCharacter, original.health);
 
         newCharacter.stamina = original.stamina;
-        newCharacter.initiative = original.initiative;     
+        newCharacter.initiative = original.initiative;
         newCharacter.draw = original.draw;
         newCharacter.power = original.power;
         newCharacter.baseCrit = original.baseCrit;
         newCharacter.critModifier = original.critModifier;
-        newCharacter.baseFirstActivationDrawBonus = original.baseFirstActivationDrawBonus;
 
         newCharacter.deck = new List<CardData>();
         foreach (CardData cso in original.deck)
@@ -229,12 +189,13 @@ public class CharacterDataController : Singleton<CharacterDataController>
             newCharacter.talentPairings.Add(CloneTalentPairingModel(tpm));
         }
 
-        // Attribute rolls
+        // Attribute rolls        
         newCharacter.attributeRollResults = new List<AttributeRollResult>();
-        foreach(AttributeRollResult arr in original.attributeRollResults)
+        foreach (AttributeRollResult arr in original.attributeRollResults)
         {
-            newCharacter.attributeRollResults.Add(new AttributeRollResult(arr));
+            newCharacter.attributeRollResults.Add(arr.Clone(arr));
         }
+
         return newCharacter;
 
 
@@ -249,18 +210,18 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.myClassName = template.myClassName;
         newCharacter.race = template.race;
         newCharacter.audioProfile = template.audioProfile;
-        
+
         newCharacter.currentLevel = GlobalSettings.Instance.startingLevel;
         newCharacter.currentMaxXP = GlobalSettings.Instance.startingMaxXp;
         ModifyCharacterTalentPoints(newCharacter, GlobalSettings.Instance.startingTalentPoints);
         ModifyCharacterAttributePoints(newCharacter, GlobalSettings.Instance.startingAttributePoints);
-        HandleGainXP(newCharacter, GlobalSettings.Instance.startingXpBonus);       
+        HandleGainXP(newCharacter, GlobalSettings.Instance.startingXpBonus);
 
         newCharacter.strength = template.strength;
         newCharacter.intelligence = template.intelligence;
         newCharacter.wits = template.wits;
         newCharacter.dexterity = template.dexterity;
-       // ModifyConstitution(newCharacter, template.constitution);
+        // ModifyConstitution(newCharacter, template.constitution);
         newCharacter.constitution = template.constitution;
 
         SetCharacterMaxHealth(newCharacter, template.maxHealth);
@@ -270,7 +231,6 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.initiative = template.initiative;
         newCharacter.baseCrit = template.baseCrit;
         newCharacter.critModifier = template.critModifier;
-        newCharacter.baseFirstActivationDrawBonus = template.baseFirstActivationDrawBonus;
         newCharacter.draw = template.draw;
         newCharacter.power = template.power;
 
@@ -278,7 +238,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.talentPoints = template.startingTalentPoints;
 
         newCharacter.deck = new List<CardData>();
-        foreach(CardDataSO cso in template.deck)
+        foreach (CardDataSO cso in template.deck)
         {
             AddCardToCharacterDeck(newCharacter, CardController.Instance.BuildCardDataFromScriptableObjectData(cso));
         }
@@ -292,15 +252,16 @@ public class CharacterDataController : Singleton<CharacterDataController>
         PassiveController.Instance.BuildPassiveManagerFromSerializedPassiveManager(newCharacter.passiveManager, template.serializedPassiveManager);
 
         // Item Data
-        newCharacter.itemManager = new ItemManagerModel();      
+        newCharacter.itemManager = new ItemManagerModel();
         ItemController.Instance.CopySerializedItemManagerIntoStandardItemManager(template.serializedItemManager, newCharacter.itemManager);
 
         // Talent Data
         newCharacter.talentPairings = new List<TalentPairingModel>();
-        foreach(TalentPairingModel tpm in template.talentPairings)
+        foreach (TalentPairingModel tpm in template.talentPairings)
         {
             newCharacter.talentPairings.Add(CloneTalentPairingModel(tpm));
         }
+
 
         return newCharacter;
     }
@@ -397,7 +358,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
         int spillOver = (data.currentXP + xpGained) - data.currentMaxXP;
 
         // Level up occured with spill over XP
-        if(spillOver > 0)
+        if (spillOver > 0)
         {
             // Gain level
             SetCharacterLevel(data, data.currentLevel + 1);
@@ -405,8 +366,8 @@ public class CharacterDataController : Singleton<CharacterDataController>
             // Gain Talent point
             ModifyCharacterTalentPoints(data, 1);
 
-            // Gain attribute points
-            //ModifyCharacterAttributePoints(data, GlobalSettings.Instance.attributePointsGainedOnLevelUp);
+            // Do attribute level up roll result logic
+            GenerateAndCacheAttributeRollOnLevelUp(data);
 
             // Reset current xp
             data.currentXP = 0;
@@ -417,21 +378,20 @@ public class CharacterDataController : Singleton<CharacterDataController>
             // Restart the xp gain procces with the spill over amount
             HandleGainXP(data, spillOver);
 
-            // TO DO: Generate new stat increase data
-            GenerateAndCacheAttributeRollOnLevelUp(data);
+
         }
 
         // Level up with no spill over
-        else if(spillOver == 0)
-        { 
+        else if (spillOver == 0)
+        {
             // Gain level
             SetCharacterLevel(data, data.currentLevel + 1);
 
             // Gain Talent point
             ModifyCharacterTalentPoints(data, 1);
 
-            // Gain attribute points
-            //ModifyCharacterAttributePoints(data, GlobalSettings.Instance.attributePointsGainedOnLevelUp);
+            // Do attribute level up roll result logic
+            GenerateAndCacheAttributeRollOnLevelUp(data);
 
             // Reset current xp
             data.currentXP = 0;
@@ -439,8 +399,6 @@ public class CharacterDataController : Singleton<CharacterDataController>
             // Increase max xp on level up
             data.currentMaxXP += GlobalSettings.Instance.maxXpIncrementPerLevel;
 
-            // TO DO: Generate new stat increase data
-            GenerateAndCacheAttributeRollOnLevelUp(data);
         }
 
         // Gain xp without leveling up
@@ -449,24 +407,24 @@ public class CharacterDataController : Singleton<CharacterDataController>
             data.currentXP += xpGained;
         }
     }
-    public void HandleXpRewardPostCombat(CombatDifficulty encounter, List<CharacterData> characters)
+    public void HandleXpRewardPostCombat(EncounterType encounter, List<CharacterData> characters)
     {
         // Apply flat combat type xp reward
-        if(encounter == CombatDifficulty.Basic)
+        if (encounter == EncounterType.BasicEnemy)
         {
-            foreach(CharacterData character in characters)
+            foreach (CharacterData character in characters)
             {
                 HandleGainXP(character, GlobalSettings.Instance.basicCombatXpReward);
-            }         
+            }
         }
-        else if (encounter == CombatDifficulty.Elite)
+        else if (encounter == EncounterType.EliteEnemy)
         {
             foreach (CharacterData character in characters)
             {
                 HandleGainXP(character, GlobalSettings.Instance.eliteCombatXpReward);
             }
         }
-        else if (encounter == CombatDifficulty.Boss)
+        else if (encounter == EncounterType.BossEnemy)
         {
             foreach (CharacterData character in characters)
             {
@@ -477,14 +435,14 @@ public class CharacterDataController : Singleton<CharacterDataController>
         // Check and apply flawless bonus
         foreach (CharacterData character in characters)
         {
-            foreach(CharacterEntityModel entity in CharacterEntityController.Instance.AllDefenders)
+            foreach (CharacterEntityModel entity in CharacterEntityController.Instance.AllDefenders)
             {
-                if(entity.characterData == character && entity.hasLostHealthThisCombat == false)
+                if (entity.characterData == character && entity.hasLostHealthThisCombat == false)
                 {
                     HandleGainXP(character, GlobalSettings.Instance.noDamageTakenXpReward);
                 }
             }
-            
+
         }
     }
     public void ModifyCharacterTalentPoints(CharacterData data, int gainedOrLost)
@@ -502,9 +460,9 @@ public class CharacterDataController : Singleton<CharacterDataController>
         TalentPairingModel tpm = null;
 
         // Check if character already has unlocked first talent level
-        foreach(TalentPairingModel tp in character.talentPairings)
+        foreach (TalentPairingModel tp in character.talentPairings)
         {
-            if(tp.talentSchool == talent)
+            if (tp.talentSchool == talent)
             {
                 tpm = tp;
                 break;
@@ -512,13 +470,13 @@ public class CharacterDataController : Singleton<CharacterDataController>
         }
 
         // Did we find a pre-existing talent?
-        if(tpm != null)
+        if (tpm != null)
         {
             // We did, increase talent level
             tpm.talentLevel += pointsGained;
 
             // Prevent talent exceeding tier 2
-            if(tpm.talentLevel > 2)
+            if (tpm.talentLevel > 2)
             {
                 tpm.talentLevel = 2;
             }
@@ -558,8 +516,11 @@ public class CharacterDataController : Singleton<CharacterDataController>
     }
     private void GenerateAndCacheAttributeRollOnLevelUp(CharacterData character)
     {
-        AttributeRollResult arr = new AttributeRollResult(character);
+        Debug.Log("CharacterDataController.GenerateAndCacheAttributeRollOnLevelUp() called for character: " + character.myName);
+        AttributeRollResult arr = new AttributeRollResult();
+        arr.GenerateMyRolls();
         character.attributeRollResults.Add(arr);
+        Debug.Log("new character attribute rolls count = " + character.attributeRollResults.Count.ToString());
     }
     #endregion
 
@@ -603,13 +564,6 @@ public class CharacterDataController : Singleton<CharacterDataController>
     }
     #endregion
 
-    // Modify Roster Properties
-    #region
-    public void SetMaxRosterSize(int newSize)
-    {
-        CurrentMaxRosterSize = newSize;
-    }
-    #endregion
 
     // Misc Logic + Calculators
     #region
@@ -617,9 +571,9 @@ public class CharacterDataController : Singleton<CharacterDataController>
     {
         int level = 0;
 
-        foreach(TalentPairingModel tp in character.talentPairings)
+        foreach (TalentPairingModel tp in character.talentPairings)
         {
-            if(tp.talentSchool == school)
+            if (tp.talentSchool == school)
             {
                 level = tp.talentLevel;
                 break;
@@ -632,7 +586,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
 
     // Character Generation Logic
     #region
-    public CharacterData GenerateCharacter(ClassTemplateSO ct, CharacterRace race)
+    private CharacterData GenerateCharacter(ClassTemplateSO ct, CharacterRace race)
     {
         Debug.Log("CharacterDataController.GenerateCharacter() called...");
 
@@ -641,8 +595,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.myName = GetRandomCharacterName(race);
         newCharacter.myClassName = ct.templateName;
         newCharacter.race = race;
-        // TO DO: change in future when we re-implement audio profiles
-        newCharacter.audioProfile = AudioProfileType.HumanMale;
+        newCharacter.audioProfile = GetAudioProfileForRace(race);
 
         newCharacter.currentLevel = GlobalSettings.Instance.startingLevel;
         newCharacter.currentMaxXP = GlobalSettings.Instance.startingMaxXp;
@@ -650,12 +603,24 @@ public class CharacterDataController : Singleton<CharacterDataController>
         ModifyCharacterAttributePoints(newCharacter, GlobalSettings.Instance.startingAttributePoints);
         HandleGainXP(newCharacter, GlobalSettings.Instance.startingXpBonus);
 
+        //Set base attribute stat levels
+        newCharacter.strength = 20;
+        newCharacter.intelligence = 20;
+        newCharacter.wits = 20;
+        newCharacter.dexterity = 20;
+        newCharacter.constitution = 20;
+
         // Randomize base stats
-        newCharacter.strength = RandomGenerator.NumberBetween(18, 22);
-        newCharacter.intelligence = RandomGenerator.NumberBetween(18, 22);
-        newCharacter.wits = RandomGenerator.NumberBetween(18, 22);
-        newCharacter.dexterity = RandomGenerator.NumberBetween(18, 22);
-        newCharacter.constitution = RandomGenerator.NumberBetween(18, 22);
+        if (RandomGenerator.NumberBetween(1,100) > 50)
+            newCharacter.strength = RandomGenerator.NumberBetween(18, 22);
+        if (RandomGenerator.NumberBetween(1, 100) > 50)
+            newCharacter.intelligence = RandomGenerator.NumberBetween(18, 22);
+        if (RandomGenerator.NumberBetween(1, 100) > 50)
+            newCharacter.wits = RandomGenerator.NumberBetween(18, 22);
+        if (RandomGenerator.NumberBetween(1, 100) > 50)
+            newCharacter.dexterity = RandomGenerator.NumberBetween(18, 22);
+        if (RandomGenerator.NumberBetween(1, 100) > 50)
+            newCharacter.constitution = RandomGenerator.NumberBetween(18, 22);
 
         // Apply stat modifier from template
         newCharacter.strength += ct.strengthMod;
@@ -665,7 +630,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.constitution += ct.constitutionMod;
 
         // Randomize health
-        SetCharacterMaxHealth(newCharacter, RandomGenerator.NumberBetween(95, 105));
+        SetCharacterMaxHealth(newCharacter, RandomGenerator.NumberBetween(85, 95));
         SetCharacterHealth(newCharacter, newCharacter.MaxHealthTotal);
 
         newCharacter.stamina = 2;
@@ -683,6 +648,9 @@ public class CharacterDataController : Singleton<CharacterDataController>
         {
             AddCardToCharacterDeck(newCharacter, CardController.Instance.BuildCardDataFromScriptableObjectData(cso));
         }
+
+        // Add racial cards
+
 
         // Randomize appearance + outfit
         newCharacter.modelParts = new List<string>();
@@ -749,54 +717,60 @@ public class CharacterDataController : Singleton<CharacterDataController>
         return validTemplates[RandomGenerator.NumberBetween(0, validTemplates.Count - 1)];
 
     }
+    private AudioProfileType GetAudioProfileForRace(CharacterRace race)
+    {
+        if (race == CharacterRace.Human)
+            return AudioProfileType.HumanMale;
+
+        else if (race == CharacterRace.Elf)
+            return AudioProfileType.HumanFemale;
+
+        else if (race == CharacterRace.Undead ||
+            race == CharacterRace.Demon ||
+            race == CharacterRace.Ent)
+            return AudioProfileType.Undead;
+
+        else if (race == CharacterRace.Satyr)
+            return AudioProfileType.Satyr;
+
+        else if (race == CharacterRace.Orc)
+            return AudioProfileType.Orc;
+
+        else if (race == CharacterRace.Goblin)
+            return AudioProfileType.Goblin;
+
+        else if (race == CharacterRace.Gnoll)
+            return AudioProfileType.Gnoll;
+
+        else
+            return AudioProfileType.None;
+    }
     private CharacterRace GetRandomRace()
     {
         return validCharacterRaces[RandomGenerator.NumberBetween(0, validCharacterRaces.Count - 1)];
     }
+    private CharacterRace GetRandomRace(List<CharacterRace> validRaces)
+    {
+        return validRaces[RandomGenerator.NumberBetween(0, validRaces.Count - 1)];
+    }
     private List<CharacterData> GenerateCharacterDeck()
     {
+        Debug.Log("CharacterDataController.GenerateCharacterDeck() called...");
         List<CharacterData> newCharacterDeck = new List<CharacterData>();
 
-        foreach (ClassTemplateSO ct in allTemplateSOs)
+        foreach (ClassTemplateSO ct in allClassTemplateSOs)
         {
-            for (int i = 0; i < 2; i++)
-            {
-                newCharacterDeck.Add(GenerateCharacter(ct, GetRandomRace()));
-            }
+            newCharacterDeck.Add(GenerateCharacter(ct, GetRandomRace(ct.possibleRaces)));
         }
 
         return newCharacterDeck;
     }
     public void AutoGenerateAndCacheNewCharacterDeck()
     {
-        Debug.Log("AutoGenerateAndCacheNewCharacterDeck() called, generating");
+        Debug.Log("AutoGenerateAndCacheNewCharacterDeck() called, generating new character deck");
         CharacterDeck.Clear();
         CharacterDeck = GenerateCharacterDeck();
         CharacterDeck.Shuffle();
-    }
-    public void AutoGenerateAndCacheDailyCharacterRecruits(int totalRecruits)
-    {
-        Debug.Log("AutoGenerateAndCacheDailyCharacterRecruits() called, generating " + totalRecruits.ToString() +
-            " new recruits.");
-
-        DailyRecruits.Clear();
-
-        for(int i = 0; i < totalRecruits; i++)
-        {
-            // Generate new character deck if deck is empty
-            if (CharacterDeck.Count == 0)
-            {
-                AutoGenerateAndCacheNewCharacterDeck();
-            }
-
-            // Pop random character
-            DailyRecruits.Add(CharacterDeck[0]);
-            CharacterDeck.Remove(CharacterDeck[0]);
-        }
-    }
-    public void SetRecruitsPerDay(int newSize)
-    {
-        RecruitsPerDay = newSize;
     }
     #endregion
 

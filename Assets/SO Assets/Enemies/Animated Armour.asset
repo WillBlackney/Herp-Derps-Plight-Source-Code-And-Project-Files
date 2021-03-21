@@ -17,9 +17,9 @@ MonoBehaviour:
   audioProfile: 4
   overrideStartingHealth: 0
   startingHealth: 0
-  enableFlexibleMaxHealth: 0
-  maxHealthFlexAmount: 0
-  maxHealth: 48
+  enableFlexibleMaxHealth: 1
+  maxHealthFlexAmount: 3
+  maxHealth: 60
   startingBlock: 40
   strength: 20
   intelligence: 20
@@ -88,6 +88,8 @@ MonoBehaviour:
     unbreakableStacks: 1
     pierceStacks: 0
     regenerationStacks: 0
+    hurricaneStacks: 0
+    holierThanThouStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -179,7 +181,7 @@ MonoBehaviour:
         onCharacter: 0
       actionType: 0
       effectLoops: 2
-      baseDamage: 20
+      baseDamage: 12
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -248,7 +250,7 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
-      blockGained: 50
+      blockGained: 35
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0
@@ -325,7 +327,7 @@ MonoBehaviour:
         onCharacter: 0
       actionType: 0
       effectLoops: 1
-      baseDamage: 24
+      baseDamage: 18
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -351,7 +353,7 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
-      blockGained: 20
+      blockGained: 15
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0

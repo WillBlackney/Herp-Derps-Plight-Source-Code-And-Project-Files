@@ -14,13 +14,6 @@ public class EnemySpawner : Singleton<EnemySpawner>
 
     // Enemy Spawning + Related
     #region
-    public void SpawnEnemiesInCombatData(CombatData data)
-    {
-        foreach(EnemyDataSO enemy in data.enemies)
-        {
-            CharacterEntityController.Instance.CreateEnemyCharacter(enemy, LevelManager.Instance.GetNextAvailableEnemyNode());
-        }
-    }
     public void SpawnEnemyWave(string enemyType = "Basic", EnemyWaveSO enemyWave = null)
     {
         Debug.Log("SpawnEnemyWave() Called....");
@@ -34,7 +27,6 @@ public class EnemySpawner : Singleton<EnemySpawner>
             EnemyDataSO data = enemyGroup.possibleEnemies[randomIndex];
 
             CharacterEntityController.Instance.CreateEnemyCharacter(data, LevelManager.Instance.GetNextAvailableEnemyNode());
-
         }
 
     }

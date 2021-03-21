@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Shadowmancer 1
   m_EditorClassIdentifier: 
   templateName: Shadowmancer
+  possibleRaces: 010000000200000003000000090000000500000004000000
   possibleDecks:
   - {fileID: 11400000, guid: e5db80c470ca38f478cad3761e417693, type: 2}
   - {fileID: 11400000, guid: 6a770ae53594e1440a1561bc3fa53b80, type: 2}
+  - {fileID: 11400000, guid: 06d101b59e7cfff42877a7ed76a176ed, type: 2}
+  - {fileID: 11400000, guid: 8d9bfd7cf9844244da6811307775a0d3, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: db48cb3bc4cb7934a887c0700bae2382, type: 2}
   - {fileID: 11400000, guid: fb324dae066af714e865daf4ddd774f0, type: 2}
@@ -25,11 +28,11 @@ MonoBehaviour:
     trinketOne: {fileID: 0}
     trinketTwo: {fileID: 0}
   strengthMod: 0
-  intelligenceMod: 2
+  intelligenceMod: 3
   dexterityMod: 0
   witsMod: 0
-  constitutionMod: 2
-  maxHealth: 100
+  constitutionMod: 1
+  maxHealth: 90
   talentPairings:
   - talentSchool: 11
     talentLevel: 2

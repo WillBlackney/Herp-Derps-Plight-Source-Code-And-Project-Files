@@ -23,9 +23,6 @@ MonoBehaviour:
   targettingType: 3
   talentSchool: 6
   rarity: 1
-  affliction: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 0
   upgradeLevel: 1
   expend: 1
@@ -35,6 +32,9 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -71,6 +71,11 @@ MonoBehaviour:
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -97,10 +102,12 @@ MonoBehaviour:
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 1
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 1
+    useEachIndividualsStackCount: 1
     damageType: 2
     healthRestored: 0
     healthLost: 0
@@ -149,7 +156,11 @@ MonoBehaviour:
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
+  cardPassiveEffects: []
   keyWordModels:
+  - kewWordType: 8
+    weaponRequirement: 0
+    passiveType: 2
   - kewWordType: 1
     weaponRequirement: 0
     passiveType: 0

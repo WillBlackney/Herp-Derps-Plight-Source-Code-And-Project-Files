@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 037dbb91702418b4e869afd5641058c4, type: 3}
+  m_Name: Paladin 4
+  m_EditorClassIdentifier: 
+  cards:
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
+  - {fileID: 11400000, guid: c62cea059d102884a8aabb11de5b070c, type: 2}
+  - {fileID: 11400000, guid: 9a485b795a8ea7d4fbab8525e8284e7d, type: 2}
+  - {fileID: 11400000, guid: 9a485b795a8ea7d4fbab8525e8284e7d, type: 2}
+  - {fileID: 11400000, guid: 550def62c883b5848a6b4e65c0c347b4, type: 2}

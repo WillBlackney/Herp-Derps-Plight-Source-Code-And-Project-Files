@@ -20,11 +20,17 @@ public class CardEventListener
     [ShowIf("ShowPassivePairing")]
     public PassivePairingData passivePairing;
 
+    [ShowIf("ShowHealthLost")]
+    public int healthLost;
+
     [ShowIf("ShowEnergyGainedOrLost")]
     public int energyGainedOrLost;
 
     [ShowIf("ShowCertainCardNames")]
     public List<string> certainCardNames;
+
+    [ShowIf("ShowWhileHoldingBlessing")]
+    public bool whileHoldingBlessing;
 
     [Header("Holding Certain Card Effects")]
     [ShowIf("ShowCertainCardNames")]
@@ -35,10 +41,19 @@ public class CardEventListener
         return cardEventListenerType == CardEventListenerType.WhileHoldingCertainCard;
 
     }
+    public bool ShowWhileHoldingBlessing()
+    {
+        return cardEventListenerType == CardEventListenerType.WhileHoldingCertainCard;
+
+    }
     public bool ShowMaxHealthGained()
     {
-        return cardEventListenerFunction == CardEventListenerFunction.ModifyMaxHealth;
-      
+        return cardEventListenerFunction == CardEventListenerFunction.ModifyMaxHealth;      
+    }
+    public bool ShowHealthLost()
+    {
+        return cardEventListenerFunction == CardEventListenerFunction.LoseHealth;
+
     }
     public bool ShowEnergyGainedOrLost()
     {

@@ -15,8 +15,16 @@ MonoBehaviour:
   choiceDescription: Discover a rare card.
   effect: 1
   category: 1
-  impactLevel: 3
+  impactLevel: 2
   maxHealthGainedOrLost: 0
   healthGainedOrLost: 0
   randomCardRarity: 0
   discoveryCardRarity: 2
+  randomCardsUpgraded: 0
+  randomCardsTransformed: 0
+  attributeModified: 0
+  attributeAmountModified: 0
+  possiblePassives: []
+  afflicationsGained: 0
+  goldGainedOrLost: 0
+  itemRarity: 0

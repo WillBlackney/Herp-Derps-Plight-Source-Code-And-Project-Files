@@ -12,13 +12,8 @@ public class EnemyWaveSO : ScriptableObject
     public string encounterName;
     [BoxGroup("General Info")]
     [LabelWidth(100)]
+
     public CombatDifficulty combatDifficulty;
-    [BoxGroup("General Info")]
-    [LabelWidth(100)]
-    public CombatLevelRange levelRange;
-    [BoxGroup("General Info")]
-    [LabelWidth(100)]
-    public EncounterSpriteType encounterSpriteType;
     [BoxGroup("Enemy Groupings", centerLabel: true)]
     [LabelWidth(100)]
     public List<EnemyGroup> enemyGroups;

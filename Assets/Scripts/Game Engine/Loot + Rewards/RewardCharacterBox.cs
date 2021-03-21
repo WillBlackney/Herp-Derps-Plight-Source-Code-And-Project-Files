@@ -42,9 +42,9 @@ public class XpRewardData
     public int totalXpGained;
     public int combatXpGained;
     public bool flawless = false;
-    public CombatDifficulty encounterType;
+    public EncounterType encounterType;
 
-    public XpRewardData(CharacterData data, int _totalXpGained, int _combatXpGained, bool _flawless, CombatDifficulty _encounterType)
+    public XpRewardData(CharacterData data, int _totalXpGained, int _combatXpGained, bool _flawless, EncounterType _encounterType)
     {
         characterRef = data;
         encounterType = _encounterType;

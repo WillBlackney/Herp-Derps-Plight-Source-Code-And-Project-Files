@@ -42,9 +42,25 @@ public class EventSequenceController : Singleton<EventSequenceController>
         {
             StartCoroutine(RunCombatEndLootTestEventSetup());
         }
-        else if (GlobalSettings.Instance.gameMode == StartingSceneSetting.JourneyStartTest)
+        else if (GlobalSettings.Instance.gameMode == StartingSceneSetting.RecruitCharacterEvent)
         {
-            HandleStartNewGameFromMainMenuEvent();
+            StartCoroutine(RunRecruitCharacterTestEventSetup());
+        }
+        else if (GlobalSettings.Instance.gameMode == StartingSceneSetting.KingsBlessingEvent)
+        {
+            StartCoroutine(RunKingsBlessingTestEventSetup());
+        }
+        else if (GlobalSettings.Instance.gameMode == StartingSceneSetting.CampSiteEvent)
+        {
+            StartCoroutine(RunCampSiteTestEventSetup());
+        }
+        else if (GlobalSettings.Instance.gameMode == StartingSceneSetting.ShopEventTest)
+        {
+            StartCoroutine(RunShopTestEventSetup());
+        }
+        else if (GlobalSettings.Instance.gameMode == StartingSceneSetting.ShrineEventTest)
+        {
+            StartCoroutine(RunShrineEventTestSetup());
         }
     }
     #endregion
@@ -55,6 +71,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
     {
         // Set starting view state
         TopBarController.Instance.HideTopBar();
+        StateController.Instance.HideStatePanel();
         BlackScreenController.Instance.DoInstantFadeOut();
         MainMenuController.Instance.ShowFrontScreen();
         MainMenuController.Instance.frontScreenGuiCg.alpha = 0;
@@ -88,6 +105,10 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Build character data
         CharacterDataController.Instance.BuildCharacterRosterFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
 
+        // State related
+        StateController.Instance.BuildPlayerStatesFromGlobalSettingsMockData();
+        StateController.Instance.BuildAndShowStatePanel();
+
         // Create player characters in scene
         CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
 
@@ -97,7 +118,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Spawn enemies
         EnemySpawner.Instance.SpawnEnemyWave("Basic", GlobalSettings.Instance.testingEnemyWave);
-       // ProgressionController.Instance.IncrementWorldMapPosition();
+        JourneyManager.Instance.IncrementWorldMapPosition();
 
         // Start a new combat event
         ActivationManager.Instance.OnNewCombatEventStarted();
@@ -112,12 +133,124 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Build character data
         CharacterDataController.Instance.BuildCharacterRosterFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
 
+        // State related
+        StateController.Instance.BuildPlayerStatesFromGlobalSettingsMockData();
+        StateController.Instance.BuildAndShowStatePanel();
+
         // Create player characters in scene
         CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
 
-       // ProgressionController.Instance.IncrementWorldMapPosition();
+        JourneyManager.Instance.IncrementWorldMapPosition();
 
-        StartCombatVictorySequence(CombatDifficulty.Basic);
+        StartCombatVictorySequence(EncounterType.BasicEnemy);
+    }
+    private IEnumerator RunRecruitCharacterTestEventSetup()
+    {
+        yield return null;
+
+        // Enable GUI
+        TopBarController.Instance.ShowTopBar();
+
+        // Build character data
+        CharacterDataController.Instance.BuildCharacterRosterFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
+
+        // State related
+        StateController.Instance.BuildPlayerStatesFromGlobalSettingsMockData();
+        StateController.Instance.BuildAndShowStatePanel();
+
+        // Generate character deck and pop 3 recruits
+        CharacterDataController.Instance.AutoGenerateAndCacheNewCharacterDeck();
+        RecruitCharacterController.Instance.GenerateAndCacheCharacterChoices();
+
+        // Journey logic
+        JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.RecruitCharacterStart);
+
+        // Load event
+        HandleLoadEncounter(EncounterType.RecruitCharacter);
+
+    }
+    private IEnumerator RunKingsBlessingTestEventSetup()
+    {
+        Debug.Log("EventSequenceController.RunKingsBlessingTestEventSetup()");
+
+        yield return null;
+
+        // Enable GUI
+        TopBarController.Instance.ShowTopBar();
+
+        // Build character data
+        CharacterDataController.Instance.BuildCharacterRosterFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
+
+        // State related
+        StateController.Instance.BuildPlayerStatesFromGlobalSettingsMockData();
+        StateController.Instance.BuildAndShowStatePanel();
+
+        HandleLoadKingsBlessingEncounter();
+    }
+    private IEnumerator RunCampSiteTestEventSetup()
+    {
+        Debug.Log("EventSequenceController.RunCampSiteTestEventSetup()");
+
+        yield return null;
+
+        // Enable GUI
+        TopBarController.Instance.ShowTopBar();
+
+        // Build character data
+        CharacterDataController.Instance.BuildCharacterRosterFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
+        CampSiteController.Instance.BuildStartingCampSiteDeck(GlobalSettings.Instance.testingCampDeck);
+        CampSiteController.Instance.SetStartingCampPointRegenStat(GlobalSettings.Instance.testingCampPoints);
+        CampSiteController.Instance.SetStartingDrawStat(GlobalSettings.Instance.testingCampDraw);
+
+        // State related
+        StateController.Instance.BuildPlayerStatesFromGlobalSettingsMockData();
+        StateController.Instance.BuildAndShowStatePanel();
+
+        HandleLoadCampSiteEvent();
+    }
+    private IEnumerator RunShopTestEventSetup()
+    {
+        Debug.Log("EventSequenceController.RunShopTestEventSetup()");
+
+        yield return null;
+
+        // Enable GUI
+        TopBarController.Instance.ShowTopBar();
+
+        // Build character data
+        CharacterDataController.Instance.BuildCharacterRosterFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
+
+        // State related
+        StateController.Instance.BuildPlayerStatesFromGlobalSettingsMockData();
+        StateController.Instance.BuildAndShowStatePanel();
+
+        // Gain gold to test with
+        PlayerDataManager.Instance.ModifyCurrentGold(200);
+
+        // Start load shop event sequence
+        HandleLoadShopEvent();
+    }
+    private IEnumerator RunShrineEventTestSetup()
+    {
+        Debug.Log("EventSequenceController.RunShrineEventTestSetup()");
+
+        yield return null;
+
+        // Enable GUI
+        TopBarController.Instance.ShowTopBar();
+
+        // Build character data
+        CharacterDataController.Instance.BuildCharacterRosterFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
+
+        // For testing only
+        StateController.Instance.BuildPlayerStatesFromGlobalSettingsMockData();
+        StateController.Instance.BuildAndShowStatePanel();
+
+        // Gain gold to test with
+        PlayerDataManager.Instance.ModifyCurrentGold(200);
+
+        // Start load shop event sequence
+        HandleLoadShrineEvent();
     }
     #endregion
 
@@ -135,10 +268,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
         BlackScreenController.Instance.FadeOutScreen(2f);
         yield return new WaitForSeconds(2f);
 
-        // Set up top bar
+        // Enable GUI
         TopBarController.Instance.ShowTopBar();
-        TopBarController.Instance.ShowNavigationButton();
-        TopBarController.Instance.SetNavigationButtonText("To Arena");
+        StateController.Instance.BuildAndShowStatePanel();
 
         // Set up characters
         PersistencyManager.Instance.BuildNewSaveFileOnNewGameStarted();
@@ -153,29 +285,23 @@ public class EventSequenceController : Singleton<EventSequenceController>
         MainMenuController.Instance.HideNewGameScreen();
         MainMenuController.Instance.HideFrontScreen();
 
-        // Setup town view
-        TownViewController.Instance.ShowMainTownView();
-        TownViewController.Instance.SetScreenViewState(ScreenViewState.Town);
-        
-        // Set up character panel views
-        CharacterPanelViewController.Instance.ShowCharacterRosterPanel();
-        CharacterPanelViewController.Instance.RebuildAllViews();
-
-        // Reset chosen combat character slots + data
-        TownViewController.Instance.ClearAllSelectedCombatCharactersAndSlots();
-
         // Act start visual sequence
         yield return new WaitForSeconds(0.5f);
         AudioManager.Instance.FadeInSound(Sound.Ambience_Outdoor_Spooky, 1f);
         yield return new WaitForSeconds(1f);
-        BlackScreenController.Instance.FadeInScreen(1f);       
+        PlayActNotificationVisualEvent();
+        BlackScreenController.Instance.FadeInScreen(0f);
+        yield return new WaitForSeconds(3.5f);
+
+        // Start the first encounter set up sequence
+        HandleLoadEncounter(JourneyManager.Instance.CurrentEncounter);        
     }
     public void HandleLoadSavedGameFromMainMenuEvent()
     {
         StartCoroutine(HandleLoadSavedGameFromMainMenuEventCoroutine());
     }
     private IEnumerator HandleLoadSavedGameFromMainMenuEventCoroutine()
-    {     
+    {        
         // Fade menu music
         if (AudioManager.Instance.IsSoundPlaying(Sound.Music_Main_Menu_Theme_1))
         {
@@ -191,6 +317,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Enable GUI
         TopBarController.Instance.ShowTopBar();
+        StateController.Instance.BuildAndShowStatePanel();
 
         // Reset Camera
         CameraManager.Instance.ResetMainCameraPositionAndZoom();
@@ -198,51 +325,8 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Hide Main Menu
         MainMenuController.Instance.HideFrontScreen();
 
-        // Reset chosen combat character slots + data
-        TownViewController.Instance.ClearAllSelectedCombatCharactersAndSlots();
-
-        // if in town, load into town
-        if (ProgressionController.Instance.CheckPointType == SaveCheckPoint.TownDayStart)
-        {
-            // Setup town view
-            TownViewController.Instance.ShowMainTownView();
-            TownViewController.Instance.SetScreenViewState(ScreenViewState.Town);
-
-            // Set up character panel views
-            CharacterPanelViewController.Instance.ShowCharacterRosterPanel();
-            CharacterPanelViewController.Instance.RebuildAllViews();
-
-            // Act start visual sequence
-            yield return new WaitForSeconds(0.5f);
-            AudioManager.Instance.FadeInSound(Sound.Ambience_Outdoor_Spooky, 1f);
-            yield return new WaitForSeconds(1f);
-            BlackScreenController.Instance.FadeInScreen(1f);
-        }
-
-        // if at combat start, load combat start sequence
-        if (ProgressionController.Instance.CheckPointType == SaveCheckPoint.CombatStart)
-        {
-            HandleLoadCombatEncounter(ProgressionController.Instance.CurrentCombatData, ProgressionController.Instance.ChosenCombatCharacters);
-        }
-
-        // if at combat end event, load combat end.
-        if (ProgressionController.Instance.CheckPointType == SaveCheckPoint.CombatEnd)
-        {
-            // Build level + character views
-            LevelManager.Instance.EnableDungeonScenery();
-            LevelManager.Instance.ShowAllNodeViews();
-            CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
-
-            // Build and show loot screen views
-            LootController.Instance.BuildLootScreenElementsFromLootResultData();
-            LootController.Instance.FadeInMainLootView();
-            LootController.Instance.ShowFrontPageView();
-
-            // Fade in
-            BlackScreenController.Instance.FadeInScreen(1f);
-        }
-               
-
+        // Load the encounter the player saved at
+        HandleLoadEncounter(JourneyManager.Instance.CurrentEncounter);
     }
 
     #endregion
@@ -276,6 +360,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Hide Game GUI
         TopBarController.Instance.HideTopBar();
+        StateController.Instance.HideStatePanel();
 
         // Brute force stop all game music
         AudioManager.Instance.ForceStopAllCombatMusic();
@@ -285,34 +370,33 @@ public class EventSequenceController : Singleton<EventSequenceController>
             yield return new WaitUntil(() => handle.cData.CoroutineCompleted() == true);
         }
 
-        // Destroy combat scene
+        // Destroy game scene
         HandleCombatSceneTearDown();
 
-        // Hide town/in-game UI
-        CharacterPanelViewController.Instance.HideCharacterRosterPanel();
-        TownViewController.Instance.HideArenaScreen();
-        TownViewController.Instance.HideChosenCharacterSlots();
-        TownViewController.Instance.HideMainTownView();
-
         // Hide world map + roster
-        //MapView.Instance.HideMainMapView();
-        //CharacterRosterViewController.Instance.DisableMainView();
+        MapView.Instance.HideMainMapView();
+        CharacterRosterViewController.Instance.DisableMainView();
 
         // Hide Recruit character screen
-        // RecruitCharacterController.Instance.ResetAllViews();
+        RecruitCharacterController.Instance.ResetAllViews();
 
         // Hide Loot screen elements
-        // LootController.Instance.CloseAndResetAllViews();
+        LootController.Instance.CloseAndResetAllViews();
 
         // Hide Kings Blessing screen elements
-
-        // LevelManager.Instance.DisableGraveyardScenery();
-        // KingsBlessingController.Instance.DisableUIView();
+        LevelManager.Instance.DisableGraveyardScenery();
+        KingsBlessingController.Instance.DisableUIView();
 
         // Hide camp site
-        //LevelManager.Instance.DisableCampSiteScenery();
-       // CampSiteController.Instance.DisableCharacterViewParent();
-       // CampSiteController.Instance.DisableCampGuiViewParent();
+        LevelManager.Instance.DisableCampSiteScenery();
+        CampSiteController.Instance.DisableCharacterViewParent();
+        CampSiteController.Instance.DisableCampGuiViewParent();
+
+        // Hide Shrine
+        ChooseStateWindowController.Instance.HideWindowInstant();
+        ShrineController.Instance.HideContinueButton();
+        ShrineController.Instance.DisableAllViews();
+        LevelManager.Instance.DisableShrineScenery();
 
         // Fade in menu music
         AudioManager.Instance.FadeInSound(Sound.Music_Main_Menu_Theme_1, 1f);
@@ -328,34 +412,62 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
     // Load Encounters Logic
     #region
-    public void HandleStartCombatFromChooseCombatScreen()
+    public void HandleLoadEncounter(EncounterType encounter)
     {
-        StartCoroutine(HandleStartCombatFromChooseCombatScreenCoroutine());
-    }
-    private IEnumerator HandleStartCombatFromChooseCombatScreenCoroutine()
-    {
-        yield return null;
-        BlackScreenController.Instance.FadeOutScreen(1f);
-        yield return new WaitForSeconds(1f);
+        Debug.LogWarning("EventSequenceController.HandleLoadEncounter() loading: " + encounter.ToString());
 
-        // Hide all town views
-        TownViewController.Instance.HideChosenCharacterSlots();
-        TownViewController.Instance.HideArenaScreen();
-        TownViewController.Instance.HideMainTownView();
-        CharacterPanelViewController.Instance.HideCharacterRosterPanel();
-        TopBarController.Instance.HideNavigationButton();
+        if ((encounter == EncounterType.BasicEnemy ||
+            encounter == EncounterType.EliteEnemy ||
+            encounter == EncounterType.BossEnemy) &&
+            JourneyManager.Instance.CheckPointType == SaveCheckPoint.CombatStart
+            )
+        {
+            HandleLoadCombatEncounter(JourneyManager.Instance.CurrentEnemyWave);
+        }
 
-        // save stuff
-        ProgressionController.Instance.SetCheckPoint(SaveCheckPoint.CombatStart);
-        ProgressionController.Instance.SetCurrentCombat(TownViewController.Instance.SelectedCombatEvent);
+        else if ((encounter == EncounterType.BasicEnemy ||
+            encounter == EncounterType.EliteEnemy) &&
+            JourneyManager.Instance.CheckPointType == SaveCheckPoint.CombatEnd
+            )
+        {
+            BlackScreenController.Instance.FadeInScreen(1f);
+            LevelManager.Instance.EnableDungeonScenery();
+            LevelManager.Instance.ShowAllNodeViews();
+            CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
+            StartCombatVictorySequence(encounter);
+        }
 
-        // Cache characters selected for the combat        
-        ProgressionController.Instance.SetChosenCombatCharacters(TownViewController.Instance.SelectedCombatCharacters);
+        // TO DO IN FUTURE: boss loot events are different to basic/enemy, and 
+        // will require different loading logic here
+        else if ((encounter == EncounterType.BossEnemy) &&
+            JourneyManager.Instance.CheckPointType == SaveCheckPoint.CombatEnd
+            )
+        {
+           
+        }
 
-        PersistencyManager.Instance.AutoUpdateSaveFile();
+        else if (JourneyManager.Instance.CheckPointType == SaveCheckPoint.RecruitCharacterStart)
+        {
+            HandleLoadRecruitCharacterEncounter();
+        }
 
-        // Start load combat process
-        HandleLoadCombatEncounter(TownViewController.Instance.SelectedCombatEvent, ProgressionController.Instance.ChosenCombatCharacters);
+        else if (JourneyManager.Instance.CheckPointType == SaveCheckPoint.KingsBlessingStart)
+        {
+            HandleLoadKingsBlessingEncounter();
+        }
+
+        else if (JourneyManager.Instance.CheckPointType == SaveCheckPoint.CampSite)
+        {
+            HandleLoadCampSiteEvent();
+        }
+        else if (JourneyManager.Instance.CheckPointType == SaveCheckPoint.Shop)
+        {
+            HandleLoadShopEvent();
+        }
+        else if (JourneyManager.Instance.CheckPointType == SaveCheckPoint.Shrine)
+        {
+            HandleLoadShrineEvent();
+        }
     }
     public void HandleLoadNextEncounter(MapNode mapNode)
     {
@@ -365,24 +477,22 @@ public class EventSequenceController : Singleton<EventSequenceController>
     {
         // Hide world map view
         MapView.Instance.HideMainMapView();
-        yield return null;
 
         // Cache previous encounter data 
-       //// EncounterType previousEncounter = ProgressionController.Instance.CurrentEncounter;
-        //EnemyWaveSO previousEnemyWave = ProgressionController.Instance.CurrentCombatData;
+        EncounterType previousEncounter = JourneyManager.Instance.CurrentEncounter;
+        EnemyWaveSO previousEnemyWave = JourneyManager.Instance.CurrentEnemyWave;
 
         // Increment world position + set next encounter
-       // ProgressionController.Instance.IncrementWorldMapPosition();
-       // ProgressionController.Instance.SetCurrentEncounterType(mapNode.Node.NodeType);
+        JourneyManager.Instance.IncrementWorldMapPosition();
+        JourneyManager.Instance.SetCurrentEncounterType(mapNode.Node.NodeType);
 
         // Destroy all characters and activation windows if the 
         // previous encounter was a combat event
-        /*
         if (previousEncounter == EncounterType.BasicEnemy ||
             previousEncounter == EncounterType.EliteEnemy)
         {
             // Mark wave as seen
-            ProgressionController.Instance.AddEnemyWaveToAlreadyEncounteredList(previousEnemyWave);
+            JourneyManager.Instance.AddEnemyWaveToAlreadyEncounteredList(previousEnemyWave);
 
             // Fade out visual event
             BlackScreenController.Instance.FadeOutScreen(3f);
@@ -422,7 +532,8 @@ public class EventSequenceController : Singleton<EventSequenceController>
             BlackScreenController.Instance.FadeOutScreen(1f);
             yield return new WaitForSeconds(1f);
 
-            // Teardown recruit event views
+            // Teardown recruit event views + data
+            RecruitCharacterController.Instance.currentChoices.Clear();
             RecruitCharacterController.Instance.ResetAllViews();
         }
 
@@ -503,55 +614,75 @@ public class EventSequenceController : Singleton<EventSequenceController>
             LevelManager.Instance.DisableShopScenery();
         }
 
+        // Do shrine end sequence + tear down
+        else if (previousEncounter == EncounterType.Shrine)
+        {
+            // Hide shrine GUI
+            ShrineController.Instance.HideContinueButton();
+
+            // Move characters off screen
+            ShrineController.Instance.MoveCharactersToOffScreenRight();
+
+            // Zoom and move camera
+            yield return new WaitForSeconds(0.5f);
+            CameraManager.Instance.DoCameraMove(3, 0, 3f);
+            CameraManager.Instance.DoCameraZoom(5, 3, 3f);
+
+            // Fade out Screen
+            BlackScreenController.Instance.FadeOutScreen(3f);
+
+            // Wait for visual events
+            yield return new WaitForSeconds(4f);
+
+            ShrineController.Instance.DisableAllViews();
+            LevelManager.Instance.DisableShrineScenery();
+        }
+
         // Reset Camera
         CameraManager.Instance.ResetMainCameraPositionAndZoom();
 
         // If next event is a combat, get + set enemy wave before saving to disk
-        if (ProgressionController.Instance.CurrentEncounter == EncounterType.BasicEnemy ||
-            ProgressionController.Instance.CurrentEncounter == EncounterType.EliteEnemy ||
-            ProgressionController.Instance.CurrentEncounter == EncounterType.BossEnemy)
+        if (JourneyManager.Instance.CurrentEncounter == EncounterType.BasicEnemy ||
+            JourneyManager.Instance.CurrentEncounter == EncounterType.EliteEnemy ||
+            JourneyManager.Instance.CurrentEncounter == EncounterType.BossEnemy)
         {
-            // Calculate and cache the next enemy wave group
-            //JourneyManager.Instance.SetCurrentEnemyWaveData 
-            //  (JourneyManager.Instance.GetRandomEnemyWaveFromEncounterData(JourneyManager.Instance.CurrentEncounter));
-
-            if (ProgressionController.Instance.CurrentEncounter == EncounterType.BasicEnemy)
+            if (JourneyManager.Instance.CurrentEncounter == EncounterType.BasicEnemy)
             {
-                ProgressionController.Instance.SetCurrentEnemyWaveData 
-                  (ProgressionController.Instance.DetermineAndGetNextBasicEnemyWave());
+                JourneyManager.Instance.SetCurrentEnemyWaveData 
+                  (JourneyManager.Instance.DetermineAndGetNextBasicEnemyWave());
             }
-            else if (ProgressionController.Instance.CurrentEncounter == EncounterType.EliteEnemy)
+            else if (JourneyManager.Instance.CurrentEncounter == EncounterType.EliteEnemy)
             {
-                ProgressionController.Instance.SetCurrentEnemyWaveData
-                  (ProgressionController.Instance.DetermineAndGetNextEliteEnemyWave());
+                JourneyManager.Instance.SetCurrentEnemyWaveData
+                  (JourneyManager.Instance.DetermineAndGetNextEliteEnemyWave());
             }
-            else if (ProgressionController.Instance.CurrentEncounter == EncounterType.BossEnemy)
+            else if (JourneyManager.Instance.CurrentEncounter == EncounterType.BossEnemy)
             {
-                ProgressionController.Instance.SetCurrentEnemyWaveData
-                  (ProgressionController.Instance.DetermineAndGetNextBossEnemyWave());
+                JourneyManager.Instance.SetCurrentEnemyWaveData
+                  (JourneyManager.Instance.DetermineAndGetNextBossEnemyWave());
             }
 
             // Set check point
-            ProgressionController.Instance.SetCheckPoint(SaveCheckPoint.CombatStart);
+            JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.CombatStart);
 
             // Auto save
             PersistencyManager.Instance.AutoUpdateSaveFile();
 
             // Start Load combat
-            HandleLoadCombatEncounter(ProgressionController.Instance.CurrentCombatData);
+            HandleLoadCombatEncounter(JourneyManager.Instance.CurrentEnemyWave);
         }
 
         // Recruit character event
-        else if(ProgressionController.Instance.CurrentEncounter == EncounterType.RecruitCharacter)
+        else if(JourneyManager.Instance.CurrentEncounter == EncounterType.RecruitCharacter)
         {
             // Generate 3 random characters, if we are not loading from save
             if (RecruitCharacterController.Instance.currentChoices.Count == 0)
             {
-                RecruitCharacterController.Instance.currentChoices = RecruitCharacterController.Instance.GetThreeValidRecruitableCharacters();
+                RecruitCharacterController.Instance.GenerateAndCacheCharacterChoices();
             }
 
             // Set check point
-            ProgressionController.Instance.SetCheckPoint(SaveCheckPoint.RecruitCharacterStart);
+            JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.RecruitCharacterStart);
 
             // Auto save
             PersistencyManager.Instance.AutoUpdateSaveFile();
@@ -560,8 +691,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         }
 
         // Shop event
-        /*
-        else if (ProgressionController.Instance.CurrentEncounter == EncounterType.Shop)
+        else if (JourneyManager.Instance.CurrentEncounter == EncounterType.Shop)
         {
             // Generate new shop contents
             if (ShopController.Instance.CurrentShopContentResultData == null)
@@ -570,17 +700,57 @@ public class EventSequenceController : Singleton<EventSequenceController>
             }
 
             // Set check point
-            ProgressionController.Instance.SetCheckPoint(SaveCheckPoint.Shop);
+            JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.Shop);
 
             // Auto save
             PersistencyManager.Instance.AutoUpdateSaveFile();
 
             HandleLoadShopEvent();
         }
-        */
 
+        // Shrine event
+        else if (JourneyManager.Instance.CurrentEncounter == EncounterType.Shrine)
+        {
+            // Generate new shop contents
+            if (ShrineController.Instance.CurrentShrineStates == null)
+            {
+                ShrineController.Instance.SetAndCacheNewShrineContentDataSet();
+            }
+
+            // Set check point
+            JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.Shrine);
+
+            // Auto save
+            PersistencyManager.Instance.AutoUpdateSaveFile();
+
+            HandleLoadShrineEvent();
+        }
+
+        // Kings Blessing
+        else if (JourneyManager.Instance.CurrentEncounter == EncounterType.KingsBlessingEvent)
+        {
+            // Set check point
+            JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.KingsBlessingStart);
+
+            // Auto save
+            PersistencyManager.Instance.AutoUpdateSaveFile();
+
+            HandleLoadKingsBlessingEncounter();
+        }
+
+        // Camp site
+        else if (JourneyManager.Instance.CurrentEncounter == EncounterType.CampSite)
+        {
+            // Set check point
+            JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.CampSite);
+
+            // Auto save
+            PersistencyManager.Instance.AutoUpdateSaveFile();
+
+            HandleLoadCampSiteEvent();
+        }
     }
-    private void HandleLoadCombatEncounter(CombatData combatData, List<CharacterData> playerCharacters)
+    private void HandleLoadCombatEncounter(EnemyWaveSO enemyWave)
     {
         // Enable ambience if not playing
         if (!AudioManager.Instance.IsSoundPlaying(Sound.Ambience_Crypt))
@@ -600,25 +770,24 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Play battle music
         AudioManager.Instance.FadeOutSound(Sound.Music_Main_Menu_Theme_1, 1f);
-        if(combatData.combatDifficulty == CombatDifficulty.Basic)
+        if(enemyWave.combatDifficulty == CombatDifficulty.Basic)
         {
             AudioManager.Instance.AutoPlayBasicCombatMusic(1f);
         }
-        else if (combatData.combatDifficulty == CombatDifficulty.Elite)
+        else if (enemyWave.combatDifficulty == CombatDifficulty.Elite)
         {
             AudioManager.Instance.AutoPlayEliteCombatMusic(1f);
         }
-        else if (combatData.combatDifficulty == CombatDifficulty.Boss)
+        else if (enemyWave.combatDifficulty == CombatDifficulty.Boss)
         {
             AudioManager.Instance.AutoPlayBossCombatMusic(1f);
         }
 
         // Create player characters in scene
-        CharacterEntityController.Instance.CreateAllPlayerCombatCharacters(playerCharacters);
+        CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
 
         // Spawn enemies
-        EnemySpawner.Instance.SpawnEnemiesInCombatData(combatData);
-        //EnemySpawner.Instance.SpawnEnemyWave(combatData.combatDifficulty.ToString(), combatData);
+        EnemySpawner.Instance.SpawnEnemyWave(enemyWave.combatDifficulty.ToString(), enemyWave);
 
         // move characters offscreen
         CharacterEntityController.Instance.MoveAllCharactersToOffScreenPosition();
@@ -630,16 +799,238 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Start a new combat event
         ActivationManager.Instance.OnNewCombatEventStarted();
     }
-   
+    private void HandleLoadRecruitCharacterEncounter()
+    {
+        // Enable ambience if not playing
+        if (!AudioManager.Instance.IsSoundPlaying(Sound.Ambience_Crypt))
+        {
+            AudioManager.Instance.FadeInSound(Sound.Ambience_Crypt, 1f);
+        }
+
+        // Fade in
+        BlackScreenController.Instance.FadeInScreen(2f);
+
+        // Build + Show views
+        RecruitCharacterController.Instance.ResetAllViews();
+        RecruitCharacterController.Instance.ShowRecruitCharacterScreen();
+        RecruitCharacterController.Instance.BuildRecruitCharacterWindows();
+    }
+    private void HandleLoadShrineEvent()
+    {
+        StartCoroutine(HandleLoadShrineEventCoroutine());
+    }
+    private IEnumerator HandleLoadShrineEventCoroutine()
+    {
+        Debug.LogWarning("HandleLoadShrineEventCoroutine()");
+
+        // Generate Shrine states
+        if(ShrineController.Instance.CurrentShrineStates == null)
+        {
+            ShrineController.Instance.SetAndCacheNewShrineContentDataSet();
+        }
+
+        // Build Scenery + Characters
+        LevelManager.Instance.EnableShrineScenery();
+        ShrineController.Instance.EnableAllViews();
+        ShrineController.Instance.BuildAllShrineCharacterViews(CharacterDataController.Instance.AllPlayerCharacters);
+        ShrineController.Instance.MoveAllCharactersToStartPosition();
+        ShrineController.Instance.HideContinueButton();
+
+        // Do fades + camera moves
+        BlackScreenController.Instance.FadeInScreen(1f);
+        CameraManager.Instance.DoCameraMove(-3, 0, 0f);
+        CameraManager.Instance.DoCameraMove(0, 0, 2f);
+        CameraManager.Instance.DoCameraZoom(3, 5, 2f);
+
+        // Move characters to shrine sequence
+        ShrineController.Instance.MoveAllCharactersToTheirNodes();
+        yield return new WaitForSeconds(1 + (CharacterDataController.Instance.AllPlayerCharacters.Count * 0.5f));
+        ShrineController.Instance.SetShrineInteractivityState(true);
+
+
+    }
+    private void HandleLoadShopEvent()
+    {
+        StartCoroutine(HandleLoadShopEventCoroutine());
+    }
+    private IEnumerator HandleLoadShopEventCoroutine()
+    {
+        Debug.LogWarning("HandleLoadShopEventCoroutine()");
+
+        // Generate shop content
+        if(ShopController.Instance.CurrentShopContentResultData == null)
+        {
+            ShopController.Instance.SetAndCacheNewShopContentDataSet();
+        }
+        ShopController.Instance.BuildAllShopContentFromDataSet(ShopController.Instance.CurrentShopContentResultData);
+
+        // Check 'Savvy Investors' state
+        if (StateController.Instance.DoesPlayerHaveState(StateName.SavvyInvestors))
+        {
+            PlayerDataManager.Instance.ModifyCurrentGold(40);
+        }
+
+        // Build scenery + characters
+        LevelManager.Instance.EnableShopScenery();
+        ShopController.Instance.EnableCharacterViewParent();
+        ShopController.Instance.BuildAllShopCharacterViews(CharacterDataController.Instance.AllPlayerCharacters);
+        ShopController.Instance.MoveAllCharactersToStartPosition();
+
+        // Do fades + camera moves
+        BlackScreenController.Instance.FadeInScreen(1f);
+        CameraManager.Instance.DoCameraMove(-3, 0, 0f);
+        CameraManager.Instance.DoCameraMove(0, 0, 2f);
+        CameraManager.Instance.DoCameraZoom(3, 5, 2f);
+
+        // Move and greet visual sequence
+        ShopController.Instance.MoveAllCharactersToTheirNodes();
+        yield return new WaitForSeconds(1 + (CharacterDataController.Instance.AllPlayerCharacters.Count * 0.5f));
+        ShopController.Instance.SetShopKeeperInteractionState(true);
+        ShopController.Instance.SetContinueButtonInteractionState(true);
+        ShopController.Instance.ShowContinueButton();
+        ShopController.Instance.DoMerchantGreeting();
+    }
+    private void HandleLoadCampSiteEvent()
+    {
+        StartCoroutine(HandleLoadCampSiteEventCoroutine());
+    }
+    private IEnumerator HandleLoadCampSiteEventCoroutine()
+    {
+        // Set Properties
+        CampSiteController.Instance.PopulateDrawPileOnEventStart();
+        CampSiteController.Instance.GainCampPointsOnNewCampEventStart();
+
+        // View sequence 1
+        LevelManager.Instance.EnableCampSiteScenery();
+        CampSiteController.Instance.EnableCharacterViewParent();
+        CampSiteController.Instance.BuildAllCampSiteCharacterViews(CharacterDataController.Instance.AllPlayerCharacters);
+        CampSiteController.Instance.SetAllCampSiteCharacterViewStartStates();
+        CampSiteController.Instance.MoveAllCharactersToStartPosition();
+        AudioManager.Instance.FadeInSound(Sound.Environment_Camp_Fire, 3f);
+
+        // View sequence 2
+        BlackScreenController.Instance.FadeInScreen(1f);
+        CameraManager.Instance.DoCameraMove(-3, 0, 0f);
+        CameraManager.Instance.DoCameraMove(0, 0, 2f);
+        CameraManager.Instance.DoCameraZoom(3, 5, 2f);
+        CampSiteController.Instance.MoveAllCharactersToTheirNodes();
+        yield return new WaitForSeconds(1 + (CharacterDataController.Instance.AllPlayerCharacters.Count * 0.5f));
+        ActivationManager.Instance.DisplayCustomNotification(null, "Camp Site");
+        yield return new WaitForSeconds(1f);
+        CampSiteController.Instance.EnableCampGuiViewParent();
+        CampSiteController.Instance.FadeInAllCharacterGUI();
+        CampSiteController.Instance.FadeInNodes();        
+        CampSiteController.Instance.FadeInCampGui();
+        yield return new WaitForSeconds(0.5f);
+
+        // Draw camp cards
+        CampSiteController.Instance.DrawCampCardsOnCampEventStart();
+    }
+    private void HandleLoadKingsBlessingEncounter()
+    {
+        StartCoroutine(HandleLoadKingsBlessingEncounterCoroutine());
+    }
+    private IEnumerator HandleLoadKingsBlessingEncounterCoroutine()
+    {
+        // Generate random KBC choices, if not loading from a save file
+        if(KingsBlessingController.Instance.CurrentChoices.Count == 0)
+        {
+            Debug.LogWarning("EventSequenceController.HandleLoadKingsBlessingEncounter() detected that 4 KBC choices" +
+                " have not already been created and saved to disk, generating new ones now...");
+            KingsBlessingController.Instance.SetCharacterChoices(KingsBlessingController.Instance.GenerateFourRandomChoices());
+        }
+        KingsBlessingController.Instance.BuildAllChoiceButtonViewsFromActiveChoices();
+
+        // Play ambience if not already playing
+        if (!AudioManager.Instance.IsSoundPlaying(Sound.Ambience_Outdoor_Spooky))
+        {
+            AudioManager.Instance.FadeInSound(Sound.Ambience_Outdoor_Spooky, 1f);
+        }
+        BlackScreenController.Instance.FadeInScreen(1.5f);
+
+        // PREPARE KBC VIEW
+        // Disable dungeon view
+        LevelManager.Instance.DisableDungeonScenery();
+
+        // Build kbc views
+        LevelManager.Instance.EnableGraveyardScenery();
+        KingsBlessingController.Instance.BuildAllViews(CharacterDataController.Instance.AllPlayerCharacters[0]);
+        KingsBlessingController.Instance.EnableUIView();
+
+        // Set Camera start settings
+        CameraManager.Instance.DoCameraZoom(2, 2, 0f);
+        CameraManager.Instance.DoCameraMove(-5, -3, 0f);
+
+        // Start moving player model + animate king
+        KingsBlessingController.Instance.PlayKingFloatAnim();
+        KingsBlessingController.Instance.DoPlayerModelMoveToMeetingSequence();
+        yield return new WaitForSeconds(0.5f);
+
+        // Move + Zoom out camera
+        CameraManager.Instance.DoCameraZoom(2, 5, 2f);
+        CameraManager.Instance.DoCameraMove(0, 0, 2f);
+        yield return new WaitForSeconds(1.5f);
+
+        // King greeting
+        KingsBlessingController.Instance.DoKingGreeting();
+        yield return new WaitForSeconds(1.5f);
+
+        // Fade in choice buttons + health bar
+        KingsBlessingController.Instance.FadeInChoiceButtons();
+        KingsBlessingController.Instance.FadeHealthBar(1, 1);
+
+    }
+    public void HandleLoadKingsBlessingContinueSequence(CoroutineData cData)
+    {
+        StartCoroutine(HandleLoadKingsBlessingContinueSequenceCoroutine(cData));
+    }
+    private IEnumerator HandleLoadKingsBlessingContinueSequenceCoroutine(CoroutineData cData)
+    {
+        // Disable continue button
+        KingsBlessingController.Instance.SetContinueButtonInteractions(false);
+
+        // Fade out continue button + health bar.
+        KingsBlessingController.Instance.FadeContinueButton(0, 0.5f, true);
+        KingsBlessingController.Instance.FadeHealthBar(0, 0.5f, true);
+
+        // King greeting
+        KingsBlessingController.Instance.DoKingFarewell();
+
+        // Open door visual sequence
+        KingsBlessingController.Instance.DoDoorOpeningSequence();
+        yield return new WaitForSeconds(1.75f);
+
+        // start camera zoom + movement here
+        CameraManager.Instance.DoCameraZoom(5, 2, 1.5f);
+        CameraManager.Instance.DoCameraMove(0, 2, 1.5f);
+
+        // Player moves towards door visual sequence
+        KingsBlessingController.Instance.DoPlayerMoveThroughEntranceSequence();
+        yield return new WaitForSeconds(1.5f);
+
+        // Fade out outdoor ambience
+        AudioManager.Instance.FadeOutSound(Sound.Ambience_Outdoor_Spooky, 1f);
+
+        // Black screen fade out start here
+        BlackScreenController.Instance.FadeOutScreen(1f);
+        yield return new WaitForSeconds(1f);
+
+        KingsBlessingController.Instance.DisableUIView();
+
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+    }
     #endregion
 
     // Handle Post Combat Stuff
     #region
-    public void StartCombatVictorySequence(CombatDifficulty combatType)
+    public void StartCombatVictorySequence(EncounterType combatType)
     {
         StartCoroutine(StartCombatVictorySequenceCoroutine(combatType));
     }
-    private IEnumerator StartCombatVictorySequenceCoroutine(CombatDifficulty combatType)
+    private IEnumerator StartCombatVictorySequenceCoroutine(EncounterType combatType)
     {
         // wait until v queue count = 0
         yield return new WaitUntil(()=> VisualEventManager.Instance.EventQueue.Count == 0);
@@ -684,37 +1075,38 @@ public class EventSequenceController : Singleton<EventSequenceController>
         UIManager.Instance.DisableEndTurnButtonView();
 
         // Do post combat mini event + reward xp
-        if (ProgressionController.Instance.CheckPointType != SaveCheckPoint.CombatEnd)
+        if (JourneyManager.Instance.CheckPointType != SaveCheckPoint.CombatEnd)
         {
             // Cache previous xp of characters for visual events
             List<PreviousXpState> pxsList = new List<PreviousXpState>();
-            foreach(CharacterData character in ProgressionController.Instance.ChosenCombatCharacters)
+            foreach(CharacterData character in CharacterDataController.Instance.AllPlayerCharacters)
             {
                 pxsList.Add(new PreviousXpState(character));
             }
 
             // Grant xp
-            CharacterDataController.Instance.HandleXpRewardPostCombat(combatType, ProgressionController.Instance.ChosenCombatCharacters);
+            CharacterDataController.Instance.HandleXpRewardPostCombat(combatType, CharacterDataController.Instance.AllPlayerCharacters);
 
             // Generate and cache xp rewarded stats for visual events
             List<XpRewardData> xpRewardDataSet = new List<XpRewardData>();
-            foreach(CharacterData character in ProgressionController.Instance.ChosenCombatCharacters)
+            foreach(CharacterData character in CharacterDataController.Instance.AllPlayerCharacters)
             {
                 bool flawless = false;
                 int combatXp = 0;
-                if(combatType == CombatDifficulty.Basic)
+                if(combatType == EncounterType.BasicEnemy)
                 {
                     combatXp = GlobalSettings.Instance.basicCombatXpReward;
                 }
-                else if (combatType == CombatDifficulty.Elite)
+                else if (combatType == EncounterType.EliteEnemy)
                 {
                     combatXp = GlobalSettings.Instance.eliteCombatXpReward;
                 }
-                else if (combatType == CombatDifficulty.Boss)
+                else if (combatType == EncounterType.BossEnemy)
                 {
                     combatXp = GlobalSettings.Instance.bossCombatXpReward;
                 }
 
+                // TO DO: in future, add flawless bones here
                 int totalXp = combatXp;
 
                 // Check for flawless bonus
@@ -738,14 +1130,8 @@ public class EventSequenceController : Singleton<EventSequenceController>
             // Generate loot
             LootController.Instance.SetAndCacheNewLootResult();
 
-            // Give player gold reward for combat
-            PlayerDataManager.Instance.ModifyCurrentGold(ProgressionController.Instance.CurrentCombatData.goldReward, false);
-
-            // TO DO: give player item reward + building token rewards
-            //
-
             // Save and set checkpoint + cache loot result
-            ProgressionController.Instance.SetCheckPoint(SaveCheckPoint.CombatEnd);
+            JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.CombatEnd);
             PersistencyManager.Instance.AutoUpdateSaveFile();
 
             // Wait for xp reward v event to finish
@@ -761,73 +1147,6 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // fade in loot window
         LootController.Instance.FadeInMainLootView();
         LootController.Instance.ShowFrontPageView();
-    }
-    public void HandleReturnToTownPostCombatSequence()
-    {
-        StartCoroutine(HandleReturnToTownPostCombatSequenceCoroutine());
-    }
-    private IEnumerator HandleReturnToTownPostCombatSequenceCoroutine()
-    {
-        // Fade out visual event
-        BlackScreenController.Instance.FadeOutScreen(3f);
-
-        // Fade and close loot screen views
-        LootController.Instance.FadeOutMainLootView(() => LootController.Instance.HideMainLootView());
-
-        // Move characters off screen
-        CharacterEntityController.Instance.MoveCharactersToOffScreenRight(CharacterEntityController.Instance.AllDefenders, null);
-        AudioManager.Instance.FadeOutSound(Sound.Environment_Camp_Fire, 3f);
-
-        // Zoom and move camera & Fade foot steps
-        yield return new WaitForSeconds(0.5f);
-        AudioManager.Instance.FadeOutSound(Sound.Character_Footsteps, 2.5f);
-        CameraManager.Instance.DoCameraMove(3, 0, 3f);
-        CameraManager.Instance.DoCameraZoom(5, 3, 3f);
-
-        // Wait for visual events
-        yield return new WaitForSeconds(4f);
-
-        // Tear down combat scene
-        HandleCombatSceneTearDown();
-
-        // Set check point + new day data generation logic
-        ProgressionController.Instance.SetDayNumber(ProgressionController.Instance.DayNumber + 1);
-        ProgressionController.Instance.SetDailyCombatChoices(CombatGenerationController.Instance.GenerateWeeklyCombatChoices());
-        ProgressionController.Instance.SetCheckPoint(SaveCheckPoint.TownDayStart);
-        CharacterDataController.Instance.AutoGenerateAndCacheDailyCharacterRecruits(CharacterDataController.Instance.RecruitsPerDay);
-
-        // to do: generate and cache new recruitable characters here
-
-        // Auto save
-        PersistencyManager.Instance.AutoUpdateSaveFile();
-
-        // Rebuild town views
-
-        // Set up top bar
-        TopBarController.Instance.ShowTopBar();
-        TopBarController.Instance.ShowNavigationButton();
-        TopBarController.Instance.SetNavigationButtonText("To Arena");
-
-        // Reset Camera
-        CameraManager.Instance.ResetMainCameraPositionAndZoom();
-
-        // Setup town views
-        TownViewController.Instance.ShowMainTownView();
-        TownViewController.Instance.SetScreenViewState(ScreenViewState.Town);
-
-        // Set up character panel views
-        CharacterPanelViewController.Instance.ShowCharacterRosterPanel();
-        CharacterPanelViewController.Instance.RebuildAllViews();
-
-        // Reset chosen combat character slots + data
-        TownViewController.Instance.ClearAllSelectedCombatCharactersAndSlots();
-
-        // Fade in screen + town music
-        yield return new WaitForSeconds(0.5f);
-        AudioManager.Instance.FadeInSound(Sound.Ambience_Outdoor_Spooky, 1f);
-        yield return new WaitForSeconds(1f);
-        BlackScreenController.Instance.FadeInScreen(1f);
-
     }
     #endregion
 

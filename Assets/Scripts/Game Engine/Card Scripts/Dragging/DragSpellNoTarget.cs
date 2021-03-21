@@ -23,6 +23,7 @@ public class DragSpellNoTarget: DraggingActions{
 
         locationTracker.VisualState = VisualStates.Dragging;
         locationTracker.BringToFront();
+        cardVM.mySlotHelper.ResetAngles();
 
         // play sfx
         AudioManager.Instance.FadeInSound(Sound.Card_Dragging, 0.2f);
@@ -33,7 +34,7 @@ public class DragSpellNoTarget: DraggingActions{
         
     }
 
-    public override void OnEndDrag()
+    public override void OnEndDrag(bool forceFailure = false)
     {
         Debug.Log("DragSpellNoTarget.OnEndDrag() called...");
 
@@ -41,7 +42,7 @@ public class DragSpellNoTarget: DraggingActions{
         AudioManager.Instance.FadeOutSound(Sound.Card_Dragging, 0.2f);
 
         // Check if we are holding a card over the table
-        if (DragSuccessful())
+        if (DragSuccessful() && forceFailure == false)
         {
             Debug.Log("DragSpellNoTarget.OnEndDrag() detected succesful drag and drop, playing the card...");
 
@@ -68,6 +69,7 @@ public class DragSpellNoTarget: DraggingActions{
                 HandVisual PlayerHand = cardVM.card.owner.characterEntityView.handVisual;
                 Vector3 oldCardPos = PlayerHand.slots.Children[savedHandSlot].transform.localPosition;
                 cardVM.movementParent.transform.DOLocalMove(oldCardPos, 0.25f);
+                PlayerHand.UpdateCardRotationsAndYDrops();
             }          
 
             else if (cardVM.eventSetting == EventSetting.Camping)
@@ -75,6 +77,7 @@ public class DragSpellNoTarget: DraggingActions{
                 // Move this card back to its slot position
                 Vector3 oldCardPos = CampSiteController.Instance.HandVisual.slots.Children[locationTracker.Slot].transform.localPosition;
                 cardVM.movementParent.DOLocalMove(oldCardPos, 0.25f);
+                CampSiteController.Instance.HandVisual.UpdateCardRotationsAndYDrops();
             }            
         } 
     }

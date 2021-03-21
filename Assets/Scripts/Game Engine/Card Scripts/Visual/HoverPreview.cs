@@ -208,12 +208,12 @@ public class HoverPreview: MonoBehaviour
         // Key word pop logic should go here:
         if(mainCardVM != null)
         {
-            // Normal cards
-            if(mainCardVM.card != null)
+            if(mainCardVM.campCard == null)
             {
                 CardController.Instance.AutoUpdateCardDescriptionText(mainCardVM.card);
+                CardController.Instance.SetCardViewModelDescriptionText(mainCardVM, TextLogic.ConvertCustomStringListToString(mainCardVM.card.cardDescriptionTwo));
                 KeyWordLayoutController.Instance.BuildAllViewsFromKeyWordModels(mainCardVM.card.keyWordModels);
-            }
+            }          
 
             // Camp cards
             if (mainCardVM.campCard != null)

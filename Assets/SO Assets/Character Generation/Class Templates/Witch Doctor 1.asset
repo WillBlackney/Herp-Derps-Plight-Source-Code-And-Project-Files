@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: Witch Doctor 1
   m_EditorClassIdentifier: 
   templateName: Witch Doctor
+  possibleRaces: 0100000003000000040000000900000005000000
   possibleDecks:
   - {fileID: 11400000, guid: 679b3a6462286854586920be9ac77558, type: 2}
+  - {fileID: 11400000, guid: acbb1b2a2dd01a249a9f2a07befa948b, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: f5612dc4c8c9dd74584cce463a016afb, type: 2}
   - {fileID: 11400000, guid: eac828e85cf0d8840a4c521d4d7c6aba, type: 2}
@@ -26,9 +28,9 @@ MonoBehaviour:
   strengthMod: 0
   intelligenceMod: 2
   dexterityMod: 0
-  witsMod: 1
-  constitutionMod: 1
-  maxHealth: 100
+  witsMod: 0
+  constitutionMod: 2
+  maxHealth: 90
   talentPairings:
   - talentSchool: 12
     talentLevel: 2

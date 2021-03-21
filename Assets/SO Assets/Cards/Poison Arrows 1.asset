@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Poison Arrows 1
   m_EditorClassIdentifier: 
   cardName: Poison Arrows +1
-  cardDescription: 'Unplayable. While in hand, your Ranged Attacks apply 4 Poisoned. '
+  cardDescription: 'Unplayable. While in hand, your Ranged Attacks apply 3 Poisoned. '
   cardSprite: {fileID: 21300000, guid: 9d4b5c1e701015a4a99fa4e9d82aa1f6, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '4 '
+    phrase: '3 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0

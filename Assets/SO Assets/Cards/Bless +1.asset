@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bless +1
   m_EditorClassIdentifier: 
   cardName: Bless +1
-  cardDescription: Give an ally 2 Rune.
+  cardDescription: Give an ally 1 Rune. Innate.
   cardSprite: {fileID: 21300000, guid: 7ac86044ccc3e9e4f83883bacdc87ee3, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -21,18 +21,18 @@ MonoBehaviour:
   targettingType: 1
   talentSchool: 10
   rarity: 2
-  affliction: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 0
   upgradeLevel: 1
   expend: 0
-  innate: 0
+  innate: 1
   fleeting: 0
   unplayable: 0
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -49,12 +49,27 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
+    phrase: '.
+
+'
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Innate
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
     phrase: .
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 3
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -70,6 +85,7 @@ MonoBehaviour:
     rarityFilter: 0
     upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
@@ -79,10 +95,13 @@ MonoBehaviour:
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 1
+    useEachIndividualsStackCount: 1
     damageType: 0
     healthRestored: 0
     healthLost: 0
@@ -92,7 +111,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 24
-      passiveStacks: 2
+      passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
@@ -128,8 +147,14 @@ MonoBehaviour:
       projectileStartPosition: 0
       onCharacter: 2
     visualEventsOnFinish: []
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
+  cardPassiveEffects: []
   keyWordModels:
   - kewWordType: 8
     weaponRequirement: 0
     passiveType: 24
+  - kewWordType: 2
+    weaponRequirement: 0
+    passiveType: 0

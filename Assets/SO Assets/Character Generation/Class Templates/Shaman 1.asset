@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Shaman 1
   m_EditorClassIdentifier: 
   templateName: Shaman
+  possibleRaces: 02000000050000000600000008000000
   possibleDecks:
   - {fileID: 11400000, guid: 56e9fed956b29824c8a5aaaf80eab019, type: 2}
   - {fileID: 11400000, guid: f0e516161ed255b4c8a0d9454aa401e9, type: 2}
+  - {fileID: 11400000, guid: 31a99d338fd734a4884e94dcfd128e6d, type: 2}
+  - {fileID: 11400000, guid: f3e8bedbc2ebed74db4dbcb63f9bd914, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: d7a6d2991d86e8f479a1a1970e5e4620, type: 2}
   - {fileID: 11400000, guid: a1b63016e1e0c574fbb4ea6ae312b7e7, type: 2}
@@ -36,12 +39,12 @@ MonoBehaviour:
     offHandItem: {fileID: 11400000, guid: e561792383921474c9710a3ebc1add23, type: 2}
     trinketOne: {fileID: 0}
     trinketTwo: {fileID: 0}
-  strengthMod: 1
-  intelligenceMod: 1
+  strengthMod: 3
+  intelligenceMod: 0
   dexterityMod: 0
-  witsMod: 1
+  witsMod: 0
   constitutionMod: 1
-  maxHealth: 100
+  maxHealth: 90
   talentPairings:
   - talentSchool: 13
     talentLevel: 1

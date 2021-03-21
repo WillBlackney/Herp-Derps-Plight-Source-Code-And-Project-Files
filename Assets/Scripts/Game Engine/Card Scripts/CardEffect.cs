@@ -7,8 +7,13 @@ using Sirenix.OdinInspector;
 [Serializable]
 public class CardEffect
 {
+    [Header("Requirement Settings")]
     [LabelWidth(200)]
     public CardWeaponRequirement weaponRequirement;
+    [LabelWidth(200)]
+    public TargetRequirement targetRequirement;
+
+    [Header("General Settings")]
     [LabelWidth(200)]
     public CardEffectType cardEffectType;
 
@@ -19,6 +24,7 @@ public class CardEffect
     [LabelWidth(200)]
     public TargettingType splitTargetType;
 
+    [Header("Summon Settings")]
     [ShowIf("ShowSummonProperties")]
     [LabelWidth(200)]
     public SummonedCharacterDataSO characterSummoned;
@@ -219,6 +225,7 @@ public class CardEffect
     [LabelWidth(200)]
     public int blessingsGained;
 
+    [Header("Visual Event Settings")]
     public List<AnimationEventData> visualEventsOnStart;
     public List<AnimationEventData> visualEventsOnFinish;
 

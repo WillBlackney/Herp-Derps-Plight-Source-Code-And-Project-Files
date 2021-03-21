@@ -18,14 +18,14 @@ MonoBehaviour:
   overrideStartingHealth: 0
   startingHealth: 130
   enableFlexibleMaxHealth: 1
-  maxHealthFlexAmount: 10
-  maxHealth: 310
+  maxHealthFlexAmount: 8
+  maxHealth: 200
   startingBlock: 16
-  strength: 10
-  intelligence: 10
-  dexterity: 10
-  wits: 10
-  constitution: 10
+  strength: 20
+  intelligence: 20
+  dexterity: 20
+  wits: 20
+  constitution: 20
   initiative: 1
   power: 0
   baseCrit: 0
@@ -87,6 +87,9 @@ MonoBehaviour:
     reflexShotBonusDamageStacks: 0
     unbreakableStacks: 0
     pierceStacks: 0
+    regenerationStacks: 0
+    hurricaneStacks: 0
+    holierThanThouStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -178,7 +181,7 @@ MonoBehaviour:
       visualEventsOnFinish: []
       actionType: 0
       effectLoops: 1
-      baseDamage: 40
+      baseDamage: 35
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -331,23 +334,6 @@ MonoBehaviour:
         projectileFired: 0
         projectileStartPosition: 0
         onCharacter: 0
-      actionType: 6
-      effectLoops: 1
-      baseDamage: 0
-      damageType: 0
-      characterSummoned: {fileID: 0}
-      summonedCreatureStartPosition: 0
-      modelFadeInSpeed: 0
-      uiFadeInSpeed: 0
-      summonedCreatureVisualEvents: []
-      passiveApplied: {fileID: 11400000, guid: 2d4338dcb8cb3b042bb822f2c24a4d8e, type: 2}
-      passiveStacks: -3
-      blockGained: 0
-      cardAdded: {fileID: 0}
-      copiesAdded: 0
-      collection: 0
-    - visualEventsOnStart: []
-      visualEventsOnFinish: []
       actionType: 6
       effectLoops: 1
       baseDamage: 0

@@ -1152,6 +1152,7 @@ MonoBehaviour:
     text: {fileID: 0}
     endColour: {r: 0.6901961, g: 0.6901961, b: 0.6901961, a: 0.19607843}
     fadeSpeed: 0.25
+  onDisableEvents: []
   pointerIsOverMe: 0
   timeSinceLastPointerEnter: 0
 --- !u!1 &8285723800145329644
@@ -1186,10 +1187,10 @@ RectTransform:
   m_Father: {fileID: 8285723800112713582}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 100, y: 2.300004}
-  m_SizeDelta: {x: 360.0714, y: 80.000015}
+  m_AnchorMin: {x: 0.36833334, y: 0.11183496}
+  m_AnchorMax: {x: 0.94500005, y: 0.91754377}
+  m_AnchoredPosition: {x: -1.6000061, y: 0.80000305}
+  m_SizeDelta: {x: -1.1785889, y: -2.9999847}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8285723800145329643
 CanvasRenderer:
@@ -1247,12 +1248,12 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 45
+  m_fontSize: 40
   m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 10
-  m_fontSizeMax: 45
+  m_fontSizeMax: 40
   m_fontStyle: 0
   m_textAlignment: 513
   m_characterSpacing: 0

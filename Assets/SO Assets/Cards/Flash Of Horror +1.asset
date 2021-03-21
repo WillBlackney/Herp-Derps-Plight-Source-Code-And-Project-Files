@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Flash Of Horror +1
   m_EditorClassIdentifier: 
   cardName: Flash Of Horror +1
-  cardDescription: Deal 15 Magic damage. Whenever you apply Weakened during your
-    activation, draw this.
+  cardDescription: Deal 8 Magic damage. Whenever you apply Weakened during your activation,
+    draw this.
   cardSprite: {fileID: 21300000, guid: 1a0d06708850653439cc23148bd30c2c, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
@@ -66,6 +66,11 @@ MonoBehaviour:
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -88,7 +93,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 15
+    baseDamageValue: 8
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
@@ -171,6 +176,7 @@ MonoBehaviour:
       passiveStacks: 0
     energyGainedOrLost: 0
     certainCardNames: []
+    whileHoldingBlessing: 0
     cardCostsZero: 0
   cardPassiveEffects: []
   keyWordModels:

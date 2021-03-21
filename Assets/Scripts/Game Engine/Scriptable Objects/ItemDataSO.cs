@@ -17,7 +17,7 @@ public class ItemDataSO : ScriptableObject
     public string itemName;
     [VerticalGroup("General Info/Stats")]
     [LabelWidth(100)]
-    public ItemCategory itemType;
+    public ItemType itemType;
     [VerticalGroup("General Info/Stats")]
     [LabelWidth(100)]
     public Rarity itemRarity;

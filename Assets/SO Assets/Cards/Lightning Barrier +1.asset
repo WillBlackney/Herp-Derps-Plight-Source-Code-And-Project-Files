@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Lightning Barrier +1
   m_EditorClassIdentifier: 
   cardName: Lightning Barrier +1
-  cardDescription: 'Gain 12 Block.
+  cardDescription: 'Gain 13 Block.
 
-    Gain 2 Overload.'
+    Gain 3 Overload.'
   cardSprite: {fileID: 21300000, guid: fd34c1e15f795c14394b7050605b62b9, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -61,7 +61,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '2 '
+    phrase: '1 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -194,7 +194,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 18
-      passiveStacks: 2
+      passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

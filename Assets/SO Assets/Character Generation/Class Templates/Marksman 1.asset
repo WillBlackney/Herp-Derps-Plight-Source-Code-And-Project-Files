@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Marksman 1
   m_EditorClassIdentifier: 
   templateName: Marksman
+  possibleRaces: 010000000400000005000000060000000700000008000000
   possibleDecks:
   - {fileID: 11400000, guid: 0c21fb1adbaa7c741be12458ae39979b, type: 2}
   - {fileID: 11400000, guid: 3390a29474bcc744c930b37710910084, type: 2}
   - {fileID: 11400000, guid: 45e20c0474311e64f9d77281d14b2510, type: 2}
+  - {fileID: 11400000, guid: 727df757641b164419a322c81392693f, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: c10e7853d5ef8094f8511de36420c9dd, type: 2}
   - {fileID: 11400000, guid: 53b56de96d0938b438090afe70ffa0d9, type: 2}
@@ -25,12 +27,12 @@ MonoBehaviour:
     offHandItem: {fileID: 0}
     trinketOne: {fileID: 0}
     trinketTwo: {fileID: 0}
-  strengthMod: 2
+  strengthMod: 3
   intelligenceMod: 0
-  dexterityMod: 0
-  witsMod: 2
+  dexterityMod: 1
+  witsMod: 0
   constitutionMod: 0
-  maxHealth: 100
+  maxHealth: 90
   talentPairings:
   - talentSchool: 8
     talentLevel: 2

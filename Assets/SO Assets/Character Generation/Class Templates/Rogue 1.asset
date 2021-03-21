@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: Rogue 1
   m_EditorClassIdentifier: 
   templateName: Rogue
+  possibleRaces: 01000000040000000300000006000000050000000700000002000000
   possibleDecks:
   - {fileID: 11400000, guid: 94e9579e154f8334da161df92438c3d2, type: 2}
   - {fileID: 11400000, guid: 55fd3de242ac6ff45b6860f55667436b, type: 2}
+  - {fileID: 11400000, guid: 3328c89bedbf0e549bbdd715820084ad, type: 2}
+  - {fileID: 11400000, guid: 1ecd459200fc9cd44bfe8ff82372ad22, type: 2}
+  - {fileID: 11400000, guid: e2ac59c240b67954f9414729aca863cd, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: 6e0b14d023449bb47a2c3fbea7404558, type: 2}
   - {fileID: 11400000, guid: a36274bd0a2ff9a47a5e5225441953b8, type: 2}
@@ -28,12 +32,12 @@ MonoBehaviour:
     offHandItem: {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}
     trinketOne: {fileID: 0}
     trinketTwo: {fileID: 0}
-  strengthMod: 1
+  strengthMod: 2
   intelligenceMod: 0
   dexterityMod: 0
-  witsMod: 2
-  constitutionMod: 1
-  maxHealth: 100
+  witsMod: 0
+  constitutionMod: 2
+  maxHealth: 90
   talentPairings:
   - talentSchool: 3
     talentLevel: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fire Ball +1
   m_EditorClassIdentifier: 
   cardName: Fire Ball +1
-  cardDescription: 'Deal 12 Magic damage.
+  cardDescription: 'Deal 10 Magic damage.
 
     Increase the damage of all Fire Ball
     cards this combat by 2.'
@@ -77,9 +77,15 @@ MonoBehaviour:
     phrase: extra damage.
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -102,7 +108,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 12
+    baseDamageValue: 10
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
@@ -160,9 +166,15 @@ MonoBehaviour:
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0

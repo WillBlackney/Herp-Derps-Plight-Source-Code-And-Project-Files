@@ -19,7 +19,7 @@ MonoBehaviour:
   startingHealth: 28
   enableFlexibleMaxHealth: 1
   maxHealthFlexAmount: 4
-  maxHealth: 50
+  maxHealth: 70
   startingBlock: 0
   strength: 20
   intelligence: 20
@@ -73,9 +73,8 @@ MonoBehaviour:
     pistoleroStacks: 0
     fastLearnerStacks: 0
     demonFormStacks: 0
-    undeadStacks: 0
     darkBargainStacks: 0
-    volatileStacks: 5
+    volatileStacks: 0
     soulCollectorStacks: 0
     magicMagnetStacks: 0
     etherealStacks: 0
@@ -89,6 +88,8 @@ MonoBehaviour:
     unbreakableStacks: 0
     pierceStacks: 0
     regenerationStacks: 0
+    hurricaneStacks: 0
+    holierThanThouStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -99,7 +100,6 @@ MonoBehaviour:
     vulnerableStacks: 0
     gritStacks: 0
     disarmedStacks: 0
-    blindedStacks: 0
     silencedStacks: 0
     sleepStacks: 0
     poisonedStacks: 0
@@ -110,7 +110,7 @@ MonoBehaviour:
   allEnemyActions:
   - actionName: Bite
     actionType: 0
-    intentImage: 2
+    intentImage: 0
     actionLoops: 1
     doThisOnFirstActivation: 1
     canBeConsecutive: 1
@@ -178,6 +178,77 @@ MonoBehaviour:
         projectileFired: 0
         projectileStartPosition: 0
         onCharacter: 0
+      visualEventsOnFinish: []
+      actionType: 0
+      effectLoops: 1
+      baseDamage: 11
+      damageType: 1
+      characterSummoned: {fileID: 0}
+      summonedCreatureStartPosition: 0
+      modelFadeInSpeed: 0
+      uiFadeInSpeed: 0
+      summonedCreatureVisualEvents: []
+      passiveApplied: {fileID: 0}
+      passiveStacks: 0
+      blockGained: 0
+      cardAdded: {fileID: 0}
+      copiesAdded: 0
+      collection: 0
+  - actionName: Feast
+    actionType: 0
+    intentImage: 3
+    actionLoops: 1
+    doThisOnFirstActivation: 0
+    canBeConsecutive: 0
+    prioritiseWhenRequirementsMet: 0
+    actionRequirements: []
+    actionEffects:
+    - visualEventsOnStart:
+      - eventType: 1
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 1
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
+      - eventType: 2
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 1
+        delayDuration: 0
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
+      - eventType: 4
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 0
+        cameraShake: 1
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
       visualEventsOnFinish:
       - eventType: 6
         screenOverlayType: 0
@@ -203,7 +274,6 @@ MonoBehaviour:
       modelFadeInSpeed: 0
       uiFadeInSpeed: 0
       summonedCreatureVisualEvents: []
-      healAmount: 0
       passiveApplied: {fileID: 0}
       passiveStacks: 0
       blockGained: 0
@@ -212,7 +282,7 @@ MonoBehaviour:
       collection: 0
     - visualEventsOnStart: []
       visualEventsOnFinish: []
-      actionType: 5
+      actionType: 7
       effectLoops: 1
       baseDamage: 0
       damageType: 0
@@ -221,15 +291,14 @@ MonoBehaviour:
       modelFadeInSpeed: 0
       uiFadeInSpeed: 0
       summonedCreatureVisualEvents: []
-      healAmount: 0
-      passiveApplied: {fileID: 11400000, guid: 6c91698bda94de344b0879ebc5c1851a, type: 2}
-      passiveStacks: 3
-      blockGained: 0
+      passiveApplied: {fileID: 0}
+      passiveStacks: 0
+      blockGained: 6
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0
   - actionName: Howl
-    actionType: 7
+    actionType: 2
     intentImage: 5
     actionLoops: 1
     doThisOnFirstActivation: 0
@@ -278,7 +347,6 @@ MonoBehaviour:
       modelFadeInSpeed: 0
       uiFadeInSpeed: 0
       summonedCreatureVisualEvents: []
-      healAmount: 0
       passiveApplied: {fileID: 11400000, guid: 6d216e783d4ba3a49a8dd267aa727fd3, type: 2}
       passiveStacks: 3
       blockGained: 0
@@ -296,10 +364,9 @@ MonoBehaviour:
       modelFadeInSpeed: 0
       uiFadeInSpeed: 0
       summonedCreatureVisualEvents: []
-      healAmount: 0
       passiveApplied: {fileID: 0}
       passiveStacks: 0
-      blockGained: 8
+      blockGained: 5
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0

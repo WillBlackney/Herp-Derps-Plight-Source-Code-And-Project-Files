@@ -177,37 +177,37 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
         }
 
     }
-    private void BuildAttributeInfoPanels(CharacterData data)
+    private void BuildAttributeInfoPanels(CharacterData character)
     {
-        strengthText.text = data.strength.ToString();
-        if (data.strength > 10)
-        {
-            strengthText.text = TextLogic.ReturnColoredText(data.strength.ToString(), TextLogic.neutralYellow);
-        }
+        strengthText.text = character.strength.ToString();
+        if (character.strength > 20)
+            strengthText.text = TextLogic.ReturnColoredText(character.strength.ToString(), TextLogic.neutralYellow);
+        else if (character.strength < 20)
+            strengthText.text = TextLogic.ReturnColoredText(character.strength.ToString(), TextLogic.redText);
 
-        intelligenceText.text = data.intelligence.ToString();
-        if (data.intelligence > 10)
-        {
-            intelligenceText.text = TextLogic.ReturnColoredText(data.intelligence.ToString(), TextLogic.neutralYellow);
-        }
+        intelligenceText.text = character.intelligence.ToString();
+        if (character.intelligence > 20)
+            intelligenceText.text = TextLogic.ReturnColoredText(character.intelligence.ToString(), TextLogic.neutralYellow);
+        else if (character.intelligence < 20)
+            intelligenceText.text = TextLogic.ReturnColoredText(character.intelligence.ToString(), TextLogic.redText);
 
-        dexterityText.text = data.dexterity.ToString();
-        if (data.dexterity > 10)
-        {
-            dexterityText.text = TextLogic.ReturnColoredText(data.dexterity.ToString(), TextLogic.neutralYellow);
-        }
+        dexterityText.text = character.dexterity.ToString();
+        if (character.dexterity > 20)
+            dexterityText.text = TextLogic.ReturnColoredText(character.dexterity.ToString(), TextLogic.neutralYellow);
+        else if (character.dexterity < 20)
+            dexterityText.text = TextLogic.ReturnColoredText(character.dexterity.ToString(), TextLogic.redText);
 
-        witsText.text = data.wits.ToString();
-        if (data.wits > 10)
-        {
-            witsText.text = TextLogic.ReturnColoredText(data.wits.ToString(), TextLogic.neutralYellow);
-        }
+        witsText.text = character.wits.ToString();
+        if (character.wits > 20)
+            witsText.text = TextLogic.ReturnColoredText(character.wits.ToString(), TextLogic.neutralYellow);
+        else if (character.wits < 20)
+            witsText.text = TextLogic.ReturnColoredText(character.wits.ToString(), TextLogic.redText);
 
-        constitutionText.text = data.constitution.ToString();
-        if (data.constitution > 10)
-        {
-            constitutionText.text = TextLogic.ReturnColoredText(data.constitution.ToString(), TextLogic.neutralYellow);
-        }
+        constitutionText.text = character.constitution.ToString();
+        if (character.constitution > 20)
+            constitutionText.text = TextLogic.ReturnColoredText(character.constitution.ToString(), TextLogic.neutralYellow);
+        else if (character.constitution < 20)
+            constitutionText.text = TextLogic.ReturnColoredText(character.constitution.ToString(), TextLogic.redText);
     }
     private void BuildTalentInfoPanels(CharacterData data)
     {
@@ -247,27 +247,16 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
             recruitCharacterWindows[i].BuildMyViewsFromTemplate(selectedCharacters[i]);
         }
     }
-    public List<CharacterData> GetThreeValidRecruitableCharacters()
+    public void GenerateAndCacheCharacterChoices()
     {
-        List<CharacterData> recruitableCharacters = new List<CharacterData>();
-        List<CharacterData> charactersReturned = new List<CharacterData>();
+        currentChoices.Clear();
 
-        foreach (CharacterData charTemplate in CharacterDataController.Instance.AllCharacterTemplates)
+        for(int i = 0; i < 3; i++)
         {
-            if (IsCharacterRecruitable(charTemplate))
-            {
-                recruitableCharacters.Add(charTemplate);
-            }
+            CharacterDataController.Instance.CharacterDeck.Shuffle();
+            currentChoices.Add(CharacterDataController.Instance.CharacterDeck[0]);
+            CharacterDataController.Instance.CharacterDeck.RemoveAt(0);
         }
-
-        // Choose 3 random recruitable characters
-        recruitableCharacters.Shuffle();
-        for (int i = 0; i < 3; i++)
-        {
-            charactersReturned.Add(recruitableCharacters[i]);
-        }
-
-        return charactersReturned;
     }
     #endregion
 
@@ -354,6 +343,16 @@ public class RecruitCharacterController : Singleton<RecruitCharacterController>
     }
     #endregion
 
-  
+    // Save + Load Logic
+    #region
+    public void BuildMyDataFromSaveFile(SaveGameData saveFile)
+    {
+        currentChoices = saveFile.recruitCharacterChoices;
+    }
+    public void SaveMyDataToSaveFile(SaveGameData saveFile)
+    {
+        saveFile.recruitCharacterChoices = currentChoices;
+    }
+    #endregion
 
 }

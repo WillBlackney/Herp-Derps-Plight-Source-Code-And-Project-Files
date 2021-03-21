@@ -4,26 +4,28 @@ using UnityEngine;
 
 public class StateData 
 {
-    public string stateName;
-    private Sprite stateImage;
+    public StateName stateName;
+    private Sprite stateSprite;
+    public Rarity rarity;
     public List<KeyWordModel> keyWordModels;
     public List<CustomString> customDescription;
+    
 
-    public Sprite StateImage
+    public Sprite StateSprite
     {
         get 
         { 
-            if (stateImage == null)
+            if (stateSprite == null)
             {
-                stateImage = GetMySprite();
-                return stateImage;
+                stateSprite = GetMySprite();
+                return stateSprite;
             }
             else
-                return stateImage;
+                return stateSprite;
         }
     }
 
-    public Sprite GetMySprite()
+    private Sprite GetMySprite()
     {
         return StateController.Instance.GetStateDataByName(stateName).stateImage;
     }

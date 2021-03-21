@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Spirit Surge +1
   m_EditorClassIdentifier: 
   cardName: Spirit Surge +1
-  cardDescription: Give a target 1 Draw and 1 Energy next activation.
+  cardDescription: Give an ally 1 Draw and 1 Energy next activation.
   cardSprite: {fileID: 21300000, guid: 57ac6a4d0f97b264785f9bd30e211710, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
   cardType: 1
-  targettingType: 1
+  targettingType: 2
   talentSchool: 13
   rarity: 1
   upgradeable: 0
@@ -37,7 +37,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Give a target '
+    phrase: 'Give an ally '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Stamina '
+    phrase: 'Energy '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0

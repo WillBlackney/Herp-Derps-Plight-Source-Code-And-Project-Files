@@ -142,9 +142,6 @@ public class SerializedPassiveManagerModel
     public int demonFormStacks;
     [BoxGroup("Buff Passives")]
     [LabelWidth(200)]
-    public int undeadStacks;
-    [BoxGroup("Buff Passives")]
-    [LabelWidth(200)]
     public int darkBargainStacks;
     [BoxGroup("Buff Passives")]
     [LabelWidth(200)]
@@ -188,6 +185,12 @@ public class SerializedPassiveManagerModel
     [BoxGroup("Buff Passives")]
     [LabelWidth(200)]
     public int regenerationStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
+    public int hurricaneStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
+    public int holierThanThouStacks;
 
     // Aura Passives
     [BoxGroup("Aura Passives", centerLabel: true)]
@@ -227,10 +230,6 @@ public class SerializedPassiveManagerModel
     [BoxGroup("Disabling Debuff Passives", centerLabel: true)]
     [LabelWidth(200)]
     public int disarmedStacks;
-
-    [BoxGroup("Disabling Debuff Passives")]
-    [LabelWidth(200)]
-    public int blindedStacks;
 
     [BoxGroup("Disabling Debuff Passives")]
     [LabelWidth(200)]

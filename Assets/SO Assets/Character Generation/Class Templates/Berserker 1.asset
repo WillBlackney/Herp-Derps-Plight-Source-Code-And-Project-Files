@@ -13,8 +13,14 @@ MonoBehaviour:
   m_Name: Berserker 1
   m_EditorClassIdentifier: 
   templateName: Berserker
+  possibleRaces: 020000000100000005000000060000000700000009000000
   possibleDecks:
   - {fileID: 11400000, guid: f2d2c727ebac463458dec7b4305edfa8, type: 2}
+  - {fileID: 11400000, guid: f272ad9af552b5241a7e8f3677039d7b, type: 2}
+  - {fileID: 11400000, guid: 34554df05f1cabd48bdd35f4c8588d8b, type: 2}
+  - {fileID: 11400000, guid: 38f3c3d3535ca9f44a249a768abf27e5, type: 2}
+  - {fileID: 11400000, guid: 39b02b177f1d80549ba0f94ceb5de562, type: 2}
+  - {fileID: 11400000, guid: 190584bf6d353d541a2866d8029edf14, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: bd9635ab6d9f6b74a859f6dad251a3da, type: 2}
   - {fileID: 11400000, guid: f5dc8d071a7b32c419790e60017b44ad, type: 2}
@@ -31,12 +37,12 @@ MonoBehaviour:
     offHandItem: {fileID: 0}
     trinketOne: {fileID: 0}
     trinketTwo: {fileID: 0}
-  strengthMod: 2
+  strengthMod: 1
   intelligenceMod: 0
   dexterityMod: 0
   witsMod: 0
-  constitutionMod: 2
-  maxHealth: 100
+  constitutionMod: 3
+  maxHealth: 90
   talentPairings:
   - talentSchool: 2
     talentLevel: 2

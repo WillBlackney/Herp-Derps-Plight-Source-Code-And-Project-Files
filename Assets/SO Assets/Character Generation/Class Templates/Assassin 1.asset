@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: Assassin 1
   m_EditorClassIdentifier: 
   templateName: Assassin
+  possibleRaces: 010000000400000003000000060000000500000007000000
   possibleDecks:
   - {fileID: 11400000, guid: 2b2518ea7b2e52c40acb67229a560289, type: 2}
   - {fileID: 11400000, guid: 9cc30399c64398846881a66172b9f3f7, type: 2}
+  - {fileID: 11400000, guid: 44c5d4987d1a23c488c1e532a6577437, type: 2}
+  - {fileID: 11400000, guid: ba670b690fd0c6d46a1ce0a8979fe2b0, type: 2}
+  - {fileID: 11400000, guid: abde3284f412ee1418be93fabb838d2a, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: c762ab1da317a114fa1f3f0ab9f44250, type: 2}
   - {fileID: 11400000, guid: 88c9a135f9adcfe41854412f2ff07ca9, type: 2}
@@ -29,12 +33,12 @@ MonoBehaviour:
     offHandItem: {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}
     trinketOne: {fileID: 0}
     trinketTwo: {fileID: 0}
-  strengthMod: 2
+  strengthMod: 4
   intelligenceMod: 0
   dexterityMod: 0
-  witsMod: 2
+  witsMod: 0
   constitutionMod: 0
-  maxHealth: 100
+  maxHealth: 90
   talentPairings:
   - talentSchool: 3
     talentLevel: 2

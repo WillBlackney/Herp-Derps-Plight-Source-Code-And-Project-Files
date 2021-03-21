@@ -22,12 +22,12 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '10% '
+    phrase: 'X '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: per point. Expires on activation end.
+    phrase: . Expires on activation end.
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0
-  runeBlocksDecrease: 0
+  runeBlocksDecrease: 1

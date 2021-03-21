@@ -2,22 +2,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
+using MapSystem;
 
 public class ShrineController : Singleton<ShrineController>
 {
     // Properties + Components
     #region
     private ShrineStateResult currentShrineStates;
+    private bool shrineIsInteractable = false;
 
-    [Header("Character View References")]
+    [Header("Shrine Properties")]
+    [SerializeField] private Color normalColor, mouseOverColor;
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
+
+    [Header("Shrine Components")]
+    [SerializeField] private Image shrineImage;
+    [SerializeField] private GameObject continueButtonParent;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
+
+    [Header("Character View References")]   
     [SerializeField] private CampSiteCharacterView[] allShrineCharacterViews;
-    [SerializeField] private GameObject charactersViewParent;
+    [SerializeField] private GameObject allShrineViewsParent;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Nodes + Location References")]
-    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     [SerializeField] private CampSiteNode[] shrineNodes;
     [SerializeField] private Transform offScreenStartPosition;
+    [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     #endregion
 
     // Accessors + Getters
@@ -47,12 +60,21 @@ public class ShrineController : Singleton<ShrineController>
     {
         CurrentShrineStates = GenerateNewShrineContentData();
     }
-    public ShrineStateResult GenerateNewShrineContentData()
+    private ShrineStateResult GenerateNewShrineContentData()
     {
+        Debug.Log("ShrineController.GenerateNewShrineContentData() called...");
+
         ShrineStateResult scr = new ShrineStateResult();
 
-        // Generate cards
-        // TO DO: randomly pick 3 states to offer the player
+        // Generate 3 states
+        List<StateData> possibleStates = StateController.Instance.GetAllAvailableStates();
+
+        for(int i = 0; i < 3; i++)
+        {
+            possibleStates.Shuffle();
+            scr.states.Add(possibleStates[0]);
+            possibleStates.RemoveAt(0);
+        }
 
         return scr;
 
@@ -61,13 +83,13 @@ public class ShrineController : Singleton<ShrineController>
 
     // View Logic
     #region
-    public void EnableCharacterViewParent()
+    public void EnableAllViews()
     {
-        charactersViewParent.SetActive(true);
+        allShrineViewsParent.SetActive(true);
     }
-    public void DisableCharacterViewParent()
+    public void DisableAllViews()
     {
-        charactersViewParent.SetActive(false);
+        allShrineViewsParent.SetActive(false);
     }
     public void BuildAllShrineCharacterViews(List<CharacterData> characters)
     {
@@ -89,6 +111,55 @@ public class ShrineController : Singleton<ShrineController>
         // Build UCM
         CharacterModelController.Instance.BuildModelFromStringReferences(view.characterEntityView.ucm, data.modelParts);
         CharacterModelController.Instance.ApplyItemManagerDataToCharacterModelView(data.itemManager, view.characterEntityView.ucm);
+    }
+    public void OnContinueButtonClicked()
+    {
+        MapPlayerTracker.Instance.UnlockMap();
+        MapView.Instance.OnWorldMapButtonClicked();
+    }
+    public void ShowContinueButton()
+    {
+        continueButtonParent.SetActive(true);
+    }
+    public void HideContinueButton()
+    {
+        continueButtonParent.SetActive(false);
+    }
+    #endregion
+
+    // Shrine Object Logic
+    #region
+    public void SetShrineInteractivityState(bool onOrOff)
+    {
+        shrineIsInteractable = onOrOff;
+    }
+    public void OnShrineMouseEnter()
+    {
+        Debug.Log("mouse enter shrine");
+        if (!shrineIsInteractable)
+            return;
+
+        AudioManager.Instance.PlaySound(Sound.GUI_Button_Mouse_Over);
+        shrineImage.DOKill();      
+        shrineImage.DOColor(mouseOverColor, 0.25f);
+    }
+    public void OnShrineMouseExit()
+    {
+        if (!shrineIsInteractable)
+            return;
+
+        shrineImage.DOKill();
+        shrineImage.DOColor(normalColor, 0.25f);
+    }
+    public void OnShrineMouseClick()
+    {
+        if (!shrineIsInteractable)
+            return;
+
+        // TO DO: fancy on click shrine animation stuff
+
+        ChooseStateWindowController.Instance.BuildAndShowWindowInShrineEvent(CurrentShrineStates.states);
+        SetShrineInteractivityState(false);
     }
     #endregion
 
@@ -149,6 +220,8 @@ public class ShrineController : Singleton<ShrineController>
         yield return new WaitForSeconds(3f);
     }
     #endregion
+
+
 }
 public class ShrineStateResult
 {

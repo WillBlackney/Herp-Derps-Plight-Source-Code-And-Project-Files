@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Rogue 2
   m_EditorClassIdentifier: 
   cards:
-  - {fileID: 11400000, guid: ece4178a38cbca14d853868beeda14ee, type: 2}
-  - {fileID: 11400000, guid: ece4178a38cbca14d853868beeda14ee, type: 2}
-  - {fileID: 11400000, guid: 82398fcb72827b547af04198c592e6cc, type: 2}
-  - {fileID: 11400000, guid: 82398fcb72827b547af04198c592e6cc, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
   - {fileID: 11400000, guid: 9ec8eb1ee986e094695b5336904bb4be, type: 2}
   - {fileID: 11400000, guid: 9ec8eb1ee986e094695b5336904bb4be, type: 2}
-  - {fileID: 11400000, guid: 034d9e585e633514e8512b0f077e96fb, type: 2}
-  - {fileID: 11400000, guid: 9d8e081a72dae4342a12d65de4d977f5, type: 2}
+  - {fileID: 11400000, guid: cc084d0caf1a71f43863e7ca8c42f86a, type: 2}
+  - {fileID: 11400000, guid: b888a78f01d9d114e94eb71e20cda519, type: 2}

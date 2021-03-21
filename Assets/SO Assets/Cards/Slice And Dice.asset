@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Slice And Dice
   m_EditorClassIdentifier: 
   cardName: Slice And Dice
-  cardDescription: 'Deal 12 Physical Damage.
+  cardDescription: 'Deal 10 Physical Damage.
 
     Cost 1 Energy less for each Melee
     Attack played this activation.'
@@ -80,6 +80,11 @@ MonoBehaviour:
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -102,7 +107,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 12
+    baseDamageValue: 10
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0

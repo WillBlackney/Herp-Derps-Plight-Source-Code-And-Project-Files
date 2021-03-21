@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Reflex Shot +1
   m_EditorClassIdentifier: 
   cardName: Reflex Shot +1
-  cardDescription: 'Deal 8 Physical damage.
+  cardDescription: 'Deal 5 Physical damage.
 
     Increase the damage of all Reflex
     Shot cards this combat by 2.'
@@ -107,7 +107,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 8
+    baseDamageValue: 5
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0

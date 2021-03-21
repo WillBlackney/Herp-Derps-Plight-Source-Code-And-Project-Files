@@ -15,7 +15,7 @@ MonoBehaviour:
   choiceDescription: Discover a common card.
   effect: 1
   category: 1
-  impactLevel: 2
+  impactLevel: 1
   maxHealthGainedOrLost: 0
   healthGainedOrLost: 0
   randomCardRarity: 0
@@ -27,3 +27,4 @@ MonoBehaviour:
   possiblePassives: []
   afflicationsGained: 0
   goldGainedOrLost: 0
+  itemRarity: 0

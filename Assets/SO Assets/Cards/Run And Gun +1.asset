@@ -21,9 +21,6 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 8
   rarity: 1
-  affliction: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 0
   upgradeLevel: 1
   expend: 0
@@ -33,6 +30,9 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '2 '
+    phrase: '3 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -55,6 +55,11 @@ MonoBehaviour:
     cardEffectType: 36
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0

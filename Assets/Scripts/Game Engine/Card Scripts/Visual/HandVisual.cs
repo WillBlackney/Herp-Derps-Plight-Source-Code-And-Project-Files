@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using System;
 
 public class HandVisual : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class HandVisual : MonoBehaviour
     #region
     public void AddCard(GameObject card)
     {
-        // we allways insert a new card as 0th element in CardsInHand List 
+        // Always insert a new card as 0th element in CardsInHand List 
         cardsInHand.Insert(0, card);
 
         // parent this card to our Slots GameObject
@@ -70,7 +71,9 @@ public class HandVisual : MonoBehaviour
             posX = 0f;
 
         // tween Slots GameObject to new position in 0.3 seconds
-        slots.gameObject.transform.DOLocalMoveX(posX, 0.3f);  
+        slots.gameObject.transform.DOLocalMoveX(posX, 0.3f);
+
+        UpdateCardRotationsAndYDrops();
     }
     private void PlaceCardsOnNewSlots()
     {
@@ -89,12 +92,74 @@ public class HandVisual : MonoBehaviour
             w.Slot = cardsInHand.IndexOf(g);
             w.SetHandSortingOrder();
         }
+        
     }
     #endregion
 
-   
+    // Rotation + Spreading Logic
+    #region
+    public void UpdateCardRotationsAndYDrops()
+    {
+        foreach (GameObject g in cardsInHand)
+        {
+            g.GetComponent<CardSlotHelper>().UpdateAngles(cardsInHand.IndexOf(g) + 1, (cardsInHand.Count / 2f) + 0.5f);
+        }
+    }
+    private void UpdateRotationOfCards()
+    {
+        foreach (GameObject g in cardsInHand)
+        {
+          // g.GetComponent<CardSlotHelper>().UpdateRotation(cardsInHand.IndexOf(g) + 1, (cardsInHand.Count / 2f) + 0.5f);
+        }
+
+        /*
+        int totalCards = cardsInHand.Count;
+        float middleIndex =  totalCards / 2f;
+        middleIndex += 0.5f;
+
+        foreach (GameObject g in cardsInHand)
+        {
+            int myIndex = cardsInHand.IndexOf(g) + 1;
+            float myDif = myIndex - middleIndex;
+
+            // Rotate left or right
+            if (myIndex < middleIndex || myIndex > middleIndex)            
+                g.transform.DORotate(new Vector3(0, 0, 2.5f * myDif), 0.2f);            
+
+            // Rotate as the centre card
+            else            
+                g.transform.DORotate(new Vector3(0, 0, 0), 0.2f);     
+        }*/
 
 
+
+    }
+    private void UpdateYDropOfCards()
+    {
+        foreach (GameObject g in cardsInHand)
+        {
+            //g.GetComponent<CardSlotHelper>().UpdateYDrop(cardsInHand.IndexOf(g) + 1, (cardsInHand.Count / 2f) + 0.5f);
+        }
+
+        /*
+        int totalCards = cardsInHand.Count;
+        float slotStartY = 0f;
+        float yStep = 0.1f;
+        float middleIndex = totalCards / 2f;
+        middleIndex += 0.5f;
+
+        foreach (GameObject g in cardsInHand)
+        {
+            Transform t = g.transform.Find("Slot Fitter Parent");
+
+            int myIndex = cardsInHand.IndexOf(g) + 1;
+            float myDif = Mathf.Abs(myIndex - middleIndex);
+            Debug.Log("myDif = " + myDif.ToString());
+            t.DOLocalMoveY(slotStartY - (yStep * myDif), 0.2f);
+        }
+        */
+    }
 
 
 }
+    #endregion

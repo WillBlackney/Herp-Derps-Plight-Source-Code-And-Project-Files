@@ -15,7 +15,6 @@ public class DragSpellOnTarget : DraggingActions {
             return (base.CanDrag);
         }
     }
-
     public override void OnStartDrag()
     {
         Debug.Log("DragSpellOnTarget.OnStartDrag() called...");
@@ -28,19 +27,19 @@ public class DragSpellOnTarget : DraggingActions {
         // move to play preview spot
         if(cardVM.eventSetting == EventSetting.Combat)
         {
+            cardVM.mySlotHelper.ResetAngles();
             CardController.Instance.MoveCardVMToPlayPreviewSpot(cardVM, cardVM.card.owner.characterEntityView.handVisual);
         }
         else if (cardVM.eventSetting == EventSetting.Camping)
         {
+            cardVM.mySlotHelper.ResetAngles();
             CardController.Instance.MoveCardVMToPlayPreviewSpot(cardVM, CampSiteController.Instance.HandVisual);
         }
 
         // play sfx
         AudioManager.Instance.FadeInSound(Sound.Card_Dragging, 0.2f);
-    }
-
-    
-    public override void OnEndDrag()
+    }    
+    public override void OnEndDrag(bool forceFailure = false)
     {
         Debug.Log("DragSpellOnTarget.OnEndDrag() called...");
         if(cardVM.eventSetting == EventSetting.Combat)
@@ -100,7 +99,7 @@ public class DragSpellOnTarget : DraggingActions {
 
 
             // Did we hit a valid target?
-            if (!targetValid)
+            if (!targetValid || forceFailure)
             {
                 // not a valid target, return
                 locationTracker.VisualState = tempVisualState;
@@ -110,6 +109,7 @@ public class DragSpellOnTarget : DraggingActions {
                 HandVisual PlayerHand = cardVM.card.owner.characterEntityView.handVisual;
                 Vector3 oldCardPos = PlayerHand.slots.Children[locationTracker.Slot].transform.localPosition;
                 cardVM.movementParent.DOLocalMove(oldCardPos, 0.25f);
+                PlayerHand.UpdateCardRotationsAndYDrops();
             }
             else
             {
@@ -163,6 +163,7 @@ public class DragSpellOnTarget : DraggingActions {
                 // Move this card back to its slot position
                 Vector3 oldCardPos = CampSiteController.Instance.HandVisual.slots.Children[locationTracker.Slot].transform.localPosition;
                 cardVM.movementParent.DOLocalMove(oldCardPos, 0.25f);
+                CampSiteController.Instance.HandVisual.UpdateCardRotationsAndYDrops();
             }
             else
             {

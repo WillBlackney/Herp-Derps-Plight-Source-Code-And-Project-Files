@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Get Behind Me!
   m_EditorClassIdentifier: 
   cardName: Get Behind Me!
-  cardDescription: Give 8 Block to self and allies.
+  cardDescription: Give 7 Block to self and allies.
   cardSprite: {fileID: 21300000, guid: a19a250244bd37a438fb3dd9efbc54e9, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -55,6 +55,11 @@ MonoBehaviour:
     cardEffectType: 12
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -76,7 +81,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 8
+    blockGainValue: 7
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0

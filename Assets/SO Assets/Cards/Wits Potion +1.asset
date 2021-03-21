@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wits Potion +1
   m_EditorClassIdentifier: 
   cardName: Wits Potion +1
-  cardDescription: Gain 12 Block. Draw 2 card.
+  cardDescription: Gain 10 Block. Draw 1 card.
   cardSprite: {fileID: 21300000, guid: 92aa9ffa75b901546b947c52bc562b12, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -55,7 +55,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '2 '
+    phrase: '1 '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -179,7 +179,7 @@ MonoBehaviour:
     healthRestored: 0
     healthLost: 0
     energyGained: 0
-    cardsDrawn: 2
+    cardsDrawn: 1
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:

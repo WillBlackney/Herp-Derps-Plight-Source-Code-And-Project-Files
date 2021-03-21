@@ -12,10 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd1bf0b56234af4c808b8522b29dcbf, type: 3}
   m_Name: Big Bad Skeleton x1
   m_EditorClassIdentifier: 
-  encounterName: Big Bad Skeleton
-  combatDifficulty: 1
-  levelRange: 0
-  encounterSpriteType: 2
+  encounterName: Big Bad Skeleton x1
+  combatDifficulty: 2
   enemyGroups:
   - possibleEnemies:
     - {fileID: 11400000, guid: 3fc87550e064f61428c221d09251d675, type: 2}

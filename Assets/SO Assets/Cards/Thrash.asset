@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Thrash
   m_EditorClassIdentifier: 
   cardName: Thrash
-  cardDescription: Deal 10 Physical damage. Whenever you lose health during your
-    activation, draw this.
+  cardDescription: Deal 8 Physical damage. Whenever you lose health during your activation,
+    draw this.
   cardSprite: {fileID: 21300000, guid: a694e48946b3f844587790ca9b9994fe, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
@@ -59,6 +59,11 @@ MonoBehaviour:
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -81,7 +86,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 10
+    baseDamageValue: 8
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0

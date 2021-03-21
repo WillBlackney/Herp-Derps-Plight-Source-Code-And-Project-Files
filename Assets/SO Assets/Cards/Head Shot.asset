@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Head Shot
   m_EditorClassIdentifier: 
   cardName: Head Shot
-  cardDescription: 'Deal 14 Physical damage.
-
-    Ranged: Apply 2 Vulnerable. '
+  cardDescription: 'Deal 9 Physical damage. Apply 2 Vulnerable. '
   cardSprite: {fileID: 21300000, guid: 77e3d08ddc19450428793d85c43a2446, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -98,7 +96,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 14
+    baseDamageValue: 9
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0

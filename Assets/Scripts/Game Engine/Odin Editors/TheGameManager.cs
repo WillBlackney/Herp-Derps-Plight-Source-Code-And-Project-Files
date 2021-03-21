@@ -199,7 +199,6 @@ namespace CustomOdinGUI
                     break;
 
 
-
             }
 
             // Which editor window should be drawn?
@@ -367,7 +366,7 @@ namespace CustomOdinGUI
     public class DrawPrefabHolder : DrawSceneObject<PrefabHolder>
     {
     }
-    public class DrawJourneyManager : DrawSceneObject<ProgressionController>
+    public class DrawJourneyManager : DrawSceneObject<JourneyManager>
     {
     }
     public class DrawCampSiteController : DrawSceneObject<CampSiteController>

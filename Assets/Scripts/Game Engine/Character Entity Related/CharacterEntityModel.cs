@@ -27,7 +27,6 @@ public class CharacterEntityModel
     public int draw;
     public int baseCrit;
     public int critModifier;
-    public int baseFristActivationDrawBonus;
 
     [Header("Health + Block Properties")]
     public int health;
@@ -65,10 +64,12 @@ public class CharacterEntityModel
     [HideInInspector] public int nextActivationCount = 1;
     [HideInInspector] public bool hasMovedOffStartingNode = false;
     [HideInInspector] public int meleeAttacksPlayedThisActivation = 0;
+    [HideInInspector] public int rangedAttacksPlayedThisActivation = 0;
     [HideInInspector] public int blockGainedThisTurnCycle = 0;
     [HideInInspector] public int blockGainedPreviousTurnCycle = 0;
     [HideInInspector] public int blockFromCautiousGained = 0;
     [HideInInspector] public bool didTriggerCautiousPrior = false;
+    private int queuedMovements = 0;
 
     [Header("Enemy Specific Properties")]
     [HideInInspector] public CharacterEntityModel currentActionTarget;
@@ -79,6 +80,15 @@ public class CharacterEntityModel
     public int MaxHealthTotal
     {
         get { return (int)System.Math.Round(maxHealth * (constitution / 20f)); }
+    }
+    public void ModifyQueuedMovements(int gainedOrLost)
+    {
+        queuedMovements += gainedOrLost;
+        Debug.Log("CharacterEntityModel.ModifyQueuedMovements() called, new value: " + queuedMovements);
+    }
+    public int QueuedMovements
+    {
+        get { return queuedMovements; }
     }
 
 }

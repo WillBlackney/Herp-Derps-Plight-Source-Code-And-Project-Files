@@ -26,19 +26,19 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'card, it deals '
+    phrase: 'card, it applies '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'X '
-  - color: 9
+  - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Magic '
+    phrase: 'Burning '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: damage to all enemies.
+    phrase: to all enemies.
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 114000012503704844}
   - component: {fileID: 114000010013527286}
   - component: {fileID: 114000012785297352}
+  - component: {fileID: 8360181873332858079}
   m_Layer: 0
   m_Name: Spell Card
   m_TagString: Untagged
@@ -33,9 +34,7 @@ Transform:
   m_LocalPosition: {x: -3.85, y: 0.10019586, z: 5.7436523}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 224000014186362766}
-  - {fileID: 4000010749339524}
-  - {fileID: 4000010542784886}
+  - {fileID: 5824907952982517940}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -132,6 +131,19 @@ MonoBehaviour:
   canvas: {fileID: 223000012273110020}
   baseHandSortingOrder: 900
   state: 0
+--- !u!114 &8360181873332858079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010018853698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbce5656c0ed0404bb0b8833f092659d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  t: {fileID: 5824907952982517940}
 --- !u!1 &1000011778162530
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +173,7 @@ Transform:
   m_Children:
   - {fileID: 8635579114877398801}
   - {fileID: 4000011306633004}
-  m_Father: {fileID: 4000014166665006}
+  m_Father: {fileID: 5824907952982517940}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1000012043975258
@@ -217,12 +229,45 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000012125316472}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.02}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.01999998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4000014166665006}
+  m_Father: {fileID: 5824907952982517940}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8244428853368504784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5824907952982517940}
+  m_Layer: 0
+  m_Name: Slot Fitter Parent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5824907952982517940
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8244428853368504784}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 224000014186362766}
+  - {fileID: 4000010749339524}
+  - {fileID: 4000010542784886}
+  m_Father: {fileID: 4000014166665006}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &994510118852175679
 PrefabInstance:
@@ -391,7 +436,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 4000014166665006}
+    m_TransformParent: {fileID: 5824907952982517940}
     m_Modifications:
     - target: {fileID: 434137997889915102, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
         type: 3}
@@ -423,6 +468,11 @@ PrefabInstance:
       propertyPath: movementParent
       value: 
       objectReference: {fileID: 4000014166665006}
+    - target: {fileID: 434137997889915102, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
+        type: 3}
+      propertyPath: mySlotHelper
+      value: 
+      objectReference: {fileID: 8360181873332858079}
     - target: {fileID: 8719755639736460736, guid: 2ba0dbe26a1ce204fbcb2e3e9e579a87,
         type: 3}
       propertyPath: m_Name

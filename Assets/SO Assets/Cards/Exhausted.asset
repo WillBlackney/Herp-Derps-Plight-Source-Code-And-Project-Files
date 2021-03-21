@@ -14,16 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Exhausted
   cardDescription: Unplayable. When drawn, lose 1 Energy.
-  cardSprite: {fileID: 21300000, guid: 134782f9f93fa774083db360108ee275, type: 3}
+  cardSprite: {fileID: 21300000, guid: 8edbff198a4f1454db3e9f97c9e8dede, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
   cardType: 1
   targettingType: 0
   talentSchool: 0
   rarity: 0
-  affliction: 1
-  racialCard: 0
-  originRace: 0
   upgradeable: 0
   upgradeLevel: 0
   expend: 0
@@ -32,6 +29,10 @@ MonoBehaviour:
   unplayable: 1
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
+  affliction: 1
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 3
     getPhraseFromCardValue: 0
@@ -59,12 +60,18 @@ MonoBehaviour:
   cardEventListeners:
   - cardEventListenerType: 7
     cardEventListenerFunction: 6
+    weaponRequirement: 0
     maxHealthGained: 0
     energyReductionAmount: 0
     passivePairing:
       passiveData: 0
       passiveStacks: 0
+    healthLost: 0
     energyGainedOrLost: -1
+    certainCardNames: []
+    whileHoldingBlessing: 0
+    cardCostsZero: 0
+  cardPassiveEffects: []
   keyWordModels:
   - kewWordType: 4
     weaponRequirement: 0

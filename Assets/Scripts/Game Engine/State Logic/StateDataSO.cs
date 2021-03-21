@@ -12,7 +12,11 @@ public class StateDataSO : ScriptableObject
 
     [VerticalGroup("Info/Stats")]
     [LabelWidth(100)]
-    public string stateName;
+    public StateName stateName;
+
+    [VerticalGroup("Info/Stats")]
+    [LabelWidth(100)]
+    public Rarity rarity;
 
     [VerticalGroup("List Groups")]
     [LabelWidth(200)]

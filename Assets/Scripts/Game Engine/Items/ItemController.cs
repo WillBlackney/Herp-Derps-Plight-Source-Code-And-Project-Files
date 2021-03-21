@@ -152,7 +152,7 @@ public class ItemController : Singleton<ItemController>
 
         if(iManager.mainHandItem != null &&
             iManager.offHandItem != null &&
-            iManager.offHandItem.itemType == ItemCategory.OneHandMelee)
+            iManager.offHandItem.itemType == ItemType.OneHandMelee)
         {
             boolReturned = true;
         }
@@ -164,7 +164,7 @@ public class ItemController : Singleton<ItemController>
         bool boolReturned = false;
 
         if (iManager.mainHandItem != null &&
-            iManager.mainHandItem.itemType == ItemCategory.TwoHandMelee)
+            iManager.mainHandItem.itemType == ItemType.TwoHandMelee)
         {
             boolReturned = true;
         }
@@ -176,7 +176,7 @@ public class ItemController : Singleton<ItemController>
         bool boolReturned = false;
 
         if (iManager.mainHandItem != null &&
-            iManager.mainHandItem.itemType == ItemCategory.TwoHandRanged)
+            iManager.mainHandItem.itemType == ItemType.TwoHandRanged)
         {
             boolReturned = true;
         }
@@ -188,7 +188,7 @@ public class ItemController : Singleton<ItemController>
         bool boolReturned = false;
 
         if (iManager.offHandItem != null &&
-            iManager.offHandItem.itemType == ItemCategory.Shield)
+            iManager.offHandItem.itemType == ItemType.Shield)
         {
             boolReturned = true;
         }
@@ -291,7 +291,7 @@ public class ItemController : Singleton<ItemController>
             InventoryController.Instance.AddItemToInventory(previousItem);
 
             // check 2h logic
-            if(newItem.itemType == ItemCategory.TwoHandMelee || newItem.itemType == ItemCategory.TwoHandRanged)
+            if(newItem.itemType == ItemType.TwoHandMelee || newItem.itemType == ItemType.TwoHandRanged)
             {
                 ItemData offhandItem = character.itemManager.offHandItem;
                 if(offhandItem != null)
@@ -304,13 +304,13 @@ public class ItemController : Singleton<ItemController>
         }
 
         // 2H items
-        if(newItem.itemType == ItemCategory.TwoHandMelee || newItem.itemType == ItemCategory.TwoHandMelee)
+        if(newItem.itemType == ItemType.TwoHandMelee || newItem.itemType == ItemType.TwoHandMelee)
         {
             character.itemManager.mainHandItem = newItem;
         }
 
         // 1h melee items
-        if (newItem.itemType == ItemCategory.OneHandMelee)
+        if (newItem.itemType == ItemType.OneHandMelee)
         {
             if(slot.slotType == RosterSlotType.MainHand)
                 character.itemManager.mainHandItem = newItem;
@@ -320,13 +320,13 @@ public class ItemController : Singleton<ItemController>
         }
 
         // shields
-        if (newItem.itemType == ItemCategory.Shield)
+        if (newItem.itemType == ItemType.Shield)
         {
             character.itemManager.offHandItem = newItem;
         }
 
         // trinkets
-        if (newItem.itemType == ItemCategory.Trinket)
+        if (newItem.itemType == ItemType.Trinket)
         {
             if(slot.slotType == RosterSlotType.TrinketOne)
                 character.itemManager.trinketOne = newItem;

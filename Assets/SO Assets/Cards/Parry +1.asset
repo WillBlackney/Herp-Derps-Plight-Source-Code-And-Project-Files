@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Parry +1
   m_EditorClassIdentifier: 
   cardName: Parry +1
-  cardDescription: Gain 10 Block. Draw 2 Cards.
+  cardDescription: Gain 10 Block. Draw 1 Card.
   cardSprite: {fileID: 21300000, guid: 49d7732986467e142971b9d35c230cee, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -55,11 +55,11 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '2 '
+    phrase: '1 '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: cards.
+    phrase: card.
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 10
@@ -194,7 +194,7 @@ MonoBehaviour:
     healthRestored: 0
     healthLost: 0
     energyGained: 0
-    cardsDrawn: 2
+    cardsDrawn: 1
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:

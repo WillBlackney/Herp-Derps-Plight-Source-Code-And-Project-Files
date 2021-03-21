@@ -16,14 +16,11 @@ MonoBehaviour:
   cardDescription: 'Add 2 Fire Ball cards to your hand. Expend. '
   cardSprite: {fileID: 21300000, guid: 2f776a76501921148a58f6019da0b155, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 0
   cardType: 1
   targettingType: 0
   talentSchool: 6
   rarity: 2
-  affliction: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 1
   upgradeLevel: 0
   expend: 1
@@ -33,6 +30,9 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -65,6 +65,11 @@ MonoBehaviour:
     cardEffectType: 1
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0

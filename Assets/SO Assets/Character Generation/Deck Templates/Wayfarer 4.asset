@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 037dbb91702418b4e869afd5641058c4, type: 3}
+  m_Name: Wayfarer 4
+  m_EditorClassIdentifier: 
+  cards:
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: 7e0607c8c06c28a448dc2170bf23c76c, type: 2}
+  - {fileID: 11400000, guid: 7e0607c8c06c28a448dc2170bf23c76c, type: 2}
+  - {fileID: 11400000, guid: 34b829276cefc0b498814b7127285085, type: 2}
+  - {fileID: 11400000, guid: 34b829276cefc0b498814b7127285085, type: 2}
+  - {fileID: 11400000, guid: 04b3ac38b9732134c9076aed80c85796, type: 2}
+  - {fileID: 11400000, guid: 5105852492770134e9c9d344ea979348, type: 2}

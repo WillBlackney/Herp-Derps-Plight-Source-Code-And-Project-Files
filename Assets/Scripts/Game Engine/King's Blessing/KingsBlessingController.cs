@@ -378,8 +378,7 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
         startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.Low, validChoices));
         startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.Low, validChoices));
         startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.Medium, validChoices));
-        startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.High, validChoices));
-        startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.Extreme, validChoices));
+        startingChoices.Add(GenerateChoicePairing(KingChoiceImpactLevel.Medium, validChoices));
 
         return startingChoices;
     }

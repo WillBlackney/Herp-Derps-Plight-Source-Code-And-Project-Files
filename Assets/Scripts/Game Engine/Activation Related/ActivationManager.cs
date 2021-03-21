@@ -180,10 +180,81 @@ public class ActivationManager : Singleton<ActivationManager>
         foreach(CharacterEntityModel entity in CharacterEntityController.Instance.AllCharacters)
         {
             CharacterEntityController.Instance.CharacterOnNewTurnCycleStarted(entity);
-        }       
+        }
+
+        // Check 'Vindicated' state
+        if (CurrentTurn == 1 &&
+            StateController.Instance.DoesPlayerHaveState(StateName.Vindicated))
+        {
+            foreach (CharacterEntityModel defender in CharacterEntityController.Instance.AllDefenders)
+            {
+                PassiveController.Instance.ModifyRune(defender.pManager, 1, true);
+            }
+
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+        }
+
+        // Check 'Benevolence' state
+        if (CurrentTurn == 1 &&
+            StateController.Instance.DoesPlayerHaveState(StateName.Benevolence))
+        {
+            foreach(CharacterEntityModel enemy in CharacterEntityController.Instance.AllEnemies)
+            {
+                PassiveController.Instance.ModifyVulnerable(enemy.pManager, 1, true);
+            }
+
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+        }
+
+        // Check 'Polished Armour' state
+        if (CurrentTurn == 1 &&
+            StateController.Instance.DoesPlayerHaveState(StateName.PolishedArmour))
+        {
+            foreach(CharacterEntityModel defender in CharacterEntityController.Instance.AllDefenders)
+            {
+                // Apply block gain
+                CharacterEntityController.Instance.GainBlock(defender, CombatLogic.Instance.CalculateBlockGainedByEffect(10, defender, defender));
+
+                // Notication vfx
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateStatusEffect(defender.characterEntityView.transform.position, "Polished Armour!"));
+            }
+
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+        }
+
+        // Check 'Survivalist' state
+        if (CurrentTurn == 1 &&
+            StateController.Instance.DoesPlayerHaveState(StateName.Survivalist))
+        {
+            foreach (CharacterEntityModel defender in CharacterEntityController.Instance.AllDefenders)
+            {
+                int baseHealAmount = (int)(defender.MaxHealthTotal * 0.05f);
+
+                // Modify health
+                CharacterEntityController.Instance.ModifyHealth(defender, baseHealAmount);
+
+                // Heal VFX
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateHealEffect(defender.characterEntityView.WorldPosition, baseHealAmount));
+
+                // Create heal text effect
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateDamageEffect(defender.characterEntityView.WorldPosition, baseHealAmount, true));
+
+                // Create SFX
+                VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
+
+                // Notication vfx
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateStatusEffect(defender.characterEntityView.transform.position, "Survivalist!"));
+            }
+
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+        }
 
         // Characters roll for initiative
-        if(GlobalSettings.Instance.initiativeSetting == InitiativeSettings.RerollInitiativeEveryTurn ||
+        if (GlobalSettings.Instance.initiativeSetting == InitiativeSettings.RerollInitiativeEveryTurn ||
            (GlobalSettings.Instance.initiativeSetting == InitiativeSettings.RollInitiativeOnceOnCombatStart && CurrentTurn == 1))
         {
             CharacterEntityModel[] characters = activationOrder.ToArray();
@@ -223,20 +294,10 @@ public class ActivationManager : Singleton<ActivationManager>
             CharacterEntityController.Instance.SetAllEnemyIntents(); 
         }
 
-        // Need to set activation button view state to enemy or player
-        // otherwise it gets a bit glitchy when it turns on
-        if(activationOrder[0].controller == Controller.Player)
-        {
-           // VisualEventManager.Instance.CreateVisualEvent(() => UIManager.Instance.SetPlayerTurnButtonState());
-        }
-        else
-        {
-           // VisualEventManager.Instance.CreateVisualEvent(() => UIManager.Instance.SetEnemyTurnButtonState());
-        }
-
         // Enable button visual event
         VisualEventManager.Instance.CreateVisualEvent(() => UIManager.Instance.EnableEndTurnButtonView());
 
+        // Activate the first character in the turn cycle
         ActivateEntity(activationOrder[0]);
     }
     public void DestroyAllActivationWindows()

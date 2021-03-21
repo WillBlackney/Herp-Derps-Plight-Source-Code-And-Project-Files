@@ -98,24 +98,13 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
     }
     public void CreateAllPlayerCombatCharacters()
     {
-        foreach (CharacterData data in ProgressionController.Instance.ChosenCombatCharacters)
+        foreach (CharacterData data in CharacterDataController.Instance.AllPlayerCharacters)
         {
             // Dont spawn dead characters
             if (data.health > 0)
             {
                 CreatePlayerCharacter(data, LevelManager.Instance.GetNextAvailableDefenderNode());
             }          
-        }
-    }
-    public void CreateAllPlayerCombatCharacters(List<CharacterData> characters)
-    {
-        foreach (CharacterData data in characters)
-        {
-            // Dont spawn dead characters
-            if (data.health > 0)
-            {
-                CreatePlayerCharacter(data, LevelManager.Instance.GetNextAvailableDefenderNode());
-            }
         }
     }
     public void DestroyCharacterViewModelsAndGameObjects(List<CharacterEntityModel> charactersDestroyed)
@@ -308,7 +297,6 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         ModifyPower(character, data.power);
         ModifyBaseCrit(character, data.baseCrit);
         ModifyCritModifier(character, data.critModifier);
-        ModifyBaseFirstActivationDrawBonus(character, data.baseFirstActivationDrawBonus);
 
         // Set up health
         ModifyMaxHealth(character, data.maxHealth);
@@ -349,6 +337,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         ModifyPhysicalResistance(character, data.physicalResistance);
         ModifyMagicResistance(character, data.magicResistance);
 
+        
+
         // Set up health + max health
         if (data.enableFlexibleMaxHealth)
         {
@@ -361,14 +351,19 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         {
             ModifyMaxHealth(character, data.maxHealth);
         }
-
+        
         if (data.overrideStartingHealth)
-        {
+        {            
             ModifyHealth(character, data.startingHealth);
         }
         else
         {
-            ModifyHealth(character, character.maxHealth);
+            // Check 'Contract Killers' state
+            if (JourneyManager.Instance.CurrentEncounter == EncounterType.EliteEnemy &&
+                StateController.Instance.DoesPlayerHaveState(StateName.ContractKillers))        
+                ModifyHealth(character, (int) (character.maxHealth * 0.75f));            
+            else
+                ModifyHealth(character, character.maxHealth);
         }
 
         // Set starting block
@@ -549,10 +544,6 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
     {
         character.critModifier += gainedOrLost;
     }
-    public void ModifyBaseFirstActivationDrawBonus(CharacterEntityModel character, int gainedOrLost)
-    {
-        character.baseFristActivationDrawBonus += gainedOrLost;
-    }
     public void ModifyPower(CharacterEntityModel character, int powerGainedOrLost)
     {
         character.power += powerGainedOrLost;
@@ -620,7 +611,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }
 
         int energyVfxValue = character.energy;
-        VisualEventManager.Instance.CreateVisualEvent(() => UpdateEnergyGUI(view, energyVfxValue), QueuePosition.Back, 0, 0);
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateEnergyGUI(view, energyVfxValue), QueuePosition.Front, 0, 0);
+       // UpdateEnergyGUI(view, energyVfxValue);
 
         CardController.Instance.AutoUpdateCardsInHandGlowOutlines(character);
     }
@@ -840,6 +832,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         // do block stuff
         character.blockGainedPreviousTurnCycle = character.blockGainedThisTurnCycle;
         character.blockGainedThisTurnCycle = 0;
+
+
         
     }
     private void ResolveFirstActivationTalentBonuses(CharacterEntityModel character)
@@ -851,6 +845,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             return;
         }
 
+        /*
         // Divinity bonus
         if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Divinity, 1))
         {
@@ -883,7 +878,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
         }
 
-        /*
+        
 
         // Warfare bonus
         if(CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Warfare, 2))
@@ -1054,15 +1049,30 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         LevelNode charNode = character.levelNode;
         VisualEventManager.Instance.CreateVisualEvent(() => LevelManager.Instance.SetActivatedViewState(charNode, true), QueuePosition.Back);
 
+        int energyGain = EntityLogic.GetTotalStamina(character);
+
+        // Check 'Eagerness' state
+        if (StateController.Instance.DoesPlayerHaveState(StateName.Eagerness) &&
+            ActivationManager.Instance.CurrentTurn == 1)
+            energyGain += 1;
+
         // Gain Energy
-        ModifyEnergy(character, EntityLogic.GetTotalStamina(character));
+        ModifyEnergy(character, energyGain);
+
+        // Check 'Eagerness' state
+        if(StateController.Instance.DoesPlayerHaveState(StateName.Eagerness))
+            ModifyEnergy(character, 1);
+
+        // Update energy text
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateEnergyGUI(character.characterEntityView, character.energy), QueuePosition.Back, 0, 0);
 
         // Handle remove block from previous turn cycle
         if (GlobalSettings.Instance.blockExpiresOnActivationStart && 
             character.blockGainedPreviousTurnCycle > 0 && 
             character.block > 0)
         {
-            if(character.pManager.unbreakableStacks == 0)
+            if(character.pManager.unbreakableStacks == 0 ||
+                !StateController.Instance.DoesPlayerHaveState(StateName.ToughNutz))
             {
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Block Expiry"));
@@ -1077,13 +1087,29 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
            character.didTriggerCautiousPrior &&
            character.blockFromCautiousGained > 0)
         {
-            if (character.pManager.unbreakableStacks == 0)
+            if (character.pManager.unbreakableStacks == 0 ||
+                !StateController.Instance.DoesPlayerHaveState(StateName.ToughNutz))
             {
                 SetBlock(character, character.block - character.blockFromCautiousGained, false);
                 character.blockFromCautiousGained = 0;
                 character.didTriggerCautiousPrior = false;
             }                
         }
+
+        /*
+        // Check 'Polished Armour' state
+        if(ActivationManager.Instance.CurrentTurn == 1 &&
+            StateController.Instance.DoesPlayerHaveState(StateName.PolishedArmour) &&
+            character.allegiance == Allegiance.Player)
+        {
+            // Apply block gain
+            GainBlock(character, CombatLogic.Instance.CalculateBlockGainedByEffect(10, character, character));
+
+            // Notication vfx
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Polished Armour!"), QueuePosition.Back, 0, 0.5f);
+        }
+        */
 
         // Modify relevant passives
         if (character.pManager.temporaryBonusStaminaStacks != 0)
@@ -1222,6 +1248,9 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
             // Draw cards on turn start
             CardController.Instance.DrawCardsOnActivationStart(character);
+            foreach(Card card in character.hand)
+            {
+            }
 
             // Remove temp draw
             if (character.pManager.temporaryBonusDrawStacks != 0)
@@ -1272,6 +1301,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
         // reset misc properties
         entity.meleeAttacksPlayedThisActivation = 0;
+        entity.rangedAttacksPlayedThisActivation = 0;
 
         // Brute force disable all activation rings
         VisualEventManager.Instance.CreateVisualEvent(() => LevelManager.Instance.DisableAllActivationRings());
@@ -1292,8 +1322,9 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 PassiveController.Instance.ModifyDarkBargain(entity.pManager, -entity.pManager.darkBargainStacks, true, 0.5f);
             }
 
-            // Lose unused energy
-            //ModifyEnergy(entity, -entity.energy);
+            // Lose unused energy, discard hand
+            if(!StateController.Instance.DoesPlayerHaveState(StateName.Endurance))
+                ModifyEnergy(entity, -entity.energy);
 
             // reset activation only energy values on cards
             CardController.Instance.ResetAllCardEnergyCostsOnActivationEnd(entity);
@@ -1354,10 +1385,6 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         {
             PassiveController.Instance.ModifyDisarmed(entity.pManager, -1, true, 0.5f);
         }
-        if (entity.pManager.blindedStacks > 0)
-        {
-            PassiveController.Instance.ModifyBlinded(entity.pManager, -1, true, 0.5f);
-        }
         if (entity.pManager.silencedStacks > 0)
         {
             PassiveController.Instance.ModifySilenced(entity.pManager, -1, true, 0.5f);
@@ -1378,21 +1405,6 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }
 
         // Buff Passive Triggers
-
-        // Shield Wall
-        /*
-        if (entity.pManager.shieldWallStacks > 0)
-        {
-            // Notication vfx
-            VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(entity.characterEntityView.transform.position, "Shield Wall"), QueuePosition.Back, 0, 0.5f);
-
-            // Apply block gain
-            GainBlock(entity, CombatLogic.Instance.CalculateBlockGainedByEffect(entity.pManager.shieldWallStacks, entity, entity));
-            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-        }       
-        */
-
         // Growing
         if (entity.pManager.growingStacks > 0)
         {
@@ -1476,7 +1488,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Guardian Aura!"), QueuePosition.Back, 0, 0.5f);
 
             // give all allies (but not self) block.
-            foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(entity))
+            foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(entity, false))
             {
                 GainBlock(ally, CombatLogic.Instance.CalculateBlockGainedByEffect(entity.pManager.guardianAuraStacks, entity, ally));
             }
@@ -1507,9 +1519,56 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             }
         }
 
+        // Overload
+        if (entity.pManager.overloadStacks > 0)
+        {
+            // Notification event
+            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Overload!"), QueuePosition.Back, 0, 0.5f);
+
+            if (entity.pManager.hurricaneStacks > 0)
+            {
+                CharacterEntityModel[] enemies = GetAllEnemiesOfCharacter(entity).ToArray();
+                VisualEvent batchedEvent = VisualEventManager.Instance.InsertTimeDelayInQueue(0f);
+
+                foreach (CharacterEntityModel enemy in enemies)
+                {
+                    CharacterEntityView enemyView = enemy.characterEntityView;
+
+                    // VFX Lightning explosion
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateLightningExplosion(enemyView.WorldPosition), QueuePosition.BatchedEvent, 0, 0, EventDetail.None, batchedEvent);
+
+                    // Deal overload damage
+                    int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(entity, enemy, DamageType.Magic, entity.pManager.overloadStacks);
+                    CombatLogic.Instance.HandleDamage(finalDamageValue, entity, enemy, null, DamageType.Magic, batchedEvent, false, false);
+                }
+            }
+            else
+            {
+                // Get random enemy
+                CharacterEntityModel[] enemies = GetAllEnemiesOfCharacter(entity).ToArray();
+                CharacterEntityModel randomEnemy = enemies[RandomGenerator.NumberBetween(0, enemies.Length - 1)];
+                CharacterEntityView randomEnemyView = randomEnemy.characterEntityView;
+
+                // Create lightning ball missle
+                CoroutineData cData = new CoroutineData();
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.ShootProjectileAtLocation(ProjectileFired.LightningBall1, view.WorldPosition, randomEnemyView.WorldPosition, cData), cData);
+                VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
+
+                // Deal air damage
+                int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(entity, randomEnemy, DamageType.Magic, entity.pManager.overloadStacks);
+                CombatLogic.Instance.HandleDamage(finalDamageValue, entity, randomEnemy, DamageType.Magic);
+
+                // Brief pause here
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+            }
+
+        }
+
         // DOTS
         // Poisoned
-        if (entity.pManager.poisonedStacks > 0)
+        if (entity.pManager.poisonedStacks > 0 && entity.health > 0)
         {
             // Notification event
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Poisoned!"), QueuePosition.Back, 0, 0.5f);
@@ -1520,8 +1579,9 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.PoisonExplosion, view.WorldPosition));
             CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Physical, true);           
         }
+
         // Bleeding
-        if (entity.pManager.bleedingStacks > 0)
+        if (entity.pManager.bleedingStacks > 0 && entity.health > 0)
         {
             // Notification event
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Bleeding!"), QueuePosition.Back, 0, 0.5f);
@@ -1532,8 +1592,9 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateEffectAtLocation(ParticleEffect.BloodExplosion, view.WorldPosition));
             CombatLogic.Instance.HandleDamage(finalDamageValue, null, entity, DamageType.Physical, true);
         }
+
         // Burning
-        if (entity.pManager.burningStacks > 0)
+        if (entity.pManager.burningStacks > 0 && entity.health > 0)
         {
             // Check demon form passive first
             if(entity.pManager.demonFormStacks > 0)
@@ -1560,30 +1621,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                    
         }
 
-        // Overload
-        if (entity.pManager.overloadStacks > 0)
-        {
-            // Notification event
-            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Overload!"), QueuePosition.Back, 0, 0.5f);
-
-            // Get random enemy
-            CharacterEntityModel[] enemies = GetAllEnemiesOfCharacter(entity).ToArray();
-            CharacterEntityModel randomEnemy = enemies[UnityEngine.Random.Range(0, enemies.Length)];
-            CharacterEntityView randomEnemyView = randomEnemy.characterEntityView;
-
-            // Create lightning ball missle
-            CoroutineData cData = new CoroutineData();
-            VisualEventManager.Instance.CreateVisualEvent(() =>
-            VisualEffectManager.Instance.ShootProjectileAtLocation(ProjectileFired.LightningBall1, view.WorldPosition, randomEnemyView.WorldPosition, cData), cData);
-            VisualEventManager.Instance.CreateVisualEvent(() => CameraManager.Instance.CreateCameraShake(CameraShakeType.Small));
-
-            // Deal air damage
-            int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(entity, randomEnemy, DamageType.Magic, entity.pManager.overloadStacks);
-            CombatLogic.Instance.HandleDamage(finalDamageValue, entity, randomEnemy, DamageType.Magic);
-
-            // Brief pause here
-            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-        }
+      
 
         #endregion
 
@@ -1740,6 +1778,10 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         else if (enemy.myNextAction.actionType == ActionType.DefendAllAllies)
         {
             enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to apply <color=#F8FF00>Block<color=#FFFFFF> to ALL its allies.";
+        }
+        else if (enemy.myNextAction.actionType == ActionType.HealAllAllies)
+        {
+            enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to <color=#F8FF00>Heal<color=#FFFFFF> its allies";
         }
         else if (enemy.myNextAction.actionType == ActionType.DefendTarget)
         {
@@ -2247,6 +2289,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             view.character != null)
         {
             CardController.Instance.AutoUpdateCardDescriptionText(Draggable.DraggingThis.Da.CardVM().card, view.character);
+            CardController.Instance.SetCardViewModelDescriptionText(Draggable.DraggingThis.Da.CardVM(), TextLogic.ConvertCustomStringListToString(Draggable.DraggingThis.Da.CardVM().card.cardDescriptionTwo));
         }
 
         // AI + Enemy exclusive logic
@@ -2335,6 +2378,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             Draggable.DraggingThis.Da is DragSpellOnTarget)
         {
             CardController.Instance.AutoUpdateCardDescriptionText(Draggable.DraggingThis.Da.CardVM().card, null);
+            CardController.Instance.SetCardViewModelDescriptionText(Draggable.DraggingThis.Da.CardVM(), TextLogic.ConvertCustomStringListToString(Draggable.DraggingThis.Da.CardVM().card.cardDescriptionTwo));
         }
 
         // Do character vm stuff
@@ -2401,6 +2445,25 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             {
                 Debug.Log(enemyAction.actionName + " failed 'AtLeastXAlliesAlive' requirement");
                 checkResults.Add(false);
+            }
+
+            // Check allies wounded
+            if (ar.requirementType == ActionRequirementType.AtLeastOneAllyWounded)
+            {
+                Debug.Log(enemyAction.actionName + " failed 'AtLeastOneAllyWounded' requirement");
+
+                bool foundWounded = false;
+                foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(enemy, false))
+                {
+                    if(ally.health < ally.MaxHealthTotal)
+                    {
+                        foundWounded = true;
+                        break;
+                    }
+                }             
+                
+                if(!foundWounded)
+                    checkResults.Add(false);
             }
 
             // Check availble summoning spots
@@ -2872,6 +2935,27 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 }
             }
 
+            // Heal Allies
+            else if (effect.actionType == ActionType.HealAllAllies)
+            {
+                foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(enemy, effect.alsoHealSelf))
+                {
+                    // Modify health
+                    ModifyHealth(ally, effect.healAmount);
+
+                    // Heal VFX
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                        VisualEffectManager.Instance.CreateHealEffect(ally.characterEntityView.WorldPosition, effect.healAmount));
+
+                    // Create heal text effect
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateDamageEffect(ally.characterEntityView.WorldPosition, effect.healAmount, true));
+
+                    // Create SFX
+                    VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
+                }
+            }
+
             // Buff Self + Buff Target
             else if (effect.actionType == ActionType.BuffSelf ||
                      effect.actionType == ActionType.BuffTarget)
@@ -2908,71 +2992,6 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 {
                     PassiveController.Instance.ModifyPassiveOnCharacterEntity(enemyy.pManager, effect.passiveApplied.passiveName, effect.passiveStacks, true, 0f, enemy.pManager);
                 }
-
-            }
-
-            // Heal Ally
-            else if (effect.actionType == ActionType.HealAlly)
-            {
-                if (target == null)
-                {
-                    target = enemy;
-                }
-
-                // Modify health
-                ModifyHealth(target, effect.healAmount);
-
-                // Heal VFX
-                VisualEventManager.Instance.CreateVisualEvent(() =>
-                    VisualEffectManager.Instance.CreateHealEffect(target.characterEntityView.WorldPosition, effect.healAmount));
-
-                // Create heal text effect
-                VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateDamageEffect(target.characterEntityView.WorldPosition, effect.healAmount, true));
-
-                // Create SFX
-                VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
-            }
-
-            // Heal Self
-            else if (effect.actionType == ActionType.HealAlly)
-            {
-                // Modify health
-                ModifyHealth(enemy, effect.healAmount);
-
-                // Heal VFX
-                VisualEventManager.Instance.CreateVisualEvent(() =>
-                    VisualEffectManager.Instance.CreateHealEffect(enemy.characterEntityView.WorldPosition, effect.healAmount));
-
-                // Create heal text effect
-                VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateDamageEffect(enemy.characterEntityView.WorldPosition, effect.healAmount, true));
-
-                // Create SFX
-                VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
-
-            }
-
-            // Heal All + Self
-            else if (effect.actionType == ActionType.HealAlliesAndSelf)
-            {
-                foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(enemy))
-                {
-                    // Modify health
-                    ModifyHealth(ally, effect.healAmount);
-
-                    // Heal VFX
-                    VisualEventManager.Instance.CreateVisualEvent(() =>
-                        VisualEffectManager.Instance.CreateHealEffect(ally.characterEntityView.WorldPosition,  effect.healAmount));
-
-                    // Create heal text effect
-                    VisualEventManager.Instance.CreateVisualEvent(() =>
-                    VisualEffectManager.Instance.CreateDamageEffect(ally.characterEntityView.WorldPosition, effect.healAmount, true));                    
-
-                }
-
-                // Create SFX
-                VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
 
             }
 
@@ -3043,6 +3062,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         bool reachedDestination = false;
         Vector3 destination = new Vector3(node.attackPos.position.x, node.attackPos.position.y, 0);
         float moveSpeed = 10;
+        attacker.ModifyQueuedMovements(-1);
 
         // Face direction of destination
         LevelManager.Instance.TurnFacingTowardsLocation(attacker.characterEntityView, node.transform.position);

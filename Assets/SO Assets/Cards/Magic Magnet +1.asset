@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Magic Magnet +1
   m_EditorClassIdentifier: 
   cardName: Magic Magnet +1
-  cardDescription: On activation start, add an Arcane Bolt to your hand. Innate.
+  cardDescription: On activation start, add an Arcane Bolt to your hand.
   cardSprite: {fileID: 21300000, guid: 36b328c515d7db440bea3b4734ef93fd, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -24,7 +24,7 @@ MonoBehaviour:
   upgradeable: 0
   upgradeLevel: 1
   expend: 0
-  innate: 1
+  innate: 0
   fleeting: 0
   unplayable: 0
   lifeSteal: 0
@@ -46,19 +46,16 @@ MonoBehaviour:
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: "card to your hand. \n"
-  - color: 3
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: Innate
-  - color: 0
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: .
   cardEffects:
   - weaponRequirement: 0
     cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -140,7 +137,4 @@ MonoBehaviour:
     visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
   cardPassiveEffects: []
-  keyWordModels:
-  - kewWordType: 2
-    weaponRequirement: 0
-    passiveType: 0
+  keyWordModels: []

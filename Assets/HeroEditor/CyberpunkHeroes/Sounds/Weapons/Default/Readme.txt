@@ -1,1 +1,0 @@
-Please note, that we don't provide sound FX collection. You can find more weapon sounds on the Asset Store.

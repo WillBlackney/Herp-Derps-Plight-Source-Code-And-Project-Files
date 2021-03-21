@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cataclysm +1
   m_EditorClassIdentifier: 
   cardName: Cataclysm +1
-  cardDescription: 'Expend all cards in hand. For each expend, deal 12 Fire damage
+  cardDescription: 'Expend all cards in hand. For each expend, deal 8 Magic damage
     to all enemies. '
   cardSprite: {fileID: 21300000, guid: 70df1591f914c8843939dea83ffd9224, type: 3}
   xEnergyCost: 0
@@ -62,6 +62,11 @@ MonoBehaviour:
     cardEffectType: 24
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -101,7 +106,7 @@ MonoBehaviour:
       talentSchoolFilter: 0
       rarityFilter: 0
       upgradeFilter: 1
-      baseDamage: 12
+      baseDamage: 8
       damageType: 2
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0

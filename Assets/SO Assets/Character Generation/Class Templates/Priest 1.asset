@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Priest 1
   m_EditorClassIdentifier: 
   templateName: Priest
+  possibleRaces: 01000000020000000300000004000000070000000600000008000000
   possibleDecks:
   - {fileID: 11400000, guid: f888652b3bd91854abd16793dbda78de, type: 2}
   - {fileID: 11400000, guid: ef020b92fe7c0c048ad3d18097a59900, type: 2}
   - {fileID: 11400000, guid: 9013b86b3b0bb734ca6a956e9fc2da68, type: 2}
+  - {fileID: 11400000, guid: 59f40bbab55c9bd48ab15d3b189d12c8, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: 2bacfc308f5f45a408e1da96cebe130f, type: 2}
   possibleWeapons:
@@ -26,10 +28,10 @@ MonoBehaviour:
     trinketTwo: {fileID: 0}
   strengthMod: 0
   intelligenceMod: 2
-  dexterityMod: 1
+  dexterityMod: 2
   witsMod: 0
-  constitutionMod: 1
-  maxHealth: 100
+  constitutionMod: 0
+  maxHealth: 90
   talentPairings:
   - talentSchool: 10
     talentLevel: 2

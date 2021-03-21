@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Incinerator 1
   m_EditorClassIdentifier: 
   templateName: Incinerator
+  possibleRaces: 0100000003000000040000000500000009000000
   possibleDecks:
   - {fileID: 11400000, guid: 2ed84fa971d4e1c4bacb26850a4e8097, type: 2}
   - {fileID: 11400000, guid: 06854a0c13ff76b4abe9dcee7ab40acd, type: 2}
+  - {fileID: 11400000, guid: 3f9b9cc9cc9411f499f318065dc8e9d4, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: c86c117027dca424a9c907a44f867181, type: 2}
   possibleWeapons:
@@ -24,11 +26,11 @@ MonoBehaviour:
     trinketOne: {fileID: 0}
     trinketTwo: {fileID: 0}
   strengthMod: 0
-  intelligenceMod: 3
+  intelligenceMod: 4
   dexterityMod: 0
-  witsMod: 1
+  witsMod: 0
   constitutionMod: 0
-  maxHealth: 100
+  maxHealth: 90
   talentPairings:
   - talentSchool: 6
     talentLevel: 2

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Stab And Run +1
   m_EditorClassIdentifier: 
   cardName: Stab And Run +1
-  cardDescription: 'Gain 12 Block.
+  cardDescription: 'Gain 5 Block.
 
-    Add a Shank to your hand.'
+    Add 2 Shank cards to your hand.'
   cardSprite: {fileID: 21300000, guid: 622c316e59df3ea44aaa1b7595d5ef3a, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -53,7 +53,7 @@ MonoBehaviour:
     cardEffectType: 0
     phrase: '.
 
-      Add '
+      Add a'
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 9
+    blockGainValue: 5
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0

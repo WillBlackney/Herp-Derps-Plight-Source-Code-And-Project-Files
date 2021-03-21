@@ -73,41 +73,10 @@ namespace MapSystem
 
         private static void HandleEnterNode(MapNode mapNode)
         {
-            // we have access to blueprint name here as well
             Debug.Log("Entering node: " + mapNode.Node.BlueprintName + " of type: " + mapNode.Node.NodeType);
-            // load appropriate scene with context based on nodeType:
-            // or show appropriate GUI over the map: 
-            // if you choose to show GUI in some of these cases, do not forget to set "Locked" in MapPlayerTracker back to false
 
             EventSequenceController.Instance.HandleLoadNextEncounter(mapNode);
 
-            // TO DO: journey manager 'next encounter' logic is replaced and goes here.
-            // e.g. if player clicks a basic enemy node, we need to calculate which enemy wave to load
-            // next, save it to persistency, then load the combat event.
-
-            /*
-            switch (mapNode.Node.nodeType)
-            {
-                case NodeType.MinorEnemy:
-                    break;
-                case NodeType.EliteEnemy:
-                    break;
-                case NodeType.CampSite:
-                    break;
-                case NodeType.Treasure:
-                    break;
-                case NodeType.Shop:
-                    break;
-                case NodeType.Boss:
-                    break;
-                case NodeType.Mystery:
-                    break;
-                case NodeType.Recruit:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-            */
         }
 
         private void PlayWarningThatNodeCannotBeAccessed()

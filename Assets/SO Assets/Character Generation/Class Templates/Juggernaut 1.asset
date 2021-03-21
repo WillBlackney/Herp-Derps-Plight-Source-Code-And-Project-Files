@@ -13,9 +13,13 @@ MonoBehaviour:
   m_Name: Juggernaut 1
   m_EditorClassIdentifier: 
   templateName: Juggernaut
+  possibleRaces: 080000000200000003000000010000000600000007000000
   possibleDecks:
   - {fileID: 11400000, guid: e2b3c0c97212aaa45926454aab3b477d, type: 2}
   - {fileID: 11400000, guid: 5d732e076c9f9584783a2c3a0fc39e4b, type: 2}
+  - {fileID: 11400000, guid: b78e3f7195beec74ba4601055122e152, type: 2}
+  - {fileID: 11400000, guid: 826acd3f077c03745bad084203179dd6, type: 2}
+  - {fileID: 11400000, guid: 811d1712f92f554489541ec706f70fd2, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: c07bc0bac5e41f447a06cee4c710ab9b, type: 2}
   possibleWeapons:
@@ -32,7 +36,7 @@ MonoBehaviour:
   dexterityMod: 3
   witsMod: 0
   constitutionMod: 1
-  maxHealth: 100
+  maxHealth: 90
   talentPairings:
   - talentSchool: 5
     talentLevel: 2

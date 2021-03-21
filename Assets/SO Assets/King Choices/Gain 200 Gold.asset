@@ -15,7 +15,7 @@ MonoBehaviour:
   choiceDescription: Gain 200 Gold
   effect: 12
   category: 1
-  impactLevel: 4
+  impactLevel: 2
   maxHealthGainedOrLost: 0
   healthGainedOrLost: 0
   randomCardRarity: 0
@@ -27,3 +27,4 @@ MonoBehaviour:
   possiblePassives: []
   afflicationsGained: 0
   goldGainedOrLost: 200
+  itemRarity: 0

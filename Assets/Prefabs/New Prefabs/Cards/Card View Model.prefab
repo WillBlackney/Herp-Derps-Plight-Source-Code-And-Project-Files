@@ -315,7 +315,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c422d203c6d006342aa5407dd3fec0fd, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ab9ba4208e0b0294b9afb7267568cfb4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1645,8 +1645,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Fire Ball
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 87e99a81f1cbf00428f7e0adbc0d7cf5, type: 2}
-  m_sharedMaterial: {fileID: 937035506399193613, guid: 87e99a81f1cbf00428f7e0adbc0d7cf5,
+  m_fontAsset: {fileID: 11400000, guid: 2a5ae8d2092e93a44b7836a3737d175a, type: 2}
+  m_sharedMaterial: {fileID: 937035506399193613, guid: 2a5ae8d2092e93a44b7836a3737d175a,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2361,7 +2361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.39215687}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.6862745}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:

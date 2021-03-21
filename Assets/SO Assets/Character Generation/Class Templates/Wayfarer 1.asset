@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Wayfarer 1
   m_EditorClassIdentifier: 
   templateName: Wayfarer
+  possibleRaces: 080000000100000004000000050000000600000007000000
   possibleDecks:
   - {fileID: 11400000, guid: 6e63fc7e6c1402c4ea1ae9fb1d2e6d4c, type: 2}
   - {fileID: 11400000, guid: e7bf56fbc67372e45aa615eaf3c2af0d, type: 2}
+  - {fileID: 11400000, guid: e48534bbb0c91614398845aa1460f99c, type: 2}
+  - {fileID: 11400000, guid: c8ba55213b1daed4ab632dd07dc0b95e, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: 2313e3069df944346bfa975e80a659ca, type: 2}
   possibleWeapons:
@@ -23,12 +26,12 @@ MonoBehaviour:
     offHandItem: {fileID: 0}
     trinketOne: {fileID: 0}
     trinketTwo: {fileID: 0}
-  strengthMod: 1
+  strengthMod: 0
   intelligenceMod: 0
   dexterityMod: 2
-  witsMod: 1
-  constitutionMod: 0
-  maxHealth: 100
+  witsMod: 0
+  constitutionMod: 2
+  maxHealth: 90
   talentPairings:
   - talentSchool: 10
     talentLevel: 1

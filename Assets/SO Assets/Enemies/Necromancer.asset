@@ -18,8 +18,8 @@ MonoBehaviour:
   overrideStartingHealth: 0
   startingHealth: 0
   enableFlexibleMaxHealth: 1
-  maxHealthFlexAmount: 8
-  maxHealth: 280
+  maxHealthFlexAmount: 6
+  maxHealth: 160
   startingBlock: 0
   strength: 20
   intelligence: 20
@@ -73,7 +73,6 @@ MonoBehaviour:
     pistoleroStacks: 0
     fastLearnerStacks: 0
     demonFormStacks: 0
-    undeadStacks: 0
     darkBargainStacks: 0
     volatileStacks: 0
     soulCollectorStacks: 0
@@ -89,6 +88,8 @@ MonoBehaviour:
     unbreakableStacks: 0
     pierceStacks: 0
     regenerationStacks: 0
+    hurricaneStacks: 0
+    holierThanThouStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -99,7 +100,6 @@ MonoBehaviour:
     vulnerableStacks: 0
     gritStacks: 0
     disarmedStacks: 0
-    blindedStacks: 0
     silencedStacks: 0
     sleepStacks: 0
     poisonedStacks: 0
@@ -163,14 +163,13 @@ MonoBehaviour:
         projectileFired: 0
         projectileStartPosition: 0
         onCharacter: 1
-      healAmount: 0
       passiveApplied: {fileID: 0}
       passiveStacks: 0
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0
-  - actionName: Shadow Bolt
+  - actionName: Chaos Bolt
     actionType: 0
     intentImage: 0
     actionLoops: 1
@@ -228,14 +227,13 @@ MonoBehaviour:
       visualEventsOnFinish: []
       actionType: 0
       effectLoops: 1
-      baseDamage: 18
-      damageType: 2
+      baseDamage: 13
+      damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
       modelFadeInSpeed: 0
       uiFadeInSpeed: 0
       summonedCreatureVisualEvents: []
-      healAmount: 0
       passiveApplied: {fileID: 0}
       passiveStacks: 0
       blockGained: 0

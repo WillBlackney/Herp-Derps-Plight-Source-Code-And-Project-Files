@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Strike
   m_EditorClassIdentifier: 
   cardName: Strike
-  cardDescription: Deal 8 Physical damage.
+  cardDescription: Deal 6 Physical damage.
   cardSprite: {fileID: 21300000, guid: 899c8605fde961c4caeac02f8f9d62f6, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -52,9 +52,15 @@ MonoBehaviour:
     phrase: damage.
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -77,7 +83,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 8
+    baseDamageValue: 6
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0

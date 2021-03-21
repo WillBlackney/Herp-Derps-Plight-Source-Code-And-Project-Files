@@ -23,7 +23,7 @@ MonoBehaviour:
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'X '
-  - color: 9
+  - color: 4
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'Physical '

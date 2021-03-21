@@ -16,7 +16,7 @@ MonoBehaviour:
   cardDescription: Whenever you apply Poisoned, apply 1 extra.
   cardSprite: {fileID: 21300000, guid: 2bdfc646862419c4ba8a33bb0d97e4fa, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 0
+  cardEnergyCost: 1
   cardType: 4
   targettingType: 0
   talentSchool: 12
@@ -59,6 +59,11 @@ MonoBehaviour:
     cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0

@@ -36,6 +36,8 @@ namespace MapSystem
         [Header("Colors")]
         [Tooltip("Node Visited or Attainable color")]
         public Color32 visitedColor = Color.white;
+        [Tooltip("Attainable flashing end colour")]
+        public Color32 flashingColor;
         [Tooltip("Locked node color")]
         public Color32 lockedColor = Color.gray;
         [Tooltip("Visited or available path color")]
@@ -180,7 +182,7 @@ namespace MapSystem
             scrollNonUi.freezeX = orientation == MapOrientation.BottomToTop || orientation == MapOrientation.TopToBottom;
             scrollNonUi.freezeY = orientation == MapOrientation.LeftToRight || orientation == MapOrientation.RightToLeft;
             var boxCollider = mapParent.AddComponent<BoxCollider>();
-            boxCollider.size = new Vector3(100, 100, 1);
+            boxCollider.size = new Vector3(100, 100, 0.5f);
         }
         private void SetMapScale(float scale)
         {

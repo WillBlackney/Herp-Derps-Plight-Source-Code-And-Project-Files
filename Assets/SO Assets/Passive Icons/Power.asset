@@ -22,11 +22,11 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '10% '
+    phrase: 'X '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: per point.
+    phrase: .
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0

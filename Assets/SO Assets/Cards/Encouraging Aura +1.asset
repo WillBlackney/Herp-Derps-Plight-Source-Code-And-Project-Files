@@ -49,7 +49,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'to a random ally or self.
+    phrase: 'to a random ally.
 
 '
   - color: 3

@@ -553,8 +553,12 @@ public class CampSiteController : Singleton<CampSiteController>
         // Reset camp points
         currentCampPoints = 0;
 
+        int bonus = 0;
+        if (StateController.Instance.DoesPlayerHaveState(StateName.HappyCampers))
+            bonus += 2;
+
         // Regen camp points
-        ModifyCurrentCampPoints(currentCampPointRegen);
+        ModifyCurrentCampPoints(currentCampPointRegen + bonus);
     }   
     public void DrawCampCardsOnCampEventStart()
     {

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tendon Slash
   m_EditorClassIdentifier: 
   cardName: Tendon Slash
-  cardDescription: 'Apply 6 Bleeding and 2 Weakened to target. '
+  cardDescription: 'Apply 4 Bleeding and 2 Weakened to target. '
   cardSprite: {fileID: 21300000, guid: f3260a0dcd6bf354c86e8494addabcc7, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -41,7 +41,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '6 '
+    phrase: '4 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -67,6 +67,11 @@ MonoBehaviour:
     cardEffectType: 3
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -108,7 +113,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 58
-      passiveStacks: 6
+      passiveStacks: 4
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
@@ -210,6 +215,11 @@ MonoBehaviour:
     cardEffectType: 3
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0

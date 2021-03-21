@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 037dbb91702418b4e869afd5641058c4, type: 3}
+  m_Name: Shadowmancer 3
+  m_EditorClassIdentifier: 
+  cards:
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
+  - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
+  - {fileID: 11400000, guid: 906a542ac4dbed2429e34de4a75c3c40, type: 2}
+  - {fileID: 11400000, guid: 906a542ac4dbed2429e34de4a75c3c40, type: 2}
+  - {fileID: 11400000, guid: 186eaded8ce25764581f9036feb58e61, type: 2}
+  - {fileID: 11400000, guid: d44d8007ea09dd74b80949bdaa0f893b, type: 2}

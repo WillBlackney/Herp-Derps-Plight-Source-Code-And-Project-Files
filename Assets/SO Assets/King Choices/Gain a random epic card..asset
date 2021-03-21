@@ -15,7 +15,16 @@ MonoBehaviour:
   choiceDescription: Gain a random epic card.
   effect: 3
   category: 1
-  impactLevel: 3
+  impactLevel: 2
   maxHealthGainedOrLost: 0
   healthGainedOrLost: 0
   randomCardRarity: 3
+  discoveryCardRarity: 0
+  randomCardsUpgraded: 0
+  randomCardsTransformed: 0
+  attributeModified: 0
+  attributeAmountModified: 0
+  possiblePassives: []
+  afflicationsGained: 0
+  goldGainedOrLost: 0
+  itemRarity: 0

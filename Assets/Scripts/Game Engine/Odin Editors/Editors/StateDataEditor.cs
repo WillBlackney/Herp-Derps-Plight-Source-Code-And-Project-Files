@@ -63,18 +63,16 @@ public class StateDataEditor : OdinMenuEditorWindow
         public CreateNewStateData()
         {
             stateData = CreateInstance<StateDataSO>();
-            stateData.stateName = "New State Name";
         }
 
         [Button("Add New StateDataSO")]
         public void CreateNewData()
         {
-            AssetDatabase.CreateAsset(stateData, "Assets/SO Assets/States/" + stateData.stateName + ".asset");
+            AssetDatabase.CreateAsset(stateData, "Assets/SO Assets/States/" + TextLogic.SplitByCapitals(stateData.stateName.ToString()) + ".asset");
             AssetDatabase.SaveAssets();
 
             // Create the SO 
             stateData = CreateInstance<StateDataSO>();
-            stateData.stateName = "New State Data";
         }
 
     }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Smite
   m_EditorClassIdentifier: 
   cardName: Smite
-  cardDescription: 'Deal 10 Physical damage.
+  cardDescription: 'Deal 8 Physical damage.
 
     Add a random Blessing to your hand. '
   cardSprite: {fileID: 21300000, guid: c5db87e8eed3b4d48bb8d48c9f0869b2, type: 3}
@@ -67,6 +67,11 @@ MonoBehaviour:
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -89,7 +94,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 10
+    baseDamageValue: 8
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
@@ -180,6 +185,11 @@ MonoBehaviour:
     cardEffectType: 21
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0

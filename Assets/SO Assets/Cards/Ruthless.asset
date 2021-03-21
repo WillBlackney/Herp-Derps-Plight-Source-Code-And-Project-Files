@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
   m_Name: Ruthless
   m_EditorClassIdentifier: 
-  cardName: Ruthless
-  cardDescription: Your Shank cards deal 3 more damage.
+  cardName: Ruthlessness
+  cardDescription: Your Shank cards deal 2 more damage.
   cardSprite: {fileID: 21300000, guid: 295fe025bb47bb74fadcd87742ddc49b, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1

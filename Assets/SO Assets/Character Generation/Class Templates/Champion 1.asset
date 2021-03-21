@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: Champion 1
   m_EditorClassIdentifier: 
   templateName: Champion
+  possibleRaces: 0100000003000000060000000200000008000000
   possibleDecks:
   - {fileID: 11400000, guid: 3e27ced14723dde4587818f9258e4a55, type: 2}
   - {fileID: 11400000, guid: 3f858cab633a36549aa62a9c4facf61e, type: 2}
+  - {fileID: 11400000, guid: 1d5521a8ef1dd514e94b25c65ff0623f, type: 2}
+  - {fileID: 11400000, guid: 5863772a9200b994c9eb303ad7ee2f56, type: 2}
+  - {fileID: 11400000, guid: c86a3b3484addb244bbe96efdb9d1171, type: 2}
+  - {fileID: 11400000, guid: 59d8562937d67d246a0e81aa5ccf9ae9, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: 587cb65ed7d72cf49bfc5a8804a81d30, type: 2}
   - {fileID: 11400000, guid: 57e3a206564557142b7ad153b5a7b48d, type: 2}
@@ -37,7 +42,7 @@ MonoBehaviour:
   dexterityMod: 0
   witsMod: 0
   constitutionMod: 1
-  maxHealth: 100
+  maxHealth: 90
   talentPairings:
   - talentSchool: 2
     talentLevel: 2

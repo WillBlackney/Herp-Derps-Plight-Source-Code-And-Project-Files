@@ -15,9 +15,16 @@ MonoBehaviour:
   choiceDescription: Upgrade 4 random cards.
   effect: 11
   category: 1
-  impactLevel: 4
+  impactLevel: 2
   maxHealthGainedOrLost: 0
   healthGainedOrLost: 0
   randomCardRarity: 0
   discoveryCardRarity: 0
   randomCardsUpgraded: 4
+  randomCardsTransformed: 0
+  attributeModified: 0
+  attributeAmountModified: 0
+  possiblePassives: []
+  afflicationsGained: 0
+  goldGainedOrLost: 0
+  itemRarity: 0

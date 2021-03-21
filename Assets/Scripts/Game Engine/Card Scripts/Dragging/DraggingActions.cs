@@ -12,7 +12,7 @@ public abstract class DraggingActions : MonoBehaviour
     }
     public abstract void OnStartDrag();
 
-    public abstract void OnEndDrag();
+    public abstract void OnEndDrag(bool forceFailure = false);
 
     public abstract void OnDraggingInUpdate();
 

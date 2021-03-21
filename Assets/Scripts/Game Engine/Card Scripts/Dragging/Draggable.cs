@@ -8,6 +8,7 @@ public class Draggable : MonoBehaviour
     #region
     // a flag to know if we are currently dragging this GameObject
     private bool dragging = false;
+    private bool lockedOn = false;
    
 
     // distance from the center of this Game Object to the point where we clicked to start dragging 
@@ -41,8 +42,20 @@ public class Draggable : MonoBehaviour
     // Follow Mouse Logic
     #region
     void Update()
-    {
-        if (dragging)
+    {       
+
+        if (dragging && !lockedOn)
+        {
+            Vector3 mousePos = MouseInWorldCoords();
+            float distance = Vector3.Distance(transform.position, mousePos);
+            transform.DOKill();
+            transform.DOMove(new Vector3(mousePos.x, mousePos.y, transform.position.z), 0.1f);
+            da.OnDraggingInUpdate();
+
+            if (transform.position == mousePos)
+                lockedOn = true;
+        }
+        else if (dragging && lockedOn)
         {
             Vector3 mousePos = MouseInWorldCoords();
             transform.position = new Vector3(mousePos.x, mousePos.y, transform.position.z);
@@ -53,6 +66,46 @@ public class Draggable : MonoBehaviour
 
     // Input Hooks
     #region
+    public void TriggerOnMouseDown()
+    {
+        OnMouseDown();
+    }
+    public void TriggerOnMouseUp(bool forceFailure = false)
+    {
+        // prevent clicking through an active UI screen
+        if (CardController.Instance.DiscoveryScreenIsActive ||
+            CardController.Instance.ChooseCardScreenIsActive ||
+            MainMenuController.Instance.AnyMenuScreenIsActive())
+        {
+            return;
+        }
+
+        if (GlobalSettings.Instance.deviceMode == DeviceMode.Desktop)
+        {
+            if (dragging)
+            {
+                dragging = false;
+                // turn all previews back on
+                HoverPreview.PreviewsAllowed = true;
+                _draggingThis = null;
+                da.OnEndDrag(forceFailure);
+            }
+        }
+        else if (GlobalSettings.Instance.deviceMode == DeviceMode.Mobile)
+        {
+            if (dragging)
+            {
+                initialTouchSet = false;
+                touchFingerIsOverMe = false;
+                dragging = false;
+
+                // turn all previews back on
+                HoverPreview.PreviewsAllowed = true;
+                _draggingThis = null;
+                da.OnEndDrag(forceFailure);
+            }
+        }
+    }
     void OnMouseDown()
     {
         // prevent clicking through an active UI screen
@@ -71,6 +124,7 @@ public class Draggable : MonoBehaviour
         {
             if(GlobalSettings.Instance.deviceMode == DeviceMode.Desktop)
             {
+                lockedOn = false;
                 dragging = true;
                 // when we are dragging something, all previews should be off
                 HoverPreview.PreviewsAllowed = false;
@@ -141,6 +195,7 @@ public class Draggable : MonoBehaviour
                 da != null && 
                 da.CanDrag)
             {
+                lockedOn = false;
                 dragging = true;
 
                 // when we are dragging something, all previews should be off

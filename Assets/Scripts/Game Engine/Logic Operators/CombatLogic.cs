@@ -77,19 +77,39 @@ public class CombatLogic : Singleton<CombatLogic>
         Debug.Log("CombatLogic.CalculateFinalDamageTypeOfAttack() final damage type returned: " + damageTypeReturned);
         return damageTypeReturned;
     }
-    private int GetBaseDamageValue(CharacterEntityModel entity, int baseDamage, DamageType damageType, Card card = null, CardEffect cardEffect = null, EnemyActionEffect enemyAction = null)
+    private int GetBaseDamageValue(CharacterEntityModel attacker, int baseDamage, DamageType damageType, Card card = null, CardEffect cardEffect = null, EnemyActionEffect enemyAction = null)
     {
         Debug.Log("CombatLogic.GetBaseDamageValue() called...");
         int baseDamageValueReturned = 0;
 
         baseDamageValueReturned += baseDamage;
 
-        // Add flat damage bonus from modifiers (strength, etc)
-        /*
+        // Add flat damage bonus from modifiers (power, etc)        
         if (card != null || enemyAction != null)
         {
-            baseDamageValueReturned += EntityLogic.GetTotalPower(entity);
+            baseDamageValueReturned += EntityLogic.GetTotalPower(attacker);
             Debug.Log("Card base damage after strength and related modifiers added: " + baseDamageValueReturned.ToString());
+        }
+        
+        // Check Scoundrel talent
+        if(card != null &&
+            card.cardType == CardType.MeleeAttack &&
+            attacker.meleeAttacksPlayedThisActivation == 0 &&
+            ActivationManager.Instance.CurrentTurn == 1)
+        {           
+            baseDamageValueReturned += CharacterDataController.Instance.GetTalentLevel(attacker.characterData, TalentSchool.Scoundrel) * 2;
+            Debug.Log("Card base damage after Scoundrel talent bonus: " + baseDamageValueReturned.ToString());
+        }
+
+        /*
+        // Check Ranger talent
+        if (card != null &&
+            card.cardType == CardType.RangedAttack &&
+            attacker.rangedAttacksPlayedThisActivation == 0 &&
+            ActivationManager.Instance.CurrentTurn == 1)
+        {           
+            baseDamageValueReturned += CharacterDataController.Instance.GetTalentLevel(attacker.characterData, TalentSchool.Ranger) * 2;
+            Debug.Log("Card base damage after Ranger talent bonus added: " + baseDamageValueReturned.ToString());
         }
         */
 
@@ -99,7 +119,7 @@ public class CombatLogic : Singleton<CombatLogic>
              (card.cardName == "Fire Ball" || card.cardName == "Fire Ball +1" ||
              card.cardName == "Mega Fire Ball" || card.cardName == "Mega Fire Ball +1"))
         {
-            baseDamageValueReturned += entity.pManager.fireBallBonusDamageStacks;
+            baseDamageValueReturned += attacker.pManager.fireBallBonusDamageStacks;
             Debug.Log("Card base damage after bonus fire ball damage added: " + baseDamageValueReturned.ToString());
         }
 
@@ -107,7 +127,7 @@ public class CombatLogic : Singleton<CombatLogic>
         if (card != null &&
              (card.cardName == "Reflex Shot" || card.cardName == "Reflex Shot +1"))
         {
-            baseDamageValueReturned += entity.pManager.reflexShotBonusDamageStacks;
+            baseDamageValueReturned += attacker.pManager.reflexShotBonusDamageStacks;
             Debug.Log("Card base damage after bonus reflex shot damage added: " + baseDamageValueReturned.ToString());
         }
 
@@ -115,7 +135,7 @@ public class CombatLogic : Singleton<CombatLogic>
         if (card != null &&
             (card.cardName == "Shank" || card.cardName == "Shank +1"))
         {
-            baseDamageValueReturned += entity.pManager.ruthlessStacks;
+            baseDamageValueReturned += attacker.pManager.ruthlessStacks;
             Debug.Log("Card base damage after bonus Ruthless/Shank damage added: " + baseDamageValueReturned.ToString());
         }
 
@@ -124,7 +144,7 @@ public class CombatLogic : Singleton<CombatLogic>
              (card.cardName == "Arcane Bolt" || card.cardName == "Arcane Bolt +1" ||
              card.cardName == "Mega Arcane Bolt" || card.cardName == "Mega Arcane Bolt +1"))
         {
-            baseDamageValueReturned += entity.pManager.etherealStacks;
+            baseDamageValueReturned += attacker.pManager.etherealStacks;
             Debug.Log("Card base damage after bonus Ethereal damage added: " + baseDamageValueReturned.ToString());
         }
 
@@ -143,14 +163,15 @@ public class CombatLogic : Singleton<CombatLogic>
         int damageValueReturned = damageValue;
         int targetResistance = 0;
         float resistanceMultiplier = 0;
-
         
-        //Get total resistance
+        // Get total resistance
         if(target != null)
         {
+            if((damageType == DamageType.Physical && !StateController.Instance.DoesPlayerHaveState(StateName.PowerOverwhelming)) ||
+                (damageType == DamageType.Magic && !StateController.Instance.DoesPlayerHaveState(StateName.Godlike))
+                )
             targetResistance = GetTotalResistance(target, damageType);
-        }
-        
+        }        
 
         // Debug
         Debug.Log("Target has " + targetResistance + " total " + damageType.ToString() + " Resistance...");
@@ -177,14 +198,17 @@ public class CombatLogic : Singleton<CombatLogic>
         int damageValueReturned = damageValue;
         float damageModifier = 1f;
 
+        // UNCOMMENT TO ENABLE CRITS
+        didCrit = false;
+
         // These effects only apply to damage from cards, or from enemy abilities
         // they are not triggered by passives like poisoned damage
         if ((card != null && cardEffect != null) ||
             enemyAction != null)
         {
             // power
-            float powerMod = EntityLogic.GetTotalPower(attacker) / 10f;
-            damageModifier += powerMod;
+            //float powerMod = EntityLogic.GetTotalPower(attacker) / 10f;
+            //damageModifier += powerMod;
 
             // crit
             if (didCrit)
@@ -214,6 +238,10 @@ public class CombatLogic : Singleton<CombatLogic>
             if (target != null && target.pManager.vulnerableStacks > 0)
             {
                 damageModifier += 0.3f;
+                // check 'Sadism' state
+                if (StateController.Instance.DoesPlayerHaveState(StateName.Sadism) &&
+                    attacker.allegiance == Allegiance.Enemy)
+                    damageModifier += 0.2f;
                 Debug.Log("Damage percentage modifier after 'Vulnerable' bonus: " + damageModifier.ToString());
             }
 
@@ -221,6 +249,11 @@ public class CombatLogic : Singleton<CombatLogic>
             if (attacker.pManager.wrathStacks > 0)
             {
                 damageModifier += 0.3f;
+
+                // check 'Sadism' state
+                if (StateController.Instance.DoesPlayerHaveState(StateName.Aggression) &&
+                    attacker.allegiance == Allegiance.Player)
+                    damageModifier += 0.2f;
                 Debug.Log("Damage percentage modifier after 'wrath' bonus: " + damageModifier.ToString());
             }
 
@@ -228,6 +261,7 @@ public class CombatLogic : Singleton<CombatLogic>
             if (target != null && target.pManager.gritStacks > 0)
             {
                 damageModifier -= 0.3f;
+
                 Debug.Log("Damage percentage modifier after 'grit' bonus: " + damageModifier.ToString());
             }
 
@@ -235,6 +269,10 @@ public class CombatLogic : Singleton<CombatLogic>
             if (attacker.pManager.weakenedStacks > 0)
             {
                 damageModifier -= 0.3f;
+                // check 'Intimidation' state
+                if (StateController.Instance.DoesPlayerHaveState(StateName.Intimidation) &&
+                    attacker.allegiance == Allegiance.Enemy)
+                    damageModifier -= 0.2f;
                 Debug.Log("Damage percentage modifier after 'weakened' reduction: " + damageModifier.ToString());
             }
 
@@ -246,28 +284,67 @@ public class CombatLogic : Singleton<CombatLogic>
                 {
                     int tLevel = CharacterDataController.Instance.GetTalentLevel(attacker.characterData, TalentSchool.Warfare);
                     if(tLevel > 0)
-                        damageModifier += (tLevel * 10f) / 100f;
+                        damageModifier += (tLevel * 5f) / 100f;
                 }
 
-                // Ranger
+                // Ranger                
                 if (card.cardType == CardType.RangedAttack)
                 {
                     int tLevel = CharacterDataController.Instance.GetTalentLevel(attacker.characterData, TalentSchool.Ranger);
                     if (tLevel > 0)
-                        damageModifier += (tLevel * 10f) / 100f;
-                }
+                        damageModifier += (tLevel * 5f) / 100f;
+                }                
 
                 // Naturalism
-                if(attacker.pManager.overloadStacks > 0)
+                if(attacker.pManager.overloadStacks > 0 &&
+                    cardEffect != null)
                 {
+                    // Calculate damage bonus from overload stacks
+                    float flatBonus = 2f;
                     int tLevel = CharacterDataController.Instance.GetTalentLevel(attacker.characterData, TalentSchool.Naturalism);
+                    flatBonus = flatBonus * tLevel * attacker.pManager.overloadStacks;
+
+                    // prevent excedding maximum overload damage bonus
+                    if (flatBonus > (10f * tLevel))
+                        flatBonus = 10f * tLevel;
+
                     if (tLevel > 0)
-                        damageModifier += (tLevel * 5f) / 100f;
+                        damageModifier += flatBonus / 100f;
+                }
+
+                // Manipulation
+                if (attacker.pManager.sourceStacks > 0 &&
+                    cardEffect != null)
+                {
+                    // Calculate damage bonus from overload stacks
+                    float flatBonus = 2f;
+                    int tLevel = CharacterDataController.Instance.GetTalentLevel(attacker.characterData, TalentSchool.Manipulation);
+                    flatBonus = flatBonus * tLevel * attacker.pManager.sourceStacks;
+
+                    // prevent excedding maximum overload damage bonus
+                    if (flatBonus > (10f * tLevel))
+                        flatBonus = 10f * tLevel;
+
+                    if (tLevel > 0)
+                        damageModifier += flatBonus / 100f;
+                }
+
+                // Divinity
+                if (cardEffect != null && 
+                    CardController.Instance.IsCharacterHoldingBlessing(attacker))
+                {
+                    // Calculate damage bonus from overload stacks
+                    float flatBonus = 5f;
+                    flatBonus = flatBonus * CharacterDataController.Instance.GetTalentLevel(attacker.characterData, TalentSchool.Divinity);
+
+                    if (flatBonus > 0)
+                        damageModifier += flatBonus / 100f;
                 }
 
                 // Toxicology
                 if (target != null &&
-                    target.pManager.poisonedStacks > 0)
+                    target.pManager.poisonedStacks > 0 &&
+                    cardEffect != null)
                 {
                     int tLevel = CharacterDataController.Instance.GetTalentLevel(attacker.characterData, TalentSchool.Corruption);
                     if (tLevel > 0)
@@ -276,7 +353,8 @@ public class CombatLogic : Singleton<CombatLogic>
 
                 // Pyromania
                 if (target != null &&
-                    target.pManager.burningStacks > 0)
+                    target.pManager.burningStacks > 0 &&
+                    cardEffect != null)
                 {
                     int tLevel = CharacterDataController.Instance.GetTalentLevel(attacker.characterData, TalentSchool.Pyromania);
                     if (tLevel > 0)
@@ -293,7 +371,8 @@ public class CombatLogic : Singleton<CombatLogic>
 
                 // Shadowcraft
                 if (target != null &&
-                    target.pManager.weakenedStacks > 0)
+                    target.pManager.weakenedStacks > 0 &&
+                    cardEffect != null)
                 {
                     int tLevel = CharacterDataController.Instance.GetTalentLevel(attacker.characterData, TalentSchool.Shadowcraft);
                     if (tLevel > 0)
@@ -303,11 +382,12 @@ public class CombatLogic : Singleton<CombatLogic>
 
             // Guardian bonus on target
             if(target != null &&
-                target.characterData != null)
+                target.characterData != null &&
+                enemyAction != null)
             {
                 int tLevel = CharacterDataController.Instance.GetTalentLevel(target.characterData, TalentSchool.Guardian);
                 if (tLevel > 0)
-                    damageModifier -= (tLevel * 10f) / 100f;
+                    damageModifier -= (tLevel * 5f) / 100f;
             }
         }
 
@@ -370,6 +450,9 @@ public class CombatLogic : Singleton<CombatLogic>
         int valueReturned = baseBlockGain;
         Debug.Log("Base block gain value: " + valueReturned);
 
+        // UNCOMMENT TO ENABLE CRITS
+        didCrit = false;
+
         // Dexterity bonus only applies when playing a card,
         // or from enemy abilities (passives like 'Shield Wall' dont 
         // get the dexterity bonus
@@ -381,6 +464,56 @@ public class CombatLogic : Singleton<CombatLogic>
             if (didCrit)
             {
                 critMod += EntityLogic.GetTotalCritModifier(caster) / 100f;
+            }
+
+            // Check naturalism passive bonus
+            if (cardEffect != null && 
+                caster != null &&
+                caster.pManager.overloadStacks > 0)
+            {
+                // Calculate damage bonus from overload stacks
+                float flatBonus = 2f;
+                int tLevel = CharacterDataController.Instance.GetTalentLevel(caster.characterData, TalentSchool.Naturalism);
+                flatBonus = flatBonus * tLevel * caster.pManager.overloadStacks;
+
+                // prevent excedding maximum overload damage bonus
+                if (flatBonus > (10f * tLevel))
+                    flatBonus = 10f * tLevel;
+
+                if (tLevel > 0)
+                    dexMod += flatBonus / 100f;
+            }
+
+
+            // Check manipulation passive bonus
+            if (cardEffect != null &&
+                caster != null &&
+                caster.pManager.sourceStacks > 0)
+            {
+                // Calculate damage bonus from overload stacks
+                float flatBonus = 2f;
+                int tLevel = CharacterDataController.Instance.GetTalentLevel(caster.characterData, TalentSchool.Manipulation);
+                flatBonus = flatBonus * tLevel * caster.pManager.sourceStacks;
+
+                // prevent excedding maximum overload damage bonus
+                if (flatBonus > (10f * tLevel))
+                    flatBonus = 10f * tLevel;
+
+                if (tLevel > 0)
+                    dexMod += flatBonus / 100f;
+            }
+
+            // Check divinity passive bonus
+            if (cardEffect != null &&
+                caster != null &&
+                CardController.Instance.IsCharacterHoldingBlessing(caster))
+            {
+                // Calculate damage bonus from overload stacks
+                float flatBonus = 5f;
+                flatBonus = flatBonus * CharacterDataController.Instance.GetTalentLevel(caster.characterData, TalentSchool.Divinity);
+
+                if (flatBonus > 0)
+                    dexMod += flatBonus / 100f;
             }
 
             dexMod += critMod;
@@ -459,6 +592,9 @@ public class CombatLogic : Singleton<CombatLogic>
         Debug.Log("CombatLogic.HandleDamage() started: damageAmount (" + damageAmount.ToString() + "), attacker (" + attackerName +
             "), victim (" + victimName + "), damageType (" + damageType.ToString() + "), card (" + cardNameString + "), ignoreBlock (" + ignoreBlock.ToString()
             );
+
+        // UNCOMMENT TO ENABLE CRITS AGAIN
+        didCrit = false;
 
         // Cancel this if character is already in death process
         if (victim.livingState == LivingState.Dead)
@@ -546,12 +682,14 @@ public class CombatLogic : Singleton<CombatLogic>
         }
 
         // critical VFX
+        /*
         if (didCrit)
         {
             // Create critical text effect
             VisualEventManager.Instance.CreateVisualEvent(() =>
             VisualEffectManager.Instance.CreateStatusEffect(victim.characterEntityView.WorldPosition, "CRITICAL!", TextLogic.neutralYellow), queuePosition, 0, 0, EventDetail.None, batchedEvent);
         }
+        */
 
         // Finished calculating the final damage, health lost and armor lost: p
         totalLifeLost = victim.health - healthAfter;
@@ -752,7 +890,8 @@ public class CombatLogic : Singleton<CombatLogic>
 
             // Poison Arrows
             if (attacker != null &&
-                card != null)
+                card != null &&
+                card.cardType == CardType.RangedAttack)
             {
                 int poisonApplied = 0;
 
@@ -761,7 +900,12 @@ public class CombatLogic : Singleton<CombatLogic>
                 {
                     if (c.cardName == "Poison Arrows")
                     {
-                        poisonApplied += 1;
+                        poisonApplied += 2;
+                    }
+
+                    else if (c.cardName == "Poison Arrows +1")
+                    {
+                        poisonApplied += 3;
                     }
                 }
 
@@ -943,8 +1087,8 @@ public class CombatLogic : Singleton<CombatLogic>
     }
     public bool RollForCritical(CharacterEntityModel character)
     {
-        int roll = RandomGenerator.NumberBetween(1, 100);
-        return roll <= EntityLogic.GetTotalCrit(character);
+        int roll = RandomGenerator.NumberBetween(1, 1000);
+        return roll <=  EntityLogic.GetTotalCrit(character) * 10;
     }
     #endregion
 
@@ -959,7 +1103,7 @@ public class CombatLogic : Singleton<CombatLogic>
     {
         Debug.Log("CombatLogic.StartCombatOverVictoryProcess() called...");
         currentCombatState = CombatGameState.VictoryTriggered;
-        EventSequenceController.Instance.StartCombatVictorySequence(ProgressionController.Instance.CurrentCombatData.combatDifficulty);
+        EventSequenceController.Instance.StartCombatVictorySequence(JourneyManager.Instance.CurrentEncounter);
 
     }
     #endregion

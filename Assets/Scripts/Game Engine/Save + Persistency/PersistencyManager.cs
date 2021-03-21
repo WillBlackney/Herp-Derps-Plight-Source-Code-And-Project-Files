@@ -41,8 +41,8 @@ public class PersistencyManager : Singleton<PersistencyManager>
     public void BuildNewSaveFileOnNewGameStarted()
     {
         // Setup empty save file
-        SaveGameData newSave = new SaveGameData();  
-
+        SaveGameData newSave = new SaveGameData();
+       
         // Build characters
         List<CharacterData> chosenCharacters = new List<CharacterData>();
 
@@ -59,36 +59,90 @@ public class PersistencyManager : Singleton<PersistencyManager>
             chosenCharacters.Add(MainMenuController.Instance.GetChosenCharacter());
         }       
 
-        // TESTING: REMOVE LATER
-        /*
-        foreach (CharacterTemplateSO d in CharacterDataController.Instance.AllCharacterTemplatesSOs)
+        // Build each character data object
+        foreach (CharacterData data in chosenCharacters)
         {
             // Create new character from data
-            CharacterData newCharacter = CharacterDataController.Instance.CloneCharacterData(CharacterDataController.Instance.ConvertCharacterTemplateToCharacterData(d));
-            newSave.characters.Add(newCharacter);
-
+            CharacterData newCharacter = CharacterDataController.Instance.CloneCharacterData(data);
             CharacterDataController.Instance.AutoAddCharactersRacialCard(newCharacter);
-            CharacterDataController.Instance.CloneNewCharacterToPlayerRoster(newCharacter);
+            CharacterDataController.Instance.AddCharacterToRoster(newCharacter);
         }
-        */
 
         // Build general data
         PlayerDataManager.Instance.ModifyCurrentGold(GlobalSettings.Instance.startingGold);
-        CharacterDataController.Instance.SetMaxRosterSize(GlobalSettings.Instance.startingMaxRosterSize);
-        CharacterDataController.Instance.SetRecruitsPerDay(GlobalSettings.Instance.startingRecruitsPerDay);
+        PlayerDataManager.Instance.SaveMyDataToSaveFile(newSave);
 
-        // Generate first day data        
-        ProgressionController.Instance.SetDayNumber(1);
-        ProgressionController.Instance.SetDailyCombatChoices(CombatGenerationController.Instance.GenerateWeeklyCombatChoices());
-        ProgressionController.Instance.SetCheckPoint(SaveCheckPoint.TownDayStart);
+        // Build Camp site data
+        CampSiteController.Instance.BuildPropertiesFromStandardSettings();
+        CampSiteController.Instance.SaveMyDataToSaveFile(newSave);
 
-        // Generate recruitable characters
+        // Set up map
+        MapManager.Instance.SetCurrentMap(MapManager.Instance.GenerateNewMap());
+        MapManager.Instance.SaveMyDataToSaveFile(newSave);
+        MapPlayerTracker.Instance.LockMap();
+
+        // Set starting journey state
+        newSave.currentJourneyPosition = 0;
+        newSave.currentEncounter = EncounterType.KingsBlessingEvent;
+        newSave.saveCheckPoint = SaveCheckPoint.KingsBlessingStart;
+
+        // Generate KBC choices
+        newSave.kbcChoices = KingsBlessingController.Instance.GenerateFourRandomChoices();
+
+        // DECK MODIFIER SETUP
+        // Randomize decks
+        if (MainMenuController.Instance.randomizeDecks)
+        {
+            foreach(CharacterData character in newSave.characters)
+            {
+                // empty deck
+                character.deck.Clear();
+
+                // Get viable random cards
+                List<CardDataSO> viableCards = new List<CardDataSO>();
+                foreach(CardDataSO cardData in CardController.Instance.AllCardScriptableObjects)
+                {
+                    if(cardData.rarity != Rarity.None && cardData.talentSchool != TalentSchool.None)
+                    {
+                        viableCards.Add(cardData);
+                    }
+                }
+
+                // Choose 10 random cards rom viable cards lists
+                for(int i = 0; i < 10; i++)
+                {
+                    int randomIndex = RandomGenerator.NumberBetween(0, viableCards.Count - 1);
+                    CardData randomCard = CardController.Instance.BuildCardDataFromScriptableObjectData(viableCards[randomIndex]);
+                    CharacterDataController.Instance.AddCardToCharacterDeck(character, randomCard);
+                }
+            }
+        }
+
+        // Improvise decks
+        else if (MainMenuController.Instance.improviseDecks)
+        {
+            foreach (CharacterData character in newSave.characters)
+            {
+                // empty deck
+                character.deck.Clear();
+
+                // Get improvise card
+                CardDataSO improviseCardData = CardController.Instance.GetCardDataSOFromLibraryByName("Improvise");
+
+                // Fill deck with 10 improvise cards
+                for (int i = 0; i < 5; i++)
+                {
+                    CharacterDataController.Instance.AddCardToCharacterDeck(character, CardController.Instance.BuildCardDataFromScriptableObjectData(improviseCardData));
+                }
+            }
+        }
+
+        // Generate recruitable characters deck + save characters.
         CharacterDataController.Instance.AutoGenerateAndCacheNewCharacterDeck();
-        CharacterDataController.Instance.AutoGenerateAndCacheDailyCharacterRecruits(CharacterDataController.Instance.RecruitsPerDay);
+        CharacterDataController.Instance.SaveMyDataToSaveFile(newSave);
 
-        // START SAVE!    
-        //SaveGameToDisk(newSave);
-        AutoUpdateSaveFile();
+        // START SAVE!        
+        SaveGameToDisk(newSave);
     }
     public void AutoUpdateSaveFile()
     {
@@ -105,35 +159,32 @@ public class PersistencyManager : Singleton<PersistencyManager>
         PlayerDataManager.Instance.SaveMyDataToSaveFile(newSave);
 
         // Save journey data
-       // MapManager.Instance.SaveMyDataToSaveFile(newSave);
+        MapManager.Instance.SaveMyDataToSaveFile(newSave);
 
         // Save journey data
-        ProgressionController.Instance.SaveMyDataToSaveFile(newSave);
+        JourneyManager.Instance.SaveMyDataToSaveFile(newSave);
+
+        // Save recruit data
+        RecruitCharacterController.Instance.SaveMyDataToSaveFile(newSave);
 
         // Save combat end loot data
         LootController.Instance.SaveMyDataToSaveFile(newSave);
 
-        // Save recruit data
-        //RecruitCharacterController.Instance.SaveMyDataToSaveFile(newSave);
-
-        // Save combat end loot data
-        // LootController.Instance.SaveMyDataToSaveFile(newSave);
-
         // Save camp properties
-        //CampSiteController.Instance.SaveMyDataToSaveFile(newSave);
+        CampSiteController.Instance.SaveMyDataToSaveFile(newSave);
 
         // KBC
-        // KingsBlessingController.Instance.SaveMyDataToSaveFile(newSave);
+        KingsBlessingController.Instance.SaveMyDataToSaveFile(newSave);
 
         // Shop
-        // ShopController.Instance.SaveMyDataToSaveFile(newSave);
+        ShopController.Instance.SaveMyDataToSaveFile(newSave);
 
         // Inventory
-        //InventoryController.Instance.SaveMyDataToSaveFile(newSave);
+        InventoryController.Instance.SaveMyDataToSaveFile(newSave);
 
         // States
-        //StateController.Instance.SaveMyDataToSaveFile(newSave);
-        //ShrineController.Instance.SaveMyDataToSaveFile(newSave);
+        StateController.Instance.SaveMyDataToSaveFile(newSave);
+        ShrineController.Instance.SaveMyDataToSaveFile(newSave);
 
         // START SAVE!        
         SaveGameToDisk(newSave);
@@ -155,35 +206,32 @@ public class PersistencyManager : Singleton<PersistencyManager>
         CharacterDataController.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // Build Map data
-       // MapManager.Instance.BuildMyDataFromSaveFile(newLoad);
+        MapManager.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // Set journey data
-        ProgressionController.Instance.BuildMyDataFromSaveFile(newLoad);
+        JourneyManager.Instance.BuildMyDataFromSaveFile(newLoad);
 
-        // Rebuild loot data
+        // Set recruit character event 
+        RecruitCharacterController.Instance.BuildMyDataFromSaveFile(newLoad);
+
+        // Set recruit character event 
         LootController.Instance.BuildMyDataFromSaveFile(newLoad);
 
-        // Set recruit character event 
-        // RecruitCharacterController.Instance.BuildMyDataFromSaveFile(newLoad);
-
-        // Set recruit character event 
-        //LootController.Instance.BuildMyDataFromSaveFile(newLoad);
-
         // Set up camp site data
-        // CampSiteController.Instance.BuildMyDataFromSaveFile(newLoad);
+        CampSiteController.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // KBC
-        // KingsBlessingController.Instance.BuildMyDataFromSaveFile(newLoad);
+        KingsBlessingController.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // Shop
-        // ShopController.Instance.BuildMyDataFromSaveFile(newLoad);
+        ShopController.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // Inventory
-        // InventoryController.Instance.BuildMyDataFromSaveFile(newLoad);
+        InventoryController.Instance.BuildMyDataFromSaveFile(newLoad);
 
         // States
-        //StateController.Instance.BuildMyDataFromSaveFile(newLoad);
-        //ShrineController.Instance.BuildMyDataFromSaveFile(newLoad);
+        StateController.Instance.BuildMyDataFromSaveFile(newLoad);
+        ShrineController.Instance.BuildMyDataFromSaveFile(newLoad);
     }
     #endregion
 

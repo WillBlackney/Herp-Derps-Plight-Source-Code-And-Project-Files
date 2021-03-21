@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class CharacterData 
+public class CharacterData
 {
     [Header("Story Properties")]
     public string myName;
@@ -37,7 +37,7 @@ public class CharacterData
     public int currentLevel = 1;
     public int currentXP = 0;
     public int currentMaxXP;
- 
+
 
     [Header("Deck Properties")]
     [HideInInspector] public List<CardData> deck;
@@ -59,6 +59,6 @@ public class CharacterData
     // Getters
     public int MaxHealthTotal
     {
-        get { return (int) Math.Round(maxHealth * (constitution / 20f)); }
+        get { return (int)Math.Round(maxHealth * (constitution / 20f)); }
     }
 }

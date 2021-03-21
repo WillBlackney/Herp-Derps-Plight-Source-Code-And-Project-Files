@@ -16,14 +16,11 @@ MonoBehaviour:
   cardDescription: Disover a Pyromania card. Add it to your hand. Expend.
   cardSprite: {fileID: 21300000, guid: e7a774520daf2f54ca9853cda8cba955, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 0
   cardType: 1
   targettingType: 0
   talentSchool: 6
   rarity: 2
-  affliction: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 1
   upgradeLevel: 0
   expend: 1
@@ -33,6 +30,9 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -63,6 +63,11 @@ MonoBehaviour:
     cardEffectType: 22
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -93,10 +98,12 @@ MonoBehaviour:
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 1
+    useEachIndividualsStackCount: 1
     damageType: 0
     healthRestored: 0
     healthLost: 0
@@ -130,6 +137,7 @@ MonoBehaviour:
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
+  cardPassiveEffects: []
   keyWordModels:
   - kewWordType: 1
     weaponRequirement: 0

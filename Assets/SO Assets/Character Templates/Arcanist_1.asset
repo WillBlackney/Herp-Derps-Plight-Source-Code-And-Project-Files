@@ -16,21 +16,20 @@ MonoBehaviour:
   myClassName: Arcanist
   race: 4
   audioProfile: 2
-  health: 100
-  maxHealth: 100
+  health: 90
+  maxHealth: 90
   startingBlock: 0
-  strength: 10
-  intelligence: 12
-  dexterity: 10
-  wits: 10
-  constitution: 10
+  strength: 20
+  intelligence: 23
+  dexterity: 20
+  wits: 20
+  constitution: 21
   power: 0
   initiative: 3
   stamina: 2
-  draw: 2
+  draw: 4
   baseCrit: 0
   critModifier: 30
-  baseFristActivationDrawBonus: 2
   serializedPassiveManager:
     bonusPowerStacks: 0
     bonusDexterityStacks: 0
@@ -88,6 +87,8 @@ MonoBehaviour:
     unbreakableStacks: 0
     pierceStacks: 0
     regenerationStacks: 0
+    hurricaneStacks: 0
+    holierThanThouStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -106,13 +107,13 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
+  - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
   - {fileID: 11400000, guid: 9e8a3bc5a7ebe1843ac9355aa15885fa, type: 2}
   - {fileID: 11400000, guid: 9e8a3bc5a7ebe1843ac9355aa15885fa, type: 2}
-  - {fileID: 11400000, guid: 8c2180d3c09a29240955d5173216675d, type: 2}
-  - {fileID: 11400000, guid: 8c2180d3c09a29240955d5173216675d, type: 2}
   - {fileID: 11400000, guid: 1a3b61de8941d84479ffd43b97708c29, type: 2}
-  - {fileID: 11400000, guid: db18175c7f3366747b53efcc374bf697, type: 2}
-  - {fileID: 11400000, guid: 57db7e22aec73994a82699a023a40619, type: 2}
   - {fileID: 11400000, guid: 57db7e22aec73994a82699a023a40619, type: 2}
   modelParts:
   - Human_Chest

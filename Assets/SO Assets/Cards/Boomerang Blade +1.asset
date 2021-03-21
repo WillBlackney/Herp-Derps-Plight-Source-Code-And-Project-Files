@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Boomerang Blade +1
   m_EditorClassIdentifier: 
   cardName: Boomerang Blade +1
-  cardDescription: 'Deal 24 Physical damage. Reduce this card''s Energy cost by 1. '
+  cardDescription: 'Deal 18 Physical damage. Reduce this card''s Energy cost by 1. '
   cardSprite: {fileID: 21300000, guid: 6515f2c25bb445c4590bffb2e1f867d7, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -77,6 +77,11 @@ MonoBehaviour:
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -99,7 +104,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 24
+    baseDamageValue: 18
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0

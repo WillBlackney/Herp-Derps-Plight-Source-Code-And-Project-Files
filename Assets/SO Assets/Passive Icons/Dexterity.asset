@@ -30,7 +30,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '10% '
+    phrase: '5% '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mega Arcane Bolt
   m_EditorClassIdentifier: 
   cardName: Mega Arcane Bolt
-  cardDescription: 'Deal 20 Magic damage. Cost 1 less Energy for each Arcane Bolt
+  cardDescription: 'Deal 10 Magic damage. Cost 1 less Energy for each Arcane Bolt
     played this combat. '
   cardSprite: {fileID: 21300000, guid: b30ea216dd96204409132c9d27a32d22, type: 3}
   xEnergyCost: 0
@@ -50,23 +50,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'damage.
-
-      Gain '
-  - color: 0
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: '2 '
-  - color: 0
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: Source
-  - color: 0
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: '.
-
-'
+    phrase: "damage.\n "
   - color: 0
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -96,6 +80,11 @@ MonoBehaviour:
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -118,7 +107,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 20
+    baseDamageValue: 10
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
@@ -220,59 +209,6 @@ MonoBehaviour:
       onCharacter: 0
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
-  - weaponRequirement: 0
-    cardEffectType: 2
-    splitTargetEffect: 0
-    splitTargetType: 0
-    removeBlockFrom: 0
-    modifyDeckCardEffect: 0
-    permanentBlockGain: 0
-    permanentDamageGain: 0
-    chooseTargetRandomly: 0
-    passiveApplicationLoops: 0
-    validRandomTargetsType: 0
-    damageLoops: 0
-    drawSpecificType: 0
-    specificTypeDrawn: 0
-    discoveryLocation: 0
-    talentSchoolFilter: 0
-    rarityFilter: 0
-    upgradeFilter: 1
-    blessing: 0
-    sourceSpellsOnly: 0
-    onDiscoveryChoiceMadeEffects: []
-    onChooseCardInHandChoiceMadeEffects: []
-    modifyCardsInHandEffects: []
-    drawStacksFromOverload: 0
-    drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 0
-    baseDamageValue: 0
-    drawBaseDamageFromCurrentBlock: 0
-    drawBaseDamageFromTargetPoisoned: 0
-    drawBaseDamageFromTargetBurning: 0
-    drawBaseDamageFromTargetWeakened: 0
-    drawBaseDamageFromMeleeAttacksPlayed: 0
-    drawBaseDamageFromOverloadOnSelf: 0
-    drawBaseDamageFromBurningOnSelf: 0
-    baseDamageMultiplier: 1
-    useEachIndividualsStackCount: 1
-    damageType: 0
-    healthRestored: 0
-    healthLost: 0
-    energyGained: 0
-    cardsDrawn: 0
-    extraDrawEffect: 0
-    cardEnergyReduction: 0
-    passivePairing:
-      passiveData: 59
-      passiveStacks: 2
-    cardAdded: {fileID: 0}
-    copiesAdded: 0
-    blessingsGained: 0
-    visualEventsOnStart: []
-    visualEventsOnFinish: []
-    visualEventsOnDamageLoopStart: []
-    visualEventsOnDamageLoopFinish: []
   cardEventListeners:
   - cardEventListenerType: 8
     cardEventListenerFunction: 1
@@ -284,6 +220,7 @@ MonoBehaviour:
       passiveStacks: 0
     energyGainedOrLost: 0
     certainCardNames: []
+    whileHoldingBlessing: 0
     cardCostsZero: 0
   cardPassiveEffects: []
   keyWordModels:

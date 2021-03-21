@@ -27,7 +27,9 @@ public class GUIWidgetController : Singleton<GUIWidgetController>
             // Cancel if the pointer needs to be held over the
             // object, and the user has moved their mouse off the widget
             if(wEvent.onlyIfMouseIsStillOverMe &&
-                (widget.pointerIsOverMe == false || ((Time.realtimeSinceStartup - widget.timeSinceLastPointerEnter) < wEvent.startDelay) ))
+                (widget.pointerIsOverMe == false ||
+                ((Time.realtimeSinceStartup - widget.timeSinceLastPointerEnter) < wEvent.startDelay) || 
+                (GlobalSettings.Instance.deviceMode == DeviceMode.Mobile && Input.touchCount == 0)))
             {
                 yield break;
             }

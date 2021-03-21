@@ -37,7 +37,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Give a target '
+    phrase: 'Give an ally '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Stamina '
+    phrase: 'Energy '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -235,3 +235,6 @@ MonoBehaviour:
   - kewWordType: 8
     weaponRequirement: 0
     passiveType: 34
+  - kewWordType: 1
+    weaponRequirement: 0
+    passiveType: 0

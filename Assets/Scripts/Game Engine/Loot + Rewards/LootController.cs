@@ -94,14 +94,13 @@ public class LootController : Singleton<LootController>
     public void BuildLootScreenElementsFromLootResultData()
     {
         // Build Choose card buttons
-        for (int i = 0; i < ProgressionController.Instance.ChosenCombatCharacters.Count; i++)
+        for (int i = 0; i < CharacterDataController.Instance.AllPlayerCharacters.Count; i++)
         {
             ShowLootTab(cardLootTabs[i]);
             cardLootTabs[i].descriptionText.text = "Gain new card: " + 
-                TextLogic.ReturnColoredText(ProgressionController.Instance.ChosenCombatCharacters[i].myName, TextLogic.neutralYellow);
+                TextLogic.ReturnColoredText(CharacterDataController.Instance.AllPlayerCharacters[i].myName, TextLogic.neutralYellow);
         }
 
-        /*
         // Build Gold reward button
         ShowLootTab(goldLootTab);
         goldLootTab.descriptionText.text = CurrentLootResultData.goldReward.ToString();
@@ -113,7 +112,6 @@ public class LootController : Singleton<LootController>
             itemLootTab.descriptionText.text = "Trinket: " + CurrentLootResultData.itemReward.itemName;
             itemLootTab.typeImage.sprite = CurrentLootResultData.itemReward.GetMySprite();
         }
-        */
     }
     public void BuildChooseCardScreenCardsFromData(List<CardData> cardData)
     {
@@ -248,43 +246,41 @@ public class LootController : Singleton<LootController>
     {
         LootResultModel newLoot = new LootResultModel();
 
-        /*
         // Generate gold reward
         newLoot.goldReward = 0;
-        if(ProgressionController.Instance.CurrentEncounter == EncounterType.BasicEnemy)
+        if(JourneyManager.Instance.CurrentEncounter == EncounterType.BasicEnemy)
         {
             newLoot.goldReward = RandomGenerator.NumberBetween
                 (GlobalSettings.Instance.basicEnemyGoldRewardLowerLimit, GlobalSettings.Instance.basicEnemyGoldRewardUpperLimit);
         }
-        else if (ProgressionController.Instance.CurrentEncounter == EncounterType.EliteEnemy)
+        else if (JourneyManager.Instance.CurrentEncounter == EncounterType.EliteEnemy)
         {
             newLoot.goldReward = RandomGenerator.NumberBetween
                 (GlobalSettings.Instance.eliteEnemyGoldRewardLowerLimit, GlobalSettings.Instance.eliteEnemyGoldRewardUpperLimit);
         }
-        else if (ProgressionController.Instance.CurrentEncounter == EncounterType.BossEnemy)
+        else if (JourneyManager.Instance.CurrentEncounter == EncounterType.BossEnemy)
         {
             newLoot.goldReward = RandomGenerator.NumberBetween
                 (GlobalSettings.Instance.bossEnemyGoldRewardLowerLimit, GlobalSettings.Instance.bossEnemyGoldRewardUpperLimit);
         }
-        */
+
         // Generate character card choices
-        for (int i = 0; i < ProgressionController.Instance.ChosenCombatCharacters.Count; i++)
+        for (int i = 0; i < CharacterDataController.Instance.AllPlayerCharacters.Count; i++)
         {
             newLoot.allCharacterCardChoices.Add(new List<CardData>());
-            newLoot.allCharacterCardChoices[i] = GenerateCharacterCardLootChoices(ProgressionController.Instance.ChosenCombatCharacters[i]);
+            newLoot.allCharacterCardChoices[i] = GenerateCharacterCardLootChoices(CharacterDataController.Instance.AllPlayerCharacters[i]);
         }
 
         // Trinket/Item
-        /*
         bool shouldGetTrinket = false;
 
         int trinketRoll = RandomGenerator.NumberBetween(1, 100);
 
-        if (ProgressionController.Instance.CurrentEncounter == EncounterType.BasicEnemy &&
+        if (JourneyManager.Instance.CurrentEncounter == EncounterType.BasicEnemy &&
             trinketRoll <= GlobalSettings.Instance.basicTrinketProbability)        
             shouldGetTrinket = true;
 
-        else if (ProgressionController.Instance.CurrentEncounter == EncounterType.EliteEnemy &&
+        else if (JourneyManager.Instance.CurrentEncounter == EncounterType.EliteEnemy &&
           trinketRoll <= GlobalSettings.Instance.eliteTrinketProbability)
             shouldGetTrinket = true;
 
@@ -292,7 +288,6 @@ public class LootController : Singleton<LootController>
         {
             newLoot.itemReward = GetRandomTrinketLootReward();
         }
-        */
 
         return newLoot;
     }
@@ -501,16 +496,11 @@ public class LootController : Singleton<LootController>
                 }
             }
 
-            if(CurrentLootResultData == null)
-            {
-                Debug.LogWarning("loot result is null!!");
-            }
-
             // Get the predetermined card loot result for the character
             List<CardData> cardChoices = CurrentLootResultData.allCharacterCardChoices[index];
 
             // Cache the character, so we know which character to reward a card to if player chooses one
-            currentCharacterSelection = ProgressionController.Instance.ChosenCombatCharacters[index];
+            currentCharacterSelection = CharacterDataController.Instance.AllPlayerCharacters[index];
             characterNameText.text = currentCharacterSelection.myName;
 
             // Build choose card view models
@@ -548,7 +538,7 @@ public class LootController : Singleton<LootController>
         HideLootTab(itemLootTab);
         InventoryController.Instance.AddItemToInventory(CurrentLootResultData.itemReward);
         AudioManager.Instance.PlaySound(Sound.GUI_Button_Clicked);
-        CreateGoldGlowTrailEffect(itemLootTab.transform.position, TopBarController.Instance.GoldTopBarImage.transform.position);
+        CreateGoldGlowTrailEffect(itemLootTab.transform.position, TopBarController.Instance.CharacterRosterButton.transform.position);
 
     }
     public void OnLootCardViewModelClicked(LootScreenCardViewModel cardClicked)
@@ -565,7 +555,7 @@ public class LootController : Singleton<LootController>
 
         // TO DO: find a better way to find the matching card tab
         // hide add card to deck button
-        HideLootTab(cardLootTabs[ProgressionController.Instance.ChosenCombatCharacters.IndexOf(currentCharacterSelection)]);
+        HideLootTab(cardLootTabs[CharacterDataController.Instance.AllPlayerCharacters.IndexOf(currentCharacterSelection)]);
     }
     public void OnChooseCardScreenBackButtonClicked()
     {
@@ -576,9 +566,8 @@ public class LootController : Singleton<LootController>
     {
         if (VisualEventManager.Instance.EventQueue.Count == 0)
         {
-            EventSequenceController.Instance.HandleReturnToTownPostCombatSequence();
-            //MapPlayerTracker.Instance.UnlockMap();
-            //MapView.Instance.OnWorldMapButtonClicked();
+            MapPlayerTracker.Instance.UnlockMap();
+            MapView.Instance.OnWorldMapButtonClicked();
         }
     }
 
@@ -650,13 +639,13 @@ public class LootController : Singleton<LootController>
 
         // Get the correct slot arrangement
         Transform[] slots = windowOnePositions;
-        if(ProgressionController.Instance.ChosenCombatCharacters.Count == 2)
+        if(CharacterDataController.Instance.AllPlayerCharacters.Count == 2)
         {
             slots = windowTwoPositions;
         }
 
         // Build character box starting states
-        foreach (CharacterData character in ProgressionController.Instance.ChosenCombatCharacters)
+        foreach (CharacterData character in CharacterDataController.Instance.AllPlayerCharacters)
         {
             // Find the characters matching psx data
             foreach(PreviousXpState psx in pxsData)
@@ -756,15 +745,15 @@ public class LootController : Singleton<LootController>
         box.currentLevelText.text = pxs.previousLevel.ToString();        
         box.combatTypeText.text = TextLogic.SplitByCapitals(xrd.encounterType.ToString());
 
-        if(xrd.encounterType == CombatDifficulty.Basic)
+        if(xrd.encounterType == EncounterType.BasicEnemy)
         {
             box.combatTypeRewardText.text = GlobalSettings.Instance.basicCombatXpReward.ToString();
         }
-        else if (xrd.encounterType == CombatDifficulty.Elite)
+        else if (xrd.encounterType == EncounterType.EliteEnemy)
         {
             box.combatTypeRewardText.text = GlobalSettings.Instance.eliteCombatXpReward.ToString();
         }
-        else if (xrd.encounterType == CombatDifficulty.Boss)
+        else if (xrd.encounterType == EncounterType.BossEnemy)
         {
             box.combatTypeRewardText.text = GlobalSettings.Instance.bossCombatXpReward.ToString();
         }

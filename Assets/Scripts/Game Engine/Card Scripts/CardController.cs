@@ -764,8 +764,14 @@ public class CardController : Singleton<CardController>
     }
     public void SetUpCardViewModelAppearanceFromCard(CardViewModel cardVM, Card card)
     {
+        if (cardVM == null)
+        {
+            Debug.LogWarning("SetUpCardViewModelAppearanceFromCard() CVM IS NULL!!!");
+        }
+
         // Set texts and images
         SetCardViewModelNameText(cardVM, card.cardName, card.upgradeLevel >= 1);
+        AutoUpdateCardDescriptionText(card);
         SetCardViewModelDescriptionText(cardVM, TextLogic.ConvertCustomStringListToString(card.cardDescriptionTwo));
         SetCardViewModelEnergyText(card, cardVM, GetCardEnergyCost(card).ToString());
         SetCardViewModelGraphicImage(cardVM, GetCardSpriteByName(card.cardName));
@@ -773,6 +779,7 @@ public class CardController : Singleton<CardController>
         ApplyCardViewModelTalentColoring(cardVM, ColorLibrary.Instance.GetTalentColor(card.talentSchool));
         ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(card.rarity));
         SetCardViewModelCardTypeImage(cardVM, SpriteLibrary.Instance.GetCardTypeImageFromTypeEnumData(card.cardType));
+       
     }
     public void SetUpCardViewModelAppearanceFromCard(CardViewModel cardVM, CampCard card)
     {
@@ -803,13 +810,23 @@ public class CardController : Singleton<CardController>
 
         // Set texts and images
         SetCardViewModelNameText(cardVM, item.itemName, false);
-        //AutoUpdateCardDescription(item);
         SetCardViewModelDescriptionText(cardVM, TextLogic.ConvertCustomStringListToString(item.customDescription));
-       // SetCardViewModelEnergyText(null, cardVM, item.cardBaseEnergyCost.ToString());
         SetCardViewModelGraphicImage(cardVM, item.ItemSprite);
-        //SetCardViewModelTalentSchoolImage(cardVM, SpriteLibrary.Instance.GetTalentSchoolSpriteFromEnumData(item.talentSchool));
-        //ApplyCardViewModelTalentColoring(cardVM, ColorLibrary.Instance.GetTalentColor(item.talentSchool));
         ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(item.itemRarity));
+        cardVM.cardTypeParent.SetActive(false);
+        cardVM.talentSchoolParent.SetActive(false);
+        cardVM.energyParent.SetActive(false);
+
+    }
+    public void BuildCardViewModelFromStateData(StateData state, CardViewModel cardVM)
+    {
+        Debug.Log("CardController.BuildCardViewModelFromStateData() called...");
+
+        // Set texts and images
+        SetCardViewModelNameText(cardVM, TextLogic.SplitByCapitals(state.stateName.ToString()), false);
+        SetCardViewModelDescriptionText(cardVM, TextLogic.ConvertCustomStringListToString(state.customDescription));
+        SetCardViewModelGraphicImage(cardVM, state.StateSprite);
+        ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(state.rarity));
         cardVM.cardTypeParent.SetActive(false);
         cardVM.talentSchoolParent.SetActive(false);
         cardVM.energyParent.SetActive(false);
@@ -969,7 +986,7 @@ public class CardController : Singleton<CardController>
         }
 
         // Finally, set the new value on the description text
-        SetCardViewModelDescriptionText(card.cardVM, TextLogic.ConvertCustomStringListToString(card.cardDescriptionTwo));
+       // SetCardViewModelDescriptionText(card.cardVM, TextLogic.ConvertCustomStringListToString(card.cardDescriptionTwo));
     }
     public void AutoUpdateCardDescription(CardData card)
     {
@@ -1254,7 +1271,16 @@ public class CardController : Singleton<CardController>
     {
         Debug.Log("CardController.DrawCardsOnActivationStart() called...");
 
-        for (int i = 0; i < EntityLogic.GetTotalDraw(defender); i++)
+        int totalDraw = EntityLogic.GetTotalDraw(defender);
+
+        // Check 'Well Laid Plans' state
+        if (StateController.Instance.DoesPlayerHaveState(StateName.WellLaidPlans) &&
+            ActivationManager.Instance.CurrentTurn == 1)
+        {
+            totalDraw += 2;
+        }
+
+        for (int i = 0; i < totalDraw; i++)
         {
             // Priortitise drawing innate if turn 1
             if(ActivationManager.Instance.CurrentTurn == 1 &&
@@ -1309,6 +1335,33 @@ public class CardController : Singleton<CardController>
             {
                 DrawACardFromDrawPile(defender, defender.drawPile.IndexOf(iCard));
             }
+        }
+
+        // Check 'Gods Chosen' State
+        if (StateController.Instance.DoesPlayerHaveState(StateName.GodsChosen))
+        {
+            Debug.Log("CardController.DrawCardsOnActivationStart() handling card upgrade from 'God's Chosen' state...");
+            List<Card> upgradeableCards = new List<Card>();
+            Card chosenCard = null;
+            foreach(Card c in defender.hand)
+            {
+                if (IsCardUpgradeable(c))
+                {
+                    upgradeableCards.Add(c);
+                }
+            }
+
+            if(upgradeableCards.Count > 0)
+                chosenCard = upgradeableCards[RandomGenerator.NumberBetween(0, upgradeableCards.Count - 1)];
+
+            if(chosenCard != null)
+            {
+                Debug.Log("Found valid upgradeable card for God's chosen state effect, upgrading: "+ chosenCard.cardName);
+                HandleUpgradeCardForCharacterEntity(chosenCard);
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+               // VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(chosenCard.cardVM));
+            }
+                
         }
     }
     #endregion
@@ -1567,7 +1620,6 @@ public class CardController : Singleton<CardController>
             CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive &&
             card.unplayable == false &&
             !IsCardPlayBlockedByDisarmed(card, owner) &&
-            !IsCardPlayBlockedByBlinded(card, owner) &&
             !IsCardPlayBlockedBySilenced(card, owner) &&
             !IsCardBlockedByPistolero(card,owner))
         {
@@ -1591,18 +1643,6 @@ public class CardController : Singleton<CardController>
     {
         if(card.cardType == CardType.MeleeAttack &&
             owner.pManager.disarmedStacks > 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    public bool IsCardPlayBlockedByBlinded(Card card, CharacterEntityModel owner)
-    {
-        if (card.cardType == CardType.RangedAttack &&
-            owner.pManager.blindedStacks > 0)
         {
             return true;
         }
@@ -1647,7 +1687,21 @@ public class CardController : Singleton<CardController>
     }
     private bool IsHandFull(CharacterEntityModel character)
     {
-        return character.hand.Count >= 10;
+        return character.hand.Count >= 8;
+    }
+    public bool IsCharacterHoldingBlessing(CharacterEntityModel character)
+    {
+        bool bRet = false;
+        foreach(Card card in character.hand)
+        {
+            if (card.blessing == true)
+            {
+                bRet = true;
+                break;
+            }
+        }
+
+        return bRet;
     }
     private bool DoesCardEffectMeetWeaponRequirement(CardEffect ce, CharacterEntityModel owner)
     {
@@ -1679,6 +1733,25 @@ public class CardController : Singleton<CardController>
         }
 
         return boolReturned;
+    }
+    private bool DoesCardEffectMeetTargetRequirement(CardEffect ce, CharacterEntityModel target)
+    {
+        bool bRet = false;
+
+        if(target == null || ce.targetRequirement == TargetRequirement.None)
+        {
+            bRet = true;
+        }
+        else if (ce.targetRequirement == TargetRequirement.IsVulnerable && target.pManager.vulnerableStacks > 0)
+        {
+            bRet = true;
+        }
+        else if (ce.targetRequirement == TargetRequirement.IsWeakened && target.pManager.weakenedStacks > 0)
+        {
+            bRet = true;
+        }
+
+        return bRet;
     }
     private bool DoesCardEventListenerMeetWeaponRequirement(CardEventListener cel, CharacterEntityModel owner)
     {
@@ -1716,11 +1789,24 @@ public class CardController : Singleton<CardController>
 
     // Playing Cards Logic
     #region
-    private void OnCardPlayedStart(Card card)
+    private void OnCardPlayedStart(Card card, CharacterEntityModel target = null)
     {
         // Setup
         CharacterEntityModel owner = card.owner;
         int sourceReduction = 0;
+
+        // Check dark bargain
+        if(card.owner.pManager.darkBargainStacks > 0)
+        {
+            CombatLogic.Instance.HandleDamage(2, owner, owner, card, DamageType.None, true);
+        }
+
+        // Check 'Soulless' state
+        if (card.cardType == CardType.Power &&
+            StateController.Instance.DoesPlayerHaveState(StateName.Soulless))
+        {
+            CombatLogic.Instance.HandleDamage(2, owner, owner, card, DamageType.None, true);
+        }
 
         // Calculate energy reduction amount from source (if source spell card)
         if (card.sourceSpell == true)
@@ -1793,13 +1879,14 @@ public class CardController : Singleton<CardController>
         // Remove Ranged Attack reduction passive
         if (card.cardType == CardType.RangedAttack)
         {
+            card.owner.rangedAttacksPlayedThisActivation++;
             if (owner.pManager.takenAimStacks > 0)
             {
                 PassiveController.Instance.ModifyTakenAim(owner.pManager, -owner.pManager.takenAimStacks, false);
             }
         }
 
-        // Fire Ball specific effects
+        // Blessing listener
         if (card.blessing == true)
         {
             HandleOnBlessingCardPlayedListeners(owner);
@@ -1817,6 +1904,19 @@ public class CardController : Singleton<CardController>
              card.cardName == "Arcane Bolt +1")
         {
             HandleOnArcaneBoltCardPlayedListeners(owner);
+        }
+
+        // Check 'Pumped Up!' state
+        if(card.cardType == CardType.Power && StateController.Instance.DoesPlayerHaveState(StateName.PumpedUp))
+        {
+            // Gain block.
+            CharacterEntityController.Instance.GainBlock
+                    (owner, CombatLogic.Instance.CalculateBlockGainedByEffect(5, owner, owner, null, null));
+
+            // Status notif
+            VisualEventManager.Instance.CreateVisualEvent
+                (() => VisualEffectManager.Instance.CreateStatusEffect(owner.characterEntityView.WorldPosition, "Pumped Up!"), QueuePosition.Back, 0, 0.5f);
+
         }
 
         // Infuriated 
@@ -1845,28 +1945,17 @@ public class CardController : Singleton<CardController>
             {
                 VisualEvent batchedEvent = VisualEventManager.Instance.InsertTimeDelayInQueue(0f);
 
+                // VFX notification
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
                     VisualEffectManager.Instance.CreateHolyNova(owner.characterEntityView.WorldPosition);
                     VisualEffectManager.Instance.CreateStatusEffect(owner.characterEntityView.WorldPosition, "Consecration!");
-                }, QueuePosition.BatchedEvent, 0f, 0f, EventDetail.None, batchedEvent);
+                });
 
+                // Apply burning to all enemies
                 foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
                 {
-                    // Calculate damage
-                    // DamageType damageType = CombatLogic.Instance.GetFinalFinalDamageTypeOfAttack(owner);
-                    DamageType damageType = DamageType.Magic;
-                    int baseDamage = card.owner.pManager.consecrationStacks;
-
-                    // Calculate the end damage value
-                    int finalDamageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(owner, enemy, damageType, baseDamage);
-
-                    // Create fiery explosion on target
-                    VisualEventManager.Instance.CreateVisualEvent(() =>
-                    VisualEffectManager.Instance.CreateApplyBurningEffect(enemy.characterEntityView.WorldPosition), QueuePosition.BatchedEvent, 0f, 0f, EventDetail.None, batchedEvent);
-
-                    // Start damage sequence
-                    CombatLogic.Instance.HandleDamage(finalDamageValue, owner, enemy, damageType, batchedEvent);
+                    PassiveController.Instance.ModifyBurning(enemy.pManager, card.owner.pManager.consecrationStacks, true, 0f);
                 }
 
                 VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
@@ -1879,6 +1968,18 @@ public class CardController : Singleton<CardController>
                 VisualEffectManager.Instance.CreateStatusEffect(owner.characterEntityView.WorldPosition, "Evangelize!"), QueuePosition.Back, 0f, 0.5f);
 
                 PassiveController.Instance.ModifyBonusDexterity(card.owner.pManager, card.owner.pManager.evangelizeStacks, true, 0.5f);
+            }
+
+            // Check holier than thou passive
+            if (owner.pManager.holierThanThouStacks > 0 && target != null)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(owner.characterEntityView.WorldPosition, "Holier Than Thou!"));
+
+                CharacterEntityController.Instance.GainBlock
+                    (target, CombatLogic.Instance.CalculateBlockGainedByEffect(owner.pManager.holierThanThouStacks, owner, target, null, null));
+
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
             }
         }
 
@@ -1922,18 +2023,23 @@ public class CardController : Singleton<CardController>
     }
     private void OnCardPlayedFinish(Card card)
     {
-        // Remove Long Draw
+        // Ranged attack logic
         if (card.cardType == CardType.RangedAttack)
         {
+            //card.owner.rangedAttacksPlayedThisActivation++;
+
+            // Remove Long Draw
             if (card.owner.pManager.longDrawStacks > 0)
             {
                 PassiveController.Instance.ModifyLongDraw(card.owner.pManager, -1);
             }
         }
 
-        // Remove Sharpen Blade
+        // Melee attack logic
         if (card.cardType == CardType.MeleeAttack)
         {
+            //card.owner.meleeAttacksPlayedThisActivation++;
+
             if (card.owner.pManager.sharpenBladeStacks > 0)
             {
                 PassiveController.Instance.ModifySharpenBlade(card.owner.pManager, -1);
@@ -1953,23 +2059,11 @@ public class CardController : Singleton<CardController>
         {
             if(c.cardVM != null)
             SetCardViewModelEnergyText(c, c.cardVM, GetCardEnergyCost(c).ToString());
-
-            /*
-            if (card.cardEventListeners.Count > 0 && c.cardVM != null)
-            {
-                SetCardViewModelEnergyText(c, c.cardVM, GetCardEnergyCost(c).ToString());
-            }          
-            */
         }
         
     }
     private void OnCardExpended(Card card)
     {
-        // TO DO: in the future, additonal effects that occur
-        // when an expend happens will go here e.g. an item
-        // that reads 'whenever you expend a card, gain 5 block',
-        // the gain block logic will go here
-
         CharacterEntityModel owner = card.owner;
         CharacterEntityView view = card.owner.characterEntityView;
 
@@ -1979,8 +2073,30 @@ public class CardController : Singleton<CardController>
             return;
         }
 
+        // Check 'Recycling' state
+        if (StateController.Instance.DoesPlayerHaveState(StateName.Recycling))
+        {
+            // Apply block gain
+            CharacterEntityController.Instance.GainBlock
+                (owner, CombatLogic.Instance.CalculateBlockGainedByEffect(2, owner, owner));
+
+            // Notication vfx
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(owner.characterEntityView.transform.position, "Recycling!"), QueuePosition.Back, 0, 0.5f);
+        }
+
+        // Check 'Adaptation' state
+        if (StateController.Instance.DoesPlayerHaveState(StateName.Adaptation) &&
+             owner.livingState == LivingState.Alive &&
+             CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive)
+        {
+            List<CardData> discoverableCards = GetCardsQuery(AllCards);
+            CardData chosenCard = discoverableCards[RandomGenerator.NumberBetween(0, discoverableCards.Count - 1)];
+            CreateAndAddNewCardToCharacterHand(owner, chosenCard);
+        }
+
         // Corpse Collector Passive
-        if(owner.pManager.corpseCollectorStacks > 0)
+        if (owner.pManager.corpseCollectorStacks > 0)
         {
             // Notification event
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Corpse Collector!"), QueuePosition.Back, 0, 0.5f);
@@ -2048,7 +2164,7 @@ public class CardController : Singleton<CardController>
         }
 
         // Pay energy cost, remove from hand, etc
-        OnCardPlayedStart(card);
+        OnCardPlayedStart(card, target);
 
         // Remove references between card and its view
         DisconnectCardAndCardViewModel(card, cardVM);
@@ -2058,7 +2174,8 @@ public class CardController : Singleton<CardController>
         {
             foreach (CardEffect effect in card.cardEffects)
             {
-                if (DoesCardEffectMeetWeaponRequirement(effect, owner))
+                if (DoesCardEffectMeetWeaponRequirement(effect, owner) &&
+                    DoesCardEffectMeetTargetRequirement(effect, target))
                 {
                     TriggerEffectFromCard(card, effect, target);
                 }
@@ -2071,7 +2188,12 @@ public class CardController : Singleton<CardController>
             owner.hasMovedOffStartingNode = false;
             CoroutineData cData = new CoroutineData();
             LevelNode node = owner.levelNode;
-            VisualEventManager.Instance.CreateVisualEvent(() => CharacterEntityController.Instance.MoveEntityToNodeCentre(owner.characterEntityView, node, cData), cData, QueuePosition.Back, 0.3f, 0);
+            VisualEventManager.Instance.CreateVisualEvent(() => {
+                if (owner.QueuedMovements == 0)
+                    CharacterEntityController.Instance.MoveEntityToNodeCentre(owner.characterEntityView, node, cData);
+                else
+                    cData.MarkAsCompleted();
+            }, cData, QueuePosition.Back, 0.3f, 0);
         }
 
         // Brief pause at the end of all effects
@@ -2258,8 +2380,8 @@ public class CardController : Singleton<CardController>
             if (didCrit)
             {
                 // Create critical text effect
-                VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(owner.characterEntityView.WorldPosition, "CRITICAL!", TextLogic.neutralYellow));
+                //VisualEventManager.Instance.CreateVisualEvent(() =>
+                //VisualEffectManager.Instance.CreateStatusEffect(owner.characterEntityView.WorldPosition, "CRITICAL!", TextLogic.neutralYellow));
             }
         }
 
@@ -2326,8 +2448,8 @@ public class CardController : Singleton<CardController>
             if (didCrit)
             {
                 // Create critical text effect
-                VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(target.characterEntityView.WorldPosition, "CRITICAL!", TextLogic.neutralYellow));
+                //VisualEventManager.Instance.CreateVisualEvent(() =>
+                //VisualEffectManager.Instance.CreateStatusEffect(target.characterEntityView.WorldPosition, "CRITICAL!", TextLogic.neutralYellow));
             }
         }       
 
@@ -2343,8 +2465,8 @@ public class CardController : Singleton<CardController>
                 if (didCrit)
                 {
                     // Create critical text effect
-                    VisualEventManager.Instance.CreateVisualEvent(() =>
-                    VisualEffectManager.Instance.CreateStatusEffect(ally.characterEntityView.WorldPosition, "CRITICAL!", TextLogic.neutralYellow));
+                    //VisualEventManager.Instance.CreateVisualEvent(() =>
+                   // VisualEffectManager.Instance.CreateStatusEffect(ally.characterEntityView.WorldPosition, "CRITICAL!", TextLogic.neutralYellow));
                 }
             }            
         }
@@ -3450,6 +3572,17 @@ public class CardController : Singleton<CardController>
             PassiveController.Instance.ModifyPassiveOnCharacterEntity(card.owner.pManager, passiveName, e.passivePairing.passiveStacks, true, 0.5f, card.owner.pManager);
         }
 
+        // Lose Health
+        else if (e.cardEventListenerFunction == CardEventListenerFunction.LoseHealth)
+        {
+            VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(card.cardVM));
+
+            // Start self damage sequence
+            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateBloodExplosion(card.owner.characterEntityView.WorldPosition));
+            CombatLogic.Instance.HandleDamage(e.healthLost, card.owner, card.owner, card, DamageType.None, true);
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+        }
+
         // Draw this
         else if (e.cardEventListenerFunction == CardEventListenerFunction.DrawThis)
         {
@@ -3759,6 +3892,11 @@ public class CardController : Singleton<CardController>
             }
         }
 
+        // Souless state override
+        if (card.cardType == CardType.Power &&
+            StateController.Instance.DoesPlayerHaveState(StateName.Soulless))
+            return 0;
+
         // Pistolero override
         if(card.cardType == CardType.RangedAttack &&
             card.owner != null &&
@@ -3788,7 +3926,7 @@ public class CardController : Singleton<CardController>
                     // it does, search and see if character is holding the required card for reducing energy cost
                     foreach(Card c in card.owner.hand)
                     {
-                        if (cel.certainCardNames.Contains(c.cardName))
+                        if (cel.certainCardNames.Contains(c.cardName) || (c.blessing == true && cel.whileHoldingBlessing))
                         {
                             // character has the require 'while holding' card, set energy cost to 0
                             return 0;
@@ -3987,6 +4125,7 @@ public class CardController : Singleton<CardController>
         {
             CurrentChooseCardScreenSelection = selectedCard;
             selectedCard.cardVM.hoverPreview.SetChooseCardScreenTransistionState(true);
+            selectedCard.cardVM.mySlotHelper.ResetAngles();
             MoveTransformToLocation(selectedCard.cardVM.movementParent, chooseCardScreenSelectionSpot.position, 0.25f, false, ()=> selectedCard.cardVM.hoverPreview.SetChooseCardScreenTransistionState(false));
 
         }
@@ -3998,12 +4137,14 @@ public class CardController : Singleton<CardController>
             selectedCard.cardVM.hoverPreview.SetChooseCardScreenTransistionState(true);
 
             // move old card back to hand
+            selectedCard.owner.characterEntityView.handVisual.UpdateCardRotationsAndYDrops();
             MoveTransformToLocation(previousCard.cardVM.movementParent, 
                 selectedCard.owner.characterEntityView.handVisual.slots.Children[previousCard.cardVM.locationTracker.Slot].gameObject.transform.position,
                 0.25f, false, () => previousCard.cardVM.hoverPreview.SetChooseCardScreenTransistionState(false));
 
             // move new card to centre spot
             CurrentChooseCardScreenSelection = selectedCard;
+            selectedCard.cardVM.mySlotHelper.ResetAngles();
             MoveTransformToLocation(selectedCard.cardVM.movementParent, chooseCardScreenSelectionSpot.position, 0.25f, false, () => selectedCard.cardVM.hoverPreview.SetChooseCardScreenTransistionState(false));
         }
 
@@ -4017,11 +4158,14 @@ public class CardController : Singleton<CardController>
         List<Card> newCards = new List<Card>();
         bool returnSelctionToHand = true;
         CharacterEntityModel owner = CurrentChooseCardScreenSelection.owner;
+       
 
-        if(owner == null)
+        if (owner == null)
         {
             owner = ActivationManager.Instance.EntityActivated;
         }
+
+        owner.characterEntityView.handVisual.UpdateCardRotationsAndYDrops();
 
         foreach (OnCardInHandChoiceMadeEffect choiceEffect in chooseCardScreenEffectReference.onChooseCardInHandChoiceMadeEffects)
         {
@@ -4081,13 +4225,6 @@ public class CardController : Singleton<CardController>
                 }
             }
 
-            /*
-            // Gain block self
-            else if (choiceEffect.choiceEffect == OnCardInHandChoiceMadeEffectType.GainBlockSelf)
-            {
-                CharacterEntityController.Instance.ModifyBlock(owner, CombatLogic.Instance.CalculateBlockGainedByEffect(choiceEffect.choiceEffect, owner, owner, null, cardEffect));
-            }
-            */
         }
 
         // Move the card selection back to hand
@@ -5451,16 +5588,19 @@ public class CardController : Singleton<CardController>
         // Remove card from which ever collection its in, then add in the upgraded card
         if (owner.hand.Contains(card))
         {
+            Debug.Log("HandleUpgradeCardForCharacterEntity() removing " + card.cardName + " from hand");
             RemoveCardFromHand(owner, card);
             AddCardToHand(owner, upgradedCard);
         }
         else if (owner.discardPile.Contains(card))
         {
+            Debug.Log("HandleUpgradeCardForCharacterEntity() removing " + card.cardName + " from discard pile");
             RemoveCardFromDiscardPile(owner, card);
             AddCardToDiscardPile(owner, upgradedCard);
         }
         else if (owner.drawPile.Contains(card))
         {
+            Debug.Log("HandleUpgradeCardForCharacterEntity() removing " + card.cardName + " from draw pile");
             RemoveCardFromDrawPile(owner, card);
             AddCardToDrawPile(owner, upgradedCard);
         }
@@ -5468,6 +5608,8 @@ public class CardController : Singleton<CardController>
         // does the card have a cardVM linked to it?
         if (cvm)
         {
+            Debug.Log("HandleUpgradeCardForCharacterEntity() found a linked card view model, updating its view...");
+
             // Rebuild the old card's vm to the upgraded card.
             ConnectCardWithCardViewModel(upgradedCard, cvm);
 

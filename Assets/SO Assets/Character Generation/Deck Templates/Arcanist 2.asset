@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Arcanist 2
   m_EditorClassIdentifier: 
   cards:
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
+  - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
   - {fileID: 11400000, guid: 1e37fdb28f5aaf1479687d1b2b6cd4ed, type: 2}
   - {fileID: 11400000, guid: 1e37fdb28f5aaf1479687d1b2b6cd4ed, type: 2}
   - {fileID: 11400000, guid: f01c8951834bf2544a119c693e4f94dd, type: 2}
-  - {fileID: 11400000, guid: f01c8951834bf2544a119c693e4f94dd, type: 2}
-  - {fileID: 11400000, guid: 8c2180d3c09a29240955d5173216675d, type: 2}
-  - {fileID: 11400000, guid: 8c2180d3c09a29240955d5173216675d, type: 2}
-  - {fileID: 11400000, guid: 2a494a61415413e42adac97ab702be62, type: 2}
-  - {fileID: 11400000, guid: 57db7e22aec73994a82699a023a40619, type: 2}
+  - {fileID: 11400000, guid: db18175c7f3366747b53efcc374bf697, type: 2}

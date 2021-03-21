@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Javelin Throw
   m_EditorClassIdentifier: 
   cardName: Javelin Throw
-  cardDescription: 'Deal 15 Physical Damage. Apply 5 Bleeding. '
+  cardDescription: 'Deal 12 Physical Damage. Apply 4 Bleeding. '
   cardSprite: {fileID: 21300000, guid: 2cbc1741395bc4046a9789bb22136edc, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -55,7 +55,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '5 '
+    phrase: '4 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -69,6 +69,11 @@ MonoBehaviour:
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -91,7 +96,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 15
+    baseDamageValue: 12
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
@@ -182,6 +187,11 @@ MonoBehaviour:
     cardEffectType: 3
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -223,7 +233,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 58
-      passiveStacks: 5
+      passiveStacks: 4
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

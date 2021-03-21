@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Second Wind
   m_EditorClassIdentifier: 
   cardName: Second Wind
-  cardDescription: Choose a card in hand. Expend it. Gain 10 Block.
+  cardDescription: Choose a card in hand. Expend it. Gain 9 Block.
   cardSprite: {fileID: 21300000, guid: 7e2f19fe95a9b5a4dab29454c4766c55, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -69,6 +69,11 @@ MonoBehaviour:
     cardEffectType: 23
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -130,6 +135,11 @@ MonoBehaviour:
     cardEffectType: 10
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -151,7 +161,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 10
+    blockGainValue: 9
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0

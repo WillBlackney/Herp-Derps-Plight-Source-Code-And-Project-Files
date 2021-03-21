@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Source Destruction
   m_EditorClassIdentifier: 
   cardName: Source Destruction
-  cardDescription: 'Deal 28 Magic damage to all enemies. Source Spell. '
+  cardDescription: 'Deal 20 Magic damage to all enemies. Source Spell. '
   cardSprite: {fileID: 21300000, guid: 425ade8b7c940674a94801e6a525b64a, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 9
+  cardEnergyCost: 8
   cardType: 1
   targettingType: 0
   talentSchool: 9
@@ -65,6 +65,11 @@ MonoBehaviour:
     cardEffectType: 8
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -87,7 +92,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 28
+    baseDamageValue: 20
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0

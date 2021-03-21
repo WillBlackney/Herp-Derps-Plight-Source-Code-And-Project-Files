@@ -30,7 +30,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '10% '
+    phrase: '5% '
   - color: 0
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -38,4 +38,4 @@ MonoBehaviour:
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0
-  runeBlocksDecrease: 0
+  runeBlocksDecrease: 1

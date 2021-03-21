@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Illusion
   m_EditorClassIdentifier: 
   cardName: Illusion
-  cardDescription: Gain 8 Block. Gain 1 Source.
+  cardDescription: Gain 7 Block. Gain 1 Source.
   cardSprite: {fileID: 21300000, guid: f5dee98cfc41b1844b412bc49a3f8aac, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -69,6 +69,11 @@ MonoBehaviour:
     cardEffectType: 10
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -90,7 +95,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 8
+    blockGainValue: 7
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
@@ -152,6 +157,11 @@ MonoBehaviour:
     cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0

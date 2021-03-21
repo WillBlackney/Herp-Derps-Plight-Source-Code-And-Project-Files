@@ -47,7 +47,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '4 '
+    phrase: '2 '
   - color: 8
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -67,9 +67,11 @@ MonoBehaviour:
     energyReductionAmount: 0
     passivePairing:
       passiveData: 21
-      passiveStacks: 4
+      passiveStacks: 2
+    healthLost: 0
     energyGainedOrLost: 0
     certainCardNames: []
+    whileHoldingBlessing: 0
     cardCostsZero: 0
   cardPassiveEffects: []
   keyWordModels:

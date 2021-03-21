@@ -19,13 +19,13 @@ MonoBehaviour:
   startingHealth: 14
   enableFlexibleMaxHealth: 1
   maxHealthFlexAmount: 2
-  maxHealth: 30
+  maxHealth: 35
   startingBlock: 0
-  strength: 10
-  intelligence: 10
-  dexterity: 10
-  wits: 10
-  constitution: 10
+  strength: 20
+  intelligence: 20
+  dexterity: 20
+  wits: 20
+  constitution: 20
   initiative: 1
   power: 0
   baseCrit: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
     sharpenBladeStacks: 0
     consecrationStacks: 0
     growingStacks: 0
-    cautiousStacks: 10
+    cautiousStacks: 0
     infuriatedStacks: 0
     battleTranceStacks: 0
     balancedStanceStacks: 0
@@ -87,6 +87,9 @@ MonoBehaviour:
     reflexShotBonusDamageStacks: 0
     unbreakableStacks: 0
     pierceStacks: 0
+    regenerationStacks: 0
+    hurricaneStacks: 0
+    holierThanThouStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -148,7 +151,7 @@ MonoBehaviour:
       visualEventsOnFinish: []
       actionType: 0
       effectLoops: 1
-      baseDamage: 10
+      baseDamage: 8
       damageType: 0
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -196,7 +199,7 @@ MonoBehaviour:
       modelFadeInSpeed: 0
       uiFadeInSpeed: 0
       summonedCreatureVisualEvents: []
-      passiveApplied: {fileID: 11400000, guid: f4d581b9181795e48b68007fcfeec3d2, type: 2}
+      passiveApplied: {fileID: 11400000, guid: 6f53a59075648034ab7c521f182140e3, type: 2}
       passiveStacks: 2
       blockGained: 0
       cardAdded: {fileID: 0}
@@ -212,5 +215,6 @@ MonoBehaviour:
   - Undead_Left_Hand
   - Undead_Right_Leg
   - Undead_Left_Leg
-  - Marksman_Chest_Wear
+  - Pale_Green_Archer_Chest_Wear
   - Left_Hand_Simple_Bow
+  - Green_Head_Wrap_Head_Wear

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Raining Arrows
   m_EditorClassIdentifier: 
   cardName: Raining Arrows
-  cardDescription: 'Deal 10 Physical damage to all enemies. '
+  cardDescription: 'Deal 8 Physical damage to all enemies. '
   cardSprite: {fileID: 21300000, guid: 4ff56f9dacda60344a6bf1fb201958f4, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -55,6 +55,11 @@ MonoBehaviour:
     cardEffectType: 8
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -77,7 +82,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 10
+    baseDamageValue: 8
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0

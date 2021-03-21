@@ -15,7 +15,7 @@ MonoBehaviour:
   choiceDescription: Lose All Gold
   effect: 12
   category: 2
-  impactLevel: 3
+  impactLevel: 2
   maxHealthGainedOrLost: 0
   healthGainedOrLost: 0
   randomCardRarity: 0
@@ -27,3 +27,4 @@ MonoBehaviour:
   possiblePassives: []
   afflicationsGained: 0
   goldGainedOrLost: -100
+  itemRarity: 0

@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Battle Mage 1
   m_EditorClassIdentifier: 
   templateName: Battle Mage
+  possibleRaces: 0400000001000000030000000900000005000000
   possibleDecks:
   - {fileID: 11400000, guid: dce2cb3bbfcca8b42be1164ea4c2889f, type: 2}
   - {fileID: 11400000, guid: a15c62f02589f224e87169bddbe5d45f, type: 2}
+  - {fileID: 11400000, guid: d739b4791f4ea384c9ef4cb2570652c2, type: 2}
+  - {fileID: 11400000, guid: 88036f6857aa0c547970837b5f7c0679, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: 2d8f475668e63954abba1952c834d845, type: 2}
   - {fileID: 11400000, guid: 1fa593d6c63501b4cb9212154e22374b, type: 2}
@@ -34,11 +37,11 @@ MonoBehaviour:
     trinketOne: {fileID: 0}
     trinketTwo: {fileID: 0}
   strengthMod: 2
-  intelligenceMod: 1
+  intelligenceMod: 0
   dexterityMod: 0
   witsMod: 0
-  constitutionMod: 1
-  maxHealth: 100
+  constitutionMod: 2
+  maxHealth: 90
   talentPairings:
   - talentSchool: 2
     talentLevel: 1

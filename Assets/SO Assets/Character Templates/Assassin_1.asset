@@ -16,21 +16,20 @@ MonoBehaviour:
   myClassName: Assassin
   race: 7
   audioProfile: 6
-  health: 100
-  maxHealth: 100
+  health: 90
+  maxHealth: 90
   startingBlock: 0
-  strength: 11
-  intelligence: 10
-  dexterity: 10
-  wits: 11
-  constitution: 10
+  strength: 24
+  intelligence: 20
+  dexterity: 20
+  wits: 20
+  constitution: 20
   power: 0
   initiative: 3
   stamina: 2
-  draw: 2
+  draw: 4
   baseCrit: 0
   critModifier: 30
-  baseFristActivationDrawBonus: 2
   serializedPassiveManager:
     bonusPowerStacks: 0
     bonusDexterityStacks: 0
@@ -88,6 +87,8 @@ MonoBehaviour:
     unbreakableStacks: 0
     pierceStacks: 0
     regenerationStacks: 0
+    hurricaneStacks: 0
+    holierThanThouStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -106,13 +107,13 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
-  - {fileID: 11400000, guid: b283ece60e43e904594443b098ac381b, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
   - {fileID: 11400000, guid: 4f7008c09af197b43b9e5ee443274691, type: 2}
   - {fileID: 11400000, guid: 4f7008c09af197b43b9e5ee443274691, type: 2}
   - {fileID: 11400000, guid: f196a97a8b7eeeb4e84b98114e8ae768, type: 2}
-  - {fileID: 11400000, guid: f196a97a8b7eeeb4e84b98114e8ae768, type: 2}
-  - {fileID: 11400000, guid: 82398fcb72827b547af04198c592e6cc, type: 2}
-  - {fileID: 11400000, guid: 82398fcb72827b547af04198c592e6cc, type: 2}
   - {fileID: 11400000, guid: b888a78f01d9d114e94eb71e20cda519, type: 2}
   modelParts:
   - Gnoll_Head_1

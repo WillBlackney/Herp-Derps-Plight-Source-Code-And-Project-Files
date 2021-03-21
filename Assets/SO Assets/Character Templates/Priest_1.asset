@@ -16,21 +16,20 @@ MonoBehaviour:
   myClassName: Priest
   race: 1
   audioProfile: 1
-  health: 100
-  maxHealth: 100
+  health: 90
+  maxHealth: 90
   startingBlock: 0
-  strength: 10
-  intelligence: 11
-  dexterity: 11
-  wits: 10
-  constitution: 10
+  strength: 20
+  intelligence: 22
+  dexterity: 22
+  wits: 20
+  constitution: 20
   power: 0
   initiative: 3
   stamina: 2
-  draw: 2
+  draw: 4
   baseCrit: 0
   critModifier: 30
-  baseFristActivationDrawBonus: 2
   serializedPassiveManager:
     bonusPowerStacks: 0
     bonusDexterityStacks: 0
@@ -88,6 +87,8 @@ MonoBehaviour:
     unbreakableStacks: 0
     pierceStacks: 0
     regenerationStacks: 0
+    hurricaneStacks: 0
+    holierThanThouStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -106,14 +107,14 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
+  - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
   - {fileID: 11400000, guid: 04b3ac38b9732134c9076aed80c85796, type: 2}
   - {fileID: 11400000, guid: 04b3ac38b9732134c9076aed80c85796, type: 2}
   - {fileID: 11400000, guid: b3e413a43d44ba24fbc2af972a7d4562, type: 2}
-  - {fileID: 11400000, guid: b3e413a43d44ba24fbc2af972a7d4562, type: 2}
   - {fileID: 11400000, guid: 87514d0403c7e7f4abb87ab0dbfe26f2, type: 2}
-  - {fileID: 11400000, guid: 87514d0403c7e7f4abb87ab0dbfe26f2, type: 2}
-  - {fileID: 11400000, guid: 550def62c883b5848a6b4e65c0c347b4, type: 2}
-  - {fileID: 11400000, guid: 238bc2ffb3d01884abc4765af2cb53b2, type: 2}
   modelParts:
   - Human_Chest
   - Human_Face_3

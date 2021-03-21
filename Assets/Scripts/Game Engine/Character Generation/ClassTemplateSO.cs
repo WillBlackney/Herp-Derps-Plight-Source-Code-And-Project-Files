@@ -9,6 +9,7 @@ public class ClassTemplateSO : ScriptableObject
     public string templateName;
 
     [Header("Templates")]
+    public List<CharacterRace> possibleRaces = new List<CharacterRace>();
     public List<DeckTemplateSO> possibleDecks = new List<DeckTemplateSO>();
     public List<OutfitTemplateSO> possibleOutfits = new List<OutfitTemplateSO>();
     public List<SerializedItemManagerModel> possibleWeapons = new List<SerializedItemManagerModel>();

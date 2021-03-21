@@ -16,21 +16,20 @@ MonoBehaviour:
   myClassName: Blood Mage
   race: 4
   audioProfile: 2
-  health: 100
-  maxHealth: 100
+  health: 90
+  maxHealth: 90
   startingBlock: 0
-  strength: 10
-  intelligence: 12
-  dexterity: 10
-  wits: 10
-  constitution: 10
+  strength: 20
+  intelligence: 23
+  dexterity: 20
+  wits: 20
+  constitution: 21
   power: 0
   initiative: 3
   stamina: 2
-  draw: 2
+  draw: 4
   baseCrit: 0
   critModifier: 30
-  baseFristActivationDrawBonus: 2
   serializedPassiveManager:
     bonusPowerStacks: 0
     bonusDexterityStacks: 0
@@ -88,6 +87,8 @@ MonoBehaviour:
     unbreakableStacks: 0
     pierceStacks: 0
     regenerationStacks: 0
+    hurricaneStacks: 0
+    holierThanThouStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -106,14 +107,14 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
+  - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
+  - {fileID: 11400000, guid: 40b7155ec97096d4fad9cbe1f8b3b699, type: 2}
   - {fileID: 11400000, guid: 906a542ac4dbed2429e34de4a75c3c40, type: 2}
   - {fileID: 11400000, guid: 906a542ac4dbed2429e34de4a75c3c40, type: 2}
-  - {fileID: 11400000, guid: 12e01ae28d25a4042a23a910d9c32a1d, type: 2}
-  - {fileID: 11400000, guid: 12e01ae28d25a4042a23a910d9c32a1d, type: 2}
   - {fileID: 11400000, guid: 3515e3b8e92620548af756ddbf500130, type: 2}
-  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
-  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
-  - {fileID: 11400000, guid: b31f4356f84f2bd48add48495139e0e5, type: 2}
   modelParts:
   - Elf_Chest
   - Elf_Face_1
@@ -129,8 +130,6 @@ MonoBehaviour:
     trinketTwo: {fileID: 0}
   talentPairings:
   - talentSchool: 11
-    talentLevel: 1
-  - talentSchool: 2
-    talentLevel: 1
+    talentLevel: 2
   startingTalentPoints: 0
   startingAttributePoints: 0

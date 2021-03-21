@@ -267,6 +267,7 @@ public class AnimationEventController : Singleton<AnimationEventController>
         if (vEvent.movementAnimation == MovementAnimEvent.MoveTowardsTarget &&
             target != null)
         {
+            user.ModifyQueuedMovements(1);
             user.hasMovedOffStartingNode = true;
             LevelNode node = target.levelNode;
             CoroutineData cData = new CoroutineData();

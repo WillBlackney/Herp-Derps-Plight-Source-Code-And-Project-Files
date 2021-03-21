@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bd1bf0b56234af4c808b8522b29dcbf, type: 3}
+  m_Name: Fallen Characters x2
+  m_EditorClassIdentifier: 
+  encounterName: Fallen Characters x2
+  combatDifficulty: 1
+  enemyGroups:
+  - possibleEnemies:
+    - {fileID: 11400000, guid: f76082d460227c74ea18d35703d36ca7, type: 2}
+  - possibleEnemies:
+    - {fileID: 11400000, guid: 55be81414f7566a4a96b5860a91393f9, type: 2}

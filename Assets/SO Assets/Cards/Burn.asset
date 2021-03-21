@@ -48,7 +48,7 @@ MonoBehaviour:
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: '1 '
-  - color: 5
+  - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'Burning '
@@ -68,8 +68,10 @@ MonoBehaviour:
     passivePairing:
       passiveData: 2
       passiveStacks: 1
+    healthLost: 0
     energyGainedOrLost: 0
     certainCardNames: []
+    whileHoldingBlessing: 0
     cardCostsZero: 0
   cardPassiveEffects: []
   keyWordModels:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Masochism +1
   m_EditorClassIdentifier: 
   cardName: Masochism +1
-  cardDescription: "Lose 2 HP. \nGain 2 Energy."
+  cardDescription: "Lose 1 HP. \nGain 1 Energy."
   cardSprite: {fileID: 21300000, guid: 261f95d2f4ff1de4baeb678bd088015b, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
@@ -21,9 +21,6 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 2
   rarity: 0
-  affliction: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 0
   upgradeLevel: 1
   expend: 0
@@ -33,6 +30,9 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '2 '
+    phrase: '1 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -65,6 +65,11 @@ MonoBehaviour:
     cardEffectType: 14
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -99,7 +104,7 @@ MonoBehaviour:
     useEachIndividualsStackCount: 1
     damageType: 0
     healthRestored: 0
-    healthLost: 2
+    healthLost: 1
     energyGained: 0
     cardsDrawn: 0
     extraDrawEffect: 0
@@ -163,6 +168,11 @@ MonoBehaviour:
     cardEffectType: 13
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -198,7 +208,7 @@ MonoBehaviour:
     damageType: 0
     healthRestored: 0
     healthLost: 0
-    energyGained: 2
+    energyGained: 1
     cardsDrawn: 0
     extraDrawEffect: 0
     cardEnergyReduction: 0

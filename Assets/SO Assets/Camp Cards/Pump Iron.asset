@@ -36,7 +36,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 1
+    phrase: 2
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
     flatHealAmount: 0
     healAmountPercentage: 0
     attributeChanged: 6
-    attributeAmountGained: 1
+    attributeAmountGained: 2
     passivePairing:
       passiveData: 23
       passiveStacks: 1

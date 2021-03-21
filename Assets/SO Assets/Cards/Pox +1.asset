@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pox +1
   m_EditorClassIdentifier: 
   cardName: Pox +1
-  cardDescription: Apply 12 Poisoned to target.
+  cardDescription: Apply 6 Poisoned to target.
   cardSprite: {fileID: 21300000, guid: 0f2a30c05859ed34d95818263482b3be, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -41,7 +41,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '12 '
+    phrase: '6 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -55,6 +55,11 @@ MonoBehaviour:
     cardEffectType: 3
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -96,7 +101,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 21
-      passiveStacks: 12
+      passiveStacks: 6
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

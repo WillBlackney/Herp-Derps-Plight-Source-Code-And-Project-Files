@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fiery Slash +1
   m_EditorClassIdentifier: 
   cardName: Fiery Slash +1
-  cardDescription: Deal Physical damage. Apply 6 Burning.
+  cardDescription: Deal 9 Physical Damage.Apply 3 Burning.
   cardSprite: {fileID: 21300000, guid: 76062c60d3cf73a45a8c48cfc151d8c2, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -41,7 +41,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 1
     cardEffectType: 6
-    phrase: '7 '
+    phrase: '4 '
   - color: 4
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -51,15 +51,11 @@ MonoBehaviour:
     cardEffectType: 0
     phrase: 'damage.
 
-'
-  - color: 1
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'Apply '
+      Apply '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '5 '
+    phrase: '3 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -100,7 +96,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 10
+    baseDamageValue: 9
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
@@ -199,7 +195,22 @@ MonoBehaviour:
       projectileFired: 0
       projectileStartPosition: 0
       onCharacter: 0
-    visualEventsOnFinish: []
+    visualEventsOnFinish:
+    - eventType: 6
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
+      particleEffect: 0
+      cameraShake: 0
+      movementAnimation: 0
+      soundEffect: 0
+      characterAnimation: 0
+      delayDuration: 0.5
+      projectileFired: 0
+      projectileStartPosition: 0
+      onCharacter: 0
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
   - weaponRequirement: 0
@@ -252,26 +263,11 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 2
-      passiveStacks: 5
-    cardAdded: {fileID: 11400000, guid: e4da3cf9bac315a4586b6ba520cf9a90, type: 2}
-    copiesAdded: 1
+      passiveStacks: 3
+    cardAdded: {fileID: 0}
+    copiesAdded: 0
     blessingsGained: 0
-    visualEventsOnStart:
-    - eventType: 3
-      screenOverlayType: 0
-      overlayColor: 0
-      overlayFadeInTime: 0
-      overlayDuration: 0
-      overlayFadeOutTime: 0
-      particleEffect: 16
-      cameraShake: 0
-      movementAnimation: 0
-      soundEffect: 0
-      characterAnimation: 0
-      delayDuration: 0
-      projectileFired: 0
-      projectileStartPosition: 0
-      onCharacter: 1
+    visualEventsOnStart: []
     visualEventsOnFinish: []
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []

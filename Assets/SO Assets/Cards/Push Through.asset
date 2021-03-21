@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Push Through
   m_EditorClassIdentifier: 
   cardName: Push Through
-  cardDescription: Gain 8 Block. Draw 2 Cards. Expend.
+  cardDescription: Gain 6 Block. Draw 2 Cards. Expend.
   cardSprite: {fileID: 21300000, guid: 517b2d93f1036694180593864ff9000d, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
@@ -75,6 +75,11 @@ MonoBehaviour:
     cardEffectType: 10
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -96,7 +101,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 8
+    blockGainValue: 6
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
@@ -143,6 +148,11 @@ MonoBehaviour:
     cardEffectType: 9
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0

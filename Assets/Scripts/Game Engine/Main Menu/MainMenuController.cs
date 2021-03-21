@@ -409,10 +409,43 @@ public class MainMenuController : Singleton<MainMenuController>
     private void BuildAttributeInfoPanels(CharacterData data)
     {
         strengthText.text = data.strength.ToString();
+        if (data.strength > 20)
+            strengthText.text = TextLogic.ReturnColoredText(data.strength.ToString(), TextLogic.neutralYellow);
+        else if (data.strength < 20)
+            strengthText.text = TextLogic.ReturnColoredText(data.strength.ToString(), TextLogic.redText);
+
+        intelligenceText.text = data.intelligence.ToString();
+        if (data.intelligence > 20)
+            intelligenceText.text = TextLogic.ReturnColoredText(data.intelligence.ToString(), TextLogic.neutralYellow);
+        else if (data.strength < 20)
+            intelligenceText.text = TextLogic.ReturnColoredText(data.intelligence.ToString(), TextLogic.redText);
+
+        dexterityText.text = data.dexterity.ToString();
+        if (data.dexterity > 20)
+            dexterityText.text = TextLogic.ReturnColoredText(data.dexterity.ToString(), TextLogic.neutralYellow);
+        else if (data.strength < 20)
+            dexterityText.text = TextLogic.ReturnColoredText(data.dexterity.ToString(), TextLogic.redText);
+
+        witsText.text = data.wits.ToString();
+        if (data.wits > 20)
+            witsText.text = TextLogic.ReturnColoredText(data.wits.ToString(), TextLogic.neutralYellow);
+        else if (data.strength < 20)
+            witsText.text = TextLogic.ReturnColoredText(data.wits.ToString(), TextLogic.redText);
+
+        constitutionText.text = data.constitution.ToString();
+        if (data.constitution > 20)
+            constitutionText.text = TextLogic.ReturnColoredText(data.constitution.ToString(), TextLogic.neutralYellow);
+        else if (data.strength < 20)
+            constitutionText.text = TextLogic.ReturnColoredText(data.constitution.ToString(), TextLogic.redText);
+
+
+        /*
+        strengthText.text = data.strength.ToString();
         if (data.strength > 10)
         {
             strengthText.text = TextLogic.ReturnColoredText(data.strength.ToString(),TextLogic.neutralYellow);
         }
+
        
         intelligenceText.text = data.intelligence.ToString();
         if (data.intelligence > 10)
@@ -437,6 +470,7 @@ public class MainMenuController : Singleton<MainMenuController>
         {
             constitutionText.text = TextLogic.ReturnColoredText(data.constitution.ToString(), TextLogic.neutralYellow);
         }
+        */
     }
     private void BuildRacialInfoPanel(CharacterData data)
     {

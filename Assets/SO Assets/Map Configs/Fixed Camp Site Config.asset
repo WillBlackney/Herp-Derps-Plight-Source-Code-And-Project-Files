@@ -36,7 +36,7 @@ MonoBehaviour:
       min: 0
       max: 0
     nodesApartDistance: 2
-    randomizePosition: 0
+    randomizePosition: 0.5
     randomizeNodes: 0
     guaranteeAtleastOneRandom: 0
     possibleRandomNodeTypes: 
@@ -53,7 +53,7 @@ MonoBehaviour:
     distanceFromPreviousLayer:
       min: 0
       max: 0
-    nodesApartDistance: 0
+    nodesApartDistance: 2
     randomizePosition: 0.5
     randomizeNodes: 0
     guaranteeAtleastOneRandom: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
     distanceFromPreviousLayer:
       min: 0
       max: 0
-    nodesApartDistance: 0
+    nodesApartDistance: 2
     randomizePosition: 0.5
     randomizeNodes: 0
     guaranteeAtleastOneRandom: 0

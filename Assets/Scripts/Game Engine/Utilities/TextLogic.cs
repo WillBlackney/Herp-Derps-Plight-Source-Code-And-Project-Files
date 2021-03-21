@@ -10,8 +10,9 @@ public static class TextLogic
     [Header("RGBA Colour Codes")]
     public static string white = "<color=#FFFFFF>";
     public static string yellow = "<color=#FFF91C>";
-    public static string blueNumber = "<color=#92E0FF>";
+    public static string blueNumber = "<color=#92E0FF>"; 
     public static string neutralYellow = "<color=#F8FF00>";
+    public static string redText = "<color=#FF6262>";
 
     public static string physical = "<color=#FF9500>";
     public static string magic = "<color=#C975FF>";
@@ -130,17 +131,10 @@ public static class TextLogic
     #endregion
 
     // Misc Stuff
-    #region
-    /*
+    #region  
     public static string GetTalentPairingTierOneDescriptionText(TalentSchool ts)
     {
-        return "This character can add " + ReturnColoredText("Common", commonRarity) + ", " +
-                ReturnColoredText("Rare", rareRarity) + " and " + ReturnColoredText("Epic", epicRarity) +
-                " cards from the " + ReturnColoredText(ts.ToString(), neutralYellow) + " tree to it's deck.";
-    }*/
-    public static string GetTalentPairingTierOneDescriptionText(TalentSchool ts)
-    {
-        string sReturned =  "This character may add cards from the " + ReturnColoredText(ts.ToString(), neutralYellow) + " tree to it's deck. ";
+        string sReturned =  "You can add " + ReturnColoredText(ts.ToString(), neutralYellow) + " cards to your deck. ";
         sReturned += "\n";
 
         if (ts == TalentSchool.Corruption)
@@ -151,17 +145,17 @@ public static class TextLogic
         else if (ts == TalentSchool.Warfare)
         {
             sReturned += ReturnColoredText("Melee Attack", neutralYellow) + " cards deal " +
-                ReturnColoredText("10%", blueNumber) + " more damage.";
+                ReturnColoredText("5%", blueNumber) + " more damage.";
         }
         else if (ts == TalentSchool.Guardian)
         {
-            sReturned += "Reduce all damage from enemy actions by " + ReturnColoredText("10%", blueNumber) +
+            sReturned += "Reduce all damage from enemy actions by " + ReturnColoredText("5%", blueNumber) +
                  ".";
         }
         else if (ts == TalentSchool.Scoundrel)
         {
-            sReturned += "Increase the damage and " + ReturnColoredText("Block", neutralYellow) + " gained from " +
-               ReturnColoredText("Criticals", neutralYellow) + " by " + ReturnColoredText("25%", blueNumber) + ".";
+            sReturned += "Your first " + ReturnColoredText("Melee Attack", neutralYellow) + " card played each combat deals " +
+               ReturnColoredText("2", blueNumber) + " extra damage. ";
         }
         else if (ts == TalentSchool.Pyromania)
         {
@@ -171,12 +165,15 @@ public static class TextLogic
         }
         else if (ts == TalentSchool.Naturalism)
         {
-            sReturned += "While " + ReturnColoredText("Overloaded", neutralYellow) + ", increase all damage by " + ReturnColoredText("5%", blueNumber) + ".";
+            sReturned += "Increase all damage and " + ReturnColoredText("Block", neutralYellow) + " gains from cards by " +
+                ReturnColoredText("2%", blueNumber) + " per stack of " + ReturnColoredText("Overload", neutralYellow) + " (max " +
+                ReturnColoredText("10%", blueNumber) + ").";
         }
         else if (ts == TalentSchool.Divinity)
         {
-            sReturned += "On first activation start, add a random " +
-                ReturnColoredText("Blessing", neutralYellow) + " card to your hand.";
+            sReturned += "While holding a " +
+                ReturnColoredText("Blessing", neutralYellow) + ", increase all damage and " + ReturnColoredText("Block", neutralYellow) + " gains from cards by " +
+                ReturnColoredText("5%", blueNumber) + ".";
         }
         else if (ts == TalentSchool.Shadowcraft)
         {
@@ -185,13 +182,14 @@ public static class TextLogic
         }
         else if (ts == TalentSchool.Manipulation)
         {
-            sReturned += "On first activation start, add an " +
-                 ReturnColoredText("Arcane Bolt", neutralYellow) + " card to your hand.";
+            sReturned += "Increase all damage and " + ReturnColoredText("Block", neutralYellow) + " gains from cards by " +
+                ReturnColoredText("2%", blueNumber) + " per stack of " + ReturnColoredText("Source", neutralYellow) + " (max " +
+                ReturnColoredText("10%", blueNumber) + ").";
         }
         else if (ts == TalentSchool.Ranger)
         {
             sReturned += ReturnColoredText("Ranged Attack", neutralYellow) + " cards deal " +
-                 ReturnColoredText("10%", blueNumber) + " more damage.";
+                ReturnColoredText("5%", blueNumber) + " more damage.";
         }
 
 
@@ -208,17 +206,17 @@ public static class TextLogic
         else if (ts == TalentSchool.Warfare)
         {
             sReturned += ReturnColoredText("Melee Attack", neutralYellow) + " cards deal "+
-                ReturnColoredText("20%", blueNumber) + " more damage.";
+                ReturnColoredText("10%", blueNumber) + " more damage.";
         }
         else if (ts == TalentSchool.Guardian)
         {
-            sReturned += "Reduce all damage from enemy actions by " + ReturnColoredText("20%", blueNumber) +
+            sReturned += "Reduce all damage from enemy actions by " + ReturnColoredText("10%", blueNumber) +
                  ".";
         }
         else if (ts == TalentSchool.Scoundrel)
         {
-            sReturned = "Increase the damage and " + ReturnColoredText("Block", neutralYellow) + " gained from " +
-               ReturnColoredText("Criticals", neutralYellow) + " by " + ReturnColoredText("50%", blueNumber) + ".";
+            sReturned += "Your first " + ReturnColoredText("Melee Attack", neutralYellow) + " card played each combat deals " +
+               ReturnColoredText("4", blueNumber) + " extra damage. ";
         }
         else if (ts == TalentSchool.Pyromania)
         {
@@ -228,12 +226,15 @@ public static class TextLogic
         }
         else if (ts == TalentSchool.Naturalism)
         {
-            sReturned += "While " + ReturnColoredText("Overloaded", neutralYellow) +", increase all damage by " + ReturnColoredText("10%", blueNumber) +".";
+            sReturned += "Increase all damage and " + ReturnColoredText("Block", neutralYellow) + " gains from cards by " +
+               ReturnColoredText("4%", blueNumber) + " per stack of " + ReturnColoredText("Overload", neutralYellow) + " (max " +
+               ReturnColoredText("20%", blueNumber) + ").";
         }
         else if (ts == TalentSchool.Divinity)
         {
-            sReturned += "On first activation start, add 2 random " +
-                ReturnColoredText("Blessing", neutralYellow) + " cards to your hand.";
+            sReturned += "While holding a " +
+               ReturnColoredText("Blessing", neutralYellow) + ", increase all damage and " + ReturnColoredText("Block", neutralYellow) + " gains from cards by " +
+               ReturnColoredText("10%", blueNumber) + ".";
         }
         else if (ts == TalentSchool.Shadowcraft)
         {
@@ -242,13 +243,14 @@ public static class TextLogic
         }
         else if (ts == TalentSchool.Manipulation)
         {
-            sReturned += "On first activation start, add 2 " +
-                 ReturnColoredText("Arcane Bolt", neutralYellow) + " cards to your hand.";
+            sReturned += "Increase all damage and " + ReturnColoredText("Block", neutralYellow) + " gains from cards by " +
+                ReturnColoredText("2%", blueNumber) + " per stack of " + ReturnColoredText("Source", neutralYellow) + " (max " +
+                ReturnColoredText("10%", blueNumber) + ").";
         }
         else if (ts == TalentSchool.Ranger)
         {
             sReturned += ReturnColoredText("Ranged Attack", neutralYellow) + " cards deal " +
-                 ReturnColoredText("20%", blueNumber) + " more damage.";
+                ReturnColoredText("10%", blueNumber) + " more damage.";
         }
 
         return sReturned;

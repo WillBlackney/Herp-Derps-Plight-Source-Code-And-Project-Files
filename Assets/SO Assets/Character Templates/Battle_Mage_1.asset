@@ -16,21 +16,20 @@ MonoBehaviour:
   myClassName: Battle Mage
   race: 1
   audioProfile: 1
-  health: 100
-  maxHealth: 100
+  health: 90
+  maxHealth: 90
   startingBlock: 0
-  strength: 11
-  intelligence: 11
-  dexterity: 10
-  wits: 10
-  constitution: 10
+  strength: 22
+  intelligence: 20
+  dexterity: 20
+  wits: 20
+  constitution: 22
   power: 0
   initiative: 3
   stamina: 2
-  draw: 2
+  draw: 4
   baseCrit: 0
   critModifier: 30
-  baseFristActivationDrawBonus: 2
   serializedPassiveManager:
     bonusPowerStacks: 0
     bonusDexterityStacks: 0
@@ -88,6 +87,8 @@ MonoBehaviour:
     unbreakableStacks: 0
     pierceStacks: 0
     regenerationStacks: 0
+    hurricaneStacks: 0
+    holierThanThouStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -106,14 +107,14 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
+  - {fileID: 11400000, guid: 041427921e8795c419cca680458f7428, type: 2}
+  - {fileID: 11400000, guid: c62cea059d102884a8aabb11de5b070c, type: 2}
   - {fileID: 11400000, guid: c06d99a9268bd124c80720801c12d236, type: 2}
   - {fileID: 11400000, guid: c06d99a9268bd124c80720801c12d236, type: 2}
-  - {fileID: 11400000, guid: 0163cb54b6898bf46aab115bc74d0350, type: 2}
-  - {fileID: 11400000, guid: 0163cb54b6898bf46aab115bc74d0350, type: 2}
-  - {fileID: 11400000, guid: 91a684a63c896f94fae7a593b1d28422, type: 2}
-  - {fileID: 11400000, guid: c29964ec64c216a41ac3fd20a356a5f5, type: 2}
-  - {fileID: 11400000, guid: c62cea059d102884a8aabb11de5b070c, type: 2}
-  - {fileID: 11400000, guid: c62cea059d102884a8aabb11de5b070c, type: 2}
   modelParts:
   - Human_Chest
   - Human_Face_5

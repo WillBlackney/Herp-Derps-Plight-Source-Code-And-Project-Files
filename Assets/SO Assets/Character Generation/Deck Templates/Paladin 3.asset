@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Paladin 3
   m_EditorClassIdentifier: 
   cards:
-  - {fileID: 11400000, guid: 87514d0403c7e7f4abb87ab0dbfe26f2, type: 2}
-  - {fileID: 11400000, guid: b3e413a43d44ba24fbc2af972a7d4562, type: 2}
-  - {fileID: 11400000, guid: 9a485b795a8ea7d4fbab8525e8284e7d, type: 2}
-  - {fileID: 11400000, guid: 9a485b795a8ea7d4fbab8525e8284e7d, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
   - {fileID: 11400000, guid: 04b3ac38b9732134c9076aed80c85796, type: 2}
   - {fileID: 11400000, guid: 04b3ac38b9732134c9076aed80c85796, type: 2}
-  - {fileID: 11400000, guid: 3587b8c7f77c41d4eafbc12793734665, type: 2}
+  - {fileID: 11400000, guid: c62cea059d102884a8aabb11de5b070c, type: 2}
   - {fileID: 11400000, guid: 3587b8c7f77c41d4eafbc12793734665, type: 2}

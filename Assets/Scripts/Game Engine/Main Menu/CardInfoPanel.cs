@@ -86,9 +86,13 @@ public class CardInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             RecruitCharacterController.Instance.BuildAndShowCardViewModelPopup(cardDataRef);
         }
-        else if (location == CardPanelLocation.CharacterSheetScreenDeck && CharacterRosterViewController.Instance.currentlyDraggingSomePanel == false)
+        else if (location == CardPanelLocation.CharacterRosterScreenDeck && CharacterRosterViewController.Instance.currentlyDraggingSomePanel == false)
         {
-            CharacterSheetViewController.Instance.BuildAndShowCardViewModelPopupFromDeck(cardDataRef);
+            CharacterRosterViewController.Instance.BuildAndShowCardViewModelPopupFromDeck(cardDataRef);
+        }
+        else if (location == CardPanelLocation.CharacterRosterScreenCardInventory && CharacterRosterViewController.Instance.currentlyDraggingSomePanel == false)
+        {
+            CharacterRosterViewController.Instance.BuildAndShowCardViewModelPopupFromInventory(cardDataRef);
         }
     }
     public void OnPointerExit(PointerEventData eventData)
@@ -105,9 +109,13 @@ public class CardInfoPanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             RecruitCharacterController.Instance.HidePreviewCard();
         }
-        else if (location == CardPanelLocation.CharacterSheetScreenDeck)
+        else if (location == CardPanelLocation.CharacterRosterScreenDeck)
         {
-            CharacterSheetViewController.Instance.HidePreviewCardInDeck();
+            CharacterRosterViewController.Instance.HidePreviewCardInDeck();
+        }
+        else if (location == CardPanelLocation.CharacterRosterScreenCardInventory)
+        {
+            CharacterRosterViewController.Instance.HidePreviewCardInInventory();
         }
 
         KeyWordLayoutController.Instance.FadeOutMainView();
@@ -230,6 +238,6 @@ public enum CardPanelLocation
     CharacterInfoWindow = 1,
     ChooseCardScreen = 2,
     RecruitCharacterScreen = 3,
-    CharacterSheetScreenDeck = 4,
+    CharacterRosterScreenDeck = 4,
     CharacterRosterScreenCardInventory = 5,
 }

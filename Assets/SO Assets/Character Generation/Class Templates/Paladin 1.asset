@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Paladin 1
   m_EditorClassIdentifier: 
   templateName: Paladin
+  possibleRaces: 0100000004000000060000000200000008000000
   possibleDecks:
   - {fileID: 11400000, guid: cd2b7dc95a4e6524c8896d2278adb83d, type: 2}
   - {fileID: 11400000, guid: 4ef77adc777141c4485acbd1180dedc4, type: 2}
   - {fileID: 11400000, guid: 8f7d6b001538b9747ad427fbfeb8ee2a, type: 2}
+  - {fileID: 11400000, guid: b5d368f77e2300d49864eb73448fb739, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: 6cf07eb0195002548ae98f47244f40fe, type: 2}
   - {fileID: 11400000, guid: 2497b620b410e0f4ca2e5a62941c278d, type: 2}
@@ -33,12 +35,12 @@ MonoBehaviour:
     offHandItem: {fileID: 0}
     trinketOne: {fileID: 0}
     trinketTwo: {fileID: 0}
-  strengthMod: 2
+  strengthMod: 3
   intelligenceMod: 0
-  dexterityMod: 1
+  dexterityMod: 0
   witsMod: 0
   constitutionMod: 1
-  maxHealth: 100
+  maxHealth: 90
   talentPairings:
   - talentSchool: 10
     talentLevel: 1

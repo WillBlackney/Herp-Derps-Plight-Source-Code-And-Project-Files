@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Testudo +1
   m_EditorClassIdentifier: 
   cardName: Testudo +1
-  cardDescription: 'Give 8 Block to self or ally.
-
-    Shielded: Draw 1 card.'
+  cardDescription: Give 5 Block to self or ally. Draw 1 card.
   cardSprite: {fileID: 21300000, guid: a5fd44ab79fe2374b89d283da86a1fd6, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
@@ -97,7 +95,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 7
+    blockGainValue: 5
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Journey Below +1
   cardDescription: Expend your hand. For each card expended, add a random Shadowcraft
-    card to hand.
+    card to hand. Innate.
   cardSprite: {fileID: 21300000, guid: 726b167addcefe540adda8159c9202f5, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
@@ -22,16 +22,18 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 11
   rarity: 2
-  racialCard: 0
-  originRace: 0
   upgradeable: 0
   upgradeLevel: 1
   expend: 0
-  innate: 0
+  innate: 1
   fleeting: 0
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 3
     getPhraseFromCardValue: 0
@@ -60,7 +62,7 @@ MonoBehaviour:
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: Expend
+    phrase: Innate
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -70,6 +72,11 @@ MonoBehaviour:
     cardEffectType: 24
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -83,7 +90,9 @@ MonoBehaviour:
     discoveryLocation: 5
     talentSchoolFilter: 0
     rarityFilter: 0
+    upgradeFilter: 1
     blessing: 0
+    sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects:
@@ -95,6 +104,7 @@ MonoBehaviour:
       cardAdded: {fileID: 0}
       talentSchoolFilter: 0
       rarityFilter: 0
+      upgradeFilter: 1
       baseDamage: 0
       damageType: 0
     - modifyEffect: 4
@@ -105,6 +115,7 @@ MonoBehaviour:
       cardAdded: {fileID: 0}
       talentSchoolFilter: 11
       rarityFilter: 0
+      upgradeFilter: 1
       baseDamage: 0
       damageType: 0
     drawStacksFromOverload: 0
@@ -113,10 +124,13 @@ MonoBehaviour:
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
+    drawBaseDamageFromTargetBurning: 0
+    drawBaseDamageFromTargetWeakened: 0
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
+    useEachIndividualsStackCount: 1
     damageType: 0
     healthRestored: 0
     healthLost: 0
@@ -192,8 +206,14 @@ MonoBehaviour:
       projectileStartPosition: 0
       onCharacter: 0
     visualEventsOnFinish: []
+    visualEventsOnDamageLoopStart: []
+    visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
+  cardPassiveEffects: []
   keyWordModels:
   - kewWordType: 1
+    weaponRequirement: 0
+    passiveType: 0
+  - kewWordType: 2
     weaponRequirement: 0
     passiveType: 0

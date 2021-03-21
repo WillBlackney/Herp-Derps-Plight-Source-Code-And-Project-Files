@@ -11,22 +11,19 @@ public class SaveGameData
 
     // Journey data
     public int currentJourneyPosition;
-    public int dayNumber;
     public SaveCheckPoint saveCheckPoint;
     public string map;
 
     // Player data
     public int currentGold;
-    public int maxRosterSize;
 
     // Combat event data
-    public CombatData currentCombatData;
-    public List<CharacterData> chosenCombatCharacters = new List<CharacterData>();
-    // to do: save and cache player characters in the combat some how.
+    public EncounterType currentEncounter;
+    public string currentEnemyWave;
 
-    // Recruitable character deck
+    // Recruit event data
+    public List<CharacterData> recruitCharacterChoices = new List<CharacterData>();
     public List<CharacterData> characterDeck = new List<CharacterData>();
-    public List<CharacterData> dailyCharacterRecruits = new List<CharacterData>();
 
     // Loot data
     public LootResultModel currentLootResult;
@@ -52,16 +49,18 @@ public class SaveGameData
     // States
     public List<StateData> playerStates = new List<StateData>();
     public ShrineStateResult currentShrineStates;
-
-    //cache daily conbats
-    public CombatChoicesResult dailyCombatChoices;
+   
 }
 public enum SaveCheckPoint
 {
     None = 0,
     CombatStart = 1,
     CombatEnd = 2,
-    TownDayStart = 3,
+    KingsBlessingStart = 3,
+    RecruitCharacterStart = 4,
+    CampSite = 5,
+    Shop =6,
+    Shrine = 7,
 
 
 }

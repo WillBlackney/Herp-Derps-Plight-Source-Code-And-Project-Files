@@ -15,7 +15,7 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     private CharacterData currentCharacterViewing;
     private bool mouseIsOverDeckView = false;
     [HideInInspector] public bool currentlyDraggingSomePanel;
-    public RosterItemSlot rosterSlotMousedOver = null;
+     public RosterItemSlot rosterSlotMousedOver = null;
 
     [Header("Core Components")]
     [SerializeField] private GameObject mainVisualParent;
@@ -71,19 +71,18 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
 
     [Header("Attribute Box Components")]
     [SerializeField] private GameObject attributeBoxVisualParent;
-    [SerializeField] private TextMeshProUGUI attributePointsText;
-
+    [SerializeField] private TextMeshProUGUI attributeRollCountText;
     [SerializeField] private TextMeshProUGUI strengthText;
     [SerializeField] private TextMeshProUGUI intelligenceText;
     [SerializeField] private TextMeshProUGUI dexterityText;
     [SerializeField] private TextMeshProUGUI witsText;
     [SerializeField] private TextMeshProUGUI constitutionText;
 
-    [SerializeField] private GameObject strengthPlusButton;
-    [SerializeField] private GameObject intelligencePlusButton;
-    [SerializeField] private GameObject dexterityPlusButton;
-    [SerializeField] private GameObject witsPlusButton;
-    [SerializeField] private GameObject constitutionPlusButton;
+    [Header("Increase Attribute Page Components")]
+    [SerializeField] private GameObject increaseAttributePageVisualParent;
+    [SerializeField] private CanvasGroup increaseAttributePageCg;
+    [SerializeField] private AttributePlusButton[] attributePlusButtons;
+    private List<AttributePlusButton> selectedAttributes = new List<AttributePlusButton>();
 
     #endregion
 
@@ -535,17 +534,17 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
         }
 
         bool bRet = false;
-        ItemCategory itemType = item.itemDataRef.itemType;
+        ItemType itemType = item.itemDataRef.itemType;
 
-        if (itemType == ItemCategory.Trinket && (slot.slotType == RosterSlotType.TrinketOne || slot.slotType == RosterSlotType.TrinketTwo))
+        if (itemType == ItemType.Trinket && (slot.slotType == RosterSlotType.TrinketOne || slot.slotType == RosterSlotType.TrinketTwo))
             bRet = true;
-        else if (itemType == ItemCategory.OneHandMelee && (slot.slotType == RosterSlotType.MainHand || slot.slotType == RosterSlotType.OffHand))
+        else if (itemType == ItemType.OneHandMelee && (slot.slotType == RosterSlotType.MainHand || slot.slotType == RosterSlotType.OffHand))
             bRet = true;
-        else if (itemType == ItemCategory.Shield && slot.slotType == RosterSlotType.OffHand)
+        else if (itemType == ItemType.Shield && slot.slotType == RosterSlotType.OffHand)
             bRet = true;
-        else if (itemType == ItemCategory.TwoHandMelee && slot.slotType == RosterSlotType.MainHand)
+        else if (itemType == ItemType.TwoHandMelee && slot.slotType == RosterSlotType.MainHand)
             bRet = true;
-        else if (itemType == ItemCategory.TwoHandRanged && slot.slotType == RosterSlotType.MainHand)
+        else if (itemType == ItemType.TwoHandRanged && slot.slotType == RosterSlotType.MainHand)
             bRet = true;
 
         Debug.LogWarning("IsItemValidOnSlot() returning " + bRet.ToString());
@@ -712,163 +711,179 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     private void BuildAttributeBoxFromData(CharacterData character)
     {
         BuildAttributePanelsFromCharacterData(character);
-        SetAttributePointsText(character.attributePoints.ToString());
+        SetAttributeRollCountText(character.attributeRollResults.Count.ToString());
     }
     private void BuildAttributePanelsFromCharacterData(CharacterData character)
     {
-        // Disable all plus buttons
-        strengthPlusButton.SetActive(false);
-        intelligencePlusButton.SetActive(false);
-        dexterityPlusButton.SetActive(false);
-        witsPlusButton.SetActive(false);
-        constitutionPlusButton.SetActive(false);
-
         strengthText.text = character.strength.ToString();
-        if (character.strength > 10)
-        {
-            strengthText.text = TextLogic.ReturnColoredText(character.strength.ToString(), TextLogic.neutralYellow);            
-        }
+        if (character.strength > 20)        
+            strengthText.text = TextLogic.ReturnColoredText(character.strength.ToString(), TextLogic.neutralYellow);          
+        else if (character.strength < 20)        
+            strengthText.text = TextLogic.ReturnColoredText(character.strength.ToString(), TextLogic.redText);        
 
         intelligenceText.text = character.intelligence.ToString();
-        if (character.intelligence > 10)
-        {
-            intelligenceText.text = TextLogic.ReturnColoredText(character.intelligence.ToString(), TextLogic.neutralYellow);          
-        }
+        if (character.intelligence > 20)        
+            intelligenceText.text = TextLogic.ReturnColoredText(character.intelligence.ToString(), TextLogic.neutralYellow);              
+        else if (character.intelligence < 20)
+            intelligenceText.text = TextLogic.ReturnColoredText(character.intelligence.ToString(), TextLogic.redText);        
 
         dexterityText.text = character.dexterity.ToString();
-        if (character.dexterity > 10)
-        {
-            dexterityText.text = TextLogic.ReturnColoredText(character.dexterity.ToString(), TextLogic.neutralYellow);            
-        }
+        if (character.dexterity > 20)        
+            dexterityText.text = TextLogic.ReturnColoredText(character.dexterity.ToString(), TextLogic.neutralYellow);          
+        else if (character.dexterity < 20)
+            dexterityText.text = TextLogic.ReturnColoredText(character.dexterity.ToString(), TextLogic.redText);        
 
         witsText.text = character.wits.ToString();
-        if (character.wits > 10)
-        {
+        if (character.wits > 20)        
             witsText.text = TextLogic.ReturnColoredText(character.wits.ToString(), TextLogic.neutralYellow);            
-        }
+        else if (character.wits < 20)
+            witsText.text = TextLogic.ReturnColoredText(character.wits.ToString(), TextLogic.redText);        
 
         constitutionText.text = character.constitution.ToString();
-        if (character.constitution > 10)
+        if (character.constitution > 20)        
+            constitutionText.text = TextLogic.ReturnColoredText(character.constitution.ToString(), TextLogic.neutralYellow);        
+        else if (character.constitution < 20)
+            constitutionText.text = TextLogic.ReturnColoredText(character.constitution.ToString(), TextLogic.redText);
+        
+    }   
+    
+    #endregion
+
+    // Attribute Level Up Screen logic
+    #region
+    private void SetAttributeRollCountText(string text)
+    {
+        attributeRollCountText.text = text;
+    }
+    private void ShowAttributeLevelUpPage()
+    {
+        increaseAttributePageVisualParent.SetActive(true);
+        increaseAttributePageCg.DOKill();
+        increaseAttributePageCg.alpha = 0;
+        increaseAttributePageCg.DOFade(1, 0.25f);
+    }
+    private void HideAttributeLevelUpPage()
+    {
+        increaseAttributePageCg.DOKill();
+        increaseAttributePageCg.alpha = 1;
+        Sequence s = DOTween.Sequence();
+        s.Append(increaseAttributePageCg.DOFade(0, 0.25f));
+        s.OnComplete(() => increaseAttributePageVisualParent.SetActive(false));
+    }
+    public void OnConfirmAttributeSelectionButtonClicked()
+    {
+        // check if player has selected at least 2 stats
+        if (selectedAttributes.Count != 2)
+            return;
+
+        // cache refs
+        CharacterData character = CurrentCharacterViewing;
+        AttributeRollResult roll = character.attributeRollResults[0];
+
+        // Apply attribute changes to character
+        foreach (AttributePlusButton button in selectedAttributes)
         {
-            constitutionText.text = TextLogic.ReturnColoredText(character.constitution.ToString(), TextLogic.neutralYellow);
+            if (button.MyAttribute == CoreAttribute.Strength)
+                CharacterDataController.Instance.ModifyStrength(character, roll.strengthRoll);
+            else if (button.MyAttribute == CoreAttribute.Intelligence)
+                CharacterDataController.Instance.ModifyIntelligence(character, roll.intelligenceRoll);
+            else if (button.MyAttribute == CoreAttribute.Dexterity)
+                CharacterDataController.Instance.ModifyDexterity(character, roll.dexterityRoll);
+            else if (button.MyAttribute == CoreAttribute.Wits)
+                CharacterDataController.Instance.ModifyWits(character, roll.witsRoll);
+            else if (button.MyAttribute == CoreAttribute.Constitution)
+                CharacterDataController.Instance.ModifyConstitution(character, roll.constitutionRoll);
         }
 
-        // Enable plus buttons
-        if (character.strength < 20 && character.attributePoints > 0)
-            strengthPlusButton.SetActive(true);
+        // remove roll result from character
+        character.attributeRollResults.Remove(roll);
+        selectedAttributes.Clear();
 
-        if (character.wits < 20 && character.attributePoints > 0)
-            witsPlusButton.SetActive(true);
-
-        if (character.dexterity < 20 && character.attributePoints > 0)
-            dexterityPlusButton.SetActive(true);
-
-        if (character.intelligence < 20 && character.attributePoints > 0)
-            intelligencePlusButton.SetActive(true);
-
-        if (character.constitution < 20 && character.attributePoints > 0)
-            constitutionPlusButton.SetActive(true);
+        // close and reset GUI views
+        SetAttributeRollCountText(character.attributeRollResults.Count.ToString());
+        HideAttributeLevelUpPage();
+        ResetAllAttributePlusButtons();
+        BuildAttributeBoxFromData(character);
     }
-    private void SetAttributePointsText(string text)
+    public void OnCancelAttributeSelectionButtonClicked()
     {
-        attributePointsText.text = text;
+        selectedAttributes.Clear();
+        ResetAllAttributePlusButtons();
+        HideAttributeLevelUpPage();
     }
-    public void OnStrengthPanelPlusButtonClicked()
+    public void OnAttributePlusButtonClicked(AttributePlusButton button)
     {
-        if (currentCharacterViewing.attributePoints > 0 && currentCharacterViewing.strength < 20)
+        if (button.isPressed == false)
         {
-            // VFX + SFX
-            VisualEffectManager.Instance.CreateSmallMeleeImpact(strengthPlusButton.transform.position, 27000);
+            if (selectedAttributes.Count == 2)
+                return;
+
+            selectedAttributes.Add(button);
+            button.isPressed = true;
+            button.buttonImage.color = button.pressedColor;
+
+            VisualEffectManager.Instance.CreateSmallMeleeImpact(button.transform.position, 27000);
             AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff);
+        }
+        else
+        {
+            selectedAttributes.Remove(button);
+            button.isPressed = false;
+            button.buttonImage.color = button.normalColor;
+        }
 
-            // Deduct talent points
-            CharacterDataController.Instance.ModifyCharacterAttributePoints(currentCharacterViewing, -1);
 
-            // Gain new attribute
-            CharacterDataController.Instance.ModifyStrength(CurrentCharacterViewing, 1);
+    }
+    public void OnAttributeRollCountTextClicked()
+    {
+        // REMOVE: FOR TESTING
+        //CharacterDataController.Instance.GenerateAndCacheAttributeRollOnLevelUp(CurrentCharacterViewing);
 
-            // Update gui            
-            attributePointsText.text = currentCharacterViewing.attributePoints.ToString();
-            BuildAttributePanelsFromCharacterData(CurrentCharacterViewing);
+        if (CurrentCharacterViewing.attributeRollResults.Count > 0)
+        {
+            Debug.Log("Current character viewing = " + CurrentCharacterViewing.myName +
+                ", total unused rolls = " + CurrentCharacterViewing.attributeRollResults.Count.ToString());
+            selectedAttributes.Clear();
+            BuildAttributePlusButtonsFromRollResult(CurrentCharacterViewing.attributeRollResults[0]);
+            ShowAttributeLevelUpPage();
         }
     }
-    public void OnIntelligencePanelPlusButtonClicked()
+    private void BuildAttributePlusButtonsFromRollResult(AttributeRollResult roll)
     {
-        if (currentCharacterViewing.attributePoints > 0 && currentCharacterViewing.intelligence < 20)
-        {
-            // VFX + SFX
-            VisualEffectManager.Instance.CreateSmallMeleeImpact(intelligencePlusButton.transform.position, 27000);
-            AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff);
+        ResetAllAttributePlusButtons();
 
-            // Deduct talent points
-            CharacterDataController.Instance.ModifyCharacterAttributePoints(currentCharacterViewing, -1);
+        Debug.Log("Roll build: Strength = " + roll.strengthRoll.ToString() +
+           ", Intelligence = " + roll.intelligenceRoll.ToString() + ", Dexterity = " + roll.dexterityRoll.ToString() +
+           ", Wits = " + roll.witsRoll.ToString() + ", Constitution = " + roll.constitutionRoll.ToString());
 
-            // Gain new attribute
-            CharacterDataController.Instance.ModifyIntelligence(CurrentCharacterViewing, 1);
-
-            // Update gui            
-            attributePointsText.text = currentCharacterViewing.attributePoints.ToString();
-            BuildAttributePanelsFromCharacterData(CurrentCharacterViewing);
-        }
+        GetButtonByAttribute(CoreAttribute.Strength).pointsText.text = "+" + roll.strengthRoll.ToString();
+        GetButtonByAttribute(CoreAttribute.Intelligence).pointsText.text = "+" + roll.intelligenceRoll.ToString();
+        GetButtonByAttribute(CoreAttribute.Dexterity).pointsText.text = "+" + roll.dexterityRoll.ToString();
+        GetButtonByAttribute(CoreAttribute.Wits).pointsText.text = "+" + roll.witsRoll.ToString();
+        GetButtonByAttribute(CoreAttribute.Constitution).pointsText.text = "+" + roll.constitutionRoll.ToString();
     }
-    public void OnDexterityPanelPlusButtonClicked()
+    private AttributePlusButton GetButtonByAttribute(CoreAttribute attribute)
     {
-        if (currentCharacterViewing.attributePoints > 0 && currentCharacterViewing.dexterity < 20)
+        Debug.Log("CharacterSheetViewController() called, searching for " + attribute.ToString() + " button");
+        AttributePlusButton button = null;
+        foreach (AttributePlusButton apb in attributePlusButtons)
         {
-            // VFX + SFX
-            VisualEffectManager.Instance.CreateSmallMeleeImpact(dexterityPlusButton.transform.position, 27000);
-            AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff);
-
-            // Deduct talent points
-            CharacterDataController.Instance.ModifyCharacterAttributePoints(currentCharacterViewing, -1);
-
-            // Gain new attribute
-            CharacterDataController.Instance.ModifyDexterity(CurrentCharacterViewing, 1);
-
-            // Update gui            
-            attributePointsText.text = currentCharacterViewing.attributePoints.ToString();
-            BuildAttributePanelsFromCharacterData(CurrentCharacterViewing);
+            if (apb.MyAttribute == attribute)
+            {
+                button = apb;
+                break;
+            }
         }
+
+        return button;
     }
-    public void OnWitsPanelPlusButtonClicked()
+    private void ResetAllAttributePlusButtons()
     {
-        if (currentCharacterViewing.attributePoints > 0 && currentCharacterViewing.wits < 20)
+        foreach (AttributePlusButton apb in attributePlusButtons)
         {
-            // VFX + SFX
-            VisualEffectManager.Instance.CreateSmallMeleeImpact(witsPlusButton.transform.position, 27000);
-            AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff);
-
-            // Deduct talent points
-            CharacterDataController.Instance.ModifyCharacterAttributePoints(currentCharacterViewing, -1);
-
-            // Gain new attribute
-            CharacterDataController.Instance.ModifyWits(CurrentCharacterViewing, 1);
-
-            // Update gui            
-            attributePointsText.text = currentCharacterViewing.attributePoints.ToString();
-            BuildAttributePanelsFromCharacterData(CurrentCharacterViewing);
-        }
-    }
-    public void OnConstitutionPanelPlusButtonClicked()
-    {
-        if (currentCharacterViewing.attributePoints > 0 && currentCharacterViewing.constitution < 20)
-        {
-            // VFX + SFX
-            VisualEffectManager.Instance.CreateSmallMeleeImpact(constitutionPlusButton.transform.position, 27000);
-            AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff);
-
-            // Deduct talent points
-            CharacterDataController.Instance.ModifyCharacterAttributePoints(currentCharacterViewing, -1);
-
-            // Gain new attribute
-            CharacterDataController.Instance.ModifyConstitution(CurrentCharacterViewing, 1);
-
-            // Update gui            
-            maxHealthText.text = currentCharacterViewing.MaxHealthTotal.ToString();
-            attributePointsText.text = currentCharacterViewing.attributePoints.ToString();
-            BuildAttributePanelsFromCharacterData(CurrentCharacterViewing);
+            apb.buttonImage.color = apb.normalColor;
+            apb.isPressed = false;
         }
     }
     #endregion
-
 }

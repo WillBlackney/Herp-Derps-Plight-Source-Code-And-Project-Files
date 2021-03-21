@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Thunderclap +1
   m_EditorClassIdentifier: 
   cardName: Thunderclap +1
-  cardDescription: 'Apply 1 Vulnerable to all enemies. Gain 6 Overload. '
+  cardDescription: 'Apply 1 Vulnerable to all enemies. Gain 3 Overload. '
   cardSprite: {fileID: 21300000, guid: 8029b228932f2ff4eab065b1de0dea6b, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
-  cardType: 1
+  cardType: 2
   targettingType: 0
   talentSchool: 13
   rarity: 1
@@ -55,7 +55,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '2 '
+    phrase: '3 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -233,7 +233,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 18
-      passiveStacks: 2
+      passiveStacks: 3
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

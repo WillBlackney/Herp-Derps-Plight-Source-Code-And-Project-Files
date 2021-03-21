@@ -17,15 +17,15 @@ MonoBehaviour:
   audioProfile: 4
   overrideStartingHealth: 0
   startingHealth: 22
-  enableFlexibleMaxHealth: 0
-  maxHealthFlexAmount: 0
-  maxHealth: 54
+  enableFlexibleMaxHealth: 1
+  maxHealthFlexAmount: 2
+  maxHealth: 48
   startingBlock: 0
-  strength: 10
-  intelligence: 10
-  dexterity: 10
-  wits: 10
-  constitution: 10
+  strength: 20
+  intelligence: 20
+  dexterity: 20
+  wits: 20
+  constitution: 20
   initiative: 2
   power: 0
   baseCrit: 0
@@ -87,6 +87,9 @@ MonoBehaviour:
     reflexShotBonusDamageStacks: 0
     unbreakableStacks: 0
     pierceStacks: 0
+    regenerationStacks: 0
+    hurricaneStacks: 0
+    holierThanThouStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -175,10 +178,188 @@ MonoBehaviour:
         projectileFired: 0
         projectileStartPosition: 0
         onCharacter: 0
-      visualEventsOnFinish: []
+      visualEventsOnFinish:
+      - eventType: 6
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0.5
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
       actionType: 0
       effectLoops: 1
-      baseDamage: 18
+      baseDamage: 8
+      damageType: 1
+      characterSummoned: {fileID: 0}
+      summonedCreatureStartPosition: 0
+      modelFadeInSpeed: 0
+      uiFadeInSpeed: 0
+      summonedCreatureVisualEvents: []
+      passiveApplied: {fileID: 0}
+      passiveStacks: 0
+      blockGained: 0
+      cardAdded: {fileID: 0}
+      copiesAdded: 0
+      collection: 0
+    - visualEventsOnStart:
+      - eventType: 6
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 4
+        delayDuration: 0.5
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
+      - eventType: 7
+        screenOverlayType: 1
+        overlayColor: 1
+        overlayFadeInTime: 0.5
+        overlayDuration: 1
+        overlayFadeOutTime: 0.5
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
+      - eventType: 3
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 16
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 2
+      visualEventsOnFinish: []
+      actionType: 12
+      effectLoops: 1
+      baseDamage: 0
+      damageType: 0
+      characterSummoned: {fileID: 0}
+      summonedCreatureStartPosition: 0
+      modelFadeInSpeed: 0
+      uiFadeInSpeed: 0
+      summonedCreatureVisualEvents: []
+      passiveApplied: {fileID: 0}
+      passiveStacks: 0
+      blockGained: 0
+      cardAdded: {fileID: 11400000, guid: c4e7245fdab32974e9b9a03fb819216b, type: 2}
+      copiesAdded: 1
+      collection: 1
+  - actionName: Flurry
+    actionType: 0
+    intentImage: 0
+    actionLoops: 1
+    doThisOnFirstActivation: 0
+    canBeConsecutive: 1
+    prioritiseWhenRequirementsMet: 0
+    actionRequirements: []
+    actionEffects:
+    - visualEventsOnStart:
+      - eventType: 1
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 1
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
+      - eventType: 2
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 1
+        delayDuration: 0
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
+      - eventType: 3
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 4
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 2
+      - eventType: 4
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 0
+        cameraShake: 1
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
+      visualEventsOnFinish:
+      - eventType: 6
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0.25
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
+      actionType: 0
+      effectLoops: 3
+      baseDamage: 4
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0

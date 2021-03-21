@@ -13,26 +13,26 @@ MonoBehaviour:
   m_Name: Savage Roar +1
   m_EditorClassIdentifier: 
   cardName: Savage Roar +1
-  cardDescription: Gain 2 Wrath. Innate. Expend.
+  cardDescription: Gain 3 Power. Expend.
   cardSprite: {fileID: 21300000, guid: e4d45ae682c0d8747b8db86ea6f5852c, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 0
+  cardEnergyCost: 1
   cardType: 1
   targettingType: 0
   talentSchool: 1
   rarity: 1
-  affliction: 0
-  racialCard: 1
-  originRace: 2
   upgradeable: 0
   upgradeLevel: 1
   expend: 1
-  innate: 1
+  innate: 0
   fleeting: 0
   unplayable: 0
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 1
+  originRace: 2
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -41,21 +41,11 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '2 '
+    phrase: '3 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: Wrath
-  - color: 1
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: '.
-
-'
-  - color: 3
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: Innate
+    phrase: 'Power '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -69,12 +59,20 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: .
+    phrase: '.
+
+'
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -115,8 +113,8 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: 38
-      passiveStacks: 2
+      passiveData: 23
+      passiveStacks: 3
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
@@ -144,10 +142,7 @@ MonoBehaviour:
   keyWordModels:
   - kewWordType: 8
     weaponRequirement: 0
-    passiveType: 38
-  - kewWordType: 2
-    weaponRequirement: 0
-    passiveType: 0
+    passiveType: 23
   - kewWordType: 1
     weaponRequirement: 0
     passiveType: 0

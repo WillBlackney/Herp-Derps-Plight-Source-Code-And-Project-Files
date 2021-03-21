@@ -19,11 +19,11 @@ MonoBehaviour:
   health: 50
   maxHealth: 100
   startingBlock: 0
-  strength: 10
-  intelligence: 10
-  dexterity: 10
-  wits: 10
-  constitution: 10
+  strength: 20
+  intelligence: 20
+  dexterity: 20
+  wits: 20
+  constitution: 20
   power: 0
   initiative: 10
   stamina: 10
@@ -50,7 +50,7 @@ MonoBehaviour:
     phoenixFormStacks: 0
     poisonousStacks: 0
     venomousStacks: 0
-    overloadStacks: 0
+    overloadStacks: 10
     fusionStacks: 0
     plantedFeetStacks: 0
     takenAimStacks: 0
@@ -86,7 +86,9 @@ MonoBehaviour:
     reflexShotBonusDamageStacks: 0
     unbreakableStacks: 0
     pierceStacks: 0
-    regenerationStacks: 5
+    regenerationStacks: 0
+    hurricaneStacks: 0
+    holierThanThouStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -105,15 +107,14 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
-  - {fileID: 11400000, guid: c726ed68806ad6a48838ae52bcad6b3e, type: 2}
-  - {fileID: 11400000, guid: c726ed68806ad6a48838ae52bcad6b3e, type: 2}
-  - {fileID: 11400000, guid: c726ed68806ad6a48838ae52bcad6b3e, type: 2}
-  - {fileID: 11400000, guid: c726ed68806ad6a48838ae52bcad6b3e, type: 2}
-  - {fileID: 11400000, guid: c726ed68806ad6a48838ae52bcad6b3e, type: 2}
-  - {fileID: 11400000, guid: 188b3c6d82a60d5458c4dd3fe81e3123, type: 2}
-  - {fileID: 11400000, guid: a22484253b514a64eb1eb6c5e8bfa6bb, type: 2}
-  - {fileID: 11400000, guid: 0b936854d056ac8459e1b9c5b1a3b5ec, type: 2}
-  - {fileID: 11400000, guid: c934510fdd52aff4db19c24ccf67dec6, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1
@@ -134,9 +135,7 @@ MonoBehaviour:
     trinketOne: {fileID: 11400000, guid: cc47f8626a3f24449b0c5019433b7734, type: 2}
     trinketTwo: {fileID: 0}
   talentPairings:
-  - talentSchool: 2
+  - talentSchool: 13
     talentLevel: 2
-  - talentSchool: 3
-    talentLevel: 1
   startingTalentPoints: 3
   startingAttributePoints: 3

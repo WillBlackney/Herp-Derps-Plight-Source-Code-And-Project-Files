@@ -36,6 +36,12 @@ public enum CardWeaponRequirement
     DualWield = 3,
     Ranged = 4,
 }
+public enum TargetRequirement
+{
+    None = 0,
+    IsWeakened = 1,
+    IsVulnerable = 2,
+}
 public enum UpgradeFilter
 {
     Any = 0,
@@ -126,6 +132,7 @@ public enum CardEventListenerFunction
     ReduceCardEnergyCostThisActivation = 3,
     ApplyPassiveToSelf = 2,
     DrawThis = 4,
+    LoseHealth = 7,
     ModifyMaxHealth = 5,
     ModifyEnergy = 6,
 }
@@ -160,6 +167,7 @@ public enum TalentSchool
     Shadowcraft = 11,
     Corruption = 12,
     Naturalism = 13,
+    Polymorph = 14,
 }
 public enum Rarity
 {
@@ -189,7 +197,6 @@ public enum Passive
     BattleTrance = 40,
     BalancedStance = 41,
     Bleeding = 58,
-    Blinded = 75,
     Burning = 2,
     Cautious = 3,
     Consecration = 4,
@@ -213,6 +220,8 @@ public enum Passive
     Growing = 15,
     GuardianAura = 44,
     HatefulAura = 62,
+    HolierThanThou = 75,
+    Hurricane = 74,
     Inflamed = 65,
     Infuriated = 16,
     Initiative = 17,
@@ -259,7 +268,6 @@ public enum Passive
     Weakened = 37,
     WellOfSouls = 48,
     Wrath = 38,  
-    Undead = 74, 
 
 };
 public enum CoreAttribute
@@ -297,7 +305,7 @@ public enum KeyWordType
 
 // Item Enums
 #region
-public enum ItemCategory
+public enum ItemType
 {
     None = 0,
     OneHandMelee = 1,
@@ -365,9 +373,7 @@ public enum ActionType
     DefendSelf = 7,
     DefendTarget = 8,
     DefendAllAllies = 9,
-    HealAlly = 14,
-    HealAlliesAndSelf = 16,
-    HealSelf = 15,   
+    HealAllAllies = 14,
     Sleep = 10,
     PassTurn = 11,
     AddCardToTargetCardCollection = 12,
@@ -387,6 +393,7 @@ public enum ActionRequirementType
     ActivatedXTimesOrLess = 9,
     HasPassiveTrait = 10,
     AtLeastXAvailableNodes = 11,
+    AtLeastOneAllyWounded = 12,
 }
 public enum IntentImage
 {
@@ -460,13 +467,6 @@ public enum CombatDifficulty
     Basic = 1,
     Elite = 2,
     Boss = 3,
-}
-public enum CombatLevelRange
-{
-    ZeroToTwo = 0,
-    ThreeToFour = 1,
-    FiveToSix = 2,
-    Six = 3,
 }
 #endregion
 
@@ -650,4 +650,33 @@ public enum NodeStates
 }
 #endregion
 
+// State Related
+#region
+public enum StateName
+{
+    None = 0, 
+    Adaptation = 1,
+    Aggression = 2,
+    Benevolence = 3,
+    ContractKillers = 4,
+    Eagerness = 5,
+    Endurance = 6,
+    Godlike = 7,    
+    GodsChosen = 9,
+    HappyCampers = 10,
+    Intimidation = 11,
+    WrathOfTheKing = 22,
+    PolishedArmour = 12,
+    PowerOverwhelming = 21,
+    Recycling = 13,
+    PumpedUp = 14,
+    Sadism = 15,
+    SavvyInvestors = 16,
+    Soulless = 8,
+    Survivalist = 17,
+    ToughNutz = 18,
+    Vindicated = 19,   
+    WellLaidPlans = 20,
+}
+#endregion
 

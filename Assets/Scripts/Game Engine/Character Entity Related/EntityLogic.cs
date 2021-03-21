@@ -43,12 +43,6 @@ public static class EntityLogic
         drawReturned += entity.pManager.temporaryBonusDrawStacks;
         Debug.Log("Value after temporary bonus draw added: " + drawReturned.ToString());
 
-        // First turn bonus
-        if(ActivationManager.Instance.CurrentTurn == 1)
-        {
-            drawReturned += entity.baseFristActivationDrawBonus;
-        }
-
         // Return final value
         Debug.Log("Final draw value calculated: " + drawReturned.ToString());
         return drawReturned;
@@ -122,13 +116,13 @@ public static class EntityLogic
         Debug.Log("EntityLogic.GetTotalCrit() called for " + entity.myName + "...");
 
         // Base crit
-        int critReturned = entity.baseCrit;
-        Debug.Log(entity.myName + " base crit: " + critReturned.ToString());
+        int critTeurned = entity.baseCrit;
+        Debug.Log(entity.myName + " base crit: " + critTeurned.ToString());
 
         // Bonus wits
-        critReturned +=  (int) (entity.wits / 2f);
-        Debug.Log("Value after wits added: " + critReturned.ToString());
-        return critReturned;
+        critTeurned += entity.wits / 2;
+        Debug.Log("Value after wits added: " + critTeurned.ToString());
+        return critTeurned;
     }
     public static int GetTotalCritModifier(CharacterEntityModel entity)
     {

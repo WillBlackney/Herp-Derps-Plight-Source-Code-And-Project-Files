@@ -16,21 +16,20 @@ MonoBehaviour:
   myClassName: Wayfarer
   race: 4
   audioProfile: 2
-  health: 100
-  maxHealth: 100
+  health: 90
+  maxHealth: 90
   startingBlock: 0
-  strength: 10
-  intelligence: 10
-  dexterity: 11
-  wits: 11
-  constitution: 10
+  strength: 20
+  intelligence: 20
+  dexterity: 22
+  wits: 20
+  constitution: 22
   power: 0
   initiative: 3
   stamina: 2
-  draw: 2
+  draw: 4
   baseCrit: 0
   critModifier: 30
-  baseFristActivationDrawBonus: 2
   serializedPassiveManager:
     bonusPowerStacks: 0
     bonusDexterityStacks: 0
@@ -88,6 +87,8 @@ MonoBehaviour:
     unbreakableStacks: 0
     pierceStacks: 0
     regenerationStacks: 0
+    hurricaneStacks: 0
+    holierThanThouStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -106,14 +107,14 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
-  - {fileID: 11400000, guid: 04b3ac38b9732134c9076aed80c85796, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: 7e0607c8c06c28a448dc2170bf23c76c, type: 2}
+  - {fileID: 11400000, guid: 7e0607c8c06c28a448dc2170bf23c76c, type: 2}
   - {fileID: 11400000, guid: 04b3ac38b9732134c9076aed80c85796, type: 2}
   - {fileID: 11400000, guid: b3e413a43d44ba24fbc2af972a7d4562, type: 2}
-  - {fileID: 11400000, guid: b3e413a43d44ba24fbc2af972a7d4562, type: 2}
-  - {fileID: 11400000, guid: e74b37417c31bac4f853047f01e6be3d, type: 2}
-  - {fileID: 11400000, guid: 188b3c6d82a60d5458c4dd3fe81e3123, type: 2}
-  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
-  - {fileID: 11400000, guid: 092a30691da4b364b99830029b81956e, type: 2}
+  - {fileID: 11400000, guid: 34b829276cefc0b498814b7127285085, type: 2}
+  - {fileID: 11400000, guid: 34b829276cefc0b498814b7127285085, type: 2}
   modelParts:
   - Human_Chest
   - Elf_Face_7

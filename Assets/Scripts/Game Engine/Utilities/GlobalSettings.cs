@@ -16,6 +16,10 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [ShowIf("ShowTestCharacterTemplates")]
     public CharacterTemplateSO[] testingCharacterTemplates;
 
+    [LabelWidth(200)]
+    [ShowIf("ShowTestCharacterTemplates")]
+    public StateDataSO[] testingStates;
+
     // Testing Settings
     [Header("Combat Test Scene Settings")]
     [LabelWidth(200)]
@@ -57,12 +61,6 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [LabelWidth(200)]
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     public int startingGold;
-
-    [LabelWidth(200)]
-    public int startingMaxRosterSize;
-
-    [LabelWidth(200)]
-    public int startingRecruitsPerDay;
 
     // Audio Settings
     [Header("Audio Settings")]
@@ -302,7 +300,6 @@ public enum StartingSceneSetting
     KingsBlessingEvent = 5,
     CampSiteEvent = 6,
     ShopEventTest = 7,
-    ShrineEventtest = 8,
-    JourneyStartTest = 9,
+    ShrineEventTest = 8
 
 }

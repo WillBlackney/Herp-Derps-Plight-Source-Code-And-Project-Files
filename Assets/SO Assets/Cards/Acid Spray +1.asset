@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Acid Spray +1
   m_EditorClassIdentifier: 
   cardName: Acid Spray +1
-  cardDescription: Remove all Block from target. Apply 5 Poisoned.
+  cardDescription: Remove all Block from target. Apply 4 Poisoned.
   cardSprite: {fileID: 21300000, guid: 9fc9d71819cfd154d882395b9822769d, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -51,7 +51,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '10 '
+    phrase: '4 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -65,6 +65,11 @@ MonoBehaviour:
     cardEffectType: 30
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 2
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -163,6 +168,11 @@ MonoBehaviour:
     cardEffectType: 3
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -204,7 +214,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 21
-      passiveStacks: 10
+      passiveStacks: 4
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

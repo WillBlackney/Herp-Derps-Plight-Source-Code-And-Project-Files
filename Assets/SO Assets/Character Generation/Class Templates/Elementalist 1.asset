@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: Elementalist 1
   m_EditorClassIdentifier: 
   templateName: Elementalist
+  possibleRaces: 0400000005000000020000000800000006000000
   possibleDecks:
   - {fileID: 11400000, guid: a038eaa58eaca0340be04b397f7581a4, type: 2}
   - {fileID: 11400000, guid: db223d86c0edf4443898b84901b940b3, type: 2}
+  - {fileID: 11400000, guid: a8556cdc3472ad744a8ea8148be334e0, type: 2}
+  - {fileID: 11400000, guid: 038d6c09d583fd648ace93ec47b7c79c, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: 71b7fecf586fb3243b5ed314eb66a131, type: 2}
   - {fileID: 11400000, guid: 0149b6bcfa9a7b14b9a41bf9678b38cc, type: 2}
@@ -29,11 +32,11 @@ MonoBehaviour:
     trinketOne: {fileID: 0}
     trinketTwo: {fileID: 0}
   strengthMod: 0
-  intelligenceMod: 2
-  dexterityMod: 1
-  witsMod: 1
-  constitutionMod: 0
-  maxHealth: 100
+  intelligenceMod: 3
+  dexterityMod: 0
+  witsMod: 0
+  constitutionMod: 1
+  maxHealth: 90
   talentPairings:
   - talentSchool: 13
     talentLevel: 2

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Super Nova +1
   m_EditorClassIdentifier: 
   cardName: Super Nova +1
-  cardDescription: Deal 30 Magic damage. Gain 10 Burning. Expend.
+  cardDescription: Apply 10 Burning to target. Apply 2 Burning to self.
   cardSprite: {fileID: 21300000, guid: f61a1440a7cfa354cb03d05f28a7d78b, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
@@ -23,7 +23,7 @@ MonoBehaviour:
   rarity: 3
   upgradeable: 0
   upgradeLevel: 1
-  expend: 1
+  expend: 0
   innate: 0
   fleeting: 0
   unplayable: 0
@@ -37,48 +37,43 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Deal '
-  - color: 2
-    getPhraseFromCardValue: 1
-    cardEffectType: 6
-    phrase: 
-  - color: 9
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: ' Magic '
-  - color: 1
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'damage.
-
-      Apply '
+    phrase: 'Apply '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: '10 '
-  - color: 5
+  - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'Burning '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'to self.
+    phrase: 'to target.
 
-'
+      Apply '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '2 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: Expend
+    phrase: 'Burning '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: .
+    phrase: to self.
   cardEffects:
   - weaponRequirement: 0
-    cardEffectType: 6
+    cardEffectType: 3
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -119,8 +114,8 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: 0
-      passiveStacks: 0
+      passiveData: 2
+      passiveStacks: 10
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
@@ -162,6 +157,11 @@ MonoBehaviour:
     cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -203,7 +203,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 2
-      passiveStacks: 10
+      passiveStacks: 2
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
@@ -213,7 +213,4 @@ MonoBehaviour:
     visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
   cardPassiveEffects: []
-  keyWordModels:
-  - kewWordType: 1
-    weaponRequirement: 0
-    passiveType: 0
+  keyWordModels: []

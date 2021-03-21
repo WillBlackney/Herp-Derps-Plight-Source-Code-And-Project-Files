@@ -1,1 +1,0 @@
-﻿Please consider these scripts as examples only and no more. Each game is unique and you, as a developer, should implement all ingame logic by yourself.

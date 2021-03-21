@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Blight Bomb
   m_EditorClassIdentifier: 
   cardName: Blight Bomb
-  cardDescription: Deal 8 Magic damage. Apply 3 poisoned.
+  cardDescription: Deal 7 Magic damage. Apply 2 Poisoned.
   cardSprite: {fileID: 21300000, guid: a5cba44f0cf02d646b65afcca06ab9bb, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -55,7 +55,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '3 '
+    phrase: '2 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -96,7 +96,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 8
+    baseDamageValue: 7
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
@@ -218,7 +218,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 21
-      passiveStacks: 3
+      passiveStacks: 2
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

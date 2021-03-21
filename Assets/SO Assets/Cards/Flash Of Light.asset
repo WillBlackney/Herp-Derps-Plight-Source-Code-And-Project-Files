@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Flash Of Light
   m_EditorClassIdentifier: 
   cardName: Flash Of Light
-  cardDescription: 'Restore 8 health to an ally. Expend. '
+  cardDescription: 'Restore 6 health to an ally. Expend. '
   cardSprite: {fileID: 21300000, guid: 97c799ce5fe6db74f9e66fad4aa17958, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -41,7 +41,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '4 '
+    phrase: '6 '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -61,6 +61,11 @@ MonoBehaviour:
     cardEffectType: 26
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -94,7 +99,7 @@ MonoBehaviour:
     baseDamageMultiplier: 0
     useEachIndividualsStackCount: 1
     damageType: 0
-    healthRestored: 8
+    healthRestored: 6
     healthLost: 0
     energyGained: 0
     cardsDrawn: 0

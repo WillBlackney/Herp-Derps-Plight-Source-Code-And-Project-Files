@@ -19,17 +19,17 @@ MonoBehaviour:
   startingHealth: 65
   enableFlexibleMaxHealth: 1
   maxHealthFlexAmount: 8
-  maxHealth: 185
+  maxHealth: 155
   startingBlock: 0
   strength: 20
   intelligence: 20
   dexterity: 20
   wits: 20
   constitution: 20
-  initiative: 2
+  initiative: 1
   power: 0
   baseCrit: 0
-  physicalResistance: 0
+  physicalResistance: 30
   magicResistance: 0
   serializedPassiveManager:
     bonusPowerStacks: 0
@@ -88,6 +88,8 @@ MonoBehaviour:
     unbreakableStacks: 0
     pierceStacks: 0
     regenerationStacks: 0
+    hurricaneStacks: 0
+    holierThanThouStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -111,7 +113,7 @@ MonoBehaviour:
     intentImage: 0
     actionLoops: 1
     doThisOnFirstActivation: 0
-    canBeConsecutive: 1
+    canBeConsecutive: 0
     prioritiseWhenRequirementsMet: 0
     actionRequirements: []
     actionEffects:
@@ -179,7 +181,7 @@ MonoBehaviour:
       visualEventsOnFinish: []
       actionType: 0
       effectLoops: 1
-      baseDamage: 25
+      baseDamage: 26
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -196,8 +198,8 @@ MonoBehaviour:
     actionType: 1
     intentImage: 11
     actionLoops: 1
-    doThisOnFirstActivation: 0
-    canBeConsecutive: 0
+    doThisOnFirstActivation: 1
+    canBeConsecutive: 1
     prioritiseWhenRequirementsMet: 0
     actionRequirements: []
     actionEffects:
@@ -295,7 +297,7 @@ MonoBehaviour:
         onCharacter: 0
       actionType: 1
       effectLoops: 1
-      baseDamage: 12
+      baseDamage: 14
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0

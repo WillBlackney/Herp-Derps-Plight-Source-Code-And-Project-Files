@@ -25,6 +25,7 @@ public class CardViewModel : MonoBehaviour
     public DraggingActions draggingActions;
     public Draggable draggable;
     public HoverPreview hoverPreview;
+    public CardSlotHelper mySlotHelper;
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Text References")]

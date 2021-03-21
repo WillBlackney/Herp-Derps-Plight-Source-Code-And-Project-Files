@@ -52,7 +52,6 @@ public class PassiveManagerModel
     public int pistoleroStacks;
     public int fastLearnerStacks;
     public int demonFormStacks;
-    public int undeadStacks;
     public int darkBargainStacks;
     public int volatileStacks;
     public int soulCollectorStacks;
@@ -68,6 +67,8 @@ public class PassiveManagerModel
     public int unbreakableStacks;
     public int pierceStacks;
     public int regenerationStacks;
+    public int hurricaneStacks;
+    public int holierThanThouStacks;
 
     // Aura passives
     public int encouragingAuraStacks;
@@ -84,7 +85,6 @@ public class PassiveManagerModel
 
     // Disabling Debuffs
     public int disarmedStacks;
-    public int blindedStacks;
     public int silencedStacks;
     public int sleepStacks;
 

@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: Warrior 1
   m_EditorClassIdentifier: 
   templateName: Warrior
+  possibleRaces: 0200000005000000070000000900000006000000
   possibleDecks:
   - {fileID: 11400000, guid: 063762ac2e3d8d74e92bd02a960826af, type: 2}
+  - {fileID: 11400000, guid: 86ba4365523635946b8a9a8296411482, type: 2}
+  - {fileID: 11400000, guid: f414612a70c843d44a5a652e2d103f8c, type: 2}
+  - {fileID: 11400000, guid: 3bfadb07785348b4891a5788e5373a6e, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: f1f30e0e5291ae14d9155daf9ddf52d7, type: 2}
   possibleWeapons:
@@ -30,12 +34,12 @@ MonoBehaviour:
     offHandItem: {fileID: 11400000, guid: a49466273aff6954d8e0303879ded604, type: 2}
     trinketOne: {fileID: 0}
     trinketTwo: {fileID: 0}
-  strengthMod: 1
+  strengthMod: 0
   intelligenceMod: 0
-  dexterityMod: 1
+  dexterityMod: 2
   witsMod: 0
   constitutionMod: 2
-  maxHealth: 100
+  maxHealth: 90
   talentPairings:
   - talentSchool: 2
     talentLevel: 1

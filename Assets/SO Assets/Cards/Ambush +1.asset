@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ambush +1
   m_EditorClassIdentifier: 
   cardName: Ambush +1
-  cardDescription: 'Deal 12 Physical damage.
+  cardDescription: 'Deal 7 Physical damage.
 
     Innate.'
   cardSprite: {fileID: 21300000, guid: 2166b9e4977224845816a3314cfc39ee, type: 3}
@@ -63,6 +63,11 @@ MonoBehaviour:
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -85,7 +90,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 12
+    baseDamageValue: 7
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0

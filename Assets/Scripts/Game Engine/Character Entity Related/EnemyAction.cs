@@ -72,7 +72,8 @@ public class ActionRequirement
     }
     public bool ShowReqValue()
     {
-        if (requirementType != ActionRequirementType.HasPassiveTrait)
+        if (requirementType != ActionRequirementType.HasPassiveTrait &&
+            requirementType != ActionRequirementType.AtLeastOneAllyWounded)
         {
             return true;
         }
@@ -85,6 +86,7 @@ public class ActionRequirement
 [Serializable]
 public class EnemyActionEffect
 {
+    [UnityEngine.Header("Visual Events")]
     [VerticalGroup("General Properties")]
     [LabelWidth(150)]
     public AnimationEventData[] visualEventsOnStart;
@@ -93,6 +95,7 @@ public class EnemyActionEffect
     [LabelWidth(150)]
     public AnimationEventData[] visualEventsOnFinish;
 
+    [UnityEngine.Header("General Settings")]
     [VerticalGroup("General Properties")]
     [LabelWidth(150)]
     public ActionType actionType;
@@ -103,6 +106,7 @@ public class EnemyActionEffect
     public int effectLoops = 1;
 
     // damage target
+    [UnityEngine.Header("Damage Settings")]
     [VerticalGroup("Damage Properties")]
     [ShowIf("ShowDamage")]
     [LabelWidth(150)]
@@ -114,6 +118,7 @@ public class EnemyActionEffect
     public DamageType damageType;
 
     // Summon Creature Properties
+    [UnityEngine.Header("Summon Settings")]
     [ShowIf("ShowCharacterSummoned")]
     [LabelWidth(150)]
     public EnemyDataSO characterSummoned;
@@ -134,14 +139,10 @@ public class EnemyActionEffect
     [LabelWidth(150)]
     public AnimationEventData[] summonedCreatureVisualEvents;
 
-    // Heal Properties
-    [VerticalGroup("Healing Properties")]
-    [ShowIf("ShowHealProperties")]
-    [LabelWidth(150)]
-    public int healAmount;   
 
 
     // Status properties
+    [UnityEngine.Header("Passive Settings")]
     [VerticalGroup("Status Properties")]
     [ShowIf("ShowStatus")]
     [LabelWidth(150)]
@@ -152,8 +153,21 @@ public class EnemyActionEffect
     [LabelWidth(150)]
     public int passiveStacks;
 
+    // Heal Properties
+    [UnityEngine.Header("Healing Settings")]
+    [VerticalGroup("Healing Properties")]
+    [ShowIf("AlsoHealSelf")]
+    [LabelWidth(150)]
+    public bool alsoHealSelf;
+
+    [VerticalGroup("Healing Properties")]
+    [LabelWidth(150)]
+    [ShowIf("ShowHealAmount")]
+    public int healAmount;
+
 
     // Block properties
+    [UnityEngine.Header("Block Settings")]
     [VerticalGroup("Block Properties")]
     [ShowIf("ShowBlock")]
     [LabelWidth(150)]
@@ -161,6 +175,7 @@ public class EnemyActionEffect
 
 
     // Add card properties
+    [UnityEngine.Header("Card Settings")]
     [VerticalGroup("Card Properties")]
     [ShowIf("ShowCard")]
     [LabelWidth(150)]
@@ -179,6 +194,14 @@ public class EnemyActionEffect
 
 
     // Inspector bools
+    public bool AlsoHealSelf()
+    {
+        return actionType == ActionType.HealAllAllies;
+    }
+    public bool ShowHealAmount()
+    {
+        return actionType == ActionType.HealAllAllies;
+    }
     public bool ShowCharacterSummoned()
     {
         return actionType == ActionType.SummonCreature;
@@ -195,10 +218,7 @@ public class EnemyActionEffect
             return false;
         }
     }
-    public bool ShowHealProperties()
-    {
-        return actionType == ActionType.HealAlliesAndSelf || actionType == ActionType.HealAlly || actionType == ActionType.HealSelf;
-    }
+
     public bool ShowStatus()
     {
         if (actionType == ActionType.BuffAllAllies ||
