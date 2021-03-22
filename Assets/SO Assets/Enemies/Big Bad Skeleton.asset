@@ -18,8 +18,8 @@ MonoBehaviour:
   overrideStartingHealth: 0
   startingHealth: 65
   enableFlexibleMaxHealth: 1
-  maxHealthFlexAmount: 8
-  maxHealth: 155
+  maxHealthFlexAmount: 5
+  maxHealth: 145
   startingBlock: 0
   strength: 20
   intelligence: 20
@@ -181,7 +181,7 @@ MonoBehaviour:
       visualEventsOnFinish: []
       actionType: 0
       effectLoops: 1
-      baseDamage: 26
+      baseDamage: 25
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -190,11 +190,13 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
+      alsoHealSelf: 0
+      healAmount: 0
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0
-  - actionName: Maul
+  - actionName: Cleave
     actionType: 1
     intentImage: 11
     actionLoops: 1
@@ -297,7 +299,7 @@ MonoBehaviour:
         onCharacter: 0
       actionType: 1
       effectLoops: 1
-      baseDamage: 14
+      baseDamage: 15
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -306,6 +308,8 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
+      alsoHealSelf: 0
+      healAmount: 0
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0

@@ -20,7 +20,7 @@ MonoBehaviour:
   enableFlexibleMaxHealth: 1
   maxHealthFlexAmount: 8
   maxHealth: 200
-  startingBlock: 16
+  startingBlock: 8
   strength: 20
   intelligence: 20
   dexterity: 20
@@ -45,7 +45,7 @@ MonoBehaviour:
     runeStacks: 0
     barrierStacks: 0
     enrageStacks: 0
-    shieldWallStacks: 0
+    shieldWallStacks: 8
     fanOfKnivesStacks: 0
     divineFavourStacks: 0
     phoenixFormStacks: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
       visualEventsOnFinish: []
       actionType: 0
       effectLoops: 1
-      baseDamage: 35
+      baseDamage: 40
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -190,6 +190,8 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
+      alsoHealSelf: 0
+      healAmount: 0
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
@@ -221,6 +223,8 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
+      alsoHealSelf: 0
+      healAmount: 0
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
@@ -344,7 +348,9 @@ MonoBehaviour:
       uiFadeInSpeed: 0
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 11400000, guid: 6d216e783d4ba3a49a8dd267aa727fd3, type: 2}
-      passiveStacks: -3
+      passiveStacks: -2
+      alsoHealSelf: 0
+      healAmount: 0
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0

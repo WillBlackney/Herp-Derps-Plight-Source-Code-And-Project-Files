@@ -290,11 +290,11 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
         Sequence s = DOTween.Sequence();
         playerModel.GetComponent<Animator>().SetTrigger("Move");
         s.Append(playerModel.gameObject.transform.DOMove(playerModelMeetingPos.position, 2f));
-        AudioManager.Instance.FadeInSound(Sound.Character_Footsteps, 1f);
+        AudioManager.Instance.FadeInSound(Sound.Character_Footsteps, .8f);
         s.OnComplete(() =>
         {
             playerModel.GetComponent<Animator>().SetTrigger("Idle");
-            AudioManager.Instance.StopSound(Sound.Character_Footsteps);
+            AudioManager.Instance.FadeOutSound(Sound.Character_Footsteps, 0.1f);
 
         });
     }

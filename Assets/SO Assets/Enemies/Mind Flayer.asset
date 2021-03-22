@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 272d402ffa0a347429dfe06011e3d167, type: 3}
   m_Name: Mind Flayer
   m_EditorClassIdentifier: 
-  enemyName: Sentry
+  enemyName: Mind Flayer
   enemyModelSize: 0
   audioProfile: 4
   overrideStartingHealth: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
       visualEventsOnFinish: []
       actionType: 0
       effectLoops: 1
-      baseDamage: 10
+      baseDamage: 15
       damageType: 2
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -175,6 +175,8 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
+      alsoHealSelf: 0
+      healAmount: 0
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
@@ -246,6 +248,8 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
+      alsoHealSelf: 0
+      healAmount: 0
       blockGained: 0
       cardAdded: {fileID: 11400000, guid: 6c6298096331b0c40b77130a25f22b6c, type: 2}
       copiesAdded: 3

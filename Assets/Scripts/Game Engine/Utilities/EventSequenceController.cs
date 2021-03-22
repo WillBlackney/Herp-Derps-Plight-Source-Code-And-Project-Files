@@ -564,7 +564,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
             // Move characters off screen
             CampSiteController.Instance.MoveCharactersToOffScreenRight(ccList, null);
-            AudioManager.Instance.FadeOutSound(Sound.Character_Footsteps, 3f);
+            AudioManager.Instance.FadeOutSound(Sound.Character_Footsteps, 2.5f);
 
             // Zoom and move camera
             yield return new WaitForSeconds(0.5f);

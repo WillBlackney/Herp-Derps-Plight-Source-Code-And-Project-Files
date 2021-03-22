@@ -44,7 +44,7 @@ public class Draggable : MonoBehaviour
     void Update()
     {       
 
-        if (dragging && !lockedOn)
+        if (dragging && !lockedOn && Da is DragSpellNoTarget)
         {
             Vector3 mousePos = MouseInWorldCoords();
             float distance = Vector3.Distance(transform.position, mousePos);
@@ -55,7 +55,7 @@ public class Draggable : MonoBehaviour
             if (transform.position == mousePos)
                 lockedOn = true;
         }
-        else if (dragging && lockedOn)
+        else if (dragging && lockedOn && Da is DragSpellNoTarget)
         {
             Vector3 mousePos = MouseInWorldCoords();
             transform.position = new Vector3(mousePos.x, mousePos.y, transform.position.z);

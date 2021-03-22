@@ -93,7 +93,7 @@ MonoBehaviour:
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
-    toxicAuraStacks: 2
+    toxicAuraStacks: 1
     hatefulAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
@@ -111,13 +111,13 @@ MonoBehaviour:
   - actionName: Summon Skeleton
     actionType: 13
     intentImage: 13
-    actionLoops: 1
+    actionLoops: 2
     doThisOnFirstActivation: 0
     canBeConsecutive: 1
     prioritiseWhenRequirementsMet: 1
     actionRequirements:
     - requirementType: 11
-      requirementTypeValue: 1
+      requirementTypeValue: 2
       passiveRequired: {fileID: 0}
       statusStacksRequired: 0
     actionEffects:
@@ -165,6 +165,8 @@ MonoBehaviour:
         onCharacter: 1
       passiveApplied: {fileID: 0}
       passiveStacks: 0
+      alsoHealSelf: 0
+      healAmount: 0
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
@@ -227,7 +229,7 @@ MonoBehaviour:
       visualEventsOnFinish: []
       actionType: 0
       effectLoops: 1
-      baseDamage: 13
+      baseDamage: 12
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -236,6 +238,8 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
+      alsoHealSelf: 0
+      healAmount: 0
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0

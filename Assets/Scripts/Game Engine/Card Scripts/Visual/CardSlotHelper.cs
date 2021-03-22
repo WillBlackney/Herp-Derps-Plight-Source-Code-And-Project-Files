@@ -18,7 +18,7 @@ public class CardSlotHelper : MonoBehaviour
 
         // Rotate left or right
         if (myIndex < middleIndex || myIndex > middleIndex)
-            t.DORotate(new Vector3(0, 0, 2.5f * myDif), 0.2f);
+            t.DORotate(new Vector3(0, 0, 2f * myDif), 0.2f);
 
         // Rotate as the centre card
         else
@@ -27,7 +27,7 @@ public class CardSlotHelper : MonoBehaviour
     private void UpdateYDrop(int myIndex, float middleIndex)
     {
         float slotStartY = 0f;
-        float yStep = 0.1f;
+        float yStep = 0.08f;
         float myDif = Mathf.Abs(myIndex - middleIndex);
         t.DOLocalMoveY(slotStartY - (yStep * myDif), 0.2f);
     }

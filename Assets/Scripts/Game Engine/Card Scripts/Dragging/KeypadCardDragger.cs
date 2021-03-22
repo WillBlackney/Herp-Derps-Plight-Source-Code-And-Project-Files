@@ -27,9 +27,13 @@ public class KeypadCardDragger : Singleton<KeypadCardDragger>
 
     private void Update()
     {
-        ListenForRightMouseDown();
-        ListenForLeftMouseDown();
-        ListenForNewNumberKeyPressed();
+        if(GlobalSettings.Instance.deviceMode == DeviceMode.Desktop)
+        {
+            ListenForRightMouseDown();
+            ListenForLeftMouseDown();
+            ListenForNewNumberKeyPressed();
+        }
+       
     }
     private void ListenForNewNumberKeyPressed()
     {

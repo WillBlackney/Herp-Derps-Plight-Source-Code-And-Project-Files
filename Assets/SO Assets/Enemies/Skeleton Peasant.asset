@@ -17,9 +17,9 @@ MonoBehaviour:
   audioProfile: 4
   overrideStartingHealth: 0
   startingHealth: 18
-  enableFlexibleMaxHealth: 1
+  enableFlexibleMaxHealth: 0
   maxHealthFlexAmount: 2
-  maxHealth: 22
+  maxHealth: 8
   startingBlock: 0
   strength: 20
   intelligence: 20
@@ -166,7 +166,7 @@ MonoBehaviour:
       visualEventsOnFinish: []
       actionType: 0
       effectLoops: 1
-      baseDamage: 12
+      baseDamage: 6
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -175,6 +175,8 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
+      alsoHealSelf: 0
+      healAmount: 0
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
