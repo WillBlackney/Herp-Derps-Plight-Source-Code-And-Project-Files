@@ -438,7 +438,11 @@ public enum TextColor
     FireRed = 5,
     ShadowPurple = 6,
     AirBlue = 7,
-    PoisonGreen = 8
+    PoisonGreen = 8,
+    LightRed = 10,
+    LightGreen = 12,
+    RareTextBlue = 11,
+   
 }
 
 #endregion

@@ -18,6 +18,11 @@ public class StateDataSO : ScriptableObject
     [LabelWidth(100)]
     public Rarity rarity;
 
+    [VerticalGroup("Info/Stats")]
+    [LabelWidth(100)]
+    public bool lootable = true;
+
+    [Header("Keywords + Description")]
     [VerticalGroup("List Groups")]
     [LabelWidth(200)]
     public List<KeyWordModel> keyWordModels;
@@ -25,6 +30,21 @@ public class StateDataSO : ScriptableObject
     [VerticalGroup("List Groups")]
     [LabelWidth(200)]
     public List<CustomString> customDescription;
+
+    [Header("Stacking Data")]
+    [VerticalGroup("Stacking Info")]
+    [LabelWidth(200)]
+    public bool hasStacks;
+
+    [VerticalGroup("Stacking Info")]
+    [LabelWidth(200)]
+    [ShowIf("ShowBaseStacks")]
+    public int baseStacks;
+
+    public bool ShowBaseStacks()
+    {
+        return hasStacks;
+    }
 
     // to do: effects of the state
 }

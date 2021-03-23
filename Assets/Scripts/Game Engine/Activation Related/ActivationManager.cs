@@ -47,7 +47,7 @@ public class ActivationManager : Singleton<ActivationManager>
     private int currentTurn;
     #endregion
 
-    // Properties + Accessors
+    // Getters + Accessors
     #region
     public CharacterEntityModel EntityActivated
     {
@@ -151,6 +151,44 @@ public class ActivationManager : Singleton<ActivationManager>
 
             // Wait for character move on screen animations to finish
             VisualEventManager.Instance.InsertTimeDelayInQueue(1.5f);
+
+            // Check "Kings Wrath" state
+            StateData s = StateController.Instance.FindPlayerState(StateName.WrathOfTheKing);
+            if (s != null && s.currentStacks > 0)
+            {
+                Debug.Log("ActivationManager.StartNewTurnSequence() triggering 'Wrath of the King' state effect");
+                StateController.Instance.ModifyStateStacks(s, -1);
+
+                // Notif event
+                foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.AllEnemies)
+                {
+                    // Notification VFX
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateStatusEffect(enemy.characterEntityView.transform.position, "Wrath of the King!"));
+                }
+
+                // Brief pause before damage VFX
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+
+                // Reduce the health of all enemies by 50%
+                foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.AllEnemies)
+                {
+                    // Damage VFX
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateDamageEffect(enemy.characterEntityView.transform.position, (enemy.MaxHealthTotal / 2)));
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateBloodExplosion(enemy.characterEntityView.transform.position));
+
+                    // Modify health
+                    CharacterEntityController.Instance.ModifyHealth(enemy, -(enemy.MaxHealthTotal / 2));
+                }
+
+                // Blood Squelch SFX
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                    AudioManager.Instance.PlaySoundPooled(Sound.Ability_Bloody_Stab));
+
+                VisualEventManager.Instance.InsertTimeDelayInQueue(1f);
+            }
 
             CoroutineData combatStartNotif = new CoroutineData();
             VisualEventManager.Instance.CreateVisualEvent(() => DisplayCombatStartNotification(combatStartNotif), combatStartNotif);

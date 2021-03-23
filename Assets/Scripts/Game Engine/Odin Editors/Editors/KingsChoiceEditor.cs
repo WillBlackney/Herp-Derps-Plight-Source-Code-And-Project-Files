@@ -63,7 +63,6 @@ public class KingsChoiceEditor : OdinMenuEditorWindow
         public CreateNewKingsChoiceData()
         {
             choiceData = CreateInstance<KingChoiceDataSO>();
-            choiceData.choiceDescription = "New Choice Description";
         }
 
         [Button("Add New KingChoiceDataSO")]
@@ -74,7 +73,6 @@ public class KingsChoiceEditor : OdinMenuEditorWindow
 
             // Create the SO 
             choiceData = CreateInstance<KingChoiceDataSO>();
-            choiceData.choiceDescription = "New Choice Description";
         }
 
     }

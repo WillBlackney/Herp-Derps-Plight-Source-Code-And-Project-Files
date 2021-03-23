@@ -1120,7 +1120,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1189831206813790406
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2521,6 +2521,7 @@ MonoBehaviour:
   draggingActions: {fileID: 0}
   draggable: {fileID: 0}
   hoverPreview: {fileID: 0}
+  mySlotHelper: {fileID: 0}
   nameText: {fileID: 8785619405684675985}
   descriptionText: {fileID: 7441281725316709466}
   energyText: {fileID: 1918851185617956984}

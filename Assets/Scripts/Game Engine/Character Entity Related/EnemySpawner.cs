@@ -8,9 +8,7 @@ public class EnemySpawner : Singleton<EnemySpawner>
     #region
 
 
-    #endregion
-
-   
+    #endregion   
 
     // Enemy Spawning + Related
     #region
@@ -27,6 +25,7 @@ public class EnemySpawner : Singleton<EnemySpawner>
             EnemyDataSO data = enemyGroup.possibleEnemies[randomIndex];
 
             CharacterEntityController.Instance.CreateEnemyCharacter(data, LevelManager.Instance.GetNextAvailableEnemyNode());
+
         }
 
     }

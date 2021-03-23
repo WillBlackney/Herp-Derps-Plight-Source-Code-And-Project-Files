@@ -13,6 +13,9 @@ public static class TextLogic
     public static string blueNumber = "<color=#92E0FF>"; 
     public static string neutralYellow = "<color=#F8FF00>";
     public static string redText = "<color=#FF6262>";
+    public static string lightGreen = "<color =#57FF34>";
+    public static string lightRed = "<color =#FF4747>";
+    public static string rareTextBlue = "<color =#90FFD0>";
 
     public static string physical = "<color=#FF9500>";
     public static string magic = "<color=#C975FF>";
@@ -21,11 +24,7 @@ public static class TextLogic
     public static string shadow = "<color=#CF01BC>";
     public static string air = "<color=#36EDFF>";
     public static string poison = "<color=#00EC4A>";
-
-    public static string commonRarity = "<color=#FFFFFF>";
-    public static string rareRarity = "<color=#6BFFE2>";
-    public static string epicRarity = "<color=#D14EFF>";
-    public static string legendaryRarity = "<color=#FFD440>";
+  
     #endregion
 
     // Build stuff
@@ -96,6 +95,20 @@ public static class TextLogic
         else if (color == TextColor.FireRed)
         {
             colorCodeReturned = fire;
+        }
+
+        // Other misc colours
+        else if (color == TextColor.LightGreen)
+        {
+            colorCodeReturned = lightGreen;
+        }
+        else if (color == TextColor.LightRed)
+        {
+            colorCodeReturned = lightRed;
+        }
+        else if (color == TextColor.RareTextBlue)
+        {
+            colorCodeReturned = rareTextBlue;
         }
 
         else

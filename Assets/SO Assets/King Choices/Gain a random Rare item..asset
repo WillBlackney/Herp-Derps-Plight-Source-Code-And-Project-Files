@@ -12,7 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce54fe6d38fa1ac4d921d5b2652a68e3, type: 3}
   m_Name: Gain a random Rare item.
   m_EditorClassIdentifier: 
-  choiceDescription: Gain a random <color=#92E0FF>Rare<color=#FFFFFF> item.
+  choiceDescription:
+  - color: 12
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Gain a random '
+  - color: 11
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Rare '
+  - color: 12
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: item.
   effect: 13
   category: 1
   impactLevel: 2

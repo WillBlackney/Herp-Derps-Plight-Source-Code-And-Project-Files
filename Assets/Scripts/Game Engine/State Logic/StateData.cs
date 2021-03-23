@@ -9,6 +9,10 @@ public class StateData
     public Rarity rarity;
     public List<KeyWordModel> keyWordModels;
     public List<CustomString> customDescription;
+    public bool lootable = true;
+
+    public bool hasStacks;
+    public int currentStacks;
     
 
     public Sprite StateSprite

@@ -18,7 +18,10 @@ public class StateIcon : MonoBehaviour
     public GameObject visualParent;
     public Image stateImage;
     public Image frameImage;
+    public GameObject greyOutParent;
     public CanvasGroup glowUnderlayCg;
+    public GameObject stacksVisualParent;
+    public TextMeshProUGUI stacksText;
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Description Panel Components")]
