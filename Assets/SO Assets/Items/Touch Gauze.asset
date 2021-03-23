@@ -10,34 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9a6346e66fdb7e47bd30f751d29c6a7, type: 3}
-  m_Name: Amber Rune
+  m_Name: Touch Gauze
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: 0026d55d00130f4448c7f7300bcca0cd, type: 3}
-  itemName: Amber Rune
+  itemSprite: {fileID: 21300000, guid: 48e33e43ae2b88b48a3fb165fb0fa2ed, type: 3}
+  itemName: Touch Gauze
   itemType: 5
-  itemRarity: 1
+  itemRarity: 3
   lootable: 1
   passivePairings:
-  - passiveData: 26
-    passiveStacks: 4
+  - passiveData: 73
+    passiveStacks: 3
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'On activation start, gain '
+    phrase: 'On activation start, recover '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '4 '
-  - color: 3
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: Block
+    phrase: '3 '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: .
+    phrase: health.
   keyWordModels:
-  - kewWordType: 9
+  - kewWordType: 8
     weaponRequirement: 0
-    passiveType: 0
+    passiveType: 73

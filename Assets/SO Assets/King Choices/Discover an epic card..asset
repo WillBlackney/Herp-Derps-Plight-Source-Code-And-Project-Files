@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce54fe6d38fa1ac4d921d5b2652a68e3, type: 3}
   m_Name: Discover an epic card.
   m_EditorClassIdentifier: 
-  choiceDescription: Discover an epic card.
+  choiceDescription: Discover an <color=#D14EFF>Epic<color=#FFFFFF> card.
   effect: 1
   category: 1
   impactLevel: 2

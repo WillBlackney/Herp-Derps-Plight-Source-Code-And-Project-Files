@@ -271,23 +271,21 @@ public class LootController : Singleton<LootController>
             newLoot.allCharacterCardChoices[i] = GenerateCharacterCardLootChoices(CharacterDataController.Instance.AllPlayerCharacters[i]);
         }
 
-        // Trinket/Item
+        // Roll for a trinket reward
         bool shouldGetTrinket = false;
-
         int trinketRoll = RandomGenerator.NumberBetween(1, 100);
 
         if (JourneyManager.Instance.CurrentEncounter == EncounterType.BasicEnemy &&
-            trinketRoll <= GlobalSettings.Instance.basicTrinketProbability)        
+         trinketRoll <= GlobalSettings.Instance.basicTrinketProbability)
             shouldGetTrinket = true;
 
-        else if (JourneyManager.Instance.CurrentEncounter == EncounterType.EliteEnemy &&
+        if (JourneyManager.Instance.CurrentEncounter == EncounterType.EliteEnemy &&
           trinketRoll <= GlobalSettings.Instance.eliteTrinketProbability)
             shouldGetTrinket = true;
 
-        if (shouldGetTrinket)
-        {
-            newLoot.itemReward = GetRandomTrinketLootReward();
-        }
+        // Rolled successfully for trinket?
+        if (shouldGetTrinket)        
+            newLoot.itemReward = GetRandomTrinketLootReward();        
 
         return newLoot;
     }

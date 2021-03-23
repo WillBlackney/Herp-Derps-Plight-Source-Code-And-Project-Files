@@ -12,10 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce54fe6d38fa1ac4d921d5b2652a68e3, type: 3}
   m_Name: Gain a random common card.
   m_EditorClassIdentifier: 
-  choiceDescription: Gain a random common card.
+  choiceDescription: Gain a random Common card.
   effect: 3
   category: 1
   impactLevel: 1
   maxHealthGainedOrLost: 0
   healthGainedOrLost: 0
   randomCardRarity: 1
+  discoveryCardRarity: 0
+  randomCardsUpgraded: 0
+  randomCardsTransformed: 0
+  attributeModified: 0
+  attributeAmountModified: 0
+  possiblePassives: []
+  afflicationsGained: 0
+  goldGainedOrLost: 0
+  itemRarity: 0

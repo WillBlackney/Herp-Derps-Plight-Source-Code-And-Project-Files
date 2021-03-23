@@ -63,15 +63,15 @@ public class ItemPricePairing
         itemData = data;
         if (data.itemRarity == Rarity.Common)
         {
-            goldCost = RandomGenerator.NumberBetween(GlobalSettings.Instance.commonCardCostLowerLimit, GlobalSettings.Instance.commonCardCostUpperLimit);
+            goldCost = RandomGenerator.NumberBetween(GlobalSettings.Instance.commonItemCostLowerLimit, GlobalSettings.Instance.commonItemCostUpperLimit);
         }
         else if (data.itemRarity == Rarity.Rare)
         {
-            goldCost = RandomGenerator.NumberBetween(GlobalSettings.Instance.rareCardCostLowerLimit, GlobalSettings.Instance.rareCardCostUpperLimit);
+            goldCost = RandomGenerator.NumberBetween(GlobalSettings.Instance.rareItemCostLowerLimit, GlobalSettings.Instance.rareItemCostUpperLimit);
         }
         else if (data.itemRarity == Rarity.Epic)
         {
-            goldCost = RandomGenerator.NumberBetween(GlobalSettings.Instance.epicCardCostLowerLimit, GlobalSettings.Instance.epicCardCostUpperLimit);
+            goldCost = RandomGenerator.NumberBetween(GlobalSettings.Instance.epicItemCostLowerLimit, GlobalSettings.Instance.epicItemCostUpperLimit);
         }
     }
 }

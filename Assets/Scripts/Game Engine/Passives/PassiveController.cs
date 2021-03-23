@@ -366,6 +366,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyHatefulAura(newClone, originalData.hatefulAuraStacks, false);
         }
+        if (originalData.intimidatingAuraStacks != 0)
+        {
+            ModifyIntimidatingAura(newClone, originalData.intimidatingAuraStacks, false);
+        }
         #endregion
 
         // Dot Passives
@@ -502,6 +506,7 @@ public class PassiveController : Singleton<PassiveController>
         pManager.toxicAuraStacks = original.toxicAuraStacks;
         pManager.guardianAuraStacks = original.guardianAuraStacks;
         pManager.hatefulAuraStacks = original.hatefulAuraStacks;
+        pManager.intimidatingAuraStacks = original.intimidatingAuraStacks;
 
         pManager.wrathStacks = original.wrathStacks;
         pManager.gritStacks = original.gritStacks;
@@ -830,6 +835,10 @@ public class PassiveController : Singleton<PassiveController>
         else if (originalData == "Hateful Aura")
         {
             ModifyHatefulAura(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Intimidating Aura")
+        {
+            ModifyIntimidatingAura(pManager, stacks, showVFX, vfxDelay);
         }
         #endregion
 
@@ -4705,6 +4714,66 @@ public class PassiveController : Singleton<PassiveController>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Pierce Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+
+
+    }
+
+    public void ModifyIntimidatingAura(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyIntimidatingAura() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Intimidating Aura");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.intimidatingAuraStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Intimidating Aura");
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Intimidating Aura Removed");
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
                 });
             }

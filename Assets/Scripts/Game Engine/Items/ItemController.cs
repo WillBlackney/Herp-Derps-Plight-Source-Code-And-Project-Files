@@ -74,7 +74,6 @@ public class ItemController : Singleton<ItemController>
     public ItemData CloneItem(ItemData data)
     {
         ItemData i = new ItemData();
-        //i.itemSprite = data.itemSprite;
         i.itemName = data.itemName;
         i.itemType = data.itemType;
         i.itemRarity = data.itemRarity;

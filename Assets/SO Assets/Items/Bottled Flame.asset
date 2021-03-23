@@ -32,15 +32,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'and '
-  - color: 3
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'Ranged Attack '
-  - color: 1
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'cards that reduce health apply '
+    phrase: 'cards apply '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -48,7 +40,7 @@ MonoBehaviour:
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: Burning
+    phrase: 'Burning '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0

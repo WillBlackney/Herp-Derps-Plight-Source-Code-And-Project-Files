@@ -15,7 +15,7 @@ MonoBehaviour:
   itemSprite: {fileID: 21300000, guid: 05f48aa87a2b11d4f9c69f768df331b3, type: 3}
   itemName: Perfect Pip
   itemType: 5
-  itemRarity: 2
+  itemRarity: 1
   lootable: 1
   passivePairings:
   - passiveData: 24

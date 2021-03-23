@@ -10,25 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9a6346e66fdb7e47bd30f751d29c6a7, type: 3}
-  m_Name: Corrupted Seed
+  m_Name: Strong Coffee
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: 165004f167f097e41942a0c7c9359846, type: 3}
-  itemName: Corrupted Seed
+  itemSprite: {fileID: 21300000, guid: 44de76cc0941a284c9466bfcd41df27a, type: 3}
+  itemName: Strong Coffee
   itemType: 5
-  itemRarity: 1
+  itemRarity: 2
   lootable: 1
   passivePairings:
-  - passiveData: 22
+  - passiveData: 31
+    passiveStacks: 1
+  - passiveData: 34
     passiveStacks: 1
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Your '
+    phrase: 'Gain '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '1 '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'extra '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Melee Attack '
+    phrase: 'Energy '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -36,24 +46,12 @@ MonoBehaviour:
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Ranged Attack '
+    phrase: 'Draw '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'cards that reduce health apply '
-  - color: 2
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: '1 '
-  - color: 3
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: Poisoned
-  - color: 1
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: .
+    phrase: on your first activation.
   keyWordModels:
-  - kewWordType: 8
+  - kewWordType: 10
     weaponRequirement: 0
-    passiveType: 21
+    passiveType: 0

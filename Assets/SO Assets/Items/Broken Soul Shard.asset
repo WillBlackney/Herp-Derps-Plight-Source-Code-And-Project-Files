@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a6346e66fdb7e47bd30f751d29c6a7, type: 3}
   m_Name: Broken Soul Shard
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: f5bb14b6a0539fc46a5f120e4d70ed43, type: 3}
+  itemSprite: {fileID: 21300000, guid: bfe114624a32158469bc642c2f2c06ab, type: 3}
   itemName: Broken Soul Shard
   itemType: 5
   itemRarity: 1

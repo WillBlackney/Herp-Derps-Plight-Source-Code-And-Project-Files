@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a6346e66fdb7e47bd30f751d29c6a7, type: 3}
   m_Name: Spikey Plate
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: 0caaa07bf72dfb94f934e5521fc32845, type: 3}
+  itemSprite: {fileID: 21300000, guid: d542342ce0c440a40a59b680daa4ee1e, type: 3}
   itemName: Spikey Plate
   itemType: 5
   itemRarity: 1

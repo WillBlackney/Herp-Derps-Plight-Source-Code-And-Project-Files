@@ -225,6 +225,7 @@ public enum Passive
     Inflamed = 65,
     Infuriated = 16,
     Initiative = 17,
+    IntimidatingAura = 76,
     LongDraw = 51,
     LordOfStorms = 57,
     Overload = 18,
