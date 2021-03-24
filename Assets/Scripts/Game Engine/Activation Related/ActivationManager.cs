@@ -190,6 +190,43 @@ public class ActivationManager : Singleton<ActivationManager>
                 VisualEventManager.Instance.InsertTimeDelayInQueue(1f);
             }
 
+            // Check "Contract Killers" state
+            StateData ck = StateController.Instance.FindPlayerState(StateName.ContractKillers);
+            if (ck != null && JourneyManager.Instance.CurrentEncounter == EncounterType.EliteEnemy )
+            {
+                Debug.Log("ActivationManager.StartNewTurnSequence() triggering 'Contract Killers' state effect");
+
+                // Notif event
+                foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.AllEnemies)
+                {
+                    // Notification VFX
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateStatusEffect(enemy.characterEntityView.transform.position, "Contract Killers!"));
+                }
+
+                // Brief pause before damage VFX
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+
+                // Reduce the health of all enemies by 50%
+                foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.AllEnemies)
+                {
+                    // Damage VFX
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateDamageEffect(enemy.characterEntityView.transform.position, (enemy.MaxHealthTotal / 4)));
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateBloodExplosion(enemy.characterEntityView.transform.position));
+
+                    // Modify health
+                    CharacterEntityController.Instance.ModifyHealth(enemy, -(enemy.MaxHealthTotal / 4));
+                }
+
+                // Blood Squelch SFX
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                    AudioManager.Instance.PlaySoundPooled(Sound.Ability_Bloody_Stab));
+
+                VisualEventManager.Instance.InsertTimeDelayInQueue(1f);
+            }
+
             CoroutineData combatStartNotif = new CoroutineData();
             VisualEventManager.Instance.CreateVisualEvent(() => DisplayCombatStartNotification(combatStartNotif), combatStartNotif);
 

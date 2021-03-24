@@ -51,6 +51,9 @@ public class SerializedPassiveManagerModel
     [BoxGroup("Special Defensive Passives")]
     [LabelWidth(200)]
     public int barrierStacks;
+    [BoxGroup("Special Defensive Passives")]
+    [LabelWidth(200)]
+    public int incorporealStacks;
 
     // Buff Passives
     [BoxGroup("Buff Passives", centerLabel: true)]

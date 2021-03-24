@@ -921,13 +921,17 @@ public class CardController : Singleton<CardController>
 
                     if(target != null)
                     {
-                        damageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(card.owner, target, matchingEffect.damageType, matchingEffect.baseDamageValue, card, matchingEffect, false);
+                        if (target.pManager.incorporealStacks > 0)
+                            damageValue = 1;
+                        else
+                            damageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(card.owner, target, matchingEffect.damageType, matchingEffect.baseDamageValue, card, matchingEffect, false);
                     }
                     else
                     {
                         damageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(card.owner, null, matchingEffect.damageType, matchingEffect.baseDamageValue, card, matchingEffect, false);
                     }
 
+                    
                     cs.phrase = damageValue.ToString();
                 }
 
@@ -2128,7 +2132,7 @@ public class CardController : Singleton<CardController>
 
             // Notication vfx
             VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(owner.characterEntityView.transform.position, "Recycling!"), QueuePosition.Back, 0, 0.5f);
+                VisualEffectManager.Instance.CreateStatusEffect(owner.characterEntityView.transform.position, "Recycling!"), QueuePosition.Back, 0, 0.25f);
         }
 
         // Check 'Adaptation' state

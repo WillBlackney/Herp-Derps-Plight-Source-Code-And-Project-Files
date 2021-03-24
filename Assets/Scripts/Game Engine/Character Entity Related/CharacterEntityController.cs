@@ -347,24 +347,13 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             int randomMaxHealth = RandomGenerator.NumberBetween(lower, upper);
             ModifyMaxHealth(character, randomMaxHealth);
         }
-        else
-        {
-            ModifyMaxHealth(character, data.maxHealth);
-        }
+        else        
+            ModifyMaxHealth(character, data.maxHealth);        
         
-        if (data.overrideStartingHealth)
-        {            
-            ModifyHealth(character, data.startingHealth);
-        }
+        if (data.overrideStartingHealth)                    
+            ModifyHealth(character, data.startingHealth);        
         else
-        {
-            // Check 'Contract Killers' state
-            if (JourneyManager.Instance.CurrentEncounter == EncounterType.EliteEnemy &&
-                StateController.Instance.DoesPlayerHaveState(StateName.ContractKillers))        
-                ModifyHealth(character, (int) (character.maxHealth * 0.75f));            
-            else
-                ModifyHealth(character, character.maxHealth);
-        }
+            ModifyHealth(character, character.maxHealth);
 
         // Set starting block
         GainBlock(character, data.startingBlock, false);
@@ -473,6 +462,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         {
             CharacterDataController.Instance.SetCharacterHealth(character.characterData, character.health);
         }
+
+        Debug.LogWarning(character.myName + " health value = " + character.health.ToString());
 
         VisualEventManager.Instance.CreateVisualEvent(() => UpdateHealthGUIElements(character, finalHealthValue, character.MaxHealthTotal), QueuePosition.Back, 0, 0);
     }

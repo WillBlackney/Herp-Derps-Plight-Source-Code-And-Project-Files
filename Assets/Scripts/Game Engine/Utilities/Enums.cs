@@ -222,6 +222,7 @@ public enum Passive
     HatefulAura = 62,
     HolierThanThou = 75,
     Hurricane = 74,
+    Incorporeal = 77,
     Inflamed = 65,
     Infuriated = 16,
     Initiative = 17,
