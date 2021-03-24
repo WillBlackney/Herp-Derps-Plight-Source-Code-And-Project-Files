@@ -860,10 +860,6 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             // Gain Energy
             ModifyEnergy(character, energyGain);
 
-            // Check 'Eagerness' state
-            if (StateController.Instance.DoesPlayerHaveState(StateName.Eagerness))
-                ModifyEnergy(character, 1);
-
             // Update energy text
             VisualEventManager.Instance.CreateVisualEvent(() => UpdateEnergyGUI(character.characterEntityView, character.energy), QueuePosition.Back, 0, 0);
         }

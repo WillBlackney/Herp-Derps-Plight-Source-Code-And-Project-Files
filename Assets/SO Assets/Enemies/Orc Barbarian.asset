@@ -18,8 +18,8 @@ MonoBehaviour:
   overrideStartingHealth: 0
   startingHealth: 30
   enableFlexibleMaxHealth: 1
-  maxHealthFlexAmount: 3
-  maxHealth: 75
+  maxHealthFlexAmount: 4
+  maxHealth: 68
   startingBlock: 0
   strength: 20
   intelligence: 20
@@ -95,6 +95,7 @@ MonoBehaviour:
     guardianAuraStacks: 0
     toxicAuraStacks: 0
     hatefulAuraStacks: 0
+    intimidatingAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -164,6 +165,8 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 11400000, guid: 404e8865747302a4380f96d3e7ea3f43, type: 2}
       passiveStacks: 3
+      alsoHealSelf: 0
+      healAmount: 0
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
@@ -241,7 +244,7 @@ MonoBehaviour:
       visualEventsOnFinish: []
       actionType: 0
       effectLoops: 1
-      baseDamage: 7
+      baseDamage: 6
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -250,6 +253,8 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
+      alsoHealSelf: 0
+      healAmount: 0
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0

@@ -24,7 +24,7 @@ MonoBehaviour:
   - color: 12
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: item.
+    phrase: trinket.
   effect: 13
   category: 1
   impactLevel: 2
@@ -40,3 +40,4 @@ MonoBehaviour:
   afflicationsGained: 0
   goldGainedOrLost: 0
   itemRarity: 2
+  stateGained: 0

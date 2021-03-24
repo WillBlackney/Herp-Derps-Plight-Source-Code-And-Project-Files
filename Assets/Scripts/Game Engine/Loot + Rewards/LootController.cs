@@ -110,7 +110,7 @@ public class LootController : Singleton<LootController>
         {
             ShowLootTab(itemLootTab);
             itemLootTab.descriptionText.text = "Trinket: " + CurrentLootResultData.itemReward.itemName;
-            itemLootTab.typeImage.sprite = CurrentLootResultData.itemReward.GetMySprite();
+            itemLootTab.typeImage.sprite = CurrentLootResultData.itemReward.ItemSprite;
         }
     }
     public void BuildChooseCardScreenCardsFromData(List<CardData> cardData)

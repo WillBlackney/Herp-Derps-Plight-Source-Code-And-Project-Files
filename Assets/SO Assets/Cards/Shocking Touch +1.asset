@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shocking Touch +1
   m_EditorClassIdentifier: 
   cardName: Shocking Touch +1
-  cardDescription: Whenever you play a Melee Attack card, gain 1 Overload. Innate.
+  cardDescription: 'Whenever you play a Melee Attack card, gain 1 Overload. '
   cardSprite: {fileID: 21300000, guid: 93daf307f4d6a9845bd66a1a02d8fb31, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -24,7 +24,7 @@ MonoBehaviour:
   upgradeable: 0
   upgradeLevel: 1
   expend: 0
-  innate: 1
+  innate: 0
   fleeting: 0
   unplayable: 0
   lifeSteal: 0
@@ -60,16 +60,9 @@ MonoBehaviour:
     phrase: '.
 
 '
-  - color: 3
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: Innate
-  - color: 0
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: .
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
@@ -163,6 +156,3 @@ MonoBehaviour:
   - kewWordType: 8
     weaponRequirement: 0
     passiveType: 18
-  - kewWordType: 2
-    weaponRequirement: 0
-    passiveType: 0

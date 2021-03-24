@@ -19,7 +19,7 @@ MonoBehaviour:
   startingHealth: 0
   enableFlexibleMaxHealth: 1
   maxHealthFlexAmount: 6
-  maxHealth: 160
+  maxHealth: 170
   startingBlock: 0
   strength: 20
   intelligence: 20
@@ -95,6 +95,7 @@ MonoBehaviour:
     guardianAuraStacks: 0
     toxicAuraStacks: 1
     hatefulAuraStacks: 0
+    intimidatingAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0

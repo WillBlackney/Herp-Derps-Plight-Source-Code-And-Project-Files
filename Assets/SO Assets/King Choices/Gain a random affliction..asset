@@ -16,7 +16,7 @@ MonoBehaviour:
   - color: 10
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: Gain a random
+    phrase: 'Gain a random '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -40,3 +40,4 @@ MonoBehaviour:
   afflicationsGained: 1
   goldGainedOrLost: 0
   itemRarity: 0
+  stateGained: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shadowmancer_1
   m_EditorClassIdentifier: 
   myName: Sabrina
-  myClassName: Blood Mage
+  myClassName: Shadowmancer
   race: 4
   audioProfile: 2
   health: 90
@@ -94,6 +94,7 @@ MonoBehaviour:
     guardianAuraStacks: 0
     toxicAuraStacks: 0
     hatefulAuraStacks: 0
+    intimidatingAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -121,8 +122,8 @@ MonoBehaviour:
   - Elf_Head_5
   - Dark_Elf_Right_Hand
   - Dark_Elf_Right_Leg
-  - Red_Hood_Head_Wear
-  - Red_Regal_Chest_Wear
+  - Necromancer_Head_Wear
+  - Black_Necromancer_Chest_Wear
   serializedItemManager:
     mainHandItem: {fileID: 11400000, guid: bfbdb5e21e389ab4c9aae5b49350a1d0, type: 2}
     offHandItem: {fileID: 0}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a6346e66fdb7e47bd30f751d29c6a7, type: 3}
   m_Name: Bottled Flame
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: 7f99a7b2cf2908d43b0f8c4065807c7b, type: 3}
+  itemSprite: {fileID: 21300000, guid: 486f253cf219e9949bf336182b3b0cc7, type: 3}
   itemName: Bottled Flame
   itemType: 5
   itemRarity: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gain 2 Strength.
   m_EditorClassIdentifier: 
   choiceDescription:
-  - color: 1
+  - color: 12
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'Gain 2 '
@@ -40,3 +40,4 @@ MonoBehaviour:
   afflicationsGained: 0
   goldGainedOrLost: 0
   itemRarity: 0
+  stateGained: 0

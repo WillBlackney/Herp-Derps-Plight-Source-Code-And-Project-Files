@@ -500,6 +500,15 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
             FadeContinueButton(1, 1);
             SetContinueButtonInteractions(true);
         }
+        else if (button.myPairingData.benefitData.effect == KingChoiceEffectType.GainState)
+        {
+            TriggerKingsChoiceEffect(button.myPairingData.benefitData);
+            TriggerKingsChoiceEffect(button.myPairingData.conseqenceData);
+
+            FadeOutChoiceButtons();
+            FadeContinueButton(1, 1);
+            SetContinueButtonInteractions(true);
+        }
         else if (button.myPairingData.benefitData.effect == KingChoiceEffectType.GainRandomAffliction)
         {
             TriggerKingsChoiceEffect(button.myPairingData.benefitData);

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a6346e66fdb7e47bd30f751d29c6a7, type: 3}
   m_Name: Templar Ring
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: b52dbe7ffafac1646b524092e648d8eb, type: 3}
+  itemSprite: {fileID: 21300000, guid: 9c8090429e716d443a9da2d1868bb4cf, type: 3}
   itemName: Templar Ring
   itemType: 5
   itemRarity: 2
