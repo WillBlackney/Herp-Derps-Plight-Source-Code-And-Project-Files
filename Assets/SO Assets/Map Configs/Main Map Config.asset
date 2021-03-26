@@ -25,10 +25,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3a7b0d6173b42c742821ba17d90fb3c1, type: 2}
   - {fileID: 11400000, guid: 1b7b1a9ad36c8684fa05404168d5f6ab, type: 2}
   numOfPreBossNodes:
-    min: 4
-    max: 5
-  numOfStartingNodes:
     min: 3
+    max: 3
+  numOfStartingNodes:
+    min: 4
     max: 4
   layers:
   - nodeType: 1
@@ -45,7 +45,7 @@ MonoBehaviour:
       min: 2
       max: 3
     nodesApartDistance: 2
-    randomizePosition: 0.5
+    randomizePosition: 0.35
     randomizeNodes: 0.66
     guaranteeAtleastOneRandom: 1
     possibleRandomNodeTypes: 0200000007000000
@@ -54,7 +54,7 @@ MonoBehaviour:
       min: 2
       max: 3
     nodesApartDistance: 2
-    randomizePosition: 0.5
+    randomizePosition: 0.35
     randomizeNodes: 0.35
     guaranteeAtleastOneRandom: 1
     possibleRandomNodeTypes: 0200000007000000
@@ -63,7 +63,7 @@ MonoBehaviour:
       min: 2
       max: 3
     nodesApartDistance: 2
-    randomizePosition: 0.5
+    randomizePosition: 0.35
     randomizeNodes: 0
     guaranteeAtleastOneRandom: 0
     possibleRandomNodeTypes: 020000000600000007000000
@@ -90,7 +90,7 @@ MonoBehaviour:
       min: 2
       max: 3
     nodesApartDistance: 2
-    randomizePosition: 0.5
+    randomizePosition: 0.35
     randomizeNodes: 0.35
     guaranteeAtleastOneRandom: 1
     possibleRandomNodeTypes: 0200000007000000
@@ -99,7 +99,7 @@ MonoBehaviour:
       min: 2
       max: 3
     nodesApartDistance: 2
-    randomizePosition: 0.5
+    randomizePosition: 0.35
     randomizeNodes: 0.7
     guaranteeAtleastOneRandom: 1
     possibleRandomNodeTypes: 020000000100000007000000
@@ -108,7 +108,7 @@ MonoBehaviour:
       min: 2
       max: 3
     nodesApartDistance: 2
-    randomizePosition: 0.5
+    randomizePosition: 0.35
     randomizeNodes: 0.35
     guaranteeAtleastOneRandom: 1
     possibleRandomNodeTypes: 0200000007000000
@@ -117,7 +117,7 @@ MonoBehaviour:
       min: 2
       max: 3
     nodesApartDistance: 2
-    randomizePosition: 0.5
+    randomizePosition: 0.35
     randomizeNodes: 0
     guaranteeAtleastOneRandom: 0
     possibleRandomNodeTypes: 020000000600000007000000
@@ -126,7 +126,7 @@ MonoBehaviour:
       min: 2
       max: 3
     nodesApartDistance: 2
-    randomizePosition: 0.5
+    randomizePosition: 0.35
     randomizeNodes: 0.35
     guaranteeAtleastOneRandom: 1
     possibleRandomNodeTypes: 0200000007000000
@@ -135,7 +135,7 @@ MonoBehaviour:
       min: 2
       max: 3
     nodesApartDistance: 2
-    randomizePosition: 0.5
+    randomizePosition: 0.35
     randomizeNodes: 0.7
     guaranteeAtleastOneRandom: 1
     possibleRandomNodeTypes: 020000000100000007000000
@@ -153,7 +153,7 @@ MonoBehaviour:
       min: 2
       max: 3
     nodesApartDistance: 2
-    randomizePosition: 0.5
+    randomizePosition: 0.35
     randomizeNodes: 0
     guaranteeAtleastOneRandom: 0
     possibleRandomNodeTypes: 
@@ -162,7 +162,7 @@ MonoBehaviour:
       min: 2
       max: 3
     nodesApartDistance: 2
-    randomizePosition: 0.5
+    randomizePosition: 0.35
     randomizeNodes: 0.35
     guaranteeAtleastOneRandom: 1
     possibleRandomNodeTypes: 0200000007000000
@@ -171,7 +171,7 @@ MonoBehaviour:
       min: 2
       max: 3
     nodesApartDistance: 2
-    randomizePosition: 0.5
+    randomizePosition: 0.35
     randomizeNodes: 0.7
     guaranteeAtleastOneRandom: 1
     possibleRandomNodeTypes: 020000000100000007000000
@@ -180,7 +180,7 @@ MonoBehaviour:
       min: 2
       max: 3
     nodesApartDistance: 2
-    randomizePosition: 0.5
+    randomizePosition: 0.35
     randomizeNodes: 0.35
     guaranteeAtleastOneRandom: 1
     possibleRandomNodeTypes: 020000000600000007000000
@@ -189,7 +189,7 @@ MonoBehaviour:
       min: 2
       max: 3
     nodesApartDistance: 2
-    randomizePosition: 0.5
+    randomizePosition: 0.35
     randomizeNodes: 0.35
     guaranteeAtleastOneRandom: 1
     possibleRandomNodeTypes: 0200000007000000
@@ -198,7 +198,7 @@ MonoBehaviour:
       min: 2
       max: 3
     nodesApartDistance: 2
-    randomizePosition: 0.5
+    randomizePosition: 0.35
     randomizeNodes: 0
     guaranteeAtleastOneRandom: 0
     possibleRandomNodeTypes: 

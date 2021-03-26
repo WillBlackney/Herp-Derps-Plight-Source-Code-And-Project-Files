@@ -7,6 +7,8 @@ namespace MapSystem
 {
     public class MapGenerator: Singleton<MapGenerator>
     {
+        // Properties + Components
+        #region
         private MapConfig config;
 
         private readonly List<EncounterType> RandomNodes = new List<EncounterType>
@@ -36,8 +38,10 @@ namespace MapSystem
 
         private List<Node> previousLayerData = new List<Node>();
 
-      
+        #endregion
 
+        // Getters + Accessors
+        #region
         public int SpawnedCampSites
         {
             get { return spawnedCampSites; }
@@ -68,6 +72,7 @@ namespace MapSystem
             get { return timeTilEliteAllowed; }
             private set { timeTilEliteAllowed = value; }
         }
+        #endregion
 
 
         public void ResetGenerationSettings()

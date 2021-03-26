@@ -8,5 +8,6 @@ namespace MapSystem
     {
         public Sprite sprite;
         public EncounterType nodeType;
+        public Color color;
     }
 }
