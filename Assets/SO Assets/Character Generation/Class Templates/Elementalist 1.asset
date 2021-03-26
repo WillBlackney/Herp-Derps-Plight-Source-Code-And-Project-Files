@@ -23,10 +23,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 71b7fecf586fb3243b5ed314eb66a131, type: 2}
   - {fileID: 11400000, guid: 0149b6bcfa9a7b14b9a41bf9678b38cc, type: 2}
   possibleWeapons:
-  - mainHandItem: {fileID: 11400000, guid: e561792383921474c9710a3ebc1add23, type: 2}
-    offHandItem: {fileID: 11400000, guid: a49466273aff6954d8e0303879ded604, type: 2}
-    trinketOne: {fileID: 0}
-    trinketTwo: {fileID: 0}
   - mainHandItem: {fileID: 11400000, guid: bfbdb5e21e389ab4c9aae5b49350a1d0, type: 2}
     offHandItem: {fileID: 0}
     trinketOne: {fileID: 0}

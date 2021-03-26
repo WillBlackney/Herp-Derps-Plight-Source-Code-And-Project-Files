@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Eviscerate +1
   m_EditorClassIdentifier: 
   cardName: Eviscerate +1
-  cardDescription: Deal 8 Physical damage for each Melee Attack card played this
+  cardDescription: Deal 7 Physical damage for each Melee Attack card played this
     activation.
-  cardSprite: {fileID: 21300000, guid: ac89caee6d8bd8d4984131d369f1e01e, type: 3}
+  cardSprite: {fileID: 21300000, guid: e8ccdd28738a5ba42b3f504827413d18, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
   cardType: 2
@@ -42,7 +42,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 6
-    phrase: '8 '
+    phrase: '7 '
   - color: 4
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
     drawBaseDamageFromMeleeAttacksPlayed: 1
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
-    baseDamageMultiplier: 8
+    baseDamageMultiplier: 7
     useEachIndividualsStackCount: 1
     damageType: 1
     healthRestored: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Guardian Aura
   m_EditorClassIdentifier: 
   cardName: Guardian Aura
-  cardDescription: On activation end, give 4 Block to all allies.
+  cardDescription: On activation end, give 3 Block to all allies.
   cardSprite: {fileID: 21300000, guid: 0fb274f4ae833334ea758f7191324fa8, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -41,7 +41,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '4 '
+    phrase: '3 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -102,7 +102,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 44
-      passiveStacks: 4
+      passiveStacks: 3
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

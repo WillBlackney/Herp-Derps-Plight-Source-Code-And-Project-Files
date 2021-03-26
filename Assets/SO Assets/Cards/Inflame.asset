@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Inflame
   m_EditorClassIdentifier: 
   cardName: Inflame
-  cardDescription: Your Melee Attack cards apply 2 Burning.
+  cardDescription: Your Melee Attack cards apply 1 Burning.
   cardSprite: {fileID: 21300000, guid: 74c4fd1d244b83546ab183c64c11e3ed, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -49,7 +49,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '2 '
+    phrase: '1 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -60,6 +60,7 @@ MonoBehaviour:
     phrase: .
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
@@ -109,7 +110,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 65
-      passiveStacks: 2
+      passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

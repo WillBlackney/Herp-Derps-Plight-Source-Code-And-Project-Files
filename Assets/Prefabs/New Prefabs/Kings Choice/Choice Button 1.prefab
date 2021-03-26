@@ -179,6 +179,7 @@ MonoBehaviour:
     text: {fileID: 6192386718339797554}
     endColour: {r: 1, g: 1, b: 1, a: 1}
     fadeSpeed: 0
+  onDisableEvents: []
   pointerIsOverMe: 0
   timeSinceLastPointerEnter: 0
 --- !u!225 &2558246048326277362
@@ -371,8 +372,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Gain some benefit. Gain some consequence
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 50e187cf627ecf045892a41d625d05b6, type: 2}
-  m_sharedMaterial: {fileID: -1625679268102372852, guid: 50e187cf627ecf045892a41d625d05b6,
+  m_fontAsset: {fileID: 11400000, guid: 87e99a81f1cbf00428f7e0adbc0d7cf5, type: 2}
+  m_sharedMaterial: {fileID: 937035506399193613, guid: 87e99a81f1cbf00428f7e0adbc0d7cf5,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

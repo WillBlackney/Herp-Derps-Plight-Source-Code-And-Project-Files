@@ -804,6 +804,7 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
         HideAttributeLevelUpPage();
         ResetAllAttributePlusButtons();
         BuildAttributeBoxFromData(character);
+        BuildCharacterModelBoxFromData(character);
     }
     public void OnCancelAttributeSelectionButtonClicked()
     {
@@ -836,9 +837,6 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     }
     public void OnAttributeRollCountTextClicked()
     {
-        // REMOVE: FOR TESTING
-        //CharacterDataController.Instance.GenerateAndCacheAttributeRollOnLevelUp(CurrentCharacterViewing);
-
         if (CurrentCharacterViewing.attributeRollResults.Count > 0)
         {
             Debug.Log("Current character viewing = " + CurrentCharacterViewing.myName +

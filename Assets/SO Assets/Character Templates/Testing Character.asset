@@ -109,8 +109,8 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
-  - {fileID: 11400000, guid: 5a2019be911c0884ea4257f5529d0045, type: 2}
-  - {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
+  - {fileID: 11400000, guid: 3d57eb73a05e9a04b96c08944c441410, type: 2}
+  - {fileID: 11400000, guid: 1a140b4bb31bfcd46bbe736dbdffb9bd, type: 2}
   - {fileID: 11400000, guid: 5a2019be911c0884ea4257f5529d0045, type: 2}
   - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
   - {fileID: 11400000, guid: 91a684a63c896f94fae7a593b1d28422, type: 2}

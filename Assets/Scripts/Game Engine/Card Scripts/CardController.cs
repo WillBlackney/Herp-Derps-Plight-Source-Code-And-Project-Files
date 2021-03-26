@@ -2575,7 +2575,7 @@ public class CardController : Singleton<CardController>
             }
             else if (cardEffect.drawBaseDamageFromMeleeAttacksPlayed)
             {
-                baseDamage = owner.meleeAttacksPlayedThisActivation * cardEffect.baseDamageMultiplier;
+                baseDamage = (owner.meleeAttacksPlayedThisActivation - 1) * cardEffect.baseDamageMultiplier;
             }
             else if (cardEffect.drawBaseDamageFromOverloadOnSelf)
             {
@@ -2655,7 +2655,7 @@ public class CardController : Singleton<CardController>
                 }
                 else if (cardEffect.drawBaseDamageFromMeleeAttacksPlayed)
                 {
-                    baseDamage = owner.meleeAttacksPlayedThisActivation * cardEffect.baseDamageMultiplier;
+                    baseDamage = (owner.meleeAttacksPlayedThisActivation - 1) * cardEffect.baseDamageMultiplier;
                 }
                 else if (cardEffect.drawBaseDamageFromOverloadOnSelf)
                 {
@@ -2706,7 +2706,7 @@ public class CardController : Singleton<CardController>
             }
             else if (cardEffect.drawBaseDamageFromMeleeAttacksPlayed)
             {
-                baseDamage = owner.meleeAttacksPlayedThisActivation * cardEffect.baseDamageMultiplier;
+                baseDamage = (owner.meleeAttacksPlayedThisActivation - 1) * cardEffect.baseDamageMultiplier;
             }
             else if (cardEffect.drawBaseDamageFromOverloadOnSelf)
             {
