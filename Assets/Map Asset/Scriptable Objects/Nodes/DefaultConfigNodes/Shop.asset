@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Shop
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 3eeede91df8d822459ecfecd3463d926, type: 3}
+  greyScaleSprite: {fileID: 21300000, guid: ce8d1b786a4eb0144adc3cede4f3c7e5, type: 3}
+  outlineSprite: {fileID: 21300000, guid: 2151038a60aa5e744a56b007c86113c0, type: 3}
   nodeType: 7
   color: {r: 1, g: 0.84313726, b: 0.043137256, a: 1}

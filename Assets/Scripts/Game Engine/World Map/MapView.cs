@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,57 +9,59 @@ namespace MapSystem
 {
     public class MapView : Singleton<MapView>
     {     
+        [Header("Scene Object References References")]
+        [SerializeField] private MapManager mapManager;
+        [SerializeField] private GameObject masterMapParent;
+        [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
-        public MapManager mapManager;
-        public MapOrientation orientation;
+        [Header("Assets")]
+        [SerializeField] private GameObject nodePrefab;
+        [SerializeField] private List<MapConfig> allMapConfigs;       
+        [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
-        [Tooltip(
-            "List of all the MapConfig scriptable objects from the Assets folder that might be used to construct maps. " +
-            "Similar to Acts in Slay The Spire (define general layout, types of bosses.)")]
-        public List<MapConfig> allMapConfigs;
-        public GameObject nodePrefab;
+        [Header("Orientation Settings")]
+        [SerializeField] private MapOrientation orientation;
         [Tooltip("Offset of the start/end nodes of the map from the edges of the screen")]
-        public float orientationOffset;
+        [SerializeField] private float orientationOffset;
+        [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
+
         [Header("Background Settings")]
         [Tooltip("If the background sprite is null, background will not be shown")]
         [SerializeField] private Material mapMaterial;
-        public Sprite background;
-        public Color32 backgroundColor = Color.white;
-        public float xSize;
-        public float yOffset;
-        [Header("Line Settings")]
-        public GameObject linePrefab;
+        [SerializeField] private Sprite backgroundSprite;
+        [SerializeField] private Color32 backgroundColor;
+        [SerializeField] private float mapBgWidth;
+        [SerializeField] private float mapBgYOffset;
+        [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
+
+        [Header("Line Path Settings")]
+        [SerializeField] private GameObject linePrefab;
         [Tooltip("Line point count should be > 2 to get smooth color gradients")]
         [Range(3, 10)]
-        public int linePointsCount = 10;
+        [SerializeField] private int linePointsCount = 10;
         [Tooltip("Distance from the node till the line starting point")]
-        public float offsetFromNodes = 0.5f;
-        [Header("Colors")]
-        [Tooltip("Node Visited or Attainable color")]
-        public Color32 visitedColor = Color.white;
-        [Tooltip("Attainable flashing end colour")]
-        public Color32 flashingColor;
-        [Tooltip("Locked node color")]
-        public Color32 lockedColor = Color.gray;
+        [SerializeField] private float offsetFromNodes = 0.5f;
         [Tooltip("Visited or available path color")]
-        public Color32 lineVisitedColor = Color.white;
+        [SerializeField] private Color32 lineVisitedColor = Color.white;
         [Tooltip("Unavailable path color")]
-        public Color32 lineLockedColor = Color.gray;
-
-        [SerializeField] GameObject masterMapParent;
-        private GameObject firstParent;
-        private GameObject mapParent;
-        private List<List<Point>> paths;
-
-        // ALL nodes:
-        public readonly List<MapNode> MapNodes = new List<MapNode>();
-        private readonly List<LineConnection> lineConnections = new List<LineConnection>();
+        [SerializeField] private Color32 lineLockedColor = Color.gray;
+        [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
         [Header("Sorting Layer Properties")]
-        public int baseMapSortingLayer = 26000;
-        public Canvas blackUnderlayCanvas;
-        public CanvasGroup blackUnderlayCg;
-        public GameObject blackUnderlayParent;
+        [SerializeField] private int baseMapSortingLayer = 26000;
+        [SerializeField] private GameObject mapKeyVisualParent;
+        [SerializeField] private Canvas blackUnderlayCanvas;
+        [SerializeField] private CanvasGroup blackUnderlayCg;
+        [SerializeField] private GameObject blackUnderlayParent;
+        [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
+
+        // Non inspector fields
+        private GameObject firstParent;
+        private GameObject mapParent;
+        private readonly List<MapNode> MapNodes = new List<MapNode>();
+        private readonly List<LineConnection> lineConnections = new List<LineConnection>();
+
+      
         public int BaseMapSortingLayer
         {
             get { return baseMapSortingLayer; }
@@ -91,26 +94,23 @@ namespace MapSystem
             Debug.Log("MapView.ShowMainMapView() called...");
             MasterMapParent.SetActive(true);
             ShowMap(MapManager.Instance.CurrentMap);
-            if(blackUnderlayParent != null)
-            {
-                blackUnderlayCanvas.sortingOrder = BaseMapSortingLayer - 1;
-                blackUnderlayParent.SetActive(true);
-                blackUnderlayCg.DOKill();
-                blackUnderlayCg.DOFade(1, 0.25f);
-            }
-           
+
+            blackUnderlayCanvas.sortingOrder = BaseMapSortingLayer - 1;
+            blackUnderlayParent.SetActive(true);
+            mapKeyVisualParent.SetActive(true);
+            blackUnderlayCg.DOKill();
+            blackUnderlayCg.DOFade(1, 0.25f);
+
         }
         public void HideMainMapView()
         {
             Debug.Log("MapView.HideMainMapView() called...");
-            MasterMapParent.SetActive(false);           
+            MasterMapParent.SetActive(false);
 
-            if (blackUnderlayParent != null)
-            {
-                blackUnderlayParent.SetActive(false);
-                blackUnderlayCg.DOKill();
-                blackUnderlayCg.DOFade(0, 0);
-            }
+            mapKeyVisualParent.SetActive(false);
+            blackUnderlayParent.SetActive(false);
+            blackUnderlayCg.DOKill();
+            blackUnderlayCg.DOFade(0, 0);
         }
 
         private void ClearMap()
@@ -155,21 +155,21 @@ namespace MapSystem
 
         private void CreateMapBackground(Map m)
         {
-            if (background == null) return;
+            if (backgroundSprite == null) return;
 
             var backgroundObject = new GameObject("Background");
             backgroundObject.transform.SetParent(mapParent.transform);
             var bossNode = MapNodes.FirstOrDefault(node => node.Node.NodeType == EncounterType.BossEnemy);
             var span = m.DistanceBetweenFirstAndLastLayers();
-            backgroundObject.transform.localPosition = new Vector3(bossNode.transform.localPosition.x, span / 2f, 0f);
+            backgroundObject.transform.localPosition = new Vector3(bossNode.transform.localPosition.x, (span / 2f), 0f);
             backgroundObject.transform.localRotation = Quaternion.identity;
             var sr = backgroundObject.AddComponent<SpriteRenderer>();
             sr.color = backgroundColor;
             sr.sortingOrder = baseMapSortingLayer;
             sr.material = mapMaterial;
             sr.drawMode = SpriteDrawMode.Sliced;
-            sr.sprite = background;
-            sr.size = new Vector2(xSize, span + yOffset * 2f);
+            sr.sprite = backgroundSprite;
+            sr.size = new Vector2(mapBgWidth, span + mapBgYOffset * 2f);
         }
 
         private void CreateMapParent()

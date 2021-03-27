@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Recruit
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 6938157041800db42b2b2b146020789b, type: 3}
+  greyScaleSprite: {fileID: 21300000, guid: 638cc31045ba1c94b802f377459255ec, type: 3}
+  outlineSprite: {fileID: 21300000, guid: 6e56a3c9e2081b246959fe4ea1396f16, type: 3}
   nodeType: 4
   color: {r: 0, g: 1, b: 0.85122705, a: 1}

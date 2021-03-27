@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Basic Enemy
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: e9a8204c5d0a78243a141d849d8d7d04, type: 3}
+  greyScaleSprite: {fileID: 21300000, guid: 8a0c898194a3a214bada9a7c48ddf219, type: 3}
+  outlineSprite: {fileID: 21300000, guid: c703c24523d069c4782c37fc184e1050, type: 3}
   nodeType: 1
   color: {r: 1, g: 0, b: 0, a: 1}

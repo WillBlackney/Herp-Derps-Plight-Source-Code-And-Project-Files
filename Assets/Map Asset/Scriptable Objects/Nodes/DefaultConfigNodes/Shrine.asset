@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Shrine
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 9bbfe492e22b42741a3c9d8db64cdec3, type: 3}
+  greyScaleSprite: {fileID: 21300000, guid: ac2f6e5715e8c7e4e9640ab596363807, type: 3}
+  outlineSprite: {fileID: 21300000, guid: c917bbbf394b49f49934a829d9bda96f, type: 3}
   nodeType: 10
   color: {r: 1, g: 0.22352941, b: 0.9019608, a: 1}

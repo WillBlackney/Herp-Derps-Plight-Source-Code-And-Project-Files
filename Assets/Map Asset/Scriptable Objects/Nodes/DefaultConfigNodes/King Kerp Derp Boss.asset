@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: King Kerp Derp Boss
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 1285b2b05ef359b47b0391ae1cf7d970, type: 3}
+  greyScaleSprite: {fileID: 21300000, guid: e16a8a2298f0dad4b8550851c296282f, type: 3}
+  outlineSprite: {fileID: 21300000, guid: f27bb243a6b5084469be56d933ba43b9, type: 3}
   nodeType: 3
   color: {r: 1, g: 1, b: 1, a: 1}
