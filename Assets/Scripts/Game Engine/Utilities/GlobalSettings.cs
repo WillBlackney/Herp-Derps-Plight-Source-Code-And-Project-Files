@@ -11,6 +11,10 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [LabelWidth(200)]
     public StartingSceneSetting gameMode;
 
+    [Header("Debug Settings")]
+    [LabelWidth(200)]
+    public bool enableDebugLogs;
+
     [Header("General Test Settings Settings")]
     [LabelWidth(200)]
     [ShowIf("ShowTestCharacterTemplates")]
@@ -266,6 +270,23 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [LabelWidth(200)]
     [Range(100, 300)]
     public int epicItemCostUpperLimit;
+
+
+
+    protected override void Awake()
+    {
+        base.Awake();
+        if (enableDebugLogs)
+            Debug.unityLogger.logEnabled = true;
+        else if (!enableDebugLogs)
+            Debug.unityLogger.logEnabled = false;
+    }
+
+
+
+
+
+
     // Odin bools
     public bool ShowTestSceneProperties()
     {

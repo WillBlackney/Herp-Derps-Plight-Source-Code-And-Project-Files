@@ -17,7 +17,7 @@ MonoBehaviour:
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'Gain 2 '
-  - color: 3
+  - color: 12
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: Strength

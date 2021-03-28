@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Devastate
   m_EditorClassIdentifier: 
   cardName: Devastate
-  cardDescription: 'Deal 22 Physical damage. '
+  cardDescription: 'Deal 22 Physical damage. Lethal: gain 2 Energy.'
   cardSprite: {fileID: 21300000, guid: 0b8bde124e965454da2ef6d7786c84aa, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -49,9 +49,32 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: damage.
+    phrase: 'damage.
+
+'
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Lethal
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: ': gain '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '2 '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Energy
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
@@ -169,6 +192,25 @@ MonoBehaviour:
     visualEventsOnFinish: []
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
-  cardEventListeners: []
+  cardEventListeners:
+  - cardEventListenerType: 5
+    cardEventListenerFunction: 6
+    weaponRequirement: 0
+    maxHealthGained: 2
+    energyReductionAmount: 0
+    passivePairing:
+      passiveData: 0
+      passiveStacks: 0
+    healthLost: 0
+    energyGainedOrLost: 1
+    certainCardNames: []
+    whileHoldingBlessing: 0
+    cardCostsZero: 0
   cardPassiveEffects: []
-  keyWordModels: []
+  keyWordModels:
+  - kewWordType: 14
+    weaponRequirement: 0
+    passiveType: 0
+  - kewWordType: 10
+    weaponRequirement: 0
+    passiveType: 0

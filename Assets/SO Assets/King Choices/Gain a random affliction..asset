@@ -17,7 +17,7 @@ MonoBehaviour:
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'Gain a random '
-  - color: 3
+  - color: 10
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: Affliction

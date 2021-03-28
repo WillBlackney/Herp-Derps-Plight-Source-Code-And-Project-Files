@@ -806,10 +806,12 @@ public class LootController : Singleton<LootController>
 
             // Hit the end of bar, do level gained visual stuff
             box.currentLevelText.text = data.currentLevel.ToString();
+            box.xpBar.value = 0;
 
             // Chime ping SFX on level up
             AudioManager.Instance.PlaySoundPooled(Sound.GUI_Chime_1);
             VisualEffectManager.Instance.CreateSmallMeleeImpact(box.currentLevelText.transform.position, 10000);
+            ShowLevelUpNotification(box);
 
             // Move xp slider to final position after xp overflow
             maxXpPoint = data.currentMaxXP;
@@ -839,6 +841,14 @@ public class LootController : Singleton<LootController>
         {
             cData.MarkAsCompleted();
         }
+    }
+    private void ShowLevelUpNotification(RewardCharacterBox box)
+    {
+        box.levelUpNotifParent.SetActive(true);
+        box.levelUpNotifText.DOKill();
+        box.levelUpNotifText.transform.localPosition = Vector3.zero;
+        box.levelUpNotifText.transform.DOLocalMoveY(150f, 0.5f);
+        box.levelUpNotifText.DOColor(Color.yellow, 0.25f).SetLoops(-1, LoopType.Yoyo);
     }
     private void PlayUpdateTotalXpGainTextAnimation(TextMeshProUGUI text, int endValue)
     {

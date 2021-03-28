@@ -17,7 +17,7 @@ MonoBehaviour:
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'Gain a random '
-  - color: 3
+  - color: 12
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'Epic '
@@ -40,3 +40,4 @@ MonoBehaviour:
   afflicationsGained: 0
   goldGainedOrLost: 0
   itemRarity: 0
+  stateGained: 0

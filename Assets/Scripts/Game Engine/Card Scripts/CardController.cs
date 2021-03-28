@@ -1880,7 +1880,7 @@ public class CardController : Singleton<CardController>
 
             if (owner.pManager.plantedFeetStacks > 0)
             {
-                PassiveController.Instance.ModifyPlantedFeet(owner.pManager, -owner.pManager.plantedFeetStacks, false);
+                PassiveController.Instance.ModifyPlantedFeet(owner.pManager, -1, false);
             }
 
             HandleOnMeleeAttackCardPlayedListeners(owner);
@@ -3956,6 +3956,15 @@ public class CardController : Singleton<CardController>
             return 0;
         }
 
+        // Planted Feet override
+        if (card.cardType == CardType.MeleeAttack &&
+            card.owner != null &&
+            card.owner.pManager != null &&
+            card.owner.pManager.plantedFeetStacks > 0)
+        {
+            return 0;
+        }
+
         // Dark Bargain override
         if (card.owner != null &&
             card.owner.pManager != null &&
@@ -4008,14 +4017,7 @@ public class CardController : Singleton<CardController>
             }
         }
 
-        // Check 'Planted Feet' passive
-        if (card.owner.pManager != null && 
-            card.cardType == CardType.MeleeAttack &&
-            card.owner.pManager.plantedFeetStacks > 0)
-        {
-            costReturned -= card.owner.pManager.plantedFeetStacks;
-        }
-
+       
         // Check 'Take Aim' passive
         if (card.owner.pManager != null &&
             card.cardType == CardType.RangedAttack &&

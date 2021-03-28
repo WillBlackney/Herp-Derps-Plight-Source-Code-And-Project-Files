@@ -288,9 +288,10 @@ public class ItemController : Singleton<ItemController>
         {
             Debug.LogWarning("Item "+ previousItem.itemName + " already in slot: " + slot.slotType.ToString() + ", returning it to inventory...");
             InventoryController.Instance.AddItemToInventory(previousItem);
+            TopBarController.Instance.HideCharacterRosterButtonGlow();
 
             // check 2h logic
-            if(newItem.itemType == ItemType.TwoHandMelee || newItem.itemType == ItemType.TwoHandRanged)
+            if (newItem.itemType == ItemType.TwoHandMelee || newItem.itemType == ItemType.TwoHandRanged)
             {
                 ItemData offhandItem = character.itemManager.offHandItem;
                 if(offhandItem != null)

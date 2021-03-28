@@ -55,6 +55,9 @@ public class InventoryController : Singleton<InventoryController>
     }
     public void AddCardToInventory(CardData card)
     {
+        // Glow top bar button
+        TopBarController.Instance.ShowCharacterRosterButtonGlow();
+
         CardInventory.Add(card);
     }
     public void RemoveCardFromInventory(CardData card)
@@ -63,9 +66,11 @@ public class InventoryController : Singleton<InventoryController>
     }
     public void AddItemToInventory(ItemData item, bool cloneItem = true)
     {
+        // Glow top bar button
+        TopBarController.Instance.ShowCharacterRosterButtonGlow();
+
         if (cloneItem)
             ItemInventory.Add(ItemController.Instance.CloneItem(item));
-
         else
             ItemInventory.Add(item);
     }

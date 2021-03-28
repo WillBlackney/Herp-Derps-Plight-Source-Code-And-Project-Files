@@ -1123,7 +1123,9 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
                 xpRewardDataSet.Add(new XpRewardData(character, totalXp, combatXp, flawless, combatType));
             }
-            
+            // Hide level nodes
+            LevelManager.Instance.HideAllNodeViews();
+
             // Start visual event
             LootController.Instance.PlayNewXpRewardVisualEvent(pxsList, xpRewardDataSet);
 

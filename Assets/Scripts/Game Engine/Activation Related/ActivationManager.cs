@@ -441,7 +441,9 @@ public class ActivationManager : Singleton<ActivationManager>
             CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive &&
             CardController.Instance.DiscoveryScreenIsActive == false &&
             CardController.Instance.ChooseCardScreenIsActive == false &&
-             MainMenuController.Instance.AnyMenuScreenIsActive() == false)
+             MainMenuController.Instance.AnyMenuScreenIsActive() == false &&
+             EntityActivated.controller == Controller.Player &&
+             EntityActivated.activationPhase == ActivationPhase.ActivationPhase)
         {
             // Mouse click SFX
             AudioManager.Instance.PlaySoundPooled(Sound.GUI_Button_Clicked);

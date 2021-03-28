@@ -17,7 +17,7 @@ MonoBehaviour:
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'Gain a random '
-  - color: 11
+  - color: 12
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'Rare '

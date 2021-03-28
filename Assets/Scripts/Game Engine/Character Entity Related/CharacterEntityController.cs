@@ -989,6 +989,13 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }
 
         // NON-EXCLUSIVE passives and turn start logic
+
+        // Grit expiry
+        if (character.pManager.gritStacks > 0)
+        {
+            PassiveController.Instance.ModifyGrit(character.pManager, -1, true, 0.5f);
+        }
+
         // Shadow Aura        
         if (character.pManager.shadowAuraStacks > 0)
         {
@@ -1149,10 +1156,11 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         {
             PassiveController.Instance.ModifyWeakened(entity.pManager, -1, null, true, 0.5f);
         }
+        /*
         if (entity.pManager.gritStacks > 0)
         {
             PassiveController.Instance.ModifyGrit(entity.pManager, -1, true, 0.5f);
-        }
+        }*/
         if (entity.pManager.vulnerableStacks > 0)
         {
             PassiveController.Instance.ModifyVulnerable(entity.pManager, -1, true, 0.5f);
@@ -1172,11 +1180,6 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             PassiveController.Instance.ModifySleep(entity.pManager, -1, true, 0.5f);
         }
 
-        // Misc passive expiries
-        if (entity.pManager.plantedFeetStacks > 0)
-        {
-            PassiveController.Instance.ModifyPlantedFeet(entity.pManager, -entity.pManager.plantedFeetStacks, true, 0.5f);
-        }
         if (entity.pManager.takenAimStacks > 0)
         {
             PassiveController.Instance.ModifyTakenAim(entity.pManager, -entity.pManager.takenAimStacks, true, 0.5f);

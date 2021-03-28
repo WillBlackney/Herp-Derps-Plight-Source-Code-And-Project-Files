@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Sirenix.OdinInspector;
+using DG.Tweening;
 
 public class TopBarController : Singleton<TopBarController>
 {
@@ -20,11 +21,14 @@ public class TopBarController : Singleton<TopBarController>
 
     [Header("Main Button Components")]
     [SerializeField] private GameObject characterRosterButton;
+    [SerializeField] private Image characterRosterButtonGlow;
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Misc Components")]
     [SerializeField] private GameObject goldTopBarImage;
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
+
+    private bool charRosterGlowIsPlaying = false;
     #endregion
 
     // Getters + Accessors
@@ -65,6 +69,22 @@ public class TopBarController : Singleton<TopBarController>
     public void HideTopBar()
     {
         visualParent.SetActive(false);
+    }
+    public void ShowCharacterRosterButtonGlow()
+    {
+        if(charRosterGlowIsPlaying == false)
+        {
+            charRosterGlowIsPlaying = true;
+            characterRosterButtonGlow.DOKill();
+            characterRosterButtonGlow.DOFade(0.33f, 0.5f).SetLoops(-1, LoopType.Yoyo);
+        }
+      
+    }
+    public void HideCharacterRosterButtonGlow()
+    {
+        charRosterGlowIsPlaying = false;
+        characterRosterButtonGlow.DOKill();
+        characterRosterButtonGlow.DOFade(0, 0);
     }
     #endregion
 }
