@@ -15,7 +15,7 @@ MonoBehaviour:
   itemSprite: {fileID: 21300000, guid: 82aaf459531e15041b061470bb39b093, type: 3}
   itemName: Holy Grail
   itemType: 5
-  itemRarity: 2
+  itemRarity: 1
   lootable: 1
   passivePairings:
   - passiveData: 7
@@ -24,7 +24,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'On activation start, add a  '
+    phrase: 'On activation start, add a random '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0

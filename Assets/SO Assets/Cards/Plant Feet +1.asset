@@ -13,18 +13,14 @@ MonoBehaviour:
   m_Name: Plant Feet +1
   m_EditorClassIdentifier: 
   cardName: Plant Feet +1
-  cardDescription: Your next Melee Attack card played this activation cost 1 Energy
-    less. Innate.
+  cardDescription: Your next Melee Attack card costs 0 Energy.
   cardSprite: {fileID: 21300000, guid: f3a33061c9c67f84cba0dd7988ae9d9a, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
   cardType: 1
   targettingType: 0
   talentSchool: 2
-  rarity: 1
-  affliction: 0
-  racialCard: 0
-  originRace: 0
+  rarity: 2
   upgradeable: 0
   upgradeLevel: 1
   expend: 0
@@ -34,6 +30,9 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -46,11 +45,11 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'card played this activation costs '
+    phrase: 'card costs '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '1 '
+    phrase: '0 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -58,22 +57,20 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'less.
+    phrase: '.
 
 '
-  - color: 3
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: Innate
-  - color: 1
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: .
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0

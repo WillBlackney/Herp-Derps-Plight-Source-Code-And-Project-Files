@@ -29,15 +29,19 @@ MonoBehaviour:
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: '1 '
-  - color: 3
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: Stamina
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: .
+    phrase: 'extra '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Energy '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: each activation.
   keyWordModels:
-  - kewWordType: 8
+  - kewWordType: 10
     weaponRequirement: 0
-    passiveType: 28
+    passiveType: 0

@@ -661,7 +661,7 @@ public class CombatLogic : Singleton<CombatLogic>
         }
 
         // Check for damage immunity passives
-
+        // BARRIER
         if (victim.pManager.barrierStacks > 0 &&
             healthAfter < victim.health)
         {
@@ -681,15 +681,30 @@ public class CombatLogic : Singleton<CombatLogic>
             }, queuePosition, 0, 0, EventDetail.None, batchedEvent);
         }
 
-        // critical VFX
-        /*
-        if (didCrit)
+        // INCORPOREAL
+        if (victim.pManager.incorporealStacks > 0 &&
+          healthAfter < victim.health)
         {
-            // Create critical text effect
+            adjustedDamageValue = 1;
+            healthAfter = victim.health - 1;
+
+            // Create impact effect
             VisualEventManager.Instance.CreateVisualEvent(() =>
-            VisualEffectManager.Instance.CreateStatusEffect(victim.characterEntityView.WorldPosition, "CRITICAL!", TextLogic.neutralYellow), queuePosition, 0, 0, EventDetail.None, batchedEvent);
+            VisualEffectManager.Instance.CreateSmallMeleeImpact(victim.characterEntityView.WorldPosition, totalLifeLost), queuePosition, 0, 0, EventDetail.None, batchedEvent);
+
+            // Create SFX 
+            VisualEventManager.Instance.CreateVisualEvent(() =>            
+            AudioManager.Instance.PlaySoundPooled(Sound.Ability_Damaged_Health_Lost), queuePosition, 0, 0, EventDetail.None, batchedEvent);
         }
-        */
+            // critical VFX
+            /*
+            if (didCrit)
+            {
+                // Create critical text effect
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(victim.characterEntityView.WorldPosition, "CRITICAL!", TextLogic.neutralYellow), queuePosition, 0, 0, EventDetail.None, batchedEvent);
+            }
+            */
 
         // Finished calculating the final damage, health lost and armor lost: p
         totalLifeLost = victim.health - healthAfter;

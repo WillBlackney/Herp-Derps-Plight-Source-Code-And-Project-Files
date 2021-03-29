@@ -21,6 +21,7 @@ public class PassiveManagerModel
     // Special Defensive Passives
     public int runeStacks;
     public int barrierStacks;
+    public int incorporealStacks;
 
     // Buff Passive bonuses
     public int enrageStacks;
@@ -76,6 +77,7 @@ public class PassiveManagerModel
     public int guardianAuraStacks;
     public int toxicAuraStacks;
     public int hatefulAuraStacks;
+    public int intimidatingAuraStacks;
 
     // Core Damage % Modifier Passives
     public int wrathStacks;

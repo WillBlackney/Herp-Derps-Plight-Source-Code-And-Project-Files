@@ -29,7 +29,7 @@ public class ItemData
         }
     }
 
-    public Sprite GetMySprite()
+    private Sprite GetMySprite()
     {
         Sprite s = null;
 

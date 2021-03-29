@@ -92,9 +92,10 @@ MonoBehaviour:
     holierThanThouStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
-    guardianAuraStacks: 4
+    guardianAuraStacks: 3
     toxicAuraStacks: 0
     hatefulAuraStacks: 0
+    intimidatingAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -149,6 +150,8 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
+      alsoHealSelf: 0
+      healAmount: 0
       blockGained: 12
       cardAdded: {fileID: 0}
       copiesAdded: 0
@@ -220,6 +223,8 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
+      alsoHealSelf: 0
+      healAmount: 0
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0

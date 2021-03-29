@@ -12,7 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce54fe6d38fa1ac4d921d5b2652a68e3, type: 3}
   m_Name: Discover a common card.
   m_EditorClassIdentifier: 
-  choiceDescription: Discover a common card.
+  choiceDescription:
+  - color: 12
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Discover a '
+  - color: 12
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Common '
+  - color: 12
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: card.
   effect: 1
   category: 1
   impactLevel: 1
@@ -28,3 +40,4 @@ MonoBehaviour:
   afflicationsGained: 0
   goldGainedOrLost: 0
   itemRarity: 0
+  stateGained: 0

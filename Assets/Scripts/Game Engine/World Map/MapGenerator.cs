@@ -7,6 +7,8 @@ namespace MapSystem
 {
     public class MapGenerator: Singleton<MapGenerator>
     {
+        // Properties + Components
+        #region
         private MapConfig config;
 
         private readonly List<EncounterType> RandomNodes = new List<EncounterType>
@@ -36,8 +38,10 @@ namespace MapSystem
 
         private List<Node> previousLayerData = new List<Node>();
 
-      
+        #endregion
 
+        // Getters + Accessors
+        #region
         public int SpawnedCampSites
         {
             get { return spawnedCampSites; }
@@ -68,6 +72,7 @@ namespace MapSystem
             get { return timeTilEliteAllowed; }
             private set { timeTilEliteAllowed = value; }
         }
+        #endregion
 
 
         public void ResetGenerationSettings()
@@ -120,7 +125,8 @@ namespace MapSystem
         {
             layerDistances = new List<float>();
             foreach (var layer in config.layers)
-                layerDistances.Add(layer.distanceFromPreviousLayer.GetValue());
+                layerDistances.Add(layer.layerXDifference.GetValue());
+                    //layerDistances.Add(5);
         }
 
         private float GetDistanceToLayer(int layerIndex)
@@ -137,7 +143,7 @@ namespace MapSystem
             bool atleastOneRandom = false;
 
             // offset of this layer to make all the nodes centered:
-            var offset = layer.nodesApartDistance * config.GridWidth / 2f;
+            var offset = layer.nodeYDistance * config.GridWidth / 2f;
 
             for (var i = 0; i < config.GridWidth; i++)
             {
@@ -148,7 +154,7 @@ namespace MapSystem
                 var blueprintName = config.nodeBlueprints.Where(b => b.nodeType == nodeType).ToList().Random().name;
                 var node = new Node(nodeType, blueprintName, new Point(i, layerIndex))
                 {
-                    position = new Vector2(-offset + i * layer.nodesApartDistance, GetDistanceToLayer(layerIndex))
+                    position = new Vector2(-offset + i * layer.nodeYDistance, GetDistanceToLayer(layerIndex))
                 };
                 nodesOnThisLayer.Add(node);
             }
@@ -213,7 +219,7 @@ namespace MapSystem
                     var xRnd = Random.Range(-1f, 1f);
                     var yRnd = Random.Range(-1f, 1f);
 
-                    var x = xRnd * layer.nodesApartDistance / 2f;
+                    var x = xRnd * layer.nodeYDistance / 2f;
                     var y = yRnd < 0 ? distToPreviousLayer * yRnd / 2f : distToNextLayer * yRnd / 2f;
 
                     node.position += new Vector2(x, y) * layer.randomizePosition;

@@ -18,15 +18,11 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Reduces the '
-  - color: 3
+    phrase: 'This character''s next '
+  - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Energy '
-  - color: 1
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'cost of this character''s next '
+    phrase: 'X '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -34,15 +30,19 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'card by '
+    phrase: 'cards played cost '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: X
+    phrase: '0 '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Energy
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: . Expires on activation end.
+    phrase: .
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0

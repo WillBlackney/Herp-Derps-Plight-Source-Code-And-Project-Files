@@ -19,7 +19,7 @@ MonoBehaviour:
   startingHealth: 0
   enableFlexibleMaxHealth: 0
   maxHealthFlexAmount: 0
-  maxHealth: 465
+  maxHealth: 380
   startingBlock: 0
   strength: 20
   intelligence: 20
@@ -44,6 +44,7 @@ MonoBehaviour:
     temporaryBonusDrawStacks: 0
     runeStacks: 0
     barrierStacks: 0
+    incorporealStacks: 0
     enrageStacks: 0
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
@@ -95,6 +96,7 @@ MonoBehaviour:
     guardianAuraStacks: 0
     toxicAuraStacks: 0
     hatefulAuraStacks: 0
+    intimidatingAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -205,6 +207,8 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
+      alsoHealSelf: 0
+      healAmount: 0
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
@@ -267,6 +271,8 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
+      alsoHealSelf: 0
+      healAmount: 0
       blockGained: 0
       cardAdded: {fileID: 11400000, guid: e4da3cf9bac315a4586b6ba520cf9a90, type: 2}
       copiesAdded: 3
@@ -382,7 +388,7 @@ MonoBehaviour:
         onCharacter: 0
       actionType: 1
       effectLoops: 1
-      baseDamage: 16
+      baseDamage: 12
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -391,6 +397,8 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
+      alsoHealSelf: 0
+      healAmount: 0
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
@@ -407,7 +415,9 @@ MonoBehaviour:
       uiFadeInSpeed: 0
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 11400000, guid: f7130d8a7fb3f8841afdbd08d39aa132, type: 2}
-      passiveStacks: 4
+      passiveStacks: 2
+      alsoHealSelf: 0
+      healAmount: 0
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
@@ -527,7 +537,7 @@ MonoBehaviour:
         onCharacter: 0
       actionType: 1
       effectLoops: 1
-      baseDamage: 16
+      baseDamage: 12
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -536,6 +546,8 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
+      alsoHealSelf: 0
+      healAmount: 0
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
@@ -552,7 +564,9 @@ MonoBehaviour:
       uiFadeInSpeed: 0
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 11400000, guid: f7130d8a7fb3f8841afdbd08d39aa132, type: 2}
-      passiveStacks: 4
+      passiveStacks: 2
+      alsoHealSelf: 0
+      healAmount: 0
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
@@ -661,7 +675,9 @@ MonoBehaviour:
       uiFadeInSpeed: 0
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 11400000, guid: 6d216e783d4ba3a49a8dd267aa727fd3, type: 2}
-      passiveStacks: 3
+      passiveStacks: 2
+      alsoHealSelf: 0
+      healAmount: 0
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
@@ -679,7 +695,9 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
-      blockGained: 20
+      alsoHealSelf: 0
+      healAmount: 0
+      blockGained: 15
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0
@@ -791,7 +809,9 @@ MonoBehaviour:
       uiFadeInSpeed: 0
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 11400000, guid: 6d216e783d4ba3a49a8dd267aa727fd3, type: 2}
-      passiveStacks: 3
+      passiveStacks: 2
+      alsoHealSelf: 0
+      healAmount: 0
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
@@ -809,7 +829,9 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
-      blockGained: 20
+      alsoHealSelf: 0
+      healAmount: 0
+      blockGained: 15
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0

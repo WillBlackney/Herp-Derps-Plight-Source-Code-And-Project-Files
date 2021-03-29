@@ -342,6 +342,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyBarrier(newClone, originalData.barrierStacks, false);
         }
+        if (originalData.incorporealStacks != 0)
+        {
+            ModifyIncorporeal(newClone, originalData.incorporealStacks, false);
+        }
         #endregion
 
         // Aura Passives
@@ -365,6 +369,10 @@ public class PassiveController : Singleton<PassiveController>
         if (originalData.hatefulAuraStacks != 0)
         {
             ModifyHatefulAura(newClone, originalData.hatefulAuraStacks, false);
+        }
+        if (originalData.intimidatingAuraStacks != 0)
+        {
+            ModifyIntimidatingAura(newClone, originalData.intimidatingAuraStacks, false);
         }
         #endregion
 
@@ -496,12 +504,14 @@ public class PassiveController : Singleton<PassiveController>
 
         pManager.runeStacks = original.runeStacks;
         pManager.barrierStacks = original.barrierStacks;
+        pManager.incorporealStacks = original.incorporealStacks;
 
         pManager.encouragingAuraStacks = original.encouragingAuraStacks;
         pManager.shadowAuraStacks = original.shadowAuraStacks;
         pManager.toxicAuraStacks = original.toxicAuraStacks;
         pManager.guardianAuraStacks = original.guardianAuraStacks;
         pManager.hatefulAuraStacks = original.hatefulAuraStacks;
+        pManager.intimidatingAuraStacks = original.intimidatingAuraStacks;
 
         pManager.wrathStacks = original.wrathStacks;
         pManager.gritStacks = original.gritStacks;
@@ -807,6 +817,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyRune(pManager, stacks, showVFX, vfxDelay);
         }
+        else if (originalData == "Incorporeal")
+        {
+            ModifyIncorporeal(pManager, stacks, showVFX, vfxDelay);
+        }
         #endregion
 
         // Aura Passives
@@ -830,6 +844,10 @@ public class PassiveController : Singleton<PassiveController>
         else if (originalData == "Hateful Aura")
         {
             ModifyHatefulAura(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Intimidating Aura")
+        {
+            ModifyIntimidatingAura(pManager, stacks, showVFX, vfxDelay);
         }
         #endregion
 
@@ -4469,7 +4487,7 @@ public class PassiveController : Singleton<PassiveController>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Debuff Blocked!" + stacks.ToString());
-                    AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff);
+                    AudioManager.Instance.PlaySoundPooled(Sound.Ability_Dispell_Twang);
                 });
             }
 
@@ -4526,6 +4544,63 @@ public class PassiveController : Singleton<PassiveController>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Barrier " + stacks.ToString());
+                    //VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+    }
+    public void ModifyIncorporeal(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyIncorporeal() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Incorporeal");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.incorporealStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Incorporeal!");
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Incorporeal Removed");
                     //VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
                 });
             }
@@ -4705,6 +4780,66 @@ public class PassiveController : Singleton<PassiveController>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Pierce Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+
+
+    }
+
+    public void ModifyIntimidatingAura(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyIntimidatingAura() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Intimidating Aura");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.intimidatingAuraStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Intimidating Aura");
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Intimidating Aura Removed");
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
                 });
             }

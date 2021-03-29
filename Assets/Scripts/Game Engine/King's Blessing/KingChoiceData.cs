@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KingChoiceData 
 {
-    public string choiceDescription;
+    public List<CustomString> choiceDescription = new List<CustomString>();
 
     public KingChoiceEffectType effect;
 
@@ -35,4 +35,6 @@ public class KingChoiceData
     public int goldGainedOrLost;
 
     public Rarity itemRarity;
+
+    public StateName stateGained;
 }

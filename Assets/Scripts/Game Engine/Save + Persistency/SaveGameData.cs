@@ -13,6 +13,7 @@ public class SaveGameData
     public int currentJourneyPosition;
     public SaveCheckPoint saveCheckPoint;
     public string map;
+    public List<string> encounteredCombats = new List<string>();
 
     // Player data
     public int currentGold;

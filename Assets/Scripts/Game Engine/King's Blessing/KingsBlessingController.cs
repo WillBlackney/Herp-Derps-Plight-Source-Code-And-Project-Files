@@ -152,7 +152,12 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
     {
         KingChoiceData data = new KingChoiceData();
 
-        data.choiceDescription = so.choiceDescription;
+        foreach (CustomString cs in so.choiceDescription)
+        {
+            data.choiceDescription.Add(ObjectCloner.CloneJSON(cs));
+        }
+
+        //data.choiceDescription = so.choiceDescription;
         data.effect = so.effect;
         data.category = so.category;
         data.impactLevel = so.impactLevel;
@@ -168,6 +173,7 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
         data.possiblePassives = so.possiblePassives;
         data.afflicationsGained = so.afflicationsGained;
         data.itemRarity = so.itemRarity;
+        data.stateGained = so.stateGained;
         return data;
     }
     #endregion
@@ -355,11 +361,11 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
     private void BuildChoiceButtonFromChoicePairingData(KingsChoiceButton button, KingsChoicePairingModel data)
     {
         button.myPairingData = data;
-        button.descriptionText.text = "<color=#57FF34>" + data.benefitData.choiceDescription + "<color=#FFFFFF>";
+        button.descriptionText.text = TextLogic.ConvertCustomStringListToString(data.benefitData.choiceDescription);
 
         if(data.conseqenceData != null)
         {
-            button.descriptionText.text += " <color=#FF4747>" + data.conseqenceData.choiceDescription + "<color=#FFFFFF>";
+            button.descriptionText.text += (" " + TextLogic.ConvertCustomStringListToString(data.conseqenceData.choiceDescription));
         }
     }
     public void SetCharacterChoices(List<KingsChoicePairingModel> choices)
@@ -486,6 +492,15 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
             SetContinueButtonInteractions(true);
         }
         else if (button.myPairingData.benefitData.effect == KingChoiceEffectType.GainRandomItem)
+        {
+            TriggerKingsChoiceEffect(button.myPairingData.benefitData);
+            TriggerKingsChoiceEffect(button.myPairingData.conseqenceData);
+
+            FadeOutChoiceButtons();
+            FadeContinueButton(1, 1);
+            SetContinueButtonInteractions(true);
+        }
+        else if (button.myPairingData.benefitData.effect == KingChoiceEffectType.GainState)
         {
             TriggerKingsChoiceEffect(button.myPairingData.benefitData);
             TriggerKingsChoiceEffect(button.myPairingData.conseqenceData);
@@ -761,6 +776,17 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
             // Notification VFX
             VisualEventManager.Instance.CreateVisualEvent(() =>
             VisualEffectManager.Instance.CreateStatusEffect(playerModel.transform.position, notifMessage));
+        }
+
+        // Gain state
+        else if (data.effect == KingChoiceEffectType.GainState)
+        {
+            StateController.Instance.GivePlayerState(StateController.Instance.GetStateByName(data.stateGained));
+            List<StateData> vEventStates = new List<StateData>();
+            vEventStates.Add(StateController.Instance.FindPlayerState(data.stateGained));
+
+            // Add item to inventory visual event pop up
+            CardController.Instance.StartNewShuffleCardsScreenVisualEvent(playerModel, vEventStates);
         }
 
         // Gain random item

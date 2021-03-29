@@ -13,7 +13,7 @@ public class JourneyManager : Singleton<JourneyManager>
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Encounter Sequence Properties")]
-    private List<EnemyWaveSO> enemyWavesAlreadyEncountered = new List<EnemyWaveSO>();
+    private List<string> enemyWavesAlreadyEncountered = new List<string>();
 
     [Header("Current Player Position + Encounter Properties")]
     private int currentJourneyPosition = 0;
@@ -79,6 +79,7 @@ public class JourneyManager : Singleton<JourneyManager>
         CurrentJourneyPosition = saveData.currentJourneyPosition;
         SetCurrentEncounterType(saveData.currentEncounter);
         CheckPointType = saveData.saveCheckPoint;
+        enemyWavesAlreadyEncountered = saveData.encounteredCombats;
 
         foreach (EnemyWaveSO eWave in AllEnemyWaves())
         {
@@ -99,6 +100,7 @@ public class JourneyManager : Singleton<JourneyManager>
             saveFile.currentEnemyWave = CurrentEnemyWave.encounterName;
         }        
         saveFile.saveCheckPoint = CheckPointType;
+        saveFile.encounteredCombats = enemyWavesAlreadyEncountered;
     }
 
     #endregion
@@ -223,7 +225,7 @@ public class JourneyManager : Singleton<JourneyManager>
                     waveReturned = encounter.possibleEnemyEncounters[RandomGenerator.NumberBetween(0, encounter.possibleEnemyEncounters.Count - 1)];
                 }
 
-                if (enemyWavesAlreadyEncountered.Contains(waveReturned) == false)
+                if (enemyWavesAlreadyEncountered.Contains(waveReturned.encounterName) == false)
                 {
                     foundUnique = true;
                 }
@@ -238,7 +240,7 @@ public class JourneyManager : Singleton<JourneyManager>
     public void AddEnemyWaveToAlreadyEncounteredList(EnemyWaveSO wave)
     {
         Debug.Log("JourneyManager.AddEnemyWaveToAlreadyEncounteredList() adding " + wave.encounterName + " to already encounter list");
-        enemyWavesAlreadyEncountered.Add(wave);
+        enemyWavesAlreadyEncountered.Add(wave.encounterName);
     }
     #endregion
 }

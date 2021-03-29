@@ -72,6 +72,7 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     [Header("Attribute Box Components")]
     [SerializeField] private GameObject attributeBoxVisualParent;
     [SerializeField] private TextMeshProUGUI attributeRollCountText;
+    [SerializeField] private Image attributeRollCountGlow;
     [SerializeField] private TextMeshProUGUI strengthText;
     [SerializeField] private TextMeshProUGUI intelligenceText;
     [SerializeField] private TextMeshProUGUI dexterityText;
@@ -192,6 +193,7 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
             EnableMainView();
             FadeInMainView();
             BuildFrontPageDefaultViewState(CharacterDataController.Instance.AllPlayerCharacters[0]);
+            TopBarController.Instance.HideCharacterRosterButtonGlow();
 
             if (MapView.Instance.MasterMapParent.activeSelf)
             {
@@ -712,6 +714,11 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     {
         BuildAttributePanelsFromCharacterData(character);
         SetAttributeRollCountText(character.attributeRollResults.Count.ToString());
+        if(character.attributeRollResults.Count > 0)        
+            ShowAttributePointsGlow();        
+        else        
+            HideAttributePointsGlow();
+        
     }
     private void BuildAttributePanelsFromCharacterData(CharacterData character)
     {
@@ -746,7 +753,17 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
             constitutionText.text = TextLogic.ReturnColoredText(character.constitution.ToString(), TextLogic.redText);
         
     }   
-    
+    private void ShowAttributePointsGlow()
+    {
+        attributeRollCountGlow.DOKill();
+        attributeRollCountGlow.DOFade(0.33f, 0.5f).SetLoops(-1, LoopType.Yoyo);
+    }
+    private void HideAttributePointsGlow()
+    {
+        attributeRollCountGlow.DOKill();
+        attributeRollCountGlow.DOFade(0, 0);
+    }
+
     #endregion
 
     // Attribute Level Up Screen logic
@@ -804,6 +821,7 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
         HideAttributeLevelUpPage();
         ResetAllAttributePlusButtons();
         BuildAttributeBoxFromData(character);
+        BuildCharacterModelBoxFromData(character);
     }
     public void OnCancelAttributeSelectionButtonClicked()
     {
@@ -836,9 +854,6 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     }
     public void OnAttributeRollCountTextClicked()
     {
-        // REMOVE: FOR TESTING
-        //CharacterDataController.Instance.GenerateAndCacheAttributeRollOnLevelUp(CurrentCharacterViewing);
-
         if (CurrentCharacterViewing.attributeRollResults.Count > 0)
         {
             Debug.Log("Current character viewing = " + CurrentCharacterViewing.myName +

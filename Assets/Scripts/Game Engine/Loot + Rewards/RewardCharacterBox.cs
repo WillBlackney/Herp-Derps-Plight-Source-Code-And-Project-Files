@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class RewardCharacterBox : MonoBehaviour
 {
@@ -14,10 +15,20 @@ public class RewardCharacterBox : MonoBehaviour
     public TextMeshProUGUI combatTypeText;
     public TextMeshProUGUI combatTypeRewardText;
 
+    public TextMeshProUGUI levelUpNotifText;
+    public GameObject levelUpNotifParent;
+
     public GameObject flawlessParent;
     public TextMeshProUGUI flawlessAmountText;
 
     public Slider xpBar;
+
+    private void OnDisable()
+    {        
+        levelUpNotifText.DOKill();
+        levelUpNotifText.transform.localPosition = Vector3.zero;
+        levelUpNotifParent.SetActive(false);
+    }
 
 
 }

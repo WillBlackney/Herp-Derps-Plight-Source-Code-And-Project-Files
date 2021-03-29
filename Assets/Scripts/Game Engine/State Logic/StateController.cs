@@ -42,6 +42,9 @@ public class StateController : Singleton<StateController>
         StateData newState = new StateData();
         newState.stateName = data.stateName;
         newState.rarity = data.rarity;
+        newState.lootable = data.lootable;
+        newState.hasStacks = data.hasStacks;
+        ModifyStateStacks(newState, data.baseStacks);
 
         // Keyword Model Data
         newState.keyWordModels = new List<KeyWordModel>();
@@ -53,6 +56,33 @@ public class StateController : Singleton<StateController>
         // Custom string Data
         newState.customDescription = new List<CustomString>();
         foreach (CustomString cs in data.customDescription)
+        {
+            newState.customDescription.Add(ObjectCloner.CloneJSON(cs));
+        }
+
+        return newState;
+    }
+    public StateData CloneState(StateData original)
+    {
+        StateData newState = new StateData();
+
+        // Core data
+        newState.stateName = original.stateName;
+        newState.rarity = original.rarity;
+        newState.lootable = original.lootable;
+        newState.hasStacks = original.hasStacks;
+        newState.currentStacks = original.currentStacks;
+
+        // Keyword Model Data
+        newState.keyWordModels = new List<KeyWordModel>();
+        foreach (KeyWordModel kwdm in original.keyWordModels)
+        {
+            newState.keyWordModels.Add(ObjectCloner.CloneJSON(kwdm));
+        }
+
+        // Custom string Data
+        newState.customDescription = new List<CustomString>();
+        foreach (CustomString cs in original.customDescription)
         {
             newState.customDescription.Add(ObjectCloner.CloneJSON(cs));
         }
@@ -132,12 +162,12 @@ public class StateController : Singleton<StateController>
         }
         return bRet;
     }
-    public List<StateData> GetAllAvailableStates()
+    public List<StateData> GetAllAvailableStates(bool onlyLootable = true)
     {
         List<StateData> validStates = new List<StateData>();
         foreach(StateData s in AllStateData)
         {
-            if(PlayerStates.Contains(s) == false)
+            if(PlayerStates.Contains(s) == false && (s.lootable == true || (s.lootable == false  && onlyLootable == false) ))
             {
                 validStates.Add(s);
             }
@@ -168,6 +198,8 @@ public class StateController : Singleton<StateController>
         foreach(StateIcon icon in allStateIcons)
         {
             icon.visualParent.SetActive(false);
+            icon.stacksVisualParent.SetActive(false);
+            icon.greyOutParent.SetActive(false);
             icon.myStateData = null;
         }
     }
@@ -183,11 +215,67 @@ public class StateController : Singleton<StateController>
     {
         Debug.Log("StateController.BuildAllStateIconsFromPlayerStateData() called, building icon from state: " + data.stateName);
 
+        icon.greyOutParent.SetActive(false);
+        icon.stacksVisualParent.SetActive(false);
         icon.myStateData = data;
         icon.visualParent.SetActive(true);
         icon.stateImage.sprite = data.StateSprite;
         icon.infoPanelDescriptionText.text = TextLogic.ConvertCustomStringListToString(data.customDescription);
         icon.stateNameText.text = TextLogic.SplitByCapitals(data.stateName.ToString());
+        if (data.hasStacks)
+        {
+            icon.stacksVisualParent.SetActive(true);
+            icon.stacksText.text = data.currentStacks.ToString();
+            if (data.currentStacks == 0)
+                icon.greyOutParent.SetActive(true);
+        }
+        
+    }
+    public void ModifyStateStacks(StateData state, int stacksGainedOrLost)
+    {
+        state.currentStacks += stacksGainedOrLost;
+
+        // Find matching state icon
+        StateIcon icon = null;
+        foreach(StateIcon i in allStateIcons)
+        {
+            if(i.myStateData == state)
+            {
+                icon = i;
+                break;
+            }
+        }
+
+        if(icon != null)
+        {
+            if (state.hasStacks)
+            {
+                icon.stacksVisualParent.SetActive(true);
+                icon.stacksText.text = state.currentStacks.ToString();
+                if (state.currentStacks == 0)
+                    icon.greyOutParent.SetActive(true);
+            }
+         
+        }
+        else
+        {
+            Debug.LogWarning("StateController.ModifyStateStacks() could not find matching state icon for state: " + state.stateName);
+        }
+    }
+    public StateData FindPlayerState(StateName name)
+    {
+        StateData stateReturned = null;
+
+        foreach(StateData s in PlayerStates)
+        {
+            if(s.stateName == name)
+            {
+                stateReturned = s;
+                break;
+            }
+        }
+
+        return stateReturned;
     }
     #endregion
 
@@ -196,7 +284,9 @@ public class StateController : Singleton<StateController>
     public void GivePlayerState(StateData newState)
     {
         Debug.Log("StateController.GivePlayerState() called, giving state: " + newState.stateName);
-        PlayerStates.Add(newState);
+
+        // TO DO: we should clone the state here, so the player's state is different to the library state
+        PlayerStates.Add(CloneState(newState));
 
         // Rebuild state icon panel
         BuildAllStateIconsFromPlayerStateData();

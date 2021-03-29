@@ -47,7 +47,7 @@ public class ActivationManager : Singleton<ActivationManager>
     private int currentTurn;
     #endregion
 
-    // Properties + Accessors
+    // Getters + Accessors
     #region
     public CharacterEntityModel EntityActivated
     {
@@ -152,6 +152,81 @@ public class ActivationManager : Singleton<ActivationManager>
             // Wait for character move on screen animations to finish
             VisualEventManager.Instance.InsertTimeDelayInQueue(1.5f);
 
+            // Check "Kings Wrath" state
+            StateData s = StateController.Instance.FindPlayerState(StateName.WrathOfTheKing);
+            if (s != null && s.currentStacks > 0)
+            {
+                Debug.Log("ActivationManager.StartNewTurnSequence() triggering 'Wrath of the King' state effect");
+                StateController.Instance.ModifyStateStacks(s, -1);
+
+                // Notif event
+                foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.AllEnemies)
+                {
+                    // Notification VFX
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateStatusEffect(enemy.characterEntityView.transform.position, "Wrath of the King!"));
+                }
+
+                // Brief pause before damage VFX
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+
+                // Reduce the health of all enemies by 50%
+                foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.AllEnemies)
+                {
+                    // Damage VFX
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateDamageEffect(enemy.characterEntityView.transform.position, (enemy.MaxHealthTotal / 2)));
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateBloodExplosion(enemy.characterEntityView.transform.position));
+
+                    // Modify health
+                    CharacterEntityController.Instance.ModifyHealth(enemy, -(enemy.MaxHealthTotal / 2));
+                }
+
+                // Blood Squelch SFX
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                    AudioManager.Instance.PlaySoundPooled(Sound.Ability_Bloody_Stab));
+
+                VisualEventManager.Instance.InsertTimeDelayInQueue(1f);
+            }
+
+            // Check "Contract Killers" state
+            StateData ck = StateController.Instance.FindPlayerState(StateName.ContractKillers);
+            if (ck != null && JourneyManager.Instance.CurrentEncounter == EncounterType.EliteEnemy )
+            {
+                Debug.Log("ActivationManager.StartNewTurnSequence() triggering 'Contract Killers' state effect");
+
+                // Notif event
+                foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.AllEnemies)
+                {
+                    // Notification VFX
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateStatusEffect(enemy.characterEntityView.transform.position, "Contract Killers!"));
+                }
+
+                // Brief pause before damage VFX
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+
+                // Reduce the health of all enemies by 50%
+                foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.AllEnemies)
+                {
+                    // Damage VFX
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateDamageEffect(enemy.characterEntityView.transform.position, (enemy.MaxHealthTotal / 4)));
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateBloodExplosion(enemy.characterEntityView.transform.position));
+
+                    // Modify health
+                    CharacterEntityController.Instance.ModifyHealth(enemy, -(enemy.MaxHealthTotal / 4));
+                }
+
+                // Blood Squelch SFX
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                    AudioManager.Instance.PlaySoundPooled(Sound.Ability_Bloody_Stab));
+
+                VisualEventManager.Instance.InsertTimeDelayInQueue(1f);
+            }
+
             CoroutineData combatStartNotif = new CoroutineData();
             VisualEventManager.Instance.CreateVisualEvent(() => DisplayCombatStartNotification(combatStartNotif), combatStartNotif);
 
@@ -243,7 +318,7 @@ public class ActivationManager : Singleton<ActivationManager>
                 VisualEffectManager.Instance.CreateDamageEffect(defender.characterEntityView.WorldPosition, baseHealAmount, true));
 
                 // Create SFX
-                VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
+                VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Ability_Heal_Twinkle));
 
                 // Notication vfx
                 VisualEventManager.Instance.CreateVisualEvent(() =>
@@ -366,7 +441,9 @@ public class ActivationManager : Singleton<ActivationManager>
             CombatLogic.Instance.CurrentCombatState == CombatGameState.CombatActive &&
             CardController.Instance.DiscoveryScreenIsActive == false &&
             CardController.Instance.ChooseCardScreenIsActive == false &&
-             MainMenuController.Instance.AnyMenuScreenIsActive() == false)
+             MainMenuController.Instance.AnyMenuScreenIsActive() == false &&
+             EntityActivated.controller == Controller.Player &&
+             EntityActivated.activationPhase == ActivationPhase.ActivationPhase)
         {
             // Mouse click SFX
             AudioManager.Instance.PlaySoundPooled(Sound.GUI_Button_Clicked);

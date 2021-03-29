@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce54fe6d38fa1ac4d921d5b2652a68e3, type: 3}
   m_Name: Take 35 damage.
   m_EditorClassIdentifier: 
-  choiceDescription: Take 35 damage.
+  choiceDescription:
+  - color: 10
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Take 35 damage.
   effect: 6
   category: 2
   impactLevel: 2

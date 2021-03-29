@@ -33,7 +33,7 @@ public class CardController : Singleton<CardController>
 
     [Header("Discovery Screen Properties")]
     private CardEffect currentDiscoveryEffect;
-    private bool discoveryScreenIsActive;   
+    private bool discoveryScreenIsActive;
 
     [Header("Choose Card In Hand Screen Components")]
     [SerializeField] private Transform chooseCardScreenSelectionSpot;
@@ -90,7 +90,7 @@ public class CardController : Singleton<CardController>
     }
     public bool DiscoveryScreenIsActive
     {
-        get{ return discoveryScreenIsActive; }
+        get { return discoveryScreenIsActive; }
         private set { discoveryScreenIsActive = value; }
     }
     public bool ChooseCardScreenIsActive
@@ -126,7 +126,7 @@ public class CardController : Singleton<CardController>
 
         List<CardData> tempList = new List<CardData>();
 
-        foreach(CardDataSO dataSO in allCardScriptableObjects)
+        foreach (CardDataSO dataSO in allCardScriptableObjects)
         {
             tempList.Add(BuildCardDataFromScriptableObjectData(dataSO));
         }
@@ -139,16 +139,16 @@ public class CardController : Singleton<CardController>
     {
         CardData cardReturned = null;
 
-        foreach(CardData card in AllCards)
+        foreach (CardData card in AllCards)
         {
-            if(card.cardName == name)
+            if (card.cardName == name)
             {
                 cardReturned = card;
                 break;
             }
         }
 
-        if(cardReturned == null)
+        if (cardReturned == null)
         {
             Debug.Log("WARNING! CardController.GetCardFromLibraryByName() could not find a card " +
                 "with a matching name of " + name + ", returning null...");
@@ -179,9 +179,9 @@ public class CardController : Singleton<CardController>
     {
         Sprite sprite = null;
 
-        foreach(CardDataSO data in AllCardScriptableObjects)
+        foreach (CardDataSO data in AllCardScriptableObjects)
         {
-            if(data.cardName == cardName)
+            if (data.cardName == cardName)
             {
                 sprite = data.cardSprite;
                 break;
@@ -194,9 +194,9 @@ public class CardController : Singleton<CardController>
     {
         CardDataSO dataReturned = null;
 
-        for(int i = 0; i < allCards.Length; i++)
+        for (int i = 0; i < allCards.Length; i++)
         {
-            if(allCardScriptableObjects[i].racialCard &&
+            if (allCardScriptableObjects[i].racialCard &&
                 allCardScriptableObjects[i].originRace == race &&
                 allCardScriptableObjects[i].upgradeLevel == 0)
             {
@@ -231,7 +231,7 @@ public class CardController : Singleton<CardController>
         Debug.Log("GetCardsQuery() called, query params --- TalentSchool = " + ts.ToString()
             + ", Rarity = " + r.ToString() + ", Blessing = " + blessing.ToString());
 
-        List <CardData> cardsReturned = new List<CardData>();
+        List<CardData> cardsReturned = new List<CardData>();
         cardsReturned.AddRange(queriedCollection);
 
         if (ts != TalentSchool.None)
@@ -248,7 +248,7 @@ public class CardController : Singleton<CardController>
         cardsReturned = QueryByBlessing(cardsReturned, blessing);
 
         // Filter upgrade settings
-        if(uf == UpgradeFilter.OnlyNonUpgraded)
+        if (uf == UpgradeFilter.OnlyNonUpgraded)
         {
             cardsReturned = QueryByNonUpgraded(cardsReturned);
         }
@@ -261,7 +261,7 @@ public class CardController : Singleton<CardController>
     }
     public List<Card> GetCardsQuery(IEnumerable<Card> queriedCollection, TalentSchool ts = TalentSchool.None, Rarity r = Rarity.None, bool blessing = false)
     {
-      //  Debug.LogWarning("GetCardsQuery() called, query params --- TalentSchool = " + ts.ToString()
+        //  Debug.LogWarning("GetCardsQuery() called, query params --- TalentSchool = " + ts.ToString()
         //    + ", Rarity = " + r.ToString() + ", Blessing = " + blessing.ToString());
 
         List<Card> cardsReturned = new List<Card>();
@@ -604,7 +604,7 @@ public class CardController : Singleton<CardController>
         card.cardPassiveEffects.AddRange(data.cardPassiveEffects);
         card.cardEffects.AddRange(data.cardEffects);
         card.keyWordModels.AddRange(data.keyWordModels);
-        card.cardDescriptionTwo.AddRange(data.customDescription);       
+        card.cardDescriptionTwo.AddRange(data.customDescription);
 
         return card;
     }
@@ -621,7 +621,7 @@ public class CardController : Singleton<CardController>
         card.cardBaseEnergyCost = data.cardBaseEnergyCost;
         card.xEnergyCost = data.xEnergyCost;
         card.cardSprite = GetCardSpriteByName(data.cardName);
-        card.cardType = data.cardType; 
+        card.cardType = data.cardType;
         card.rarity = data.rarity;
         card.targettingType = data.targettingType;
         card.talentSchool = data.talentSchool;
@@ -705,14 +705,14 @@ public class CardController : Singleton<CardController>
         }
 
         return card;
-        
+
     }
     public CardViewModel BuildCardViewModelFromCard(Card card, Vector3 position)
     {
         Debug.Log("CardController.BuildCardViewModelFromCard() called...");
 
         CardViewModel cardVM = null;
-        if(card.targettingType == TargettingType.NoTarget)
+        if (card.targettingType == TargettingType.NoTarget)
         {
             cardVM = Instantiate(PrefabHolder.Instance.noTargetCard, position, Quaternion.identity).GetComponentInChildren<CardViewModel>();
         }
@@ -779,7 +779,21 @@ public class CardController : Singleton<CardController>
         ApplyCardViewModelTalentColoring(cardVM, ColorLibrary.Instance.GetTalentColor(card.talentSchool));
         ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(card.rarity));
         SetCardViewModelCardTypeImage(cardVM, SpriteLibrary.Instance.GetCardTypeImageFromTypeEnumData(card.cardType));
-       
+        SetCardViewModelTypeImageParentVisibility(cardVM, true);
+
+        // Hide talent type parent for blessings, afflictions, etc
+        if (card.affliction == true ||
+            card.blessing == true ||
+            card.talentSchool == TalentSchool.Neutral ||
+             card.talentSchool == TalentSchool.None)
+        {
+            SetCardViewModelTalentImageParentVisibility(cardVM, false);
+        }
+        else
+        {
+            SetCardViewModelTalentImageParentVisibility(cardVM, true);
+        }
+
     }
     public void SetUpCardViewModelAppearanceFromCard(CardViewModel cardVM, CampCard card)
     {
@@ -792,7 +806,7 @@ public class CardController : Singleton<CardController>
     public void BuildCardViewModelFromCardData(CardData card, CardViewModel cardVM)
     {
         Debug.Log("CardController.BuildCardViewModelFromCardData() called...");
-        
+
         // Set texts and images
         SetCardViewModelNameText(cardVM, card.cardName, card.upgradeLevel >= 1);
         AutoUpdateCardDescription(card);
@@ -803,6 +817,22 @@ public class CardController : Singleton<CardController>
         ApplyCardViewModelTalentColoring(cardVM, ColorLibrary.Instance.GetTalentColor(card.talentSchool));
         ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(card.rarity));
         SetCardViewModelCardTypeImage(cardVM, SpriteLibrary.Instance.GetCardTypeImageFromTypeEnumData(card.cardType));
+        SetCardViewModelTypeImageParentVisibility(cardVM, true);
+
+        // Hide talent type parent for blessings, afflictions, etc
+        if (card.affliction == true ||
+            card.blessing == true ||
+            card.talentSchool == TalentSchool.Neutral ||
+             card.talentSchool == TalentSchool.None)
+        {
+            SetCardViewModelTalentImageParentVisibility(cardVM, false);
+        }
+        else
+        {
+            SetCardViewModelTalentImageParentVisibility(cardVM, true);
+        }
+        
+
     }
     public void BuildCardViewModelFromItemData(ItemData item, CardViewModel cardVM)
     {
@@ -813,8 +843,8 @@ public class CardController : Singleton<CardController>
         SetCardViewModelDescriptionText(cardVM, TextLogic.ConvertCustomStringListToString(item.customDescription));
         SetCardViewModelGraphicImage(cardVM, item.ItemSprite);
         ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(item.itemRarity));
-        cardVM.cardTypeParent.SetActive(false);
-        cardVM.talentSchoolParent.SetActive(false);
+        SetCardViewModelTypeImageParentVisibility(cardVM, false);
+        SetCardViewModelTalentImageParentVisibility(cardVM, false);
         cardVM.energyParent.SetActive(false);
 
     }
@@ -827,8 +857,8 @@ public class CardController : Singleton<CardController>
         SetCardViewModelDescriptionText(cardVM, TextLogic.ConvertCustomStringListToString(state.customDescription));
         SetCardViewModelGraphicImage(cardVM, state.StateSprite);
         ApplyCardViewModelRarityColoring(cardVM, ColorLibrary.Instance.GetRarityColor(state.rarity));
-        cardVM.cardTypeParent.SetActive(false);
-        cardVM.talentSchoolParent.SetActive(false);
+        SetCardViewModelTypeImageParentVisibility(cardVM, false);
+        SetCardViewModelTalentImageParentVisibility(cardVM, false);
         cardVM.energyParent.SetActive(false);
 
     }
@@ -891,13 +921,17 @@ public class CardController : Singleton<CardController>
 
                     if(target != null)
                     {
-                        damageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(card.owner, target, matchingEffect.damageType, matchingEffect.baseDamageValue, card, matchingEffect, false);
+                        if (target.pManager.incorporealStacks > 0)
+                            damageValue = 1;
+                        else
+                            damageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(card.owner, target, matchingEffect.damageType, matchingEffect.baseDamageValue, card, matchingEffect, false);
                     }
                     else
                     {
                         damageValue = CombatLogic.Instance.GetFinalDamageValueAfterAllCalculations(card.owner, null, matchingEffect.damageType, matchingEffect.baseDamageValue, card, matchingEffect, false);
                     }
 
+                    
                     cs.phrase = damageValue.ToString();
                 }
 
@@ -1147,11 +1181,19 @@ public class CardController : Singleton<CardController>
             SetCardViewModelGraphicImage(cvm.myPreviewCard, sprite);
         }
     }
+    public void SetCardViewModelTalentImageParentVisibility(CardViewModel cvm, bool onOrOff)
+    {
+        cvm.talentSchoolParent.gameObject.SetActive(onOrOff);
+        if (cvm.myPreviewCard != null)
+        {
+            SetCardViewModelTalentImageParentVisibility(cvm.myPreviewCard, onOrOff);
+        }
+    }
     public void SetCardViewModelTalentSchoolImage(CardViewModel cvm, Sprite sprite)
     {
         if (sprite)
         {
-            cvm.talentSchoolParent.SetActive(true);
+            //cvm.talentSchoolParent.SetActive(true);
             cvm.talentSchoolImage.sprite = sprite;
             if (cvm.myPreviewCard != null)
             {
@@ -1191,6 +1233,14 @@ public class CardController : Singleton<CardController>
         if (cvm.myPreviewCard != null)
         {
             ApplyCardViewModelRarityColoring(cvm.myPreviewCard, color);
+        }
+    }
+    public void SetCardViewModelTypeImageParentVisibility(CardViewModel cvm, bool onOrOff)
+    {
+        cvm.cardTypeParent.gameObject.SetActive(onOrOff);
+        if (cvm.myPreviewCard != null)
+        {
+            SetCardViewModelTypeImageParentVisibility(cvm.myPreviewCard, onOrOff);
         }
     }
     public void SetCardViewModelCardTypeImage(CardViewModel cvm, Sprite sprite)
@@ -1830,7 +1880,7 @@ public class CardController : Singleton<CardController>
 
             if (owner.pManager.plantedFeetStacks > 0)
             {
-                PassiveController.Instance.ModifyPlantedFeet(owner.pManager, -owner.pManager.plantedFeetStacks, false);
+                PassiveController.Instance.ModifyPlantedFeet(owner.pManager, -1, false);
             }
 
             HandleOnMeleeAttackCardPlayedListeners(owner);
@@ -2082,7 +2132,7 @@ public class CardController : Singleton<CardController>
 
             // Notication vfx
             VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(owner.characterEntityView.transform.position, "Recycling!"), QueuePosition.Back, 0, 0.5f);
+                VisualEffectManager.Instance.CreateStatusEffect(owner.characterEntityView.transform.position, "Recycling!"), QueuePosition.Back, 0, 0.25f);
         }
 
         // Check 'Adaptation' state
@@ -2525,7 +2575,7 @@ public class CardController : Singleton<CardController>
             }
             else if (cardEffect.drawBaseDamageFromMeleeAttacksPlayed)
             {
-                baseDamage = owner.meleeAttacksPlayedThisActivation * cardEffect.baseDamageMultiplier;
+                baseDamage = (owner.meleeAttacksPlayedThisActivation - 1) * cardEffect.baseDamageMultiplier;
             }
             else if (cardEffect.drawBaseDamageFromOverloadOnSelf)
             {
@@ -2605,7 +2655,7 @@ public class CardController : Singleton<CardController>
                 }
                 else if (cardEffect.drawBaseDamageFromMeleeAttacksPlayed)
                 {
-                    baseDamage = owner.meleeAttacksPlayedThisActivation * cardEffect.baseDamageMultiplier;
+                    baseDamage = (owner.meleeAttacksPlayedThisActivation - 1) * cardEffect.baseDamageMultiplier;
                 }
                 else if (cardEffect.drawBaseDamageFromOverloadOnSelf)
                 {
@@ -2656,7 +2706,7 @@ public class CardController : Singleton<CardController>
             }
             else if (cardEffect.drawBaseDamageFromMeleeAttacksPlayed)
             {
-                baseDamage = owner.meleeAttacksPlayedThisActivation * cardEffect.baseDamageMultiplier;
+                baseDamage = (owner.meleeAttacksPlayedThisActivation - 1) * cardEffect.baseDamageMultiplier;
             }
             else if (cardEffect.drawBaseDamageFromOverloadOnSelf)
             {
@@ -2697,7 +2747,7 @@ public class CardController : Singleton<CardController>
             VisualEffectManager.Instance.CreateDamageEffect(owner.characterEntityView.WorldPosition, cardEffect.healthRestored, true));
 
             // Create SFX
-            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
+            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Ability_Heal_Twinkle));
         }
 
         // Heal Target
@@ -2715,7 +2765,7 @@ public class CardController : Singleton<CardController>
             VisualEffectManager.Instance.CreateDamageEffect(target.characterEntityView.WorldPosition, cardEffect.healthRestored, true));
 
             // Create SFX
-            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
+            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Ability_Heal_Twinkle));
         }
 
         // Heal Self And All Allies
@@ -2736,7 +2786,7 @@ public class CardController : Singleton<CardController>
             }
 
             // Create SFX
-            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Passive_General_Buff));
+            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Ability_Heal_Twinkle));
         }
 
         // Lose Health
@@ -3906,6 +3956,15 @@ public class CardController : Singleton<CardController>
             return 0;
         }
 
+        // Planted Feet override
+        if (card.cardType == CardType.MeleeAttack &&
+            card.owner != null &&
+            card.owner.pManager != null &&
+            card.owner.pManager.plantedFeetStacks > 0)
+        {
+            return 0;
+        }
+
         // Dark Bargain override
         if (card.owner != null &&
             card.owner.pManager != null &&
@@ -3958,14 +4017,7 @@ public class CardController : Singleton<CardController>
             }
         }
 
-        // Check 'Planted Feet' passive
-        if (card.owner.pManager != null && 
-            card.cardType == CardType.MeleeAttack &&
-            card.owner.pManager.plantedFeetStacks > 0)
-        {
-            costReturned -= card.owner.pManager.plantedFeetStacks;
-        }
-
+       
         // Check 'Take Aim' passive
         if (card.owner.pManager != null &&
             card.cardType == CardType.RangedAttack &&
@@ -4952,6 +5004,35 @@ public class CardController : Singleton<CardController>
         // Reset Slot Positions
         VisualEventManager.Instance.CreateVisualEvent(() => MoveShuffleSlotsToStartPosition());
     }
+    public void StartNewShuffleCardsScreenVisualEvent(UniversalCharacterModel view, List<StateData> states)
+    {
+        // cache cards for visual events
+        List<StateData> cachedStates = new List<StateData>();
+        cachedStates.AddRange(states);
+        List<DiscoveryCardViewModel> activeCards = new List<DiscoveryCardViewModel>();
+
+        for (int i = 0; i < states.Count; i++)
+        {
+            activeCards.Add(shuffleCards[i]);
+        }
+
+        // Set up main screen V event
+        CoroutineData cData = new CoroutineData();
+        VisualEventManager.Instance.CreateVisualEvent(() => SetUpShuffleCardScreen(cachedStates, cData), cData);
+
+        // brief pause so player can view cards
+        VisualEventManager.Instance.InsertTimeDelayInQueue(1, QueuePosition.Back);
+
+        // Move each card towards character v Event
+        foreach (DiscoveryCardViewModel dcvm in activeCards)
+        {
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                    MoveShuffleCardTowardsCharacterEntityView(dcvm, view), QueuePosition.Back, 0, 0.2f);
+        }
+
+        // Reset Slot Positions
+        VisualEventManager.Instance.CreateVisualEvent(() => MoveShuffleSlotsToStartPosition());
+    }
     public void StartNewShuffleCardsScreenExpendVisualEvent(List<CardData> cards)
     {
         // cache cards for visual events
@@ -5046,6 +5127,41 @@ public class CardController : Singleton<CardController>
         yield return null;
 
         for (int i = 0; i < cachedCards.Count; i++)
+        {
+            // move card to slot     
+            shuffleCards[i].scalingParent.DOScale(1, 0.3f);
+            shuffleCards[i].transform.gameObject.transform.DOMove(shuffleCardSlots[i].position, 0.3f);
+        }
+
+        if (cData != null)
+        {
+            cData.MarkAsCompleted();
+        }
+    }
+    private void SetUpShuffleCardScreen(List<StateData> cachedStates, CoroutineData cData)
+    {
+        StartCoroutine(SetUpShuffleCardScreenCoroutine(cachedStates, cData));
+    }
+    private IEnumerator SetUpShuffleCardScreenCoroutine(List<StateData> cachedStates, CoroutineData cData)
+    {
+        shuffleCardsScreenVisualParent.SetActive(true);
+        MoveShuffleSlotsToStartPosition();
+        MoveShuffleCardsToStartPosition();
+
+        for (int i = 0; i < cachedStates.Count; i++)
+        {
+            BuildCardViewModelFromStateData(cachedStates[i], shuffleCards[i].cardViewModel);
+            //SetUpCardViewModelAppearanceFromCard(shuffleCards[i].cardViewModel, cachedCards[i]);
+            shuffleCards[i].gameObject.SetActive(true);
+            shuffleCardSlots[i].gameObject.SetActive(true);
+
+            // shrink cards down
+            shuffleCards[i].scalingParent.localScale = new Vector3(0.1f, 0.1f);
+        }
+
+        yield return null;
+
+        for (int i = 0; i < cachedStates.Count; i++)
         {
             // move card to slot     
             shuffleCards[i].scalingParent.DOScale(1, 0.3f);

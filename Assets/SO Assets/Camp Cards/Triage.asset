@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Triage
   cardSprite: {fileID: 21300000, guid: 4f702ecc13f199a4a9dfb13fdbfe50f4, type: 3}
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   targettingType: 1
   targetRequirements:
   - targettingConditionType: 1

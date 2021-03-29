@@ -764,8 +764,9 @@ public class CampSiteController : Singleton<CampSiteController>
         }
 
         // Disable unused view elements
-        cardVM.cardTypeParent.SetActive(false);
-        cardVM.talentSchoolParent.SetActive(false);
+        CardController.Instance.SetCardViewModelTypeImageParentVisibility(cardVM, false);
+        //cardVM.talentSchoolParent.SetActive(false);
+        CardController.Instance.SetCardViewModelTalentImageParentVisibility(cardVM, false);
 
         // Cache references
         ConnectCardWithCardViewModel(card, cardVM);

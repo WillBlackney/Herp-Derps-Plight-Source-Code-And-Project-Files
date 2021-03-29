@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce54fe6d38fa1ac4d921d5b2652a68e3, type: 3}
   m_Name: Upgrade 4 random cards.
   m_EditorClassIdentifier: 
-  choiceDescription: Upgrade 4 random cards.
+  choiceDescription:
+  - color: 12
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Upgrade 4 random cards.
   effect: 11
   category: 1
   impactLevel: 2

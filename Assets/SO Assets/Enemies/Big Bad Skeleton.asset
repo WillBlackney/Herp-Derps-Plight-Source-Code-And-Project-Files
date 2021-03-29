@@ -44,6 +44,7 @@ MonoBehaviour:
     temporaryBonusDrawStacks: 0
     runeStacks: 0
     barrierStacks: 0
+    incorporealStacks: 0
     enrageStacks: 0
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
@@ -95,6 +96,7 @@ MonoBehaviour:
     guardianAuraStacks: 0
     toxicAuraStacks: 0
     hatefulAuraStacks: 0
+    intimidatingAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -181,7 +183,7 @@ MonoBehaviour:
       visualEventsOnFinish: []
       actionType: 0
       effectLoops: 1
-      baseDamage: 25
+      baseDamage: 20
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -299,7 +301,7 @@ MonoBehaviour:
         onCharacter: 0
       actionType: 1
       effectLoops: 1
-      baseDamage: 15
+      baseDamage: 10
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0

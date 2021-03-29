@@ -347,24 +347,13 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             int randomMaxHealth = RandomGenerator.NumberBetween(lower, upper);
             ModifyMaxHealth(character, randomMaxHealth);
         }
-        else
-        {
-            ModifyMaxHealth(character, data.maxHealth);
-        }
+        else        
+            ModifyMaxHealth(character, data.maxHealth);        
         
-        if (data.overrideStartingHealth)
-        {            
-            ModifyHealth(character, data.startingHealth);
-        }
+        if (data.overrideStartingHealth)                    
+            ModifyHealth(character, data.startingHealth);        
         else
-        {
-            // Check 'Contract Killers' state
-            if (JourneyManager.Instance.CurrentEncounter == EncounterType.EliteEnemy &&
-                StateController.Instance.DoesPlayerHaveState(StateName.ContractKillers))        
-                ModifyHealth(character, (int) (character.maxHealth * 0.75f));            
-            else
-                ModifyHealth(character, character.maxHealth);
-        }
+            ModifyHealth(character, character.maxHealth);
 
         // Set starting block
         GainBlock(character, data.startingBlock, false);
@@ -473,6 +462,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         {
             CharacterDataController.Instance.SetCharacterHealth(character.characterData, character.health);
         }
+
+        Debug.LogWarning(character.myName + " health value = " + character.health.ToString());
 
         VisualEventManager.Instance.CreateVisualEvent(() => UpdateHealthGUIElements(character, finalHealthValue, character.MaxHealthTotal), QueuePosition.Back, 0, 0);
     }
@@ -836,208 +827,6 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
         
     }
-    private void ResolveFirstActivationTalentBonuses(CharacterEntityModel character)
-    {
-        // Double check character data is not null
-        if(character.characterData == null)
-        {
-            Debug.LogWarning("CharacterEntityController.ResolveFirstActivationTalentBonuses() was given null character data, cancelling...");
-            return;
-        }
-
-        /*
-        // Divinity bonus
-        if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Divinity, 1))
-        {
-            // Notication vfx
-            VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Divinity Mastery!"));
-
-            // Gain Random Blessing cards
-            for (int i = 0; i < CharacterDataController.Instance.GetTalentLevel(character.characterData, TalentSchool.Divinity); i++)
-            {
-                CardController.Instance.CreateAndAddNewRandomBlessingsToCharacterHand(character, 1, UpgradeFilter.OnlyNonUpgraded);
-            }
-
-            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-        }
-
-        // Manipulation bonus
-        if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Manipulation, 1))
-        {
-            // Notication vfx
-            VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Manipulation Mastery!"), QueuePosition.Back, 0f, 0.5f);
-
-            // Add arcane bolt card to hand
-            for(int i = 0; i < CharacterDataController.Instance.GetTalentLevel(character.characterData, TalentSchool.Manipulation); i++)
-            {
-                CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetCardDataFromLibraryByName("Arcane Bolt"));
-            }
-
-            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-        }
-
-        
-
-        // Warfare bonus
-        if(CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Warfare, 2))
-        {
-            // Notication vfx
-            VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Warfare Mastery!"), QueuePosition.Back, 0f, 0.5f);
-
-            // Gain 1 Wrath
-            PassiveController.Instance.ModifyTemporaryPower(character.pManager, 2, true, 0.5f);
-        }
-
-        // Guardian bonus
-        if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Guardian, 2))
-        {
-            // Notication vfx
-            VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Guardian Mastery!"), QueuePosition.Back, 0f, 0.5f);
-
-            // Gain 5 Block
-            GainBlock(character, CombatLogic.Instance.CalculateBlockGainedByEffect(5, character, character));
-            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-        }
-
-        // Naturalism bonus
-        if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Naturalism, 2))
-        {
-            // Notication vfx
-            VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Naturalism Mastery!"), QueuePosition.Back, 0f, 0.5f);
-
-            // Gain 2 Overload
-            PassiveController.Instance.ModifyOverload(character.pManager, 2, true, 0.5f);
-        }
-
-        // Scoundrel bonus
-        if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Scoundrel, 2))
-        {
-            // Notication vfx
-            VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Scoundrel Mastery!"));
-
-            // Gain 1 Shank card
-            for (int i = 0; i < 1; i++)
-            {
-                CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetCardDataFromLibraryByName("Shank"));
-            }
-
-            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-        }
-
-        
-
-        // Toxicology bonus
-        if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Corruption, 2))
-        {
-            // Notication vfx
-            VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Corruption Mastery!"));
-
-            // Get random enemy           
-            List<CharacterEntityModel> viableEnemies = GetAllEnemiesOfCharacter(character);
-            viableEnemies.Shuffle();
-            CharacterEntityModel randomEnemy = viableEnemies[0];
-
-            // Apply 2 weakened to random enemy
-            PassiveController.Instance.ModifyPoisoned(character, randomEnemy.pManager, 3, true, 0f);
-
-            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-        }
-
-        // Shadowcraft bonus
-        if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Shadowcraft, 2))
-        {
-            // Notication vfx
-            VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Shadowcraft Mastery!"));
-
-            // Get random enemy           
-            List<CharacterEntityModel> viableEnemies = GetAllEnemiesOfCharacter(character);
-            viableEnemies.Shuffle();
-            CharacterEntityModel randomEnemy = viableEnemies[0];
-
-            // Apply 2 weakened to random enemy
-            PassiveController.Instance.ModifyWeakened(randomEnemy.pManager, 2, character.pManager, true, 0f);
-
-            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-        }
-
-        // Manipulation bonus
-        if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Manipulation, 2))
-        {
-            // Notication vfx
-            VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Manipulation Mastery!"), QueuePosition.Back, 0f, 0.5f);
-
-            // Gain 2 Source
-            //PassiveController.Instance.ModifySource(character.pManager, 2, true, 0.5f);
-
-            // Add arcane bolt card to hand
-            CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetCardDataFromLibraryByName("Arcane Bolt"));
-
-            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-        }
-
-        // Pyromania bonus
-        if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Pyromania, 2))
-        {
-            // Notication vfx
-            VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Pyromania Mastery!"));
-
-            // Add Fire Ball to hand
-            Card newFbCard = CardController.Instance.CreateAndAddNewCardToCharacterHand(character, CardController.Instance.GetCardDataFromLibraryByName("Fire Ball"));
-
-            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-        }
-
-        // Ranger bonus
-        if (CharacterDataController.Instance.DoesCharacterMeetTalentRequirement(character.characterData, TalentSchool.Ranger, 2))
-        {
-            // Notication vfx
-            VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Ranger Mastery!"));
-
-            // Setup
-            Card cardDrawn = null;
-            List<Card> validCards = new List<Card>();
-
-            // Find all valid ranged attack cards
-            foreach(Card card in character.drawPile)
-            {
-                if(card.cardType == CardType.RangedAttack)
-                {
-                    validCards.Add(card);
-                }
-            }
-
-            // Choose a random ranged attack card
-            if(validCards.Count > 0)
-            {
-                validCards.Shuffle();
-                cardDrawn = validCards[0];
-            }
-
-            // Did we actually find a ranged attack card?
-            if(cardDrawn != null)
-            {
-                // We did, draw it.
-                CardController.Instance.DrawACardFromDrawPile(character, cardDrawn);
-
-                // Set cost to 0
-                CardController.Instance.ReduceCardEnergyCostThisCombat(cardDrawn, cardDrawn.cardBaseEnergyCost);
-            }
-
-            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-        }
-        */
-    }
     public void CharacterOnActivationStart(CharacterEntityModel character)
     {
         Debug.Log("CharacterEntityController.CharacterOnActivationStart() called for " + character.myName);
@@ -1049,22 +838,22 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         LevelNode charNode = character.levelNode;
         VisualEventManager.Instance.CreateVisualEvent(() => LevelManager.Instance.SetActivatedViewState(charNode, true), QueuePosition.Back);
 
-        int energyGain = EntityLogic.GetTotalStamina(character);
+        // PLAYER EXCLUSIVE energy gain logic
+        if (character.controller == Controller.Player)
+        {
+            int energyGain = EntityLogic.GetTotalStamina(character);
 
-        // Check 'Eagerness' state
-        if (StateController.Instance.DoesPlayerHaveState(StateName.Eagerness) &&
-            ActivationManager.Instance.CurrentTurn == 1)
-            energyGain += 1;
+            // Check 'Eagerness' state
+            if (StateController.Instance.DoesPlayerHaveState(StateName.Eagerness) &&
+                ActivationManager.Instance.CurrentTurn == 1)
+                energyGain += 1;
 
-        // Gain Energy
-        ModifyEnergy(character, energyGain);
+            // Gain Energy
+            ModifyEnergy(character, energyGain);
 
-        // Check 'Eagerness' state
-        if(StateController.Instance.DoesPlayerHaveState(StateName.Eagerness))
-            ModifyEnergy(character, 1);
-
-        // Update energy text
-        VisualEventManager.Instance.CreateVisualEvent(() => UpdateEnergyGUI(character.characterEntityView, character.energy), QueuePosition.Back, 0, 0);
+            // Update energy text
+            VisualEventManager.Instance.CreateVisualEvent(() => UpdateEnergyGUI(character.characterEntityView, character.energy), QueuePosition.Back, 0, 0);
+        }
 
         // Handle remove block from previous turn cycle
         if (GlobalSettings.Instance.blockExpiresOnActivationStart && 
@@ -1078,8 +867,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Block Expiry"));
                 SetBlock(character, character.block - character.blockGainedPreviousTurnCycle, false);
                 VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-            }
- 
+            } 
         }
 
         // Handle remove block from cautious (if character has it and it was triggered)
@@ -1094,41 +882,27 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 character.blockFromCautiousGained = 0;
                 character.didTriggerCautiousPrior = false;
             }                
-        }
+        }      
 
-        /*
-        // Check 'Polished Armour' state
-        if(ActivationManager.Instance.CurrentTurn == 1 &&
-            StateController.Instance.DoesPlayerHaveState(StateName.PolishedArmour) &&
-            character.allegiance == Allegiance.Player)
-        {
-            // Apply block gain
-            GainBlock(character, CombatLogic.Instance.CalculateBlockGainedByEffect(10, character, character));
-
-            // Notication vfx
-            VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Polished Armour!"), QueuePosition.Back, 0, 0.5f);
-        }
-        */
-
-        // Modify relevant passives
-        if (character.pManager.temporaryBonusStaminaStacks != 0)
-        {
-            PassiveController.Instance.ModifyTemporaryStamina(character.pManager, -character.pManager.temporaryBonusStaminaStacks, true, 0.5f);
-        }
-
-        // is the character player controller?
+        // PLAYER EXCLUSIVE on activation start logic
         if (character.controller == Controller.Player)
         {
+            // Remove temp stamina bonus
+            if (character.pManager.temporaryBonusStaminaStacks != 0)
+            {
+                PassiveController.Instance.ModifyTemporaryStamina(character.pManager, -character.pManager.temporaryBonusStaminaStacks, true, 0.5f);
+            }
+
             // Activate main UI canvas view
             CoroutineData cData = new CoroutineData();
             VisualEventManager.Instance.CreateVisualEvent(() => FadeInCharacterUICanvas(character.characterEntityView, cData), cData, QueuePosition.Back);
 
             // Resolve first turn talent bonuses
+            /*
             if(ActivationManager.Instance.CurrentTurn == 1)
             {
                 ResolveFirstActivationTalentBonuses(character);
-            }
+            }*/
 
             // Before normal card draw, add cards to hand from passive effects (e.g. Fan Of Knives)
             // Fan of Knives
@@ -1202,87 +976,98 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                     // Reduce its energy cost by 1
                     CardController.Instance.SetCardEnergyCostThisCombat(card, 0);
                 }
-            }
-
-            // Lord Of Storms
-            if (character.pManager.lordOfStormsStacks > 0)
-            {
-                PassiveController.Instance.ModifyOverload(character.pManager, character.pManager.lordOfStormsStacks, true, 0.5f);
-            }
-
-            // Regeneration
-            if (character.pManager.regenerationStacks > 0)
-            {
-                // Notication vfx
-                VisualEventManager.Instance.CreateVisualEvent(() =>
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Regeneration!"), QueuePosition.Back, 0, 0.5f);
-
-                // Modify health
-                ModifyHealth(character, character.pManager.regenerationStacks);
-
-                // Heal VFX
-                VisualEventManager.Instance.CreateVisualEvent(() =>
-                    VisualEffectManager.Instance.CreateHealEffect(character.characterEntityView.WorldPosition, character.pManager.regenerationStacks));
-
-                // Create heal text effect
-                VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateDamageEffect(character.characterEntityView.WorldPosition, character.pManager.regenerationStacks, true));
-
-                // Create SFX
-                VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
-
-                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-            }
-
-            // Shield Wall
-            if (character.pManager.shieldWallStacks > 0)
-            {
-                // Notication vfx
-                VisualEventManager.Instance.CreateVisualEvent(() =>
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Shield Wall"), QueuePosition.Back, 0, 0.5f);
-
-                // Apply block gain
-                GainBlock(character, CombatLogic.Instance.CalculateBlockGainedByEffect(character.pManager.shieldWallStacks, character, character));
-                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-            }
+            }            
 
             // Draw cards on turn start
             CardController.Instance.DrawCardsOnActivationStart(character);
-            foreach(Card card in character.hand)
-            {
-            }
 
             // Remove temp draw
             if (character.pManager.temporaryBonusDrawStacks != 0)
             {
                 PassiveController.Instance.ModifyTemporaryDraw(character.pManager, -character.pManager.temporaryBonusDrawStacks, true, 0.5f);
-            }
-
-            // Set Activated Phase
-            SetCharacterActivationPhase(character, ActivationPhase.ActivationPhase);
+            }            
         }
 
-        // is the character an enemy?
+        // NON-EXCLUSIVE passives and turn start logic
+
+        // Grit expiry
+        if (character.pManager.gritStacks > 0)
+        {
+            PassiveController.Instance.ModifyGrit(character.pManager, -1, true, 0.5f);
+        }
+
+        // Shadow Aura        
+        if (character.pManager.shadowAuraStacks > 0)
+        {
+            CharacterEntityModel[] allEnemies = GetAllEnemiesOfCharacter(character).ToArray();
+            CharacterEntityModel chosenEnemy = allEnemies[RandomGenerator.NumberBetween(0, allEnemies.Length - 1)];
+
+            if (chosenEnemy != null)
+            {
+                // Notification event
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Shadow Aura!"), QueuePosition.Back, 0, 0.5f);
+
+                // Random enemy is weakened
+                PassiveController.Instance.ModifyWeakened(chosenEnemy.pManager, character.pManager.shadowAuraStacks, character.pManager, true);
+            }
+        }
+
+        // Lord Of Storms
+        if (character.pManager.lordOfStormsStacks > 0)
+        {
+            PassiveController.Instance.ModifyOverload(character.pManager, character.pManager.lordOfStormsStacks, true, 0.5f);
+        }
+
+        // Regeneration
+        if (character.pManager.regenerationStacks > 0)
+        {
+            // Notication vfx
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Regeneration!"), QueuePosition.Back, 0, 0.5f);
+
+            // Modify health
+            ModifyHealth(character, character.pManager.regenerationStacks);
+
+            // Heal VFX
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateHealEffect(character.characterEntityView.WorldPosition, character.pManager.regenerationStacks));
+
+            // Create heal text effect
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+            VisualEffectManager.Instance.CreateDamageEffect(character.characterEntityView.WorldPosition, character.pManager.regenerationStacks, true));
+
+            // Create SFX
+            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
+
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+        }
+
+        // Shield Wall
+        if (character.pManager.shieldWallStacks > 0)
+        {
+            // Notication vfx
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Shield Wall"), QueuePosition.Back, 0, 0.5f);
+
+            // Apply block gain
+            GainBlock(character, CombatLogic.Instance.CalculateBlockGainedByEffect(character.pManager.shieldWallStacks, character, character));
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+        }
+
+        // ENEMY Start turn 
         if (character.controller == Controller.AI &&
             character.allegiance == Allegiance.Enemy)
         {
-            // Shield Wall
-            if (character.pManager.shieldWallStacks > 0)
-            {
-                // Notication vfx
-                VisualEventManager.Instance.CreateVisualEvent(() =>
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Shield Wall"), QueuePosition.Back, 0, 0.5f);
-
-                // Apply block gain
-                GainBlock(character, CombatLogic.Instance.CalculateBlockGainedByEffect(character.pManager.shieldWallStacks, character, character));
-                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-            }
-
-            // Brief pause at the start of enemy action, so player can anticipate visual events
             VisualEventManager.Instance.InsertTimeDelayInQueue(1f);
-
-            // Star enemy activation process
             StartEnemyActivation(character);
+        }
+
+        // PLAYER Start turn
+        if (character.controller == Controller.Player)
+        {
+            // Set Activated Phase
+            SetCharacterActivationPhase(character, ActivationPhase.ActivationPhase);
         }
     }
     public void CharacterOnActivationEnd(CharacterEntityModel entity)
@@ -1371,10 +1156,11 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         {
             PassiveController.Instance.ModifyWeakened(entity.pManager, -1, null, true, 0.5f);
         }
+        /*
         if (entity.pManager.gritStacks > 0)
         {
             PassiveController.Instance.ModifyGrit(entity.pManager, -1, true, 0.5f);
-        }
+        }*/
         if (entity.pManager.vulnerableStacks > 0)
         {
             PassiveController.Instance.ModifyVulnerable(entity.pManager, -1, true, 0.5f);
@@ -1394,11 +1180,6 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             PassiveController.Instance.ModifySleep(entity.pManager, -1, true, 0.5f);
         }
 
-        // Misc passive expiries
-        if (entity.pManager.plantedFeetStacks > 0)
-        {
-            PassiveController.Instance.ModifyPlantedFeet(entity.pManager, -entity.pManager.plantedFeetStacks, true, 0.5f);
-        }
         if (entity.pManager.takenAimStacks > 0)
         {
             PassiveController.Instance.ModifyTakenAim(entity.pManager, -entity.pManager.takenAimStacks, true, 0.5f);
@@ -1442,6 +1223,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }
 
         // Shadow Aura
+        /*
         if (entity.pManager.shadowAuraStacks > 0)
         {
             CharacterEntityModel[] allEnemies = GetAllEnemiesOfCharacter(entity).ToArray();
@@ -1457,6 +1239,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 PassiveController.Instance.ModifyWeakened(chosenEnemy.pManager, entity.pManager.shadowAuraStacks, entity.pManager, true);
             }
         }
+        */
 
         // Toxic Aura
         if (entity.pManager.toxicAuraStacks > 0)
@@ -2952,7 +2735,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                     VisualEffectManager.Instance.CreateDamageEffect(ally.characterEntityView.WorldPosition, effect.healAmount, true));
 
                     // Create SFX
-                    VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
+                    VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Ability_Heal_Twinkle));
                 }
             }
 

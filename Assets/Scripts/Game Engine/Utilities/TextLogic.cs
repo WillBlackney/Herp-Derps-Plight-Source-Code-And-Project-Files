@@ -13,6 +13,9 @@ public static class TextLogic
     public static string blueNumber = "<color=#92E0FF>"; 
     public static string neutralYellow = "<color=#F8FF00>";
     public static string redText = "<color=#FF6262>";
+    public static string lightGreen = "<color=#57FF34>";
+    public static string lightRed = "<color=#FF4747>";
+    public static string rareTextBlue = "<color=#90FFD0>";
 
     public static string physical = "<color=#FF9500>";
     public static string magic = "<color=#C975FF>";
@@ -21,11 +24,7 @@ public static class TextLogic
     public static string shadow = "<color=#CF01BC>";
     public static string air = "<color=#36EDFF>";
     public static string poison = "<color=#00EC4A>";
-
-    public static string commonRarity = "<color=#FFFFFF>";
-    public static string rareRarity = "<color=#6BFFE2>";
-    public static string epicRarity = "<color=#D14EFF>";
-    public static string legendaryRarity = "<color=#FFD440>";
+  
     #endregion
 
     // Build stuff
@@ -98,6 +97,20 @@ public static class TextLogic
             colorCodeReturned = fire;
         }
 
+        // Other misc colours
+        else if (color == TextColor.LightGreen)
+        {
+            colorCodeReturned = lightGreen;
+        }
+        else if (color == TextColor.LightRed)
+        {
+            colorCodeReturned = lightRed;
+        }
+        else if (color == TextColor.RareTextBlue)
+        {
+            colorCodeReturned = rareTextBlue;
+        }
+
         else
         {
             colorCodeReturned = white;
@@ -134,8 +147,9 @@ public static class TextLogic
     #region  
     public static string GetTalentPairingTierOneDescriptionText(TalentSchool ts)
     {
-        string sReturned =  "You can add " + ReturnColoredText(ts.ToString(), neutralYellow) + " cards to your deck. ";
-        sReturned += "\n";
+        string sReturned = "";
+       // string sReturned =  "You can add " + ReturnColoredText(ts.ToString(), neutralYellow) + " cards to your deck. ";
+       // sReturned += "\n";
 
         if (ts == TalentSchool.Corruption)
         {
@@ -244,8 +258,8 @@ public static class TextLogic
         else if (ts == TalentSchool.Manipulation)
         {
             sReturned += "Increase all damage and " + ReturnColoredText("Block", neutralYellow) + " gains from cards by " +
-                ReturnColoredText("2%", blueNumber) + " per stack of " + ReturnColoredText("Source", neutralYellow) + " (max " +
-                ReturnColoredText("10%", blueNumber) + ").";
+                ReturnColoredText("4%", blueNumber) + " per stack of " + ReturnColoredText("Source", neutralYellow) + " (max " +
+                ReturnColoredText("20%", blueNumber) + ").";
         }
         else if (ts == TalentSchool.Ranger)
         {

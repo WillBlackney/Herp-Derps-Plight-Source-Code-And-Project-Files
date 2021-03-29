@@ -49,7 +49,9 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: to self or ally until activation end.
+    phrase: 'to self or ally until activation end.
+
+'
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -60,6 +62,7 @@ MonoBehaviour:
     phrase: .
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 3
     splitTargetEffect: 0
     splitTargetType: 0

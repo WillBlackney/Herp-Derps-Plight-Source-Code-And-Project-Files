@@ -66,7 +66,7 @@ namespace MapSystem
             // mapManager.SaveMap();
             view.SetAttainableNodes();
             view.SetLineColors();
-            mapNode.ShowSwirlAnimation();
+            //mapNode.ShowSwirlAnimation();
 
             DOTween.Sequence().AppendInterval(enterNodeDelay).OnComplete(() => HandleEnterNode(mapNode));
         }

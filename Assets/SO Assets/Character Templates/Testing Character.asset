@@ -43,6 +43,7 @@ MonoBehaviour:
     temporaryBonusDrawStacks: 0
     runeStacks: 0
     barrierStacks: 0
+    incorporealStacks: 0
     enrageStacks: 0
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
@@ -50,7 +51,7 @@ MonoBehaviour:
     phoenixFormStacks: 0
     poisonousStacks: 0
     venomousStacks: 0
-    overloadStacks: 10
+    overloadStacks: 0
     fusionStacks: 0
     plantedFeetStacks: 0
     takenAimStacks: 0
@@ -94,6 +95,7 @@ MonoBehaviour:
     guardianAuraStacks: 0
     toxicAuraStacks: 0
     hatefulAuraStacks: 0
+    intimidatingAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -107,14 +109,12 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
-  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
-  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
-  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
-  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: 3d57eb73a05e9a04b96c08944c441410, type: 2}
+  - {fileID: 11400000, guid: 1a140b4bb31bfcd46bbe736dbdffb9bd, type: 2}
+  - {fileID: 11400000, guid: 5a2019be911c0884ea4257f5529d0045, type: 2}
   - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
-  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
-  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
-  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
+  - {fileID: 11400000, guid: 91a684a63c896f94fae7a593b1d28422, type: 2}
+  - {fileID: 11400000, guid: 91a684a63c896f94fae7a593b1d28422, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1
@@ -134,8 +134,6 @@ MonoBehaviour:
     offHandItem: {fileID: 0}
     trinketOne: {fileID: 11400000, guid: cc47f8626a3f24449b0c5019433b7734, type: 2}
     trinketTwo: {fileID: 0}
-  talentPairings:
-  - talentSchool: 13
-    talentLevel: 2
+  talentPairings: []
   startingTalentPoints: 3
   startingAttributePoints: 3

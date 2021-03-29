@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5f491b607b1cd948b5bc856850b2616, type: 3}
   m_Name: Spider Boss
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: a075b601154b8b84c8efd858de216b2e, type: 3}
+  sprite: {fileID: 21300000, guid: 1285b2b05ef359b47b0391ae1cf7d970, type: 3}
+  greyScaleSprite: {fileID: 21300000, guid: e16a8a2298f0dad4b8550851c296282f, type: 3}
+  outlineSprite: {fileID: 21300000, guid: f27bb243a6b5084469be56d933ba43b9, type: 3}
   nodeType: 3
+  color: {r: 1, g: 1, b: 1, a: 1}

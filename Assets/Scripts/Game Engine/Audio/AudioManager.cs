@@ -438,6 +438,8 @@ public enum Sound
     Ability_Holy_Buff = 18,
     Ability_Shadow_Buff = 20,
     Ability_Metallic_Ting = 37,
+    Ability_Heal_Twinkle = 54,
+    Ability_Dispell_Twang = 55,
 
     Ambience_Outdoor_Spooky = 39,
     Ambience_Crypt = 40,

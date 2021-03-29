@@ -21,6 +21,7 @@ public class ShopController : Singleton<ShopController>
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
     [SerializeField] private GameObject mainVisualParent;
     [SerializeField] private CanvasGroup mainCg;
+    [SerializeField] private ScrollRect mainPanelScrollRect;
 
     [Header("Character View References")]
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
@@ -76,6 +77,7 @@ public class ShopController : Singleton<ShopController>
     #region
     private void ShowMainPanelView()
     {
+        mainPanelScrollRect.verticalScrollbar.value = 1;
         mainCg.DOKill();
         mainCg.alpha = 0;
         mainVisualParent.SetActive(true);      
@@ -83,11 +85,15 @@ public class ShopController : Singleton<ShopController>
     }
     private void HideMainPanelView()
     {
+      
         mainCg.DOKill();
         mainVisualParent.SetActive(true);
         Sequence s = DOTween.Sequence();
         s.Append(mainCg.DOFade(0, 0.25f));
-        s.OnComplete(() => mainVisualParent.SetActive(false));
+        s.OnComplete(() => { 
+            mainVisualParent.SetActive(false);
+            mainPanelScrollRect.verticalScrollbar.value = 1;
+        });
     }
     public void EnableCharacterViewParent()
     {

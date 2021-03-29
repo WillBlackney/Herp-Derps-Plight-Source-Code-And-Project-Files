@@ -360,6 +360,9 @@ public class CharacterDataController : Singleton<CharacterDataController>
         // Level up occured with spill over XP
         if (spillOver > 0)
         {
+            // Glow top bar button
+            TopBarController.Instance.ShowCharacterRosterButtonGlow();
+
             // Gain level
             SetCharacterLevel(data, data.currentLevel + 1);
 
@@ -384,6 +387,9 @@ public class CharacterDataController : Singleton<CharacterDataController>
         // Level up with no spill over
         else if (spillOver == 0)
         {
+            // Glow top bar button
+            TopBarController.Instance.ShowCharacterRosterButtonGlow();
+
             // Gain level
             SetCharacterLevel(data, data.currentLevel + 1);
 

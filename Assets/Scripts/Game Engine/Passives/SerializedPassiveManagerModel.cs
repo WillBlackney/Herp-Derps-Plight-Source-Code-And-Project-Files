@@ -51,6 +51,9 @@ public class SerializedPassiveManagerModel
     [BoxGroup("Special Defensive Passives")]
     [LabelWidth(200)]
     public int barrierStacks;
+    [BoxGroup("Special Defensive Passives")]
+    [LabelWidth(200)]
+    public int incorporealStacks;
 
     // Buff Passives
     [BoxGroup("Buff Passives", centerLabel: true)]
@@ -208,6 +211,9 @@ public class SerializedPassiveManagerModel
     [BoxGroup("Aura Passives")]
     [LabelWidth(200)]
     public int hatefulAuraStacks;
+    [BoxGroup("Aura Passives")]
+    [LabelWidth(200)]
+    public int intimidatingAuraStacks;
 
     // Buff Passives
     [BoxGroup("Core Damage % Modifier Passives", centerLabel: true)]

@@ -44,6 +44,7 @@ MonoBehaviour:
     temporaryBonusDrawStacks: 0
     runeStacks: 0
     barrierStacks: 0
+    incorporealStacks: 0
     enrageStacks: 0
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
@@ -95,6 +96,7 @@ MonoBehaviour:
     guardianAuraStacks: 0
     toxicAuraStacks: 0
     hatefulAuraStacks: 0
+    intimidatingAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -205,6 +207,8 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
+      alsoHealSelf: 0
+      healAmount: 0
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0
@@ -267,6 +271,8 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
+      alsoHealSelf: 0
+      healAmount: 0
       blockGained: 0
       cardAdded: {fileID: 11400000, guid: c4e7245fdab32974e9b9a03fb819216b, type: 2}
       copiesAdded: 1
@@ -317,7 +323,7 @@ MonoBehaviour:
         overlayFadeInTime: 0
         overlayDuration: 0
         overlayFadeOutTime: 0
-        particleEffect: 4
+        particleEffect: 2
         cameraShake: 0
         movementAnimation: 0
         soundEffect: 0
@@ -368,6 +374,8 @@ MonoBehaviour:
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 0}
       passiveStacks: 0
+      alsoHealSelf: 0
+      healAmount: 0
       blockGained: 0
       cardAdded: {fileID: 0}
       copiesAdded: 0

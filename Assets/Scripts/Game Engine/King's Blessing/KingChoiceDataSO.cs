@@ -8,7 +8,7 @@ public class KingChoiceDataSO : ScriptableObject
 {
     [BoxGroup("General Info", true, true)]
     [LabelWidth(100)]
-    public string choiceDescription;
+    public List<CustomString> choiceDescription = new List<CustomString>();
 
     [BoxGroup("General Info")]
     [LabelWidth(100)]
@@ -58,6 +58,9 @@ public class KingChoiceDataSO : ScriptableObject
     [ShowIf("effect", KingChoiceEffectType.GainRandomItem)]
     public Rarity itemRarity;
 
+    [ShowIf("effect", KingChoiceEffectType.GainState)]
+    public StateName stateGained;
+
 }
 public enum KingChoiceImpactLevel
 {
@@ -80,6 +83,7 @@ public enum KingChoiceEffectType
     GainRandomCard = 3,
     GainRandomAffliction = 4,
     GainRandomItem = 13,
+    GainState = 14,
     ModifyAttribute = 5,
     ModifyHealth = 6,
     ModifyGold = 12,
