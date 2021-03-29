@@ -19,7 +19,7 @@ MonoBehaviour:
   startingHealth: 30
   enableFlexibleMaxHealth: 1
   maxHealthFlexAmount: 4
-  maxHealth: 68
+  maxHealth: 65
   startingBlock: 0
   strength: 20
   intelligence: 20
@@ -44,6 +44,7 @@ MonoBehaviour:
     temporaryBonusDrawStacks: 0
     runeStacks: 0
     barrierStacks: 0
+    incorporealStacks: 0
     enrageStacks: 0
     shieldWallStacks: 0
     fanOfKnivesStacks: 0

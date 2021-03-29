@@ -318,7 +318,7 @@ public class ActivationManager : Singleton<ActivationManager>
                 VisualEffectManager.Instance.CreateDamageEffect(defender.characterEntityView.WorldPosition, baseHealAmount, true));
 
                 // Create SFX
-                VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
+                VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Ability_Heal_Twinkle));
 
                 // Notication vfx
                 VisualEventManager.Instance.CreateVisualEvent(() =>

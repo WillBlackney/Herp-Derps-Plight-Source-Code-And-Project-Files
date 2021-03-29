@@ -87,4 +87,18 @@ public class TopBarController : Singleton<TopBarController>
         characterRosterButtonGlow.DOFade(0, 0);
     }
     #endregion
+
+    // Keypad Control Logic
+    #region
+    private void Update()
+    {
+        // Handle key board input
+        if(visualParent.activeSelf == true)
+        {
+            if (Input.GetKeyDown(KeyCode.C)) CharacterRosterViewController.Instance.OnCharacterRosterButtonClicked();
+            else if (Input.GetKeyDown(KeyCode.M)) MapSystem.MapView.Instance.OnWorldMapButtonClicked();
+            else if (Input.GetKeyDown(KeyCode.Escape)) MainMenuController.Instance.OnTopBarSettingsButtonClicked();
+        }
+    }
+    #endregion
 }

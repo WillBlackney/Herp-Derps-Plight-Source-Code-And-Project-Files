@@ -2735,7 +2735,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                     VisualEffectManager.Instance.CreateDamageEffect(ally.characterEntityView.WorldPosition, effect.healAmount, true));
 
                     // Create SFX
-                    VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
+                    VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Ability_Heal_Twinkle));
                 }
             }
 

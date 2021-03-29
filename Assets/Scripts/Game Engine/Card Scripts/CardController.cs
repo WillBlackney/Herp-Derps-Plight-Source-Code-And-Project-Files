@@ -2747,7 +2747,7 @@ public class CardController : Singleton<CardController>
             VisualEffectManager.Instance.CreateDamageEffect(owner.characterEntityView.WorldPosition, cardEffect.healthRestored, true));
 
             // Create SFX
-            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
+            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Ability_Heal_Twinkle));
         }
 
         // Heal Target
@@ -2765,7 +2765,7 @@ public class CardController : Singleton<CardController>
             VisualEffectManager.Instance.CreateDamageEffect(target.characterEntityView.WorldPosition, cardEffect.healthRestored, true));
 
             // Create SFX
-            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
+            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Ability_Heal_Twinkle));
         }
 
         // Heal Self And All Allies
@@ -2786,7 +2786,7 @@ public class CardController : Singleton<CardController>
             }
 
             // Create SFX
-            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Passive_General_Buff));
+            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySound(Sound.Ability_Heal_Twinkle));
         }
 
         // Lose Health
