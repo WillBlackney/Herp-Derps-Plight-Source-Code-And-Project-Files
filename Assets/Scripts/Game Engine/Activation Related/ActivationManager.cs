@@ -275,7 +275,7 @@ public class ActivationManager : Singleton<ActivationManager>
         {
             foreach(CharacterEntityModel enemy in CharacterEntityController.Instance.AllEnemies)
             {
-                PassiveController.Instance.ModifyVulnerable(enemy.pManager, 1, true);
+                PassiveController.Instance.ModifyVulnerable(enemy.pManager, 1, null, true);
             }
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);

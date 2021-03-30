@@ -64,7 +64,9 @@ public class CharacterEntityModel
     [HideInInspector] public int nextActivationCount = 1;
     [HideInInspector] public bool hasMovedOffStartingNode = false;
     [HideInInspector] public int meleeAttacksPlayedThisActivation = 0;
+    [HideInInspector] public int meleeAttacksPlayedLastActivation = 0;
     [HideInInspector] public int rangedAttacksPlayedThisActivation = 0;
+    [HideInInspector] public int rangedAttacksPlayedLastActivation = 0;
     [HideInInspector] public int blockGainedThisTurnCycle = 0;
     [HideInInspector] public int blockGainedPreviousTurnCycle = 0;
     [HideInInspector] public int blockFromCautiousGained = 0;

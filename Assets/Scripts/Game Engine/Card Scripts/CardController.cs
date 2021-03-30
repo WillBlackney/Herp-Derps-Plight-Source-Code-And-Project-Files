@@ -2011,7 +2011,7 @@ public class CardController : Singleton<CardController>
                 // Apply burning to all enemies
                 foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(owner))
                 {
-                    PassiveController.Instance.ModifyBurning(enemy.pManager, card.owner.pManager.consecrationStacks, true, 0f);
+                    PassiveController.Instance.ModifyBurning(enemy.pManager, card.owner.pManager.consecrationStacks, card.owner.pManager, true, 0f);
                 }
 
                 VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
@@ -3239,7 +3239,7 @@ public class CardController : Singleton<CardController>
         // Remove burning from self
         else if (cardEffect.cardEffectType == CardEffectType.RemoveAllBurningFromSelf)
         {
-            PassiveController.Instance.ModifyBurning(owner.pManager, -owner.pManager.burningStacks, true);
+            PassiveController.Instance.ModifyBurning(owner.pManager, -owner.pManager.burningStacks, null, true);
         }
 
         // Remove poisoned from self
@@ -3257,7 +3257,7 @@ public class CardController : Singleton<CardController>
         // Remove burning from target
         else if (cardEffect.cardEffectType == CardEffectType.RemoveAllBurningFromTarget)
         {
-            PassiveController.Instance.ModifyBurning(target.pManager, -target.pManager.burningStacks, true);
+            PassiveController.Instance.ModifyBurning(target.pManager, -target.pManager.burningStacks, null, true);
         }
 
         // Remove Weakened from self and allies
@@ -3276,7 +3276,7 @@ public class CardController : Singleton<CardController>
         {
             foreach (CharacterEntityModel ally in CharacterEntityController.Instance.GetAllAlliesOfCharacter(owner))
             {
-                PassiveController.Instance.ModifyVulnerable(ally.pManager, -ally.pManager.vulnerableStacks, false);
+                PassiveController.Instance.ModifyVulnerable(ally.pManager, -ally.pManager.vulnerableStacks, null, false);
                 VisualEventManager.Instance.CreateVisualEvent(()=> 
                     VisualEffectManager.Instance.CreateStatusEffect(ally.characterEntityView.WorldPosition, "Vulnerable Removed!"));
             }

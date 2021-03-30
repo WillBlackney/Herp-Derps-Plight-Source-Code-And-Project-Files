@@ -54,6 +54,7 @@ public class ItemController : Singleton<ItemController>
         i.itemRarity = data.itemRarity;
         i.passivePairings = data.passivePairings;
         i.lootable = data.lootable;
+        i.includeInLibrary = data.includeInLibrary;
 
         // Custom string Data
         i.customDescription = new List<CustomString>();
@@ -79,6 +80,7 @@ public class ItemController : Singleton<ItemController>
         i.itemRarity = data.itemRarity;
         i.passivePairings = data.passivePairings;
         i.lootable = data.lootable;
+        i.includeInLibrary = data.includeInLibrary;
 
         // Custom string Data
         i.customDescription = new List<CustomString>();

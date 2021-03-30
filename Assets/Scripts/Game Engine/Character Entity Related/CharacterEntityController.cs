@@ -976,7 +976,23 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                     // Reduce its energy cost by 1
                     CardController.Instance.SetCardEnergyCostThisCombat(card, 0);
                 }
-            }            
+            }
+
+            // Check patience passive
+            if (character.pManager.patienceStacks > 0 &&
+                character.meleeAttacksPlayedLastActivation == 0 &&
+                character.rangedAttacksPlayedLastActivation == 0 &&
+                ActivationManager.Instance.CurrentTurn > 1)
+            {
+                // Notication vfx
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.transform.position, "Patience!"), QueuePosition.Back, 0, 0.5f);
+
+                // Draw extra card and gain extra energy
+                CardController.Instance.DrawACardFromDrawPile(character);
+                ModifyEnergy(character, 1);
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+            }
 
             // Draw cards on turn start
             CardController.Instance.DrawCardsOnActivationStart(character);
@@ -1074,9 +1090,27 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Intimidating Aura!"), QueuePosition.Back, 0, 0.5f);
 
                     // Random enemy is weakened
-                    PassiveController.Instance.ModifyVulnerable(chosenEnemy.pManager, character.pManager.intimidatingAuraStacks, true);
+                    PassiveController.Instance.ModifyVulnerable(chosenEnemy.pManager, character.pManager.intimidatingAuraStacks, character.pManager, true);
                 }
             }
+
+            // Provocative Aura        
+            if (character.pManager.provocativeAuraStacks > 0)
+            {
+                CharacterEntityModel[] allEnemies = GetAllEnemiesOfCharacter(character).ToArray();
+                CharacterEntityModel chosenEnemy = allEnemies[RandomGenerator.NumberBetween(0, allEnemies.Length - 1)];
+
+                if (chosenEnemy != null)
+                {
+                    // Notification event
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Provocative Aura!"), QueuePosition.Back, 0, 0.5f);
+
+                    // Random enemy is weakened
+                    HandleTaunt(character, chosenEnemy);
+                }
+            }
+
         }
         
 
@@ -1110,7 +1144,9 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         UIManager.Instance.DisableEndTurnButtonInteractions();
 
         // reset misc properties
+        entity.meleeAttacksPlayedLastActivation = entity.meleeAttacksPlayedThisActivation;
         entity.meleeAttacksPlayedThisActivation = 0;
+        entity.rangedAttacksPlayedLastActivation = entity.rangedAttacksPlayedThisActivation;
         entity.rangedAttacksPlayedThisActivation = 0;
 
         // Brute force disable all activation rings
@@ -1183,7 +1219,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         }
         if (entity.pManager.vulnerableStacks > 0)
         {
-            PassiveController.Instance.ModifyVulnerable(entity.pManager, -1, true, 0.5f);
+            PassiveController.Instance.ModifyVulnerable(entity.pManager, -1, null, true, 0.5f);
         }
 
         // Disabling Debuff Expiries
@@ -1230,14 +1266,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             {
                 CharacterEntityModel chosenAlly = null;
                 CharacterEntityModel[] allAllies = GetAllAlliesOfCharacter(entity, false).ToArray();
-                if (allAllies.Length == 0)
-                {
-                    chosenAlly = entity;
-                }
-                else
-                {
+                if(allAllies.Length > 0)
                     chosenAlly = allAllies[RandomGenerator.NumberBetween(0, allAllies.Length - 1)];
-                }
 
                 if (chosenAlly != null)
                 {
@@ -1247,6 +1277,25 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
                     // Random ally gains energy
                     ModifyEnergy(chosenAlly, entity.pManager.encouragingAuraStacks, true);
+                }
+            }
+
+            // Enraging Aura
+            if (entity.pManager.enragingAuraStacks > 0)
+            {
+                CharacterEntityModel chosenAlly = null;
+                CharacterEntityModel[] allAllies = GetAllAlliesOfCharacter(entity, false).ToArray();
+                if (allAllies.Length > 0)
+                    chosenAlly = allAllies[RandomGenerator.NumberBetween(0, allAllies.Length - 1)];
+
+                if (chosenAlly != null)
+                {
+                    // Notification event
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Enraging Aura!"), QueuePosition.Back, 0, 0.5f);
+
+                    // Random ally gains energy
+                    PassiveController.Instance.ModifyBonusPower(chosenAlly.pManager, entity.pManager.enragingAuraStacks, true);
                 }
             }
 
@@ -1291,14 +1340,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             {
                 CharacterEntityModel chosenAlly = null;
                 CharacterEntityModel[] allAllies = GetAllAlliesOfCharacter(entity, false).ToArray();
-                if (allAllies.Length == 0)
-                {
-                    chosenAlly = entity;
-                }
-                else
-                {
+                if (allAllies.Length > 0)
                     chosenAlly = allAllies[RandomGenerator.NumberBetween(0, allAllies.Length - 1)];
-                }
 
                 if (chosenAlly != null)
                 {

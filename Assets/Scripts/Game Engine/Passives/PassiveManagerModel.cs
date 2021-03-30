@@ -10,6 +10,8 @@ public class PassiveManagerModel
     public int bonusStaminaStacks;
     public int bonusInitiativeStacks;
     public int bonusDrawStacks;
+    public int physicalDamageBonusStacks;
+    public int magicDamageBonusStacks;
 
     // Temp Core stat bonuses
     public int temporaryBonusPowerStacks;
@@ -70,6 +72,11 @@ public class PassiveManagerModel
     public int regenerationStacks;
     public int hurricaneStacks;
     public int holierThanThouStacks;
+    public int tenaciousStacks;
+    public int patienceStacks;
+    public int torturerStacks;
+    public int sadisticStacks;
+    public int bullyStacks;
 
     // Aura passives
     public int encouragingAuraStacks;
@@ -78,6 +85,8 @@ public class PassiveManagerModel
     public int toxicAuraStacks;
     public int hatefulAuraStacks;
     public int intimidatingAuraStacks;
+    public int provocativeAuraStacks;
+    public int enragingAuraStacks;
 
     // Core Damage % Modifier Passives
     public int wrathStacks;

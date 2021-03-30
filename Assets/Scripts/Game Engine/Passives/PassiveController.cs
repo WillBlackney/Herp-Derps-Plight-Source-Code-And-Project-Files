@@ -330,6 +330,34 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyHolierThanThou(newClone, originalData.holierThanThouStacks, false);
         }
+        if (originalData.tenaciousStacks != 0)
+        {
+            ModifyTenacious(newClone, originalData.tenaciousStacks, false);
+        }
+        if (originalData.patienceStacks != 0)
+        {
+            ModifyPatience(newClone, originalData.patienceStacks, false);
+        }
+        if (originalData.physicalDamageBonusStacks != 0)
+        {
+            ModifyPhysicalDamageBonus(newClone, originalData.physicalDamageBonusStacks, false);
+        }
+        if (originalData.magicDamageBonusStacks != 0)
+        {
+            ModifyMagicDamageBonus(newClone, originalData.magicDamageBonusStacks, false);
+        }
+        if (originalData.torturerStacks != 0)
+        {
+            ModifyTorturer(newClone, originalData.torturerStacks, false);
+        }
+        if (originalData.sadisticStacks != 0)
+        {
+            ModifySadistic(newClone, originalData.sadisticStacks, false);
+        }
+        if (originalData.bullyStacks != 0)
+        {
+            ModifyBully(newClone, originalData.bullyStacks, false);
+        }
         #endregion
 
         // Special Defensive Passives
@@ -374,6 +402,14 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyIntimidatingAura(newClone, originalData.intimidatingAuraStacks, false);
         }
+        if (originalData.provocativeAuraStacks != 0)
+        {
+            ModifyProvocativeAura(newClone, originalData.provocativeAuraStacks, false);
+        }
+        if (originalData.enragingAuraStacks != 0)
+        {
+            ModifyEnragingAura(newClone, originalData.enragingAuraStacks, false);
+        }
         #endregion
 
         // Dot Passives
@@ -384,7 +420,7 @@ public class PassiveController : Singleton<PassiveController>
         }
         if (originalData.burningStacks != 0)
         {
-            ModifyBurning(newClone, originalData.burningStacks, false);
+            ModifyBurning(newClone, originalData.burningStacks, null, false);
         }
         if (originalData.bleedingStacks != 0)
         {
@@ -425,7 +461,7 @@ public class PassiveController : Singleton<PassiveController>
         }
         if (originalData.vulnerableStacks != 0)
         {
-            ModifyVulnerable(newClone, originalData.vulnerableStacks, false);
+            ModifyVulnerable(newClone, originalData.vulnerableStacks, null, false);
         }
         #endregion
 
@@ -501,6 +537,13 @@ public class PassiveController : Singleton<PassiveController>
         pManager.regenerationStacks = original.regenerationStacks;
         pManager.hurricaneStacks = original.hurricaneStacks;
         pManager.holierThanThouStacks = original.holierThanThouStacks;
+        pManager.tenaciousStacks = original.tenaciousStacks;
+        pManager.patienceStacks = original.patienceStacks;
+        pManager.physicalDamageBonusStacks = original.physicalDamageBonusStacks;
+        pManager.magicDamageBonusStacks = original.magicDamageBonusStacks;
+        pManager.torturerStacks = original.torturerStacks;
+        pManager.sadisticStacks = original.sadisticStacks;
+        pManager.bullyStacks = original.bullyStacks;
 
         pManager.runeStacks = original.runeStacks;
         pManager.barrierStacks = original.barrierStacks;
@@ -512,6 +555,8 @@ public class PassiveController : Singleton<PassiveController>
         pManager.guardianAuraStacks = original.guardianAuraStacks;
         pManager.hatefulAuraStacks = original.hatefulAuraStacks;
         pManager.intimidatingAuraStacks = original.intimidatingAuraStacks;
+        pManager.provocativeAuraStacks = original.provocativeAuraStacks;
+        pManager.enragingAuraStacks = original.enragingAuraStacks;
 
         pManager.wrathStacks = original.wrathStacks;
         pManager.gritStacks = original.gritStacks;
@@ -528,7 +573,6 @@ public class PassiveController : Singleton<PassiveController>
 
         pManager.fireBallBonusDamageStacks = original.fireBallBonusDamageStacks;
         pManager.reflexShotBonusDamageStacks = original.reflexShotBonusDamageStacks;
-
     }
     public void BuildPlayerCharacterEntityPassivesFromCharacterData(CharacterEntityModel character, CharacterData data)
     {
@@ -805,6 +849,35 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyHolierThanThou(pManager, stacks, showVFX, vfxDelay);
         }
+
+        else if (originalData == "Tenacious")
+        {
+            ModifyTenacious(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Patience")
+        {
+            ModifyPatience(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Physical Damage Bonus")
+        {
+            ModifyPhysicalDamageBonus(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Magic Damage Bonus")
+        {
+            ModifyMagicDamageBonus(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Torturer")
+        {
+            ModifyTorturer(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Sadistic")
+        {
+            ModifySadistic(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Bully")
+        {
+            ModifyBully(pManager, stacks, showVFX, vfxDelay);
+        }
         #endregion
 
         // Special Defensive Passives
@@ -849,6 +922,14 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyIntimidatingAura(pManager, stacks, showVFX, vfxDelay);
         }
+        else if (originalData == "Provocative Aura")
+        {
+            ModifyProvocativeAura(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Enraging Aura")
+        {
+            ModifyEnragingAura(pManager, stacks, showVFX, vfxDelay);
+        }
         #endregion
 
         // DoT passives
@@ -859,7 +940,7 @@ public class PassiveController : Singleton<PassiveController>
         }
         else if (originalData == "Burning")
         {
-            ModifyBurning(pManager, stacks, showVFX, vfxDelay);
+            ModifyBurning(pManager, stacks, applier, showVFX, vfxDelay);
         }
         else if (originalData == "Bleeding")
         {
@@ -875,7 +956,7 @@ public class PassiveController : Singleton<PassiveController>
         }
         else if (originalData == "Weakened")
         {
-            ModifyWeakened(pManager, stacks, pManager, showVFX, vfxDelay);
+            ModifyWeakened(pManager, stacks, applier, showVFX, vfxDelay);
         }
         else if (originalData == "Grit")
         {
@@ -883,7 +964,7 @@ public class PassiveController : Singleton<PassiveController>
         }
         else if (originalData == "Vulnerable")
         {
-            ModifyVulnerable(pManager, stacks, showVFX, vfxDelay);
+            ModifyVulnerable(pManager, stacks, applier, showVFX, vfxDelay);
         }
         #endregion
 
@@ -3583,6 +3664,519 @@ public class PassiveController : Singleton<PassiveController>
 
 
     }
+    public void ModifyEnragingAura(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyEnragingAura() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Enraging Aura");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.enragingAuraStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Enraging Aura +" + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Enraging Aura Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+    }
+    public void ModifyProvocativeAura(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyProvocativeAura() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Provocative Aura");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.provocativeAuraStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Provocative Aura!" );
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Provocative Aura Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+    }
+    public void ModifyBully(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyBully() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Bully");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.bullyStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Bully +" + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Bully Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+    }
+    public void ModifySadistic(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifySadistic() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Sadistic");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.sadisticStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Sadistic!");
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Sadistic Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+    }
+    public void ModifyTorturer(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyTorturer() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Torturer");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.torturerStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Torturer +" + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Torturer Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+    }
+    public void ModifyMagicDamageBonus(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyMagicDamageBonus() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Magic Damage Bonus");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.magicDamageBonusStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Magic Damage Bonus +" + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Magic Damage Bonus Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+    }
+    public void ModifyPhysicalDamageBonus(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyPhysicalDamageBonus() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Physical Damage Bonus");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.physicalDamageBonusStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Physical Damage Bonus +" + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Physical Damage Bonus Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+    }
+    public void ModifyPatience(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyPatience() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Patience");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.patienceStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Patience!");
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Patience Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+    }
+    public void ModifyTenacious(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyTenacious() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Tenacious");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.tenaciousStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Tenacious +" + stacks.ToString());
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Tenacious Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+    }
     public void ModifyHolierThanThou(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
     {
         Debug.Log("PassiveController.ModifyHolierThanThou() called...");
@@ -5289,11 +5883,23 @@ public class PassiveController : Singleton<PassiveController>
                 {
                     VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
                 }
-                ModifyVulnerable(pManager, 1, showVFX, vfxDelay);
+                ModifyVulnerable(pManager, 1, applier, showVFX, vfxDelay);
+            }
+
+            // Bully applier gains temp power
+            if (applier != null && stacks > 0 && applier.bullyStacks > 0)
+            {
+                if (showVFX)
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(applier.myCharacter.characterEntityView.WorldPosition, "Bully!");
+                    VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay / 2f);
+                }
+
+                ModifyTemporaryPower(applier, applier.bullyStacks, showVFX, vfxDelay);
             }
         }
     }
-    public void ModifyVulnerable(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    public void ModifyVulnerable(PassiveManagerModel pManager, int stacks, PassiveManagerModel applier = null, bool showVFX = true, float vfxDelay = 0f)
     {
         Debug.Log("PassiveController.ModifyVulnerable() called...");
 
@@ -5372,7 +5978,19 @@ public class PassiveController : Singleton<PassiveController>
             {
                 VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
             }
-        }
+
+            // Bully applier gains temp power
+            if (applier != null && stacks > 0 && applier.bullyStacks > 0)
+            {
+                if (showVFX)
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(applier.myCharacter.characterEntityView.WorldPosition, "Bully!");
+                    VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay / 2f);
+                }
+
+                ModifyTemporaryPower(applier, applier.bullyStacks, showVFX, vfxDelay);
+            }
+        }        
     }
     public void ModifyGrit(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
     {
@@ -5661,10 +6279,10 @@ public class PassiveController : Singleton<PassiveController>
         }
 
         // Add venomous bonus from applier
-        if (applier != null &&
-            applier.venomousStacks > 0)
+        if (applier != null && stacks > 0)
         {
             stacks += applier.venomousStacks;
+            stacks += applier.torturerStacks;
         }
 
         // Check for rune
@@ -5676,7 +6294,7 @@ public class PassiveController : Singleton<PassiveController>
         }
 
         // Increment stacks
-        pManager.poisonedStacks += stacks;
+        pManager.poisonedStacks += stacks;        
 
         if (character != null)
         {
@@ -5713,8 +6331,19 @@ public class PassiveController : Singleton<PassiveController>
                 VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
             }
         }
+
+        // Sadistic applier gains Block
+        if (applier != null && stacks > 0 && applier.sadisticStacks > 0)
+        {
+            if (showVFX)
+            {
+                VisualEffectManager.Instance.CreateStatusEffect(applier.myCharacter.characterEntityView.WorldPosition, "Sadistic!");
+            }               
+            CharacterEntityController.Instance.GainBlock
+                (applier.myCharacter, CombatLogic.Instance.CalculateBlockGainedByEffect(stacks, applier.myCharacter, character), showVFX);
+        }
     }
-    public void ModifyBurning(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    public void ModifyBurning(PassiveManagerModel pManager, int stacks, PassiveManagerModel applier = null, bool showVFX = true, float vfxDelay = 0f)
     {
         Debug.Log("PassiveController.ModifyBurning() called...");
 
@@ -5728,6 +6357,12 @@ public class PassiveController : Singleton<PassiveController>
             // Character is protected by rune: Cancel this status application, remove a rune, then return.
             ModifyRune(pManager, -1, showVFX, vfxDelay);
             return;
+        }
+
+        // Add venomous bonus from applier
+        if (applier != null && stacks > 0)
+        {
+            stacks += applier.torturerStacks;
         }
 
         // Increment stacks
@@ -5767,6 +6402,17 @@ public class PassiveController : Singleton<PassiveController>
             {
                 VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
             }
+        }
+
+        // Sadistic applier gains Block
+        if (applier != null && stacks > 0 && applier.sadisticStacks > 0)
+        {
+            if (showVFX)
+            {
+                VisualEffectManager.Instance.CreateStatusEffect(applier.myCharacter.characterEntityView.WorldPosition, "Sadistic!");
+            }
+            CharacterEntityController.Instance.GainBlock
+                (applier.myCharacter, CombatLogic.Instance.CalculateBlockGainedByEffect(stacks, applier.myCharacter, character), showVFX);
         }
     }
     public void ModifyBleeding(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)

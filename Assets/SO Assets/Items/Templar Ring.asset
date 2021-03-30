@@ -17,9 +17,10 @@ MonoBehaviour:
   itemType: 5
   itemRarity: 2
   lootable: 1
+  includeInLibrary: 0
   passivePairings:
   - passiveData: 44
-    passiveStacks: 4
+    passiveStacks: 3
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -28,7 +29,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '4 '
+    phrase: '3 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0

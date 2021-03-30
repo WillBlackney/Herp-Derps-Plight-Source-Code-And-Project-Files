@@ -89,6 +89,12 @@ public class CombatLogic : Singleton<CombatLogic>
         {
             baseDamageValueReturned += EntityLogic.GetTotalPower(attacker);
             Debug.Log("Card base damage after strength and related modifiers added: " + baseDamageValueReturned.ToString());
+
+            if (damageType == DamageType.Physical)
+                baseDamageValueReturned += attacker.pManager.physicalDamageBonusStacks;
+
+            if (damageType == DamageType.Magic)
+                baseDamageValueReturned += attacker.pManager.magicDamageBonusStacks;
         }
         
         // Check Scoundrel talent
@@ -824,7 +830,7 @@ public class CombatLogic : Singleton<CombatLogic>
             // Cautious
             if (victim.pManager.cautiousStacks > 0 && totalLifeLost > 0)
             {
-                Debug.Log(victim.myName + " 'Cautious' triggered, gaining " + victim.pManager.enrageStacks.ToString() + " Block");
+                Debug.Log(victim.myName + " 'Cautious' triggered, gaining " + victim.pManager.cautiousStacks.ToString() + " Block");
                 VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
 
                 // Calculate and apply block gain
@@ -835,6 +841,21 @@ public class CombatLogic : Singleton<CombatLogic>
 
                 // Remove cautious
                 PassiveController.Instance.ModifyCautious(victim.pManager, -victim.pManager.cautiousStacks, true);
+            }
+
+            // Tenacious
+            if (victim.pManager.tenaciousStacks > 0 && totalLifeLost > 0)
+            {
+                Debug.Log(victim.myName + " 'Tenacious' triggered, gaining " + victim.pManager.tenaciousStacks.ToString() + " Block");
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+
+                // Status Notifc
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(victim.characterEntityView.WorldPosition, "Tenacious!"));
+
+                // Calculate and apply block gain
+                int blockGain = CalculateBlockGainedByEffect(victim.pManager.tenaciousStacks, victim, victim);
+                CharacterEntityController.Instance.GainBlock(victim, blockGain);
             }
 
             // Enrage
@@ -891,7 +912,7 @@ public class CombatLogic : Singleton<CombatLogic>
                   // (card.cardType == CardType.MeleeAttack || card.cardType == CardType.RangedAttack))
                 {
                     VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-                    PassiveController.Instance.ModifyBurning(victim.pManager, attacker.pManager.inflamedStacks, true, 0.5f);
+                    PassiveController.Instance.ModifyBurning(victim.pManager, attacker.pManager.inflamedStacks, attacker.pManager, true, 0.5f);
                 }
                 else if (enemyEffect != null &&
                    (enemyEffect.actionType == ActionType.AttackTarget ||
@@ -899,7 +920,7 @@ public class CombatLogic : Singleton<CombatLogic>
                     )
                 {
                     VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-                    PassiveController.Instance.ModifyBurning(victim.pManager, attacker.pManager.inflamedStacks, true, 0.5f);
+                    PassiveController.Instance.ModifyBurning(victim.pManager, attacker.pManager.inflamedStacks, attacker.pManager, true, 0.5f);
                 }
             }
 

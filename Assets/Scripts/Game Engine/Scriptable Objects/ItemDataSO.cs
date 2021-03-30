@@ -24,6 +24,9 @@ public class ItemDataSO : ScriptableObject
     [VerticalGroup("General Info/Stats")]
     [LabelWidth(100)]
     public bool lootable;
+    [VerticalGroup("General Info/Stats")]
+    [LabelWidth(100)]
+    public bool includeInLibrary = true;
 
     [BoxGroup("Item Effects Info", true, true)]
     [LabelWidth(100)]

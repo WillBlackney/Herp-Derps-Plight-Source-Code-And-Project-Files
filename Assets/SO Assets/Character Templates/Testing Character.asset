@@ -27,7 +27,7 @@ MonoBehaviour:
   power: 0
   initiative: 10
   stamina: 10
-  draw: 5
+  draw: 4
   baseCrit: 50
   critModifier: 30
   serializedPassiveManager:
@@ -36,6 +36,8 @@ MonoBehaviour:
     bonusStaminaStacks: 0
     bonusInitiativeStacks: 0
     bonusDrawStacks: 0
+    physicalDamageBonusStacks: 0
+    magicDamageBonusStacks: 0
     temporaryBonusPowerStacks: 0
     temporaryBonusDexterityStacks: 0
     temporaryBonusStaminaStacks: 0
@@ -90,12 +92,19 @@ MonoBehaviour:
     regenerationStacks: 0
     hurricaneStacks: 0
     holierThanThouStacks: 0
+    tenaciousStacks: 0
+    patienceStacks: 0
+    torturerStacks: 0
+    sadisticStacks: 0
+    bullyStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
     toxicAuraStacks: 0
     hatefulAuraStacks: 0
     intimidatingAuraStacks: 0
+    provocativeAuraStacks: 0
+    enragingAuraStacks: 3
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -109,18 +118,10 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
-  - {fileID: 11400000, guid: 810693427afc204499bb21a42d709adf, type: 2}
-  - {fileID: 11400000, guid: 810693427afc204499bb21a42d709adf, type: 2}
-  - {fileID: 11400000, guid: 810693427afc204499bb21a42d709adf, type: 2}
-  - {fileID: 11400000, guid: 810693427afc204499bb21a42d709adf, type: 2}
-  - {fileID: 11400000, guid: 810693427afc204499bb21a42d709adf, type: 2}
-  - {fileID: 11400000, guid: 810693427afc204499bb21a42d709adf, type: 2}
-  - {fileID: 11400000, guid: 810693427afc204499bb21a42d709adf, type: 2}
-  - {fileID: 11400000, guid: 810693427afc204499bb21a42d709adf, type: 2}
-  - {fileID: 11400000, guid: 810693427afc204499bb21a42d709adf, type: 2}
-  - {fileID: 11400000, guid: 3d57eb73a05e9a04b96c08944c441410, type: 2}
-  - {fileID: 11400000, guid: 3d57eb73a05e9a04b96c08944c441410, type: 2}
-  - {fileID: 11400000, guid: 3d57eb73a05e9a04b96c08944c441410, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
+  - {fileID: 11400000, guid: 4fa47f450ff530d47884c246293bb23a, type: 2}
+  - {fileID: 11400000, guid: 5a2019be911c0884ea4257f5529d0045, type: 2}
+  - {fileID: 11400000, guid: 3515e3b8e92620548af756ddbf500130, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1
@@ -138,8 +139,8 @@ MonoBehaviour:
   serializedItemManager:
     mainHandItem: {fileID: 11400000, guid: b533dcedf0849e047ac0af6f1d50afe0, type: 2}
     offHandItem: {fileID: 0}
-    trinketOne: {fileID: 11400000, guid: cc47f8626a3f24449b0c5019433b7734, type: 2}
+    trinketOne: {fileID: 0}
     trinketTwo: {fileID: 0}
   talentPairings: []
-  startingTalentPoints: 3
-  startingAttributePoints: 3
+  startingTalentPoints: 0
+  startingAttributePoints: 0

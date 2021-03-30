@@ -11,6 +11,7 @@ public class ItemData
     public List<CustomString> customDescription;
     public List<KeyWordModel> keyWordModels;
     public bool lootable;
+    public bool includeInLibrary = true;
     private Sprite itemSprite;
 
     public Sprite ItemSprite

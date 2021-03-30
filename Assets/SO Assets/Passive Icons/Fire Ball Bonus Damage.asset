@@ -35,7 +35,7 @@ MonoBehaviour:
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: .
-  showStackCount: 1
+  showStackCount: 0
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0
   runeBlocksDecrease: 1

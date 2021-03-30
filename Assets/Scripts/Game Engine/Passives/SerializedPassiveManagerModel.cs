@@ -24,6 +24,14 @@ public class SerializedPassiveManagerModel
     [LabelWidth(200)]
     public int bonusDrawStacks;
 
+    [BoxGroup("Core Stat Bonus Passives")]
+    [LabelWidth(200)]
+    public int physicalDamageBonusStacks;
+
+    [BoxGroup("Core Stat Bonus Passives")]
+    [LabelWidth(200)]
+    public int magicDamageBonusStacks;
+
     // Temp Core stat bonuses
     [BoxGroup("Temp Core Stat Bonus Passives", centerLabel: true)]
     [LabelWidth(200)]
@@ -194,6 +202,21 @@ public class SerializedPassiveManagerModel
     [BoxGroup("Buff Passives")]
     [LabelWidth(200)]
     public int holierThanThouStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
+    public int tenaciousStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
+    public int patienceStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
+    public int torturerStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
+    public int sadisticStacks;
+    [BoxGroup("Buff Passives")]
+    [LabelWidth(200)]
+    public int bullyStacks;
 
     // Aura Passives
     [BoxGroup("Aura Passives", centerLabel: true)]
@@ -214,6 +237,12 @@ public class SerializedPassiveManagerModel
     [BoxGroup("Aura Passives")]
     [LabelWidth(200)]
     public int intimidatingAuraStacks;
+    [BoxGroup("Aura Passives")]
+    [LabelWidth(200)]
+    public int provocativeAuraStacks;
+    [BoxGroup("Aura Passives")]
+    [LabelWidth(200)]
+    public int enragingAuraStacks;
 
     // Buff Passives
     [BoxGroup("Core Damage % Modifier Passives", centerLabel: true)]

@@ -29,7 +29,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '5 '
+    phrase: '4 '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
     passivePairing:
       passiveData: 0
       passiveStacks: 0
-    cardsDrawn: 5
+    cardsDrawn: 4
     maxHealthGained: 0
     visualEventsOnStart: []
   keyWordModels:
