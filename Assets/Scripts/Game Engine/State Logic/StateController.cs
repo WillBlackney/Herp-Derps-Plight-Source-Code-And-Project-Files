@@ -106,7 +106,8 @@ public class StateController : Singleton<StateController>
 
         foreach (StateDataSO dataSO in allStateDataScriptableObjects)
         {
-            tempList.Add(ConvertStateScriptableObjectToStateData(dataSO));
+            if(dataSO.includeInGame)
+                tempList.Add(ConvertStateScriptableObjectToStateData(dataSO));
         }
 
         AllStateData = tempList.ToArray();

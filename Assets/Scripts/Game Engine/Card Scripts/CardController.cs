@@ -1330,6 +1330,12 @@ public class CardController : Singleton<CardController>
             totalDraw += 2;
         }
 
+        if (StateController.Instance.DoesPlayerHaveState(StateName.Ambition) &&
+            ActivationManager.Instance.CurrentTurn == 1)
+        {
+            totalDraw += 1;
+        }
+
         for (int i = 0; i < totalDraw; i++)
         {
             // Priortitise drawing innate if turn 1
@@ -1853,7 +1859,7 @@ public class CardController : Singleton<CardController>
 
         // Check 'Soulless' state
         if (card.cardType == CardType.Power &&
-            StateController.Instance.DoesPlayerHaveState(StateName.Soulless))
+            StateController.Instance.DoesPlayerHaveState(StateName.Heresy))
         {
             CombatLogic.Instance.HandleDamage(2, owner, owner, card, DamageType.None, true);
         }
@@ -2857,14 +2863,8 @@ public class CardController : Singleton<CardController>
                     {
                         CardType cardType = CardType.None;
 
-                        if(cardEffect.specificTypeDrawn == SpecificTypeDrawn.MeleeAttack)
-                        {
-                            cardType = CardType.MeleeAttack;
-                        }
-                        else if (cardEffect.specificTypeDrawn == SpecificTypeDrawn.RangedAttack)
-                        {
-                            cardType = CardType.RangedAttack;
-                        }
+                        if(cardEffect.specificTypeDrawn == SpecificTypeDrawn.MeleeAttack) cardType = CardType.MeleeAttack;                        
+                        else if (cardEffect.specificTypeDrawn == SpecificTypeDrawn.RangedAttack) cardType = CardType.RangedAttack;                        
 
                         // Get the first melee attack from draw pile
                         foreach(Card cardInDrawPile in owner.drawPile)
@@ -3942,9 +3942,14 @@ public class CardController : Singleton<CardController>
             }
         }
 
-        // Souless state override
+        // Resourcefullness state override
+        if ((card.cardType == CardType.MeleeAttack || card.cardType == CardType.RangedAttack) &&
+           StateController.Instance.DoesPlayerHaveState(StateName.Heresy))
+            return 1;
+
+        // Heresy state override
         if (card.cardType == CardType.Power &&
-            StateController.Instance.DoesPlayerHaveState(StateName.Soulless))
+            StateController.Instance.DoesPlayerHaveState(StateName.Heresy))
             return 0;
 
         // Pistolero override

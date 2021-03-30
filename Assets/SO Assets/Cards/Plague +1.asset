@@ -41,7 +41,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '6 '
+    phrase: '7 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -102,7 +102,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 21
-      passiveStacks: 6
+      passiveStacks: 7
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

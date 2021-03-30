@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0663eeee0d354bc47801d42908eedf9b, type: 3}
+  m_Name: Torturer
+  m_EditorClassIdentifier: 
+  stateImage: {fileID: 21300000, guid: 7a6bb477a25069249a01c57b8580ebff, type: 3}
+  stateName: 27
+  rarity: 4
+  lootable: 1
+  includeInGame: 1
+  keyWordModels:
+  - kewWordType: 8
+    weaponRequirement: 0
+    passiveType: 36
+  customDescription:
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Vulnerable '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'and '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Weakened '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'on enemies modifies damage by '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '50% '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'instead of '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 30%
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
+  hasStacks: 0
+  baseStacks: 0

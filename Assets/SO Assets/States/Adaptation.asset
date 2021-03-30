@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateImage: {fileID: 21300000, guid: d60db81ad207ce34b8abae61bce99cd7, type: 3}
   stateName: 1
-  rarity: 3
+  rarity: 4
+  lootable: 1
+  includeInGame: 1
   keyWordModels:
   - kewWordType: 1
     weaponRequirement: 0
@@ -32,3 +34,5 @@ MonoBehaviour:
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: a card, add a random card to their hand.
+  hasStacks: 0
+  baseStacks: 0

@@ -239,7 +239,7 @@ public class CombatLogic : Singleton<CombatLogic>
             {
                 damageModifier += 0.3f;
                 // check 'Sadism' state
-                if (StateController.Instance.DoesPlayerHaveState(StateName.Sadism) &&
+                if ((StateController.Instance.DoesPlayerHaveState(StateName.Sadism) || StateController.Instance.DoesPlayerHaveState(StateName.Torturer)) &&
                     attacker.allegiance == Allegiance.Enemy)
                     damageModifier += 0.2f;
                 Debug.Log("Damage percentage modifier after 'Vulnerable' bonus: " + damageModifier.ToString());
@@ -270,7 +270,7 @@ public class CombatLogic : Singleton<CombatLogic>
             {
                 damageModifier -= 0.3f;
                 // check 'Intimidation' state
-                if (StateController.Instance.DoesPlayerHaveState(StateName.Intimidation) &&
+                if ((StateController.Instance.DoesPlayerHaveState(StateName.Intimidation) || StateController.Instance.DoesPlayerHaveState(StateName.Torturer)) &&
                     attacker.allegiance == Allegiance.Enemy)
                     damageModifier -= 0.2f;
                 Debug.Log("Damage percentage modifier after 'weakened' reduction: " + damageModifier.ToString());

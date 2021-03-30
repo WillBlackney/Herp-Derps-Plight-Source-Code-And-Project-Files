@@ -72,8 +72,9 @@ public class ShrineController : Singleton<ShrineController>
         for(int i = 0; i < 3; i++)
         {
             possibleStates.Shuffle();
-            scr.states.Add(possibleStates[0]);
-            possibleStates.RemoveAt(0);
+            int index = RandomGenerator.NumberBetween(0, possibleStates.Count -1);
+            scr.states.Add(possibleStates[index]);
+            possibleStates.RemoveAt(index);
         }
 
         return scr;

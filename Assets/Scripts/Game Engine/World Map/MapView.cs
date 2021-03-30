@@ -95,6 +95,11 @@ namespace MapSystem
             MasterMapParent.SetActive(true);
             ShowMap(MapManager.Instance.CurrentMap);
 
+            // Make map centre pn current encounter row
+            int playerPos = JourneyManager.Instance.CurrentJourneyPosition;
+            if(playerPos > 3)
+                mapParent.transform.localPosition = new Vector3(mapParent.transform.localPosition.x, -(playerPos * 2 -2), mapParent.transform.localPosition.z);
+
             blackUnderlayCanvas.sortingOrder = BaseMapSortingLayer - 1;
             blackUnderlayParent.SetActive(true);
             mapKeyVisualParent.SetActive(true);

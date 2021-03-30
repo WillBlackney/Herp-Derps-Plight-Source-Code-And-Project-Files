@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateImage: {fileID: 21300000, guid: a5574473290357542b1c2f02b9e546cd, type: 3}
   stateName: 10
-  rarity: 1
+  rarity: 4
+  lootable: 1
+  includeInGame: 1
   keyWordModels: []
   customDescription:
   - color: 1
@@ -24,7 +26,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '2 '
+    phrase: '3 '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -37,3 +39,5 @@ MonoBehaviour:
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: .
+  hasStacks: 0
+  baseStacks: 0

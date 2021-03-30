@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0663eeee0d354bc47801d42908eedf9b, type: 3}
+  m_Name: Arms Mastery
+  m_EditorClassIdentifier: 
+  stateImage: {fileID: 21300000, guid: 899c8605fde961c4caeac02f8f9d62f6, type: 3}
+  stateName: 26
+  rarity: 4
+  lootable: 1
+  includeInGame: 1
+  keyWordModels:
+  - kewWordType: 10
+    weaponRequirement: 0
+    passiveType: 0
+  customDescription:
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Melee Attack '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'and '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Ranged Attack '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'cards always cost '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '1 '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Energy
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
+  hasStacks: 0
+  baseStacks: 0

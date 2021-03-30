@@ -22,6 +22,10 @@ public class StateDataSO : ScriptableObject
     [LabelWidth(100)]
     public bool lootable = true;
 
+    [VerticalGroup("Info/Stats")]
+    [LabelWidth(100)]
+    public bool includeInGame = true;
+
     [Header("Keywords + Description")]
     [VerticalGroup("List Groups")]
     [LabelWidth(200)]

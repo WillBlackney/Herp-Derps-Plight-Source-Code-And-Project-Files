@@ -44,6 +44,7 @@ MonoBehaviour:
     temporaryBonusDrawStacks: 0
     runeStacks: 1
     barrierStacks: 0
+    incorporealStacks: 0
     enrageStacks: 0
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
@@ -95,6 +96,7 @@ MonoBehaviour:
     guardianAuraStacks: 0
     toxicAuraStacks: 0
     hatefulAuraStacks: 0
+    intimidatingAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -108,7 +110,7 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   allEnemyActions:
-  - actionName: Psy Beam
+  - actionName: Chaos Bolt
     actionType: 0
     intentImage: 0
     actionLoops: 1

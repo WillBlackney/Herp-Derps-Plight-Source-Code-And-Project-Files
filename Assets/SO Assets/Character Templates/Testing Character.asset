@@ -27,7 +27,7 @@ MonoBehaviour:
   power: 0
   initiative: 10
   stamina: 10
-  draw: 10
+  draw: 5
   baseCrit: 50
   critModifier: 30
   serializedPassiveManager:
@@ -109,12 +109,18 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
+  - {fileID: 11400000, guid: 810693427afc204499bb21a42d709adf, type: 2}
+  - {fileID: 11400000, guid: 810693427afc204499bb21a42d709adf, type: 2}
+  - {fileID: 11400000, guid: 810693427afc204499bb21a42d709adf, type: 2}
+  - {fileID: 11400000, guid: 810693427afc204499bb21a42d709adf, type: 2}
+  - {fileID: 11400000, guid: 810693427afc204499bb21a42d709adf, type: 2}
+  - {fileID: 11400000, guid: 810693427afc204499bb21a42d709adf, type: 2}
+  - {fileID: 11400000, guid: 810693427afc204499bb21a42d709adf, type: 2}
+  - {fileID: 11400000, guid: 810693427afc204499bb21a42d709adf, type: 2}
+  - {fileID: 11400000, guid: 810693427afc204499bb21a42d709adf, type: 2}
   - {fileID: 11400000, guid: 3d57eb73a05e9a04b96c08944c441410, type: 2}
-  - {fileID: 11400000, guid: 1a140b4bb31bfcd46bbe736dbdffb9bd, type: 2}
-  - {fileID: 11400000, guid: 5a2019be911c0884ea4257f5529d0045, type: 2}
-  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
-  - {fileID: 11400000, guid: 91a684a63c896f94fae7a593b1d28422, type: 2}
-  - {fileID: 11400000, guid: 91a684a63c896f94fae7a593b1d28422, type: 2}
+  - {fileID: 11400000, guid: 3d57eb73a05e9a04b96c08944c441410, type: 2}
+  - {fileID: 11400000, guid: 3d57eb73a05e9a04b96c08944c441410, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1

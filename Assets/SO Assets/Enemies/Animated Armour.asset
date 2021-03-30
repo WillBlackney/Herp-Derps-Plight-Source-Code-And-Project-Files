@@ -19,8 +19,8 @@ MonoBehaviour:
   startingHealth: 0
   enableFlexibleMaxHealth: 1
   maxHealthFlexAmount: 0
-  maxHealth: 50
-  startingBlock: 50
+  maxHealth: 60
+  startingBlock: 60
   strength: 20
   intelligence: 20
   dexterity: 20
@@ -29,7 +29,7 @@ MonoBehaviour:
   initiative: 2
   power: 0
   baseCrit: 0
-  physicalResistance: 0
+  physicalResistance: 30
   magicResistance: 0
   serializedPassiveManager:
     bonusPowerStacks: 0
@@ -42,8 +42,9 @@ MonoBehaviour:
     temporaryBonusStaminaStacks: 0
     temporaryBonusInitiativeStacks: 0
     temporaryBonusDrawStacks: 0
-    runeStacks: 0
+    runeStacks: 3
     barrierStacks: 0
+    incorporealStacks: 0
     enrageStacks: 0
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
@@ -182,7 +183,7 @@ MonoBehaviour:
         onCharacter: 0
       actionType: 0
       effectLoops: 2
-      baseDamage: 10
+      baseDamage: 12
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -332,7 +333,7 @@ MonoBehaviour:
         onCharacter: 0
       actionType: 0
       effectLoops: 1
-      baseDamage: 10
+      baseDamage: 15
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0

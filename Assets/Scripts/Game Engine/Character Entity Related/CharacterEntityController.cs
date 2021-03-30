@@ -844,7 +844,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             int energyGain = EntityLogic.GetTotalStamina(character);
 
             // Check 'Eagerness' state
-            if (StateController.Instance.DoesPlayerHaveState(StateName.Eagerness) &&
+            if ((StateController.Instance.DoesPlayerHaveState(StateName.Eagerness)|| StateController.Instance.DoesPlayerHaveState(StateName.Ambition)) &&
                 ActivationManager.Instance.CurrentTurn == 1)
                 energyGain += 1;
 
@@ -994,24 +994,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         if (character.pManager.gritStacks > 0)
         {
             PassiveController.Instance.ModifyGrit(character.pManager, -1, true, 0.5f);
-        }
-
-        // Shadow Aura        
-        if (character.pManager.shadowAuraStacks > 0)
-        {
-            CharacterEntityModel[] allEnemies = GetAllEnemiesOfCharacter(character).ToArray();
-            CharacterEntityModel chosenEnemy = allEnemies[RandomGenerator.NumberBetween(0, allEnemies.Length - 1)];
-
-            if (chosenEnemy != null)
-            {
-                // Notification event
-                VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Shadow Aura!"), QueuePosition.Back, 0, 0.5f);
-
-                // Random enemy is weakened
-                PassiveController.Instance.ModifyWeakened(chosenEnemy.pManager, character.pManager.shadowAuraStacks, character.pManager, true);
-            }
-        }
+        }      
 
         // Lord Of Storms
         if (character.pManager.lordOfStormsStacks > 0)
@@ -1054,6 +1037,48 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             GainBlock(character, CombatLogic.Instance.CalculateBlockGainedByEffect(character.pManager.shieldWallStacks, character, character));
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
         }
+
+        // AURAS
+        int auraLoops = 1;
+        if (StateController.Instance.DoesPlayerHaveState(StateName.Radiance) && character.controller == Controller.Player)
+            auraLoops = 2;
+        for(int i = 0; i < auraLoops; i++)
+        {
+            // Shadow Aura        
+            if (character.pManager.shadowAuraStacks > 0)
+            {
+                CharacterEntityModel[] allEnemies = GetAllEnemiesOfCharacter(character).ToArray();
+                CharacterEntityModel chosenEnemy = allEnemies[RandomGenerator.NumberBetween(0, allEnemies.Length - 1)];
+
+                if (chosenEnemy != null)
+                {
+                    // Notification event
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Shadow Aura!"), QueuePosition.Back, 0, 0.5f);
+
+                    // Random enemy is weakened
+                    PassiveController.Instance.ModifyWeakened(chosenEnemy.pManager, character.pManager.shadowAuraStacks, character.pManager, true);
+                }
+            }
+
+            // Intimidating Aura        
+            if (character.pManager.intimidatingAuraStacks > 0)
+            {
+                CharacterEntityModel[] allEnemies = GetAllEnemiesOfCharacter(character).ToArray();
+                CharacterEntityModel chosenEnemy = allEnemies[RandomGenerator.NumberBetween(0, allEnemies.Length - 1)];
+
+                if (chosenEnemy != null)
+                {
+                    // Notification event
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Intimidating Aura!"), QueuePosition.Back, 0, 0.5f);
+
+                    // Random enemy is weakened
+                    PassiveController.Instance.ModifyVulnerable(chosenEnemy.pManager, character.pManager.intimidatingAuraStacks, true);
+                }
+            }
+        }
+        
 
         // ENEMY Start turn 
         if (character.controller == Controller.AI &&
@@ -1108,7 +1133,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             }
 
             // Lose unused energy, discard hand
-            if(!StateController.Instance.DoesPlayerHaveState(StateName.Endurance))
+            if (!StateController.Instance.DoesPlayerHaveState(StateName.Endurance))
                 ModifyEnergy(entity, -entity.energy);
 
             // reset activation only energy values on cards
@@ -1135,7 +1160,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         if (entity.pManager.tauntStacks > 0)
         {
             PassiveController.Instance.ModifyTaunted(null, entity.pManager, -entity.pManager.tauntStacks, true, 0.5f);
-        }        
+        }
 
         // Temp core stats
         if (entity.pManager.temporaryBonusPowerStacks != 0)
@@ -1156,11 +1181,6 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         {
             PassiveController.Instance.ModifyWeakened(entity.pManager, -1, null, true, 0.5f);
         }
-        /*
-        if (entity.pManager.gritStacks > 0)
-        {
-            PassiveController.Instance.ModifyGrit(entity.pManager, -1, true, 0.5f);
-        }*/
         if (entity.pManager.vulnerableStacks > 0)
         {
             PassiveController.Instance.ModifyVulnerable(entity.pManager, -1, true, 0.5f);
@@ -1197,110 +1217,100 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             PassiveController.Instance.ModifyBonusPower(entity.pManager, entity.pManager.growingStacks, true, 0.5f);
         }
 
-        // Encouraging Aura
-        if (entity.pManager.encouragingAuraStacks > 0)
+      
+
+        // AURAS
+        int auraLoops = 1;
+        if (StateController.Instance.DoesPlayerHaveState(StateName.Radiance) && entity.controller == Controller.Player)
+            auraLoops = 2;
+        for (int i = 0; i < auraLoops; i++)
         {
-            CharacterEntityModel chosenAlly = null;
-            CharacterEntityModel[] allAllies = GetAllAlliesOfCharacter(entity, false).ToArray();
-            if(allAllies.Length == 0)
+            // Encouraging Aura
+            if (entity.pManager.encouragingAuraStacks > 0)
             {
-                chosenAlly = entity;
-            }
-            else
-            {
-                chosenAlly = allAllies[RandomGenerator.NumberBetween(0, allAllies.Length - 1)];
+                CharacterEntityModel chosenAlly = null;
+                CharacterEntityModel[] allAllies = GetAllAlliesOfCharacter(entity, false).ToArray();
+                if (allAllies.Length == 0)
+                {
+                    chosenAlly = entity;
+                }
+                else
+                {
+                    chosenAlly = allAllies[RandomGenerator.NumberBetween(0, allAllies.Length - 1)];
+                }
+
+                if (chosenAlly != null)
+                {
+                    // Notification event
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Encouraging Aura!"), QueuePosition.Back, 0, 0.5f);
+
+                    // Random ally gains energy
+                    ModifyEnergy(chosenAlly, entity.pManager.encouragingAuraStacks, true);
+                }
             }
 
-            if (chosenAlly != null)
+            // Toxic Aura
+            if (entity.pManager.toxicAuraStacks > 0)
             {
                 // Notification event
                 VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Encouraging Aura!"), QueuePosition.Back, 0, 0.5f);
+                VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Toxic Aura!"), QueuePosition.Back, 0, 0.5f);
 
-                // Random ally gains energy
-                ModifyEnergy(chosenAlly, entity.pManager.encouragingAuraStacks, true);
-            }
-        }
-
-        // Shadow Aura
-        /*
-        if (entity.pManager.shadowAuraStacks > 0)
-        {
-            CharacterEntityModel[] allEnemies = GetAllEnemiesOfCharacter(entity).ToArray();
-            CharacterEntityModel chosenEnemy = allEnemies[RandomGenerator.NumberBetween(0, allEnemies.Length - 1)];
-
-            if (chosenEnemy != null)
-            {
-                // Notification event
+                // Create poison nova on caster
                 VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Shadow Aura!"), QueuePosition.Back, 0, 0.5f);
+                VisualEffectManager.Instance.CreatePoisonNova(entity.characterEntityView.WorldPosition));
 
-                // Random enemy is weakened
-                PassiveController.Instance.ModifyWeakened(chosenEnemy.pManager, entity.pManager.shadowAuraStacks, entity.pManager, true);
+                // Apply poison to all enemies, and small poison explosion
+                foreach (CharacterEntityModel enemy in GetAllEnemiesOfCharacter(entity))
+                {
+                    PassiveController.Instance.ModifyPoisoned(entity.pManager, enemy.pManager, entity.pManager.toxicAuraStacks, true);
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreatePoisonExplosion(enemy.characterEntityView.WorldPosition));
+                }
+
+                // Brief delay
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
             }
-        }
-        */
 
-        // Toxic Aura
-        if (entity.pManager.toxicAuraStacks > 0)
-        {
-            // Notification event
-            VisualEventManager.Instance.CreateVisualEvent(() =>
-            VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Toxic Aura!"), QueuePosition.Back, 0, 0.5f);
-
-            // Create poison nova on caster
-            VisualEventManager.Instance.CreateVisualEvent(() => 
-            VisualEffectManager.Instance.CreatePoisonNova(entity.characterEntityView.WorldPosition));
-         
-            // Apply poison to all enemies, and small poison explosion
-            foreach (CharacterEntityModel enemy in GetAllEnemiesOfCharacter(entity))
+            // Guardian Aura
+            if (entity.pManager.guardianAuraStacks > 0)
             {
-                PassiveController.Instance.ModifyPoisoned(entity.pManager, enemy.pManager, entity.pManager.toxicAuraStacks, true);
                 VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreatePoisonExplosion(enemy.characterEntityView.WorldPosition));
+                    VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Guardian Aura!"), QueuePosition.Back, 0, 0.5f);
+
+                // give all allies (but not self) block.
+                foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(entity, false))
+                {
+                    GainBlock(ally, CombatLogic.Instance.CalculateBlockGainedByEffect(entity.pManager.guardianAuraStacks, entity, ally));
+                }
             }
 
-            // Brief delay
-            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
-        }
-
-        // Guardian Aura
-        if (entity.pManager.guardianAuraStacks > 0)
-        {
-            VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Guardian Aura!"), QueuePosition.Back, 0, 0.5f);
-
-            // give all allies (but not self) block.
-            foreach (CharacterEntityModel ally in GetAllAlliesOfCharacter(entity, false))
+            // Hateful Aura
+            if (entity.pManager.hatefulAuraStacks > 0)
             {
-                GainBlock(ally, CombatLogic.Instance.CalculateBlockGainedByEffect(entity.pManager.guardianAuraStacks, entity, ally));
-            }
-        }
+                CharacterEntityModel chosenAlly = null;
+                CharacterEntityModel[] allAllies = GetAllAlliesOfCharacter(entity, false).ToArray();
+                if (allAllies.Length == 0)
+                {
+                    chosenAlly = entity;
+                }
+                else
+                {
+                    chosenAlly = allAllies[RandomGenerator.NumberBetween(0, allAllies.Length - 1)];
+                }
 
-        // Hateful Aura
-        if (entity.pManager.hatefulAuraStacks > 0)
-        {
-            CharacterEntityModel chosenAlly = null;
-            CharacterEntityModel[] allAllies = GetAllAlliesOfCharacter(entity, false).ToArray();
-            if (allAllies.Length == 0)
-            {
-                chosenAlly = entity;
-            }
-            else
-            {
-                chosenAlly = allAllies[RandomGenerator.NumberBetween(0, allAllies.Length - 1)];
-            }
+                if (chosenAlly != null)
+                {
+                    // Notification event
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Hateful Aura!"), QueuePosition.Back, 0, 0.5f);
 
-            if (chosenAlly != null)
-            {
-                // Notification event
-                VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Hateful Aura!"), QueuePosition.Back, 0, 0.5f);
-
-                // Random ally gains energy
-                PassiveController.Instance.ModifyWrath(chosenAlly.pManager, 1, true, 0.5f); 
+                    // Random ally gains energy
+                    PassiveController.Instance.ModifyWrath(chosenAlly.pManager, 1, true, 0.5f);
+                }
             }
-        }
+        }      
 
         // Overload
         if (entity.pManager.overloadStacks > 0)

@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateImage: {fileID: 21300000, guid: 4f702ecc13f199a4a9dfb13fdbfe50f4, type: 3}
   stateName: 17
-  rarity: 2
+  rarity: 4
+  lootable: 1
+  includeInGame: 0
   keyWordModels: []
   customDescription:
   - color: 1
@@ -29,3 +31,5 @@ MonoBehaviour:
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: of their maximum health.
+  hasStacks: 0
+  baseStacks: 0

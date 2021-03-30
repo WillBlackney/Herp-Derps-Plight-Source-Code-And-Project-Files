@@ -555,7 +555,7 @@ public class CampSiteController : Singleton<CampSiteController>
 
         int bonus = 0;
         if (StateController.Instance.DoesPlayerHaveState(StateName.HappyCampers))
-            bonus += 2;
+            bonus += 3;
 
         // Regen camp points
         ModifyCurrentCampPoints(currentCampPointRegen + bonus);

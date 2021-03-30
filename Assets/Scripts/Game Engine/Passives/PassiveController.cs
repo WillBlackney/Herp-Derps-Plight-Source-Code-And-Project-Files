@@ -4486,7 +4486,7 @@ public class PassiveController : Singleton<PassiveController>
             {
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
-                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Debuff Blocked!" + stacks.ToString());
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Debuff Blocked!");
                     AudioManager.Instance.PlaySoundPooled(Sound.Ability_Dispell_Twang);
                 });
             }

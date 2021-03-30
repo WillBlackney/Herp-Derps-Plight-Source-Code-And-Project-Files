@@ -56,33 +56,30 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Costs '
+    phrase: 'While holding a '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Blessing
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: ', this costs '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '1 '
-  - color: 1
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'less '
+    phrase: '0 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Energy '
+    phrase: Energy
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'for each '
-  - color: 3
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'Blessing '
-  - color: 1
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: played this combat.
+    phrase: .
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
@@ -209,6 +206,7 @@ MonoBehaviour:
     passivePairing:
       passiveData: 0
       passiveStacks: 0
+    healthLost: 0
     energyGainedOrLost: 0
     certainCardNames: []
     whileHoldingBlessing: 1

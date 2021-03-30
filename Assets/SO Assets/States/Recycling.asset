@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateImage: {fileID: 21300000, guid: a1b508cd4488eb640888f34c3db81499, type: 3}
   stateName: 13
-  rarity: 2
+  rarity: 4
+  lootable: 1
+  includeInGame: 0
   keyWordModels:
   - kewWordType: 1
     weaponRequirement: 0
@@ -47,3 +49,5 @@ MonoBehaviour:
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: .
+  hasStacks: 0
+  baseStacks: 0
