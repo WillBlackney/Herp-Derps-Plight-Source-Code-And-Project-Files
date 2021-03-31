@@ -15,8 +15,9 @@ MonoBehaviour:
   itemSprite: {fileID: 21300000, guid: d628071ad583ada4cbbe5795390b3786, type: 3}
   itemName: War Banner
   itemType: 5
-  itemRarity: 3
+  itemRarity: 1
   lootable: 1
+  includeInLibrary: 0
   passivePairings:
   - passiveData: 38
     passiveStacks: 2

@@ -15,8 +15,9 @@ MonoBehaviour:
   itemSprite: {fileID: 21300000, guid: 456fdcce7b157fa41bd027313e855eed, type: 3}
   itemName: Cocaine Leaf
   itemType: 5
-  itemRarity: 3
+  itemRarity: 1
   lootable: 1
+  includeInLibrary: 0
   passivePairings:
   - passiveData: 28
     passiveStacks: 1

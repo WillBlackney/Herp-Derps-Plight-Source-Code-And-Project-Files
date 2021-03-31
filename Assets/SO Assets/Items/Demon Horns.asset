@@ -15,8 +15,9 @@ MonoBehaviour:
   itemSprite: {fileID: 21300000, guid: e81d8ffb69f9ec44b8ac0eadd2a2a0d3, type: 3}
   itemName: Demon Horns
   itemType: 5
-  itemRarity: 3
+  itemRarity: 1
   lootable: 1
+  includeInLibrary: 0
   passivePairings:
   - passiveData: 15
     passiveStacks: 1

@@ -15,8 +15,9 @@ MonoBehaviour:
   itemSprite: {fileID: 21300000, guid: ef4aa5ca77ff6554da1cd3685a942b74, type: 3}
   itemName: Old Rum
   itemType: 5
-  itemRarity: 2
+  itemRarity: 1
   lootable: 1
+  includeInLibrary: 0
   passivePairings:
   - passiveData: 1
     passiveStacks: 1

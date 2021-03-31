@@ -26,7 +26,8 @@ MonoBehaviour:
   - color: 0
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: to their activation order roll.
+    phrase: to their activation order roll, increasing their chance to act earlier
+      in the turn cycle.
   showStackCount: 1
   hiddenOnPassivePanel: 1
   runeBlocksIncrease: 0

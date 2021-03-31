@@ -10,17 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce54fe6d38fa1ac4d921d5b2652a68e3, type: 3}
-  m_Name: Gain a random Rare item.
+  m_Name: Gain a random item.
   m_EditorClassIdentifier: 
   choiceDescription:
   - color: 12
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'Gain a random '
-  - color: 12
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'Rare '
   - color: 12
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -39,5 +35,5 @@ MonoBehaviour:
   possiblePassives: []
   afflicationsGained: 0
   goldGainedOrLost: 0
-  itemRarity: 2
+  itemRarity: 1
   stateGained: 0

@@ -22,6 +22,7 @@ public class ShopController : Singleton<ShopController>
     [SerializeField] private GameObject mainVisualParent;
     [SerializeField] private CanvasGroup mainCg;
     [SerializeField] private ScrollRect mainPanelScrollRect;
+    [SerializeField] private RectTransform allContentTransform;
 
     [Header("Character View References")]
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
@@ -77,10 +78,10 @@ public class ShopController : Singleton<ShopController>
     #region
     private void ShowMainPanelView()
     {
-        mainPanelScrollRect.verticalScrollbar.value = 1;
         mainCg.DOKill();
         mainCg.alpha = 0;
-        mainVisualParent.SetActive(true);      
+        mainVisualParent.SetActive(true);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(allContentTransform);
         mainCg.DOFade(1f, 0.25f);
     }
     private void HideMainPanelView()
@@ -90,9 +91,9 @@ public class ShopController : Singleton<ShopController>
         mainVisualParent.SetActive(true);
         Sequence s = DOTween.Sequence();
         s.Append(mainCg.DOFade(0, 0.25f));
-        s.OnComplete(() => { 
-            mainVisualParent.SetActive(false);
+        s.OnComplete(() => {
             mainPanelScrollRect.verticalScrollbar.value = 1;
+            mainVisualParent.SetActive(false);            
         });
     }
     public void EnableCharacterViewParent()
@@ -194,8 +195,17 @@ public class ShopController : Singleton<ShopController>
         {
             BuildShopCardBox(allShopCards[i], dataSet.cardsData[i]);
         }
+        
         if(dataSet.cardsData.Count > 10)
+        {
             cardRowThreeParent.SetActive(true);
+        }
+        else
+        {
+            cardRowThreeParent.SetActive(false);
+        }
+       
+        
     }
     private void BuildAllShopItemBoxesFromDataSet(ShopContentResultModel dataSet)
     {
@@ -379,6 +389,7 @@ public class ShopController : Singleton<ShopController>
         List<ItemData> chosenItems = new List<ItemData>();
 
         // Divide cards by rarity
+        /*
         foreach (ItemData i in allValidLootableItems)
         {
             if (i.itemRarity == Rarity.Common)
@@ -390,7 +401,16 @@ public class ShopController : Singleton<ShopController>
             else if (i.itemRarity == Rarity.Epic)
                 validEpics.Add(i);
         }
+        */
 
+        for (int i = 0; i < 5; i++)
+        {
+            allValidLootableItems.Shuffle();
+            chosenItems.Add(allValidLootableItems[0]);
+            allValidLootableItems.Remove(allValidLootableItems[0]);
+        }
+
+        /*
         int commons = 2;
         int rares = 2;
         int epics = 1;
@@ -415,12 +435,14 @@ public class ShopController : Singleton<ShopController>
             chosenItems.Add(validEpics[0]);
             validEpics.Remove(validEpics[0]);
         }
+        */
 
         // Create new pairings and randomized prices
         foreach (ItemData i in chosenItems)
         {
             listReturned.Add(new ItemPricePairing(i));
         }
+        
 
         // Put a random card on sale
         ItemPricePairing randomItem = listReturned[RandomGenerator.NumberBetween(0, listReturned.Count - 1)];
@@ -516,6 +538,7 @@ public class ShopController : Singleton<ShopController>
             SetMerchantAccessoriesColor(merchantNormalColour);
             AudioManager.Instance.PlaySound(Sound.GUI_Button_Clicked);
             ShowMainPanelView();
+            mainPanelScrollRect.verticalScrollbar.value = 1;
         }
     }
     public void OnMerchantCharacterMouseEnter()

@@ -42,33 +42,39 @@ public class PersistencyManager : Singleton<PersistencyManager>
     {
         // Setup empty save file
         SaveGameData newSave = new SaveGameData();
-       
+
+        // Clear any previous roster data
+        CharacterDataController.Instance.ClearCharacterRoster();
+        CharacterDataController.Instance.ClearCharacterDeck();
+
         // Build characters
-        List<CharacterData> chosenCharacters = new List<CharacterData>();
+        CharacterData chosenCharacter = MainMenuController.Instance.GetChosenCharacter();
+        Debug.Log("BuildNewSaveFileOnNewGameStarted() chosen character = " + chosenCharacter.myName);
 
         // should randomize character?
         if (MainMenuController.Instance.randomizeCharacters)
         {
             List<CharacterData> randomCharacters = MainMenuController.Instance.GetThreeRandomAndDifferentTemplates();
-            chosenCharacters.Add(randomCharacters[0]);
-        }
-
-        // else, just use player selected template
-        else
-        {
-            chosenCharacters.Add(MainMenuController.Instance.GetChosenCharacter());
+            chosenCharacter = randomCharacters[0];
         }       
 
+        // Create new character from selected data
+        CharacterData newCharacter = CharacterDataController.Instance.CloneCharacterData(chosenCharacter);
+        CharacterDataController.Instance.AutoAddCharactersRacialCard(newCharacter);
+        CharacterDataController.Instance.AddCharacterToRoster(newCharacter);
+
         // Build each character data object
+        /*
         foreach (CharacterData data in chosenCharacters)
         {
             // Create new character from data
             CharacterData newCharacter = CharacterDataController.Instance.CloneCharacterData(data);
             CharacterDataController.Instance.AutoAddCharactersRacialCard(newCharacter);
             CharacterDataController.Instance.AddCharacterToRoster(newCharacter);
-        }
+        }*/
 
         // Build general data
+        PlayerDataManager.Instance.ModifyCurrentGold(-PlayerDataManager.Instance.CurrentGold);
         PlayerDataManager.Instance.ModifyCurrentGold(GlobalSettings.Instance.startingGold);
         PlayerDataManager.Instance.SaveMyDataToSaveFile(newSave);
 
@@ -108,8 +114,8 @@ public class PersistencyManager : Singleton<PersistencyManager>
                     }
                 }
 
-                // Choose 10 random cards rom viable cards lists
-                for(int i = 0; i < 10; i++)
+                // Choose 9 random cards rom viable cards lists
+                for(int i = 0; i < 9; i++)
                 {
                     int randomIndex = RandomGenerator.NumberBetween(0, viableCards.Count - 1);
                     CardData randomCard = CardController.Instance.BuildCardDataFromScriptableObjectData(viableCards[randomIndex]);

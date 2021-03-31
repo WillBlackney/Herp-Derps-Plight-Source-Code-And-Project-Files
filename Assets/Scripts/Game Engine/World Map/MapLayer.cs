@@ -17,7 +17,11 @@ namespace MapSystem
         [Range(0f, 1f)] public float randomizeNodes;
 
         [ShowIf("ShowPossibleRandomNodeTypes")]
+        [Tooltip("When true, at least one of the nodes on this layer is guaranteed to be of a random type")]
         public bool guaranteeAtleastOneRandom;
+        [ShowIf("ShowPossibleRandomNodeTypes")]
+        [Tooltip("When true, at least one of the nodes on this layer is guaranteed to be of the selected type")]
+        public bool guaranteeAtleastOneOfChosenType;
 
         [ShowIf("ShowPossibleRandomNodeTypes")]
         public EncounterType[] possibleRandomNodeTypes;

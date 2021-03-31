@@ -141,6 +141,7 @@ namespace MapSystem
             var layer = config.layers[layerIndex];
             var nodesOnThisLayer = new List<Node>();
             bool atleastOneRandom = false;
+            bool atleastOneOriginal = false;
 
             // offset of this layer to make all the nodes centered:
             var offset = layer.nodeYDistance * config.GridWidth / 2f;
@@ -150,6 +151,8 @@ namespace MapSystem
                 var nodeType = Random.Range(0f, 1f) < layer.randomizeNodes ? GetRandomNode(layer.possibleRandomNodeTypes) : layer.nodeType;
                 if (nodeType != layer.nodeType)
                     atleastOneRandom = true;
+                else if (nodeType == layer.nodeType)
+                    atleastOneOriginal = true;
 
                 var blueprintName = config.nodeBlueprints.Where(b => b.nodeType == nodeType).ToList().Random().name;
                 var node = new Node(nodeType, blueprintName, new Point(i, layerIndex))
@@ -166,6 +169,19 @@ namespace MapSystem
                 // get a random node + type on the layer
                 Node randomNode = nodesOnThisLayer[RandomGenerator.NumberBetween(0, nodesOnThisLayer.Count - 1)];
                 EncounterType randomNodeType = GetRandomNode(layer.possibleRandomNodeTypes);
+
+                // change the node to new random type
+                var blueprintName = config.nodeBlueprints.Where(b => b.nodeType == randomNodeType).ToList().Random().name;
+                randomNode.RerollType(randomNodeType, blueprintName);
+            }
+
+            if (!atleastOneOriginal && layer.guaranteeAtleastOneOfChosenType)
+            {
+                Debug.LogWarning("Didn't hit an originally selected node type, rerolling to guarantee an original node choice");
+
+                // get a random node + type on the layer
+                Node randomNode = nodesOnThisLayer[RandomGenerator.NumberBetween(0, nodesOnThisLayer.Count - 1)];
+                EncounterType randomNodeType = layer.nodeType;
 
                 // change the node to new random type
                 var blueprintName = config.nodeBlueprints.Where(b => b.nodeType == randomNodeType).ToList().Random().name;

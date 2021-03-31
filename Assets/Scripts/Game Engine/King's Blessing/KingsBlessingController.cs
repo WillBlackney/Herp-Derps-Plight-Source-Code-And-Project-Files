@@ -428,7 +428,8 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
 
             // Prevent matching effects between benefit and negetive
             // e.g. prevent something like this: 'Gain 20 max hp, lose 15 max hp.'
-            while(choicePairing.conseqenceData.effect == choicePairing.benefitData.effect &&
+            while((choicePairing.conseqenceData.effect == choicePairing.benefitData.effect || 
+                choicePairing.conseqenceData.effect == KingChoiceEffectType.ModifyHealth && choicePairing.benefitData.effect == KingChoiceEffectType.ModifyMaxHealth) &&
                 loops < 20)
             {
                 loops++;

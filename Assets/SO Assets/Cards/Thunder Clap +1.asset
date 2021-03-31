@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
   m_Name: Thunder Clap +1
   m_EditorClassIdentifier: 
-  cardName: Thunder Clap
+  cardName: Thunder Clap +1
   cardDescription: Deal 10 Physical damage and apply 1 Vulnerable to all enemies.
   cardSprite: {fileID: 21300000, guid: 8029b228932f2ff4eab065b1de0dea6b, type: 3}
   xEnergyCost: 0

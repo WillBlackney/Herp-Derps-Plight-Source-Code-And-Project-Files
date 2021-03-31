@@ -15,8 +15,9 @@ MonoBehaviour:
   itemSprite: {fileID: 21300000, guid: 5a3756ac58f87ec4b88bf9c88060a898, type: 3}
   itemName: Phoenix Egg
   itemType: 5
-  itemRarity: 2
+  itemRarity: 1
   lootable: 1
+  includeInLibrary: 0
   passivePairings:
   - passiveData: 19
     passiveStacks: 1

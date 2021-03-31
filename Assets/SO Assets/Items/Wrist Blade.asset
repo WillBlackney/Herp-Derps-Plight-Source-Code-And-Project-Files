@@ -15,8 +15,9 @@ MonoBehaviour:
   itemSprite: {fileID: 21300000, guid: c5ada893f8f9ff8459c6143a8f78abca, type: 3}
   itemName: Wrist Blade
   itemType: 5
-  itemRarity: 3
+  itemRarity: 1
   lootable: 1
+  includeInLibrary: 1
   passivePairings:
   - passiveData: 11
     passiveStacks: 1

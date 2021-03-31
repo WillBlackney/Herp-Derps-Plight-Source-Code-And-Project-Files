@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateImage: {fileID: 21300000, guid: 827501c13da9a1a40a9a8036f5592b0c, type: 3}
   stateName: 4
-  rarity: 4
+  rarity: 1
   lootable: 1
-  includeInGame: 0
+  includeInGame: 1
   keyWordModels: []
   customDescription:
   - color: 1

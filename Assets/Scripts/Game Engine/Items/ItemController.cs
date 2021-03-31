@@ -40,7 +40,8 @@ public class ItemController : Singleton<ItemController>
 
         foreach (ItemDataSO dataSO in allItemScriptableObjects)
         {
-            tempList.Add(BuildItemDataFromScriptableObjectData(dataSO));
+            if(dataSO.includeInLibrary)
+                tempList.Add(BuildItemDataFromScriptableObjectData(dataSO));
         }
 
         AllItems = tempList.ToArray();

@@ -39,6 +39,7 @@ MonoBehaviour:
     randomizePosition: 0
     randomizeNodes: 0
     guaranteeAtleastOneRandom: 0
+    guaranteeAtleastOneOfChosenType: 0
     possibleRandomNodeTypes: 
   - nodeType: 1
     layerXDifference:
@@ -48,6 +49,7 @@ MonoBehaviour:
     randomizePosition: 0.35
     randomizeNodes: 0.66
     guaranteeAtleastOneRandom: 1
+    guaranteeAtleastOneOfChosenType: 0
     possibleRandomNodeTypes: 0200000007000000
   - nodeType: 1
     layerXDifference:
@@ -57,6 +59,7 @@ MonoBehaviour:
     randomizePosition: 0.35
     randomizeNodes: 0.35
     guaranteeAtleastOneRandom: 1
+    guaranteeAtleastOneOfChosenType: 0
     possibleRandomNodeTypes: 0200000007000000
   - nodeType: 4
     layerXDifference:
@@ -66,6 +69,7 @@ MonoBehaviour:
     randomizePosition: 0.35
     randomizeNodes: 0
     guaranteeAtleastOneRandom: 0
+    guaranteeAtleastOneOfChosenType: 0
     possibleRandomNodeTypes: 020000000600000007000000
   - nodeType: 6
     layerXDifference:
@@ -75,6 +79,7 @@ MonoBehaviour:
     randomizePosition: 0.5
     randomizeNodes: 0.7
     guaranteeAtleastOneRandom: 1
+    guaranteeAtleastOneOfChosenType: 1
     possibleRandomNodeTypes: 020000000700000001000000
   - nodeType: 10
     layerXDifference:
@@ -84,6 +89,7 @@ MonoBehaviour:
     randomizePosition: 0.5
     randomizeNodes: 0
     guaranteeAtleastOneRandom: 0
+    guaranteeAtleastOneOfChosenType: 0
     possibleRandomNodeTypes: 0200000007000000
   - nodeType: 1
     layerXDifference:
@@ -93,6 +99,7 @@ MonoBehaviour:
     randomizePosition: 0.35
     randomizeNodes: 0.35
     guaranteeAtleastOneRandom: 1
+    guaranteeAtleastOneOfChosenType: 0
     possibleRandomNodeTypes: 0200000007000000
   - nodeType: 6
     layerXDifference:
@@ -102,6 +109,7 @@ MonoBehaviour:
     randomizePosition: 0.35
     randomizeNodes: 0.7
     guaranteeAtleastOneRandom: 1
+    guaranteeAtleastOneOfChosenType: 1
     possibleRandomNodeTypes: 020000000100000007000000
   - nodeType: 1
     layerXDifference:
@@ -111,6 +119,7 @@ MonoBehaviour:
     randomizePosition: 0.35
     randomizeNodes: 0.35
     guaranteeAtleastOneRandom: 1
+    guaranteeAtleastOneOfChosenType: 0
     possibleRandomNodeTypes: 0200000007000000
   - nodeType: 4
     layerXDifference:
@@ -120,6 +129,7 @@ MonoBehaviour:
     randomizePosition: 0.35
     randomizeNodes: 0
     guaranteeAtleastOneRandom: 0
+    guaranteeAtleastOneOfChosenType: 0
     possibleRandomNodeTypes: 020000000600000007000000
   - nodeType: 1
     layerXDifference:
@@ -129,6 +139,7 @@ MonoBehaviour:
     randomizePosition: 0.35
     randomizeNodes: 0.35
     guaranteeAtleastOneRandom: 1
+    guaranteeAtleastOneOfChosenType: 0
     possibleRandomNodeTypes: 0200000007000000
   - nodeType: 6
     layerXDifference:
@@ -138,6 +149,7 @@ MonoBehaviour:
     randomizePosition: 0.35
     randomizeNodes: 0.7
     guaranteeAtleastOneRandom: 1
+    guaranteeAtleastOneOfChosenType: 1
     possibleRandomNodeTypes: 020000000100000007000000
   - nodeType: 1
     layerXDifference:
@@ -147,6 +159,7 @@ MonoBehaviour:
     randomizePosition: 0.5
     randomizeNodes: 0.35
     guaranteeAtleastOneRandom: 1
+    guaranteeAtleastOneOfChosenType: 0
     possibleRandomNodeTypes: 0200000007000000
   - nodeType: 10
     layerXDifference:
@@ -156,6 +169,7 @@ MonoBehaviour:
     randomizePosition: 0.35
     randomizeNodes: 0
     guaranteeAtleastOneRandom: 0
+    guaranteeAtleastOneOfChosenType: 0
     possibleRandomNodeTypes: 
   - nodeType: 1
     layerXDifference:
@@ -165,6 +179,7 @@ MonoBehaviour:
     randomizePosition: 0.35
     randomizeNodes: 0.35
     guaranteeAtleastOneRandom: 1
+    guaranteeAtleastOneOfChosenType: 0
     possibleRandomNodeTypes: 0200000007000000
   - nodeType: 6
     layerXDifference:
@@ -174,6 +189,7 @@ MonoBehaviour:
     randomizePosition: 0.35
     randomizeNodes: 0.7
     guaranteeAtleastOneRandom: 1
+    guaranteeAtleastOneOfChosenType: 1
     possibleRandomNodeTypes: 020000000100000007000000
   - nodeType: 1
     layerXDifference:
@@ -183,6 +199,7 @@ MonoBehaviour:
     randomizePosition: 0.35
     randomizeNodes: 0.35
     guaranteeAtleastOneRandom: 1
+    guaranteeAtleastOneOfChosenType: 0
     possibleRandomNodeTypes: 020000000600000007000000
   - nodeType: 1
     layerXDifference:
@@ -192,6 +209,7 @@ MonoBehaviour:
     randomizePosition: 0.35
     randomizeNodes: 0.35
     guaranteeAtleastOneRandom: 1
+    guaranteeAtleastOneOfChosenType: 0
     possibleRandomNodeTypes: 0200000007000000
   - nodeType: 6
     layerXDifference:
@@ -201,6 +219,7 @@ MonoBehaviour:
     randomizePosition: 0.35
     randomizeNodes: 0
     guaranteeAtleastOneRandom: 0
+    guaranteeAtleastOneOfChosenType: 0
     possibleRandomNodeTypes: 
   - nodeType: 3
     layerXDifference:
@@ -210,4 +229,5 @@ MonoBehaviour:
     randomizePosition: 0
     randomizeNodes: 0
     guaranteeAtleastOneRandom: 0
+    guaranteeAtleastOneOfChosenType: 0
     possibleRandomNodeTypes: 

@@ -17,6 +17,7 @@ MonoBehaviour:
   itemType: 5
   itemRarity: 1
   lootable: 1
+  includeInLibrary: 0
   passivePairings:
   - passiveData: 31
     passiveStacks: 2

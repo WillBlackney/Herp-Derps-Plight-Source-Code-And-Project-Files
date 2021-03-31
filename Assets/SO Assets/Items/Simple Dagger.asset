@@ -16,4 +16,8 @@ MonoBehaviour:
   itemName: Simple Dagger
   itemType: 1
   itemRarity: 1
+  lootable: 0
+  includeInLibrary: 1
   passivePairings: []
+  customDescription: []
+  keyWordModels: []

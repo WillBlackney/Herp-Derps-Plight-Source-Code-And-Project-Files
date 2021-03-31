@@ -72,8 +72,8 @@ public static class EntityLogic
         Debug.Log("EntityLogic.GetTotalInitiative() called for " + entity.myName + "...");
 
         // Base wits
-        int initiativeReturned = entity.wits;
-        Debug.Log(entity.myName + " base wits: " + initiativeReturned.ToString());
+        int initiativeReturned = 0;
+        //Debug.Log(entity.myName + " base wits: " + initiativeReturned.ToString());
 
         // Base initiative
         initiativeReturned += entity.initiative;

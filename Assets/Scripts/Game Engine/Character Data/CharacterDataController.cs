@@ -97,6 +97,14 @@ public class CharacterDataController : Singleton<CharacterDataController>
     {
         AllPlayerCharacters.Add(character);
     }
+    public void ClearCharacterRoster()
+    {
+        AllPlayerCharacters.Clear();
+    }
+    public void ClearCharacterDeck()
+    {
+        CharacterDeck.Clear();
+    }
 
     #endregion
 
