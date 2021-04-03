@@ -202,7 +202,7 @@ MonoBehaviour:
       passiveData: 0
       passiveStacks: 0
     healthLost: 0
-    energyGainedOrLost: 1
+    energyGainedOrLost: 2
     certainCardNames: []
     whileHoldingBlessing: 0
     cardCostsZero: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Execute +1
   m_EditorClassIdentifier: 
   cardName: Execute +1
-  cardDescription: 'Deal 28 Physical damage. '
+  cardDescription: 'Deal 28 Physical damage. Lethal: Gain 2 Energy,'
   cardSprite: {fileID: 21300000, guid: 0b8bde124e965454da2ef6d7786c84aa, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -202,7 +202,7 @@ MonoBehaviour:
       passiveData: 0
       passiveStacks: 0
     healthLost: 0
-    energyGainedOrLost: 1
+    energyGainedOrLost: 2
     certainCardNames: []
     whileHoldingBlessing: 0
     cardCostsZero: 0

@@ -310,6 +310,8 @@ public class LootController : Singleton<LootController>
                 epics.Add(i);
         }
 
+        itemRet = commons[RandomGenerator.NumberBetween(0, commons.Count - 1)];
+        /*
         if (roll >= 1 && roll <= 65)
             itemRet = commons[RandomGenerator.NumberBetween(0, commons.Count - 1)];
 
@@ -318,6 +320,7 @@ public class LootController : Singleton<LootController>
 
         else if (roll >= 91 && roll <= 100)
             itemRet = epics[RandomGenerator.NumberBetween(0, epics.Count - 1)];
+        */
 
         return itemRet;
     }

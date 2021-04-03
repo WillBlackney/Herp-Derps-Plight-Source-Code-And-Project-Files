@@ -22,6 +22,9 @@ public class SaveGameData
     public EncounterType currentEncounter;
     public string currentEnemyWave;
 
+    // Story events
+    public string currentStoryEvent;
+
     // Recruit event data
     public List<CharacterData> recruitCharacterChoices = new List<CharacterData>();
     public List<CharacterData> characterDeck = new List<CharacterData>();
@@ -62,6 +65,7 @@ public enum SaveCheckPoint
     CampSite = 5,
     Shop =6,
     Shrine = 7,
+    MysteryEventStart = 8,
 
 
 }

@@ -16,11 +16,7 @@ MonoBehaviour:
   - color: 12
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Gain a random '
-  - color: 12
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: trinket.
+    phrase: Gain a random trinket.
   effect: 13
   category: 1
   impactLevel: 2

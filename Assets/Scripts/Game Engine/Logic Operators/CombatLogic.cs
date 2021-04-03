@@ -969,7 +969,14 @@ public class CombatLogic : Singleton<CombatLogic>
             // Check Volatile passive
             if(victim.pManager.volatileStacks > 0)
             {
+                Vector3 explosionPos = victim.characterEntityView.WorldPosition;
+
                 VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreatePoisonExplosion(explosionPos);
+                    AudioManager.Instance.PlaySoundPooled(Sound.Explosion_Poison_1);
+                });
 
                 foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.GetAllEnemiesOfCharacter(victim))
                 {
@@ -993,7 +1000,7 @@ public class CombatLogic : Singleton<CombatLogic>
     }
 
 
-    private void HandleDeath(CharacterEntityModel entity)
+    private void HandleDeath(CharacterEntityModel entity, VisualEvent batchedEvent = null)
     {
         Debug.Log("CombatLogic.HandleDeath() started for " + entity.myName);
 

@@ -26,7 +26,7 @@ MonoBehaviour:
   constitution: 20
   power: 0
   initiative: 10
-  stamina: 10
+  stamina: 4
   draw: 4
   baseCrit: 50
   critModifier: 30
@@ -118,9 +118,9 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
-  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
-  - {fileID: 11400000, guid: 4fa47f450ff530d47884c246293bb23a, type: 2}
-  - {fileID: 11400000, guid: 5a2019be911c0884ea4257f5529d0045, type: 2}
+  - {fileID: 11400000, guid: 0415e9076c220394aaccb9c49a9a5b68, type: 2}
+  - {fileID: 11400000, guid: 0415e9076c220394aaccb9c49a9a5b68, type: 2}
+  - {fileID: 11400000, guid: 0415e9076c220394aaccb9c49a9a5b68, type: 2}
   - {fileID: 11400000, guid: 3515e3b8e92620548af756ddbf500130, type: 2}
   modelParts:
   - Orc_Head_1

@@ -62,6 +62,10 @@ public class EventSequenceController : Singleton<EventSequenceController>
         {
             StartCoroutine(RunShrineEventTestSetup());
         }
+        else if (GlobalSettings.Instance.gameMode == StartingSceneSetting.MysteryEventTest)
+        {
+            StartCoroutine(RunMysteryEventTestSetup());
+        }
     }
     #endregion
 
@@ -251,6 +255,28 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Start load shop event sequence
         HandleLoadShrineEvent();
+    }
+    private IEnumerator RunMysteryEventTestSetup()
+    {
+        Debug.Log("EventSequenceController.RunMysteryEventTestSetup()");
+
+        yield return null;
+
+        // Enable GUI
+        TopBarController.Instance.ShowTopBar();
+
+        // Build character data
+        CharacterDataController.Instance.BuildCharacterRosterFromCharacterTemplateList(GlobalSettings.Instance.testingCharacterTemplates);
+
+        // For testing only
+        StateController.Instance.BuildPlayerStatesFromGlobalSettingsMockData();
+        StateController.Instance.BuildAndShowStatePanel();
+
+        // Gain gold to test with
+        PlayerDataManager.Instance.ModifyCurrentGold(200);
+
+        // Start load mystery event sequence
+        HandleLoadMysteryEvent();
     }
     #endregion
 
@@ -848,6 +874,34 @@ public class EventSequenceController : Singleton<EventSequenceController>
         ShrineController.Instance.SetShrineInteractivityState(true);
 
 
+    }
+    private void HandleLoadMysteryEvent()
+    {
+        StartCoroutine(HandleLoadMysteryEventCoroutine());
+    }
+    private IEnumerator HandleLoadMysteryEventCoroutine()
+    {
+        yield return null;
+
+        // generate and cache mystery event, if dont have one saved
+        if(StoryEventController.Instance.CurrentStoryEvent == null &&
+            GlobalSettings.Instance.gameMode == StartingSceneSetting.Standard)
+        {
+            StoryEventController.Instance.GenerateAndCacheNextStoryEventRandomly();
+        }
+        else if(GlobalSettings.Instance.gameMode == StartingSceneSetting.MysteryEventTest)
+        {
+            if(GlobalSettings.Instance.loadRandomStoryEvent)
+                StoryEventController.Instance.GenerateAndCacheNextStoryEventRandomly();
+            else
+                StoryEventController.Instance.ForceCacheNextStoryEvent(GlobalSettings.Instance.testingStoryEvent);
+        }
+
+        // Build all views and their starting states
+        StoryEventController.Instance.BuildAllViewsOnStoryEventStart(StoryEventController.Instance.CurrentStoryEvent);
+
+        // Fade in screen
+        BlackScreenController.Instance.FadeInScreen(1f);
     }
     private void HandleLoadShopEvent()
     {

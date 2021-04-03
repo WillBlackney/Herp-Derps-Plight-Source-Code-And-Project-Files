@@ -28,7 +28,14 @@ public class GlobalSettings : Singleton<GlobalSettings>
     [Header("Combat Test Scene Settings")]
     [LabelWidth(200)]
     [ShowIf("ShowEnemyWave")]
-    public EnemyWaveSO testingEnemyWave; 
+    public EnemyWaveSO testingEnemyWave;
+
+    [LabelWidth(200)]
+    [ShowIf("ShowRandomStoryEventField")]
+    public bool loadRandomStoryEvent = false;
+    [LabelWidth(200)]
+    [ShowIf("ShowStoryEvent")]
+    public StoryEventDataSO testingStoryEvent;
 
     [LabelWidth(200)]
     [ShowIf("ShowTestingCampDeck")]
@@ -307,6 +314,14 @@ public class GlobalSettings : Singleton<GlobalSettings>
     {
         return gameMode == StartingSceneSetting.CombatSceneSingle;
     }
+    public bool ShowStoryEvent()
+    {
+        return gameMode == StartingSceneSetting.MysteryEventTest && loadRandomStoryEvent == false;
+    }
+    public bool ShowRandomStoryEventField()
+    {
+        return gameMode == StartingSceneSetting.MysteryEventTest;
+    }
     public bool ShowTestingCampDeck()
     {
         return gameMode == StartingSceneSetting.CampSiteEvent;
@@ -346,6 +361,7 @@ public enum StartingSceneSetting
     KingsBlessingEvent = 5,
     CampSiteEvent = 6,
     ShopEventTest = 7,
-    ShrineEventTest = 8
+    ShrineEventTest = 8,
+    MysteryEventTest = 9,
 
 }

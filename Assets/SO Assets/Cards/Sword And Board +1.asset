@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sword And Board +1
   m_EditorClassIdentifier: 
   cardName: Sword And Board +1
-  cardDescription: Deal 8 Physical damage. Gain 8 Block.
+  cardDescription: Deal 7 Physical damage. Gain 7 Block.
   cardSprite: {fileID: 21300000, guid: b5d8274474ec2f1498c776953217bb76, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -70,6 +70,7 @@ MonoBehaviour:
     phrase: .
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
@@ -100,7 +101,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 8
+    baseDamageValue: 7
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
@@ -203,6 +204,7 @@ MonoBehaviour:
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 10
     splitTargetEffect: 0
     splitTargetType: 0
@@ -232,7 +234,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 8
+    blockGainValue: 7
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0

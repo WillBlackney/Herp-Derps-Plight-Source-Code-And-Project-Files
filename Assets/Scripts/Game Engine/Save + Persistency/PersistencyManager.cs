@@ -192,6 +192,9 @@ public class PersistencyManager : Singleton<PersistencyManager>
         StateController.Instance.SaveMyDataToSaveFile(newSave);
         ShrineController.Instance.SaveMyDataToSaveFile(newSave);
 
+        // Mystery + Story
+        StoryEventController.Instance.SaveMyDataToSaveFile(newSave);
+
         // START SAVE!        
         SaveGameToDisk(newSave);
     }
@@ -238,6 +241,9 @@ public class PersistencyManager : Singleton<PersistencyManager>
         // States
         StateController.Instance.BuildMyDataFromSaveFile(newLoad);
         ShrineController.Instance.BuildMyDataFromSaveFile(newLoad);
+
+        // Mystery + Story
+        StoryEventController.Instance.BuildMyDataFromSaveFile(newLoad);
     }
     #endregion
 

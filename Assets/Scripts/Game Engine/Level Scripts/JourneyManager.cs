@@ -15,6 +15,7 @@ public class JourneyManager : Singleton<JourneyManager>
     [Header("Encounter Sequence Properties")]
     private List<string> enemyWavesAlreadyEncountered = new List<string>();
 
+
     [Header("Current Player Position + Encounter Properties")]
     private int currentJourneyPosition = 0;
 
@@ -41,7 +42,7 @@ public class JourneyManager : Singleton<JourneyManager>
     // Getters + Accessors
     #region
     public EncounterType CurrentEncounter { get; private set; }
-    public EnemyWaveSO CurrentEnemyWave { get; private set; }
+    public EnemyWaveSO CurrentEnemyWave { get; private set; }   
     public SaveCheckPoint CheckPointType { get; private set; } 
     public int CurrentJourneyPosition
     {
@@ -86,6 +87,7 @@ public class JourneyManager : Singleton<JourneyManager>
             if(eWave.encounterName == saveData.currentEnemyWave)
             {
                 CurrentEnemyWave = eWave;
+                break;
             }
         }
 
@@ -243,4 +245,5 @@ public class JourneyManager : Singleton<JourneyManager>
         enemyWavesAlreadyEncountered.Add(wave.encounterName);
     }
     #endregion
+
 }
