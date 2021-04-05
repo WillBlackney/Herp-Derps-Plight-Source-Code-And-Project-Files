@@ -9,6 +9,9 @@ public class StoryEventChoiceSO : ScriptableObject
     [TextArea]
     public string activityDescription;
 
+    [TextArea]
+    public string effectDescription;
+
     public StoryChoiceRequirement[] requirements;
     public StoryChoiceEffect[] effects;
 }
@@ -70,6 +73,21 @@ public class StoryChoiceRequirement
 [System.Serializable]
 public class StoryChoiceEffect
 {
+    [Header("Choice Effect")]
+    [PropertySpace(SpaceBefore = 0, SpaceAfter = 20)]
+    public StoryChoiceEffectType effectType;
+
+    [ShowIf("ShowPageToLoad")]
+    public StoryEventPageSO pageToLoad;
+
+
+    // Odin Show Ifs
+    #region
+    public bool ShowPageToLoad()
+    {
+        return effectType == StoryChoiceEffectType.LoadPage;
+    }
+    #endregion
 
 }
 public enum StoryChoiceReqType
@@ -81,5 +99,41 @@ public enum StoryChoiceReqType
     GoldAmount = 4,
     TalentLevel = 5,
   
+
+}
+public enum StoryChoiceEffectType
+{
+    None = 0,
+    LoadPage = 1,
+    FinishEvent = 2,
+    GainAfflictionChosen =3,
+    GainAfflictionAll = 4,
+    GainCardChosen = 5,
+    GainCardAll = 6,
+    GainHealthChosen = 7,
+    GainHealthAll = 8,
+    GainMaxHealthChosen = 9,
+    GainMaxHealthAll = 10,
+    GainRandomAfflictionChosen = 11,
+    GainRandomAfflictionAll = 12,
+    GainRandomItem =13,
+    GainSpecificItem = 14,
+    GainGold = 15,
+    LoseGold = 16,
+    LoseAllGold = 17,
+    LoseHealthChosen = 18,
+    LoseHealthAll = 19,
+    LoseMaxHealthChosen = 20,
+    LoseMaxHealthAll = 21,
+    MaximumHealChosen = 22,
+    MaximumHealAll = 23,
+    RemoveCard = 24,
+    UpgradeCard = 25,
+  
+   
+  
+    
+    
+
 
 }

@@ -188,6 +188,8 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
     public void SetContinueButtonInteractions(bool onOrOff)
     {
         continueButtonCg.interactable = onOrOff;
+        if(onOrOff == true)
+            MapPlayerTracker.Instance.UnlockMap();
     }
     public void FadeContinueButton(float endAlpha, float duration, bool disableOnComplete = false)
     {
@@ -979,9 +981,6 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
 
         // Add new upgraded card to character data deck
         CardController.Instance.HandleUpgradeCardInCharacterDeck(card, character);
-
-        // Resolve consequence of pairing choice
-       // TriggerKingsChoiceEffect(cachedPairing.conseqenceData);
 
         // Finish
         AwaitingCardUpgradeChoice = false;

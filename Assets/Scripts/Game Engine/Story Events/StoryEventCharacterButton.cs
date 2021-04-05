@@ -17,7 +17,7 @@ public class StoryEventCharacterButton : MonoBehaviour, IPointerClickHandler, IP
     public UniversalCharacterModel myUCM;
 
     // Properties
-    [HideInInspector] public CharacterData myData;
+    [HideInInspector] public CharacterData myCharacter;
 
 
     #endregion

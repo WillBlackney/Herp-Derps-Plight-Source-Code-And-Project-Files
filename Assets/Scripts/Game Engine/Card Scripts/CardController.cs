@@ -5456,6 +5456,10 @@ public class CardController : Singleton<CardController>
         {
             KingsBlessingController.Instance.HandleUpgradeCardChoiceMade(KingsBlessingController.Instance.selectedUpgradeCard);
         }
+        else if (StoryEventController.Instance.AwaitingCardUpgradeChoice)
+        {
+            StoryEventController.Instance.HandleUpgradeCardChoiceMade(StoryEventController.Instance.selectedUpgradeCard);
+        }
 
     }
     public void OnUpgradeCardPopupCancelButtonClicked()

@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using MapSystem;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -23,8 +24,22 @@ public class StoryEventController : Singleton<StoryEventController>
     [SerializeField] Color lockedColour;
 
     // Misc fields
-    private StoryEventCharacterButton selectedButton;
+    private StoryEventCharacterButton selectedCharacterButton;
+    [HideInInspector] public CardData selectedUpgradeCard;
 
+
+    #endregion
+
+    // Getters + Accessors
+    #region
+    public List<StoryEventDataSO> AllStoryEvents
+    {
+        get { return allStoryEvents; }
+        private set { allStoryEvents = value; }
+    }
+    public StoryEventDataSO CurrentStoryEvent { get; private set; }
+    public bool AwaitingCardUpgradeChoice { get; private set; }
+    public bool AwaitingCardRemovalChoice { get; private set; }
     #endregion
 
     // Save + Load Logic
@@ -47,15 +62,7 @@ public class StoryEventController : Singleton<StoryEventController>
     }
     #endregion
 
-    // Getters + Accessors
-    #region
-    public List<StoryEventDataSO> AllStoryEvents
-    {
-        get { return allStoryEvents; }
-        private set { allStoryEvents = value; }
-    }
-    public StoryEventDataSO CurrentStoryEvent { get; private set; }
-    #endregion
+   
 
     // Generate Next Event Logic
     #region
@@ -99,7 +106,6 @@ public class StoryEventController : Singleton<StoryEventController>
         BuildAllCharacterButtons();
         BuildAllViewsFromPage(storyEvent.firstPage);
         HandleNewCharacterSelection(allCharacterButtons[0]);
-
     }
     private void BuildAllViewsFromPage(StoryEventPageSO page)
     {
@@ -111,6 +117,7 @@ public class StoryEventController : Singleton<StoryEventController>
     }
     private void BuildChoiceButtonsFromPageData(StoryEventPageSO page)
     {
+        ResetAllChoiceButtons();
         for(int i = 0; i < page.allChoices.Length; i++)
         {
             BuildChoiceButtonFromChoiceData(allChoiceButtons[i], page.allChoices[i]);
@@ -118,6 +125,7 @@ public class StoryEventController : Singleton<StoryEventController>
     }
     private void BuildChoiceButtonFromChoiceData(StoryChoiceButton button, StoryEventChoiceSO data)
     {
+        button.gameObject.SetActive(true);
         button.myData = data;
 
         // Build Description Text
@@ -132,7 +140,9 @@ public class StoryEventController : Singleton<StoryEventController>
             StoryChoiceRequirement rd = FindRequirementInChoiceData(data, StoryChoiceReqType.TalentLevel);
             button.activityDescriptionText.text += TextLogic.ReturnColoredText("[" + rd.attribute.ToString() + " " + rd.attributeLevel.ToString() + "+] ", TextLogic.neutralYellow);
         }
-        button.activityDescriptionText.text += data.activityDescription;
+
+        button.activityDescriptionText.text += ("[" + data.activityDescription + "] ");
+        button.activityDescriptionText.text += TextLogic.ReturnColoredText( data.effectDescription, TextLogic.lightGreen);
 
         // Reset colouring
         button.buttonBG.color = normalColour;
@@ -156,6 +166,14 @@ public class StoryEventController : Singleton<StoryEventController>
             }
         }
     }
+    private void ResetAllChoiceButtons()
+    {
+        foreach (StoryChoiceButton b in allChoiceButtons)
+        {
+            b.gameObject.SetActive(false);
+            b.myData = null;
+        }
+    }
     #endregion
 
     // Character Button Logic
@@ -174,7 +192,7 @@ public class StoryEventController : Singleton<StoryEventController>
     private void BuildCharacterButtonFromCharacterData(StoryEventCharacterButton button, CharacterData data)
     {
         button.visualParent.SetActive(true);
-        button.myData = data;
+        button.myCharacter = data;
 
         // build ucm
         CharacterModelController.Instance.BuildModelFromStringReferences(button.myUCM, data.modelParts);
@@ -182,18 +200,18 @@ public class StoryEventController : Singleton<StoryEventController>
     }
     private void HandleNewCharacterSelection(StoryEventCharacterButton button)
     {
-        if (selectedButton != null)
+        if (selectedCharacterButton != null)
         {
-            selectedButton.scalingParent.transform.DOKill();
-            selectedButton.scalingParent.transform.DOScale(1, 0.2f).SetEase(Ease.OutSine);
+            selectedCharacterButton.scalingParent.transform.DOKill();
+            selectedCharacterButton.scalingParent.transform.DOScale(1, 0.2f).SetEase(Ease.OutSine);
         }
 
-        selectedButton = button;
-        selectedButton.scalingParent.transform.DOKill();
-        selectedButton.scalingParent.transform.DOScale(1.3f, 0.2f).SetEase(Ease.OutSine);
+        selectedCharacterButton = button;
+        selectedCharacterButton.scalingParent.transform.DOKill();
+        selectedCharacterButton.scalingParent.transform.DOScale(1.3f, 0.2f).SetEase(Ease.OutSine);
 
         // refresh + rebuild choices
-        RebuildChoiceButtonsOnNewCharacterSelected(selectedButton.myData);
+        RebuildChoiceButtonsOnNewCharacterSelected(selectedCharacterButton.myCharacter);
     }
 
     #endregion
@@ -228,6 +246,9 @@ public class StoryEventController : Singleton<StoryEventController>
             button.buttonBG.DOKill();
             button.buttonBG.DOColor(normalColour, 0f);
             AudioManager.Instance.PlaySoundPooled(Sound.GUI_Button_Clicked);
+
+            // EXECUTE CHOICE EFFECTS!
+            HandleChoiceEffects(button.myData);
         }
       
     }
@@ -249,7 +270,108 @@ public class StoryEventController : Singleton<StoryEventController>
         }
           
     }
-    #endregion   
+    #endregion
+
+    // Handle Choice Effects Logic
+    #region
+    private void HandleChoiceEffects(StoryEventChoiceSO choice)
+    {
+        foreach(StoryChoiceEffect s in choice.effects)
+        {
+            TriggerChoiceEffect(s, selectedCharacterButton.myCharacter);
+        }
+    }
+    private void TriggerChoiceEffect(StoryChoiceEffect effect, CharacterData character = null)
+    {
+        CharacterData selectedCharacter = selectedCharacterButton.myCharacter;
+        // Load page
+        if (effect.effectType == StoryChoiceEffectType.LoadPage)
+        {
+            BuildAllViewsFromPage(effect.pageToLoad);
+            HandleNewCharacterSelection(selectedCharacterButton);
+        }
+
+        // Finish event
+        else if (effect.effectType == StoryChoiceEffectType.FinishEvent)
+        {
+            MapPlayerTracker.Instance.UnlockMap();
+            MapView.Instance.OnWorldMapButtonClicked();
+        }
+
+        // Upgrade a card
+        else if (effect.effectType == StoryChoiceEffectType.UpgradeCard)
+        {
+            AwaitingCardUpgradeChoice = true;
+            CardController.Instance.CreateNewUpgradeCardInDeckPopup(character, "Upgrade A Card!");
+            CardController.Instance.DisableCardGridScreenBackButton();
+        }
+
+        // Remove a card
+        else if (effect.effectType == StoryChoiceEffectType.RemoveCard)
+        {
+            AwaitingCardRemovalChoice = true;
+            CardController.Instance.CreateNewRemoveCardInDeckPopup(character, "Remove A Card!");
+            CardController.Instance.DisableCardGridScreenBackButton();
+        }
+
+        // Heal to full health
+        else if (effect.effectType == StoryChoiceEffectType.MaximumHealChosen)
+        {
+            int healAmount = selectedCharacter.MaxHealthTotal - selectedCharacter.health;
+            CharacterDataController.Instance.SetCharacterHealth(selectedCharacterButton.myCharacter, healAmount);
+
+            // Heal VFX
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateHealEffect(selectedCharacterButton.transform.position, 15, 2f));
+
+            // Damage Text Effect VFX
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+            VisualEffectManager.Instance.CreateDamageEffect(selectedCharacterButton.transform.position, healAmount, true, false));
+
+            // Create SFX
+            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
+        }
+    }
+    public void HandleUpgradeCardChoiceMade(CardData card)
+    {
+        // Setup
+        List<CardData> cList = new List<CardData>();
+        cList.Add(CardController.Instance.FindUpgradedCardData(card));
+
+        // Close Grid view Screen
+        CardController.Instance.HideCardGridScreen();
+        CardController.Instance.HideCardUpgradePopupScreen();
+
+        // Create add card to character visual event
+        CardController.Instance.StartNewShuffleCardsScreenVisualEvent(selectedCharacterButton.myUCM, cList);
+
+        // Add new upgraded card to character data deck
+        CardController.Instance.HandleUpgradeCardInCharacterDeck(card, selectedCharacterButton.myCharacter);
+
+        // Finish
+        AwaitingCardUpgradeChoice = false;
+        selectedUpgradeCard = null;
+    }
+    public void HandleRemoveCardChoiceMade(CardData card)
+    {
+        // Setup
+        List<CardData> cList = new List<CardData>();
+        cList.Add(card);
+
+        // Close Grid view Screen
+        CardController.Instance.HideCardGridScreen();
+        CardController.Instance.HideCardUpgradePopupScreen();
+
+        // Create add card to character visual event
+        CardController.Instance.StartNewShuffleCardsScreenExpendVisualEvent(cList);
+
+        // Remove the card from character deck persistency
+        CharacterDataController.Instance.RemoveCardFromCharacterDeck(selectedCharacterButton.myCharacter, card);
+
+        // Finish
+        AwaitingCardRemovalChoice = false;
+    }
+    #endregion
 
     // Conditional Checks + Bools
     #region

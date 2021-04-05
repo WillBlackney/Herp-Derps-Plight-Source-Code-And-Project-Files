@@ -37,6 +37,8 @@ public class GridCardViewModel : MonoBehaviour, IPointerEnterHandler, IPointerEx
             return;
         }
 
+        KeyWordLayoutController.Instance.FadeOutMainView();
+
         // Camp events
         if (CampSiteController.Instance.AwaitingCardUpgradeChoice)
         {
@@ -61,6 +63,17 @@ public class GridCardViewModel : MonoBehaviour, IPointerEnterHandler, IPointerEx
         else if (KingsBlessingController.Instance.AwaitingCardTransformChoice)
         {
             KingsBlessingController.Instance.HandleTransformCardChoiceMade(myCardData);
+        }
+
+        // Mystery Events
+        else if (StoryEventController.Instance.AwaitingCardUpgradeChoice)
+        {
+            StoryEventController.Instance.selectedUpgradeCard = myCardData;
+            CardController.Instance.BuildAndShowCardUpgradePopUp(myCardData);
+        }
+        else if (StoryEventController.Instance.AwaitingCardRemovalChoice)
+        {
+            StoryEventController.Instance.HandleRemoveCardChoiceMade(myCardData);
         }
     }
 }
