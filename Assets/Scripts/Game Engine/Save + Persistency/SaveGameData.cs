@@ -14,6 +14,7 @@ public class SaveGameData
     public SaveCheckPoint saveCheckPoint;
     public string map;
     public List<string> encounteredCombats = new List<string>();
+    public List<string> encounteredStoryEvents = new List<string>();
 
     // Player data
     public int currentGold;

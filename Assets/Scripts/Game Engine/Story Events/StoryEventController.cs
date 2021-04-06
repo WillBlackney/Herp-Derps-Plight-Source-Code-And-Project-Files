@@ -24,6 +24,7 @@ public class StoryEventController : Singleton<StoryEventController>
     [SerializeField] Color lockedColour;
 
     // Misc fields
+    private List<string> eventsAlreadyEncountered = new List<string>();
     private StoryEventCharacterButton selectedCharacterButton;
     [HideInInspector] public CardData selectedUpgradeCard;
 
@@ -48,6 +49,8 @@ public class StoryEventController : Singleton<StoryEventController>
     {
         if (CurrentStoryEvent != null)
             saveFile.currentStoryEvent = CurrentStoryEvent.storyEventName;
+
+        saveFile.encounteredStoryEvents = eventsAlreadyEncountered;
     }
     public void BuildMyDataFromSaveFile(SaveGameData saveFile)
     {
@@ -59,6 +62,12 @@ public class StoryEventController : Singleton<StoryEventController>
                 break;
             }
         }
+
+        eventsAlreadyEncountered = saveFile.encounteredStoryEvents;
+    }
+    public void ClearCurrentStoryEvent()
+    {
+        CurrentStoryEvent = null;
     }
     #endregion
 
@@ -70,6 +79,7 @@ public class StoryEventController : Singleton<StoryEventController>
     {
         List<StoryEventDataSO> validEvents = GetValidStoryEvents();
         CurrentStoryEvent = validEvents[RandomGenerator.NumberBetween(0, validEvents.Count - 1)];
+        eventsAlreadyEncountered.Add(CurrentStoryEvent.storyEventName);
     }
     public void ForceCacheNextStoryEvent(StoryEventDataSO storyEvent)
     {
@@ -95,7 +105,7 @@ public class StoryEventController : Singleton<StoryEventController>
     {
         mainVisualParent.SetActive(true);
     }
-    private void HideMainScreen()
+    public void HideMainScreen()
     {
         mainVisualParent.SetActive(false);
     }
@@ -283,7 +293,12 @@ public class StoryEventController : Singleton<StoryEventController>
     }
     private void TriggerChoiceEffect(StoryChoiceEffect effect, CharacterData character = null)
     {
-        CharacterData selectedCharacter = selectedCharacterButton.myCharacter;
+        // Setup targets of effect
+        List<CharacterData> targets = new List<CharacterData>();
+        targets.Add(selectedCharacterButton.myCharacter);
+        if (effect.target == ChoiceEffectTarget.AllCharacters)
+            targets = CharacterDataController.Instance.AllPlayerCharacters;
+
         // Load page
         if (effect.effectType == StoryChoiceEffectType.LoadPage)
         {
@@ -314,22 +329,55 @@ public class StoryEventController : Singleton<StoryEventController>
             CardController.Instance.DisableCardGridScreenBackButton();
         }
 
-        // Heal to full health
-        else if (effect.effectType == StoryChoiceEffectType.MaximumHealChosen)
+        // Heal
+        else if (effect.effectType == StoryChoiceEffectType.GainHealth)
         {
-            int healAmount = selectedCharacter.MaxHealthTotal - selectedCharacter.health;
-            CharacterDataController.Instance.SetCharacterHealth(selectedCharacterButton.myCharacter, healAmount);
+            foreach (CharacterData c in targets)
+            {
+                // Heal to max health
+                if(effect.healType == HealType.HealMaximum)
+                {
+                    int healAmount = c.MaxHealthTotal - c.health;
+                    CharacterDataController.Instance.SetCharacterHealth(selectedCharacterButton.myCharacter, healAmount);
 
-            // Heal VFX
-            VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateHealEffect(selectedCharacterButton.transform.position, 15, 2f));
+                    // Heal VFX
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                        VisualEffectManager.Instance.CreateHealEffect(selectedCharacterButton.transform.position, 5000, 2f));
 
-            // Damage Text Effect VFX
-            VisualEventManager.Instance.CreateVisualEvent(() =>
-            VisualEffectManager.Instance.CreateDamageEffect(selectedCharacterButton.transform.position, healAmount, true, false));
+                    // Damage Text Effect VFX
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateDamageEffect(selectedCharacterButton.transform.position, healAmount, true, false));
 
-            // Create SFX
-            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
+                    // Create SFX
+                    VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
+                }
+            }
+        }
+        else if (effect.effectType == StoryChoiceEffectType.GainItem)
+        {
+            List<ItemData> itemsGained = new List<ItemData>();
+
+            if(effect.itemRewardType == ItemRewardType.SpecificItem)
+            {
+                for (int i = 0; i < effect.totalItemsGained; i++)
+                    itemsGained.Add(ItemController.Instance.GetItemDataByName(effect.itemGained.itemName));
+            }
+            else if (effect.itemRewardType == ItemRewardType.RandomItem)
+            {
+                for (int i = 0; i < effect.totalItemsGained; i++)
+                    itemsGained.Add(ItemController.Instance.GetRandomLootableItem(Rarity.Common));
+            }
+
+            // Get random item
+            List<ItemData> vEventList = new List<ItemData>();
+            vEventList.AddRange(itemsGained);
+
+            // Add to inventory
+            foreach(ItemData i in itemsGained)
+                InventoryController.Instance.AddItemToInventory(i);
+
+            // Add item to inventory visual event pop up
+            CardController.Instance.StartNewShuffleCardsScreenVisualEvent(TopBarController.Instance.CharacterRosterButton.transform.position, vEventList);
         }
     }
     public void HandleUpgradeCardChoiceMade(CardData card)
@@ -378,7 +426,8 @@ public class StoryEventController : Singleton<StoryEventController>
     private bool IsStoryEventValid(StoryEventDataSO storyEvent)
     {
         if (IsStoryEventInStageRound(storyEvent) &&
-             DoesStoryEventMeetItsRequirements(storyEvent))
+             DoesStoryEventMeetItsRequirements(storyEvent) &&
+             eventsAlreadyEncountered.Contains(storyEvent.storyEventName) == false)
         {
             return true;
         }
@@ -474,6 +523,8 @@ public class StoryEventController : Singleton<StoryEventController>
     }
 
     #endregion
+
+    
 
 
 }

@@ -24,5 +24,21 @@ MonoBehaviour:
     attribute: 0
     attributeLevel: 0
   effects:
+  - effectType: 13
+    target: 0
+    pageToLoad: {fileID: 0}
+    healType: 0
+    healPercentage: 0
+    healAmount: 0
+    itemRewardType: 1
+    itemGained: {fileID: 11400000, guid: 10e67bdedcfeb514792ed31f47d52ae9, type: 2}
+    totalItemsGained: 1
   - effectType: 1
-    pageToLoad: {fileID: 11400000, guid: d2298ed2c8adb1f4682fc4daad572056, type: 2}
+    target: 0
+    pageToLoad: {fileID: 11400000, guid: e79087af8b0ba414aa71ed39874ac08b, type: 2}
+    healType: 0
+    healPercentage: 0
+    healAmount: 0
+    itemRewardType: 0
+    itemGained: {fileID: 0}
+    totalItemsGained: 1

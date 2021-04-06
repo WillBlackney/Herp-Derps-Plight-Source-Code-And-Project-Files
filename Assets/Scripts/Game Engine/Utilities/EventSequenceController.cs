@@ -494,6 +494,10 @@ public class EventSequenceController : Singleton<EventSequenceController>
         {
             HandleLoadShrineEvent();
         }
+        else if (JourneyManager.Instance.CheckPointType == SaveCheckPoint.MysteryEventStart)
+        {
+            HandleLoadMysteryEvent();
+        }
     }
     public void HandleLoadNextEncounter(MapNode mapNode)
     {
@@ -608,6 +612,20 @@ public class EventSequenceController : Singleton<EventSequenceController>
             LevelManager.Instance.DisableCampSiteScenery();
         }
 
+        // Mystery Event teardown
+        else if (previousEncounter == EncounterType.CampSite)
+        {
+            // Fade out Screen
+            BlackScreenController.Instance.FadeOutScreen(1f);
+
+            // Wait for visual events
+            yield return new WaitForSeconds(1f);
+
+            // Close views and clear data
+            StoryEventController.Instance.ClearCurrentStoryEvent();
+            StoryEventController.Instance.HideMainScreen();
+        }
+
         // Do shop end sequence + tear down
         else if (previousEncounter == EncounterType.Shop)
         {
@@ -670,8 +688,17 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // If next event is a combat, get + set enemy wave before saving to disk
         if (JourneyManager.Instance.CurrentEncounter == EncounterType.BasicEnemy ||
             JourneyManager.Instance.CurrentEncounter == EncounterType.EliteEnemy ||
-            JourneyManager.Instance.CurrentEncounter == EncounterType.BossEnemy)
+            JourneyManager.Instance.CurrentEncounter == EncounterType.BossEnemy ||
+            (JourneyManager.Instance.CurrentEncounter == EncounterType.Mystery && StoryEventController.Instance.GetValidStoryEvents().Count == 0))
         {
+            // Should have been a mystery event, but not mystery events are available to the player at their current
+            // stage, so just serve them a combat.
+            if(JourneyManager.Instance.CurrentEncounter == EncounterType.Mystery && StoryEventController.Instance.GetValidStoryEvents().Count == 0)
+            {
+                Debug.LogWarning("Attempted to start a mystery event, but none are valid: starting a basic combat instead");
+                JourneyManager.Instance.SetCurrentEncounterType(EncounterType.BasicEnemy);
+            }        
+            
             if (JourneyManager.Instance.CurrentEncounter == EncounterType.BasicEnemy)
             {
                 JourneyManager.Instance.SetCurrentEnemyWaveData 
@@ -774,6 +801,24 @@ public class EventSequenceController : Singleton<EventSequenceController>
             PersistencyManager.Instance.AutoUpdateSaveFile();
 
             HandleLoadCampSiteEvent();
+        }
+
+        // Mystery Event 
+        else if (JourneyManager.Instance.CurrentEncounter == EncounterType.Mystery)
+        {
+            // Generate and cache mystery event, if dont have one saved
+            if (StoryEventController.Instance.CurrentStoryEvent == null)
+            {
+                StoryEventController.Instance.GenerateAndCacheNextStoryEventRandomly();
+            }
+
+            // Set check point
+            JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.MysteryEventStart);
+
+            // Auto save
+            PersistencyManager.Instance.AutoUpdateSaveFile();
+
+            HandleLoadMysteryEvent();
         }
     }
     private void HandleLoadCombatEncounter(EnemyWaveSO enemyWave)

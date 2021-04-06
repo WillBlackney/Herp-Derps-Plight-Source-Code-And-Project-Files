@@ -17,6 +17,14 @@ MonoBehaviour:
   requirements: []
   effects:
   - effectType: 25
+    target: 1
     pageToLoad: {fileID: 0}
+    healType: 0
+    healPercentage: 0
+    healAmount: 0
   - effectType: 1
+    target: 0
     pageToLoad: {fileID: 11400000, guid: d2298ed2c8adb1f4682fc4daad572056, type: 2}
+    healType: 0
+    healPercentage: 0
+    healAmount: 0

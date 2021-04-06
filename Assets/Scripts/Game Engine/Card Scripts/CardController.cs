@@ -5009,6 +5009,35 @@ public class CardController : Singleton<CardController>
         // Reset Slot Positions
         VisualEventManager.Instance.CreateVisualEvent(() => MoveShuffleSlotsToStartPosition());
     }
+    public void StartNewShuffleCardsScreenVisualEvent(Vector3 position, List<ItemData> cards)
+    {
+        // cache cards for visual events
+        List<ItemData> cachedCards = new List<ItemData>();
+        cachedCards.AddRange(cards);
+        List<DiscoveryCardViewModel> activeCards = new List<DiscoveryCardViewModel>();
+
+        for (int i = 0; i < cards.Count; i++)
+        {
+            activeCards.Add(shuffleCards[i]);
+        }
+
+        // Set up main screen V event
+        CoroutineData cData = new CoroutineData();
+        VisualEventManager.Instance.CreateVisualEvent(() => SetUpShuffleCardScreen(cachedCards, cData), cData);
+
+        // brief pause so player can view cards
+        VisualEventManager.Instance.InsertTimeDelayInQueue(1, QueuePosition.Back);
+
+        // Move each card towards character v Event
+        foreach (DiscoveryCardViewModel dcvm in activeCards)
+        {
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                    MoveShuffleCardTowardsVectorPosition(dcvm, position), QueuePosition.Back, 0, 0.2f);
+        }
+
+        // Reset Slot Positions
+        VisualEventManager.Instance.CreateVisualEvent(() => MoveShuffleSlotsToStartPosition());
+    }
     public void StartNewShuffleCardsScreenVisualEvent(UniversalCharacterModel view, List<StateData> states)
     {
         // cache cards for visual events
@@ -5248,6 +5277,38 @@ public class CardController : Singleton<CardController>
         {
             cData.MarkAsCompleted();
         }
+    }
+    private void MoveShuffleCardTowardsVectorPosition(DiscoveryCardViewModel card, Vector3 position)
+    {
+        // Setup
+        Transform movementParent = card.transform;
+        CardViewModel cvm = card.cardViewModel;
+
+        Vector3 cardDestination = position;
+        Vector3 glowDestination = position;
+
+        // SFX
+        AudioManager.Instance.PlaySoundPooled(Sound.Card_Discarded);
+
+        ToonEffect glowTrail = VisualEffectManager.Instance.CreateGreenGlowTrailEffect
+          (movementParent.position);
+
+        // Shrink card
+        ScaleCardViewModel(cvm, 0.1f, 0.5f);
+
+        // Rotate card upside down
+        RotateCardVisualEvent(cvm, 180, 0.5f);
+
+        // Move card
+        MoveTransformToLocation(cvm.movementParent, cardDestination, 0.5f, false, () =>
+        {
+            card.gameObject.SetActive(false);
+        });
+        MoveTransformToLocation(glowTrail.transform, glowDestination, 0.5f, false, () =>
+        {
+            glowTrail.StopAllEmissions();
+            Destroy(glowTrail, 3);
+        });
     }
     private void MoveShuffleCardTowardsCharacterEntityView(DiscoveryCardViewModel card, CharacterEntityView character)
     {

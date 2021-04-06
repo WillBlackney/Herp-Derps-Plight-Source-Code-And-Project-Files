@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba62008899fb3d4283077116fb36747, type: 3}
   m_Name: The Holy Founatin PAGE 2B
   m_EditorClassIdentifier: 
-  pageDescription: Using a cloth rag from your kit, you soak up as much water from
+  pageDescription: 'Using a cloth rag from your kit, you soak up as much water from
     the fountain as you can, and begin washing your face, hair, and buthole. Ahhhh,
-    that's better!
+    that''s better!
+
+
+    Feeling refreshed and hygienic, you press on...'
   allChoices:
   - {fileID: 11400000, guid: e0a8cd845b443034ca6db0d07e40357d, type: 2}
