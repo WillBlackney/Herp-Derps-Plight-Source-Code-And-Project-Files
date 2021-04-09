@@ -9,5 +9,6 @@ public class StoryEventPageSO : ScriptableObject
     [TextArea(20,20)]
     public string pageDescription;
     public StoryEventChoiceSO[] allChoices;
+    public Sprite pageSprite;
 
 }

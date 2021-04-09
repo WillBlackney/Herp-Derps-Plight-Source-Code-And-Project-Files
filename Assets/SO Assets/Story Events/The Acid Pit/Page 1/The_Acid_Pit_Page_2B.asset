@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba62008899fb3d4283077116fb36747, type: 3}
+  m_Name: The_Acid_Pit_Page_2B
+  m_EditorClassIdentifier: 
+  pageDescription: 'With gritted teeth, you plunge your hand into the acid and pull
+    out the first thing you feel. Wincing as you reach back in again, the burning
+    pain quickly becomes more intense. You pull out the second item and drop it next
+    to you before falling back and clutching your arm in agony. Your entire arm from
+    fingers to elbow is blistered and bloody.
+
+
+    Ouch!'
+  allChoices:
+  - {fileID: 11400000, guid: fe477dad968b28a4f8d317928577b8df, type: 2}

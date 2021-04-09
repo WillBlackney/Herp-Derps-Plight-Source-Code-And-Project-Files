@@ -6,12 +6,11 @@ using Sirenix.OdinInspector;
 [CreateAssetMenu(fileName = "New StoryEventChoiceSO", menuName = "StoryEventChoice", order = 52)]
 public class StoryEventChoiceSO : ScriptableObject
 {
-    [TextArea]
-    public string activityDescription;
+    [Header("Descriptions")]
+    public List<CustomString> activityDescription;
+    public List<CustomString> effectDescription;
 
-    [TextArea]
-    public string effectDescription;
-
+    [Header("Effects")]
     public StoryChoiceRequirement[] requirements;
     public StoryChoiceEffect[] effects;
 }
@@ -97,6 +96,11 @@ public class StoryChoiceEffect
     [ShowIf("ShowHealAmount")]
     public int healAmount;
 
+    // Damage Fields
+    [Header("Heal Settings")]
+    [ShowIf("ShowDamageAmount")]
+    public int damageAmount;
+
     // Item Fields
     [Header("Item Settings")]
     [ShowIf("ShowItemRewardType")]
@@ -142,6 +146,10 @@ public class StoryChoiceEffect
     public bool ShowItemGained()
     {
         return effectType == StoryChoiceEffectType.GainItem && itemRewardType == ItemRewardType.SpecificItem;
+    }
+    public bool ShowDamageAmount()
+    {
+        return effectType == StoryChoiceEffectType.LoseHealth;
     }
     #endregion
 
@@ -196,10 +204,8 @@ public enum StoryChoiceEffectType
     GainGold = 15,
     LoseGold = 16,
     LoseAllGold = 17,
-    LoseHealthChosen = 18,
-    LoseHealthAll = 19,
-    LoseMaxHealthChosen = 20,
-    LoseMaxHealthAll = 21,
+    LoseHealth = 18,
+    LoseMaxHealth = 20,
     RemoveCard = 24,
     UpgradeCard = 25,
   

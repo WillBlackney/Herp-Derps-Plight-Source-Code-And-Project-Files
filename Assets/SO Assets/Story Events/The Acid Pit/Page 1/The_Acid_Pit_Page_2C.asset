@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba62008899fb3d4283077116fb36747, type: 3}
+  m_Name: The_Acid_Pit_Page_2C
+  m_EditorClassIdentifier: 
+  pageDescription: "Your close your eyes and bite down in preparation for the pain.
+    As fast as you can, you snatch each item from the pool, trying your best to ignore
+    the smell of your own burning flesh. After taking a third item, you fall back
+    in agony, clutching your arm and shaking uncontrollably. \n\nAfter a brief moment
+    of respite, you inspect the damage done to what used to be your arm. Blisters
+    and blood cover your arm from fingers to shoulder, with chunks of flesh dropping
+    off and exposing bone. \n\nBetter get moving, some one probably heard all that
+    screaming..."
+  allChoices:
+  - {fileID: 11400000, guid: fe477dad968b28a4f8d317928577b8df, type: 2}

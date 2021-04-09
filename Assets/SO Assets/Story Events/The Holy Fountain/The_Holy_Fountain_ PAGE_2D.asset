@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba62008899fb3d4283077116fb36747, type: 3}
+  m_Name: The_Holy_Fountain_ PAGE_2D
+  m_EditorClassIdentifier: 
+  pageDescription: 'You hover your hand over the fountain and recite a dark prayer.
+    As you recite the words, a dark plume of smoke slowly wafts downwards from your
+    hand towards the bowl. As the smoke mixes with the water, the marble of the fountain
+    blackens and cracks, and you hear what sounds like a chorus of angels screaming
+    out in agony. Removing your hand, you notice an ominous glowing stone floating
+    on the surface of the corrupted water.
+
+
+    The paladin in your company looks
+    completely appalled, staring at you as if you''d just murdered a litter of kittens.
+
+
+    Better
+    get moving before he starts crying...'
+  allChoices:
+  - {fileID: 11400000, guid: e0a8cd845b443034ca6db0d07e40357d, type: 2}

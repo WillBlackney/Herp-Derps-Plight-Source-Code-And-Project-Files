@@ -3,6 +3,7 @@ using MapSystem;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StoryEventController : Singleton<StoryEventController>
 {
@@ -13,6 +14,8 @@ public class StoryEventController : Singleton<StoryEventController>
 
     [Header("UI Components")]
     [SerializeField] GameObject mainVisualParent;
+    [SerializeField] ScrollRect descriptionScrollRect;
+    [SerializeField] Image storyEventImage;
     [SerializeField] TextMeshProUGUI eventNameHeaderText;
     [SerializeField] TextMeshProUGUI eventDescriptionText;
     [SerializeField] StoryChoiceButton[] allChoiceButtons;
@@ -122,8 +125,15 @@ public class StoryEventController : Singleton<StoryEventController>
         // set description text
         eventDescriptionText.text = page.pageDescription;
 
+        // Reset scroll rect to top
+        descriptionScrollRect.verticalScrollbar.value = 1f;
+
         // set up buttons and their views
         BuildChoiceButtonsFromPageData(page);
+
+        if (page.pageSprite != null)
+            storyEventImage.sprite = page.pageSprite;
+
     }
     private void BuildChoiceButtonsFromPageData(StoryEventPageSO page)
     {
@@ -151,9 +161,11 @@ public class StoryEventController : Singleton<StoryEventController>
             button.activityDescriptionText.text += TextLogic.ReturnColoredText("[" + rd.attribute.ToString() + " " + rd.attributeLevel.ToString() + "+] ", TextLogic.neutralYellow);
         }
 
-        button.activityDescriptionText.text += ("[" + data.activityDescription + "] ");
-        button.activityDescriptionText.text += TextLogic.ReturnColoredText( data.effectDescription, TextLogic.lightGreen);
-
+        //button.activityDescriptionText.text += ("[" + data.activityDescription + "] ");
+        button.activityDescriptionText.text += TextLogic.ConvertCustomStringListToString(data.activityDescription);
+        button.activityDescriptionText.text += " ";
+        button.activityDescriptionText.text += TextLogic.ConvertCustomStringListToString(data.effectDescription);
+       
         // Reset colouring
         button.buttonBG.color = normalColour;
     }
@@ -222,6 +234,21 @@ public class StoryEventController : Singleton<StoryEventController>
 
         // refresh + rebuild choices
         RebuildChoiceButtonsOnNewCharacterSelected(selectedCharacterButton.myCharacter);
+    }
+    private StoryEventCharacterButton FindCharactersButton(CharacterData character)
+    {
+        StoryEventCharacterButton bRet = null;
+
+        foreach(StoryEventCharacterButton b in allCharacterButtons)
+        {
+            if(b.myCharacter == character)
+            {
+                bRet = b;
+                break;
+            }
+        }
+
+        return bRet;
     }
 
     #endregion
@@ -353,6 +380,30 @@ public class StoryEventController : Singleton<StoryEventController>
                 }
             }
         }
+
+        // Lose health
+        else if (effect.effectType == StoryChoiceEffectType.LoseHealth)
+        {
+            foreach (CharacterData c in targets)
+            {
+                // Deduct health
+                CharacterDataController.Instance.SetCharacterHealth(c, c.health - effect.damageAmount);
+
+                // Blood Splatter VFX
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateBloodExplosion(FindCharactersButton(c).transform.position, 20000, 2f));
+
+                // Hurt SFX
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                AudioManager.Instance.PlaySoundPooled(Sound.Ability_Damaged_Health_Lost));
+
+                // Damage Text Effect VFX
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateDamageEffect(FindCharactersButton(c).transform.position, (effect.damageAmount)));
+            }
+        }
+
+        // Gain item
         else if (effect.effectType == StoryChoiceEffectType.GainItem)
         {
             List<ItemData> itemsGained = new List<ItemData>();
@@ -503,6 +554,12 @@ public class StoryEventController : Singleton<StoryEventController>
 
         else if (req.requirementType == StoryChoiceReqType.TalentLevel &&
                 CharacterDataController.Instance.GetTalentLevel(character, req.talent) >= req.talentLevel)
+        {
+            bRet = true;
+        }
+
+        else if (req.requirementType == StoryChoiceReqType.AtleastXHealthFlat &&
+               character.health >= req.healthMinimum)
         {
             bRet = true;
         }
