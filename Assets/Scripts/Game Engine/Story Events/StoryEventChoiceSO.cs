@@ -96,6 +96,11 @@ public class StoryChoiceEffect
     [ShowIf("ShowHealAmount")]
     public int healAmount;
 
+    // Max Health Mod Fields
+    [Header("Max Health Modification Settings")]
+    [ShowIf("ShowMaxHealthGainedOrLost")]
+    public int maxHealthGainedOrLost;
+
     // Damage Fields
     [Header("Heal Settings")]
     [ShowIf("ShowDamageAmount")]
@@ -110,10 +115,52 @@ public class StoryChoiceEffect
     [ShowIf("ShowItemRewardType")]
     public int totalItemsGained = 1;
 
+    // Gold Fields
+    [Header("Gold Settings")]
+    [ShowIf("ShowLoseAllGold")]
+    public bool loseAllGold;
+    [ShowIf("ShowGoldGainedOrLost")]
+    public int goldGainedOrLost;
+
+    // Card Fields
+    [Header("Card Settings")]
+    [ShowIf("ShowCardGained")]
+    public CardDataSO cardGained;
+    [ShowIf("ShowCardGained")]
+    public int copiesGained = 1;
+    [ShowIf("ShowRandomCard")]
+    public bool randomCard;
+    [ShowIf("ShowRandomCard")]
+    public int randomCardAmount;
+
+
 
 
     // Odin Show Ifs
     #region
+    public bool ShowMaxHealthGainedOrLost()
+    {
+        return effectType == StoryChoiceEffectType.ModifyMaxHealth;
+    }
+    public bool ShowCardGained()
+    {
+        return effectType == StoryChoiceEffectType.GainCard && randomCard == false;
+    }
+    public bool ShowRandomCard()
+    {
+        return effectType == StoryChoiceEffectType.GainCard && randomCard == true;
+    }
+    public bool ShowLoseAllGold()
+    {
+        return effectType == StoryChoiceEffectType.ModifyGold;
+    }
+    public bool ShowGoldGainedOrLost()
+    {
+        if (effectType == StoryChoiceEffectType.ModifyGold && loseAllGold == false)
+            return true;
+        else
+            return false;
+    }
     public bool ShowTarget()
     {
         if (effectType == StoryChoiceEffectType.LoadPage ||
@@ -191,19 +238,11 @@ public enum StoryChoiceEffectType
     None = 0,
     LoadPage = 1,
     FinishEvent = 2,
-    GainAfflictionChosen =3,
-    GainAfflictionAll = 4,
-    GainCardChosen = 5,
-    GainCardAll = 6,
+    GainCard = 4,
     GainHealth = 7,
-    GainMaxHealthChosen = 9,
-    GainMaxHealthAll = 10,
-    GainRandomAfflictionChosen = 11,
-    GainRandomAfflictionAll = 12,
+    ModifyMaxHealth = 9,
     GainItem = 13,
-    GainGold = 15,
-    LoseGold = 16,
-    LoseAllGold = 17,
+    ModifyGold = 14,
     LoseHealth = 18,
     LoseMaxHealth = 20,
     RemoveCard = 24,

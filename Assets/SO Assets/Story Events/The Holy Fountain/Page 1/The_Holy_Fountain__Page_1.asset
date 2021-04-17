@@ -19,3 +19,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5a911a0c429c34c48b953ba326ed7c79, type: 2}
   - {fileID: 11400000, guid: 953002837153bb14dbfe4fe542e9d868, type: 2}
   - {fileID: 11400000, guid: 5def2174f37ae1543aa432b66474e914, type: 2}
+  pageSprite: {fileID: 21300000, guid: 79291879118567b4c8ed8c69222a0eea, type: 3}

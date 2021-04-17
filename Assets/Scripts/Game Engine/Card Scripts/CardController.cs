@@ -4980,6 +4980,35 @@ public class CardController : Singleton<CardController>
         // Reset Slot Positions
         VisualEventManager.Instance.CreateVisualEvent(() => MoveShuffleSlotsToStartPosition());
     }
+    public void StartNewShuffleCardsScreenVisualEvent(Vector3 position, List<CardData> cards)
+    {
+        // cache cards for visual events
+        List<CardData> cachedCards = new List<CardData>();
+        cachedCards.AddRange(cards);
+        List<DiscoveryCardViewModel> activeCards = new List<DiscoveryCardViewModel>();
+
+        for (int i = 0; i < cards.Count; i++)
+        {
+            activeCards.Add(shuffleCards[i]);
+        }
+
+        // Set up main screen V event
+        CoroutineData cData = new CoroutineData();
+        VisualEventManager.Instance.CreateVisualEvent(() => SetUpShuffleCardScreen(cachedCards, cData), cData);
+
+        // brief pause so player can view cards
+        VisualEventManager.Instance.InsertTimeDelayInQueue(1, QueuePosition.Back);
+
+        // Move each card towards character v Event
+        foreach (DiscoveryCardViewModel dcvm in activeCards)
+        {
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                    MoveShuffleCardTowardsVectorPosition(dcvm, position), QueuePosition.Back, 0, 0.2f);
+        }
+
+        // Reset Slot Positions
+        VisualEventManager.Instance.CreateVisualEvent(() => MoveShuffleSlotsToStartPosition());
+    }
     public void StartNewShuffleCardsScreenVisualEvent(UniversalCharacterModel view, List<ItemData> cards)
     {
         // cache cards for visual events

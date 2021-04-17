@@ -126,7 +126,7 @@ public class StoryEventController : Singleton<StoryEventController>
         eventDescriptionText.text = page.pageDescription;
 
         // Reset scroll rect to top
-        descriptionScrollRect.verticalScrollbar.value = 1f;
+ 
 
         // set up buttons and their views
         BuildChoiceButtonsFromPageData(page);
@@ -365,19 +365,54 @@ public class StoryEventController : Singleton<StoryEventController>
                 if(effect.healType == HealType.HealMaximum)
                 {
                     int healAmount = c.MaxHealthTotal - c.health;
-                    CharacterDataController.Instance.SetCharacterHealth(selectedCharacterButton.myCharacter, healAmount);
+                    CharacterDataController.Instance.SetCharacterHealth(c, healAmount);
 
                     // Heal VFX
                     VisualEventManager.Instance.CreateVisualEvent(() =>
-                        VisualEffectManager.Instance.CreateHealEffect(selectedCharacterButton.transform.position, 5000, 2f));
+                        VisualEffectManager.Instance.CreateHealEffect(FindCharactersButton(c).transform.position, 5000, 2f));
 
                     // Damage Text Effect VFX
                     VisualEventManager.Instance.CreateVisualEvent(() =>
-                    VisualEffectManager.Instance.CreateDamageEffect(selectedCharacterButton.transform.position, healAmount, true, false));
+                    VisualEffectManager.Instance.CreateDamageEffect(FindCharactersButton(c).transform.position, healAmount, true, false));
 
                     // Create SFX
                     VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
                 }
+
+                // TO DO: UPDATE HEALTH GUI
+            }
+        }
+
+        // Gain max health
+        else if(effect.effectType == StoryChoiceEffectType.ModifyMaxHealth)
+        {
+            foreach (CharacterData c in targets)
+            {
+                CharacterDataController.Instance.SetCharacterMaxHealth(c, c.maxHealth + effect.maxHealthGainedOrLost);
+                CharacterDataController.Instance.SetCharacterHealth(c, c.MaxHealthTotal);
+
+                if (effect.maxHealthGainedOrLost < 0)
+                {
+                    // Blood Splatter VFX
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                        VisualEffectManager.Instance.CreateBloodExplosion(FindCharactersButton(c).transform.position, 20000, 2f));
+
+                    // Hurt SFX
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                    AudioManager.Instance.PlaySoundPooled(Sound.Ability_Damaged_Health_Lost));
+                }
+                else if (effect.maxHealthGainedOrLost > 0)
+                {
+                    // Heal VFX
+                    VisualEventManager.Instance.CreateVisualEvent(() =>
+                        VisualEffectManager.Instance.CreateHealEffect(FindCharactersButton(c).transform.position, 20000));
+
+                    // Create SFX
+                    VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
+                }
+
+                // TO DO: UPDATE HEALTH GUI
+
             }
         }
 
@@ -430,6 +465,50 @@ public class StoryEventController : Singleton<StoryEventController>
             // Add item to inventory visual event pop up
             CardController.Instance.StartNewShuffleCardsScreenVisualEvent(TopBarController.Instance.CharacterRosterButton.transform.position, vEventList);
         }
+
+        // Modify Gold
+        else if(effect.effectType == StoryChoiceEffectType.ModifyGold)
+        {
+            if (effect.goldGainedOrLost < 0)
+            {
+                AudioManager.Instance.PlaySoundPooled(Sound.Gold_Dropping);
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                    VisualEffectManager.Instance.CreateGoldCoinExplosion(TopBarController.Instance.GoldTopBarImage.transform.position));
+            }
+            else if (effect.goldGainedOrLost > 0)
+            {
+                AudioManager.Instance.PlaySoundPooled(Sound.Gold_Gain);
+                LootController.Instance.CreateGoldGlowTrailEffect(Input.mousePosition, TopBarController.Instance.GoldTopBarImage.transform.position);
+            }
+
+            PlayerDataManager.Instance.ModifyCurrentGold(effect.goldGainedOrLost, true);
+        }
+
+        // Gain card
+        else if (effect.effectType == StoryChoiceEffectType.GainCard)
+        {
+            // gain for all or just chosen character?
+            // gain multiple copies?
+            // gain random card or specific card?
+            // if random card, any filters?
+
+            List<CardData> cList = new List<CardData>();
+
+            foreach (CharacterData c in targets)
+            {
+                if(effect.cardGained != null && effect.randomCard == false)
+                {
+                    // Add new card to character deck
+                    CardData card = CardController.Instance.BuildCardDataFromScriptableObjectData(effect.cardGained);
+                    CharacterDataController.Instance.AddCardToCharacterDeck(c, card);
+                    cList.Add(card);                    
+                }
+            }
+
+            // Create add card to character visual event
+            CardController.Instance.StartNewShuffleCardsScreenVisualEvent(TopBarController.Instance.CharacterRosterButton.transform.position, cList);
+        }
+
     }
     public void HandleUpgradeCardChoiceMade(CardData card)
     {

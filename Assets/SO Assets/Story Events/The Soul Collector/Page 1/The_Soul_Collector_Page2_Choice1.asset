@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64c1fbf2578092247b9e6c0bffabc6e9, type: 3}
+  m_Name: The_Soul_Collector_Page2_Choice1
+  m_EditorClassIdentifier: 
+  activityDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '[Leave]'
+  effectDescription: []
+  requirements: []
+  effects:
+  - effectType: 2
+    target: 0
+    pageToLoad: {fileID: 11400000, guid: f154c6f929709b548afe3335d1775dd4, type: 2}
+    healType: 0
+    healPercentage: 0
+    healAmount: 0
+    maxHealthGainedOrLost: 0
+    damageAmount: 0
+    itemRewardType: 0
+    itemGained: {fileID: 0}
+    totalItemsGained: 1
+    loseAllGold: 0
+    goldGainedOrLost: 0
+    cardGained: {fileID: 0}
+    copiesGained: 1
+    randomCard: 0
+    randomCardAmount: 0

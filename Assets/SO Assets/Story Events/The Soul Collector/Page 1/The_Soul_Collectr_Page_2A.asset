@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba62008899fb3d4283077116fb36747, type: 3}
+  m_Name: The_Soul_Collectr_Page_2A
+  m_EditorClassIdentifier: 
+  pageDescription: "Abandoning all reason, you agree to the figure's offer with a
+    nod of the head. The figure's wicked grin widens and evaporates back into a black
+    smoke. The smoke surges forward and encircles you with great speed, seeping through
+    your eyes, nose and mouth with a stench so horrid you can barely breathe. \n\nAs
+    quickly as it came, the black smoke receeds back through the walls, leaving you
+    with a feeling of emptiness... as well as a gigantic pile of gold!\n\n"
+  allChoices:
+  - {fileID: 11400000, guid: 9b776e732abc59042bf75289304514f0, type: 2}
+  pageSprite: {fileID: 0}

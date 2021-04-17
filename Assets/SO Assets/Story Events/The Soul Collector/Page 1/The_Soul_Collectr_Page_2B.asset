@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba62008899fb3d4283077116fb36747, type: 3}
+  m_Name: The_Soul_Collectr_Page_2B
+  m_EditorClassIdentifier: 
+  pageDescription: "Before the figure can finish it's pitch, one of your companions
+    yells out from behind you, pointing defiantly at the creature.\n\n\"SEND THIS
+    FOUL BEAST BACK TO THE ABYSS!\".\n\nThe creature lets out an unnerving, hysterical
+    laugh that echoes around the room. Without a moment of hesistation, your companion
+    triumpantly lunges forward and grabs the creature by the head with both hands,
+    uttering a prayer that quickly escalates into a yell. The creature's unnerving
+    laughter stops, and it begins screeching so loud and horrifically that it hurts
+    your ears. \n\nAs your companion continues to yell out the prayer, the creature
+    writhes in pain faster and faster, until finally exploding into a plume of black
+    smoke, leaving only it's hooded robe behind. "
+  allChoices:
+  - {fileID: 11400000, guid: 9b776e732abc59042bf75289304514f0, type: 2}
+  pageSprite: {fileID: 0}
