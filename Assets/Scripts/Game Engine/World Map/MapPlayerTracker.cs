@@ -38,9 +38,6 @@ namespace MapSystem
         public void SelectNode(MapNode mapNode)
         {
             if (Locked) return;
-
-            // Debug.Log("Selected node: " + mapNode.Node.point);
-
             if (mapManager.CurrentMap.path.Count == 0)
             {
                 // player has not selected the node yet, he can select any of the nodes with y = 0
@@ -59,14 +56,11 @@ namespace MapSystem
 
         private void SendPlayerToNode(MapNode mapNode)
         {
-            // Locked = lockAfterSelecting;
             LockMap();
 
             mapManager.CurrentMap.path.Add(mapNode.Node.point);
-            // mapManager.SaveMap();
             view.SetAttainableNodes();
             view.SetLineColors();
-            //mapNode.ShowSwirlAnimation();
 
             DOTween.Sequence().AppendInterval(enterNodeDelay).OnComplete(() => HandleEnterNode(mapNode));
         }
@@ -79,9 +73,5 @@ namespace MapSystem
 
         }
 
-        private void PlayWarningThatNodeCannotBeAccessed()
-        {
-            Debug.Log("Selected node cannot be accessed");
-        }
     }
 }

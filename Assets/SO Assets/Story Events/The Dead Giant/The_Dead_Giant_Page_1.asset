@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba62008899fb3d4283077116fb36747, type: 3}
+  m_Name: The_Dead_Giant_Page_1
+  m_EditorClassIdentifier: 
+  pageDescription: 'Your party enters what was once a magnificent feasting hall.
+    Old dusty banners and shields flank the walls of the large open hall that is
+    so long you cannot see through the darkness to the end. Making your way through,
+    you begin to hear a faint, gutteral muttering that grows louder as you move through
+    the darkness. Upon reaching the end, you see a gigantic orc skeleton, complaining
+    to itself as it rumages through the belongings of small pile of freshly slain
+    adventurers. Upon noticing you, the undead orc stops its muttering and gives
+    a warm, toothy smile.
+
+
+    "Allo allo, beautiful night tonight, ain''t it? The
+    names Mork, how do ya do?".
+
+
+    Unsure of what to make this flirtatious undead
+    giant, you start moving towards the door, but the orc quickly jumps to feet,
+    slides to the doorway, and blocks your path.
+
+
+    "Woah woah woah, not so fast
+    fellas. Dis door be Mork''s door, an'' dif if you wanna be passing Mork''s door,
+    then you gotta be payin'' Mork''s fee!"...'
+  allChoices:
+  - {fileID: 11400000, guid: 0d891136159fef84bb92917d2d12316f, type: 2}
+  - {fileID: 11400000, guid: afb9563b18b287f42a5a3f33d64220a4, type: 2}
+  - {fileID: 11400000, guid: 2f44d6f60486854418538a62bac258f8, type: 2}
+  - {fileID: 11400000, guid: 76761acf6429fef499cb543f0ac9caea, type: 2}
+  pageSprite: {fileID: 8215007672910808227, guid: 4704bf5de30e3b24585471bcd15c8b49,
+    type: 3}

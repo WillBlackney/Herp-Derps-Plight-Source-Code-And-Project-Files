@@ -24,7 +24,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
     }
     private void RunApplication()
     {
-        Debug.Log("CombatTestSceneController.Start() called...");
+        Debug.Log("EventSequenceController.RunApplication() called...");
 
         // this prevents mobiles from sleeping due to inactivity
         Screen.sleepTimeout = SleepTimeout.NeverSleep;

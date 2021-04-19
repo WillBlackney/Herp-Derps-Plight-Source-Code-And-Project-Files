@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba62008899fb3d4283077116fb36747, type: 3}
+  m_Name: The_Dead_Giant_Page_2C
+  m_EditorClassIdentifier: 
+  pageDescription: "Without hesitation, you scoff at Mork's proposal and tell him
+    that one way or another, your getting past him, and you won't be paying a single
+    coin to do so. Mork lets out a hearty chuckle, his horrid breath filling the
+    hall. \n\n\"Have it your way then, stupie heads. I just smash you and take your
+    shinnies anyway.\"\n\nMork picks up his huge spiked club and stands to block
+    the doorway. \n\n\"Your move, chums...\"."
+  allChoices:
+  - {fileID: 11400000, guid: 83878743097d64545991f044049525a5, type: 2}
+  pageSprite: {fileID: 8215007672910808227, guid: 4704bf5de30e3b24585471bcd15c8b49,
+    type: 3}

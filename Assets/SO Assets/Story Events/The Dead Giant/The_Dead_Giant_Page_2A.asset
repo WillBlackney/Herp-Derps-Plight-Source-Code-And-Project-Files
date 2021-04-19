@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba62008899fb3d4283077116fb36747, type: 3}
+  m_Name: The_Dead_Giant_Page_2A
+  m_EditorClassIdentifier: 
+  pageDescription: 'After talking it over with your companions, you reluctanty empty
+    out your pockets and bags, placing the entirety of your belongings into a pile.
+    Mork sits up and moves his face close to the pile, inspecting his bounty while
+    rubbing his chin with squinted eyes...
+
+
+    "Is that all!? Hmm... I suppose
+    that''ll do. Off ya go then, before i change me mind...".
+
+
+    Best move on
+    before you get eaten...
+
+
+'
+  allChoices:
+  - {fileID: 11400000, guid: d6878a6ef2e82e844bfa308f1bb0249d, type: 2}
+  pageSprite: {fileID: 8215007672910808227, guid: 4704bf5de30e3b24585471bcd15c8b49,
+    type: 3}

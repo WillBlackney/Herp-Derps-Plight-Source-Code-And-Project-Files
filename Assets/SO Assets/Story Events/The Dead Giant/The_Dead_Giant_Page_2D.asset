@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba62008899fb3d4283077116fb36747, type: 3}
+  m_Name: The_Dead_Giant_Page_2D
+  m_EditorClassIdentifier: 
+  pageDescription: "The orc your travelling with step forward begins speaking to
+    Mork in orcish. Mork listens intently with a suspicious stare that eventually
+    softens into a look of astonishment.\n\n\"Arku... krok Mogrash?...\"\n\nYour
+    orcish companion nods.\n\n\"Arku STORK krok Mogrash?...\" says Mork in disbelief.
+    Your companion replies...\n\n\"Wehsa, ki erk krok Mogrash\". \n\nAfter a brief
+    pause, your companion and Mork begin to sob. Mork motions for your companion
+    to come closer for a hug, and the two embrace and comfort each, sniffling and
+    crying softly. After what feels like an eternity, their embrace breaks, and Mork
+    stands to wipe his eyes and address you.\n\n\"Im sorry little ones, go on through
+    if ya still want. No fee or trouble, i promise...\".\n\nMork steps aside, and
+    you quickly hurry down before he changes his mind... what the fuck was all that
+    about?!?\n"
+  allChoices:
+  - {fileID: 11400000, guid: d6878a6ef2e82e844bfa308f1bb0249d, type: 2}
+  pageSprite: {fileID: 8215007672910808227, guid: 4704bf5de30e3b24585471bcd15c8b49,
+    type: 3}

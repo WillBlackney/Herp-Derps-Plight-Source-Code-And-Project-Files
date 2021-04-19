@@ -157,8 +157,14 @@ public class StoryEventController : Singleton<StoryEventController>
         }
         else if (DoesChoiceHaveRequirement(data, StoryChoiceReqType.AttributeLevel))
         {
-            StoryChoiceRequirement rd = FindRequirementInChoiceData(data, StoryChoiceReqType.TalentLevel);
+            StoryChoiceRequirement rd = FindRequirementInChoiceData(data, StoryChoiceReqType.AttributeLevel);
             button.activityDescriptionText.text += TextLogic.ReturnColoredText("[" + rd.attribute.ToString() + " " + rd.attributeLevel.ToString() + "+] ", TextLogic.neutralYellow);
+        }
+
+        else if (DoesChoiceHaveRequirement(data, StoryChoiceReqType.Race))
+        {
+            StoryChoiceRequirement rd = FindRequirementInChoiceData(data, StoryChoiceReqType.Race);
+            button.activityDescriptionText.text += TextLogic.ReturnColoredText("[" + rd.requiredRace.ToString() + "] ", TextLogic.neutralYellow);
         }
 
         //button.activityDescriptionText.text += ("[" + data.activityDescription + "] ");
@@ -469,7 +475,7 @@ public class StoryEventController : Singleton<StoryEventController>
         // Modify Gold
         else if(effect.effectType == StoryChoiceEffectType.ModifyGold)
         {
-            if (effect.goldGainedOrLost < 0)
+            if (effect.goldGainedOrLost < 0 || effect.loseAllGold)
             {
                 AudioManager.Instance.PlaySoundPooled(Sound.Gold_Dropping);
                 VisualEventManager.Instance.CreateVisualEvent(() =>
@@ -481,7 +487,11 @@ public class StoryEventController : Singleton<StoryEventController>
                 LootController.Instance.CreateGoldGlowTrailEffect(Input.mousePosition, TopBarController.Instance.GoldTopBarImage.transform.position);
             }
 
-            PlayerDataManager.Instance.ModifyCurrentGold(effect.goldGainedOrLost, true);
+            int goldMod = effect.goldGainedOrLost;
+            if (effect.loseAllGold)            
+                goldMod = -PlayerDataManager.Instance.CurrentGold;
+            
+            PlayerDataManager.Instance.ModifyCurrentGold(goldMod, true);
         }
 
         // Gain card
@@ -507,6 +517,12 @@ public class StoryEventController : Singleton<StoryEventController>
 
             // Create add card to character visual event
             CardController.Instance.StartNewShuffleCardsScreenVisualEvent(TopBarController.Instance.CharacterRosterButton.transform.position, cList);
+        }
+
+        // Start combat
+        else if (effect.effectType == StoryChoiceEffectType.GainCard)
+        {
+
         }
 
     }
@@ -617,6 +633,7 @@ public class StoryEventController : Singleton<StoryEventController>
     {
         bool bRet = false;
 
+        // Attribute level
         if(req.requirementType == StoryChoiceReqType.AttributeLevel)
         {
             if( 
@@ -631,14 +648,23 @@ public class StoryEventController : Singleton<StoryEventController>
             }
         }
 
+        // Talent level
         else if (req.requirementType == StoryChoiceReqType.TalentLevel &&
                 CharacterDataController.Instance.GetTalentLevel(character, req.talent) >= req.talentLevel)
         {
             bRet = true;
         }
 
+        // Health minimum req
         else if (req.requirementType == StoryChoiceReqType.AtleastXHealthFlat &&
                character.health >= req.healthMinimum)
+        {
+            bRet = true;
+        }
+
+        // Racial requirement
+        else if (req.requirementType == StoryChoiceReqType.Race &&
+              character.race == req.requiredRace)
         {
             bRet = true;
         }
