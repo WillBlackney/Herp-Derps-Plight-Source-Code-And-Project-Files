@@ -88,6 +88,7 @@ public class CardEffect
     [ShowIf("ShowSpecificCardType")]
     public SpecificTypeDrawn specificTypeDrawn;
 
+    [Header("Discovery Properties")]
     [ShowIf("ShowDiscoveryLocation")]
     [LabelWidth(200)]
     public CardCollection discoveryLocation;
@@ -106,6 +107,11 @@ public class CardEffect
     [VerticalGroup("Search Filters")]
     [LabelWidth(200)]
     public UpgradeFilter upgradeFilter = UpgradeFilter.OnlyNonUpgraded;
+
+    [ShowIf("ShowCardLibraryFilter")]
+    [VerticalGroup("Search Filters")]
+    [LabelWidth(200)]
+    public CardType cardTypeFilter = CardType.None;
 
     [ShowIf("ShowCardLibraryFilter")]
     [VerticalGroup("Search Filters")]

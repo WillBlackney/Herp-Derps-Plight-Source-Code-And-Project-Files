@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Poisonous
   m_EditorClassIdentifier: 
   cardName: Poisonous
+  includeInGame: 1
   cardDescription: Your Melee Attack cards  apply 2 Poisoned.
   cardSprite: {fileID: 21300000, guid: 08bf267e01c18e84f945ea973a625e49, type: 3}
   xEnergyCost: 0
@@ -83,6 +84,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []

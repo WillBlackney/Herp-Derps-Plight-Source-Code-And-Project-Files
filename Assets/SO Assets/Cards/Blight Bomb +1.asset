@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Blight Bomb +1
   m_EditorClassIdentifier: 
   cardName: Blight Bomb +1
+  includeInGame: 1
   cardDescription: Deal 12 Magic damage. Apply 6 poisoned.
   cardSprite: {fileID: 21300000, guid: a5cba44f0cf02d646b65afcca06ab9bb, type: 3}
   xEnergyCost: 0
@@ -66,6 +67,7 @@ MonoBehaviour:
     phrase: .
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
@@ -88,6 +90,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -169,6 +172,7 @@ MonoBehaviour:
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 3
     splitTargetEffect: 0
     splitTargetType: 0
@@ -191,6 +195,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []

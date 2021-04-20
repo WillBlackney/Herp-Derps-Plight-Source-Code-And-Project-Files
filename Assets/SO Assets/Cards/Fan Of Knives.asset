@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Fan Of Knives
   m_EditorClassIdentifier: 
   cardName: Fan Of Knives
+  includeInGame: 1
   cardDescription: On activation start, add a Shank to your hand.
   cardSprite: {fileID: 21300000, guid: d8b8c7c1bd53d0f42936790ebdacb86c, type: 3}
   xEnergyCost: 0
@@ -50,9 +51,15 @@ MonoBehaviour:
 '
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0

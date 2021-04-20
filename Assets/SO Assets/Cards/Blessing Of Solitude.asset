@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Blessing Of Solitude
   m_EditorClassIdentifier: 
   cardName: Blessing Of Solitude
+  includeInGame: 1
   cardDescription: Give a target 3 Block. Expend.
   cardSprite: {fileID: 21300000, guid: 9f656ae1af7fb6342a87f535a5bb0eba, type: 3}
   xEnergyCost: 0
@@ -62,6 +63,7 @@ MonoBehaviour:
     phrase: .
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 19
     splitTargetEffect: 0
     splitTargetType: 0
@@ -84,6 +86,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []

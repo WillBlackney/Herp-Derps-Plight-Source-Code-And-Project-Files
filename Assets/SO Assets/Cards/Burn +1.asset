@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Burn +1
   m_EditorClassIdentifier: 
   cardName: Burn +1
+  includeInGame: 1
   cardDescription: "On activation end, apply 2 Burning to self. \nUnplayable."
   cardSprite: {fileID: 21300000, guid: 741c2c4a28c8ae544a4918701bfea295, type: 3}
   xEnergyCost: 0

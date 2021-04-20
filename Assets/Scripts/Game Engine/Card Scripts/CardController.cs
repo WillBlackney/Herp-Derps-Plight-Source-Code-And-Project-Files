@@ -128,7 +128,8 @@ public class CardController : Singleton<CardController>
 
         foreach (CardDataSO dataSO in allCardScriptableObjects)
         {
-            tempList.Add(BuildCardDataFromScriptableObjectData(dataSO));
+            if(dataSO.includeInGame)
+                tempList.Add(BuildCardDataFromScriptableObjectData(dataSO));
         }
 
         AllCards = tempList.ToArray();
@@ -226,7 +227,7 @@ public class CardController : Singleton<CardController>
     }
 
     // Core Queires
-    public List<CardData> GetCardsQuery(IEnumerable<CardData> queriedCollection, TalentSchool ts = TalentSchool.None, Rarity r = Rarity.None, bool blessing = false, UpgradeFilter uf = UpgradeFilter.Any)
+    public List<CardData> GetCardsQuery(IEnumerable<CardData> queriedCollection, TalentSchool ts = TalentSchool.None, Rarity r = Rarity.None, bool blessing = false, UpgradeFilter uf = UpgradeFilter.Any, CardType ct = CardType.None)
     {
         Debug.Log("GetCardsQuery() called, query params --- TalentSchool = " + ts.ToString()
             + ", Rarity = " + r.ToString() + ", Blessing = " + blessing.ToString());
@@ -244,6 +245,11 @@ public class CardController : Singleton<CardController>
             cardsReturned = QueryByRarity(cardsReturned, r);
         }
 
+        if (ct != CardType.None)
+        {
+            cardsReturned = QueryByCardType(cardsReturned, ct);
+        }
+
         // Filter blessings
         cardsReturned = QueryByBlessing(cardsReturned, blessing);
 
@@ -259,7 +265,7 @@ public class CardController : Singleton<CardController>
 
         return cardsReturned;
     }
-    public List<Card> GetCardsQuery(IEnumerable<Card> queriedCollection, TalentSchool ts = TalentSchool.None, Rarity r = Rarity.None, bool blessing = false)
+    public List<Card> GetCardsQuery(IEnumerable<Card> queriedCollection, TalentSchool ts = TalentSchool.None, Rarity r = Rarity.None, bool blessing = false, CardType ct = CardType.None)
     {
         //  Debug.LogWarning("GetCardsQuery() called, query params --- TalentSchool = " + ts.ToString()
         //    + ", Rarity = " + r.ToString() + ", Blessing = " + blessing.ToString());
@@ -275,6 +281,11 @@ public class CardController : Singleton<CardController>
         if (r != Rarity.None)
         {
             cardsReturned = QueryByRarity(cardsReturned, r);
+        }
+
+        if (ct != CardType.None)
+        {
+            cardsReturned = QueryByCardType(cardsReturned, ct);
         }
 
         // Filter blessings
@@ -399,6 +410,29 @@ public class CardController : Singleton<CardController>
         var query =
            from cardData in collectionQueried
            where cardData.rarity == r
+           select cardData;
+
+        cardsReturned.AddRange(query);
+        return cardsReturned;
+    }
+    private List<CardData> QueryByCardType(IEnumerable<CardData> collectionQueried, CardType ct)
+    {
+        List<CardData> cardsReturned = new List<CardData>();
+
+        var query =
+           from cardData in collectionQueried
+           where cardData.cardType == ct
+           select cardData;
+
+        cardsReturned.AddRange(query);
+        return cardsReturned;
+    }
+    private List<Card> QueryByCardType(IEnumerable<Card> collectionQueried, CardType ct)
+    {
+        List<Card> cardsReturned = new List<Card>();
+        var query =
+           from cardData in collectionQueried
+           where cardData.cardType == ct
            select cardData;
 
         cardsReturned.AddRange(query);
@@ -4444,7 +4478,7 @@ public class CardController : Singleton<CardController>
             }
             else
             {
-                discoverableCards = GetCardsQuery(AllCards, ce.talentSchoolFilter, ce.rarityFilter, ce.blessing, ce.upgradeFilter);
+                discoverableCards = GetCardsQuery(AllCards, ce.talentSchoolFilter, ce.rarityFilter, ce.blessing, ce.upgradeFilter, ce.cardTypeFilter);
             }           
 
             // cancel there are discoverable cards to pick
@@ -4527,7 +4561,7 @@ public class CardController : Singleton<CardController>
             }
 
             // Get cards from the chosen collection
-            discoverableCards = GetCardsQuery(collectionReference, ce.talentSchoolFilter, ce.rarityFilter, ce.blessing);
+            discoverableCards = GetCardsQuery(collectionReference, ce.talentSchoolFilter, ce.rarityFilter, ce.blessing, ce.cardTypeFilter);
 
             // cancel there are discoverable cards to pick
             if (discoverableCards.Count == 0)

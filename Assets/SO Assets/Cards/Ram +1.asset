@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Ram +1
   m_EditorClassIdentifier: 
   cardName: Ram +1
+  includeInGame: 1
   cardDescription: 'Deal 15 Physical damage. Apply 2 Vulnerable. '
   cardSprite: {fileID: 21300000, guid: e3436f85f2c78b249953d19a8e32c95a, type: 3}
   xEnergyCost: 0
@@ -93,6 +94,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -242,6 +244,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []

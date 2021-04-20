@@ -13,8 +13,15 @@ public class CardDataSO : ScriptableObject
     [GUIColor("Blue")]
     [BoxGroup("General Info")]
     [LabelWidth(100)]
+    public bool includeInGame = false;
+
+    [GUIColor("Blue")]
+    [BoxGroup("General Info")]
+    [LabelWidth(100)]
     [TextArea]
-    public string cardDescription; 
+    public string cardDescription;
+
+ 
 
     [HorizontalGroup("Core Data", 75)]
     [HideLabel] 

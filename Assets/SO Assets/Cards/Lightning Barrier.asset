@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Lightning Barrier
   m_EditorClassIdentifier: 
   cardName: Lightning Barrier
+  includeInGame: 1
   cardDescription: 'Gain 7 Block.
 
     Gain 1 Overload.'
@@ -72,6 +73,7 @@ MonoBehaviour:
     phrase: .
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 10
     splitTargetEffect: 0
     splitTargetType: 0
@@ -145,6 +147,7 @@ MonoBehaviour:
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0

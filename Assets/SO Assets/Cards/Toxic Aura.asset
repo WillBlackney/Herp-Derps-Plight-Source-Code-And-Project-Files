@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Toxic Aura
   m_EditorClassIdentifier: 
   cardName: Toxic Aura
+  includeInGame: 1
   cardDescription: On activation end, apply 2 Poisoned to all enemies.
   cardSprite: {fileID: 21300000, guid: f589a4deb7b158149b1c6c7eaa5e013c, type: 3}
   xEnergyCost: 0
@@ -20,7 +21,7 @@ MonoBehaviour:
   cardType: 4
   targettingType: 0
   talentSchool: 12
-  rarity: 2
+  rarity: 1
   upgradeable: 1
   upgradeLevel: 0
   expend: 0
@@ -75,6 +76,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []

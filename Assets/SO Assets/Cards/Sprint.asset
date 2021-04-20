@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Sprint
   m_EditorClassIdentifier: 
   cardName: Sprint
+  includeInGame: 1
   cardDescription: 'Draw 2 cards.
 
     Next activation, Draw 1 less card.'
@@ -60,6 +61,7 @@ MonoBehaviour:
     phrase: less card.
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
@@ -118,6 +120,7 @@ MonoBehaviour:
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 9
     splitTargetEffect: 0
     splitTargetType: 0

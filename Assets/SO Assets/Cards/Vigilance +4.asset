@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Vigilance +4
   m_EditorClassIdentifier: 
   cardName: Vigilance +4
-  cardDescription: Give 15 Block to self or ally. This card can be upgraded 1 more
+  includeInGame: 1
+  cardDescription: Give 20 Block to self or ally. This card can be upgraded 1 more
     time.
   cardSprite: {fileID: 21300000, guid: c4878cdbffe93a44392d8f3c2bb899ea, type: 3}
   xEnergyCost: 0
@@ -67,6 +68,7 @@ MonoBehaviour:
     phrase: time.
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 19
     splitTargetEffect: 0
     splitTargetType: 0
@@ -96,7 +98,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 18
+    blockGainValue: 20
     baseDamageValue: 8
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0

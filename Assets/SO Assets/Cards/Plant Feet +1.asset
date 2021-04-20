@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Plant Feet +1
   m_EditorClassIdentifier: 
   cardName: Plant Feet +1
+  includeInGame: 1
   cardDescription: Your next Melee Attack card costs 0 Energy.
   cardSprite: {fileID: 21300000, guid: f3a33061c9c67f84cba0dd7988ae9d9a, type: 3}
   xEnergyCost: 0

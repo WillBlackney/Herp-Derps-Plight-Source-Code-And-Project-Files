@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Acid Spray
   m_EditorClassIdentifier: 
   cardName: Acid Spray
-  cardDescription: Remove all Block from target. Apply 4 Poisoned. Expend.
+  includeInGame: 1
+  cardDescription: Remove all Block from target. Apply 6 Poisoned. Expend.
   cardSprite: {fileID: 21300000, guid: 9fc9d71819cfd154d882395b9822769d, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -72,6 +73,7 @@ MonoBehaviour:
     phrase: .
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 30
     splitTargetEffect: 0
     splitTargetType: 0
@@ -94,6 +96,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -175,6 +178,7 @@ MonoBehaviour:
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 3
     splitTargetEffect: 0
     splitTargetType: 0
@@ -197,6 +201,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -224,7 +229,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 21
-      passiveStacks: 4
+      passiveStacks: 6
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Revel In Misery
   m_EditorClassIdentifier: 
   cardName: Revel In Misery
+  includeInGame: 1
   cardDescription: 'Gain 1 Power for each enemy effected by Weakened.
 
     Expend. '
   cardSprite: {fileID: 21300000, guid: b4d07df941ddce346b043c628f6bb30d, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 0
+  cardEnergyCost: 1
   cardType: 1
   targettingType: 0
   talentSchool: 11
@@ -72,6 +73,7 @@ MonoBehaviour:
     phrase: .
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
@@ -94,6 +96,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []

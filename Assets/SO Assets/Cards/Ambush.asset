@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Ambush
   m_EditorClassIdentifier: 
   cardName: Ambush
+  includeInGame: 1
   cardDescription: Apply 1 Vulnerable. Innate. Expend.
   cardSprite: {fileID: 21300000, guid: 2166b9e4977224845816a3314cfc39ee, type: 3}
   xEnergyCost: 0

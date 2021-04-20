@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Take Aim +1
   m_EditorClassIdentifier: 
   cardName: Take Aim +1
+  includeInGame: 1
   cardDescription: Your next ranged attack costs 1 less Energy. Innate.
   cardSprite: {fileID: 21300000, guid: b8f0b84628eca5948bb80cbc6cf2c85d, type: 3}
   xEnergyCost: 0
@@ -21,9 +22,6 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 8
   rarity: 1
-  affliction: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 0
   upgradeLevel: 1
   expend: 0
@@ -33,6 +31,9 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -68,9 +69,15 @@ MonoBehaviour:
     phrase: .
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -85,6 +92,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []

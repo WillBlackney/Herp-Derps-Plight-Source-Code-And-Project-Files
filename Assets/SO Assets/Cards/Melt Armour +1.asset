@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Melt Armour +1
   m_EditorClassIdentifier: 
   cardName: Melt Armour +1
+  includeInGame: 1
   cardDescription: Remove all Block from target. Deal 8 Magic damage.
   cardSprite: {fileID: 21300000, guid: 9876430342e8aa84f9e60ccdd8d0c640, type: 3}
   xEnergyCost: 0
@@ -20,7 +21,7 @@ MonoBehaviour:
   cardType: 1
   targettingType: 3
   talentSchool: 6
-  rarity: 2
+  rarity: 3
   upgradeable: 0
   upgradeLevel: 1
   expend: 0
@@ -87,6 +88,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -191,6 +193,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []

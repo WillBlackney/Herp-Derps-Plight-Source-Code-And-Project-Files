@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Horrify +1
   m_EditorClassIdentifier: 
   cardName: Horrify +1
+  includeInGame: 1
   cardDescription: Apply 1 Weakened to all enemies. Expend. Innate.
   cardSprite: {fileID: 21300000, guid: 1ba1694a7b8c7e34bac10fb9e8682918, type: 3}
   xEnergyCost: 0
@@ -95,6 +96,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []

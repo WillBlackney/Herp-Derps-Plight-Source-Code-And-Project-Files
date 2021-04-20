@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Guardian Aura +1
   m_EditorClassIdentifier: 
   cardName: Guardian Aura +1
+  includeInGame: 1
   cardDescription: On activation end, give 4 Block to all allies.
   cardSprite: {fileID: 21300000, guid: 0fb274f4ae833334ea758f7191324fa8, type: 3}
   xEnergyCost: 0

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Holy Lance
   m_EditorClassIdentifier: 
   cardName: Holy Lance
+  includeInGame: 1
   cardDescription: Deal 8 Magic damage. While holding a Blessing, this costs 0 Energy.
   cardSprite: {fileID: 21300000, guid: fba5d17ef3cc79e47adcdb11335eb527, type: 3}
   xEnergyCost: 0

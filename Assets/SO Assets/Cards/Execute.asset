@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Execute
   m_EditorClassIdentifier: 
   cardName: Execute
-  cardDescription: 'Deal 22 Physical damage. Lethal: gain 2 Energy.'
+  includeInGame: 1
+  cardDescription: 'Deal 20 Physical damage. Lethal: gain 2 Energy.'
   cardSprite: {fileID: 21300000, guid: 0b8bde124e965454da2ef6d7786c84aa, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -105,7 +106,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 22
+    baseDamageValue: 20
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0

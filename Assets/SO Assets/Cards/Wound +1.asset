@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Wound +1
   m_EditorClassIdentifier: 
   cardName: Wound +1
+  includeInGame: 1
   cardDescription: 'On activation end, lose 3 Health.
 
     Unplayable.'

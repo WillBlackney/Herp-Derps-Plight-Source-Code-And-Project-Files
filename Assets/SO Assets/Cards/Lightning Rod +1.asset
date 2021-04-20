@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Lightning Rod +1
   m_EditorClassIdentifier: 
   cardName: Lightning Rod +1
+  includeInGame: 1
   cardDescription: 'Deal Magic damage equal to 5 times your Overload.
 
     Remove
@@ -56,7 +57,7 @@ MonoBehaviour:
   - color: 0
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'times your current '
+    phrase: 'times your '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Star Beam
   m_EditorClassIdentifier: 
   cardName: Star Beam
+  includeInGame: 1
   cardDescription: Gain 1 Energy to self or ally. Expend.
   cardSprite: {fileID: 21300000, guid: cc9b74af3ac7691499a8c54dfe7c1cd3, type: 3}
   xEnergyCost: 0
@@ -85,6 +86,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []

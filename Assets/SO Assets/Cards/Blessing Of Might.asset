@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Blessing Of Might
   m_EditorClassIdentifier: 
   cardName: Blessing Of Might
+  includeInGame: 1
   cardDescription: Give a target 1 Power next activation. Expend.
   cardSprite: {fileID: 21300000, guid: b8b13619743a2784ea59dceea74df1ac, type: 3}
   xEnergyCost: 0
@@ -85,6 +86,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []

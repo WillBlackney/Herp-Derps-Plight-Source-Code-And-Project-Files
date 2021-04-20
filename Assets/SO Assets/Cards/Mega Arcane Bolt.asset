@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Mega Arcane Bolt
   m_EditorClassIdentifier: 
   cardName: Mega Arcane Bolt
+  includeInGame: 1
   cardDescription: 'Deal 10 Magic damage. Cost 1 less Energy for each Arcane Bolt
     played this combat. '
   cardSprite: {fileID: 21300000, guid: b30ea216dd96204409132c9d27a32d22, type: 3}
@@ -77,6 +78,7 @@ MonoBehaviour:
     phrase: played this combat.
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
@@ -99,6 +101,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -218,6 +221,7 @@ MonoBehaviour:
     passivePairing:
       passiveData: 0
       passiveStacks: 0
+    healthLost: 0
     energyGainedOrLost: 0
     certainCardNames: []
     whileHoldingBlessing: 0

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Cleave
   m_EditorClassIdentifier: 
   cardName: Cleave
+  includeInGame: 1
   cardDescription: 'Deal 10 Physical damage to all enemies. '
   cardSprite: {fileID: 21300000, guid: cf8a3f96be6e8c542a1aaf3e42836b90, type: 3}
   xEnergyCost: 0

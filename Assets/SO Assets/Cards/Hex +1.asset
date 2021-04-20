@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Hex +1
   m_EditorClassIdentifier: 
   cardName: Hex +1
+  includeInGame: 1
   cardDescription: 'Apply 2 Weakened and 1 Vulnerable to a target. '
   cardSprite: {fileID: 21300000, guid: ac5ab77777b77ab4aad7a18394483f99, type: 3}
   xEnergyCost: 0
@@ -64,6 +65,7 @@ MonoBehaviour:
     phrase: to a target.
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 3
     splitTargetEffect: 0
     splitTargetType: 0
@@ -182,6 +184,7 @@ MonoBehaviour:
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 3
     splitTargetEffect: 0
     splitTargetType: 0

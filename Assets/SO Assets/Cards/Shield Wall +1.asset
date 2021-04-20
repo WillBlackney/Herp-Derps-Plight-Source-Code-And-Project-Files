@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Shield Wall +1
   m_EditorClassIdentifier: 
   cardName: Shield Wall +1
-  cardDescription: On activation start, gain 5 Block.
+  includeInGame: 1
+  cardDescription: On activation start, gain 4 Block.
   cardSprite: {fileID: 21300000, guid: 12b45abbd6b1e544f9262fd95e0712e7, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -41,7 +42,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '5 '
+    phrase: '4 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -102,7 +103,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 26
-      passiveStacks: 5
+      passiveStacks: 4
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

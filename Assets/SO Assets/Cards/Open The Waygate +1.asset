@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Open The Waygate +1
   m_EditorClassIdentifier: 
   cardName: Open The Waygate +1
+  includeInGame: 1
   cardDescription: 'Discover a Source Spell.
 
     Add it to your hand.'
@@ -54,6 +55,7 @@ MonoBehaviour:
 '
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 22
     splitTargetEffect: 0
     splitTargetType: 0
@@ -76,6 +78,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 1
     onDiscoveryChoiceMadeEffects:

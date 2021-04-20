@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Shadow Aura +1
   m_EditorClassIdentifier: 
   cardName: Shadow Aura +1
+  includeInGame: 1
   cardDescription: On activation start, apply 1 Weakened to a random enemy.
   cardSprite: {fileID: 21300000, guid: cf4dd85248c749d4d8877f797bfb072d, type: 3}
   xEnergyCost: 0
@@ -75,6 +76,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []

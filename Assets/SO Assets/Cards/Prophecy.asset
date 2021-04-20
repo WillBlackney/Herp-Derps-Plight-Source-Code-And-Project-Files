@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Prophecy
   m_EditorClassIdentifier: 
   cardName: Prophecy
+  includeInGame: 1
   cardDescription: 'Discover a Blessing.
 
     Add 2 copies of it to your hand.
@@ -25,9 +26,6 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 10
   rarity: 2
-  affliction: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 1
   upgradeLevel: 0
   expend: 1
@@ -37,6 +35,9 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -72,9 +73,15 @@ MonoBehaviour:
     phrase: .
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 22
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0

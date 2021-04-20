@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Rampage
   m_EditorClassIdentifier: 
   cardName: Rampage
-  cardDescription: "Deal 11 Physical damage. \nCosts 1 less Energy each time you
+  includeInGame: 1
+  cardDescription: "Deal 15 Physical damage. \nCosts 1 less Energy each time you
     lose health."
   cardSprite: {fileID: 21300000, guid: e08ffae034994ce43b6ffd7be25c5f60, type: 3}
   xEnergyCost: 0
@@ -21,7 +22,7 @@ MonoBehaviour:
   cardType: 2
   targettingType: 3
   talentSchool: 2
-  rarity: 1
+  rarity: 2
   upgradeable: 1
   upgradeLevel: 0
   expend: 0
@@ -106,7 +107,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 11
+    baseDamageValue: 15
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0

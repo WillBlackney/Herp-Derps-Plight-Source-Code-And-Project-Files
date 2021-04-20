@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Momentum Strike +1
   m_EditorClassIdentifier: 
   cardName: Momentum Strike +1
-  cardDescription: Deal 7 Physical damage. If target is Vulnerable, gain 1 Energy.
+  includeInGame: 1
+  cardDescription: Deal 11 Physical damage. If target is Vulnerable, gain 1 Energy.
   cardSprite: {fileID: 21300000, guid: 9bb7cb6365adca6468b7e71edf069049, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 0
+  cardEnergyCost: 1
   cardType: 2
   targettingType: 3
   talentSchool: 2
@@ -109,7 +110,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 7
+    baseDamageValue: 11
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0

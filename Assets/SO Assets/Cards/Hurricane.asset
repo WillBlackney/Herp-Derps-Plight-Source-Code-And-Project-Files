@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Hurricane
   m_EditorClassIdentifier: 
   cardName: Hurricane
+  includeInGame: 1
   cardDescription: Overload damages all enemies. Expend.
   cardSprite: {fileID: 21300000, guid: 4a36ed01632e88748b815200b770bfd1, type: 3}
   xEnergyCost: 0

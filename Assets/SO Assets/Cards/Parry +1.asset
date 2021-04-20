@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Parry +1
   m_EditorClassIdentifier: 
   cardName: Parry +1
-  cardDescription: Gain 10 Block. Draw 1 Card.
+  includeInGame: 1
+  cardDescription: Gain 8 Block. Draw 1 Card.
   cardSprite: {fileID: 21300000, guid: 49d7732986467e142971b9d35c230cee, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -85,6 +86,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -92,7 +94,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 10
+    blockGainValue: 8
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
@@ -174,6 +176,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []

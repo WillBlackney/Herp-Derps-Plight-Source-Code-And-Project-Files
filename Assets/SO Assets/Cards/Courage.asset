@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Twin Strike
+  m_Name: Courage
   m_EditorClassIdentifier: 
-  cardName: Twin Strike
-  cardDescription: Deal 5 Physical damage twice.
-  cardSprite: {fileID: 21300000, guid: 24529566cd9f71247b3c586ac9751e88, type: 3}
+  cardName: Courage
+  includeInGame: 1
+  cardDescription: Gain 5 Block and 1 Grit.
+  cardSprite: {fileID: 21300000, guid: b3edc3500fbcf3642af7a195ec5ebc64, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
-  cardType: 2
-  targettingType: 3
-  talentSchool: 3
-  rarity: 2
+  cardType: 1
+  targettingType: 0
+  talentSchool: 0
+  rarity: 1
   upgradeable: 1
   upgradeLevel: 0
   expend: 0
@@ -31,28 +32,43 @@ MonoBehaviour:
   blessing: 0
   sourceSpell: 0
   affliction: 0
-  racialCard: 0
-  originRace: 0
+  racialCard: 1
+  originRace: 1
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Deal '
+    phrase: 'Gain '
   - color: 2
     getPhraseFromCardValue: 1
-    cardEffectType: 6
-    phrase: 3
-  - color: 4
+    cardEffectType: 10
+    phrase: '2 '
+  - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: ' Physical '
+    phrase: ' Block'
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: damage twice.
+    phrase: '.
+
+      Gain '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '1 '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Grit
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
   cardEffects:
   - weaponRequirement: 0
-    cardEffectType: 6
+    targetRequirement: 0
+    cardEffectType: 10
     splitTargetEffect: 0
     splitTargetType: 0
     characterSummoned: {fileID: 0}
@@ -74,6 +90,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -81,8 +98,8 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 0
-    baseDamageValue: 5
+    blockGainValue: 5
+    baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
@@ -90,9 +107,9 @@ MonoBehaviour:
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
-    baseDamageMultiplier: 0
+    baseDamageMultiplier: 1
     useEachIndividualsStackCount: 1
-    damageType: 1
+    damageType: 0
     healthRestored: 0
     healthLost: 0
     energyGained: 0
@@ -106,21 +123,6 @@ MonoBehaviour:
     copiesAdded: 0
     blessingsGained: 0
     visualEventsOnStart:
-    - eventType: 1
-      screenOverlayType: 0
-      overlayColor: 0
-      overlayFadeInTime: 0
-      overlayDuration: 0
-      overlayFadeOutTime: 0
-      particleEffect: 0
-      cameraShake: 0
-      movementAnimation: 1
-      soundEffect: 0
-      characterAnimation: 0
-      delayDuration: 0
-      projectileFired: 0
-      projectileStartPosition: 0
-      onCharacter: 0
     - eventType: 2
       screenOverlayType: 0
       overlayColor: 0
@@ -131,22 +133,7 @@ MonoBehaviour:
       cameraShake: 0
       movementAnimation: 0
       soundEffect: 0
-      characterAnimation: 1
-      delayDuration: 0
-      projectileFired: 0
-      projectileStartPosition: 0
-      onCharacter: 0
-    - eventType: 4
-      screenOverlayType: 0
-      overlayColor: 0
-      overlayFadeInTime: 0
-      overlayDuration: 0
-      overlayFadeOutTime: 0
-      particleEffect: 0
-      cameraShake: 1
-      movementAnimation: 0
-      soundEffect: 0
-      characterAnimation: 0
+      characterAnimation: 4
       delayDuration: 0
       projectileFired: 0
       projectileStartPosition: 0
@@ -170,7 +157,8 @@ MonoBehaviour:
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
   - weaponRequirement: 0
-    cardEffectType: 6
+    targetRequirement: 0
+    cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
     characterSummoned: {fileID: 0}
@@ -192,6 +180,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -200,7 +189,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 5
+    baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
@@ -208,9 +197,9 @@ MonoBehaviour:
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
-    baseDamageMultiplier: 0
+    baseDamageMultiplier: 1
     useEachIndividualsStackCount: 1
-    damageType: 1
+    damageType: 0
     healthRestored: 0
     healthLost: 0
     energyGained: 0
@@ -218,47 +207,21 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: 0
-      passiveStacks: 0
+      passiveData: 14
+      passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
-    visualEventsOnStart:
-    - eventType: 2
-      screenOverlayType: 0
-      overlayColor: 0
-      overlayFadeInTime: 0
-      overlayDuration: 0
-      overlayFadeOutTime: 0
-      particleEffect: 0
-      cameraShake: 0
-      movementAnimation: 0
-      soundEffect: 0
-      characterAnimation: 1
-      delayDuration: 0
-      projectileFired: 0
-      projectileStartPosition: 0
-      onCharacter: 0
-    - eventType: 4
-      screenOverlayType: 0
-      overlayColor: 0
-      overlayFadeInTime: 0
-      overlayDuration: 0
-      overlayFadeOutTime: 0
-      particleEffect: 0
-      cameraShake: 1
-      movementAnimation: 0
-      soundEffect: 0
-      characterAnimation: 0
-      delayDuration: 0
-      projectileFired: 0
-      projectileStartPosition: 0
-      onCharacter: 0
+    visualEventsOnStart: []
     visualEventsOnFinish: []
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
-  cardPassiveEffects:
-  - cardPassiveEffectType: 0
-    passive: 0
-  keyWordModels: []
+  cardPassiveEffects: []
+  keyWordModels:
+  - kewWordType: 9
+    weaponRequirement: 0
+    passiveType: 0
+  - kewWordType: 8
+    weaponRequirement: 0
+    passiveType: 14

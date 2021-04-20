@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Devour +1
   m_EditorClassIdentifier: 
   cardName: Devour +1
+  includeInGame: 1
   cardDescription: 'Deal 10 Physical damage. Lethal: Permanently gain 3 max health.
     Expend.'
   cardSprite: {fileID: 21300000, guid: f93551c6d26df93438587be91fd16c0f, type: 3}
@@ -104,6 +105,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []

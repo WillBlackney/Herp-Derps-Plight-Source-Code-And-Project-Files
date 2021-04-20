@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Toxic Slash
   m_EditorClassIdentifier: 
   cardName: Toxic Slash
+  includeInGame: 1
   cardDescription: 'Deal 7 Physical damage.
 
     Apply 2 Poisoned.'
@@ -68,6 +69,7 @@ MonoBehaviour:
     phrase: .
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
@@ -90,6 +92,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -201,6 +204,7 @@ MonoBehaviour:
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 3
     splitTargetEffect: 0
     splitTargetType: 0
@@ -223,6 +227,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []

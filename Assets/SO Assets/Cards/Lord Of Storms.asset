@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Lord Of Storms
   m_EditorClassIdentifier: 
   cardName: Lord Of Storms
+  includeInGame: 1
   cardDescription: On activation start, gain 2 Overload. Expend.
   cardSprite: {fileID: 21300000, guid: 612e7da721cc2af45bd46cf51d1b1d13, type: 3}
   xEnergyCost: 0

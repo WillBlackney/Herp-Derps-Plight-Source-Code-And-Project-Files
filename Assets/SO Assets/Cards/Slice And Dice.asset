@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Slice And Dice
   m_EditorClassIdentifier: 
   cardName: Slice And Dice
+  includeInGame: 1
   cardDescription: 'Deal 10 Physical Damage.
 
     Cost 1 Energy less for each Melee
@@ -77,6 +78,7 @@ MonoBehaviour:
     phrase: played this activation.
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
@@ -218,8 +220,10 @@ MonoBehaviour:
     passivePairing:
       passiveData: 0
       passiveStacks: 0
+    healthLost: 0
     energyGainedOrLost: 0
     certainCardNames: []
+    whileHoldingBlessing: 0
     cardCostsZero: 0
   cardPassiveEffects: []
   keyWordModels: []

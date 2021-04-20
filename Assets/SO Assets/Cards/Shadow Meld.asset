@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Shadow Meld
   m_EditorClassIdentifier: 
   cardName: Shadow Meld
+  includeInGame: 1
   cardDescription: Gain 1 Energy. Draw 2 cards. Expend.
   cardSprite: {fileID: 21300000, guid: 7ac61cde2cb71ed43adf397945f0b066, type: 3}
   xEnergyCost: 0

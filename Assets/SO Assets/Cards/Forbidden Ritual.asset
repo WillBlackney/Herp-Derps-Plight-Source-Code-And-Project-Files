@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Forbidden Ritual
   m_EditorClassIdentifier: 
   cardName: Forbidden Ritual
-  cardDescription: Gain 1 Energy. Draw 1 Card. Apply 2 Vulnerable to self.
+  includeInGame: 1
+  cardDescription: Discover a random Power card. It costs 1 less Energy.
   cardSprite: {fileID: 21300000, guid: f5dee98cfc41b1844b412bc49a3f8aac, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 0
+  cardEnergyCost: 1
   cardType: 1
   targettingType: 0
   talentSchool: 11
@@ -34,53 +35,46 @@ MonoBehaviour:
   racialCard: 0
   originRace: 0
   customDescription:
-  - color: 1
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'Gain '
-  - color: 2
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: '1 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Energy '
+    phrase: 'Discover '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'and '
+    phrase: 'a random '
   - color: 3
     getPhraseFromCardValue: 0
-    cardEffectType: 19
-    phrase: 'Draw '
-  - color: 2
-    getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '1 '
+    phrase: 'Power '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'card.
 
-      Apply '
+      It costs '
   - color: 2
     getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: '2 '
-  - color: 3
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'Vulnerable '
+    cardEffectType: 19
+    phrase: '1 '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: to self.
+    phrase: 'less '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Energy
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
   cardEffects:
   - weaponRequirement: 0
-    cardEffectType: 13
+    targetRequirement: 0
+    cardEffectType: 22
     splitTargetEffect: 0
-    splitTargetType: 3
+    splitTargetType: 0
     characterSummoned: {fileID: 0}
     amountSummoned: 1
     modelFadeInSpeed: 0
@@ -96,19 +90,28 @@ MonoBehaviour:
     damageLoops: 0
     drawSpecificType: 0
     specificTypeDrawn: 0
-    discoveryLocation: 0
+    discoveryLocation: 5
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 4
     blessing: 0
     sourceSpellsOnly: 0
-    onDiscoveryChoiceMadeEffects: []
+    onDiscoveryChoiceMadeEffects:
+    - discoveryEffect: 1
+      copiesAdded: 0
+      energyReduction: 0
+      newEnergyCost: 0
+    - discoveryEffect: 3
+      copiesAdded: 0
+      energyReduction: 1
+      newEnergyCost: 0
     onChooseCardInHandChoiceMadeEffects: []
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 10
+    baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
@@ -118,16 +121,16 @@ MonoBehaviour:
     drawBaseDamageFromBurningOnSelf: 0
     baseDamageMultiplier: 0
     useEachIndividualsStackCount: 1
-    damageType: 2
+    damageType: 0
     healthRestored: 0
     healthLost: 0
-    energyGained: 1
+    energyGained: 0
     cardsDrawn: 0
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: 36
-      passiveStacks: 2
+      passiveData: 0
+      passiveStacks: 0
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
@@ -161,169 +164,8 @@ MonoBehaviour:
       delayDuration: 0
       projectileFired: 0
       projectileStartPosition: 0
-      onCharacter: 2
-    - eventType: 5
-      screenOverlayType: 0
-      overlayColor: 0
-      overlayFadeInTime: 0
-      overlayDuration: 0
-      overlayFadeOutTime: 0
-      particleEffect: 0
-      cameraShake: 0
-      movementAnimation: 0
-      soundEffect: 30
-      characterAnimation: 0
-      delayDuration: 0
-      projectileFired: 0
-      projectileStartPosition: 0
-      onCharacter: 0
+      onCharacter: 1
     visualEventsOnFinish: []
-    visualEventsOnDamageLoopStart: []
-    visualEventsOnDamageLoopFinish: []
-  - weaponRequirement: 0
-    cardEffectType: 9
-    splitTargetEffect: 0
-    splitTargetType: 0
-    characterSummoned: {fileID: 0}
-    amountSummoned: 1
-    modelFadeInSpeed: 0
-    uiFadeInSpeed: 0
-    summonedCreatureVisualEvents: []
-    removeBlockFrom: 0
-    modifyDeckCardEffect: 0
-    permanentBlockGain: 0
-    permanentDamageGain: 0
-    chooseTargetRandomly: 0
-    passiveApplicationLoops: 0
-    validRandomTargetsType: 0
-    damageLoops: 0
-    drawSpecificType: 0
-    specificTypeDrawn: 0
-    discoveryLocation: 0
-    talentSchoolFilter: 0
-    rarityFilter: 0
-    upgradeFilter: 1
-    blessing: 0
-    sourceSpellsOnly: 0
-    onDiscoveryChoiceMadeEffects: []
-    onChooseCardInHandChoiceMadeEffects: []
-    modifyCardsInHandEffects: []
-    drawStacksFromOverload: 0
-    drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 0
-    baseDamageValue: 0
-    drawBaseDamageFromCurrentBlock: 0
-    drawBaseDamageFromTargetPoisoned: 0
-    drawBaseDamageFromTargetBurning: 0
-    drawBaseDamageFromTargetWeakened: 0
-    drawBaseDamageFromMeleeAttacksPlayed: 0
-    drawBaseDamageFromOverloadOnSelf: 0
-    drawBaseDamageFromBurningOnSelf: 0
-    baseDamageMultiplier: 1
-    useEachIndividualsStackCount: 1
-    damageType: 0
-    healthRestored: 0
-    healthLost: 0
-    energyGained: 0
-    cardsDrawn: 1
-    extraDrawEffect: 0
-    cardEnergyReduction: 0
-    passivePairing:
-      passiveData: 0
-      passiveStacks: 0
-    cardAdded: {fileID: 0}
-    copiesAdded: 0
-    blessingsGained: 0
-    visualEventsOnStart: []
-    visualEventsOnFinish:
-    - eventType: 6
-      screenOverlayType: 0
-      overlayColor: 0
-      overlayFadeInTime: 0
-      overlayDuration: 0
-      overlayFadeOutTime: 0
-      particleEffect: 0
-      cameraShake: 0
-      movementAnimation: 0
-      soundEffect: 0
-      characterAnimation: 0
-      delayDuration: 0.5
-      projectileFired: 0
-      projectileStartPosition: 0
-      onCharacter: 0
-    visualEventsOnDamageLoopStart: []
-    visualEventsOnDamageLoopFinish: []
-  - weaponRequirement: 0
-    cardEffectType: 2
-    splitTargetEffect: 0
-    splitTargetType: 0
-    characterSummoned: {fileID: 0}
-    amountSummoned: 1
-    modelFadeInSpeed: 0
-    uiFadeInSpeed: 0
-    summonedCreatureVisualEvents: []
-    removeBlockFrom: 0
-    modifyDeckCardEffect: 0
-    permanentBlockGain: 0
-    permanentDamageGain: 0
-    chooseTargetRandomly: 0
-    passiveApplicationLoops: 0
-    validRandomTargetsType: 0
-    damageLoops: 0
-    drawSpecificType: 0
-    specificTypeDrawn: 0
-    discoveryLocation: 0
-    talentSchoolFilter: 0
-    rarityFilter: 0
-    upgradeFilter: 1
-    blessing: 0
-    sourceSpellsOnly: 0
-    onDiscoveryChoiceMadeEffects: []
-    onChooseCardInHandChoiceMadeEffects: []
-    modifyCardsInHandEffects: []
-    drawStacksFromOverload: 0
-    drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 0
-    baseDamageValue: 0
-    drawBaseDamageFromCurrentBlock: 0
-    drawBaseDamageFromTargetPoisoned: 0
-    drawBaseDamageFromTargetBurning: 0
-    drawBaseDamageFromTargetWeakened: 0
-    drawBaseDamageFromMeleeAttacksPlayed: 0
-    drawBaseDamageFromOverloadOnSelf: 0
-    drawBaseDamageFromBurningOnSelf: 0
-    baseDamageMultiplier: 1
-    useEachIndividualsStackCount: 1
-    damageType: 0
-    healthRestored: 0
-    healthLost: 0
-    energyGained: 0
-    cardsDrawn: 0
-    extraDrawEffect: 0
-    cardEnergyReduction: 0
-    passivePairing:
-      passiveData: 36
-      passiveStacks: 2
-    cardAdded: {fileID: 0}
-    copiesAdded: 0
-    blessingsGained: 0
-    visualEventsOnStart: []
-    visualEventsOnFinish:
-    - eventType: 6
-      screenOverlayType: 0
-      overlayColor: 0
-      overlayFadeInTime: 0
-      overlayDuration: 0
-      overlayFadeOutTime: 0
-      particleEffect: 0
-      cameraShake: 0
-      movementAnimation: 0
-      soundEffect: 0
-      characterAnimation: 0
-      delayDuration: 0.5
-      projectileFired: 0
-      projectileStartPosition: 0
-      onCharacter: 0
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
@@ -332,6 +174,3 @@ MonoBehaviour:
   - kewWordType: 10
     weaponRequirement: 0
     passiveType: 38
-  - kewWordType: 8
-    weaponRequirement: 0
-    passiveType: 36

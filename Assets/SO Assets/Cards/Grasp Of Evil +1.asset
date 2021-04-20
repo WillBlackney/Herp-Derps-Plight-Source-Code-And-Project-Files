@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Grasp Of Evil +1
   m_EditorClassIdentifier: 
   cardName: Grasp Of Evil +1
-  cardDescription: Deal 7 Magic damage. If target is Weakened, gain 1 Energy.
+  includeInGame: 1
+  cardDescription: Deal 11 Magic damage. If target is Weakened, gain 1 Energy.
   cardSprite: {fileID: 21300000, guid: 18615b100a8b3e549b140634033c2743, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 0
+  cardEnergyCost: 1
   cardType: 2
   targettingType: 3
   talentSchool: 11
@@ -99,6 +100,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -107,7 +109,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 7
+    baseDamageValue: 11
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
@@ -218,6 +220,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []

@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: Unshackled Flames +1
   m_EditorClassIdentifier: 
   cardName: Unshackled Flames +1
-  cardDescription: Add 2 Fire Ball cards to your hand.
+  includeInGame: 1
+  cardDescription: Fill your hand with Fire Ball cards.
   cardSprite: {fileID: 21300000, guid: 2f776a76501921148a58f6019da0b155, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 0
+  cardEnergyCost: 1
   cardType: 1
   targettingType: 0
   talentSchool: 6
-  rarity: 2
+  rarity: 3
   upgradeable: 0
   upgradeLevel: 1
   expend: 0
@@ -37,11 +38,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Add '
-  - color: 2
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: '2 '
+    phrase: 'Fill your hand with '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -49,12 +46,12 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'cards to your hand.
-
+    phrase: 'cards.
 
 '
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 1
     splitTargetEffect: 0
     splitTargetType: 0
@@ -77,6 +74,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -106,7 +104,7 @@ MonoBehaviour:
       passiveData: 0
       passiveStacks: 0
     cardAdded: {fileID: 11400000, guid: c658c8910699aa14b991e933848171a6, type: 2}
-    copiesAdded: 2
+    copiesAdded: 8
     blessingsGained: 0
     visualEventsOnStart:
     - eventType: 2

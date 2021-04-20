@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Shocking Touch +1
   m_EditorClassIdentifier: 
   cardName: Shocking Touch +1
+  includeInGame: 1
   cardDescription: 'Whenever you play a Melee Attack card, gain 1 Overload. '
   cardSprite: {fileID: 21300000, guid: 93daf307f4d6a9845bd66a1a02d8fb31, type: 3}
   xEnergyCost: 0

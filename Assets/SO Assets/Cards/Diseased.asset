@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Diseased
   m_EditorClassIdentifier: 
   cardName: Diseased
+  includeInGame: 1
   cardDescription: Unplayable. On activation end, apply 2 Poisoned to self.
   cardSprite: {fileID: 21300000, guid: b7b37f112e8ed314c8a54b9b0a22d36b, type: 3}
   xEnergyCost: 0

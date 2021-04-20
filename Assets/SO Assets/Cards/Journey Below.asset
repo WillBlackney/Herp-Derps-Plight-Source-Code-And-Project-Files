@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Journey Below
   m_EditorClassIdentifier: 
   cardName: Journey Below
+  includeInGame: 1
   cardDescription: Expend your hand. For each card expended, add a random Shadowcraft
     card to hand.
   cardSprite: {fileID: 21300000, guid: 726b167addcefe540adda8159c9202f5, type: 3}
@@ -61,6 +62,7 @@ MonoBehaviour:
 '
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 24
     splitTargetEffect: 0
     splitTargetType: 0
@@ -83,6 +85,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []

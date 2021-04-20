@@ -10,19 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03cdc5f791d6526408a959a9b56d3eb1, type: 3}
-  m_Name: Twin Strike +1
+  m_Name: Hack And Slash
   m_EditorClassIdentifier: 
-  cardName: Twin Strike +1
-  cardDescription: Deal 7 Physical damage twice.
-  cardSprite: {fileID: 21300000, guid: 24529566cd9f71247b3c586ac9751e88, type: 3}
+  cardName: Hack And Slash
+  includeInGame: 1
+  cardDescription: Deal 4 Physical damage twice.
+  cardSprite: {fileID: 21300000, guid: 6c5ed9f1ea359a54d84832144749cb8d, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
   cardType: 2
   targettingType: 3
-  talentSchool: 3
-  rarity: 2
-  upgradeable: 0
-  upgradeLevel: 1
+  talentSchool: 2
+  rarity: 1
+  upgradeable: 1
+  upgradeLevel: 0
   expend: 0
   innate: 0
   fleeting: 0
@@ -52,6 +53,7 @@ MonoBehaviour:
     phrase: damage twice.
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
@@ -74,6 +76,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -82,7 +85,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 7
+    baseDamageValue: 4
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
@@ -170,6 +173,7 @@ MonoBehaviour:
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
@@ -192,6 +196,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -200,7 +205,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 7
+    baseDamageValue: 5
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
@@ -258,5 +263,7 @@ MonoBehaviour:
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
-  cardPassiveEffects: []
+  cardPassiveEffects:
+  - cardPassiveEffectType: 0
+    passive: 0
   keyWordModels: []

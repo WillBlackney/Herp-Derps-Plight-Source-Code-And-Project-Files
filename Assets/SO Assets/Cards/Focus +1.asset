@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Focus +1
   m_EditorClassIdentifier: 
   cardName: Focus +1
+  includeInGame: 1
   cardDescription: Gain 1 Energy.
   cardSprite: {fileID: 21300000, guid: e574d3452afd70f4bab55498049377d7, type: 3}
   xEnergyCost: 0

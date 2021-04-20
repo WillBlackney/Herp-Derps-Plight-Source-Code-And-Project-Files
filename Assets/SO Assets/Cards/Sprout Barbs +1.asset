@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Sprout Barbs +1
   m_EditorClassIdentifier: 
   cardName: Sprout Barbs +1
+  includeInGame: 1
   cardDescription: Whenever you are attacked, deal 5 Physical damage back.
   cardSprite: {fileID: 21300000, guid: e36b65592c88a0d468f95492e20a0d18, type: 3}
   xEnergyCost: 0
@@ -75,6 +76,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []

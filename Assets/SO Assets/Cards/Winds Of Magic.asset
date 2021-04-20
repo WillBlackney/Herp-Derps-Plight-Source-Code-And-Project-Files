@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Winds Of Magic
   m_EditorClassIdentifier: 
   cardName: Winds Of Magic
+  includeInGame: 1
   cardDescription: Gain 2 Energy. Draw 2 cards. Source Spell.
   cardSprite: {fileID: 21300000, guid: 7e2f19fe95a9b5a4dab29454c4766c55, type: 3}
   xEnergyCost: 0
@@ -93,6 +94,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -197,6 +199,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []

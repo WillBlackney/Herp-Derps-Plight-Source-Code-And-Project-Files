@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Combustion +1
   m_EditorClassIdentifier: 
   cardName: Combustion +1
+  includeInGame: 1
   cardDescription: 'Deal Magic damage equal to target''s Burning amount.
 
     Expend.'
@@ -68,6 +69,7 @@ MonoBehaviour:
     phrase: .
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0

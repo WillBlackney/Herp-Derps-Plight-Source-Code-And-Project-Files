@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Arcane Shock
   m_EditorClassIdentifier: 
   cardName: Arcane Shock
+  includeInGame: 1
   cardDescription: 'Deal 12 Magic damage. Source Spell. '
   cardSprite: {fileID: 21300000, guid: 5247d3e0ab198d2459affb0a90689d7f, type: 3}
   xEnergyCost: 0
@@ -62,9 +63,15 @@ MonoBehaviour:
     phrase: .
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 6
     splitTargetEffect: 0
     splitTargetType: 0
+    characterSummoned: {fileID: 0}
+    amountSummoned: 1
+    modelFadeInSpeed: 0
+    uiFadeInSpeed: 0
+    summonedCreatureVisualEvents: []
     removeBlockFrom: 0
     modifyDeckCardEffect: 0
     permanentBlockGain: 0
@@ -79,6 +86,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
