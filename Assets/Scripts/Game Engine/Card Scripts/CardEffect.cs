@@ -835,6 +835,7 @@ public enum ModifyAllCardsInHandEffectType
     AddRandomBlessingToHand = 5,
     AddSpecificCardToHand = 6,
     DamageAllEnemies = 7,
+    UpgradeIt = 8,
 
 }
 

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Chain Lightning +1
   includeInGame: 1
-  cardDescription: Deal 8 Magic Damage to a random enemy 3 times.
+  cardDescription: Deal 6 Magic Damage to a random enemy 3 times.
   cardSprite: {fileID: 21300000, guid: 0b2ba20c4452fb64fa5e1059c42530e7, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -93,7 +93,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 8
+    baseDamageValue: 6
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0

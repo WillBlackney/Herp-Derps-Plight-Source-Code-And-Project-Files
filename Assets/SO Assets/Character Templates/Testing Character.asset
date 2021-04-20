@@ -27,7 +27,7 @@ MonoBehaviour:
   power: 0
   initiative: 10
   stamina: 4
-  draw: 4
+  draw: 5
   baseCrit: 50
   critModifier: 30
   serializedPassiveManager:
@@ -97,6 +97,7 @@ MonoBehaviour:
     torturerStacks: 0
     sadisticStacks: 0
     bullyStacks: 0
+    stoneFormStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -118,10 +119,12 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
-  - {fileID: 11400000, guid: 0415e9076c220394aaccb9c49a9a5b68, type: 2}
-  - {fileID: 11400000, guid: 0415e9076c220394aaccb9c49a9a5b68, type: 2}
-  - {fileID: 11400000, guid: 0415e9076c220394aaccb9c49a9a5b68, type: 2}
-  - {fileID: 11400000, guid: 3515e3b8e92620548af756ddbf500130, type: 2}
+  - {fileID: 11400000, guid: 59f215c7a9dc82b4fbd56c3acc3c0452, type: 2}
+  - {fileID: 11400000, guid: 167119fc3e17fb24e868eb3d578f3dda, type: 2}
+  - {fileID: 11400000, guid: 59f215c7a9dc82b4fbd56c3acc3c0452, type: 2}
+  - {fileID: 11400000, guid: 167119fc3e17fb24e868eb3d578f3dda, type: 2}
+  - {fileID: 11400000, guid: 52a78a26d41903149b12aee8916baba4, type: 2}
+  - {fileID: 11400000, guid: 05de27b26c209fa449239a2f5a75767c, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1

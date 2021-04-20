@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Spray And Pray
   includeInGame: 1
-  cardDescription: Deal 5 Physical damage to a random enemy 5 times. Expend.
+  cardDescription: Deal 5 Physical damage to a random enemy 4 times. Expend.
   cardSprite: {fileID: 21300000, guid: c3af7367b88bd7a4999013b96c192e6f, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -54,7 +54,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '5 '
+    phrase: '4 '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -87,7 +87,7 @@ MonoBehaviour:
     chooseTargetRandomly: 1
     passiveApplicationLoops: 0
     validRandomTargetsType: 0
-    damageLoops: 5
+    damageLoops: 4
     drawSpecificType: 0
     specificTypeDrawn: 0
     discoveryLocation: 0

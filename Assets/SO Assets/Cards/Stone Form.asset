@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Stone Form
   includeInGame: 1
-  cardDescription: 'Gain 2 Barrier and 2 Grit. Expend. '
+  cardDescription: Your Block does not expire on activation end. Expend.
   cardSprite: {fileID: 21300000, guid: 3f03f09891f5b7448bb998df50c2fc2e, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -38,31 +38,15 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Gain '
-  - color: 2
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: '2 '
+    phrase: 'Your '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Barrier '
+    phrase: 'Block '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'and '
-  - color: 2
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: '2 '
-  - color: 3
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: Grit
-  - color: 1
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: '.
+    phrase: 'does not expire on activation end.
 
 '
   - color: 3
@@ -125,8 +109,8 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: 1
-      passiveStacks: 2
+      passiveData: 87
+      passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
@@ -146,93 +130,15 @@ MonoBehaviour:
       projectileFired: 0
       projectileStartPosition: 0
       onCharacter: 0
-    visualEventsOnFinish:
-    - eventType: 6
-      screenOverlayType: 0
-      overlayColor: 0
-      overlayFadeInTime: 0
-      overlayDuration: 0
-      overlayFadeOutTime: 0
-      particleEffect: 0
-      cameraShake: 0
-      movementAnimation: 0
-      soundEffect: 0
-      characterAnimation: 0
-      delayDuration: 0.5
-      projectileFired: 0
-      projectileStartPosition: 0
-      onCharacter: 0
-    visualEventsOnDamageLoopStart: []
-    visualEventsOnDamageLoopFinish: []
-  - weaponRequirement: 0
-    targetRequirement: 0
-    cardEffectType: 2
-    splitTargetEffect: 0
-    splitTargetType: 0
-    characterSummoned: {fileID: 0}
-    amountSummoned: 1
-    modelFadeInSpeed: 0
-    uiFadeInSpeed: 0
-    summonedCreatureVisualEvents: []
-    removeBlockFrom: 0
-    modifyDeckCardEffect: 0
-    permanentBlockGain: 0
-    permanentDamageGain: 0
-    chooseTargetRandomly: 0
-    passiveApplicationLoops: 0
-    validRandomTargetsType: 0
-    damageLoops: 0
-    drawSpecificType: 0
-    specificTypeDrawn: 0
-    discoveryLocation: 0
-    talentSchoolFilter: 0
-    rarityFilter: 0
-    upgradeFilter: 1
-    cardTypeFilter: 0
-    blessing: 0
-    sourceSpellsOnly: 0
-    onDiscoveryChoiceMadeEffects: []
-    onChooseCardInHandChoiceMadeEffects: []
-    modifyCardsInHandEffects: []
-    drawStacksFromOverload: 0
-    drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 0
-    baseDamageValue: 0
-    drawBaseDamageFromCurrentBlock: 0
-    drawBaseDamageFromTargetPoisoned: 0
-    drawBaseDamageFromTargetBurning: 0
-    drawBaseDamageFromTargetWeakened: 0
-    drawBaseDamageFromMeleeAttacksPlayed: 0
-    drawBaseDamageFromOverloadOnSelf: 0
-    drawBaseDamageFromBurningOnSelf: 0
-    baseDamageMultiplier: 1
-    useEachIndividualsStackCount: 1
-    damageType: 0
-    healthRestored: 0
-    healthLost: 0
-    energyGained: 0
-    cardsDrawn: 0
-    extraDrawEffect: 0
-    cardEnergyReduction: 0
-    passivePairing:
-      passiveData: 14
-      passiveStacks: 2
-    cardAdded: {fileID: 0}
-    copiesAdded: 0
-    blessingsGained: 0
-    visualEventsOnStart: []
     visualEventsOnFinish: []
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
   cardPassiveEffects: []
   keyWordModels:
-  - kewWordType: 8
+  - kewWordType: 9
     weaponRequirement: 0
-    passiveType: 1
-  - kewWordType: 8
-    weaponRequirement: 0
-    passiveType: 14
+    passiveType: 0
   - kewWordType: 1
     weaponRequirement: 0
     passiveType: 0

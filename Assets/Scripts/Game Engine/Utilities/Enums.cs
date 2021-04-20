@@ -261,6 +261,7 @@ public enum Passive
     Silenced = 43,
     SoulCollector = 56,
     Source = 59,
+    StoneForm = 87,
     TakenAim = 39,
     Taunted = 29,
     TemporaryDexterity = 30,

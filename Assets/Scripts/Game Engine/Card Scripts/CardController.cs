@@ -2236,7 +2236,7 @@ public class CardController : Singleton<CardController>
         }
 
         // Do effect according to loops (e.g. deal damage to a random enemy 3 times type card)
-        if(card.cardEffects.Count> 0)
+        if(card.cardEffects.Count > 0)
         {
             CardEffect ce = card.cardEffects[0];
             if (ce != null &&
@@ -2245,6 +2245,9 @@ public class CardController : Singleton<CardController>
             {
                 loops = ce.damageLoops;
             }
+
+            // TO DO: chain logic goes here maybe?
+
             else if (ce != null &&
                 ce.cardEffectType == CardEffectType.ApplyPassiveToTarget &&
                 ce.chooseTargetRandomly)
@@ -3019,6 +3022,14 @@ public class CardController : Singleton<CardController>
                         {
                             ExpendCard(c, false, QueuePosition.Front, 0, 0);
                         }
+
+                        // Upgrade
+                        else if (modEffect.modifyEffect == ModifyAllCardsInHandEffectType.UpgradeIt)
+                        {
+                            if(IsCardUpgradeable(c))
+                                HandleUpgradeCardForCharacterEntity(c);
+                        }
+                       
                     }                  
                 }
 
@@ -5832,6 +5843,8 @@ public class CardController : Singleton<CardController>
         CharacterEntityModel owner = card.owner;
 
         CardData upgradeData = FindUpgradedCardData(GetCardDataFromLibraryByName(card.cardName));
+        if (upgradeData == null) return;                  
+
         Card upgradedCard = BuildCardFromCardData(upgradeData, owner);
 
         // Remove card from which ever collection its in, then add in the upgraded card
