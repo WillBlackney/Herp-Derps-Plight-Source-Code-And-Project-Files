@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a6346e66fdb7e47bd30f751d29c6a7, type: 3}
   m_Name: Holy Grail
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: 82aaf459531e15041b061470bb39b093, type: 3}
+  itemSprite: {fileID: 21300000, guid: 476bb0b2558d7a44aaec3287d3f66ccd, type: 3}
   itemName: Holy Grail
   itemType: 5
   itemRarity: 1
   lootable: 1
-  includeInLibrary: 0
+  includeInLibrary: 1
   passivePairings:
   - passiveData: 7
     passiveStacks: 1
@@ -25,7 +25,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'On activation start, add a random '
+    phrase: 'On activation start, add a '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: to your hand.
+    phrase: card to your hand.
   keyWordModels:
   - kewWordType: 5
     weaponRequirement: 0

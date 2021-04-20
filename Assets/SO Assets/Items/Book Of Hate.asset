@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9a6346e66fdb7e47bd30f751d29c6a7, type: 3}
+  m_Name: Book Of Hate
+  m_EditorClassIdentifier: 
+  itemSprite: {fileID: 21300000, guid: f6e269621befbdf4db205cff9b727e0f, type: 3}
+  itemName: Book Of Hate
+  itemType: 5
+  itemRarity: 2
+  lootable: 1
+  includeInLibrary: 1
+  passivePairings:
+  - passiveData: 62
+    passiveStacks: 1
+  customDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'On activation end, apply '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: '1 '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Wrath '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: to a random ally.
+  keyWordModels:
+  - kewWordType: 8
+    weaponRequirement: 0
+    passiveType: 38

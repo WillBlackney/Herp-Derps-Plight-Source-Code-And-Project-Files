@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9a6346e66fdb7e47bd30f751d29c6a7, type: 3}
   m_Name: Tough Gauze
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: 48e33e43ae2b88b48a3fb165fb0fa2ed, type: 3}
+  itemSprite: {fileID: 21300000, guid: 5eb78c9b0dbbfd94fa6813835a2e71cd, type: 3}
   itemName: Tough Gauze
   itemType: 5
-  itemRarity: 1
+  itemRarity: 2
   lootable: 1
   includeInLibrary: 1
   passivePairings:
@@ -34,7 +34,4 @@ MonoBehaviour:
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: health.
-  keyWordModels:
-  - kewWordType: 8
-    weaponRequirement: 0
-    passiveType: 73
+  keyWordModels: []

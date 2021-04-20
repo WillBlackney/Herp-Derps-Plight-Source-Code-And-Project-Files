@@ -2164,7 +2164,7 @@ public class CardController : Singleton<CardController>
         }
 
         // Check 'Recycling' state
-        if (StateController.Instance.DoesPlayerHaveState(StateName.Recycling))
+        if (StateController.Instance.DoesPlayerHaveState(StateName.Recycling) )
         {
             // Apply block gain
             CharacterEntityController.Instance.GainBlock
