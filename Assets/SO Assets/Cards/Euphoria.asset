@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Euphoria
   m_EditorClassIdentifier: 
   cardName: Euphoria
+  includeInGame: 0
   cardDescription: Set the cost of all cards in hand to 0 this combat. Expend.
   cardSprite: {fileID: 21300000, guid: cd140ed9aa8b6ee4fb7e745f55c7b709, type: 3}
   xEnergyCost: 0
@@ -21,8 +22,6 @@ MonoBehaviour:
   targettingType: 0
   talentSchool: 1
   rarity: 4
-  racialCard: 0
-  originRace: 0
   upgradeable: 1
   upgradeLevel: 0
   expend: 1
@@ -31,6 +30,10 @@ MonoBehaviour:
   unplayable: 0
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
+  affliction: 0
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -64,7 +67,11 @@ MonoBehaviour:
     phrase: .
   cardEffects: []
   cardEventListeners: []
+  cardPassiveEffects: []
   keyWordModels:
+  - kewWordType: 17
+    weaponRequirement: 0
+    passiveType: 0
   - kewWordType: 10
     weaponRequirement: 0
     passiveType: 0

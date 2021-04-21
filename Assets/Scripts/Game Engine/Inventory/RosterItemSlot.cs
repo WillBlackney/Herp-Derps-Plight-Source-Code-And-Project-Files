@@ -40,6 +40,7 @@ public enum RosterSlotType
     None = 0,
     TrinketOne = 1,
     TrinketTwo = 4,
+    TrinketThree = 5,
     MainHand = 2,
     OffHand = 3,
 }

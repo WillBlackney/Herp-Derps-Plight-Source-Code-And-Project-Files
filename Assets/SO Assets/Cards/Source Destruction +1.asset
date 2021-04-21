@@ -200,6 +200,9 @@ MonoBehaviour:
   cardEventListeners: []
   cardPassiveEffects: []
   keyWordModels:
+  - kewWordType: 17
+    weaponRequirement: 0
+    passiveType: 0
   - kewWordType: 13
     weaponRequirement: 0
     passiveType: 0

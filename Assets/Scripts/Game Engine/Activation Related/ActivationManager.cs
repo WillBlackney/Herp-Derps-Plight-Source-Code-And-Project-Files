@@ -207,7 +207,7 @@ public class ActivationManager : Singleton<ActivationManager>
                 // Brief pause before damage VFX
                 VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
 
-                // Reduce the health of all enemies by 50%
+                // Reduce the health of all enemies by 25%
                 foreach (CharacterEntityModel enemy in CharacterEntityController.Instance.AllEnemies)
                 {
                     // Damage VFX

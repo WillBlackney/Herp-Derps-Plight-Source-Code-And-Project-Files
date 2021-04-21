@@ -18,7 +18,7 @@ MonoBehaviour:
   cardSprite: {fileID: 21300000, guid: b7b37f112e8ed314c8a54b9b0a22d36b, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
-  cardType: 1
+  cardType: 5
   targettingType: 0
   talentSchool: 0
   rarity: 0
@@ -76,6 +76,9 @@ MonoBehaviour:
     cardCostsZero: 0
   cardPassiveEffects: []
   keyWordModels:
+  - kewWordType: 19
+    weaponRequirement: 0
+    passiveType: 0
   - kewWordType: 4
     weaponRequirement: 0
     passiveType: 0

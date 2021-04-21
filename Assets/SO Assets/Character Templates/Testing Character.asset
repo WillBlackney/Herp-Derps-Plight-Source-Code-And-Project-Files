@@ -98,6 +98,7 @@ MonoBehaviour:
     sadisticStacks: 0
     bullyStacks: 0
     stoneFormStacks: 0
+    thriftyStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -119,12 +120,11 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
-  - {fileID: 11400000, guid: 59f215c7a9dc82b4fbd56c3acc3c0452, type: 2}
-  - {fileID: 11400000, guid: 167119fc3e17fb24e868eb3d578f3dda, type: 2}
-  - {fileID: 11400000, guid: 59f215c7a9dc82b4fbd56c3acc3c0452, type: 2}
-  - {fileID: 11400000, guid: 167119fc3e17fb24e868eb3d578f3dda, type: 2}
-  - {fileID: 11400000, guid: 52a78a26d41903149b12aee8916baba4, type: 2}
-  - {fileID: 11400000, guid: 05de27b26c209fa449239a2f5a75767c, type: 2}
+  - {fileID: 11400000, guid: c4e7245fdab32974e9b9a03fb819216b, type: 2}
+  - {fileID: 11400000, guid: 7e0607c8c06c28a448dc2170bf23c76c, type: 2}
+  - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
+  - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
+  - {fileID: 11400000, guid: 07576fe85892f0b46a604ce986a50e6e, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1
@@ -144,6 +144,7 @@ MonoBehaviour:
     offHandItem: {fileID: 0}
     trinketOne: {fileID: 0}
     trinketTwo: {fileID: 0}
+    trinketThree: {fileID: 0}
   talentPairings: []
   startingTalentPoints: 0
   startingAttributePoints: 0

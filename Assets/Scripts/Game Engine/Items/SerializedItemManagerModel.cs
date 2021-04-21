@@ -10,4 +10,5 @@ public class SerializedItemManagerModel
     public ItemDataSO offHandItem;
     public ItemDataSO trinketOne;
     public ItemDataSO trinketTwo;
+    public ItemDataSO trinketThree;
 }

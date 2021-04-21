@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Exhausted
   m_EditorClassIdentifier: 
   cardName: Exhausted
+  includeInGame: 1
   cardDescription: Unplayable. When drawn, lose 1 Energy.
   cardSprite: {fileID: 21300000, guid: 8edbff198a4f1454db3e9f97c9e8dede, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
-  cardType: 1
+  cardType: 5
   targettingType: 0
   talentSchool: 0
   rarity: 0
@@ -73,6 +74,9 @@ MonoBehaviour:
     cardCostsZero: 0
   cardPassiveEffects: []
   keyWordModels:
+  - kewWordType: 19
+    weaponRequirement: 0
+    passiveType: 0
   - kewWordType: 4
     weaponRequirement: 0
     passiveType: 0

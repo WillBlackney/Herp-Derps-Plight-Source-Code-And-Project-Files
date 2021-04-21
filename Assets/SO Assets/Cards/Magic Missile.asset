@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Magic Missile
   m_EditorClassIdentifier: 
   cardName: Magic Missile
+  includeInGame: 0
   cardDescription: Deal 6 Magic damage.
   cardSprite: {fileID: 21300000, guid: 7587b8d2bff4dd34780eff474b7f48e1, type: 3}
   xEnergyCost: 0
@@ -75,6 +76,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -157,4 +159,7 @@ MonoBehaviour:
     visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
   cardPassiveEffects: []
-  keyWordModels: []
+  keyWordModels:
+  - kewWordType: 16
+    weaponRequirement: 0
+    passiveType: 0

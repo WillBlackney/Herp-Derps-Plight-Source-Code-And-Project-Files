@@ -8,6 +8,7 @@ public class ItemData
     public ItemType itemType;
     public Rarity itemRarity;
     public List<PassivePairingData> passivePairings;
+    public List<ItemEffect> itemEffects;
     public List<CustomString> customDescription;
     public List<KeyWordModel> keyWordModels;
     public bool lootable;

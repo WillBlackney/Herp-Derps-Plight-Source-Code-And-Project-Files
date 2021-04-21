@@ -964,10 +964,12 @@ public class EventSequenceController : Singleton<EventSequenceController>
         ShopController.Instance.BuildAllShopContentFromDataSet(ShopController.Instance.CurrentShopContentResultData);
 
         // Check 'Savvy Investors' state
+        /*
         if (StateController.Instance.DoesPlayerHaveState(StateName.SavvyInvestors))
         {
             PlayerDataManager.Instance.ModifyCurrentGold(40);
         }
+        */
 
         // Build scenery + characters
         LevelManager.Instance.EnableShopScenery();

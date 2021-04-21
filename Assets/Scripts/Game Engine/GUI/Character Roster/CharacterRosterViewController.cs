@@ -34,6 +34,7 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
     [SerializeField] private RosterItemSlot offHandItemSlot;
     [SerializeField] private RosterItemSlot trinketOneSlot;
     [SerializeField] private RosterItemSlot trinketTwoSlot;
+    [SerializeField] private RosterItemSlot trinketThreeSlot;
     [SerializeField] private RosterItemSlot[] allItemSlots;
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
@@ -345,6 +346,18 @@ public class CharacterRosterViewController : Singleton<CharacterRosterViewContro
         if (data.itemManager.trinketTwo != null)
         {
             BuildCharacterItemSlotFromItemData(trinketTwoSlot, data.itemManager.trinketTwo);
+        }
+
+        // Item slot 3, if unlocked by 'Resourcefulness' state
+        trinketThreeSlot.gameObject.SetActive(false);
+        if (StateController.Instance.DoesPlayerHaveState(StateName.Resourcefulness))
+        {
+            trinketThreeSlot.gameObject.SetActive(true);
+        }
+
+        if (data.itemManager.trinketThree != null)
+        {            
+            BuildCharacterItemSlotFromItemData(trinketThreeSlot, data.itemManager.trinketThree);
         }
     }
     private void BuildCharacterItemSlotFromItemData(RosterItemSlot slot, ItemData itemData)

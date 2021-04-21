@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Oath Of Protection +1
   m_EditorClassIdentifier: 
   cardName: Oath Of Protection +1
+  includeInGame: 0
   cardDescription: 'Give an ally 16 Block. Innate. Expend. '
   cardSprite: {fileID: 21300000, guid: 52f31ec76d11e3a4fb48eec5084956fe, type: 3}
   xEnergyCost: 0
@@ -72,6 +73,7 @@ MonoBehaviour:
     phrase: .
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 19
     splitTargetEffect: 0
     splitTargetType: 0
@@ -94,6 +96,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -147,6 +150,9 @@ MonoBehaviour:
   cardEventListeners: []
   cardPassiveEffects: []
   keyWordModels:
+  - kewWordType: 17
+    weaponRequirement: 0
+    passiveType: 0
   - kewWordType: 9
     weaponRequirement: 0
     passiveType: 0

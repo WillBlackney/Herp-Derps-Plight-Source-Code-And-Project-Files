@@ -90,6 +90,12 @@ public class KeyWordLayoutController : Singleton<KeyWordLayoutController>
         // Set text values
         panel.nameText.text = GetKeyWordNameString(data);
         panel.descriptionText.text = GetKeyWordDescriptionString(data);
+        if (data.useSprite && data.sprite != null)
+        {
+            panel.panelImageParent.SetActive(true);
+            panel.panelImage.sprite = data.sprite;
+        }
+            
     }
     private void BuildKeywordPanelFromPassiveData(KeyWordPanel panel, PassiveIconData data)
     {
@@ -140,12 +146,7 @@ public class KeyWordLayoutController : Singleton<KeyWordLayoutController>
     {
         string stringReturned = "empty";
 
-        if (data.kewWordType == KeyWordType.Passive)
-        {
-            // do passive stuff
-            //stringReturned = data.passiveType.ToString();
-        }
-        else
+        if (data.kewWordType != KeyWordType.Passive)
         {
             stringReturned = data.keyWordDescription;
         }
@@ -167,7 +168,8 @@ public class KeyWordLayoutController : Singleton<KeyWordLayoutController>
         }
         else
         {
-            stringReturned = data.kewWordType.ToString();
+            // stringReturned = data.kewWordType.ToString();
+            stringReturned = TextLogic.SplitByCapitals(data.kewWordType.ToString());
         }
 
         return stringReturned;

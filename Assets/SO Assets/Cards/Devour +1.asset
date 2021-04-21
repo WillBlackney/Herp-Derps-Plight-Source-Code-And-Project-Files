@@ -217,6 +217,9 @@ MonoBehaviour:
     cardCostsZero: 0
   cardPassiveEffects: []
   keyWordModels:
+  - kewWordType: 15
+    weaponRequirement: 0
+    passiveType: 0
   - kewWordType: 14
     weaponRequirement: 0
     passiveType: 0

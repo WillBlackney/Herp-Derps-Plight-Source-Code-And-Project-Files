@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Inflame +1
   m_EditorClassIdentifier: 
   cardName: Inflame +1
+  includeInGame: 0
   cardDescription: Your Melee Attack cards apply 3 Burning.
   cardSprite: {fileID: 21300000, guid: 74c4fd1d244b83546ab183c64c11e3ed, type: 3}
   xEnergyCost: 0
@@ -85,6 +86,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -153,6 +155,9 @@ MonoBehaviour:
   cardEventListeners: []
   cardPassiveEffects: []
   keyWordModels:
+  - kewWordType: 18
+    weaponRequirement: 0
+    passiveType: 0
   - kewWordType: 8
     weaponRequirement: 0
     passiveType: 2

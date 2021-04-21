@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Hellfire Hands
   m_EditorClassIdentifier: 
   cardName: Hellfire Hands
+  includeInGame: 0
   cardDescription: Increase the damage dealt by your Fire Ball cards by 3.
   cardSprite: {fileID: 21300000, guid: 7b11ce2b12e6e914292ea61cf7f2b2d9, type: 3}
   xEnergyCost: 0
@@ -56,6 +57,7 @@ MonoBehaviour:
     phrase: .
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
@@ -78,6 +80,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -145,4 +148,7 @@ MonoBehaviour:
     visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
   cardPassiveEffects: []
-  keyWordModels: []
+  keyWordModels:
+  - kewWordType: 17
+    weaponRequirement: 0
+    passiveType: 0

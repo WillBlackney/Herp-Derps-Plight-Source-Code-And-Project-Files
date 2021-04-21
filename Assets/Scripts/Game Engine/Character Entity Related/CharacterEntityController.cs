@@ -273,9 +273,6 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
         // Set up passive traits
         PassiveController.Instance.BuildCharacterEntityPassivesFromSummonedCharacterData(character, data);
-
-        // Set up items
-        //ItemController.Instance.RunItemSetupOnCharacterEntityFromItemManagerData(character, data.itemManager);
     }
     private void SetupCharacterFromCharacterData(CharacterEntityModel character, CharacterData data)
     {
@@ -640,7 +637,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
     #region
     public void GainBlock(CharacterEntityModel character, int blockGained, bool showVFX = true)
     {
-        Debug.Log("CharacterEntityController.ModifyBlock() called for " + character.myName);
+        Debug.Log("CharacterEntityController.GainBlock() called for " + character.myName);
 
         int finalBlockGainValue = blockGained;
         int characterFinalBlockValueForVisual = 0;

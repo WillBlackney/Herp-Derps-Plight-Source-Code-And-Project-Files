@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Intimidating Aura
   m_EditorClassIdentifier: 
   cardName: Intimidating Aura
+  includeInGame: 0
   cardDescription: On activation start, apply 1 Vulnerable to a random enemy. Expend.
   cardSprite: {fileID: 21300000, guid: 4916faae99443c443ba1e1aae678adea, type: 3}
   xEnergyCost: 0
@@ -85,6 +86,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -138,6 +140,9 @@ MonoBehaviour:
   cardEventListeners: []
   cardPassiveEffects: []
   keyWordModels:
+  - kewWordType: 18
+    weaponRequirement: 0
+    passiveType: 0
   - kewWordType: 8
     weaponRequirement: 0
     passiveType: 36

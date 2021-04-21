@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Rake +1
   m_EditorClassIdentifier: 
   cardName: Rake +1
+  includeInGame: 0
   cardDescription: 'Deal 10 Physical damage.
 
     Apply 6 Bleeding.'
@@ -91,6 +92,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -225,6 +227,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -263,6 +266,9 @@ MonoBehaviour:
   cardEventListeners: []
   cardPassiveEffects: []
   keyWordModels:
+  - kewWordType: 15
+    weaponRequirement: 0
+    passiveType: 0
   - kewWordType: 8
     weaponRequirement: 0
     passiveType: 58

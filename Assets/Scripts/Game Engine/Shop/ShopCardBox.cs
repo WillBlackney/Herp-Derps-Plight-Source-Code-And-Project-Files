@@ -72,18 +72,26 @@ public class CardPricePairing
     public CardPricePairing(CardData data)
     {
         cardData = data;
+        int finalCost = 0;
         if(data.rarity == Rarity.Common)
         {
-            goldCost = RandomGenerator.NumberBetween(GlobalSettings.Instance.commonCardCostLowerLimit, GlobalSettings.Instance.commonCardCostUpperLimit);
+            finalCost = RandomGenerator.NumberBetween(GlobalSettings.Instance.commonCardCostLowerLimit, GlobalSettings.Instance.commonCardCostUpperLimit);
         }
         else if (data.rarity == Rarity.Rare)
         {
-            goldCost = RandomGenerator.NumberBetween(GlobalSettings.Instance.rareCardCostLowerLimit, GlobalSettings.Instance.rareCardCostUpperLimit);
+            finalCost = RandomGenerator.NumberBetween(GlobalSettings.Instance.rareCardCostLowerLimit, GlobalSettings.Instance.rareCardCostUpperLimit);
         }
         else if (data.rarity == Rarity.Epic)
         {
-            goldCost = RandomGenerator.NumberBetween(GlobalSettings.Instance.epicCardCostLowerLimit, GlobalSettings.Instance.epicCardCostUpperLimit);
+            finalCost = RandomGenerator.NumberBetween(GlobalSettings.Instance.epicCardCostLowerLimit, GlobalSettings.Instance.epicCardCostUpperLimit);
         }
+
+        if (StateController.Instance.DoesPlayerHaveState(StateName.SavvyInvestors))
+        {
+            finalCost = finalCost / 2;
+        }
+
+        goldCost = finalCost;
     }
 }
 

@@ -54,6 +54,7 @@ public class ItemController : Singleton<ItemController>
         i.itemType = data.itemType;
         i.itemRarity = data.itemRarity;
         i.passivePairings = data.passivePairings;
+        i.itemEffects = data.itemEffects;
         i.lootable = data.lootable;
         i.includeInLibrary = data.includeInLibrary;
 
@@ -80,6 +81,7 @@ public class ItemController : Singleton<ItemController>
         i.itemType = data.itemType;
         i.itemRarity = data.itemRarity;
         i.passivePairings = data.passivePairings;
+        i.itemEffects = data.itemEffects;
         i.lootable = data.lootable;
         i.includeInLibrary = data.includeInLibrary;
 
@@ -226,6 +228,10 @@ public class ItemController : Singleton<ItemController>
         {
             ApplyItemEffectsToCharacterEntity(character, character.iManager.trinketTwo);
         }
+        if (character.iManager.trinketThree != null)
+        {
+            ApplyItemEffectsToCharacterEntity(character, character.iManager.trinketThree);
+        }
     }    
     private void ApplyItemEffectsToCharacterEntity(CharacterEntityModel character, ItemData item)
     {
@@ -237,6 +243,49 @@ public class ItemController : Singleton<ItemController>
         }
 
         // TO DO: apply non passive related effects
+        foreach(ItemEffect ie in item.itemEffects)
+        {
+            if(ie.effect == ItemEffectType.ModifyStartingBlock)
+            {
+                CharacterEntityController.Instance.GainBlock(character, ie.startingBlockBonus, false);
+            }
+            else if (ie.effect == ItemEffectType.ModifyCoreAttribute)
+            {
+                if(ie.attribute == CoreAttribute.Dexterity)
+                {
+                    CharacterEntityController.Instance.ModifyDexterity(character, ie.attributeBonus);
+                }
+                else if (ie.attribute == CoreAttribute.Constitution)
+                {
+                    CharacterEntityController.Instance.ModifyConstitution(character, ie.attributeBonus);
+                }
+                else if (ie.attribute == CoreAttribute.Intelligence)
+                {
+                    CharacterEntityController.Instance.ModifyIntelligence(character, ie.attributeBonus);
+                }
+                else if (ie.attribute == CoreAttribute.Draw)
+                {
+                    CharacterEntityController.Instance.ModifyDraw(character, ie.attributeBonus);
+                }
+                else if (ie.attribute == CoreAttribute.Initiative)
+                {
+                    CharacterEntityController.Instance.ModifyInitiative(character, ie.attributeBonus);
+                }
+                else if (ie.attribute == CoreAttribute.Stamina)
+                {
+                    CharacterEntityController.Instance.ModifyStamina(character, ie.attributeBonus);
+                }
+                else if (ie.attribute == CoreAttribute.Strength)
+                {
+                    CharacterEntityController.Instance.ModifyStrength(character, ie.attributeBonus);
+                }
+                else if (ie.attribute == CoreAttribute.Wits)
+                {
+                    CharacterEntityController.Instance.ModifyWits(character, ie.attributeBonus);
+                }
+
+            }
+        }
 
     }
     public void CopyItemManagerDataIntoOtherItemManager(ItemManagerModel originalData, ItemManagerModel clone)
@@ -254,6 +303,7 @@ public class ItemController : Singleton<ItemController>
         clone.offHandItem = originalData.offHandItem;
         clone.trinketOne = originalData.trinketOne;
         clone.trinketTwo = originalData.trinketTwo;
+        clone.trinketThree = originalData.trinketThree;
     }
     public void CopySerializedItemManagerIntoStandardItemManager(SerializedItemManagerModel data, ItemManagerModel iManager)
     {
@@ -274,6 +324,10 @@ public class ItemController : Singleton<ItemController>
         if (data.trinketTwo != null)
         {
             iManager.trinketTwo = GetItemDataByName(data.trinketTwo.itemName);
+        }
+        if (data.trinketThree != null)
+        {
+            iManager.trinketThree = GetItemDataByName(data.trinketThree.itemName);
         }
 
     }
@@ -336,13 +390,11 @@ public class ItemController : Singleton<ItemController>
 
             if (slot.slotType == RosterSlotType.TrinketTwo)
                 character.itemManager.trinketTwo = newItem;
+
+            if (slot.slotType == RosterSlotType.TrinketThree)
+                character.itemManager.trinketThree = newItem;
         }
 
-
-        // check for previous item in slot /  if an item is also being removed
-        // if there is one, return it to inventory, remove bonuses of item?
-
-        // apply item to character
     }
     #endregion
 }

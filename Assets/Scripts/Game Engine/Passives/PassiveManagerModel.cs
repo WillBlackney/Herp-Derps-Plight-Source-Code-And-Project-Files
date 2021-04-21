@@ -78,6 +78,7 @@ public class PassiveManagerModel
     public int sadisticStacks;
     public int bullyStacks;
     public int stoneFormStacks;
+    public int thriftyStacks;
 
     // Aura passives
     public int encouragingAuraStacks;

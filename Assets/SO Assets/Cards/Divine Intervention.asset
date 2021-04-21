@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Divine Intervention
   m_EditorClassIdentifier: 
   cardName: Divine Intervention
+  includeInGame: 0
   cardDescription: Give 2 Grit to an ally. Expend.
   cardSprite: {fileID: 21300000, guid: 7600ace05c0ac49429cb2f31dfe4bf69, type: 3}
   xEnergyCost: 0
@@ -85,6 +86,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -183,6 +185,9 @@ MonoBehaviour:
   cardEventListeners: []
   cardPassiveEffects: []
   keyWordModels:
+  - kewWordType: 17
+    weaponRequirement: 0
+    passiveType: 0
   - kewWordType: 8
     weaponRequirement: 0
     passiveType: 14

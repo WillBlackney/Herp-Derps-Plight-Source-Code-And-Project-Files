@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Back Flip
   m_EditorClassIdentifier: 
   cardName: Back Flip
+  includeInGame: 0
   cardDescription: Gain 1 Energy and 5 Block.
   cardSprite: {fileID: 21300000, guid: f862310d5f3b8cc488b02242c0c88380, type: 3}
   xEnergyCost: 0
@@ -87,6 +88,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -191,6 +193,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -229,6 +232,9 @@ MonoBehaviour:
   cardEventListeners: []
   cardPassiveEffects: []
   keyWordModels:
+  - kewWordType: 17
+    weaponRequirement: 0
+    passiveType: 0
   - kewWordType: 10
     weaponRequirement: 0
     passiveType: 0

@@ -13,16 +13,15 @@ MonoBehaviour:
   m_Name: Dazed +1
   m_EditorClassIdentifier: 
   cardName: Dazed +1
+  includeInGame: 1
   cardDescription: Unplayable.
   cardSprite: {fileID: 21300000, guid: c451601fe544991478545910c262be2a, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
-  cardType: 1
+  cardType: 5
   targettingType: 0
   talentSchool: 0
   rarity: 0
-  racialCard: 0
-  originRace: 0
   upgradeable: 0
   upgradeLevel: 1
   expend: 0
@@ -31,6 +30,10 @@ MonoBehaviour:
   unplayable: 1
   lifeSteal: 0
   blessing: 0
+  sourceSpell: 0
+  affliction: 1
+  racialCard: 0
+  originRace: 0
   customDescription:
   - color: 3
     getPhraseFromCardValue: 0
@@ -44,7 +47,11 @@ MonoBehaviour:
 '
   cardEffects: []
   cardEventListeners: []
+  cardPassiveEffects: []
   keyWordModels:
+  - kewWordType: 19
+    weaponRequirement: 0
+    passiveType: 0
   - kewWordType: 4
     weaponRequirement: 0
     passiveType: 0

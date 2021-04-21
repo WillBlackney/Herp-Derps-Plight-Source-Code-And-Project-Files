@@ -19,10 +19,20 @@ public class KeyWordData
     [ShowIf("ShowDescription")]
     [TextArea]
     public string keyWordDescription;
+
+    [Header("Sprite Properties")] 
+    public bool useSprite;
+    [ShowIf("ShowSprite")]
+    [PreviewField(75)]
+    public Sprite sprite;
     #endregion
 
     // Odin Show if's
     #region
+    public bool ShowSprite()
+    {
+        return useSprite;
+    }
     public bool ShowWeaponRequirement()
     {
         return kewWordType == KeyWordType.WeaponRequirement;

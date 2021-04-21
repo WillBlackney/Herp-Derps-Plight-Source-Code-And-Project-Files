@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Guard +1
   m_EditorClassIdentifier: 
   cardName: Guard +1
+  includeInGame: 0
   cardDescription: Gain 8 Block.
   cardSprite: {fileID: 21300000, guid: a2d645cca7285834498b5b4d997481d1, type: 3}
   xEnergyCost: 0
@@ -75,6 +76,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -128,6 +130,9 @@ MonoBehaviour:
   cardEventListeners: []
   cardPassiveEffects: []
   keyWordModels:
+  - kewWordType: 17
+    weaponRequirement: 0
+    passiveType: 0
   - kewWordType: 9
     weaponRequirement: 0
     passiveType: 0

@@ -102,6 +102,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -213,6 +214,9 @@ MonoBehaviour:
     cardCostsZero: 1
   cardPassiveEffects: []
   keyWordModels:
+  - kewWordType: 16
+    weaponRequirement: 0
+    passiveType: 0
   - kewWordType: 5
     weaponRequirement: 0
     passiveType: 0

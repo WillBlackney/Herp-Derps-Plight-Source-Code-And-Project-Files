@@ -19,6 +19,11 @@ MonoBehaviour:
   lootable: 1
   includeInLibrary: 1
   passivePairings: []
+  itemEffects:
+  - effect: 2
+    attribute: 0
+    attributeBonus: 0
+    startingBlockBonus: 10
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0

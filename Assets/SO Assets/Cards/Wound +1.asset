@@ -20,7 +20,7 @@ MonoBehaviour:
   cardSprite: {fileID: 21300000, guid: dab75f0bdedc9a548a10c01fe50a7c91, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
-  cardType: 1
+  cardType: 5
   targettingType: 0
   talentSchool: 0
   rarity: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
-  affliction: 0
+  affliction: 1
   racialCard: 0
   originRace: 0
   customDescription:
@@ -76,6 +76,9 @@ MonoBehaviour:
     cardCostsZero: 0
   cardPassiveEffects: []
   keyWordModels:
+  - kewWordType: 19
+    weaponRequirement: 0
+    passiveType: 0
   - kewWordType: 4
     weaponRequirement: 0
     passiveType: 0

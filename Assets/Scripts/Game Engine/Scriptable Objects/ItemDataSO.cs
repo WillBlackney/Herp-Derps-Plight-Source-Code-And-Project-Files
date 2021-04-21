@@ -32,10 +32,42 @@ public class ItemDataSO : ScriptableObject
     [LabelWidth(100)]
     public List<PassivePairingData> passivePairings;
 
+    [BoxGroup("Item Effects Info", true, true)]
+    [LabelWidth(100)]
+    public List<ItemEffect> itemEffects;
+
     [VerticalGroup("Description Info")]
     [LabelWidth(200)]
     public List<CustomString> customDescription;
     [VerticalGroup("Description Info")]
     [LabelWidth(200)]
     public List<KeyWordModel> keyWordModels;
+}
+
+[Serializable]
+public class ItemEffect
+{
+    public ItemEffectType effect;
+    [ShowIf("ShowAttributeBonus")]
+    public CoreAttribute attribute;
+    [ShowIf("ShowAttributeBonus")]
+    public int attributeBonus;
+    [ShowIf("ShowStartingBlockBonus")]
+    public int startingBlockBonus;
+
+    public bool ShowAttributeBonus()
+    {
+        return effect == ItemEffectType.ModifyCoreAttribute;
+    }
+    public bool ShowStartingBlockBonus()
+    {
+        return effect == ItemEffectType.ModifyStartingBlock;
+    }
+
+}
+public enum ItemEffectType
+{
+    None = 0,
+    ModifyCoreAttribute = 1,
+    ModifyStartingBlock = 2,
 }

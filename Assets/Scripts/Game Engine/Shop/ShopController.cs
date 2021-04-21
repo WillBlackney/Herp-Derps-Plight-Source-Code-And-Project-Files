@@ -389,7 +389,7 @@ public class ShopController : Singleton<ShopController>
         List<ItemData> chosenItems = new List<ItemData>();
 
         // Divide cards by rarity
-        /*
+        
         foreach (ItemData i in allValidLootableItems)
         {
             if (i.itemRarity == Rarity.Common)
@@ -401,22 +401,24 @@ public class ShopController : Singleton<ShopController>
             else if (i.itemRarity == Rarity.Epic)
                 validEpics.Add(i);
         }
-        */
+        
 
+        /*
         for (int i = 0; i < 5; i++)
         {
             allValidLootableItems.Shuffle();
             chosenItems.Add(allValidLootableItems[0]);
             allValidLootableItems.Remove(allValidLootableItems[0]);
         }
+        */
 
-        /*
-        int commons = 2;
+        
+        int commons = 3;
         int rares = 2;
-        int epics = 1;
+       // int epics = 1;
 
 
-        // Randomly pick 2 commons, 2 rares and 1 epic
+        // Randomly pick 3 commons and 2 rares
         for (int i = 0; i < commons; i++)
         {
             validCommons.Shuffle();
@@ -429,6 +431,7 @@ public class ShopController : Singleton<ShopController>
             chosenItems.Add(validRares[0]);
             validRares.Remove(validRares[0]);
         }
+        /*
         for (int i = 0; i < epics; i++)
         {
             validEpics.Shuffle();

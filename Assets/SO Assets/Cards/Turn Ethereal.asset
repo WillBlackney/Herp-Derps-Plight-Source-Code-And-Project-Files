@@ -133,4 +133,7 @@ MonoBehaviour:
     visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
   cardPassiveEffects: []
-  keyWordModels: []
+  keyWordModels:
+  - kewWordType: 18
+    weaponRequirement: 0
+    passiveType: 0

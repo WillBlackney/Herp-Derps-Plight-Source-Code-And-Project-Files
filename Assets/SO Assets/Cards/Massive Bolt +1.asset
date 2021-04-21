@@ -194,4 +194,7 @@ MonoBehaviour:
     whileHoldingBlessing: 0
     cardCostsZero: 0
   cardPassiveEffects: []
-  keyWordModels: []
+  keyWordModels:
+  - kewWordType: 16
+    weaponRequirement: 0
+    passiveType: 0

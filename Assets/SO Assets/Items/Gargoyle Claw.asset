@@ -18,7 +18,9 @@ MonoBehaviour:
   itemRarity: 1
   lootable: 1
   includeInLibrary: 1
-  passivePairings: []
+  passivePairings:
+  - passiveData: 88
+    passiveStacks: 2
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0

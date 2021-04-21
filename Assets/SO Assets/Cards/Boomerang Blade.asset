@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Boomerang Blade
   m_EditorClassIdentifier: 
   cardName: Boomerang Blade
+  includeInGame: 0
   cardDescription: 'Deal 15 Physical damage. Reduce this card''s Energy cost by 1. '
   cardSprite: {fileID: 21300000, guid: 6515f2c25bb445c4590bffb2e1f867d7, type: 3}
   xEnergyCost: 0
@@ -97,6 +98,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -207,4 +209,7 @@ MonoBehaviour:
     whileHoldingBlessing: 0
     cardCostsZero: 0
   cardPassiveEffects: []
-  keyWordModels: []
+  keyWordModels:
+  - kewWordType: 15
+    weaponRequirement: 0
+    passiveType: 0

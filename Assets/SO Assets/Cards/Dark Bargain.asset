@@ -169,3 +169,6 @@ MonoBehaviour:
   - kewWordType: 1
     weaponRequirement: 0
     passiveType: 0
+  - kewWordType: 17
+    weaponRequirement: 0
+    passiveType: 0

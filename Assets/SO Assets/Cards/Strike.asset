@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Strike
   m_EditorClassIdentifier: 
   cardName: Strike
+  includeInGame: 0
   cardDescription: Deal 6 Physical damage.
   cardSprite: {fileID: 21300000, guid: 899c8605fde961c4caeac02f8f9d62f6, type: 3}
   xEnergyCost: 0
@@ -75,6 +76,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -157,4 +159,7 @@ MonoBehaviour:
     visualEventsOnDamageLoopFinish: []
   cardEventListeners: []
   cardPassiveEffects: []
-  keyWordModels: []
+  keyWordModels:
+  - kewWordType: 15
+    weaponRequirement: 0
+    passiveType: 0

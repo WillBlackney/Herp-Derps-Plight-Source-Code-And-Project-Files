@@ -358,6 +358,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyBully(newClone, originalData.bullyStacks, false);
         }
+        if (originalData.thriftyStacks != 0)
+        {
+            ModifyThrifty(newClone, originalData.thriftyStacks, false);
+        }
         #endregion
 
         // Special Defensive Passives
@@ -549,6 +553,7 @@ public class PassiveController : Singleton<PassiveController>
         pManager.sadisticStacks = original.sadisticStacks;
         pManager.bullyStacks = original.bullyStacks;
         pManager.stoneFormStacks = original.stoneFormStacks;
+        pManager.thriftyStacks = original.thriftyStacks;
 
         pManager.runeStacks = original.runeStacks;
         pManager.barrierStacks = original.barrierStacks;
@@ -853,6 +858,10 @@ public class PassiveController : Singleton<PassiveController>
         else if (originalData == "Holier Than Thou")
         {
             ModifyHolierThanThou(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Thrifty")
+        {
+            ModifyThrifty(pManager, stacks, showVFX, vfxDelay);
         }
 
         else if (originalData == "Tenacious")
@@ -4292,6 +4301,65 @@ public class PassiveController : Singleton<PassiveController>
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 {
                     VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Holier Than Thou Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+
+
+    }
+    public void ModifyThrifty(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyThrifty() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Thrifty");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.thriftyStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Thrifty!");
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Thrifty Removed!");
                     VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
                 });
             }

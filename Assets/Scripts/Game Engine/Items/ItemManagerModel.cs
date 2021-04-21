@@ -10,4 +10,5 @@ public class ItemManagerModel
     public ItemData offHandItem;
     public ItemData trinketOne;
     public ItemData trinketTwo;
+    public ItemData trinketThree;
 }

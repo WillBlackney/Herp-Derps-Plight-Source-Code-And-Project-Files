@@ -79,6 +79,8 @@ public class SpriteLibrary : Singleton<SpriteLibrary>
     public Sprite skill;
     [PreviewField(75)]
     public Sprite power;
+    [PreviewField(75)]
+    public Sprite affliction;
     #endregion
 
     // Logic 
@@ -217,7 +219,10 @@ public class SpriteLibrary : Singleton<SpriteLibrary>
         {
             spriteReturned = skill;
         }
-
+        else if (data == CardType.Affliction)
+        {
+            spriteReturned = affliction;
+        }
         return spriteReturned;
     }
     #endregion

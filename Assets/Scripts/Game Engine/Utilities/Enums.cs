@@ -14,6 +14,7 @@ public enum CardType
     MeleeAttack = 2,
     RangedAttack = 3,
     Power = 4,
+    Affliction = 5,
 };
 public enum TargettingType
 {
@@ -271,6 +272,7 @@ public enum Passive
     TemporaryStamina = 34,
     Tenacious = 78,
     Thorns = 63,
+    Thrifty = 88,
     Torturer = 82,
     ToxicAura = 50, 
     TranquilHate = 64,
@@ -293,6 +295,7 @@ public enum CoreAttribute
     Strength = 6,
     Intelligence = 7,
     Constitution = 8,
+    Initiative = 9,
 
 }
 public enum KeyWordType
@@ -311,7 +314,12 @@ public enum KeyWordType
     Unplayable = 4,
     SourceSpell = 13,
     Shank = 6,  
-    WeaponRequirement = 7,       
+    WeaponRequirement = 7,      
+    MeleeAttackCard = 15,
+    RangedAttackCard = 16,
+    SkillCard = 17,
+    PowerCard = 18,
+    AfflictionCard = 19,
 }
 #endregion
 

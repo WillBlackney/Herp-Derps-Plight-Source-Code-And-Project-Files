@@ -266,4 +266,7 @@ MonoBehaviour:
   cardPassiveEffects:
   - cardPassiveEffectType: 0
     passive: 0
-  keyWordModels: []
+  keyWordModels:
+  - kewWordType: 15
+    weaponRequirement: 0
+    passiveType: 0

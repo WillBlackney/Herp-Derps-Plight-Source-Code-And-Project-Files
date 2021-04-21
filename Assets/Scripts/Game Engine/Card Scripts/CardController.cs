@@ -133,6 +133,12 @@ public class CardController : Singleton<CardController>
         }
 
         AllCards = tempList.ToArray();
+
+        foreach(CardData c in AllCards)
+        {
+            if (c.affliction)
+                Debug.Log(c.cardName);
+        }
     }
 
     // Getters
@@ -2172,7 +2178,19 @@ public class CardController : Singleton<CardController>
 
             // Notication vfx
             VisualEventManager.Instance.CreateVisualEvent(() =>
-                VisualEffectManager.Instance.CreateStatusEffect(owner.characterEntityView.transform.position, "Recycling!"), QueuePosition.Back, 0, 0.25f);
+                VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Recycling!"), QueuePosition.Back, 0, 0.25f);
+        }
+
+        // Check 'Thrifty' passive
+        if (owner.pManager.thriftyStacks > 0)
+        {
+            // Apply block gain
+            CharacterEntityController.Instance.GainBlock
+                (owner, CombatLogic.Instance.CalculateBlockGainedByEffect(owner.pManager.thriftyStacks, owner, owner));
+
+            // Notication vfx
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Thrifty!"), QueuePosition.Back, 0, 0.25f);
         }
 
         // Check 'Adaptation' state
@@ -3987,18 +4005,20 @@ public class CardController : Singleton<CardController>
             }
         }
 
+
         // Resourcefullness state override
-        if ((card.cardType == CardType.MeleeAttack || card.cardType == CardType.RangedAttack) &&
-           StateController.Instance.DoesPlayerHaveState(StateName.Heresy))
+        if (StateController.Instance.DoesPlayerHaveState(StateName.ArmsMastery))
             return 1;
 
+        /*
         // Heresy state override
         if (card.cardType == CardType.Power &&
             StateController.Instance.DoesPlayerHaveState(StateName.Heresy))
             return 0;
+        */
 
         // Pistolero override
-        if(card.cardType == CardType.RangedAttack &&
+        if (card.cardType == CardType.RangedAttack &&
             card.owner != null &&
             card.owner.pManager != null &&
             card.owner.pManager.pistoleroStacks > 0)

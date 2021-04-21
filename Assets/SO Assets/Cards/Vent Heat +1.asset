@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Vent Heat +1
   m_EditorClassIdentifier: 
   cardName: Vent Heat +1
+  includeInGame: 0
   cardDescription: Remove all Burning from ANY target. Deal Magic damage to all enemies
     equal to the amount removed.
   cardSprite: {fileID: 21300000, guid: 48a07f13ec20d9b4b917fadf9b89829b, type: 3}
@@ -59,6 +60,7 @@ MonoBehaviour:
     phrase: damage to all enemies equal to the amount removed.
   cardEffects:
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 8
     splitTargetEffect: 0
     splitTargetType: 0
@@ -81,6 +83,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -207,6 +210,7 @@ MonoBehaviour:
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
   - weaponRequirement: 0
+    targetRequirement: 0
     cardEffectType: 35
     splitTargetEffect: 0
     splitTargetType: 0
@@ -229,6 +233,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -267,6 +272,9 @@ MonoBehaviour:
   cardEventListeners: []
   cardPassiveEffects: []
   keyWordModels:
+  - kewWordType: 17
+    weaponRequirement: 0
+    passiveType: 0
   - kewWordType: 8
     weaponRequirement: 0
     passiveType: 2

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Holier Than Thou
   m_EditorClassIdentifier: 
   cardName: Holier Than Thou
+  includeInGame: 0
   cardDescription: Whenever you play a Blessing, give the target 2 Block.
   cardSprite: {fileID: 21300000, guid: d28a32bee2b8ab848be02cbb4cfa75a2, type: 3}
   xEnergyCost: 0
@@ -83,6 +84,7 @@ MonoBehaviour:
     talentSchoolFilter: 0
     rarityFilter: 0
     upgradeFilter: 1
+    cardTypeFilter: 0
     blessing: 0
     sourceSpellsOnly: 0
     onDiscoveryChoiceMadeEffects: []
@@ -151,6 +153,9 @@ MonoBehaviour:
   cardEventListeners: []
   cardPassiveEffects: []
   keyWordModels:
+  - kewWordType: 18
+    weaponRequirement: 0
+    passiveType: 0
   - kewWordType: 5
     weaponRequirement: 0
     passiveType: 0
