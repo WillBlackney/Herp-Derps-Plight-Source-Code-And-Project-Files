@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Planted Feet
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: b5a3d011063f1b64cbccd0dd3f943406, type: 3}
+  passiveSprite: {fileID: 21300000, guid: 831878bb72d74264f88437161bd60935, type: 3}
   passiveName: Planted Feet
   passiveDescription:
   - color: 1

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Tenacious
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 0}
+  passiveSprite: {fileID: 21300000, guid: 9b6364c399850c9489d4a8406f6ffede, type: 3}
   passiveName: Tenacious
   passiveDescription:
   - color: 1

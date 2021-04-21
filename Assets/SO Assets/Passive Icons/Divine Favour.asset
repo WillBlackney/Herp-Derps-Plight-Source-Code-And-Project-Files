@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Divine Favour
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: 178a45ecd9b7ede49a65f3e13d374fd4, type: 3}
+  passiveSprite: {fileID: 21300000, guid: 54a4ddca0b7907d4a83c764eba3d61a6, type: 3}
   passiveName: Divine Favour
   passiveDescription:
   - color: 1

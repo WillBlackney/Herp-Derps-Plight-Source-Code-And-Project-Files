@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Ruthless
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: 295fe025bb47bb74fadcd87742ddc49b, type: 3}
+  passiveSprite: {fileID: 21300000, guid: a3941f5a0c1d62b4589d2143736d12b0, type: 3}
   passiveName: Ruthless
   passiveDescription:
   - color: 1

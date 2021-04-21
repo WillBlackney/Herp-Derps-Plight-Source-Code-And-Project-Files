@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Torturer
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 0}
+  passiveSprite: {fileID: 21300000, guid: c6906314565c14e4ca5138cbd9c2140f, type: 3}
   passiveName: Torturer
   passiveDescription:
   - color: 1

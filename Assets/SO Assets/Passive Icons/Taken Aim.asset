@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Taken Aim
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: b9150c17b0ed8f9488e8d54eb713ac73, type: 3}
+  passiveSprite: {fileID: 21300000, guid: c9e3ddd9b5da27943a8ef8d885010ffd, type: 3}
   passiveName: Taken Aim
   passiveDescription:
   - color: 1

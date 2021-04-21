@@ -53,7 +53,7 @@ MonoBehaviour:
     phoenixFormStacks: 0
     poisonousStacks: 0
     venomousStacks: 0
-    overloadStacks: 0
+    overloadStacks: 2
     fusionStacks: 0
     plantedFeetStacks: 0
     takenAimStacks: 0
@@ -80,7 +80,7 @@ MonoBehaviour:
     soulCollectorStacks: 0
     magicMagnetStacks: 0
     etherealStacks: 0
-    thornsStacks: 0
+    thornsStacks: 4
     tranquilHateStacks: 0
     inflamedStacks: 0
     shockingTouchStacks: 0
@@ -89,7 +89,7 @@ MonoBehaviour:
     reflexShotBonusDamageStacks: 0
     unbreakableStacks: 0
     pierceStacks: 0
-    regenerationStacks: 0
+    regenerationStacks: 1
     hurricaneStacks: 0
     holierThanThouStacks: 0
     tenaciousStacks: 0
@@ -100,22 +100,22 @@ MonoBehaviour:
     stoneFormStacks: 0
     thriftyStacks: 0
     encouragingAuraStacks: 0
-    shadowAuraStacks: 0
-    guardianAuraStacks: 0
+    shadowAuraStacks: 1
+    guardianAuraStacks: 2
     toxicAuraStacks: 0
     hatefulAuraStacks: 0
     intimidatingAuraStacks: 0
     provocativeAuraStacks: 0
     enragingAuraStacks: 3
-    wrathStacks: 0
+    wrathStacks: 2
     weakenedStacks: 0
     vulnerableStacks: 0
     gritStacks: 0
     disarmedStacks: 0
     silencedStacks: 0
     sleepStacks: 0
-    poisonedStacks: 0
-    burningStacks: 0
+    poisonedStacks: 2
+    burningStacks: 3
     bleedingStacks: 0
     fireBallBonusDamageStacks: 0
     sourceStacks: 0

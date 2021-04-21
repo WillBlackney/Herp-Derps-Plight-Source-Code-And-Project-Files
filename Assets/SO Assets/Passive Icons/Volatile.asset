@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Volatile
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: b7b37f112e8ed314c8a54b9b0a22d36b, type: 3}
+  passiveSprite: {fileID: 21300000, guid: 9c328861c70e8bd46ab825061cd38a03, type: 3}
   passiveName: Volatile
   passiveDescription:
   - color: 1

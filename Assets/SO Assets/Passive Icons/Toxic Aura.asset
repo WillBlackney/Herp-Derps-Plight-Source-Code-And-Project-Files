@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Toxic Aura
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: f589a4deb7b158149b1c6c7eaa5e013c, type: 3}
+  passiveSprite: {fileID: 21300000, guid: 8c4afa4f3e382d24985f7347425a8aa9, type: 3}
   passiveName: Toxic Aura
   passiveDescription:
   - color: 1

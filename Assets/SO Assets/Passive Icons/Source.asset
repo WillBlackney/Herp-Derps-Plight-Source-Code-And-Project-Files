@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Source
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: 0d8b0f4816d12e841b76d7c108d96b5e, type: 3}
+  passiveSprite: {fileID: 21300000, guid: 5eefe051e664c4b48b5d942071793e3d, type: 3}
   passiveName: Source
   passiveDescription:
   - color: 1

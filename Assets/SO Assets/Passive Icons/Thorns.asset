@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Thorns
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: e36b65592c88a0d468f95492e20a0d18, type: 3}
+  passiveSprite: {fileID: 21300000, guid: e33ceaff88f32014d926c1699a5dc4b3, type: 3}
   passiveName: Thorns
   passiveDescription:
   - color: 1

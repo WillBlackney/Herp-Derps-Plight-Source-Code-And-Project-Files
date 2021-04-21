@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Shocking Touch
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: 93daf307f4d6a9845bd66a1a02d8fb31, type: 3}
+  passiveSprite: {fileID: 21300000, guid: fc2683b43915275479c250955a73812e, type: 3}
   passiveName: Shocking Touch
   passiveDescription:
   - color: 1
