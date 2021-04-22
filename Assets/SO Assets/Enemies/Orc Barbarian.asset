@@ -19,7 +19,7 @@ MonoBehaviour:
   startingHealth: 30
   enableFlexibleMaxHealth: 1
   maxHealthFlexAmount: 4
-  maxHealth: 65
+  maxHealth: 62
   startingBlock: 0
   strength: 20
   intelligence: 20
@@ -37,6 +37,8 @@ MonoBehaviour:
     bonusStaminaStacks: 0
     bonusInitiativeStacks: 0
     bonusDrawStacks: 0
+    physicalDamageBonusStacks: 0
+    magicDamageBonusStacks: 0
     temporaryBonusPowerStacks: 0
     temporaryBonusDexterityStacks: 0
     temporaryBonusStaminaStacks: 0
@@ -59,7 +61,7 @@ MonoBehaviour:
     longDrawStacks: 0
     sharpenBladeStacks: 0
     consecrationStacks: 0
-    growingStacks: 0
+    growingStacks: 3
     cautiousStacks: 0
     infuriatedStacks: 0
     battleTranceStacks: 0
@@ -91,12 +93,21 @@ MonoBehaviour:
     regenerationStacks: 0
     hurricaneStacks: 0
     holierThanThouStacks: 0
+    tenaciousStacks: 0
+    patienceStacks: 0
+    torturerStacks: 0
+    sadisticStacks: 0
+    bullyStacks: 0
+    stoneFormStacks: 0
+    thriftyStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
     toxicAuraStacks: 0
     hatefulAuraStacks: 0
     intimidatingAuraStacks: 0
+    provocativeAuraStacks: 0
+    enragingAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -110,68 +121,6 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   allEnemyActions:
-  - actionName: Orcish War Cry
-    actionType: 2
-    intentImage: 4
-    actionLoops: 1
-    doThisOnFirstActivation: 1
-    canBeConsecutive: 0
-    prioritiseWhenRequirementsMet: 1
-    actionRequirements:
-    - requirementType: 9
-      requirementTypeValue: 0
-      passiveRequired: {fileID: 0}
-      statusStacksRequired: 0
-    actionEffects:
-    - visualEventsOnStart:
-      - eventType: 2
-        screenOverlayType: 0
-        overlayColor: 0
-        overlayFadeInTime: 0
-        overlayDuration: 0
-        overlayFadeOutTime: 0
-        particleEffect: 0
-        cameraShake: 0
-        movementAnimation: 0
-        soundEffect: 0
-        characterAnimation: 4
-        delayDuration: 0
-        projectileFired: 0
-        projectileStartPosition: 0
-        onCharacter: 0
-      visualEventsOnFinish:
-      - eventType: 6
-        screenOverlayType: 0
-        overlayColor: 0
-        overlayFadeInTime: 0
-        overlayDuration: 0
-        overlayFadeOutTime: 0
-        particleEffect: 0
-        cameraShake: 0
-        movementAnimation: 0
-        soundEffect: 0
-        characterAnimation: 0
-        delayDuration: 0.5
-        projectileFired: 0
-        projectileStartPosition: 0
-        onCharacter: 0
-      actionType: 2
-      effectLoops: 1
-      baseDamage: 0
-      damageType: 0
-      characterSummoned: {fileID: 0}
-      summonedCreatureStartPosition: 0
-      modelFadeInSpeed: 0
-      uiFadeInSpeed: 0
-      summonedCreatureVisualEvents: []
-      passiveApplied: {fileID: 11400000, guid: 404e8865747302a4380f96d3e7ea3f43, type: 2}
-      passiveStacks: 3
-      alsoHealSelf: 0
-      healAmount: 0
-      blockGained: 0
-      cardAdded: {fileID: 0}
-      copiesAdded: 0
-      collection: 0
   - actionName: Strike
     actionType: 0
     intentImage: 0
@@ -245,7 +194,7 @@ MonoBehaviour:
       visualEventsOnFinish: []
       actionType: 0
       effectLoops: 1
-      baseDamage: 6
+      baseDamage: 5
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0

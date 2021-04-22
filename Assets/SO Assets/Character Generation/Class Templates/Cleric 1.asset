@@ -18,7 +18,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 224627509ac2daf40975e8fc181a184c, type: 2}
   - {fileID: 11400000, guid: b5893652992663e4c8c50b87201d3cc0, type: 2}
   - {fileID: 11400000, guid: a826a1d3b3cc1aa46a73a923a6f954b6, type: 2}
-  - {fileID: 11400000, guid: f8e1f580ad2a2684eb52edcea2e534e2, type: 2}
   possibleOutfits:
   - {fileID: 11400000, guid: 320d2d04f5add574d9b24c284793bacc, type: 2}
   possibleWeapons:
@@ -26,10 +25,12 @@ MonoBehaviour:
     offHandItem: {fileID: 11400000, guid: a49466273aff6954d8e0303879ded604, type: 2}
     trinketOne: {fileID: 0}
     trinketTwo: {fileID: 0}
+    trinketThree: {fileID: 0}
   - mainHandItem: {fileID: 11400000, guid: 62a9acf524030624ea3db6b23448dd47, type: 2}
     offHandItem: {fileID: 11400000, guid: a49466273aff6954d8e0303879ded604, type: 2}
     trinketOne: {fileID: 0}
     trinketTwo: {fileID: 0}
+    trinketThree: {fileID: 0}
   strengthMod: 0
   intelligenceMod: 0
   dexterityMod: 2

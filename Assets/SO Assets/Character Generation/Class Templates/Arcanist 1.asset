@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4f6f3ac19f3b24389408288d63c16e, type: 3}
   m_Name: Arcanist 1
   m_EditorClassIdentifier: 
-  templateName: Arcanist
+  templateName: Arcanist OLD
   possibleRaces: 0100000004000000030000000600000008000000
   possibleDecks:
   - {fileID: 11400000, guid: ff9a7de8f9222f84eb4c901b007471ac, type: 2}
@@ -26,6 +26,7 @@ MonoBehaviour:
     offHandItem: {fileID: 0}
     trinketOne: {fileID: 0}
     trinketTwo: {fileID: 0}
+    trinketThree: {fileID: 0}
   strengthMod: 0
   intelligenceMod: 3
   dexterityMod: 0

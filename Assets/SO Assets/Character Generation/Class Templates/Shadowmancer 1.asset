@@ -27,6 +27,7 @@ MonoBehaviour:
     offHandItem: {fileID: 0}
     trinketOne: {fileID: 0}
     trinketTwo: {fileID: 0}
+    trinketThree: {fileID: 0}
   strengthMod: 0
   intelligenceMod: 3
   dexterityMod: 0

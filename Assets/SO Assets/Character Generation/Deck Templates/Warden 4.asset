@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 037dbb91702418b4e869afd5641058c4, type: 3}
-  m_Name: Berserker 6
+  m_Name: Warden 4
   m_EditorClassIdentifier: 
   cards:
   - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
   - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
-  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
-  - {fileID: 11400000, guid: 0ae33bc3304d3fd43876327dfdda083f, type: 2}
-  - {fileID: 11400000, guid: ef2b9ffdee54c0a48adddcc159a622a3, type: 2}
-  - {fileID: 11400000, guid: b31f4356f84f2bd48add48495139e0e5, type: 2}
+  - {fileID: 11400000, guid: 625a726a38536fe408db2acde5d23915, type: 2}
+  - {fileID: 11400000, guid: 625a726a38536fe408db2acde5d23915, type: 2}
+  - {fileID: 11400000, guid: c725ced37bae68e4ea02c145e66668d9, type: 2}
+  - {fileID: 11400000, guid: c725ced37bae68e4ea02c145e66668d9, type: 2}

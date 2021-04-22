@@ -36,6 +36,8 @@ MonoBehaviour:
     bonusStaminaStacks: 0
     bonusInitiativeStacks: 0
     bonusDrawStacks: 0
+    physicalDamageBonusStacks: 0
+    magicDamageBonusStacks: 0
     temporaryBonusPowerStacks: 0
     temporaryBonusDexterityStacks: 0
     temporaryBonusStaminaStacks: 0
@@ -90,12 +92,21 @@ MonoBehaviour:
     regenerationStacks: 0
     hurricaneStacks: 0
     holierThanThouStacks: 0
+    tenaciousStacks: 0
+    patienceStacks: 0
+    torturerStacks: 0
+    sadisticStacks: 0
+    bullyStacks: 0
+    stoneFormStacks: 0
+    thriftyStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
     toxicAuraStacks: 0
     hatefulAuraStacks: 0
     intimidatingAuraStacks: 0
+    provocativeAuraStacks: 0
+    enragingAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -113,10 +124,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
   - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
-  - {fileID: 11400000, guid: 983b96f46c4ba014287f9bce96277457, type: 2}
   - {fileID: 11400000, guid: c62cea059d102884a8aabb11de5b070c, type: 2}
   - {fileID: 11400000, guid: c62cea059d102884a8aabb11de5b070c, type: 2}
-  - {fileID: 11400000, guid: e5e8b4d6bcbb3294ea0627af8a6faba9, type: 2}
+  - {fileID: 11400000, guid: 041427921e8795c419cca680458f7428, type: 2}
+  - {fileID: 11400000, guid: 54c3fb628d827a54187ea7f01447bb67, type: 2}
   modelParts:
   - Human_Chest
   - Human_Face_1
@@ -131,6 +142,7 @@ MonoBehaviour:
     offHandItem: {fileID: 0}
     trinketOne: {fileID: 0}
     trinketTwo: {fileID: 0}
+    trinketThree: {fileID: 0}
   talentPairings:
   - talentSchool: 2
     talentLevel: 2
