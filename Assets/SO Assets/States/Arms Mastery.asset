@@ -22,22 +22,10 @@ MonoBehaviour:
     weaponRequirement: 0
     passiveType: 0
   customDescription:
-  - color: 3
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'Melee Attack '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'and '
-  - color: 3
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'Ranged Attack '
-  - color: 1
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'cards always cost '
+    phrase: 'Cards always cost '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0

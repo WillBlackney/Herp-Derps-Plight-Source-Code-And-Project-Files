@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Strike
   m_EditorClassIdentifier: 
   cardName: Strike
-  includeInGame: 0
+  includeInGame: 1
   cardDescription: Deal 6 Physical damage.
   cardSprite: {fileID: 21300000, guid: 899c8605fde961c4caeac02f8f9d62f6, type: 3}
   xEnergyCost: 0

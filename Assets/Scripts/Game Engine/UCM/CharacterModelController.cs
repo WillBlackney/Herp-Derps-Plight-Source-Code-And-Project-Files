@@ -73,6 +73,8 @@ public class CharacterModelController: Singleton<CharacterModelController>
             {
                 foreach (ItemDataSO itemData in ucme.itemsWithMyView)
                 {
+                    if (itemData == null)
+                        Debug.LogWarning("ItemData is null...");
                     if (itemData.itemName == iManager.offHandItem.itemName)
                     {
                         EnableAndSetElementOnModel(model, ucme);

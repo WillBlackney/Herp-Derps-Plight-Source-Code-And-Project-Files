@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0663eeee0d354bc47801d42908eedf9b, type: 3}
   m_Name: Resourcefulness
   m_EditorClassIdentifier: 
-  stateImage: {fileID: 21300000, guid: e879792da97529542b6afa2436f42d3b, type: 3}
+  stateImage: {fileID: 21300000, guid: 0fb274f4ae833334ea758f7191324fa8, type: 3}
   stateName: 25
   rarity: 1
   lootable: 1
-  includeInGame: 0
+  includeInGame: 1
   keyWordModels: []
   customDescription:
   - color: 1

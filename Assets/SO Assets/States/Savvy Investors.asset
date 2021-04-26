@@ -16,28 +16,20 @@ MonoBehaviour:
   stateName: 16
   rarity: 1
   lootable: 1
-  includeInGame: 0
+  includeInGame: 1
   keyWordModels: []
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Whenever you enter a '
-  - color: 3
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: Shop
-  - color: 1
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: ', gain '
+    phrase: 'Cards in shops cost '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '40 '
-  - color: 3
+    phrase: '50% '
+  - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: Gold.
+    phrase: less gold.
   hasStacks: 0
   baseStacks: 0

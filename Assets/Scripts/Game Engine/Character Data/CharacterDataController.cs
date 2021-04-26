@@ -424,7 +424,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
     public void HandleXpRewardPostCombat(EncounterType encounter, List<CharacterData> characters)
     {
         // Apply flat combat type xp reward
-        if (encounter == EncounterType.BasicEnemy)
+        if (encounter == EncounterType.BasicEnemy || encounter == EncounterType.MysteryCombat)
         {
             foreach (CharacterData character in characters)
             {
@@ -578,6 +578,23 @@ public class CharacterDataController : Singleton<CharacterDataController>
     }
     #endregion
 
+    // Bools + Conditionals
+    #region
+    public bool DoesPlayerHaveAtleastOneDeadCharacter()
+    {
+        bool bRet = false;
+
+        foreach(CharacterData c in AllPlayerCharacters)
+        {
+            if(c.health == 0)
+            {
+                bRet = true;
+                break;
+            }
+        }
+        return bRet;
+    }
+    #endregion
 
     // Misc Logic + Calculators
     #region

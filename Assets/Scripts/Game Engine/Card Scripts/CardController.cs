@@ -134,11 +134,6 @@ public class CardController : Singleton<CardController>
 
         AllCards = tempList.ToArray();
 
-        foreach(CardData c in AllCards)
-        {
-            if (c.affliction)
-                Debug.Log(c.cardName);
-        }
     }
 
     // Getters
@@ -355,7 +350,7 @@ public class CardController : Singleton<CardController>
 
         var query =
            from cardData in collectionQueried
-           where cardData.affliction == true
+           where cardData.affliction == true && cardData.upgradeLevel == 0
            select cardData;
 
         cardsReturned.AddRange(query);

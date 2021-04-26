@@ -52,26 +52,16 @@ public class PersistencyManager : Singleton<PersistencyManager>
         Debug.Log("BuildNewSaveFileOnNewGameStarted() chosen character = " + chosenCharacter.myName);
 
         // should randomize character?
-        if (MainMenuController.Instance.randomizeCharacters)
+        if (MainMenuController.Instance.randomizeStartingCharacter)
         {
-            List<CharacterData> randomCharacters = MainMenuController.Instance.GetThreeRandomAndDifferentTemplates();
-            chosenCharacter = randomCharacters[0];
+            chosenCharacter = CharacterDataController.Instance.AllCharacterTemplates
+                [RandomGenerator.NumberBetween(0, CharacterDataController.Instance.AllCharacterTemplates.Length - 1)];       
         }       
 
         // Create new character from selected data
         CharacterData newCharacter = CharacterDataController.Instance.CloneCharacterData(chosenCharacter);
         CharacterDataController.Instance.AutoAddCharactersRacialCard(newCharacter);
         CharacterDataController.Instance.AddCharacterToRoster(newCharacter);
-
-        // Build each character data object
-        /*
-        foreach (CharacterData data in chosenCharacters)
-        {
-            // Create new character from data
-            CharacterData newCharacter = CharacterDataController.Instance.CloneCharacterData(data);
-            CharacterDataController.Instance.AutoAddCharactersRacialCard(newCharacter);
-            CharacterDataController.Instance.AddCharacterToRoster(newCharacter);
-        }*/
 
         // Build general data
         PlayerDataManager.Instance.ModifyCurrentGold(-PlayerDataManager.Instance.CurrentGold);

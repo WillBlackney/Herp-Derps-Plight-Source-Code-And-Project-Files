@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Magic Missile +1
   m_EditorClassIdentifier: 
   cardName: Magic Missile +1
-  includeInGame: 0
+  includeInGame: 1
   cardDescription: Deal 8 Magic damage.
   cardSprite: {fileID: 21300000, guid: 7587b8d2bff4dd34780eff474b7f48e1, type: 3}
   xEnergyCost: 0

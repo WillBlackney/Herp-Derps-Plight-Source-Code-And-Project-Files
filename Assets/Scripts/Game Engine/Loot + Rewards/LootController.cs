@@ -248,7 +248,8 @@ public class LootController : Singleton<LootController>
 
         // Generate gold reward
         newLoot.goldReward = 0;
-        if(JourneyManager.Instance.CurrentEncounter == EncounterType.BasicEnemy)
+       
+        if (JourneyManager.Instance.CurrentEncounter == EncounterType.BasicEnemy)
         {
             newLoot.goldReward = RandomGenerator.NumberBetween
                 (GlobalSettings.Instance.basicEnemyGoldRewardLowerLimit, GlobalSettings.Instance.basicEnemyGoldRewardUpperLimit);
@@ -271,22 +272,29 @@ public class LootController : Singleton<LootController>
             newLoot.allCharacterCardChoices[i] = GenerateCharacterCardLootChoices(CharacterDataController.Instance.AllPlayerCharacters[i]);
         }
 
-        // Roll for a trinket reward
-        bool shouldGetTrinket = false;
-        int trinketRoll = RandomGenerator.NumberBetween(1, 100);
+        // Forced loot item
+        if (JourneyManager.Instance.CurrentEnemyWave.itemReward != null)
+            newLoot.itemReward = ItemController.Instance.GetItemDataByName(JourneyManager.Instance.CurrentEnemyWave.itemReward.itemName);
 
-        if (JourneyManager.Instance.CurrentEncounter == EncounterType.BasicEnemy &&
-         trinketRoll <= GlobalSettings.Instance.basicTrinketProbability)
-            shouldGetTrinket = true;
+        // Roll for a trinket reward normally
+        else
+        {          
+            bool shouldGetTrinket = false;
+            int trinketRoll = RandomGenerator.NumberBetween(1, 100);
 
-        if (JourneyManager.Instance.CurrentEncounter == EncounterType.EliteEnemy &&
-          trinketRoll <= GlobalSettings.Instance.eliteTrinketProbability)
-            shouldGetTrinket = true;
+            if (JourneyManager.Instance.CurrentEncounter == EncounterType.BasicEnemy &&
+             trinketRoll <= GlobalSettings.Instance.basicTrinketProbability)
+                shouldGetTrinket = true;
 
-        // Rolled successfully for trinket?
-        if (shouldGetTrinket)        
-            newLoot.itemReward = GetRandomTrinketLootReward();        
+            if (JourneyManager.Instance.CurrentEncounter == EncounterType.EliteEnemy &&
+              trinketRoll <= GlobalSettings.Instance.eliteTrinketProbability)
+                shouldGetTrinket = true;
 
+            // Rolled successfully for trinket?
+            if (shouldGetTrinket)
+                newLoot.itemReward = GetRandomTrinketLootReward();
+        }
+       
         return newLoot;
     }
     private ItemData GetRandomTrinketLootReward()

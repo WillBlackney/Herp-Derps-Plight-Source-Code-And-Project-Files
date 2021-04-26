@@ -567,6 +567,23 @@ public class CampSiteController : Singleton<CampSiteController>
         // Shuffle draw pile
         campDrawPile.Shuffle();
 
+        // Remove ressurect card from draw pile if player has no dead characters 
+        if (!CharacterDataController.Instance.DoesPlayerHaveAtleastOneDeadCharacter())
+        {
+            CampCard cardRemoved = null;
+            foreach(CampCard c in campDrawPile)
+            {
+                if(c.cardName == "Resurrection")
+                {
+                    cardRemoved = c;
+                    break;
+                }
+            }
+
+            if (cardRemoved != null)
+                campDrawPile.Remove(cardRemoved);
+        }
+
         for (int i = 0; i < currentCampDraw; i++)
         {
             // try find an innate card
@@ -578,7 +595,7 @@ public class CampSiteController : Singleton<CampSiteController>
                     cardDrawn = card;
                     break;
                 }
-            }
+            }            
 
             // did we find an innate card?
             if (cardDrawn != null)

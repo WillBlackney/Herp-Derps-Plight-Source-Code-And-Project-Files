@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Guard +1
   m_EditorClassIdentifier: 
   cardName: Guard +1
-  includeInGame: 0
+  includeInGame: 1
   cardDescription: Gain 8 Block.
   cardSprite: {fileID: 21300000, guid: a2d645cca7285834498b5b4d997481d1, type: 3}
   xEnergyCost: 0

@@ -34,7 +34,7 @@ public class MainMenuController : Singleton<MainMenuController>
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 
     [Header("Run Modifier Properties")]
-    [HideInInspector] public bool randomizeCharacters = false;
+    [HideInInspector] public bool randomizeStartingCharacter = false;
     [HideInInspector] public bool randomizeDecks = false;
     [HideInInspector] public bool improviseDecks = false;
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
@@ -142,14 +142,14 @@ public class MainMenuController : Singleton<MainMenuController>
     }
     public void OnRandomizeCharactersButtonClicked()
     {
-        if (randomizeCharacters)
+        if (randomizeStartingCharacter)
         {
-            randomizeCharacters = false;
+            randomizeStartingCharacter = false;
             randomizeCharactersButton.CrossMe();
         }
-        else if (!randomizeCharacters)
+        else if (!randomizeStartingCharacter)
         {
-            randomizeCharacters = true;
+            randomizeStartingCharacter = true;
             randomizeCharactersButton.TickMe();
         }
     }
@@ -617,7 +617,7 @@ public class MainMenuController : Singleton<MainMenuController>
     #region
     public void SetRunModifiersToDefaults()
     {
-        randomizeCharacters = false;
+        randomizeStartingCharacter = false;
         randomizeDecks = false;
         improviseDecks = false;
         randomizeCharactersButton.CrossMe();

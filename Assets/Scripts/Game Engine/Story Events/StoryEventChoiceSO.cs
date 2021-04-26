@@ -148,11 +148,20 @@ public class StoryChoiceEffect
     [ShowIf("ShowRandomCard")]
     public int randomCardAmount;
 
+    // Combat Fields
+    [Header("Card Settings")]
+    [ShowIf("ShowEnemyWave")]
+    public EnemyWaveSO enemyWave;
+
 
 
 
     // Odin Show Ifs
     #region
+    public bool ShowEnemyWave()
+    {
+        return effectType == StoryChoiceEffectType.StartCombat;
+    }
     public bool ShowMaxHealthGainedOrLost()
     {
         return effectType == StoryChoiceEffectType.ModifyMaxHealth;

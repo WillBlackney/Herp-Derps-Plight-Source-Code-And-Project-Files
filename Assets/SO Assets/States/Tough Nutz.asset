@@ -16,7 +16,7 @@ MonoBehaviour:
   stateName: 18
   rarity: 1
   lootable: 1
-  includeInGame: 1
+  includeInGame: 0
   keyWordModels:
   - kewWordType: 9
     weaponRequirement: 0

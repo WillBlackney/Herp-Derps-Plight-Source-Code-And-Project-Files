@@ -121,7 +121,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         LevelManager.Instance.ShowAllNodeViews();
 
         // Spawn enemies
-        EnemySpawner.Instance.SpawnEnemyWave("Basic", GlobalSettings.Instance.testingEnemyWave);
+        EnemySpawner.Instance.SpawnEnemyWave(GlobalSettings.Instance.testingEnemyWave);
         JourneyManager.Instance.IncrementWorldMapPosition();
 
         // Start a new combat event
@@ -444,6 +444,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         if ((encounter == EncounterType.BasicEnemy ||
             encounter == EncounterType.EliteEnemy ||
+             encounter == EncounterType.MysteryCombat ||
             encounter == EncounterType.BossEnemy) &&
             JourneyManager.Instance.CheckPointType == SaveCheckPoint.CombatStart
             )
@@ -452,6 +453,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         }
 
         else if ((encounter == EncounterType.BasicEnemy ||
+             encounter == EncounterType.MysteryCombat ||
             encounter == EncounterType.EliteEnemy) &&
             JourneyManager.Instance.CheckPointType == SaveCheckPoint.CombatEnd
             )
@@ -509,12 +511,38 @@ public class EventSequenceController : Singleton<EventSequenceController>
         MapView.Instance.HideMainMapView();
 
         // Cache previous encounter data 
+        EncounterType nextEncounterType = mapNode.Node.NodeType;
         EncounterType previousEncounter = JourneyManager.Instance.CurrentEncounter;
         EnemyWaveSO previousEnemyWave = JourneyManager.Instance.CurrentEnemyWave;
 
+        // If mystery node, roll for story event, combat or shop
+        if(nextEncounterType == EncounterType.Mystery)
+        {
+            int roll = RandomGenerator.NumberBetween(1, 100);
+            if(roll >= 71 && roll <= 90)
+            {
+                nextEncounterType = EncounterType.BasicEnemy;
+            }
+            else if (roll >= 91 && roll <= 95)
+            {
+                nextEncounterType = EncounterType.EliteEnemy;
+            }
+            else if (roll >= 96 && roll <= 100)
+            {
+                nextEncounterType = EncounterType.Shop;
+            }
+
+            // Force roll as combat event if no available story events
+            if(nextEncounterType == EncounterType.Mystery &&
+               StoryEventController.Instance.GetValidStoryEvents().Count == 0)
+                nextEncounterType = EncounterType.BasicEnemy;
+
+            Debug.Log("Rolling mystery event as: " + nextEncounterType.ToString());
+        }
+
         // Increment world position + set next encounter
         JourneyManager.Instance.IncrementWorldMapPosition();
-        JourneyManager.Instance.SetCurrentEncounterType(mapNode.Node.NodeType);
+        JourneyManager.Instance.SetCurrentEncounterType(nextEncounterType);
 
         // Destroy all characters and activation windows if the 
         // previous encounter was a combat event
@@ -613,7 +641,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         }
 
         // Mystery Event teardown
-        else if (previousEncounter == EncounterType.CampSite)
+        else if (previousEncounter == EncounterType.Mystery)
         {
             // Fade out Screen
             BlackScreenController.Instance.FadeOutScreen(1f);
@@ -688,17 +716,8 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // If next event is a combat, get + set enemy wave before saving to disk
         if (JourneyManager.Instance.CurrentEncounter == EncounterType.BasicEnemy ||
             JourneyManager.Instance.CurrentEncounter == EncounterType.EliteEnemy ||
-            JourneyManager.Instance.CurrentEncounter == EncounterType.BossEnemy ||
-            (JourneyManager.Instance.CurrentEncounter == EncounterType.Mystery && StoryEventController.Instance.GetValidStoryEvents().Count == 0))
+            JourneyManager.Instance.CurrentEncounter == EncounterType.BossEnemy)
         {
-            // Should have been a mystery event, but not mystery events are available to the player at their current
-            // stage, so just serve them a combat.
-            if(JourneyManager.Instance.CurrentEncounter == EncounterType.Mystery && StoryEventController.Instance.GetValidStoryEvents().Count == 0)
-            {
-                Debug.LogWarning("Attempted to start a mystery event, but none are valid: starting a basic combat instead");
-                JourneyManager.Instance.SetCurrentEncounterType(EncounterType.BasicEnemy);
-            }        
-            
             if (JourneyManager.Instance.CurrentEncounter == EncounterType.BasicEnemy)
             {
                 JourneyManager.Instance.SetCurrentEnemyWaveData 
@@ -841,7 +860,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Play battle music
         AudioManager.Instance.FadeOutSound(Sound.Music_Main_Menu_Theme_1, 1f);
-        if(enemyWave.combatDifficulty == CombatDifficulty.Basic)
+        if(enemyWave.combatDifficulty == CombatDifficulty.Basic || enemyWave.combatDifficulty == CombatDifficulty.Mystery)
         {
             AudioManager.Instance.AutoPlayBasicCombatMusic(1f);
         }
@@ -858,7 +877,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         CharacterEntityController.Instance.CreateAllPlayerCombatCharacters();
 
         // Spawn enemies
-        EnemySpawner.Instance.SpawnEnemyWave(enemyWave.combatDifficulty.ToString(), enemyWave);
+        EnemySpawner.Instance.SpawnEnemyWave(enemyWave);
 
         // move characters offscreen
         CharacterEntityController.Instance.MoveAllCharactersToOffScreenPosition();
@@ -1194,7 +1213,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
             {
                 bool flawless = false;
                 int combatXp = 0;
-                if(combatType == EncounterType.BasicEnemy)
+                if(combatType == EncounterType.BasicEnemy || combatType == EncounterType.MysteryCombat)
                 {
                     combatXp = GlobalSettings.Instance.basicCombatXpReward;
                 }

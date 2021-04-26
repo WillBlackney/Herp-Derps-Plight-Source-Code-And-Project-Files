@@ -12,11 +12,15 @@ public class EnemyWaveSO : ScriptableObject
     public string encounterName;
     [BoxGroup("General Info")]
     [LabelWidth(100)]
-
     public CombatDifficulty combatDifficulty;
+
     [BoxGroup("Enemy Groupings", centerLabel: true)]
     [LabelWidth(100)]
     public List<EnemyGroup> enemyGroups;
+    
+    [Header("Custom Loot Settings")]
+    [LabelWidth(100)]
+    public ItemDataSO itemReward;
 }
 
 [System.Serializable]

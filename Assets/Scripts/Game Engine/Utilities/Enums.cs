@@ -491,6 +491,7 @@ public enum CombatDifficulty
     Basic = 1,
     Elite = 2,
     Boss = 3,
+    Mystery = 4,
 }
 #endregion
 
@@ -645,6 +646,7 @@ public enum EncounterType
     CampSite = 6,
     Shop = 7,
     Mystery = 8,
+    MysteryCombat = 11,
     Treasure = 9,
     Shrine = 10,
 }

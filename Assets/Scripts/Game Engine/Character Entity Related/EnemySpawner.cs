@@ -12,7 +12,7 @@ public class EnemySpawner : Singleton<EnemySpawner>
 
     // Enemy Spawning + Related
     #region
-    public void SpawnEnemyWave(string enemyType = "Basic", EnemyWaveSO enemyWave = null)
+    public void SpawnEnemyWave(EnemyWaveSO enemyWave)
     {
         Debug.Log("SpawnEnemyWave() Called....");
         EnemyWaveSO enemyWaveSO = enemyWave;

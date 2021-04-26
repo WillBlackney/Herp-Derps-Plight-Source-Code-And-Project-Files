@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using MapSystem;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -520,9 +521,9 @@ public class StoryEventController : Singleton<StoryEventController>
         }
 
         // Start combat
-        else if (effect.effectType == StoryChoiceEffectType.GainCard)
+        else if (effect.effectType == StoryChoiceEffectType.StartCombat)
         {
-
+            HandleLoadStoryEventCombat(effect.enemyWave);
         }
 
     }
@@ -564,6 +565,29 @@ public class StoryEventController : Singleton<StoryEventController>
 
         // Finish
         AwaitingCardRemovalChoice = false;
+    }
+    private void HandleLoadStoryEventCombat(EnemyWaveSO enemyWave)
+    {
+        StartCoroutine(HandleLoadStoryEventCombatCoroutine(enemyWave));
+    }
+    private IEnumerator HandleLoadStoryEventCombatCoroutine(EnemyWaveSO enemyWave)
+    {
+        BlackScreenController.Instance.FadeOutScreen(1f);
+        yield return new WaitForSeconds(1);
+
+        // Close views and clear data
+        ClearCurrentStoryEvent();
+        HideMainScreen();
+
+        // Save + Update Journey manager
+        JourneyManager.Instance.SetCurrentEncounterType(EncounterType.MysteryCombat);
+        JourneyManager.Instance.SetCurrentEnemyWaveData(enemyWave);
+        JourneyManager.Instance.SetCheckPoint(SaveCheckPoint.CombatStart);
+        PersistencyManager.Instance.AutoUpdateSaveFile();
+
+        // Load combat
+        EventSequenceController.Instance.HandleLoadEncounter(JourneyManager.Instance.CurrentEncounter);
+
     }
     #endregion
 
