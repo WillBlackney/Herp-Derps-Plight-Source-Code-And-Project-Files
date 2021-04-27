@@ -16,7 +16,25 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '[Leave]'
+    phrase: '[Charge!]'
   effectDescription: []
   requirements: []
-  effects: []
+  effects:
+  - effectType: 26
+    target: 0
+    pageToLoad: {fileID: 0}
+    healType: 0
+    healPercentage: 0
+    healAmount: 0
+    maxHealthGainedOrLost: 0
+    damageAmount: 0
+    itemRewardType: 0
+    itemGained: {fileID: 0}
+    totalItemsGained: 1
+    loseAllGold: 0
+    goldGainedOrLost: 0
+    cardGained: {fileID: 0}
+    copiesGained: 1
+    randomCard: 0
+    randomCardAmount: 0
+    enemyWave: {fileID: 11400000, guid: 0d9e4908f816c0f4fb320983f29692c1, type: 2}

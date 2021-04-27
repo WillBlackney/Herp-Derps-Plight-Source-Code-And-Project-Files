@@ -17,7 +17,7 @@ MonoBehaviour:
     coin to do so. Mork lets out a hearty chuckle, his horrid breath filling the
     hall. \n\n\"Have it your way then, stupie heads. I just smash you and take your
     shinnies anyway.\"\n\nMork picks up his huge spiked club and stands to block
-    the doorway. \n\n\"Your move, chums...\"."
+    the doorway. \n\n\"Bring it on, chums...\"."
   allChoices:
   - {fileID: 11400000, guid: 83878743097d64545991f044049525a5, type: 2}
   pageSprite: {fileID: 8215007672910808227, guid: 4704bf5de30e3b24585471bcd15c8b49,

@@ -19,21 +19,21 @@ MonoBehaviour:
     the darkness. Upon reaching the end, you see a gigantic orc skeleton, complaining
     to itself as it rumages through the belongings of small pile of freshly slain
     adventurers. Upon noticing you, the undead orc stops its muttering and gives
-    a warm, toothy smile.
+    you a warm, toothy smile.
 
 
-    "Allo allo, beautiful night tonight, ain''t it? The
-    names Mork, how do ya do?".
+    "Allo allo, beautiful night tonight, ain''t it?
+    The names Mork, how do ya do?".
 
 
-    Unsure of what to make this flirtatious undead
-    giant, you start moving towards the door, but the orc quickly jumps to feet,
-    slides to the doorway, and blocks your path.
+    Unsure of what to make this flirtatious
+    undead giant, you start moving towards the door, but the orc quickly jumps to
+    feet, slides to the doorway, and blocks your path.
 
 
-    "Woah woah woah, not so fast
-    fellas. Dis door be Mork''s door, an'' dif if you wanna be passing Mork''s door,
-    then you gotta be payin'' Mork''s fee!"...'
+    "Woah woah woah, not
+    so fast fellas. Dis door be Mork''s door, an'' dif if you wanna be passing Mork''s
+    door, then you gotta be payin'' Mork''s fee!"...'
   allChoices:
   - {fileID: 11400000, guid: 0d891136159fef84bb92917d2d12316f, type: 2}
   - {fileID: 11400000, guid: afb9563b18b287f42a5a3f33d64220a4, type: 2}

@@ -88,6 +88,11 @@ namespace MapSystem
         #region
         public void SaveMyDataToSaveFile(SaveGameData saveFile)
         {
+            if(CurrentMap == null)
+            {
+                Debug.LogWarning("MapManager.SaveMyDataToSaveFile() failed, current map is null...");
+                return;
+            }
             saveFile.map = CurrentMap.ToJson();
         }
         public void BuildMyDataFromSaveFile(SaveGameData saveFile)
