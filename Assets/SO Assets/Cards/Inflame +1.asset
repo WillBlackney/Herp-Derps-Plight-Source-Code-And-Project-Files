@@ -42,11 +42,11 @@ MonoBehaviour:
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Melee Attack '
+    phrase: 'Attack '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'cards apply '
+    phrase: 'cards that deal unblocked damage apply '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -58,9 +58,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '.
-
-'
+    phrase: .
   cardEffects:
   - weaponRequirement: 0
     targetRequirement: 0

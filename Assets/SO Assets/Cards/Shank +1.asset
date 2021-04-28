@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Shank +1
   includeInGame: 1
-  cardDescription: "Deal 6 Physical Damage. \nExpend."
+  cardDescription: "Deal 5 Physical Damage. \nExpend."
   cardSprite: {fileID: 21300000, guid: ac89caee6d8bd8d4984131d369f1e01e, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 6
+    baseDamageValue: 5
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0

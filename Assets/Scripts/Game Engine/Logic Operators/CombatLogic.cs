@@ -778,7 +778,7 @@ public class CombatLogic : Singleton<CombatLogic>
 
             // Create SFX
             VisualEventManager.Instance.CreateVisualEvent(() =>
-                AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff), queuePosition, 0, 0, EventDetail.None, batchedEvent);
+                AudioManager.Instance.PlaySoundPooled(Sound.Ability_Heal_Twinkle), queuePosition, 0, 0, EventDetail.None, batchedEvent);
         }
 
         // Resolve thorns passive before other post damage passive events
@@ -815,6 +815,34 @@ public class CombatLogic : Singleton<CombatLogic>
             // Calculate and handle damage
             int ssDamageValue = GetFinalDamageValueAfterAllCalculations(null, attacker, DamageType.Magic, victim.pManager.stormShieldStacks);
             HandleDamage(ssDamageValue, null, attacker, DamageType.Magic);
+        }
+
+        // Life Steal Passive
+        if (attacker != null && 
+            victim != null && 
+            attacker.health > 0 && 
+            attacker.health < attacker.MaxHealthTotal &&
+            totalLifeLost > 0 && 
+            (card != null || enemyEffect != null) && attacker.pManager.lifeStealStacks > 0)
+        {
+            // Calculate heal amount
+            int healAmount = Mathf.Clamp(totalLifeLost, 0, attacker.MaxHealthTotal - attacker.health);
+
+            // Gain health
+            VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
+            CharacterEntityController.Instance.ModifyHealth(attacker, healAmount);
+
+            // Heal VFX
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateHealEffect(attacker.characterEntityView.WorldPosition, healAmount), queuePosition, 0, 0, EventDetail.None, batchedEvent);
+
+            // Create heal text effect
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+            VisualEffectManager.Instance.CreateDamageEffect(attacker.characterEntityView.WorldPosition, healAmount, true), queuePosition, 0, 0, EventDetail.None, batchedEvent);
+
+            // Create SFX
+            VisualEventManager.Instance.CreateVisualEvent(() =>
+                AudioManager.Instance.PlaySoundPooled(Sound.Ability_Heal_Twinkle), queuePosition, 0, 0, EventDetail.None, batchedEvent);
         }
 
         // EVALUATE DAMAGE RELATED PASSIVE EFFECTS (but only if victim is still alive)
@@ -882,12 +910,12 @@ public class CombatLogic : Singleton<CombatLogic>
 
             // Poisonous 
             if (attacker != null &&                
-                attacker.pManager.poisonousStacks > 0)
-                //totalLifeLost > 0)
+                attacker.pManager.poisonousStacks > 0 &&
+                totalLifeLost > 0)
             {
                 if (card != null &&
-                    card.cardType == CardType.MeleeAttack)
-                  // (card.cardType == CardType.MeleeAttack || card.cardType == CardType.RangedAttack))
+                   // card.cardType == CardType.MeleeAttack)
+                   (card.cardType == CardType.MeleeAttack || card.cardType == CardType.RangedAttack))
                 {
                     VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
                     PassiveController.Instance.ModifyPoisoned(attacker.pManager, victim.pManager, attacker.pManager.poisonousStacks, true, 0.5f);
@@ -904,12 +932,12 @@ public class CombatLogic : Singleton<CombatLogic>
 
             // Inflamed 
             if (attacker != null &&
-                attacker.pManager.inflamedStacks > 0 )
-                //totalLifeLost > 0)
+                attacker.pManager.inflamedStacks > 0 &&
+                totalLifeLost > 0)
             {
                 if (card != null &&
-                    card.cardType == CardType.MeleeAttack)
-                  // (card.cardType == CardType.MeleeAttack || card.cardType == CardType.RangedAttack))
+                    //card.cardType == CardType.MeleeAttack)
+                   (card.cardType == CardType.MeleeAttack || card.cardType == CardType.RangedAttack))
                 {
                     VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
                     PassiveController.Instance.ModifyBurning(victim.pManager, attacker.pManager.inflamedStacks, attacker.pManager, true, 0.5f);
@@ -969,6 +997,25 @@ public class CombatLogic : Singleton<CombatLogic>
             // Check Volatile passive
             if(victim.pManager.volatileStacks > 0)
             {
+                // Volatile explosion VFX
+                Vector3 explosionPos = victim.characterEntityView.WorldPosition;              
+                VisualEventManager.Instance.InsertTimeDelayInQueue(0.25f);
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreatePoisonExplosion(explosionPos);
+                    AudioManager.Instance.PlaySoundPooled(Sound.Explosion_Poison_1);
+                });
+
+                // Damage all characters
+                VisualEvent volatileBatchEvent = VisualEventManager.Instance.InsertTimeDelayInQueue(0f);
+                List<CharacterEntityModel> targetsHit = CharacterEntityController.Instance.GetAllEnemiesOfCharacter(victim);
+                foreach (CharacterEntityModel enemy in targetsHit)
+                {
+                    int damageValue = GetFinalDamageValueAfterAllCalculations(null, attacker, DamageType.Physical, victim.pManager.volatileStacks);
+                    HandleDamage(damageValue, null, enemy, null, DamageType.Physical, volatileBatchEvent, false, false);
+                }
+
+                /*
                 Vector3 explosionPos = victim.characterEntityView.WorldPosition;
 
                 VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
@@ -982,6 +1029,7 @@ public class CombatLogic : Singleton<CombatLogic>
                 {
                     PassiveController.Instance.ModifyPoisoned(victim.pManager, enemy.pManager, victim.pManager.volatileStacks);
                 }
+                */
             }
 
             // Check soul collector passive on allies

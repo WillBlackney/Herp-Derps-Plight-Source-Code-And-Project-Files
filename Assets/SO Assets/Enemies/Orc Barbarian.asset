@@ -19,7 +19,7 @@ MonoBehaviour:
   startingHealth: 30
   enableFlexibleMaxHealth: 1
   maxHealthFlexAmount: 4
-  maxHealth: 62
+  maxHealth: 85
   startingBlock: 0
   strength: 20
   intelligence: 20
@@ -61,7 +61,7 @@ MonoBehaviour:
     longDrawStacks: 0
     sharpenBladeStacks: 0
     consecrationStacks: 0
-    growingStacks: 3
+    growingStacks: 2
     cautiousStacks: 0
     infuriatedStacks: 0
     battleTranceStacks: 0

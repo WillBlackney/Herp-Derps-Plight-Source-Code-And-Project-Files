@@ -18,15 +18,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'This character''s '
-  - color: 3
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'Melee Attacks '
-  - color: 1
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'apply '
+    phrase: 'Whenever this character deals unblocked damage with an attack, it applies '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd1bf0b56234af4c808b8522b29dcbf, type: 3}
   m_Name: Volatile Zombie x4
   m_EditorClassIdentifier: 
-  encounterName: Volatile Zombie x4
+  encounterName: Volatile Ghoul x4
   combatDifficulty: 1
   enemyGroups:
   - possibleEnemies:
@@ -23,3 +23,4 @@ MonoBehaviour:
     - {fileID: 11400000, guid: e6f6564526494744c86c7e856eba7477, type: 2}
   - possibleEnemies:
     - {fileID: 11400000, guid: e6f6564526494744c86c7e856eba7477, type: 2}
+  itemReward: {fileID: 0}

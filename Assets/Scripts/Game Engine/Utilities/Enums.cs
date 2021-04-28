@@ -230,6 +230,7 @@ public enum Passive
     Infuriated = 16,
     Initiative = 17,
     IntimidatingAura = 76,
+    LifeSteal = 89,
     LongDraw = 51,
     LordOfStorms = 57,
     Overload = 18,

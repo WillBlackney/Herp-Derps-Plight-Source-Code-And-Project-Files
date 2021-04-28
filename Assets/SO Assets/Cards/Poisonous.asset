@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Poisonous
   includeInGame: 1
-  cardDescription: Your Melee Attack cards  apply 2 Poisoned.
+  cardDescription: Your Attack cards that deal unblocked damage apply 2 Poisoned.
   cardSprite: {fileID: 21300000, guid: 08bf267e01c18e84f945ea973a625e49, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 2
@@ -42,11 +42,11 @@ MonoBehaviour:
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Melee Attack '
+    phrase: 'Attack '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'cards apply '
+    phrase: 'cards that deal unblocked damage apply '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0

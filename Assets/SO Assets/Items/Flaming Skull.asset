@@ -21,6 +21,7 @@ MonoBehaviour:
   passivePairings:
   - passiveData: 65
     passiveStacks: 2
+  itemEffects: []
   customDescription:
   - color: 1
     getPhraseFromCardValue: 0
@@ -29,11 +30,11 @@ MonoBehaviour:
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Melee Attack '
+    phrase: 'Attack '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'cards apply '
+    phrase: 'cards that deal unblocked damage apply '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0

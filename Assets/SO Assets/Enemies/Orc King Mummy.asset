@@ -37,15 +37,18 @@ MonoBehaviour:
     bonusStaminaStacks: 0
     bonusInitiativeStacks: 0
     bonusDrawStacks: 0
+    physicalDamageBonusStacks: 0
+    magicDamageBonusStacks: 0
     temporaryBonusPowerStacks: 0
     temporaryBonusDexterityStacks: 0
     temporaryBonusStaminaStacks: 0
     temporaryBonusInitiativeStacks: 0
     temporaryBonusDrawStacks: 0
     runeStacks: 0
-    barrierStacks: 0
+    barrierStacks: 3
+    incorporealStacks: 0
     enrageStacks: 0
-    shieldWallStacks: 8
+    shieldWallStacks: 0
     fanOfKnivesStacks: 0
     divineFavourStacks: 0
     phoenixFormStacks: 0
@@ -90,11 +93,22 @@ MonoBehaviour:
     regenerationStacks: 0
     hurricaneStacks: 0
     holierThanThouStacks: 0
+    tenaciousStacks: 0
+    patienceStacks: 0
+    torturerStacks: 0
+    sadisticStacks: 0
+    bullyStacks: 0
+    stoneFormStacks: 0
+    thriftyStacks: 0
+    lifeStealStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
     toxicAuraStacks: 0
     hatefulAuraStacks: 0
+    intimidatingAuraStacks: 0
+    provocativeAuraStacks: 0
+    enragingAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -108,7 +122,7 @@ MonoBehaviour:
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   allEnemyActions:
-  - actionName: Tomb Strike
+  - actionName: Tomb Scythe
     actionType: 0
     intentImage: 0
     actionLoops: 1
@@ -126,7 +140,7 @@ MonoBehaviour:
         overlayFadeOutTime: 0
         particleEffect: 0
         cameraShake: 0
-        movementAnimation: 1
+        movementAnimation: 2
         soundEffect: 0
         characterAnimation: 0
         delayDuration: 0
@@ -148,6 +162,21 @@ MonoBehaviour:
         projectileFired: 0
         projectileStartPosition: 0
         onCharacter: 0
+      - eventType: 3
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 3
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
       - eventType: 4
         screenOverlayType: 0
         overlayColor: 0
@@ -163,25 +192,10 @@ MonoBehaviour:
         projectileFired: 0
         projectileStartPosition: 0
         onCharacter: 0
-      - eventType: 5
-        screenOverlayType: 0
-        overlayColor: 0
-        overlayFadeInTime: 0
-        overlayDuration: 0
-        overlayFadeOutTime: 0
-        particleEffect: 0
-        cameraShake: 0
-        movementAnimation: 0
-        soundEffect: 15
-        characterAnimation: 0
-        delayDuration: 0
-        projectileFired: 0
-        projectileStartPosition: 0
-        onCharacter: 0
       visualEventsOnFinish: []
-      actionType: 0
+      actionType: 1
       effectLoops: 1
-      baseDamage: 40
+      baseDamage: 20
       damageType: 1
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
@@ -229,7 +243,7 @@ MonoBehaviour:
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0
-  - actionName: Siphon Soul
+  - actionName: Shriek
     actionType: 6
     intentImage: 8
     actionLoops: 1
@@ -242,7 +256,7 @@ MonoBehaviour:
       passiveRequired: {fileID: 0}
       statusStacksRequired: 0
     - requirementType: 8
-      requirementTypeValue: 2
+      requirementTypeValue: 3
       passiveRequired: {fileID: 0}
       statusStacksRequired: 0
     actionEffects:

@@ -18,8 +18,8 @@ MonoBehaviour:
   overrideStartingHealth: 0
   startingHealth: 0
   enableFlexibleMaxHealth: 1
-  maxHealthFlexAmount: 6
-  maxHealth: 170
+  maxHealthFlexAmount: 5
+  maxHealth: 140
   startingBlock: 0
   strength: 20
   intelligence: 20
@@ -37,6 +37,8 @@ MonoBehaviour:
     bonusStaminaStacks: 0
     bonusInitiativeStacks: 0
     bonusDrawStacks: 0
+    physicalDamageBonusStacks: 0
+    magicDamageBonusStacks: 0
     temporaryBonusPowerStacks: 0
     temporaryBonusDexterityStacks: 0
     temporaryBonusStaminaStacks: 0
@@ -44,6 +46,7 @@ MonoBehaviour:
     temporaryBonusDrawStacks: 0
     runeStacks: 0
     barrierStacks: 0
+    incorporealStacks: 0
     enrageStacks: 0
     shieldWallStacks: 0
     fanOfKnivesStacks: 0
@@ -90,12 +93,22 @@ MonoBehaviour:
     regenerationStacks: 0
     hurricaneStacks: 0
     holierThanThouStacks: 0
+    tenaciousStacks: 0
+    patienceStacks: 0
+    torturerStacks: 0
+    sadisticStacks: 0
+    bullyStacks: 0
+    stoneFormStacks: 0
+    thriftyStacks: 0
+    lifeStealStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
     toxicAuraStacks: 1
     hatefulAuraStacks: 0
     intimidatingAuraStacks: 0
+    provocativeAuraStacks: 0
+    enragingAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0
@@ -113,12 +126,12 @@ MonoBehaviour:
     actionType: 13
     intentImage: 13
     actionLoops: 2
-    doThisOnFirstActivation: 0
-    canBeConsecutive: 1
-    prioritiseWhenRequirementsMet: 1
+    doThisOnFirstActivation: 1
+    canBeConsecutive: 0
+    prioritiseWhenRequirementsMet: 0
     actionRequirements:
     - requirementType: 11
-      requirementTypeValue: 2
+      requirementTypeValue: 1
       passiveRequired: {fileID: 0}
       statusStacksRequired: 0
     actionEffects:
@@ -172,12 +185,93 @@ MonoBehaviour:
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0
-  - actionName: Chaos Bolt
-    actionType: 0
-    intentImage: 0
+  - actionName: Dark Binding
+    actionType: 4
+    intentImage: 4
     actionLoops: 1
     doThisOnFirstActivation: 0
-    canBeConsecutive: 1
+    canBeConsecutive: 0
+    prioritiseWhenRequirementsMet: 1
+    actionRequirements:
+    - requirementType: 6
+      requirementTypeValue: 4
+      passiveRequired: {fileID: 0}
+      statusStacksRequired: 0
+    actionEffects:
+    - visualEventsOnStart:
+      - eventType: 2
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 4
+        delayDuration: 0
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
+      visualEventsOnFinish:
+      - eventType: 6
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0.5
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
+      actionType: 4
+      effectLoops: 1
+      baseDamage: 0
+      damageType: 0
+      characterSummoned: {fileID: 0}
+      summonedCreatureStartPosition: 0
+      modelFadeInSpeed: 0
+      uiFadeInSpeed: 0
+      summonedCreatureVisualEvents: []
+      passiveApplied: {fileID: 11400000, guid: 6d216e783d4ba3a49a8dd267aa727fd3, type: 2}
+      passiveStacks: 5
+      alsoHealSelf: 0
+      healAmount: 0
+      blockGained: 0
+      cardAdded: {fileID: 0}
+      copiesAdded: 0
+      collection: 0
+    - visualEventsOnStart: []
+      visualEventsOnFinish: []
+      actionType: 9
+      effectLoops: 1
+      baseDamage: 0
+      damageType: 0
+      characterSummoned: {fileID: 0}
+      summonedCreatureStartPosition: 0
+      modelFadeInSpeed: 0
+      uiFadeInSpeed: 0
+      summonedCreatureVisualEvents: []
+      passiveApplied: {fileID: 0}
+      passiveStacks: 0
+      alsoHealSelf: 0
+      healAmount: 0
+      blockGained: 5
+      cardAdded: {fileID: 0}
+      copiesAdded: 0
+      collection: 0
+  - actionName: Plague Bolt
+    actionType: 5
+    intentImage: 7
+    actionLoops: 1
+    doThisOnFirstActivation: 0
+    canBeConsecutive: 0
     prioritiseWhenRequirementsMet: 0
     actionRequirements: []
     actionEffects:
@@ -194,22 +288,7 @@ MonoBehaviour:
         soundEffect: 0
         characterAnimation: 3
         delayDuration: 0
-        projectileFired: 2
-        projectileStartPosition: 0
-        onCharacter: 0
-      - eventType: 4
-        screenOverlayType: 0
-        overlayColor: 0
-        overlayFadeInTime: 0
-        overlayDuration: 0
-        overlayFadeOutTime: 0
-        particleEffect: 0
-        cameraShake: 1
-        movementAnimation: 0
-        soundEffect: 0
-        characterAnimation: 0
-        delayDuration: 0
-        projectileFired: 0
+        projectileFired: 3
         projectileStartPosition: 0
         onCharacter: 0
       - eventType: 3
@@ -218,7 +297,7 @@ MonoBehaviour:
         overlayFadeInTime: 0
         overlayDuration: 0
         overlayFadeOutTime: 0
-        particleEffect: 10
+        particleEffect: 5
         cameraShake: 0
         movementAnimation: 0
         soundEffect: 0
@@ -227,18 +306,33 @@ MonoBehaviour:
         projectileFired: 0
         projectileStartPosition: 0
         onCharacter: 2
-      visualEventsOnFinish: []
-      actionType: 0
+      visualEventsOnFinish:
+      - eventType: 6
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 0
+        characterAnimation: 0
+        delayDuration: 0.5
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
+      actionType: 5
       effectLoops: 1
-      baseDamage: 12
-      damageType: 1
+      baseDamage: 0
+      damageType: 0
       characterSummoned: {fileID: 0}
       summonedCreatureStartPosition: 0
       modelFadeInSpeed: 0
       uiFadeInSpeed: 0
       summonedCreatureVisualEvents: []
-      passiveApplied: {fileID: 0}
-      passiveStacks: 0
+      passiveApplied: {fileID: 11400000, guid: 9f37b15771fd5ba4ab2b6e6dcc1927f6, type: 2}
+      passiveStacks: 8
       alsoHealSelf: 0
       healAmount: 0
       blockGained: 0

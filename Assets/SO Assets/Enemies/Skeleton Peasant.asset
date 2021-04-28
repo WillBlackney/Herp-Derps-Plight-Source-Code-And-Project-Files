@@ -19,7 +19,7 @@ MonoBehaviour:
   startingHealth: 18
   enableFlexibleMaxHealth: 0
   maxHealthFlexAmount: 2
-  maxHealth: 8
+  maxHealth: 15
   startingBlock: 0
   strength: 20
   intelligence: 20
@@ -37,6 +37,8 @@ MonoBehaviour:
     bonusStaminaStacks: 0
     bonusInitiativeStacks: 0
     bonusDrawStacks: 0
+    physicalDamageBonusStacks: 0
+    magicDamageBonusStacks: 0
     temporaryBonusPowerStacks: 0
     temporaryBonusDexterityStacks: 0
     temporaryBonusStaminaStacks: 0
@@ -91,12 +93,21 @@ MonoBehaviour:
     regenerationStacks: 0
     hurricaneStacks: 0
     holierThanThouStacks: 0
+    tenaciousStacks: 0
+    patienceStacks: 0
+    torturerStacks: 0
+    sadisticStacks: 0
+    bullyStacks: 0
+    stoneFormStacks: 0
+    thriftyStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
     toxicAuraStacks: 0
     hatefulAuraStacks: 0
     intimidatingAuraStacks: 0
+    provocativeAuraStacks: 0
+    enragingAuraStacks: 0
     wrathStacks: 0
     weakenedStacks: 0
     vulnerableStacks: 0

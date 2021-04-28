@@ -12,21 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Inflamed
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: 001a09dde2cb54f43984fb99c327fac4, type: 3}
+  passiveSprite: {fileID: 21300000, guid: 74c4fd1d244b83546ab183c64c11e3ed, type: 3}
   passiveName: Inflamed
   passiveDescription:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'This character''s '
-  - color: 3
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'Melee Attacks '
-  - color: 1
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'apply '
+    phrase: 'Whenever this character deals unblocked damage with an attack, it applies '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -34,7 +26,7 @@ MonoBehaviour:
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Burning '
+    phrase: Burning
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0

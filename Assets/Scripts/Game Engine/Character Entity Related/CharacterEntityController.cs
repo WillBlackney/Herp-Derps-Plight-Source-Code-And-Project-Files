@@ -1678,7 +1678,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 if(eae != null && eae.effectLoops > 1)
                 {
                     enemy.characterEntityView.intentPopUpDescriptionText.text = "This character intends to attack <color=#F8FF00>" + target.myName +
-                   "<color=#FFFFFF> for <color=#92E0FF>" + attackDamageString + "<color=#FFFFFF> damage <color=#F8FF00>" + eae.effectLoops.ToString() + "<color=#FFFFFF> times";
+                   "<color=#FFFFFF> for <color=#92E0FF>" + finalDamageValue.ToString() + "<color=#FFFFFF> damage <color=#F8FF00>" + eae.effectLoops.ToString() + "<color=#FFFFFF> times";
                 }
                 else
                 {

@@ -158,6 +158,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifyUnbreakable(newClone, originalData.unbreakableStacks, false);
         }
+        if (originalData.lifeStealStacks != 0)
+        {
+            ModifyLifeSteal(newClone, originalData.lifeStealStacks, false);
+        }
         if (originalData.enrageStacks != 0)
         {
             ModifyMalice(newClone, originalData.maliceStacks, false);
@@ -554,6 +558,7 @@ public class PassiveController : Singleton<PassiveController>
         pManager.bullyStacks = original.bullyStacks;
         pManager.stoneFormStacks = original.stoneFormStacks;
         pManager.thriftyStacks = original.thriftyStacks;
+        pManager.lifeStealStacks = original.lifeStealStacks;
 
         pManager.runeStacks = original.runeStacks;
         pManager.barrierStacks = original.barrierStacks;
@@ -738,6 +743,10 @@ public class PassiveController : Singleton<PassiveController>
         else if (originalData == "Fusion")
         {
             ModifyFusion(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Life Steal")
+        {
+            ModifyLifeSteal(pManager, stacks, showVFX, vfxDelay);
         }
         else if (originalData == "Planted Feet")
         {
@@ -1961,6 +1970,65 @@ public class PassiveController : Singleton<PassiveController>
                 VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
             }
         }
+    }
+    public void ModifyLifeSteal(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyLifeSteal() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Life Steal");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.lifeStealStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Life Steal!");
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Life Steal Removed");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+
+
     }
     public void ModifyUnbreakable(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
     {
