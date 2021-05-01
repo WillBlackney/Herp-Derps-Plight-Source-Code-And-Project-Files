@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Shadow Meld +1
   includeInGame: 1
-  cardDescription: Gain 2 Energy. Draw 2 cards. Expend..
+  cardDescription: Gain 3 Energy. Draw 3 cards. Expend..
   cardSprite: {fileID: 21300000, guid: 7ac61cde2cb71ed43adf397945f0b066, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
@@ -42,7 +42,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '2 '
+    phrase: '3 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '2 '
+    phrase: '3 '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -118,7 +118,7 @@ MonoBehaviour:
     damageType: 0
     healthRestored: 0
     healthLost: 0
-    energyGained: 2
+    energyGained: 3
     cardsDrawn: 0
     extraDrawEffect: 0
     cardEnergyReduction: 0
@@ -209,7 +209,7 @@ MonoBehaviour:
     healthRestored: 0
     healthLost: 0
     energyGained: 0
-    cardsDrawn: 2
+    cardsDrawn: 3
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:

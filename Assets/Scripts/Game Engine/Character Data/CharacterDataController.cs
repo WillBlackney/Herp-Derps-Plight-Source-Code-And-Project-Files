@@ -166,6 +166,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
         SetCharacterHealth(newCharacter, original.health);
 
         newCharacter.stamina = original.stamina;
+        newCharacter.maxEnergy = original.maxEnergy;
         newCharacter.initiative = original.initiative;
         newCharacter.draw = original.draw;
         newCharacter.power = original.power;
@@ -229,13 +230,13 @@ public class CharacterDataController : Singleton<CharacterDataController>
         newCharacter.intelligence = template.intelligence;
         newCharacter.wits = template.wits;
         newCharacter.dexterity = template.dexterity;
-        // ModifyConstitution(newCharacter, template.constitution);
         newCharacter.constitution = template.constitution;
 
         SetCharacterMaxHealth(newCharacter, template.maxHealth);
         SetCharacterHealth(newCharacter, newCharacter.MaxHealthTotal);
 
         newCharacter.stamina = template.stamina;
+        newCharacter.maxEnergy = template.maxEnergy;
         newCharacter.initiative = template.initiative;
         newCharacter.baseCrit = template.baseCrit;
         newCharacter.critModifier = template.critModifier;
@@ -347,6 +348,10 @@ public class CharacterDataController : Singleton<CharacterDataController>
     public void ModifyStamina(CharacterData data, int gainedOrLost)
     {
         data.stamina += gainedOrLost;
+    }
+    public void ModifyMaxEnergy(CharacterData data, int gainedOrLost)
+    {
+        data.maxEnergy += gainedOrLost;
     }
     public void ModifyDraw(CharacterData data, int gainedOrLost)
     {
@@ -665,6 +670,7 @@ public class CharacterDataController : Singleton<CharacterDataController>
         SetCharacterHealth(newCharacter, newCharacter.MaxHealthTotal);
 
         newCharacter.stamina = 2;
+        newCharacter.maxEnergy = 6;
         newCharacter.initiative = 10;
         newCharacter.baseCrit = 0;
         newCharacter.critModifier = 30;

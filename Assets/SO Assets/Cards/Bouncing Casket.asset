@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Apply 2 Poisoned to a random enemy 3 times.
   cardSprite: {fileID: 21300000, guid: b7b37f112e8ed314c8a54b9b0a22d36b, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 1
   targettingType: 0
   talentSchool: 12

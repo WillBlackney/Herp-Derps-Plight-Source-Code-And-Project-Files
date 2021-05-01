@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Target enemy loses 2 Power. Expend.
   cardSprite: {fileID: 21300000, guid: 18615b100a8b3e549b140634033c2743, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 3
   cardType: 1
   targettingType: 3
   talentSchool: 11

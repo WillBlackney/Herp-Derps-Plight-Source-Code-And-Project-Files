@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Inspire +1
   includeInGame: 1
-  cardDescription: Give 2 Power to self or ally
+  cardDescription: Give 1 Power to self or ally
   cardSprite: {fileID: 21300000, guid: 0c3edab45ee79f4499e61f70997d4725, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -42,7 +42,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '2 '
+    phrase: '1 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -104,7 +104,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 23
-      passiveStacks: 2
+      passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

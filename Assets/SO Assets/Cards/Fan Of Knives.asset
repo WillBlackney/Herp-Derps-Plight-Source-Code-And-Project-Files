@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: On activation start, add a Shank to your hand.
   cardSprite: {fileID: 21300000, guid: d8b8c7c1bd53d0f42936790ebdacb86c, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 2
+  cardEnergyCost: 4
   cardType: 4
   targettingType: 0
   talentSchool: 3

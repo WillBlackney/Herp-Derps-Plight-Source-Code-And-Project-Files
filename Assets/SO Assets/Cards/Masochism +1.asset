@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Masochism +1
   includeInGame: 1
-  cardDescription: "Lose 1 HP. \nGain 1 Energy."
+  cardDescription: "Lose 2 HP. \nGain 2 Energy."
   cardSprite: {fileID: 21300000, guid: 261f95d2f4ff1de4baeb678bd088015b, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '1 '
+    phrase: '2 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
     useEachIndividualsStackCount: 1
     damageType: 0
     healthRestored: 0
-    healthLost: 1
+    healthLost: 2
     energyGained: 0
     cardsDrawn: 0
     extraDrawEffect: 0
@@ -213,7 +213,7 @@ MonoBehaviour:
     damageType: 0
     healthRestored: 0
     healthLost: 0
-    energyGained: 1
+    energyGained: 2
     cardsDrawn: 0
     extraDrawEffect: 0
     cardEnergyReduction: 0

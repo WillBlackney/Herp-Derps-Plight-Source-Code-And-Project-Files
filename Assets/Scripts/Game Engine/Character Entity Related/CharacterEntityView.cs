@@ -50,6 +50,7 @@ public class CharacterEntityView : MonoBehaviour
 
     [Header("Energy GUI References")]
     public TextMeshProUGUI energyText;
+    public TextMeshProUGUI maxEnergyText;
     public TextMeshProUGUI staminaText;
     [PropertySpace(SpaceBefore = 20, SpaceAfter = 0)]
 

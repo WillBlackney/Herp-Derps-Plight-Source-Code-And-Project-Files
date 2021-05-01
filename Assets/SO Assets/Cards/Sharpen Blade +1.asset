@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sharpen Blade +1
   m_EditorClassIdentifier: 
   cardName: Sharpen Blade +1
-  includeInGame: 0
+  includeInGame: 1
   cardDescription: 'Your next Melee Attack card deals double damage. Expend. '
   cardSprite: {fileID: 21300000, guid: 26f8a29890d56654eae10abbc5eeedf2, type: 3}
   xEnergyCost: 0
@@ -21,7 +21,7 @@ MonoBehaviour:
   cardType: 1
   targettingType: 0
   talentSchool: 3
-  rarity: 2
+  rarity: 3
   upgradeable: 0
   upgradeLevel: 1
   expend: 1

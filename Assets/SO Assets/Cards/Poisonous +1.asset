@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Poisonous +1
   includeInGame: 1
-  cardDescription: Your Attack cards that deal unblocked damage apply 3 Poisoned.
+  cardDescription: Your Attack cards that deal unblocked damage apply 1 Poisoned.
   cardSprite: {fileID: 21300000, guid: 08bf267e01c18e84f945ea973a625e49, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 2
+  cardEnergyCost: 1
   cardType: 4
   targettingType: 0
   talentSchool: 12
@@ -50,7 +50,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '2 '
+    phrase: '1 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 22
-      passiveStacks: 3
+      passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

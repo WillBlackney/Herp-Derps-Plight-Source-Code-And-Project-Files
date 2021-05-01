@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Apply 4 Poisoned to target.
   cardSprite: {fileID: 21300000, guid: 0f2a30c05859ed34d95818263482b3be, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 1
   targettingType: 3
   talentSchool: 12

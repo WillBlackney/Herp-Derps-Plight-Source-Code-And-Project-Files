@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Quick Draw +1
   includeInGame: 1
-  cardDescription: 'Draw 2 Ranged Attack cards. '
+  cardDescription: 'Draw 3 Ranged Attack cards. '
   cardSprite: {fileID: 21300000, guid: 1ecd65447ca3c6642a831aed2d4e93e3, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 0
+  cardEnergyCost: 1
   cardType: 1
   targettingType: 0
   talentSchool: 8
@@ -42,7 +42,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '2 '
+    phrase: '3 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
     healthRestored: 0
     healthLost: 0
     energyGained: 0
-    cardsDrawn: 2
+    cardsDrawn: 3
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:

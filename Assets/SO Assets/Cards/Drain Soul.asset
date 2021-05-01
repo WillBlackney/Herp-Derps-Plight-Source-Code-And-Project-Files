@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Apply 5 Weakened to target. Expend.
   cardSprite: {fileID: 21300000, guid: b58626dfdb045864a928c0caa1c3bf37, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 2
+  cardEnergyCost: 4
   cardType: 1
   targettingType: 3
   talentSchool: 11

@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Give 2 Wrath to self or ally, or apply 2 Weakened to an enemy.
   cardSprite: {fileID: 21300000, guid: 6ea34a6f71282e04b8311f987fe8af83, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 1
   targettingType: 4
   talentSchool: 11

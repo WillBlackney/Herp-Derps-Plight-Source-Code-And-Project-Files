@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: On activation start, gain 4 Block. Expend.
   cardSprite: {fileID: 21300000, guid: 12b45abbd6b1e544f9262fd95e0712e7, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 2
+  cardEnergyCost: 3
   cardType: 4
   targettingType: 0
   talentSchool: 5

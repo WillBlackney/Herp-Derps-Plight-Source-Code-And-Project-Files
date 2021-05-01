@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Overload damages all enemies. Expend.
   cardSprite: {fileID: 21300000, guid: 4a36ed01632e88748b815200b770bfd1, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 3
   cardType: 4
   targettingType: 0
   talentSchool: 13

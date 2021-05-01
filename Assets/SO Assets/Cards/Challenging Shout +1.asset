@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: 'Force all enemies to focus their next attack on you. '
   cardSprite: {fileID: 21300000, guid: fb562e36e65f25446b7d03905567c47a, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 1
   targettingType: 0
   talentSchool: 5

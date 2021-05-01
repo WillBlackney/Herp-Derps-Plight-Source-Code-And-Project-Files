@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: 'Give self and allies 1 Rune. '
   cardSprite: {fileID: 21300000, guid: ef73f076ca7317149b2a963de5e4732c, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 2
+  cardEnergyCost: 4
   cardType: 1
   targettingType: 0
   talentSchool: 12

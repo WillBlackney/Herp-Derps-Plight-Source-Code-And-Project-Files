@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Melt Armour
   includeInGame: 1
-  cardDescription: Remove all Block from target. Deal 6 Magic damage. Expend.
+  cardDescription: Remove all Block from target. Apply 5 Burning.
   cardSprite: {fileID: 21300000, guid: 9876430342e8aa84f9e60ccdd8d0c640, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -48,25 +48,15 @@ MonoBehaviour:
     cardEffectType: 0
     phrase: 'from target.
 
-      Deal '
+      Apply '
   - color: 2
-    getPhraseFromCardValue: 1
+    getPhraseFromCardValue: 0
     cardEffectType: 6
     phrase: '5 '
-  - color: 9
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: ' Magic '
-  - color: 1
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: 'damage.
-
-'
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: Expend
+    phrase: Burning
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -179,7 +169,7 @@ MonoBehaviour:
     visualEventsOnDamageLoopFinish: []
   - weaponRequirement: 0
     targetRequirement: 0
-    cardEffectType: 6
+    cardEffectType: 3
     splitTargetEffect: 0
     splitTargetType: 0
     characterSummoned: {fileID: 0}
@@ -210,7 +200,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 6
+    baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
@@ -218,9 +208,9 @@ MonoBehaviour:
     drawBaseDamageFromMeleeAttacksPlayed: 0
     drawBaseDamageFromOverloadOnSelf: 0
     drawBaseDamageFromBurningOnSelf: 0
-    baseDamageMultiplier: 0
+    baseDamageMultiplier: 1
     useEachIndividualsStackCount: 1
-    damageType: 2
+    damageType: 0
     healthRestored: 0
     healthLost: 0
     energyGained: 0
@@ -228,23 +218,23 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: 0
-      passiveStacks: 0
+      passiveData: 2
+      passiveStacks: 5
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
     visualEventsOnStart:
-    - eventType: 4
+    - eventType: 2
       screenOverlayType: 0
       overlayColor: 0
       overlayFadeInTime: 0
       overlayDuration: 0
       overlayFadeOutTime: 0
       particleEffect: 0
-      cameraShake: 1
+      cameraShake: 0
       movementAnimation: 0
       soundEffect: 0
-      characterAnimation: 0
+      characterAnimation: 4
       delayDuration: 0
       projectileFired: 0
       projectileStartPosition: 0
@@ -264,6 +254,21 @@ MonoBehaviour:
       projectileFired: 0
       projectileStartPosition: 0
       onCharacter: 2
+    - eventType: 5
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
+      particleEffect: 0
+      cameraShake: 0
+      movementAnimation: 0
+      soundEffect: 21
+      characterAnimation: 0
+      delayDuration: 0
+      projectileFired: 0
+      projectileStartPosition: 0
+      onCharacter: 0
     visualEventsOnFinish: []
     visualEventsOnDamageLoopStart: []
     visualEventsOnDamageLoopFinish: []
@@ -276,6 +281,6 @@ MonoBehaviour:
   - kewWordType: 9
     weaponRequirement: 0
     passiveType: 0
-  - kewWordType: 1
+  - kewWordType: 8
     weaponRequirement: 0
-    passiveType: 0
+    passiveType: 2

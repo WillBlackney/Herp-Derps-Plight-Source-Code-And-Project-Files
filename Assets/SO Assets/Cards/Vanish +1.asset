@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Gain 1 Barrier. Expend.
   cardSprite: {fileID: 21300000, guid: 8277d261fe55a1844aac0e0243b4d622, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 1
   targettingType: 0
   talentSchool: 3

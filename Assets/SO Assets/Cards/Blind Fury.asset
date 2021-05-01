@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Give an ally 3 Power and 2 Silenced. Expend.
   cardSprite: {fileID: 21300000, guid: 8d0bbf3cbbc06594fac4a03ab19a310c, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 1
   targettingType: 1
   talentSchool: 2

@@ -76,6 +76,10 @@ public class SummonedCharacterDataSO : ScriptableObject
     [BoxGroup("Secondary Attributes")]
     [LabelWidth(100)]
     [GUIColor("Blue")]
+    public int maxEnergy = 6;
+    [BoxGroup("Secondary Attributes")]
+    [LabelWidth(100)]
+    [GUIColor("Blue")]
     public int draw = 3;
     [BoxGroup("Secondary Attributes")]
     [LabelWidth(100)]

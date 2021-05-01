@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Discover a random Power card. It costs 1 less Energy.
   cardSprite: {fileID: 21300000, guid: f5dee98cfc41b1844b412bc49a3f8aac, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 0
   cardType: 1
   targettingType: 0
   talentSchool: 11

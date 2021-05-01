@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Flame Geyser
   includeInGame: 1
-  cardDescription: "Deal 14 Magic damage. If you\u2019re holding a Burn, this costs
+  cardDescription: "Deal 12 Magic damage. If you\u2019re holding a Burn, this costs
     0 Energy."
   cardSprite: {fileID: 21300000, guid: c3d5789c6aaabb645a99b3a39a08983a, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 2
+  cardEnergyCost: 3
   cardType: 3
   targettingType: 3
   talentSchool: 6
@@ -108,7 +108,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 14
+    baseDamageValue: 12
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0

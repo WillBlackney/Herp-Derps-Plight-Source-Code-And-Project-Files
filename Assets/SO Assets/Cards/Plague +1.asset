@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Apply 7 Poisoned to all enemies.
   cardSprite: {fileID: 21300000, guid: ec4461ae59177964a9934df2a10caa60, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 2
+  cardEnergyCost: 3
   cardType: 1
   targettingType: 0
   talentSchool: 12

@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Give 2 Energy to self or ally next activation.
   cardSprite: {fileID: 21300000, guid: b05519247b6129c4a9bf4658bcc6e715, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 0
+  cardEnergyCost: 1
   cardType: 1
   targettingType: 2
   talentSchool: 0

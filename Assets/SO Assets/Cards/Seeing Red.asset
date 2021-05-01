@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: 'Lose 2 HP. Gain 1 Wrath. '
   cardSprite: {fileID: 21300000, guid: aa6d33b02adc03248b818e11bd213e44, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 0
+  cardEnergyCost: 1
   cardType: 1
   targettingType: 0
   talentSchool: 2

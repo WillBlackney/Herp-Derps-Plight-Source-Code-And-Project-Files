@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Deal 11 Magic damage. If target is Weakened, gain 1 Energy.
   cardSprite: {fileID: 21300000, guid: 18615b100a8b3e549b140634033c2743, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 2
   targettingType: 3
   talentSchool: 11

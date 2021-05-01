@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Give a target 2 Power next activation. Expend.
   cardSprite: {fileID: 21300000, guid: b8b13619743a2784ea59dceea74df1ac, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 0
+  cardEnergyCost: 1
   cardType: 1
   targettingType: 2
   talentSchool: 0

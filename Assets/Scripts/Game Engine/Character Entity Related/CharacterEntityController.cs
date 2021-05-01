@@ -253,6 +253,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
         // Setup Secondary Stats
         ModifyStamina(character, data.stamina);
+        ModifyMaxEnergy(character, data.maxEnergy);
         ModifyInitiative(character, data.initiative);
         ModifyDraw(character, data.draw);
         ModifyPower(character, data.power);
@@ -289,6 +290,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
         // Setup Secondary Stats
         ModifyStamina(character, data.stamina);
+        ModifyMaxEnergy(character, data.maxEnergy);
         ModifyInitiative(character, data.initiative);
         ModifyDraw(character, data.draw);       
         ModifyPower(character, data.power);
@@ -588,6 +590,11 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             character.energy = 0;
         }
 
+        else if (character.energy > character.maxEnergy)
+        {
+            character.energy = character.maxEnergy;
+        }
+
         if (showVFX && view != null)
         {
             // Status notification
@@ -600,9 +607,23 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
         int energyVfxValue = character.energy;
         VisualEventManager.Instance.CreateVisualEvent(() => UpdateEnergyGUI(view, energyVfxValue), QueuePosition.Front, 0, 0);
-       // UpdateEnergyGUI(view, energyVfxValue);
 
         CardController.Instance.AutoUpdateCardsInHandGlowOutlines(character);
+    }
+    public void ModifyMaxEnergy(CharacterEntityModel character, int maxEnergyGainedOrLost)
+    {
+        Debug.Log("CharacterEntityController.ModifyMaxEnergy() called for " + character.myName);
+        character.maxEnergy += maxEnergyGainedOrLost;
+        CharacterEntityView view = character.characterEntityView;
+
+        if (character.maxEnergy < 0)
+        {
+            character.maxEnergy = 0;
+        }
+
+        int energyVfxValue = character.maxEnergy;
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateMaxEnergyGUI(view, energyVfxValue), QueuePosition.Front, 0, 0);
+
     }
     public void ModifyStamina(CharacterEntityModel character, int staminaGainedOrLost)
     {
@@ -626,6 +647,10 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
     private void UpdateEnergyGUI(CharacterEntityView view, int newValue)
     {
         view.energyText.text = newValue.ToString();
+    }
+    private void UpdateMaxEnergyGUI(CharacterEntityView view, int newValue)
+    {
+        view.maxEnergyText.text = newValue.ToString();
     }
     private void UpdateStaminaGUI(CharacterEntityView view, int newValue)
     {

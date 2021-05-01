@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Gain 8 Block. Draw 1 Card.
   cardSprite: {fileID: 21300000, guid: 49d7732986467e142971b9d35c230cee, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 1
   targettingType: 0
   talentSchool: 2

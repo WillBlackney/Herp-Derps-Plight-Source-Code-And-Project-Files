@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: "Deal 8 Physical damage. \nGain 1 Overload."
   cardSprite: {fileID: 21300000, guid: 269a0b9bcff27564e805eab3ab10015a, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 2
   targettingType: 3
   talentSchool: 13

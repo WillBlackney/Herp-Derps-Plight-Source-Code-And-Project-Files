@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Gain 2 Overload.
   cardSprite: {fileID: 21300000, guid: 04dd466617f3e9941bd83d330c4e36ec, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 1
   targettingType: 0
   talentSchool: 13

@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Deal 12 Magic damage. Apply 6 poisoned.
   cardSprite: {fileID: 21300000, guid: a5cba44f0cf02d646b65afcca06ab9bb, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 3
   targettingType: 3
   talentSchool: 12

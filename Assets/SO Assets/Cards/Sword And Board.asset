@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Deal 6 Physical damage. Gain 4 Block.
   cardSprite: {fileID: 21300000, guid: b5d8274474ec2f1498c776953217bb76, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 2
   targettingType: 3
   talentSchool: 5

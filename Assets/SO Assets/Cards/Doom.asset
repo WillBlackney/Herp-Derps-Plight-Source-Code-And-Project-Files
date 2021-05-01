@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Doom
   includeInGame: 1
-  cardDescription: Spend all Energy. For each point spent, deal 8 Magic damage and
+  cardDescription: Spend all Energy. For each point spent, deal 5 Magic damage and
     apply 1 weakened to a target.
   cardSprite: {fileID: 21300000, guid: 4e6d2845e8bd63243b16a6440f3ffa53, type: 3}
   xEnergyCost: 1
@@ -65,7 +65,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '2 '
+    phrase: '1 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -108,7 +108,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 8
+    baseDamageValue: 5
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0

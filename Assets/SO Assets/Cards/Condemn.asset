@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Apply 2 Vulnerable. Expend.
   cardSprite: {fileID: 21300000, guid: 5671077205287694a84486702a7c8b27, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 1
   targettingType: 3
   talentSchool: 10

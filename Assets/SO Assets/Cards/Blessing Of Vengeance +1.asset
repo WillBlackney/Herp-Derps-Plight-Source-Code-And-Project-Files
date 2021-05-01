@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Give 2 Wrath to self or ally. Expend.
   cardSprite: {fileID: 21300000, guid: cb3d90f275edec4419de032436d13cff, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 0
+  cardEnergyCost: 1
   cardType: 1
   targettingType: 2
   talentSchool: 0

@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Give 1 Power to self or ally
   cardSprite: {fileID: 21300000, guid: 0c3edab45ee79f4499e61f70997d4725, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 1
   targettingType: 2
   talentSchool: 10

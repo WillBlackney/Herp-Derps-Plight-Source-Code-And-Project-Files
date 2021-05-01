@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Whenever you play a Blessing, apply 1 Burning to all enemies.
   cardSprite: {fileID: 21300000, guid: 555c9827eda9e504c93fdd817875b298, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 2
+  cardEnergyCost: 3
   cardType: 4
   targettingType: 0
   talentSchool: 10

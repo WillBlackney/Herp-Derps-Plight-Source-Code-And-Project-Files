@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Deal 6 Physical damage. Apply 1 Weakened.
   cardSprite: {fileID: 21300000, guid: 6ada29a9bcc2c1a42aa11d64087e90c1, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 0
+  cardEnergyCost: 1
   cardType: 2
   targettingType: 3
   talentSchool: 3

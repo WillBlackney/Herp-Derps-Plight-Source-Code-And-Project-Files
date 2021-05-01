@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Deal 11 Physical damage. If target is Vulnerable, gain 1 Energy.
   cardSprite: {fileID: 21300000, guid: 9bb7cb6365adca6468b7e71edf069049, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 2
   targettingType: 3
   talentSchool: 2

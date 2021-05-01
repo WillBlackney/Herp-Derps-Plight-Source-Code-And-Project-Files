@@ -26,7 +26,8 @@ MonoBehaviour:
   constitution: 21
   power: 0
   initiative: 3
-  stamina: 2
+  stamina: 4
+  maxEnergy: 6
   draw: 4
   baseCrit: 0
   critModifier: 30
@@ -97,6 +98,9 @@ MonoBehaviour:
     torturerStacks: 0
     sadisticStacks: 0
     bullyStacks: 0
+    stoneFormStacks: 0
+    thriftyStacks: 0
+    lifeStealStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -141,6 +145,7 @@ MonoBehaviour:
     offHandItem: {fileID: 0}
     trinketOne: {fileID: 0}
     trinketTwo: {fileID: 0}
+    trinketThree: {fileID: 0}
   talentPairings:
   - talentSchool: 10
     talentLevel: 1

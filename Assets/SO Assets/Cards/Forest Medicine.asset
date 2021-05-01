@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Give 4 Block to self or ally. Removes Burning and Poisoned.
   cardSprite: {fileID: 21300000, guid: a5574473290357542b1c2f02b9e546cd, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 1
   targettingType: 2
   talentSchool: 8

@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: 'Double a target''s current Poisoned. Expend. '
   cardSprite: {fileID: 21300000, guid: d9351153c36955d4099245874203cb10, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 1
   targettingType: 3
   talentSchool: 12

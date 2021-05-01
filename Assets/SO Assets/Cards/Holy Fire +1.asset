@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Deal 9 Magic damage to an enemy, or grant 9 Block to self or ally.
   cardSprite: {fileID: 21300000, guid: cffa94b4e3f8b84479409f2ddbf34dff, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 1
   targettingType: 4
   talentSchool: 10

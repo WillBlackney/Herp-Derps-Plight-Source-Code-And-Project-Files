@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: On activation end, give 1 Energy to a random ally. Expend.
   cardSprite: {fileID: 21300000, guid: 947e23de4decde546b3a53c093eed5f0, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 4
   targettingType: 0
   talentSchool: 10

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Testudo
   includeInGame: 1
-  cardDescription: Give 4 Block to self or ally. Draw 1 card.
+  cardDescription: Give 3 Block to self or ally. Draw 1 card.
   cardSprite: {fileID: 21300000, guid: a5fd44ab79fe2374b89d283da86a1fd6, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -98,7 +98,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 4
+    blockGainValue: 3
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0

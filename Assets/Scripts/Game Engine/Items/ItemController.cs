@@ -275,6 +275,10 @@ public class ItemController : Singleton<ItemController>
                 {
                     CharacterEntityController.Instance.ModifyStamina(character, ie.attributeBonus);
                 }
+                else if (ie.attribute == CoreAttribute.MaxEnergy)
+                {
+                    CharacterEntityController.Instance.ModifyMaxEnergy(character, ie.attributeBonus);
+                }
                 else if (ie.attribute == CoreAttribute.Strength)
                 {
                     CharacterEntityController.Instance.ModifyStrength(character, ie.attributeBonus);

@@ -297,6 +297,7 @@ public enum CoreAttribute
     Intelligence = 7,
     Constitution = 8,
     Initiative = 9,
+    MaxEnergy = 10,
 
 }
 public enum KeyWordType

@@ -26,6 +26,7 @@ public class CharacterData
 
     [Header("Secondary Attributes")]
     public int stamina = 2;
+    public int maxEnergy = 6;
     public int initiative = 0;
     public int draw = 4;
     public int power = 0;

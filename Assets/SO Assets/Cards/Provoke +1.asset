@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Force an enemy to focus its next attack on you. Gain 9 Block.
   cardSprite: {fileID: 21300000, guid: 7db71e2cd9129b947b566cd657d5389f, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 0
+  cardEnergyCost: 2
   cardType: 1
   targettingType: 3
   talentSchool: 5

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Throwing Knife
   m_EditorClassIdentifier: 
   cardName: Throwing Knife
-  includeInGame: 0
+  includeInGame: 1
   cardDescription: Deal 8 Physical Damage. Draw 1 card.
   cardSprite: {fileID: 21300000, guid: 4bf0775a87d89ac44805f5d59724a68e, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 3
   targettingType: 3
   talentSchool: 3

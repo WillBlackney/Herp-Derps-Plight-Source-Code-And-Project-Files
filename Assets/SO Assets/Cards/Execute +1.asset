@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Execute +1
   includeInGame: 1
-  cardDescription: 'Deal 26 Physical damage. Lethal: Gain 2 Energy,'
+  cardDescription: 'Deal 25 Physical damage. Lethal: Gain 4 Energy,'
   cardSprite: {fileID: 21300000, guid: 0b8bde124e965454da2ef6d7786c84aa, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 2
+  cardEnergyCost: 4
   cardType: 2
   targettingType: 3
   talentSchool: 2
@@ -64,7 +64,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '2 '
+    phrase: '4 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
     blockGainValue: 0
-    baseDamageValue: 26
+    baseDamageValue: 25
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
     drawBaseDamageFromTargetBurning: 0
@@ -204,7 +204,7 @@ MonoBehaviour:
       passiveData: 0
       passiveStacks: 0
     healthLost: 0
-    energyGainedOrLost: 2
+    energyGainedOrLost: 4
     certainCardNames: []
     whileHoldingBlessing: 0
     cardCostsZero: 0

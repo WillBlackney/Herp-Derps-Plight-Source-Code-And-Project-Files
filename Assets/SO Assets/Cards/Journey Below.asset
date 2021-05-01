@@ -18,7 +18,7 @@ MonoBehaviour:
     card to hand.
   cardSprite: {fileID: 21300000, guid: 726b167addcefe540adda8159c9202f5, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 0
+  cardEnergyCost: 1
   cardType: 1
   targettingType: 0
   talentSchool: 11

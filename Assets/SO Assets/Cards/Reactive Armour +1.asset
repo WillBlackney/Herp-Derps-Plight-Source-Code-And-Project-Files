@@ -18,7 +18,7 @@ MonoBehaviour:
     Remove all Block. Expend.
   cardSprite: {fileID: 21300000, guid: ec4e95d4dc34df843aef0f0fb6cf9a63, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 0
+  cardEnergyCost: 1
   cardType: 1
   targettingType: 0
   talentSchool: 5

@@ -26,7 +26,8 @@ MonoBehaviour:
   constitution: 22
   power: 0
   initiative: 3
-  stamina: 2
+  stamina: 4
+  maxEnergy: 6
   draw: 4
   baseCrit: 0
   critModifier: 30
@@ -99,6 +100,7 @@ MonoBehaviour:
     bullyStacks: 0
     stoneFormStacks: 0
     thriftyStacks: 0
+    lifeStealStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0

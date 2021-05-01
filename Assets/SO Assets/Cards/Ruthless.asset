@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Your Shank cards deal 2 more damage.
   cardSprite: {fileID: 21300000, guid: 295fe025bb47bb74fadcd87742ddc49b, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 4
   targettingType: 0
   talentSchool: 3

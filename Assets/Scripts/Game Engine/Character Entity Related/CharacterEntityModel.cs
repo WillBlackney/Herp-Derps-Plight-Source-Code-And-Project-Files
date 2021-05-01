@@ -22,6 +22,7 @@ public class CharacterEntityModel
     [Header("Secondary Attrbutes")]
     public int power;
     public int stamina;
+    public int maxEnergy;
     public int energy;
     public int initiative;
     public int draw;

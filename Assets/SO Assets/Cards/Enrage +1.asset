@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Whenever you lose health, gain 1 Power. Expend.
   cardSprite: {fileID: 21300000, guid: 5114a2d5cdd8ab8498f55ce4e1291728, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 3
   cardType: 4
   targettingType: 0
   talentSchool: 2

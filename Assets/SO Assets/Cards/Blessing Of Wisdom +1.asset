@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Give 1 Draw to self or ally next activation. Expend.
   cardSprite: {fileID: 21300000, guid: ab9ed38aff220aa43937a55a8b42242d, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 0
+  cardEnergyCost: 1
   cardType: 1
   targettingType: 2
   talentSchool: 0

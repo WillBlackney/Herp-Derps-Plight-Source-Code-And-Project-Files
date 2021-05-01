@@ -18,7 +18,7 @@ MonoBehaviour:
     to all enemies. '
   cardSprite: {fileID: 21300000, guid: 70df1591f914c8843939dea83ffd9224, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 2
+  cardEnergyCost: 4
   cardType: 1
   targettingType: 0
   talentSchool: 6

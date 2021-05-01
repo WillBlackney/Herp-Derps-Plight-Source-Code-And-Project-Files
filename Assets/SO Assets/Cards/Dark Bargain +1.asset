@@ -18,7 +18,7 @@ MonoBehaviour:
     lose 2 Health.
   cardSprite: {fileID: 21300000, guid: 827501c13da9a1a40a9a8036f5592b0c, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 2
+  cardEnergyCost: 4
   cardType: 1
   targettingType: 0
   talentSchool: 11

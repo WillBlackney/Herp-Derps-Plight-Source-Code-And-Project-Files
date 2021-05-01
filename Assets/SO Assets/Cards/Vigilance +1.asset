@@ -18,7 +18,7 @@ MonoBehaviour:
     4 times.
   cardSprite: {fileID: 21300000, guid: c4878cdbffe93a44392d8f3c2bb899ea, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 2
+  cardEnergyCost: 3
   cardType: 1
   targettingType: 1
   talentSchool: 5
@@ -103,7 +103,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 14
+    blockGainValue: 12
     baseDamageValue: 8
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0

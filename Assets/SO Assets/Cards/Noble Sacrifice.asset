@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Give an ally 10 Block. Lose 2 Health.
   cardSprite: {fileID: 21300000, guid: 4837db294b1e18e4caadf772c80a4a2b, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 1
   targettingType: 2
   talentSchool: 5

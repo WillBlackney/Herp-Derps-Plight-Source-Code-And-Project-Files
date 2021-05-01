@@ -20,7 +20,7 @@ MonoBehaviour:
     all Overload.'
   cardSprite: {fileID: 21300000, guid: 0e6ec1e1a9d82e049bec6fe6718fc4e9, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 4
   cardType: 3
   targettingType: 3
   talentSchool: 13
