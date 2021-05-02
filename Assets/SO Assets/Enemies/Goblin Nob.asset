@@ -100,6 +100,7 @@ MonoBehaviour:
     bullyStacks: 0
     stoneFormStacks: 0
     thriftyStacks: 0
+    lifeStealStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -300,6 +301,21 @@ MonoBehaviour:
         movementAnimation: 0
         soundEffect: 0
         characterAnimation: 4
+        delayDuration: 0
+        projectileFired: 0
+        projectileStartPosition: 0
+        onCharacter: 0
+      - eventType: 5
+        screenOverlayType: 0
+        overlayColor: 0
+        overlayFadeInTime: 0
+        overlayDuration: 0
+        overlayFadeOutTime: 0
+        particleEffect: 0
+        cameraShake: 0
+        movementAnimation: 0
+        soundEffect: 56
+        characterAnimation: 0
         delayDuration: 0
         projectileFired: 0
         projectileStartPosition: 0

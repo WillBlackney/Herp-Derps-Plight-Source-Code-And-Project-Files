@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Second Wind +1
   m_EditorClassIdentifier: 
   cardName: Second Wind +1
-  includeInGame: 0
-  cardDescription: Choose a card in hand. Expend it. Gain 12 Block.
+  includeInGame: 1
+  cardDescription: Choose a card in hand. Expend it. Gain 1 Grit.
   cardSprite: {fileID: 21300000, guid: 7e2f19fe95a9b5a4dab29454c4766c55, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 0
   cardType: 1
   targettingType: 0
   talentSchool: 5
@@ -26,6 +26,7 @@ MonoBehaviour:
   upgradeLevel: 1
   expend: 0
   innate: 0
+  immutable: 0
   fleeting: 0
   unplayable: 0
   lifeSteal: 0
@@ -54,13 +55,13 @@ MonoBehaviour:
     cardEffectType: 0
     phrase: 'Gain '
   - color: 2
-    getPhraseFromCardValue: 1
+    getPhraseFromCardValue: 0
     cardEffectType: 10
-    phrase: '6 '
+    phrase: '1 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: ' Block'
+    phrase: Grit
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -136,7 +137,7 @@ MonoBehaviour:
     visualEventsOnDamageLoopFinish: []
   - weaponRequirement: 0
     targetRequirement: 0
-    cardEffectType: 10
+    cardEffectType: 2
     splitTargetEffect: 0
     splitTargetType: 0
     characterSummoned: {fileID: 0}
@@ -166,7 +167,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 12
+    blockGainValue: 4
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0
@@ -185,8 +186,8 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: 0
-      passiveStacks: 0
+      passiveData: 14
+      passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
@@ -218,6 +219,6 @@ MonoBehaviour:
   - kewWordType: 1
     weaponRequirement: 0
     passiveType: 0
-  - kewWordType: 9
+  - kewWordType: 8
     weaponRequirement: 0
-    passiveType: 0
+    passiveType: 14

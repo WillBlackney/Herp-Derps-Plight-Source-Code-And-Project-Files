@@ -579,7 +579,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
     // Modify Energy
     #region
-    public void ModifyEnergy(CharacterEntityModel character, int energyGainedOrLost, bool showVFX = false)
+    public void ModifyEnergy(CharacterEntityModel character, int energyGainedOrLost, bool showVFX = false, bool updateEnergyGuiInstantly = true)
     {
         Debug.Log("CharacterEntityController.ModifyEnergy() called for " + character.myName);
         character.energy += energyGainedOrLost;
@@ -605,8 +605,11 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateGeneralBuffEffect(view.WorldPosition));
         }
 
+        QueuePosition qPos = QueuePosition.Back;
+        if (updateEnergyGuiInstantly) qPos = QueuePosition.Front;
+
         int energyVfxValue = character.energy;
-        VisualEventManager.Instance.CreateVisualEvent(() => UpdateEnergyGUI(view, energyVfxValue), QueuePosition.Front, 0, 0);
+        VisualEventManager.Instance.CreateVisualEvent(() => UpdateEnergyGUI(view, energyVfxValue), qPos, 0, 0);
 
         CardController.Instance.AutoUpdateCardsInHandGlowOutlines(character);
     }
@@ -871,10 +874,10 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                 energyGain += 1;
 
             // Gain Energy
-            ModifyEnergy(character, energyGain);
+            ModifyEnergy(character, energyGain, false, false);
 
             // Update energy text
-            VisualEventManager.Instance.CreateVisualEvent(() => UpdateEnergyGUI(character.characterEntityView, character.energy), QueuePosition.Back, 0, 0);
+            //VisualEventManager.Instance.CreateVisualEvent(() => UpdateEnergyGUI(character.characterEntityView, character.energy), QueuePosition.Back, 0, 0);
         }
 
         // Handle remove block from previous turn cycle
@@ -1012,7 +1015,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
                 // Draw extra card and gain extra energy
                 CardController.Instance.DrawACardFromDrawPile(character);
-                ModifyEnergy(character, 1);
+                ModifyEnergy(character, 1, false, false);
                 VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
             }
 
@@ -1191,8 +1194,8 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             }
 
             // Lose unused energy, discard hand
-            if (!StateController.Instance.DoesPlayerHaveState(StateName.Endurance))
-                ModifyEnergy(entity, -entity.energy);
+            //if (!StateController.Instance.DoesPlayerHaveState(StateName.Endurance))
+            //    ModifyEnergy(entity, -entity.energy);
 
             // reset activation only energy values on cards
             CardController.Instance.ResetAllCardEnergyCostsOnActivationEnd(entity);
@@ -1298,7 +1301,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
                     VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Encouraging Aura!"), QueuePosition.Back, 0, 0.5f);
 
                     // Random ally gains energy
-                    ModifyEnergy(chosenAlly, entity.pManager.encouragingAuraStacks, true);
+                    ModifyEnergy(chosenAlly, entity.pManager.encouragingAuraStacks, true, false);
                 }
             }
 

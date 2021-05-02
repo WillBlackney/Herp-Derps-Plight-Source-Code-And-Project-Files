@@ -85,7 +85,7 @@ public class CombatLogic : Singleton<CombatLogic>
         baseDamageValueReturned += baseDamage;
 
         // Add flat damage bonus from modifiers (power, etc)        
-        if (card != null || enemyAction != null)
+        if ((card != null && !card.immutable )|| enemyAction != null)
         {
             baseDamageValueReturned += EntityLogic.GetTotalPower(attacker);
             Debug.Log("Card base damage after strength and related modifiers added: " + baseDamageValueReturned.ToString());

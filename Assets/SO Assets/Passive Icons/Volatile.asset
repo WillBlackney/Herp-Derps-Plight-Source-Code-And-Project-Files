@@ -18,19 +18,19 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'When this character dies, it applies '
+    phrase: 'When this character dies, it deals '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: 'X '
-  - color: 3
+  - color: 4
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Poisoned '
+    phrase: 'Physical '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: to all enemies.
+    phrase: damage to all enemies.
   showStackCount: 1
   hiddenOnPassivePanel: 0
   runeBlocksIncrease: 0

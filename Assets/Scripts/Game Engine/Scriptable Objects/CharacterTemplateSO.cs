@@ -74,11 +74,11 @@ public class CharacterTemplateSO : ScriptableObject
     [BoxGroup("Secondary Attributes")]
     [LabelWidth(100)]
     [GUIColor("Blue")]
-    public int initiative;
+    public int initiative = 3;
     [BoxGroup("Secondary Attributes")]
     [LabelWidth(100)]
     [GUIColor("Blue")]
-    public int stamina = 2;
+    public int stamina = 4;
     [BoxGroup("Secondary Attributes")]
     [LabelWidth(100)]
     [GUIColor("Blue")]

@@ -96946,7 +96946,7 @@ GameObject:
   - component: {fileID: 8940538147961618775}
   - component: {fileID: 6668593867525972628}
   m_Layer: 0
-  m_Name: 'Orc_Right_Arm '
+  m_Name: Orc_Right_Arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

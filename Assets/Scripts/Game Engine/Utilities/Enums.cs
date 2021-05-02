@@ -322,6 +322,7 @@ public enum KeyWordType
     SkillCard = 17,
     PowerCard = 18,
     AfflictionCard = 19,
+    Immutable = 20,
 }
 #endregion
 

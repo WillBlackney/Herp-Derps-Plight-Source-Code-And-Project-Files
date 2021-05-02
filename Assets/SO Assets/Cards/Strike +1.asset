@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Deal 8 Physical damage.
   cardSprite: {fileID: 21300000, guid: 899c8605fde961c4caeac02f8f9d62f6, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 2
   targettingType: 3
   talentSchool: 1
@@ -26,6 +26,7 @@ MonoBehaviour:
   upgradeLevel: 1
   expend: 0
   innate: 0
+  immutable: 0
   fleeting: 0
   unplayable: 0
   lifeSteal: 0

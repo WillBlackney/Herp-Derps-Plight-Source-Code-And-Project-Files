@@ -38,6 +38,7 @@ public class Card
     // Key words
     public bool expend;
     public bool innate;
+    public bool immutable;
     public bool fleeting;
     public bool unplayable;
     public bool lifeSteal;

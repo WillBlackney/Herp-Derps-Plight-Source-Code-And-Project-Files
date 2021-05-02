@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Blade Tornado
   includeInGame: 1
-  cardDescription: 'Spend all Energy. For each point spent, Deal 5 Physical damage
-    to all enemies. '
+  cardDescription: Spend all Energy. For each point spent, Deal 5 Physical damage
+    to all enemies. Immutable.
   cardSprite: {fileID: 21300000, guid: adc66b9bea183614295059985527b39a, type: 3}
   xEnergyCost: 1
   cardEnergyCost: 0
@@ -27,6 +27,7 @@ MonoBehaviour:
   upgradeLevel: 0
   expend: 0
   innate: 0
+  immutable: 1
   fleeting: 0
   unplayable: 0
   lifeSteal: 0
@@ -61,7 +62,17 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: damage to all enemies.
+    phrase: 'damage to all enemies.
+
+'
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: Immutable
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
   cardEffects:
   - weaponRequirement: 0
     targetRequirement: 0
@@ -187,5 +198,8 @@ MonoBehaviour:
   cardPassiveEffects: []
   keyWordModels:
   - kewWordType: 15
+    weaponRequirement: 0
+    passiveType: 0
+  - kewWordType: 20
     weaponRequirement: 0
     passiveType: 0

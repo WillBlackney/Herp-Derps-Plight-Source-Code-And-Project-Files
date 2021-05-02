@@ -492,6 +492,7 @@ public class CardController : Singleton<CardController>
         c.expend = d.expend;
         c.innate = d.innate;
         c.fleeting = d.fleeting;
+        c.immutable = d.immutable;
         c.unplayable = d.unplayable;
         c.lifeSteal = d.lifeSteal;
         c.blessing = d.blessing;
@@ -559,6 +560,7 @@ public class CardController : Singleton<CardController>
         // Key words
         c.expend = original.expend;
         c.innate = original.innate;
+        c.immutable = original.immutable;
         c.fleeting = original.fleeting;
         c.unplayable = original.unplayable;
         c.lifeSteal = original.lifeSteal;
@@ -627,6 +629,7 @@ public class CardController : Singleton<CardController>
         card.expend = data.expend;
         card.fleeting = data.fleeting;
         card.innate = data.innate;
+        card.immutable = data.immutable;
         card.lifeSteal = data.lifeSteal;
         card.unplayable = data.unplayable;
         card.blessing = data.blessing;
@@ -666,6 +669,7 @@ public class CardController : Singleton<CardController>
         // key words
         card.expend = data.expend;
         card.fleeting = data.fleeting;
+        card.immutable = data.immutable;
         card.innate = data.innate;
         card.unplayable = data.unplayable;
         card.lifeSteal = data.lifeSteal;
@@ -712,6 +716,7 @@ public class CardController : Singleton<CardController>
         card.expend = original.expend;
         card.fleeting = original.fleeting;
         card.innate = original.innate;
+        card.immutable = original.immutable;
         card.unplayable = original.unplayable;
         card.lifeSteal = original.lifeSteal;
         card.blessing = original.blessing;
@@ -3711,7 +3716,7 @@ public class CardController : Singleton<CardController>
         else if (e.cardEventListenerFunction == CardEventListenerFunction.ModifyEnergy)
         {
             VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(card.cardVM));
-            CharacterEntityController.Instance.ModifyEnergy(card.owner, e.energyGainedOrLost);
+            CharacterEntityController.Instance.ModifyEnergy(card.owner, e.energyGainedOrLost, false, false);
         }
     }
     private void HandleOnMeleeAttackCardPlayedListeners(CharacterEntityModel character)

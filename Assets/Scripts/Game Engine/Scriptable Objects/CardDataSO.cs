@@ -77,6 +77,10 @@ public class CardDataSO : ScriptableObject
     [BoxGroup("Core Key Words")]
     [LabelWidth(100)]
     [GUIColor("Green")]
+    public bool immutable;
+    [BoxGroup("Core Key Words")]
+    [LabelWidth(100)]
+    [GUIColor("Green")]
     public bool fleeting;
     [BoxGroup("Core Key Words")]
     [LabelWidth(100)]

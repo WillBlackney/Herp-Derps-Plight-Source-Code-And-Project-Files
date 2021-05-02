@@ -440,6 +440,8 @@ public enum Sound
     Ability_Metallic_Ting = 37,
     Ability_Heal_Twinkle = 54,
     Ability_Dispell_Twang = 55,
+    Ability_Enrage_Short = 56,
+    Ability_Enrage_Long = 57,
 
     Ambience_Outdoor_Spooky = 39,
     Ambience_Crypt = 40,
@@ -452,6 +454,7 @@ public enum Sound
 
     Character_Footsteps = 9,
     Character_Draw_Bow = 10,
+    Character_Undead_Growl = 58,
 
     Environment_Gate_Open = 38,
     Environment_Camp_Fire = 49,
