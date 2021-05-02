@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9a6346e66fdb7e47bd30f751d29c6a7, type: 3}
+  m_Name: Bottled Brilliance
+  m_EditorClassIdentifier: 
+  itemSprite: {fileID: 21300000, guid: 7a766ddccc5c21c49a5cef4ba5c66e51, type: 3}
+  itemName: Bottled Brilliance
+  itemType: 5
+  itemRarity: 1
+  lootable: 1
+  includeInLibrary: 1
+  passivePairings: []
+  itemEffects:
+  - effect: 1
+    attribute: 10
+    attributeBonus: 2
+    startingBlockBonus: 0
+  customDescription:
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Increase your '
+  - color: 3
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'Max Energy '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'by '
+  - color: 2
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 2
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: .
+  keyWordModels: []

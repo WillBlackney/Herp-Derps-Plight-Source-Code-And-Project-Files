@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Apply 4 Burning to all enemies.
   cardSprite: {fileID: 21300000, guid: dfe1d396906f35d449870bfbe099b07b, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 1
   targettingType: 0
   talentSchool: 0

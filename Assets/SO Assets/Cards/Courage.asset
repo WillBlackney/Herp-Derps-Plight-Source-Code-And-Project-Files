@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Gain 5 Block and 1 Grit.
   cardSprite: {fileID: 21300000, guid: b3edc3500fbcf3642af7a195ec5ebc64, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 1
   targettingType: 0
   talentSchool: 0

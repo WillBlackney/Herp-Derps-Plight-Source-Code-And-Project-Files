@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Apply 1 Weakened to all enemies. Expend.
   cardSprite: {fileID: 21300000, guid: 1ba1694a7b8c7e34bac10fb9e8682918, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 0
+  cardEnergyCost: 1
   cardType: 1
   targettingType: 0
   talentSchool: 1

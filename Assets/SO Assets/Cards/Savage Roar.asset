@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Gain 2 Power. Expend.
   cardSprite: {fileID: 21300000, guid: e4d45ae682c0d8747b8db86ea6f5852c, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 2
   cardType: 1
   targettingType: 0
   talentSchool: 1

@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: 'Deal 12 Physical damage. Apply 2 Vulnerable. '
   cardSprite: {fileID: 21300000, guid: e3436f85f2c78b249953d19a8e32c95a, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 2
+  cardEnergyCost: 3
   cardType: 2
   targettingType: 3
   talentSchool: 1

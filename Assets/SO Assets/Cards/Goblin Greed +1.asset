@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Choose a card in hand. Upgrade it. Innate.
   cardSprite: {fileID: 21300000, guid: c6db3708399329644a86bc1dd00dd5fe, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 0
+  cardEnergyCost: 1
   cardType: 1
   targettingType: 0
   talentSchool: 0
