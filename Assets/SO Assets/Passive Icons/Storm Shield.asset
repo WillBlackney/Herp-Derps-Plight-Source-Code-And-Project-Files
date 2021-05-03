@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Storm Shield
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: 645ec306fdc9511498f3a277b3827a00, type: 3}
+  passiveSprite: {fileID: 21300000, guid: ba29272667fc44549b00ac2368f61ac4, type: 3}
   passiveName: Storm Shield
   passiveDescription:
   - color: 1

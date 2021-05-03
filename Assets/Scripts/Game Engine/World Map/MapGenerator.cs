@@ -164,7 +164,7 @@ namespace MapSystem
 
             if(!atleastOneRandom && layer.guaranteeAtleastOneRandom)
             {
-                Debug.LogWarning("Didn't hit a random node, rerolling for a random node");
+                Debug.LogWarning("Didn't hit a random node, rerolling for a random node on layer " + layerIndex.ToString());
 
                 // get a random node + type on the layer
                 Node randomNode = nodesOnThisLayer[RandomGenerator.NumberBetween(0, nodesOnThisLayer.Count - 1)];
@@ -177,15 +177,15 @@ namespace MapSystem
 
             if (!atleastOneOriginal && layer.guaranteeAtleastOneOfChosenType)
             {
-                Debug.LogWarning("Didn't hit an originally selected node type, rerolling to guarantee an original node choice");
+                Debug.LogWarning("Didn't hit an originally selected node type, rerolling to guarantee an original node choice on layer " + layerIndex.ToString());
 
                 // get a random node + type on the layer
                 Node randomNode = nodesOnThisLayer[RandomGenerator.NumberBetween(0, nodesOnThisLayer.Count - 1)];
-                EncounterType randomNodeType = layer.nodeType;
+                EncounterType fixedNodeType = layer.nodeType;
 
                 // change the node to new random type
-                var blueprintName = config.nodeBlueprints.Where(b => b.nodeType == randomNodeType).ToList().Random().name;
-                randomNode.RerollType(randomNodeType, blueprintName);
+                var blueprintName = config.nodeBlueprints.Where(b => b.nodeType == fixedNodeType).ToList().Random().name;
+                randomNode.RerollType(fixedNodeType, blueprintName);
             }
 
             nodes.Add(nodesOnThisLayer);

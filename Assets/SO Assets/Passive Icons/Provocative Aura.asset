@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Provocative Aura
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: 6bae4d1489d3458489f5556350318626, type: 3}
+  passiveSprite: {fileID: 21300000, guid: 70e8e4b4827207e408009613fd7c9ddf, type: 3}
   passiveName: Provocative Aura
   passiveDescription:
   - color: 0

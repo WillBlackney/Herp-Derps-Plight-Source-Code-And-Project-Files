@@ -134,6 +134,16 @@ public class CardController : Singleton<CardController>
 
         AllCards = tempList.ToArray();
 
+        // print afflictions
+        Debug.LogWarning("::AFFLICTIONS::");
+        foreach(CardData c in AllCards)
+        {
+            if(c.affliction || c.cardType == CardType.Affliction)
+            {
+                Debug.LogWarning(c.cardName);
+            }
+        }
+
     }
 
     // Getters
@@ -3716,7 +3726,7 @@ public class CardController : Singleton<CardController>
         else if (e.cardEventListenerFunction == CardEventListenerFunction.ModifyEnergy)
         {
             VisualEventManager.Instance.CreateVisualEvent(() => PlayCardBreathAnimationVisualEvent(card.cardVM));
-            CharacterEntityController.Instance.ModifyEnergy(card.owner, e.energyGainedOrLost, false, false);
+            CharacterEntityController.Instance.ModifyEnergy(card.owner, e.energyGainedOrLost, true, false);
         }
     }
     private void HandleOnMeleeAttackCardPlayedListeners(CharacterEntityModel character)

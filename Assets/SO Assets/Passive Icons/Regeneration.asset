@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Regeneration
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: c60ca4e1dc9826e439f7079e08477ff0, type: 3}
+  passiveSprite: {fileID: 21300000, guid: 4f702ecc13f199a4a9dfb13fdbfe50f4, type: 3}
   passiveName: Regeneration
   passiveDescription:
   - color: 1

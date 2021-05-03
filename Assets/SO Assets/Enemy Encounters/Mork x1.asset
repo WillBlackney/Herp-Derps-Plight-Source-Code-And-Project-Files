@@ -17,4 +17,4 @@ MonoBehaviour:
   enemyGroups:
   - possibleEnemies:
     - {fileID: 11400000, guid: 2e6ada94ec625d94f84e69aa4cf9b076, type: 2}
-  itemReward: {fileID: 0}
+  itemReward: {fileID: 11400000, guid: a81f8221b52755e4785ee1afa9d0ccf6, type: 2}

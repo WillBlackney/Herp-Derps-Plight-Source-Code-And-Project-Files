@@ -101,6 +101,7 @@ public class PassiveManagerModel
     public int disarmedStacks;
     public int silencedStacks;
     public int sleepStacks;
+    public int waveringStacks;
 
     // Misc passives
     [HideInInspector] public int tauntStacks;

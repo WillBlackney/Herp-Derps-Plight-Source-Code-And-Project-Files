@@ -18,7 +18,7 @@ MonoBehaviour:
   cardSprite: {fileID: 21300000, guid: 741c2c4a28c8ae544a4918701bfea295, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 0
-  cardType: 1
+  cardType: 5
   targettingType: 0
   talentSchool: 0
   rarity: 0
@@ -26,12 +26,13 @@ MonoBehaviour:
   upgradeLevel: 1
   expend: 0
   innate: 0
+  immutable: 0
   fleeting: 0
   unplayable: 1
   lifeSteal: 0
   blessing: 0
   sourceSpell: 0
-  affliction: 0
+  affliction: 1
   racialCard: 0
   originRace: 0
   customDescription:

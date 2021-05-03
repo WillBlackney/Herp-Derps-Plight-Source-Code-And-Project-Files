@@ -456,6 +456,11 @@ public class CombatLogic : Singleton<CombatLogic>
         int valueReturned = baseBlockGain;
         Debug.Log("Base block gain value: " + valueReturned);
 
+        // prevent block gain while wavering
+        if (target != null &&
+            target.pManager.waveringStacks > 0)
+            return 0;
+
         // UNCOMMENT TO ENABLE CRITS
         didCrit = false;
 

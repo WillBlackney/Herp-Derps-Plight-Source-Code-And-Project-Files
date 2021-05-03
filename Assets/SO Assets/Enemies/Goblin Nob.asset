@@ -90,7 +90,7 @@ MonoBehaviour:
     reflexShotBonusDamageStacks: 0
     unbreakableStacks: 0
     pierceStacks: 0
-    regenerationStacks: 3
+    regenerationStacks: 0
     hurricaneStacks: 0
     holierThanThouStacks: 0
     tenaciousStacks: 0

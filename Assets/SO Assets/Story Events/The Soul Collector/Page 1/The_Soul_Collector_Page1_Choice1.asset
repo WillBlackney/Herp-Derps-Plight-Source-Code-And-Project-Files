@@ -34,6 +34,7 @@ MonoBehaviour:
     healType: 0
     healPercentage: 0
     healAmount: 0
+    maxHealthGainedOrLost: 0
     damageAmount: 0
     itemRewardType: 0
     itemGained: {fileID: 0}
@@ -44,12 +45,14 @@ MonoBehaviour:
     copiesGained: 1
     randomCard: 0
     randomCardAmount: 0
+    enemyWave: {fileID: 0}
   - effectType: 14
     target: 0
     pageToLoad: {fileID: 0}
     healType: 0
     healPercentage: 0
     healAmount: 0
+    maxHealthGainedOrLost: 0
     damageAmount: 0
     itemRewardType: 0
     itemGained: {fileID: 0}
@@ -60,19 +63,22 @@ MonoBehaviour:
     copiesGained: 1
     randomCard: 0
     randomCardAmount: 0
+    enemyWave: {fileID: 0}
   - effectType: 4
     target: 1
     pageToLoad: {fileID: 0}
     healType: 0
     healPercentage: 0
     healAmount: 0
+    maxHealthGainedOrLost: 0
     damageAmount: 0
     itemRewardType: 0
     itemGained: {fileID: 0}
     totalItemsGained: 1
     loseAllGold: 0
     goldGainedOrLost: 0
-    cardGained: {fileID: 11400000, guid: c4e7245fdab32974e9b9a03fb819216b, type: 2}
+    cardGained: {fileID: 11400000, guid: 55c8ff2e879ccf14794b5b656f693e4a, type: 2}
     copiesGained: 1
     randomCard: 0
     randomCardAmount: 0
+    enemyWave: {fileID: 0}

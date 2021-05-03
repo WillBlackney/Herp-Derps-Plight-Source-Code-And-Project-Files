@@ -26,7 +26,7 @@ MonoBehaviour:
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'Elite '
+    phrase: 'Mini Boss '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0

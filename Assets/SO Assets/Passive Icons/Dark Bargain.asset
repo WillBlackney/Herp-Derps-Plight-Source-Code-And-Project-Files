@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Dark Bargain
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: 6a40b1fd7314b2944acccc6c3e7e7d0a, type: 3}
+  passiveSprite: {fileID: 21300000, guid: 827501c13da9a1a40a9a8036f5592b0c, type: 3}
   passiveName: Dark Bargain
   passiveDescription:
   - color: 1

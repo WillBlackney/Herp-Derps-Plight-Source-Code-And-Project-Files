@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Incorporeal
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: a32be372d2113d3418c065b5b56702cd, type: 3}
+  passiveSprite: {fileID: 21300000, guid: e574d3452afd70f4bab55498049377d7, type: 3}
   passiveName: Incorporeal
   passiveDescription:
   - color: 1

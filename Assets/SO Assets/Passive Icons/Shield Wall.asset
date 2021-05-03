@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Shield Wall
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: 70701f3db69ed2e44946e6e551964599, type: 3}
+  passiveSprite: {fileID: 21300000, guid: 12b45abbd6b1e544f9262fd95e0712e7, type: 3}
   passiveName: Shield Wall
   passiveDescription:
   - color: 1

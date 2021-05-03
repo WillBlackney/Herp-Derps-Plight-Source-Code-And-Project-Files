@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Weakened
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: 75417a2fed02750409be6b99feff3c09, type: 3}
+  passiveSprite: {fileID: 21300000, guid: a32be372d2113d3418c065b5b56702cd, type: 3}
   passiveName: Weakened
   passiveDescription:
   - color: 1

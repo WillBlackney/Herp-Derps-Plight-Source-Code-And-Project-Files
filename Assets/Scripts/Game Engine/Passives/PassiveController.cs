@@ -454,7 +454,10 @@ public class PassiveController : Singleton<PassiveController>
         {
             ModifySilenced(newClone, originalData.silencedStacks, false);
         }
-
+        if (originalData.waveringStacks != 0)
+        {
+            ModifyWavering(newClone, originalData.waveringStacks, false);
+        }
         #endregion
 
         // Core % Modifier passives
@@ -581,6 +584,7 @@ public class PassiveController : Singleton<PassiveController>
         pManager.disarmedStacks = original.disarmedStacks;
         pManager.sleepStacks = original.sleepStacks;
         pManager.silencedStacks = original.silencedStacks;
+        pManager.waveringStacks = original.waveringStacks;
 
         pManager.poisonedStacks = original.poisonedStacks;
         pManager.burningStacks = original.burningStacks;
@@ -1008,6 +1012,10 @@ public class PassiveController : Singleton<PassiveController>
         else if (originalData == "Silenced")
         {
             ModifySilenced(pManager, stacks, showVFX, vfxDelay);
+        }
+        else if (originalData == "Wavering")
+        {
+            ModifyWavering(pManager, stacks, showVFX, vfxDelay);
         }
 
         #endregion
@@ -6279,6 +6287,63 @@ public class PassiveController : Singleton<PassiveController>
 
     // Disabling Debuff Passives
     #region
+    public void ModifyWavering(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
+    {
+        Debug.Log("PassiveController.ModifyWavering() called...");
+
+        // Setup + Cache refs
+        PassiveIconData iconData = GetPassiveIconDataByName("Wavering");
+        CharacterEntityModel character = pManager.myCharacter;
+
+        // Check for rune
+        if (ShouldRuneBlockThisPassiveApplication(pManager, iconData, stacks))
+        {
+            // Character is protected by rune: Cancel this status application, remove a rune, then return.
+            ModifyRune(pManager, -1, showVFX, vfxDelay);
+            return;
+        }
+
+        // Increment stacks
+        pManager.waveringStacks += stacks;
+
+        if (character != null)
+        {
+            // Add icon view visual event
+            if (showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() => StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks));
+            }
+            else
+            {
+                StartAddPassiveToPanelProcess(character.characterEntityView, iconData, stacks);
+            }
+
+            if (stacks > 0 && showVFX)
+            {
+                // VFX visual events
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Wavering!");
+                    VisualEffectManager.Instance.CreateGeneralDebuffEffect(character.characterEntityView.WorldPosition);
+                });
+
+            }
+
+            else if (stacks < 0 && showVFX)
+            {
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                {
+                    VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Wavering Removed");
+                    VisualEffectManager.Instance.CreateGeneralBuffEffect(character.characterEntityView.WorldPosition);
+                });
+            }
+
+            if (showVFX)
+            {
+                VisualEventManager.Instance.InsertTimeDelayInQueue(vfxDelay);
+            }
+        }
+    }
     public void ModifyDisarmed(PassiveManagerModel pManager, int stacks, bool showVFX = true, float vfxDelay = 0f)
     {
         Debug.Log("PassiveController.ModifyDisarmed() called...");

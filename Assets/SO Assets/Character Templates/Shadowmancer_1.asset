@@ -116,6 +116,7 @@ MonoBehaviour:
     disarmedStacks: 0
     silencedStacks: 0
     sleepStacks: 0
+    waveringStacks: 0
     poisonedStacks: 0
     burningStacks: 0
     bleedingStacks: 0
@@ -126,9 +127,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
   - {fileID: 11400000, guid: 2dd1091a72c438348a7f0ab574573ca8, type: 2}
+  - {fileID: 11400000, guid: 186eaded8ce25764581f9036feb58e61, type: 2}
   - {fileID: 11400000, guid: 906a542ac4dbed2429e34de4a75c3c40, type: 2}
   - {fileID: 11400000, guid: 906a542ac4dbed2429e34de4a75c3c40, type: 2}
-  - {fileID: 11400000, guid: 40b7155ec97096d4fad9cbe1f8b3b699, type: 2}
   - {fileID: 11400000, guid: 2c7de9e75fc411541ba6f9c3c6dc9da3, type: 2}
   modelParts:
   - Elf_Chest

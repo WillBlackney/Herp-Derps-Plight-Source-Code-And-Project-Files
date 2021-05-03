@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Magic Damage Bonus
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 0}
+  passiveSprite: {fileID: 21300000, guid: 7587b8d2bff4dd34780eff474b7f48e1, type: 3}
   passiveName: Magic Damage Bonus
   passiveDescription:
   - color: 1

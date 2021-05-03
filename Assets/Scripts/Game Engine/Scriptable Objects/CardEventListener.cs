@@ -70,7 +70,7 @@ public class CardEventListener
         {
             return false;
         }
-    }
+    }  
     public bool ShowEnergyReduction()
     {
         if (cardEventListenerFunction == CardEventListenerFunction.ReduceCardEnergyCost ||

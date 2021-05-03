@@ -283,6 +283,10 @@ public class SerializedPassiveManagerModel
     [LabelWidth(200)]
     public int sleepStacks;
 
+    [BoxGroup("Disabling Debuff Passives")]
+    [LabelWidth(200)]
+    public int waveringStacks;
+
     // DoT Debuff Passives
     [BoxGroup("DoT Debuff Passives", centerLabel: true)]
     [LabelWidth(200)]

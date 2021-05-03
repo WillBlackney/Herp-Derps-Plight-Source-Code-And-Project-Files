@@ -280,6 +280,7 @@ public enum Passive
     Unbreakable = 71,
     Venomous = 35,
     Vulnerable = 36,
+    Wavering = 90,
     Weakened = 37,
     WellOfSouls = 48,
     Wrath = 38,  

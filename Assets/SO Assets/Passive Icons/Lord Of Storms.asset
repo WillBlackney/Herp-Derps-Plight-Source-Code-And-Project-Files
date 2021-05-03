@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a9edb0cd5414864bae8560f53b9599e, type: 3}
   m_Name: Lord Of Storms
   m_EditorClassIdentifier: 
-  passiveSprite: {fileID: 21300000, guid: dec773a462bd985449f097c46bb7a403, type: 3}
+  passiveSprite: {fileID: 21300000, guid: 37eb653e92d98f2409e97628611417aa, type: 3}
   passiveName: Lord Of Storms
   passiveDescription:
   - color: 1

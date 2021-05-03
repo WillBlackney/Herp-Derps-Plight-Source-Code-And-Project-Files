@@ -597,12 +597,25 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
 
         if (showVFX && view != null)
         {
-            // Status notification
-            VisualEventManager.Instance.CreateVisualEvent(() =>
-            VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Energy +" + energyGainedOrLost.ToString()));
 
-            // Buff sparkle VFX
-            VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateGeneralBuffEffect(view.WorldPosition));
+            if(energyGainedOrLost > 0)
+            {
+                // Status notification
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Energy +" + energyGainedOrLost.ToString()));
+
+                // Buff sparkle VFX
+                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateGeneralBuffEffect(view.WorldPosition));
+            }
+            else if (energyGainedOrLost < 0)
+            {
+                // Status notification
+                VisualEventManager.Instance.CreateVisualEvent(() =>
+                VisualEffectManager.Instance.CreateStatusEffect(view.WorldPosition, "Energy " + energyGainedOrLost.ToString()));
+
+                // Debuff sparkle VFX
+                VisualEventManager.Instance.CreateVisualEvent(() => VisualEffectManager.Instance.CreateGeneralDebuffEffect(view.WorldPosition));
+            }
         }
 
         QueuePosition qPos = QueuePosition.Back;
@@ -1062,7 +1075,7 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             VisualEffectManager.Instance.CreateDamageEffect(character.characterEntityView.WorldPosition, character.pManager.regenerationStacks, true));
 
             // Create SFX
-            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Passive_General_Buff));
+            VisualEventManager.Instance.CreateVisualEvent(() => AudioManager.Instance.PlaySoundPooled(Sound.Ability_Heal_Twinkle));
 
             VisualEventManager.Instance.InsertTimeDelayInQueue(0.5f);
         }
@@ -1259,6 +1272,10 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         if (entity.pManager.sleepStacks > 0)
         {
             PassiveController.Instance.ModifySleep(entity.pManager, -1, true, 0.5f);
+        }
+        if (entity.pManager.waveringStacks > 0)
+        {
+            PassiveController.Instance.ModifyWavering(entity.pManager, -1, true, 0.5f);
         }
 
         if (entity.pManager.takenAimStacks > 0)
