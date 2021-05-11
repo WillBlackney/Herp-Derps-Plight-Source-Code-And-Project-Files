@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Blessing Of Might +1
   includeInGame: 1
-  cardDescription: Give a target 2 Power next activation. Expend.
+  cardDescription: Give a target 1 Power. Expend.
   cardSprite: {fileID: 21300000, guid: b8b13619743a2784ea59dceea74df1ac, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 0
   cardType: 1
   targettingType: 2
   talentSchool: 0
@@ -26,6 +26,7 @@ MonoBehaviour:
   upgradeLevel: 1
   expend: 1
   innate: 0
+  immutable: 0
   fleeting: 0
   unplayable: 0
   lifeSteal: 0
@@ -42,7 +43,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '2 '
+    phrase: '1 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -50,7 +51,7 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'to self or ally until activation end.
+    phrase: '.
 
 '
   - color: 3
@@ -113,8 +114,8 @@ MonoBehaviour:
     extraDrawEffect: 0
     cardEnergyReduction: 0
     passivePairing:
-      passiveData: 33
-      passiveStacks: 2
+      passiveData: 23
+      passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
@@ -130,7 +131,7 @@ MonoBehaviour:
     passiveType: 0
   - kewWordType: 8
     weaponRequirement: 0
-    passiveType: 33
+    passiveType: 23
   - kewWordType: 1
     weaponRequirement: 0
     passiveType: 0

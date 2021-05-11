@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd1bf0b56234af4c808b8522b29dcbf, type: 3}
   m_Name: Ravenous Ghoul x1
   m_EditorClassIdentifier: 
-  encounterName: Rotting Ghoul x1
+  encounterName: Ravenous Ghoul x1
   combatDifficulty: 1
   enemyGroups:
   - possibleEnemies:

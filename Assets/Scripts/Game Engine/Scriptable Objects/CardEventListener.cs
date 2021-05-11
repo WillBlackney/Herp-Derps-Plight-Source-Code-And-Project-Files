@@ -11,6 +11,14 @@ public class CardEventListener
     public CardEventListenerFunction cardEventListenerFunction;
     public CardWeaponRequirement weaponRequirement = CardWeaponRequirement.None;
 
+    [ShowIf("ShowWhileHoldingEffect")]
+    public WhileHoldingCardPassiveEffect whileHoldingEffect;
+
+    [ShowIf("ShowCardEnergyCostIncrease")]
+    public int cardEnergyCostIncrease;
+    
+   
+
     [ShowIf("ShowMaxHealthGained")]
     public int maxHealthGained;
 
@@ -36,6 +44,15 @@ public class CardEventListener
     [ShowIf("ShowCertainCardNames")]
     public bool cardCostsZero = false;
 
+    public bool ShowCardEnergyCostIncrease()
+    {
+        return cardEventListenerType == CardEventListenerType.WhileHoldingThis &&
+            whileHoldingEffect == WhileHoldingCardPassiveEffect.CardsCostMoreEnergy;
+    }
+    public bool ShowWhileHoldingEffect()
+    {
+        return cardEventListenerType == CardEventListenerType.WhileHoldingThis;
+    }
     public bool ShowCertainCardNames()
     {
         return cardEventListenerType == CardEventListenerType.WhileHoldingCertainCard;

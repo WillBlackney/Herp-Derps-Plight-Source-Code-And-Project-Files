@@ -19,7 +19,7 @@ MonoBehaviour:
   startingHealth: 30
   enableFlexibleMaxHealth: 0
   maxHealthFlexAmount: 4
-  maxHealth: 250
+  maxHealth: 300
   startingBlock: 0
   strength: 20
   intelligence: 20
@@ -116,6 +116,7 @@ MonoBehaviour:
     disarmedStacks: 0
     silencedStacks: 0
     sleepStacks: 0
+    waveringStacks: 0
     poisonedStacks: 0
     burningStacks: 0
     bleedingStacks: 0
@@ -291,7 +292,7 @@ MonoBehaviour:
       uiFadeInSpeed: 0
       summonedCreatureVisualEvents: []
       passiveApplied: {fileID: 11400000, guid: 6d216e783d4ba3a49a8dd267aa727fd3, type: 2}
-      passiveStacks: 5
+      passiveStacks: 10
       alsoHealSelf: 0
       healAmount: 0
       blockGained: 0

@@ -18,7 +18,9 @@ MonoBehaviour:
   - possibleEnemies:
     - {fileID: 11400000, guid: 5fb6a590f4aa30942941bf6a13c1bc52, type: 2}
     - {fileID: 11400000, guid: eb31dd032527b72468ad251ceead78e9, type: 2}
+    - {fileID: 11400000, guid: c86f67d3401e6b643b376cca403238eb, type: 2}
   - possibleEnemies:
     - {fileID: 11400000, guid: e16b45691f8a838468eb428004b5be7a, type: 2}
   - possibleEnemies:
     - {fileID: 11400000, guid: 021d6230f209aad4eb13289205bc2aae, type: 2}
+  itemReward: {fileID: 0}

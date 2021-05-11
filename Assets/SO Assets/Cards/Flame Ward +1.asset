@@ -28,6 +28,7 @@ MonoBehaviour:
   upgradeLevel: 1
   expend: 0
   innate: 0
+  immutable: 0
   fleeting: 0
   unplayable: 0
   lifeSteal: 0
@@ -48,7 +49,7 @@ MonoBehaviour:
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: ' Block '
+    phrase: ' Block'
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0

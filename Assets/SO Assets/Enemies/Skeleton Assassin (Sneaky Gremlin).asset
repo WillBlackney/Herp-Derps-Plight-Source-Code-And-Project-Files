@@ -19,7 +19,7 @@ MonoBehaviour:
   startingHealth: 22
   enableFlexibleMaxHealth: 1
   maxHealthFlexAmount: 2
-  maxHealth: 48
+  maxHealth: 50
   startingBlock: 0
   strength: 20
   intelligence: 20
@@ -116,6 +116,7 @@ MonoBehaviour:
     disarmedStacks: 0
     silencedStacks: 0
     sleepStacks: 0
+    waveringStacks: 0
     poisonedStacks: 0
     burningStacks: 0
     bleedingStacks: 0

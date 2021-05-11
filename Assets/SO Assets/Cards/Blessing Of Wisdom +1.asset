@@ -17,7 +17,7 @@ MonoBehaviour:
   cardDescription: Give 1 Draw to self or ally next activation. Expend.
   cardSprite: {fileID: 21300000, guid: ab9ed38aff220aa43937a55a8b42242d, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 0
   cardType: 1
   targettingType: 2
   talentSchool: 0
@@ -26,6 +26,7 @@ MonoBehaviour:
   upgradeLevel: 1
   expend: 1
   innate: 0
+  immutable: 0
   fleeting: 0
   unplayable: 0
   lifeSteal: 0
@@ -42,7 +43,7 @@ MonoBehaviour:
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: '2 '
+    phrase: '1 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -114,7 +115,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 31
-      passiveStacks: 2
+      passiveStacks: 1
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bd1bf0b56234af4c808b8522b29dcbf, type: 3}
+  m_Name: Strong Skeleton x3
+  m_EditorClassIdentifier: 
+  encounterName: Strong Skeleton x3
+  combatDifficulty: 1
+  enemyGroups:
+  - possibleEnemies:
+    - {fileID: 11400000, guid: eb31dd032527b72468ad251ceead78e9, type: 2}
+  - possibleEnemies:
+    - {fileID: 11400000, guid: 5fb6a590f4aa30942941bf6a13c1bc52, type: 2}
+  - possibleEnemies:
+    - {fileID: 11400000, guid: c86f67d3401e6b643b376cca403238eb, type: 2}
+  itemReward: {fileID: 0}

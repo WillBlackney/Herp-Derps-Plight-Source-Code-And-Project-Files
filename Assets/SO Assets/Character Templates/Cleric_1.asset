@@ -25,7 +25,7 @@ MonoBehaviour:
   wits: 20
   constitution: 22
   power: 0
-  initiative: 3
+  initiative: 4
   stamina: 4
   maxEnergy: 6
   draw: 4
@@ -116,6 +116,7 @@ MonoBehaviour:
     disarmedStacks: 0
     silencedStacks: 0
     sleepStacks: 0
+    waveringStacks: 0
     poisonedStacks: 0
     burningStacks: 0
     bleedingStacks: 0

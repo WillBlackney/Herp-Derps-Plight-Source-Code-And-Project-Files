@@ -37,10 +37,11 @@ MonoBehaviour:
     totalItemsGained: 1
     loseAllGold: 1
     goldGainedOrLost: 0
-    cardGained: {fileID: 11400000, guid: c4e7245fdab32974e9b9a03fb819216b, type: 2}
+    cardGained: {fileID: 11400000, guid: ec16fdb9667f111428b93d7dd14578d6, type: 2}
     copiesGained: 1
     randomCard: 0
     randomCardAmount: 0
+    enemyWave: {fileID: 0}
   - effectType: 1
     target: 0
     pageToLoad: {fileID: 11400000, guid: 14c79bc7cfa3c054599d666570520ebe, type: 2}
@@ -58,3 +59,4 @@ MonoBehaviour:
     copiesGained: 1
     randomCard: 0
     randomCardAmount: 0
+    enemyWave: {fileID: 0}

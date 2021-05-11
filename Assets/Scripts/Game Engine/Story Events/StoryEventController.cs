@@ -396,7 +396,7 @@ public class StoryEventController : Singleton<StoryEventController>
             foreach (CharacterData c in targets)
             {
                 CharacterDataController.Instance.SetCharacterMaxHealth(c, c.maxHealth + effect.maxHealthGainedOrLost);
-                CharacterDataController.Instance.SetCharacterHealth(c, c.MaxHealthTotal);
+                //CharacterDataController.Instance.SetCharacterHealth(c, c.MaxHealthTotal);
 
                 if (effect.maxHealthGainedOrLost < 0)
                 {

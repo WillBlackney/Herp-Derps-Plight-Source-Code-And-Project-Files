@@ -1182,7 +1182,7 @@ public class CardController : Singleton<CardController>
     }
     public void SetCardViewModelEnergyText(Card card, CardViewModel cvm, string energyCost)
     {
-        cvm.energyText.text = energyCost;
+        cvm.energyText.text = TextLogic.ReturnColoredText(energyCost.ToString(), TextLogic.white);
         cvm.energyText.color = Color.white;
 
         // color text if cost is more or less then base.
@@ -1190,7 +1190,7 @@ public class CardController : Singleton<CardController>
         {
             if (card.xEnergyCost)
             {
-                cvm.energyText.text = "X";
+                cvm.energyText.text = TextLogic.ReturnColoredText("X", TextLogic.white);
                 energyCost = "X";
             }
             else
@@ -1199,11 +1199,17 @@ public class CardController : Singleton<CardController>
 
                 if (currentCost > card.cardBaseEnergyCost)
                 {
-                    cvm.energyText.color = Color.red;
+                    cvm.energyText.text = TextLogic.ReturnColoredText(energyCost.ToString(), TextLogic.lightRed);
+                    //cvm.energyText.color = Color.red;
                 }
                 else if (currentCost < card.cardBaseEnergyCost)
                 {
-                    cvm.energyText.color = Color.green;
+                    cvm.energyText.text = TextLogic.ReturnColoredText(energyCost.ToString(), TextLogic.lightGreen);
+                    //cvm.energyText.color = Color.green;
+                }
+                else
+                {
+                    cvm.energyText.text = TextLogic.ReturnColoredText(energyCost.ToString(), TextLogic.white);
                 }
             }          
         }
@@ -1215,7 +1221,7 @@ public class CardController : Singleton<CardController>
     }
     public void SetCardViewModelEnergyText(CardViewModel cvm, CampCard card, string energyCost)
     {
-        cvm.energyText.text = energyCost;
+        cvm.energyText.text = TextLogic.ReturnColoredText(energyCost.ToString(), TextLogic.white);
         cvm.energyText.color = Color.white;
 
         if (cvm.myPreviewCard != null)
@@ -3586,23 +3592,6 @@ public class CardController : Singleton<CardController>
     {
         defender.hand.Add(card);
 
-        // check while holding
-        /*
-        for(int i = 0; i < defender.hand.Count; i++)
-        {
-            if(defender.hand[i].cardEventListeners[0].cardEventListenerType == CardEventListenerType.WhileHoldingCertainCard)
-            {
-                foreach(Card c in defender.hand)
-                {
-                    if (defender.hand[i].cardEventListeners[0].certainCardNames.Contains(c.cardName))
-                    {
-                        SetCardViewModelEnergyText(defender.hand[i], defender.hand[i].cardVM, GetCardEnergyCost(defender.hand[i]).ToString());
-                    }
-                }
-            }
-        }
-        */
-
         // update all card energy costs texts for event listener cards
         for(int i = 0; i < defender.hand.Count; i++)
         {
@@ -3611,6 +3600,20 @@ public class CardController : Singleton<CardController>
                 defender.hand[i].cardVM != null)
             {
                 SetCardViewModelEnergyText(defender.hand[i], defender.hand[i].cardVM, GetCardEnergyCost(defender.hand[i]).ToString());
+            }
+        }
+
+        // update all cards in hand energy cost texts if THIS CARD has the 'while holding energy modification' passive effect
+        if (card.cardEventListeners.Count > 0 &&
+               card.cardEventListeners[0].cardEventListenerType == CardEventListenerType.WhileHoldingThis &&
+               card.cardEventListeners[0].whileHoldingEffect == WhileHoldingCardPassiveEffect.CardsCostMoreEnergy)
+        {
+            for (int i = 0; i < defender.hand.Count; i++)
+            {
+                if (defender.hand[i].cardVM != null)
+                {
+                    SetCardViewModelEnergyText(defender.hand[i], defender.hand[i].cardVM, GetCardEnergyCost(defender.hand[i]).ToString());
+                }
             }
         }
     }
@@ -4018,7 +4021,7 @@ public class CardController : Singleton<CardController>
 
         // Resourcefullness state override
         if (StateController.Instance.DoesPlayerHaveState(StateName.ArmsMastery))
-            return 1;
+            return 2;
 
         /*
         // Heresy state override
@@ -4073,10 +4076,24 @@ public class CardController : Singleton<CardController>
                     }
                 }
             }
-        }      
+        }
+
+        int whileHoldingExtraCost = 0;
+
+        // Check 'while holding' effect on cards that AREN'T this card
+        foreach(Card c in card.owner.hand)
+        {
+            if(c != card && 
+                c.cardEventListeners.Count > 0 &&
+                c.cardEventListeners[0].cardEventListenerType == CardEventListenerType.WhileHoldingThis &&
+                c.cardEventListeners[0].whileHoldingEffect == WhileHoldingCardPassiveEffect.CardsCostMoreEnergy)
+            {
+                whileHoldingExtraCost += c.cardEventListeners[0].cardEnergyCostIncrease;
+            }
+        }
 
         // Normal logic
-        int costReturned = card.cardBaseEnergyCost;
+        int costReturned = card.cardBaseEnergyCost + whileHoldingExtraCost;
 
         costReturned -= card.energyReductionThisActivationOnly;
         costReturned -= card.energyReductionThisCombatOnly;

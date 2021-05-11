@@ -26,6 +26,7 @@ MonoBehaviour:
   upgradeLevel: 0
   expend: 1
   innate: 0
+  immutable: 0
   fleeting: 0
   unplayable: 0
   lifeSteal: 0
@@ -40,8 +41,8 @@ MonoBehaviour:
     cardEffectType: 0
     phrase: 'Give '
   - color: 2
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
+    getPhraseFromCardValue: 1
+    cardEffectType: 19
     phrase: '3 '
   - color: 3
     getPhraseFromCardValue: 0

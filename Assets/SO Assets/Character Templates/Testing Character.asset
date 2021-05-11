@@ -27,6 +27,7 @@ MonoBehaviour:
   power: 0
   initiative: 10
   stamina: 4
+  maxEnergy: 6
   draw: 5
   baseCrit: 50
   critModifier: 30
@@ -99,6 +100,7 @@ MonoBehaviour:
     bullyStacks: 0
     stoneFormStacks: 0
     thriftyStacks: 0
+    lifeStealStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 1
     guardianAuraStacks: 2
@@ -114,17 +116,18 @@ MonoBehaviour:
     disarmedStacks: 0
     silencedStacks: 0
     sleepStacks: 0
+    waveringStacks: 0
     poisonedStacks: 2
     burningStacks: 3
     bleedingStacks: 0
     fireBallBonusDamageStacks: 0
     sourceStacks: 0
   deck:
-  - {fileID: 11400000, guid: c4e7245fdab32974e9b9a03fb819216b, type: 2}
   - {fileID: 11400000, guid: 7e0607c8c06c28a448dc2170bf23c76c, type: 2}
   - {fileID: 11400000, guid: 7eaf9ef75adb4a84da51d5577faf39a0, type: 2}
   - {fileID: 11400000, guid: a5461cd49537dc6458104d2bd3c81231, type: 2}
   - {fileID: 11400000, guid: 07576fe85892f0b46a604ce986a50e6e, type: 2}
+  - {fileID: 11400000, guid: ec16fdb9667f111428b93d7dd14578d6, type: 2}
   modelParts:
   - Orc_Head_1
   - Orc_Face_1

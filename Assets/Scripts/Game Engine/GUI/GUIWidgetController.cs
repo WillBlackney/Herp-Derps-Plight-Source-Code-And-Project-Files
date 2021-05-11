@@ -12,6 +12,7 @@ public class GUIWidgetController : Singleton<GUIWidgetController>
 {
     public void HandleWidgetEvents(GUIWidget widget, GUIWidgetEventData[] wEvents)
     {
+        if (Instance == null) return;
         for(int i = 0; i < wEvents.Length; i++)
         {
             StartCoroutine(HandleWidgetEvent(widget, wEvents[i]));

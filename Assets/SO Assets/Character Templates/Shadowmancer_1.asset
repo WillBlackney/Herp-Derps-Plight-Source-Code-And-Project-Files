@@ -25,7 +25,7 @@ MonoBehaviour:
   wits: 20
   constitution: 21
   power: 0
-  initiative: 3
+  initiative: 4
   stamina: 4
   maxEnergy: 6
   draw: 4

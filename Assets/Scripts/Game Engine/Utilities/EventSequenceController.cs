@@ -519,7 +519,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
         if(nextEncounterType == EncounterType.Mystery)
         {
             int roll = RandomGenerator.NumberBetween(1, 100);
-            if(roll >= 71 && roll <= 90)
+            if(roll >= 81 && roll <= 90)
             {
                 nextEncounterType = EncounterType.BasicEnemy;
             }
@@ -532,12 +532,15 @@ public class EventSequenceController : Singleton<EventSequenceController>
                 nextEncounterType = EncounterType.Shop;
             }
 
+            Debug.Log("Mystery event roll result: " + nextEncounterType.ToString());
+
             // Force roll as combat event if no available story events
             if(nextEncounterType == EncounterType.Mystery &&
                StoryEventController.Instance.GetValidStoryEvents().Count == 0)
+            {
                 nextEncounterType = EncounterType.BasicEnemy;
-
-            Debug.Log("Rolling mystery event as: " + nextEncounterType.ToString());
+                Debug.Log("No valid story events at this time, next encounter will be a basic enemy combat...");
+            }                          
         }
 
         // Increment world position + set next encounter
@@ -547,7 +550,8 @@ public class EventSequenceController : Singleton<EventSequenceController>
         // Destroy all characters and activation windows if the 
         // previous encounter was a combat event
         if (previousEncounter == EncounterType.BasicEnemy ||
-            previousEncounter == EncounterType.EliteEnemy)
+            previousEncounter == EncounterType.EliteEnemy ||
+            previousEncounter == EncounterType.MysteryCombat)
         {
             // Mark wave as seen
             JourneyManager.Instance.AddEnemyWaveToAlreadyEncounteredList(previousEnemyWave);

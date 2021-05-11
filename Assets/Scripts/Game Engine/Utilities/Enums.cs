@@ -123,9 +123,17 @@ public enum CardEventListenerType
     OnThisCardPlayed = 9,   
     OnWeakenedApplied = 12,
     WhileHoldingCertainCard = 10,
+    WhileHoldingThis = 13,
+}
+[Serializable]
+public enum WhileHoldingCardPassiveEffect
+{ 
+    None = 0,
+    CardsCostMoreEnergy = 1,
+
 }
 
-[Serializable]
+    [Serializable]
 public enum CardEventListenerFunction
 {
     None = 0,

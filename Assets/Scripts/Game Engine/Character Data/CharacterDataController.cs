@@ -669,9 +669,9 @@ public class CharacterDataController : Singleton<CharacterDataController>
         SetCharacterMaxHealth(newCharacter, RandomGenerator.NumberBetween(85, 95));
         SetCharacterHealth(newCharacter, newCharacter.MaxHealthTotal);
 
-        newCharacter.stamina = 2;
+        newCharacter.stamina = 4;
         newCharacter.maxEnergy = 6;
-        newCharacter.initiative = 10;
+        newCharacter.initiative = 4;
         newCharacter.baseCrit = 0;
         newCharacter.critModifier = 30;
         newCharacter.baseFirstActivationDrawBonus = 0;

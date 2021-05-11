@@ -61,7 +61,7 @@ MonoBehaviour:
     longDrawStacks: 0
     sharpenBladeStacks: 0
     consecrationStacks: 0
-    growingStacks: 2
+    growingStacks: 0
     cautiousStacks: 0
     infuriatedStacks: 0
     battleTranceStacks: 0
@@ -100,6 +100,7 @@ MonoBehaviour:
     bullyStacks: 0
     stoneFormStacks: 0
     thriftyStacks: 0
+    lifeStealStacks: 0
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
@@ -115,6 +116,7 @@ MonoBehaviour:
     disarmedStacks: 0
     silencedStacks: 0
     sleepStacks: 0
+    waveringStacks: 0
     poisonedStacks: 0
     burningStacks: 0
     bleedingStacks: 0
@@ -125,8 +127,8 @@ MonoBehaviour:
     actionType: 0
     intentImage: 0
     actionLoops: 1
-    doThisOnFirstActivation: 0
-    canBeConsecutive: 0
+    doThisOnFirstActivation: 1
+    canBeConsecutive: 1
     prioritiseWhenRequirementsMet: 0
     actionRequirements: []
     actionEffects:
@@ -209,124 +211,6 @@ MonoBehaviour:
       cardAdded: {fileID: 0}
       copiesAdded: 0
       collection: 0
-  - actionName: Cleave
-    actionType: 1
-    intentImage: 11
-    actionLoops: 1
-    doThisOnFirstActivation: 1
-    canBeConsecutive: 1
-    prioritiseWhenRequirementsMet: 0
-    actionRequirements: []
-    actionEffects:
-    - visualEventsOnStart:
-      - eventType: 1
-        screenOverlayType: 0
-        overlayColor: 0
-        overlayFadeInTime: 0
-        overlayDuration: 0
-        overlayFadeOutTime: 0
-        particleEffect: 0
-        cameraShake: 0
-        movementAnimation: 2
-        soundEffect: 0
-        characterAnimation: 0
-        delayDuration: 0
-        projectileFired: 0
-        projectileStartPosition: 0
-        onCharacter: 0
-      - eventType: 2
-        screenOverlayType: 0
-        overlayColor: 0
-        overlayFadeInTime: 0
-        overlayDuration: 0
-        overlayFadeOutTime: 0
-        particleEffect: 0
-        cameraShake: 0
-        movementAnimation: 0
-        soundEffect: 0
-        characterAnimation: 1
-        delayDuration: 0
-        projectileFired: 0
-        projectileStartPosition: 0
-        onCharacter: 0
-      - eventType: 3
-        screenOverlayType: 0
-        overlayColor: 0
-        overlayFadeInTime: 0
-        overlayDuration: 0
-        overlayFadeOutTime: 0
-        particleEffect: 3
-        cameraShake: 0
-        movementAnimation: 0
-        soundEffect: 0
-        characterAnimation: 0
-        delayDuration: 0
-        projectileFired: 0
-        projectileStartPosition: 0
-        onCharacter: 1
-      - eventType: 4
-        screenOverlayType: 0
-        overlayColor: 0
-        overlayFadeInTime: 0
-        overlayDuration: 0
-        overlayFadeOutTime: 0
-        particleEffect: 0
-        cameraShake: 1
-        movementAnimation: 0
-        soundEffect: 0
-        characterAnimation: 0
-        delayDuration: 0
-        projectileFired: 0
-        projectileStartPosition: 0
-        onCharacter: 0
-      - eventType: 3
-        screenOverlayType: 0
-        overlayColor: 0
-        overlayFadeInTime: 0
-        overlayDuration: 0
-        overlayFadeOutTime: 0
-        particleEffect: 2
-        cameraShake: 0
-        movementAnimation: 0
-        soundEffect: 0
-        characterAnimation: 0
-        delayDuration: 0
-        projectileFired: 0
-        projectileStartPosition: 0
-        onCharacter: 5
-      visualEventsOnFinish:
-      - eventType: 6
-        screenOverlayType: 0
-        overlayColor: 0
-        overlayFadeInTime: 0
-        overlayDuration: 0
-        overlayFadeOutTime: 0
-        particleEffect: 0
-        cameraShake: 0
-        movementAnimation: 0
-        soundEffect: 0
-        characterAnimation: 0
-        delayDuration: 0.5
-        projectileFired: 0
-        projectileStartPosition: 0
-        onCharacter: 0
-      actionType: 1
-      effectLoops: 1
-      baseDamage: 15
-      damageType: 1
-      characterSummoned: {fileID: 0}
-      summonedCreatureStartPosition: 0
-      modelFadeInSpeed: 0
-      uiFadeInSpeed: 0
-      summonedCreatureVisualEvents: []
-      passiveApplied: {fileID: 0}
-      passiveStacks: 0
-      alsoHealSelf: 0
-      healAmount: 0
-      blockGained: 0
-      cardAdded: {fileID: 0}
-      copiesAdded: 0
-      collection: 0
   allBodyParts:
   - Undead_Head_6
   - Undead_Chest
@@ -337,4 +221,4 @@ MonoBehaviour:
   - Undead_Right_Leg
   - Undead_Left_Leg
   - Barbarian_Chest_Wear
-  - Left_Hand_Gigantic_Spiked_Club
+  - Left_Hand_Simple_Battle_Axe

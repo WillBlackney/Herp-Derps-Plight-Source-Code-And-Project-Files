@@ -469,6 +469,14 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
             FadeContinueButton(1, 1);
             SetContinueButtonInteractions(true);
         }
+        else if (button.myPairingData.benefitData.effect == KingChoiceEffectType.RandomizeDeck)
+        {
+            TriggerKingsChoiceEffect(button.myPairingData.benefitData);
+            TriggerKingsChoiceEffect(button.myPairingData.conseqenceData);
+            FadeOutChoiceButtons();
+            FadeContinueButton(1, 1);
+            SetContinueButtonInteractions(true);
+        }
         else if (button.myPairingData.benefitData.effect == KingChoiceEffectType.ModifyAttribute)
         {
             TriggerKingsChoiceEffect(button.myPairingData.benefitData);
@@ -894,6 +902,33 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
             CardController.Instance.StartNewShuffleCardsScreenVisualEvent(playerModel, vEventCardData);
         }
 
+        // Randomize deck
+        else if (data.effect == KingChoiceEffectType.TransformRandomCard)
+        {
+            // empty deck
+            startingCharacter.deck.Clear();
+
+            // Get viable random cards
+            List<CardDataSO> viableCards = new List<CardDataSO>();
+            foreach (CardDataSO cardData in CardController.Instance.AllCardScriptableObjects)
+            {
+                if (cardData.rarity != Rarity.None && 
+                    cardData.talentSchool != TalentSchool.None &&
+                    cardData.upgradeLevel == 0)
+                {
+                    viableCards.Add(cardData);
+                }
+            }
+
+            // Choose 8 random cards rom viable cards lists
+            for (int i = 0; i < 8; i++)
+            {
+                int randomIndex = RandomGenerator.NumberBetween(0, viableCards.Count - 1);
+                CardData randomCard = CardController.Instance.BuildCardDataFromScriptableObjectData(viableCards[randomIndex]);
+                CharacterDataController.Instance.AddCardToCharacterDeck(startingCharacter, randomCard);
+            }
+        }
+
         // Transform random cards
         else if (data.effect == KingChoiceEffectType.TransformRandomCard)
         {
@@ -945,7 +980,20 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
         else if (data.effect == KingChoiceEffectType.DiscoverCard)
         {
             AwaitingCardDiscoveryChoice = true;
+            List<CardData> validCards = new List<CardData>();
+            foreach (CardData cardData in CardController.Instance.AllCards)
+            {
+                if (cardData.rarity == data.discoveryCardRarity &&
+                    cardData.talentSchool != TalentSchool.None &&
+                    cardData.upgradeLevel == 0)
+                {
+                    validCards.Add(cardData);
+                }
+            }
 
+            StartCoroutine(CardController.Instance.StartNewDiscoveryEvent(validCards));
+
+            /*
             // Get valid discovery choices
             List<CardData> allLootableCards = LootController.Instance.GetAllValidLootableCardsForCharacter(startingCharacter);
             List<CardData> validCards = new List<CardData>();
@@ -957,8 +1005,9 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
                     validCards.Add(card);
                 }
             }
-
+            
             StartCoroutine(CardController.Instance.StartNewDiscoveryEvent(validCards));
+            */
         }
 
         // Delay at end of v events, to create time spacing between benefit and consequence v events

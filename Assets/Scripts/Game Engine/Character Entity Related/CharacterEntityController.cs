@@ -898,9 +898,11 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
             character.blockGainedPreviousTurnCycle > 0 && 
             character.block > 0)
         {
-            if(character.pManager.unbreakableStacks == 0 ||
+            if (character.pManager.unbreakableStacks == 0 &&
                 !StateController.Instance.DoesPlayerHaveState(StateName.ToughNutz))
             {
+                Debug.Log("On activation start block expiry for character: " + character.myName);
+
                 VisualEventManager.Instance.CreateVisualEvent(() =>
                 VisualEffectManager.Instance.CreateStatusEffect(character.characterEntityView.WorldPosition, "Block Expiry"));
                 SetBlock(character, character.block - character.blockGainedPreviousTurnCycle, false);
@@ -2942,23 +2944,26 @@ public class CharacterEntityController : Singleton<CharacterEntityController>
         float moveSpeed = 10;
         attacker.ModifyQueuedMovements(-1);
 
-        // Face direction of destination
-        LevelManager.Instance.TurnFacingTowardsLocation(attacker.characterEntityView, node.transform.position);
-
-        // Play movement animation
-        PlayMoveAnimation(attacker.characterEntityView);
-
-        while (reachedDestination == false)
+        if(attacker.characterEntityView != null)
         {
-            attacker.characterEntityView.ucmMovementParent.transform.position = Vector2.MoveTowards(attacker.characterEntityView.WorldPosition, destination, moveSpeed * Time.deltaTime);
+            // Face direction of destination
+            LevelManager.Instance.TurnFacingTowardsLocation(attacker.characterEntityView, node.transform.position);
 
-            if (attacker.characterEntityView.WorldPosition == destination)
+            // Play movement animation
+            PlayMoveAnimation(attacker.characterEntityView);
+
+            while (reachedDestination == false)
             {
-                Debug.Log("CharacterEntityController.MoveAttackerToTargetNodeAttackPositionCoroutine() detected destination was reached...");
-                reachedDestination = true;
+                attacker.characterEntityView.ucmMovementParent.transform.position = Vector2.MoveTowards(attacker.characterEntityView.WorldPosition, destination, moveSpeed * Time.deltaTime);
+
+                if (attacker.characterEntityView.WorldPosition == destination)
+                {
+                    Debug.Log("CharacterEntityController.MoveAttackerToTargetNodeAttackPositionCoroutine() detected destination was reached...");
+                    reachedDestination = true;
+                }
+                yield return null;
             }
-            yield return null;
-        }
+        }      
 
         // Resolve
         if (cData != null)

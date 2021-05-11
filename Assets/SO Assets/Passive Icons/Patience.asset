@@ -46,7 +46,7 @@ MonoBehaviour:
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: Draw
+    phrase: 'Draw '
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0

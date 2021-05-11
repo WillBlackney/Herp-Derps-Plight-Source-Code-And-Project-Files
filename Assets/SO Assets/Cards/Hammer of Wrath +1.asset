@@ -26,6 +26,7 @@ MonoBehaviour:
   upgradeLevel: 1
   expend: 0
   innate: 0
+  immutable: 0
   fleeting: 0
   unplayable: 0
   lifeSteal: 0
@@ -181,6 +182,21 @@ MonoBehaviour:
       projectileFired: 0
       projectileStartPosition: 0
       onCharacter: 2
+    - eventType: 4
+      screenOverlayType: 0
+      overlayColor: 0
+      overlayFadeInTime: 0
+      overlayDuration: 0
+      overlayFadeOutTime: 0
+      particleEffect: 0
+      cameraShake: 2
+      movementAnimation: 0
+      soundEffect: 0
+      characterAnimation: 0
+      delayDuration: 0
+      projectileFired: 0
+      projectileStartPosition: 0
+      onCharacter: 0
     visualEventsOnFinish:
     - eventType: 6
       screenOverlayType: 0
@@ -251,7 +267,7 @@ MonoBehaviour:
     cardEnergyReduction: 0
     passivePairing:
       passiveData: 36
-      passiveStacks: 1
+      passiveStacks: 2
     cardAdded: {fileID: 0}
     copiesAdded: 0
     blessingsGained: 0
@@ -268,7 +284,7 @@ MonoBehaviour:
       movementAnimation: 0
       soundEffect: 0
       characterAnimation: 0
-      delayDuration: 0.5
+      delayDuration: 0.25
       projectileFired: 0
       projectileStartPosition: 0
       onCharacter: 0

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Exhausted
   includeInGame: 1
-  cardDescription: Unplayable. When drawn, lose 1 Energy.
+  cardDescription: Unplayable. While in hand, cards cost 1 more Energy.
   cardSprite: {fileID: 21300000, guid: 8edbff198a4f1454db3e9f97c9e8dede, type: 3}
   xEnergyCost: 0
   cardEnergyCost: 1
@@ -26,6 +26,7 @@ MonoBehaviour:
   upgradeLevel: 0
   expend: 0
   innate: 0
+  immutable: 0
   fleeting: 0
   unplayable: 1
   lifeSteal: 0
@@ -44,11 +45,15 @@ MonoBehaviour:
   - color: 1
     getPhraseFromCardValue: 0
     cardEffectType: 0
-    phrase: 'When drawn, lose '
+    phrase: 'While in hand, cards cost '
   - color: 2
     getPhraseFromCardValue: 0
     cardEffectType: 0
     phrase: '1 '
+  - color: 1
+    getPhraseFromCardValue: 0
+    cardEffectType: 0
+    phrase: 'more '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -59,16 +64,18 @@ MonoBehaviour:
     phrase: .
   cardEffects: []
   cardEventListeners:
-  - cardEventListenerType: 7
-    cardEventListenerFunction: 6
+  - cardEventListenerType: 13
+    cardEventListenerFunction: 0
     weaponRequirement: 0
+    whileHoldingEffect: 1
+    cardEnergyCostIncrease: 1
     maxHealthGained: 0
     energyReductionAmount: 0
     passivePairing:
       passiveData: 0
       passiveStacks: 0
     healthLost: 0
-    energyGainedOrLost: -1
+    energyGainedOrLost: 0
     certainCardNames: []
     whileHoldingBlessing: 0
     cardCostsZero: 0

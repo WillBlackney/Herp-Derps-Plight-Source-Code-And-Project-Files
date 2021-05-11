@@ -65,6 +65,8 @@ MonoBehaviour:
   - cardEventListenerType: 7
     cardEventListenerFunction: 2
     weaponRequirement: 0
+    whileHoldingEffect: 0
+    cardEnergyCostIncrease: 0
     maxHealthGained: 0
     energyReductionAmount: 0
     passivePairing:

@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardName: Blessing Of Solitude +1
   includeInGame: 1
-  cardDescription: Give a target 4 Block. Expend.
+  cardDescription: Give a target 3 Block. Expend.
   cardSprite: {fileID: 21300000, guid: 9f656ae1af7fb6342a87f535a5bb0eba, type: 3}
   xEnergyCost: 0
-  cardEnergyCost: 1
+  cardEnergyCost: 0
   cardType: 1
   targettingType: 2
   talentSchool: 0
@@ -26,6 +26,7 @@ MonoBehaviour:
   upgradeLevel: 1
   expend: 1
   innate: 0
+  immutable: 0
   fleeting: 0
   unplayable: 0
   lifeSteal: 0
@@ -40,9 +41,9 @@ MonoBehaviour:
     cardEffectType: 0
     phrase: 'Give '
   - color: 2
-    getPhraseFromCardValue: 0
-    cardEffectType: 0
-    phrase: '4 '
+    getPhraseFromCardValue: 1
+    cardEffectType: 19
+    phrase: '3 '
   - color: 3
     getPhraseFromCardValue: 0
     cardEffectType: 0
@@ -94,7 +95,7 @@ MonoBehaviour:
     modifyCardsInHandEffects: []
     drawStacksFromOverload: 0
     drawStacksFromWeakenedOnEnemies: 0
-    blockGainValue: 4
+    blockGainValue: 3
     baseDamageValue: 0
     drawBaseDamageFromCurrentBlock: 0
     drawBaseDamageFromTargetPoisoned: 0

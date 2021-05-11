@@ -104,7 +104,7 @@ MonoBehaviour:
     encouragingAuraStacks: 0
     shadowAuraStacks: 0
     guardianAuraStacks: 0
-    toxicAuraStacks: 1
+    toxicAuraStacks: 0
     hatefulAuraStacks: 0
     intimidatingAuraStacks: 0
     provocativeAuraStacks: 0
@@ -116,6 +116,7 @@ MonoBehaviour:
     disarmedStacks: 0
     silencedStacks: 0
     sleepStacks: 0
+    waveringStacks: 0
     poisonedStacks: 0
     burningStacks: 0
     bleedingStacks: 0
