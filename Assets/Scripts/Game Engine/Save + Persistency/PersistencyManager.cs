@@ -185,6 +185,9 @@ public class PersistencyManager : Singleton<PersistencyManager>
         // Mystery + Story
         StoryEventController.Instance.SaveMyDataToSaveFile(newSave);
 
+        // Score data
+        ScoreManager.Instance.SaveMyDataToSaveFile(newSave);
+
         // START SAVE!        
         SaveGameToDisk(newSave);
     }
@@ -234,6 +237,9 @@ public class PersistencyManager : Singleton<PersistencyManager>
 
         // Mystery + Story
         StoryEventController.Instance.BuildMyDataFromSaveFile(newLoad);
+
+        // Score data
+        ScoreManager.Instance.BuildMyDataFromSaveFile(newLoad);
     }
     #endregion
 

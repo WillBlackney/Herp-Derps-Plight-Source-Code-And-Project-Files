@@ -54,6 +54,9 @@ public class SaveGameData
     // States
     public List<StateData> playerStates = new List<StateData>();
     public ShrineStateResult currentShrineStates;
+
+    // Scoring
+    public PlayerScoreData scoreData;
    
 }
 public enum SaveCheckPoint

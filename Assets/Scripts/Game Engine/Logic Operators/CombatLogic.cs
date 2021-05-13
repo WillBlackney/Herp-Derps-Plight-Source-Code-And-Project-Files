@@ -1194,6 +1194,9 @@ public class CombatLogic : Singleton<CombatLogic>
     {
         Debug.Log("CombatLogic.StartCombatOverDefeatProcess() called...");
         currentCombatState = CombatGameState.DefeatTriggered;
+
+        // TO DO: game over defeat scoring + visual sequence.
+        ScoreManager.Instance.HandleGameOverSequence(GameOverEventType.Defeat);
     }
     private void StartCombatOverVictoryProcess()
     {

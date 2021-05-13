@@ -1199,7 +1199,8 @@ public class EventSequenceController : Singleton<EventSequenceController>
         UIManager.Instance.DisableEndTurnButtonView();
 
         // Do post combat mini event + reward xp
-        if (JourneyManager.Instance.CheckPointType != SaveCheckPoint.CombatEnd)
+        if (JourneyManager.Instance.CheckPointType != SaveCheckPoint.CombatEnd &&
+            combatType != EncounterType.BossEnemy)
         {
             // Cache previous xp of characters for visual events
             List<PreviousXpState> pxsList = new List<PreviousXpState>();
@@ -1247,6 +1248,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
                 xpRewardDataSet.Add(new XpRewardData(character, totalXp, combatXp, flawless, combatType));
             }
+
             // Hide level nodes
             LevelManager.Instance.HideAllNodeViews();
 
@@ -1265,7 +1267,13 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
             // Fade out xp screen
             LootController.Instance.FadeOutXpRewardScreen();
-        }          
+        }
+
+        // Defeated final boss, do game over victory sequence
+        else if (combatType == EncounterType.BossEnemy)
+        {
+
+        }
 
         // Build loot screen views
         LootController.Instance.BuildLootScreenElementsFromLootResultData();        
