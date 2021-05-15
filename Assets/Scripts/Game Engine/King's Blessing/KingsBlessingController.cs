@@ -636,7 +636,7 @@ public class KingsBlessingController : Singleton<KingsBlessingController>
                 LootController.Instance.CreateGoldGlowTrailEffect(kingModel.transform.position, TopBarController.Instance.GoldTopBarImage.transform.position);
             }
 
-            PlayerDataManager.Instance.ModifyCurrentGold(data.goldGainedOrLost, true);
+            PlayerDataManager.Instance.ModifyCurrentGold(data.goldGainedOrLost, true, true);
         }
 
         // Modify Health

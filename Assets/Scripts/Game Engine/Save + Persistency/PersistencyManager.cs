@@ -85,6 +85,10 @@ public class PersistencyManager : Singleton<PersistencyManager>
         // Generate KBC choices
         newSave.kbcChoices = KingsBlessingController.Instance.GenerateFourRandomChoices();
 
+        // Set up scoring
+        ScoreManager.Instance.GenerateNewScoreDataOnGameStart();
+        ScoreManager.Instance.SaveMyDataToSaveFile(newSave);
+
         // DECK MODIFIER SETUP
         // Randomize decks
         if (MainMenuController.Instance.randomizeDecks)
@@ -250,7 +254,7 @@ public class PersistencyManager : Singleton<PersistencyManager>
         byte[] bytes = SerializationUtility.SerializeValue(saveFile, DataFormat.Binary);
         File.WriteAllBytes(GetSaveFileDirectory(), bytes);
     }
-    private SaveGameData LoadGameFromDisk()
+    public SaveGameData LoadGameFromDisk()
     {
         SaveGameData newLoad;
         byte[] bytes = File.ReadAllBytes(GetSaveFileDirectory());

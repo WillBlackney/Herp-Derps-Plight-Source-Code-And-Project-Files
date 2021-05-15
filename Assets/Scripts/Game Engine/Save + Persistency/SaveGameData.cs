@@ -56,7 +56,7 @@ public class SaveGameData
     public ShrineStateResult currentShrineStates;
 
     // Scoring
-    public PlayerScoreData scoreData;
+    public PlayerScoreTracker scoreData;
    
 }
 public enum SaveCheckPoint

@@ -492,7 +492,7 @@ public class StoryEventController : Singleton<StoryEventController>
             if (effect.loseAllGold)            
                 goldMod = -PlayerDataManager.Instance.CurrentGold;
             
-            PlayerDataManager.Instance.ModifyCurrentGold(goldMod, true);
+            PlayerDataManager.Instance.ModifyCurrentGold(goldMod, true, true);
         }
 
         // Gain card

@@ -538,7 +538,7 @@ public class LootController : Singleton<LootController>
     public void HandleGoldRewardLootTabClicked()
     {
         HideLootTab(goldLootTab);
-        PlayerDataManager.Instance.ModifyCurrentGold(CurrentLootResultData.goldReward, true);
+        PlayerDataManager.Instance.ModifyCurrentGold(CurrentLootResultData.goldReward, true, true);
         AudioManager.Instance.PlaySound(Sound.Gold_Gain);
         CreateGoldGlowTrailEffect(goldLootTab.transform.position, TopBarController.Instance.GoldTopBarImage.transform.position);
     }

@@ -545,6 +545,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
         // Increment world position + set next encounter
         JourneyManager.Instance.IncrementWorldMapPosition();
+        ScoreManager.Instance.IncrementRoomsCleared();
         JourneyManager.Instance.SetCurrentEncounterType(nextEncounterType);
 
         // Destroy all characters and activation windows if the 
@@ -555,6 +556,10 @@ public class EventSequenceController : Singleton<EventSequenceController>
         {
             // Mark wave as seen
             JourneyManager.Instance.AddEnemyWaveToAlreadyEncounteredList(previousEnemyWave);
+            
+            // Update scoring
+            if(previousEncounter == EncounterType.BasicEnemy) ScoreManager.Instance.IncrementBasicsCleared();
+            else if (previousEncounter == EncounterType.EliteEnemy) ScoreManager.Instance.IncrementMinibossesCleared();
 
             // Fade out visual event
             BlackScreenController.Instance.FadeOutScreen(3f);
@@ -1220,7 +1225,7 @@ public class EventSequenceController : Singleton<EventSequenceController>
                 int combatXp = 0;
                 if(combatType == EncounterType.BasicEnemy || combatType == EncounterType.MysteryCombat)
                 {
-                    combatXp = GlobalSettings.Instance.basicCombatXpReward;
+                    combatXp = GlobalSettings.Instance.basicCombatXpReward;                    
                 }
                 else if (combatType == EncounterType.EliteEnemy)
                 {
@@ -1241,7 +1246,13 @@ public class EventSequenceController : Singleton<EventSequenceController>
                     {
                         if(cm.hasLostHealthThisCombat == false)
                         {
-                            flawless = true;                            
+                            flawless = true;
+
+                            // Update scoring
+                            if(combatType == EncounterType.BasicEnemy)
+                                ScoreManager.Instance.IncrementBasicNoDamageTaken();
+                            else if (combatType == EncounterType.EliteEnemy)
+                                ScoreManager.Instance.IncrementMiniBossNoDamageTaken();
                         }
                     }
                 }

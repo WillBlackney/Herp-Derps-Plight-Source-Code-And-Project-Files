@@ -9,6 +9,7 @@ public class ScoreTabView : MonoBehaviour
     #region
     public TextMeshProUGUI descriptionText, valueText;
     public CanvasGroup myCg;
+    [HideInInspector] public bool isActive = false;
     #endregion
 
     // Getters + Accessors

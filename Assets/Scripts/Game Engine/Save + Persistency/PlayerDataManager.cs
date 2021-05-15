@@ -43,10 +43,8 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
 
     // Modify Gold
     #region
-    public void ModifyCurrentGold(int gainedOrLost, bool playTextAnim = false)
+    public void ModifyCurrentGold(int gainedOrLost, bool playTextAnim = false, bool updateScoring = false)
     {
-       // Debug.LogWarning("ModifyCurrentGold() called, modifying by: " + gainedOrLost.ToString());
-
         // Increment gold value
         CurrentGold += gainedOrLost;
 
@@ -64,6 +62,11 @@ public class PlayerDataManager : Singleton<PlayerDataManager>
 
         // Update top bar gold text
         SetCurrentGoldText(CurrentGold.ToString(), playTextAnim);
+
+        if (updateScoring && gainedOrLost > 0)
+        {
+            ScoreManager.Instance.IncrementGoldGained(gainedOrLost);
+        }
     }
     private void SetCurrentGoldText(string newValue, bool playTextAnim = false)
     {
