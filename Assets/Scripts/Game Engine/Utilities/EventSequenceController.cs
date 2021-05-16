@@ -1278,20 +1278,25 @@ public class EventSequenceController : Singleton<EventSequenceController>
 
             // Fade out xp screen
             LootController.Instance.FadeOutXpRewardScreen();
+
+            // Build loot screen views
+            LootController.Instance.BuildLootScreenElementsFromLootResultData();
+
+            // fade in loot window
+            LootController.Instance.FadeInMainLootView();
+            LootController.Instance.ShowFrontPageView();
         }
 
         // Defeated final boss, do game over victory sequence
         else if (combatType == EncounterType.BossEnemy)
         {
+            ScoreManager.Instance.IncrementBossesCleared();
+            PersistencyManager.Instance.AutoUpdateSaveFile();
 
+            ScoreManager.Instance.HandleGameOverSequence(GameOverEventType.Victory);
         }
 
-        // Build loot screen views
-        LootController.Instance.BuildLootScreenElementsFromLootResultData();        
-
-        // fade in loot window
-        LootController.Instance.FadeInMainLootView();
-        LootController.Instance.ShowFrontPageView();
+       
     }
     #endregion
 

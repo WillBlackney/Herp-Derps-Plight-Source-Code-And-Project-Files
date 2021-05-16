@@ -7,6 +7,7 @@ public class PlayerScoreTracker
     public int roomsCleared;
     public int basicEnemiesDefeated;
     public int miniBossEnemiesDefeated;
+    public int bossEnemiesDefeated;
     public int basicNoDamageTakenTicks;
     public int miniBossNoDamageTakenTicks;
     public int totalGoldGained;
@@ -45,9 +46,16 @@ public enum ScoreElementType
     RoomsCleared = 1,
     MonsterSlayer = 2,
     GiantSlayer = 3,
+    KingSlayer = 8,
     Finesse = 4,
     ProfessionalKiller = 5,
     Riches = 6, 
     Curator = 7,
+    Porky = 9,
+    Purist = 10,
+    ShrugItOff = 11,
+    Muscles = 12,
+    BigBrain = 13,
+    FatBoi = 14,
 
 }

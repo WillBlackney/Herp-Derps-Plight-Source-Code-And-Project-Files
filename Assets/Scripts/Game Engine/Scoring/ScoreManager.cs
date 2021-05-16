@@ -55,7 +55,7 @@ public class ScoreManager : Singleton<ScoreManager>
         // Is victory or defeat??
         if (type == GameOverEventType.Defeat)
             ribbonText.text = "Defeated...";
-        if (type == GameOverEventType.Victory)
+        else if (type == GameOverEventType.Victory)
             ribbonText.text = "Victory!";
 
         // COMBAT SCENE TEAR DOWN SEQUENCE
@@ -64,7 +64,14 @@ public class ScoreManager : Singleton<ScoreManager>
 
         // stop combat music
         AudioManager.Instance.FadeOutAllCombatMusic(0.5f);
-        // to do: play defeat/victory anthem
+
+        if (type == GameOverEventType.Defeat)
+            AudioManager.Instance.PlaySound(Sound.Music_Defeat_Fanfare);
+
+        else if (type == GameOverEventType.Victory)
+            AudioManager.Instance.PlaySound(Sound.Music_Victory_Fanfare);
+
+        // TO DO: play defeat/victory anthem
 
         // Disable any player characteer gui's if they're still active
         foreach (CharacterEntityModel model in CharacterEntityController.Instance.AllDefenders)
@@ -112,8 +119,9 @@ public class ScoreManager : Singleton<ScoreManager>
             ScoreElementData data = scoreElements[i];
 
             tab.isActive = true;
+            tab.descriptionText.text = GetScoreElementDescription(data.type);
             tab.valueText.text = data.totalScore.ToString();
-            tab.descriptionText.text = TextLogic.SplitByCapitals(data.type.ToString());
+            tab.nameText.text = TextLogic.SplitByCapitals(data.type.ToString());
         }
     }
     private void HideAndResetAllScoreTabs()
@@ -138,11 +146,15 @@ public class ScoreManager : Singleton<ScoreManager>
         {
             if(t.isActive == true)
             {
-                t.myCg.DOFade(1f, 0.5f);
+                Debug.Log("FADING IN SCORE TAB!");
+                t.gameObject.SetActive(true);
+                t.myCg.DOFade(1, 0.5f);
+                //t.myCg.alpha = 1;
                 yield return new WaitForSeconds(0.25f);
             }
         }
     }
+
     public List<ScoreElementData> GenerateScoringElements(PlayerScoreTracker scoreData)
     {
         // scoring elements done at run end
@@ -188,6 +200,39 @@ public class ScoreManager : Singleton<ScoreManager>
         if (scoreData.trinketsCollected > 0)
             scoreElements.Add(new ScoreElementData(scoreData.trinketsCollected * 5, ScoreElementType.Curator));
 
+
+        // CALCULATE SCORING ELEMENTS THAT ONLY OCCUR AT RUN END!
+
+        // Porky
+        ScoreElementData porky = CaculatePorkyScore();
+        if (porky.totalScore > 0)
+            scoreElements.Add(porky);
+
+        // Purist
+        ScoreElementData purist = CalculatePuristScore();
+        if (purist.totalScore > 0)
+            scoreElements.Add(purist);
+
+        // Shrug it off
+        ScoreElementData shrugItOff = CalculateShrugItOffScore();
+        if (shrugItOff.totalScore > 0)
+            scoreElements.Add(shrugItOff);
+
+        // Muscles
+        ScoreElementData muscles = CalculateMusclesScore();
+        if (muscles.totalScore > 0)
+            scoreElements.Add(muscles);
+
+        // Big Brain
+        ScoreElementData bigBrain = CalculateBigBrainScore();
+        if (bigBrain.totalScore > 0)
+            scoreElements.Add(bigBrain);
+
+        // Fat Boi
+        ScoreElementData fatBoi = CalculateFatBoiScore();
+        if (fatBoi.totalScore > 0)
+            scoreElements.Add(fatBoi);
+
         return scoreElements;
     }
     public int CalculateFinalScore(List<ScoreElementData> scoreElements)
@@ -200,6 +245,10 @@ public class ScoreManager : Singleton<ScoreManager>
     }
     public void OnScoreScreenContinueButtonClicked()
     {
+        StartCoroutine(HandleReturnFromGameOverToMainMenuCoroutine());
+    }
+    private IEnumerator HandleReturnFromGameOverToMainMenuCoroutine()
+    {
         EventSystem.current.SetSelectedGameObject(null);
 
         // Fade out battle music + ambience
@@ -208,6 +257,12 @@ public class ScoreManager : Singleton<ScoreManager>
 
         // Do black screen fade out
         BlackScreenController.Instance.FadeOutScreen(2f);
+
+        yield return new WaitForSeconds(2f);
+
+        // Hide score GUI
+        HideAndResetAllScoreTabs();
+        scoreScreenVisualParent.SetActive(false);
 
         // Hide Game GUI
         TopBarController.Instance.HideTopBar();
@@ -270,6 +325,10 @@ public class ScoreManager : Singleton<ScoreManager>
     {
         currentScoreData.basicEnemiesDefeated++;
     }
+    public void IncrementBossesCleared()
+    {
+        currentScoreData.bossEnemiesDefeated++;
+    }
     public void IncrementBasicNoDamageTaken()
     {
         currentScoreData.basicNoDamageTakenTicks++;
@@ -285,6 +344,190 @@ public class ScoreManager : Singleton<ScoreManager>
     public void IncrementTrinketsCollected()
     {
         currentScoreData.trinketsCollected++;
+    }
+    #endregion
+
+    // Modify score values at run end
+    #region
+    private string GetScoreElementDescription(ScoreElementType element)
+    {
+        if(element == ScoreElementType.BigBrain)
+        {
+            return "Gain " + TextLogic.ReturnColoredText("10", TextLogic.blueNumber) + " points for each character with " +
+                TextLogic.ReturnColoredText("30+", TextLogic.blueNumber) + " " + TextLogic.ReturnColoredText("Intelligence", TextLogic.neutralYellow);
+        }
+        else if (element == ScoreElementType.Muscles)
+        {
+            return "Gain " + TextLogic.ReturnColoredText("10", TextLogic.blueNumber) + " points for each character with " +
+                TextLogic.ReturnColoredText("30+", TextLogic.blueNumber) + " " + TextLogic.ReturnColoredText("Strength", TextLogic.neutralYellow);
+        }
+        else if (element == ScoreElementType.FatBoi)
+        {
+            return "Gain " + TextLogic.ReturnColoredText("10", TextLogic.blueNumber) + " points for each character with " +
+                TextLogic.ReturnColoredText("30+", TextLogic.blueNumber) + " " + TextLogic.ReturnColoredText("Constitution", TextLogic.neutralYellow);
+        }
+
+        else if (element == ScoreElementType.RoomsCleared)
+        {
+            return "Gain " + TextLogic.ReturnColoredText("5", TextLogic.blueNumber) + " points for room cleared";
+        }
+        else if (element == ScoreElementType.MonsterSlayer)
+        {
+            return "Gain " + TextLogic.ReturnColoredText("2", TextLogic.blueNumber) + " points for each " +
+                TextLogic.ReturnColoredText("Basic Enemy", TextLogic.neutralYellow) + " encounter defeated";
+        }
+        else if (element == ScoreElementType.GiantSlayer)
+        {
+            return "Gain " + TextLogic.ReturnColoredText("10", TextLogic.blueNumber) + " points for each " +
+                TextLogic.ReturnColoredText("Mini Boss", TextLogic.neutralYellow) + " defeated";
+        }
+        else if (element == ScoreElementType.KingSlayer)
+        {
+            return "Gain " + TextLogic.ReturnColoredText("30", TextLogic.blueNumber) + " points for each " +
+                TextLogic.ReturnColoredText("Boss", TextLogic.neutralYellow) + " defeated";
+        }
+
+
+        else if (element == ScoreElementType.Finesse)
+        {
+            return "Gain " + TextLogic.ReturnColoredText("2", TextLogic.blueNumber) + " points for each time a character took no damage defeating a " +
+                TextLogic.ReturnColoredText("Basic Enemy", TextLogic.neutralYellow) + " encounter";
+        }
+        else if (element == ScoreElementType.ProfessionalKiller)
+        {
+            return "Gain " + TextLogic.ReturnColoredText("5", TextLogic.blueNumber) + " points for each time a character took no damage defeating a " +
+                TextLogic.ReturnColoredText("Mini Boss", TextLogic.neutralYellow) + " encounter";
+        }
+
+        else if (element == ScoreElementType.Riches)
+        {
+            return "Gain " + TextLogic.ReturnColoredText("25", TextLogic.blueNumber) + " points for each " +
+                 TextLogic.ReturnColoredText("500", TextLogic.blueNumber) +
+                " gold collected";
+        }
+        else if (element == ScoreElementType.Curator)
+        {
+            return "Gain " + TextLogic.ReturnColoredText("2", TextLogic.blueNumber) + " points for each " +
+                 TextLogic.ReturnColoredText("Trinket", TextLogic.neutralYellow) +
+                " collected";
+        }
+
+        else if (element == ScoreElementType.Purist)
+        {
+            return "Gain " + TextLogic.ReturnColoredText("20", TextLogic.blueNumber) + " points for each character that has no rare or epic cards in their deck";
+        }
+        else if (element == ScoreElementType.ShrugItOff)
+        {
+            return "Gain " + TextLogic.ReturnColoredText("10", TextLogic.blueNumber) + " points for each character that has "
+                + TextLogic.ReturnColoredText("3", TextLogic.blueNumber) + " or more " + TextLogic.ReturnColoredText("Afflictions", TextLogic.neutralYellow) +
+                " in their deck";
+        }
+
+        else if (element == ScoreElementType.Porky)
+        {
+            return "Gain " + TextLogic.ReturnColoredText("5", TextLogic.blueNumber) + " points for each character with more than " +
+                 TextLogic.ReturnColoredText("120", TextLogic.blueNumber) + " " + TextLogic.ReturnColoredText("Max Health", TextLogic.neutralYellow);
+        }
+        else
+        {
+            return "";
+        }
+    }
+    public ScoreElementData CaculatePorkyScore()
+    {
+        int porkyScore = 0;
+        foreach(CharacterData c in CharacterDataController.Instance.AllPlayerCharacters)
+        {
+            if(c.maxHealth >= 130)
+            {
+                porkyScore += 5;
+            }
+        }
+
+        Debug.Log("Porky score calculation = " + porkyScore.ToString());
+        return new ScoreElementData(porkyScore, ScoreElementType.Porky);
+    }
+    public ScoreElementData CalculatePuristScore()
+    {
+        int puristScore = 0;
+        foreach (CharacterData c in CharacterDataController.Instance.AllPlayerCharacters)
+        {
+            bool onlyCommons = true;
+            foreach(CardData card in c.deck)
+            {
+                if(card.rarity == Rarity.Epic || card.rarity == Rarity.Rare)
+                {
+                    onlyCommons = false;
+                    break;
+                }
+            }
+
+            if (onlyCommons)
+                puristScore += 20;
+        }
+
+        Debug.Log("Purist score calculation = " + puristScore.ToString());
+        return new ScoreElementData(puristScore, ScoreElementType.Purist);
+    }
+    public ScoreElementData CalculateShrugItOffScore()
+    {
+        int shrugItOff = 0;
+        foreach (CharacterData c in CharacterDataController.Instance.AllPlayerCharacters)
+        {
+            int afflictions = 0;
+            foreach (CardData card in c.deck)
+            {
+                if (card.affliction || card.cardType == CardType.Affliction)
+                {
+                    afflictions++;
+                }
+            }
+
+            if (afflictions >= 3)
+                shrugItOff += 10;            
+        }
+
+        Debug.Log("Shrug It Off score calculation = " + shrugItOff.ToString());
+        return new ScoreElementData(shrugItOff, ScoreElementType.ShrugItOff);
+    }
+    public ScoreElementData CalculateMusclesScore()
+    {
+        int muscles = 0;
+        foreach (CharacterData c in CharacterDataController.Instance.AllPlayerCharacters)
+        {
+            if (c.strength >= 30)
+                muscles += 5;
+        }
+
+        Debug.Log("Muscles score calculation = " + muscles.ToString());
+
+        return new ScoreElementData(muscles, ScoreElementType.Muscles);
+    }
+    public ScoreElementData CalculateBigBrainScore()
+    {
+        int bigBrain = 0;
+        foreach (CharacterData c in CharacterDataController.Instance.AllPlayerCharacters)
+        {
+            if (c.intelligence >= 30)
+                bigBrain += 5;
+        }
+
+        Debug.Log("Big Brain score calculation = " + bigBrain.ToString());
+
+        return new ScoreElementData(bigBrain, ScoreElementType.BigBrain);
+    }
+    public ScoreElementData CalculateFatBoiScore()
+    {
+        int fatBoi = 0;
+        foreach (CharacterData c in CharacterDataController.Instance.AllPlayerCharacters)
+        {
+            if (c.constitution >= 30)
+                fatBoi += 5;
+        }
+
+        Debug.Log("Big Brain score calculation = " + fatBoi.ToString());
+
+        return new ScoreElementData(fatBoi, ScoreElementType.FatBoi);
     }
     #endregion
 }
