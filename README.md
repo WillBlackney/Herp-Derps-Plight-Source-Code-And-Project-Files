@@ -12,7 +12,7 @@ Customize your characters race, talents, starting deck, weapons, appearance and 
 Today a human fire mage, tomorrow and dual wielding battle mage. Your starting specs don't need to define your journey. Equip powerful items, add cards to your deck, and watch your character evolve as you progress.
 
 ### Tactical turn based combat.
-![](GIF/combat1.gif)
+![](GIF/combat_compressed_1.gif)
 Battle against a diverse horde of enemies! Use your character's card to attack enemies, protect allies, support your team and manipulate the battlefield.
 
 
