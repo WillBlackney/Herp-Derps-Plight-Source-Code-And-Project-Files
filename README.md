@@ -21,11 +21,11 @@ Battle against a diverse horde of enemies! Use your character's card to attack e
 
 
 ### Screenshots
+![](Game%20Still%20Images/combat_1-min.png)
+![](Game%20Still%20Images/combat_2-min.png)
 ![](Game%20Still%20Images/add_cards_1-min.png)
 ![](Game%20Still%20Images/camping_1-min.png)
 ![](Game%20Still%20Images/camping_2-min.png)
-![](Game%20Still%20Images/combat_1-min.png)
-![](Game%20Still%20Images/combat_2-min.png)
 ![](Game%20Still%20Images/combat_start_1-min.png)
 ![](Game%20Still%20Images/kings_event_1-min.png)
 ![](Game%20Still%20Images/kings_event_2-min.png)
