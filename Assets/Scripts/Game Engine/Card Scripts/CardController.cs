@@ -128,7 +128,7 @@ public class CardController : Singleton<CardController>
 
         foreach (CardDataSO dataSO in allCardScriptableObjects)
         {
-            if(dataSO.includeInGame)
+            if(dataSO != null && dataSO.includeInGame)
                 tempList.Add(BuildCardDataFromScriptableObjectData(dataSO));
         }
 
